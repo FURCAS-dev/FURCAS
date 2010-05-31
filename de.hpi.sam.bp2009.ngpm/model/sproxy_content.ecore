@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="sproxy_content"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" name="sproxy_content"
     nsURI="http:///sproxy_content.ecore" nsPrefix="sproxy_content">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
+  </eAnnotations>
+  <eAnnotations source="oclTypes">
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Association)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Association"/>
+    <contents xsi:type="ocl.ecore:Variable" name="a" eType="#//Attribute"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//StatusAndActionSchema"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//BONode"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Attribute)" instanceClassName="java.util.LinkedHashSet"
+        elementType="#//Attribute"/>
+    <contents xsi:type="ocl.ecore:Variable" name="a" eType="#//Association"/>
+    <contents xsi:type="ocl.ecore:SetType" name="Set(BO)" instanceClassName="java.util.Set"
+        elementType="#//BO"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="BO" eSuperTypes="modelmanagement.ecore#//NamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -30,6 +42,33 @@
     </eAnnotations>
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
       <details key="EitherRootOrChild" value="self.bo->isEmpty() implies self.association->exists(a:Association | a.composite)"/>
+      <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
+        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/isEmpty">
+          <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//%oclTypes%/Set(BO)">
+            <part xsi:type="ocl.ecore:CollectionItem" eType="#//BO">
+              <item xsi:type="ocl.ecore:PropertyCallExp" eType="#//BO" referredProperty="#//BONode/bo">
+                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//BONode"
+                    referredVariable="#//%oclTypes%/self.1"/>
+              </item>
+            </part>
+          </source>
+        </source>
+        <argument xsi:type="ocl.ecore:IteratorExp" name="exists" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Association)"
+              referredProperty="#//BONode/association">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//BONode"
+                referredVariable="#//%oclTypes%/self.1"/>
+          </source>
+          <body xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredProperty="#//Association/composite">
+            <source xsi:type="ocl.ecore:VariableExp" name="a" eType="#//Association"
+                referredVariable="#//%oclTypes%/a.1"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="a" eType="#//Association"/>
+        </argument>
+      </contents>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="EitherRootOrChild"/>
@@ -151,6 +190,18 @@
   <eClassifiers xsi:type="ecore:EClass" name="StatusAndActionSchema" eSuperTypes="modelmanagement.ecore#//NamedElement">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
       <details key="CanOnlyUseStatusAttributes" value="self.statusVariables->forAll(a:Attribute | a.statusAttribute)"/>
+      <contents xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+        <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(Attribute)"
+            referredProperty="#//StatusAndActionSchema/statusVariables">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//StatusAndActionSchema"
+              referredVariable="#//%oclTypes%/self"/>
+        </source>
+        <body xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredProperty="#//Attribute/statusAttribute">
+          <source xsi:type="ocl.ecore:VariableExp" name="a" eType="#//Attribute" referredVariable="#//%oclTypes%/a"/>
+        </body>
+        <iterator xsi:type="ocl.ecore:Variable" name="a" eType="#//Attribute"/>
+      </contents>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="CanOnlyUseStatusAttributes"/>
@@ -176,14 +227,13 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Maps to an Association between the Classes to which the owning DataType and the UnstructuredAbapType have been mapped, respectively."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statusAttribute" eType="ecore:EClass runtime.ecore#//primitivetypes/Boolean"
-        containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="abapType" lowerBound="1"
         eType="ecore:EClass abapmapping.ecore#//abapdictionary/UnstructuredAbapType">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
         <details key="Property.oppositeRoleName" value=""/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="statusAttribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Cardinality">
     <eLiterals name="zero"/>
@@ -197,8 +247,6 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Association">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="composite" eType="ecore:EClass runtime.ecore#//primitivetypes/Boolean"
-        containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetNode" lowerBound="1"
         eType="#//BONode" eOpposite="#//BONode/association"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" lowerBound="1" eType="#//BONode"
@@ -209,6 +257,7 @@
         <details key="Property.oppositeRoleName" value=""/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="composite" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="modelmanagement.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterType" eType="#//DataType">

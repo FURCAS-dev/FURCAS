@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ui"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" name="ui"
     nsURI="http:///ui.ecore" nsPrefix="ui">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
@@ -22,9 +22,32 @@
       <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
+    <eAnnotations source="oclTypes">
+      <contents xsi:type="ocl.ecore:Variable" name="e" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
+      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Expression)"
+          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
+      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Expression)"
+          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
+      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//templates/StringTemplate"/>
+      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//templates/StringTemplate"/>
+      <contents xsi:type="ocl.ecore:Variable" name="e" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
+    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="StringTemplate" eSuperTypes="data.ecore#//classes/FunctionSignatureImplementation">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="expressionMustBeSideEffectFree" value="self.expressions->forAll( e | e.isSideEffectFree() )"/>
+        <contents xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//templates/%oclTypes%/OrderedSet(Expression)"
+              referredProperty="#//templates/StringTemplate/expressions">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//templates/StringTemplate"
+                referredVariable="#//templates/%oclTypes%/self"/>
+          </source>
+          <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation dataaccess.ecore#//expressions/Expression/isSideEffectFree">
+            <source xsi:type="ocl.ecore:VariableExp" name="e" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
+                referredVariable="#//templates/%oclTypes%/e.1"/>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="e" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
+        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="expressionMustBeSideEffectFree"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="modelmanagement"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" name="modelmanagement"
     nsURI="http:///modelmanagement.ecore" nsPrefix="modelmanagement">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
@@ -10,12 +10,51 @@
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="Packaging, namespaces, visibility rules, dependency management, specifying facades / public parts, SCs, DCs, SCVs, ..."/>
   </eAnnotations>
+  <eAnnotations source="oclTypes">
+    <contents xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/SapClass"/>
+    <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//Package"/>
+    <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(SapClass)" instanceClassName="java.util.LinkedHashSet"
+        elementType="ecore:EClass data.ecore#//classes/SapClass"/>
+    <contents xsi:type="ocl.ecore:Variable" name="j" eType="ecore:EClass data.ecore#//classes/SapClass"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//PackageOwner">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Packages own and structure the model content. Higher-level concepts such as process components, applications or deployment units should not inherit from Package but instead own packages that contain their implementation."/>
     </eAnnotations>
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
       <details key="DistinctClassNamesPerPackage" value="self.classes->forAll( i, j | i &lt;> j implies i.name &lt;> j.name )"/>
+      <contents xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+        <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//%oclTypes%/OrderedSet(SapClass)"
+            referredProperty="#//Package/classes">
+          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//Package"
+              referredVariable="#//%oclTypes%/self"/>
+        </source>
+        <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
+          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/%3C%3E">
+            <source xsi:type="ocl.ecore:VariableExp" name="i" eType="ecore:EClass data.ecore#//classes/SapClass"
+                referredVariable="#//%oclTypes%/i"/>
+            <argument xsi:type="ocl.ecore:VariableExp" name="j" eType="ecore:EClass data.ecore#//classes/SapClass"
+                referredVariable="#//%oclTypes%/j"/>
+          </source>
+          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/%3C%3E">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"
+                referredProperty="#//NamedElement/name">
+              <source xsi:type="ocl.ecore:VariableExp" name="i" eType="ecore:EClass data.ecore#//classes/SapClass"
+                  referredVariable="#//%oclTypes%/i"/>
+            </source>
+            <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"
+                referredProperty="#//NamedElement/name">
+              <source xsi:type="ocl.ecore:VariableExp" name="j" eType="ecore:EClass data.ecore#//classes/SapClass"
+                  referredVariable="#//%oclTypes%/j"/>
+            </argument>
+          </argument>
+        </body>
+        <iterator xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/SapClass"/>
+        <iterator xsi:type="ocl.ecore:Variable" name="j" eType="ecore:EClass data.ecore#//classes/SapClass"/>
+      </contents>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="DistinctClassNamesPerPackage"/>

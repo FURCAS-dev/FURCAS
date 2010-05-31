@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="abapmapping"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" name="abapmapping"
     nsURI="http:///abapmapping.ecore" nsPrefix="abapmapping">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
@@ -44,6 +44,20 @@
       <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
+    <eAnnotations source="oclTypes">
+      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//abapdictionary/Code"/>
+      <contents xsi:type="ocl.ecore:Variable" name="cv" eType="#//abapdictionary/CodeValue"/>
+      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(CodeValue)" instanceClassName="java.util.LinkedHashSet"
+          elementType="#//abapdictionary/CodeValue"/>
+      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//abapdictionary/Code"/>
+      <contents xsi:type="ocl.ecore:Variable" name="cv" eType="#//abapdictionary/CodeValue"/>
+      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(CodeValue)" instanceClassName="java.util.LinkedHashSet"
+          elementType="#//abapdictionary/CodeValue"/>
+      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//abapdictionary/Code"/>
+      <contents xsi:type="ocl.ecore:Variable" name="cv" eType="#//abapdictionary/CodeValue"/>
+      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(CodeValue)" instanceClassName="java.util.LinkedHashSet"
+          elementType="#//abapdictionary/CodeValue"/>
+    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="XsdType">
       <eStructuralFeatures xsi:type="ecore:EReference" name="xsdType" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
           containment="true" resolveProxies="false"/>
@@ -82,6 +96,27 @@
     <eClassifiers xsi:type="ecore:EClass" name="Code" eSuperTypes="#//abapdictionary/DataElement">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="TypeOfValuesEqualsAbapType" value="self.values->forAll(cv:CodeValue |&#xD;&#xA;      cv.type = self.abapType)"/>
+        <contents xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//abapdictionary/%oclTypes%/OrderedSet(CodeValue).2"
+              referredProperty="#//abapdictionary/Code/values">
+            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//abapdictionary/Code"
+                referredVariable="#//abapdictionary/%oclTypes%/self.2"/>
+          </source>
+          <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/=">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//abapdictionary/AbapPrimtiveType"
+                referredProperty="#//abapdictionary/CodeValue/type">
+              <source xsi:type="ocl.ecore:VariableExp" name="cv" eType="#//abapdictionary/CodeValue"
+                  referredVariable="#//abapdictionary/%oclTypes%/cv"/>
+            </source>
+            <argument xsi:type="ocl.ecore:PropertyCallExp" eType="#//abapdictionary/AbapPrimtiveType"
+                referredProperty="#//abapdictionary/DataElement/abapType">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//abapdictionary/Code"
+                  referredVariable="#//abapdictionary/%oclTypes%/self.2"/>
+            </argument>
+          </body>
+          <iterator xsi:type="ocl.ecore:Variable" name="cv" eType="#//abapdictionary/CodeValue"/>
+        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="TypeOfValuesEqualsAbapType"/>

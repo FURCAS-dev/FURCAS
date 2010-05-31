@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="persistence"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" name="persistence"
     nsURI="http:///persistence.ecore" nsPrefix="persistence">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
@@ -27,7 +27,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StatementWithEntityArgument" eSuperTypes="behavioral.ecore#//actions/StatementWithArgument">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="CanStoreOnlyEntities" value="if self.argument.getType().oclIsKindOf(ClassTypeDefinition) then&#xD;&#xA;    not self.argument.getType().oclAsType(ClassTypeDefinition).clazz.valueType&#xD;&#xA;  else&#xD;&#xA;    false&#xD;&#xA;  endif"/>
+        <details key="CanStoreOnlyEntities" value="if self.argument.getType().oclIsKindOf(data::classes::ClassTypeDefinition) then&#xD;&#xA;    not self.argument.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType&#xD;&#xA;  else&#xD;&#xA;    false&#xD;&#xA;  endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="CanStoreOnlyEntities"/>
@@ -40,10 +40,25 @@
       <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
+    <eAnnotations source="oclTypes">
+      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//expressions/All"/>
+      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//expressions/All"/>
+    </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="All" eSuperTypes="dataaccess.ecore#//expressions/Expression">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="MustBeEntityClass" value="not self.ofClass.valueType"/>
-        <details key="ExpressionMustBeSnapshotOrTimePoint" value="if self.snapshot = SnapshotSelection::SPECIFIED then&#xD;&#xA;    self.snapshotIdentifier.getType().upperMultiplicity = 1 and&#xD;&#xA;    self.snapshotIdentifier.getType().oclIsKindOf(ClassTypeDefinition) and&#xD;&#xA;   Set{'Snapshot', 'TimePoint'}->includes(self.snapshotIdentifier.getType().oclAsType(ClassTypeDefinition).clazz.name)&#xD;&#xA;  else&#xD;&#xA;    true&#xD;&#xA;  endif"/>
+        <details key="ExpressionMustBeSnapshotOrTimePoint" value="if self.snapshot = SnapshotSelection::SPECIFIED then&#xD;&#xA;    self.snapshotIdentifier.getType().upperMultiplicity = 1 and&#xD;&#xA;    self.snapshotIdentifier.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and&#xD;&#xA;   Set{'Snapshot', 'TimePoint'}->includes(self.snapshotIdentifier.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name)&#xD;&#xA;  else&#xD;&#xA;    true&#xD;&#xA;  endif"/>
+        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
+          <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
+              referredProperty="ecore:EAttribute data.ecore#//classes/SapClass/valueType">
+            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass data.ecore#//classes/SapClass"
+                referredProperty="#//expressions/All/ofClass">
+              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//expressions/All"
+                  referredVariable="#//expressions/%oclTypes%/self.1"/>
+            </source>
+          </source>
+        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="MustBeEntityClass ExpressionMustBeSnapshotOrTimePoint"/>
@@ -77,7 +92,7 @@
         <details key="documentation" value="Returns the Snapshot produced"/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="ReturnsSnapshot" value="self.getType().oclIsKindOf(ClassTypeDefinition) and&#xD;&#xA;  self.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Snapshot'"/>
+        <details key="ReturnsSnapshot" value="self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and&#xD;&#xA;  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Snapshot'"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="ReturnsSnapshot"/>
@@ -85,7 +100,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Snapshot" eSuperTypes="dataaccess.ecore#//expressions/ObjectBasedExpression">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="SourceObjectIsOfClassType" value="self.object.getType().oclIsKindOf(ClassTypeDefinition)"/>
+        <details key="SourceObjectIsOfClassType" value="self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="SourceObjectIsOfClassType"/>
