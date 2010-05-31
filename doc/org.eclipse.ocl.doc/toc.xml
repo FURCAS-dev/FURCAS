@@ -21,6 +21,7 @@
 
 	<anchor id="tutorial-before" />
 	<topic label="Tutorials">	
+		<topic label="OCLinEcore Tutorial" href="tutorials/oclinecore/oclInEcoreTutorial.html" />	
 		<topic label="OCL Interpreter Tutorial" href="tutorials/oclInterpreterTutorial.html" />
 	</topic>
 	<anchor id="tutorial-after" />
