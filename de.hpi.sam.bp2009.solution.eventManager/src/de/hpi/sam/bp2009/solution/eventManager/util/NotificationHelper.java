@@ -74,6 +74,12 @@ public class NotificationHelper {
 //        return null;
     }
 
+    /**
+     * Checks whether the given event contains is a Many Event
+     * if true, one can handle the old/newValue objects as Lists
+     * @param event the {@link Notification} to check
+     * @return {@link Boolean} <code>true</code> if is a many notification
+     */
     public static boolean isManyEvent(Notification event) {
         switch (event.getEventType()) {
         case Notification.ADD_MANY:
@@ -83,6 +89,11 @@ public class NotificationHelper {
         return false;
     }
 
+    /**
+     * Checks whether the given event represent an add of a value to the model.
+     * @param event {@link Notification} to check
+     * @return <code>true</code> if there is an {@link Notification#ADD}  or {@link Notification#ADD_MANY}  or a {@link Notification#SET}  which set not to null
+     */
     public static boolean isAddEvent(Notification event) {
         switch (event.getEventType()) {
         case Notification.ADD:

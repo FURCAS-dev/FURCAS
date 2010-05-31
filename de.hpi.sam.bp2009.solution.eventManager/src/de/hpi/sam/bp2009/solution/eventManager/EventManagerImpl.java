@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -65,7 +66,8 @@ public class EventManagerImpl implements EventManager {
     }
 
     public void subscribe(Notifier root, EventFilter filter, Adapter caller) {
-        root.eAdapters().add(adapter);
+        if(root!=null)
+            root.eAdapters().add(adapter);
         for (NotificationIdentifier id : filter.buildNotificationIdentifiers(EventManagerFactory.eINSTANCE
                 .createNotificationIdentifier())) {
             if (identifierToListener.get(id) == null) {
@@ -90,6 +92,44 @@ public class EventManagerImpl implements EventManager {
         // TODO Auto-generated methodsubscribeTransactional stub
         System.out.println("subscribeTransactional");
 
+    }
+
+    @Override
+    public void subscribe(EventFilter filter, Adapter caller) {
+        subscribe((Notifier)null, filter, caller);
+        
+    }
+
+    @Override
+    @Deprecated
+    public void subscribeTransactional(EventFilter filter, Adapter caller) {
+        subscribeTransactional(null, filter, caller);
+    }
+
+    @Override
+    public boolean detachFrom(Notifier... notifiers) {
+        for(Notifier n: notifiers){
+            adapter.unsetTarget(n);
+        }
+        return true;
+        
+    }
+
+    @Override
+    public Collection<? extends Notifier> getAllNotifiers() {
+        
+        Collection<Notifier> result = new ArrayList<Notifier>();
+        result.add(adapter.getTarget());
+        return result;
+        
+    }
+
+    @Override
+    public boolean attachTo(Notifier... notifiers) {
+        // TODO Auto-generated methodattachTo stub
+        System.out.println("attachTo");
+        return false;
+        
     }
 
 } // EventManagerImpl

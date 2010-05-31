@@ -23,9 +23,11 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegate;
@@ -35,41 +37,44 @@ import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 
 /**
- * An implementation of an operation-invocation delegate for OCL body
- * expressions.
+ * An implementation of an operation-invocation delegate for OCL body expressions.
  * 
  * @since 3.0
  */
-public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate
-{
+public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate {
     private OCLExpression body;
     private ValueConverter converter;
 
-    public OCLInvocationDelegateForAnnotations(
-            OCLDelegateDomain delegateDomain, EOperation operation) {
+    public OCLInvocationDelegateForAnnotations(OCLDelegateDomain delegateDomain, EOperation operation) {
         super(delegateDomain, operation);
-        this.converter = operation.isMany()
-        ? ValueConverter.LIST
-                : ValueConverter.VERBATIM;
+        this.converter = operation.isMany() ? ValueConverter.LIST : ValueConverter.VERBATIM;
     }
 
-
     @Override
-    public Object dynamicInvoke(InternalEObject target, EList<?> arguments)
-    throws InvocationTargetException {
+    public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
         OCL ocl = delegateDomain.getOCL();
         new ProjectDependencyQueryContextProvider().apply(ocl);
         if (body == null) {
             body = InvocationBehaviorForAnnotations.INSTANCE.getOperationBody(ocl, eOperation);
         }
         /*
-         * call super behaviour if not able to resolve annotation 
-         * 
+         * call super behaviour if not able to resolve annotation
          */
-        if(body == null){
-            System.err.println(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName() +" . "+ EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
-            return super.dynamicInvoke(target, arguments);
-//            throw new IllegalArgumentException(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName() +" . "+ EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
+        if (body == null) {
+            Object res;
+            System.err.println(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName() + " . "
+                    + EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
+            if (EcoreUtil.getAnnotation(eOperation, OCLDelegateDomain.OCL_DELEGATE_URI, InvocationBehavior.BODY_CONSTRAINT_KEY) == null) {
+                EcoreUtil.setAnnotation(eOperation, OCLDelegateDomain.OCL_DELEGATE_URI, InvocationBehavior.BODY_CONSTRAINT_KEY,
+                        EcoreUtil.getAnnotation(eOperation, EAnnotationOCLParser.ANNOTATION_SOURCE,
+                                InvocationBehavior.BODY_CONSTRAINT_KEY));
+                res = trySuperOrMethodCall(target, arguments);
+                eOperation.getEAnnotations().remove(eOperation.getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI));
+            } else {
+                res = trySuperOrMethodCall(target, arguments);            }
+            return res;
+            // throw new IllegalArgumentException(EAnnotationOCLParser.MISSING_BODY_FOR_INVOCATION_DELEGATE + eOperation.getName()
+            // +" . "+ EAnnotationOCLParser.EXPRESSION_NOT_FOUND);
         }
 
         OCL.Query query = ocl.createQuery(body);
@@ -77,8 +82,7 @@ public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate
 
         if (!parms.isEmpty()) {
             // bind arguments to parameter names
-            EvaluationEnvironment<EClassifier, ?, ?, ?, ?> env = query
-            .getEvaluationEnvironment();
+            EvaluationEnvironment<EClassifier, ?, ?, ?, ?> env = query.getEvaluationEnvironment();
 
             for (int i = 0; i < parms.size(); i++) {
                 env.add(parms.get(i).getName(), arguments.get(i));
@@ -90,6 +94,19 @@ public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate
             throw new OCLDelegateException(message);
         }
         return converter.convert(ocl, result);
+    }
+
+    private Object trySuperOrMethodCall(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
+        Object res;
+        try{
+            res = super.dynamicInvoke(target, arguments);
+        }catch(OCLDelegateException e){
+            /*
+             * ultimate fallback, the method itself
+             */
+            res = target.eInvoke(eOperation, arguments);
+        }
+        return res;
     }
 
 }

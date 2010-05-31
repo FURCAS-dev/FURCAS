@@ -16,36 +16,39 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst.delegate;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.osgi.util.NLS;
-
 /**
  * An implementation of a setting delegate that computes OCL derived features.
  * 
  * @since 3.0
  */
-public class OCLSettingDelegateForAnnotations extends org.eclipse.ocl.ecore.delegate.OCLSettingDelegate
-{
+public class OCLSettingDelegateForAnnotations extends org.eclipse.ocl.ecore.delegate.OCLSettingDelegate {
     protected final OCLDelegateDomain delegateDomain;
     private OCLExpression derivation;
     private ValueConverter converter;
+    private EReference containment = null;
 
-    public OCLSettingDelegateForAnnotations(OCLDelegateDomain delegateDomain,
-            EStructuralFeature structuralFeature) {
+    public OCLSettingDelegateForAnnotations(OCLDelegateDomain delegateDomain, EStructuralFeature structuralFeature) {
         super(delegateDomain, structuralFeature);
         this.delegateDomain = delegateDomain;
-        this.converter = structuralFeature.isMany()
-        ? ValueConverter.LIST
-                : ValueConverter.VERBATIM;
+        this.converter = structuralFeature.isMany() ? ValueConverter.LIST : ValueConverter.VERBATIM;
+        if (eStructuralFeature instanceof EReference) {
+            if (((EReference) eStructuralFeature).isContainment()) {
+                this.containment = (EReference) eStructuralFeature;
+            }
+        }
     }
-
-
-
 
     @Override
     protected Object get(InternalEObject owner, boolean resolve, boolean coreType) {
@@ -53,8 +56,15 @@ public class OCLSettingDelegateForAnnotations extends org.eclipse.ocl.ecore.dele
         if (derivation == null) {
             derivation = SettingBehaviorForAnnotations.INSTANCE.getFeatureBody(ocl, eStructuralFeature);
         }
-        if(derivation == null)
-            return super.get(owner, resolve, coreType);
+        if (derivation == null) {
+            Object res;
+            try {
+                res = super.get(owner, resolve, coreType);
+            } catch (OCLDelegateException e) {
+                res = owner.eGet(eStructuralFeature, resolve, coreType);
+            }
+            return res;
+        }
 
         OCL.Query query = ocl.createQuery(derivation);
         Object result = query.evaluate(owner);
@@ -65,5 +75,19 @@ public class OCLSettingDelegateForAnnotations extends org.eclipse.ocl.ecore.dele
 
         return converter.convert(ocl, result);
     }
+
+    @Override
+    protected void set(InternalEObject owner, Object newValue) {
+        if (containment != null && newValue instanceof EObject) {
+            EObject oldContainer = ((EObject) newValue).eContainer();
+            owner.eSet(eStructuralFeature, newValue);
+            if (owner.eNotificationRequired())
+                owner.eNotify(new ENotificationImpl(owner, 666, containment,oldContainer , owner));
+        } else {
+            owner.eSet(eStructuralFeature, newValue);
+        }
+
+    }
+    
 
 }

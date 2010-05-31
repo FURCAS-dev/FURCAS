@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -11,6 +12,10 @@ import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -27,23 +32,25 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventManager.EventManager {
     /**
-     * @author Philipp
-     * The EContentAdapter Implementation used for registering on the root notifiers
+     * @author Philipp The EContentAdapter Implementation used for registering on the root notifiers
      */
     private class EventAdapter extends EContentAdapter {
         Set<WeakReference<org.eclipse.emf.common.notify.Notifier>> notis = new HashSet<WeakReference<org.eclipse.emf.common.notify.Notifier>>();
+
         /**
          * Registers this adapter on the given notifier and add the notifier to the intern list
+         * 
          * @param newNoti
          * @return false if the notifier is yet in the scope
          */
-        boolean addToNotifier(org.eclipse.emf.common.notify.Notifier newNoti){
-            if(newNoti.eAdapters().contains(this))
+        boolean addToNotifier(org.eclipse.emf.common.notify.Notifier newNoti) {
+            if (newNoti.eAdapters().contains(this))
                 return false;
             newNoti.eAdapters().add(this);
             notis.add(new WeakReference<org.eclipse.emf.common.notify.Notifier>(newNoti));
             return true;
         }
+
         @Override
         public void notifyChanged(Notification notification) {
             super.notifyChanged(notification);
@@ -63,9 +70,9 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
     private boolean doFireEvents = true;
 
     /**
-     * listeners are not notified directly. The notification process is done by the appropriate AdapterCapsule. This Map provides the
-     * associated AdapterCapsule for a Listener. For each type of Listener there is a seperate AdapterCapsule (That's why there might be
-     * multiply AdapterCapsules for one Listener instance (the instance could have been registered multiple times))
+     * listeners are not notified directly. The notification process is done by the appropriate AdapterCapsule. This Map provides
+     * the associated AdapterCapsule for a Listener. For each type of Listener there is a seperate AdapterCapsule (That's why
+     * there might be multiply AdapterCapsules for one Listener instance (the instance could have been registered multiple times))
      */
     private WeakHashMap<Adapter, Collection<AdapterCapsule>> notifierByListener = new WeakHashMap<Adapter, Collection<AdapterCapsule>>();
 
@@ -420,8 +427,9 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
 
     @Override
     public void handleEMFEvent(Notification notification) {
-        for (Notification n : RecursiveContaimentNotificationCreator.createNotificationForComposites(notification)){
-            fireChangeEvent(n);}
+        for (Notification n : RecursiveContaimentNotificationCreator.createNotificationForComposites(notification)) {
+            fireChangeEvent(n);
+        }
 
     }
 
@@ -429,6 +437,68 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
     public boolean unsubscribe(Adapter caller) {
         deregister(caller);
         return true;
+
+    }
+
+    @Override
+    public void subscribe(EventFilter filter, Adapter caller) {
+        subscribe(new HashSet<Notifier>(), filter, caller);
+    }
+
+    @Override
+    public void subscribeTransactional(EventFilter filter, Adapter caller) {
+        subscribeTransactional(new HashSet<Notifier>(), filter, caller);
+
+    }
+
+    @Override
+    public boolean detachFrom(Notifier... notifiers) {
+        boolean result = true;
+        for (WeakReference<Notifier> weak : adapter.notis) {
+            for (Notifier noti : notifiers) {
+                if (weak.get().equals(noti)) {
+                    weak.clear();
+                    if (noti instanceof EObject && ((EObject) noti).eContainer() != null
+                            && !((EObject) noti).eContainer().eAdapters().contains(adapter)) {
+                        // no notifier for the container is registered
+                        adapter.unsetTarget(noti);
+
+                    } else if (noti instanceof Resource && ((Resource) noti).getResourceSet() != null
+                            && !((Resource) noti).getResourceSet().eAdapters().contains(adapter)) {
+                        // no notifier for the ResourceSet is registered
+                        adapter.unsetTarget(noti);
+
+                    } else if (noti instanceof ResourceSet) {
+                        // ResourceSet
+                        adapter.unsetTarget(noti);
+                    } else {
+                        // adapter not detached
+                        result = false;
+                    }
+
+                }
+                ;
+            }
+
+        }
+        return result;
+    }
+
+    @Override
+    public Collection<? extends Notifier> getAllNotifiers() {
+        Collection<Notifier> result = new HashSet<Notifier>();
+        for (WeakReference<Notifier> weak : adapter.notis) {
+            result.add(weak.get());
+        }
+        return result;
+    }
+
+    @Override
+    public boolean attachTo(Notifier... notifiers) {
+        for (Notifier n : notifiers) {
+            adapter.setTarget(n);
+        }
+        return getAllNotifiers().containsAll(Arrays.asList(notifiers));
 
     }
 

@@ -20,6 +20,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.junit.Test;
 
 import company.CompanyFactory;
+import company.Department;
+import company.Division;
+import company.Employee;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
@@ -199,5 +202,33 @@ public class EventManagerTest extends BaseDepartmentTest {
         r.getContents().add(this.aDivision);
         assertTrue(b.is);
      }
+    public void testContainerSet(){
+        Department dep = CompanyFactory.eINSTANCE.createDepartment();
+        Employee empl = CompanyFactory.eINSTANCE.createEmployee();
+        
+        Bool b1 = new Bool();
+        MyApp my = new MyApp(b1 );
+        empl.eAdapters().add(my);
+        dep.getEmployee().add(empl);
+        assertTrue(my.b.is);
+        
+//        Employee sec = CompanyFactory.eINSTANCE.createEmployee();
+//        b1 = new Bool();
+//        my = new MyApp(b1);
+//        sec.eAdapters().add(my);
+//        empl.setSecretary(sec);
+//        assertTrue(my.b.is);
+        
+        Division div = CompanyFactory.eINSTANCE.createDivision();
+        
+        b1 = new Bool();
+        my = new MyApp(b1);
+        div.eAdapters().add(my);
+        div.getDepartment().add(dep);
+        assertTrue(my.b.is);
+        
+        
+        
+    }
 
 } // EventManagerTest

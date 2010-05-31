@@ -33,7 +33,16 @@ public class RecursiveContaimentNotificationCreatorTest extends BaseDepartmentTe
     public void testCreateNotificationForComposites() {
         Division div = CompanyFactory.eINSTANCE.createDivision();
         div.setDirector(aEmployee);
+        aEmployee.setSecretary(CompanyFactory.eINSTANCE.createEmployee());
         Notification event = NotificationHelper.createElementAddNotification(div, departmentRef, aDepartment);
+        Collection<Notification> list = RecursiveContaimentNotificationCreator.createNotificationForComposites(event);
+        assertTrue(list.size()==2);
+    }
+    @Test
+    public void testCreateNotificationForComposite() {
+        Division div = CompanyFactory.eINSTANCE.createDivision();
+//        div.setDirector(aEmployee);
+        Notification event = NotificationHelper.createElementAddNotification(div, directedRef.getEOpposite(), aEmployee);
         Collection<Notification> list = RecursiveContaimentNotificationCreator.createNotificationForComposites(event);
         assertTrue(list.size()==2);
     }
