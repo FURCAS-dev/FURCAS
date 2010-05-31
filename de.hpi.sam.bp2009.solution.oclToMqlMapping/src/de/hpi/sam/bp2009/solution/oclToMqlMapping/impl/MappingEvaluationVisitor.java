@@ -69,12 +69,11 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
                 while(list.hasNext())
                     allO.add((EObject)list.next());
             }
-            OCLExpression<?> test = oc.getSource();
-            EClassifier eclass1 = null; 
-            if (test instanceof TypeExp<?>){
-                Object x = ((TypeExp<?>) test).getReferredType();
-                eclass1 = (EClassifier) x;
-                
+            OCLExpression<?> ocSource = oc.getSource();
+
+            Object ocType=null;
+            if (ocSource instanceof TypeExp<?>){
+                ocType = ((TypeExp<?>) ocSource).getReferredType();
             }
             /**
              * only if there is an Iteratorexp in Container, call query 2
@@ -83,16 +82,17 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
             if (oc.eContainer()instanceof IteratorExp<?, ?>){
                 IteratorExp<C, PM> ie = (IteratorExp<C, PM>) oc.eContainer();
                 OCLExpression<C> body = ie.getBody();
-                result = Query2.buildMqlQuery(allO, eclass1, body, ie, this); 
+                result = Query2.buildMqlQuery(allO, ocType, body, ie, this); 
                 if (result == null)
-                    return super.visitOperationCallExp(oc);
+                  //traverse the AST from beginning
+                    return super.visitExpression(ie);
                 else
                     return result;
 
             }else{
-                //TODO fallback --> need another action to map anyway or call super
-
-                return super.visitOperationCallExp(oc);
+                //traverse the AST from beginning
+                OCLExpression<C> oclExp = (OCLExpression<C>) oc.eContainer();
+                return super.visitExpression(oclExp);
             }
 
         }else{
@@ -124,10 +124,10 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
                 return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
                 //            case PredefinedType.REJECT:
                 //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-                //            case PredefinedType.COLLECT:
-                //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-                //            case PredefinedType.COLLECT_NESTED:
-                //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+            case PredefinedType.COLLECT:
+                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+            case PredefinedType.COLLECT_NESTED:
+                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
                 //            case PredefinedType.ONE:
                 //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
             case PredefinedType.ANY:

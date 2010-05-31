@@ -36,11 +36,12 @@ public class Query2  {
 
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
-    public static Object buildMqlQuery(Set<EObject> allO,  EClassifier eclass1, OCLExpression body, IteratorExp ie, MappingEvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> mapev){
+    public static Object buildMqlQuery(Set<EObject> allO,  Object ocType, OCLExpression body, IteratorExp ie, MappingEvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> mapev){
         //TODO other query for each predefinded type
         Object result = null;
         MqlMapperToString<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> mmts ;
         mmts = new MqlMapperToString(mapev.getEnvironment(), mapev.getEvaluationEnvironment(), mapev.getExtentMap());
+        EClassifier eclass1 = (EClassifier) ocType;
         URI uri1 = EcoreUtil.getURI(eclass1);
         String stringBody =null;
         stringBody = (String) mmts.visitExpression(body);
@@ -97,19 +98,25 @@ public class Query2  {
             QueryProcessor queryProcessor = new QueryProcessorImpl(DEFAULT_INDEX);
             if (body instanceof PropertyCallExp<?, ?>){
 
-                //TODO mapping for navigationCallExp
+              
 
 
                 Object prop = ((PropertyCallExp) body).getReferredProperty();
                 if(prop instanceof EReference){
-                    Object x = ((EReference) prop).getEType();
-                    EClassifier eclass2 = (EClassifier) x;
+                    Object propType = ((EReference) prop).getEType();
+                    EClassifier eclass2 = (EClassifier) propType;
                     URI uri2=EcoreUtil.getURI(eclass2);
-                    //TODO check eclass2 is Subtype of eclass1 then use KIND in mql 
-
-
+                    
+                    if (propType instanceof EClass){
+                    //TODO correct the query2, subType-checking correct?
                     resultSet = queryProcessor.execute("select a2 from  [" +uri1+ //$NON-NLS-1$
-                            "] as a1," +uri2+ " as a2 with (a1,a2) in assoc( " +stringBody+ ")", queryContext); //$NON-NLS-1$
+                            "] as a1, kind " +uri2+ " as a2 with (a1,a2) in assoc( " +stringBody+ ")", queryContext); //$NON-NLS-1$
+                    }
+                    else{
+                      //TODO check if query 2 is correct
+                        resultSet = queryProcessor.execute("select a2 from  [" +uri1+ //$NON-NLS-1$
+                                "] as a1," +uri2+ " as a2 with (a1,a2) in assoc( " +stringBody+ ")", queryContext); //$NON-NLS-1$
+                    }
                 }else if(prop instanceof EAttribute){
 
                     resultSet = queryProcessor.execute("select"+ stringBody+" from  [" + uri1 + //$NON-NLS-1$
