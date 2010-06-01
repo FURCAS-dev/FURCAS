@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
@@ -169,8 +170,13 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             try {
                 expr = helper.createQuery(e);
             } catch (ParserException e1) {
-                System.out.println(e + "\n" + e1.getMessage());
-                getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", e));
+              System.out.println(e + "\n" + e1.getMessage());
+              if (e1.getDiagnostic() != null) {
+                for (Diagnostic c : e1.getDiagnostic().getChildren()) {
+                  System.out.println(c.getMessage());
+                }
+              }
+              getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", e));
             }
 
             if (expr == null)
