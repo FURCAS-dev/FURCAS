@@ -56,7 +56,7 @@
 		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object ClassView "Class" "Logical View::runtime::primitivetypes::String" @1
+			(object ClassView "Class" "Logical View::documentation::runtime::primitivetypes::String" @1
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -95,7 +95,7 @@
 			    height     	180
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::primitivetypes::DateTime" @2
+			(object ClassView "Class" "Logical View::documentation::runtime::primitivetypes::DateTime" @2
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -134,7 +134,7 @@
 			    height     	180
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::primitivetypes::Number" @3
+			(object ClassView "Class" "Logical View::documentation::runtime::primitivetypes::Number" @3
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -173,7 +173,7 @@
 			    height     	180
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::primitivetypes::Boolean" @4
+			(object ClassView "Class" "Logical View::documentation::runtime::primitivetypes::Boolean" @4
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -212,7 +212,7 @@
 			    height     	180
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::primitivetypes::Binary" @5
+			(object ClassView "Class" "Logical View::documentation::runtime::primitivetypes::Binary" @5
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -383,14 +383,14 @@
 			(object Role "literals"
 			    quid       	"44FFFFA601F8"
 			    label      	"literals"
-			    supplier   	"Logical View::runtime::enumerations::EnumerationLiteral"
+			    supplier   	"Logical View::documentation::runtime::enumerations::EnumerationLiteral"
 			    quidu      	"44FFFF9E034B"
 			    client_cardinality 	(value cardinality "1..*")
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "$UNNAMED$1"
 			    quid       	"44FFFFA601FA"
-			    supplier   	"Logical View::runtime::enumerations::Enumeration"
+			    supplier   	"Logical View::documentation::runtime::enumerations::Enumeration"
 			    quidu      	"44FFFF9401B6"
 			    is_aggregate 	TRUE))))
 	    logical_presentations 	(list unit_reference_list
@@ -475,13 +475,13 @@
 				    name       	"sap2mof.store"
 				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"453F6095022E"
-			    supplier   	"Logical View::runtime::testWithRoles::SalesOrder"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::SalesOrder"
 			    quidu      	"453F6065033E"
 			    is_navigable 	TRUE)
 			(object Role "buyer"
 			    quid       	"453F60950230"
 			    label      	"buyer"
-			    supplier   	"Logical View::runtime::testWithRoles::Customer"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Customer"
 			    quidu      	"455AC5890270"
 			    client_cardinality 	(value cardinality "1")
 			    is_navigable 	TRUE)))
@@ -495,13 +495,13 @@
 				    name       	"sap2mof.store"
 				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"453F60AD0142"
-			    supplier   	"Logical View::runtime::testWithRoles::SalesOrder"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::SalesOrder"
 			    quidu      	"453F6065033E"
 			    is_navigable 	TRUE)
 			(object Role "seller"
 			    quid       	"453F60AD0144"
 			    label      	"seller"
-			    supplier   	"Logical View::runtime::testWithRoles::Supplier"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Supplier"
 			    quidu      	"455AC58F03E1"
 			    client_cardinality 	(value cardinality "1")
 			    is_navigable 	TRUE)))
@@ -515,13 +515,13 @@
 				    name       	"sap2mof.store"
 				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"453F60C0017C"
-			    supplier   	"Logical View::runtime::testWithRoles::SalesOrder"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::SalesOrder"
 			    quidu      	"453F6065033E"
 			    is_navigable 	TRUE)
 			(object Role "vendor"
 			    quid       	"453F60C0017E"
 			    label      	"vendor"
-			    supplier   	"Logical View::runtime::testWithRoles::Supplier"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Supplier"
 			    quidu      	"455AC58F03E1"
 			    client_cardinality 	(value cardinality "1")
 			    is_navigable 	TRUE)))
@@ -531,13 +531,13 @@
 			(object Role "employer"
 			    quid       	"453F60F601A1"
 			    label      	"employer"
-			    supplier   	"Logical View::runtime::testWithRoles::Employer"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Employer"
 			    quidu      	"455AC62D0280"
 			    client_cardinality 	(value cardinality "1")
 			    is_navigable 	TRUE)
 			(object Role "$UNNAMED$9"
 			    quid       	"453F60F601A3"
-			    supplier   	"Logical View::runtime::testWithRoles::WorkAgreement"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::WorkAgreement"
 			    quidu      	"453F60E703E5")))
 		(object Association "$UNNAMED$10"
 		    quid       	"453F60F7013F"
@@ -545,13 +545,13 @@
 			(object Role "employee"
 			    quid       	"453F60F80118"
 			    label      	"employee"
-			    supplier   	"Logical View::runtime::testWithRoles::Employee"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Employee"
 			    quidu      	"455AC5840219"
 			    client_cardinality 	(value cardinality "1")
 			    is_navigable 	TRUE)
 			(object Role "$UNNAMED$11"
 			    quid       	"453F60F80122"
-			    supplier   	"Logical View::runtime::testWithRoles::WorkAgreement"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::WorkAgreement"
 			    quidu      	"453F60E703E5")))
 		(object Association "$UNNAMED$12"
 		    quid       	"453F66CB00B8"
@@ -559,26 +559,26 @@
 			(object Role "streetAddress"
 			    quid       	"453F66CC0240"
 			    label      	"streetAddress"
-			    supplier   	"Logical View::runtime::testWithRoles::Address"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Address"
 			    quidu      	"453F61370119"
 			    client_cardinality 	(value cardinality "0..1")
 			    is_navigable 	TRUE)
 			(object Role "$UNNAMED$13"
 			    quid       	"453F66CC024A"
-			    supplier   	"Logical View::runtime::testWithRoles::BusinessPartner"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::BusinessPartner"
 			    quidu      	"453F606302EB")))
 		(object Association "$UNNAMED$14"
 		    quid       	"453F66CE0030"
 		    roles      	(list role_list
 			(object Role "$UNNAMED$15"
 			    quid       	"453F66CE0239"
-			    supplier   	"Logical View::runtime::testWithRoles::BankAccount"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::BankAccount"
 			    quidu      	"453F60680342"
 			    client_cardinality 	(value cardinality "0..1")
 			    is_navigable 	TRUE)
 			(object Role "$UNNAMED$16"
 			    quid       	"453F66CE023B"
-			    supplier   	"Logical View::runtime::testWithRoles::BusinessPartner"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::BusinessPartner"
 			    quidu      	"453F606302EB")))
 		(object Association "$UNNAMED$17"
 		    quid       	"455AC5D601F8"
@@ -586,13 +586,13 @@
 		    roles      	(list role_list
 			(object Role "$UNNAMED$18"
 			    quid       	"455AC5D70286"
-			    supplier   	"Logical View::runtime::testWithRoles::Supplier"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Supplier"
 			    quidu      	"455AC58F03E1"
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "$UNNAMED$19"
 			    quid       	"455AC5D7029B"
-			    supplier   	"Logical View::runtime::testWithRoles::BusinessPartner"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::BusinessPartner"
 			    quidu      	"453F606302EB"
 			    is_aggregate 	TRUE)))
 		(object Association "$UNNAMED$20"
@@ -601,13 +601,13 @@
 		    roles      	(list role_list
 			(object Role "$UNNAMED$21"
 			    quid       	"455AC5F000E7"
-			    supplier   	"Logical View::runtime::testWithRoles::Customer"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Customer"
 			    quidu      	"455AC5890270"
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "$UNNAMED$22"
 			    quid       	"455AC5F000F1"
-			    supplier   	"Logical View::runtime::testWithRoles::BusinessPartner"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::BusinessPartner"
 			    quidu      	"453F606302EB"
 			    is_aggregate 	TRUE)))
 		(object Association "$UNNAMED$23"
@@ -616,13 +616,13 @@
 		    roles      	(list role_list
 			(object Role "$UNNAMED$24"
 			    quid       	"455AC5FE028C"
-			    supplier   	"Logical View::runtime::testWithRoles::Employee"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Employee"
 			    quidu      	"455AC5840219"
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "$UNNAMED$25"
 			    quid       	"455AC5FE028E"
-			    supplier   	"Logical View::runtime::testWithRoles::BusinessPartner"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::BusinessPartner"
 			    quidu      	"453F606302EB"
 			    is_aggregate 	TRUE)))
 		(object Association "$UNNAMED$26"
@@ -631,13 +631,13 @@
 		    roles      	(list role_list
 			(object Role "$UNNAMED$27"
 			    quid       	"455AC63301CA"
-			    supplier   	"Logical View::runtime::testWithRoles::Employer"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::Employer"
 			    quidu      	"455AC62D0280"
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "$UNNAMED$28"
 			    quid       	"455AC63301DF"
-			    supplier   	"Logical View::runtime::testWithRoles::BusinessPartner"
+			    supplier   	"Logical View::documentation::runtime::testWithRoles::BusinessPartner"
 			    quidu      	"453F606302EB"
 			    is_aggregate 	TRUE))))
 	    logical_presentations 	(list unit_reference_list
@@ -678,7 +678,7 @@
 			    fill_color 	13434879
 			    width      	2375
 			    height     	1006)
-			(object ClassView "Class" "Logical View::runtime::testWithRoles::WorkAgreement" @12
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithRoles::WorkAgreement" @12
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -694,7 +694,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@12
-				location   	(849, 1226)
+				location   	(849, 1227)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	322
@@ -705,10 +705,10 @@
 			    fill_color 	13434879
 			    quidu      	"453F60E703E5"
 			    width      	340
-			    height     	126
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithRoles::Address" @13
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithRoles::Address" @13
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -724,7 +724,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@13
-				location   	(163, 563)
+				location   	(163, 564)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	184
@@ -735,10 +735,10 @@
 			    fill_color 	13434879
 			    quidu      	"453F61370119"
 			    width      	202
-			    height     	126
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithRoles::BankAccount" @14
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithRoles::BankAccount" @14
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -754,7 +754,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@14
-				location   	(512, 105)
+				location   	(512, 106)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	276
@@ -765,10 +765,10 @@
 			    fill_color 	13434879
 			    quidu      	"453F60680342"
 			    width      	294
-			    height     	126
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithRoles::Employer" @15
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithRoles::Employer" @15
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -784,18 +784,18 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@15
-				location   	(963, 932)
+				location   	(957, 933)
 				fill_color 	13434879
 				nlines     	1
-				max_width  	202
+				max_width  	214
 				justify    	0
 				label      	"Employer")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"455AC62D0280"
-			    width      	220
-			    height     	126
+			    width      	232
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object AssociationViewNew "$UNNAMED$8" @16
@@ -853,13 +853,13 @@
 				    supplier   	@15
 				    vertices   	(list Points
 					(1066, 1130)
-					(1066, 1046))
+					(1066, 1045))
 				    line_style 	3
 				    origin_attachment 	(1066, 1130)
-				    terminal_attachment 	(1066, 1046)
+				    terminal_attachment 	(1066, 1045)
 				    label      	(object SegLabel @19
 					Parent_View 	@17
-					location   	(1099, 1079)
+					location   	(1099, 1078)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -888,11 +888,11 @@
 				    supplier   	@12
 				    vertices   	(list Points
 					(1066, 1130)
-					(1066, 1214))
+					(1066, 1215))
 				    line_style 	3
 				    origin_attachment 	(1066, 1130)
-				    terminal_attachment 	(1066, 1214))))
-			(object ClassView "Class" "Logical View::runtime::testWithRoles::Employee" @21
+				    terminal_attachment 	(1066, 1215))))
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithRoles::Employee" @21
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -908,18 +908,18 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@21
-				location   	(547, 909)
+				location   	(546, 910)
 				fill_color 	13434879
 				nlines     	1
-				max_width  	212
+				max_width  	214
 				justify    	0
 				label      	"Employee")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"455AC5840219"
-			    width      	230
-			    height     	126
+			    width      	232
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object AssociationViewNew "$UNNAMED$10" @22
@@ -951,7 +951,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @24
 					Parent_View 	@23
-					location   	(788, 1072)
+					location   	(788, 1071)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -977,10 +977,10 @@
 				    supplier   	@21
 				    vertices   	(list Points
 					(654, 1182)
-					(654, 1023))
+					(654, 1022))
 				    line_style 	3
 				    origin_attachment 	(654, 1182)
-				    terminal_attachment 	(654, 1023)
+				    terminal_attachment 	(654, 1022)
 				    label      	(object SegLabel @25
 					Parent_View 	@23
 					location   	(708, 1039)
@@ -1017,7 +1017,7 @@
 				    line_style 	3
 				    origin_attachment 	(654, 1182)
 				    terminal_attachment 	(840, 1242))))
-			(object ClassView "Class" "Logical View::runtime::testWithRoles::Customer" @27
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithRoles::Customer" @27
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -1033,7 +1033,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@27
-				location   	(1487, 133)
+				location   	(1487, 134)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	202
@@ -1044,10 +1044,10 @@
 			    fill_color 	13434879
 			    quidu      	"455AC5890270"
 			    width      	220
-			    height     	126
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithRoles::BusinessPartner" @28
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithRoles::BusinessPartner" @28
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -1063,18 +1063,18 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@28
-				location   	(847, 618)
+				location   	(848, 619)
 				fill_color 	13434879
 				nlines     	1
-				max_width  	342
+				max_width  	340
 				justify    	0
 				label      	"BusinessPartner")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"453F606302EB"
-			    width      	360
-			    height     	126
+			    width      	358
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object AssociationViewNew "$UNNAMED$12" @29
@@ -1167,10 +1167,10 @@
 				    supplier   	@28
 				    vertices   	(list Points
 					(597, 631)
-					(838, 631))
+					(839, 631))
 				    line_style 	3
 				    origin_attachment 	(597, 631)
-				    terminal_attachment 	(838, 631))))
+				    terminal_attachment 	(839, 631))))
 			(object AssociationViewNew "$UNNAMED$14" @34
 			    location   	(833, 412)
 			    font       	(object Font
@@ -1205,11 +1205,11 @@
 				    supplier   	@14
 				    vertices   	(list Points
 					(833, 412)
-					(694, 219))
+					(694, 218))
 				    line_style 	0
 				    label      	(object SegLabel @36
 					Parent_View 	@35
-					location   	(640, 246)
+					location   	(638, 245)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -1238,7 +1238,7 @@
 				    supplier   	@28
 				    vertices   	(list Points
 					(833, 412)
-					(971, 605))
+					(973, 606))
 				    line_style 	0)))
 			(object AssociationViewNew "$UNNAMED$26" @38
 			    location   	(1072, 825)
@@ -1285,10 +1285,10 @@
 				    supplier   	@15
 				    vertices   	(list Points
 					(1072, 825)
-					(1072, 920))
+					(1072, 921))
 				    line_style 	3
 				    origin_attachment 	(1072, 825)
-				    terminal_attachment 	(1072, 920))
+				    terminal_attachment 	(1072, 921))
 				(object RoleView "$UNNAMED$28" @41
 				    Parent_View 	@38
 				    location   	(-411, 156)
@@ -1299,12 +1299,12 @@
 				    supplier   	@28
 				    vertices   	(list Points
 					(1072, 825)
-					(1072, 731))
+					(1072, 730))
 				    line_style 	3
 				    origin_attachment 	(1072, 825)
-				    terminal_attachment 	(1072, 731))))
+				    terminal_attachment 	(1072, 730))))
 			(object AssociationViewNew "$UNNAMED$23" @42
-			    location   	(654, 782)
+			    location   	(714, 722)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -1316,7 +1316,7 @@
 				default_color 	TRUE)
 			    stereotype 	(object SegLabel @43
 				Parent_View 	@42
-				location   	(511, 863)
+				location   	(571, 803)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -1340,33 +1340,33 @@
 			    roleview_list 	(list RoleViews
 				(object RoleView "$UNNAMED$24" @44
 				    Parent_View 	@42
-				    location   	(-829, 113)
+				    location   	(-769, 53)
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"455AC5FE028C"
 				    client     	@42
 				    supplier   	@21
 				    vertices   	(list Points
-					(654, 782)
-					(654, 897))
+					(714, 722)
+					(654, 722)
+					(654, 898))
 				    line_style 	3
-				    origin_attachment 	(654, 782)
-				    terminal_attachment 	(654, 897))
+				    origin_attachment 	(714, 722)
+				    terminal_attachment 	(654, 898))
 				(object RoleView "$UNNAMED$25" @45
 				    Parent_View 	@42
-				    location   	(-829, 113)
+				    location   	(-769, 53)
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"455AC5FE028E"
 				    client     	@42
 				    supplier   	@28
 				    vertices   	(list Points
-					(654, 782)
-					(654, 722)
-					(838, 722))
+					(714, 722)
+					(839, 722))
 				    line_style 	3
-				    origin_attachment 	(654, 782)
-				    terminal_attachment 	(838, 722))))
+				    origin_attachment 	(714, 722)
+				    terminal_attachment 	(839, 722))))
 			(object AssociationViewNew "$UNNAMED$20" @46
 			    location   	(1090, 244)
 			    font       	(object Font
@@ -1427,11 +1427,11 @@
 				    supplier   	@28
 				    vertices   	(list Points
 					(1090, 244)
-					(1090, 606))
+					(1090, 607))
 				    line_style 	3
 				    origin_attachment 	(1090, 244)
-				    terminal_attachment 	(1090, 606))))
-			(object ClassView "Class" "Logical View::runtime::testWithRoles::SalesOrder" @50
+				    terminal_attachment 	(1090, 607))))
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithRoles::SalesOrder" @50
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -1447,7 +1447,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@50
-				location   	(1921, 629)
+				location   	(1921, 630)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	232
@@ -1458,11 +1458,11 @@
 			    fill_color 	13434879
 			    quidu      	"453F6065033E"
 			    width      	250
-			    height     	126
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object AssociationViewNew "$UNNAMED$2" @51
-			    location   	(2039, 213)
+			    location   	(2039, 214)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -1478,21 +1478,21 @@
 			    roleview_list 	(list RoleViews
 				(object RoleView "$UNNAMED$3" @52
 				    Parent_View 	@51
-				    location   	(1242, -475)
+				    location   	(1242, -474)
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"453F6095022E"
 				    client     	@51
 				    supplier   	@50
 				    vertices   	(list Points
-					(2039, 213)
-					(2039, 617))
+					(2039, 214)
+					(2039, 618))
 				    line_style 	3
-				    origin_attachment 	(2039, 213)
-				    terminal_attachment 	(2039, 617))
+				    origin_attachment 	(2039, 214)
+				    terminal_attachment 	(2039, 618))
 				(object RoleView "buyer" @53
 				    Parent_View 	@51
-				    location   	(1242, -475)
+				    location   	(1242, -474)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -1529,11 +1529,11 @@
 				    client     	@51
 				    supplier   	@27
 				    vertices   	(list Points
-					(2039, 213)
+					(2039, 214)
 					(2039, 151)
 					(1698, 151))
 				    line_style 	3
-				    origin_attachment 	(2039, 213)
+				    origin_attachment 	(2039, 214)
 				    terminal_attachment 	(1698, 151)
 				    label      	(object SegLabel @55
 					Parent_View 	@53
@@ -1556,7 +1556,7 @@
 					pctDist    	0.957055
 					height     	49
 					orientation 	1))))
-			(object ClassView "Class" "Logical View::runtime::testWithRoles::Supplier" @56
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithRoles::Supplier" @56
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -1572,7 +1572,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@56
-				location   	(1478, 629)
+				location   	(1478, 630)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	186
@@ -1583,7 +1583,7 @@
 			    fill_color 	13434879
 			    quidu      	"455AC58F03E1"
 			    width      	204
-			    height     	126
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object AssociationViewNew "$UNNAMED$17" @57
@@ -1645,10 +1645,10 @@
 				    supplier   	@28
 				    vertices   	(list Points
 					(1333, 674)
-					(1198, 674))
+					(1197, 674))
 				    line_style 	3
 				    origin_attachment 	(1333, 674)
-				    terminal_attachment 	(1198, 674))))
+				    terminal_attachment 	(1197, 674))))
 			(object AssociationViewNew "$UNNAMED$6" @61
 			    location   	(1792, 650)
 			    font       	(object Font
@@ -1849,7 +1849,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@71
-				location   	(743, 597)
+				location   	(773, 567)
 				anchor_loc 	1
 				nlines     	1
 				max_width  	450
@@ -1860,7 +1860,7 @@
 			    client     	@42
 			    supplier   	@34
 			    vertices   	(list Points
-				(654, 782)
+				(714, 722)
 				(833, 412))
 			    line_style 	0)
 			(object AssocConstraintView "" @72
@@ -1927,7 +1927,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@74
-				location   	(626, 707)
+				location   	(656, 677)
 				anchor_loc 	1
 				nlines     	1
 				max_width  	450
@@ -1938,7 +1938,7 @@
 			    client     	@42
 			    supplier   	@29
 			    vertices   	(list Points
-				(654, 782)
+				(714, 722)
 				(597, 631))
 			    line_style 	0)))))
 	(object Class_Category "testWithPolymorphicAssociations"
@@ -1965,17 +1965,17 @@
 			(object Uses_Relationship
 			    quid       	"45797D2C02CF"
 			    stereotype 	"conformsTo"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::E"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::E"
 			    quidu      	"45797CF50117")
 			(object Uses_Relationship
 			    quid       	"457974A3018C"
 			    stereotype 	"conformsTo"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::A"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::A"
 			    quidu      	"457974660120")
 			(object Uses_Relationship
 			    quid       	"45799DE70255"
 			    stereotype 	"conformsTo"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::A"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::A"
 			    quidu      	"457974660120"))
 		    operations 	(list Operations
 			(object Operation "a"
@@ -2005,7 +2005,7 @@
 			(object Uses_Relationship
 			    quid       	"45799DD403DE"
 			    stereotype 	"conformsTo"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::D"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::D"
 			    quidu      	"457974680354"))
 		    operations 	(list Operations
 			(object Operation "b"
@@ -2019,12 +2019,12 @@
 			(object Uses_Relationship
 			    quid       	"457974A5024E"
 			    stereotype 	"conformsTo"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::B"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::B"
 			    quidu      	"457974670367")
 			(object Uses_Relationship
 			    quid       	"45797D2D03D5"
 			    stereotype 	"conformsTo"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::F"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::F"
 			    quidu      	"45797CF700F2"))
 		    operations 	(list Operations
 			(object Operation "b"
@@ -2043,7 +2043,7 @@
 			(object Uses_Relationship
 			    quid       	"45797FB700C2"
 			    stereotype 	"conformsTo"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::A"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::A"
 			    quidu      	"457974660120"))
 		    operations 	(list Operations
 			(object Operation "a"
@@ -2073,7 +2073,7 @@
 			(object Uses_Relationship
 			    quid       	"45797FB8011E"
 			    stereotype 	"conformsTo"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::B"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::B"
 			    quidu      	"457974670367"))
 		    operations 	(list Operations
 			(object Operation "b"
@@ -2102,13 +2102,13 @@
 				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4579746B020E"
 			    label      	"b"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::B"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::B"
 			    quidu      	"457974670367"
 			    is_navigable 	TRUE)
 			(object Role "a"
 			    quid       	"4579746B0210"
 			    label      	"a"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::A"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::A"
 			    quidu      	"457974660120"
 			    is_navigable 	TRUE))
 		    Constraints 	"readonly")
@@ -2123,13 +2123,13 @@
 				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4579746C027E"
 			    label      	"b"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::D"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::D"
 			    quidu      	"457974680354"
 			    is_navigable 	TRUE)
 			(object Role "a"
 			    quid       	"4579746C0288"
 			    label      	"a"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::C"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::C"
 			    quidu      	"457974670064"
 			    is_navigable 	TRUE)))
 		(object Association "EtoF"
@@ -2143,13 +2143,13 @@
 				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"45797D4C036B"
 			    label      	"b"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::F"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::F"
 			    quidu      	"45797CF700F2"
 			    is_navigable 	TRUE)
 			(object Role "a"
 			    quid       	"45797D4C036D"
 			    label      	"a"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::E"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::E"
 			    quidu      	"45797CF50117"
 			    is_navigable 	TRUE))
 		    Constraints 	"readonly")
@@ -2164,13 +2164,13 @@
 				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4579853B037F"
 			    label      	"b"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::B"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::B"
 			    quidu      	"457974670367"
 			    is_navigable 	TRUE)
 			(object Role "a"
 			    quid       	"4579853B0381"
 			    label      	"a"
-			    supplier   	"Logical View::runtime::testWithPolymorphicAssociations::C"
+			    supplier   	"Logical View::documentation::runtime::testWithPolymorphicAssociations::C"
 			    quidu      	"457974670064"
 			    is_navigable 	TRUE))))
 	    logical_presentations 	(list unit_reference_list
@@ -2183,7 +2183,7 @@
 		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::B" @75
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::B" @75
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -2212,7 +2212,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::A" @76
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::A" @76
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -2365,7 +2365,7 @@
 				    line_style 	3
 				    origin_attachment 	(661, 139)
 				    terminal_attachment 	(358, 139))))
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::D" @83
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::D" @83
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -2394,7 +2394,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::C" @84
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::C" @84
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeOperation 	TRUE
 			    location   	(273, 507)
@@ -2434,7 +2434,7 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	2
+				nlines     	1
 				max_width  	0
 				compartmentItems 	(list Compartment
 				    "<<expose>> + CtoD : :b"))
@@ -2679,7 +2679,7 @@
 		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::B" @95
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::B" @95
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -2708,7 +2708,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::A" @96
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::A" @96
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeOperation 	TRUE
 			    location   	(608, 146)
@@ -2881,7 +2881,7 @@
 				    line_style 	3
 				    origin_attachment 	(1021, 153)
 				    terminal_attachment 	(698, 153))))
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::F" @104
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::F" @104
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -2910,7 +2910,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::E" @105
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::E" @105
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeOperation 	TRUE
 			    location   	(169, 415)
@@ -3189,7 +3189,7 @@
 				(1187, 352)
 				(1360, 204))
 			    line_style 	0)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::C" @118
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::C" @118
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeOperation 	TRUE
 			    location   	(640, 882)
@@ -3256,7 +3256,7 @@
 				(577, 819)
 				(231, 477))
 			    line_style 	0)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::D" @121
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::D" @121
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -3585,7 +3585,7 @@
 			    fill_color 	13434879
 			    width      	1793
 			    height     	800)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::D" @135
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::D" @135
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -3614,7 +3614,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::A" @136
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::A" @136
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -3643,7 +3643,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::B" @137
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::B" @137
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -3845,7 +3845,7 @@
 			    line_style 	3
 			    origin_attachment 	(1076, 450)
 			    terminal_attachment 	(1076, 202))
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::C" @146
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::C" @146
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeOperation 	TRUE
 			    location   	(289, 512)
@@ -3885,7 +3885,7 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	2
+				nlines     	1
 				max_width  	0
 				compartmentItems 	(list Compartment
 				    "<<expose>> + CtoD : :b"))
@@ -4104,7 +4104,7 @@
 			    fill_color 	13434879
 			    width      	1793
 			    height     	1100)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::B" @156
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::B" @156
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -4120,7 +4120,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@156
-				location   	(1169, 67)
+				location   	(1169, 98)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	162
@@ -4130,10 +4130,10 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"457974670367"
-			    height     	186
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::A" @157
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::A" @157
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -4149,22 +4149,21 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@157
-				location   	(232, 45)
+				location   	(380, 101)
 				fill_color 	13434879
 				nlines     	1
-				max_width  	458
+				max_width  	162
 				justify    	0
 				label      	"A")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"457974660120"
-			    width      	476
-			    height     	236
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object AssociationViewNew "AtoB" @158
-			    location   	(929, 152)
+			    location   	(855, 152)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -4176,7 +4175,7 @@
 				default_color 	TRUE)
 			    label      	(object SegLabel @159
 				Parent_View 	@158
-				location   	(929, 93)
+				location   	(855, 93)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -4201,7 +4200,7 @@
 			    roleview_list 	(list RoleViews
 				(object RoleView "b" @160
 				    Parent_View 	@158
-				    location   	(173, -304)
+				    location   	(99, -304)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -4213,7 +4212,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @161
 					Parent_View 	@160
-					location   	(1114, 111)
+					location   	(1099, 111)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -4238,14 +4237,14 @@
 				    client     	@158
 				    supplier   	@156
 				    vertices   	(list Points
-					(929, 152)
+					(855, 152)
 					(1160, 152))
 				    line_style 	3
-				    origin_attachment 	(929, 152)
+				    origin_attachment 	(855, 152)
 				    terminal_attachment 	(1160, 152))
 				(object RoleView "a" @162
 				    Parent_View 	@158
-				    location   	(173, -304)
+				    location   	(99, -304)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -4257,7 +4256,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @163
 					Parent_View 	@162
-					location   	(745, 111)
+					location   	(613, 111)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -4282,12 +4281,12 @@
 				    client     	@158
 				    supplier   	@157
 				    vertices   	(list Points
-					(929, 152)
-					(699, 152))
+					(855, 152)
+					(551, 152))
 				    line_style 	3
-				    origin_attachment 	(929, 152)
-				    terminal_attachment 	(699, 152))))
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::D" @164
+				    origin_attachment 	(855, 152)
+				    terminal_attachment 	(551, 152))))
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::D" @164
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    location   	(1262, 520)
@@ -4302,7 +4301,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@164
-				location   	(1181, 439)
+				location   	(1181, 470)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	162
@@ -4314,7 +4313,7 @@
 			    quidu      	"457974680354"
 			    compartment 	(object Compartment
 				Parent_View 	@164
-				location   	(1181, 500)
+				location   	(1181, 531)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -4327,14 +4326,14 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	2
-				max_width  	97
+				nlines     	1
+				max_width  	0
 				compartmentItems 	(list Compartment
 				    "+ b()"))
-			    height     	186
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::C" @165
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::C" @165
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeOperation 	TRUE
 			    location   	(469, 520)
@@ -4349,10 +4348,10 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@165
-				location   	(240, 389)
+				location   	(388, 470)
 				fill_color 	13434879
 				nlines     	1
-				max_width  	458
+				max_width  	162
 				justify    	0
 				label      	"C")
 			    icon_style 	"Icon"
@@ -4361,7 +4360,7 @@
 			    quidu      	"457974670064"
 			    compartment 	(object Compartment
 				Parent_View 	@165
-				location   	(240, 450)
+				location   	(388, 531)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -4374,16 +4373,15 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	2
-				max_width  	456
+				nlines     	1
+				max_width  	0
 				compartmentItems 	(list Compartment
 				    "<<expose>> + CtoD : :b"))
-			    width      	476
-			    height     	286
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object AssociationViewNew "CtoD" @166
-			    location   	(939, 520)
+			    location   	(865, 520)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -4395,7 +4393,7 @@
 				default_color 	TRUE)
 			    label      	(object SegLabel @167
 				Parent_View 	@166
-				location   	(939, 461)
+				location   	(865, 461)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -4420,7 +4418,7 @@
 			    roleview_list 	(list RoleViews
 				(object RoleView "b" @168
 				    Parent_View 	@166
-				    location   	(120, -724)
+				    location   	(46, -724)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -4432,7 +4430,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @169
 					Parent_View 	@168
-					location   	(1125, 479)
+					location   	(1110, 479)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -4457,14 +4455,14 @@
 				    client     	@166
 				    supplier   	@164
 				    vertices   	(list Points
-					(939, 520)
+					(865, 520)
 					(1172, 520))
 				    line_style 	3
-				    origin_attachment 	(939, 520)
+				    origin_attachment 	(865, 520)
 				    terminal_attachment 	(1172, 520))
 				(object RoleView "a" @170
 				    Parent_View 	@166
-				    location   	(120, -724)
+				    location   	(46, -724)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -4476,7 +4474,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @171
 					Parent_View 	@170
-					location   	(754, 479)
+					location   	(621, 479)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -4501,11 +4499,11 @@
 				    client     	@166
 				    supplier   	@165
 				    vertices   	(list Points
-					(939, 520)
-					(707, 520))
+					(865, 520)
+					(559, 520))
 				    line_style 	3
-				    origin_attachment 	(939, 520)
-				    terminal_attachment 	(707, 520))))
+				    origin_attachment 	(865, 520)
+				    terminal_attachment 	(559, 520))))
 			(object UsesView "" @172
 			    font       	(object Font
 				size       	10
@@ -4542,11 +4540,11 @@
 			    client     	@156
 			    supplier   	@164
 			    vertices   	(list Points
-				(1297, 240)
-				(1297, 426))
+				(1297, 209)
+				(1297, 458))
 			    line_style 	3
-			    origin_attachment 	(1297, 240)
-			    terminal_attachment 	(1297, 426))
+			    origin_attachment 	(1297, 209)
+			    terminal_attachment 	(1297, 458))
 			(object UsesView "" @174
 			    font       	(object Font
 				size       	10
@@ -4559,7 +4557,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@174
-				location   	(1214, 333)
+				location   	(1214, 334)
 				anchor_loc 	1
 				nlines     	1
 				max_width  	450
@@ -4567,7 +4565,7 @@
 				label      	"")
 			    stereotype 	(object SegLabel @175
 				Parent_View 	@174
-				location   	(1108, 258)
+				location   	(1108, 259)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -4591,11 +4589,11 @@
 			    client     	@164
 			    supplier   	@156
 			    vertices   	(list Points
-				(1214, 427)
-				(1214, 240))
+				(1214, 458)
+				(1214, 210))
 			    line_style 	3
-			    origin_attachment 	(1214, 427)
-			    terminal_attachment 	(1214, 240))
+			    origin_attachment 	(1214, 458)
+			    terminal_attachment 	(1214, 210))
 			(object UsesView "" @176
 			    font       	(object Font
 				size       	10
@@ -4608,7 +4606,7 @@
 				default_color 	TRUE)
 			    stereotype 	(object SegLabel @177
 				Parent_View 	@176
-				location   	(288, 331)
+				location   	(288, 354)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -4632,11 +4630,11 @@
 			    client     	@165
 			    supplier   	@157
 			    vertices   	(list Points
-				(465, 377)
-				(465, 269))
+				(465, 458)
+				(465, 213))
 			    line_style 	3
-			    origin_attachment 	(465, 377)
-			    terminal_attachment 	(465, 269))
+			    origin_attachment 	(465, 458)
+			    terminal_attachment 	(465, 213))
 			(object NoteView @178
 			    location   	(1994, 340)
 			    font       	(object Font
@@ -4700,7 +4698,7 @@
 			    fill_color 	13434879
 			    width      	1932
 			    height     	481)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::B" @180
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::B" @180
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -4729,7 +4727,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::A" @181
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::A" @181
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -4903,7 +4901,7 @@
 				    line_style 	3
 				    origin_attachment 	(1371, 259)
 				    terminal_attachment 	(1048, 259))))
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::F" @189
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::F" @189
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -4932,7 +4930,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::E" @190
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::E" @190
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -5184,7 +5182,7 @@
 				(1537, 458)
 				(1710, 310))
 			    line_style 	0)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::C" @202
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::C" @202
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -5252,7 +5250,7 @@
 				(899, 926)
 				(452, 620))
 			    line_style 	0)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::D" @205
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::D" @205
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -5573,7 +5571,7 @@
 			    fill_color 	13434879
 			    width      	650
 			    height     	188)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::B" @219
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::B" @219
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -5602,7 +5600,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::A" @220
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::A" @220
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -5776,7 +5774,7 @@
 				    line_style 	3
 				    origin_attachment 	(751, 147)
 				    terminal_attachment 	(447, 147))))
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::D" @228
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::D" @228
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -5817,14 +5815,14 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	2
+				nlines     	1
 				max_width  	0
 				compartmentItems 	(list Compartment
 				    "+ b()"))
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::C" @229
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::C" @229
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeOperation 	TRUE
 			    location   	(365, 515)
@@ -5864,7 +5862,7 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	2
+				nlines     	1
 				max_width  	0
 				compartmentItems 	(list Compartment
 				    "<<expose>> + CtoD : :b"))
@@ -6124,7 +6122,7 @@
 			    fill_color 	13434879
 			    width      	1793
 			    height     	800)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::D" @241
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::D" @241
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -6153,7 +6151,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::C" @242
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::C" @242
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeOperation 	TRUE
 			    location   	(271, 506)
@@ -6193,14 +6191,14 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	2
+				nlines     	1
 				max_width  	0
 				compartmentItems 	(list Compartment
 				    "<<expose>> + AtoB : :b"))
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::B" @243
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::B" @243
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -6229,7 +6227,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::A" @244
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::A" @244
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -6517,7 +6515,7 @@
 			    fill_color 	13434879
 			    width      	1932
 			    height     	481)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::B" @256
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::B" @256
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -6533,7 +6531,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@256
-				location   	(1702, 167)
+				location   	(1702, 198)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	162
@@ -6543,10 +6541,10 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"457974670367"
-			    height     	186
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::A" @257
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::A" @257
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -6562,7 +6560,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@257
-				location   	(877, 200)
+				location   	(877, 202)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	162
@@ -6572,7 +6570,7 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"457974660120"
-			    height     	128
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object AssociationViewNew "AtoB" @258
@@ -6720,7 +6718,7 @@
 				    line_style 	3
 				    origin_attachment 	(1370, 259)
 				    terminal_attachment 	(1048, 259))))
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::F" @265
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::F" @265
 			    ShowCompartmentStereotypes 	TRUE
 			    location   	(1466, 521)
 			    font       	(object Font
@@ -6734,7 +6732,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@265
-				location   	(1385, 415)
+				location   	(1385, 471)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	162
@@ -6746,7 +6744,7 @@
 			    quidu      	"45797CF700F2"
 			    compartment 	(object Compartment
 				Parent_View 	@265
-				location   	(1385, 476)
+				location   	(1385, 532)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -6759,15 +6757,15 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	3
-				max_width  	97
+				nlines     	1
+				max_width  	0
 				compartmentItems 	(list Compartment
 				    "+ b()"
 				    "+ f()"))
-			    height     	236
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::E" @266
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::E" @266
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    location   	(362, 559)
@@ -6782,10 +6780,10 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@266
-				location   	(135, 428)
+				location   	(281, 509)
 				fill_color 	13434879
 				nlines     	1
-				max_width  	454
+				max_width  	162
 				justify    	0
 				label      	"E")
 			    icon_style 	"Icon"
@@ -6794,7 +6792,7 @@
 			    quidu      	"45797CF50117"
 			    compartment 	(object Compartment
 				Parent_View 	@266
-				location   	(135, 489)
+				location   	(281, 570)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -6807,13 +6805,12 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	3
-				max_width  	452
+				nlines     	1
+				max_width  	0
 				compartmentItems 	(list Compartment
 				    "+ a()"
 				    "+ e()"))
-			    width      	472
-			    height     	286
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object UsesView "" @267
@@ -6828,7 +6825,7 @@
 				default_color 	TRUE)
 			    stereotype 	(object SegLabel @268
 				Parent_View 	@267
-				location   	(471, 396)
+				location   	(277, 495)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -6852,11 +6849,11 @@
 			    client     	@266
 			    supplier   	@257
 			    vertices   	(list Points
-				(598, 435)
+				(452, 510)
 				(867, 296))
 			    line_style 	0)
 			(object AssociationViewNew "EtoF" @269
-			    location   	(987, 560)
+			    location   	(914, 560)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -6868,7 +6865,7 @@
 				default_color 	TRUE)
 			    label      	(object SegLabel @270
 				Parent_View 	@269
-				location   	(1129, 536)
+				location   	(1056, 536)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -6893,7 +6890,7 @@
 			    roleview_list 	(list RoleViews
 				(object RoleView "b" @271
 				    Parent_View 	@269
-				    location   	(747, -221)
+				    location   	(674, -221)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -6905,7 +6902,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @272
 					Parent_View 	@271
-					location   	(1343, 518)
+					location   	(1338, 518)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -6930,14 +6927,14 @@
 				    client     	@269
 				    supplier   	@265
 				    vertices   	(list Points
-					(987, 560)
+					(914, 560)
 					(1376, 560))
 				    line_style 	3
-				    origin_attachment 	(987, 560)
+				    origin_attachment 	(914, 560)
 				    terminal_attachment 	(1376, 560))
 				(object RoleView "a" @273
 				    Parent_View 	@269
-				    location   	(747, -221)
+				    location   	(674, -221)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -6949,7 +6946,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @274
 					Parent_View 	@273
-					location   	(659, 531)
+					location   	(525, 531)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -6974,11 +6971,11 @@
 				    client     	@269
 				    supplier   	@266
 				    vertices   	(list Points
-					(987, 560)
-					(598, 560))
+					(914, 560)
+					(452, 560))
 				    line_style 	3
-				    origin_attachment 	(987, 560)
-				    terminal_attachment 	(598, 560))))
+				    origin_attachment 	(914, 560)
+				    terminal_attachment 	(452, 560))))
 			(object UsesView "" @275
 			    font       	(object Font
 				size       	10
@@ -6991,7 +6988,7 @@
 				default_color 	TRUE)
 			    stereotype 	(object SegLabel @276
 				Parent_View 	@275
-				location   	(1515, 347)
+				location   	(1503, 359)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -7015,10 +7012,10 @@
 			    client     	@265
 			    supplier   	@256
 			    vertices   	(list Points
-				(1556, 441)
-				(1692, 324))
+				(1537, 458)
+				(1709, 310))
 			    line_style 	0)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::C" @277
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::C" @277
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeOperation 	TRUE
 			    location   	(990, 988)
@@ -7033,10 +7030,10 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@277
-				location   	(761, 857)
+				location   	(909, 938)
 				fill_color 	13434879
 				nlines     	1
-				max_width  	458
+				max_width  	162
 				justify    	0
 				label      	"C")
 			    icon_style 	"Icon"
@@ -7045,7 +7042,7 @@
 			    quidu      	"457974670064"
 			    compartment 	(object Compartment
 				Parent_View 	@277
-				location   	(761, 918)
+				location   	(909, 999)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -7058,15 +7055,14 @@
 				icon_style 	"Icon"
 				fill_color 	13434879
 				anchor     	2
-				nlines     	2
-				max_width  	455
+				nlines     	1
+				max_width  	0
 				compartmentItems 	(list Compartment
 				    "<<expose>> + CtoD : :b"))
-			    width      	476
-			    height     	286
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::testWithPolymorphicAssociations::D" @278
+			(object ClassView "Class" "Logical View::documentation::runtime::testWithPolymorphicAssociations::D" @278
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -7082,7 +7078,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@278
-				location   	(1694, 894)
+				location   	(1694, 950)
 				fill_color 	13434879
 				nlines     	1
 				max_width  	162
@@ -7092,7 +7088,7 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"457974680354"
-			    height     	236
+			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
 			(object UsesView "" @279
@@ -7107,7 +7103,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@279
-				location   	(1765, 611)
+				location   	(1765, 623)
 				anchor_loc 	1
 				nlines     	1
 				max_width  	450
@@ -7115,7 +7111,7 @@
 				label      	"")
 			    stereotype 	(object SegLabel @280
 				Parent_View 	@279
-				location   	(1659, 536)
+				location   	(1659, 548)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -7139,13 +7135,13 @@
 			    client     	@278
 			    supplier   	@256
 			    vertices   	(list Points
-				(1765, 882)
-				(1765, 341))
+				(1765, 937)
+				(1765, 309))
 			    line_style 	3
-			    origin_attachment 	(1765, 882)
-			    terminal_attachment 	(1765, 341))
+			    origin_attachment 	(1765, 937)
+			    terminal_attachment 	(1765, 309))
 			(object AssociationViewNew "CtoD" @281
-			    location   	(1456, 994)
+			    location   	(1382, 994)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -7157,7 +7153,7 @@
 				default_color 	TRUE)
 			    label      	(object SegLabel @282
 				Parent_View 	@281
-				location   	(1456, 935)
+				location   	(1382, 935)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -7182,7 +7178,7 @@
 			    roleview_list 	(list RoleViews
 				(object RoleView "a" @283
 				    Parent_View 	@281
-				    location   	(-103, -16)
+				    location   	(-177, -16)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -7194,7 +7190,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @284
 					Parent_View 	@283
-					location   	(1275, 953)
+					location   	(1141, 953)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -7219,14 +7215,14 @@
 				    client     	@281
 				    supplier   	@277
 				    vertices   	(list Points
-					(1456, 994)
-					(1228, 994))
+					(1382, 994)
+					(1080, 994))
 				    line_style 	3
-				    origin_attachment 	(1456, 994)
-				    terminal_attachment 	(1228, 994))
+				    origin_attachment 	(1382, 994)
+				    terminal_attachment 	(1080, 994))
 				(object RoleView "b" @285
 				    Parent_View 	@281
-				    location   	(-103, -16)
+				    location   	(-177, -16)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -7238,7 +7234,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @286
 					Parent_View 	@285
-					location   	(1638, 953)
+					location   	(1624, 953)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -7263,10 +7259,10 @@
 				    client     	@281
 				    supplier   	@278
 				    vertices   	(list Points
-					(1456, 994)
+					(1382, 994)
 					(1685, 994))
 				    line_style 	3
-				    origin_attachment 	(1456, 994)
+				    origin_attachment 	(1382, 994)
 				    terminal_attachment 	(1685, 994))))
 			(object UsesView "" @287
 			    font       	(object Font
@@ -7280,7 +7276,7 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@287
-				location   	(978, 580)
+				location   	(978, 619)
 				anchor_loc 	1
 				nlines     	1
 				max_width  	450
@@ -7288,7 +7284,7 @@
 				label      	"")
 			    stereotype 	(object SegLabel @288
 				Parent_View 	@287
-				location   	(872, 505)
+				location   	(872, 544)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -7312,11 +7308,11 @@
 			    client     	@277
 			    supplier   	@257
 			    vertices   	(list Points
-				(978, 845)
-				(978, 315))
+				(978, 925)
+				(978, 313))
 			    line_style 	3
-			    origin_attachment 	(978, 845)
-			    terminal_attachment 	(978, 315))))))
+			    origin_attachment 	(978, 925)
+			    terminal_attachment 	(978, 313))))))
 	(object Class_Category "configuration2"
 	    quid       	"4856287A03B9"
 	    exportControl 	"Public"
@@ -7328,7 +7324,7 @@
 		    realized_interfaces 	(list realize_rel_list
 			(object Realize_Relationship
 			    quid       	"485628CF030D"
-			    supplier   	"Logical View::runtime::configuration2::NumberRange"
+			    supplier   	"Logical View::documentation::runtime::configuration2::NumberRange"
 			    quidu      	"485628C302CE")))
 		(object Class "PurchaseOrder"
 		    quid       	"485628B002EE")
@@ -7362,13 +7358,13 @@
 			(object Role "numberRange"
 			    quid       	"4856292000CB"
 			    label      	"numberRange"
-			    supplier   	"Logical View::runtime::configuration2::NumberRange"
+			    supplier   	"Logical View::documentation::runtime::configuration2::NumberRange"
 			    quidu      	"485628C302CE"
 			    is_navigable 	TRUE
 			    static     	TRUE)
 			(object Role "$UNNAMED$30"
 			    quid       	"4856292000CD"
-			    supplier   	"Logical View::runtime::configuration2::SalesOrder"
+			    supplier   	"Logical View::documentation::runtime::configuration2::SalesOrder"
 			    quidu      	"485628910261"))
 		    AssociationClass 	"Logical View::runtime::configuration2::SalesOrderNumberRanges")
 		(object Association "$UNNAMED$31"
@@ -7378,13 +7374,13 @@
 			(object Role "numberRange"
 			    quid       	"4856292100AB"
 			    label      	"numberRange"
-			    supplier   	"Logical View::runtime::configuration2::NumberRange"
+			    supplier   	"Logical View::documentation::runtime::configuration2::NumberRange"
 			    quidu      	"485628C302CE"
 			    is_navigable 	TRUE
 			    static     	TRUE)
 			(object Role "$UNNAMED$32"
 			    quid       	"4856292100AD"
-			    supplier   	"Logical View::runtime::configuration2::PurchaseOrder"
+			    supplier   	"Logical View::documentation::runtime::configuration2::PurchaseOrder"
 			    quidu      	"485628B002EE"))
 		    AssociationClass 	"Logical View::runtime::configuration2::PurchaseOrderNumberRanges"))
 	    logical_presentations 	(list unit_reference_list
@@ -7397,7 +7393,7 @@
 		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object ClassView "Class" "Logical View::runtime::configuration2::NumberRangeImpl" @289
+			(object ClassView "Class" "Logical View::documentation::runtime::configuration2::NumberRangeImpl" @289
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -7413,21 +7409,21 @@
 				default_color 	TRUE)
 			    label      	(object ItemLabel
 				Parent_View 	@289
-				location   	(1180, 1321)
+				location   	(1181, 1321)
 				fill_color 	13434879
 				nlines     	1
-				max_width  	364
+				max_width  	362
 				justify    	0
 				label      	"NumberRangeImpl")
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"485628AA01B5"
-			    width      	382
+			    width      	380
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::configuration2::SalesOrder" @290
+			(object ClassView "Class" "Logical View::documentation::runtime::configuration2::SalesOrder" @290
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -7457,7 +7453,7 @@
 			    height     	124
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::runtime::configuration2::NumberRange" @291
+			(object ClassView "Class" "Logical View::documentation::runtime::configuration2::NumberRange" @291
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -7476,7 +7472,7 @@
 				location   	(1360, 1028)
 				anchor_loc 	1
 				nlines     	2
-				max_width  	226
+				max_width  	228
 				justify    	0
 				label      	"NumberRange")
 			    icon       	"Interface"
@@ -7589,7 +7585,7 @@
 					(1193, 742)
 					(1052, 592))
 				    line_style 	0)))
-			(object ClassView "Class" "Logical View::runtime::configuration2::PurchaseOrder" @298
+			(object ClassView "Class" "Logical View::documentation::runtime::configuration2::PurchaseOrder" @298
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -7708,7 +7704,7 @@
 					(1532, 740)
 					(1680, 589))
 				    line_style 	0)))
-			(object ClassView "Class" "Logical View::runtime::configuration2::PurchaseOrderNumberRanges" @304
+			(object ClassView "Class" "Logical View::documentation::runtime::configuration2::PurchaseOrderNumberRanges" @304
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -7743,7 +7739,7 @@
 			    client     	@304
 			    supplier   	@299
 			    vertices   	(list Points
-				(2053, 926)
+				(2069, 926)
 				(1532, 740))
 			    line_style 	0)
 			(object NoteView @306
@@ -7777,7 +7773,7 @@
 				(2256, 926)
 				(2415, 662))
 			    line_style 	0)
-			(object ClassView "Class" "Logical View::runtime::configuration2::SalesOrderNumberRanges" @308
+			(object ClassView "Class" "Logical View::documentation::runtime::configuration2::SalesOrderNumberRanges" @308
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -7812,7 +7808,7 @@
 			    client     	@308
 			    supplier   	@293
 			    vertices   	(list Points
-				(712, 960)
+				(703, 961)
 				(1193, 742))
 			    line_style 	0)
 			(object NoteView @310

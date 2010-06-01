@@ -10,16 +10,16 @@
     attributes 	(list Attribute_Set
 	(object Attribute
 	    tool       	"Ecore"
+	    name       	"packageName"
+	    value      	(value Text "ecore"))
+	(object Attribute
+	    tool       	"Ecore"
 	    name       	"nsPrefix"
 	    value      	(value Text "ecore"))
 	(object Attribute
 	    tool       	"Ecore"
 	    name       	"nsURI"
-	    value      	(value Text "http://www.eclipse.org/emf/2002/Ecore"))
-	(object Attribute
-	    tool       	"Ecore"
-	    name       	"packageName"
-	    value      	(value Text "ecore")))
+	    value      	(value Text "http://www.eclipse.org/emf/2002/Ecore")))
     quid       	"3B5389EE0204"
     documentation 	
 |The PrimitiveTypes Package contains MOF's standard collection of technology-neutral primitive data types. 
@@ -35,11 +35,7 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "long"))
-		(object Attribute
-		    tool       	"Ecore"
-		    name       	"classifierName"
-		    value      	(value Text "EInt")))
+		    value      	(value Text "long")))
 	    quid       	"3B538AB300B3"
 	    stereotype 	"primitive")
 	(object Class "Float"
@@ -47,11 +43,7 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "float"))
-		(object Attribute
-		    tool       	"Ecore"
-		    name       	"classifierName"
-		    value      	(value Text "EFloat")))
+		    value      	(value Text "float")))
 	    quid       	"3B538ABB02B3"
 	    stereotype 	"primitive")
 	(object Class "Double"
@@ -59,11 +51,7 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "double"))
-		(object Attribute
-		    tool       	"Ecore"
-		    name       	"classifierName"
-		    value      	(value Text "EDouble")))
+		    value      	(value Text "double")))
 	    quid       	"3B538AE303DD"
 	    stereotype 	"primitive")
 	(object Class "String"
@@ -71,11 +59,7 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "wstring"))
-		(object Attribute
-		    tool       	"Ecore"
-		    name       	"classifierName"
-		    value      	(value Text "EString")))
+		    value      	(value Text "wstring")))
 	    quid       	"39A2BDA60394"
 	    stereotype 	"primitive")
 	(object Class "Long"
@@ -83,11 +67,7 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "long long"))
-		(object Attribute
-		    tool       	"Ecore"
-		    name       	"classifierName"
-		    value      	(value Text "ELong")))
+		    value      	(value Text "long long")))
 	    quid       	"39A2BDA603A0"
 	    stereotype 	"primitive")
 	(object Class "Boolean"
@@ -95,11 +75,7 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "boolean"))
-		(object Attribute
-		    tool       	"Ecore"
-		    name       	"classifierName"
-		    value      	(value Text "EBoolean")))
+		    value      	(value Text "boolean")))
 	    quid       	"39A2BDA60392"
 	    stereotype 	"primitive"))
     logical_presentations 	(list unit_reference_list

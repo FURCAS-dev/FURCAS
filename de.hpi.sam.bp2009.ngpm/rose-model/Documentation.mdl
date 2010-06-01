@@ -12,7 +12,7 @@
 	    tool       	"Java"
 	    name       	"IDE"
 	    value      	"Internal Editor"))
-    quid       	"4C04D51F036B"
+    quid       	"4C04D8D102AF"
     enforceClosureAutoLoad 	FALSE
     defaults   	(object defaults
 	rightMargin 	0.250000
@@ -38,13 +38,13 @@
 	showClassOfObject 	TRUE
 	notation   	"Unified")
     root_usecase_package 	(object Class_Category "Use Case View"
-	quid       	"4C04D51F036D"
+	quid       	"4C04D8D102B1"
 	exportControl 	"Public"
 	global     	TRUE
 	logical_models 	(list unit_reference_list)
 	logical_presentations 	(list unit_reference_list
 	    (object UseCaseDiagram "Main"
-		quid       	"4C04D51F038C"
+		quid       	"4C04D8D102C1"
 		title      	"Main"
 		zoom       	100
 		max_height 	28350
@@ -53,20 +53,20 @@
 		origin_y   	0
 		items      	(list diagram_item_list))))
     root_category 	(object Class_Category "Logical View"
-	quid       	"4C04D51F036C"
+	quid       	"4C04D8D102B0"
 	exportControl 	"Public"
 	global     	TRUE
 	subsystem  	"Component View"
-	quidu      	"4C04D51F036E"
+	quidu      	"4C04D8D102B2"
 	logical_models 	(list unit_reference_list
 	    (object Class_Category "documentation"
 		is_unit    	TRUE
 		is_loaded  	FALSE
 		file_name  	"$CURDIR\\documentation.cat"
-		quid       	"4C04D4E5031C"))
+		quid       	"4C04D8AA02BF"))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"
-		quid       	"4C04D51F038A"
+		quid       	"4C04D8D102BF"
 		title      	"Main"
 		zoom       	100
 		max_height 	28350
@@ -96,15 +96,15 @@
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"4C04D4E5031C"
+			quidu      	"4C04D8AA02BF"
 			width      	300
 			height     	180)))))
     root_subsystem 	(object SubSystem "Component View"
-	quid       	"4C04D51F036E"
+	quid       	"4C04D8D102B2"
 	physical_models 	(list unit_reference_list)
 	physical_presentations 	(list unit_reference_list
 	    (object Module_Diagram "Main"
-		quid       	"4C04D51F038B"
+		quid       	"4C04D8D102C0"
 		title      	"Main"
 		zoom       	100
 		max_height 	28350
@@ -113,12 +113,12 @@
 		origin_y   	0
 		items      	(list diagram_item_list)))
 	category   	"Logical View"
-	quidu      	"4C04D51F036C")
+	quidu      	"4C04D8D102B0")
     process_structure 	(object Processes
-	quid       	"4C04D51F036F"
+	quid       	"4C04D8D102B3"
 	ProcsNDevs 	(list
 	    (object Process_Diagram "Deployment View"
-		quid       	"4C04D51F0371"
+		quid       	"4C04D8D102B5"
 		title      	"Deployment View"
 		zoom       	100
 		max_height 	28350
@@ -2756,4 +2756,4 @@
 		tool       	"XML_DTD"
 		name       	"HiddenTool"
 		value      	FALSE))
-	quid       	"4C04D51F0370"))
+	quid       	"4C04D8D102B4"))
