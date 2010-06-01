@@ -148,23 +148,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4545FC1D0190"
-			    compartment 	(object Compartment
-				Parent_View 	@2
-				location   	(405, 435)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	6
-				max_width  	0)
 			    width      	446
 			    height     	282
 			    annotation 	8
@@ -731,6 +714,11 @@
 		    quid       	"49AE7B73000D"
 		    roles      	(list role_list
 			(object Role "snapshotIdentifier"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"49AE7B73031B"
 			    label      	"snapshotIdentifier"
 			    supplier   	"Logical View::dataaccess::expressions::Expression"
@@ -739,11 +727,17 @@
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "all"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"49AE7B73034A"
 			    label      	"all"
 			    supplier   	"Logical View::persistence::expressions::All"
 			    quidu      	"4979C34B01C3"
 			    client_cardinality 	(value cardinality "0..1")
+			    is_navigable 	TRUE
 			    is_aggregate 	TRUE))))
 	    logical_presentations 	(list unit_reference_list
 		(object ClassDiagram "Persistence Expressions, Basic Queries"
@@ -999,7 +993,7 @@
 				fill_color 	16777215
 				anchor     	2
 				nlines     	2
-				max_width  	594)
+				max_width  	603)
 			    width      	616
 			    height     	186
 			    annotation 	8
@@ -1396,7 +1390,7 @@
 			    quidu      	"450E63AB03A2"
 			    compartment 	(object Compartment
 				Parent_View 	@48
-				location   	(1095, 698)
+				location   	(1095, 914)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
