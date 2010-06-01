@@ -8,12 +8,10 @@
     <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
   </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-    <details key="documentation" value="Contains model snipplets useful for parts of the programming model that require translation of (parts of) their artifacts, such as UI texts, message texts or descriptions useful during design-time. This may require linking to concepts such as &quot;development language&quot; providing defaults for the language in which a string is given.&#xD;&#xA;&#xD;&#xA;It will also be an interesting question how the languages, regions and dialects important for the translation process should be represented."/>
+    <details key="documentation" value="Contains model snipplets useful for parts of the programming model that require translation of (parts of) their artifacts, such as UI texts, message texts or descriptions useful during design-time. This may require linking to concepts such as &quot;development language&quot; providing defaults for the language in which a string is given.&#xA;&#xA;It will also be an interesting question how the languages, regions and dialects important for the translation process should be represented."/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="TranslatableText">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="text" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-        containment="true" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="hintForTranslator" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hintForTranslator" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

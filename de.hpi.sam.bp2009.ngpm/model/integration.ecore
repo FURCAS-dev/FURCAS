@@ -95,18 +95,16 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//xsd/Root">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AbstractType" abstract="true" eSuperTypes="#//xsd/NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Containable" abstract="true" eSuperTypes="#//xsd/Root">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minOccurs" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxOccurs" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="minOccurs" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxOccurs" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//xsd/NamedElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="use" eType="#//xsd/AttUseType"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="val" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
           eType="#//xsd/SimpleType">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -116,8 +114,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Any" eSuperTypes="#//xsd/Containable"/>
     <eClassifiers xsi:type="ecore:EClass" name="Root" abstract="true">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="anno" eType="#//xsd/Annotation">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
           <details key="Property.oppositeRoleName" value=""/>
@@ -126,16 +123,12 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//xsd/Containable #//xsd/NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Annotation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="documentation" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="appInfo" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="documentation" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="appInfo" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Notation" eSuperTypes="#//xsd/NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="publicDec" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="systemDec" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="publicDec" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemDec" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="AttUseType">
       <eLiterals name="fixedValue"/>
@@ -154,14 +147,11 @@
     <eClassifiers xsi:type="ecore:EClass" name="ElementReference" eSuperTypes="#//xsd/Containable #//xsd/NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="AbstractContent" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="SimpleContent" eSuperTypes="#//xsd/AbstractContent">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="base" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="enumVals" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="base" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="enumVals" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexContent" eSuperTypes="#//xsd/AbstractContent">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="mixed" eType="ecore:EClass runtime.ecore#//primitivetypes/Boolean"
-          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="mixed" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="contentModel" eType="#//xsd/Containable">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
           <details key="Property.oppositeRoleName" value=""/>
@@ -221,8 +211,7 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Assumes that a static, fixed URL base is used to identify the binding. Parameter values are expected to follow in the query part of the URL (everything following the &quot;?&quot; character) in regular URL format (name1=value1&amp;name2=value2...). Multiple occurrences of the same name create a multi-object for the respective parameter."/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="baseUrl" eType="ecore:EClass runtime.ecore#//primitivetypes/String"
-          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="baseUrl" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RestUrlPattern" eSuperTypes="#//binding/UrlPattern">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

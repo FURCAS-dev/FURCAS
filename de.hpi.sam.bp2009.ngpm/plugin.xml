@@ -12,20 +12,6 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http:///reflection.ecore"
-            class="reflection.ReflectionPackage"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http:///primitivetypes.ecore"
-            class="primitivetypes.PrimitivetypesPackage"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
             uri="http:///behavioral/bpdm.ecore"
             class="behavioral.bpdm.BpdmPackage"
             genModel="model/ngpm.genmodel"/>
@@ -201,41 +187,6 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http:///runtime/primitivetypes.ecore"
-            class="runtime.primitivetypes.PrimitivetypesPackage"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http:///runtime/enumerations.ecore"
-            class="runtime.enumerations.EnumerationsPackage"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http:///runtime/testwithroles.ecore"
-            class="runtime.testwithroles.TestwithrolesPackage"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http:///runtime/testwithpolymorphicassociations.ecore"
-            class="runtime.testwithpolymorphicassociations.TestwithpolymorphicassociationsPackage"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http:///runtime/configuration2.ecore"
-            class="runtime.configuration2.Configuration2Package"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
             uri="http:///ui/data_binding.ecore"
             class="ui.data_binding.Data_bindingPackage"
             genModel="model/ngpm.genmodel"/>
@@ -292,29 +243,8 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http:///localization.ecore"
-            class="localization.LocalizationPackage"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http:///reflect.ecore"
-            class="reflect.ReflectPackage"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
             uri="http:///ap_runtime_constraints.ecore"
             class="ap_runtime_constraints.Ap_runtime_constraintsPackage"
-            genModel="model/ngpm.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http:///sproxy_content.ecore"
-            class="sproxy_content.Sproxy_contentPackage"
             genModel="model/ngpm.genmodel"/>
    </extension>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" name="behavioral"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="behavioral"
     nsURI="http:///behavioral.ecore" nsPrefix="behavioral">
   <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
     <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
@@ -34,297 +34,7 @@
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Some action language that talks in the concepts of BOs, BONodes, invoking services, sending messages, explicitly declaring that an event occurred, triggering actions, evaluating rules, ...&#xD;&#xA;&#xD;&#xA;The language can be used, e.g., to specify the behavior of an action (part of a BO or BONode) or a service implementation."/>
-    </eAnnotations>
-    <eAnnotations source="oclTypes">
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="WhileLoop" referredType="#//actions/WhileLoop"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Foreach"/>
-      <contents xsi:type="ocl.ecore:Variable" name="ie" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Statement)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/NamedValueWithOptionalInitExpression"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="ExpressionStatement" referredType="#//actions/ExpressionStatement"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:SequenceType" name="Sequence(Integer)" instanceClassName="java.util.List"
-          elementType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Constant"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="WhileLoop" referredType="#//actions/WhileLoop"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/LinkManipulationStatement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="i" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
-      <contents xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="IfElse" referredType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="RemoveLink" referredType="#//actions/RemoveLink"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Return"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/SingleBlockStatement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="ExpressionStatement" referredType="#//actions/ExpressionStatement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="b" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="IfElse" referredType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Statement)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Statement)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="IfElse" referredType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:Variable" name="block" eType="#//actions/Block"
-          representedParameter="#//actions/Statement/isSideEffectFreeForBlock/block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithNestedBlocks" referredType="#//actions/StatementWithNestedBlocks"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Statement)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Constant"/>
-      <contents xsi:type="ocl.ecore:Variable" name="ie" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/LinkManipulationStatement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:Variable" name="i" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/LinkManipulationStatement"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(StatementWithNestedBlocks)"
-          instanceClassName="java.util.Set" elementType="#//actions/StatementWithNestedBlocks"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="RemoveLink" referredType="#//actions/RemoveLink"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Foreach"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(StatementWithNestedBlocks)"
-          instanceClassName="java.util.Set" elementType="#//actions/StatementWithNestedBlocks"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/WhileLoop"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="WhileLoop" referredType="#//actions/WhileLoop"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Foreach"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Signature)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass data.ecore#//classes/Signature"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="ExpressionStatement" referredType="#//actions/ExpressionStatement"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(AssociationEnd)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass data.ecore#//classes/AssociationEnd"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithArgument" referredType="#//actions/StatementWithArgument"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="RemoveLink" referredType="#//actions/RemoveLink"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Return"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="RemoveLink" referredType="#//actions/RemoveLink"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Statement)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Variable"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="RemoveLink" referredType="#//actions/RemoveLink"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(AssociationEnd)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass data.ecore#//classes/AssociationEnd"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="ExpressionStatement" referredType="#//actions/ExpressionStatement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/WhileLoop"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Statement)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="ie" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="IfElse" referredType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:Variable" name="block" eType="#//actions/Block"
-          representedParameter="#//actions/Statement/isSideEffectFreeForBlock/block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="ExpressionStatement" referredType="#//actions/ExpressionStatement"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="j" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:SequenceType" name="Sequence(Integer)" instanceClassName="java.util.List"
-          elementType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(AssociationEnd)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass data.ecore#//classes/AssociationEnd"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Variable"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Return"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(NamedValue)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:Variable" name="b" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="Assignment" referredType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Expression)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="Iterator" referredType="#//actions/Iterator"/>
-      <contents xsi:type="ocl.ecore:Variable" name="i" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(MethodSignature)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass data.ecore#//classes/MethodSignature"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/LinkManipulationStatement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/NamedValueWithOptionalInitExpression"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithArgument" referredType="#//actions/StatementWithArgument"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/SingleBlockStatement"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="Iterator" referredType="#//actions/Iterator"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="AddLink" referredType="#//actions/AddLink"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(StatementWithNestedBlocks)"
-          instanceClassName="java.util.Set" elementType="#//actions/StatementWithNestedBlocks"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:Variable" name="s" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="b" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="b" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithArgument" referredType="#//actions/StatementWithArgument"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Variable"/>
-      <contents xsi:type="ocl.ecore:Variable" name="s" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="Assignment" referredType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:Variable" name="s" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="Assignment" referredType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithArgument" referredType="#//actions/StatementWithArgument"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(NamedValue)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Return"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/LinkManipulationStatement"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="AddLink" referredType="#//actions/AddLink"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Signature)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass data.ecore#//classes/Signature"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/SingleBlockStatement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="block" eType="#//actions/Block"
-          representedParameter="#//actions/Statement/isSideEffectFreeForBlock/block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithNestedBlocks" referredType="#//actions/StatementWithNestedBlocks"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="Assignment" referredType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(MethodSignature)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass data.ecore#//classes/MethodSignature"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Constant"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="Assignment" referredType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="RemoveLink" referredType="#//actions/RemoveLink"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="WhileLoop" referredType="#//actions/WhileLoop"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(NamedValue)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Signature)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass data.ecore#//classes/Signature"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="AddLink" referredType="#//actions/AddLink"/>
-      <contents xsi:type="ocl.ecore:SequenceType" name="Sequence(Integer)" instanceClassName="java.util.List"
-          elementType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithNestedBlocks" referredType="#//actions/StatementWithNestedBlocks"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="b" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="ExpressionStatement" referredType="#//actions/ExpressionStatement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="WhileLoop" referredType="#//actions/WhileLoop"/>
-      <contents xsi:type="ocl.ecore:Variable" name="b" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithNestedBlocks" referredType="#//actions/StatementWithNestedBlocks"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Return"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithNestedBlocks" referredType="#//actions/StatementWithNestedBlocks"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(NamedValue)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="Iterator" referredType="#//actions/Iterator"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="Assignment" referredType="#//actions/Assignment"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(MethodSignature)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass data.ecore#//classes/MethodSignature"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="j" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithArgument" referredType="#//actions/StatementWithArgument"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(NamedValue)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="AddLink" referredType="#//actions/AddLink"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Statement"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="AddLink" referredType="#//actions/AddLink"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Expression)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Return"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithNestedBlocks" referredType="#//actions/StatementWithNestedBlocks"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(NamedValue)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Block)" instanceClassName="java.util.LinkedHashSet"
-          elementType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="WhileLoop" referredType="#//actions/WhileLoop"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/NamedValueWithOptionalInitExpression"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/LinkManipulationStatement"/>
-      <contents xsi:type="ocl.ecore:SetType" name="Set(Expression)" instanceClassName="java.util.Set"
-          elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="StatementWithArgument" referredType="#//actions/StatementWithArgument"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:Variable" name="j" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/WhileLoop"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="IfElse" referredType="#//actions/IfElse"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="AddLink" referredType="#//actions/AddLink"/>
-      <contents xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Expression)"
-          instanceClassName="java.util.LinkedHashSet" elementType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-      <contents xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-      <contents xsi:type="ocl.ecore:Variable" name="self" eType="#//actions/Block"/>
-      <contents xsi:type="ocl.ecore:TypeType" name="IfElse" referredType="#//actions/IfElse"/>
+      <details key="documentation" value="Some action language that talks in the concepts of BOs, BONodes, invoking services, sending messages, explicitly declaring that an event occurred, triggering actions, evaluating rules, ...&#xA;&#xA;The language can be used, e.g., to specify the behavior of an action (part of a BO or BONode) or a service implementation."/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Assignment" eSuperTypes="#//actions/StatementWithArgument">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -333,37 +43,6 @@
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="AssignmentCompatibility" value="self.argument.getType().conformsTo(self.assignTo.getType())"/>
         <details key="MustHaveArgument" value="self.argument->notEmpty()"/>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation data.ecore#//classes/TypeDefinition/conformsTo">
-          <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-              referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                referredProperty="ecore:EReference dataaccess.ecore#//expressions/WithArgument/argument">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Assignment"
-                  referredVariable="#//actions/%oclTypes%/self.47"/>
-            </source>
-          </source>
-          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-              referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Variable"
-                referredProperty="#//actions/Assignment/assignTo">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Assignment"
-                  referredVariable="#//actions/%oclTypes%/self.47"/>
-            </source>
-          </argument>
-        </contents>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
-          <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Set(Expression).5">
-            <part xsi:type="ocl.ecore:CollectionItem" eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
-              <item xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                  referredProperty="ecore:EReference dataaccess.ecore#//expressions/WithArgument/argument">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Assignment"
-                    referredVariable="#//actions/%oclTypes%/self.3"/>
-              </item>
-            </part>
-          </source>
-        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="AssignmentCompatibility MustHaveArgument"/>
@@ -375,433 +54,25 @@
       <eOperations name="getOutermostBlock" eType="#//actions/Block">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
           <details key="body" value="self.block.getOutermostBlock()"/>
-          <contents xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/Block"
-              referredOperation="#//actions/Block/getOutermostBlock">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Block"
-                referredProperty="#//actions/Statement/block">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                  referredVariable="#//actions/%oclTypes%/self.41"/>
-            </source>
-          </contents>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
         </eAnnotations>
       </eOperations>
-      <eOperations name="isSideEffectFree" eType="ecore:EDataType primitivetypes.ecore#//Boolean">
+      <eOperations name="isSideEffectFree" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="not self.oclIsKindOf(AddLink) and  not self.oclIsKindOf(RemoveLink) and  not self.oclIsKindOf(Assignment) and  (self.oclIsKindOf(IfElse) implies self.oclAsType(IfElse).condition.isSideEffectFree()) and  (self.oclIsKindOf(WhileLoop) implies self.oclAsType(WhileLoop).condition.isSideEffectFree()) and  (self.oclIsKindOf(ExpressionStatement) implies self.oclAsType(ExpressionStatement).expression.isSideEffectFree()) and  (self.oclIsKindOf(StatementWithArgument) implies (self.oclAsType(StatementWithArgument).argument->notEmpty() implies self.oclAsType(StatementWithArgument).argument.isSideEffectFree())) and  (self.oclIsKindOf(StatementWithNestedBlocks) implies self.oclAsType(StatementWithNestedBlocks).nestedBlocks->forAll(b|b.isSideEffectFree()))"/>
-          <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-            <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-              <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                  <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                    <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                        referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                      <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
-                          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                                referredVariable="#//actions/%oclTypes%/self.25"/>
-                            <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/AddLink.3"
-                                referredType="#//actions/AddLink"/>
-                          </source>
-                        </source>
-                        <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
-                          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                                referredVariable="#//actions/%oclTypes%/self.25"/>
-                            <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/RemoveLink.1"
-                                referredType="#//actions/RemoveLink"/>
-                          </source>
-                        </argument>
-                      </source>
-                      <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
-                        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                              referredVariable="#//actions/%oclTypes%/self.25"/>
-                          <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/Assignment.2"
-                              referredType="#//actions/Assignment"/>
-                        </source>
-                      </argument>
-                    </source>
-                    <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                        referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                      <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                        <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                            referredVariable="#//actions/%oclTypes%/self.25"/>
-                        <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/IfElse"
-                            referredType="#//actions/IfElse"/>
-                      </source>
-                      <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                          referredOperation="ecore:EOperation dataaccess.ecore#//expressions/Expression/isSideEffectFree">
-                        <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                            referredProperty="ecore:EReference dataaccess.ecore#//expressions/Conditional/condition">
-                          <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/IfElse"
-                              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                                referredVariable="#//actions/%oclTypes%/self.25"/>
-                            <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/IfElse"
-                                referredType="#//actions/IfElse"/>
-                          </source>
-                        </source>
-                      </argument>
-                    </argument>
-                  </source>
-                  <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                    <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                        referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                      <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                          referredVariable="#//actions/%oclTypes%/self.25"/>
-                      <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/WhileLoop"
-                          referredType="#//actions/WhileLoop"/>
-                    </source>
-                    <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                        referredOperation="ecore:EOperation dataaccess.ecore#//expressions/Expression/isSideEffectFree">
-                      <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                          referredProperty="ecore:EReference dataaccess.ecore#//expressions/Conditional/condition">
-                        <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/WhileLoop"
-                            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                              referredVariable="#//actions/%oclTypes%/self.25"/>
-                          <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/WhileLoop"
-                              referredType="#//actions/WhileLoop"/>
-                        </source>
-                      </source>
-                    </argument>
-                  </argument>
-                </source>
-                <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                  <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                        referredVariable="#//actions/%oclTypes%/self.25"/>
-                    <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/ExpressionStatement.2"
-                        referredType="#//actions/ExpressionStatement"/>
-                  </source>
-                  <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation dataaccess.ecore#//expressions/Expression/isSideEffectFree">
-                    <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                        referredProperty="#//actions/ExpressionStatement/expression">
-                      <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/ExpressionStatement"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                        <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                            referredVariable="#//actions/%oclTypes%/self.25"/>
-                        <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/ExpressionStatement.2"
-                            referredType="#//actions/ExpressionStatement"/>
-                      </source>
-                    </source>
-                  </argument>
-                </argument>
-              </source>
-              <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                      referredVariable="#//actions/%oclTypes%/self.25"/>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithArgument.5"
-                      referredType="#//actions/StatementWithArgument"/>
-                </source>
-                <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                  <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
-                    <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Set(Expression).12">
-                      <part xsi:type="ocl.ecore:CollectionItem" eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
-                        <item xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                            referredProperty="ecore:EReference dataaccess.ecore#//expressions/WithArgument/argument">
-                          <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/StatementWithArgument"
-                              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                                referredVariable="#//actions/%oclTypes%/self.25"/>
-                            <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithArgument.5"
-                                referredType="#//actions/StatementWithArgument"/>
-                          </source>
-                        </item>
-                      </part>
-                    </source>
-                  </source>
-                  <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation dataaccess.ecore#//expressions/Expression/isSideEffectFree">
-                    <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                        referredProperty="ecore:EReference dataaccess.ecore#//expressions/WithArgument/argument">
-                      <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/StatementWithArgument"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                        <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                            referredVariable="#//actions/%oclTypes%/self.25"/>
-                        <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithArgument.5"
-                            referredType="#//actions/StatementWithArgument"/>
-                      </source>
-                    </source>
-                  </argument>
-                </argument>
-              </argument>
-            </source>
-            <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-              <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                    referredVariable="#//actions/%oclTypes%/self.25"/>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithNestedBlocks.2"
-                    referredType="#//actions/StatementWithNestedBlocks"/>
-              </source>
-              <argument xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Block).20"
-                    referredProperty="#//actions/StatementWithNestedBlocks/nestedBlocks">
-                  <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/StatementWithNestedBlocks"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                        referredVariable="#//actions/%oclTypes%/self.25"/>
-                    <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithNestedBlocks.2"
-                        referredType="#//actions/StatementWithNestedBlocks"/>
-                  </source>
-                </source>
-                <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation data.ecore#//classes/FunctionSignatureImplementation/isSideEffectFree">
-                  <source xsi:type="ocl.ecore:VariableExp" name="b" eType="#//actions/Block"
-                      referredVariable="#//actions/%oclTypes%/b.4"/>
-                </body>
-                <iterator xsi:type="ocl.ecore:Variable" name="b" eType="#//actions/Block"/>
-              </argument>
-            </argument>
-          </contents>
+          <details key="body" value="not self.oclIsKindOf(AddLink) and&#xA;  not self.oclIsKindOf(RemoveLink) and&#xA;  not self.oclIsKindOf(Assignment) and&#xA;  (self.oclIsKindOf(IfElse) implies self.oclAsType(IfElse).condition.isSideEffectFree()) and&#xA;  (self.oclIsKindOf(WhileLoop) implies self.oclAsType(WhileLoop).condition.isSideEffectFree()) and&#xA;  (self.oclIsKindOf(ExpressionStatement) implies self.oclAsType(ExpressionStatement).expression.isSideEffectFree()) and&#xA;  (self.oclIsKindOf(StatementWithArgument) implies (self.oclAsType(StatementWithArgument).argument->notEmpty() implies self.oclAsType(StatementWithArgument).argument.isSideEffectFree())) and&#xA;  (self.oclIsKindOf(StatementWithNestedBlocks) implies self.oclAsType(StatementWithNestedBlocks).nestedBlocks->forAll(b|b.isSideEffectFree()))"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="A statement is said to be side effect free if it does not modify any variable declared outside the scope of the block owning the statement and if it does not modify any object's state and if it does not modify any association's link set.&#xD;&#xA;&#xD;&#xA;TODO We need a more context-sensitive definition of sideEffectFree. While assigning to a local variable disallows statement reordering within the block, the block can still overall be side effect free such that its invocation may be reordered. There seem to be at least two notions of side effect freeness: one within the block in which it occurs (and variable assignment in this context counts as a side effect because it will disallow reordering), and another one regarding side effects observable outside the block; those are all modifications that can &quot;escape&quot; from the block, including changing the state of an object that is reachable outside the block (even if created in the block but then returned from the block), or changing the contents of a link container visible outside the block."/>
+          <details key="documentation" value="A statement is said to be side effect free if it does not modify any variable declared outside the scope of the block owning the statement and if it does not modify any object's state and if it does not modify any association's link set.&#xA;&#xA;TODO We need a more context-sensitive definition of sideEffectFree. While assigning to a local variable disallows statement reordering within the block, the block can still overall be side effect free such that its invocation may be reordered. There seem to be at least two notions of side effect freeness: one within the block in which it occurs (and variable assignment in this context counts as a side effect because it will disallow reordering), and another one regarding side effects observable outside the block; those are all modifications that can &quot;escape&quot; from the block, including changing the state of an object that is reachable outside the block (even if created in the block but then returned from the block), or changing the contents of a link container visible outside the block."/>
         </eAnnotations>
       </eOperations>
-      <eOperations name="isSideEffectFreeForBlock" eType="ecore:EDataType primitivetypes.ecore#//Boolean">
+      <eOperations name="isSideEffectFreeForBlock" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="not self.oclIsKindOf(AddLink) and  not self.oclIsKindOf(RemoveLink) and  (self.oclIsKindOf(Assignment) implies self.oclAsType(Assignment).assignTo.owner &lt;> block) and  (self.oclIsKindOf(IfElse) implies self.oclAsType(IfElse).condition.isSideEffectFree()) and  (self.oclIsKindOf(WhileLoop) implies self.oclAsType(WhileLoop).condition.isSideEffectFree()) and  (self.oclIsKindOf(ExpressionStatement) implies self.oclAsType(ExpressionStatement).expression.isSideEffectFree()) and  (self.oclIsKindOf(StatementWithArgument) implies (self.oclAsType(StatementWithArgument).argument->notEmpty() implies self.oclAsType(StatementWithArgument).argument.isSideEffectFree())) and  (self.oclIsKindOf(StatementWithNestedBlocks) implies self.oclAsType(StatementWithNestedBlocks).nestedBlocks->forAll(b|b.isSideEffectFree()))"/>
-          <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-            <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-              <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                  <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                    <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                        referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                      <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/and">
-                        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
-                          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                                referredVariable="#//actions/%oclTypes%/self.26"/>
-                            <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/AddLink.2"
-                                referredType="#//actions/AddLink"/>
-                          </source>
-                        </source>
-                        <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
-                          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                                referredVariable="#//actions/%oclTypes%/self.26"/>
-                            <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/RemoveLink"
-                                referredType="#//actions/RemoveLink"/>
-                          </source>
-                        </argument>
-                      </source>
-                      <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                        <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                              referredVariable="#//actions/%oclTypes%/self.26"/>
-                          <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/Assignment.3"
-                              referredType="#//actions/Assignment"/>
-                        </source>
-                        <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/%3C%3E">
-                          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Block"
-                              referredProperty="ecore:EReference data.ecore#//classes/NamedValue/owner">
-                            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Variable"
-                                referredProperty="#//actions/Assignment/assignTo">
-                              <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/Assignment"
-                                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                                <source xsi:type="ocl.ecore:VariableExp" name="self"
-                                    eType="#//actions/Statement" referredVariable="#//actions/%oclTypes%/self.26"/>
-                                <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/Assignment.3"
-                                    referredType="#//actions/Assignment"/>
-                              </source>
-                            </source>
-                          </source>
-                          <argument xsi:type="ocl.ecore:VariableExp" name="block"
-                              eType="#//actions/Block" referredVariable="#//actions/%oclTypes%/block"/>
-                        </argument>
-                      </argument>
-                    </source>
-                    <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                        referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                      <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                        <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                            referredVariable="#//actions/%oclTypes%/self.26"/>
-                        <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/IfElse.1"
-                            referredType="#//actions/IfElse"/>
-                      </source>
-                      <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                          referredOperation="ecore:EOperation dataaccess.ecore#//expressions/Expression/isSideEffectFree">
-                        <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                            referredProperty="ecore:EReference dataaccess.ecore#//expressions/Conditional/condition">
-                          <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/IfElse"
-                              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                                referredVariable="#//actions/%oclTypes%/self.26"/>
-                            <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/IfElse.1"
-                                referredType="#//actions/IfElse"/>
-                          </source>
-                        </source>
-                      </argument>
-                    </argument>
-                  </source>
-                  <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                    <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                        referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                      <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                          referredVariable="#//actions/%oclTypes%/self.26"/>
-                      <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/WhileLoop.2"
-                          referredType="#//actions/WhileLoop"/>
-                    </source>
-                    <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                        referredOperation="ecore:EOperation dataaccess.ecore#//expressions/Expression/isSideEffectFree">
-                      <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                          referredProperty="ecore:EReference dataaccess.ecore#//expressions/Conditional/condition">
-                        <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/WhileLoop"
-                            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                              referredVariable="#//actions/%oclTypes%/self.26"/>
-                          <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/WhileLoop.2"
-                              referredType="#//actions/WhileLoop"/>
-                        </source>
-                      </source>
-                    </argument>
-                  </argument>
-                </source>
-                <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                  <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                        referredVariable="#//actions/%oclTypes%/self.26"/>
-                    <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/ExpressionStatement.5"
-                        referredType="#//actions/ExpressionStatement"/>
-                  </source>
-                  <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation dataaccess.ecore#//expressions/Expression/isSideEffectFree">
-                    <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                        referredProperty="#//actions/ExpressionStatement/expression">
-                      <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/ExpressionStatement"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                        <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                            referredVariable="#//actions/%oclTypes%/self.26"/>
-                        <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/ExpressionStatement.5"
-                            referredType="#//actions/ExpressionStatement"/>
-                      </source>
-                    </source>
-                  </argument>
-                </argument>
-              </source>
-              <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                      referredVariable="#//actions/%oclTypes%/self.26"/>
-                  <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithArgument.3"
-                      referredType="#//actions/StatementWithArgument"/>
-                </source>
-                <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-                  <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
-                    <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Set(Expression).14">
-                      <part xsi:type="ocl.ecore:CollectionItem" eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
-                        <item xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                            referredProperty="ecore:EReference dataaccess.ecore#//expressions/WithArgument/argument">
-                          <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/StatementWithArgument"
-                              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                                referredVariable="#//actions/%oclTypes%/self.26"/>
-                            <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithArgument.3"
-                                referredType="#//actions/StatementWithArgument"/>
-                          </source>
-                        </item>
-                      </part>
-                    </source>
-                  </source>
-                  <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                      referredOperation="ecore:EOperation dataaccess.ecore#//expressions/Expression/isSideEffectFree">
-                    <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                        referredProperty="ecore:EReference dataaccess.ecore#//expressions/WithArgument/argument">
-                      <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/StatementWithArgument"
-                          referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                        <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                            referredVariable="#//actions/%oclTypes%/self.26"/>
-                        <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithArgument.3"
-                            referredType="#//actions/StatementWithArgument"/>
-                      </source>
-                    </source>
-                  </argument>
-                </argument>
-              </argument>
-            </source>
-            <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-              <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                    referredVariable="#//actions/%oclTypes%/self.26"/>
-                <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithNestedBlocks"
-                    referredType="#//actions/StatementWithNestedBlocks"/>
-              </source>
-              <argument xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Block).9"
-                    referredProperty="#//actions/StatementWithNestedBlocks/nestedBlocks">
-                  <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/StatementWithNestedBlocks"
-                      referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclAsType">
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                        referredVariable="#//actions/%oclTypes%/self.26"/>
-                    <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/StatementWithNestedBlocks"
-                        referredType="#//actions/StatementWithNestedBlocks"/>
-                  </source>
-                </source>
-                <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                    referredOperation="ecore:EOperation data.ecore#//classes/FunctionSignatureImplementation/isSideEffectFree">
-                  <source xsi:type="ocl.ecore:VariableExp" name="b" eType="#//actions/Block"
-                      referredVariable="#//actions/%oclTypes%/b.1"/>
-                </body>
-                <iterator xsi:type="ocl.ecore:Variable" name="b" eType="#//actions/Block"/>
-              </argument>
-            </argument>
-          </contents>
+          <details key="body" value="not self.oclIsKindOf(AddLink) and&#xA;  not self.oclIsKindOf(RemoveLink) and&#xA;  (self.oclIsKindOf(Assignment) implies self.oclAsType(Assignment).assignTo.owner &lt;> block) and&#xA;  (self.oclIsKindOf(IfElse) implies self.oclAsType(IfElse).condition.isSideEffectFree()) and&#xA;  (self.oclIsKindOf(WhileLoop) implies self.oclAsType(WhileLoop).condition.isSideEffectFree()) and&#xA;  (self.oclIsKindOf(ExpressionStatement) implies self.oclAsType(ExpressionStatement).expression.isSideEffectFree()) and&#xA;  (self.oclIsKindOf(StatementWithArgument) implies (self.oclAsType(StatementWithArgument).argument->notEmpty() implies self.oclAsType(StatementWithArgument).argument.isSideEffectFree())) and&#xA;  (self.oclIsKindOf(StatementWithNestedBlocks) implies self.oclAsType(StatementWithNestedBlocks).nestedBlocks->forAll(b|b.isSideEffectFree()))"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -813,9 +84,7 @@
       </eOperations>
       <eOperations name="getNamedValuesInScope" eType="ecore:EClass data.ecore#//classes/NamedValue">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="-- collect all NamedValue declarations introduced by statements in this statement's owning block, prior to this statement.  let pos = self.block.statements->indexOf(self) in  if pos > 1 then    self.addNamedValuesWithNewNames(    if self.block.statements->at(-1+pos).oclIsKindOf(NamedValueDeclaration) then      self.block.statements->at(-1+pos).oclAsType(NamedValueDeclaration).namedValue->asSet()    else      Set{}    endif,    self.block.statements->at(-1+pos).getNamedValuesInScope())  else    -- first statement in block; consider block itself    self.block.getNamedValuesInScope()  endif"/>
-          <contents xsi:type="ocl.ecore:BooleanLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              booleanSymbol="false"/>
+          <details key="body" value="-- collect all NamedValue declarations introduced by statements in this statement's owning block, prior to this statement.&#xA;  let pos:Integer = self.block.statements->indexOf(self) in&#xA;  if pos > 1 then&#xA;    self.addNamedValuesWithNewNames(&#xA;    if self.block.statements->at(-1+pos).oclIsKindOf(NamedValueDeclaration) then&#xA;      self.block.statements->at(-1+pos).oclAsType(NamedValueDeclaration).namedValue->asSet()&#xA;    else&#xA;      Set{}&#xA;    endif,&#xA;    self.block.statements->at(-1+pos).getNamedValuesInScope())&#xA;  else&#xA;    -- first statement in block; consider block itself&#xA;    self.block.getNamedValuesInScope()&#xA;  endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -824,14 +93,6 @@
       <eOperations name="getOwningClass" eType="ecore:EClass data.ecore#//classes/SapClass">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
           <details key="body" value="self.block.getOwningClass()"/>
-          <contents xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/SapClass"
-              referredOperation="#//actions/Block/getOwningClass">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Block"
-                referredProperty="#//actions/Statement/block">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Statement"
-                  referredVariable="#//actions/%oclTypes%/self.28"/>
-            </source>
-          </contents>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -842,127 +103,19 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="data.ecore#//classes/FunctionSignatureImplementation data.ecore#//classes/InScope">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A block contains statements and provides a scope, e.g., for block-local variables. Such a scope can be used for mapping to and from an operation's signature. A block accepts a number of values for a set of variables and as such is parameterizable. Additional variables can be introduced in the block that will not be provided to the block by its surrounding context. Those are considered the block's &quot;local variables.&quot;&#xD;&#xA;&#xD;&#xA;A block can be executed like in SmallTalk, dynamically binding its arguments at runtime.&#xD;&#xA;&#xD;&#xA;With this, an operation is only a very thin wrapper around a Block.&#xD;&#xA;&#xD;&#xA;The parameters of a block are always defined by the signature that is implemented by the block."/>
+        <details key="documentation" value="A block contains statements and provides a scope, e.g., for block-local variables. Such a scope can be used for mapping to and from an operation's signature. A block accepts a number of values for a set of variables and as such is parameterizable. Additional variables can be introduced in the block that will not be provided to the block by its surrounding context. Those are considered the block's &quot;local variables.&quot;&#xA;&#xA;A block can be executed like in SmallTalk, dynamically binding its arguments at runtime.&#xA;&#xA;With this, an operation is only a very thin wrapper around a Block.&#xA;&#xA;The parameters of a block are always defined by the signature that is implemented by the block."/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="DoesNotOwnIterators" value="self.variables->select(i|i.oclIsKindOf(Iterator))->isEmpty()"/>
-        <details key="IsSideEffectFreeIfImplementsSideEffectFreeSignature" value="self.implements_->notEmpty() implies&#xD;&#xA;    (self.implements_.sideEffectFree implies self.isSideEffectFree())"/>
+        <details key="IsSideEffectFreeIfImplementsSideEffectFreeSignature" value="self.implements_->notEmpty() implies&#xA;    (self.implements_.sideEffectFree implies self.isSideEffectFree())"/>
         <details key="DistinctNamedValueNames" value="self.variables->forAll( i, j | i &lt;> j implies i.name &lt;> j.name )"/>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/isEmpty">
-          <source xsi:type="ocl.ecore:IteratorExp" name="select" eType="#//actions/%oclTypes%/OrderedSet(NamedValue).1">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(NamedValue).1"
-                referredProperty="#//actions/Block/variables">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                  referredVariable="#//actions/%oclTypes%/self.34"/>
-            </source>
-            <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/oclIsKindOf">
-              <source xsi:type="ocl.ecore:VariableExp" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"
-                  referredVariable="#//actions/%oclTypes%/i.2"/>
-              <argument xsi:type="ocl.ecore:TypeExp" eType="#//actions/%oclTypes%/Iterator"
-                  referredType="#//actions/Iterator"/>
-            </body>
-            <iterator xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-          </source>
-        </contents>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
-            <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Set(MethodSignature).1">
-              <part xsi:type="ocl.ecore:CollectionItem" eType="ecore:EClass data.ecore#//classes/MethodSignature">
-                <item xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass data.ecore#//classes/MethodSignature"
-                    referredProperty="ecore:EReference data.ecore#//classes/SignatureImplementation/implements_">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                      referredVariable="#//actions/%oclTypes%/self.53"/>
-                </item>
-              </part>
-            </source>
-          </source>
-          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredProperty="ecore:EAttribute data.ecore#//classes/Signature/sideEffectFree">
-              <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass data.ecore#//classes/MethodSignature"
-                  referredProperty="ecore:EReference data.ecore#//classes/SignatureImplementation/implements_">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                    referredVariable="#//actions/%oclTypes%/self.53"/>
-              </source>
-            </source>
-            <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation data.ecore#//classes/FunctionSignatureImplementation/isSideEffectFree">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                  referredVariable="#//actions/%oclTypes%/self.53"/>
-            </argument>
-          </argument>
-        </contents>
-        <contents xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
-          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(NamedValue).2"
-              referredProperty="#//actions/Block/variables">
-            <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                referredVariable="#//actions/%oclTypes%/self.49"/>
-          </source>
-          <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-            <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/%3C%3E">
-              <source xsi:type="ocl.ecore:VariableExp" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"
-                  referredVariable="#//actions/%oclTypes%/i.1"/>
-              <argument xsi:type="ocl.ecore:VariableExp" name="j" eType="ecore:EClass data.ecore#//classes/NamedValue"
-                  referredVariable="#//actions/%oclTypes%/j.1"/>
-            </source>
-            <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String_Class/%3C%3E">
-              <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"
-                  referredProperty="ecore:EAttribute modelmanagement.ecore#//NamedElement/name">
-                <source xsi:type="ocl.ecore:VariableExp" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"
-                    referredVariable="#//actions/%oclTypes%/i.1"/>
-              </source>
-              <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"
-                  referredProperty="ecore:EAttribute modelmanagement.ecore#//NamedElement/name">
-                <source xsi:type="ocl.ecore:VariableExp" name="j" eType="ecore:EClass data.ecore#//classes/NamedValue"
-                    referredVariable="#//actions/%oclTypes%/j.1"/>
-              </argument>
-            </argument>
-          </body>
-          <iterator xsi:type="ocl.ecore:Variable" name="i" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-          <iterator xsi:type="ocl.ecore:Variable" name="j" eType="ecore:EClass data.ecore#//classes/NamedValue"/>
-        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="DoesNotOwnIterators IsSideEffectFreeIfImplementsSideEffectFreeSignature DistinctNamedValueNames"/>
       </eAnnotations>
       <eOperations name="getOutermostBlock" eType="#//actions/Block">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="if self.owningStatement->notEmpty() then    self.owningStatement.block.getOutermostBlock()  else    self  endif"/>
-          <contents xsi:type="ocl.ecore:IfExp" eType="#//actions/Block">
-            <condition xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
-              <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Set(StatementWithNestedBlocks)">
-                <part xsi:type="ocl.ecore:CollectionItem" eType="#//actions/StatementWithNestedBlocks">
-                  <item xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/StatementWithNestedBlocks"
-                      referredProperty="#//actions/Block/owningStatement">
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                        referredVariable="#//actions/%oclTypes%/self.54"/>
-                  </item>
-                </part>
-              </source>
-            </condition>
-            <thenExpression xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/Block"
-                referredOperation="#//actions/Block/getOutermostBlock">
-              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Block"
-                  referredProperty="#//actions/Statement/block">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/StatementWithNestedBlocks"
-                    referredProperty="#//actions/Block/owningStatement">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                      referredVariable="#//actions/%oclTypes%/self.54"/>
-                </source>
-              </source>
-            </thenExpression>
-            <elseExpression xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                referredVariable="#//actions/%oclTypes%/self.54"/>
-          </contents>
+          <details key="body" value="if self.owningStatement->notEmpty() then&#xA;    self.owningStatement.block.getOutermostBlock()&#xA;  else&#xA;    self&#xA;  endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -971,24 +124,9 @@
           <details key="documentation" value="Walks up the owningStatement/nestedBlocks association to find owning statements and their owning blocks transitively until it arrives at a block that is not owned by a statement. That block is then returned. Usually, such a block would be the implementation of either a function or a method signature."/>
         </eAnnotations>
       </eOperations>
-      <eOperations name="localIsSideEffectFree" eType="ecore:EDataType primitivetypes.ecore#//Boolean">
+      <eOperations name="localIsSideEffectFree" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
           <details key="body" value="self.statements->forAll(s|s.isSideEffectFreeForBlock(self))"/>
-          <contents xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Statement).2"
-                referredProperty="#//actions/Block/statements">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                  referredVariable="#//actions/%oclTypes%/self.42"/>
-            </source>
-            <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="#//actions/Statement/isSideEffectFreeForBlock">
-              <source xsi:type="ocl.ecore:VariableExp" name="s" eType="#//actions/Statement"
-                  referredVariable="#//actions/%oclTypes%/s"/>
-              <argument xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Block"
-                  referredVariable="#//actions/%oclTypes%/self.42"/>
-            </body>
-            <iterator xsi:type="ocl.ecore:Variable" name="s" eType="#//actions/Statement"/>
-          </contents>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -996,18 +134,18 @@
       </eOperations>
       <eOperations name="getNamedValuesInScope" eType="ecore:EClass data.ecore#//classes/NamedValue">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="self.addNamedValuesWithNewNames(  -- Handle Foreach  let s:Set(NamedValue)=Set{} in  s->union(if owningStatement.oclIsKindOf(Foreach) then    owningStatement.oclAsType(Foreach).forVariable->asSet()  else    Set{}  endif)->union(  -- add parameters for those blocks that are used as a signature implementation  functionSignature.input->asSet()  )->union(  implements_.input->asSet()  ),  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block  if owningStatement->notEmpty() then    owningStatement.getNamedValuesInScope()  else    -- add formal object parameters from owning class    let oc = self.getOwningClass() in    if oc->notEmpty() then      oc.formalObjectParameters->asSet()    else      Set{}    endif  endif)"/>
+          <details key="body" value="self.addNamedValuesWithNewNames(&#xA;  -- Handle Foreach&#xA;  let s:Set(NamedValue)=Set{} in&#xA;  s->union(if owningStatement.oclIsKindOf(Foreach) then&#xA;    owningStatement.oclAsType(Foreach).forVariable->asSet()&#xA;  else&#xA;    Set{}&#xA;  endif)->union(&#xA;  -- add parameters for those blocks that are used as a signature implementation&#xA;  functionSignature.input->asSet()&#xA;  )->union(&#xA;  implements_.input->asSet()&#xA;  ),&#xA;  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block&#xA;  if owningStatement->notEmpty() then&#xA;    owningStatement.getNamedValuesInScope()&#xA;  else&#xA;    -- add formal object parameters from owning class&#xA;    let oc:SapClass = self.getOwningClass() in&#xA;    if oc->notEmpty() then&#xA;      oc.formalObjectParameters->asSet()&#xA;    else&#xA;      Set{}&#xA;    endif&#xA;  endif)"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-          <details key="documentation" value="Determines all NamedValues that are in scope for all statements of this block. For example, in the block of a Foreach statement, the Foreach Iterator is in scope for all contained statements. If the block is nested in a statement (such as for an &quot;if&quot; statement), the NamedValues in scope for the containing statement are added as well. Additionally, if the block occurs as a signature implementation, the signature parameters are added. If this block occurs in an object-parameterized class, the formal object parameters are also added.&#xD;&#xA;&#xD;&#xA;"/>
+          <details key="documentation" value="Determines all NamedValues that are in scope for all statements of this block. For example, in the block of a Foreach statement, the Foreach Iterator is in scope for all contained statements. If the block is nested in a statement (such as for an &quot;if&quot; statement), the NamedValues in scope for the containing statement are added as well. Additionally, if the block occurs as a signature implementation, the signature parameters are added. If this block occurs in an object-parameterized class, the formal object parameters are also added.&#xA;&#xA;"/>
         </eAnnotations>
       </eOperations>
       <eOperations name="getOwningClass" eType="ecore:EClass data.ecore#//classes/SapClass">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="let outermost = self.getOutermostBlock() in  let implementedSignature = outermost.getImplementedSignature() in  if implementedSignature->notEmpty() then    implementedSignature.getOwningClass()  else    null  endif"/>
+          <details key="body" value="let outermost:Block = self.getOutermostBlock() in&#xA;  let implementedSignature:Signature = outermost.getImplementedSignature() in&#xA;  if implementedSignature->notEmpty() then&#xA;    implementedSignature.getOwningClass()&#xA;  else&#xA;    null&#xA;  endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -1025,16 +163,6 @@
       <eOperations name="getIfBlock" eType="#//actions/Block">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
           <details key="body" value="self.nestedBlocks->at(1)"/>
-          <contents xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/Block"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/at">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Block).8"
-                referredProperty="#//actions/StatementWithNestedBlocks/nestedBlocks">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/IfElse"
-                  referredVariable="#//actions/%oclTypes%/self.4"/>
-            </source>
-            <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                integerSymbol="1"/>
-          </contents>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -1042,33 +170,7 @@
       </eOperations>
       <eOperations name="getElseBlock" eType="#//actions/Block">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="if self.nestedBlocks->size() > 1 then    self.nestedBlocks->at(2)  else    null  endif"/>
-          <contents xsi:type="ocl.ecore:IfExp" eType="#//actions/Block">
-            <condition xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/%3E">
-              <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/size">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Block).16"
-                    referredProperty="#//actions/StatementWithNestedBlocks/nestedBlocks">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/IfElse"
-                      referredVariable="#//actions/%oclTypes%/self.17"/>
-                </source>
-              </source>
-              <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                  integerSymbol="1"/>
-            </condition>
-            <thenExpression xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/Block"
-                referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/at">
-              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Block).16"
-                  referredProperty="#//actions/StatementWithNestedBlocks/nestedBlocks">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/IfElse"
-                    referredVariable="#//actions/%oclTypes%/self.17"/>
-              </source>
-              <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                  integerSymbol="2"/>
-            </thenExpression>
-            <elseExpression xsi:type="ocl.ecore:NullLiteralExp" eType="ocl.ecore:VoidType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
-          </contents>
+          <details key="body" value="if self.nestedBlocks->size() > 1 then&#xA;    self.nestedBlocks->at(2)&#xA;  else&#xA;    null&#xA;  endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -1079,16 +181,6 @@
       <eOperations name="getLoopBody" eType="#//actions/Block">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
           <details key="body" value="self.nestedBlocks->at(1)"/>
-          <contents xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/Block"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/at">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Block).4"
-                referredProperty="#//actions/StatementWithNestedBlocks/nestedBlocks">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/WhileLoop"
-                  referredVariable="#//actions/%oclTypes%/self.20"/>
-            </source>
-            <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                integerSymbol="1"/>
-          </contents>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -1101,31 +193,11 @@
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="VariableOwnedByRightBlock" value="self.forVariable.owner = self.nestedBlocks->at(1)"/>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/=">
-          <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Block" referredProperty="ecore:EReference data.ecore#//classes/NamedValue/owner">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Iterator"
-                referredProperty="#//actions/Foreach/forVariable">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Foreach"
-                  referredVariable="#//actions/%oclTypes%/self.1"/>
-            </source>
-          </source>
-          <argument xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/Block"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/at">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Block).18"
-                referredProperty="#//actions/StatementWithNestedBlocks/nestedBlocks">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Foreach"
-                  referredVariable="#//actions/%oclTypes%/self.1"/>
-            </source>
-            <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                integerSymbol="1"/>
-          </argument>
-        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="VariableOwnedByRightBlock"/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="parallel" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="parallel" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="collection" lowerBound="1"
           eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -1142,44 +214,6 @@
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="ReturnMustBeLastInBlock" value="self = self.block.statements->last()"/>
         <details key="ReturnTypeMustMatch" value="self.argument.getType().conformsTo(self.getOutermostBlock().getImplementedSignature().output)"/>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclAny_Class/=">
-          <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Return"
-              referredVariable="#//actions/%oclTypes%/self.55"/>
-          <argument xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/Statement"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/last">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Statement).1"
-                referredProperty="#//actions/Block/statements">
-              <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Block"
-                  referredProperty="#//actions/Statement/block">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Return"
-                    referredVariable="#//actions/%oclTypes%/self.55"/>
-              </source>
-            </source>
-          </argument>
-        </contents>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation data.ecore#//classes/TypeDefinition/conformsTo">
-          <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-              referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                referredProperty="ecore:EReference dataaccess.ecore#//expressions/WithArgument/argument">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Return"
-                  referredVariable="#//actions/%oclTypes%/self.12"/>
-            </source>
-          </source>
-          <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-              referredProperty="ecore:EReference data.ecore#//classes/Signature/output">
-            <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/Signature"
-                referredOperation="ecore:EOperation data.ecore#//classes/SignatureImplementation/getImplementedSignature">
-              <source xsi:type="ocl.ecore:OperationCallExp" eType="#//actions/Block"
-                  referredOperation="#//actions/Statement/getOutermostBlock">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Return"
-                    referredVariable="#//actions/%oclTypes%/self.12"/>
-              </source>
-            </source>
-          </argument>
-        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="ReturnMustBeLastInBlock ReturnTypeMustMatch"/>
@@ -1187,107 +221,25 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AddLink" eSuperTypes="#//actions/LinkManipulationStatement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Adds a link to an association. As opposed to, e.g., MOF 1.4 semantics, if a link would violate an upper multiplicity of 1 by adding a second link to an object, the existing link will implicitly be replaced by this AddLink statement.&#xD;&#xA;&#xD;&#xA;When *at* is unspecified for an ordered association, the link will be added at the &quot;end.&quot;"/>
+        <details key="documentation" value="Adds a link to an association. As opposed to, e.g., MOF 1.4 semantics, if a link would violate an upper multiplicity of 1 by adding a second link to an object, the existing link will implicitly be replaced by this AddLink statement.&#xA;&#xA;When *at* is unspecified for an ordered association, the link will be added at the &quot;end.&quot;"/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="RemoveLink" eSuperTypes="#//actions/LinkManipulationStatement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Removes the link if it exists, from the association specified.&#xD;&#xA;&#xD;&#xA;If no *at* position is specified for an association with one ordered end, one occurrence of the link specified by the two *objects* will be removed at random."/>
+        <details key="documentation" value="Removes the link if it exists, from the association specified.&#xA;&#xA;If no *at* position is specified for an association with one ordered end, one occurrence of the link specified by the two *objects* will be removed at random."/>
       </eAnnotations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="LinkManipulationStatement" abstract="true"
         eSuperTypes="#//actions/Statement">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="ObjectsMustConformToEndTypes" value="Sequence{1..self.objects->size()}->forAll(i:Integer |&#xD;&#xA;    objects->at(i).getType().conformsTo(association.ends->at(i).type))"/>
-        <details key="BlockMustNotImplementSideEffectFreeSignature" value="self.block.getImplementedSignature()->notEmpty() implies&#xD;&#xA;  not self.block.getImplementedSignature().sideEffectFree"/>
-        <details key="NoValueMustBeModified" value="self.association.ends->forAll(ae:AssociationEnd |&#xD;&#xA;    ae.type.clazz.valueType implies not ae.contributesToEquality)"/>
-        <contents xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
-          <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Sequence(Integer)"
-              kind="Sequence">
-            <part xsi:type="ocl.ecore:CollectionRange" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer">
-              <first xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                  integerSymbol="1"/>
-              <last xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/size">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Expression)"
-                    referredProperty="#//actions/LinkManipulationStatement/objects">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/LinkManipulationStatement"
-                      referredVariable="#//actions/%oclTypes%/self.15"/>
-                </source>
-              </last>
-            </part>
-          </source>
-          <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation data.ecore#//classes/TypeDefinition/conformsTo">
-            <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-                referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-              <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/at">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Expression)"
-                    referredProperty="#//actions/LinkManipulationStatement/objects">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/LinkManipulationStatement"
-                      referredVariable="#//actions/%oclTypes%/self.15"/>
-                </source>
-                <argument xsi:type="ocl.ecore:VariableExp" name="i" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                    referredVariable="#//actions/%oclTypes%/i.4"/>
-              </source>
-            </source>
-            <argument xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass data.ecore#//classes/ClassTypeDefinition"
-                referredProperty="ecore:EReference data.ecore#//classes/AssociationEnd/type">
-              <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/AssociationEnd"
-                  referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/at">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(AssociationEnd).2"
-                    referredProperty="ecore:EReference data.ecore#//classes/Association/ends">
-                  <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass data.ecore#//classes/Association"
-                      referredProperty="#//actions/LinkManipulationStatement/association">
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/LinkManipulationStatement"
-                        referredVariable="#//actions/%oclTypes%/self.15"/>
-                  </source>
-                </source>
-                <argument xsi:type="ocl.ecore:VariableExp" name="i" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-                    referredVariable="#//actions/%oclTypes%/i.4"/>
-              </source>
-            </argument>
-          </body>
-          <iterator xsi:type="ocl.ecore:Variable" name="i" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"/>
-        </contents>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
-            <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Set(Signature).2">
-              <part xsi:type="ocl.ecore:CollectionItem" eType="ecore:EClass data.ecore#//classes/Signature">
-                <item xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/Signature"
-                    referredOperation="ecore:EOperation data.ecore#//classes/SignatureImplementation/getImplementedSignature">
-                  <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Block"
-                      referredProperty="#//actions/Statement/block">
-                    <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/LinkManipulationStatement"
-                        referredVariable="#//actions/%oclTypes%/self.16"/>
-                  </source>
-                </item>
-              </part>
-            </source>
-          </source>
-          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/not">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-                referredProperty="ecore:EAttribute data.ecore#//classes/Signature/sideEffectFree">
-              <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/Signature"
-                  referredOperation="ecore:EOperation data.ecore#//classes/SignatureImplementation/getImplementedSignature">
-                <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/Block"
-                    referredProperty="#//actions/Statement/block">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/LinkManipulationStatement"
-                      referredVariable="#//actions/%oclTypes%/self.16"/>
-                </source>
-              </source>
-            </source>
-          </argument>
-        </contents>
+        <details key="ObjectsMustConformToEndTypes" value="Sequence{1..self.objects->size()}->forAll(i:Integer |&#xA;    objects->at(i).getType().conformsTo(association.ends->at(i).type))"/>
+        <details key="BlockMustNotImplementSideEffectFreeSignature" value="self.block.getImplementedSignature()->notEmpty() implies&#xA;  not self.block.getImplementedSignature().sideEffectFree"/>
+        <details key="NoValueMustBeModified" value="self.association.ends->forAll(ae:AssociationEnd |&#xA;    ae.type.clazz.valueType implies not ae.contributesToEquality)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="ObjectsMustConformToEndTypes BlockMustNotImplementSideEffectFreeSignature NoValueMustBeModified"/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="at" eType="ecore:EDataType primitivetypes.ecore#//Integer">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="at" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="An optional position specification which will be ignored for associations with no ordered ends. If not set for an association with ordered ends, a reasonable default will be chosen."/>
         </eAnnotations>
@@ -1308,51 +260,17 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExpressionStatement" eSuperTypes="#//actions/Statement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
-          eType="ecore:EClass dataaccess.ecore#//expressions/Expression" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="expressionStatement"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass dataaccess.ecore#//expressions/Expression" containment="true"
+          eOpposite="dataaccess.ecore#//expressions/Expression/expressionStatement"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Sort"/>
     <eClassifiers xsi:type="ecore:EClass" name="QueryInvocation"/>
     <eClassifiers xsi:type="ecore:EClass" name="Constant" eSuperTypes="#//actions/NamedValueWithOptionalInitExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="A constant always has an initial value defined and cannot be changed after that initial assignment anymore.&#xD;&#xA;&#xD;&#xA;If a constant has no initExpression assigned, it's type needs to support a lower multiplicity of 0, and the value of the constant will be an empty multi-object."/>
+        <details key="documentation" value="A constant always has an initial value defined and cannot be changed after that initial assignment anymore.&#xA;&#xA;If a constant has no initExpression assigned, it's type needs to support a lower multiplicity of 0, and the value of the constant will be an empty multi-object."/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="InitExpressionTypeMustMatchVariableType" value="self.initExpression->notEmpty() implies self.initExpression.getType().conformsTo(self.getType())"/>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
-            <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Set(Expression)">
-              <part xsi:type="ocl.ecore:CollectionItem" eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
-                <item xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                    referredProperty="#//actions/NamedValueWithOptionalInitExpression/initExpression">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Constant"
-                      referredVariable="#//actions/%oclTypes%/self.50"/>
-                </item>
-              </part>
-            </source>
-          </source>
-          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation data.ecore#//classes/TypeDefinition/conformsTo">
-            <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-                referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-              <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                  referredProperty="#//actions/NamedValueWithOptionalInitExpression/initExpression">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Constant"
-                    referredVariable="#//actions/%oclTypes%/self.50"/>
-              </source>
-            </source>
-            <argument xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-                referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Constant"
-                  referredVariable="#//actions/%oclTypes%/self.50"/>
-            </argument>
-          </argument>
-        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="InitExpressionTypeMustMatchVariableType"/>
@@ -1362,41 +280,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Variable" eSuperTypes="#//actions/NamedValueWithOptionalInitExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="As opposed to a Constant, a Variable can be used in an Assignment.&#xD;&#xA;&#xD;&#xA;If a variable has no initExpression assigned, it's type needs to support a lower multiplicity of 0, and the value of the variable will be an empty multi-object."/>
+        <details key="documentation" value="As opposed to a Constant, a Variable can be used in an Assignment.&#xA;&#xA;If a variable has no initExpression assigned, it's type needs to support a lower multiplicity of 0, and the value of the variable will be an empty multi-object."/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="InitExpressionTypeMustMatchVariableType" value="self.initExpression->notEmpty() implies self.initExpression.getType().conformsTo(self.getType())"/>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean_Class/implies">
-          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Set(T)_Class/notEmpty">
-            <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Set(Expression).8">
-              <part xsi:type="ocl.ecore:CollectionItem" eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
-                <item xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                    referredProperty="#//actions/NamedValueWithOptionalInitExpression/initExpression">
-                  <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Variable"
-                      referredVariable="#//actions/%oclTypes%/self.31"/>
-                </item>
-              </part>
-            </source>
-          </source>
-          <argument xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation data.ecore#//classes/TypeDefinition/conformsTo">
-            <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-                referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-              <source xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                  referredProperty="#//actions/NamedValueWithOptionalInitExpression/initExpression">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Variable"
-                    referredVariable="#//actions/%oclTypes%/self.31"/>
-              </source>
-            </source>
-            <argument xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-                referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/Variable"
-                  referredVariable="#//actions/%oclTypes%/self.31"/>
-            </argument>
-          </argument>
-        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="InitExpressionTypeMustMatchVariableType"/>
@@ -1436,19 +323,6 @@
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="OwnsExactlyOneBlock" value="self.nestedBlocks->size() = 1"/>
-        <contents xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-            referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer_Class/=">
-          <source xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-              referredOperation="ecore:EOperation http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OrderedSet(T)_Class/size">
-            <source xsi:type="ocl.ecore:PropertyCallExp" eType="#//actions/%oclTypes%/OrderedSet(Block).11"
-                referredProperty="#//actions/StatementWithNestedBlocks/nestedBlocks">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/SingleBlockStatement"
-                  referredVariable="#//actions/%oclTypes%/self.39"/>
-            </source>
-          </source>
-          <argument xsi:type="ocl.ecore:IntegerLiteralExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Integer"
-              integerSymbol="1"/>
-        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="OwnsExactlyOneBlock"/>
@@ -1460,31 +334,6 @@
         abstract="true" eSuperTypes="data.ecore#//classes/NamedValue">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="AssignmentCompatibility" value="self.initExpression->forAll(ie | ie.getType().conformsTo(self.getType()))"/>
-        <contents xsi:type="ocl.ecore:IteratorExp" name="forAll" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean">
-          <source xsi:type="ocl.ecore:CollectionLiteralExp" eType="#//actions/%oclTypes%/Set(Expression).9">
-            <part xsi:type="ocl.ecore:CollectionItem" eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
-              <item xsi:type="ocl.ecore:PropertyCallExp" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                  referredProperty="#//actions/NamedValueWithOptionalInitExpression/initExpression">
-                <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/NamedValueWithOptionalInitExpression"
-                    referredVariable="#//actions/%oclTypes%/self.64"/>
-              </item>
-            </part>
-          </source>
-          <body xsi:type="ocl.ecore:OperationCallExp" eType="ocl.ecore:PrimitiveType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"
-              referredOperation="ecore:EOperation data.ecore#//classes/TypeDefinition/conformsTo">
-            <source xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-                referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-              <source xsi:type="ocl.ecore:VariableExp" name="ie" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-                  referredVariable="#//actions/%oclTypes%/ie.1"/>
-            </source>
-            <argument xsi:type="ocl.ecore:OperationCallExp" eType="ecore:EClass data.ecore#//classes/TypeDefinition"
-                referredOperation="ecore:EOperation data.ecore#//classes/TypedElement/getType">
-              <source xsi:type="ocl.ecore:VariableExp" name="self" eType="#//actions/NamedValueWithOptionalInitExpression"
-                  referredVariable="#//actions/%oclTypes%/self.64"/>
-            </argument>
-          </body>
-          <iterator xsi:type="ocl.ecore:Variable" name="ie" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
-        </contents>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="AssignmentCompatibility"/>
@@ -1505,7 +354,7 @@
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="A declarative rules language that uses the structural concepts (see package structural) to form expressions and conditions. Conditions may, e.g., be used to define when an event listener wants to be notified about the occurrence of specific events.&#xD;&#xA;&#xD;&#xA;Consider FDT and other expression languages."/>
+      <details key="documentation" value="A declarative rules language that uses the structural concepts (see package structural) to form expressions and conditions. Conditions may, e.g., be used to define when an event listener wants to be notified about the occurrence of specific events.&#xA;&#xA;Consider FDT and other expression languages."/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Dummy"/>
   </eSubpackages>
@@ -1515,14 +364,14 @@
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Talks about types of (business) events that may occur, may need to be communicated / signalled and which can be consumed by event listeners (which most likely should be an action with suitable signature). Rules (see rules package) may be used to filter for relevant events.&#xD;&#xA;&#xD;&#xA;From Holger's slides:&#xD;&#xA;&#xD;&#xA;Business Event:&#xD;&#xA;A meaningful change of the state of the enterprise (inside or outside)&#xD;&#xA;A key source of business events are business objects; there are other sources like unstructured documents, analytical sources, RSS feeds, embedded software etc.&#xD;&#xA;The term “business event” is often used interchangeably to refer to both the specification (type) of the event, and each individual occurrence (instance) of the event&#xD;&#xA;Characterized by its type, modeled in Enterprise Repository*:&#xD;&#xA;Name and/or significance&#xD;&#xA;The data that is provided with each occurrence (aka attributes or context)&#xD;&#xA;Modeled as data type&#xD;&#xA;Relationship to other event types (to be clarified)&#xD;&#xA;Like causality or aggregation&#xD;&#xA;Can carry additional pre-defined data at execution time&#xD;&#xA;Like unique occurance ID, timestamp, identification of event producer&#xD;&#xA;Must be interpretable outside the “local processing context” that produced it&#xD;&#xA;Logically self-contained in representing all the information pertinent to the situation causing the event&#xD;&#xA;May either directly contain relevant details or may enable consumers to access the relevant details (via links or subsequent service calls or other means)&#xD;&#xA;Even if it contains relevant details that doesn’t rule out the need for accessing additional data, business rules, etc. for the purposes of processing and acting upon the event&#xD;&#xA;&#xD;&#xA;"/>
+      <details key="documentation" value="Talks about types of (business) events that may occur, may need to be communicated / signalled and which can be consumed by event listeners (which most likely should be an action with suitable signature). Rules (see rules package) may be used to filter for relevant events.&#xA;&#xA;From Holger's slides:&#xA;&#xA;Business Event:&#xA;A meaningful change of the state of the enterprise (inside or outside)&#xA;A key source of business events are business objects; there are other sources like unstructured documents, analytical sources, RSS feeds, embedded software etc.&#xA;The term �business event� is often used interchangeably to refer to both the specification (type) of the event, and each individual occurrence (instance) of the event&#xA;Characterized by its type, modeled in Enterprise Repository*:&#xA;Name and/or significance&#xA;The data that is provided with each occurrence (aka attributes or context)&#xA;Modeled as data type&#xA;Relationship to other event types (to be clarified)&#xA;Like causality or aggregation&#xA;Can carry additional pre-defined data at execution time&#xA;Like unique occurance ID, timestamp, identification of event producer&#xA;Must be interpretable outside the �local processing context� that produced it&#xA;Logically self-contained in representing all the information pertinent to the situation causing the event&#xA;May either directly contain relevant details or may enable consumers to access the relevant details (via links or subsequent service calls or other means)&#xA;Even if it contains relevant details that doesn�t rule out the need for accessing additional data, business rules, etc. for the purposes of processing and acting upon the event&#xA;&#xA;"/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Subscription" eSuperTypes="modelmanagement.ecore#//NamedElement">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Represents an EventConsumer's interest in being notified about occurrences of events produced by one or more EventProducers. The subscription can specify rules that constrain which events the consumer is interested in. It is then the event infrastructure's task to optimize the event forwarding to the consumers appropriately."/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="SubscribingClassMatchProducer" value="self.producer.notificationSignatures->forAll(ms:MethodSignature |&#xD;&#xA;    self.subscribingClass.allSignatures()->exists(s:MethodSignature|s.conformsTo(ms)))"/>
+        <details key="SubscribingClassMatchProducer" value="self.producer.notificationSignatures->forAll(ms:MethodSignature |&#xA;    self.subscribingClass.allSignatures()->exists(s:MethodSignature|s.conformsTo(ms)))"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="SubscribingClassMatchProducer"/>
@@ -1543,10 +392,10 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EventFilter">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="From Holger's slides:&#xD;&#xA;&#xD;&#xA;Event Patterns:&#xD;&#xA;An event pattern is a decision rule that describes how to match a certain set of events&#xD;&#xA;Each match is a (partially ordered) set of events that is an instance of the event pattern constructed by replacing variables in the pattern with values&#xD;&#xA;It is similar to mathematical language for logical expressions&#xD;&#xA;The main features of an event pattern language are (in order of complexity):&#xD;&#xA;Basic event patterns to express patterns that match single event types&#xD;&#xA;Content-based event matching in terms of the event type’s attributes&#xD;&#xA;Pattern operators for expressing relationships between events&#xD;&#xA;Like logical operators, set operators, structural operators (causes, is independent of, before)&#xD;&#xA;Context that restricts matches of patterns to specific contexts in which events are observed&#xD;&#xA;Context refers to information outside the events&#xD;&#xA;Temporal operators to specify the timing of events that match a pattern, or when a pattern should or should not match&#xD;&#xA;Like “at”, “after”, “during”&#xD;&#xA;"/>
+        <details key="documentation" value="From Holger's slides:&#xA;&#xA;Event Patterns:&#xA;An event pattern is a decision rule that describes how to match a certain set of events&#xA;Each match is a (partially ordered) set of events that is an instance of the event pattern constructed by replacing variables in the pattern with values&#xA;It is similar to mathematical language for logical expressions&#xA;The main features of an event pattern language are (in order of complexity):&#xA;Basic event patterns to express patterns that match single event types&#xA;Content-based event matching in terms of the event type�s attributes&#xA;Pattern operators for expressing relationships between events&#xA;Like logical operators, set operators, structural operators (causes, is independent of, before)&#xA;Context that restricts matches of patterns to specific contexts in which events are observed&#xA;Context refers to information outside the events&#xA;Temporal operators to specify the timing of events that match a pattern, or when a pattern should or should not match&#xA;Like �at�, �after�, �during�&#xA;"/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="FilterBlockSignatureMatchNotificationSignature" value="self.subscription.producer.notificationSignatures->exists(ms:MethodSignature |&#xD;&#xA;    ms.conformsTo(self.test.getImplementedSignature()))"/>
+        <details key="FilterBlockSignatureMatchNotificationSignature" value="self.subscription.producer.notificationSignatures->exists(ms:MethodSignature |&#xA;    ms.conformsTo(self.test.getImplementedSignature()))"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="FilterBlockSignatureMatchNotificationSignature"/>
@@ -1568,7 +417,7 @@
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Allows modelers / developers to specify transactional boundaries, tentative updates, compensation strategies etc.&#xD;&#xA;&#xD;&#xA;Also, mark in the models how pieces of data-modifying functionality can share transactional scopes with other pieces. Make the distinction between shared transactions and compensation explicit."/>
+      <details key="documentation" value="Allows modelers / developers to specify transactional boundaries, tentative updates, compensation strategies etc.&#xA;&#xA;Also, mark in the models how pieces of data-modifying functionality can share transactional scopes with other pieces. Make the distinction between shared transactions and compensation explicit."/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Dummy"/>
   </eSubpackages>
@@ -1582,16 +431,16 @@
       <details key="documentation" value="Status and Action Modeling. Must be closely related to the businessobjects package and the behavioral/actions package. Decide whether this should be under behavioral or structural."/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="SAMAction">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgentAction" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgentAction" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="businessObjectNode" lowerBound="1"
           eType="ecore:EClass data.ecore#//classes/SapClass" transient="true" eOpposite="data.ecore#//classes/SapClass/samActions"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSchemaActions" upperBound="-1"
           eType="#//status_and_action_old/SAMSchemaAction" eOpposite="#//status_and_action_old/SAMSchemaAction/samAction"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMStatusVariable">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgentVariable" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgentVariable" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="businessObjectNode" lowerBound="1"
           eType="ecore:EClass data.ecore#//classes/SapClass" transient="true" eOpposite="data.ecore#//classes/SapClass/samStatusVariables"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samStatusValues" upperBound="-1"
@@ -1607,12 +456,12 @@
           upperBound="-1" eType="#//status_and_action_old/SAMSchemaDerivator" eOpposite="#//status_and_action_old/SAMSchemaDerivator/samDerivator"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMStatusValue">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samStatusVariable" lowerBound="1"
           eType="#//status_and_action_old/SAMStatusVariable" transient="true" eOpposite="#//status_and_action_old/SAMStatusVariable/samStatusValues"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMStatusSchema">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="businessObjectNode" lowerBound="1"
           eType="ecore:EClass data.ecore#//classes/SapClass" transient="true" eOpposite="data.ecore#//classes/SapClass/samStatusSchema"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samOperators" upperBound="-1"
@@ -1639,7 +488,7 @@
           eType="#//status_and_action_old/SAMSchemaAction" eOpposite="#//status_and_action_old/SAMSchemaAction/samSchemaOperators"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMSchemaVariable">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasStateGuard" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasStateGuard" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samStatusSchema" lowerBound="1"
           eType="#//status_and_action_old/SAMStatusSchema" transient="true" eOpposite="#//status_and_action_old/SAMStatusSchema/samSchemaVariables"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSchemaValues" upperBound="-1"
@@ -1652,8 +501,8 @@
           upperBound="-1" eType="#//status_and_action_old/SAMSchemaDerivator" eOpposite="#//status_and_action_old/SAMSchemaDerivator/samTargetSchemaVariable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMSchemaValue">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInitial" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInhibiting" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInitial" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInhibiting" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSchemaVariable" lowerBound="1"
           eType="#//status_and_action_old/SAMSchemaVariable" transient="true" eOpposite="#//status_and_action_old/SAMSchemaVariable/samSchemaValues"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSourceSchemaActions"
@@ -1712,7 +561,7 @@
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="S&amp;AM is mostly about pre- and post-conditions for invocation of signatures. The abstraction that S&amp;AM adds over simple pre/post constraints is that it groups parts of an object's state into what is called a status variable. Status variables furthermore are expected to have a finite set of possible values.&#xD;&#xA;&#xD;&#xA;Synchronizers are used to set the status of a status variable. This means that for those status variables (if they are implemented only by a signature) there must be a writing signature that allows for setting the value. Conceptually, synchronizers seem a bit like an event subscription with the condition that a status variable assumes a certain value, and the event listener sets the value of another status variable to a given value.&#xD;&#xA;&#xD;&#xA;Status population also does a setting of status variables. Viewn from the other side, this looks like a status variable is derived from the values of other status variables. Again, this could be expressed as a signature with a corresponding implementation that acts as a status variable signature. Impact analysis could be performed for the implementation to determine when the value changes.&#xD;&#xA;&#xD;&#xA;Given a full-blown boolean expression algebra, only a subset of the expressions can be modeled in S&amp;AM. Also, if the type of a status variable has an infinite (or very large) value set, modeling with the S&amp;AM notation gets unwieldy.&#xD;&#xA;&#xD;&#xA;From a distance, it seems that S&amp;AM is a graphical notation for a specific subset of pre/post constraints over &quot;status functions&quot; and invocable signatures.&#xD;&#xA;&#xD;&#xA;S&amp;AM could be regarded a view on other constraint and event registration metadata, but that would be difficult to bring, e.g., into a graphical notation."/>
+      <details key="documentation" value="S&amp;AM is mostly about pre- and post-conditions for invocation of signatures. The abstraction that S&amp;AM adds over simple pre/post constraints is that it groups parts of an object's state into what is called a status variable. Status variables furthermore are expected to have a finite set of possible values.&#xA;&#xA;Synchronizers are used to set the status of a status variable. This means that for those status variables (if they are implemented only by a signature) there must be a writing signature that allows for setting the value. Conceptually, synchronizers seem a bit like an event subscription with the condition that a status variable assumes a certain value, and the event listener sets the value of another status variable to a given value.&#xA;&#xA;Status population also does a setting of status variables. Viewn from the other side, this looks like a status variable is derived from the values of other status variables. Again, this could be expressed as a signature with a corresponding implementation that acts as a status variable signature. Impact analysis could be performed for the implementation to determine when the value changes.&#xA;&#xA;Given a full-blown boolean expression algebra, only a subset of the expressions can be modeled in S&amp;AM. Also, if the type of a status variable has an infinite (or very large) value set, modeling with the S&amp;AM notation gets unwieldy.&#xA;&#xA;From a distance, it seems that S&amp;AM is a graphical notation for a specific subset of pre/post constraints over &quot;status functions&quot; and invocable signatures.&#xA;&#xA;S&amp;AM could be regarded a view on other constraint and event registration metadata, but that would be difficult to bring, e.g., into a graphical notation."/>
     </eAnnotations>
     <eSubpackages name="design" nsURI="http:///behavioral/status_and_action/design.ecore"
         nsPrefix="behavioral.status_and_action.design">
@@ -1747,8 +596,8 @@
       <eClassifiers xsi:type="ecore:EClass" name="Action" eSuperTypes="#//status_and_action/design/AbstractAction"/>
       <eClassifiers xsi:type="ecore:EClass" name="AbstractStatusVariable" abstract="true"
           eSuperTypes="modelmanagement.ecore#//NamedElement">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgent" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStateGuarded" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgent" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStateGuarded" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
             eType="#//status_and_action/design/AbstractStatusValue" containment="true">
           <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -1758,15 +607,15 @@
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AbstractStatusValue" abstract="true"
           eSuperTypes="modelmanagement.ecore#//NamedElement">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInitial" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInhibiting" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStateGuarded" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInitial" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInhibiting" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStateGuarded" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AbstractAction" abstract="true"
           eSuperTypes="modelmanagement.ecore#//NamedElement">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgent" eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgent" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPreconditionFixed"
-            eType="ecore:EDataType primitivetypes.ecore#//Boolean"/>
+            eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="assembly" nsURI="http:///behavioral/status_and_action/assembly.ecore"

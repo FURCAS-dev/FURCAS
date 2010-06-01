@@ -3,30 +3,10 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.ngpm/src"
     modelPluginID="de.hpi.sam.bp2009.ngpm" modelName="Ngpm" importerID="org.eclipse.emf.importer.rose"
-    complianceLevel="6.0" copyrightFields="false">
-  <foreignModel>C:\Documents and Settings\D043530\workspace\com.sap.ap.metamodel.core\mmr\meta\NGPM.mdl</foreignModel>
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>../rose-model/NGPM.mdl</foreignModel>
   <foreignModel>CURDIR</foreignModel>
   <foreignModel>.</foreignModel>
-  <genPackages prefix="Csn" disposableProviderFactory="true" ecorePackage="csn.ecore#/"/>
-  <genPackages prefix="Loggingandtracing" disposableProviderFactory="true" ecorePackage="loggingandtracing.ecore#/"/>
-  <genPackages prefix="Reflection" disposableProviderFactory="true" ecorePackage="reflection.ecore#/">
-    <genClasses ecoreClass="reflection.ecore#//Object">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference reflection.ecore#//Object/type"/>
-    </genClasses>
-  </genPackages>
-  <genPackages prefix="Security" disposableProviderFactory="true" ecorePackage="security.ecore#/"/>
-  <genPackages prefix="Solutions" disposableProviderFactory="true" ecorePackage="solutions.ecore#/">
-    <nestedGenPackages prefix="Ppms" basePackage="solutions" disposableProviderFactory="true"
-        ecorePackage="solutions.ecore#//ppms"/>
-  </genPackages>
-  <genPackages prefix="Primitivetypes" disposableProviderFactory="true" ecorePackage="primitivetypes.ecore#/">
-    <genDataTypes ecoreDataType="primitivetypes.ecore#//Integer"/>
-    <genDataTypes ecoreDataType="primitivetypes.ecore#//Float"/>
-    <genDataTypes ecoreDataType="primitivetypes.ecore#//Double"/>
-    <genDataTypes ecoreDataType="primitivetypes.ecore#//String"/>
-    <genDataTypes ecoreDataType="primitivetypes.ecore#//Long"/>
-    <genDataTypes ecoreDataType="primitivetypes.ecore#//Boolean"/>
-  </genPackages>
   <genPackages prefix="Behavioral" disposableProviderFactory="true" ecorePackage="behavioral.ecore#/">
     <nestedGenPackages prefix="Bpdm" basePackage="behavioral" disposableProviderFactory="true"
         ecorePackage="behavioral.ecore#//bpdm">
@@ -371,8 +351,6 @@
         <genOperations ecoreOperation="data.ecore#//classes/AssociationEnd/otherEnd"/>
       </genClasses>
       <genClasses ecoreClass="data.ecore#//classes/SapClass">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference data.ecore#//classes/SapClass/instances"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference data.ecore#//classes/SapClass/subscription"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference data.ecore#//classes/SapClass/samActions"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference data.ecore#//classes/SapClass/samStatusVariables"/>
@@ -684,6 +662,7 @@
     <nestedGenPackages prefix="Expressions" basePackage="dataaccess" disposableProviderFactory="true"
         ecorePackage="dataaccess.ecore#//expressions">
       <genClasses image="false" ecoreClass="dataaccess.ecore#//expressions/Expression">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/expressionStatement"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/inIterator"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/fromClause"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/template"/>
@@ -872,6 +851,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference modelmanagement.ecore#//Package/parameterizedClasses"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference modelmanagement.ecore#//Package/configurability"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference modelmanagement.ecore#//Package/bindings"/>
+      <genOperations ecoreOperation="modelmanagement.ecore#//Package/hasOwnershipCycle">
+        <genParameters ecoreParameter="modelmanagement.ecore#//Package/hasOwnershipCycle/pks"/>
+      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="modelmanagement.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute modelmanagement.ecore#//NamedElement/name"/>
@@ -900,129 +882,6 @@
         ecorePackage="modelmanagement.ecore#//deploymentunits">
       <genClasses ecoreClass="modelmanagement.ecore#//deploymentunits/DeploymentUnit">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference modelmanagement.ecore#//deploymentunits/DeploymentUnit/pcsInsideCompany"/>
-      </genClasses>
-    </nestedGenPackages>
-  </genPackages>
-  <genPackages prefix="Runtime" disposableProviderFactory="true" ecorePackage="runtime.ecore#/">
-    <nestedGenPackages prefix="Primitivetypes" basePackage="runtime" disposableProviderFactory="true"
-        ecorePackage="runtime.ecore#//primitivetypes">
-      <genClasses ecoreClass="runtime.ecore#//primitivetypes/Binary"/>
-      <genClasses ecoreClass="runtime.ecore#//primitivetypes/Boolean"/>
-      <genClasses ecoreClass="runtime.ecore#//primitivetypes/DateTime"/>
-      <genClasses ecoreClass="runtime.ecore#//primitivetypes/Number"/>
-      <genClasses ecoreClass="runtime.ecore#//primitivetypes/String"/>
-    </nestedGenPackages>
-    <nestedGenPackages prefix="Enumerations" basePackage="runtime" disposableProviderFactory="true"
-        ecorePackage="runtime.ecore#//enumerations">
-      <genClasses ecoreClass="runtime.ecore#//enumerations/Enumeration">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//enumerations/Enumeration/literals"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//enumerations/EnumerationLiteral">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//enumerations/EnumerationLiteral/name"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//enumerations/EnumerationLiteral/description"/>
-      </genClasses>
-    </nestedGenPackages>
-    <nestedGenPackages prefix="Collections" basePackage="runtime" disposableProviderFactory="true"
-        ecorePackage="runtime.ecore#//collections"/>
-    <nestedGenPackages prefix="Testwithroles" basePackage="runtime" disposableProviderFactory="true"
-        ecorePackage="runtime.ecore#//testwithroles">
-      <genClasses ecoreClass="runtime.ecore#//testwithroles/BusinessPartner">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/BusinessPartner/streetAddress"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/BusinessPartner/BankAccount"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/BusinessPartner/Supplier"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/BusinessPartner/Customer"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/BusinessPartner/Employee"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/BusinessPartner/Employer"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithroles/SalesOrder">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/SalesOrder/buyer"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/SalesOrder/seller"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithroles/BankAccount"/>
-      <genClasses ecoreClass="runtime.ecore#//testwithroles/WorkAgreement">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/WorkAgreement/employer"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/WorkAgreement/employee"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithroles/Address"/>
-      <genClasses ecoreClass="runtime.ecore#//testwithroles/Employee"/>
-      <genClasses ecoreClass="runtime.ecore#//testwithroles/Customer">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/Customer/SalesOrder"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithroles/Supplier">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithroles/Supplier/SalesOrder"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithroles/Employer"/>
-    </nestedGenPackages>
-    <nestedGenPackages prefix="Testwithpolymorphicassociations" basePackage="runtime"
-        disposableProviderFactory="true" ecorePackage="runtime.ecore#//testwithpolymorphicassociations">
-      <genClasses ecoreClass="runtime.ecore#//testwithpolymorphicassociations/A">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//testwithpolymorphicassociations/A/AtoB"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithpolymorphicassociations/A/b"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/A/a"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithpolymorphicassociations/C">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//testwithpolymorphicassociations/C/CtoD"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//testwithpolymorphicassociations/C/AtoB"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithpolymorphicassociations/C/b"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/C/a"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/C/c"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithpolymorphicassociations/B">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithpolymorphicassociations/B/a"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/B/b"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithpolymorphicassociations/D">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithpolymorphicassociations/D/a"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/D/b"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/D/d"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithpolymorphicassociations/E">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute runtime.ecore#//testwithpolymorphicassociations/E/EtoF"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithpolymorphicassociations/E/b"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/E/a"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/E/c"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/E/e"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//testwithpolymorphicassociations/F">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//testwithpolymorphicassociations/F/a"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/F/b"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/F/d"/>
-        <genOperations ecoreOperation="runtime.ecore#//testwithpolymorphicassociations/F/f"/>
-      </genClasses>
-    </nestedGenPackages>
-    <nestedGenPackages prefix="Configuration2" basePackage="runtime" disposableProviderFactory="true"
-        ecorePackage="runtime.ecore#//configuration2">
-      <genClasses ecoreClass="runtime.ecore#//configuration2/SalesOrder">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//configuration2/SalesOrder/numberRange"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//configuration2/NumberRangeImpl"/>
-      <genClasses ecoreClass="runtime.ecore#//configuration2/PurchaseOrder">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference runtime.ecore#//configuration2/PurchaseOrder/numberRange"/>
-      </genClasses>
-      <genClasses image="false" ecoreClass="runtime.ecore#//configuration2/NumberRange"/>
-      <genClasses ecoreClass="runtime.ecore#//configuration2/PurchaseOrderNumberRanges">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//configuration2/PurchaseOrderNumberRanges/nr1"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//configuration2/PurchaseOrderNumberRanges/nr2"/>
-      </genClasses>
-      <genClasses ecoreClass="runtime.ecore#//configuration2/SalesOrderNumberRanges">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//configuration2/SalesOrderNumberRanges/nr1"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference runtime.ecore#//configuration2/SalesOrderNumberRanges/nr2"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>
@@ -1062,14 +921,14 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//businessconfiguration/BusinessArea/BusinessPackage"/>
       </genClasses>
       <genClasses ecoreClass="configuration.ecore#//businessconfiguration/ValueSet">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//businessconfiguration/ValueSet/extensible"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute configuration.ecore#//businessconfiguration/ValueSet/extensible"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference configuration.ecore#//businessconfiguration/ValueSet/configurationBusinessOption"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//businessconfiguration/ValueSet/entries"/>
       </genClasses>
       <genClasses ecoreClass="configuration.ecore#//businessconfiguration/ValueSetEntry">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//businessconfiguration/ValueSetEntry/canBeChanged"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//businessconfiguration/ValueSetEntry/canBeDeleted"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute configuration.ecore#//businessconfiguration/ValueSetEntry/canBeChanged"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute configuration.ecore#//businessconfiguration/ValueSetEntry/canBeDeleted"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference configuration.ecore#//businessconfiguration/ValueSetEntry/valueSet"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference configuration.ecore#//businessconfiguration/ValueSetEntry/value"/>
       </genClasses>
@@ -1178,7 +1037,7 @@
             ecoreFeature="ecore:EReference integration.ecore#//xsd/ElementDefinition/type"/>
       </genClasses>
       <genClasses image="false" ecoreClass="integration.ecore#//xsd/NamedElement">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/NamedElement/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/NamedElement/name"/>
       </genClasses>
       <genClasses image="false" ecoreClass="integration.ecore#//xsd/AbstractType"/>
       <genClasses image="false" ecoreClass="integration.ecore#//xsd/Containable">
@@ -1187,24 +1046,24 @@
       </genClasses>
       <genClasses ecoreClass="integration.ecore#//xsd/Attribute">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/Attribute/use"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/Attribute/val"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/Attribute/val"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference integration.ecore#//xsd/Attribute/type"/>
       </genClasses>
       <genClasses ecoreClass="integration.ecore#//xsd/Any"/>
       <genClasses image="false" ecoreClass="integration.ecore#//xsd/Root">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/Root/id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/Root/id"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference integration.ecore#//xsd/Root/anno"/>
       </genClasses>
       <genClasses ecoreClass="integration.ecore#//xsd/Group"/>
       <genClasses ecoreClass="integration.ecore#//xsd/Annotation">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/Annotation/documentation"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/Annotation/appInfo"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/Annotation/documentation"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/Annotation/appInfo"/>
       </genClasses>
       <genClasses ecoreClass="integration.ecore#//xsd/Notation">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/Notation/publicDec"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/Notation/systemDec"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/Notation/publicDec"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/Notation/systemDec"/>
       </genClasses>
       <genClasses ecoreClass="integration.ecore#//xsd/SimpleType">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -1213,11 +1072,11 @@
       <genClasses ecoreClass="integration.ecore#//xsd/ElementReference"/>
       <genClasses image="false" ecoreClass="integration.ecore#//xsd/AbstractContent"/>
       <genClasses ecoreClass="integration.ecore#//xsd/SimpleContent">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/SimpleContent/base"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/SimpleContent/enumVals"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/SimpleContent/base"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/SimpleContent/enumVals"/>
       </genClasses>
       <genClasses ecoreClass="integration.ecore#//xsd/ComplexContent">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//xsd/ComplexContent/mixed"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//xsd/ComplexContent/mixed"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference integration.ecore#//xsd/ComplexContent/contentModel"/>
       </genClasses>
@@ -1234,15 +1093,15 @@
       <genClasses ecoreClass="integration.ecore#//binding/HttpPutBinding"/>
       <genClasses image="false" ecoreClass="integration.ecore#//binding/UrlPattern"/>
       <genClasses ecoreClass="integration.ecore#//binding/SimpleUrlPattern">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//binding/SimpleUrlPattern/baseUrl"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute integration.ecore#//binding/SimpleUrlPattern/baseUrl"/>
       </genClasses>
       <genClasses ecoreClass="integration.ecore#//binding/RestUrlPattern"/>
     </nestedGenPackages>
   </genPackages>
   <genPackages prefix="Localization" disposableProviderFactory="true" ecorePackage="localization.ecore#/">
     <genClasses ecoreClass="localization.ecore#//TranslatableText">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference localization.ecore#//TranslatableText/text"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference localization.ecore#//TranslatableText/hintForTranslator"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute localization.ecore#//TranslatableText/text"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute localization.ecore#//TranslatableText/hintForTranslator"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Ngpm" disposableProviderFactory="true" ecorePackage="ngpm.ecore#/">
@@ -1275,117 +1134,6 @@
   <genPackages prefix="Ap_runtime_constraints" disposableProviderFactory="true" ecorePackage="ap_runtime_constraints.ecore#/">
     <genClasses ecoreClass="ap_runtime_constraints.ecore#//QueryConstraint"/>
   </genPackages>
-  <genPackages prefix="Sproxy_content" disposableProviderFactory="true" ecorePackage="sproxy_content.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="sproxy_content.ecore#//Cardinality">
-      <genEnumLiterals ecoreEnumLiteral="sproxy_content.ecore#//Cardinality/zero"/>
-      <genEnumLiterals ecoreEnumLiteral="sproxy_content.ecore#//Cardinality/one"/>
-      <genEnumLiterals ecoreEnumLiteral="sproxy_content.ecore#//Cardinality/two"/>
-      <genEnumLiterals ecoreEnumLiteral="sproxy_content.ecore#//Cardinality/many"/>
-    </genEnums>
-    <genClasses ecoreClass="sproxy_content.ecore#//BO">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BO/rootNode"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BO/statusDerivators"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BO/template"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BO/projections"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//BONode">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BONode/nodeDataType"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference sproxy_content.ecore#//BONode/bo"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BONode/actions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BONode/statusAndActionSchemas"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BONode/association"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BONode/outboundAssociations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BONode/queries"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BONode/properties"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//BONode/fieldProperties"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//DataType">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//DataType/elements"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//DataType/attributes"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//DataType/abapType"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//Query"/>
-    <genClasses ecoreClass="sproxy_content.ecore#//Action">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sproxy_content.ecore#//Action/cardinality"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//ServiceInterface">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//ServiceInterface/operations"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//ServiceInterfaceOperation">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//ServiceInterfaceOperation/requestMessageType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//ServiceInterfaceOperation/responseMessageType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//ServiceInterfaceOperation/faultMessageType"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//ProcessAgent"/>
-    <genClasses ecoreClass="sproxy_content.ecore#//OutboundProcessAgent">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//OutboundProcessAgent/outboundServiceInterface"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//InboundProcessAgent">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//InboundProcessAgent/inboundServiceInterfaces"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//StatusAndActionSchema">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//StatusAndActionSchema/statusVariables"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//Element">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Element/type"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//Attribute">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Attribute/statusAttribute"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Attribute/abapType"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//DO"/>
-    <genClasses ecoreClass="sproxy_content.ecore#//Association">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Association/composite"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Association/targetNode"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Association/owner"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Association/properties"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//Operation">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Operation/parameterType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Operation/properties"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//StatusDerivator">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//StatusDerivator/source"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//StatusDerivator/target"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//Population"/>
-    <genClasses ecoreClass="sproxy_content.ecore#//Aggregation"/>
-    <genClasses ecoreClass="sproxy_content.ecore#//AssociationProperties">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//AssociationProperties/enabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//AssociationProperties/enabledFinal"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//AssociationProperties/createEnabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//AssociationProperties/createEnabledFinal"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//NodeProperties">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/enabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/enabledFinal"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/createEnabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/createEnabledFinal"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/updateEnabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/updateEnabledFinal"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/deleteEnabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/deleteEnabledFinal"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/transientKey"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//NodeProperties/transientKeyFinal"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//OperationProperties">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//OperationProperties/enabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//OperationProperties/enabledFinal"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//FieldProperties">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//FieldProperties/enabled"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//FieldProperties/enabledFinal"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//FieldProperties/readonly"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//FieldProperties/readonlyFinal"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//FieldProperties/mandatory"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//FieldProperties/mandatoryFinal"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//FieldProperties/field"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//Field">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sproxy_content.ecore#//Field/properties"/>
-    </genClasses>
-    <genClasses ecoreClass="sproxy_content.ecore#//LanguageDependentText"/>
-  </genPackages>
   <genPackages prefix="Abapmapping" disposableProviderFactory="true" ecorePackage="abapmapping.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="abapmapping.ecore#//AbapClassKind">
       <genEnumLiterals ecoreEnumLiteral="abapmapping.ecore#//AbapClassKind/BO_AND_ROOT_NODE"/>
@@ -1410,23 +1158,21 @@
     <nestedGenPackages prefix="Abapdictionary" basePackage="abapmapping" disposableProviderFactory="true"
         ecorePackage="abapmapping.ecore#//abapdictionary">
       <genClasses ecoreClass="abapmapping.ecore#//abapdictionary/XsdType">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/XsdType/xsdType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapmapping.ecore#//abapdictionary/XsdType/xsdType"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapmapping.ecore#//abapdictionary/XsdType/length"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/XsdType/pattern"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapmapping.ecore#//abapdictionary/XsdType/pattern"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapmapping.ecore#//abapdictionary/XsdType/totalDigits"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapmapping.ecore#//abapdictionary/XsdType/fractionDigits"/>
       </genClasses>
       <genClasses ecoreClass="abapmapping.ecore#//abapdictionary/UnstructuredAbapType"/>
       <genClasses ecoreClass="abapmapping.ecore#//abapdictionary/CodeValue">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/CodeValue/languageDependentDescription"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/CodeValue/value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapmapping.ecore#//abapdictionary/CodeValue/value"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/CodeValue/description"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/CodeValue/type"/>
       </genClasses>
       <genClasses ecoreClass="abapmapping.ecore#//abapdictionary/Code">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/Code/extensible"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapmapping.ecore#//abapdictionary/Code/extensible"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/Code/values"/>
       </genClasses>
       <genClasses ecoreClass="abapmapping.ecore#//abapdictionary/DataElement">
@@ -1434,7 +1180,7 @@
             ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/DataElement/abapType"/>
       </genClasses>
       <genClasses ecoreClass="abapmapping.ecore#//abapdictionary/AbapType">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/AbapType/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapmapping.ecore#//abapdictionary/AbapType/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/AbapType/xsdRepresentation"/>
       </genClasses>
@@ -1443,7 +1189,7 @@
             ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/AbapStructureType/fields"/>
       </genClasses>
       <genClasses ecoreClass="abapmapping.ecore#//abapdictionary/AbapStructureField">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/AbapStructureField/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute abapmapping.ecore#//abapdictionary/AbapStructureField/name"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference abapmapping.ecore#//abapdictionary/AbapStructureField/type"/>
       </genClasses>
@@ -1472,8 +1218,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute persistence.ecore#//expressions/All/snapshot"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference persistence.ecore#//expressions/All/ofClass"/>
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference persistence.ecore#//expressions/All/snapshotIdentifier"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference persistence.ecore#//expressions/All/snapshotIdentifier"/>
       </genClasses>
       <genClasses ecoreClass="persistence.ecore#//expressions/Commit"/>
       <genClasses ecoreClass="persistence.ecore#//expressions/Snapshot"/>
