@@ -46,7 +46,7 @@ public class MqlMapperToStringTest extends TestCase {
         
         expressionStringComplete = "Place.allInstances()->select(p : Place| p.noTokens = 2)";
         expressionStringBody = "p.noTokens=2";
-        expressionStringCollectNavigation ="Element.allInstances()->collect(a:Node|a.outgoingArcs)";
+        expressionStringCollectNavigation ="Place.allInstances()->collect(p|p.outgoingArcs)";
         expressionStringCollectBody="Arc, outgoingArcs, Node";
 
         MappingOCL ocl = MappingOCL.newInstance();
@@ -54,14 +54,14 @@ public class MqlMapperToStringTest extends TestCase {
         Map<EClass, Set<EObject>> map = new HashMap<EClass, Set<EObject>>();
         ocl.setExtentMap(map);
         oclhelper.setContext(PetriNetPackage.eINSTANCE.getPetriNet());
-        Object statement = null;
+        
         try {
                 oclexpressionComplete = oclhelper.createQuery(expressionStringComplete);
                 oclexpressionBody= (OCLExpression) ((IteratorExp)oclexpressionComplete).getBody();
                 oclexpressionCompleteNav =oclhelper.createQuery(expressionStringCollectNavigation);
                 oclexpressionBodyNav= (OCLExpression) ((IteratorExp)oclexpressionCompleteNav).getBody();
 
-//                statement = ocl.evaluate(PetriNetPackage.eINSTANCE.getPetriNet(), oclexpression);
+
         } catch (ParserException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

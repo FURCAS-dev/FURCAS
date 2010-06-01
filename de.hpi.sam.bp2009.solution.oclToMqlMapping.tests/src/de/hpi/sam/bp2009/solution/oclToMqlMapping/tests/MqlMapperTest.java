@@ -40,14 +40,19 @@ public class MqlMapperTest extends TestCase {
     private OCLExpression oclexpressionBodyNav;
     private Object statementAtt = null;
     private Object statementNav = null;
+    private MappingOCL ocl=null;
+    private String expressionStringSelect;
+    private OCLExpression oclexpressionCompleteSel;
+    private Object statementSel;
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         
+        expressionStringSelect = "Place.allInstances()->select(p : Place| p.noTokens=2)";
         expressionStringCollectAttribute = "Place.allInstances()->collect(p : Place| p.noTokens)";
-        expressionStringCollectNavigation ="Place.allInstances()->collect(p : Place| p.outgoingArcsArc)";
+        expressionStringCollectNavigation ="Place.allInstances()->collect(p : Place| p.outgoingArcs)";
         
-        MappingOCL ocl = MappingOCL.newInstance();
+        ocl = MappingOCL.newInstance();
         Helper oclhelper=(Helper) ocl.createOCLHelper();
         Map<EClass, Set<EObject>> map = new HashMap<EClass, Set<EObject>>();
         ocl.setExtentMap(map);
@@ -55,6 +60,7 @@ public class MqlMapperTest extends TestCase {
         
         try {
                 oclexpressionComplete = oclhelper.createQuery(expressionStringCollectAttribute);
+                oclexpressionCompleteSel = oclhelper.createQuery(expressionStringSelect);
                 oclexpressionBody= (OCLExpression) ((IteratorExp)oclexpressionComplete).getBody();
                 oclexpressionCompleteNav =oclhelper.createQuery(expressionStringCollectNavigation);
                 oclexpressionBodyNav= (OCLExpression) ((IteratorExp)oclexpressionCompleteNav).getBody();
@@ -78,19 +84,26 @@ public class MqlMapperTest extends TestCase {
         oclexpressionComplete=null;
         oclexpressionCompleteNav=null;
         oclexpressionBodyNav=null;
+        oclexpressionCompleteSel=null;
     }
     @Test
     public void testVisitExpressionComplete() {
-       fixture.visitExpression(oclexpressionComplete);
-//       statementAtt = ocl.evaluate(PetriNetPackage.eINSTANCE.getPetriNet(), oclexpressionComplete);
-//       
-//       assert
+      
+       statementAtt = ocl.evaluate(PetriNetPackage.eINSTANCE.getPetriNet(), oclexpressionComplete);
+       
+       assertEquals("test", statementAtt);
     }
     @Test
     public void testVisitExpressionCompleteNav() {
-       Object r=fixture.visitExpression(oclexpressionCompleteNav);
-//       statementNav = ocl.evaluate(PetriNetPackage.eINSTANCE.getPetriNet(), oclexpressionCompleteNav);
+       
+       statementNav = ocl.evaluate(PetriNetPackage.eINSTANCE.getPetriNet(), oclexpressionCompleteNav);
+       assertEquals("test", statementNav);
     }
-
+    @Test
+    public void testVisitExpressionSelect() {
+       
+       statementSel = ocl.evaluate(PetriNetPackage.eINSTANCE.getPetriNet(), oclexpressionCompleteSel);
+       assertEquals("test", statementSel);
+    }
 }
 
