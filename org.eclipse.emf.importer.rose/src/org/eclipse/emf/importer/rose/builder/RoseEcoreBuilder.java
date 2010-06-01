@@ -74,6 +74,7 @@ public class RoseEcoreBuilder implements RoseVisitor
     private static final String SAP2MOF_OPERATION_CODE_OCL = "\"sap2mof.OperationCodeOcl\"";
     private static final String UML2MOF_CLUSTERED_IMPORT = "\"uml2mof.clusteredImport\"";
     private static final String ROSE2MOF_CONSTRAINED_ELEMENTS = "\"rose2mof.constrainedElements\"";
+    private static final String ROSE2MOF_RETURN_MULTIPLICITY = "\"rose2mof.return.multiplicity\"";
     private static final String MOF = "\"MOF\"";
     private static final String VALIDATION_DELEGATES = "validationDelegates";
     private static final String INVOCATION_DELEGATES = "invocationDelegates";
@@ -1381,7 +1382,26 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
   {
     setEModelElementProperties(roseNode, eTypedElement);
 
-    String multiplicity = eTypedElement instanceof EReference ?  roseNode.getRoleMultiplicity() : roseNode.getStereotype();
+    String multiplicity;
+    if ( eTypedElement instanceof EReference) {
+        multiplicity = roseNode.getRoleMultiplicity();
+    } else if (eTypedElement instanceof EOperation) {
+      multiplicity = roseNode.getStereotype(); // default
+      for(RoseNode n: roseNode.getNodes()){
+        if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
+            for(RoseNode attr: n.getNodes()){
+                if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){                         
+                    String[] multFromOp = parseAttributesFromNode(attr, ROSE2MOF_RETURN_MULTIPLICITY);
+                    if (multFromOp != null && multFromOp.length > 0) {
+                      multiplicity = multFromOp[0];
+                  }
+                }
+            }
+        }
+      }
+    } else {
+        multiplicity = roseNode.getStereotype();
+    }
     if (multiplicity != null)
     {
       bounded.add(eTypedElement);
