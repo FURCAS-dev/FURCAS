@@ -68,28 +68,28 @@
 |    self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()
 |  else if self.oclIsKindOf(ObjectCreationExpression) then
 |    self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType
-|  else if self.oclIsKindOf(DimensionExpression) then
-|    self.oclAsType(DimensionExpression).dimension.ownerSignature.sideEffectFree
+|  else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then
+|    self.oclAsType(dataaccess::analytics::DimensionExpression).dimension.ownerSignature.sideEffectFree
 |  else if self.oclIsKindOf(Ternary) then
 |    self.oclAsType(Ternary).condition.isSideEffectFree() and
 |    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and
 |    self.oclAsType(Ternary).falseExpr.isSideEffectFree()
-|  else if self.oclIsKindOf(CollectionExpression) then
-|    self.oclAsType(CollectionExpression).source.isSideEffectFree() and
-|    if self.oclIsKindOf(Iterate) then
-|      (self.oclAsType(Iterate).accumulator.initExpression->notEmpty() implies
-|         self.oclAsType(Iterate).accumulator.initExpression.isSideEffectFree()) and
-|      self.oclAsType(Iterate).iteratorExpression.isSideEffectFree()
+|  else if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::CollectionExpression) then
+|    self.oclAsType(dataaccess::expressions::collectionExpressions::CollectionExpression).source.isSideEffectFree() and
+|    if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::Iterate) then
+|      (self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).accumulator.initExpression->notEmpty() implies
+|         self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and
+|      self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).iteratorExpression.isSideEffectFree()
 |    else
 |      true
 |    endif
-|  else if self.oclIsKindOf(ObjectLiteral) then
-|    self.oclAsType(ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())
+|  else if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then
+|    self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())
 |  else if self.oclIsKindOf(All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or
-|  self.oclIsKindOf(Literal) or self.oclIsKindOf(AnonymousFunctionExpr) then
+|  self.oclIsKindOf(dataaccess::expressions::literals::Literal) or self.oclIsKindOf(AnonymousFunctionExpr) then
 |    true
-|  else if self.oclIsKindOf(Selection) then
-|    self.oclAsType(Selection).object.isSideEffectFree()
+|  else if self.oclIsKindOf(dataaccess::query::Selection) then
+|    self.oclAsType(dataaccess::expressions::literals::Selection).object.isSideEffectFree()
 |  else
 |    false
 |  endif
@@ -9083,7 +9083,7 @@
 					label      	"+parameters"
 					pctDist    	1.260870
 					height     	48
-					orientation 	0)
+					orientation 	1)
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"47F3B8AC0339"
