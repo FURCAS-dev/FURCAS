@@ -1,0 +1,11 @@
+Make sure you have the Pathmap entry CURDIR set to "&" in Rose.
+
+Launch the build for the metamodel by cd'ing to this directory, then
+calling
+
+	./build c:/japro/DevEfficiency/moin moin.test _com.sap.ap.metamodel.core FrwkDev_stream
+
+assuming that you are in the codeline "FrwkDev_stream" (replace the last
+argument correspondingly otherwise). You need to have Cygwin installed
+for this (www.cygwin.com). Also, this is assuming that your Japro
+workspace root is at c:/japro (again, replace correspondingly).
