@@ -18,7 +18,7 @@ public class QuickOclParseAndEvalTest extends TestCase {
 		OCL ocl = OCL.newInstance();
 		Helper oclHelper = ocl.createOCLHelper();
 		oclHelper.setContext(ClassesPackage.eINSTANCE.getMethodSignature());
-		OCLExpression expression = oclHelper.createQuery("self.owner.oclAsType(data::classes::TypeAdapter).to.oclIsInvalid()");
+		OCLExpression expression = oclHelper.createQuery("self.owner.oclAsType(data::classes::TypeAdapter).oclIsInvalid()");
 		MethodSignature context = ClassesFactory.eINSTANCE.createMethodSignature();
 		Object result = ocl.evaluate(context, expression);
 		assertNotNull(result);
