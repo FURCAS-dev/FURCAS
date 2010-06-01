@@ -28,7 +28,7 @@
             objectClass="org.eclipse.core.resources.IFile"
             nameFilter="*.ecore"
             id="de.hpi.sam.bp2009.solution.oclToAst.AnnotationParser">
-         <action label="Parse Annotations"
+         <action label="Parse OCL Annotations"
                class="de.hpi.sam.bp2009.solution.oclToAst.ui.OclToAstAction"
                menubarPath="additions" 
                id="de.hpi.sam.bp2009.solution.oclToAst.AnnotationParser"/>
