@@ -75,11 +75,11 @@
 |    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and
 |    self.oclAsType(Ternary).falseExpr.isSideEffectFree()
 |  else if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::CollectionExpression) then
-|    self.oclAsType(dataaccess::expressions::collectionExpressions::CollectionExpression).source.isSideEffectFree() and
-|    if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::Iterate) then
-|      (self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).accumulator.initExpression->notEmpty() implies
-|         self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and
-|      self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).iteratorExpression.isSideEffectFree()
+|    self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.isSideEffectFree() and
+|    if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then
+|      (self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression->notEmpty() implies
+|         self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and
+|      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.isSideEffectFree()
 |    else
 |      true
 |    endif
