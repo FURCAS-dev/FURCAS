@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CreateDynamicInstanceHandler.java,v 1.1 2010/05/29 17:30:48 ewillink Exp $
+ * $Id: CreateDynamicInstanceHandler.java,v 1.2 2010/06/01 19:45:26 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.commands;
 
@@ -40,14 +40,11 @@ import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DocumentCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.PackageCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
-import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.ui.texteditor.IDocumentProvider;
-import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.outline.ContentOutlineNode;
-import org.eclipse.xtext.ui.editor.utils.EditorUtils;
 import org.eclipse.xtext.util.concurrent.IEObjectHandle;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
 /**
  * Create a dynamic instance of an {@link EClass}.
@@ -69,50 +66,39 @@ public class CreateDynamicInstanceHandler extends AbstractHandler
 		if (!(element instanceof ContentOutlineNode)) {
 			return null;
 		}
-		ContentOutlineNode contentOutlineNode = (ContentOutlineNode) element;
-
-		IEObjectHandle<?> object = contentOutlineNode.getEObjectHandle();
-		URI uri = object.getURI();
-		
-		XtextEditor xtextEditor = EditorUtils.getActiveXtextEditor(event);
-		if (xtextEditor == null) {
-			return null;
-		}
-		IDocumentProvider documentProvider = xtextEditor.getDocumentProvider();
-		if (!(documentProvider instanceof OCLinEcoreDocumentProvider)) {
-			return null;
-		}
-		OCLinEcoreDocumentProvider oclinEcoreDocumentProvider = (OCLinEcoreDocumentProvider)documentProvider;
-		ResourceSet activeResourceSet = oclinEcoreDocumentProvider.getResourceSet();
-		EObject oclInEcoreObject = activeResourceSet.getEObject(uri, true);		// FIXME Find the 'Xtext' way to do this
-		if (!(oclInEcoreObject instanceof OCLinEcoreClassCS)) {
-			return null;
-		}
-		ResourceSet localResourceSet = new ResourceSetImpl();
-		Resource resource = localResourceSet.getResource(uri.trimFragment(), true);
-		EClassifier eClassifier = findClassifier(resource, (OCLinEcoreClassCS)oclInEcoreObject);
-		if (!(eClassifier instanceof EClass)) {
-			return null;
-		}
-		EClass eClass = (EClass) eClassifier;
-		IStructuredSelection selection = StructuredSelection.EMPTY;
-		if (uri.isHierarchical()) {
-			if (uri.isRelative()
-				|| (uri = uri.deresolve(PLATFORM_RESOURCE)).isRelative()) {
-				IFile file = ResourcesPlugin.getWorkspace().getRoot()
-					.getFile(new Path(uri.toString()));
-				if (file.exists()) {
-					selection = new StructuredSelection(file);
+		IEObjectHandle<EObject> handle = ((ContentOutlineNode) element).getEObjectHandle();
+		handle.readOnly(new IUnitOfWork.Void<EObject>() {
+			@Override
+			public void process(EObject oclInEcoreObject) {
+				OCLinEcoreClassCS oclInEcoreClass = (OCLinEcoreClassCS) oclInEcoreObject;
+				URI resourceURI = oclInEcoreClass.eResource().getURI().trimFragment();
+				ResourceSet localResourceSet = new ResourceSetImpl();
+				Resource ecoreResource = localResourceSet.getResource(resourceURI, true);
+				EClassifier eClassifier = findClassifier(ecoreResource, oclInEcoreClass);
+				if (!(eClassifier instanceof EClass)) {
+					return;
 				}
+				EClass eClass = (EClass) eClassifier;
+				URI uri = eClass.eResource().getURI();
+				IStructuredSelection selection = StructuredSelection.EMPTY;
+				if (uri.isHierarchical()) {
+					if (uri.isRelative()
+						|| (uri = uri.deresolve(PLATFORM_RESOURCE)).isRelative()) {
+						IFile file = ResourcesPlugin.getWorkspace().getRoot()
+							.getFile(new Path(uri.toString()));
+						if (file.exists()) {
+							selection = new StructuredSelection(file);
+						}
+					}
+				}
+				DynamicModelWizard dynamicModelWizard = new DynamicModelWizard(eClass);
+				dynamicModelWizard.init(PlatformUI.getWorkbench(), selection);
+				WizardDialog wizardDialog = new WizardDialog(PlatformUI
+					.getWorkbench().getActiveWorkbenchWindow().getShell(),
+					dynamicModelWizard);
+				wizardDialog.open();
 			}
-		}
-
-		DynamicModelWizard dynamicModelWizard = new DynamicModelWizard(eClass);
-		dynamicModelWizard.init(PlatformUI.getWorkbench(), selection);
-		WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell(), dynamicModelWizard);
-
-		wizardDialog.open();
+		});
 		return null;
 	}
 
