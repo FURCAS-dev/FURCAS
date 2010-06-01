@@ -35,7 +35,11 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "long")))
+		    value      	(value Text "long"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EInt")))
 	    quid       	"3B538AB300B3"
 	    stereotype 	"primitive")
 	(object Class "Float"
@@ -43,7 +47,11 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "float")))
+		    value      	(value Text "float"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EFloat")))
 	    quid       	"3B538ABB02B3"
 	    stereotype 	"primitive")
 	(object Class "Double"
@@ -51,7 +59,11 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "double")))
+		    value      	(value Text "double"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EDouble")))
 	    quid       	"3B538AE303DD"
 	    stereotype 	"primitive")
 	(object Class "String"
@@ -59,7 +71,11 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "wstring")))
+		    value      	(value Text "wstring"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EString")))
 	    quid       	"39A2BDA60394"
 	    stereotype 	"primitive")
 	(object Class "Long"
@@ -67,7 +83,11 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "long long")))
+		    value      	(value Text "long long"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "ELong")))
 	    quid       	"39A2BDA603A0"
 	    stereotype 	"primitive")
 	(object Class "Boolean"
@@ -75,7 +95,11 @@
 		(object Attribute
 		    tool       	"MOF"
 		    name       	"uml2mof.corbaType"
-		    value      	(value Text "boolean")))
+		    value      	(value Text "boolean"))
+		(object Attribute
+		    tool       	"Ecore"
+		    name       	"classifierName"
+		    value      	(value Text "EBoolean")))
 	    quid       	"39A2BDA60392"
 	    stereotype 	"primitive"))
     logical_presentations 	(list unit_reference_list
