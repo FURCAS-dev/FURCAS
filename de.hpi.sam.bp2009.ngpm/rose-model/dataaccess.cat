@@ -1332,13 +1332,24 @@
 		    quid       	"4577E58D0258"
 		    roles      	(list role_list
 			(object Role "argumentOf"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"4577E58D0259"
 			    label      	"argumentOf"
 			    supplier   	"Logical View::dataaccess::expressions::WithArgument"
 			    quidu      	"4577E587019C"
 			    client_cardinality 	(value cardinality "0..1")
+			    is_navigable 	TRUE
 			    is_aggregate 	TRUE)
 			(object Role "argument"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4577E58D025A"
 			    label      	"argument"
 			    supplier   	"Logical View::dataaccess::expressions::Expression"
@@ -3447,6 +3458,11 @@
 			    quid       	"47595F91004E"
 			    roles      	(list role_list
 				(object Role "source"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"MOF"
+					    name       	"sap2mof.store"
+					    value      	("RoleStoreKindSet" 203)))
 				    quid       	"47595F930196"
 				    label      	"source"
 				    supplier   	"Logical View::dataaccess::expressions::Expression"
@@ -3455,11 +3471,17 @@
 				    Containment 	"By Value"
 				    is_navigable 	TRUE)
 				(object Role "collectionExpression"
+				    attributes 	(list Attribute_Set
+					(object Attribute
+					    tool       	"MOF"
+					    name       	"sap2mof.store"
+					    value      	("RoleStoreKindSet" 202)))
 				    quid       	"47595F9301C5"
 				    label      	"collectionExpression"
 				    supplier   	"Logical View::dataaccess::expressions::collectionExpressions::CollectionExpression"
 				    quidu      	"47595F60033C"
 				    client_cardinality 	(value cardinality "0..1")
+				    is_navigable 	TRUE
 				    is_aggregate 	TRUE)))
 			(object Association "IterateIterator"
 			    quid       	"4759625301D4"
