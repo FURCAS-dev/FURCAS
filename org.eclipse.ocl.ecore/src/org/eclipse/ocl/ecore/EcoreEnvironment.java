@@ -707,45 +707,46 @@ public class EcoreEnvironment
 	@Override
 	protected void findOppositeEnds(EClassifier classifier, String name,
 			List<EStructuralFeature> ends) {
-		ResourceSet rs = classifier.eResource().getResourceSet();
-		if (rs == null) {
-			rs = new ResourceSetImpl();
-		}
-		StringBuilder allClassifierSupertypeUris = new StringBuilder();
-		allClassifierSupertypeUris.append('[');
-		allClassifierSupertypeUris.append(EcoreUtil.getURI(classifier));
-		allClassifierSupertypeUris.append("]"); //$NON-NLS-1$
-		if (classifier instanceof EClass) { // don't do this for the VoidType
-			for (EClass supertype : ((EClass) classifier).getEAllSuperTypes()) {
-				allClassifierSupertypeUris.append(',');
-				allClassifierSupertypeUris.append('[');
-				allClassifierSupertypeUris.append(EcoreUtil.getURI(supertype));
-				allClassifierSupertypeUris.append(']');
+		if (!(classifier instanceof VoidType)) { // OclVoid has no properties, not even opposites
+			ResourceSet rs = classifier.eResource().getResourceSet();
+			if (rs == null) {
+				rs = new ResourceSetImpl();
+			}
+			StringBuilder allClassifierSupertypeUris = new StringBuilder();
+			allClassifierSupertypeUris.append('[');
+			allClassifierSupertypeUris.append(EcoreUtil.getURI(classifier));
+			allClassifierSupertypeUris.append("]"); //$NON-NLS-1$
+			if (classifier instanceof EClass) { // don't do this for the VoidType
+				for (EClass supertype : ((EClass) classifier).getEAllSuperTypes()) {
+					allClassifierSupertypeUris.append(',');
+					allClassifierSupertypeUris.append('[');
+					allClassifierSupertypeUris.append(EcoreUtil.getURI(supertype));
+					allClassifierSupertypeUris.append(']');
+				}
+			}
+			final ResultSet result = QueryProcessorFactory
+				.getDefault()
+				.createQueryProcessor(IndexFactory.getInstance())
+				.execute(
+					"select oppositeParent from [http://www.eclipse.org/emf/2002/Ecore#//EReference] as oppositeParent, " + //$NON-NLS-1$
+						"[http://www.eclipse.org/emf/2002/Ecore#//EAnnotation] as annotation, " + //$NON-NLS-1$
+						"[http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry] as detail, " + //$NON-NLS-1$
+						"[http://www.eclipse.org/emf/2002/Ecore#//EClassifier] as classifier in elements {" + //$NON-NLS-1$
+						allClassifierSupertypeUris
+						+ "} " + //$NON-NLS-1$
+						"where oppositeParent.eAnnotations = annotation "+ //$NON-NLS-1$
+						"where annotation.details = detail " + //$NON-NLS-1$
+						"where detail.key = '" //$NON-NLS-1$
+						+ PROPERTY_OPPOSITE_ROLE_NAME_KEY
+						+ "' " + //$NON-NLS-1$ 
+						"where detail.value = '" + name + "' " + //$NON-NLS-1$ //$NON-NLS-2$
+						"where oppositeParent.eType = classifier", //$NON-NLS-1$
+					getWorkspaceQueryContext(rs)); 
+			for (int i = 0; i < result.getSize(); i++) {
+				ends.add((EReference) rs.getEObject(result.getUri(i,
+					"oppositeParent"), /* loadOnDemand */true)); //$NON-NLS-1$
 			}
 		}
-		final ResultSet result = QueryProcessorFactory
-			.getDefault()
-			.createQueryProcessor(IndexFactory.getInstance())
-			.execute(
-				"select oppositeParent from [http://www.eclipse.org/emf/2002/Ecore#//EReference] as oppositeParent, " + //$NON-NLS-1$
-					"[http://www.eclipse.org/emf/2002/Ecore#//EAnnotation] as annotation, " + //$NON-NLS-1$
-					"[http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry] as detail, " + //$NON-NLS-1$
-					"[http://www.eclipse.org/emf/2002/Ecore#//EClassifier] as classifier in elements {" + //$NON-NLS-1$
-					allClassifierSupertypeUris
-					+ "} " + //$NON-NLS-1$
-					"where oppositeParent.eAnnotations = annotation "+ //$NON-NLS-1$
-					"where annotation.details = detail " + //$NON-NLS-1$
-					"where detail.key = '" //$NON-NLS-1$
-					+ PROPERTY_OPPOSITE_ROLE_NAME_KEY
-					+ "' " + //$NON-NLS-1$ 
-					"where detail.value = '" + name + "' " + //$NON-NLS-1$ //$NON-NLS-2$
-					"where oppositeParent.eType = classifier", //$NON-NLS-1$
-				getWorkspaceQueryContext(rs)); 
-		for (int i = 0; i < result.getSize(); i++) {
-			ends.add((EReference) rs.getEObject(result.getUri(i,
-				"oppositeParent"), /* loadOnDemand */true)); //$NON-NLS-1$
-		}
-		//		ends.add(((EClass)classifier.getEPackage().getEClassifier("Division")).getEStructuralFeature("department")); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	/**
