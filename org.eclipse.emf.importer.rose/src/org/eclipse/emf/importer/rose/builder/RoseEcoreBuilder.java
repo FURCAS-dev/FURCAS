@@ -606,10 +606,12 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
                     String[] constraints = parseAttributesFromNode(attr, SAP2MOF_OPERATION_CODE_OCL);
                     if(constraints == null)
                         continue;
-                    String result = "";
+                    StringBuilder result = new StringBuilder();
                     for(String clsName: constraints){
-                        result = result.concat(clsName);                                                                       
+                        result.append(clsName);
+                        result.append('\n');
                     } 
+                    result.delete(result.length()-1, result.length()); // delete last \n again
                     String expr = result.substring(result.indexOf("body:") + 5).trim();
                     //TODO ensure that the constrained name is always body and not pre/post/...
                     addConstraintToNamedElement("body", expr, eOperation);
