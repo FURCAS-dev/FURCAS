@@ -269,7 +269,7 @@
 |context Signature::getOwningClass():SapClass
 |body:
 |  if self.oclIsKindOf(MethodSignature) then
-|    let owner = self.oclAsType(MethodSignature).owner in
+|    let owner:SignatureOwner = self.oclAsType(MethodSignature).owner in
 |    if owner.oclIsKindOf(SapClass) then
 |      owner.oclAsType(SapClass)
 |    else
@@ -1483,7 +1483,7 @@
 |        if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and
 |        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation->notEmpty() and
 |        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclIsKindOf(AssociationEndSignatureImplementation) then
-|  	let impl = self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclAsType(AssociationEndSignatureImplementation) in
+|  	let impl:AssociationEndSignatureImplementation = self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclAsType(AssociationEndSignatureImplementation) in
 |            impl.end.type
 |        else
 |          if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(FunctionSignature) then
@@ -1931,7 +1931,7 @@
 					PDL        	
 |context ClassTypeDefinition
 |inv:
-|  let numberOfMandatoryParameters =
+|  let numberOfMandatoryParameters:Integer =
 |    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()
 |  in
 |  self.objectParameters->size() >= numberOfMandatoryParameters and
@@ -2312,7 +2312,7 @@
 |context TypeDefinition::getNamedValuesInScope():Set(NamedValue)
 |body:
 |  -- find owner of type definition and collect the named values in scope for the owner
-|  (let ownerSig = self.ownerSignature in
+|  (let ownerSig:Signature = self.ownerSignature in
 |  if ownerSig->notEmpty() and ownerSig.oclIsKindOf(Signature) then
 |    ownerSig.oclAsType(Signature).getNamedValuesInScope()
 |  else
@@ -2467,7 +2467,7 @@
 				    value      	(value Text 
 |context FunctionSignature::getImplementedAnonymousFunctionExpression():AnonymousFunctionExpr
 |body:
-|  let candidates = self.typeDefinition.ownerTypedElement.oclAsType(AnonymousFunctionExpr)->asSequence() in
+|  let candidates:Sequence(AnonymousFunctionExpr) = self.typeDefinition.ownerTypedElement.oclAsType(AnonymousFunctionExpr)->asSequence() in
 |  if candidates->isEmpty() then
 |    null
 |  else
@@ -5449,6 +5449,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47D67D190077"
+			    compartment 	(object Compartment
+				Parent_View 	@70
+				location   	(824, 1994)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	958
 			    height     	236
 			    annotation 	8
@@ -7084,6 +7101,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@148
+				location   	(2005, 1391)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	442
 			    height     	282
 			    annotation 	8
@@ -8725,23 +8759,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"45013C240030"
-			    compartment 	(object Compartment
-				Parent_View 	@228
-				location   	(1038, 182)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	596)
 			    width      	606
 			    height     	282
 			    annotation 	8
@@ -8772,23 +8789,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"479592D900FA"
-			    compartment 	(object Compartment
-				Parent_View 	@229
-				location   	(1247, 649)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	2
-				max_width  	831)
 			    width      	848
 			    height     	232
 			    annotation 	8
@@ -8849,23 +8849,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"452B7C8B00D8"
-			    compartment 	(object Compartment
-				Parent_View 	@231
-				location   	(448, 977)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	4
-				max_width  	810)
 			    width      	830
 			    height     	332
 			    annotation 	8
@@ -9208,23 +9191,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@247
-				location   	(1694, 1416)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	22
-				max_width  	975)
 			    width      	986
 			    height     	1186
 			    annotation 	8
@@ -11428,6 +11394,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47D67D190077"
+			    compartment 	(object Compartment
+				Parent_View 	@350
+				location   	(171, 1587)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	958
 			    height     	236
 			    annotation 	8
@@ -15090,6 +15073,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@522
+				location   	(5494, 864)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -16799,6 +16799,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@609
+				location   	(1140, 1952)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -17151,6 +17168,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@625
+				location   	(358, 920)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -17842,6 +17876,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@645
+				location   	(1612, 894)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	460
 			    height     	282
 			    annotation 	8
@@ -21021,23 +21072,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"452B7C8B00D8"
-			    compartment 	(object Compartment
-				Parent_View 	@767
-				location   	(601, 953)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	4
-				max_width  	681)
 			    width      	702
 			    height     	232
 			    annotation 	8

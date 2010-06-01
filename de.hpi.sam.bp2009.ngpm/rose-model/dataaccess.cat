@@ -193,7 +193,7 @@
 |        self.oclAsType(Selection).selectionExpr.getUsedAliases())
 |      else
 |        if self.oclIsKindOf(ObjectBasedExpression) then
-|          let objectAliases = self.oclAsType(ObjectBasedExpression).object.getUsedAliases() in
+|          let objectAliases:Set(Iterator) = self.oclAsType(ObjectBasedExpression).object.getUsedAliases() in
 |          if self.oclIsKindOf(MethodCallExpression) then
 |            objectAliases->union(self.oclAsType(MethodCallExpression).parameters.getUsedAliases()->flatten()->asSet())
 |          else
@@ -208,7 +208,7 @@
 |                           self.oclAsType(FunctionCallExpression).parameters.getUsedAliases()->flatten()->asSet())
 |            else
 |              if self.oclIsKindOf(Ternary) then
-|                let sat = self.oclAsType(Ternary) in
+|                let sat:Ternary = self.oclAsType(Ternary) in
 |                sat.condition.getUsedAliases()->union(sat.trueExpr.getUsedAliases())->union(sat.falseExpr.getUsedAliases())
 |             else
 |                 if self.oclIsKindOf(CollectionExpressionWithArgument) then
@@ -271,8 +271,8 @@
 |  let iterators:Set(NamedValue)=self.inIterator.iterators->asSet() in
 |  -- an OQL "from" clause sees all aliases left of it
 |  let oqlAliases:Set(NamedValue)=(if self.fromClause->notEmpty() then
-|    let fromClauses = self.fromClause.fromClauseOfOqlQuery.fromClauses in
-|    let fcIndex = fromClauses->indexOf(self.fromClause) in
+|    let fromClauses:OrderedSet(FromClause) = self.fromClause.fromClauseOfOqlQuery.fromClauses in
+|    let fcIndex:Integer = fromClauses->indexOf(self.fromClause) in
 |      Sequence{1..-1+fcIndex}->collect(i | fromClauses->at(i).alias)->asSet()
 |  else
 |    Set{}
@@ -312,7 +312,7 @@
 |            self.argumentOf.oclAsType(StatementWithArgument).getNamedValuesInScope()
 |          else
 |            -- add all variables in scope for owning expressions
-|            let oe = self.getOwningExpression() in
+|            let oe:Expression = self.getOwningExpression() in
 |              if oe->isEmpty() then
 |                Set{}
 |              else
@@ -408,7 +408,7 @@
 				    value      	(value Text 
 |context Expression::getOwningClass():SapClass
 |body:
-|  let oe = self.getOwningExpression() in
+|  let oe:Expression = self.getOwningExpression() in
 |  if oe->notEmpty() then
 |    oe.getOwningClass()
 |  else
@@ -863,7 +863,7 @@
 					PDL        	
 |context SignatureCallExpression
 |inv:
-|  let numberOfMandatoryParameters =
+|  let numberOfMandatoryParameters:Integer =
 |    self.getSignature().input->select(p|p.defaultValue->isEmpty())->size()
 |  in
 |  self.parameters->size() >= numberOfMandatoryParameters and
@@ -888,7 +888,7 @@
 |        self.getType().oclIsUndefined()
 |    else 
 |        if self.getMultiplicityOfCallTarget().isMany() and self.getSignature().output.isMany() then
-|            let ntd = self.getType().oclAsType(NestedTypeDefinition) in
+|            let ntd:NestedTypeDefinition = self.getType().oclAsType(NestedTypeDefinition) in
 |                self.getType().oclIsKindOf(NestedTypeDefinition) and 
 |                ntd.unique = false and
 |                ntd.ordered = self.getMultiplicityOfCallTarget().ordered and
@@ -896,7 +896,7 @@
 |                ntd.upperMultiplicity = self.getMultiplicityOfCallTarget().upperMultiplicity and
 |                self.getSignature().output.conformsTo(ntd.type)
 |        else
-|            let target = self.getMultiplicityOfCallTarget() in let output = self.getSignature().output in 
+|            let target:Multiplicity = self.getMultiplicityOfCallTarget() in let output:TypeDefinition = self.getSignature().output in 
 |                ( output.isMany() implies self.getType().unique = output.unique ) and
 |                ( ( output.isMany() or target.isMany() ) implies ( self.getType().ordered = (output.ordered or target.ordered) ) ) and
 |                ( self.getType().lowerMultiplicity = (output.lowerMultiplicity * target.lowerMultiplicity)) and
@@ -1014,8 +1014,8 @@
 					PDL        	
 |context NavigationStep
 |inv:
-|  let i = self.replace.steps->indexOf(self) in
-|  let t = if i=1 then self.replace.object.getType().oclAsType(ClassTypeDefinition) else self.replace.steps->at(-1 + i).to.type endif in
+|  let i:Integer = self.replace.steps->indexOf(self) in
+|  let t:ClassTypeDefinition = if i=1 then self.replace.object.getType().oclAsType(ClassTypeDefinition) else self.replace.steps->at(-1 + i).to.type endif in
 |
 |  self.to.otherEnd().type.clazz.conformsTo(t.clazz)
 					)
@@ -1230,10 +1230,10 @@
 					PDL        	
 |context Map
 |inv:
-|  let fstd = self.argument.getType() in
-|  let sig = fstd.oclAsType(FunctionSignatureTypeDefinition).signature in
-|  let t = self.object.getType() in
-|  let argT = sig.input->at(1).getType() in
+|  let fstd:TypeDefinition = self.argument.getType() in
+|  let sig:Signature = fstd.oclAsType(FunctionSignatureTypeDefinition).signature in
+|  let t:TypeDefinition = self.object.getType() in
+|  let argT:TypeDefinition = sig.input->at(1).getType() in
 |  -- if multiplicities match including multiplicities, that's ok
 |  t.conformsTo(argT) or
 |  -- otherwise, pick single multiplicity from object and try again
@@ -1253,9 +1253,9 @@
 					PDL        	
 |context Map
 |inv:
-|  let fstd = self.argument.getType() in
+|  let fstd:TypeDefinition = self.argument.getType() in
 |  fstd.oclIsKindOf(FunctionSignatureTypeDefinition) and
-|  (let sig = fstd.oclAsType(FunctionSignatureTypeDefinition).signature in
+|  (let sig:Signature = fstd.oclAsType(FunctionSignatureTypeDefinition).signature in
 |  (sig.output->notEmpty() and
 |  sig.input->size() = 1))
 					)
@@ -1877,23 +1877,6 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"454746D10018"
-				    compartment 	(object Compartment
-					Parent_View 	@1
-					location   	(737, 675)
-					font       	(object Font
-					    size       	10
-					    face       	"Arial"
-					    bold       	FALSE
-					    italics    	FALSE
-					    underline  	FALSE
-					    strike     	FALSE
-					    color      	0
-					    default_color 	TRUE)
-					icon_style 	"Icon"
-					fill_color 	16777215
-					anchor     	2
-					nlines     	2
-					max_width  	300)
 				    width      	312
 				    height     	186
 				    annotation 	8
@@ -2195,7 +2178,7 @@
 				    quidu      	"450E63AB03A2"
 				    compartment 	(object Compartment
 					Parent_View 	@15
-					location   	(671, 117)
+					location   	(671, 333)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -2261,23 +2244,6 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"4717D20502BC"
-				    compartment 	(object Compartment
-					Parent_View 	@18
-					location   	(1666, 1134)
-					font       	(object Font
-					    size       	10
-					    face       	"Arial"
-					    bold       	FALSE
-					    italics    	FALSE
-					    underline  	FALSE
-					    strike     	FALSE
-					    color      	0
-					    default_color 	TRUE)
-					icon_style 	"Icon"
-					fill_color 	16777215
-					anchor     	2
-					nlines     	2
-					max_width  	262)
 				    width      	286
 				    height     	186
 				    annotation 	8
@@ -2820,23 +2786,6 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"44EC55FB03B8"
-				    compartment 	(object Compartment
-					Parent_View 	@43
-					location   	(2224, 1586)
-					font       	(object Font
-					    size       	10
-					    face       	"Arial"
-					    bold       	FALSE
-					    italics    	FALSE
-					    underline  	FALSE
-					    strike     	FALSE
-					    color      	0
-					    default_color 	TRUE)
-					icon_style 	"Icon"
-					fill_color 	16777215
-					anchor     	2
-					nlines     	1
-					max_width  	246)
 				    width      	807
 				    height     	187
 				    annotation 	8)
@@ -3011,23 +2960,6 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"4784F7E800AB"
-				    compartment 	(object Compartment
-					Parent_View 	@51
-					location   	(1789, 2152)
-					font       	(object Font
-					    size       	10
-					    face       	"Arial"
-					    bold       	FALSE
-					    italics    	FALSE
-					    underline  	FALSE
-					    strike     	FALSE
-					    color      	0
-					    default_color 	TRUE)
-					icon_style 	"Icon"
-					fill_color 	16777215
-					anchor     	2
-					nlines     	3
-					max_width  	596)
 				    width      	608
 				    height     	282
 				    annotation 	8
@@ -9151,7 +9083,7 @@
 					label      	"+parameters"
 					pctDist    	1.260870
 					height     	48
-					orientation 	1)
+					orientation 	0)
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"47F3B8AC0339"
@@ -21981,23 +21913,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"45013C240030"
-			    compartment 	(object Compartment
-				Parent_View 	@870
-				location   	(161, 1182)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	13434879
-				anchor     	2
-				nlines     	3
-				max_width  	590)
 			    width      	602
 			    height     	282
 			    annotation 	8
@@ -22094,23 +22009,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4B8E7B4F007D"
-			    compartment 	(object Compartment
-				Parent_View 	@874
-				location   	(2122, 1868)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	13434879
-				anchor     	2
-				nlines     	2
-				max_width  	246)
 			    width      	420
 			    height     	186
 			    annotation 	8
@@ -22143,7 +22041,7 @@
 			    quidu      	"450E63AB03A2"
 			    compartment 	(object Compartment
 				Parent_View 	@875
-				location   	(1282, 229)
+				location   	(1282, 445)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -22897,10 +22795,10 @@
 				    supplier   	@875
 				    vertices   	(list Points
 					(1806, 1249)
-					(1806, 594))
+					(1806, 593))
 				    line_style 	3
 				    origin_attachment 	(1806, 1249)
-				    terminal_attachment 	(1806, 594)
+				    terminal_attachment 	(1806, 593)
 				    label      	(object SegLabel @913
 					Parent_View 	@911
 					location   	(1860, 661)

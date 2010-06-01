@@ -228,7 +228,7 @@
 |context Statement::getNamedValuesInScope():Set(NamedValue)
 |body:
 |  -- collect all NamedValue declarations introduced by statements in this statement's owning block, prior to this statement.
-|  let pos = self.block.statements->indexOf(self) in
+|  let pos:Integer = self.block.statements->indexOf(self) in
 |  if pos > 1 then
 |    self.addNamedValuesWithNewNames(
 |    if self.block.statements->at(-1+pos).oclIsKindOf(NamedValueDeclaration) then
@@ -377,7 +377,7 @@
 |    owningStatement.getNamedValuesInScope()
 |  else
 |    -- add formal object parameters from owning class
-|    let oc = self.getOwningClass() in
+|    let oc:SapClass = self.getOwningClass() in
 |    if oc->notEmpty() then
 |      oc.formalObjectParameters->asSet()
 |    else
@@ -412,8 +412,8 @@
 				    value      	(value Text 
 |context Block::getOwningClass():SapClass
 |body:
-|  let outermost = self.getOutermostBlock() in
-|  let implementedSignature = outermost.getImplementedSignature() in
+|  let outermost:Block = self.getOutermostBlock() in
+|  let implementedSignature:Signature = outermost.getImplementedSignature() in
 |  if implementedSignature->notEmpty() then
 |    implementedSignature.getOwningClass()
 |  else
