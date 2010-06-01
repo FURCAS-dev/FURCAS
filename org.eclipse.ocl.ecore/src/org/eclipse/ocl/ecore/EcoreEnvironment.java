@@ -715,11 +715,13 @@ public class EcoreEnvironment
 		allClassifierSupertypeUris.append('[');
 		allClassifierSupertypeUris.append(EcoreUtil.getURI(classifier));
 		allClassifierSupertypeUris.append("]"); //$NON-NLS-1$
-		for (EClass supertype : ((EClass) classifier).getEAllSuperTypes()) {
-			allClassifierSupertypeUris.append(',');
-			allClassifierSupertypeUris.append('[');
-			allClassifierSupertypeUris.append(EcoreUtil.getURI(supertype));
-			allClassifierSupertypeUris.append(']');
+		if (classifier instanceof EClass) { // don't do this for the VoidType
+			for (EClass supertype : ((EClass) classifier).getEAllSuperTypes()) {
+				allClassifierSupertypeUris.append(',');
+				allClassifierSupertypeUris.append('[');
+				allClassifierSupertypeUris.append(EcoreUtil.getURI(supertype));
+				allClassifierSupertypeUris.append(']');
+			}
 		}
 		final ResultSet result = QueryProcessorFactory
 			.getDefault()
