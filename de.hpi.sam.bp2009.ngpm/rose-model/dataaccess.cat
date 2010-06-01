@@ -74,7 +74,7 @@
 |    self.oclAsType(Ternary).condition.isSideEffectFree() and
 |    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and
 |    self.oclAsType(Ternary).falseExpr.isSideEffectFree()
-|  else if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::CollectionExpression) then
+|  else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::CollectionExpression) then
 |    self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.isSideEffectFree() and
 |    if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then
 |      (self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression->notEmpty() implies
