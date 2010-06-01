@@ -171,10 +171,10 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             try {
                 expr = helper.createQuery(e);
             } catch (ParserException e1) {
-              System.out.println("On element "+modelElement+":\n" + e + "\n" + e1.getMessage());
+              System.err.println("On element "+modelElement+":\n" + e + "\n" + e1.getMessage());
               if (e1.getDiagnostic() != null) {
                 for (Diagnostic c : e1.getDiagnostic().getChildren()) {
-                  System.out.println(c.getMessage());
+                  System.err.println(c.getMessage());
                 }
               }
               getAllOccurredErrorMessages().add(new ErrorMessageImpl(e1, "Error during Query parsing", e));
