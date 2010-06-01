@@ -143,6 +143,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             String e = detail.getValue();
             if (e == null)
                 return;
+            // TODO can the following lines be pulled out of the loop? This may speed things up a little
             OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
             new ProjectDependencyQueryContextProvider().apply(ocl);
             Helper helper = ocl.createOCLHelper();
@@ -170,7 +171,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             try {
                 expr = helper.createQuery(e);
             } catch (ParserException e1) {
-              System.out.println(e + "\n" + e1.getMessage());
+              System.out.println("On element "+modelElement+":\n" + e + "\n" + e1.getMessage());
               if (e1.getDiagnostic() != null) {
                 for (Diagnostic c : e1.getDiagnostic().getChildren()) {
                   System.out.println(c.getMessage());
