@@ -171,7 +171,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             try {
                 expr = helper.createQuery(e);
             } catch (ParserException e1) {
-              System.err.println("On element "+modelElement+":\n" + e + "\n" + e1.getMessage());
+              System.err.println("On element "+getQualifiedName(modelElement)+" "+modelElement+":\n" + e + "\n" + e1.getMessage());
               if (e1.getDiagnostic() != null) {
                 for (Diagnostic c : e1.getDiagnostic().getChildren()) {
                   System.err.println(c.getMessage());
@@ -197,6 +197,19 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
         }
     }
+
+    private String getQualifiedName(EObject modelElement) {
+        StringBuilder result = new StringBuilder();
+        if (modelElement instanceof ENamedElement) {
+          result.append(((ENamedElement) modelElement).getName());
+          if (modelElement.eContainer() != null) {
+            result.insert(0, '.');
+            result.insert(0, getQualifiedName(modelElement.eContainer()));
+          }
+        }
+        return result.toString();
+    }
+
 
     /* (non-Javadoc)
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#getAllOccurredErrorMessages()
