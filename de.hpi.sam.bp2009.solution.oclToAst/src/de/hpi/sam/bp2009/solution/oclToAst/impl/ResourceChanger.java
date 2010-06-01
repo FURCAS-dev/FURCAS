@@ -102,6 +102,7 @@ class ResourceChanger
      *            the given object
      * @return null, if the object is in a valid resource, a copy of the object otherwise @see {@link EcoreUtil#copy(EObject)}
      */
+    @SuppressWarnings("unchecked")
     private <T extends EObject> T handle(T typ) {
         if(typ!=null && orgToCopy.containsKey(typ)){
             return (T) orgToCopy.get(typ);
