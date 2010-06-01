@@ -27,37 +27,36 @@ import dataaccess.expressions.ObjectBasedExpression;
  * </p>
  *
  * @see dataaccess.expressions.fp.FpPackage#getFunctionFromMethodExpr()
- * @model annotation="http://de.hpi.sam.bp2009.OCL SignatureAvailableOnObjectsClass='self.object.getType().oclIsKindOf(ClassTypeDefinition) and\r\n  self.object.getType().oclAsType(ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(SapClass))' MethodSignatureConformsToFunctionSignature='self.getType().oclIsKindOf(FunctionSignatureTypeDefinition) and\r\n    self.method.conformsTo(self.getType().oclAsType(FunctionSignatureTypeDefinition).signature)'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL SignatureAvailableOnObjectsClass='self.object.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.object.getType().oclAsType(ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(SapClass))' MethodSignatureConformsToFunctionSignature='self.getType().oclIsKindOf(FunctionSignatureTypeDefinition) and\n    self.method.conformsTo(self.getType().oclAsType(FunctionSignatureTypeDefinition).signature)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SignatureAvailableOnObjectsClass MethodSignatureConformsToFunctionSignature'"
  * @generated
  */
-public interface FunctionFromMethodExpr extends ObjectBasedExpression
-{
-  /**
-   * Returns the value of the '<em><b>Method</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Method</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Method</em>' reference.
-   * @see #setMethod(MethodSignature)
-   * @see dataaccess.expressions.fp.FpPackage#getFunctionFromMethodExpr_Method()
-   * @model required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  MethodSignature getMethod();
+public interface FunctionFromMethodExpr extends ObjectBasedExpression {
+	/**
+	 * Returns the value of the '<em><b>Method</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Method</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Method</em>' reference.
+	 * @see #setMethod(MethodSignature)
+	 * @see dataaccess.expressions.fp.FpPackage#getFunctionFromMethodExpr_Method()
+	 * @model required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	MethodSignature getMethod();
 
-  /**
-   * Sets the value of the '{@link dataaccess.expressions.fp.FunctionFromMethodExpr#getMethod <em>Method</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Method</em>' reference.
-   * @see #getMethod()
-   * @generated
-   */
-  void setMethod(MethodSignature value);
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.fp.FunctionFromMethodExpr#getMethod <em>Method</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Method</em>' reference.
+	 * @see #getMethod()
+	 * @generated
+	 */
+	void setMethod(MethodSignature value);
 
 } // FunctionFromMethodExpr

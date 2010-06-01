@@ -23,6 +23,5 @@ package dataaccess.expressions.collectionexpressions;
  * @model
  * @generated
  */
-public interface ExcludingAt extends Excluding, WithPosition
-{
+public interface ExcludingAt extends Excluding, WithPosition {
 } // ExcludingAt

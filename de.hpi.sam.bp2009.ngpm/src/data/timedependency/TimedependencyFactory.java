@@ -16,32 +16,31 @@ import org.eclipse.emf.ecore.EFactory;
  * @see data.timedependency.TimedependencyPackage
  * @generated
  */
-public interface TimedependencyFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  TimedependencyFactory eINSTANCE = data.timedependency.impl.TimedependencyFactoryImpl.init();
+public interface TimedependencyFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	TimedependencyFactory eINSTANCE = data.timedependency.impl.TimedependencyFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Time Dependency</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Time Dependency</em>'.
-   * @generated
-   */
-  TimeDependency createTimeDependency();
+	/**
+	 * Returns a new object of class '<em>Time Dependency</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Time Dependency</em>'.
+	 * @generated
+	 */
+	TimeDependency createTimeDependency();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  TimedependencyPackage getTimedependencyPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	TimedependencyPackage getTimedependencyPackage();
 
 } //TimedependencyFactory

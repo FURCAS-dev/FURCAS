@@ -17,6 +17,5 @@ package integration.xsd;
  * @model
  * @generated
  */
-public interface Any extends Containable
-{
+public interface Any extends Containable {
 } // Any

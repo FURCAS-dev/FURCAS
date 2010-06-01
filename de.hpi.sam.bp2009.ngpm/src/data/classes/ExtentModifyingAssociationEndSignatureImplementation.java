@@ -19,10 +19,9 @@ package data.classes;
  *
  * @see data.classes.ClassesPackage#getExtentModifyingAssociationEndSignatureImplementation()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL MustNotModifyExtentIfEqualityRelevantForValueClass='end.association.ends->forAll(ae:AssociationEnd |\r\n    ae.contributesToEquality implies not ae.type.clazz.valueType)' MustNotImplementSideEffectFreeOperation='not self.implements_.sideEffectFree'"
+ *        annotation="http://de.hpi.sam.bp2009.OCL MustNotModifyExtentIfEqualityRelevantForValueClass='end.association.ends->forAll(ae:AssociationEnd |\n    ae.contributesToEquality implies not ae.type.clazz.valueType)' MustNotImplementSideEffectFreeOperation='not self.implements_.sideEffectFree'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MustNotModifyExtentIfEqualityRelevantForValueClass MustNotImplementSideEffectFreeOperation'"
  * @generated
  */
-public interface ExtentModifyingAssociationEndSignatureImplementation extends AssociationEndSignatureImplementation
-{
+public interface ExtentModifyingAssociationEndSignatureImplementation extends AssociationEndSignatureImplementation {
 } // ExtentModifyingAssociationEndSignatureImplementation

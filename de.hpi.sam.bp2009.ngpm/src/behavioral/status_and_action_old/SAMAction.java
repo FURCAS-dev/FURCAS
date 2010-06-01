@@ -31,104 +31,103 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface SAMAction extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_Name()
-   * @model dataType="primitivetypes.String"
-   * @generated
-   */
-  String getName();
+public interface SAMAction extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
 
-  /**
-   * Sets the value of the '{@link behavioral.status_and_action_old.SAMAction#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
+	/**
+	 * Sets the value of the '{@link behavioral.status_and_action_old.SAMAction#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
-  /**
-   * Returns the value of the '<em><b>Is Agent Action</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Is Agent Action</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Is Agent Action</em>' attribute.
-   * @see #setIsAgentAction(boolean)
-   * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_IsAgentAction()
-   * @model dataType="primitivetypes.Boolean"
-   * @generated
-   */
-  boolean isIsAgentAction();
+	/**
+	 * Returns the value of the '<em><b>Is Agent Action</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Agent Action</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Agent Action</em>' attribute.
+	 * @see #setIsAgentAction(boolean)
+	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_IsAgentAction()
+	 * @model
+	 * @generated
+	 */
+	boolean isIsAgentAction();
 
-  /**
-   * Sets the value of the '{@link behavioral.status_and_action_old.SAMAction#isIsAgentAction <em>Is Agent Action</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Is Agent Action</em>' attribute.
-   * @see #isIsAgentAction()
-   * @generated
-   */
-  void setIsAgentAction(boolean value);
+	/**
+	 * Sets the value of the '{@link behavioral.status_and_action_old.SAMAction#isIsAgentAction <em>Is Agent Action</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Agent Action</em>' attribute.
+	 * @see #isIsAgentAction()
+	 * @generated
+	 */
+	void setIsAgentAction(boolean value);
 
-  /**
-   * Returns the value of the '<em><b>Business Object Node</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link data.classes.SapClass#getSamActions <em>Sam Actions</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Business Object Node</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Business Object Node</em>' container reference.
-   * @see #setBusinessObjectNode(SapClass)
-   * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_BusinessObjectNode()
-   * @see data.classes.SapClass#getSamActions
-   * @model opposite="samActions" required="true"
-   * @generated
-   */
-  SapClass getBusinessObjectNode();
+	/**
+	 * Returns the value of the '<em><b>Business Object Node</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link data.classes.SapClass#getSamActions <em>Sam Actions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Business Object Node</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Business Object Node</em>' container reference.
+	 * @see #setBusinessObjectNode(SapClass)
+	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_BusinessObjectNode()
+	 * @see data.classes.SapClass#getSamActions
+	 * @model opposite="samActions" required="true"
+	 * @generated
+	 */
+	SapClass getBusinessObjectNode();
 
-  /**
-   * Sets the value of the '{@link behavioral.status_and_action_old.SAMAction#getBusinessObjectNode <em>Business Object Node</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Business Object Node</em>' container reference.
-   * @see #getBusinessObjectNode()
-   * @generated
-   */
-  void setBusinessObjectNode(SapClass value);
+	/**
+	 * Sets the value of the '{@link behavioral.status_and_action_old.SAMAction#getBusinessObjectNode <em>Business Object Node</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Business Object Node</em>' container reference.
+	 * @see #getBusinessObjectNode()
+	 * @generated
+	 */
+	void setBusinessObjectNode(SapClass value);
 
-  /**
-   * Returns the value of the '<em><b>Sam Schema Actions</b></em>' reference list.
-   * The list contents are of type {@link behavioral.status_and_action_old.SAMSchemaAction}.
-   * It is bidirectional and its opposite is '{@link behavioral.status_and_action_old.SAMSchemaAction#getSamAction <em>Sam Action</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Sam Schema Actions</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Sam Schema Actions</em>' reference list.
-   * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_SamSchemaActions()
-   * @see behavioral.status_and_action_old.SAMSchemaAction#getSamAction
-   * @model opposite="samAction"
-   * @generated
-   */
-  EList<SAMSchemaAction> getSamSchemaActions();
+	/**
+	 * Returns the value of the '<em><b>Sam Schema Actions</b></em>' reference list.
+	 * The list contents are of type {@link behavioral.status_and_action_old.SAMSchemaAction}.
+	 * It is bidirectional and its opposite is '{@link behavioral.status_and_action_old.SAMSchemaAction#getSamAction <em>Sam Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sam Schema Actions</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sam Schema Actions</em>' reference list.
+	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_SamSchemaActions()
+	 * @see behavioral.status_and_action_old.SAMSchemaAction#getSamAction
+	 * @model opposite="samAction"
+	 * @generated
+	 */
+	EList<SAMSchemaAction> getSamSchemaActions();
 
 } // SAMAction

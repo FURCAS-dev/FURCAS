@@ -24,22 +24,21 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface AbapStructureType extends AbapType
-{
-  /**
-   * Returns the value of the '<em><b>Fields</b></em>' reference list.
-   * The list contents are of type {@link abapmapping.abapdictionary.AbapStructureField}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Fields</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Fields</em>' reference list.
-   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureType_Fields()
-   * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  EList<AbapStructureField> getFields();
+public interface AbapStructureType extends AbapType {
+	/**
+	 * Returns the value of the '<em><b>Fields</b></em>' reference list.
+	 * The list contents are of type {@link abapmapping.abapdictionary.AbapStructureField}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Fields</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fields</em>' reference list.
+	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureType_Fields()
+	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	EList<AbapStructureField> getFields();
 
 } // AbapStructureType

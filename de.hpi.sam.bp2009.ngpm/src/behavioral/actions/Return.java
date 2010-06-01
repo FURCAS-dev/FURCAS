@@ -22,6 +22,5 @@ package behavioral.actions;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ReturnMustBeLastInBlock ReturnTypeMustMatch'"
  * @generated
  */
-public interface Return extends StatementWithArgument
-{
+public interface Return extends StatementWithArgument {
 } // Return

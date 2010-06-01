@@ -31,33 +31,32 @@ import data.classes.NamedValue;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='VariableExpressionType'"
  * @generated
  */
-public interface VariableExpression extends Expression
-{
-  /**
-   * Returns the value of the '<em><b>Variable</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Variable</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Variable</em>' reference.
-   * @see #setVariable(NamedValue)
-   * @see dataaccess.expressions.ExpressionsPackage#getVariableExpression_Variable()
-   * @model required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  NamedValue getVariable();
+public interface VariableExpression extends Expression {
+	/**
+	 * Returns the value of the '<em><b>Variable</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Variable</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Variable</em>' reference.
+	 * @see #setVariable(NamedValue)
+	 * @see dataaccess.expressions.ExpressionsPackage#getVariableExpression_Variable()
+	 * @model required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	NamedValue getVariable();
 
-  /**
-   * Sets the value of the '{@link dataaccess.expressions.VariableExpression#getVariable <em>Variable</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Variable</em>' reference.
-   * @see #getVariable()
-   * @generated
-   */
-  void setVariable(NamedValue value);
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.VariableExpression#getVariable <em>Variable</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Variable</em>' reference.
+	 * @see #getVariable()
+	 * @generated
+	 */
+	void setVariable(NamedValue value);
 
 } // VariableExpression

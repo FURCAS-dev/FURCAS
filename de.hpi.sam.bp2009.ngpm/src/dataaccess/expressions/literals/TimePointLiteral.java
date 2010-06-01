@@ -17,6 +17,5 @@ package dataaccess.expressions.literals;
  * @model
  * @generated
  */
-public interface TimePointLiteral extends Literal
-{
+public interface TimePointLiteral extends Literal {
 } // TimePointLiteral

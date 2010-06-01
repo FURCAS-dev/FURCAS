@@ -18,6 +18,5 @@ import dataaccess.expressions.WithArgument;
  * @model abstract="true"
  * @generated
  */
-public interface StatementWithArgument extends Statement, WithArgument
-{
+public interface StatementWithArgument extends Statement, WithArgument {
 } // StatementWithArgument

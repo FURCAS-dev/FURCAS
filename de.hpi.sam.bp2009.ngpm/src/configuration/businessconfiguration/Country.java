@@ -17,6 +17,5 @@ package configuration.businessconfiguration;
  * @model
  * @generated
  */
-public interface Country extends ScopingContext
-{
+public interface Country extends ScopingContext {
 } // Country

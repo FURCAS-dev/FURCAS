@@ -16,32 +16,31 @@ import org.eclipse.emf.ecore.EFactory;
  * @see behavioral.bpdm.BpdmPackage
  * @generated
  */
-public interface BpdmFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  BpdmFactory eINSTANCE = behavioral.bpdm.impl.BpdmFactoryImpl.init();
+public interface BpdmFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	BpdmFactory eINSTANCE = behavioral.bpdm.impl.BpdmFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Dummy</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dummy</em>'.
-   * @generated
-   */
-  Dummy createDummy();
+	/**
+	 * Returns a new object of class '<em>Dummy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dummy</em>'.
+	 * @generated
+	 */
+	Dummy createDummy();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  BpdmPackage getBpdmPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	BpdmPackage getBpdmPackage();
 
 } //BpdmFactory

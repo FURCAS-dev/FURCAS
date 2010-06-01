@@ -28,136 +28,135 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface XsdType extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>Xsd Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Xsd Type</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Xsd Type</em>' containment reference.
-   * @see #setXsdType(runtime.primitivetypes.String)
-   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_XsdType()
-   * @model containment="true"
-   * @generated
-   */
-  runtime.primitivetypes.String getXsdType();
+public interface XsdType extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Xsd Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Xsd Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Xsd Type</em>' attribute.
+	 * @see #setXsdType(String)
+	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_XsdType()
+	 * @model
+	 * @generated
+	 */
+	String getXsdType();
 
-  /**
-   * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getXsdType <em>Xsd Type</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Xsd Type</em>' containment reference.
-   * @see #getXsdType()
-   * @generated
-   */
-  void setXsdType(runtime.primitivetypes.String value);
+	/**
+	 * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getXsdType <em>Xsd Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Xsd Type</em>' attribute.
+	 * @see #getXsdType()
+	 * @generated
+	 */
+	void setXsdType(String value);
 
-  /**
-   * Returns the value of the '<em><b>Length</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Length</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Length</em>' attribute.
-   * @see #setLength(long)
-   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_Length()
-   * @model dataType="primitivetypes.Integer"
-   * @generated
-   */
-  long getLength();
+	/**
+	 * Returns the value of the '<em><b>Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Length</em>' attribute.
+	 * @see #setLength(int)
+	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_Length()
+	 * @model
+	 * @generated
+	 */
+	int getLength();
 
-  /**
-   * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getLength <em>Length</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Length</em>' attribute.
-   * @see #getLength()
-   * @generated
-   */
-  void setLength(long value);
+	/**
+	 * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getLength <em>Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Length</em>' attribute.
+	 * @see #getLength()
+	 * @generated
+	 */
+	void setLength(int value);
 
-  /**
-   * Returns the value of the '<em><b>Pattern</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Pattern</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Pattern</em>' containment reference.
-   * @see #setPattern(runtime.primitivetypes.String)
-   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_Pattern()
-   * @model containment="true"
-   * @generated
-   */
-  runtime.primitivetypes.String getPattern();
+	/**
+	 * Returns the value of the '<em><b>Pattern</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Pattern</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Pattern</em>' attribute.
+	 * @see #setPattern(String)
+	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_Pattern()
+	 * @model
+	 * @generated
+	 */
+	String getPattern();
 
-  /**
-   * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getPattern <em>Pattern</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Pattern</em>' containment reference.
-   * @see #getPattern()
-   * @generated
-   */
-  void setPattern(runtime.primitivetypes.String value);
+	/**
+	 * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getPattern <em>Pattern</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Pattern</em>' attribute.
+	 * @see #getPattern()
+	 * @generated
+	 */
+	void setPattern(String value);
 
-  /**
-   * Returns the value of the '<em><b>Total Digits</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Total Digits</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Total Digits</em>' attribute.
-   * @see #setTotalDigits(long)
-   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_TotalDigits()
-   * @model dataType="primitivetypes.Integer"
-   * @generated
-   */
-  long getTotalDigits();
+	/**
+	 * Returns the value of the '<em><b>Total Digits</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Total Digits</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Total Digits</em>' attribute.
+	 * @see #setTotalDigits(int)
+	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_TotalDigits()
+	 * @model
+	 * @generated
+	 */
+	int getTotalDigits();
 
-  /**
-   * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getTotalDigits <em>Total Digits</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Total Digits</em>' attribute.
-   * @see #getTotalDigits()
-   * @generated
-   */
-  void setTotalDigits(long value);
+	/**
+	 * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getTotalDigits <em>Total Digits</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Total Digits</em>' attribute.
+	 * @see #getTotalDigits()
+	 * @generated
+	 */
+	void setTotalDigits(int value);
 
-  /**
-   * Returns the value of the '<em><b>Fraction Digits</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Fraction Digits</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Fraction Digits</em>' attribute.
-   * @see #setFractionDigits(long)
-   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_FractionDigits()
-   * @model dataType="primitivetypes.Integer"
-   * @generated
-   */
-  long getFractionDigits();
+	/**
+	 * Returns the value of the '<em><b>Fraction Digits</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Fraction Digits</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fraction Digits</em>' attribute.
+	 * @see #setFractionDigits(int)
+	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_FractionDigits()
+	 * @model
+	 * @generated
+	 */
+	int getFractionDigits();
 
-  /**
-   * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getFractionDigits <em>Fraction Digits</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Fraction Digits</em>' attribute.
-   * @see #getFractionDigits()
-   * @generated
-   */
-  void setFractionDigits(long value);
+	/**
+	 * Sets the value of the '{@link abapmapping.abapdictionary.XsdType#getFractionDigits <em>Fraction Digits</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fraction Digits</em>' attribute.
+	 * @see #getFractionDigits()
+	 * @generated
+	 */
+	void setFractionDigits(int value);
 
 } // XsdType

@@ -18,10 +18,9 @@ package dataaccess.expressions;
  *
  *
  * @see dataaccess.expressions.ExpressionsPackage#getContentEquals()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ContentEqualsOnlyForEntities='self.left.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and\r\n  self.right.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and\r\n  not self.left.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.valueType and\r\n  not self.right.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.valueType'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL ContentEqualsOnlyForEntities='self.left.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and\n  self.right.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and\n  not self.left.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.valueType and\n  not self.right.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.valueType'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ContentEqualsOnlyForEntities'"
  * @generated
  */
-public interface ContentEquals extends Equals
-{
+public interface ContentEquals extends Equals {
 } // ContentEquals

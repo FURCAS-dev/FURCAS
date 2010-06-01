@@ -18,10 +18,9 @@ package data.classes;
  *
  *
  * @see data.classes.ClassesPackage#getLinkAddition()
- * @model annotation="http://de.hpi.sam.bp2009.OCL AdditionInputTypeMatchEndType='self.implements_.output->isEmpty() and\r\n  self.implements_.input->size() = 1 and \r\n  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \r\n  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL AdditionInputTypeMatchEndType='self.implements_.output->isEmpty() and\n  self.implements_.input->size() = 1 and \n  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \n  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AdditionInputTypeMatchEndType'"
  * @generated
  */
-public interface LinkAddition extends LinkManipulationAtPosition
-{
+public interface LinkAddition extends LinkManipulationAtPosition {
 } // LinkAddition

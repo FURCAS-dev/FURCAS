@@ -25,60 +25,59 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface SAMStatusValue extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMStatusValue_Name()
-   * @model dataType="primitivetypes.String"
-   * @generated
-   */
-  String getName();
+public interface SAMStatusValue extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMStatusValue_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
 
-  /**
-   * Sets the value of the '{@link behavioral.status_and_action_old.SAMStatusValue#getName <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
-   * @generated
-   */
-  void setName(String value);
+	/**
+	 * Sets the value of the '{@link behavioral.status_and_action_old.SAMStatusValue#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
-  /**
-   * Returns the value of the '<em><b>Sam Status Variable</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link behavioral.status_and_action_old.SAMStatusVariable#getSamStatusValues <em>Sam Status Values</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Sam Status Variable</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Sam Status Variable</em>' container reference.
-   * @see #setSamStatusVariable(SAMStatusVariable)
-   * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMStatusValue_SamStatusVariable()
-   * @see behavioral.status_and_action_old.SAMStatusVariable#getSamStatusValues
-   * @model opposite="samStatusValues" required="true"
-   * @generated
-   */
-  SAMStatusVariable getSamStatusVariable();
+	/**
+	 * Returns the value of the '<em><b>Sam Status Variable</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.status_and_action_old.SAMStatusVariable#getSamStatusValues <em>Sam Status Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sam Status Variable</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sam Status Variable</em>' container reference.
+	 * @see #setSamStatusVariable(SAMStatusVariable)
+	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMStatusValue_SamStatusVariable()
+	 * @see behavioral.status_and_action_old.SAMStatusVariable#getSamStatusValues
+	 * @model opposite="samStatusValues" required="true"
+	 * @generated
+	 */
+	SAMStatusVariable getSamStatusVariable();
 
-  /**
-   * Sets the value of the '{@link behavioral.status_and_action_old.SAMStatusValue#getSamStatusVariable <em>Sam Status Variable</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Sam Status Variable</em>' container reference.
-   * @see #getSamStatusVariable()
-   * @generated
-   */
-  void setSamStatusVariable(SAMStatusVariable value);
+	/**
+	 * Sets the value of the '{@link behavioral.status_and_action_old.SAMStatusValue#getSamStatusVariable <em>Sam Status Variable</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sam Status Variable</em>' container reference.
+	 * @see #getSamStatusVariable()
+	 * @generated
+	 */
+	void setSamStatusVariable(SAMStatusVariable value);
 
 } // SAMStatusValue

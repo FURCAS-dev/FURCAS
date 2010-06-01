@@ -17,6 +17,5 @@ package behavioral.status_and_action.assembly;
  * @model
  * @generated
  */
-public interface Synchroniser extends Connector
-{
+public interface Synchroniser extends Connector {
 } // Synchroniser

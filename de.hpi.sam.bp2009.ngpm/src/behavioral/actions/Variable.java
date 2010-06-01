@@ -31,32 +31,31 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='InitExpressionTypeMustMatchVariableType'"
  * @generated
  */
-public interface Variable extends NamedValueWithOptionalInitExpression
-{
-  /**
-   * Returns the value of the '<em><b>Assignments</b></em>' reference list.
-   * The list contents are of type {@link behavioral.actions.Assignment}.
-   * It is bidirectional and its opposite is '{@link behavioral.actions.Assignment#getAssignTo <em>Assign To</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Assignments</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Assignments</em>' reference list.
-   * @see behavioral.actions.ActionsPackage#getVariable_Assignments()
-   * @see behavioral.actions.Assignment#getAssignTo
-   * @model opposite="assignTo"
-   * @generated
-   */
-  EList<Assignment> getAssignments();
+public interface Variable extends NamedValueWithOptionalInitExpression {
+	/**
+	 * Returns the value of the '<em><b>Assignments</b></em>' reference list.
+	 * The list contents are of type {@link behavioral.actions.Assignment}.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Assignment#getAssignTo <em>Assign To</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Assignments</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Assignments</em>' reference list.
+	 * @see behavioral.actions.ActionsPackage#getVariable_Assignments()
+	 * @see behavioral.actions.Assignment#getAssignTo
+	 * @model opposite="assignTo"
+	 * @generated
+	 */
+	EList<Assignment> getAssignments();
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  void getCommonTypeOfAssignments();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	void getCommonTypeOfAssignments();
 
 } // Variable

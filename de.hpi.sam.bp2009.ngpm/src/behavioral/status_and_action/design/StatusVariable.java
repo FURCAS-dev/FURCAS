@@ -17,6 +17,5 @@ package behavioral.status_and_action.design;
  * @model
  * @generated
  */
-public interface StatusVariable extends AbstractStatusVariable
-{
+public interface StatusVariable extends AbstractStatusVariable {
 } // StatusVariable

@@ -16,32 +16,31 @@ import org.eclipse.emf.ecore.EFactory;
  * @see ui.templates.TemplatesPackage
  * @generated
  */
-public interface TemplatesFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  TemplatesFactory eINSTANCE = ui.templates.impl.TemplatesFactoryImpl.init();
+public interface TemplatesFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	TemplatesFactory eINSTANCE = ui.templates.impl.TemplatesFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>String Template</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>String Template</em>'.
-   * @generated
-   */
-  StringTemplate createStringTemplate();
+	/**
+	 * Returns a new object of class '<em>String Template</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String Template</em>'.
+	 * @generated
+	 */
+	StringTemplate createStringTemplate();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  TemplatesPackage getTemplatesPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	TemplatesPackage getTemplatesPackage();
 
 } //TemplatesFactory

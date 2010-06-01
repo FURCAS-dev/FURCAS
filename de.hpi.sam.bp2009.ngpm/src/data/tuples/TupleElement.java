@@ -20,6 +20,5 @@ import modelmanagement.NamedElement;
  * @model
  * @generated
  */
-public interface TupleElement extends NamedElement, TypedElement
-{
+public interface TupleElement extends NamedElement, TypedElement {
 } // TupleElement

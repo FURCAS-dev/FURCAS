@@ -21,6 +21,5 @@ package integration.binding;
  * @model
  * @generated
  */
-public interface HttpGetBinding extends HttpBinding
-{
+public interface HttpGetBinding extends HttpBinding {
 } // HttpGetBinding

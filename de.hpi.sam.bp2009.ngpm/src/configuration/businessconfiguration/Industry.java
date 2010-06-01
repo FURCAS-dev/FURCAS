@@ -17,6 +17,5 @@ package configuration.businessconfiguration;
  * @model
  * @generated
  */
-public interface Industry extends ScopingContext
-{
+public interface Industry extends ScopingContext {
 } // Industry

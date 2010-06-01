@@ -28,64 +28,63 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see data.classes.ClassesPackage#getDelegation()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ToEndMustHaveMultiplicityOfOne='self.from.otherEnd().type.lowerMultiplicity = 1 and\r\n  self.from.otherEnd().type.upperMultiplicity = 1'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL ToEndMustHaveMultiplicityOfOne='self.from.otherEnd().type.lowerMultiplicity = 1 and\n  self.from.otherEnd().type.upperMultiplicity = 1'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ToEndMustHaveMultiplicityOfOne'"
  * @generated
  */
-public interface Delegation extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>All Features</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>All Features</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>All Features</em>' attribute.
-   * @see #setAllFeatures(boolean)
-   * @see data.classes.ClassesPackage#getDelegation_AllFeatures()
-   * @model dataType="primitivetypes.Boolean"
-   * @generated
-   */
-  boolean isAllFeatures();
+public interface Delegation extends EObject {
+	/**
+	 * Returns the value of the '<em><b>All Features</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>All Features</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>All Features</em>' attribute.
+	 * @see #setAllFeatures(boolean)
+	 * @see data.classes.ClassesPackage#getDelegation_AllFeatures()
+	 * @model
+	 * @generated
+	 */
+	boolean isAllFeatures();
 
-  /**
-   * Sets the value of the '{@link data.classes.Delegation#isAllFeatures <em>All Features</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>All Features</em>' attribute.
-   * @see #isAllFeatures()
-   * @generated
-   */
-  void setAllFeatures(boolean value);
+	/**
+	 * Sets the value of the '{@link data.classes.Delegation#isAllFeatures <em>All Features</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>All Features</em>' attribute.
+	 * @see #isAllFeatures()
+	 * @generated
+	 */
+	void setAllFeatures(boolean value);
 
-  /**
-   * Returns the value of the '<em><b>From</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link data.classes.AssociationEnd#getDelegation <em>Delegation</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>From</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>From</em>' container reference.
-   * @see #setFrom(AssociationEnd)
-   * @see data.classes.ClassesPackage#getDelegation_From()
-   * @see data.classes.AssociationEnd#getDelegation
-   * @model opposite="delegation" required="true"
-   * @generated
-   */
-  AssociationEnd getFrom();
+	/**
+	 * Returns the value of the '<em><b>From</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link data.classes.AssociationEnd#getDelegation <em>Delegation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>From</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>From</em>' container reference.
+	 * @see #setFrom(AssociationEnd)
+	 * @see data.classes.ClassesPackage#getDelegation_From()
+	 * @see data.classes.AssociationEnd#getDelegation
+	 * @model opposite="delegation" required="true"
+	 * @generated
+	 */
+	AssociationEnd getFrom();
 
-  /**
-   * Sets the value of the '{@link data.classes.Delegation#getFrom <em>From</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>From</em>' container reference.
-   * @see #getFrom()
-   * @generated
-   */
-  void setFrom(AssociationEnd value);
+	/**
+	 * Sets the value of the '{@link data.classes.Delegation#getFrom <em>From</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>From</em>' container reference.
+	 * @see #getFrom()
+	 * @generated
+	 */
+	void setFrom(AssociationEnd value);
 
 } // Delegation

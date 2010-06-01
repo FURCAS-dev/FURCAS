@@ -18,6 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Strategy extends EObject
-{
+public interface Strategy extends EObject {
 } // Strategy

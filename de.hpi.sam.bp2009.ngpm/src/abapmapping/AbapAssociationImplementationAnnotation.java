@@ -18,6 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface AbapAssociationImplementationAnnotation extends EObject
-{
+public interface AbapAssociationImplementationAnnotation extends EObject {
 } // AbapAssociationImplementationAnnotation

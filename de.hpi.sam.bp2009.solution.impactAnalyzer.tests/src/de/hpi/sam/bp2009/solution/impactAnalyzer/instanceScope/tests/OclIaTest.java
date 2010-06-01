@@ -115,7 +115,7 @@ public class OclIaTest extends BaseDepartmentTest {
 
         assertEquals(1, ve.getType().getLowerMultiplicity());
         
-        Notification noti = NotificationHelper.createChangeLowerMultiplicityNotification(p.getOwnedTypeDefinition(), 0L);
+        Notification noti = NotificationHelper.createChangeLowerMultiplicityNotification(p.getOwnedTypeDefinition(), 0);
         Collection<EObject> impact = this.ia.getContextObjects(noti, exp, ctd.eClass());
 
         assertEquals(0, p.getOwnedTypeDefinition().getLowerMultiplicity());

@@ -16,50 +16,49 @@ import org.eclipse.emf.ecore.EFactory;
  * @see configuration.businessconfiguration.experimental.ExperimentalPackage
  * @generated
  */
-public interface ExperimentalFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  ExperimentalFactory eINSTANCE = configuration.businessconfiguration.experimental.impl.ExperimentalFactoryImpl.init();
+public interface ExperimentalFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	ExperimentalFactory eINSTANCE = configuration.businessconfiguration.experimental.impl.ExperimentalFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Package Use</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Package Use</em>'.
-   * @generated
-   */
-  PackageUse createPackageUse();
+	/**
+	 * Returns a new object of class '<em>Package Use</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Package Use</em>'.
+	 * @generated
+	 */
+	PackageUse createPackageUse();
 
-  /**
-   * Returns a new object of class '<em>Configuration Entity</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Configuration Entity</em>'.
-   * @generated
-   */
-  ConfigurationEntity createConfigurationEntity();
+	/**
+	 * Returns a new object of class '<em>Configuration Entity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Configuration Entity</em>'.
+	 * @generated
+	 */
+	ConfigurationEntity createConfigurationEntity();
 
-  /**
-   * Returns a new object of class '<em>Configuration Setting</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Configuration Setting</em>'.
-   * @generated
-   */
-  ConfigurationSetting createConfigurationSetting();
+	/**
+	 * Returns a new object of class '<em>Configuration Setting</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Configuration Setting</em>'.
+	 * @generated
+	 */
+	ConfigurationSetting createConfigurationSetting();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  ExperimentalPackage getExperimentalPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	ExperimentalPackage getExperimentalPackage();
 
 } //ExperimentalFactory

@@ -29,24 +29,23 @@ import org.eclipse.emf.common.util.EList;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='expressionMustBeSideEffectFree'"
  * @generated
  */
-public interface StringTemplate extends FunctionSignatureImplementation
-{
-  /**
-   * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.
-   * The list contents are of type {@link dataaccess.expressions.Expression}.
-   * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getTemplate <em>Template</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Expressions</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Expressions</em>' containment reference list.
-   * @see ui.templates.TemplatesPackage#getStringTemplate_Expressions()
-   * @see dataaccess.expressions.Expression#getTemplate
-   * @model opposite="template" containment="true"
-   * @generated
-   */
-  EList<Expression> getExpressions();
+public interface StringTemplate extends FunctionSignatureImplementation {
+	/**
+	 * Returns the value of the '<em><b>Expressions</b></em>' containment reference list.
+	 * The list contents are of type {@link dataaccess.expressions.Expression}.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getTemplate <em>Template</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Expressions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Expressions</em>' containment reference list.
+	 * @see ui.templates.TemplatesPackage#getStringTemplate_Expressions()
+	 * @see dataaccess.expressions.Expression#getTemplate
+	 * @model opposite="template" containment="true"
+	 * @generated
+	 */
+	EList<Expression> getExpressions();
 
 } // StringTemplate

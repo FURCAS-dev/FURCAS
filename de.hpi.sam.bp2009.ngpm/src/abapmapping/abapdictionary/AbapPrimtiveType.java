@@ -23,32 +23,31 @@ package abapmapping.abapdictionary;
  * @model
  * @generated
  */
-public interface AbapPrimtiveType extends UnstructuredAbapType
-{
-  /**
-   * Returns the value of the '<em><b>Length</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Length</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Length</em>' attribute.
-   * @see #setLength(long)
-   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapPrimtiveType_Length()
-   * @model dataType="primitivetypes.Integer"
-   * @generated
-   */
-  long getLength();
+public interface AbapPrimtiveType extends UnstructuredAbapType {
+	/**
+	 * Returns the value of the '<em><b>Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Length</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Length</em>' attribute.
+	 * @see #setLength(int)
+	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapPrimtiveType_Length()
+	 * @model
+	 * @generated
+	 */
+	int getLength();
 
-  /**
-   * Sets the value of the '{@link abapmapping.abapdictionary.AbapPrimtiveType#getLength <em>Length</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Length</em>' attribute.
-   * @see #getLength()
-   * @generated
-   */
-  void setLength(long value);
+	/**
+	 * Sets the value of the '{@link abapmapping.abapdictionary.AbapPrimtiveType#getLength <em>Length</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Length</em>' attribute.
+	 * @see #getLength()
+	 * @generated
+	 */
+	void setLength(int value);
 
 } // AbapPrimtiveType

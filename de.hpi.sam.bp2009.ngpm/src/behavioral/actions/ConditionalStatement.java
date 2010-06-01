@@ -18,6 +18,5 @@ import dataaccess.expressions.Conditional;
  * @model abstract="true"
  * @generated
  */
-public interface ConditionalStatement extends Conditional, Statement
-{
+public interface ConditionalStatement extends Conditional, Statement {
 } // ConditionalStatement

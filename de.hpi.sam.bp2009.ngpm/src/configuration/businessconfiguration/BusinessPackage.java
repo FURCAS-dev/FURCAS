@@ -24,23 +24,22 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface BusinessPackage extends ConfigurationElement
-{
-  /**
-   * Returns the value of the '<em><b>Business Topic</b></em>' containment reference list.
-   * The list contents are of type {@link configuration.businessconfiguration.BusinessTopic}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Business Topic</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Business Topic</em>' containment reference list.
-   * @see configuration.businessconfiguration.BusinessconfigurationPackage#getBusinessPackage_BusinessTopic()
-   * @model containment="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  EList<BusinessTopic> getBusinessTopic();
+public interface BusinessPackage extends ConfigurationElement {
+	/**
+	 * Returns the value of the '<em><b>Business Topic</b></em>' containment reference list.
+	 * The list contents are of type {@link configuration.businessconfiguration.BusinessTopic}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Business Topic</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Business Topic</em>' containment reference list.
+	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getBusinessPackage_BusinessTopic()
+	 * @model containment="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	EList<BusinessTopic> getBusinessTopic();
 
 } // BusinessPackage

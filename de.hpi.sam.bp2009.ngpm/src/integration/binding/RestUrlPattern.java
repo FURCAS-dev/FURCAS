@@ -21,6 +21,5 @@ package integration.binding;
  * @model
  * @generated
  */
-public interface RestUrlPattern extends UrlPattern
-{
+public interface RestUrlPattern extends UrlPattern {
 } // RestUrlPattern

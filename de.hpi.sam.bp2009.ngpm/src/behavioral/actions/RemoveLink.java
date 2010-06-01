@@ -23,6 +23,5 @@ package behavioral.actions;
  * @model
  * @generated
  */
-public interface RemoveLink extends LinkManipulationStatement
-{
+public interface RemoveLink extends LinkManipulationStatement {
 } // RemoveLink

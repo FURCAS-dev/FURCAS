@@ -17,6 +17,5 @@ package behavioral.status_and_action.assembly;
  * @model
  * @generated
  */
-public interface InhibitingStrategy extends Strategy
-{
+public interface InhibitingStrategy extends Strategy {
 } // InhibitingStrategy

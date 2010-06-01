@@ -30,31 +30,30 @@ import dataaccess.expressions.Expression;
  * @model
  * @generated
  */
-public interface Literal extends Expression
-{
-  /**
-   * Returns the value of the '<em><b>Literal</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * <!-- begin-model-doc -->
-   * Represents the value of this literal as a string. Final interpretation has to happen by the type of the literal expression. For string literals this is particularly straightforward. For numbers and dates, specific formats as defined by the respective types may apply.
-   * <!-- end-model-doc -->
-   * @return the value of the '<em>Literal</em>' attribute.
-   * @see #setLiteral(String)
-   * @see dataaccess.expressions.literals.LiteralsPackage#getLiteral_Literal()
-   * @model dataType="primitivetypes.String"
-   * @generated
-   */
-  String getLiteral();
+public interface Literal extends Expression {
+	/**
+	 * Returns the value of the '<em><b>Literal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Represents the value of this literal as a string. Final interpretation has to happen by the type of the literal expression. For string literals this is particularly straightforward. For numbers and dates, specific formats as defined by the respective types may apply.
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Literal</em>' attribute.
+	 * @see #setLiteral(String)
+	 * @see dataaccess.expressions.literals.LiteralsPackage#getLiteral_Literal()
+	 * @model
+	 * @generated
+	 */
+	String getLiteral();
 
-  /**
-   * Sets the value of the '{@link dataaccess.expressions.literals.Literal#getLiteral <em>Literal</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Literal</em>' attribute.
-   * @see #getLiteral()
-   * @generated
-   */
-  void setLiteral(String value);
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.literals.Literal#getLiteral <em>Literal</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Literal</em>' attribute.
+	 * @see #getLiteral()
+	 * @generated
+	 */
+	void setLiteral(String value);
 
 } // Literal

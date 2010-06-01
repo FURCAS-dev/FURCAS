@@ -28,34 +28,33 @@ package behavioral.actions;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AssignmentCompatibility MustHaveArgument'"
  * @generated
  */
-public interface Assignment extends StatementWithArgument
-{
-  /**
-   * Returns the value of the '<em><b>Assign To</b></em>' reference.
-   * It is bidirectional and its opposite is '{@link behavioral.actions.Variable#getAssignments <em>Assignments</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Assign To</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Assign To</em>' reference.
-   * @see #setAssignTo(Variable)
-   * @see behavioral.actions.ActionsPackage#getAssignment_AssignTo()
-   * @see behavioral.actions.Variable#getAssignments
-   * @model opposite="assignments" required="true"
-   * @generated
-   */
-  Variable getAssignTo();
+public interface Assignment extends StatementWithArgument {
+	/**
+	 * Returns the value of the '<em><b>Assign To</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Variable#getAssignments <em>Assignments</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Assign To</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Assign To</em>' reference.
+	 * @see #setAssignTo(Variable)
+	 * @see behavioral.actions.ActionsPackage#getAssignment_AssignTo()
+	 * @see behavioral.actions.Variable#getAssignments
+	 * @model opposite="assignments" required="true"
+	 * @generated
+	 */
+	Variable getAssignTo();
 
-  /**
-   * Sets the value of the '{@link behavioral.actions.Assignment#getAssignTo <em>Assign To</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Assign To</em>' reference.
-   * @see #getAssignTo()
-   * @generated
-   */
-  void setAssignTo(Variable value);
+	/**
+	 * Sets the value of the '{@link behavioral.actions.Assignment#getAssignTo <em>Assign To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Assign To</em>' reference.
+	 * @see #getAssignTo()
+	 * @generated
+	 */
+	void setAssignTo(Variable value);
 
 } // Assignment

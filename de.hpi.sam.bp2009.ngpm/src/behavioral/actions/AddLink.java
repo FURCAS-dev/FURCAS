@@ -23,6 +23,5 @@ package behavioral.actions;
  * @model
  * @generated
  */
-public interface AddLink extends LinkManipulationStatement
-{
+public interface AddLink extends LinkManipulationStatement {
 } // AddLink

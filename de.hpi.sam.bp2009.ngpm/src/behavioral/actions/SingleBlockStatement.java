@@ -22,6 +22,5 @@ package behavioral.actions;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OwnsExactlyOneBlock'"
  * @generated
  */
-public interface SingleBlockStatement extends StatementWithNestedBlocks
-{
+public interface SingleBlockStatement extends StatementWithNestedBlocks {
 } // SingleBlockStatement

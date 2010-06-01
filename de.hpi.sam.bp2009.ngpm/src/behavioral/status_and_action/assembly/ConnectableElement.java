@@ -17,6 +17,5 @@ package behavioral.status_and_action.assembly;
  * @model abstract="true"
  * @generated
  */
-public interface ConnectableElement extends SchemaElement
-{
+public interface ConnectableElement extends SchemaElement {
 } // ConnectableElement

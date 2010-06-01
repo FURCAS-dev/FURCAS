@@ -17,6 +17,5 @@ package behavioral.status_and_action.assembly;
  * @model
  * @generated
  */
-public interface RequiredStrategy extends Strategy
-{
+public interface RequiredStrategy extends Strategy {
 } // RequiredStrategy

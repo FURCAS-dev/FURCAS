@@ -24,55 +24,54 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression()
- * @model annotation="http://de.hpi.sam.bp2009.OCL CannotInstantiateAbstractClass='not self.classToInstantiate.isAbstract()' ExpressionType='self.getType().oclIsKindOf(ClassTypeDefinition) and\r\n  self.getType().oclAsType(ClassTypeDefinition).clazz = self.classToInstantiate and\r\n  self.getType().lowerMultiplicity = 1 and\r\n  self.getType().upperMultiplicity = 1' HasToOwnTypeDefinition='self.ownedTypeDefinition->notEmpty()' CannotInstantiateValueClass='not self.classToInstantiate.valueType' NoDuplicateInitializers='self.initializers->forAll( a, b | a <> b implies a.methodSignature <> b.methodSignature )'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL CannotInstantiateAbstractClass='not self.classToInstantiate.isAbstract()' ExpressionType='self.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.getType().oclAsType(ClassTypeDefinition).clazz = self.classToInstantiate and\n  self.getType().lowerMultiplicity = 1 and\n  self.getType().upperMultiplicity = 1' HasToOwnTypeDefinition='self.ownedTypeDefinition->notEmpty()' CannotInstantiateValueClass='not self.classToInstantiate.valueType' NoDuplicateInitializers='self.initializers->forAll( a, b | a <> b implies a.methodSignature <> b.methodSignature )'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CannotInstantiateAbstractClass ExpressionType HasToOwnTypeDefinition CannotInstantiateValueClass NoDuplicateInitializers'"
  * @generated
  */
-public interface ObjectCreationExpression extends Expression
-{
-  /**
-   * Returns the value of the '<em><b>Class To Instantiate</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Class To Instantiate</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Class To Instantiate</em>' reference.
-   * @see #setClassToInstantiate(SapClass)
-   * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression_ClassToInstantiate()
-   * @model required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  SapClass getClassToInstantiate();
+public interface ObjectCreationExpression extends Expression {
+	/**
+	 * Returns the value of the '<em><b>Class To Instantiate</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Class To Instantiate</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Class To Instantiate</em>' reference.
+	 * @see #setClassToInstantiate(SapClass)
+	 * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression_ClassToInstantiate()
+	 * @model required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	SapClass getClassToInstantiate();
 
-  /**
-   * Sets the value of the '{@link dataaccess.expressions.ObjectCreationExpression#getClassToInstantiate <em>Class To Instantiate</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Class To Instantiate</em>' reference.
-   * @see #getClassToInstantiate()
-   * @generated
-   */
-  void setClassToInstantiate(SapClass value);
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.ObjectCreationExpression#getClassToInstantiate <em>Class To Instantiate</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Class To Instantiate</em>' reference.
+	 * @see #getClassToInstantiate()
+	 * @generated
+	 */
+	void setClassToInstantiate(SapClass value);
 
-  /**
-   * Returns the value of the '<em><b>Initializers</b></em>' containment reference list.
-   * The list contents are of type {@link dataaccess.expressions.MethodCallExpression}.
-   * It is bidirectional and its opposite is '{@link dataaccess.expressions.MethodCallExpression#getCreationExpression <em>Creation Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Initializers</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Initializers</em>' containment reference list.
-   * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression_Initializers()
-   * @see dataaccess.expressions.MethodCallExpression#getCreationExpression
-   * @model opposite="creationExpression" containment="true"
-   * @generated
-   */
-  EList<MethodCallExpression> getInitializers();
+	/**
+	 * Returns the value of the '<em><b>Initializers</b></em>' containment reference list.
+	 * The list contents are of type {@link dataaccess.expressions.MethodCallExpression}.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.MethodCallExpression#getCreationExpression <em>Creation Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Initializers</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Initializers</em>' containment reference list.
+	 * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression_Initializers()
+	 * @see dataaccess.expressions.MethodCallExpression#getCreationExpression
+	 * @model opposite="creationExpression" containment="true"
+	 * @generated
+	 */
+	EList<MethodCallExpression> getInitializers();
 
 } // ObjectCreationExpression

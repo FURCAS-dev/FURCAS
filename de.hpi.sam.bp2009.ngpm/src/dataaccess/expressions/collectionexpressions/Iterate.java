@@ -38,84 +38,83 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getIterate()
- * @model annotation="http://de.hpi.sam.bp2009.OCL AccumulatorTypeEqualsExpressionType='self.accumulator->notEmpty() implies\r\n  (self.accumulator.ownedTypeDefinition->notEmpty() implies\r\n     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL AccumulatorTypeEqualsExpressionType='self.accumulator->notEmpty() implies\n  (self.accumulator.ownedTypeDefinition->notEmpty() implies\n     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AccumulatorTypeEqualsExpressionType'"
  * @generated
  */
-public interface Iterate extends CollectionExpression
-{
-  /**
-   * Returns the value of the '<em><b>Iterators</b></em>' containment reference list.
-   * The list contents are of type {@link behavioral.actions.Iterator}.
-   * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getIterate <em>Iterate</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Iterators</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Iterators</em>' containment reference list.
-   * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getIterate_Iterators()
-   * @see behavioral.actions.Iterator#getIterate
-   * @model opposite="iterate" containment="true" required="true"
-   * @generated
-   */
-  EList<Iterator> getIterators();
+public interface Iterate extends CollectionExpression {
+	/**
+	 * Returns the value of the '<em><b>Iterators</b></em>' containment reference list.
+	 * The list contents are of type {@link behavioral.actions.Iterator}.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getIterate <em>Iterate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iterators</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iterators</em>' containment reference list.
+	 * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getIterate_Iterators()
+	 * @see behavioral.actions.Iterator#getIterate
+	 * @model opposite="iterate" containment="true" required="true"
+	 * @generated
+	 */
+	EList<Iterator> getIterators();
 
-  /**
-   * Returns the value of the '<em><b>Accumulator</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link behavioral.actions.Constant#getIterate <em>Iterate</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Accumulator</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Accumulator</em>' containment reference.
-   * @see #setAccumulator(Constant)
-   * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getIterate_Accumulator()
-   * @see behavioral.actions.Constant#getIterate
-   * @model opposite="iterate" containment="true"
-   * @generated
-   */
-  Constant getAccumulator();
+	/**
+	 * Returns the value of the '<em><b>Accumulator</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Constant#getIterate <em>Iterate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Accumulator</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Accumulator</em>' containment reference.
+	 * @see #setAccumulator(Constant)
+	 * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getIterate_Accumulator()
+	 * @see behavioral.actions.Constant#getIterate
+	 * @model opposite="iterate" containment="true"
+	 * @generated
+	 */
+	Constant getAccumulator();
 
-  /**
-   * Sets the value of the '{@link dataaccess.expressions.collectionexpressions.Iterate#getAccumulator <em>Accumulator</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Accumulator</em>' containment reference.
-   * @see #getAccumulator()
-   * @generated
-   */
-  void setAccumulator(Constant value);
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.collectionexpressions.Iterate#getAccumulator <em>Accumulator</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Accumulator</em>' containment reference.
+	 * @see #getAccumulator()
+	 * @generated
+	 */
+	void setAccumulator(Constant value);
 
-  /**
-   * Returns the value of the '<em><b>Iterator Expression</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getInIterator <em>In Iterator</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Iterator Expression</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Iterator Expression</em>' containment reference.
-   * @see #setIteratorExpression(Expression)
-   * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getIterate_IteratorExpression()
-   * @see dataaccess.expressions.Expression#getInIterator
-   * @model opposite="inIterator" containment="true" required="true"
-   * @generated
-   */
-  Expression getIteratorExpression();
+	/**
+	 * Returns the value of the '<em><b>Iterator Expression</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getInIterator <em>In Iterator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iterator Expression</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iterator Expression</em>' containment reference.
+	 * @see #setIteratorExpression(Expression)
+	 * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getIterate_IteratorExpression()
+	 * @see dataaccess.expressions.Expression#getInIterator
+	 * @model opposite="inIterator" containment="true" required="true"
+	 * @generated
+	 */
+	Expression getIteratorExpression();
 
-  /**
-   * Sets the value of the '{@link dataaccess.expressions.collectionexpressions.Iterate#getIteratorExpression <em>Iterator Expression</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Iterator Expression</em>' containment reference.
-   * @see #getIteratorExpression()
-   * @generated
-   */
-  void setIteratorExpression(Expression value);
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.collectionexpressions.Iterate#getIteratorExpression <em>Iterator Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Iterator Expression</em>' containment reference.
+	 * @see #getIteratorExpression()
+	 * @generated
+	 */
+	void setIteratorExpression(Expression value);
 
 } // Iterate

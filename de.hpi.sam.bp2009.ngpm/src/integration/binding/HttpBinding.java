@@ -27,33 +27,32 @@ package integration.binding;
  * @model abstract="true"
  * @generated
  */
-public interface HttpBinding extends Binding
-{
-  /**
-   * Returns the value of the '<em><b>Url Pattern</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Url Pattern</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Url Pattern</em>' containment reference.
-   * @see #setUrlPattern(UrlPattern)
-   * @see integration.binding.BindingPackage#getHttpBinding_UrlPattern()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  UrlPattern getUrlPattern();
+public interface HttpBinding extends Binding {
+	/**
+	 * Returns the value of the '<em><b>Url Pattern</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Url Pattern</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Url Pattern</em>' containment reference.
+	 * @see #setUrlPattern(UrlPattern)
+	 * @see integration.binding.BindingPackage#getHttpBinding_UrlPattern()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	UrlPattern getUrlPattern();
 
-  /**
-   * Sets the value of the '{@link integration.binding.HttpBinding#getUrlPattern <em>Url Pattern</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Url Pattern</em>' containment reference.
-   * @see #getUrlPattern()
-   * @generated
-   */
-  void setUrlPattern(UrlPattern value);
+	/**
+	 * Sets the value of the '{@link integration.binding.HttpBinding#getUrlPattern <em>Url Pattern</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Url Pattern</em>' containment reference.
+	 * @see #getUrlPattern()
+	 * @generated
+	 */
+	void setUrlPattern(UrlPattern value);
 
 } // HttpBinding

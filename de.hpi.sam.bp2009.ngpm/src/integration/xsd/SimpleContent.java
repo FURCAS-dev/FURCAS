@@ -24,58 +24,57 @@ package integration.xsd;
  * @model
  * @generated
  */
-public interface SimpleContent extends AbstractContent
-{
-  /**
-   * Returns the value of the '<em><b>Base</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Base</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Base</em>' containment reference.
-   * @see #setBase(runtime.primitivetypes.String)
-   * @see integration.xsd.XsdPackage#getSimpleContent_Base()
-   * @model containment="true"
-   * @generated
-   */
-  runtime.primitivetypes.String getBase();
+public interface SimpleContent extends AbstractContent {
+	/**
+	 * Returns the value of the '<em><b>Base</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Base</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Base</em>' attribute.
+	 * @see #setBase(String)
+	 * @see integration.xsd.XsdPackage#getSimpleContent_Base()
+	 * @model
+	 * @generated
+	 */
+	String getBase();
 
-  /**
-   * Sets the value of the '{@link integration.xsd.SimpleContent#getBase <em>Base</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Base</em>' containment reference.
-   * @see #getBase()
-   * @generated
-   */
-  void setBase(runtime.primitivetypes.String value);
+	/**
+	 * Sets the value of the '{@link integration.xsd.SimpleContent#getBase <em>Base</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Base</em>' attribute.
+	 * @see #getBase()
+	 * @generated
+	 */
+	void setBase(String value);
 
-  /**
-   * Returns the value of the '<em><b>Enum Vals</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Enum Vals</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Enum Vals</em>' containment reference.
-   * @see #setEnumVals(runtime.primitivetypes.String)
-   * @see integration.xsd.XsdPackage#getSimpleContent_EnumVals()
-   * @model containment="true"
-   * @generated
-   */
-  runtime.primitivetypes.String getEnumVals();
+	/**
+	 * Returns the value of the '<em><b>Enum Vals</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Enum Vals</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Enum Vals</em>' attribute.
+	 * @see #setEnumVals(String)
+	 * @see integration.xsd.XsdPackage#getSimpleContent_EnumVals()
+	 * @model
+	 * @generated
+	 */
+	String getEnumVals();
 
-  /**
-   * Sets the value of the '{@link integration.xsd.SimpleContent#getEnumVals <em>Enum Vals</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Enum Vals</em>' containment reference.
-   * @see #getEnumVals()
-   * @generated
-   */
-  void setEnumVals(runtime.primitivetypes.String value);
+	/**
+	 * Sets the value of the '{@link integration.xsd.SimpleContent#getEnumVals <em>Enum Vals</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Enum Vals</em>' attribute.
+	 * @see #getEnumVals()
+	 * @generated
+	 */
+	void setEnumVals(String value);
 
 } // SimpleContent

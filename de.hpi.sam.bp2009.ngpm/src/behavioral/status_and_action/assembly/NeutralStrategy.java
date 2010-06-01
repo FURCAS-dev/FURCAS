@@ -17,6 +17,5 @@ package behavioral.status_and_action.assembly;
  * @model
  * @generated
  */
-public interface NeutralStrategy extends Strategy
-{
+public interface NeutralStrategy extends Strategy {
 } // NeutralStrategy

@@ -24,6 +24,5 @@ package persistence.actions;
  * @model
  * @generated
  */
-public interface Store extends StatementWithEntityArgument
-{
+public interface Store extends StatementWithEntityArgument {
 } // Store

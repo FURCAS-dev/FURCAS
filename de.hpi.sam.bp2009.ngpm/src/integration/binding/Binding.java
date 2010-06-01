@@ -28,33 +28,32 @@ import modelmanagement.NamedElement;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FunctionExpressionHasFunctionType'"
  * @generated
  */
-public interface Binding extends NamedElement
-{
-  /**
-   * Returns the value of the '<em><b>Function</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Function</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Function</em>' containment reference.
-   * @see #setFunction(Expression)
-   * @see integration.binding.BindingPackage#getBinding_Function()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  Expression getFunction();
+public interface Binding extends NamedElement {
+	/**
+	 * Returns the value of the '<em><b>Function</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Function</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Function</em>' containment reference.
+	 * @see #setFunction(Expression)
+	 * @see integration.binding.BindingPackage#getBinding_Function()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	Expression getFunction();
 
-  /**
-   * Sets the value of the '{@link integration.binding.Binding#getFunction <em>Function</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Function</em>' containment reference.
-   * @see #getFunction()
-   * @generated
-   */
-  void setFunction(Expression value);
+	/**
+	 * Sets the value of the '{@link integration.binding.Binding#getFunction <em>Function</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Function</em>' containment reference.
+	 * @see #getFunction()
+	 * @generated
+	 */
+	void setFunction(Expression value);
 
 } // Binding

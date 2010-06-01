@@ -16,41 +16,40 @@ import org.eclipse.emf.ecore.EFactory;
  * @see integration.processintegration.ProcessintegrationPackage
  * @generated
  */
-public interface ProcessintegrationFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  ProcessintegrationFactory eINSTANCE = integration.processintegration.impl.ProcessintegrationFactoryImpl.init();
+public interface ProcessintegrationFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	ProcessintegrationFactory eINSTANCE = integration.processintegration.impl.ProcessintegrationFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Integration Scenario</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Integration Scenario</em>'.
-   * @generated
-   */
-  IntegrationScenario createIntegrationScenario();
+	/**
+	 * Returns a new object of class '<em>Integration Scenario</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Integration Scenario</em>'.
+	 * @generated
+	 */
+	IntegrationScenario createIntegrationScenario();
 
-  /**
-   * Returns a new object of class '<em>Process Component Interaction</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Process Component Interaction</em>'.
-   * @generated
-   */
-  ProcessComponentInteraction createProcessComponentInteraction();
+	/**
+	 * Returns a new object of class '<em>Process Component Interaction</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Process Component Interaction</em>'.
+	 * @generated
+	 */
+	ProcessComponentInteraction createProcessComponentInteraction();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  ProcessintegrationPackage getProcessintegrationPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	ProcessintegrationPackage getProcessintegrationPackage();
 
 } //ProcessintegrationFactory

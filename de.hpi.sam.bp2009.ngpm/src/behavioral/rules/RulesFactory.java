@@ -16,32 +16,31 @@ import org.eclipse.emf.ecore.EFactory;
  * @see behavioral.rules.RulesPackage
  * @generated
  */
-public interface RulesFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  RulesFactory eINSTANCE = behavioral.rules.impl.RulesFactoryImpl.init();
+public interface RulesFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	RulesFactory eINSTANCE = behavioral.rules.impl.RulesFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Dummy</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dummy</em>'.
-   * @generated
-   */
-  Dummy createDummy();
+	/**
+	 * Returns a new object of class '<em>Dummy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dummy</em>'.
+	 * @generated
+	 */
+	Dummy createDummy();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  RulesPackage getRulesPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	RulesPackage getRulesPackage();
 
 } //RulesFactory

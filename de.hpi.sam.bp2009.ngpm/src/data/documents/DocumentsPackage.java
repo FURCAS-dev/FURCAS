@@ -28,103 +28,101 @@ import org.eclipse.emf.ecore.EPackage;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://de.hpi.sam.bp2009.OCL' validationDelegates='http://de.hpi.sam.bp2009.OCL'"
  * @generated
  */
-public interface DocumentsPackage extends EPackage
-{
-  /**
-   * The package name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  String eNAME = "documents";
+public interface DocumentsPackage extends EPackage {
+	/**
+	 * The package name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNAME = "documents";
 
-  /**
-   * The package namespace URI.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  String eNS_URI = "http:///data/documents.ecore";
+	/**
+	 * The package namespace URI.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_URI = "http:///data/documents.ecore";
 
-  /**
-   * The package namespace name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  String eNS_PREFIX = "data.documents";
+	/**
+	 * The package namespace name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_PREFIX = "data.documents";
 
-  /**
-   * The singleton instance of the package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  DocumentsPackage eINSTANCE = data.documents.impl.DocumentsPackageImpl.init();
+	/**
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	DocumentsPackage eINSTANCE = data.documents.impl.DocumentsPackageImpl.init();
 
-  /**
-   * The meta object id for the '{@link data.documents.impl.DummyImpl <em>Dummy</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see data.documents.impl.DummyImpl
-   * @see data.documents.impl.DocumentsPackageImpl#getDummy()
-   * @generated
-   */
-  int DUMMY = 0;
+	/**
+	 * The meta object id for the '{@link data.documents.impl.DummyImpl <em>Dummy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see data.documents.impl.DummyImpl
+	 * @see data.documents.impl.DocumentsPackageImpl#getDummy()
+	 * @generated
+	 */
+	int DUMMY = 0;
 
-  /**
-   * The number of structural features of the '<em>Dummy</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DUMMY_FEATURE_COUNT = 0;
+	/**
+	 * The number of structural features of the '<em>Dummy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUMMY_FEATURE_COUNT = 0;
 
 
-  /**
-   * Returns the meta object for class '{@link data.documents.Dummy <em>Dummy</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Dummy</em>'.
-   * @see data.documents.Dummy
-   * @generated
-   */
-  EClass getDummy();
+	/**
+	 * Returns the meta object for class '{@link data.documents.Dummy <em>Dummy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dummy</em>'.
+	 * @see data.documents.Dummy
+	 * @generated
+	 */
+	EClass getDummy();
 
-  /**
-   * Returns the factory that creates the instances of the model.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the factory that creates the instances of the model.
-   * @generated
-   */
-  DocumentsFactory getDocumentsFactory();
+	/**
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the factory that creates the instances of the model.
+	 * @generated
+	 */
+	DocumentsFactory getDocumentsFactory();
 
-  /**
-   * <!-- begin-user-doc -->
-   * Defines literals for the meta objects that represent
-   * <ul>
-   *   <li>each class,</li>
-   *   <li>each feature of each class,</li>
-   *   <li>each enum,</li>
-   *   <li>and each data type</li>
-   * </ul>
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  interface Literals
-  {
-    /**
-     * The meta object literal for the '{@link data.documents.impl.DummyImpl <em>Dummy</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see data.documents.impl.DummyImpl
-     * @see data.documents.impl.DocumentsPackageImpl#getDummy()
-     * @generated
-     */
-    EClass DUMMY = eINSTANCE.getDummy();
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals {
+		/**
+		 * The meta object literal for the '{@link data.documents.impl.DummyImpl <em>Dummy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see data.documents.impl.DummyImpl
+		 * @see data.documents.impl.DocumentsPackageImpl#getDummy()
+		 * @generated
+		 */
+		EClass DUMMY = eINSTANCE.getDummy();
 
-  }
+	}
 
 } //DocumentsPackage

@@ -35,108 +35,107 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see dataaccess.analytics.AnalyticsPackage#getGroupBy()
- * @model annotation="http://de.hpi.sam.bp2009.OCL GroupedFactsIteratorMustExistIfMapExpressionExists='self.mapExpression->notEmpty() implies self.groupedFacts->notEmpty()' MapExpressionMustBeSideEffectFree='if self.mapExpression->notEmpty() then\r\n    self.mapExpression.isSideEffectFree()\r\n  else\r\n    true\r\n  endif' GroupByIteratorsMustHaveDistinctNames='self.dimensions.iterator->asSet()->union(self.groupedFacts->asSet())->union(self.fact->asSet())->forAll(i, j | i<>j implies i.name<>j.name)'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL GroupedFactsIteratorMustExistIfMapExpressionExists='self.mapExpression->notEmpty() implies self.groupedFacts->notEmpty()' MapExpressionMustBeSideEffectFree='if self.mapExpression->notEmpty() then\n    self.mapExpression.isSideEffectFree()\n  else\n    true\n  endif' GroupByIteratorsMustHaveDistinctNames='self.dimensions.iterator->asSet()->union(self.groupedFacts->asSet())->union(self.fact->asSet())->forAll(i, j | i<>j implies i.name<>j.name)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='GroupedFactsIteratorMustExistIfMapExpressionExists MapExpressionMustBeSideEffectFree GroupByIteratorsMustHaveDistinctNames'"
  * @generated
  */
-public interface GroupBy extends ObjectBasedExpression
-{
-  /**
-   * Returns the value of the '<em><b>Dimensions</b></em>' containment reference list.
-   * The list contents are of type {@link dataaccess.analytics.DimensionDefinition}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Dimensions</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Dimensions</em>' containment reference list.
-   * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Dimensions()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='groupBy'"
-   * @generated
-   */
-  EList<DimensionDefinition> getDimensions();
+public interface GroupBy extends ObjectBasedExpression {
+	/**
+	 * Returns the value of the '<em><b>Dimensions</b></em>' containment reference list.
+	 * The list contents are of type {@link dataaccess.analytics.DimensionDefinition}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dimensions</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dimensions</em>' containment reference list.
+	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Dimensions()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='groupBy'"
+	 * @generated
+	 */
+	EList<DimensionDefinition> getDimensions();
 
-  /**
-   * Returns the value of the '<em><b>Fact</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Fact</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Fact</em>' containment reference.
-   * @see #setFact(Iterator)
-   * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Fact()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='factOfGroupBy'"
-   * @generated
-   */
-  Iterator getFact();
+	/**
+	 * Returns the value of the '<em><b>Fact</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Fact</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fact</em>' containment reference.
+	 * @see #setFact(Iterator)
+	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Fact()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='factOfGroupBy'"
+	 * @generated
+	 */
+	Iterator getFact();
 
-  /**
-   * Sets the value of the '{@link dataaccess.analytics.GroupBy#getFact <em>Fact</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Fact</em>' containment reference.
-   * @see #getFact()
-   * @generated
-   */
-  void setFact(Iterator value);
+	/**
+	 * Sets the value of the '{@link dataaccess.analytics.GroupBy#getFact <em>Fact</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fact</em>' containment reference.
+	 * @see #getFact()
+	 * @generated
+	 */
+	void setFact(Iterator value);
 
-  /**
-   * Returns the value of the '<em><b>Map Expression</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Map Expression</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Map Expression</em>' containment reference.
-   * @see #setMapExpression(Expression)
-   * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_MapExpression()
-   * @model containment="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='mapExpressionOfGroupBy'"
-   * @generated
-   */
-  Expression getMapExpression();
+	/**
+	 * Returns the value of the '<em><b>Map Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Map Expression</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Map Expression</em>' containment reference.
+	 * @see #setMapExpression(Expression)
+	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_MapExpression()
+	 * @model containment="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='mapExpressionOfGroupBy'"
+	 * @generated
+	 */
+	Expression getMapExpression();
 
-  /**
-   * Sets the value of the '{@link dataaccess.analytics.GroupBy#getMapExpression <em>Map Expression</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Map Expression</em>' containment reference.
-   * @see #getMapExpression()
-   * @generated
-   */
-  void setMapExpression(Expression value);
+	/**
+	 * Sets the value of the '{@link dataaccess.analytics.GroupBy#getMapExpression <em>Map Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Map Expression</em>' containment reference.
+	 * @see #getMapExpression()
+	 * @generated
+	 */
+	void setMapExpression(Expression value);
 
-  /**
-   * Returns the value of the '<em><b>Grouped Facts</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Grouped Facts</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Grouped Facts</em>' containment reference.
-   * @see #setGroupedFacts(Iterator)
-   * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_GroupedFacts()
-   * @model containment="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='groupedFactsOfGroupBy'"
-   * @generated
-   */
-  Iterator getGroupedFacts();
+	/**
+	 * Returns the value of the '<em><b>Grouped Facts</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Grouped Facts</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Grouped Facts</em>' containment reference.
+	 * @see #setGroupedFacts(Iterator)
+	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_GroupedFacts()
+	 * @model containment="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='groupedFactsOfGroupBy'"
+	 * @generated
+	 */
+	Iterator getGroupedFacts();
 
-  /**
-   * Sets the value of the '{@link dataaccess.analytics.GroupBy#getGroupedFacts <em>Grouped Facts</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Grouped Facts</em>' containment reference.
-   * @see #getGroupedFacts()
-   * @generated
-   */
-  void setGroupedFacts(Iterator value);
+	/**
+	 * Sets the value of the '{@link dataaccess.analytics.GroupBy#getGroupedFacts <em>Grouped Facts</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Grouped Facts</em>' containment reference.
+	 * @see #getGroupedFacts()
+	 * @generated
+	 */
+	void setGroupedFacts(Iterator value);
 
 } // GroupBy

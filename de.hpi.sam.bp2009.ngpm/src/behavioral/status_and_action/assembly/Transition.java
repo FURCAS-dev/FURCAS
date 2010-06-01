@@ -17,6 +17,5 @@ package behavioral.status_and_action.assembly;
  * @model
  * @generated
  */
-public interface Transition extends Connector
-{
+public interface Transition extends Connector {
 } // Transition

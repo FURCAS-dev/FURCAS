@@ -18,6 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Dummy extends EObject
-{
+public interface Dummy extends EObject {
 } // Dummy

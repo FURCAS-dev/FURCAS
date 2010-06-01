@@ -33,65 +33,64 @@ import dataaccess.expressions.ObjectBasedExpression;
  * </p>
  *
  * @see dataaccess.query.QueryPackage#getSelection()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ConditionMustBeSideEffectFree='self.selectionExpr.isSideEffectFree()' ConditionMustBeBooleanOrNumeric='self.selectionExpr.getType().oclIsKindOf(ClassTypeDefinition) and\r\n (\r\n    (\r\n      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\' and\r\n      self.selectionExpr.getType().upperMultiplicity = 1\r\n    )\r\n    or\r\n    (\r\n      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Number\' \r\n      and \r\n      self.object.getType().ordered\r\n    )\r\n  )'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL ConditionMustBeSideEffectFree='self.selectionExpr.isSideEffectFree()' ConditionMustBeBooleanOrNumeric='self.selectionExpr.getType().oclIsKindOf(ClassTypeDefinition) and\n (\n    (\n      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\' and\n      self.selectionExpr.getType().upperMultiplicity = 1\n    )\n    or\n    (\n      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Number\' \n      and \n      self.object.getType().ordered\n    )\n  )'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConditionMustBeSideEffectFree ConditionMustBeBooleanOrNumeric'"
  * @generated
  */
-public interface Selection extends ObjectBasedExpression
-{
-  /**
-   * Returns the value of the '<em><b>Iterator</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getSelection <em>Selection</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Iterator</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Iterator</em>' containment reference.
-   * @see #setIterator(Iterator)
-   * @see dataaccess.query.QueryPackage#getSelection_Iterator()
-   * @see behavioral.actions.Iterator#getSelection
-   * @model opposite="selection" containment="true" required="true"
-   * @generated
-   */
-  Iterator getIterator();
+public interface Selection extends ObjectBasedExpression {
+	/**
+	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getSelection <em>Selection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iterator</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iterator</em>' containment reference.
+	 * @see #setIterator(Iterator)
+	 * @see dataaccess.query.QueryPackage#getSelection_Iterator()
+	 * @see behavioral.actions.Iterator#getSelection
+	 * @model opposite="selection" containment="true" required="true"
+	 * @generated
+	 */
+	Iterator getIterator();
 
-  /**
-   * Sets the value of the '{@link dataaccess.query.Selection#getIterator <em>Iterator</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Iterator</em>' containment reference.
-   * @see #getIterator()
-   * @generated
-   */
-  void setIterator(Iterator value);
+	/**
+	 * Sets the value of the '{@link dataaccess.query.Selection#getIterator <em>Iterator</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Iterator</em>' containment reference.
+	 * @see #getIterator()
+	 * @generated
+	 */
+	void setIterator(Iterator value);
 
-  /**
-   * Returns the value of the '<em><b>Selection Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Selection Expr</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Selection Expr</em>' containment reference.
-   * @see #setSelectionExpr(Expression)
-   * @see dataaccess.query.QueryPackage#getSelection_SelectionExpr()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='selection'"
-   * @generated
-   */
-  Expression getSelectionExpr();
+	/**
+	 * Returns the value of the '<em><b>Selection Expr</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Selection Expr</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Selection Expr</em>' containment reference.
+	 * @see #setSelectionExpr(Expression)
+	 * @see dataaccess.query.QueryPackage#getSelection_SelectionExpr()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='selection'"
+	 * @generated
+	 */
+	Expression getSelectionExpr();
 
-  /**
-   * Sets the value of the '{@link dataaccess.query.Selection#getSelectionExpr <em>Selection Expr</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Selection Expr</em>' containment reference.
-   * @see #getSelectionExpr()
-   * @generated
-   */
-  void setSelectionExpr(Expression value);
+	/**
+	 * Sets the value of the '{@link dataaccess.query.Selection#getSelectionExpr <em>Selection Expr</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Selection Expr</em>' containment reference.
+	 * @see #getSelectionExpr()
+	 * @generated
+	 */
+	void setSelectionExpr(Expression value);
 
 } // Selection

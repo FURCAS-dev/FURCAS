@@ -17,6 +17,5 @@ package modelmanagement.processcomponents;
  * @model
  * @generated
  */
-public interface ProcessComponentOutsideCompany extends ProcessComponent
-{
+public interface ProcessComponentOutsideCompany extends ProcessComponent {
 } // ProcessComponentOutsideCompany

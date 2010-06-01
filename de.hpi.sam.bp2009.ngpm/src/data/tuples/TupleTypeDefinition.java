@@ -30,23 +30,22 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TupleTypeDefinition extends TypeDefinition
-{
-  /**
-   * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
-   * The list contents are of type {@link data.tuples.TupleElement}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Elements</em>' containment reference list.
-   * @see data.tuples.TuplesPackage#getTupleTypeDefinition_Elements()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  EList<TupleElement> getElements();
+public interface TupleTypeDefinition extends TypeDefinition {
+	/**
+	 * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+	 * The list contents are of type {@link data.tuples.TupleElement}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Elements</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Elements</em>' containment reference list.
+	 * @see data.tuples.TuplesPackage#getTupleTypeDefinition_Elements()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	EList<TupleElement> getElements();
 
 } // TupleTypeDefinition

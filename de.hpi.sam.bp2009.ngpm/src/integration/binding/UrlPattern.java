@@ -22,6 +22,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface UrlPattern extends EObject
-{
+public interface UrlPattern extends EObject {
 } // UrlPattern

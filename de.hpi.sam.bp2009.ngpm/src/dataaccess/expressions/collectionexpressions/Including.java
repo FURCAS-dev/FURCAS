@@ -23,6 +23,5 @@ package dataaccess.expressions.collectionexpressions;
  * @model
  * @generated
  */
-public interface Including extends CollectionExpressionWithArgument
-{
+public interface Including extends CollectionExpressionWithArgument {
 } // Including

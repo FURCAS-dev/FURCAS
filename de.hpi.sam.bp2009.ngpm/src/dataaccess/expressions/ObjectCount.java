@@ -20,10 +20,9 @@ package dataaccess.expressions;
  *
  *
  * @see dataaccess.expressions.ExpressionsPackage#getObjectCount()
- * @model annotation="http://de.hpi.sam.bp2009.OCL TypeIsNumber='self.getType().oclIsKindOf(ClassTypeDefinition) and\r\n  self.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Number\'' MultiplicityIsOne='self.getType().upperMultiplicity = 1 and\r\n  self.getType().lowerMultiplicity = 1'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL TypeIsNumber='self.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Number\'' MultiplicityIsOne='self.getType().upperMultiplicity = 1 and\n  self.getType().lowerMultiplicity = 1'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TypeIsNumber MultiplicityIsOne'"
  * @generated
  */
-public interface ObjectCount extends ObjectBasedExpression
-{
+public interface ObjectCount extends ObjectBasedExpression {
 } // ObjectCount

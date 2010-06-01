@@ -37,82 +37,81 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getContext()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ConditionMustBeBoolean='self.condition.getType().upperMultiplicity = 1 and\r\n  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\r\n  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'' ConstraintForRightClass='self.constraints->forAll(c | c.constrainedType = self.for_)'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL ConditionMustBeBoolean='self.condition.getType().upperMultiplicity = 1 and\n  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'' ConstraintForRightClass='self.constraints->forAll(c | c.constrainedType = self.for_)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConditionMustBeBoolean ConstraintForRightClass'"
  * @generated
  */
-public interface Context extends NamedElement
-{
-  /**
-   * Returns the value of the '<em><b>For </b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>For </em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>For </em>' reference.
-   * @see #setFor_(SapClass)
-   * @see data.classes.ClassesPackage#getContext_For_()
-   * @model required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  SapClass getFor_();
+public interface Context extends NamedElement {
+	/**
+	 * Returns the value of the '<em><b>For </b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>For </em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>For </em>' reference.
+	 * @see #setFor_(SapClass)
+	 * @see data.classes.ClassesPackage#getContext_For_()
+	 * @model required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	SapClass getFor_();
 
-  /**
-   * Sets the value of the '{@link data.classes.Context#getFor_ <em>For </em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>For </em>' reference.
-   * @see #getFor_()
-   * @generated
-   */
-  void setFor_(SapClass value);
+	/**
+	 * Sets the value of the '{@link data.classes.Context#getFor_ <em>For </em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>For </em>' reference.
+	 * @see #getFor_()
+	 * @generated
+	 */
+	void setFor_(SapClass value);
 
-  /**
-   * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-   * The list contents are of type {@link data.constraints.Constraint}.
-   * It is bidirectional and its opposite is '{@link data.constraints.Constraint#getTheContext <em>The Context</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Constraints</em>' containment reference list.
-   * @see data.classes.ClassesPackage#getContext_Constraints()
-   * @see data.constraints.Constraint#getTheContext
-   * @model opposite="theContext" containment="true"
-   * @generated
-   */
-  EList<Constraint> getConstraints();
+	/**
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
+	 * The list contents are of type {@link data.constraints.Constraint}.
+	 * It is bidirectional and its opposite is '{@link data.constraints.Constraint#getTheContext <em>The Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constraints</em>' containment reference list.
+	 * @see data.classes.ClassesPackage#getContext_Constraints()
+	 * @see data.constraints.Constraint#getTheContext
+	 * @model opposite="theContext" containment="true"
+	 * @generated
+	 */
+	EList<Constraint> getConstraints();
 
-  /**
-   * Returns the value of the '<em><b>Condition</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Condition</em>' containment reference.
-   * @see #setCondition(Expression)
-   * @see data.classes.ClassesPackage#getContext_Condition()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  Expression getCondition();
+	/**
+	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Condition</em>' containment reference.
+	 * @see #setCondition(Expression)
+	 * @see data.classes.ClassesPackage#getContext_Condition()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	Expression getCondition();
 
-  /**
-   * Sets the value of the '{@link data.classes.Context#getCondition <em>Condition</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Condition</em>' containment reference.
-   * @see #getCondition()
-   * @generated
-   */
-  void setCondition(Expression value);
+	/**
+	 * Sets the value of the '{@link data.classes.Context#getCondition <em>Condition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Condition</em>' containment reference.
+	 * @see #getCondition()
+	 * @generated
+	 */
+	void setCondition(Expression value);
 
 } // Context

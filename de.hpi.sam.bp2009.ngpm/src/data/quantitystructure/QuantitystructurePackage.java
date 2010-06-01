@@ -28,103 +28,101 @@ import org.eclipse.emf.ecore.EPackage;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://de.hpi.sam.bp2009.OCL' validationDelegates='http://de.hpi.sam.bp2009.OCL'"
  * @generated
  */
-public interface QuantitystructurePackage extends EPackage
-{
-  /**
-   * The package name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  String eNAME = "quantitystructure";
+public interface QuantitystructurePackage extends EPackage {
+	/**
+	 * The package name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNAME = "quantitystructure";
 
-  /**
-   * The package namespace URI.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  String eNS_URI = "http:///data/quantitystructure.ecore";
+	/**
+	 * The package namespace URI.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_URI = "http:///data/quantitystructure.ecore";
 
-  /**
-   * The package namespace name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  String eNS_PREFIX = "data.quantitystructure";
+	/**
+	 * The package namespace name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_PREFIX = "data.quantitystructure";
 
-  /**
-   * The singleton instance of the package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  QuantitystructurePackage eINSTANCE = data.quantitystructure.impl.QuantitystructurePackageImpl.init();
+	/**
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	QuantitystructurePackage eINSTANCE = data.quantitystructure.impl.QuantitystructurePackageImpl.init();
 
-  /**
-   * The meta object id for the '{@link data.quantitystructure.impl.DummyImpl <em>Dummy</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see data.quantitystructure.impl.DummyImpl
-   * @see data.quantitystructure.impl.QuantitystructurePackageImpl#getDummy()
-   * @generated
-   */
-  int DUMMY = 0;
+	/**
+	 * The meta object id for the '{@link data.quantitystructure.impl.DummyImpl <em>Dummy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see data.quantitystructure.impl.DummyImpl
+	 * @see data.quantitystructure.impl.QuantitystructurePackageImpl#getDummy()
+	 * @generated
+	 */
+	int DUMMY = 0;
 
-  /**
-   * The number of structural features of the '<em>Dummy</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DUMMY_FEATURE_COUNT = 0;
+	/**
+	 * The number of structural features of the '<em>Dummy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DUMMY_FEATURE_COUNT = 0;
 
 
-  /**
-   * Returns the meta object for class '{@link data.quantitystructure.Dummy <em>Dummy</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Dummy</em>'.
-   * @see data.quantitystructure.Dummy
-   * @generated
-   */
-  EClass getDummy();
+	/**
+	 * Returns the meta object for class '{@link data.quantitystructure.Dummy <em>Dummy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Dummy</em>'.
+	 * @see data.quantitystructure.Dummy
+	 * @generated
+	 */
+	EClass getDummy();
 
-  /**
-   * Returns the factory that creates the instances of the model.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the factory that creates the instances of the model.
-   * @generated
-   */
-  QuantitystructureFactory getQuantitystructureFactory();
+	/**
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the factory that creates the instances of the model.
+	 * @generated
+	 */
+	QuantitystructureFactory getQuantitystructureFactory();
 
-  /**
-   * <!-- begin-user-doc -->
-   * Defines literals for the meta objects that represent
-   * <ul>
-   *   <li>each class,</li>
-   *   <li>each feature of each class,</li>
-   *   <li>each enum,</li>
-   *   <li>and each data type</li>
-   * </ul>
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  interface Literals
-  {
-    /**
-     * The meta object literal for the '{@link data.quantitystructure.impl.DummyImpl <em>Dummy</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see data.quantitystructure.impl.DummyImpl
-     * @see data.quantitystructure.impl.QuantitystructurePackageImpl#getDummy()
-     * @generated
-     */
-    EClass DUMMY = eINSTANCE.getDummy();
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals {
+		/**
+		 * The meta object literal for the '{@link data.quantitystructure.impl.DummyImpl <em>Dummy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see data.quantitystructure.impl.DummyImpl
+		 * @see data.quantitystructure.impl.QuantitystructurePackageImpl#getDummy()
+		 * @generated
+		 */
+		EClass DUMMY = eINSTANCE.getDummy();
 
-  }
+	}
 
 } //QuantitystructurePackage

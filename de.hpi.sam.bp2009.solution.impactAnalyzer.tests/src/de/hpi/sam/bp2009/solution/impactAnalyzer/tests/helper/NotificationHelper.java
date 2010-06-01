@@ -179,7 +179,7 @@ public class NotificationHelper {
         return getNotificationfrom(myTestA);
     }
 
-    public static Notification createChangeLowerMultiplicityNotification(TypeDefinition notifier, Long value) {
+    public static Notification createChangeLowerMultiplicityNotification(TypeDefinition notifier, int value) {
         TestAdapter myTestA = new TestAdapter();
         notifier.eAdapters().add(myTestA);
 

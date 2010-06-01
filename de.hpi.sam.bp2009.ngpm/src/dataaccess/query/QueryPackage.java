@@ -38,486 +38,502 @@ import org.eclipse.emf.ecore.EReference;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore invocationDelegates='http://de.hpi.sam.bp2009.OCL' validationDelegates='http://de.hpi.sam.bp2009.OCL'"
  * @generated
  */
-public interface QueryPackage extends EPackage
-{
-  /**
-   * The package name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  String eNAME = "query";
+public interface QueryPackage extends EPackage {
+	/**
+	 * The package name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNAME = "query";
 
-  /**
-   * The package namespace URI.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  String eNS_URI = "http:///dataaccess/query.ecore";
+	/**
+	 * The package namespace URI.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_URI = "http:///dataaccess/query.ecore";
 
-  /**
-   * The package namespace name.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  String eNS_PREFIX = "dataaccess.query";
+	/**
+	 * The package namespace name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_PREFIX = "dataaccess.query";
 
-  /**
-   * The singleton instance of the package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  QueryPackage eINSTANCE = dataaccess.query.impl.QueryPackageImpl.init();
+	/**
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	QueryPackage eINSTANCE = dataaccess.query.impl.QueryPackageImpl.init();
 
-  /**
-   * The meta object id for the '{@link dataaccess.query.impl.SelectionImpl <em>Selection</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see dataaccess.query.impl.SelectionImpl
-   * @see dataaccess.query.impl.QueryPackageImpl#getSelection()
-   * @generated
-   */
-  int SELECTION = 0;
+	/**
+	 * The meta object id for the '{@link dataaccess.query.impl.SelectionImpl <em>Selection</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see dataaccess.query.impl.SelectionImpl
+	 * @see dataaccess.query.impl.QueryPackageImpl#getSelection()
+	 * @generated
+	 */
+	int SELECTION = 0;
 
-  /**
-   * The feature id for the '<em><b>Owned Type Definition</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__OWNED_TYPE_DEFINITION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__OWNED_TYPE_DEFINITION;
+	/**
+	 * The feature id for the '<em><b>Owned Type Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION__OWNED_TYPE_DEFINITION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__OWNED_TYPE_DEFINITION;
 
-  /**
-   * The feature id for the '<em><b>In Iterator</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__IN_ITERATOR = ExpressionsPackage.OBJECT_BASED_EXPRESSION__IN_ITERATOR;
+	/**
+	 * The feature id for the '<em><b>Expression Statement</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION__EXPRESSION_STATEMENT = ExpressionsPackage.OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT;
 
-  /**
-   * The feature id for the '<em><b>From Clause</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__FROM_CLAUSE = ExpressionsPackage.OBJECT_BASED_EXPRESSION__FROM_CLAUSE;
+	/**
+	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION__IN_ITERATOR = ExpressionsPackage.OBJECT_BASED_EXPRESSION__IN_ITERATOR;
 
-  /**
-   * The feature id for the '<em><b>Template</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__TEMPLATE = ExpressionsPackage.OBJECT_BASED_EXPRESSION__TEMPLATE;
+	/**
+	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION__FROM_CLAUSE = ExpressionsPackage.OBJECT_BASED_EXPRESSION__FROM_CLAUSE;
 
-  /**
-   * The feature id for the '<em><b>Object</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__OBJECT = ExpressionsPackage.OBJECT_BASED_EXPRESSION__OBJECT;
+	/**
+	 * The feature id for the '<em><b>Template</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION__TEMPLATE = ExpressionsPackage.OBJECT_BASED_EXPRESSION__TEMPLATE;
 
-  /**
-   * The feature id for the '<em><b>Iterator</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__ITERATOR = ExpressionsPackage.OBJECT_BASED_EXPRESSION_FEATURE_COUNT + 0;
+	/**
+	 * The feature id for the '<em><b>Object</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION__OBJECT = ExpressionsPackage.OBJECT_BASED_EXPRESSION__OBJECT;
 
-  /**
-   * The feature id for the '<em><b>Selection Expr</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION__SELECTION_EXPR = ExpressionsPackage.OBJECT_BASED_EXPRESSION_FEATURE_COUNT + 1;
+	/**
+	 * The feature id for the '<em><b>Iterator</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION__ITERATOR = ExpressionsPackage.OBJECT_BASED_EXPRESSION_FEATURE_COUNT + 0;
 
-  /**
-   * The number of structural features of the '<em>Selection</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTION_FEATURE_COUNT = ExpressionsPackage.OBJECT_BASED_EXPRESSION_FEATURE_COUNT + 2;
+	/**
+	 * The feature id for the '<em><b>Selection Expr</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION__SELECTION_EXPR = ExpressionsPackage.OBJECT_BASED_EXPRESSION_FEATURE_COUNT + 1;
 
-  /**
-   * The meta object id for the '{@link dataaccess.query.impl.OqlQueryImpl <em>Oql Query</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see dataaccess.query.impl.OqlQueryImpl
-   * @see dataaccess.query.impl.QueryPackageImpl#getOqlQuery()
-   * @generated
-   */
-  int OQL_QUERY = 1;
+	/**
+	 * The number of structural features of the '<em>Selection</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECTION_FEATURE_COUNT = ExpressionsPackage.OBJECT_BASED_EXPRESSION_FEATURE_COUNT + 2;
 
-  /**
-   * The feature id for the '<em><b>Owned Type Definition</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OQL_QUERY__OWNED_TYPE_DEFINITION = ExpressionsPackage.EXPRESSION__OWNED_TYPE_DEFINITION;
+	/**
+	 * The meta object id for the '{@link dataaccess.query.impl.OqlQueryImpl <em>Oql Query</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see dataaccess.query.impl.OqlQueryImpl
+	 * @see dataaccess.query.impl.QueryPackageImpl#getOqlQuery()
+	 * @generated
+	 */
+	int OQL_QUERY = 1;
 
-  /**
-   * The feature id for the '<em><b>In Iterator</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OQL_QUERY__IN_ITERATOR = ExpressionsPackage.EXPRESSION__IN_ITERATOR;
+	/**
+	 * The feature id for the '<em><b>Owned Type Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OQL_QUERY__OWNED_TYPE_DEFINITION = ExpressionsPackage.EXPRESSION__OWNED_TYPE_DEFINITION;
 
-  /**
-   * The feature id for the '<em><b>From Clause</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OQL_QUERY__FROM_CLAUSE = ExpressionsPackage.EXPRESSION__FROM_CLAUSE;
+	/**
+	 * The feature id for the '<em><b>Expression Statement</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OQL_QUERY__EXPRESSION_STATEMENT = ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT;
 
-  /**
-   * The feature id for the '<em><b>Template</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OQL_QUERY__TEMPLATE = ExpressionsPackage.EXPRESSION__TEMPLATE;
+	/**
+	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OQL_QUERY__IN_ITERATOR = ExpressionsPackage.EXPRESSION__IN_ITERATOR;
 
-  /**
-   * The feature id for the '<em><b>Condition</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OQL_QUERY__CONDITION = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 0;
+	/**
+	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OQL_QUERY__FROM_CLAUSE = ExpressionsPackage.EXPRESSION__FROM_CLAUSE;
 
-  /**
-   * The feature id for the '<em><b>From Clauses</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OQL_QUERY__FROM_CLAUSES = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 1;
+	/**
+	 * The feature id for the '<em><b>Template</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OQL_QUERY__TEMPLATE = ExpressionsPackage.EXPRESSION__TEMPLATE;
 
-  /**
-   * The feature id for the '<em><b>Selected</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OQL_QUERY__SELECTED = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 2;
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OQL_QUERY__CONDITION = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 0;
 
-  /**
-   * The number of structural features of the '<em>Oql Query</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OQL_QUERY_FEATURE_COUNT = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 3;
+	/**
+	 * The feature id for the '<em><b>From Clauses</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OQL_QUERY__FROM_CLAUSES = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 1;
 
-  /**
-   * The meta object id for the '{@link dataaccess.query.impl.FromClauseImpl <em>From Clause</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see dataaccess.query.impl.FromClauseImpl
-   * @see dataaccess.query.impl.QueryPackageImpl#getFromClause()
-   * @generated
-   */
-  int FROM_CLAUSE = 2;
+	/**
+	 * The feature id for the '<em><b>Selected</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OQL_QUERY__SELECTED = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 2;
 
-  /**
-   * The feature id for the '<em><b>From Clause Of Oql Query</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FROM_CLAUSE__FROM_CLAUSE_OF_OQL_QUERY = 0;
+	/**
+	 * The number of structural features of the '<em>Oql Query</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OQL_QUERY_FEATURE_COUNT = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 3;
 
-  /**
-   * The feature id for the '<em><b>From Expression</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FROM_CLAUSE__FROM_EXPRESSION = 1;
+	/**
+	 * The meta object id for the '{@link dataaccess.query.impl.FromClauseImpl <em>From Clause</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see dataaccess.query.impl.FromClauseImpl
+	 * @see dataaccess.query.impl.QueryPackageImpl#getFromClause()
+	 * @generated
+	 */
+	int FROM_CLAUSE = 2;
 
-  /**
-   * The feature id for the '<em><b>Alias</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FROM_CLAUSE__ALIAS = 2;
+	/**
+	 * The feature id for the '<em><b>From Clause Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_CLAUSE__FROM_CLAUSE_OF_OQL_QUERY = 0;
 
-  /**
-   * The number of structural features of the '<em>From Clause</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FROM_CLAUSE_FEATURE_COUNT = 3;
+	/**
+	 * The feature id for the '<em><b>From Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_CLAUSE__FROM_EXPRESSION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_CLAUSE__ALIAS = 2;
+
+	/**
+	 * The number of structural features of the '<em>From Clause</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FROM_CLAUSE_FEATURE_COUNT = 3;
 
 
-  /**
-   * Returns the meta object for class '{@link dataaccess.query.Selection <em>Selection</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Selection</em>'.
-   * @see dataaccess.query.Selection
-   * @generated
-   */
-  EClass getSelection();
+	/**
+	 * Returns the meta object for class '{@link dataaccess.query.Selection <em>Selection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Selection</em>'.
+	 * @see dataaccess.query.Selection
+	 * @generated
+	 */
+	EClass getSelection();
 
-  /**
-   * Returns the meta object for the containment reference '{@link dataaccess.query.Selection#getIterator <em>Iterator</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Iterator</em>'.
-   * @see dataaccess.query.Selection#getIterator()
-   * @see #getSelection()
-   * @generated
-   */
-  EReference getSelection_Iterator();
+	/**
+	 * Returns the meta object for the containment reference '{@link dataaccess.query.Selection#getIterator <em>Iterator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Iterator</em>'.
+	 * @see dataaccess.query.Selection#getIterator()
+	 * @see #getSelection()
+	 * @generated
+	 */
+	EReference getSelection_Iterator();
 
-  /**
-   * Returns the meta object for the containment reference '{@link dataaccess.query.Selection#getSelectionExpr <em>Selection Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Selection Expr</em>'.
-   * @see dataaccess.query.Selection#getSelectionExpr()
-   * @see #getSelection()
-   * @generated
-   */
-  EReference getSelection_SelectionExpr();
+	/**
+	 * Returns the meta object for the containment reference '{@link dataaccess.query.Selection#getSelectionExpr <em>Selection Expr</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Selection Expr</em>'.
+	 * @see dataaccess.query.Selection#getSelectionExpr()
+	 * @see #getSelection()
+	 * @generated
+	 */
+	EReference getSelection_SelectionExpr();
 
-  /**
-   * Returns the meta object for class '{@link dataaccess.query.OqlQuery <em>Oql Query</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Oql Query</em>'.
-   * @see dataaccess.query.OqlQuery
-   * @generated
-   */
-  EClass getOqlQuery();
+	/**
+	 * Returns the meta object for class '{@link dataaccess.query.OqlQuery <em>Oql Query</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Oql Query</em>'.
+	 * @see dataaccess.query.OqlQuery
+	 * @generated
+	 */
+	EClass getOqlQuery();
 
-  /**
-   * Returns the meta object for the containment reference '{@link dataaccess.query.OqlQuery#getCondition <em>Condition</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Condition</em>'.
-   * @see dataaccess.query.OqlQuery#getCondition()
-   * @see #getOqlQuery()
-   * @generated
-   */
-  EReference getOqlQuery_Condition();
+	/**
+	 * Returns the meta object for the containment reference '{@link dataaccess.query.OqlQuery#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see dataaccess.query.OqlQuery#getCondition()
+	 * @see #getOqlQuery()
+	 * @generated
+	 */
+	EReference getOqlQuery_Condition();
 
-  /**
-   * Returns the meta object for the containment reference list '{@link dataaccess.query.OqlQuery#getFromClauses <em>From Clauses</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>From Clauses</em>'.
-   * @see dataaccess.query.OqlQuery#getFromClauses()
-   * @see #getOqlQuery()
-   * @generated
-   */
-  EReference getOqlQuery_FromClauses();
+	/**
+	 * Returns the meta object for the containment reference list '{@link dataaccess.query.OqlQuery#getFromClauses <em>From Clauses</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>From Clauses</em>'.
+	 * @see dataaccess.query.OqlQuery#getFromClauses()
+	 * @see #getOqlQuery()
+	 * @generated
+	 */
+	EReference getOqlQuery_FromClauses();
 
-  /**
-   * Returns the meta object for the reference list '{@link dataaccess.query.OqlQuery#getSelected <em>Selected</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Selected</em>'.
-   * @see dataaccess.query.OqlQuery#getSelected()
-   * @see #getOqlQuery()
-   * @generated
-   */
-  EReference getOqlQuery_Selected();
+	/**
+	 * Returns the meta object for the reference list '{@link dataaccess.query.OqlQuery#getSelected <em>Selected</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Selected</em>'.
+	 * @see dataaccess.query.OqlQuery#getSelected()
+	 * @see #getOqlQuery()
+	 * @generated
+	 */
+	EReference getOqlQuery_Selected();
 
-  /**
-   * Returns the meta object for class '{@link dataaccess.query.FromClause <em>From Clause</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>From Clause</em>'.
-   * @see dataaccess.query.FromClause
-   * @generated
-   */
-  EClass getFromClause();
+	/**
+	 * Returns the meta object for class '{@link dataaccess.query.FromClause <em>From Clause</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>From Clause</em>'.
+	 * @see dataaccess.query.FromClause
+	 * @generated
+	 */
+	EClass getFromClause();
 
-  /**
-   * Returns the meta object for the container reference '{@link dataaccess.query.FromClause#getFromClauseOfOqlQuery <em>From Clause Of Oql Query</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>From Clause Of Oql Query</em>'.
-   * @see dataaccess.query.FromClause#getFromClauseOfOqlQuery()
-   * @see #getFromClause()
-   * @generated
-   */
-  EReference getFromClause_FromClauseOfOqlQuery();
+	/**
+	 * Returns the meta object for the container reference '{@link dataaccess.query.FromClause#getFromClauseOfOqlQuery <em>From Clause Of Oql Query</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>From Clause Of Oql Query</em>'.
+	 * @see dataaccess.query.FromClause#getFromClauseOfOqlQuery()
+	 * @see #getFromClause()
+	 * @generated
+	 */
+	EReference getFromClause_FromClauseOfOqlQuery();
 
-  /**
-   * Returns the meta object for the containment reference '{@link dataaccess.query.FromClause#getFromExpression <em>From Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>From Expression</em>'.
-   * @see dataaccess.query.FromClause#getFromExpression()
-   * @see #getFromClause()
-   * @generated
-   */
-  EReference getFromClause_FromExpression();
+	/**
+	 * Returns the meta object for the containment reference '{@link dataaccess.query.FromClause#getFromExpression <em>From Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>From Expression</em>'.
+	 * @see dataaccess.query.FromClause#getFromExpression()
+	 * @see #getFromClause()
+	 * @generated
+	 */
+	EReference getFromClause_FromExpression();
 
-  /**
-   * Returns the meta object for the containment reference '{@link dataaccess.query.FromClause#getAlias <em>Alias</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Alias</em>'.
-   * @see dataaccess.query.FromClause#getAlias()
-   * @see #getFromClause()
-   * @generated
-   */
-  EReference getFromClause_Alias();
+	/**
+	 * Returns the meta object for the containment reference '{@link dataaccess.query.FromClause#getAlias <em>Alias</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Alias</em>'.
+	 * @see dataaccess.query.FromClause#getAlias()
+	 * @see #getFromClause()
+	 * @generated
+	 */
+	EReference getFromClause_Alias();
 
-  /**
-   * Returns the factory that creates the instances of the model.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the factory that creates the instances of the model.
-   * @generated
-   */
-  QueryFactory getQueryFactory();
+	/**
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the factory that creates the instances of the model.
+	 * @generated
+	 */
+	QueryFactory getQueryFactory();
 
-  /**
-   * <!-- begin-user-doc -->
-   * Defines literals for the meta objects that represent
-   * <ul>
-   *   <li>each class,</li>
-   *   <li>each feature of each class,</li>
-   *   <li>each enum,</li>
-   *   <li>and each data type</li>
-   * </ul>
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  interface Literals
-  {
-    /**
-     * The meta object literal for the '{@link dataaccess.query.impl.SelectionImpl <em>Selection</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see dataaccess.query.impl.SelectionImpl
-     * @see dataaccess.query.impl.QueryPackageImpl#getSelection()
-     * @generated
-     */
-    EClass SELECTION = eINSTANCE.getSelection();
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals {
+		/**
+		 * The meta object literal for the '{@link dataaccess.query.impl.SelectionImpl <em>Selection</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see dataaccess.query.impl.SelectionImpl
+		 * @see dataaccess.query.impl.QueryPackageImpl#getSelection()
+		 * @generated
+		 */
+		EClass SELECTION = eINSTANCE.getSelection();
 
-    /**
-     * The meta object literal for the '<em><b>Iterator</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SELECTION__ITERATOR = eINSTANCE.getSelection_Iterator();
+		/**
+		 * The meta object literal for the '<em><b>Iterator</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SELECTION__ITERATOR = eINSTANCE.getSelection_Iterator();
 
-    /**
-     * The meta object literal for the '<em><b>Selection Expr</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SELECTION__SELECTION_EXPR = eINSTANCE.getSelection_SelectionExpr();
+		/**
+		 * The meta object literal for the '<em><b>Selection Expr</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SELECTION__SELECTION_EXPR = eINSTANCE.getSelection_SelectionExpr();
 
-    /**
-     * The meta object literal for the '{@link dataaccess.query.impl.OqlQueryImpl <em>Oql Query</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see dataaccess.query.impl.OqlQueryImpl
-     * @see dataaccess.query.impl.QueryPackageImpl#getOqlQuery()
-     * @generated
-     */
-    EClass OQL_QUERY = eINSTANCE.getOqlQuery();
+		/**
+		 * The meta object literal for the '{@link dataaccess.query.impl.OqlQueryImpl <em>Oql Query</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see dataaccess.query.impl.OqlQueryImpl
+		 * @see dataaccess.query.impl.QueryPackageImpl#getOqlQuery()
+		 * @generated
+		 */
+		EClass OQL_QUERY = eINSTANCE.getOqlQuery();
 
-    /**
-     * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OQL_QUERY__CONDITION = eINSTANCE.getOqlQuery_Condition();
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OQL_QUERY__CONDITION = eINSTANCE.getOqlQuery_Condition();
 
-    /**
-     * The meta object literal for the '<em><b>From Clauses</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OQL_QUERY__FROM_CLAUSES = eINSTANCE.getOqlQuery_FromClauses();
+		/**
+		 * The meta object literal for the '<em><b>From Clauses</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OQL_QUERY__FROM_CLAUSES = eINSTANCE.getOqlQuery_FromClauses();
 
-    /**
-     * The meta object literal for the '<em><b>Selected</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OQL_QUERY__SELECTED = eINSTANCE.getOqlQuery_Selected();
+		/**
+		 * The meta object literal for the '<em><b>Selected</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OQL_QUERY__SELECTED = eINSTANCE.getOqlQuery_Selected();
 
-    /**
-     * The meta object literal for the '{@link dataaccess.query.impl.FromClauseImpl <em>From Clause</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see dataaccess.query.impl.FromClauseImpl
-     * @see dataaccess.query.impl.QueryPackageImpl#getFromClause()
-     * @generated
-     */
-    EClass FROM_CLAUSE = eINSTANCE.getFromClause();
+		/**
+		 * The meta object literal for the '{@link dataaccess.query.impl.FromClauseImpl <em>From Clause</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see dataaccess.query.impl.FromClauseImpl
+		 * @see dataaccess.query.impl.QueryPackageImpl#getFromClause()
+		 * @generated
+		 */
+		EClass FROM_CLAUSE = eINSTANCE.getFromClause();
 
-    /**
-     * The meta object literal for the '<em><b>From Clause Of Oql Query</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FROM_CLAUSE__FROM_CLAUSE_OF_OQL_QUERY = eINSTANCE.getFromClause_FromClauseOfOqlQuery();
+		/**
+		 * The meta object literal for the '<em><b>From Clause Of Oql Query</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FROM_CLAUSE__FROM_CLAUSE_OF_OQL_QUERY = eINSTANCE.getFromClause_FromClauseOfOqlQuery();
 
-    /**
-     * The meta object literal for the '<em><b>From Expression</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FROM_CLAUSE__FROM_EXPRESSION = eINSTANCE.getFromClause_FromExpression();
+		/**
+		 * The meta object literal for the '<em><b>From Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FROM_CLAUSE__FROM_EXPRESSION = eINSTANCE.getFromClause_FromExpression();
 
-    /**
-     * The meta object literal for the '<em><b>Alias</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FROM_CLAUSE__ALIAS = eINSTANCE.getFromClause_Alias();
+		/**
+		 * The meta object literal for the '<em><b>Alias</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FROM_CLAUSE__ALIAS = eINSTANCE.getFromClause_Alias();
 
-  }
+	}
 
 } //QueryPackage

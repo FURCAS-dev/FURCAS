@@ -17,6 +17,5 @@ package integration.xsd;
  * @model
  * @generated
  */
-public interface ElementReference extends Containable, NamedElement
-{
+public interface ElementReference extends Containable, NamedElement {
 } // ElementReference

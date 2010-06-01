@@ -15,10 +15,9 @@ import behavioral.actions.StatementWithArgument;
  *
  *
  * @see persistence.actions.ActionsPackage#getStatementWithEntityArgument()
- * @model annotation="http://de.hpi.sam.bp2009.OCL CanStoreOnlyEntities='if self.argument.getType().oclIsKindOf(ClassTypeDefinition) then\r\n    not self.argument.getType().oclAsType(ClassTypeDefinition).clazz.valueType\r\n  else\r\n    false\r\n  endif'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL CanStoreOnlyEntities='if self.argument.getType().oclIsKindOf(ClassTypeDefinition) then\n    not self.argument.getType().oclAsType(ClassTypeDefinition).clazz.valueType\n  else\n    false\n  endif'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CanStoreOnlyEntities'"
  * @generated
  */
-public interface StatementWithEntityArgument extends StatementWithArgument
-{
+public interface StatementWithEntityArgument extends StatementWithArgument {
 } // StatementWithEntityArgument

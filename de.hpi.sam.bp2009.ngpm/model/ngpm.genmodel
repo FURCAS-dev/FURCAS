@@ -1128,9 +1128,6 @@
     <nestedGenPackages prefix="_persistence" basePackage="ngpm" disposableProviderFactory="true"
         ecorePackage="ngpm.ecore#//_persistence"/>
   </genPackages>
-  <genPackages prefix="Reflect" disposableProviderFactory="true" ecorePackage="reflect.ecore#/">
-    <genClasses ecoreClass="reflect.ecore#//Element"/>
-  </genPackages>
   <genPackages prefix="Ap_runtime_constraints" disposableProviderFactory="true" ecorePackage="ap_runtime_constraints.ecore#/">
     <genClasses ecoreClass="ap_runtime_constraints.ecore#//QueryConstraint"/>
   </genPackages>

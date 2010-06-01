@@ -18,6 +18,5 @@ import behavioral.actions.Statement;
  * @model
  * @generated
  */
-public interface Rollback extends Statement
-{
+public interface Rollback extends Statement {
 } // Rollback

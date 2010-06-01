@@ -29,82 +29,81 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.generics.GenericsPackage#getFormalTypeParameter()
- * @model annotation="http://de.hpi.sam.bp2009.OCL UseInSignaturesOfOwningParamerizedClassOnly='self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(Parameter) implies \r\n   (s.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and\r\n    s.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).owner=self.parameterOf .owningClassDefinition)) and\r\n  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(MethodSignature) and \r\n    s.oclAsType(MethodSignature).owner->notEmpty() and\r\n    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition) and\r\n  self.signaturesWithFault->forAll(s| s.oclIsKindOf(MethodSignature)  and \r\n    s.oclAsType(MethodSignature).owner->notEmpty() and\r\n    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition)' UseInAssociationsOfOwningParameterizedClassOnly='self.elementsOfType.associationEnd->\r\n    forAll(ae | ae.otherEnd().type.clazz = self.parameterOf.owningClassDefinition)'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL UseInSignaturesOfOwningParamerizedClassOnly='self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(Parameter) implies \n   (s.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and\n    s.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).owner=self.parameterOf .owningClassDefinition)) and\n  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(MethodSignature) and \n    s.oclAsType(MethodSignature).owner->notEmpty() and\n    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition) and\n  self.signaturesWithFault->forAll(s| s.oclIsKindOf(MethodSignature)  and \n    s.oclAsType(MethodSignature).owner->notEmpty() and\n    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition)' UseInAssociationsOfOwningParameterizedClassOnly='self.elementsOfType.associationEnd->\n    forAll(ae | ae.otherEnd().type.clazz = self.parameterOf.owningClassDefinition)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UseInSignaturesOfOwningParamerizedClassOnly UseInAssociationsOfOwningParameterizedClassOnly'"
  * @generated
  */
-public interface FormalTypeParameter extends SapClass
-{
-  /**
-   * Returns the value of the '<em><b>Parameter Of</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link data.generics.ClassParameterization#getFormalTypeParameters <em>Formal Type Parameters</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Parameter Of</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Parameter Of</em>' container reference.
-   * @see #setParameterOf(ClassParameterization)
-   * @see data.generics.GenericsPackage#getFormalTypeParameter_ParameterOf()
-   * @see data.generics.ClassParameterization#getFormalTypeParameters
-   * @model opposite="formalTypeParameters" required="true"
-   * @generated
-   */
-  ClassParameterization getParameterOf();
+public interface FormalTypeParameter extends SapClass {
+	/**
+	 * Returns the value of the '<em><b>Parameter Of</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link data.generics.ClassParameterization#getFormalTypeParameters <em>Formal Type Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parameter Of</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameter Of</em>' container reference.
+	 * @see #setParameterOf(ClassParameterization)
+	 * @see data.generics.GenericsPackage#getFormalTypeParameter_ParameterOf()
+	 * @see data.generics.ClassParameterization#getFormalTypeParameters
+	 * @model opposite="formalTypeParameters" required="true"
+	 * @generated
+	 */
+	ClassParameterization getParameterOf();
 
-  /**
-   * Sets the value of the '{@link data.generics.FormalTypeParameter#getParameterOf <em>Parameter Of</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Parameter Of</em>' container reference.
-   * @see #getParameterOf()
-   * @generated
-   */
-  void setParameterOf(ClassParameterization value);
+	/**
+	 * Sets the value of the '{@link data.generics.FormalTypeParameter#getParameterOf <em>Parameter Of</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parameter Of</em>' container reference.
+	 * @see #getParameterOf()
+	 * @generated
+	 */
+	void setParameterOf(ClassParameterization value);
 
-  /**
-   * Returns the value of the '<em><b>Type Constraint</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type Constraint</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type Constraint</em>' reference.
-   * @see #setTypeConstraint(SapClass)
-   * @see data.generics.GenericsPackage#getFormalTypeParameter_TypeConstraint()
-   * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  SapClass getTypeConstraint();
+	/**
+	 * Returns the value of the '<em><b>Type Constraint</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type Constraint</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type Constraint</em>' reference.
+	 * @see #setTypeConstraint(SapClass)
+	 * @see data.generics.GenericsPackage#getFormalTypeParameter_TypeConstraint()
+	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	SapClass getTypeConstraint();
 
-  /**
-   * Sets the value of the '{@link data.generics.FormalTypeParameter#getTypeConstraint <em>Type Constraint</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type Constraint</em>' reference.
-   * @see #getTypeConstraint()
-   * @generated
-   */
-  void setTypeConstraint(SapClass value);
+	/**
+	 * Sets the value of the '{@link data.generics.FormalTypeParameter#getTypeConstraint <em>Type Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type Constraint</em>' reference.
+	 * @see #getTypeConstraint()
+	 * @generated
+	 */
+	void setTypeConstraint(SapClass value);
 
-  /**
-   * Returns the value of the '<em><b>Actual Type Parameters</b></em>' reference list.
-   * The list contents are of type {@link data.generics.ActualTypeParameter}.
-   * It is bidirectional and its opposite is '{@link data.generics.ActualTypeParameter#getFormalTypeParameter <em>Formal Type Parameter</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Actual Type Parameters</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Actual Type Parameters</em>' reference list.
-   * @see data.generics.GenericsPackage#getFormalTypeParameter_ActualTypeParameters()
-   * @see data.generics.ActualTypeParameter#getFormalTypeParameter
-   * @model opposite="formalTypeParameter"
-   * @generated
-   */
-  EList<ActualTypeParameter> getActualTypeParameters();
+	/**
+	 * Returns the value of the '<em><b>Actual Type Parameters</b></em>' reference list.
+	 * The list contents are of type {@link data.generics.ActualTypeParameter}.
+	 * It is bidirectional and its opposite is '{@link data.generics.ActualTypeParameter#getFormalTypeParameter <em>Formal Type Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Actual Type Parameters</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Actual Type Parameters</em>' reference list.
+	 * @see data.generics.GenericsPackage#getFormalTypeParameter_ActualTypeParameters()
+	 * @see data.generics.ActualTypeParameter#getFormalTypeParameter
+	 * @model opposite="formalTypeParameter"
+	 * @generated
+	 */
+	EList<ActualTypeParameter> getActualTypeParameters();
 
 } // FormalTypeParameter

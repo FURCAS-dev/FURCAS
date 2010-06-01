@@ -34,70 +34,69 @@ import org.eclipse.emf.ecore.EObject;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DimensionExpressionMustBeSideEffectFree'"
  * @generated
  */
-public interface DimensionDefinition extends EObject
-{
-  /**
-   * Returns the value of the '<em><b>Expression</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Expression</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Expression</em>' containment reference.
-   * @see #setExpression(Expression)
-   * @see dataaccess.analytics.AnalyticsPackage#getDimensionDefinition_Expression()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='dimension'"
-   * @generated
-   */
-  Expression getExpression();
+public interface DimensionDefinition extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Expression</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Expression</em>' containment reference.
+	 * @see #setExpression(Expression)
+	 * @see dataaccess.analytics.AnalyticsPackage#getDimensionDefinition_Expression()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='dimension'"
+	 * @generated
+	 */
+	Expression getExpression();
 
-  /**
-   * Sets the value of the '{@link dataaccess.analytics.DimensionDefinition#getExpression <em>Expression</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expression</em>' containment reference.
-   * @see #getExpression()
-   * @generated
-   */
-  void setExpression(Expression value);
+	/**
+	 * Sets the value of the '{@link dataaccess.analytics.DimensionDefinition#getExpression <em>Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Expression</em>' containment reference.
+	 * @see #getExpression()
+	 * @generated
+	 */
+	void setExpression(Expression value);
 
-  /**
-   * Returns the value of the '<em><b>Iterator</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Iterator</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Iterator</em>' containment reference.
-   * @see #setIterator(Iterator)
-   * @see dataaccess.analytics.AnalyticsPackage#getDimensionDefinition_Iterator()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='dimension'"
-   * @generated
-   */
-  Iterator getIterator();
+	/**
+	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Iterator</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Iterator</em>' containment reference.
+	 * @see #setIterator(Iterator)
+	 * @see dataaccess.analytics.AnalyticsPackage#getDimensionDefinition_Iterator()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='dimension'"
+	 * @generated
+	 */
+	Iterator getIterator();
 
-  /**
-   * Sets the value of the '{@link dataaccess.analytics.DimensionDefinition#getIterator <em>Iterator</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Iterator</em>' containment reference.
-   * @see #getIterator()
-   * @generated
-   */
-  void setIterator(Iterator value);
+	/**
+	 * Sets the value of the '{@link dataaccess.analytics.DimensionDefinition#getIterator <em>Iterator</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Iterator</em>' containment reference.
+	 * @see #getIterator()
+	 * @generated
+	 */
+	void setIterator(Iterator value);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" dataType="primitivetypes.String"
-   *        annotation="http://de.hpi.sam.bp2009.OCL body='self.iterator.name'"
-   *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-   * @generated
-   */
-  String getName();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.iterator.name'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 * @generated
+	 */
+	String getName();
 
 } // DimensionDefinition

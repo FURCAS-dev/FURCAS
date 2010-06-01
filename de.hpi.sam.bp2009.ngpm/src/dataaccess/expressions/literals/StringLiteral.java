@@ -17,6 +17,5 @@ package dataaccess.expressions.literals;
  * @model
  * @generated
  */
-public interface StringLiteral extends Literal
-{
+public interface StringLiteral extends Literal {
 } // StringLiteral

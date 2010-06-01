@@ -23,33 +23,32 @@ package abapmapping.abapdictionary;
  * @model
  * @generated
  */
-public interface DataElement extends UnstructuredAbapType
-{
-  /**
-   * Returns the value of the '<em><b>Abap Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Abap Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Abap Type</em>' reference.
-   * @see #setAbapType(AbapPrimtiveType)
-   * @see abapmapping.abapdictionary.AbapdictionaryPackage#getDataElement_AbapType()
-   * @model required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  AbapPrimtiveType getAbapType();
+public interface DataElement extends UnstructuredAbapType {
+	/**
+	 * Returns the value of the '<em><b>Abap Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Abap Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Abap Type</em>' reference.
+	 * @see #setAbapType(AbapPrimtiveType)
+	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getDataElement_AbapType()
+	 * @model required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	AbapPrimtiveType getAbapType();
 
-  /**
-   * Sets the value of the '{@link abapmapping.abapdictionary.DataElement#getAbapType <em>Abap Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Abap Type</em>' reference.
-   * @see #getAbapType()
-   * @generated
-   */
-  void setAbapType(AbapPrimtiveType value);
+	/**
+	 * Sets the value of the '{@link abapmapping.abapdictionary.DataElement#getAbapType <em>Abap Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Abap Type</em>' reference.
+	 * @see #getAbapType()
+	 * @generated
+	 */
+	void setAbapType(AbapPrimtiveType value);
 
 } // DataElement

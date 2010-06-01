@@ -17,6 +17,5 @@ package behavioral.status_and_action.assembly;
  * @model
  * @generated
  */
-public interface OrOperator extends Operator
-{
+public interface OrOperator extends Operator {
 } // OrOperator

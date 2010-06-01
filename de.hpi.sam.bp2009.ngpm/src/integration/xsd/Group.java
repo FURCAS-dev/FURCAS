@@ -17,6 +17,5 @@ package integration.xsd;
  * @model
  * @generated
  */
-public interface Group extends Containable, NamedElement
-{
+public interface Group extends Containable, NamedElement {
 } // Group

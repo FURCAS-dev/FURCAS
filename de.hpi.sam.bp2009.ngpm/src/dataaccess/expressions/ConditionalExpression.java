@@ -17,6 +17,5 @@ package dataaccess.expressions;
  * @model abstract="true"
  * @generated
  */
-public interface ConditionalExpression extends Expression, Conditional
-{
+public interface ConditionalExpression extends Expression, Conditional {
 } // ConditionalExpression

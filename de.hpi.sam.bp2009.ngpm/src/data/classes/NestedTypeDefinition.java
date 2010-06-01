@@ -26,85 +26,84 @@ package data.classes;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NestedIsAlwaysMany'"
  * @generated
  */
-public interface NestedTypeDefinition extends TypeDefinition
-{
-  /**
-   * Returns the value of the '<em><b>Op</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * <!-- begin-model-doc -->
-   * Only for syntax mapping issues, hopefully disappearing again in the future. It holds the operator that syntactically introduced this nested type definition, such as "[" or "*".
-   * <!-- end-model-doc -->
-   * @return the value of the '<em>Op</em>' attribute.
-   * @see #setOp(String)
-   * @see data.classes.ClassesPackage#getNestedTypeDefinition_Op()
-   * @model dataType="primitivetypes.String"
-   * @generated
-   */
-  String getOp();
+public interface NestedTypeDefinition extends TypeDefinition {
+	/**
+	 * Returns the value of the '<em><b>Op</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Only for syntax mapping issues, hopefully disappearing again in the future. It holds the operator that syntactically introduced this nested type definition, such as "[" or "*".
+	 * <!-- end-model-doc -->
+	 * @return the value of the '<em>Op</em>' attribute.
+	 * @see #setOp(String)
+	 * @see data.classes.ClassesPackage#getNestedTypeDefinition_Op()
+	 * @model
+	 * @generated
+	 */
+	String getOp();
 
-  /**
-   * Sets the value of the '{@link data.classes.NestedTypeDefinition#getOp <em>Op</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Op</em>' attribute.
-   * @see #getOp()
-   * @generated
-   */
-  void setOp(String value);
+	/**
+	 * Sets the value of the '{@link data.classes.NestedTypeDefinition#getOp <em>Op</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Op</em>' attribute.
+	 * @see #getOp()
+	 * @generated
+	 */
+	void setOp(String value);
 
-  /**
-   * Returns the value of the '<em><b>Type</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Type</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(TypeDefinition)
-   * @see data.classes.ClassesPackage#getNestedTypeDefinition_Type()
-   * @model required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
-   * @generated
-   */
-  TypeDefinition getType();
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' reference.
+	 * @see #setType(TypeDefinition)
+	 * @see data.classes.ClassesPackage#getNestedTypeDefinition_Type()
+	 * @model required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @generated
+	 */
+	TypeDefinition getType();
 
-  /**
-   * Sets the value of the '{@link data.classes.NestedTypeDefinition#getType <em>Type</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' reference.
-   * @see #getType()
-   * @generated
-   */
-  void setType(TypeDefinition value);
+	/**
+	 * Sets the value of the '{@link data.classes.NestedTypeDefinition#getType <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' reference.
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(TypeDefinition value);
 
-  /**
-   * Returns the value of the '<em><b>Owned Type Definition</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Owned Type Definition</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Owned Type Definition</em>' containment reference.
-   * @see #setOwnedTypeDefinition(TypeDefinition)
-   * @see data.classes.ClassesPackage#getNestedTypeDefinition_OwnedTypeDefinition()
-   * @model containment="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='owningNestedTypeDefinition'"
-   * @generated
-   */
-  TypeDefinition getOwnedTypeDefinition();
+	/**
+	 * Returns the value of the '<em><b>Owned Type Definition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Type Definition</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Type Definition</em>' containment reference.
+	 * @see #setOwnedTypeDefinition(TypeDefinition)
+	 * @see data.classes.ClassesPackage#getNestedTypeDefinition_OwnedTypeDefinition()
+	 * @model containment="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='owningNestedTypeDefinition'"
+	 * @generated
+	 */
+	TypeDefinition getOwnedTypeDefinition();
 
-  /**
-   * Sets the value of the '{@link data.classes.NestedTypeDefinition#getOwnedTypeDefinition <em>Owned Type Definition</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Owned Type Definition</em>' containment reference.
-   * @see #getOwnedTypeDefinition()
-   * @generated
-   */
-  void setOwnedTypeDefinition(TypeDefinition value);
+	/**
+	 * Sets the value of the '{@link data.classes.NestedTypeDefinition#getOwnedTypeDefinition <em>Owned Type Definition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Type Definition</em>' containment reference.
+	 * @see #getOwnedTypeDefinition()
+	 * @generated
+	 */
+	void setOwnedTypeDefinition(TypeDefinition value);
 
 } // NestedTypeDefinition

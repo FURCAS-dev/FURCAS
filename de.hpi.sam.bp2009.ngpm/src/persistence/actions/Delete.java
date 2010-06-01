@@ -21,6 +21,5 @@ package persistence.actions;
  * @model
  * @generated
  */
-public interface Delete extends StatementWithEntityArgument
-{
+public interface Delete extends StatementWithEntityArgument {
 } // Delete

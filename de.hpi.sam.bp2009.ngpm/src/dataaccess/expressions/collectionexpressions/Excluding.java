@@ -23,6 +23,5 @@ package dataaccess.expressions.collectionexpressions;
  * @model
  * @generated
  */
-public interface Excluding extends CollectionExpressionWithArgument
-{
+public interface Excluding extends CollectionExpressionWithArgument {
 } // Excluding

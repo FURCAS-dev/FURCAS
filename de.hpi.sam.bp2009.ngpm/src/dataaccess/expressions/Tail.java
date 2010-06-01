@@ -18,6 +18,5 @@ package dataaccess.expressions;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='IsOrdered'"
  * @generated
  */
-public interface Tail extends ObjectBasedExpression
-{
+public interface Tail extends ObjectBasedExpression {
 } // Tail

@@ -18,6 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface QueryInvocation extends EObject
-{
+public interface QueryInvocation extends EObject {
 } // QueryInvocation

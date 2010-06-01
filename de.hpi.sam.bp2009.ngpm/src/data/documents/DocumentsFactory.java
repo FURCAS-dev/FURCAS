@@ -16,32 +16,31 @@ import org.eclipse.emf.ecore.EFactory;
  * @see data.documents.DocumentsPackage
  * @generated
  */
-public interface DocumentsFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  DocumentsFactory eINSTANCE = data.documents.impl.DocumentsFactoryImpl.init();
+public interface DocumentsFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	DocumentsFactory eINSTANCE = data.documents.impl.DocumentsFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Dummy</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Dummy</em>'.
-   * @generated
-   */
-  Dummy createDummy();
+	/**
+	 * Returns a new object of class '<em>Dummy</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Dummy</em>'.
+	 * @generated
+	 */
+	Dummy createDummy();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  DocumentsPackage getDocumentsPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	DocumentsPackage getDocumentsPackage();
 
 } //DocumentsFactory

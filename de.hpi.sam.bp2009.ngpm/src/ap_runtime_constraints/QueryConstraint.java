@@ -18,6 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface QueryConstraint extends EObject
-{
+public interface QueryConstraint extends EObject {
 } // QueryConstraint

@@ -17,6 +17,5 @@ package dataaccess.expressions;
  * @model
  * @generated
  */
-public interface AsList extends ObjectBasedExpression
-{
+public interface AsList extends ObjectBasedExpression {
 } // AsList

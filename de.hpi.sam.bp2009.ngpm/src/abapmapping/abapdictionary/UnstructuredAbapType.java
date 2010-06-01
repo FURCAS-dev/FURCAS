@@ -21,6 +21,5 @@ package abapmapping.abapdictionary;
  * @model
  * @generated
  */
-public interface UnstructuredAbapType extends AbapType
-{
+public interface UnstructuredAbapType extends AbapType {
 } // UnstructuredAbapType

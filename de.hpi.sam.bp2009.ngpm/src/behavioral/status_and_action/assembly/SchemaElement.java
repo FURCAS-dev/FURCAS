@@ -18,6 +18,5 @@ import modelmanagement.NamedElement;
  * @model abstract="true"
  * @generated
  */
-public interface SchemaElement extends NamedElement
-{
+public interface SchemaElement extends NamedElement {
 } // SchemaElement

@@ -27,64 +27,63 @@ package dataaccess.expressions;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getEquals()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ConformaceOneWayOrAnother='self.left.getType().conformsTo(self.right.getType()) or\r\n  self.right.getType().conformsTo(self.left.getType())'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL ConformaceOneWayOrAnother='self.left.getType().conformsTo(self.right.getType()) or\n  self.right.getType().conformsTo(self.left.getType())'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConformaceOneWayOrAnother'"
  * @generated
  */
-public interface Equals extends Expression
-{
-  /**
-   * Returns the value of the '<em><b>Left</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Left</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Left</em>' containment reference.
-   * @see #setLeft(Expression)
-   * @see dataaccess.expressions.ExpressionsPackage#getEquals_Left()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='leftOfEquals'"
-   * @generated
-   */
-  Expression getLeft();
+public interface Equals extends Expression {
+	/**
+	 * Returns the value of the '<em><b>Left</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Left</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Left</em>' containment reference.
+	 * @see #setLeft(Expression)
+	 * @see dataaccess.expressions.ExpressionsPackage#getEquals_Left()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='leftOfEquals'"
+	 * @generated
+	 */
+	Expression getLeft();
 
-  /**
-   * Sets the value of the '{@link dataaccess.expressions.Equals#getLeft <em>Left</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Left</em>' containment reference.
-   * @see #getLeft()
-   * @generated
-   */
-  void setLeft(Expression value);
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.Equals#getLeft <em>Left</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Left</em>' containment reference.
+	 * @see #getLeft()
+	 * @generated
+	 */
+	void setLeft(Expression value);
 
-  /**
-   * Returns the value of the '<em><b>Right</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Right</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Right</em>' containment reference.
-   * @see #setRight(Expression)
-   * @see dataaccess.expressions.ExpressionsPackage#getEquals_Right()
-   * @model containment="true" required="true"
-   *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='rightOfEquals'"
-   * @generated
-   */
-  Expression getRight();
+	/**
+	 * Returns the value of the '<em><b>Right</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Right</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Right</em>' containment reference.
+	 * @see #setRight(Expression)
+	 * @see dataaccess.expressions.ExpressionsPackage#getEquals_Right()
+	 * @model containment="true" required="true"
+	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='rightOfEquals'"
+	 * @generated
+	 */
+	Expression getRight();
 
-  /**
-   * Sets the value of the '{@link dataaccess.expressions.Equals#getRight <em>Right</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Right</em>' containment reference.
-   * @see #getRight()
-   * @generated
-   */
-  void setRight(Expression value);
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.Equals#getRight <em>Right</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Right</em>' containment reference.
+	 * @see #getRight()
+	 * @generated
+	 */
+	void setRight(Expression value);
 
 } // Equals

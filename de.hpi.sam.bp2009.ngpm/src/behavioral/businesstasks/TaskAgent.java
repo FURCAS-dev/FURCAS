@@ -18,6 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TaskAgent extends EObject
-{
+public interface TaskAgent extends EObject {
 } // TaskAgent

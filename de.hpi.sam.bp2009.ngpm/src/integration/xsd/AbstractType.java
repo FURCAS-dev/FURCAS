@@ -17,6 +17,5 @@ package integration.xsd;
  * @model abstract="true"
  * @generated
  */
-public interface AbstractType extends NamedElement
-{
+public interface AbstractType extends NamedElement {
 } // AbstractType

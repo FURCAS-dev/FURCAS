@@ -16,50 +16,49 @@ import org.eclipse.emf.ecore.EFactory;
  * @see dataaccess.query.QueryPackage
  * @generated
  */
-public interface QueryFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  QueryFactory eINSTANCE = dataaccess.query.impl.QueryFactoryImpl.init();
+public interface QueryFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	QueryFactory eINSTANCE = dataaccess.query.impl.QueryFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Selection</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Selection</em>'.
-   * @generated
-   */
-  Selection createSelection();
+	/**
+	 * Returns a new object of class '<em>Selection</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Selection</em>'.
+	 * @generated
+	 */
+	Selection createSelection();
 
-  /**
-   * Returns a new object of class '<em>Oql Query</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Oql Query</em>'.
-   * @generated
-   */
-  OqlQuery createOqlQuery();
+	/**
+	 * Returns a new object of class '<em>Oql Query</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Oql Query</em>'.
+	 * @generated
+	 */
+	OqlQuery createOqlQuery();
 
-  /**
-   * Returns a new object of class '<em>From Clause</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>From Clause</em>'.
-   * @generated
-   */
-  FromClause createFromClause();
+	/**
+	 * Returns a new object of class '<em>From Clause</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>From Clause</em>'.
+	 * @generated
+	 */
+	FromClause createFromClause();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  QueryPackage getQueryPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	QueryPackage getQueryPackage();
 
 } //QueryFactory

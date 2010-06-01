@@ -23,6 +23,5 @@ package dataaccess.expressions;
  * @model
  * @generated
  */
-public interface This extends Expression
-{
+public interface This extends Expression {
 } // This

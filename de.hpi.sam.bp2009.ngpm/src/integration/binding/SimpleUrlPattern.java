@@ -27,32 +27,31 @@ package integration.binding;
  * @model
  * @generated
  */
-public interface SimpleUrlPattern extends UrlPattern
-{
-  /**
-   * Returns the value of the '<em><b>Base Url</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Base Url</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Base Url</em>' containment reference.
-   * @see #setBaseUrl(runtime.primitivetypes.String)
-   * @see integration.binding.BindingPackage#getSimpleUrlPattern_BaseUrl()
-   * @model containment="true"
-   * @generated
-   */
-  runtime.primitivetypes.String getBaseUrl();
+public interface SimpleUrlPattern extends UrlPattern {
+	/**
+	 * Returns the value of the '<em><b>Base Url</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Base Url</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Base Url</em>' attribute.
+	 * @see #setBaseUrl(String)
+	 * @see integration.binding.BindingPackage#getSimpleUrlPattern_BaseUrl()
+	 * @model
+	 * @generated
+	 */
+	String getBaseUrl();
 
-  /**
-   * Sets the value of the '{@link integration.binding.SimpleUrlPattern#getBaseUrl <em>Base Url</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Base Url</em>' containment reference.
-   * @see #getBaseUrl()
-   * @generated
-   */
-  void setBaseUrl(runtime.primitivetypes.String value);
+	/**
+	 * Sets the value of the '{@link integration.binding.SimpleUrlPattern#getBaseUrl <em>Base Url</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Base Url</em>' attribute.
+	 * @see #getBaseUrl()
+	 * @generated
+	 */
+	void setBaseUrl(String value);
 
 } // SimpleUrlPattern

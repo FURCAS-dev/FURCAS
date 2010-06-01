@@ -17,6 +17,5 @@ package behavioral.status_and_action.assembly;
  * @model
  * @generated
  */
-public interface Operator extends ConnectableElement
-{
+public interface Operator extends ConnectableElement {
 } // Operator

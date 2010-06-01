@@ -17,6 +17,5 @@ package dataaccess.expressions;
  * @model abstract="true"
  * @generated
  */
-public interface ExpressionWithArgument extends Expression, WithArgument
-{
+public interface ExpressionWithArgument extends Expression, WithArgument {
 } // ExpressionWithArgument

@@ -18,6 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Sort extends EObject
-{
+public interface Sort extends EObject {
 } // Sort

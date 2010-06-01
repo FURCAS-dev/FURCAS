@@ -18,6 +18,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ScopingContext extends EObject
-{
+public interface ScopingContext extends EObject {
 } // ScopingContext

@@ -21,6 +21,5 @@ package dataaccess.expressions.collectionexpressions;
  * @model
  * @generated
  */
-public interface IncludingAt extends Including, WithPosition
-{
+public interface IncludingAt extends Including, WithPosition {
 } // IncludingAt

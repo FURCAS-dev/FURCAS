@@ -17,6 +17,5 @@ package behavioral.status_and_action.design;
  * @model
  * @generated
  */
-public interface Action extends AbstractAction
-{
+public interface Action extends AbstractAction {
 } // Action

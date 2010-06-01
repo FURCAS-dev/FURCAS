@@ -16,41 +16,40 @@ import org.eclipse.emf.ecore.EFactory;
  * @see data.tuples.TuplesPackage
  * @generated
  */
-public interface TuplesFactory extends EFactory
-{
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  TuplesFactory eINSTANCE = data.tuples.impl.TuplesFactoryImpl.init();
+public interface TuplesFactory extends EFactory {
+	/**
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	TuplesFactory eINSTANCE = data.tuples.impl.TuplesFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Tuple Type Definition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Tuple Type Definition</em>'.
-   * @generated
-   */
-  TupleTypeDefinition createTupleTypeDefinition();
+	/**
+	 * Returns a new object of class '<em>Tuple Type Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Type Definition</em>'.
+	 * @generated
+	 */
+	TupleTypeDefinition createTupleTypeDefinition();
 
-  /**
-   * Returns a new object of class '<em>Tuple Element</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Tuple Element</em>'.
-   * @generated
-   */
-  TupleElement createTupleElement();
+	/**
+	 * Returns a new object of class '<em>Tuple Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Element</em>'.
+	 * @generated
+	 */
+	TupleElement createTupleElement();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  TuplesPackage getTuplesPackage();
+	/**
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
+	TuplesPackage getTuplesPackage();
 
 } //TuplesFactory

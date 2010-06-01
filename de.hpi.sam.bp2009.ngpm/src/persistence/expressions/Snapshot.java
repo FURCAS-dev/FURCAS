@@ -19,6 +19,5 @@ import dataaccess.expressions.ObjectBasedExpression;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SourceObjectIsOfClassType'"
  * @generated
  */
-public interface Snapshot extends ObjectBasedExpression
-{
+public interface Snapshot extends ObjectBasedExpression {
 } // Snapshot
