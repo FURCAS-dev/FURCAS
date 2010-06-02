@@ -436,11 +436,46 @@ public class RoseNode
 
   public boolean isUnique()
   {
+    // TODO consider changing the defaults to those of the Unisys/MOF tab (which is false)
+    for (RoseNode n : getNodes()) {
+      if (n.getKey().equals("attributes")) {
+        if (!n.getNodes().isEmpty()) {
+          for (RoseNode attribute : n.getNodes())
+          {
+            String tool = null;
+            String name = null;
+            String value = null;
+            for (RoseNode grandchild : attribute.getNodes())
+            {
+              if (grandchild.getKey().equals("tool"))
+              {
+                tool = grandchild.getValue();
+              }
+              else if (grandchild.getKey().equals("name"))
+              {
+                name = grandchild.getValue();
+              }
+              else if (grandchild.getKey().equals("value") && grandchild.getValue().equals("Text")
+                  && !grandchild.getNodes().isEmpty())
+              {
+                value = grandchild.getNodes().get(0).getValue();
+              }
+            }
+            if (tool.equals("\"MOF\"") && (name.equals("\"uml2mof.isUnique\"") || name.equals("\"rose2mof.return.isUnique\""))
+                && value.equalsIgnoreCase("\"true\""))
+            {
+              return true;
+            }
+          }
+        }
+      }
+    }
     String attributeValue = getAttributeValue("Ecore", "isUnique");
     return !"false".equalsIgnoreCase(attributeValue);
   }
 
   public boolean isOrdered() {
+    // TODO consider changing the defaults to those of the Unisys/MOF tab (which is false)
     for (RoseNode n : getNodes()) {
       if (n.getKey().equals("Constraints")) {
         StringTokenizer tokenizer = new StringTokenizer(n.getValue());
@@ -450,23 +485,37 @@ public class RoseNode
             return true;
           }
         }
-      } else if (n.getKey().equals("attributes")) {
-        if (!n.getNodes().isEmpty()) {
-          String tool = null;
-          String name = null;
-          String value = null;
-          for (RoseNode grandchild : n.getNodes().get(0).getNodes()) {
-            if (grandchild.getKey().equals("tool")) {
-              tool = grandchild.getValue();
-            } else if (grandchild.getKey().equals("name")) {
-              name = grandchild.getValue();
-            } else if (grandchild.getKey().equals("value") && grandchild.getValue().equals("Text") &&
-                !grandchild.getNodes().isEmpty()) {
-              value = grandchild.getNodes().get(0).getValue();
+      }
+      else if (n.getKey().equals("attributes"))
+      {
+        if (!n.getNodes().isEmpty())
+        {
+          for (RoseNode attribute : n.getNodes())
+          {
+            String tool = null;
+            String name = null;
+            String value = null;
+            for (RoseNode grandchild : attribute.getNodes())
+            {
+              if (grandchild.getKey().equals("tool"))
+              {
+                tool = grandchild.getValue();
+              }
+              else if (grandchild.getKey().equals("name"))
+              {
+                name = grandchild.getValue();
+              }
+              else if (grandchild.getKey().equals("value") && grandchild.getValue().equals("Text")
+                  && !grandchild.getNodes().isEmpty())
+              {
+                value = grandchild.getNodes().get(0).getValue();
+              }
             }
-          }
-          if (tool.equals("\"MOF\"") && name.equals("\"uml2mof.isOrdered\"") && value.equalsIgnoreCase("\"true\"")) {
-            return true;
+            if (tool.equals("\"MOF\"") && (name.equals("\"uml2mof.isOrdered\"") || name.equals("\"rose2mof.return.isOrdered\""))
+                && value.equalsIgnoreCase("\"true\""))
+            {
+              return true;
+            }
           }
         }
       }
