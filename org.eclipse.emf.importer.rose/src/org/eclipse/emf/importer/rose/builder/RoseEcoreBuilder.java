@@ -1169,8 +1169,8 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
   protected void setEOperationProperties(RoseNode roseNode, EOperation eOperation)
   {
     setETypedElementProperties(roseNode, eOperation);
-    eOperation.setOrdered(roseNode.isOrdered());
-    eOperation.setUnique(roseNode.isUnique());
+    eOperation.setOrdered(roseNode.isOrdered(true));
+    eOperation.setUnique(roseNode.isUnique(true));
     
     String semantics = roseNode.getSemantics();
     if (semantics != null && activateSemanticsTab)
@@ -1330,8 +1330,8 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     eAttribute.setTransient(roseNode.isTransient());
     eAttribute.setVolatile(roseNode.isVolatile());
     eAttribute.setChangeable(roseNode.isChangeable());
-    eAttribute.setOrdered(roseNode.isOrdered());
-    eAttribute.setUnique(roseNode.isUnique());
+    eAttribute.setOrdered(roseNode.isOrdered(true));
+    eAttribute.setUnique(roseNode.isUnique(true));
     eAttribute.setUnsettable(roseNode.isUnsettable());
     eAttribute.setID(roseNode.isID());
 
@@ -1351,8 +1351,8 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     eReference.setChangeable(roseNode.isChangeable());
     eReference.setResolveProxies(roseNode.isResolveProxies());
     eReference.setUnsettable(roseNode.isUnsettable());
-    eReference.setOrdered(roseNode.isOrdered());
-    eReference.setUnique(roseNode.isUnique());
+    eReference.setOrdered(roseNode.isOrdered(true));
+    eReference.setUnique(roseNode.isUnique(true));
 
     setEStructuralFeatureVisibility(roseNode, eReference);
   }
