@@ -1390,6 +1390,11 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       if (multiplicity == null) {
         multiplicity = roseNode.getStereotype(); // default
       }
+    } else if (eTypedElement instanceof EParameter) {
+      multiplicity = roseNode.getAttributeValue("MOF", "uml2mof.multiplicity");
+      if (multiplicity == null) {
+        multiplicity = roseNode.getStereotype(); // default
+      }
     } else {
         multiplicity = roseNode.getStereotype();
     }
@@ -1620,7 +1625,9 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       }
     }
     */
-    setEModelElementProperties(roseNode, eParameter);
+    setETypedElementProperties(roseNode, eParameter);
+    eParameter.setOrdered(roseNode.isOrdered(true));
+    eParameter.setUnique(roseNode.isUnique(true));
     String quid = roseNode.getRoseRefId();
     if (quid != null && !quid.equals(""))
     {

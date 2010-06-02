@@ -484,34 +484,34 @@ public class RoseNode
           }
         }
       }
-      // let MOF tab settings/defaults take precedence over the Ecore tab settings/defaults
-      String attributeValue = getAttributeValue("MOF", "uml2mof.isOrdered");
-      if (attributeValue == null)
+    }
+    // let MOF tab settings/defaults take precedence over the Ecore tab settings/defaults
+    String attributeValue = getAttributeValue("MOF", "uml2mof.isOrdered");
+    if (attributeValue == null)
+    {
+      attributeValue = getAttributeValue("MOF", "rose2mof.return.isOrdered");
+    }
+    if (attributeValue != null)
+    {
+      if ("true".equalsIgnoreCase(attributeValue))
       {
-        attributeValue = getAttributeValue("MOF", "rose2mof.return.isOrdered");
+        return true;
       }
-      if (attributeValue != null)
+      else
       {
-        if ("true".equalsIgnoreCase(attributeValue))
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
+        return false;
       }
-      attributeValue = getAttributeValue("Ecore", "isOrdered");
-      if (attributeValue != null)
+    }
+    attributeValue = getAttributeValue("Ecore", "isOrdered");
+    if (attributeValue != null)
+    {
+      if ("true".equalsIgnoreCase(attributeValue))
       {
-        if ("true".equalsIgnoreCase(attributeValue))
-        {
-          return true;
-        }
-        else
-        {
-          return false;
-        }
+        return true;
+      }
+      else
+      {
+        return false;
       }
     }
     return defaultValue;
@@ -838,6 +838,11 @@ public class RoseNode
                 break;
               }
               else if (objectType.equals(RoseStrings.OPERATION) && theName.equals(RoseStrings.DEFAULT_OPERATION))
+              {
+                attributeListNode = attribute.findNodeWithKey(RoseStrings.VALUE);
+                break;
+              }
+              else if (objectType.equals(RoseStrings.PARAMETER) && theName.equals(RoseStrings.DEFAULT_PARAMETER))
               {
                 attributeListNode = attribute.findNodeWithKey(RoseStrings.VALUE);
                 break;
