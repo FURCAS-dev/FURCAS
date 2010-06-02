@@ -5,12 +5,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.EvaluationVisitorImpl;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
@@ -44,62 +42,97 @@ import org.eclipse.ocl.utilities.PredefinedType;
 public class MappingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 
-
+    private boolean noMap=false; ;
+    private Object query2Result;
 
 
 
     @Override
     public Object visitExpression(OCLExpression<C> expression) {
+
+        try {
+
+            if (wasNoMap()){
+                return super.visitExpression(expression);
+            }
+            else{
+                return expression.accept(getVisitor());
+            }
+        } catch (EvaluationHaltedException e) {
+            // evaluation stopped on demand, propagate further
+            throw e;
+        } catch (RuntimeException e) {
+            String msg = e.getLocalizedMessage();
+            noMap=true;
+            // failure to evaluate results in invalid
+
+            return super.visitExpression(expression);
+
+        }
+
         // TODO Check if expression has a self variable, if so there must be a context, this should be replaced by allInstances
-        return super.visitExpression(expression);
+
     }
+
+    public boolean wasNoMap() {
+
+        return noMap;}
 
     @SuppressWarnings("unchecked")
     @Override
     public Object visitOperationCallExp(OperationCallExp<C, O> oc) {
-        int opCode = oc.getOperationCode();
-        if(opCode==PredefinedType.ALL_INSTANCES){
-            Set<EObject> allO = new HashSet<EObject>();
-
-            if(!getExtentMap().values().isEmpty()){
-                /*
-                 * TODO  why only take the first EClassifier as COntext
-                 */
-                Iterator<? extends E> list = getExtentMap().values().iterator().next().iterator();
-                while(list.hasNext())
-                    allO.add((EObject)list.next());
-            }
-            OCLExpression<?> ocSource = oc.getSource();
-
-            Object ocType=null;
-            if (ocSource instanceof TypeExp<?>){
-                ocType = ((TypeExp<?>) ocSource).getReferredType();
-            }
-            /**
-             * only if there is an Iteratorexp in Container, call query 2
-             * otherwise think about a fallback, call super or query2 yet
-             */
-            if (oc.eContainer()instanceof IteratorExp<?, ?>){
-                IteratorExp<C, PM> ie = (IteratorExp<C, PM>) oc.eContainer();
-                OCLExpression<C> body = ie.getBody();
-                result = Query2.buildMqlQuery(allO, ocType, body, ie, this); 
-                if (result == null)
-                  //traverse the AST from beginning
-                    return super.visitExpression(ie);
-                else
-                    return result;
-
-            }else{
-                //traverse the AST from beginning
-                OCLExpression<C> oclExp = (OCLExpression<C>) oc.eContainer();
-                return super.visitExpression(oclExp);
-            }
-
-        }else{
-            //if there isn't any allInstances()
+        if(wasNoMap()){
             return super.visitOperationCallExp(oc);
         }
+        else{
+            int opCode = oc.getOperationCode();
+            if(opCode==PredefinedType.ALL_INSTANCES){
+                Set<EObject> allO = new HashSet<EObject>();
 
+                if(!getExtentMap().values().isEmpty()){
+                    /*
+                     * TODO  why only take the first EClassifier as COntext
+                     */
+                    Iterator<? extends E> list = getExtentMap().values().iterator().next().iterator();
+                    while(list.hasNext())
+                        allO.add((EObject)list.next());
+                }
+                OCLExpression<?> ocSource = oc.getSource();
+
+                Object ocType=null;
+                if (ocSource instanceof TypeExp<?>){
+                    ocType = ((TypeExp<?>) ocSource).getReferredType();
+                }
+                /**
+                 * the expression must have the form allInstances()->IteratorExp(body)
+                 * otherwise traverse the AST from beginning
+                 */
+                if (oc.eContainer()instanceof IteratorExp<?, ?>){
+                    IteratorExp<C, PM> ie = (IteratorExp<C, PM>) oc.eContainer();
+                    OCLExpression<C> body = ie.getBody();
+                    query2Result = Query2.buildMqlQuery(allO, ocType, body, ie, this); 
+                    if (query2Result == null){
+                        //if the query2 fail traverse the AST from beginning
+                        noMap = true;
+                        OCLExpression<C> oclExp = (OCLExpression<C>) oc.eContainer();
+                        return visitExpression(oclExp);}
+                    else
+                        return query2Result;
+
+                }else{
+                    // if the expression has another form, traverse the AST from beginning
+                    noMap=true;
+                    OCLExpression<C> oclExp = (OCLExpression<C>) oc.eContainer();
+                    return visitExpression(oclExp);
+                }
+
+            }else{
+                //if there isn't any allInstances()
+                noMap=true;
+                OCLExpression<C> oclExp = (OCLExpression<C>) oc.eContainer();
+                return visitExpression(oclExp);
+            }
+        }
     }
 
     @Override
@@ -112,41 +145,43 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
     @Override
     public Object visitIteratorExp(IteratorExp<C, PM> ie) {
 
-        // TODO fallback if there is an opCallExp and select etc. but no allInstances()
-
-        if (ie.getSource() instanceof OperationCallExp<?, ?>){
-            switch (OCLStandardLibraryUtil.getOperationCode(ie.getName())) {
-            case PredefinedType.EXISTS:
-                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-            case PredefinedType.FOR_ALL:
-                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-            case PredefinedType.SELECT:
-                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-                //            case PredefinedType.REJECT:
-                //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-            case PredefinedType.COLLECT:
-                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-            case PredefinedType.COLLECT_NESTED:
-                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-                //            case PredefinedType.ONE:
-                //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-            case PredefinedType.ANY:
-                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-                //            case PredefinedType.SORTED_BY:
-                //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-                //            case PredefinedType.IS_UNIQUE:
-                //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-                //            case PredefinedType.CLOSURE:
-                //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-            default: return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
-            }
+        if(wasNoMap()){
+            return super.visitIteratorExp(ie);
         }
-
         else{
+            if (ie.getSource() instanceof OperationCallExp<?, ?>){
+                switch (OCLStandardLibraryUtil.getOperationCode(ie.getName())) {
+                case PredefinedType.EXISTS:
+                    return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                case PredefinedType.FOR_ALL:
+                    return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                case PredefinedType.SELECT:
+                    return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                    //            case PredefinedType.REJECT:
+                    //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                case PredefinedType.COLLECT:
+                    return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                case PredefinedType.COLLECT_NESTED:
+                    return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                    //            case PredefinedType.ONE:
+                    //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                case PredefinedType.ANY:
+                    return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                    //            case PredefinedType.SORTED_BY:
+                    //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                    //            case PredefinedType.IS_UNIQUE:
+                    //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                    //            case PredefinedType.CLOSURE:
+                    //                return visitOperationCallExp((OperationCallExp<C, O>) ie.getSource());
+                default: return super.visitIteratorExp(ie);
+                }
+            }
 
-            return super.visitIteratorExp(ie);}
+            else{
 
+                return super.visitIteratorExp(ie);}
 
+        }
     }
 
     @Override

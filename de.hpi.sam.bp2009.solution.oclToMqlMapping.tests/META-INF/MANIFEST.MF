@@ -7,7 +7,11 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.junit,
  org.eclipse.ocl,
  org.eclipse.ocl.ecore,
- de.hpi.sam.bp2009.solution.oclToMqlMapping
+ de.hpi.sam.bp2009.solution.oclToMqlMapping,
+ de.hpi.sam.bp2009.ngpm,
+ de.hpi.sam.bp2009.solution.impactAnalyzer.tests,
+ de.hpi.sam.bp2009.company
 Import-Package: company,
  data.classes,
- de.hpi.sam.petriNet
+ de.hpi.sam.petriNet,
+ org.eclipse.emf.query2

@@ -56,8 +56,8 @@ public class MappingOCL extends OCL{
 
         EvaluationVisitor<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ev ;
         ev = new MappingEvaluationVisitor(getEnvironment(), localEvalEnv, extents);
-        
-        
+
+
         Object result;
 
         try {
@@ -84,17 +84,17 @@ public class MappingOCL extends OCL{
             Variable<EClassifier, EParameter> contextVariable = specification.getContextVariable();
             if (contextVariable != null) {
                 EClassifier contextClassifier = contextVariable.getType();
-                //                            
-                //                            if ((contextClassifier != null) && env.getUMLReflection().isStereotype(
-                //                                            contextClassifier)) {
-                //                                    
-                //                                    Object application = env.getUMLReflection().getStereotypeApplication(
-                //                                                    element, contextClassifier);
-                //                                    
-                //                                    if (application != null) {
-                //                                            result = application;
-                //                                    }
-                //                            }
+
+                if ((contextClassifier != null) && env.getUMLReflection().isStereotype(
+                        contextClassifier)) {
+
+                    Object application = env.getUMLReflection().getStereotypeApplication(
+                            element, contextClassifier);
+
+                    if (application != null) {
+                        result = application;
+                    }
+                }
             }
         }
 

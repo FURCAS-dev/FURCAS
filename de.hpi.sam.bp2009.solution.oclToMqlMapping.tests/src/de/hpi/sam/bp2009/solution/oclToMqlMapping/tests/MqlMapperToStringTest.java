@@ -47,7 +47,7 @@ public class MqlMapperToStringTest extends TestCase {
         expressionStringComplete = "Place.allInstances()->select(p : Place| p.noTokens = 2)";
         expressionStringBody = "p.noTokens=2";
         expressionStringCollectNavigation ="Place.allInstances()->collect(p|p.outgoingArcs)";
-        expressionStringCollectBody="Arc, outgoingArcs, Node";
+        expressionStringCollectBody="p.outgoingArcs";
 
         MappingOCL ocl = MappingOCL.newInstance();
         Helper oclhelper=(Helper) ocl.createOCLHelper();
