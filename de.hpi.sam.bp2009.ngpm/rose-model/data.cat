@@ -1,7 +1,7 @@
 
 (object Petal
     version    	50
-    _written   	"Rose 8.3.0407.2800"
+    _written   	"Rose 8.5.0506.2811"
     charSet    	0)
 
 (object Class_Category "data"
@@ -604,11 +604,11 @@
 				    value      	(value Text 
 |context SapClass::delegatesTo():Set(SapClass)
 |body:
-|  if self.oclIsKindOf(ParameterizedClassInstantiation) then
-|    self.oclAsType(ParameterizedClassInstantiation).parameterizedClass.delegatesTo()
+|  if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then
+|    self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.delegatesTo()
 |  else
-|    if self.oclIsKindOf(FormalTypeParameter) then
-|      self.oclAsType(FormalTypeParameter).typeConstraint->collect(c:SapClass | c.delegatesTo())->flatten()->asSet()
+|    if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+|      self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.delegatesTo())->flatten()->asSet()
 |    else
 |      -- TODO improve OCL impact analysis algorithm so that this doesn't kill performance:
 |      -- Set{}  -- use this for good performance
@@ -654,9 +654,9 @@
 |     true
 |  else
 |    self.adapters->exists(a|a.to.conformsToExcluding(type, excludingConforming->including(self), excludingTo->including(type))) or
-|    (if self.oclIsKindOf(FormalTypeParameter) then
-|        if self.oclAsType(FormalTypeParameter).typeConstraint->notEmpty() then
-|            self.oclAsType(FormalTypeParameter).typeConstraint.conformsToExcluding(type, excludingConforming->including(self), excludingTo->including(type))
+|    (if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+|        if self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->notEmpty() then
+|            self.oclAsType(data::generics::FormalTypeParameter).typeConstraint.conformsToExcluding(type, excludingConforming->including(self), excludingTo->including(type))
 |        else
 |            false
 |        endif
@@ -827,11 +827,11 @@
 |context SapClass::adaptedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)
 |body:
 |  if excluding->count(self)=0 then
-|    if self.oclIsKindOf(ParameterizedClassInstantiation) then
-|      self.oclAsType(ParameterizedClassInstantiation).parameterizedClass.adaptedSignaturesExcluding(excluding->including(self))
+|    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then
+|      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.adaptedSignaturesExcluding(excluding->including(self))
 |    else
-|      if self.oclIsKindOf(FormalTypeParameter) then
-|        self.oclAsType(FormalTypeParameter).typeConstraint->collect(c:SapClass | c.adaptedSignaturesExcluding(excluding->including(self)))->flatten()->asSet()
+|      if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+|        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.adaptedSignaturesExcluding(excluding->including(self)))->flatten()->asSet()
 |      else
 |        self.adapters.allSignaturesExcluding(excluding->including(self))
 |          ->select(s | not self.ownedSignatures->exists(os | os.conformsTo(s)))
@@ -889,11 +889,11 @@
 |context SapClass::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)
 |body:
 |  if excluding->count(self)=0 then
-|    if self.oclIsKindOf(ParameterizedClassInstantiation) then
-|      self.oclAsType(ParameterizedClassInstantiation).parameterizedClass.allSignaturesExcluding(excluding->including(self))
+|    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then
+|      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.allSignaturesExcluding(excluding->including(self))
 |    else
-|      if self.oclIsKindOf(FormalTypeParameter) then
-|        self.oclAsType(FormalTypeParameter).typeConstraint->collect(c:SapClass | c.allSignaturesExcluding(excluding->including(self)))->flatten()->asSet()
+|      if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+|        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.allSignaturesExcluding(excluding->including(self)))->flatten()->asSet()
 |      else
 |        self.signaturesWithDelegationExcluding(excluding)->union(self.adaptedSignaturesExcluding(excluding))
 |      endif
@@ -948,11 +948,11 @@
 |context SapClass::signaturesWithDelegationExcluding(excluding:Set(SapClass)):Set(MethodSignature)
 |body:
 |if excluding->count(self)=0 then 
-|    if self.oclIsKindOf(ParameterizedClassInstantiation) then
-|      self.oclAsType(ParameterizedClassInstantiation).parameterizedClass.signaturesWithDelegationExcluding(excluding->including(self))
+|    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then
+|      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.signaturesWithDelegationExcluding(excluding->including(self))
 |    else
-|      if self.oclIsKindOf(FormalTypeParameter) then
-|        self.oclAsType(FormalTypeParameter).typeConstraint->collect(c:SapClass | c.signaturesWithDelegationExcluding(excluding->including(self)))->flatten()->asSet()
+|      if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+|        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint->collect(c:SapClass | c.signaturesWithDelegationExcluding(excluding->including(self)))->flatten()->asSet()
 |      else
 |        self.ownedSignatures->union(self.delegatesTo().signaturesWithDelegationExcluding(excluding->including(self)))->flatten()->asSet()
 |      endif
@@ -1417,40 +1417,40 @@
 |  if self.ownedTypeDefinition->notEmpty() then
 |    self.ownedTypeDefinition
 |  else
-|    if self.oclIsKindOf(Variable) then
-|      self.oclAsType(Variable).initExpression.getType()
-|    else if self.oclIsKindOf(Constant) then
-|      if self.oclAsType(Constant).initExpression->notEmpty() then
-|        self.oclAsType(Constant).initExpression.getType()
+|    if self.oclIsKindOf(behavioral::actions::Variable) then
+|      self.oclAsType(behavioral::actions::Variable).initExpression.getType()
+|    else if self.oclIsKindOf(behavioral::actions::Constant) then
+|      if self.oclAsType(behavioral::actions::Constant).initExpression->notEmpty() then
+|        self.oclAsType(behavioral::actions::Constant).initExpression.getType()
 |      else
-|         if self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator]->notEmpty() then
-|           if self.oclAsType(Constant).initExpression->notEmpty() then
-|             self.oclAsType(Constant).initExpression.getType()
+|         if self.oclAsType(behavioral::actions::Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator]->notEmpty() then
+|           if self.oclAsType(behavioral::actions::Constant).initExpression->notEmpty() then
+|             self.oclAsType(behavioral::actions::Constant).initExpression.getType()
 |           else
-|             self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()
+|             self.oclAsType(behavioral::actions::Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()
 |           endif
 |         else
 |           null
 |         endif
 |      endif
-|    else if self.oclIsKindOf(Iterator) then
-|      if self.oclAsType(Iterator).boundToFor->notEmpty() then
-|        if self.oclAsType(Iterator).boundToFor.collection.getType().oclIsKindOf(NestedTypeDefinition) then
+|    else if self.oclIsKindOf(behavioral::actions::Iterator) then
+|      if self.oclAsType(behavioral::actions::Iterator).boundToFor->notEmpty() then
+|        if self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclIsKindOf(data::classes::NestedTypeDefinition) then
 |          -- if the selection's object has a nested type definition, un-nest by one level
-|          self.oclAsType(Iterator).boundToFor.collection.getType().oclAsType(NestedTypeDefinition).type
+|          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclAsType(data::classes::NestedTypeDefinition).type
 |        else
 |          -- the tool should infer a better match; this as a better default than "null"
-|          self.oclAsType(Iterator).boundToFor.collection.getType()
+|          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType()
 |        endif
 |      else
-|        let selection:Set(Expression)=self.oclAsType(Iterator).selection.object->asSet() in
-|        let groupby:Set(Expression)=self.oclAsType(Iterator).factOfGroupBy.object->asSet() in
-|        let iterateexp:Set(Expression)=self.oclAsType(Iterator)."iterate".source->asSet() in
-|        let iteratesource:Set(Expression)=selection->union(groupby)->union(iterateexp) in
+|        let selection:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).selection.object->asSet() in
+|        let groupby:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object->asSet() in
+|        let iterateexp:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator)."iterate".source->asSet() in
+|        let iteratesource:Set(dataaccess::expressions::Expression)=selection->union(groupby)->union(iterateexp) in
 |        if iteratesource->notEmpty() then
-|          if iteratesource->any(true).getType().oclIsKindOf(NestedTypeDefinition) then
+|          if iteratesource->any(true).getType().oclIsKindOf(data::classes::NestedTypeDefinition) then
 |            -- if the Selection's/GroupBy's object has a nested type definition, un-nest by one level
-|            iteratesource->any(true).getType().oclAsType(NestedTypeDefinition).type
+|            iteratesource->any(true).getType().oclAsType(data::classes::NestedTypeDefinition).type
 |          else
 |            -- In this case the tool should create a cloned tpye definition with multiplicities set to 1;
 |            -- Just in case the tool doesn't do this and for the case where the object has upper
@@ -1458,13 +1458,13 @@
 |            iteratesource->any(true).getType()
 |          endif
 |        else
-|          if self.oclAsType(Iterator).groupedFactsOfGroupBy->notEmpty() then
+|          if self.oclAsType(behavioral::actions::Iterator).groupedFactsOfGroupBy->notEmpty() then
 |            -- the groups of a group-by expression can re-used the facts type
-|            self.oclAsType(Iterator).factOfGroupBy.object.getType()
+|            self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object.getType()
 |          else
-|            if self.oclAsType(Iterator).dimension->notEmpty() then
+|            if self.oclAsType(behavioral::actions::Iterator).dimension->notEmpty() then
 |              -- the DimensionDefinition's expression defines the dimension iterator's type
-|              self.oclAsType(Iterator).dimension.expression.getType()
+|              self.oclAsType(behavioral::actions::Iterator).dimension.expression.getType()
 |            else
 |              -- Then we have no idea how to infer the Iterator's type
 |              null
@@ -1472,10 +1472,10 @@
 |          endif
 |        endif
 |      endif
-|    else if self.oclIsKindOf(Including) or self.oclIsKindOf(Excluding) then
-|      self.oclAsType(CollectionExpression).source.getType()
-|    else if self.oclIsKindOf(Iterate) then
-|      self.oclAsType(Iterate).iteratorExpression.getType()
+|    else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Including) or self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Excluding) then
+|      self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.getType()
+|    else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then
+|      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.getType()
 |    else if self.oclIsKindOf(Parameter) then
 |      if self.oclAsType(Parameter).defaultValue->notEmpty() then
 |        self.oclAsType(Parameter).defaultValue.getType()
@@ -1500,12 +1500,12 @@
 |                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.factsType
 |                  endif
 |                else
-|                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclIsKindOf(CellSet) then
+|                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclIsKindOf(dataaccess::analytics::CellSet) then
 |                    let pos:Integer = self.oclAsType(Parameter).ownerSignature.input->indexOf(self.oclAsType(Parameter)) in
 |                    if pos = 1 then
-|                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(CellSet).factsType
+|                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).factsType
 |                    else
-|                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(CellSet).
+|                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).
 |                          dimensions->at(-1+pos).characteristicFunction.output
 |                    endif
 |                  else
@@ -1519,28 +1519,28 @@
 |          endif
 |        endif
 |      endif
-|    else if self.oclIsKindOf(DimensionExpression) then
+|    else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then
 |      -- TODO Here, the multiplicity would have to be forced to 0..*
-|      self.oclAsType(DimensionExpression).dimension.getType()
-|    else if self.oclIsKindOf(VariableExpression) then
-|      self.oclAsType(VariableExpression).variable.getType()
-|    else if self.oclIsKindOf(SignatureCallExpression) then
-|      self.oclAsType(SignatureCallExpression).getSignature().output
-|    else if self.oclIsKindOf(AssociationEndNavigationExpression) then
-|      self.oclAsType(AssociationEndNavigationExpression).toEnd.type
-|    else if self.oclIsKindOf(Replace) then
-|      self.oclAsType(Replace).object.getType()
-|    else if self.oclIsKindOf(Ternary) then
+|      self.oclAsType(dataaccess::analytics::DimensionExpression).dimension.getType()
+|    else if self.oclIsKindOf(dataaccess::expressions::VariableExpression) then
+|      self.oclAsType(dataaccess::expressions::VariableExpression).variable.getType()
+|    else if self.oclIsKindOf(dataaccess::expressions::SignatureCallExpression) then
+|      self.oclAsType(dataaccess::expressions::SignatureCallExpression).getSignature().output
+|    else if self.oclIsKindOf(dataaccess::expressions::AssociationEndNavigationExpression) then
+|      self.oclAsType(dataaccess::expressions::AssociationEndNavigationExpression).toEnd.type
+|    else if self.oclIsKindOf(dataaccess::expressions::Replace) then
+|      self.oclAsType(dataaccess::expressions::Replace).object.getType()
+|    else if self.oclIsKindOf(dataaccess::expressions::Ternary) then
 |      -- Find the "least" TypeDefinition to which both, trueExpr.getType() and falseExpr.getType() conform.
 |      -- We determine the more general of the two types; we cannot synthesize a new TypeDefinition in OCL.
 |      -- Doing so would have to be done by explicit typing, setting the ownedTypeDefinition explicitly
-|      if self.oclAsType(Ternary).trueExpr.getType().conformsTo(self.oclAsType(Ternary).falseExpr.getType()) then
-|        self.oclAsType(Ternary).falseExpr.getType()
+|      if self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType().conformsTo(self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()) then
+|        self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()
 |      else
-|        self.oclAsType(Ternary).trueExpr.getType()
+|        self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType()
 |      endif
-|    else if self.oclIsKindOf(Selection) then
-|      self.oclAsType(Selection).object.getType()
+|    else if self.oclIsKindOf(dataaccess::query::Selection) then
+|      self.oclAsType(dataaccess::query::Selection).object.getType()
 |    else
 |      null
 |    endif
@@ -2320,8 +2320,8 @@
 |  endif)->union(
 |
 |  if self.ownerTypedElement->notEmpty() then
-|    if self.ownerTypedElement.oclIsKindOf(Expression) then
-|      self.ownerTypedElement.oclAsType(Expression).getNamedValuesInScope()
+|    if self.ownerTypedElement.oclIsKindOf(dataaccess::expressions::Expression) then
+|      self.ownerTypedElement.oclAsType(dataaccess::expressions::Expression).getNamedValuesInScope()
 |    else
 |      if self.ownerTypedElement.oclIsKindOf(NamedValue) then
 |        self.ownerTypedElement.oclAsType(NamedValue).getNamedValuesInScope()
@@ -2852,12 +2852,12 @@
 |    if self.oclIsKindOf(Parameter) then
 |      self.oclAsType(Parameter).ownerSignature.getNamedValuesInScope()
 |    else
-|      if self.oclIsKindOf(Iterator) then
-|        self.oclAsType(Iterator).boundToFor.getNamedValuesInScope()->asSet()->union(
-|        self.oclAsType(Iterator)."iterate".getNamedValuesInScope()->asSet())
+|      if self.oclIsKindOf(behavioral::actions::Iterator) then
+|        self.oclAsType(behavioral::actions::Iterator).boundToFor.getNamedValuesInScope()->asSet()->union(
+|        self.oclAsType(behavioral::actions::Iterator)."iterate".getNamedValuesInScope()->asSet())
 |      else
-|        if self.oclIsKindOf(Constant) then
-|          self.oclAsType(Constant)."iterate".getNamedValuesInScope()
+|        if self.oclIsKindOf(behavioral::actions::Constant) then
+|          self.oclAsType(behavioral::actions::Constant)."iterate".getNamedValuesInScope()
 |        else
 |          Set{}    -- TODO further cases?
 |        endif
@@ -2961,11 +2961,11 @@
 				    value      	(value Text 
 |context FunctionSignatureImplementation::isSideEffectFree():Boolean
 |body:
-|  if self.oclIsKindOf(Block) then
-|    self.oclAsType(Block).localIsSideEffectFree()
+|  if self.oclIsKindOf(behavioral::actions::Block) then
+|    self.oclAsType(behavioral::actions::Block).localIsSideEffectFree()
 |  else
-|    if self.oclIsKindOf(CellSet) then
-|      self.oclAsType(CellSet).localIsSideEffectFree()
+|    if self.oclIsKindOf(dataaccess::analytics::CellSet) then
+|      self.oclAsType(dataaccess::analytics::CellSet).localIsSideEffectFree()
 |    else
 |      false
 |    endif
@@ -4005,6 +4005,7 @@
 				fill_color 	13434879
 				nlines     	5
 				max_width  	947
+				justify    	1
 				label      	"TODO: Model propagation attributes for association ends (e.g., equality, delete, copy). This may also be related to differences between Entity and Value classes.")
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -4067,6 +4068,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@4
+				location   	(285, 623)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	1
+				max_width  	0
+				justify    	1)
 			    width      	434
 			    height     	136
 			    annotation 	8
@@ -4698,6 +4717,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@35
+				location   	(992, 1363)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0
+				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -4917,6 +4954,7 @@
 				fill_color 	13434879
 				nlines     	11
 				max_width  	1321
+				justify    	1
 				label      	
 |Describes the "Delegation" pattern. Instead of implementation inheritance, an association to the respective type can be used and marked as delegating. All features exposed by the association's other end's type are then also exposed by the class. If not all but only a few of the features shall be exposed, those can be explicitly marked for delegation.
 |If all features are exposed, the delegating class thus becomes conforming to the delegate class.
@@ -4943,6 +4981,7 @@
 				fill_color 	13434879
 				nlines     	9
 				max_width  	721
+				justify    	1
 				label      	
 |TODO: Add feature exposure for partial delegation;
 |Add a way to rename features during delegation (the "Projection" idea).
@@ -5530,6 +5569,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@72
+				location   	(2387, 1099)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	1
+				max_width  	0
+				justify    	1)
 			    width      	434
 			    height     	136
 			    annotation 	8
@@ -5748,6 +5805,7 @@
 				fill_color 	13434879
 				nlines     	6
 				max_width  	722
+				justify    	1
 				label      	"If FunctionSignatureTypeDefinition is also to be used for functions derived from (methods + this), then the signature may as well be a MethodSignature.")
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -5809,6 +5867,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@84
+				location   	(1677, 628)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0
+				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -6572,6 +6648,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@123
+				location   	(767, 958)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	1
+				max_width  	0
+				justify    	1)
 			    width      	412
 			    height     	134
 			    annotation 	8
@@ -7104,23 +7198,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
-			    compartment 	(object Compartment
-				Parent_View 	@148
-				location   	(2005, 1391)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	7
-				max_width  	0)
 			    width      	442
 			    height     	282
 			    annotation 	8
@@ -7417,6 +7494,7 @@
 				fill_color 	13434879
 				nlines     	5
 				max_width  	847
+				justify    	1
 				label      	
 |TODO: When an object's type A c
 |onforms to a class B and there are contexts defined for B, will the B contexts w
@@ -7636,6 +7714,7 @@
 				fill_color 	13434879
 				nlines     	4
 				max_width  	672
+				justify    	1
 				label      	"name needs to be a derived property since for Signature it may be computed based on the implementation.")
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -7725,6 +7804,7 @@
 				anchor     	2
 				nlines     	1
 				max_width  	1956
+				justify    	1
 				compartmentItems 	(list Compartment
 				    "+ conformsTo(s : Signature) : Boolean"
 				    "+ conformsToExcluding(s : Signature, excludingConforming : SapClass, excludingTo : SapClass) : Boolean"))
@@ -7963,6 +8043,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@185
+				location   	(1360, 1065)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	1
+				max_width  	0
+				justify    	1)
 			    width      	434
 			    height     	136
 			    annotation 	8
@@ -9164,6 +9262,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47F112210022"
+			    compartment 	(object Compartment
+				Parent_View 	@246
+				location   	(330, 2040)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	5
+				max_width  	0
+				justify    	1)
 			    width      	508
 			    height     	336
 			    annotation 	8
@@ -9194,6 +9310,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@247
+				location   	(1694, 1416)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	22
+				max_width  	0
+				justify    	1)
 			    width      	986
 			    height     	1186
 			    annotation 	8
@@ -9706,6 +9840,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@273
+				location   	(225, 1206)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0
+				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -10861,6 +11013,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@327
+				location   	(211, 141)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0
+				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -11099,6 +11269,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4522A56F0149"
+			    compartment 	(object Compartment
+				Parent_View 	@338
+				location   	(367, 509)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	2
+				max_width  	0
+				justify    	1)
 			    width      	552
 			    height     	186
 			    annotation 	8
@@ -11334,6 +11522,7 @@
 				fill_color 	13434879
 				nlines     	7
 				max_width  	896
+				justify    	1
 				label      	
 |TODO / Idea: make Signature inherit from TypedElement, replacing the "output" association. This would allow the result type to be inferred if possible or being overridden by an explicit type definition.
 				)
@@ -11367,6 +11556,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4974995A0069"
+			    compartment 	(object Compartment
+				Parent_View 	@349
+				location   	(180, 2216)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	2
+				max_width  	0
+				justify    	1)
 			    width      	656
 			    height     	186
 			    annotation 	8
@@ -11651,6 +11858,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47B9A97A00CB"
+			    compartment 	(object Compartment
+				Parent_View 	@365
+				location   	(54, 962)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	10
+				max_width  	0
+				justify    	1)
 			    width      	818
 			    height     	586
 			    annotation 	8
@@ -11681,6 +11906,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@366
+				location   	(2384, 2244)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	22
+				max_width  	0
+				justify    	1)
 			    width      	419
 			    height     	363
 			    annotation 	8)
@@ -11788,6 +12031,7 @@
 				anchor     	2
 				nlines     	3
 				max_width  	1956
+				justify    	1
 				compartmentItems 	(list Compartment
 				    "+ conformsTo(s : Signature) : Boolean"
 				    "+ conformsToExcluding(s : Signature, excludingConforming : SapClass, excludingTo : SapClass) : Boolean"))
@@ -12696,6 +12940,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@414
+				location   	(1843, 1098)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	1
+				max_width  	0
+				justify    	1)
 			    width      	456
 			    height     	213
 			    annotation 	8)
@@ -12725,6 +12987,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47F112210022"
+			    compartment 	(object Compartment
+				Parent_View 	@415
+				location   	(768, 1070)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	5
+				max_width  	0
+				justify    	1)
 			    width      	508
 			    height     	336
 			    annotation 	8
@@ -13379,6 +13659,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@446
+				location   	(963, 193)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0
+				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -13519,6 +13817,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4522A56F0149"
+			    compartment 	(object Compartment
+				Parent_View 	@452
+				location   	(1144, 752)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	2
+				max_width  	0
+				justify    	1)
 			    width      	552
 			    height     	186
 			    annotation 	8
@@ -13679,23 +13995,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47F3B80500BD"
-			    compartment 	(object Compartment
-				Parent_View 	@458
-				location   	(5786, 1421)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	0)
 			    width      	568
 			    height     	282
 			    annotation 	8
@@ -13816,23 +14115,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47A0757E02EC"
-			    compartment 	(object Compartment
-				Parent_View 	@462
-				location   	(9043, 1421)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	2
-				max_width  	0)
 			    width      	504
 			    height     	232
 			    annotation 	8
@@ -15093,23 +15375,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
-			    compartment 	(object Compartment
-				Parent_View 	@522
-				location   	(5494, 864)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	7
-				max_width  	0)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -15406,23 +15671,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47D67D15030D"
-			    compartment 	(object Compartment
-				Parent_View 	@543
-				location   	(303, 277)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	2
-				max_width  	259)
 			    width      	370
 			    height     	186
 			    annotation 	8
@@ -15794,23 +16042,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4784F7E800AB"
-			    compartment 	(object Compartment
-				Parent_View 	@560
-				location   	(2016, 1092)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	587)
 			    width      	608
 			    height     	236
 			    annotation 	8
@@ -15858,7 +16089,8 @@
 				fill_color 	16777215
 				anchor     	2
 				nlines     	1
-				max_width  	412)
+				max_width  	412
+				justify    	1)
 			    width      	434
 			    height     	136
 			    annotation 	8
@@ -15910,7 +16142,7 @@
 					label      	"+converterBetweenParametrizations"
 					pctDist    	-0.372549
 					height     	151
-					orientation 	1)
+					orientation 	0)
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"49B15A620399"
@@ -16870,23 +17102,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
-			    compartment 	(object Compartment
-				Parent_View 	@609
-				location   	(1140, 1841)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	7
-				max_width  	532)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -17152,7 +17367,7 @@
 					(1131, 1834))
 				    line_style 	3
 				    origin_attachment 	(462, 1834)
-				    terminal_attachment 	(1131, 1854)
+				    terminal_attachment 	(1131, 1834)
 				    label      	(object SegLabel @623
 					Parent_View 	@621
 					location   	(1064, 1781)
@@ -17239,23 +17454,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
-			    compartment 	(object Compartment
-				Parent_View 	@625
-				location   	(358, 920)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	7
-				max_width  	0)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -17558,8 +17756,8 @@
 |context Constraint
 |inv:
 |  self.constraintExpression.getType().upperMultiplicity = 1 and
-|  self.constraintExpression.getType().oclIsKindOf(ClassTypeDefinition) and
-|  self.constraintExpression.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Boolean'
+|  self.constraintExpression.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+|  self.constraintExpression.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Boolean'
 					)
 				    opExportControl 	"Public"
 				    uid        	0)))
@@ -17775,6 +17973,7 @@
 				fill_color 	13434879
 				nlines     	6
 				max_width  	628
+				justify    	1
 				label      	"Similar to CCTS qualifications or domains as known from the ABAP dictionary")
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -17806,6 +18005,7 @@
 				fill_color 	13434879
 				nlines     	6
 				max_width  	1095
+				justify    	1
 				label      	
 |Constraints apply to objects. Each constraint defines a matrix of state/severity telling how "severe" its violation is in a given state. States could, e.g., be transient, saved, active, compliant. Severities could be warning, error, illegal.
 				)
@@ -17947,23 +18147,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
-			    compartment 	(object Compartment
-				Parent_View 	@645
-				location   	(1612, 894)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	7
-				max_width  	0)
 			    width      	460
 			    height     	282
 			    annotation 	8
@@ -17993,6 +18176,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@646
+				location   	(1605, 620)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	2
+				max_width  	0
+				justify    	1)
 			    width      	432
 			    height     	232
 			    annotation 	8
@@ -19013,6 +19214,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@687
+				location   	(470, 708)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	22
+				max_width  	0
+				justify    	1)
 			    width      	986
 			    height     	1232
 			    annotation 	8
@@ -19402,15 +19621,15 @@
 					PDL        	
 |context FormalTypeParameter
 |inv:
-|  self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(Parameter) implies 
-|   (s.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and
-|    s.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).owner=self.parameterOf .owningClassDefinition)) and
-|  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(MethodSignature) and 
-|    s.oclAsType(MethodSignature).owner->notEmpty() and
-|    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition) and
-|  self.signaturesWithFault->forAll(s| s.oclIsKindOf(MethodSignature)  and 
-|    s.oclAsType(MethodSignature).owner->notEmpty() and
-|    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition)
+|  self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(data::classes::Parameter) implies 
+|   (s.oclAsType(data::classes::Parameter).ownerSignature.oclIsKindOf(data::classes::MethodSignature) and
+|    s.oclAsType(data::classes::Parameter).ownerSignature.oclAsType(data::classes::MethodSignature).owner=self.parameterOf .owningClassDefinition)) and
+|  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(data::classes::MethodSignature) and 
+|    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and
+|    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition) and
+|  self.signaturesWithFault->forAll(s| s.oclIsKindOf(data::classes::MethodSignature)  and 
+|    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and
+|    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition)
 					)
 				    opExportControl 	"Public"
 				    uid        	0)))
@@ -19771,6 +19990,7 @@
 				fill_color 	13434879
 				nlines     	15
 				max_width  	646
+				justify    	1
 				label      	
 |TODO: contemplate pulling Class into two parts: one outer hull that can be used as a Featured and constitutes a real type, and an inner part that only contains the definitions but is not usable as a full type. ParameterizedClass would then refer only to the inner part.
 |
@@ -20210,6 +20430,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@723
+				location   	(1427, 481)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	1
+				max_width  	0
+				justify    	1)
 			    width      	434
 			    height     	182
 			    annotation 	8
@@ -21487,6 +21725,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
+			    compartment 	(object Compartment
+				Parent_View 	@783
+				location   	(2106, 1501)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	1
+				max_width  	0
+				justify    	1)
 			    width      	412
 			    height     	188
 			    annotation 	8
@@ -22020,6 +22276,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@807
+				location   	(908, 426)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0
+				justify    	1)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -22050,6 +22324,24 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47B9A97A00CB"
+			    compartment 	(object Compartment
+				Parent_View 	@808
+				location   	(1892, 442)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	10
+				max_width  	0
+				justify    	1)
 			    width      	794
 			    height     	472
 			    annotation 	8
@@ -22457,6 +22749,7 @@
 				fill_color 	13434879
 				nlines     	3
 				max_width  	1071
+				justify    	1
 				label      	
 |We now may introduce a specific copy statement that can copy the contents of a tuple into an object according to "intuitive" rules (think MOVE CORRESPONDING).
 				)
