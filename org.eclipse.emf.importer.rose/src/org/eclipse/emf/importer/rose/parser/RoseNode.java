@@ -434,94 +434,87 @@ public class RoseNode
     return "true".equalsIgnoreCase(attributeValue);
   }
 
-  public boolean isUnique()
+  public boolean isUnique(boolean defaultValue)
   {
-    // TODO consider changing the defaults to those of the Unisys/MOF tab (which is false)
-    for (RoseNode n : getNodes()) {
-      if (n.getKey().equals("attributes")) {
-        if (!n.getNodes().isEmpty()) {
-          for (RoseNode attribute : n.getNodes())
-          {
-            String tool = null;
-            String name = null;
-            String value = null;
-            for (RoseNode grandchild : attribute.getNodes())
-            {
-              if (grandchild.getKey().equals("tool"))
-              {
-                tool = grandchild.getValue();
-              }
-              else if (grandchild.getKey().equals("name"))
-              {
-                name = grandchild.getValue();
-              }
-              else if (grandchild.getKey().equals("value") && grandchild.getValue().equals("Text")
-                  && !grandchild.getNodes().isEmpty())
-              {
-                value = grandchild.getNodes().get(0).getValue();
-              }
-            }
-            if (tool.equals("\"MOF\"") && (name.equals("\"uml2mof.isUnique\"") || name.equals("\"rose2mof.return.isUnique\""))
-                && value.equalsIgnoreCase("\"true\""))
-            {
-              return true;
-            }
-          }
-        }
+    // let MOF tab settings/defaults take precedence over the Ecore tab settings/defaults
+    String attributeValue = getAttributeValue("MOF", "uml2mof.isUnique");
+    if (attributeValue == null)
+    {
+      attributeValue = getAttributeValue("MOF", "rose2mof.return.isUnique");
+    }
+    if (attributeValue != null)
+    {
+      if ("true".equalsIgnoreCase(attributeValue))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
       }
     }
-    String attributeValue = getAttributeValue("Ecore", "isUnique");
-    return !"false".equalsIgnoreCase(attributeValue);
+    attributeValue = getAttributeValue("Ecore", "isUnique");
+    if (attributeValue != null)
+    {
+      if ("true".equalsIgnoreCase(attributeValue))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+    }
+    return defaultValue;
   }
 
-  public boolean isOrdered() {
-    // TODO consider changing the defaults to those of the Unisys/MOF tab (which is false)
-    for (RoseNode n : getNodes()) {
-      if (n.getKey().equals("Constraints")) {
+  public boolean isOrdered(boolean defaultValue)
+  {
+    for (RoseNode n : getNodes())
+    {
+      if (n.getKey().equals("Constraints"))
+      {
         StringTokenizer tokenizer = new StringTokenizer(n.getValue());
-        while (tokenizer.hasMoreTokens()) {
+        while (tokenizer.hasMoreTokens())
+        {
           String token = tokenizer.nextToken();
-          if (token.equals("\"ordered\"")) {
+          if (token.equals("\"ordered\""))
+          {
             return true;
           }
         }
       }
-      else if (n.getKey().equals("attributes"))
+      // let MOF tab settings/defaults take precedence over the Ecore tab settings/defaults
+      String attributeValue = getAttributeValue("MOF", "uml2mof.isOrdered");
+      if (attributeValue == null)
       {
-        if (!n.getNodes().isEmpty())
+        attributeValue = getAttributeValue("MOF", "rose2mof.return.isOrdered");
+      }
+      if (attributeValue != null)
+      {
+        if ("true".equalsIgnoreCase(attributeValue))
         {
-          for (RoseNode attribute : n.getNodes())
-          {
-            String tool = null;
-            String name = null;
-            String value = null;
-            for (RoseNode grandchild : attribute.getNodes())
-            {
-              if (grandchild.getKey().equals("tool"))
-              {
-                tool = grandchild.getValue();
-              }
-              else if (grandchild.getKey().equals("name"))
-              {
-                name = grandchild.getValue();
-              }
-              else if (grandchild.getKey().equals("value") && grandchild.getValue().equals("Text")
-                  && !grandchild.getNodes().isEmpty())
-              {
-                value = grandchild.getNodes().get(0).getValue();
-              }
-            }
-            if (tool.equals("\"MOF\"") && (name.equals("\"uml2mof.isOrdered\"") || name.equals("\"rose2mof.return.isOrdered\""))
-                && value.equalsIgnoreCase("\"true\""))
-            {
-              return true;
-            }
-          }
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      attributeValue = getAttributeValue("Ecore", "isOrdered");
+      if (attributeValue != null)
+      {
+        if ("true".equalsIgnoreCase(attributeValue))
+        {
+          return true;
+        }
+        else
+        {
+          return false;
         }
       }
     }
-    String attributeValue = getAttributeValue("Ecore", "isOrdered");
-    return !"false".equalsIgnoreCase(attributeValue);
+    return defaultValue;
   }
 
   public String getBasePackage()
@@ -669,7 +662,7 @@ public class RoseNode
    * This provides backwards compatibility for the renaming of "eCore" to
    * "Ecore".
    */
-  protected String getAttributeValue(String tool, String name)
+  public String getAttributeValue(String tool, String name)
   {
     String result = basicGetAttributeValue(tool, name);
     if (result == null && "Ecore".equals(tool))
