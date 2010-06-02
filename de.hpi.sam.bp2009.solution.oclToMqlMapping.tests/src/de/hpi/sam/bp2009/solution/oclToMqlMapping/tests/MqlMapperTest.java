@@ -56,17 +56,6 @@ public class MqlMapperTest extends TestCase {
     private Employee secretary;
     private Student stud1;
     private Student stud2;
-    private OCLExpression oclexpressionComplete;
-    //    private MappingEvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>  fixture;
-    private String expressionStringCollectAttribute;
-    private String expressionStringCollectNavigation;
-    private OCLExpression oclexpressionCompleteNav;
-    private Object statementAtt = null;
-    private Object statementNav = null;
-    private MappingOCL ocl=null;
-    private String expressionStringSelect;
-    private OCLExpression oclexpressionCompleteSel;
-    private Object statementSel;
     protected CompanyPackage comp = null;
     protected DivisionImpl aDivision = null;
     protected DepartmentImpl aDepartment = null;
@@ -77,13 +66,40 @@ public class MqlMapperTest extends TestCase {
     protected FreelanceImpl aFreelance = null;
     protected int curDepartmentID = 0;
     protected int curImployeeID = 0;
-
+    private MappingOCL ocl=null;
+    private String expressionStringCollectAttribute;
+    private String expressionStringCollectNavigation;
+    private String expressionStringSelect1;
+//    private String expressionStringSelect2;
+    private String expressionStringSelect3;
+    private String expressionStringSelect4;
+    private String expressionStringSelect5;
+   
+    private OCLExpression oclexpressionCompleteNav;
+    private OCLExpression oclexpressionCompleteAtt;
+    private OCLExpression oclexpressionCompleteSel1;
+//    private OCLExpression oclexpressionCompleteSel2;
+    private OCLExpression oclexpressionCompleteSel3;
+    private OCLExpression oclexpressionCompleteSel4;
+    private OCLExpression oclexpressionCompleteSel5;
+    private Object statementAtt = null;
+    private Object statementNav = null;
+    private Object statementSel;
+    
+    
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         createInstances();
                 createInstances(1, 1, 1);
-        expressionStringSelect = "Employee.allInstances()->select(e:Employee|e.age = 55)";
+        expressionStringSelect1 = "Employee.allInstances()->select(e:Employee|e.age = 55)";
+//        expressionStringSelect2 = "Employee->select(e1,e2:Employee|e1.age = e2.age)";
+        expressionStringSelect3 = "Employee.allInstances()->select(e:Employee|e.secretary.age = 55)";//navigation
+        
+        expressionStringSelect4 = "Employee.allInstances()->select(e:Employee|e.name = e.secretary.name)";//comparison with navigation
+        
+        expressionStringSelect5 = "Employee.allInstances()->select(e:Employee|e.age = e.salary)";//comp without navigation
+        
         expressionStringCollectAttribute = "Employee.allInstances()->collect(p:Employee|p.age)";
         expressionStringCollectNavigation ="Employee.allInstances()->collect(p:Employee|p.directed)";
 
@@ -118,14 +134,16 @@ public class MqlMapperTest extends TestCase {
 
         }
         ocl.setExtentMap(map);
-        oclhelper.setContext(CompanyPackage.eINSTANCE.getDepartment());
+        oclhelper.setContext(CompanyPackage.eINSTANCE.getEmployee());
 
         try {
-            oclexpressionComplete = oclhelper.createQuery(expressionStringCollectAttribute);
-            oclexpressionCompleteSel = oclhelper.createQuery(expressionStringSelect);
-            //                (OCLExpression) ((IteratorExp)oclexpressionComplete).getBody();
+            oclexpressionCompleteAtt = oclhelper.createQuery(expressionStringCollectAttribute);
             oclexpressionCompleteNav =oclhelper.createQuery(expressionStringCollectNavigation);
-            //                (OCLExpression) ((IteratorExp)oclexpressionCompleteNav).getBody();
+            oclexpressionCompleteSel1 = oclhelper.createQuery(expressionStringSelect1);
+//            oclexpressionCompleteSel2 = oclhelper.createQuery(expressionStringSelect2);
+            oclexpressionCompleteSel3 = oclhelper.createQuery(expressionStringSelect3);
+            oclexpressionCompleteSel4 = oclhelper.createQuery(expressionStringSelect4);
+            oclexpressionCompleteSel5 = oclhelper.createQuery(expressionStringSelect5);
 
 
 
@@ -187,7 +205,7 @@ public class MqlMapperTest extends TestCase {
             EmployeeImpl e = (EmployeeImpl) CompanyFactory.eINSTANCE.createEmployee();
             e.setName("empl" + this.curImployeeID);
             e.setAge(42);
-            e.setSalary(2345);
+            e.setSalary(55);
             this.curImployeeID++;
             this.allEmployees.add(e);
             if (this.comp.eResource() != null) {
@@ -228,7 +246,7 @@ public class MqlMapperTest extends TestCase {
         this.secretary = CompanyFactory.eINSTANCE.createEmployee();
         this.secretary.setAge(55);
         this.secretary.setName("Secretary");
-        this.secretary.setSalary(1234);
+        this.secretary.setSalary(55);
         this.secretary.setEmployer(this.dep1);
         this.director.setSecretary(this.secretary);
         // this.comp.eResource().getContents().add(this.secretary);
@@ -324,33 +342,85 @@ public class MqlMapperTest extends TestCase {
         stud2=null;
         expressionStringCollectAttribute=null;
         expressionStringCollectNavigation=null;
-        oclexpressionComplete=null;
+        oclexpressionCompleteAtt=null;
         oclexpressionCompleteNav=null;
-        oclexpressionCompleteSel=null;
-        expressionStringSelect=null;
+        oclexpressionCompleteSel1=null;
+//        oclexpressionCompleteSel2=null;
+        oclexpressionCompleteSel3=null;
+        oclexpressionCompleteSel4=null;
+        oclexpressionCompleteSel5=null;
+        expressionStringSelect1=null;
+//        expressionStringSelect2=null;
+        expressionStringSelect3=null;
+        expressionStringSelect4=null;
+        expressionStringSelect5=null;
     }
+//    @Test
+//    public void testVisitExpressionCompleteAtt() {
+//        String att= "{55=1, 42=3, 43=2}";
+//        statementAtt = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteAtt);
+//
+//        assertEquals(att, statementAtt.toString());
+//    }
+//    @Test
+//    public void testVisitExpressionCompleteNav() {
+//        //        String regex="\\{null=10, company\\.impl\\.DivisionImpl@([0-9A-Za-z]+) \\(name: Div1, budget: 1234567\\)=1, company\\.impl\\.DivisionImpl@([0-9A-Za-z]+) \\(name: Div1, budget: 1234567\\)=1\\}";
+//        String regex = "null=10";
+//        Pattern pattern=Pattern.compile(regex);
+//        statementNav = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteNav);
+//        Matcher match=pattern.matcher(statementNav.toString());
+//        boolean matches= match.find();
+//        assertTrue(matches);
+//    }
     @Test
-    public void testVisitExpressionComplete() {
-        String att= "{55=1, 42=3, 43=2}";
-        statementAtt = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionComplete);
+    public void testVisitExpressionSelect1() {
+        String sel= "\\[company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 55\\)\\]";
+        
+        Pattern pattern=Pattern.compile(sel);
+        statementSel = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteSel1);
+        System.out.println(statementSel.toString());
+        Matcher match=pattern.matcher("test_sel1"+statementSel.toString());
+        boolean matches= match.find();
+        assertTrue(matches);
+    }
+//    @Test
+//    public void testVisitExpressionSelect2() {
+//        String sel= "\\[company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 1234\\), company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 1234\\), company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 1234\\)\\]";
+//        Pattern pattern=Pattern.compile(sel);
+//        statementSel = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteSel2);
+//        String sel="test";
+//        assertEquals(sel, statementSel.toString());
+//        Matcher match=pattern.matcher(statementSel.toString());
+//        boolean matches= match.find();
+//        assertTrue(matches);
+//    }
+    @Test
+    public void testVisitExpressionSelect3() {
 
-        assertEquals(att, statementAtt.toString());
-    }
-    @Test
-    public void testVisitExpressionCompleteNav() {
-        //        String regex="\\{null=10, company\\.impl\\.DivisionImpl@([0-9A-Za-z]+) \\(name: Div1, budget: 1234567\\)=1, company\\.impl\\.DivisionImpl@([0-9A-Za-z]+) \\(name: Div1, budget: 1234567\\)=1\\}";
-        String regex = "null=10";
-        Pattern pattern=Pattern.compile(regex);
-        statementNav = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteNav);
-        Matcher match=pattern.matcher(statementNav.toString());
+        String sel="\\[company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Director, age: 42, salary: 1234\\), company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Director, age: 42, salary: 1234\\)\\]";
+        Pattern pattern=Pattern.compile(sel);
+        statementSel = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteSel3);
+        System.out.println(statementSel.toString());
+        Matcher match=pattern.matcher("test_sel3"+statementSel.toString());
         boolean matches= match.find();
         assertTrue(matches);
     }
     @Test
-    public void testVisitExpressionSelect() {
-        String sel= "\\[company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 1234\\), company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 1234\\), company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 1234\\)\\]";
+    public void testVisitExpressionSelect4() {
+
+        statementSel = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteSel4);
+        String sel="[]";
+        System.out.println("test_sel4"+statementSel.toString());
+        assertEquals(sel, statementSel.toString());
+    }
+    
+    @Test
+    public void testVisitExpressionSelect5() {
+        String sel= "\\[company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 55\\), company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 55\\), company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 55\\), company\\.impl\\.EmployeeImpl@([0-9A-Za-z]+) \\(name: Secretary, age: 55, salary: 55\\)\\]";
         Pattern pattern=Pattern.compile(sel);
-        statementSel = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteSel);
+        statementSel = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteSel5);
+        System.out.println("test_sel5"+statementSel.toString());
+
         Matcher match=pattern.matcher(statementSel.toString());
         boolean matches= match.find();
         assertTrue(matches);
