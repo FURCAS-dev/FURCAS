@@ -92,7 +92,7 @@ public interface DimensionDefinition extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" unique="false" required="true" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.iterator.name'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated

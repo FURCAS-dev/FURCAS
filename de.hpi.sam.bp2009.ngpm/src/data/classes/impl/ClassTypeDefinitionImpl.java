@@ -266,9 +266,9 @@ public class ClassTypeDefinitionImpl extends TypeDefinitionImpl implements Class
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression effectiveObjectParameters() {
+	public EList<Expression> effectiveObjectParameters() {
 		try {
-			return (Expression)EFFECTIVE_OBJECT_PARAMETERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<Expression>)EFFECTIVE_OBJECT_PARAMETERS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);

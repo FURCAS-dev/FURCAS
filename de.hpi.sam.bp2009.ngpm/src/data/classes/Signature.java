@@ -60,7 +60,7 @@ public interface Signature extends EObject {
 	 * @return the value of the '<em>Side Effect Free</em>' attribute.
 	 * @see #setSideEffectFree(boolean)
 	 * @see data.classes.ClassesPackage#getSignature_SideEffectFree()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isSideEffectFree();
@@ -240,7 +240,8 @@ public interface Signature extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='if self = s then\n    true\n  else\n    self.conformsToExcluding(s, Sequence{}, Sequence{})\n  endif'"
+	 * @model unique="false" required="true" ordered="false" sUnique="false" sRequired="true" sOrdered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self = s then\n    true\n  else\n    self.conformsToExcluding(s, Sequence{}, Sequence{})\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -252,11 +253,12 @@ public interface Signature extends EObject {
 	 * <!-- begin-model-doc -->
 	 * Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='if s = self then\n    true\n  else\n    let nameConforms:Boolean = self.oclIsKindOf(MethodSignature) and s.oclIsKindOf(MethodSignature) \n       implies s.oclAsType(MethodSignature).name = self.oclAsType(MethodSignature).name in\n    nameConforms and\n    (s.sideEffectFree implies self.sideEffectFree) and\n    s.input->size() = self.input->size() and\n    Sequence{1..self.input->size()}->\n      forAll(i | s.input->at(i).getType().conformsToExcluding(self.input->at(i).getType(), excludingConforming, excludingTo)) and\n    s.output->size() = self.output->size() and\n    Sequence{1..self.output->size()}->\n      forAll(i | self.output->asSequence()->at(i).conformsToExcluding(s.output->asSequence()->at(i), excludingConforming, excludingTo))\n  endif'"
+	 * @model unique="false" required="true" ordered="false" sUnique="false" sRequired="true" sOrdered="false" excludingConformingUnique="false" excludingConformingMany="true" excludingToUnique="false" excludingToMany="true"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if s = self then\n    true\n  else\n    let nameConforms:Boolean = self.oclIsKindOf(MethodSignature) and s.oclIsKindOf(MethodSignature) \n       implies s.oclAsType(MethodSignature).name = self.oclAsType(MethodSignature).name in\n    nameConforms and\n    (s.sideEffectFree implies self.sideEffectFree) and\n    s.input->size() = self.input->size() and\n    Sequence{1..self.input->size()}->\n      forAll(i | s.input->at(i).getType().conformsToExcluding(self.input->at(i).getType(), excludingConforming, excludingTo)) and\n    s.output->size() = self.output->size() and\n    Sequence{1..self.output->size()}->\n      forAll(i | self.output->asSequence()->at(i).conformsToExcluding(s.output->asSequence()->at(i), excludingConforming, excludingTo))\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	boolean conformsToExcluding(Signature s, SapClass excludingConforming, SapClass excludingTo);
+	boolean conformsToExcluding(Signature s, EList<SapClass> excludingConforming, EList<SapClass> excludingTo);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -264,17 +266,17 @@ public interface Signature extends EObject {
 	 * <!-- begin-model-doc -->
 	 * For a signature, only the owning class's formal object parameters are in scope.
 	 * <!-- end-model-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.getOwningClass().formalObjectParameters->asSet()'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	NamedValue getNamedValuesInScope();
+	EList<NamedValue> getNamedValuesInScope();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" unique="false" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsKindOf(MethodSignature) then\n    let owner:SignatureOwner = self.oclAsType(MethodSignature).owner in\n    if owner.oclIsKindOf(SapClass) then\n      owner.oclAsType(SapClass)\n    else\n      null    -- e.g., TypeAdapter\n    endif\n  else\n    self.oclAsType(FunctionSignature).getImplementedAnonymousFunctionExpression().getOwningClass()\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated

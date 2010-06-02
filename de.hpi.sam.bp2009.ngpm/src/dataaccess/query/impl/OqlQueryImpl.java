@@ -10,6 +10,7 @@ import behavioral.actions.Iterator;
 
 import dataaccess.expressions.Expression;
 
+import dataaccess.expressions.ExpressionsPackage;
 import dataaccess.expressions.impl.ExpressionImpl;
 
 import dataaccess.query.FromClause;
@@ -130,9 +131,9 @@ public class OqlQueryImpl extends ExpressionImpl implements OqlQuery {
 		if (newCondition != condition) {
 			NotificationChain msgs = null;
 			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - QueryPackage.OQL_QUERY__CONDITION, null, msgs);
+				msgs = ((InternalEObject)condition).eInverseRemove(this, ExpressionsPackage.EXPRESSION__CONDITION_OF_OQL_QUERY, Expression.class, msgs);
 			if (newCondition != null)
-				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - QueryPackage.OQL_QUERY__CONDITION, null, msgs);
+				msgs = ((InternalEObject)newCondition).eInverseAdd(this, ExpressionsPackage.EXPRESSION__CONDITION_OF_OQL_QUERY, Expression.class, msgs);
 			msgs = basicSetCondition(newCondition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -173,6 +174,10 @@ public class OqlQueryImpl extends ExpressionImpl implements OqlQuery {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case QueryPackage.OQL_QUERY__CONDITION:
+				if (condition != null)
+					msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - QueryPackage.OQL_QUERY__CONDITION, null, msgs);
+				return basicSetCondition((Expression)otherEnd, msgs);
 			case QueryPackage.OQL_QUERY__FROM_CLAUSES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFromClauses()).basicAdd(otherEnd, msgs);
 		}

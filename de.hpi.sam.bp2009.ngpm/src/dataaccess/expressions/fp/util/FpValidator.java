@@ -126,7 +126,8 @@ public class FpValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ANONYMOUS_FUNCTION_EXPR__TYPE_MUST_BE_SIGNATURE_TYPE_DEFINITION_WITH_IMPLEMENTATION__EEXPRESSION = "self.getType().oclIsKindOf(FunctionSignatureTypeDefinition) and\n  self.getType().oclAsType(FunctionSignatureTypeDefinition).signature.oclAsType(FunctionSignature).implementation->notEmpty()";
+	protected static final String ANONYMOUS_FUNCTION_EXPR__TYPE_MUST_BE_SIGNATURE_TYPE_DEFINITION_WITH_IMPLEMENTATION__EEXPRESSION = "self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and" +
+		"  self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation->notEmpty()";
 
 	/**
 	 * Validates the TypeMustBeSignatureTypeDefinitionWithImplementation constraint of '<em>Anonymous Function Expr</em>'.
@@ -184,7 +185,7 @@ public class FpValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ANONYMOUS_FUNCTION_EXPR__SIGNATURE_MUST_BE_FUNCTION_SIGNATURE__EEXPRESSION = "self.ownedTypeDefinition.oclAsType(FunctionSignatureTypeDefinition).signature.oclIsKindOf(FunctionSignature)";
+	protected static final String ANONYMOUS_FUNCTION_EXPR__SIGNATURE_MUST_BE_FUNCTION_SIGNATURE__EEXPRESSION = "self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclIsKindOf(data::classes::FunctionSignature)";
 
 	/**
 	 * Validates the SignatureMustBeFunctionSignature constraint of '<em>Anonymous Function Expr</em>'.
@@ -233,7 +234,8 @@ public class FpValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String FUNCTION_FROM_METHOD_EXPR__SIGNATURE_AVAILABLE_ON_OBJECTS_CLASS__EEXPRESSION = "self.object.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.object.getType().oclAsType(ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(SapClass))";
+	protected static final String FUNCTION_FROM_METHOD_EXPR__SIGNATURE_AVAILABLE_ON_OBJECTS_CLASS__EEXPRESSION = "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
+		"  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(data::classes::SapClass))";
 
 	/**
 	 * Validates the SignatureAvailableOnObjectsClass constraint of '<em>Function From Method Expr</em>'.
@@ -262,7 +264,8 @@ public class FpValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String FUNCTION_FROM_METHOD_EXPR__METHOD_SIGNATURE_CONFORMS_TO_FUNCTION_SIGNATURE__EEXPRESSION = "self.getType().oclIsKindOf(FunctionSignatureTypeDefinition) and\n    self.method.conformsTo(self.getType().oclAsType(FunctionSignatureTypeDefinition).signature)";
+	protected static final String FUNCTION_FROM_METHOD_EXPR__METHOD_SIGNATURE_CONFORMS_TO_FUNCTION_SIGNATURE__EEXPRESSION = "self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and" +
+		"    self.method.conformsTo(self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)";
 
 	/**
 	 * Validates the MethodSignatureConformsToFunctionSignature constraint of '<em>Function From Method Expr</em>'.

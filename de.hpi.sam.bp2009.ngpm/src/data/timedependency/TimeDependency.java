@@ -55,7 +55,7 @@ public interface TimeDependency extends EObject {
 	 * @return the value of the '<em>Record Cutoff In Milliseconds</em>' attribute.
 	 * @see #setRecordCutoffInMilliseconds(int)
 	 * @see data.timedependency.TimedependencyPackage#getTimeDependency_RecordCutoffInMilliseconds()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	int getRecordCutoffInMilliseconds();
@@ -80,7 +80,7 @@ public interface TimeDependency extends EObject {
 	 * @return the value of the '<em>Can Change Past</em>' attribute.
 	 * @see #setCanChangePast(boolean)
 	 * @see data.timedependency.TimedependencyPackage#getTimeDependency_CanChangePast()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isCanChangePast();
@@ -107,7 +107,7 @@ public interface TimeDependency extends EObject {
 	 * @return the value of the '<em>Timespan</em>' attribute.
 	 * @see #setTimespan(boolean)
 	 * @see data.timedependency.TimedependencyPackage#getTimeDependency_Timespan()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isTimespan();

@@ -129,7 +129,9 @@ public class ConstraintsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CONSTRAINT__EXPRESSION_TYPE_MUST_BE_BOOLEAN__EEXPRESSION = "self.constraintExpression.getType().upperMultiplicity = 1 and\n  self.constraintExpression.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.constraintExpression.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Boolean'";
+	protected static final String CONSTRAINT__EXPRESSION_TYPE_MUST_BE_BOOLEAN__EEXPRESSION = "self.constraintExpression.getType().upperMultiplicity = 1 and" +
+		"  self.constraintExpression.getType().oclIsKindOf(ClassTypeDefinition) and" +
+		"  self.constraintExpression.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'";
 
 	/**
 	 * Validates the ExpressionTypeMustBeBoolean constraint of '<em>Constraint</em>'.
@@ -158,7 +160,10 @@ public class ConstraintsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CONSTRAINT__MUST_BE_OWNED__EEXPRESSION = "self.constrainedType->notEmpty() or\n  self.theContext->notEmpty() or\n  self.preconditionForSignature->notEmpty() or\n  self.postconditionForSignature->notEmpty()";
+	protected static final String CONSTRAINT__MUST_BE_OWNED__EEXPRESSION = "self.constrainedType->notEmpty() or" +
+		"  self.theContext->notEmpty() or" +
+		"  self.preconditionForSignature->notEmpty() or" +
+		"  self.postconditionForSignature->notEmpty()";
 
 	/**
 	 * Validates the MustBeOwned constraint of '<em>Constraint</em>'.

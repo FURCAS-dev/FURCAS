@@ -535,9 +535,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(allEClass, All.class, "All", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAll_Snapshot(), this.getSnapshotSelection(), "snapshot", null, 0, 1, All.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAll_Snapshot(), this.getSnapshotSelection(), "snapshot", null, 0, 1, All.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAll_OfClass(), theClassesPackage.getSapClass(), null, "ofClass", null, 1, 1, All.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAll_SnapshotIdentifier(), theExpressionsPackage_1.getExpression(), null, "snapshotIdentifier", null, 0, 1, All.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAll_SnapshotIdentifier(), theExpressionsPackage_1.getExpression(), theExpressionsPackage_1.getExpression_All(), "snapshotIdentifier", null, 0, 1, All.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(commitEClass, Commit.class, "Commit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -582,7 +582,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "constraints", "MustBeEntityClass ExpressionMustBeSnapshotOrTimePoint"
-		   });							
+		   });						
 		addAnnotation
 		  (commitEClass, 
 		   source, 
@@ -611,7 +611,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   new String[] {
 			 "MustBeEntityClass", "not self.ofClass.valueType",
 			 "ExpressionMustBeSnapshotOrTimePoint", "if self.snapshot = SnapshotSelection::SPECIFIED then\n    self.snapshotIdentifier.getType().upperMultiplicity = 1 and\n    self.snapshotIdentifier.getType().oclIsKindOf(ClassTypeDefinition) and\n   Set{\'Snapshot\', \'TimePoint\'}->includes(self.snapshotIdentifier.getType().oclAsType(ClassTypeDefinition).clazz.name)\n  else\n    true\n  endif"
-		   });							
+		   });						
 		addAnnotation
 		  (commitEClass, 
 		   source, 
@@ -639,12 +639,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getAll_SnapshotIdentifier(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "all"
 		   });					
 	}
 

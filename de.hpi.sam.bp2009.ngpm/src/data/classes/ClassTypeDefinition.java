@@ -126,7 +126,8 @@ public interface ClassTypeDefinition extends TypeDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='if self.effectiveObjectParameters()->size()  = ctd.effectiveObjectParameters()->size() then\n    self.clazz.converterBetweenParametrizations->notEmpty() or\n    Sequence{1..self.effectiveObjectParameters()->size()}->forAll(i |\n      self.effectiveObjectParameters()->at(i).evaluatesToEqualAs(ctd.effectiveObjectParameters()->at(i)))\n  else\n    false\n  endif'"
+	 * @model unique="false" required="true" ordered="false" ctdUnique="false" ctdRequired="true" ctdOrdered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.effectiveObjectParameters()->size()  = ctd.effectiveObjectParameters()->size() then\n    self.clazz.converterBetweenParametrizations->notEmpty() or\n    Sequence{1..self.effectiveObjectParameters()->size()}->forAll(i |\n      self.effectiveObjectParameters()->at(i).evaluatesToEqualAs(ctd.effectiveObjectParameters()->at(i)))\n  else\n    false\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -135,10 +136,11 @@ public interface ClassTypeDefinition extends TypeDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='self.objectParameters.value->flatten()->asSequence()->union(\n     Sequence{(self.objectParameters->size()+1)..(self.clazz.formalObjectParameters->size())}->collect(i | \n             self.clazz.formalObjectParameters->at(i).defaultValue->flatten()->asSequence()))->flatten()->asSequence()'"
+	 * @model unique="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.objectParameters.value->flatten()->asSequence()->union(\n     Sequence{(self.objectParameters->size()+1)..(self.clazz.formalObjectParameters->size())}->collect(i | \n             self.clazz.formalObjectParameters->at(i).defaultValue->flatten()->asSequence()))->flatten()->asSequence()'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	Expression effectiveObjectParameters();
+	EList<Expression> effectiveObjectParameters();
 
 } // ClassTypeDefinition

@@ -844,13 +844,22 @@ public interface ActionsPackage extends EPackage {
 	int NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Named Value Declaration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 1;
+
+  /**
 	 * The number of structural features of the '<em>Named Value With Optional Init Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION_FEATURE_COUNT = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 1;
+	int NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION_FEATURE_COUNT = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link behavioral.actions.impl.ConstantImpl <em>Constant</em>}' class.
@@ -908,6 +917,15 @@ public interface ActionsPackage extends EPackage {
 	int CONSTANT__INIT_EXPRESSION = NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION;
 
 	/**
+	 * The feature id for the '<em><b>Named Value Declaration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONSTANT__NAMED_VALUE_DECLARATION = NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION;
+
+  /**
 	 * The feature id for the '<em><b>Iterate</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -981,6 +999,15 @@ public interface ActionsPackage extends EPackage {
 	int VARIABLE__INIT_EXPRESSION = NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION;
 
 	/**
+	 * The feature id for the '<em><b>Named Value Declaration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE__NAMED_VALUE_DECLARATION = NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION;
+
+  /**
 	 * The feature id for the '<em><b>Assignments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1569,6 +1596,17 @@ public interface ActionsPackage extends EPackage {
 	EReference getNamedValueWithOptionalInitExpression_InitExpression();
 
 	/**
+	 * Returns the meta object for the reference '{@link behavioral.actions.NamedValueWithOptionalInitExpression#getNamedValueDeclaration <em>Named Value Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Named Value Declaration</em>'.
+	 * @see behavioral.actions.NamedValueWithOptionalInitExpression#getNamedValueDeclaration()
+	 * @see #getNamedValueWithOptionalInitExpression()
+	 * @generated
+	 */
+  EReference getNamedValueWithOptionalInitExpression_NamedValueDeclaration();
+
+  /**
 	 * Returns the meta object for class '{@link behavioral.actions.ConditionalStatement <em>Conditional Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1979,6 +2017,14 @@ public interface ActionsPackage extends EPackage {
 		EReference NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION = eINSTANCE.getNamedValueWithOptionalInitExpression_InitExpression();
 
 		/**
+		 * The meta object literal for the '<em><b>Named Value Declaration</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION = eINSTANCE.getNamedValueWithOptionalInitExpression_NamedValueDeclaration();
+
+    /**
 		 * The meta object literal for the '{@link behavioral.actions.impl.ConditionalStatementImpl <em>Conditional Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

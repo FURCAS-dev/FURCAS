@@ -758,13 +758,13 @@ public class BusinessconfigurationPackageImpl extends EPackageImpl implements Bu
 		initEReference(getBusinessArea_BusinessPackage(), this.getBusinessPackage(), null, "BusinessPackage", null, 0, -1, BusinessArea.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueSetEClass, ValueSet.class, "ValueSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getValueSet_Extensible(), theEcorePackage.getEBoolean(), "extensible", null, 0, 1, ValueSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValueSet_Extensible(), theEcorePackage.getEBoolean(), "extensible", null, 0, 1, ValueSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getValueSet_ConfigurationBusinessOption(), this.getBusinessOption(), this.getBusinessOption_ValueSet(), "configurationBusinessOption", null, 1, 1, ValueSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getValueSet_Entries(), this.getValueSetEntry(), this.getValueSetEntry_ValueSet(), "entries", null, 0, -1, ValueSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueSetEntryEClass, ValueSetEntry.class, "ValueSetEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getValueSetEntry_CanBeChanged(), theEcorePackage.getEBoolean(), "canBeChanged", null, 0, 1, ValueSetEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getValueSetEntry_CanBeDeleted(), theEcorePackage.getEBoolean(), "canBeDeleted", null, 0, 1, ValueSetEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getValueSetEntry_CanBeChanged(), theEcorePackage.getEBoolean(), "canBeChanged", null, 0, 1, ValueSetEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getValueSetEntry_CanBeDeleted(), theEcorePackage.getEBoolean(), "canBeDeleted", null, 0, 1, ValueSetEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getValueSetEntry_ValueSet(), this.getValueSet(), this.getValueSet_Entries(), "valueSet", null, 1, 1, ValueSetEntry.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getValueSetEntry_Value(), theExpressionsPackage.getExpression(), null, "value", null, 1, 1, ValueSetEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

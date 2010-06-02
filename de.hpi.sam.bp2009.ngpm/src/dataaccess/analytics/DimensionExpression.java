@@ -31,7 +31,7 @@ import dataaccess.expressions.Expression;
  * </p>
  *
  * @see dataaccess.analytics.AnalyticsPackage#getDimensionExpression()
- * @model annotation="http://de.hpi.sam.bp2009.OCL FactsTypeConformsToFirstFunctionParameterType='self.facts.getType().conformsTo(self.dimension.ownerSignature.input->at(1).getType())' CellSetExpressionMustHaveFunctionSignatureType='self.cellSet.getType().oclIsKindOf(FunctionSignatureTypeDefinition)' DimensionParameterIsNotFirst='self.dimension.ownerSignature.input->indexOf(self.dimension) > 1'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL FactsTypeConformsToFirstFunctionParameterType='self.facts.getType().conformsTo(self.dimension.ownerSignature.input->at(1).getType())' CellSetExpressionMustHaveFunctionSignatureType='self.cellSet.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)' DimensionParameterIsNotFirst='self.dimension.ownerSignature.input->indexOf(self.dimension) > 1'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FactsTypeConformsToFirstFunctionParameterType CellSetExpressionMustHaveFunctionSignatureType DimensionParameterIsNotFirst'"
  * @generated
  */

@@ -146,7 +146,8 @@ public interface CellSet extends FunctionSignatureImplementation {
 	 * <!-- begin-model-doc -->
 	 * Determines the type over which to aggregate. If no valueFunction is provided, this is the type of the cell set's elements. Otherwise, this is the type output by the valueFunction.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='if self.valueFunction->isEmpty() then\n    self.factsType\n  else\n    self.valueFunction.output\n  endif'"
+	 * @model unique="false" required="true" ordered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.valueFunction->isEmpty() then\n    self.factsType\n  else\n    self.valueFunction.output\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -155,7 +156,8 @@ public interface CellSet extends FunctionSignatureImplementation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='self.aggregationFunction.output'"
+	 * @model unique="false" required="true" ordered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.aggregationFunction.output'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -164,7 +166,8 @@ public interface CellSet extends FunctionSignatureImplementation {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='self.dimensions->forAll(d|d.characteristicFunction.sideEffectFree) and\n  (self.valueFunction->notEmpty() implies self.valueFunction.sideEffectFree) and\n  self.aggregationFunction.sideEffectFree'"
+	 * @model unique="false" required="true" ordered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.dimensions->forAll(d|d.characteristicFunction.sideEffectFree) and\n  (self.valueFunction->notEmpty() implies self.valueFunction.sideEffectFree) and\n  self.aggregationFunction.sideEffectFree'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */

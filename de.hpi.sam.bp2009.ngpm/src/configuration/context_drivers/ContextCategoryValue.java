@@ -41,7 +41,7 @@ public interface ContextCategoryValue extends ContextCategory {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see configuration.context_drivers.Context_driversPackage#getContextCategoryValue_Value()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getValue();

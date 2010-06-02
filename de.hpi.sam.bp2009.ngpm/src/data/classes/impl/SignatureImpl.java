@@ -452,23 +452,23 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.Signature, data.classes.SapClass, data.classes.SapClass) <em>Conforms To Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.Signature, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Conforms To Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #conformsToExcluding(data.classes.Signature, data.classes.SapClass, data.classes.SapClass)
+	 * @see #conformsToExcluding(data.classes.Signature, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_EXCLUDING_SIGNATURE_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SIGNATURE.getEOperations().get(1)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_EXCLUDING_SIGNATURE_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SIGNATURE.getEOperations().get(1)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean conformsToExcluding(Signature s, SapClass excludingConforming, SapClass excludingTo) {
+	public boolean conformsToExcluding(Signature s, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
 		try {
-			return (Boolean)CONFORMS_TO_EXCLUDING_SIGNATURE_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{s, excludingConforming, excludingTo}));
+			return (Boolean)CONFORMS_TO_EXCLUDING_SIGNATURE_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{s, excludingConforming, excludingTo}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -490,9 +490,9 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedValue getNamedValuesInScope() {
+	public EList<NamedValue> getNamedValuesInScope() {
 		try {
-			return (NamedValue)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<NamedValue>)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);

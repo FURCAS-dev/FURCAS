@@ -45,7 +45,7 @@ public interface ProcessComponent extends PackageOwner {
 	 * @return the value of the '<em>Provided Interfaces</em>' containment reference.
 	 * @see #setProvidedInterfaces(SapClass)
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_ProvidedInterfaces()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	SapClass getProvidedInterfaces();
@@ -71,7 +71,7 @@ public interface ProcessComponent extends PackageOwner {
 	 * @return the value of the '<em>Event Producers</em>' containment reference.
 	 * @see #setEventProducers(EventProducer)
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_EventProducers()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EventProducer getEventProducers();
@@ -97,7 +97,7 @@ public interface ProcessComponent extends PackageOwner {
 	 * @return the value of the '<em>Interactions</em>' containment reference.
 	 * @see #setInteractions(ProcessComponentInteraction)
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_Interactions()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	ProcessComponentInteraction getInteractions();
@@ -123,7 +123,7 @@ public interface ProcessComponent extends PackageOwner {
 	 * @return the value of the '<em>Initiated Interactions</em>' containment reference.
 	 * @see #setInitiatedInteractions(ProcessComponentInteraction)
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_InitiatedInteractions()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	ProcessComponentInteraction getInitiatedInteractions();

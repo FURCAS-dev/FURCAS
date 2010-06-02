@@ -104,7 +104,8 @@ public interface TypeDefinition extends Multiplicity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsUndefined() then\n    false\n  else if self = typeDef then\n    true\n  else\n    self.conformsToExcluding(typeDef, Sequence{}, Sequence{})\n  endif\n  endif'"
+	 * @model unique="false" required="true" ordered="false" typeDefUnique="false" typeDefRequired="true" typeDefOrdered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsUndefined() then\n    false\n  else if self = typeDef then\n    true\n  else\n    self.conformsToExcluding(typeDef, Sequence{}, Sequence{})\n  endif\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -116,11 +117,12 @@ public interface TypeDefinition extends Multiplicity {
 	 * <!-- begin-model-doc -->
 	 * Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='if oclIsUndefined() then\n    false\n  else\n  if self = td then\n    true\n  else\n   self.multiplicityConformsTo(td) and\n   self.conformsToIgnoringMultiplicityExcluding(td, excludingConforming, excludingTo)\n  endif\n endif'"
+	 * @model unique="false" required="true" ordered="false" tdUnique="false" tdRequired="true" tdOrdered="false" excludingConformingUnique="false" excludingConformingMany="true" excludingToUnique="false" excludingToMany="true"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if oclIsUndefined() then\n    false\n  else\n  if self = td then\n    true\n  else\n   self.multiplicityConformsTo(td) and\n   self.conformsToIgnoringMultiplicityExcluding(td, excludingConforming, excludingTo)\n  endif\n endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	boolean conformsToExcluding(TypeDefinition td, SapClass excludingConforming, SapClass excludingTo);
+	boolean conformsToExcluding(TypeDefinition td, EList<SapClass> excludingConforming, EList<SapClass> excludingTo);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,7 +134,8 @@ public interface TypeDefinition extends Multiplicity {
 	 * 
 	 * Ordereness and uniquness conform if td has more relaxed requirements. Thus, they conform if they are equal, if td is neither ordered nor unique, or if self is ordered and unique
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='-- check for multiplicity conformance\n    -- multiplicity of td must include multiplicity of td\n    td.lowerMultiplicity <= self.lowerMultiplicity\n    and\n    (\n        td.upperMultiplicity = -1\n        or \n        ( td.upperMultiplicity >= self.upperMultiplicity and self.upperMultiplicity <> -1 ) \n    ) \n    \n    -- check for conformance of orderedness and uniqueness\n    -- orderedness/uniqueness of td must be same or more relaxed than self\'s\n    and\n    (\n       not self.isMany()\n        or\n        ( ( self.ordered = td.ordered ) and ( self.unique = td.unique ) )\n        or\n        ( self.ordered and self.unique )\n        or\n        ( not ( td.ordered or td.unique ) )\n    )'"
+	 * @model unique="false" required="true" ordered="false" tdUnique="false" tdRequired="true" tdOrdered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='-- check for multiplicity conformance\n    -- multiplicity of td must include multiplicity of td\n    td.lowerMultiplicity <= self.lowerMultiplicity\n    and\n    (\n        td.upperMultiplicity = -1\n        or \n        ( td.upperMultiplicity >= self.upperMultiplicity and self.upperMultiplicity <> -1 ) \n    ) \n    \n    -- check for conformance of orderedness and uniqueness\n    -- orderedness/uniqueness of td must be same or more relaxed than self\'s\n    and\n    (\n       not self.isMany()\n        or\n        ( ( self.ordered = td.ordered ) and ( self.unique = td.unique ) )\n        or\n        ( self.ordered and self.unique )\n        or\n        ( not ( td.ordered or td.unique ) )\n    )'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -144,16 +147,18 @@ public interface TypeDefinition extends Multiplicity {
 	 * <!-- begin-model-doc -->
 	 * Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='if self = td then\n    true\n  else\n   if self.oclIsKindOf(ClassTypeDefinition) then\n    td.oclIsKindOf(ClassTypeDefinition) and\n    self.oclAsType(ClassTypeDefinition).clazz.conformsToExcluding(\n                td.oclAsType(ClassTypeDefinition).clazz, excludingConforming, excludingTo) and\n    self.oclAsType(ClassTypeDefinition).objectParametersConformTo(td.oclAsType(ClassTypeDefinition))\n  else\n    if self.oclIsKindOf(FunctionSignatureTypeDefinition) then\n      td.oclIsKindOf(FunctionSignatureTypeDefinition) and\n      self.oclAsType(FunctionSignatureTypeDefinition).signature.conformsToExcluding(\n           td.oclAsType(FunctionSignatureTypeDefinition).signature, excludingConforming, excludingTo)\n    else\n      td.oclIsKindOf(NestedTypeDefinition) and\n      self.oclAsType(NestedTypeDefinition).type.conformsToExcluding(\n          td.oclAsType(NestedTypeDefinition).type, excludingConforming, excludingTo)\n    endif\n  endif\n endif'"
+	 * @model unique="false" required="true" ordered="false" tdUnique="false" tdRequired="true" tdOrdered="false" excludingConformingUnique="false" excludingConformingMany="true" excludingToUnique="false" excludingToMany="true"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self = td then\n    true\n  else\n   if self.oclIsKindOf(ClassTypeDefinition) then\n    td.oclIsKindOf(ClassTypeDefinition) and\n    self.oclAsType(ClassTypeDefinition).clazz.conformsToExcluding(\n                td.oclAsType(ClassTypeDefinition).clazz, excludingConforming, excludingTo) and\n    self.oclAsType(ClassTypeDefinition).objectParametersConformTo(td.oclAsType(ClassTypeDefinition))\n  else\n    if self.oclIsKindOf(FunctionSignatureTypeDefinition) then\n      td.oclIsKindOf(FunctionSignatureTypeDefinition) and\n      self.oclAsType(FunctionSignatureTypeDefinition).signature.conformsToExcluding(\n           td.oclAsType(FunctionSignatureTypeDefinition).signature, excludingConforming, excludingTo)\n    else\n      td.oclIsKindOf(NestedTypeDefinition) and\n      self.oclAsType(NestedTypeDefinition).type.conformsToExcluding(\n          td.oclAsType(NestedTypeDefinition).type, excludingConforming, excludingTo)\n    endif\n  endif\n endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	boolean conformsToIgnoringMultiplicityExcluding(TypeDefinition td, SapClass excludingConforming, SapClass excludingTo);
+	boolean conformsToIgnoringMultiplicityExcluding(TypeDefinition td, EList<SapClass> excludingConforming, EList<SapClass> excludingTo);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='if self = typeDef then\n   true\n  else\n    self.conformsToIgnoringMultiplicityExcluding(typeDef, Sequence{}, Sequence{})\n  endif'"
+	 * @model unique="false" required="true" ordered="false" typeDefUnique="false" typeDefRequired="true" typeDefOrdered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self = typeDef then\n   true\n  else\n    self.conformsToIgnoringMultiplicityExcluding(typeDef, Sequence{}, Sequence{})\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -162,12 +167,12 @@ public interface TypeDefinition extends Multiplicity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='TypedElement.allInstances()->select(te | te.getType() = self)'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	TypedElement getTypeUsage();
+	EList<TypedElement> getTypeUsage();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -175,7 +180,7 @@ public interface TypeDefinition extends Multiplicity {
 	 * <!-- begin-model-doc -->
 	 * For nexted type definitions, navigates through to the inner type definition. For non-nested type definitions, that type definition is the result of this method.
 	 * <!-- end-model-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" unique="false" required="true" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsKindOf(NestedTypeDefinition) then\n    self.oclAsType(NestedTypeDefinition).type.getInnermost()\n  else\n    self\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
@@ -185,7 +190,7 @@ public interface TypeDefinition extends Multiplicity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" unique="false" required="true" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.oclIsKindOf(NestedTypeDefinition) then\n    self.oclAsType(NestedTypeDefinition).type.getNestingLevel() + 1\n  else\n    0\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
@@ -198,11 +203,11 @@ public interface TypeDefinition extends Multiplicity {
 	 * <!-- begin-model-doc -->
 	 * Needs to find the owner of the type definition, then check if it's a statement such as a variable declaration, or a method signature (meaning the owner may contribute formal object parameters) or a function signature (meaning the function expression knows the NamedValues in scope), etc.
 	 * <!-- end-model-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='-- find owner of type definition and collect the named values in scope for the owner\n  (let ownerSig:Signature = self.ownerSignature in\n  if ownerSig->notEmpty() and ownerSig.oclIsKindOf(Signature) then\n    ownerSig.oclAsType(Signature).getNamedValuesInScope()\n  else\n    Set{}   -- some boundary case such as TupleElement or ValueSet not currently supported\n  endif)->union(\n\n  if self.ownerTypedElement->notEmpty() then\n    if self.ownerTypedElement.oclIsKindOf(Expression) then\n      self.ownerTypedElement.oclAsType(Expression).getNamedValuesInScope()\n    else\n      if self.ownerTypedElement.oclIsKindOf(NamedValue) then\n        self.ownerTypedElement.oclAsType(NamedValue).getNamedValuesInScope()\n      else\n        Set{}   -- some boundary case such as TupleElement or ValueSet not currently supported\n      endif\n    endif\n  else\n    Set{}\n  endif)'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	NamedValue getNamedValuesInScope();
+	EList<NamedValue> getNamedValuesInScope();
 
 } // TypeDefinition

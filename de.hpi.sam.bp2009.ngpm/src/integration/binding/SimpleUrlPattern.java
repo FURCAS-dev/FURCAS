@@ -39,7 +39,7 @@ public interface SimpleUrlPattern extends UrlPattern {
 	 * @return the value of the '<em>Base Url</em>' attribute.
 	 * @see #setBaseUrl(String)
 	 * @see integration.binding.BindingPackage#getSimpleUrlPattern_BaseUrl()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getBaseUrl();

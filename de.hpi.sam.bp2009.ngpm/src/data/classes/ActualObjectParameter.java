@@ -79,6 +79,7 @@ public interface ActualObjectParameter extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getActualObjectParameter <em>Actual Object Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
@@ -88,8 +89,8 @@ public interface ActualObjectParameter extends EObject {
 	 * @return the value of the '<em>Value</em>' containment reference.
 	 * @see #setValue(Expression)
 	 * @see data.classes.ClassesPackage#getActualObjectParameter_Value()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='actualObjectParameter'"
+	 * @see dataaccess.expressions.Expression#getActualObjectParameter
+	 * @model opposite="actualObjectParameter" containment="true" required="true"
 	 * @generated
 	 */
 	Expression getValue();

@@ -6,6 +6,8 @@
  */
 package data.classes;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -88,7 +90,8 @@ public interface TypeAdapter extends SignatureOwner {
 	 * <!-- begin-model-doc -->
 	 * A class A conforms to a class B if for every signature that B has (either directly or by delegation, but not from any adapters), A has a conforming signature, either immediately declared in A or by delegation or through a type adapter.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |\n    self.allSignatures()->exists(selfSig:MethodSignature |\n       selfSig.conformsToExcluding(typeSig, Sequence{self.to}, Sequence{type})))'"
+	 * @model unique="false" required="true" ordered="false" typeUnique="false" typeRequired="true" typeOrdered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |\n    self.allSignatures()->exists(selfSig:MethodSignature |\n       selfSig.conformsToExcluding(typeSig, Sequence{self.to}, Sequence{type})))'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -100,11 +103,12 @@ public interface TypeAdapter extends SignatureOwner {
 	 * <!-- begin-model-doc -->
 	 * Same as conformsTo(Featured):Boolean but with the possibility to pass pairs of Featured elements that are to be considered conforming and thus don't need further exploration. This can be used to avoid endless recursions in conformance testing.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='Sequence{1..excludingConforming->size()}->exists(i|\n  excludingConforming->asSequence()->at(i) = self.to and excludingTo->asSequence()->at(i) = type) or\n  type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |\n         self.allSignatures()->exists(selfSig:MethodSignature |\n            selfSig.conformsToExcluding(typeSig,\n                    excludingConforming->asSequence()->append(self.to),\n                    excludingTo->asSequence()->append(type))))'"
+	 * @model unique="false" required="true" ordered="false" typeUnique="false" typeRequired="true" typeOrdered="false" excludingConformingUnique="false" excludingConformingMany="true" excludingToUnique="false" excludingToMany="true"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='Sequence{1..excludingConforming->size()}->exists(i|\n  excludingConforming->asSequence()->at(i) = self.to and excludingTo->asSequence()->at(i) = type) or\n  type.signaturesWithDelegation()->forAll(typeSig:MethodSignature |\n         self.allSignatures()->exists(selfSig:MethodSignature |\n            selfSig.conformsToExcluding(typeSig,\n                    excludingConforming->asSequence()->append(self.to),\n                    excludingTo->asSequence()->append(type))))'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	boolean conformsToExcluding(SapClass type, SapClass excludingConforming, SapClass excludingTo);
+	boolean conformsToExcluding(SapClass type, EList<SapClass> excludingConforming, EList<SapClass> excludingTo);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,11 +116,12 @@ public interface TypeAdapter extends SignatureOwner {
 	 * <!-- begin-model-doc -->
 	 * Computes all locally-defined signatures plus not conforming signatures offered by 'To' Class. 
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='self.allSignaturesExcluding(Set{})'"
+	 * @model ordered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.allSignaturesExcluding(Set{})'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	MethodSignature allSignatures();
+	EList<MethodSignature> allSignatures();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,10 +129,11 @@ public interface TypeAdapter extends SignatureOwner {
 	 * <!-- begin-model-doc -->
 	 * Same as allSignatures() but with the possibility to to avoid endless recursions.
 	 * <!-- end-model-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='self.to.allSignaturesExcluding(excluding)->select(s |\n    not self.ownedSignatures->exists(os | os.conformsTo(s)))->union(\n  self.ownedSignatures)'"
+	 * @model ordered="false" excludingMany="true" excludingOrdered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.to.allSignaturesExcluding(excluding)->select(s |\n    not self.ownedSignatures->exists(os | os.conformsTo(s)))->union(\n  self.ownedSignatures)'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	MethodSignature allSignaturesExcluding(SapClass excluding);
+	EList<MethodSignature> allSignaturesExcluding(EList<SapClass> excluding);
 
 } // TypeAdapter

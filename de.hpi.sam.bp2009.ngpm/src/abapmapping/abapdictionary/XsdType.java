@@ -40,7 +40,7 @@ public interface XsdType extends EObject {
 	 * @return the value of the '<em>Xsd Type</em>' attribute.
 	 * @see #setXsdType(String)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_XsdType()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getXsdType();
@@ -66,7 +66,7 @@ public interface XsdType extends EObject {
 	 * @return the value of the '<em>Length</em>' attribute.
 	 * @see #setLength(int)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_Length()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	int getLength();
@@ -92,7 +92,7 @@ public interface XsdType extends EObject {
 	 * @return the value of the '<em>Pattern</em>' attribute.
 	 * @see #setPattern(String)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_Pattern()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getPattern();
@@ -118,7 +118,7 @@ public interface XsdType extends EObject {
 	 * @return the value of the '<em>Total Digits</em>' attribute.
 	 * @see #setTotalDigits(int)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_TotalDigits()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	int getTotalDigits();
@@ -144,7 +144,7 @@ public interface XsdType extends EObject {
 	 * @return the value of the '<em>Fraction Digits</em>' attribute.
 	 * @see #setFractionDigits(int)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getXsdType_FractionDigits()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	int getFractionDigits();

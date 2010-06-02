@@ -45,7 +45,7 @@ public interface Application extends NamedElement {
 	 * @return the value of the '<em>Deployment Units</em>' containment reference.
 	 * @see #setDeploymentUnits(DeploymentUnit)
 	 * @see modelmanagement.ModelmanagementPackage#getApplication_DeploymentUnits()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	DeploymentUnit getDeploymentUnits();

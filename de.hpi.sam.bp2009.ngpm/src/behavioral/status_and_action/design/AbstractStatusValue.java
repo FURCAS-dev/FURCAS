@@ -38,7 +38,7 @@ public interface AbstractStatusValue extends NamedElement {
 	 * @return the value of the '<em>Is Initial</em>' attribute.
 	 * @see #setIsInitial(boolean)
 	 * @see behavioral.status_and_action.design.DesignPackage#getAbstractStatusValue_IsInitial()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isIsInitial();
@@ -64,7 +64,7 @@ public interface AbstractStatusValue extends NamedElement {
 	 * @return the value of the '<em>Is Inhibiting</em>' attribute.
 	 * @see #setIsInhibiting(boolean)
 	 * @see behavioral.status_and_action.design.DesignPackage#getAbstractStatusValue_IsInhibiting()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isIsInhibiting();
@@ -90,7 +90,7 @@ public interface AbstractStatusValue extends NamedElement {
 	 * @return the value of the '<em>Is State Guarded</em>' attribute.
 	 * @see #setIsStateGuarded(boolean)
 	 * @see behavioral.status_and_action.design.DesignPackage#getAbstractStatusValue_IsStateGuarded()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isIsStateGuarded();

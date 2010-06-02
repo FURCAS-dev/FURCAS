@@ -198,23 +198,23 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.TypeDefinition, data.classes.SapClass, data.classes.SapClass) <em>Conforms To Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.TypeDefinition, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Conforms To Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #conformsToExcluding(data.classes.TypeDefinition, data.classes.SapClass, data.classes.SapClass)
+	 * @see #conformsToExcluding(data.classes.TypeDefinition, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_EXCLUDING_TYPE_DEFINITION_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_DEFINITION.getEOperations().get(1)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_EXCLUDING_TYPE_DEFINITION_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_DEFINITION.getEOperations().get(1)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean conformsToExcluding(TypeDefinition td, SapClass excludingConforming, SapClass excludingTo) {
+	public boolean conformsToExcluding(TypeDefinition td, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
 		try {
-			return (Boolean)CONFORMS_TO_EXCLUDING_TYPE_DEFINITION_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{td, excludingConforming, excludingTo}));
+			return (Boolean)CONFORMS_TO_EXCLUDING_TYPE_DEFINITION_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{td, excludingConforming, excludingTo}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -246,23 +246,23 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #conformsToIgnoringMultiplicityExcluding(data.classes.TypeDefinition, data.classes.SapClass, data.classes.SapClass) <em>Conforms To Ignoring Multiplicity Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #conformsToIgnoringMultiplicityExcluding(data.classes.TypeDefinition, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Conforms To Ignoring Multiplicity Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #conformsToIgnoringMultiplicityExcluding(data.classes.TypeDefinition, data.classes.SapClass, data.classes.SapClass)
+	 * @see #conformsToIgnoringMultiplicityExcluding(data.classes.TypeDefinition, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_IGNORING_MULTIPLICITY_EXCLUDING_TYPE_DEFINITION_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_DEFINITION.getEOperations().get(3)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_IGNORING_MULTIPLICITY_EXCLUDING_TYPE_DEFINITION_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_DEFINITION.getEOperations().get(3)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean conformsToIgnoringMultiplicityExcluding(TypeDefinition td, SapClass excludingConforming, SapClass excludingTo) {
+	public boolean conformsToIgnoringMultiplicityExcluding(TypeDefinition td, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
 		try {
-			return (Boolean)CONFORMS_TO_IGNORING_MULTIPLICITY_EXCLUDING_TYPE_DEFINITION_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{td, excludingConforming, excludingTo}));
+			return (Boolean)CONFORMS_TO_IGNORING_MULTIPLICITY_EXCLUDING_TYPE_DEFINITION_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{td, excludingConforming, excludingTo}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -308,9 +308,9 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypedElement getTypeUsage() {
+	public EList<TypedElement> getTypeUsage() {
 		try {
-			return (TypedElement)GET_TYPE_USAGE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<TypedElement>)GET_TYPE_USAGE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -380,9 +380,9 @@ public abstract class TypeDefinitionImpl extends MultiplicityImpl implements Typ
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedValue getNamedValuesInScope() {
+	public EList<NamedValue> getNamedValuesInScope() {
 		try {
-			return (NamedValue)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<NamedValue>)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);

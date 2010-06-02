@@ -94,22 +94,94 @@ public interface ExpressionsPackage extends EPackage {
 	int EXPRESSION__EXPRESSION_STATEMENT = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION__INIT_EXPRESSION_FOR = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION__ACTUAL_OBJECT_PARAMETER = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION__ARGUMENT_OF = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION__LEFT_OF_EQUALS = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION__RIGHT_OF_EQUALS = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 5;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION__CONDITIONAL = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION__COLLECTION_EXPRESSION = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 7;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__IN_ITERATOR = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 1;
+	int EXPRESSION__IN_ITERATOR = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION__CONDITION_OF_OQL_QUERY = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 9;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__FROM_CLAUSE = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 2;
+	int EXPRESSION__FROM_CLAUSE = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -118,16 +190,25 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__TEMPLATE = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 3;
+	int EXPRESSION__TEMPLATE = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION__ALL = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 12;
+
+  /**
 	 * The number of structural features of the '<em>Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_FEATURE_COUNT = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 4;
+	int EXPRESSION_FEATURE_COUNT = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The meta object id for the '{@link dataaccess.expressions.impl.VariableExpressionImpl <em>Variable Expression</em>}' class.
@@ -158,6 +239,69 @@ public interface ExpressionsPackage extends EPackage {
 	int VARIABLE_EXPRESSION__EXPRESSION_STATEMENT = EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE_EXPRESSION__INIT_EXPRESSION_FOR = EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE_EXPRESSION__ACTUAL_OBJECT_PARAMETER = EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE_EXPRESSION__ARGUMENT_OF = EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE_EXPRESSION__RIGHT_OF_EQUALS = EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE_EXPRESSION__CONDITIONAL = EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE_EXPRESSION__COLLECTION_EXPRESSION = EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -167,6 +311,15 @@ public interface ExpressionsPackage extends EPackage {
 	int VARIABLE_EXPRESSION__IN_ITERATOR = EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE_EXPRESSION__CONDITION_OF_OQL_QUERY = EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,6 +338,15 @@ public interface ExpressionsPackage extends EPackage {
 	int VARIABLE_EXPRESSION__TEMPLATE = EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int VARIABLE_EXPRESSION__ALL = EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -231,6 +393,69 @@ public interface ExpressionsPackage extends EPackage {
 	int OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT = EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_BASED_EXPRESSION__INIT_EXPRESSION_FOR = EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER = EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_BASED_EXPRESSION__ARGUMENT_OF = EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_BASED_EXPRESSION__RIGHT_OF_EQUALS = EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_BASED_EXPRESSION__CONDITIONAL = EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_BASED_EXPRESSION__COLLECTION_EXPRESSION = EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -240,6 +465,15 @@ public interface ExpressionsPackage extends EPackage {
 	int OBJECT_BASED_EXPRESSION__IN_ITERATOR = EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_BASED_EXPRESSION__CONDITION_OF_OQL_QUERY = EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -258,6 +492,15 @@ public interface ExpressionsPackage extends EPackage {
 	int OBJECT_BASED_EXPRESSION__TEMPLATE = EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_BASED_EXPRESSION__ALL = EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Object</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -304,6 +547,69 @@ public interface ExpressionsPackage extends EPackage {
 	int METHOD_CALL_EXPRESSION__EXPRESSION_STATEMENT = OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int METHOD_CALL_EXPRESSION__INIT_EXPRESSION_FOR = OBJECT_BASED_EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int METHOD_CALL_EXPRESSION__ACTUAL_OBJECT_PARAMETER = OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int METHOD_CALL_EXPRESSION__ARGUMENT_OF = OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int METHOD_CALL_EXPRESSION__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int METHOD_CALL_EXPRESSION__RIGHT_OF_EQUALS = OBJECT_BASED_EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int METHOD_CALL_EXPRESSION__CONDITIONAL = OBJECT_BASED_EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int METHOD_CALL_EXPRESSION__COLLECTION_EXPRESSION = OBJECT_BASED_EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -313,6 +619,15 @@ public interface ExpressionsPackage extends EPackage {
 	int METHOD_CALL_EXPRESSION__IN_ITERATOR = OBJECT_BASED_EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int METHOD_CALL_EXPRESSION__CONDITION_OF_OQL_QUERY = OBJECT_BASED_EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -331,6 +646,15 @@ public interface ExpressionsPackage extends EPackage {
 	int METHOD_CALL_EXPRESSION__TEMPLATE = OBJECT_BASED_EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int METHOD_CALL_EXPRESSION__ALL = OBJECT_BASED_EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Object</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -413,6 +737,69 @@ public interface ExpressionsPackage extends EPackage {
 	int OBJECT_CREATION_EXPRESSION__EXPRESSION_STATEMENT = EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_CREATION_EXPRESSION__INIT_EXPRESSION_FOR = EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_CREATION_EXPRESSION__ACTUAL_OBJECT_PARAMETER = EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_CREATION_EXPRESSION__ARGUMENT_OF = EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_CREATION_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_CREATION_EXPRESSION__RIGHT_OF_EQUALS = EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_CREATION_EXPRESSION__CONDITIONAL = EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_CREATION_EXPRESSION__COLLECTION_EXPRESSION = EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -422,6 +809,15 @@ public interface ExpressionsPackage extends EPackage {
 	int OBJECT_CREATION_EXPRESSION__IN_ITERATOR = EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_CREATION_EXPRESSION__CONDITION_OF_OQL_QUERY = EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -440,6 +836,15 @@ public interface ExpressionsPackage extends EPackage {
 	int OBJECT_CREATION_EXPRESSION__TEMPLATE = EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_CREATION_EXPRESSION__ALL = EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Class To Instantiate</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -495,6 +900,69 @@ public interface ExpressionsPackage extends EPackage {
 	int SIGNATURE_CALL_EXPRESSION__EXPRESSION_STATEMENT = EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int SIGNATURE_CALL_EXPRESSION__INIT_EXPRESSION_FOR = EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int SIGNATURE_CALL_EXPRESSION__ACTUAL_OBJECT_PARAMETER = EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int SIGNATURE_CALL_EXPRESSION__ARGUMENT_OF = EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int SIGNATURE_CALL_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int SIGNATURE_CALL_EXPRESSION__RIGHT_OF_EQUALS = EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int SIGNATURE_CALL_EXPRESSION__CONDITIONAL = EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int SIGNATURE_CALL_EXPRESSION__COLLECTION_EXPRESSION = EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -504,6 +972,15 @@ public interface ExpressionsPackage extends EPackage {
 	int SIGNATURE_CALL_EXPRESSION__IN_ITERATOR = EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int SIGNATURE_CALL_EXPRESSION__CONDITION_OF_OQL_QUERY = EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -522,6 +999,15 @@ public interface ExpressionsPackage extends EPackage {
 	int SIGNATURE_CALL_EXPRESSION__TEMPLATE = EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int SIGNATURE_CALL_EXPRESSION__ALL = EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -568,6 +1054,69 @@ public interface ExpressionsPackage extends EPackage {
 	int FUNCTION_CALL_EXPRESSION__EXPRESSION_STATEMENT = SIGNATURE_CALL_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int FUNCTION_CALL_EXPRESSION__INIT_EXPRESSION_FOR = SIGNATURE_CALL_EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int FUNCTION_CALL_EXPRESSION__ACTUAL_OBJECT_PARAMETER = SIGNATURE_CALL_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int FUNCTION_CALL_EXPRESSION__ARGUMENT_OF = SIGNATURE_CALL_EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int FUNCTION_CALL_EXPRESSION__LEFT_OF_EQUALS = SIGNATURE_CALL_EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int FUNCTION_CALL_EXPRESSION__RIGHT_OF_EQUALS = SIGNATURE_CALL_EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int FUNCTION_CALL_EXPRESSION__CONDITIONAL = SIGNATURE_CALL_EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int FUNCTION_CALL_EXPRESSION__COLLECTION_EXPRESSION = SIGNATURE_CALL_EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -577,6 +1126,15 @@ public interface ExpressionsPackage extends EPackage {
 	int FUNCTION_CALL_EXPRESSION__IN_ITERATOR = SIGNATURE_CALL_EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int FUNCTION_CALL_EXPRESSION__CONDITION_OF_OQL_QUERY = SIGNATURE_CALL_EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -595,6 +1153,15 @@ public interface ExpressionsPackage extends EPackage {
 	int FUNCTION_CALL_EXPRESSION__TEMPLATE = SIGNATURE_CALL_EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int FUNCTION_CALL_EXPRESSION__ALL = SIGNATURE_CALL_EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -678,6 +1245,69 @@ public interface ExpressionsPackage extends EPackage {
 	int THIS__EXPRESSION_STATEMENT = EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int THIS__INIT_EXPRESSION_FOR = EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int THIS__ACTUAL_OBJECT_PARAMETER = EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int THIS__ARGUMENT_OF = EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int THIS__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int THIS__RIGHT_OF_EQUALS = EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int THIS__CONDITIONAL = EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int THIS__COLLECTION_EXPRESSION = EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -687,6 +1317,15 @@ public interface ExpressionsPackage extends EPackage {
 	int THIS__IN_ITERATOR = EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int THIS__CONDITION_OF_OQL_QUERY = EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -705,6 +1344,15 @@ public interface ExpressionsPackage extends EPackage {
 	int THIS__TEMPLATE = EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int THIS__ALL = EXPRESSION__ALL;
+
+  /**
 	 * The number of structural features of the '<em>This</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -742,6 +1390,69 @@ public interface ExpressionsPackage extends EPackage {
 	int EQUALS__EXPRESSION_STATEMENT = EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EQUALS__INIT_EXPRESSION_FOR = EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EQUALS__ACTUAL_OBJECT_PARAMETER = EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EQUALS__ARGUMENT_OF = EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EQUALS__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EQUALS__RIGHT_OF_EQUALS = EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EQUALS__CONDITIONAL = EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EQUALS__COLLECTION_EXPRESSION = EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -751,6 +1462,15 @@ public interface ExpressionsPackage extends EPackage {
 	int EQUALS__IN_ITERATOR = EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EQUALS__CONDITION_OF_OQL_QUERY = EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -769,6 +1489,15 @@ public interface ExpressionsPackage extends EPackage {
 	int EQUALS__TEMPLATE = EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EQUALS__ALL = EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -824,6 +1553,69 @@ public interface ExpressionsPackage extends EPackage {
 	int ASSOCIATION_END_NAVIGATION_EXPRESSION__EXPRESSION_STATEMENT = OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int ASSOCIATION_END_NAVIGATION_EXPRESSION__INIT_EXPRESSION_FOR = OBJECT_BASED_EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int ASSOCIATION_END_NAVIGATION_EXPRESSION__ACTUAL_OBJECT_PARAMETER = OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int ASSOCIATION_END_NAVIGATION_EXPRESSION__ARGUMENT_OF = OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int ASSOCIATION_END_NAVIGATION_EXPRESSION__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int ASSOCIATION_END_NAVIGATION_EXPRESSION__RIGHT_OF_EQUALS = OBJECT_BASED_EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int ASSOCIATION_END_NAVIGATION_EXPRESSION__CONDITIONAL = OBJECT_BASED_EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int ASSOCIATION_END_NAVIGATION_EXPRESSION__COLLECTION_EXPRESSION = OBJECT_BASED_EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -833,6 +1625,15 @@ public interface ExpressionsPackage extends EPackage {
 	int ASSOCIATION_END_NAVIGATION_EXPRESSION__IN_ITERATOR = OBJECT_BASED_EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int ASSOCIATION_END_NAVIGATION_EXPRESSION__CONDITION_OF_OQL_QUERY = OBJECT_BASED_EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -851,6 +1652,15 @@ public interface ExpressionsPackage extends EPackage {
 	int ASSOCIATION_END_NAVIGATION_EXPRESSION__TEMPLATE = OBJECT_BASED_EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int ASSOCIATION_END_NAVIGATION_EXPRESSION__ALL = OBJECT_BASED_EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Object</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -906,6 +1716,69 @@ public interface ExpressionsPackage extends EPackage {
 	int OBJECT_COUNT__EXPRESSION_STATEMENT = OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_COUNT__INIT_EXPRESSION_FOR = OBJECT_BASED_EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_COUNT__ACTUAL_OBJECT_PARAMETER = OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_COUNT__ARGUMENT_OF = OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_COUNT__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_COUNT__RIGHT_OF_EQUALS = OBJECT_BASED_EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_COUNT__CONDITIONAL = OBJECT_BASED_EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_COUNT__COLLECTION_EXPRESSION = OBJECT_BASED_EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -915,6 +1788,15 @@ public interface ExpressionsPackage extends EPackage {
 	int OBJECT_COUNT__IN_ITERATOR = OBJECT_BASED_EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_COUNT__CONDITION_OF_OQL_QUERY = OBJECT_BASED_EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -933,6 +1815,15 @@ public interface ExpressionsPackage extends EPackage {
 	int OBJECT_COUNT__TEMPLATE = OBJECT_BASED_EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int OBJECT_COUNT__ALL = OBJECT_BASED_EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Object</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -979,6 +1870,69 @@ public interface ExpressionsPackage extends EPackage {
 	int REPLACE__EXPRESSION_STATEMENT = OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int REPLACE__INIT_EXPRESSION_FOR = OBJECT_BASED_EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int REPLACE__ACTUAL_OBJECT_PARAMETER = OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int REPLACE__ARGUMENT_OF = OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int REPLACE__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int REPLACE__RIGHT_OF_EQUALS = OBJECT_BASED_EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int REPLACE__CONDITIONAL = OBJECT_BASED_EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int REPLACE__COLLECTION_EXPRESSION = OBJECT_BASED_EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -988,6 +1942,15 @@ public interface ExpressionsPackage extends EPackage {
 	int REPLACE__IN_ITERATOR = OBJECT_BASED_EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int REPLACE__CONDITION_OF_OQL_QUERY = OBJECT_BASED_EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1006,6 +1969,15 @@ public interface ExpressionsPackage extends EPackage {
 	int REPLACE__TEMPLATE = OBJECT_BASED_EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int REPLACE__ALL = OBJECT_BASED_EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Object</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1116,6 +2088,69 @@ public interface ExpressionsPackage extends EPackage {
 	int HEAD__EXPRESSION_STATEMENT = OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int HEAD__INIT_EXPRESSION_FOR = OBJECT_BASED_EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int HEAD__ACTUAL_OBJECT_PARAMETER = OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int HEAD__ARGUMENT_OF = OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int HEAD__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int HEAD__RIGHT_OF_EQUALS = OBJECT_BASED_EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int HEAD__CONDITIONAL = OBJECT_BASED_EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int HEAD__COLLECTION_EXPRESSION = OBJECT_BASED_EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1125,6 +2160,15 @@ public interface ExpressionsPackage extends EPackage {
 	int HEAD__IN_ITERATOR = OBJECT_BASED_EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int HEAD__CONDITION_OF_OQL_QUERY = OBJECT_BASED_EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1143,6 +2187,15 @@ public interface ExpressionsPackage extends EPackage {
 	int HEAD__TEMPLATE = OBJECT_BASED_EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int HEAD__ALL = OBJECT_BASED_EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Object</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1189,6 +2242,69 @@ public interface ExpressionsPackage extends EPackage {
 	int TAIL__EXPRESSION_STATEMENT = OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TAIL__INIT_EXPRESSION_FOR = OBJECT_BASED_EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TAIL__ACTUAL_OBJECT_PARAMETER = OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TAIL__ARGUMENT_OF = OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TAIL__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TAIL__RIGHT_OF_EQUALS = OBJECT_BASED_EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TAIL__CONDITIONAL = OBJECT_BASED_EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TAIL__COLLECTION_EXPRESSION = OBJECT_BASED_EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1198,6 +2314,15 @@ public interface ExpressionsPackage extends EPackage {
 	int TAIL__IN_ITERATOR = OBJECT_BASED_EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TAIL__CONDITION_OF_OQL_QUERY = OBJECT_BASED_EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1216,6 +2341,15 @@ public interface ExpressionsPackage extends EPackage {
 	int TAIL__TEMPLATE = OBJECT_BASED_EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TAIL__ALL = OBJECT_BASED_EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Object</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1262,6 +2396,69 @@ public interface ExpressionsPackage extends EPackage {
 	int AS_LIST__EXPRESSION_STATEMENT = OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int AS_LIST__INIT_EXPRESSION_FOR = OBJECT_BASED_EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int AS_LIST__ACTUAL_OBJECT_PARAMETER = OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int AS_LIST__ARGUMENT_OF = OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int AS_LIST__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int AS_LIST__RIGHT_OF_EQUALS = OBJECT_BASED_EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int AS_LIST__CONDITIONAL = OBJECT_BASED_EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int AS_LIST__COLLECTION_EXPRESSION = OBJECT_BASED_EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1271,6 +2468,15 @@ public interface ExpressionsPackage extends EPackage {
 	int AS_LIST__IN_ITERATOR = OBJECT_BASED_EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int AS_LIST__CONDITION_OF_OQL_QUERY = OBJECT_BASED_EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1289,6 +2495,15 @@ public interface ExpressionsPackage extends EPackage {
 	int AS_LIST__TEMPLATE = OBJECT_BASED_EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int AS_LIST__ALL = OBJECT_BASED_EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Object</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1363,6 +2578,69 @@ public interface ExpressionsPackage extends EPackage {
 	int CONDITIONAL_EXPRESSION__EXPRESSION_STATEMENT = EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONDITIONAL_EXPRESSION__INIT_EXPRESSION_FOR = EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONDITIONAL_EXPRESSION__ACTUAL_OBJECT_PARAMETER = EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONDITIONAL_EXPRESSION__ARGUMENT_OF = EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONDITIONAL_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONDITIONAL_EXPRESSION__RIGHT_OF_EQUALS = EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONDITIONAL_EXPRESSION__CONDITIONAL = EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONDITIONAL_EXPRESSION__COLLECTION_EXPRESSION = EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1372,6 +2650,15 @@ public interface ExpressionsPackage extends EPackage {
 	int CONDITIONAL_EXPRESSION__IN_ITERATOR = EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONDITIONAL_EXPRESSION__CONDITION_OF_OQL_QUERY = EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1390,6 +2677,15 @@ public interface ExpressionsPackage extends EPackage {
 	int CONDITIONAL_EXPRESSION__TEMPLATE = EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONDITIONAL_EXPRESSION__ALL = EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1436,6 +2732,69 @@ public interface ExpressionsPackage extends EPackage {
 	int TERNARY__EXPRESSION_STATEMENT = CONDITIONAL_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TERNARY__INIT_EXPRESSION_FOR = CONDITIONAL_EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TERNARY__ACTUAL_OBJECT_PARAMETER = CONDITIONAL_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TERNARY__ARGUMENT_OF = CONDITIONAL_EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TERNARY__LEFT_OF_EQUALS = CONDITIONAL_EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TERNARY__RIGHT_OF_EQUALS = CONDITIONAL_EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TERNARY__CONDITIONAL = CONDITIONAL_EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TERNARY__COLLECTION_EXPRESSION = CONDITIONAL_EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1445,6 +2804,15 @@ public interface ExpressionsPackage extends EPackage {
 	int TERNARY__IN_ITERATOR = CONDITIONAL_EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TERNARY__CONDITION_OF_OQL_QUERY = CONDITIONAL_EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1463,6 +2831,15 @@ public interface ExpressionsPackage extends EPackage {
 	int TERNARY__TEMPLATE = CONDITIONAL_EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int TERNARY__ALL = CONDITIONAL_EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1527,6 +2904,69 @@ public interface ExpressionsPackage extends EPackage {
 	int CONTENT_EQUALS__EXPRESSION_STATEMENT = EQUALS__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONTENT_EQUALS__INIT_EXPRESSION_FOR = EQUALS__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONTENT_EQUALS__ACTUAL_OBJECT_PARAMETER = EQUALS__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONTENT_EQUALS__ARGUMENT_OF = EQUALS__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONTENT_EQUALS__LEFT_OF_EQUALS = EQUALS__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONTENT_EQUALS__RIGHT_OF_EQUALS = EQUALS__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONTENT_EQUALS__CONDITIONAL = EQUALS__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONTENT_EQUALS__COLLECTION_EXPRESSION = EQUALS__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1536,6 +2976,15 @@ public interface ExpressionsPackage extends EPackage {
 	int CONTENT_EQUALS__IN_ITERATOR = EQUALS__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONTENT_EQUALS__CONDITION_OF_OQL_QUERY = EQUALS__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1554,6 +3003,15 @@ public interface ExpressionsPackage extends EPackage {
 	int CONTENT_EQUALS__TEMPLATE = EQUALS__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int CONTENT_EQUALS__ALL = EQUALS__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Left</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1609,6 +3067,69 @@ public interface ExpressionsPackage extends EPackage {
 	int EXPRESSION_WITH_ARGUMENT__EXPRESSION_STATEMENT = EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION_WITH_ARGUMENT__INIT_EXPRESSION_FOR = EXPRESSION__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION_WITH_ARGUMENT__ACTUAL_OBJECT_PARAMETER = EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION_WITH_ARGUMENT__ARGUMENT_OF = EXPRESSION__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION_WITH_ARGUMENT__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION_WITH_ARGUMENT__RIGHT_OF_EQUALS = EXPRESSION__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION_WITH_ARGUMENT__CONDITIONAL = EXPRESSION__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION_WITH_ARGUMENT__COLLECTION_EXPRESSION = EXPRESSION__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1618,6 +3139,15 @@ public interface ExpressionsPackage extends EPackage {
 	int EXPRESSION_WITH_ARGUMENT__IN_ITERATOR = EXPRESSION__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION_WITH_ARGUMENT__CONDITION_OF_OQL_QUERY = EXPRESSION__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1636,6 +3166,15 @@ public interface ExpressionsPackage extends EPackage {
 	int EXPRESSION_WITH_ARGUMENT__TEMPLATE = EXPRESSION__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int EXPRESSION_WITH_ARGUMENT__ALL = EXPRESSION__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Argument</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1682,6 +3221,69 @@ public interface ExpressionsPackage extends EPackage {
 	int MAP__EXPRESSION_STATEMENT = EXPRESSION_WITH_ARGUMENT__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int MAP__INIT_EXPRESSION_FOR = EXPRESSION_WITH_ARGUMENT__INIT_EXPRESSION_FOR;
+
+  /**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int MAP__ACTUAL_OBJECT_PARAMETER = EXPRESSION_WITH_ARGUMENT__ACTUAL_OBJECT_PARAMETER;
+
+  /**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int MAP__ARGUMENT_OF = EXPRESSION_WITH_ARGUMENT__ARGUMENT_OF;
+
+  /**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int MAP__LEFT_OF_EQUALS = EXPRESSION_WITH_ARGUMENT__LEFT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int MAP__RIGHT_OF_EQUALS = EXPRESSION_WITH_ARGUMENT__RIGHT_OF_EQUALS;
+
+  /**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int MAP__CONDITIONAL = EXPRESSION_WITH_ARGUMENT__CONDITIONAL;
+
+  /**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int MAP__COLLECTION_EXPRESSION = EXPRESSION_WITH_ARGUMENT__COLLECTION_EXPRESSION;
+
+  /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1691,6 +3293,15 @@ public interface ExpressionsPackage extends EPackage {
 	int MAP__IN_ITERATOR = EXPRESSION_WITH_ARGUMENT__IN_ITERATOR;
 
 	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int MAP__CONDITION_OF_OQL_QUERY = EXPRESSION_WITH_ARGUMENT__CONDITION_OF_OQL_QUERY;
+
+  /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1709,6 +3320,15 @@ public interface ExpressionsPackage extends EPackage {
 	int MAP__TEMPLATE = EXPRESSION_WITH_ARGUMENT__TEMPLATE;
 
 	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+  int MAP__ALL = EXPRESSION_WITH_ARGUMENT__ALL;
+
+  /**
 	 * The feature id for the '<em><b>Argument</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1758,6 +3378,83 @@ public interface ExpressionsPackage extends EPackage {
 	EReference getExpression_ExpressionStatement();
 
 	/**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getInitExpressionFor <em>Init Expression For</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Init Expression For</em>'.
+	 * @see dataaccess.expressions.Expression#getInitExpressionFor()
+	 * @see #getExpression()
+	 * @generated
+	 */
+  EReference getExpression_InitExpressionFor();
+
+  /**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getActualObjectParameter <em>Actual Object Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Actual Object Parameter</em>'.
+	 * @see dataaccess.expressions.Expression#getActualObjectParameter()
+	 * @see #getExpression()
+	 * @generated
+	 */
+  EReference getExpression_ActualObjectParameter();
+
+  /**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getArgumentOf <em>Argument Of</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Argument Of</em>'.
+	 * @see dataaccess.expressions.Expression#getArgumentOf()
+	 * @see #getExpression()
+	 * @generated
+	 */
+  EReference getExpression_ArgumentOf();
+
+  /**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getLeftOfEquals <em>Left Of Equals</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Left Of Equals</em>'.
+	 * @see dataaccess.expressions.Expression#getLeftOfEquals()
+	 * @see #getExpression()
+	 * @generated
+	 */
+  EReference getExpression_LeftOfEquals();
+
+  /**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getRightOfEquals <em>Right Of Equals</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Right Of Equals</em>'.
+	 * @see dataaccess.expressions.Expression#getRightOfEquals()
+	 * @see #getExpression()
+	 * @generated
+	 */
+  EReference getExpression_RightOfEquals();
+
+  /**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getConditional <em>Conditional</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Conditional</em>'.
+	 * @see dataaccess.expressions.Expression#getConditional()
+	 * @see #getExpression()
+	 * @generated
+	 */
+  EReference getExpression_Conditional();
+
+  /**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getCollectionExpression <em>Collection Expression</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Collection Expression</em>'.
+	 * @see dataaccess.expressions.Expression#getCollectionExpression()
+	 * @see #getExpression()
+	 * @generated
+	 */
+  EReference getExpression_CollectionExpression();
+
+  /**
 	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getInIterator <em>In Iterator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1769,6 +3466,17 @@ public interface ExpressionsPackage extends EPackage {
 	EReference getExpression_InIterator();
 
 	/**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getConditionOfOqlQuery <em>Condition Of Oql Query</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Condition Of Oql Query</em>'.
+	 * @see dataaccess.expressions.Expression#getConditionOfOqlQuery()
+	 * @see #getExpression()
+	 * @generated
+	 */
+  EReference getExpression_ConditionOfOqlQuery();
+
+  /**
 	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getFromClause <em>From Clause</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1791,6 +3499,17 @@ public interface ExpressionsPackage extends EPackage {
 	EReference getExpression_Template();
 
 	/**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getAll <em>All</em>}'.
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>All</em>'.
+	 * @see dataaccess.expressions.Expression#getAll()
+	 * @see #getExpression()
+	 * @generated
+	 */
+  EReference getExpression_All();
+
+  /**
 	 * Returns the meta object for class '{@link dataaccess.expressions.VariableExpression <em>Variable Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2282,6 +4001,62 @@ public interface ExpressionsPackage extends EPackage {
 		EReference EXPRESSION__EXPRESSION_STATEMENT = eINSTANCE.getExpression_ExpressionStatement();
 
 		/**
+		 * The meta object literal for the '<em><b>Init Expression For</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference EXPRESSION__INIT_EXPRESSION_FOR = eINSTANCE.getExpression_InitExpressionFor();
+
+    /**
+		 * The meta object literal for the '<em><b>Actual Object Parameter</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference EXPRESSION__ACTUAL_OBJECT_PARAMETER = eINSTANCE.getExpression_ActualObjectParameter();
+
+    /**
+		 * The meta object literal for the '<em><b>Argument Of</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference EXPRESSION__ARGUMENT_OF = eINSTANCE.getExpression_ArgumentOf();
+
+    /**
+		 * The meta object literal for the '<em><b>Left Of Equals</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference EXPRESSION__LEFT_OF_EQUALS = eINSTANCE.getExpression_LeftOfEquals();
+
+    /**
+		 * The meta object literal for the '<em><b>Right Of Equals</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference EXPRESSION__RIGHT_OF_EQUALS = eINSTANCE.getExpression_RightOfEquals();
+
+    /**
+		 * The meta object literal for the '<em><b>Conditional</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference EXPRESSION__CONDITIONAL = eINSTANCE.getExpression_Conditional();
+
+    /**
+		 * The meta object literal for the '<em><b>Collection Expression</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference EXPRESSION__COLLECTION_EXPRESSION = eINSTANCE.getExpression_CollectionExpression();
+
+    /**
 		 * The meta object literal for the '<em><b>In Iterator</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2290,6 +4065,14 @@ public interface ExpressionsPackage extends EPackage {
 		EReference EXPRESSION__IN_ITERATOR = eINSTANCE.getExpression_InIterator();
 
 		/**
+		 * The meta object literal for the '<em><b>Condition Of Oql Query</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference EXPRESSION__CONDITION_OF_OQL_QUERY = eINSTANCE.getExpression_ConditionOfOqlQuery();
+
+    /**
 		 * The meta object literal for the '<em><b>From Clause</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2306,6 +4089,14 @@ public interface ExpressionsPackage extends EPackage {
 		EReference EXPRESSION__TEMPLATE = eINSTANCE.getExpression_Template();
 
 		/**
+		 * The meta object literal for the '<em><b>All</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+		 * @generated
+		 */
+    EReference EXPRESSION__ALL = eINSTANCE.getExpression_All();
+
+    /**
 		 * The meta object literal for the '{@link dataaccess.expressions.impl.VariableExpressionImpl <em>Variable Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->

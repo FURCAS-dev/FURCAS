@@ -12,6 +12,7 @@ import behavioral.actions.NamedValueWithOptionalInitExpression;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -91,11 +92,63 @@ public class NamedValueDeclarationImpl extends StatementImpl implements NamedVal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setNamedValue(NamedValueWithOptionalInitExpression newNamedValue) {
+	public NotificationChain basicSetNamedValue(NamedValueWithOptionalInitExpression newNamedValue, NotificationChain msgs) {
 		NamedValueWithOptionalInitExpression oldNamedValue = namedValue;
 		namedValue = newNamedValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE, oldNamedValue, namedValue));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE, oldNamedValue, newNamedValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setNamedValue(NamedValueWithOptionalInitExpression newNamedValue) {
+		if (newNamedValue != namedValue) {
+			NotificationChain msgs = null;
+			if (namedValue != null)
+				msgs = ((InternalEObject)namedValue).eInverseRemove(this, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION, NamedValueWithOptionalInitExpression.class, msgs);
+			if (newNamedValue != null)
+				msgs = ((InternalEObject)newNamedValue).eInverseAdd(this, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION, NamedValueWithOptionalInitExpression.class, msgs);
+			msgs = basicSetNamedValue(newNamedValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE, newNamedValue, newNamedValue));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE:
+				if (namedValue != null)
+					msgs = ((InternalEObject)namedValue).eInverseRemove(this, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION, NamedValueWithOptionalInitExpression.class, msgs);
+				return basicSetNamedValue((NamedValueWithOptionalInitExpression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE:
+				return basicSetNamedValue(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

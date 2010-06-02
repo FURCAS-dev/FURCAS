@@ -156,7 +156,19 @@ public class QueryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SELECTION__CONDITION_MUST_BE_BOOLEAN_OR_NUMERIC__EEXPRESSION = "self.selectionExpr.getType().oclIsKindOf(ClassTypeDefinition) and\n (\n    (\n      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Boolean' and\n      self.selectionExpr.getType().upperMultiplicity = 1\n    )\n    or\n    (\n      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Number' \n      and \n      self.object.getType().ordered\n    )\n  )";
+	protected static final String SELECTION__CONDITION_MUST_BE_BOOLEAN_OR_NUMERIC__EEXPRESSION = "self.selectionExpr.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
+		" (" +
+		"    (" +
+		"      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\' and" +
+		"      self.selectionExpr.getType().upperMultiplicity = 1" +
+		"    )" +
+		"    or" +
+		"    (" +
+		"      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\' " +
+		"      and " +
+		"      self.object.getType().ordered" +
+		"    )" +
+		"  )";
 
 	/**
 	 * Validates the ConditionMustBeBooleanOrNumeric constraint of '<em>Selection</em>'.
@@ -207,7 +219,9 @@ public class QueryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String OQL_QUERY__CONDITION_MUST_BE_BOOLEAN__EEXPRESSION = "self.condition->notEmpty() implies\n    (self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\n     self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name='Boolean')";
+	protected static final String OQL_QUERY__CONDITION_MUST_BE_BOOLEAN__EEXPRESSION = "self.condition->notEmpty() implies" +
+		"    (self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
+		"     self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name=\'Boolean\')";
 
 	/**
 	 * Validates the ConditionMustBeBoolean constraint of '<em>Oql Query</em>'.
@@ -265,7 +279,7 @@ public class QueryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String OQL_QUERY__HAS_VALUE_TYPE__EEXPRESSION = "self.getType().oclIsKindOf(ClassTypeDefinition) and self.getType().oclAsType(ClassTypeDefinition).clazz.valueType";
+	protected static final String OQL_QUERY__HAS_VALUE_TYPE__EEXPRESSION = "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType";
 
 	/**
 	 * Validates the HasValueType constraint of '<em>Oql Query</em>'.
@@ -294,7 +308,7 @@ public class QueryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String OQL_QUERY__SELECTED_ITERATORS_MUST_HAVE_CLASS_TYPE_DEFINITION_AS_TYPE__EEXPRESSION = "self.selected->forAll(i | i.getType().oclIsKindOf(ClassTypeDefinition))";
+	protected static final String OQL_QUERY__SELECTED_ITERATORS_MUST_HAVE_CLASS_TYPE_DEFINITION_AS_TYPE__EEXPRESSION = "self.selected->forAll(i | i.getType().oclIsKindOf(data::classes::ClassTypeDefinition))";
 
 	/**
 	 * Validates the SelectedIteratorsMustHaveClassTypeDefinitionAsType constraint of '<em>Oql Query</em>'.

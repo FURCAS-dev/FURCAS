@@ -24,6 +24,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 
 import org.eclipse.emf.ecore.EClass;
@@ -195,9 +196,9 @@ public abstract class ConditionalStatementImpl extends ConditionalImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedValue getNamedValuesInScope() {
+	public EList<NamedValue> getNamedValuesInScope() {
 		try {
-			return (NamedValue)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<NamedValue>)GET_NAMED_VALUES_IN_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -229,23 +230,23 @@ public abstract class ConditionalStatementImpl extends ConditionalImpl implement
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #addNamedValuesWithNewNames(data.classes.NamedValue, data.classes.NamedValue) <em>Add Named Values With New Names</em>}' operation.
+	 * The cached invocation delegate for the '{@link #addNamedValuesWithNewNames(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Add Named Values With New Names</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #addNamedValuesWithNewNames(data.classes.NamedValue, data.classes.NamedValue)
+	 * @see #addNamedValuesWithNewNames(org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ADD_NAMED_VALUES_WITH_NEW_NAMES_NAMED_VALUE_NAMED_VALUE__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.IN_SCOPE.getEOperations().get(0)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ADD_NAMED_VALUES_WITH_NEW_NAMES_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.IN_SCOPE.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamedValue addNamedValuesWithNewNames(NamedValue inner, NamedValue outer) {
+	public EList<NamedValue> addNamedValuesWithNewNames(EList<NamedValue> inner, EList<NamedValue> outer) {
 		try {
-			return (NamedValue)ADD_NAMED_VALUES_WITH_NEW_NAMES_NAMED_VALUE_NAMED_VALUE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{inner, outer}));
+			return (EList<NamedValue>)ADD_NAMED_VALUES_WITH_NEW_NAMES_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(2, new Object[]{inner, outer}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);

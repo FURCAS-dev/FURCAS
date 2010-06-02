@@ -37,7 +37,7 @@ public interface Annotation extends EObject {
 	 * @return the value of the '<em>Documentation</em>' attribute.
 	 * @see #setDocumentation(String)
 	 * @see integration.xsd.XsdPackage#getAnnotation_Documentation()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getDocumentation();
@@ -63,7 +63,7 @@ public interface Annotation extends EObject {
 	 * @return the value of the '<em>App Info</em>' attribute.
 	 * @see #setAppInfo(String)
 	 * @see integration.xsd.XsdPackage#getAnnotation_AppInfo()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getAppInfo();

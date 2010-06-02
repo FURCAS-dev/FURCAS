@@ -91,6 +91,69 @@ public interface LiteralsPackage extends EPackage {
 	int LITERAL__EXPRESSION_STATEMENT = ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__INIT_EXPRESSION_FOR = ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__ARGUMENT_OF = ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__LEFT_OF_EQUALS = ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__RIGHT_OF_EQUALS = ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__CONDITIONAL = ExpressionsPackage.EXPRESSION__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__COLLECTION_EXPRESSION = ExpressionsPackage.EXPRESSION__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,6 +161,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL__IN_ITERATOR = ExpressionsPackage.EXPRESSION__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__CONDITION_OF_OQL_QUERY = ExpressionsPackage.EXPRESSION__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -116,6 +188,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL__TEMPLATE = ExpressionsPackage.EXPRESSION__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__ALL = ExpressionsPackage.EXPRESSION__ALL;
 
 	/**
 	 * The feature id for the '<em><b>Literal</b></em>' attribute.
@@ -164,6 +245,69 @@ public interface LiteralsPackage extends EPackage {
 	int BINARY_LITERAL__EXPRESSION_STATEMENT = LITERAL__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__INIT_EXPRESSION_FOR = LITERAL__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__RIGHT_OF_EQUALS = LITERAL__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__CONDITIONAL = LITERAL__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__COLLECTION_EXPRESSION = LITERAL__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,6 +315,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LITERAL__IN_ITERATOR = LITERAL__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__CONDITION_OF_OQL_QUERY = LITERAL__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -189,6 +342,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LITERAL__TEMPLATE = LITERAL__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__ALL = LITERAL__ALL;
 
 	/**
 	 * The feature id for the '<em><b>Literal</b></em>' attribute.
@@ -237,6 +399,69 @@ public interface LiteralsPackage extends EPackage {
 	int STRING_LITERAL__EXPRESSION_STATEMENT = LITERAL__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__INIT_EXPRESSION_FOR = LITERAL__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__RIGHT_OF_EQUALS = LITERAL__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__CONDITIONAL = LITERAL__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__COLLECTION_EXPRESSION = LITERAL__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -244,6 +469,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_LITERAL__IN_ITERATOR = LITERAL__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__CONDITION_OF_OQL_QUERY = LITERAL__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -262,6 +496,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_LITERAL__TEMPLATE = LITERAL__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__ALL = LITERAL__ALL;
 
 	/**
 	 * The feature id for the '<em><b>Literal</b></em>' attribute.
@@ -310,6 +553,69 @@ public interface LiteralsPackage extends EPackage {
 	int NUMBER_LITERAL__EXPRESSION_STATEMENT = LITERAL__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__INIT_EXPRESSION_FOR = LITERAL__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__RIGHT_OF_EQUALS = LITERAL__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__CONDITIONAL = LITERAL__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__COLLECTION_EXPRESSION = LITERAL__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -317,6 +623,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMBER_LITERAL__IN_ITERATOR = LITERAL__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__CONDITION_OF_OQL_QUERY = LITERAL__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -335,6 +650,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMBER_LITERAL__TEMPLATE = LITERAL__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__ALL = LITERAL__ALL;
 
 	/**
 	 * The feature id for the '<em><b>Literal</b></em>' attribute.
@@ -383,6 +707,69 @@ public interface LiteralsPackage extends EPackage {
 	int TIME_POINT_LITERAL__EXPRESSION_STATEMENT = LITERAL__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__INIT_EXPRESSION_FOR = LITERAL__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__RIGHT_OF_EQUALS = LITERAL__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__CONDITIONAL = LITERAL__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__COLLECTION_EXPRESSION = LITERAL__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -390,6 +777,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_POINT_LITERAL__IN_ITERATOR = LITERAL__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__CONDITION_OF_OQL_QUERY = LITERAL__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -408,6 +804,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_POINT_LITERAL__TEMPLATE = LITERAL__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__ALL = LITERAL__ALL;
 
 	/**
 	 * The feature id for the '<em><b>Literal</b></em>' attribute.
@@ -456,6 +861,69 @@ public interface LiteralsPackage extends EPackage {
 	int BOOLEAN_LITERAL__EXPRESSION_STATEMENT = LITERAL__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__INIT_EXPRESSION_FOR = LITERAL__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__RIGHT_OF_EQUALS = LITERAL__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__CONDITIONAL = LITERAL__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__COLLECTION_EXPRESSION = LITERAL__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -463,6 +931,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL__IN_ITERATOR = LITERAL__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__CONDITION_OF_OQL_QUERY = LITERAL__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -481,6 +958,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL__TEMPLATE = LITERAL__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__ALL = LITERAL__ALL;
 
 	/**
 	 * The feature id for the '<em><b>Literal</b></em>' attribute.
@@ -529,6 +1015,69 @@ public interface LiteralsPackage extends EPackage {
 	int OBJECT_LITERAL__EXPRESSION_STATEMENT = ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__INIT_EXPRESSION_FOR = ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__ARGUMENT_OF = ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__LEFT_OF_EQUALS = ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__RIGHT_OF_EQUALS = ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__CONDITIONAL = ExpressionsPackage.EXPRESSION__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__COLLECTION_EXPRESSION = ExpressionsPackage.EXPRESSION__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -536,6 +1085,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_LITERAL__IN_ITERATOR = ExpressionsPackage.EXPRESSION__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__CONDITION_OF_OQL_QUERY = ExpressionsPackage.EXPRESSION__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -554,6 +1112,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_LITERAL__TEMPLATE = ExpressionsPackage.EXPRESSION__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__ALL = ExpressionsPackage.EXPRESSION__ALL;
 
 	/**
 	 * The feature id for the '<em><b>Value Class</b></em>' reference.

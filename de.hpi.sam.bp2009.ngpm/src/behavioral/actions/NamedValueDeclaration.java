@@ -26,6 +26,7 @@ package behavioral.actions;
 public interface NamedValueDeclaration extends Statement {
 	/**
 	 * Returns the value of the '<em><b>Named Value</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.NamedValueWithOptionalInitExpression#getNamedValueDeclaration <em>Named Value Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Named Value</em>' reference isn't clear,
@@ -35,8 +36,8 @@ public interface NamedValueDeclaration extends Statement {
 	 * @return the value of the '<em>Named Value</em>' reference.
 	 * @see #setNamedValue(NamedValueWithOptionalInitExpression)
 	 * @see behavioral.actions.ActionsPackage#getNamedValueDeclaration_NamedValue()
-	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='namedValueDeclaration'"
+	 * @see behavioral.actions.NamedValueWithOptionalInitExpression#getNamedValueDeclaration
+	 * @model opposite="namedValueDeclaration" required="true"
 	 * @generated
 	 */
 	NamedValueWithOptionalInitExpression getNamedValue();

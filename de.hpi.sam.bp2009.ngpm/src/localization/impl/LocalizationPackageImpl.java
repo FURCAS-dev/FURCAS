@@ -449,8 +449,8 @@ public class LocalizationPackageImpl extends EPackageImpl implements Localizatio
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(translatableTextEClass, TranslatableText.class, "TranslatableText", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTranslatableText_Text(), theEcorePackage.getEString(), "text", null, 0, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTranslatableText_HintForTranslator(), theEcorePackage.getEString(), "hintForTranslator", null, 0, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTranslatableText_Text(), theEcorePackage.getEString(), "text", null, 0, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getTranslatableText_HintForTranslator(), theEcorePackage.getEString(), "hintForTranslator", null, 0, 1, TranslatableText.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -19,6 +19,7 @@ import dataaccess.expressions.Expression;
  * The following features are supported:
  * <ul>
  *   <li>{@link behavioral.actions.NamedValueWithOptionalInitExpression#getInitExpression <em>Init Expression</em>}</li>
+ *   <li>{@link behavioral.actions.NamedValueWithOptionalInitExpression#getNamedValueDeclaration <em>Named Value Declaration</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,6 +32,7 @@ import dataaccess.expressions.Expression;
 public interface NamedValueWithOptionalInitExpression extends NamedValue {
 	/**
 	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getInitExpressionFor <em>Init Expression For</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
@@ -40,8 +42,8 @@ public interface NamedValueWithOptionalInitExpression extends NamedValue {
 	 * @return the value of the '<em>Init Expression</em>' containment reference.
 	 * @see #setInitExpression(Expression)
 	 * @see behavioral.actions.ActionsPackage#getNamedValueWithOptionalInitExpression_InitExpression()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='initExpressionFor'"
+	 * @see dataaccess.expressions.Expression#getInitExpressionFor
+	 * @model opposite="initExpressionFor" containment="true"
 	 * @generated
 	 */
 	Expression getInitExpression();
@@ -55,5 +57,33 @@ public interface NamedValueWithOptionalInitExpression extends NamedValue {
 	 * @generated
 	 */
 	void setInitExpression(Expression value);
+
+	/**
+	 * Returns the value of the '<em><b>Named Value Declaration</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.NamedValueDeclaration#getNamedValue <em>Named Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Named Value Declaration</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Named Value Declaration</em>' reference.
+	 * @see #setNamedValueDeclaration(NamedValueDeclaration)
+	 * @see behavioral.actions.ActionsPackage#getNamedValueWithOptionalInitExpression_NamedValueDeclaration()
+	 * @see behavioral.actions.NamedValueDeclaration#getNamedValue
+	 * @model opposite="namedValue"
+	 * @generated
+	 */
+	NamedValueDeclaration getNamedValueDeclaration();
+
+	/**
+	 * Sets the value of the '{@link behavioral.actions.NamedValueWithOptionalInitExpression#getNamedValueDeclaration <em>Named Value Declaration</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Named Value Declaration</em>' reference.
+	 * @see #getNamedValueDeclaration()
+	 * @generated
+	 */
+	void setNamedValueDeclaration(NamedValueDeclaration value);
 
 } // NamedValueWithOptionalInitExpression

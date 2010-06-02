@@ -37,7 +37,7 @@ public interface AbstractAction extends NamedElement {
 	 * @return the value of the '<em>Is Agent</em>' attribute.
 	 * @see #setIsAgent(boolean)
 	 * @see behavioral.status_and_action.design.DesignPackage#getAbstractAction_IsAgent()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isIsAgent();
@@ -63,7 +63,7 @@ public interface AbstractAction extends NamedElement {
 	 * @return the value of the '<em>Is Precondition Fixed</em>' attribute.
 	 * @see #setIsPreconditionFixed(boolean)
 	 * @see behavioral.status_and_action.design.DesignPackage#getAbstractAction_IsPreconditionFixed()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isIsPreconditionFixed();

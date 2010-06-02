@@ -93,6 +93,8 @@
       <genClasses image="false" ecoreClass="behavioral.ecore#//actions/StatementWithArgument"/>
       <genClasses image="false" ecoreClass="behavioral.ecore#//actions/NamedValueWithOptionalInitExpression">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference behavioral.ecore#//actions/NamedValueWithOptionalInitExpression/initExpression"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference behavioral.ecore#//actions/NamedValueWithOptionalInitExpression/namedValueDeclaration"/>
       </genClasses>
       <genClasses image="false" ecoreClass="behavioral.ecore#//actions/ConditionalStatement"/>
     </nestedGenPackages>
@@ -532,6 +534,7 @@
       </genClasses>
       <genClasses ecoreClass="data.ecore#//classes/Parameter">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference data.ecore#//classes/Parameter/ownerSignature"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference data.ecore#//classes/Parameter/parameterOfClass"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference data.ecore#//classes/Parameter/defaultValue"/>
       </genClasses>
       <genClasses image="false" ecoreClass="data.ecore#//classes/NamedValue">
@@ -663,9 +666,18 @@
         ecorePackage="dataaccess.ecore#//expressions">
       <genClasses image="false" ecoreClass="dataaccess.ecore#//expressions/Expression">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/expressionStatement"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/initExpressionFor"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/actualObjectParameter"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/argumentOf"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/leftOfEquals"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/rightOfEquals"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/conditional"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/collectionExpression"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/inIterator"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/conditionOfOqlQuery"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/fromClause"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/template"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/all"/>
         <genOperations ecoreOperation="dataaccess.ecore#//expressions/Expression/isSideEffectFree"/>
         <genOperations ecoreOperation="dataaccess.ecore#//expressions/Expression/evaluatesToEqualAs">
           <genParameters ecoreParameter="dataaccess.ecore#//expressions/Expression/evaluatesToEqualAs/e"/>

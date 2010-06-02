@@ -35,7 +35,7 @@ public interface NamedElement extends Root {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see integration.xsd.XsdPackage#getNamedElement_Name()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getName();

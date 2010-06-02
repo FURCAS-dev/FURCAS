@@ -34,6 +34,7 @@ package dataaccess.expressions;
 public interface Equals extends Expression {
 	/**
 	 * Returns the value of the '<em><b>Left</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getLeftOfEquals <em>Left Of Equals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Left</em>' containment reference isn't clear,
@@ -43,8 +44,8 @@ public interface Equals extends Expression {
 	 * @return the value of the '<em>Left</em>' containment reference.
 	 * @see #setLeft(Expression)
 	 * @see dataaccess.expressions.ExpressionsPackage#getEquals_Left()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='leftOfEquals'"
+	 * @see dataaccess.expressions.Expression#getLeftOfEquals
+	 * @model opposite="leftOfEquals" containment="true" required="true"
 	 * @generated
 	 */
 	Expression getLeft();
@@ -61,6 +62,7 @@ public interface Equals extends Expression {
 
 	/**
 	 * Returns the value of the '<em><b>Right</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getRightOfEquals <em>Right Of Equals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Right</em>' containment reference isn't clear,
@@ -70,8 +72,8 @@ public interface Equals extends Expression {
 	 * @return the value of the '<em>Right</em>' containment reference.
 	 * @see #setRight(Expression)
 	 * @see dataaccess.expressions.ExpressionsPackage#getEquals_Right()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='rightOfEquals'"
+	 * @see dataaccess.expressions.Expression#getRightOfEquals
+	 * @model opposite="rightOfEquals" containment="true" required="true"
 	 * @generated
 	 */
 	Expression getRight();

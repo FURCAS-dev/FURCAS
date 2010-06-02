@@ -158,7 +158,13 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ALL__EXPRESSION_MUST_BE_SNAPSHOT_OR_TIME_POINT__EEXPRESSION = "if self.snapshot = SnapshotSelection::SPECIFIED then\n    self.snapshotIdentifier.getType().upperMultiplicity = 1 and\n    self.snapshotIdentifier.getType().oclIsKindOf(ClassTypeDefinition) and\n   Set{'Snapshot', 'TimePoint'}->includes(self.snapshotIdentifier.getType().oclAsType(ClassTypeDefinition).clazz.name)\n  else\n    true\n  endif";
+	protected static final String ALL__EXPRESSION_MUST_BE_SNAPSHOT_OR_TIME_POINT__EEXPRESSION = "if self.snapshot = SnapshotSelection::SPECIFIED then" +
+		"    self.snapshotIdentifier.getType().upperMultiplicity = 1 and" +
+		"    self.snapshotIdentifier.getType().oclIsKindOf(ClassTypeDefinition) and" +
+		"   Set{\'Snapshot\', \'TimePoint\'}->includes(self.snapshotIdentifier.getType().oclAsType(ClassTypeDefinition).clazz.name)" +
+		"  else" +
+		"    true" +
+		"  endif";
 
 	/**
 	 * Validates the ExpressionMustBeSnapshotOrTimePoint constraint of '<em>All</em>'.
@@ -206,7 +212,8 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String COMMIT__RETURNS_SNAPSHOT__EEXPRESSION = "self.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Snapshot'";
+	protected static final String COMMIT__RETURNS_SNAPSHOT__EEXPRESSION = "self.getType().oclIsKindOf(ClassTypeDefinition) and" +
+		"  self.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Snapshot\'";
 
 	/**
 	 * Validates the ReturnsSnapshot constraint of '<em>Commit</em>'.

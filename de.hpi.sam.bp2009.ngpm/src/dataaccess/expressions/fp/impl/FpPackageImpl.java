@@ -474,7 +474,7 @@ public class FpPackageImpl extends EPackageImpl implements FpPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(anonymousFunctionExprEClass, AnonymousFunctionExpr.class, "AnonymousFunctionExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		addEOperation(anonymousFunctionExprEClass, theClassesPackage.getFunctionSignatureImplementation(), "getImplementation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(anonymousFunctionExprEClass, theClassesPackage.getFunctionSignatureImplementation(), "getImplementation", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(functionFromMethodExprEClass, FunctionFromMethodExpr.class, "FunctionFromMethodExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionFromMethodExpr_Method(), theClassesPackage.getMethodSignature(), null, "method", null, 1, 1, FunctionFromMethodExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -535,22 +535,22 @@ public class FpPackageImpl extends EPackageImpl implements FpPackage {
 		  (anonymousFunctionExprEClass, 
 		   source, 
 		   new String[] {
-			 "TypeMustBeSignatureTypeDefinitionWithImplementation", "self.getType().oclIsKindOf(FunctionSignatureTypeDefinition) and\n  self.getType().oclAsType(FunctionSignatureTypeDefinition).signature.oclAsType(FunctionSignature).implementation->notEmpty()",
+			 "TypeMustBeSignatureTypeDefinitionWithImplementation", "self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n  self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation->notEmpty()",
 			 "HasToOwnSignatureTypeDefinition", "self.ownedTypeDefinition->notEmpty()",
-			 "SignatureMustBeFunctionSignature", "self.ownedTypeDefinition.oclAsType(FunctionSignatureTypeDefinition).signature.oclIsKindOf(FunctionSignature)"
+			 "SignatureMustBeFunctionSignature", "self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclIsKindOf(data::classes::FunctionSignature)"
 		   });			
 		addAnnotation
 		  (anonymousFunctionExprEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
-			 "body", "self.ownedTypeDefinition.oclAsType(FunctionSignatureTypeDefinition).signature.oclAsType(FunctionSignature).implementation"
+			 "body", "self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation"
 		   });					
 		addAnnotation
 		  (functionFromMethodExprEClass, 
 		   source, 
 		   new String[] {
-			 "SignatureAvailableOnObjectsClass", "self.object.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.object.getType().oclAsType(ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(SapClass))",
-			 "MethodSignatureConformsToFunctionSignature", "self.getType().oclIsKindOf(FunctionSignatureTypeDefinition) and\n    self.method.conformsTo(self.getType().oclAsType(FunctionSignatureTypeDefinition).signature)"
+			 "SignatureAvailableOnObjectsClass", "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(data::classes::SapClass))",
+			 "MethodSignatureConformsToFunctionSignature", "self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n    self.method.conformsTo(self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)"
 		   });		
 	}
 

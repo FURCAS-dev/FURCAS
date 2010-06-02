@@ -90,6 +90,69 @@ public interface ExpressionsPackage extends EPackage {
 	int ALL__EXPRESSION_STATEMENT = dataaccess.expressions.ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__INIT_EXPRESSION_FOR = dataaccess.expressions.ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__ACTUAL_OBJECT_PARAMETER = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__ARGUMENT_OF = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__LEFT_OF_EQUALS = dataaccess.expressions.ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__RIGHT_OF_EQUALS = dataaccess.expressions.ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__CONDITIONAL = dataaccess.expressions.ExpressionsPackage.EXPRESSION__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__COLLECTION_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97,6 +160,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ALL__IN_ITERATOR = dataaccess.expressions.ExpressionsPackage.EXPRESSION__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__CONDITION_OF_OQL_QUERY = dataaccess.expressions.ExpressionsPackage.EXPRESSION__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -115,6 +187,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ALL__TEMPLATE = dataaccess.expressions.ExpressionsPackage.EXPRESSION__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__ALL = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ALL;
 
 	/**
 	 * The feature id for the '<em><b>Snapshot</b></em>' attribute.
@@ -181,6 +262,69 @@ public interface ExpressionsPackage extends EPackage {
 	int COMMIT__EXPRESSION_STATEMENT = dataaccess.expressions.ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__INIT_EXPRESSION_FOR = dataaccess.expressions.ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__ACTUAL_OBJECT_PARAMETER = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__ARGUMENT_OF = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__LEFT_OF_EQUALS = dataaccess.expressions.ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__RIGHT_OF_EQUALS = dataaccess.expressions.ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__CONDITIONAL = dataaccess.expressions.ExpressionsPackage.EXPRESSION__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__COLLECTION_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -188,6 +332,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMMIT__IN_ITERATOR = dataaccess.expressions.ExpressionsPackage.EXPRESSION__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__CONDITION_OF_OQL_QUERY = dataaccess.expressions.ExpressionsPackage.EXPRESSION__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -206,6 +359,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMMIT__TEMPLATE = dataaccess.expressions.ExpressionsPackage.EXPRESSION__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__ALL = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ALL;
 
 	/**
 	 * The number of structural features of the '<em>Commit</em>' class.
@@ -245,6 +407,69 @@ public interface ExpressionsPackage extends EPackage {
 	int SNAPSHOT__EXPRESSION_STATEMENT = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__EXPRESSION_STATEMENT;
 
 	/**
+	 * The feature id for the '<em><b>Init Expression For</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__INIT_EXPRESSION_FOR = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__INIT_EXPRESSION_FOR;
+
+	/**
+	 * The feature id for the '<em><b>Actual Object Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__ACTUAL_OBJECT_PARAMETER = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__ARGUMENT_OF = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__LEFT_OF_EQUALS = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__RIGHT_OF_EQUALS = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__RIGHT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__CONDITIONAL = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__CONDITIONAL;
+
+	/**
+	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__COLLECTION_EXPRESSION = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__COLLECTION_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -252,6 +477,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SNAPSHOT__IN_ITERATOR = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__IN_ITERATOR;
+
+	/**
+	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__CONDITION_OF_OQL_QUERY = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__CONDITION_OF_OQL_QUERY;
 
 	/**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -270,6 +504,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SNAPSHOT__TEMPLATE = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__TEMPLATE;
+
+	/**
+	 * The feature id for the '<em><b>All</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__ALL = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__ALL;
 
 	/**
 	 * The feature id for the '<em><b>Object</b></em>' containment reference.

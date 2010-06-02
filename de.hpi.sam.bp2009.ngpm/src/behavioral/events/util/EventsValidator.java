@@ -126,7 +126,8 @@ public class EventsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SUBSCRIPTION__SUBSCRIBING_CLASS_MATCH_PRODUCER__EEXPRESSION = "self.producer.notificationSignatures->forAll(ms:MethodSignature |\n    self.subscribingClass.allSignatures()->exists(s:MethodSignature|s.conformsTo(ms)))";
+	protected static final String SUBSCRIPTION__SUBSCRIBING_CLASS_MATCH_PRODUCER__EEXPRESSION = "self.producer.notificationSignatures->forAll(ms:MethodSignature |" +
+		"    self.subscribingClass.allSignatures()->exists(s:MethodSignature|s.conformsTo(ms)))";
 
 	/**
 	 * Validates the SubscribingClassMatchProducer constraint of '<em>Subscription</em>'.
@@ -183,7 +184,8 @@ public class EventsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EVENT_FILTER__FILTER_BLOCK_SIGNATURE_MATCH_NOTIFICATION_SIGNATURE__EEXPRESSION = "self.subscription.producer.notificationSignatures->exists(ms:MethodSignature |\n    ms.conformsTo(self.test.getImplementedSignature()))";
+	protected static final String EVENT_FILTER__FILTER_BLOCK_SIGNATURE_MATCH_NOTIFICATION_SIGNATURE__EEXPRESSION = "self.subscription.producer.notificationSignatures->exists(ms:MethodSignature |" +
+		"    ms.conformsTo(self.test.getImplementedSignature()))";
 
 	/**
 	 * Validates the FilterBlockSignatureMatchNotificationSignature constraint of '<em>Event Filter</em>'.

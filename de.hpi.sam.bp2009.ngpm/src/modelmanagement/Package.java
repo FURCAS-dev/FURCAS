@@ -133,11 +133,12 @@ public interface Package extends PackageOwner {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='if pks->includes(self) then\n    true\n  else\n    if self.owner->isEmpty() then\n      false\n    else\n      if self.owner.oclIsKindOf(Package) then\n        self.owner.oclAsType(Package).hasOwnershipCycle(pks->including(self))\n      else\n        false\n      endif\n    endif\n  endif'"
+   * <!-- end-user-doc -->
+	 * @model unique="false" required="true" ordered="false" pksMany="true" pksOrdered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if pks->includes(self) then\n    true\n  else\n    if self.owner->isEmpty() then\n      false\n    else\n      if self.owner.oclIsKindOf(Package) then\n        self.owner.oclAsType(Package).hasOwnershipCycle(pks->including(self))\n      else\n        false\n      endif\n    endif\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	boolean hasOwnershipCycle(Package pks);
+  boolean hasOwnershipCycle(EList<Package> pks);
 
 } // Package

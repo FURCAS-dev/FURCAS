@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 
 import org.eclipse.emf.ecore.EClass;
@@ -197,23 +198,23 @@ public class TypeAdapterImpl extends SignatureOwnerImpl implements TypeAdapter {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.SapClass, data.classes.SapClass, data.classes.SapClass) <em>Conforms To Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.SapClass, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Conforms To Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #conformsToExcluding(data.classes.SapClass, data.classes.SapClass, data.classes.SapClass)
+	 * @see #conformsToExcluding(data.classes.SapClass, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_EXCLUDING_SAP_CLASS_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_ADAPTER.getEOperations().get(1)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_ADAPTER.getEOperations().get(1)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean conformsToExcluding(SapClass type, SapClass excludingConforming, SapClass excludingTo) {
+	public boolean conformsToExcluding(SapClass type, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
 		try {
-			return (Boolean)CONFORMS_TO_EXCLUDING_SAP_CLASS_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
+			return (Boolean)CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -235,9 +236,9 @@ public class TypeAdapterImpl extends SignatureOwnerImpl implements TypeAdapter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature allSignatures() {
+	public EList<MethodSignature> allSignatures() {
 		try {
-			return (MethodSignature)ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<MethodSignature>)ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -245,23 +246,23 @@ public class TypeAdapterImpl extends SignatureOwnerImpl implements TypeAdapter {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #allSignaturesExcluding(data.classes.SapClass) <em>All Signatures Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #allSignaturesExcluding(org.eclipse.emf.common.util.EList) <em>All Signatures Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #allSignaturesExcluding(data.classes.SapClass)
+	 * @see #allSignaturesExcluding(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ALL_SIGNATURES_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_ADAPTER.getEOperations().get(3)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_ADAPTER.getEOperations().get(3)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature allSignaturesExcluding(SapClass excluding) {
+	public EList<MethodSignature> allSignaturesExcluding(EList<SapClass> excluding) {
 		try {
-			return (MethodSignature)ALL_SIGNATURES_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+			return (EList<MethodSignature>)ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);

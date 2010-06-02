@@ -635,7 +635,7 @@ public class LiteralsPackageImpl extends EPackageImpl implements LiteralsPackage
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLiteral_Literal(), theEcorePackage.getEString(), "literal", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLiteral_Literal(), theEcorePackage.getEString(), "literal", null, 0, 1, Literal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(binaryLiteralEClass, BinaryLiteral.class, "BinaryLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -651,8 +651,8 @@ public class LiteralsPackageImpl extends EPackageImpl implements LiteralsPackage
 		initEReference(getObjectLiteral_ValueClass(), theClassesPackage.getSapClass(), null, "valueClass", null, 1, 1, ObjectLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getObjectLiteral_PropertyValues(), this.getValueInit(), null, "propertyValues", null, 0, -1, ObjectLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(objectLiteralEClass, theEcorePackage.getEBoolean(), "isEqualTo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getObjectLiteral(), "o", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(objectLiteralEClass, theEcorePackage.getEBoolean(), "isEqualTo", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getObjectLiteral(), "o", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(valueInitEClass, ValueInit.class, "ValueInit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getValueInit_ForEnd(), theClassesPackage.getAssociationEnd(), null, "forEnd", null, 1, 1, ValueInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

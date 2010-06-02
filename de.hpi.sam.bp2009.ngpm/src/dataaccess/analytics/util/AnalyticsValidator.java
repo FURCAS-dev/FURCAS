@@ -131,7 +131,10 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String DIMENSION__BLOCK_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.characteristicFunction.input->size() = 1 and \n  self.cellSet.factsType.conformsToIgnoringMultiplicity(self.characteristicFunction.input->at(1).getType())\n    -- Add the following again once we have NestedTypeDefinitions under control...\n    -- and  self.characteristicFunction.input->at(1).getType().upperMultiplicity = 1";
+	protected static final String DIMENSION__BLOCK_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.characteristicFunction.input->size() = 1 and " +
+		"  self.cellSet.factsType.conformsToIgnoringMultiplicity(self.characteristicFunction.input->at(1).getType())" +
+		"    -- Add the following again once we have NestedTypeDefinitions under control..." +
+		"    -- and  self.characteristicFunction.input->at(1).getType().upperMultiplicity = 1";
 
 	/**
 	 * Validates the BlockSignatureMustMatch constraint of '<em>Dimension</em>'.
@@ -211,7 +214,12 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CELL_SET__VALUE_FUNCTION_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.valueFunction->notEmpty() implies\n    (self.valueFunction.input->size() = 1 and\n     self.factsType.conformsToIgnoringMultiplicity(self.valueFunction.input->at(1).getType())\n    -- Add the following again once we have NestedTypeDefinitions under control...\n    -- and  self.valueFunction.input->at(1).getType().upperMultiplicity = 1\n    )";
+	protected static final String CELL_SET__VALUE_FUNCTION_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.valueFunction->notEmpty() implies" +
+		"    (self.valueFunction.input->size() = 1 and" +
+		"     self.factsType.conformsToIgnoringMultiplicity(self.valueFunction.input->at(1).getType())" +
+		"    -- Add the following again once we have NestedTypeDefinitions under control..." +
+		"    -- and  self.valueFunction.input->at(1).getType().upperMultiplicity = 1" +
+		"    )";
 
 	/**
 	 * Validates the ValueFunctionSignatureMustMatch constraint of '<em>Cell Set</em>'.
@@ -240,7 +248,8 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CELL_SET__AGGREGATION_FUNCTION_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.aggregationFunction.input->size() = 1 and \n  self.keyFigureType().conformsTo(self.aggregationFunction.input->at(1).getType())";
+	protected static final String CELL_SET__AGGREGATION_FUNCTION_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.aggregationFunction.input->size() = 1 and " +
+		"  self.keyFigureType().conformsTo(self.aggregationFunction.input->at(1).getType())";
 
 	/**
 	 * Validates the AggregationFunctionSignatureMustMatch constraint of '<em>Cell Set</em>'.
@@ -377,7 +386,7 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String DIMENSION_EXPRESSION__CELL_SET_EXPRESSION_MUST_HAVE_FUNCTION_SIGNATURE_TYPE__EEXPRESSION = "self.cellSet.getType().oclIsKindOf(FunctionSignatureTypeDefinition)";
+	protected static final String DIMENSION_EXPRESSION__CELL_SET_EXPRESSION_MUST_HAVE_FUNCTION_SIGNATURE_TYPE__EEXPRESSION = "self.cellSet.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)";
 
 	/**
 	 * Validates the CellSetExpressionMustHaveFunctionSignatureType constraint of '<em>Dimension Expression</em>'.
@@ -485,7 +494,11 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String GROUP_BY__MAP_EXPRESSION_MUST_BE_SIDE_EFFECT_FREE__EEXPRESSION = "if self.mapExpression->notEmpty() then\n    self.mapExpression.isSideEffectFree()\n  else\n    true\n  endif";
+	protected static final String GROUP_BY__MAP_EXPRESSION_MUST_BE_SIDE_EFFECT_FREE__EEXPRESSION = "if self.mapExpression->notEmpty() then" +
+		"    self.mapExpression.isSideEffectFree()" +
+		"  else" +
+		"    true" +
+		"  endif";
 
 	/**
 	 * Validates the MapExpressionMustBeSideEffectFree constraint of '<em>Group By</em>'.

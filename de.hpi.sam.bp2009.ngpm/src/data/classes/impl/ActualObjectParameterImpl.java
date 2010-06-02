@@ -13,6 +13,7 @@ import data.classes.Parameter;
 
 import dataaccess.expressions.Expression;
 
+import dataaccess.expressions.ExpressionsPackage;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -179,9 +180,9 @@ public class ActualObjectParameterImpl extends EObjectImpl implements ActualObje
 		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, null, msgs);
+				msgs = ((InternalEObject)value).eInverseRemove(this, ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER, Expression.class, msgs);
 			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, null, msgs);
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER, Expression.class, msgs);
 			msgs = basicSetValue(newValue, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -241,6 +242,10 @@ public class ActualObjectParameterImpl extends EObjectImpl implements ActualObje
 		switch (featureID) {
 			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getClassTypeDefinitions()).basicAdd(otherEnd, msgs);
+			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
+				if (value != null)
+					msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, null, msgs);
+				return basicSetValue((Expression)otherEnd, msgs);
 			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);

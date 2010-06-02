@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getNavigationStep()
- * @model annotation="http://de.hpi.sam.bp2009.OCL FromEndAttachesToOutputOfPreviousStep='let i:Integer = self.replace.steps->indexOf(self) in\n  let t:ClassTypeDefinition = if i=1 then self.replace.object.getType().oclAsType(ClassTypeDefinition) else self.replace.steps->at(-1 + i).to.type endif in\n\n  self.to.otherEnd().type.clazz.conformsTo(t.clazz)' FilterFunctionExpressionHasFunctionType='self.filterFunction->notEmpty() implies self.filterFunction.getType().oclIsKindOf(FunctionSignatureTypeDefinition)' FromEndMustBeEqualityRelevant='to.otherEnd().contributesToEquality'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL FromEndAttachesToOutputOfPreviousStep='let i:Integer = self.replace.steps->indexOf(self) in\n  let t:data::classes::ClassTypeDefinition = if i=1 then\n      self.replace.object.getType().oclAsType(data::classes::ClassTypeDefinition)\n    else\n      self.replace.steps->at(-1 + i).to.type\n    endif\n  in\n\n  self.to.otherEnd().type.clazz.conformsTo(t.clazz)' FilterFunctionExpressionHasFunctionType='self.filterFunction->notEmpty() implies self.filterFunction.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)' FromEndMustBeEqualityRelevant='to.otherEnd().contributesToEquality'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FromEndAttachesToOutputOfPreviousStep FilterFunctionExpressionHasFunctionType FromEndMustBeEqualityRelevant'"
  * @generated
  */

@@ -38,7 +38,7 @@ public interface Multiplicity extends EObject {
 	 * @return the value of the '<em>Lower Multiplicity</em>' attribute.
 	 * @see #setLowerMultiplicity(int)
 	 * @see data.classes.ClassesPackage#getMultiplicity_LowerMultiplicity()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	int getLowerMultiplicity();
@@ -63,7 +63,7 @@ public interface Multiplicity extends EObject {
 	 * @return the value of the '<em>Upper Multiplicity</em>' attribute.
 	 * @see #setUpperMultiplicity(int)
 	 * @see data.classes.ClassesPackage#getMultiplicity_UpperMultiplicity()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	int getUpperMultiplicity();
@@ -89,7 +89,7 @@ public interface Multiplicity extends EObject {
 	 * @return the value of the '<em>Ordered</em>' attribute.
 	 * @see #setOrdered(boolean)
 	 * @see data.classes.ClassesPackage#getMultiplicity_Ordered()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isOrdered();
@@ -115,7 +115,7 @@ public interface Multiplicity extends EObject {
 	 * @return the value of the '<em>Unique</em>' attribute.
 	 * @see #setUnique(boolean)
 	 * @see data.classes.ClassesPackage#getMultiplicity_Unique()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isUnique();
@@ -133,7 +133,7 @@ public interface Multiplicity extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" unique="false" required="true" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.upperMultiplicity > 1 or self.upperMultiplicity = -1'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated

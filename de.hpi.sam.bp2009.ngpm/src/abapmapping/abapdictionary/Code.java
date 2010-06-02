@@ -38,7 +38,7 @@ public interface Code extends DataElement {
 	 * @return the value of the '<em>Extensible</em>' attribute.
 	 * @see #setExtensible(boolean)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getCode_Extensible()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isExtensible();

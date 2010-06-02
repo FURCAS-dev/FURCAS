@@ -565,20 +565,100 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
 	/**
 	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_InitExpressionFor()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(1);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_ActualObjectParameter()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(2);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_ArgumentOf()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(3);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_LeftOfEquals()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(4);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_RightOfEquals()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(5);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_Conditional()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(6);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_CollectionExpression()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(7);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getExpression_InIterator() {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(1);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_ConditionOfOqlQuery()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(9);
+	}
+
+  /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getExpression_FromClause() {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(2);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(10);
 	}
 
 	/**
@@ -587,10 +667,20 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @generated
 	 */
 	public EReference getExpression_Template() {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(3);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_All()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(12);
+	}
+
+  /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1007,9 +1097,18 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		// Create classes and their features
 		expressionEClass = createEClass(EXPRESSION);
 		createEReference(expressionEClass, EXPRESSION__EXPRESSION_STATEMENT);
+		createEReference(expressionEClass, EXPRESSION__INIT_EXPRESSION_FOR);
+		createEReference(expressionEClass, EXPRESSION__ACTUAL_OBJECT_PARAMETER);
+		createEReference(expressionEClass, EXPRESSION__ARGUMENT_OF);
+		createEReference(expressionEClass, EXPRESSION__LEFT_OF_EQUALS);
+		createEReference(expressionEClass, EXPRESSION__RIGHT_OF_EQUALS);
+		createEReference(expressionEClass, EXPRESSION__CONDITIONAL);
+		createEReference(expressionEClass, EXPRESSION__COLLECTION_EXPRESSION);
 		createEReference(expressionEClass, EXPRESSION__IN_ITERATOR);
+		createEReference(expressionEClass, EXPRESSION__CONDITION_OF_OQL_QUERY);
 		createEReference(expressionEClass, EXPRESSION__FROM_CLAUSE);
 		createEReference(expressionEClass, EXPRESSION__TEMPLATE);
+		createEReference(expressionEClass, EXPRESSION__ALL);
 
 		variableExpressionEClass = createEClass(VARIABLE_EXPRESSION);
 		createEReference(variableExpressionEClass, VARIABLE_EXPRESSION__VARIABLE);
@@ -1108,6 +1207,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		ActionsPackage theActionsPackage = (ActionsPackage)EPackage.Registry.INSTANCE.getEPackage(ActionsPackage.eNS_URI);
 		QueryPackage theQueryPackage = (QueryPackage)EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
 		TemplatesPackage theTemplatesPackage = (TemplatesPackage)EPackage.Registry.INSTANCE.getEPackage(TemplatesPackage.eNS_URI);
+		persistence.expressions.ExpressionsPackage theExpressionsPackage_1 = (persistence.expressions.ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(persistence.expressions.ExpressionsPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
@@ -1150,28 +1250,37 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		// Initialize classes and features; add operations and parameters
 		initEClass(expressionEClass, Expression.class, "Expression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExpression_ExpressionStatement(), theActionsPackage.getExpressionStatement(), theActionsPackage.getExpressionStatement_Expression(), "expressionStatement", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_InitExpressionFor(), theActionsPackage.getNamedValueWithOptionalInitExpression(), theActionsPackage.getNamedValueWithOptionalInitExpression_InitExpression(), "initExpressionFor", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_ActualObjectParameter(), theClassesPackage.getActualObjectParameter(), theClassesPackage.getActualObjectParameter_Value(), "actualObjectParameter", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_ArgumentOf(), this.getWithArgument(), this.getWithArgument_Argument(), "argumentOf", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_LeftOfEquals(), this.getEquals(), this.getEquals_Left(), "leftOfEquals", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_RightOfEquals(), this.getEquals(), this.getEquals_Right(), "rightOfEquals", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_Conditional(), this.getConditional(), this.getConditional_Condition(), "conditional", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_CollectionExpression(), theCollectionexpressionsPackage.getCollectionExpression(), theCollectionexpressionsPackage.getCollectionExpression_Source(), "collectionExpression", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_InIterator(), theCollectionexpressionsPackage.getIterate(), theCollectionexpressionsPackage.getIterate_IteratorExpression(), "inIterator", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_ConditionOfOqlQuery(), theQueryPackage.getOqlQuery(), theQueryPackage.getOqlQuery_Condition(), "conditionOfOqlQuery", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_FromClause(), theQueryPackage.getFromClause(), theQueryPackage.getFromClause_FromExpression(), "fromClause", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_Template(), theTemplatesPackage.getStringTemplate(), theTemplatesPackage.getStringTemplate_Expressions(), "template", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_All(), theExpressionsPackage_1.getAll(), theExpressionsPackage_1.getAll_SnapshotIdentifier(), "all", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(expressionEClass, theEcorePackage.getEBoolean(), "isSideEffectFree", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(expressionEClass, theEcorePackage.getEBoolean(), "isSideEffectFree", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		EOperation op = addEOperation(expressionEClass, theEcorePackage.getEBoolean(), "evaluatesToEqualAs", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getExpression(), "e", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(expressionEClass, theEcorePackage.getEBoolean(), "evaluatesToEqualAs", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getExpression(), "e", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(expressionEClass, theActionsPackage.getIterator(), "getUsedAliases", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(expressionEClass, theActionsPackage.getIterator(), "getUsedAliases", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(expressionEClass, theClassesPackage.getNamedValue(), "getNamedValuesInScope", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(expressionEClass, theClassesPackage.getNamedValue(), "getNamedValuesInScope", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(expressionEClass, this.getExpression(), "getOwningExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(expressionEClass, this.getExpression(), "getOwningExpression", 0, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(expressionEClass, theClassesPackage.getSapClass(), "getOwningClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(expressionEClass, theClassesPackage.getSapClass(), "getOwningClass", 0, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(variableExpressionEClass, VariableExpression.class, "VariableExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariableExpression_Variable(), theClassesPackage.getNamedValue(), null, "variable", null, 1, 1, VariableExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(methodCallExpressionEClass, MethodCallExpression.class, "MethodCallExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMethodCallExpression_Asynchronous(), theEcorePackage.getEBoolean(), "asynchronous", null, 0, 1, MethodCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMethodCallExpression_Asynchronous(), theEcorePackage.getEBoolean(), "asynchronous", null, 0, 1, MethodCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getMethodCallExpression_MethodSignature(), theClassesPackage.getMethodSignature(), null, "methodSignature", null, 1, 1, MethodCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMethodCallExpression_CreationExpression(), this.getObjectCreationExpression(), this.getObjectCreationExpression_Initializers(), "creationExpression", null, 0, 1, MethodCallExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1186,13 +1295,13 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEReference(getFunctionCallExpression_CalledBlock(), this.getExpression(), null, "calledBlock", null, 1, 1, FunctionCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(withArgumentEClass, WithArgument.class, "WithArgument", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWithArgument_Argument(), this.getExpression(), null, "argument", null, 0, 1, WithArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWithArgument_Argument(), this.getExpression(), this.getExpression_ArgumentOf(), "argument", null, 0, 1, WithArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(thisEClass, This.class, "This", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(equalsEClass, Equals.class, "Equals", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEquals_Left(), this.getExpression(), null, "left", null, 1, 1, Equals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getEquals_Right(), this.getExpression(), null, "right", null, 1, 1, Equals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEquals_Left(), this.getExpression(), this.getExpression_LeftOfEquals(), "left", null, 1, 1, Equals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEquals_Right(), this.getExpression(), this.getExpression_RightOfEquals(), "right", null, 1, 1, Equals.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(associationEndNavigationExpressionEClass, AssociationEndNavigationExpression.class, "AssociationEndNavigationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociationEndNavigationExpression_ToEnd(), theClassesPackage.getAssociationEnd(), null, "toEnd", null, 1, 1, AssociationEndNavigationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1200,9 +1309,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEClass(signatureCallExpressionEClass, SignatureCallExpression.class, "SignatureCallExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSignatureCallExpression_Parameters(), this.getExpression(), null, "parameters", null, 0, -1, SignatureCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(signatureCallExpressionEClass, theClassesPackage.getSignature(), "getSignature", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(signatureCallExpressionEClass, theClassesPackage.getSignature(), "getSignature", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(signatureCallExpressionEClass, theClassesPackage.getMultiplicity(), "getMultiplicityOfCallTarget", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(signatureCallExpressionEClass, theClassesPackage.getMultiplicity(), "getMultiplicityOfCallTarget", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(objectCountEClass, ObjectCount.class, "ObjectCount", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1222,7 +1331,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEClass(asListEClass, AsList.class, "AsList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(conditionalEClass, Conditional.class, "Conditional", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConditional_Condition(), this.getExpression(), null, "condition", null, 1, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConditional_Condition(), this.getExpression(), this.getExpression_Conditional(), "condition", null, 1, 1, Conditional.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ternaryEClass, Ternary.class, "Ternary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTernary_FalseExpr(), this.getExpression(), null, "falseExpr", null, 1, 1, Ternary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1322,13 +1431,13 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "constraints", "ResultType CalledBlockMustBeFunction"
-		   });							
+		   });						
 		addAnnotation
 		  (equalsEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "ConformaceOneWayOrAnother"
-		   });						
+		   });				
 		addAnnotation
 		  (associationEndNavigationExpressionEClass, 
 		   source, 
@@ -1388,7 +1497,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "constraints", "ConditionMustBeBoolean"
-		   });				
+		   });			
 		addAnnotation
 		  (ternaryEClass, 
 		   source, 
@@ -1421,25 +1530,25 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (expressionEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
-			 "body", "let parametersAndSignatureAreSideEffectFree:Boolean =\n    self.oclIsKindOf(SignatureCallExpression) implies\n      (self.oclAsType(SignatureCallExpression).parameters->forAll(p|p.isSideEffectFree())\n       and self.oclAsType(SignatureCallExpression).getSignature().sideEffectFree)\n  in\n  if self.oclIsKindOf(ObjectBasedExpression) then\n    self.oclAsType(ObjectBasedExpression).object.isSideEffectFree() and\n    if self.oclIsKindOf(SignatureCallExpression) then\n      parametersAndSignatureAreSideEffectFree\n    else\n      if self.oclIsKindOf(Replace) then\n        self.oclAsType(Replace).with.isSideEffectFree()\n      else\n        if self.oclIsKindOf(ExpressionWithArgument) and self.oclAsType(ExpressionWithArgument).argument->notEmpty() then\n          self.oclAsType(ExpressionWithArgument).argument.isSideEffectFree()\n        else\n          true\n        endif\n      endif\n    endif\n  else if self.oclIsKindOf(FunctionCallExpression) then\n    parametersAndSignatureAreSideEffectFree and self.oclAsType(FunctionCallExpression).calledBlock.isSideEffectFree()\n  else if self.oclIsKindOf(Equals) then\n    self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()\n  else if self.oclIsKindOf(ObjectCreationExpression) then\n    self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType\n  else if self.oclIsKindOf(DimensionExpression) then\n    self.oclAsType(DimensionExpression).dimension.ownerSignature.sideEffectFree\n  else if self.oclIsKindOf(Ternary) then\n    self.oclAsType(Ternary).condition.isSideEffectFree() and\n    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and\n    self.oclAsType(Ternary).falseExpr.isSideEffectFree()\n  else if self.oclIsKindOf(CollectionExpression) then\n    self.oclAsType(CollectionExpression).source.isSideEffectFree() and\n    if self.oclIsKindOf(Iterate) then\n      (self.oclAsType(Iterate).accumulator.initExpression->notEmpty() implies\n         self.oclAsType(Iterate).accumulator.initExpression.isSideEffectFree()) and\n      self.oclAsType(Iterate).iteratorExpression.isSideEffectFree()\n    else\n      true\n    endif\n  else if self.oclIsKindOf(ObjectLiteral) then\n    self.oclAsType(ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())\n  else if self.oclIsKindOf(All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or\n  self.oclIsKindOf(Literal) or self.oclIsKindOf(AnonymousFunctionExpr) then\n    true\n  else if self.oclIsKindOf(Selection) then\n    self.oclAsType(Selection).object.isSideEffectFree()\n  else\n    false\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif"
+			 "body", "let parametersAndSignatureAreSideEffectFree:Boolean =\n    self.oclIsKindOf(SignatureCallExpression) implies\n      (self.oclAsType(SignatureCallExpression).parameters->forAll(p|p.isSideEffectFree())\n       and self.oclAsType(SignatureCallExpression).getSignature().sideEffectFree)\n  in\n  if self.oclIsKindOf(ObjectBasedExpression) then\n    self.oclAsType(ObjectBasedExpression).object.isSideEffectFree() and\n    if self.oclIsKindOf(SignatureCallExpression) then\n      parametersAndSignatureAreSideEffectFree\n    else\n      if self.oclIsKindOf(Replace) then\n        self.oclAsType(Replace).with.isSideEffectFree()\n      else\n        if self.oclIsKindOf(ExpressionWithArgument) and self.oclAsType(ExpressionWithArgument).argument->notEmpty() then\n          self.oclAsType(ExpressionWithArgument).argument.isSideEffectFree()\n        else\n          true\n        endif\n      endif\n    endif\n  else if self.oclIsKindOf(FunctionCallExpression) then\n    parametersAndSignatureAreSideEffectFree and self.oclAsType(FunctionCallExpression).calledBlock.isSideEffectFree()\n  else if self.oclIsKindOf(Equals) then\n    self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()\n  else if self.oclIsKindOf(ObjectCreationExpression) then\n    self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType\n  else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then\n    self.oclAsType(dataaccess::analytics::DimensionExpression).dimension.ownerSignature.sideEffectFree\n  else if self.oclIsKindOf(Ternary) then\n    self.oclAsType(Ternary).condition.isSideEffectFree() and\n    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and\n    self.oclAsType(Ternary).falseExpr.isSideEffectFree()\n  else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::CollectionExpression) then\n    self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.isSideEffectFree() and\n    if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then\n      (self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression->notEmpty() implies\n         self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and\n      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.isSideEffectFree()\n    else\n      true\n    endif\n  else if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then\n    self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())\n  else if self.oclIsKindOf(persistence::expressions::All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or\n  self.oclIsKindOf(dataaccess::expressions::literals::Literal) or self.oclIsKindOf(dataaccess::expressions::fp::AnonymousFunctionExpr) then\n    true\n  else if self.oclIsKindOf(dataaccess::query::Selection) then\n    self.oclAsType(dataaccess::query::Selection).object.isSideEffectFree()\n  else\n    false\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif"
 		   });				
 		addAnnotation
 		  (expressionEClass.getEOperations().get(1), 
 		   source, 
 		   new String[] {
-			 "body", "if self=e then\n    true\n  else\n  if self.oclIsKindOf(NumberLiteral) and e.oclIsKindOf(NumberLiteral) then\n    self.oclAsType(NumberLiteral).literal=e.oclAsType(NumberLiteral).literal\n  else\n    if self.oclIsKindOf(StringLiteral) and e.oclIsKindOf(StringLiteral) then\n      self.oclAsType(StringLiteral).literal=e.oclAsType(StringLiteral).literal\n    else\n      if self.oclIsKindOf(ObjectLiteral) and e.oclIsKindOf(ObjectLiteral) then\n        self.oclAsType(ObjectLiteral).isEqualTo(e.oclAsType(ObjectLiteral))\n      else\n        if self.oclIsKindOf(VariableExpression) and e.oclIsKindOf(VariableExpression) then\n          self.oclAsType(VariableExpression).variable = e.oclAsType(VariableExpression).variable\n        else\n          false\n        endif\n      endif\n    endif\n  endif\n  endif"
+			 "body", "if self=e then\n    true\n  else\n  if self.oclIsKindOf(dataaccess::expressions::literals::NumberLiteral) and e.oclIsKindOf(dataaccess::expressions::literals::NumberLiteral) then\n    self.oclAsType(dataaccess::expressions::literals::NumberLiteral).literal=e.oclAsType(dataaccess::expressions::literals::NumberLiteral).literal\n  else\n    if self.oclIsKindOf(dataaccess::expressions::literals::StringLiteral) and e.oclIsKindOf(dataaccess::expressions::literals::StringLiteral) then\n      self.oclAsType(dataaccess::expressions::literals::StringLiteral).literal=e.oclAsType(dataaccess::expressions::literals::StringLiteral).literal\n    else\n      if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) and e.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then\n        self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).isEqualTo(e.oclAsType(dataaccess::expressions::literals::ObjectLiteral))\n      else\n        if self.oclIsKindOf(VariableExpression) and e.oclIsKindOf(VariableExpression) then\n          self.oclAsType(VariableExpression).variable = e.oclAsType(VariableExpression).variable\n        else\n          false\n        endif\n      endif\n    endif\n  endif\n  endif"
 		   });				
 		addAnnotation
 		  (expressionEClass.getEOperations().get(2), 
 		   source, 
 		   new String[] {
-			 "body", "if self.oclIsKindOf(VariableExpression) then\n    if self.oclAsType(VariableExpression).variable.oclIsKindOf(Iterator) then\n      self.oclAsType(VariableExpression).variable.oclAsType(Iterator)->select(i | i.fromClause->notEmpty())->asSet()\n    else\n      Set{}\n    endif\n  else\n    if self.oclIsKindOf(Replace) then\n      self.oclAsType(Replace).object.getUsedAliases()->union(\n      self.oclAsType(Replace).steps.filterFunction.getUsedAliases()->flatten()->asSet())->union(\n      self.oclAsType(Replace).with.getUsedAliases())\n    else\n      if self.oclIsKindOf(Selection) then\n        self.oclAsType(Selection).object.getUsedAliases()->union(\n        self.oclAsType(Selection).selectionExpr.getUsedAliases())\n      else\n        if self.oclIsKindOf(ObjectBasedExpression) then\n          let objectAliases:Set(Iterator) = self.oclAsType(ObjectBasedExpression).object.getUsedAliases() in\n          if self.oclIsKindOf(MethodCallExpression) then\n            objectAliases->union(self.oclAsType(MethodCallExpression).parameters.getUsedAliases()->flatten()->asSet())\n          else\n            objectAliases\n          endif\n        else\n          if self.oclIsKindOf(Equals) then\n            self.oclAsType(Equals).left.getUsedAliases()->union(self.oclAsType(Equals).right.getUsedAliases())\n          else\n            if self.oclIsKindOf(FunctionCallExpression) then\n              self.oclAsType(FunctionCallExpression).calledBlock.getUsedAliases()->union(\n                           self.oclAsType(FunctionCallExpression).parameters.getUsedAliases()->flatten()->asSet())\n            else\n              if self.oclIsKindOf(Ternary) then\n                let sat:Ternary = self.oclAsType(Ternary) in\n                sat.condition.getUsedAliases()->union(sat.trueExpr.getUsedAliases())->union(sat.falseExpr.getUsedAliases())\n             else\n                 if self.oclIsKindOf(CollectionExpressionWithArgument) then\n                  self.oclAsType(CollectionExpressionWithArgument).argument.getUsedAliases()->union(\n                  self.oclAsType(CollectionExpressionWithArgument).source.getUsedAliases())\n                else\n                  if self.oclIsKindOf(Iterate) then\n                    self.oclAsType(Iterate).iteratorExpression.getUsedAliases()->union(\n                    self.oclAsType(Iterate).accumulator.initExpression.getUsedAliases())->union(\n                    self.oclAsType(Iterate).source.getUsedAliases())\n                  else\n                    if self.oclIsKindOf(OqlQuery) then\n                      self.oclAsType(OqlQuery).fromClauses.fromExpression.getUsedAliases()->flatten()->asSet()->union(\n                      self.oclAsType(OqlQuery).condition.getUsedAliases())\n                    else\n                      Set{}\n                    endif\n                  endif\n                endif\n              endif\n            endif\n          endif\n        endif\n      endif\n    endif\n  endif"
+			 "body", "if self.oclIsKindOf(VariableExpression) then\n    if self.oclAsType(VariableExpression).variable.oclIsKindOf(behavioral::actions::Iterator) then\n      self.oclAsType(VariableExpression).variable.oclAsType(behavioral::actions::Iterator)->select(i | i.fromClause->notEmpty())->asSet()\n    else\n      Set{}\n    endif\n  else\n    if self.oclIsKindOf(Replace) then\n      self.oclAsType(Replace).object.getUsedAliases()->union(\n      self.oclAsType(Replace).steps.filterFunction.getUsedAliases()->flatten()->asSet())->union(\n      self.oclAsType(Replace).with.getUsedAliases())\n    else\n      if self.oclIsKindOf(dataaccess::query::Selection) then\n        self.oclAsType(dataaccess::query::Selection).object.getUsedAliases()->union(\n        self.oclAsType(dataaccess::query::Selection).selectionExpr.getUsedAliases())\n      else\n        if self.oclIsKindOf(ObjectBasedExpression) then\n          let objectAliases:Set(behavioral::actions::Iterator) = self.oclAsType(ObjectBasedExpression).object.getUsedAliases() in\n          if self.oclIsKindOf(MethodCallExpression) then\n            objectAliases->union(self.oclAsType(MethodCallExpression).parameters.getUsedAliases()->flatten()->asSet())\n          else\n            objectAliases\n          endif\n        else\n          if self.oclIsKindOf(Equals) then\n            self.oclAsType(Equals).left.getUsedAliases()->union(self.oclAsType(Equals).right.getUsedAliases())\n          else\n            if self.oclIsKindOf(FunctionCallExpression) then\n              self.oclAsType(FunctionCallExpression).calledBlock.getUsedAliases()->union(\n                           self.oclAsType(FunctionCallExpression).parameters.getUsedAliases()->flatten()->asSet())\n            else\n              if self.oclIsKindOf(Ternary) then\n                let sat:Ternary = self.oclAsType(Ternary) in\n                sat.condition.getUsedAliases()->union(sat.trueExpr.getUsedAliases())->union(sat.falseExpr.getUsedAliases())\n             else\n                 if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::CollectionExpressionWithArgument) then\n                  self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpressionWithArgument).argument.getUsedAliases()->union(\n                  self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpressionWithArgument).source.getUsedAliases())\n                else\n                  if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then\n                    self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.getUsedAliases()->union(\n                    self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression.getUsedAliases())->union(\n                    self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).source.getUsedAliases())\n                  else\n                    if self.oclIsKindOf(dataaccess::query::OqlQuery) then\n                      self.oclAsType(dataaccess::query::OqlQuery).fromClauses.fromExpression.getUsedAliases()->flatten()->asSet()->union(\n                      self.oclAsType(dataaccess::query::OqlQuery).condition.getUsedAliases())\n                    else\n                      Set{}\n                    endif\n                  endif\n                endif\n              endif\n            endif\n          endif\n        endif\n      endif\n    endif\n  endif"
 		   });				
 		addAnnotation
 		  (expressionEClass.getEOperations().get(3), 
 		   source, 
 		   new String[] {
-			 "body", "self.addNamedValuesWithNewNames(\n\n  -- First, collect those NamedValues defined immediately for this expression:\n  -- an iterate\'s body expression sees the iterators and the accumulator\n  let accumulator:Set(NamedValue)=self.inIterator.accumulator->asSet() in\n  let iterators:Set(NamedValue)=self.inIterator.iterators->asSet() in\n  -- an OQL \"from\" clause sees all aliases left of it\n  let oqlAliases:Set(NamedValue)=(if self.fromClause->notEmpty() then\n    let fromClauses:OrderedSet(FromClause) = self.fromClause.fromClauseOfOqlQuery.fromClauses in\n    let fcIndex:Integer = fromClauses->indexOf(self.fromClause) in\n      Sequence{1..-1+fcIndex}->collect(i | fromClauses->at(i).alias)->asSet()\n  else\n    Set{}\n  endif)->union(\n  -- an OQL \"where\" clause sees all aliases defined by any of the OQL expression\'s \"from\" entries\n  self.conditionOfOqlQuery.fromClauses.alias->asSet()) in\n  -- a Selection defines an implicit iterator for its filter expression\n  let selectionIterator:Set(NamedValue)=self.selection.iterator->asSet() in\n  -- a GroupBy\'s mapExpression sees all dimension iterators and the groupedFacts iterator\n  let groupByMapExpressionIterators:Set(NamedValue)=self.mapExpressionOfGroupBy.groupedFacts->asSet()->union(\n                                                    self.mapExpressionOfGroupBy.dimensions.iterator->asSet()) in\n  -- a GroupBy\'s dimension expression sees the facts iterator\n  let groupByDimensionFactIterator:Set(NamedValue)=self.dimension.groupBy.fact->asSet() in\n\n  accumulator->union(iterators)->union(oqlAliases)->union(selectionIterator)->union(groupByMapExpressionIterators)->\n  union(groupByDimensionFactIterator),\n\n  -- Then, add those defined by owning structures such as owning statements or owning expressions\n  -- an expression that is used by an ExpressionStatement or as condition in a Conditional sees all named values that the statement sees\n  if self.actualObjectParameter.owningClassTypeDefinition->notEmpty() then\n    self.actualObjectParameter.owningClassTypeDefinition.getNamedValuesInScope()\n  else\n    if self.initExpressionFor.namedValueDeclaration->notEmpty() then\n      self.initExpressionFor.namedValueDeclaration.getNamedValuesInScope()\n    else\n      if self.expressionStatement->notEmpty() then\n        self.expressionStatement.getNamedValuesInScope()\n      else\n        if self.conditional->notEmpty() then\n          if self.conditional.oclIsKindOf(ConditionalStatement) then\n            self.conditional.oclAsType(ConditionalStatement).getNamedValuesInScope()\n          else\n            self.conditional.oclAsType(ConditionalExpression).getNamedValuesInScope()\n          endif\n        else\n          if self.argumentOf->notEmpty() and self.argumentOf.oclIsKindOf(StatementWithArgument) then\n            self.argumentOf.oclAsType(StatementWithArgument).getNamedValuesInScope()\n          else\n            -- add all variables in scope for owning expressions\n            let oe:Expression = self.getOwningExpression() in\n              if oe->isEmpty() then\n                Set{}\n              else\n                oe.getNamedValuesInScope()\n              endif\n          endif\n        endif\n      endif\n    endif\n  endif\n  )"
+			 "body", "self.addNamedValuesWithNewNames(\n\n  -- First, collect those NamedValues defined immediately for this expression:\n  -- an iterate\'s body expression sees the iterators and the accumulator\n  let accumulator:Set(data::classes::NamedValue)=self.inIterator.accumulator->asSet() in\n  let iterators:Set(data::classes::NamedValue)=self.inIterator.iterators->asSet() in\n  -- an OQL \"from\" clause sees all aliases left of it\n  let oqlAliases:Set(data::classes::NamedValue)=(if self.fromClause->notEmpty() then\n    let fromClauses:OrderedSet(dataaccess::query::FromClause) = self.fromClause.fromClauseOfOqlQuery.fromClauses in\n    let fcIndex:Integer = fromClauses->indexOf(self.fromClause) in\n      Sequence{1..-1+fcIndex}->collect(i | fromClauses->at(i).alias)->asSet()\n  else\n    Set{}\n  endif)->union(\n  -- an OQL \"where\" clause sees all aliases defined by any of the OQL expression\'s \"from\" entries\n  self.conditionOfOqlQuery.fromClauses.alias->asSet()) in\n  -- a Selection defines an implicit iterator for its filter expression\n  let selectionIterator:Set(data::classes::NamedValue)=self.selection.iterator->asSet() in\n  -- a GroupBy\'s mapExpression sees all dimension iterators and the groupedFacts iterator\n  let groupByMapExpressionIterators:Set(data::classes::NamedValue)=self.mapExpressionOfGroupBy.groupedFacts->asSet()->union(\n                                                    self.mapExpressionOfGroupBy.dimensions.iterator->asSet()) in\n  -- a GroupBy\'s dimension expression sees the facts iterator\n  let groupByDimensionFactIterator:Set(data::classes::NamedValue)=self.dimension.groupBy.fact->asSet() in\n\n  accumulator->union(iterators)->union(oqlAliases)->union(selectionIterator)->union(groupByMapExpressionIterators)->\n  union(groupByDimensionFactIterator),\n\n  -- Then, add those defined by owning structures such as owning statements or owning expressions\n  -- an expression that is used by an ExpressionStatement or as condition in a Conditional sees all named values that the statement sees\n  if self.actualObjectParameter.owningClassTypeDefinition->notEmpty() then\n    self.actualObjectParameter.owningClassTypeDefinition.getNamedValuesInScope()\n  else\n    if self.initExpressionFor.namedValueDeclaration->notEmpty() then\n      self.initExpressionFor.namedValueDeclaration.getNamedValuesInScope()\n    else\n      if self.expressionStatement->notEmpty() then\n        self.expressionStatement.getNamedValuesInScope()\n      else\n        if self.conditional->notEmpty() then\n          if self.conditional.oclIsKindOf(behavioral::actions::ConditionalStatement) then\n            self.conditional.oclAsType(behavioral::actions::ConditionalStatement).getNamedValuesInScope()\n          else\n            self.conditional.oclAsType(ConditionalExpression).getNamedValuesInScope()\n          endif\n        else\n          if self.argumentOf->notEmpty() and self.argumentOf.oclIsKindOf(behavioral::actions::StatementWithArgument) then\n            self.argumentOf.oclAsType(behavioral::actions::StatementWithArgument).getNamedValuesInScope()\n          else\n            -- add all variables in scope for owning expressions\n            let oe:Expression = self.getOwningExpression() in\n              if oe->isEmpty() then\n                Set{}\n              else\n                oe.getNamedValuesInScope()\n              endif\n          endif\n        endif\n      endif\n    endif\n  endif\n  )"
 		   });			
 		addAnnotation
 		  (expressionEClass.getEOperations().get(4), 
@@ -1451,7 +1560,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (expressionEClass.getEOperations().get(5), 
 		   source, 
 		   new String[] {
-			 "body", "let oe:Expression = self.getOwningExpression() in\n  if oe->notEmpty() then\n    oe.getOwningClass()\n  else\n    if self.expressionStatement->notEmpty() then\n      self.expressionStatement.getOwningClass()\n    else\n      if self.conditional->notEmpty() and self.conditional.oclIsKindOf(Statement) then\n        self.conditional.oclAsType(ConditionalStatement).getOwningClass()\n      else\n        if self.argumentOf->notEmpty() and self.argumentOf.oclIsKindOf(StatementWithArgument) then\n          self.argumentOf.oclAsType(StatementWithArgument).getOwningClass()\n        else\n          if self.initExpressionFor.namedValueDeclaration->notEmpty() then\n            self.initExpressionFor.namedValueDeclaration.getOwningClass()\n          else\n            null\n          endif\n        endif\n      endif\n    endif\n  endif"
+			 "body", "let oe:Expression = self.getOwningExpression() in\n  if oe->notEmpty() then\n    oe.getOwningClass()\n  else\n    if self.expressionStatement->notEmpty() then\n      self.expressionStatement.getOwningClass()\n    else\n      if self.conditional->notEmpty() and self.conditional.oclIsKindOf(behavioral::actions::Statement) then\n        self.conditional.oclAsType(behavioral::actions::ConditionalStatement).getOwningClass()\n      else\n        if self.argumentOf->notEmpty() and self.argumentOf.oclIsKindOf(behavioral::actions::StatementWithArgument) then\n          self.argumentOf.oclAsType(behavioral::actions::StatementWithArgument).getOwningClass()\n        else\n          if self.initExpressionFor.namedValueDeclaration->notEmpty() then\n            self.initExpressionFor.namedValueDeclaration.getOwningClass()\n          else\n            null\n          endif\n        endif\n      endif\n    endif\n  endif"
 		   });				
 		addAnnotation
 		  (variableExpressionEClass, 
@@ -1463,7 +1572,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (methodCallExpressionEClass, 
 		   source, 
 		   new String[] {
-			 "ObjectMustSupportOperation", "self.object.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and\n  self.object.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(SapClass))",
+			 "ObjectMustSupportOperation", "self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(data::classes::SapClass))",
 			 "OutputMultiplicities", "(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and\n  (self.object.getType().lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))"
 		   });							
 		addAnnotation
@@ -1471,7 +1580,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "CannotInstantiateAbstractClass", "not self.classToInstantiate.isAbstract()",
-			 "ExpressionType", "self.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.getType().oclAsType(ClassTypeDefinition).clazz = self.classToInstantiate and\n  self.getType().lowerMultiplicity = 1 and\n  self.getType().upperMultiplicity = 1",
+			 "ExpressionType", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz = self.classToInstantiate and\n  self.getType().lowerMultiplicity = 1 and\n  self.getType().upperMultiplicity = 1",
 			 "HasToOwnTypeDefinition", "self.ownedTypeDefinition->notEmpty()",
 			 "CannotInstantiateValueClass", "not self.classToInstantiate.valueType",
 			 "NoDuplicateInitializers", "self.initializers->forAll( a, b | a <> b implies a.methodSignature <> b.methodSignature )"
@@ -1480,15 +1589,15 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (functionCallExpressionEClass, 
 		   source, 
 		   new String[] {
-			 "ResultType", "let fstd:FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(FunctionSignatureTypeDefinition) in\n\n  if fstd.isMany() then\n    -- calling multiple functions; test is somewhat fuzzy because it doesn\'t test condormance of nesting structure exactly\n    self.getType().isMany() and not self.getType().unique and\n    fstd.signature.output.getInnermost().conformsTo(self.getType().getInnermost()) and\n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n  else\n    -- calling a single function\n    fstd.signature.output.conformsTo(self.getType()) and \n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n  endif",
-			 "CalledBlockMustBeFunction", "self.calledBlock.getType().getInnermost().oclIsKindOf(FunctionSignatureTypeDefinition)"
-		   });							
+			 "ResultType", "let fstd:FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in\n\n  if fstd.isMany() then\n    -- calling multiple functions; test is somewhat fuzzy because it doesn\'t test condormance of nesting structure exactly\n    self.getType().isMany() and not self.getType().unique and\n    fstd.signature.output.getInnermost().conformsTo(self.getType().getInnermost()) and\n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n  else\n    -- calling a single function\n    fstd.signature.output.conformsTo(self.getType()) and \n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n  endif",
+			 "CalledBlockMustBeFunction", "self.calledBlock.getType().getInnermost().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)"
+		   });						
 		addAnnotation
 		  (equalsEClass, 
 		   source, 
 		   new String[] {
 			 "ConformaceOneWayOrAnother", "self.left.getType().conformsTo(self.right.getType()) or\n  self.right.getType().conformsTo(self.left.getType())"
-		   });						
+		   });				
 		addAnnotation
 		  (associationEndNavigationExpressionEClass, 
 		   source, 
@@ -1502,13 +1611,13 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "ParametersTypesMustMatchSignatureParametersTypes", "let numberOfMandatoryParameters:Integer =\n    self.getSignature().input->select(p|p.defaultValue->isEmpty())->size()\n  in\n  self.parameters->size() >= numberOfMandatoryParameters and\n  self.parameters->size() <= self.getSignature().input->size() and\n  self.parameters->forAll(parameter |\n    parameter.getType().conformsTo(self.getSignature().input->at(self.parameters->indexOf(parameter)).getType()) )",
-			 "CallTypeMustMatchSignatureOutput", "if self.getSignature().output.oclIsUndefined() then\n        self.getType().oclIsUndefined()\n    else \n        if self.getMultiplicityOfCallTarget().isMany() and self.getSignature().output.isMany() then\n            let ntd:NestedTypeDefinition = self.getType().oclAsType(NestedTypeDefinition) in\n                self.getType().oclIsKindOf(NestedTypeDefinition) and \n                ntd.unique = false and\n                ntd.ordered = self.getMultiplicityOfCallTarget().ordered and\n                ntd.lowerMultiplicity = self.getMultiplicityOfCallTarget().lowerMultiplicity and\n                ntd.upperMultiplicity = self.getMultiplicityOfCallTarget().upperMultiplicity and\n                self.getSignature().output.conformsTo(ntd.type)\n        else\n            let target:Multiplicity = self.getMultiplicityOfCallTarget() in let output:TypeDefinition = self.getSignature().output in \n                ( output.isMany() implies self.getType().unique = output.unique ) and\n                ( ( output.isMany() or target.isMany() ) implies ( self.getType().ordered = (output.ordered or target.ordered) ) ) and\n                ( self.getType().lowerMultiplicity = (output.lowerMultiplicity * target.lowerMultiplicity)) and\n                ( self.getType().upperMultiplicity = (if output.isMany() or target.isMany() then \n                                                        -1 \n                                                    else \n                                                        output.upperMultiplicity * target.upperMultiplicity \n                                                    endif)) and\n                self.getType().conformsToIgnoringMultiplicity(output)\n        endif\n    endif"
+			 "CallTypeMustMatchSignatureOutput", "if self.getSignature().output.oclIsUndefined() then\n        self.getType().oclIsUndefined()\n    else \n        if self.getMultiplicityOfCallTarget().isMany() and self.getSignature().output.isMany() then\n            let ntd:data::classes::NestedTypeDefinition = self.getType().oclAsType(data::classes::NestedTypeDefinition) in\n                self.getType().oclIsKindOf(data::classes::NestedTypeDefinition) and \n                ntd.unique = false and\n                ntd.ordered = self.getMultiplicityOfCallTarget().ordered and\n                ntd.lowerMultiplicity = self.getMultiplicityOfCallTarget().lowerMultiplicity and\n                ntd.upperMultiplicity = self.getMultiplicityOfCallTarget().upperMultiplicity and\n                self.getSignature().output.conformsTo(ntd.type)\n        else\n            let target:data::classes::Multiplicity = self.getMultiplicityOfCallTarget() in\n            let output:data::classes::TypeDefinition = self.getSignature().output in \n                ( output.isMany() implies self.getType().unique = output.unique ) and\n                ( ( output.isMany() or target.isMany() ) implies ( self.getType().ordered = (output.ordered or target.ordered) ) ) and\n                ( self.getType().lowerMultiplicity = (output.lowerMultiplicity * target.lowerMultiplicity)) and\n                ( self.getType().upperMultiplicity = (if output.isMany() or target.isMany() then \n                                                        -1 \n                                                    else \n                                                        output.upperMultiplicity * target.upperMultiplicity \n                                                    endif)) and\n                self.getType().conformsToIgnoringMultiplicity(output)\n        endif\n    endif"
 		   });			
 		addAnnotation
 		  (signatureCallExpressionEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
-			 "body", "if self.oclIsKindOf(FunctionCallExpression) then\n    self.oclAsType(FunctionCallExpression).calledBlock.getType().getInnermost().oclAsType(FunctionSignatureTypeDefinition).signature\n  else\n    self.oclAsType(MethodCallExpression).methodSignature\n  endif"
+			 "body", "if self.oclIsKindOf(FunctionCallExpression) then\n    self.oclAsType(FunctionCallExpression).calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature\n  else\n    self.oclAsType(MethodCallExpression).methodSignature\n  endif"
 		   });				
 		addAnnotation
 		  (signatureCallExpressionEClass.getEOperations().get(1), 
@@ -1520,22 +1629,22 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (objectCountEClass, 
 		   source, 
 		   new String[] {
-			 "TypeIsNumber", "self.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Number\'",
+			 "TypeIsNumber", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\'",
 			 "MultiplicityIsOne", "self.getType().upperMultiplicity = 1 and\n  self.getType().lowerMultiplicity = 1"
 		   });				
 		addAnnotation
 		  (replaceEClass, 
 		   source, 
 		   new String[] {
-			 "SourceObjectIsOfValueType", "self.object.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.object.getType().oclAsType(ClassTypeDefinition).clazz.valueType",
+			 "SourceObjectIsOfValueType", "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType",
 			 "WithTypeConformsToLastStepsType", "self.with.getType().conformsTo(self.steps->at(self.steps->size()).to.type)"
 		   });				
 		addAnnotation
 		  (navigationStepEClass, 
 		   source, 
 		   new String[] {
-			 "FromEndAttachesToOutputOfPreviousStep", "let i:Integer = self.replace.steps->indexOf(self) in\n  let t:ClassTypeDefinition = if i=1 then self.replace.object.getType().oclAsType(ClassTypeDefinition) else self.replace.steps->at(-1 + i).to.type endif in\n\n  self.to.otherEnd().type.clazz.conformsTo(t.clazz)",
-			 "FilterFunctionExpressionHasFunctionType", "self.filterFunction->notEmpty() implies self.filterFunction.getType().oclIsKindOf(FunctionSignatureTypeDefinition)",
+			 "FromEndAttachesToOutputOfPreviousStep", "let i:Integer = self.replace.steps->indexOf(self) in\n  let t:data::classes::ClassTypeDefinition = if i=1 then\n      self.replace.object.getType().oclAsType(data::classes::ClassTypeDefinition)\n    else\n      self.replace.steps->at(-1 + i).to.type\n    endif\n  in\n\n  self.to.otherEnd().type.clazz.conformsTo(t.clazz)",
+			 "FilterFunctionExpressionHasFunctionType", "self.filterFunction->notEmpty() implies self.filterFunction.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)",
 			 "FromEndMustBeEqualityRelevant", "to.otherEnd().contributesToEquality"
 		   });					
 		addAnnotation
@@ -1554,8 +1663,8 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (conditionalEClass, 
 		   source, 
 		   new String[] {
-			 "ConditionMustBeBoolean", "self.condition.getType().upperMultiplicity = 1 and\n  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'"
-		   });				
+			 "ConditionMustBeBoolean", "self.condition.getType().upperMultiplicity = 1 and\n  self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'"
+		   });			
 		addAnnotation
 		  (ternaryEClass, 
 		   source, 
@@ -1566,15 +1675,15 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (contentEqualsEClass, 
 		   source, 
 		   new String[] {
-			 "ContentEqualsOnlyForEntities", "self.left.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and\n  self.right.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and\n  not self.left.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.valueType and\n  not self.right.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.valueType"
+			 "ContentEqualsOnlyForEntities", "self.left.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.right.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  not self.left.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType and\n  not self.right.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType"
 		   });				
 		addAnnotation
 		  (mapEClass, 
 		   source, 
 		   new String[] {
-			 "ObjectTypeMustConformToFunctionArgument", "let fstd:TypeDefinition = self.argument.getType() in\n  let sig:Signature = fstd.oclAsType(FunctionSignatureTypeDefinition).signature in\n  let t:TypeDefinition = self.object.getType() in\n  let argT:TypeDefinition = sig.input->at(1).getType() in\n  -- if multiplicities match including multiplicities, that\'s ok\n  t.conformsTo(argT) or\n  -- otherwise, pick single multiplicity from object and try again\n  t.conformsToIgnoringMultiplicity(argT) or\n  (t.oclIsKindOf(NestedTypeDefinition) and t.oclAsType(NestedTypeDefinition).type.conformsTo(argT))",
-			 "ArgumentMustBeSingleArgumentFunctionWithNonVoidOutput", "let fstd:TypeDefinition = self.argument.getType() in\n  fstd.oclIsKindOf(FunctionSignatureTypeDefinition) and\n  (let sig:Signature = fstd.oclAsType(FunctionSignatureTypeDefinition).signature in\n  (sig.output->notEmpty() and\n  sig.input->size() = 1))",
-			 "MapFunctionMustBeSideEffectFree", "self.argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.sideEffectFree"
+			 "ObjectTypeMustConformToFunctionArgument", "let fstd:data::classes::TypeDefinition = self.argument.getType() in\n  let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\n  let t:data::classes::TypeDefinition = self.object.getType() in\n  let argT:data::classes::TypeDefinition = sig.input->at(1).getType() in\n  -- if multiplicities match including multiplicities, that\'s ok\n  t.conformsTo(argT) or\n  -- otherwise, pick single multiplicity from object and try again\n  t.conformsToIgnoringMultiplicity(argT) or\n  (t.oclIsKindOf(data::classes::NestedTypeDefinition) and t.oclAsType(data::classes::NestedTypeDefinition).type.conformsTo(argT))",
+			 "ArgumentMustBeSingleArgumentFunctionWithNonVoidOutput", "let fstd:TypeDefinition = self.argument.getType() in\n  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n  (let sig:Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\n  (sig.output->notEmpty() and\n  sig.input->size() = 1))",
+			 "MapFunctionMustBeSideEffectFree", "self.argument.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.sideEffectFree"
 		   });	
 	}
 
@@ -1615,25 +1724,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", "blockOfFunctionCallExpression"
-		   });		
-		addAnnotation
-		  (getWithArgument_Argument(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "argumentOf"
-		   });						
-		addAnnotation
-		  (getEquals_Left(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "leftOfEquals"
-		   });		
-		addAnnotation
-		  (getEquals_Right(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "rightOfEquals"
-		   });					
+		   });									
 		addAnnotation
 		  (getAssociationEndNavigationExpression_ToEnd(), 
 		   source, 
@@ -1663,13 +1754,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", "navigationStep"
-		   });									
-		addAnnotation
-		  (getConditional_Condition(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "conditional"
-		   });				
+		   });											
 		addAnnotation
 		  (getTernary_FalseExpr(), 
 		   source, 

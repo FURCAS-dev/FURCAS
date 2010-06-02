@@ -530,7 +530,7 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 */
 	public EList<Parameter> getFormalObjectParameters() {
 		if (formalObjectParameters == null) {
-			formalObjectParameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, ClassesPackage.SAP_CLASS__FORMAL_OBJECT_PARAMETERS);
+			formalObjectParameters = new EObjectContainmentWithInverseEList<Parameter>(Parameter.class, this, ClassesPackage.SAP_CLASS__FORMAL_OBJECT_PARAMETERS, ClassesPackage.PARAMETER__PARAMETER_OF_CLASS);
 		}
 		return formalObjectParameters;
 	}
@@ -801,9 +801,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature allSignatures() {
+	public EList<MethodSignature> allSignatures() {
 		try {
-			return (MethodSignature)ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<MethodSignature>)ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -825,9 +825,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SapClass delegatesTo() {
+	public EList<SapClass> delegatesTo() {
 		try {
-			return (SapClass)DELEGATES_TO__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<SapClass>)DELEGATES_TO__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -835,23 +835,23 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.SapClass, data.classes.SapClass, data.classes.SapClass) <em>Conforms To Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.SapClass, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Conforms To Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #conformsToExcluding(data.classes.SapClass, data.classes.SapClass, data.classes.SapClass)
+	 * @see #conformsToExcluding(data.classes.SapClass, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_EXCLUDING_SAP_CLASS_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(5)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(5)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean conformsToExcluding(SapClass type, SapClass excludingConforming, SapClass excludingTo) {
+	public boolean conformsToExcluding(SapClass type, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
 		try {
-			return (Boolean)CONFORMS_TO_EXCLUDING_SAP_CLASS_SAP_CLASS_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
+			return (Boolean)CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -873,9 +873,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature signaturesWithDelegation() {
+	public EList<MethodSignature> signaturesWithDelegation() {
 		try {
-			return (MethodSignature)SIGNATURES_WITH_DELEGATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<MethodSignature>)SIGNATURES_WITH_DELEGATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -897,9 +897,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature delegatedSignatures() {
+	public EList<MethodSignature> delegatedSignatures() {
 		try {
-			return (MethodSignature)DELEGATED_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<MethodSignature>)DELEGATED_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -921,9 +921,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature adaptedSignatures() {
+	public EList<MethodSignature> adaptedSignatures() {
 		try {
-			return (MethodSignature)ADAPTED_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<MethodSignature>)ADAPTED_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -931,23 +931,23 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #adaptedSignaturesExcluding(data.classes.SapClass) <em>Adapted Signatures Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #adaptedSignaturesExcluding(org.eclipse.emf.common.util.EList) <em>Adapted Signatures Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #adaptedSignaturesExcluding(data.classes.SapClass)
+	 * @see #adaptedSignaturesExcluding(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ADAPTED_SIGNATURES_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(9)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ADAPTED_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(9)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature adaptedSignaturesExcluding(SapClass excluding) {
+	public EList<MethodSignature> adaptedSignaturesExcluding(EList<SapClass> excluding) {
 		try {
-			return (MethodSignature)ADAPTED_SIGNATURES_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+			return (EList<MethodSignature>)ADAPTED_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -955,23 +955,23 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #allSignaturesExcluding(data.classes.SapClass) <em>All Signatures Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #allSignaturesExcluding(org.eclipse.emf.common.util.EList) <em>All Signatures Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #allSignaturesExcluding(data.classes.SapClass)
+	 * @see #allSignaturesExcluding(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ALL_SIGNATURES_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(10)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(10)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature allSignaturesExcluding(SapClass excluding) {
+	public EList<MethodSignature> allSignaturesExcluding(EList<SapClass> excluding) {
 		try {
-			return (MethodSignature)ALL_SIGNATURES_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+			return (EList<MethodSignature>)ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -979,23 +979,23 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #signaturesWithDelegationExcluding(data.classes.SapClass) <em>Signatures With Delegation Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #signaturesWithDelegationExcluding(org.eclipse.emf.common.util.EList) <em>Signatures With Delegation Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #signaturesWithDelegationExcluding(data.classes.SapClass)
+	 * @see #signaturesWithDelegationExcluding(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate SIGNATURES_WITH_DELEGATION_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(11)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate SIGNATURES_WITH_DELEGATION_EXCLUDING_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(11)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature signaturesWithDelegationExcluding(SapClass excluding) {
+	public EList<MethodSignature> signaturesWithDelegationExcluding(EList<SapClass> excluding) {
 		try {
-			return (MethodSignature)SIGNATURES_WITH_DELEGATION_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+			return (EList<MethodSignature>)SIGNATURES_WITH_DELEGATION_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1003,23 +1003,23 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #delegatedSignaturesExcluding(data.classes.SapClass) <em>Delegated Signatures Excluding</em>}' operation.
+	 * The cached invocation delegate for the '{@link #delegatedSignaturesExcluding(org.eclipse.emf.common.util.EList) <em>Delegated Signatures Excluding</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #delegatedSignaturesExcluding(data.classes.SapClass)
+	 * @see #delegatedSignaturesExcluding(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate DELEGATED_SIGNATURES_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(12)).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate DELEGATED_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SAP_CLASS.getEOperations().get(12)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MethodSignature delegatedSignaturesExcluding(SapClass excluding) {
+	public EList<MethodSignature> delegatedSignaturesExcluding(EList<SapClass> excluding) {
 		try {
-			return (MethodSignature)DELEGATED_SIGNATURES_EXCLUDING_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+			return (EList<MethodSignature>)DELEGATED_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1041,9 +1041,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SapClass getConformingClasses() {
+	public EList<SapClass> getConformingClasses() {
 		try {
-			return (SapClass)GET_CONFORMING_CLASSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<SapClass>)GET_CONFORMING_CLASSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1065,9 +1065,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationEnd getAssociationEnds() {
+	public EList<AssociationEnd> getAssociationEnds() {
 		try {
-			return (AssociationEnd)GET_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<AssociationEnd>)GET_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1089,9 +1089,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationEnd getEqualityRelevantAssociationEnds() {
+	public EList<AssociationEnd> getEqualityRelevantAssociationEnds() {
 		try {
-			return (AssociationEnd)GET_EQUALITY_RELEVANT_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<AssociationEnd>)GET_EQUALITY_RELEVANT_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1113,9 +1113,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SapClass getConformsToClasses() {
+	public EList<SapClass> getConformsToClasses() {
 		try {
-			return (SapClass)GET_CONFORMS_TO_CLASSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<SapClass>)GET_CONFORMS_TO_CLASSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1137,9 +1137,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationEnd getConformsToAssociationEnds() {
+	public EList<AssociationEnd> getConformsToAssociationEnds() {
 		try {
-			return (AssociationEnd)GET_CONFORMS_TO_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<AssociationEnd>)GET_CONFORMS_TO_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1161,9 +1161,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationEnd getConformsToCompositeParentAssociationEnds() {
+	public EList<AssociationEnd> getConformsToCompositeParentAssociationEnds() {
 		try {
-			return (AssociationEnd)GET_CONFORMS_TO_COMPOSITE_PARENT_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<AssociationEnd>)GET_CONFORMS_TO_COMPOSITE_PARENT_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1185,9 +1185,9 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AssociationEnd getConformsToCompositeChildAssociationEnds() {
+	public EList<AssociationEnd> getConformsToCompositeChildAssociationEnds() {
 		try {
-			return (AssociationEnd)GET_CONFORMS_TO_COMPOSITE_CHILD_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (EList<AssociationEnd>)GET_CONFORMS_TO_COMPOSITE_CHILD_ASSOCIATION_ENDS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -1231,6 +1231,8 @@ public class SapClassImpl extends SignatureOwnerImpl implements SapClass {
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAdaptedBy()).basicAdd(otherEnd, msgs);
 			case ClassesPackage.SAP_CLASS__ADAPTERS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAdapters()).basicAdd(otherEnd, msgs);
+			case ClassesPackage.SAP_CLASS__FORMAL_OBJECT_PARAMETERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFormalObjectParameters()).basicAdd(otherEnd, msgs);
 			case ClassesPackage.SAP_CLASS__CONVERTER_BETWEEN_PARAMETRIZATIONS:
 				if (converterBetweenParametrizations != null)
 					msgs = ((InternalEObject)converterBetweenParametrizations).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.SAP_CLASS__CONVERTER_BETWEEN_PARAMETRIZATIONS, null, msgs);

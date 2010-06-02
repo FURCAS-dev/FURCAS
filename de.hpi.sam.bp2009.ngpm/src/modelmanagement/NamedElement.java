@@ -39,7 +39,7 @@ public interface NamedElement extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see modelmanagement.ModelmanagementPackage#getNamedElement_Name()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getName();
@@ -65,7 +65,7 @@ public interface NamedElement extends EObject {
 	 * @return the value of the '<em>Description</em>' containment reference.
 	 * @see #setDescription(TranslatableText)
 	 * @see modelmanagement.ModelmanagementPackage#getNamedElement_Description()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	TranslatableText getDescription();

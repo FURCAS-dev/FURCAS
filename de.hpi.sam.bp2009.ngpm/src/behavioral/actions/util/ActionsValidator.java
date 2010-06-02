@@ -293,7 +293,8 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BLOCK__IS_SIDE_EFFECT_FREE_IF_IMPLEMENTS_SIDE_EFFECT_FREE_SIGNATURE__EEXPRESSION = "self.implements_->notEmpty() implies\n    (self.implements_.sideEffectFree implies self.isSideEffectFree())";
+	protected static final String BLOCK__IS_SIDE_EFFECT_FREE_IF_IMPLEMENTS_SIDE_EFFECT_FREE_SIGNATURE__EEXPRESSION = "self.implements_->notEmpty() implies" +
+		"    (self.implements_.sideEffectFree implies self.isSideEffectFree())";
 
 	/**
 	 * Validates the IsSideEffectFreeIfImplementsSideEffectFreeSignature constraint of '<em>Block</em>'.
@@ -580,7 +581,8 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_MANIPULATION_STATEMENT__OBJECTS_MUST_CONFORM_TO_END_TYPES__EEXPRESSION = "Sequence{1..self.objects->size()}->forAll(i:Integer |\n    objects->at(i).getType().conformsTo(association.ends->at(i).type))";
+	protected static final String LINK_MANIPULATION_STATEMENT__OBJECTS_MUST_CONFORM_TO_END_TYPES__EEXPRESSION = "Sequence{1..self.objects->size()}->forAll(i:Integer |" +
+		"    objects->at(i).getType().conformsTo(association.ends->at(i).type))";
 
 	/**
 	 * Validates the ObjectsMustConformToEndTypes constraint of '<em>Link Manipulation Statement</em>'.
@@ -609,7 +611,8 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_MANIPULATION_STATEMENT__BLOCK_MUST_NOT_IMPLEMENT_SIDE_EFFECT_FREE_SIGNATURE__EEXPRESSION = "self.block.getImplementedSignature()->notEmpty() implies\n  not self.block.getImplementedSignature().sideEffectFree";
+	protected static final String LINK_MANIPULATION_STATEMENT__BLOCK_MUST_NOT_IMPLEMENT_SIDE_EFFECT_FREE_SIGNATURE__EEXPRESSION = "self.block.getImplementedSignature()->notEmpty() implies" +
+		"  not self.block.getImplementedSignature().sideEffectFree";
 
 	/**
 	 * Validates the BlockMustNotImplementSideEffectFreeSignature constraint of '<em>Link Manipulation Statement</em>'.
@@ -638,7 +641,8 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_MANIPULATION_STATEMENT__NO_VALUE_MUST_BE_MODIFIED__EEXPRESSION = "self.association.ends->forAll(ae:AssociationEnd |\n    ae.type.clazz.valueType implies not ae.contributesToEquality)";
+	protected static final String LINK_MANIPULATION_STATEMENT__NO_VALUE_MUST_BE_MODIFIED__EEXPRESSION = "self.association.ends->forAll(ae:AssociationEnd |" +
+		"    ae.type.clazz.valueType implies not ae.contributesToEquality)";
 
 	/**
 	 * Validates the NoValueMustBeModified constraint of '<em>Link Manipulation Statement</em>'.

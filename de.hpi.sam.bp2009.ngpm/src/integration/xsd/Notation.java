@@ -36,7 +36,7 @@ public interface Notation extends NamedElement {
 	 * @return the value of the '<em>Public Dec</em>' attribute.
 	 * @see #setPublicDec(String)
 	 * @see integration.xsd.XsdPackage#getNotation_PublicDec()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getPublicDec();
@@ -62,7 +62,7 @@ public interface Notation extends NamedElement {
 	 * @return the value of the '<em>System Dec</em>' attribute.
 	 * @see #setSystemDec(String)
 	 * @see integration.xsd.XsdPackage#getNotation_SystemDec()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getSystemDec();

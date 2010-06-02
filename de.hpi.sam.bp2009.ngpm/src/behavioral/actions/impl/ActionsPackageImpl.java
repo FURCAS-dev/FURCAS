@@ -917,6 +917,16 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getNamedValueWithOptionalInitExpression_NamedValueDeclaration()
+  {
+		return (EReference)namedValueWithOptionalInitExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1014,6 +1024,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 
 		namedValueWithOptionalInitExpressionEClass = createEClass(NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION);
 		createEReference(namedValueWithOptionalInitExpressionEClass, NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION);
+		createEReference(namedValueWithOptionalInitExpressionEClass, NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION);
 
 		conditionalStatementEClass = createEClass(CONDITIONAL_STATEMENT);
 	}
@@ -1086,42 +1097,42 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		initEClass(statementEClass, Statement.class, "Statement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStatement_Block(), this.getBlock(), this.getBlock_Statements(), "block", null, 1, 1, Statement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(statementEClass, this.getBlock(), "getOutermostBlock", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(statementEClass, this.getBlock(), "getOutermostBlock", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(statementEClass, theEcorePackage.getEBoolean(), "isSideEffectFree", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(statementEClass, theEcorePackage.getEBoolean(), "isSideEffectFree", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		EOperation op = addEOperation(statementEClass, theEcorePackage.getEBoolean(), "isSideEffectFreeForBlock", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getBlock(), "block", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(statementEClass, theEcorePackage.getEBoolean(), "isSideEffectFreeForBlock", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getBlock(), "block", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(statementEClass, theClassesPackage.getNamedValue(), "getNamedValuesInScope", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(statementEClass, theClassesPackage.getNamedValue(), "getNamedValuesInScope", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(statementEClass, theClassesPackage.getSapClass(), "getOwningClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(statementEClass, theClassesPackage.getSapClass(), "getOwningClass", 0, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlock_Statements(), this.getStatement(), this.getStatement_Block(), "statements", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlock_Variables(), theClassesPackage.getNamedValue(), theClassesPackage.getNamedValue_Owner(), "variables", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlock_OwningStatement(), this.getStatementWithNestedBlocks(), this.getStatementWithNestedBlocks_NestedBlocks(), "owningStatement", null, 0, 1, Block.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(blockEClass, this.getBlock(), "getOutermostBlock", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(blockEClass, this.getBlock(), "getOutermostBlock", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(blockEClass, theEcorePackage.getEBoolean(), "localIsSideEffectFree", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(blockEClass, theEcorePackage.getEBoolean(), "localIsSideEffectFree", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(blockEClass, theClassesPackage.getNamedValue(), "getNamedValuesInScope", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(blockEClass, theClassesPackage.getNamedValue(), "getNamedValuesInScope", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(blockEClass, theClassesPackage.getSapClass(), "getOwningClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(blockEClass, theClassesPackage.getSapClass(), "getOwningClass", 0, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(ifElseEClass, IfElse.class, "IfElse", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		addEOperation(ifElseEClass, this.getBlock(), "getIfBlock", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(ifElseEClass, this.getBlock(), "getIfBlock", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(ifElseEClass, this.getBlock(), "getElseBlock", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(ifElseEClass, this.getBlock(), "getElseBlock", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(whileLoopEClass, WhileLoop.class, "WhileLoop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		addEOperation(whileLoopEClass, this.getBlock(), "getLoopBody", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(whileLoopEClass, this.getBlock(), "getLoopBody", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(foreachEClass, Foreach.class, "Foreach", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getForeach_Parallel(), theEcorePackage.getEBoolean(), "parallel", null, 0, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getForeach_Parallel(), theEcorePackage.getEBoolean(), "parallel", null, 0, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getForeach_Collection(), theExpressionsPackage.getExpression(), null, "collection", null, 1, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForeach_ForVariable(), this.getIterator(), this.getIterator_BoundToFor(), "forVariable", null, 1, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1132,7 +1143,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		initEClass(removeLinkEClass, RemoveLink.class, "RemoveLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(linkManipulationStatementEClass, LinkManipulationStatement.class, "LinkManipulationStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLinkManipulationStatement_At(), theEcorePackage.getEInt(), "at", null, 0, 1, LinkManipulationStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLinkManipulationStatement_At(), theEcorePackage.getEInt(), "at", null, 0, 1, LinkManipulationStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getLinkManipulationStatement_Association(), theClassesPackage.getAssociation(), null, "association", null, 1, 1, LinkManipulationStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLinkManipulationStatement_Objects(), theExpressionsPackage.getExpression(), null, "objects", null, 2, 2, LinkManipulationStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1149,7 +1160,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariable_Assignments(), this.getAssignment(), this.getAssignment_AssignTo(), "assignments", null, 0, -1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(variableEClass, null, "getCommonTypeOfAssignments", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(variableEClass, null, "getCommonTypeOfAssignments", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(iteratorEClass, Iterator.class, "Iterator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIterator_BoundToFor(), this.getForeach(), this.getForeach_ForVariable(), "boundToFor", null, 0, 1, Iterator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1158,7 +1169,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		initEReference(getIterator_FromClause(), theQueryPackage.getFromClause(), theQueryPackage.getFromClause_Alias(), "fromClause", null, 0, 1, Iterator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedValueDeclarationEClass, NamedValueDeclaration.class, "NamedValueDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNamedValueDeclaration_NamedValue(), this.getNamedValueWithOptionalInitExpression(), null, "namedValue", null, 1, 1, NamedValueDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNamedValueDeclaration_NamedValue(), this.getNamedValueWithOptionalInitExpression(), this.getNamedValueWithOptionalInitExpression_NamedValueDeclaration(), "namedValue", null, 1, 1, NamedValueDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statementWithNestedBlocksEClass, StatementWithNestedBlocks.class, "StatementWithNestedBlocks", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStatementWithNestedBlocks_NestedBlocks(), this.getBlock(), this.getBlock_OwningStatement(), "nestedBlocks", null, 1, 2, StatementWithNestedBlocks.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1168,7 +1179,8 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		initEClass(statementWithArgumentEClass, StatementWithArgument.class, "StatementWithArgument", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(namedValueWithOptionalInitExpressionEClass, NamedValueWithOptionalInitExpression.class, "NamedValueWithOptionalInitExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNamedValueWithOptionalInitExpression_InitExpression(), theExpressionsPackage.getExpression(), null, "initExpression", null, 0, 1, NamedValueWithOptionalInitExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNamedValueWithOptionalInitExpression_InitExpression(), theExpressionsPackage.getExpression(), theExpressionsPackage.getExpression_InitExpressionFor(), "initExpression", null, 0, 1, NamedValueWithOptionalInitExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNamedValueWithOptionalInitExpression_NamedValueDeclaration(), this.getNamedValueDeclaration(), this.getNamedValueDeclaration_NamedValue(), "namedValueDeclaration", null, 0, 1, NamedValueWithOptionalInitExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionalStatementEClass, ConditionalStatement.class, "ConditionalStatement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1312,7 +1324,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "InitExpressionTypeMustMatchVariableType"
-		   });						
+		   });					
 		addAnnotation
 		  (singleBlockStatementEClass, 
 		   source, 
@@ -1324,7 +1336,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "AssignmentCompatibility"
-		   });	
+		   });
 	}
 
 	/**
@@ -1454,7 +1466,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   source, 
 		   new String[] {
 			 "InitExpressionTypeMustMatchVariableType", "self.initExpression->notEmpty() implies self.initExpression.getType().conformsTo(self.getType())"
-		   });						
+		   });					
 		addAnnotation
 		  (singleBlockStatementEClass, 
 		   source, 
@@ -1466,7 +1478,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   source, 
 		   new String[] {
 			 "AssignmentCompatibility", "self.initExpression->forAll(ie | ie.getType().conformsTo(self.getType()))"
-		   });		
+		   });	
 	}
 
 	/**
@@ -1494,19 +1506,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", ""
-		   });									
-		addAnnotation
-		  (getNamedValueDeclaration_NamedValue(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "namedValueDeclaration"
-		   });							
-		addAnnotation
-		  (getNamedValueWithOptionalInitExpression_InitExpression(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "initExpressionFor"
-		   });
+		   });												
 	}
 
 } //ActionsPackageImpl

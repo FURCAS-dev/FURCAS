@@ -27,6 +27,7 @@ import dataaccess.expressions.Expression;
 public interface CollectionExpression extends Expression {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getCollectionExpression <em>Collection Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' containment reference isn't clear,
@@ -36,8 +37,8 @@ public interface CollectionExpression extends Expression {
 	 * @return the value of the '<em>Source</em>' containment reference.
 	 * @see #setSource(Expression)
 	 * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getCollectionExpression_Source()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='collectionExpression'"
+	 * @see dataaccess.expressions.Expression#getCollectionExpression
+	 * @model opposite="collectionExpression" containment="true" required="true"
 	 * @generated
 	 */
 	Expression getSource();

@@ -684,11 +684,11 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		initEReference(getCellSet_AggregationFunction(), theClassesPackage.getFunctionSignature(), theClassesPackage.getFunctionSignature_CellSetForAggregationFunction(), "aggregationFunction", null, 1, 1, CellSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCellSet_FactsType(), theClassesPackage.getTypeDefinition(), null, "factsType", null, 1, 1, CellSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(cellSetEClass, theClassesPackage.getTypeDefinition(), "keyFigureType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(cellSetEClass, theClassesPackage.getTypeDefinition(), "keyFigureType", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(cellSetEClass, theClassesPackage.getTypeDefinition(), "cellType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(cellSetEClass, theClassesPackage.getTypeDefinition(), "cellType", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(cellSetEClass, theEcorePackage.getEBoolean(), "localIsSideEffectFree", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(cellSetEClass, theEcorePackage.getEBoolean(), "localIsSideEffectFree", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(dimensionExpressionEClass, DimensionExpression.class, "DimensionExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDimensionExpression_CellSet(), theExpressionsPackage.getExpression(), null, "cellSet", null, 1, 1, DimensionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -705,7 +705,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		initEReference(getDimensionDefinition_Expression(), theExpressionsPackage.getExpression(), null, "expression", null, 1, 1, DimensionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDimensionDefinition_Iterator(), theActionsPackage.getIterator(), null, "iterator", null, 1, 1, DimensionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(dimensionDefinitionEClass, theEcorePackage.getEString(), "getName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(dimensionDefinitionEClass, theEcorePackage.getEString(), "getName", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -837,7 +837,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		   source, 
 		   new String[] {
 			 "FactsTypeConformsToFirstFunctionParameterType", "self.facts.getType().conformsTo(self.dimension.ownerSignature.input->at(1).getType())",
-			 "CellSetExpressionMustHaveFunctionSignatureType", "self.cellSet.getType().oclIsKindOf(FunctionSignatureTypeDefinition)",
+			 "CellSetExpressionMustHaveFunctionSignatureType", "self.cellSet.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)",
 			 "DimensionParameterIsNotFirst", "self.dimension.ownerSignature.input->indexOf(self.dimension) > 1"
 		   });							
 		addAnnotation

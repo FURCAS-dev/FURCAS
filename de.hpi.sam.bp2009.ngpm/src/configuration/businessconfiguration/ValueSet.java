@@ -50,7 +50,7 @@ public interface ValueSet extends NamedElement, TypedElement {
 	 * @return the value of the '<em>Extensible</em>' attribute.
 	 * @see #setExtensible(boolean)
 	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSet_Extensible()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isExtensible();

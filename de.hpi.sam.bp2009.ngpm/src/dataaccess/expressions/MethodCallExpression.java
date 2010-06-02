@@ -29,7 +29,7 @@ import data.classes.MethodSignature;
  * </p>
  *
  * @see dataaccess.expressions.ExpressionsPackage#getMethodCallExpression()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ObjectMustSupportOperation='self.object.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and\n  self.object.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(SapClass))' OutputMultiplicities='(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and\n  (self.object.getType().lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL ObjectMustSupportOperation='self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(data::classes::SapClass))' OutputMultiplicities='(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and\n  (self.object.getType().lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ObjectMustSupportOperation OutputMultiplicities'"
  * @generated
  */
@@ -44,7 +44,7 @@ public interface MethodCallExpression extends ObjectBasedExpression, SignatureCa
 	 * @return the value of the '<em>Asynchronous</em>' attribute.
 	 * @see #setAsynchronous(boolean)
 	 * @see dataaccess.expressions.ExpressionsPackage#getMethodCallExpression_Asynchronous()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isAsynchronous();

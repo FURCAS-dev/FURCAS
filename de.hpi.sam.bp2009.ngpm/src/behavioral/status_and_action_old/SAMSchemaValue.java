@@ -45,7 +45,7 @@ public interface SAMSchemaValue extends EObject {
 	 * @return the value of the '<em>Is Initial</em>' attribute.
 	 * @see #setIsInitial(boolean)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMSchemaValue_IsInitial()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isIsInitial();
@@ -71,7 +71,7 @@ public interface SAMSchemaValue extends EObject {
 	 * @return the value of the '<em>Is Inhibiting</em>' attribute.
 	 * @see #setIsInhibiting(boolean)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMSchemaValue_IsInhibiting()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isIsInhibiting();

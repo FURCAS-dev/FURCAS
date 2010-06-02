@@ -191,14 +191,30 @@ public class AllImpl extends ExpressionImpl implements All {
 		if (newSnapshotIdentifier != snapshotIdentifier) {
 			NotificationChain msgs = null;
 			if (snapshotIdentifier != null)
-				msgs = ((InternalEObject)snapshotIdentifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.ALL__SNAPSHOT_IDENTIFIER, null, msgs);
+				msgs = ((InternalEObject)snapshotIdentifier).eInverseRemove(this, dataaccess.expressions.ExpressionsPackage.EXPRESSION__ALL, Expression.class, msgs);
 			if (newSnapshotIdentifier != null)
-				msgs = ((InternalEObject)newSnapshotIdentifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.ALL__SNAPSHOT_IDENTIFIER, null, msgs);
+				msgs = ((InternalEObject)newSnapshotIdentifier).eInverseAdd(this, dataaccess.expressions.ExpressionsPackage.EXPRESSION__ALL, Expression.class, msgs);
 			msgs = basicSetSnapshotIdentifier(newSnapshotIdentifier, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.ALL__SNAPSHOT_IDENTIFIER, newSnapshotIdentifier, newSnapshotIdentifier));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.ALL__SNAPSHOT_IDENTIFIER:
+				if (snapshotIdentifier != null)
+					msgs = ((InternalEObject)snapshotIdentifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.ALL__SNAPSHOT_IDENTIFIER, null, msgs);
+				return basicSetSnapshotIdentifier((Expression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

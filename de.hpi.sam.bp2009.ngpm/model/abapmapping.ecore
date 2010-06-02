@@ -14,7 +14,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="AbapTypeMustBeUnstructured"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//AbapClassKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" unique="false"
+        eType="#//AbapClassKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="abapType" lowerBound="1"
         eType="#//abapdictionary/AbapType">
       <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -25,7 +26,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="AbapAssociationImplementationAnnotation"/>
   <eClassifiers xsi:type="ecore:EClass" name="AbapAssociationEndImplementationAnnotation"/>
   <eClassifiers xsi:type="ecore:EClass" name="AbapSignatureImplementationAnnotation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//AbapSignatureKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" unique="false"
+        eType="#//AbapSignatureKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AbapClassKind">
     <eLiterals name="BO_AND_ROOT_NODE"/>
@@ -45,11 +47,16 @@
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="XsdType">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="xsdType" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalDigits" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fractionDigits" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="xsdType" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="totalDigits" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fractionDigits" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UnstructuredAbapType" eSuperTypes="#//abapdictionary/AbapType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -60,8 +67,10 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="We deliberately reduced code values to unstructured, primitive values. Those examples that we are aware of where codes are of structured types only contain unmaintained attributes such as LIST_AGENCY_IDs and other supplementary components that can in our opinion safely be omitted for the time being."/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="ecore:EClass localization.ecore#//TranslatableText"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
+          unique="false" eType="ecore:EClass localization.ecore#//TranslatableText"
           containment="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
           eType="#//abapdictionary/AbapPrimtiveType">
@@ -77,7 +86,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="TypeOfValuesEqualsAbapType"/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensible" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensible" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
           eType="#//abapdictionary/CodeValue" containment="true">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -94,7 +104,8 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AbapType">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="xsdRepresentation" lowerBound="1"
           eType="#//abapdictionary/XsdType">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -111,7 +122,8 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AbapStructureField">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
           eType="#//abapdictionary/AbapType">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -120,7 +132,8 @@
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="AbapPrimtiveType" eSuperTypes="#//abapdictionary/UnstructuredAbapType">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

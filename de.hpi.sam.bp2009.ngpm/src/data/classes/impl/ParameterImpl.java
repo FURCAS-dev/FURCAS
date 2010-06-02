@@ -8,6 +8,7 @@ package data.classes.impl;
 
 import data.classes.ClassesPackage;
 import data.classes.Parameter;
+import data.classes.SapClass;
 import data.classes.Signature;
 
 import dataaccess.expressions.Expression;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link data.classes.impl.ParameterImpl#getOwnerSignature <em>Owner Signature</em>}</li>
+ *   <li>{@link data.classes.impl.ParameterImpl#getParameterOfClass <em>Parameter Of Class</em>}</li>
  *   <li>{@link data.classes.impl.ParameterImpl#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
  * </p>
@@ -112,6 +114,47 @@ public class ParameterImpl extends NamedValueImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SapClass getParameterOfClass() {
+		if (eContainerFeatureID() != ClassesPackage.PARAMETER__PARAMETER_OF_CLASS) return null;
+		return (SapClass)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetParameterOfClass(SapClass newParameterOfClass, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newParameterOfClass, ClassesPackage.PARAMETER__PARAMETER_OF_CLASS, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParameterOfClass(SapClass newParameterOfClass) {
+		if (newParameterOfClass != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.PARAMETER__PARAMETER_OF_CLASS && newParameterOfClass != null)) {
+			if (EcoreUtil.isAncestor(this, newParameterOfClass))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newParameterOfClass != null)
+				msgs = ((InternalEObject)newParameterOfClass).eInverseAdd(this, ClassesPackage.SAP_CLASS__FORMAL_OBJECT_PARAMETERS, SapClass.class, msgs);
+			msgs = basicSetParameterOfClass(newParameterOfClass, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.PARAMETER__PARAMETER_OF_CLASS, newParameterOfClass, newParameterOfClass));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Expression getDefaultValue() {
 		return defaultValue;
 	}
@@ -162,6 +205,10 @@ public class ParameterImpl extends NamedValueImpl implements Parameter {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOwnerSignature((Signature)otherEnd, msgs);
+			case ClassesPackage.PARAMETER__PARAMETER_OF_CLASS:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetParameterOfClass((SapClass)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -176,6 +223,8 @@ public class ParameterImpl extends NamedValueImpl implements Parameter {
 		switch (featureID) {
 			case ClassesPackage.PARAMETER__OWNER_SIGNATURE:
 				return basicSetOwnerSignature(null, msgs);
+			case ClassesPackage.PARAMETER__PARAMETER_OF_CLASS:
+				return basicSetParameterOfClass(null, msgs);
 			case ClassesPackage.PARAMETER__DEFAULT_VALUE:
 				return basicSetDefaultValue(null, msgs);
 		}
@@ -192,6 +241,8 @@ public class ParameterImpl extends NamedValueImpl implements Parameter {
 		switch (eContainerFeatureID()) {
 			case ClassesPackage.PARAMETER__OWNER_SIGNATURE:
 				return eInternalContainer().eInverseRemove(this, ClassesPackage.SIGNATURE__INPUT, Signature.class, msgs);
+			case ClassesPackage.PARAMETER__PARAMETER_OF_CLASS:
+				return eInternalContainer().eInverseRemove(this, ClassesPackage.SAP_CLASS__FORMAL_OBJECT_PARAMETERS, SapClass.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -206,6 +257,8 @@ public class ParameterImpl extends NamedValueImpl implements Parameter {
 		switch (featureID) {
 			case ClassesPackage.PARAMETER__OWNER_SIGNATURE:
 				return getOwnerSignature();
+			case ClassesPackage.PARAMETER__PARAMETER_OF_CLASS:
+				return getParameterOfClass();
 			case ClassesPackage.PARAMETER__DEFAULT_VALUE:
 				return getDefaultValue();
 		}
@@ -222,6 +275,9 @@ public class ParameterImpl extends NamedValueImpl implements Parameter {
 		switch (featureID) {
 			case ClassesPackage.PARAMETER__OWNER_SIGNATURE:
 				setOwnerSignature((Signature)newValue);
+				return;
+			case ClassesPackage.PARAMETER__PARAMETER_OF_CLASS:
+				setParameterOfClass((SapClass)newValue);
 				return;
 			case ClassesPackage.PARAMETER__DEFAULT_VALUE:
 				setDefaultValue((Expression)newValue);
@@ -241,6 +297,9 @@ public class ParameterImpl extends NamedValueImpl implements Parameter {
 			case ClassesPackage.PARAMETER__OWNER_SIGNATURE:
 				setOwnerSignature((Signature)null);
 				return;
+			case ClassesPackage.PARAMETER__PARAMETER_OF_CLASS:
+				setParameterOfClass((SapClass)null);
+				return;
 			case ClassesPackage.PARAMETER__DEFAULT_VALUE:
 				setDefaultValue((Expression)null);
 				return;
@@ -258,6 +317,8 @@ public class ParameterImpl extends NamedValueImpl implements Parameter {
 		switch (featureID) {
 			case ClassesPackage.PARAMETER__OWNER_SIGNATURE:
 				return getOwnerSignature() != null;
+			case ClassesPackage.PARAMETER__PARAMETER_OF_CLASS:
+				return getParameterOfClass() != null;
 			case ClassesPackage.PARAMETER__DEFAULT_VALUE:
 				return defaultValue != null;
 		}

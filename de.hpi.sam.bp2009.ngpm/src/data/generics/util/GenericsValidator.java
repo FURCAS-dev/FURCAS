@@ -144,7 +144,15 @@ public class GenericsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String FORMAL_TYPE_PARAMETER__USE_IN_SIGNATURES_OF_OWNING_PARAMERIZED_CLASS_ONLY__EEXPRESSION = "self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(Parameter) implies \n   (s.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and\n    s.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).owner=self.parameterOf .owningClassDefinition)) and\n  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(MethodSignature) and \n    s.oclAsType(MethodSignature).owner->notEmpty() and\n    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition) and\n  self.signaturesWithFault->forAll(s| s.oclIsKindOf(MethodSignature)  and \n    s.oclAsType(MethodSignature).owner->notEmpty() and\n    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition)";
+	protected static final String FORMAL_TYPE_PARAMETER__USE_IN_SIGNATURES_OF_OWNING_PARAMERIZED_CLASS_ONLY__EEXPRESSION = "self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(Parameter) implies " +
+		"   (s.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and" +
+		"    s.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).owner=self.parameterOf .owningClassDefinition)) and" +
+		"  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(MethodSignature) and " +
+		"    s.oclAsType(MethodSignature).owner->notEmpty() and" +
+		"    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition) and" +
+		"  self.signaturesWithFault->forAll(s| s.oclIsKindOf(MethodSignature)  and " +
+		"    s.oclAsType(MethodSignature).owner->notEmpty() and" +
+		"    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition)";
 
 	/**
 	 * Validates the UseInSignaturesOfOwningParamerizedClassOnly constraint of '<em>Formal Type Parameter</em>'.
@@ -173,7 +181,8 @@ public class GenericsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String FORMAL_TYPE_PARAMETER__USE_IN_ASSOCIATIONS_OF_OWNING_PARAMETERIZED_CLASS_ONLY__EEXPRESSION = "self.elementsOfType.associationEnd->\n    forAll(ae | ae.otherEnd().type.clazz = self.parameterOf.owningClassDefinition)";
+	protected static final String FORMAL_TYPE_PARAMETER__USE_IN_ASSOCIATIONS_OF_OWNING_PARAMETERIZED_CLASS_ONLY__EEXPRESSION = "self.elementsOfType.associationEnd->" +
+		"    forAll(ae | ae.otherEnd().type.clazz = self.parameterOf.owningClassDefinition)";
 
 	/**
 	 * Validates the UseInAssociationsOfOwningParameterizedClassOnly constraint of '<em>Formal Type Parameter</em>'.
@@ -226,7 +235,10 @@ public class GenericsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String PARAMETERIZED_CLASS_INSTANTIATION__ACTUAL_TYPE_PARAMETERS_MATCH_SIGNATURE__EEXPRESSION = "self.actualTypeParametersForInstantiation->size() = self.parameterizedClass.parameterization.formalTypeParameters->size() and\n  Sequence{1..self.actualTypeParametersForInstantiation->size()}->forAll(i:Integer|\n    self.actualTypeParametersForInstantiation->at(i).formalTypeParameter =\n    self.parameterizedClass.parameterization.formalTypeParameters->at(i))";
+	protected static final String PARAMETERIZED_CLASS_INSTANTIATION__ACTUAL_TYPE_PARAMETERS_MATCH_SIGNATURE__EEXPRESSION = "self.actualTypeParametersForInstantiation->size() = self.parameterizedClass.parameterization.formalTypeParameters->size() and" +
+		"  Sequence{1..self.actualTypeParametersForInstantiation->size()}->forAll(i:Integer|" +
+		"    self.actualTypeParametersForInstantiation->at(i).formalTypeParameter =" +
+		"    self.parameterizedClass.parameterization.formalTypeParameters->at(i))";
 
 	/**
 	 * Validates the ActualTypeParametersMatchSignature constraint of '<em>Parameterized Class Instantiation</em>'.
@@ -351,7 +363,8 @@ public class GenericsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ACTUAL_TYPE_PARAMETER__TYPE_CONFORMS_WITH_FORMAL_PARAMETERS_TYPE_CONSTRAINT__EEXPRESSION = "self.formalTypeParameter.typeConstraint->notEmpty() implies\n    self.type.conformsTo(self.formalTypeParameter.typeConstraint)";
+	protected static final String ACTUAL_TYPE_PARAMETER__TYPE_CONFORMS_WITH_FORMAL_PARAMETERS_TYPE_CONSTRAINT__EEXPRESSION = "self.formalTypeParameter.typeConstraint->notEmpty() implies" +
+		"    self.type.conformsTo(self.formalTypeParameter.typeConstraint)";
 
 	/**
 	 * Validates the TypeConformsWithFormalParametersTypeConstraint constraint of '<em>Actual Type Parameter</em>'.

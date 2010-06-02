@@ -78,7 +78,8 @@ public interface ObjectLiteral extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='self.valueClass = o.valueClass and\n  self.propertyValues->size() = o.propertyValues->size() and\n  self.propertyValues->forAll(pv | o.propertyValues->exists(opv | opv.forEnd = pv.forEnd and opv.value.evaluatesToEqualAs(pv.value)))'"
+	 * @model unique="false" required="true" ordered="false" oUnique="false" oRequired="true" oOrdered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.valueClass = o.valueClass and\n  self.propertyValues->size() = o.propertyValues->size() and\n  self.propertyValues->forAll(pv | o.propertyValues->exists(opv | opv.forEnd = pv.forEnd and opv.value.evaluatesToEqualAs(pv.value)))'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */

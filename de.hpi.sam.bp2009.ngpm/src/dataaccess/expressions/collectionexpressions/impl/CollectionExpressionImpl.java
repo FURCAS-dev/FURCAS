@@ -8,6 +8,7 @@ package dataaccess.expressions.collectionexpressions.impl;
 
 import dataaccess.expressions.Expression;
 
+import dataaccess.expressions.ExpressionsPackage;
 import dataaccess.expressions.collectionexpressions.CollectionExpression;
 import dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage;
 
@@ -97,14 +98,30 @@ public abstract class CollectionExpressionImpl extends ExpressionImpl implements
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CollectionexpressionsPackage.COLLECTION_EXPRESSION__SOURCE, null, msgs);
+				msgs = ((InternalEObject)source).eInverseRemove(this, ExpressionsPackage.EXPRESSION__COLLECTION_EXPRESSION, Expression.class, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject)newSource).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - CollectionexpressionsPackage.COLLECTION_EXPRESSION__SOURCE, null, msgs);
+				msgs = ((InternalEObject)newSource).eInverseAdd(this, ExpressionsPackage.EXPRESSION__COLLECTION_EXPRESSION, Expression.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CollectionexpressionsPackage.COLLECTION_EXPRESSION__SOURCE, newSource, newSource));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CollectionexpressionsPackage.COLLECTION_EXPRESSION__SOURCE:
+				if (source != null)
+					msgs = ((InternalEObject)source).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CollectionexpressionsPackage.COLLECTION_EXPRESSION__SOURCE, null, msgs);
+				return basicSetSource((Expression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

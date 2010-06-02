@@ -95,14 +95,30 @@ public abstract class ExpressionWithArgumentImpl extends ExpressionImpl implemen
 		if (newArgument != argument) {
 			NotificationChain msgs = null;
 			if (argument != null)
-				msgs = ((InternalEObject)argument).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__ARGUMENT, null, msgs);
+				msgs = ((InternalEObject)argument).eInverseRemove(this, ExpressionsPackage.EXPRESSION__ARGUMENT_OF, Expression.class, msgs);
 			if (newArgument != null)
-				msgs = ((InternalEObject)newArgument).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__ARGUMENT, null, msgs);
+				msgs = ((InternalEObject)newArgument).eInverseAdd(this, ExpressionsPackage.EXPRESSION__ARGUMENT_OF, Expression.class, msgs);
 			msgs = basicSetArgument(newArgument, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__ARGUMENT, newArgument, newArgument));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__ARGUMENT:
+				if (argument != null)
+					msgs = ((InternalEObject)argument).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__ARGUMENT, null, msgs);
+				return basicSetArgument((Expression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

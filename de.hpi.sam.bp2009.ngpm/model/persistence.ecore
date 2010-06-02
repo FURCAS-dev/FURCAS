@@ -48,7 +48,8 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="MustBeEntityClass ExpressionMustBeSnapshotOrTimePoint"/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="snapshot" eType="#//expressions/SnapshotSelection">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="snapshot" ordered="false"
+          unique="false" eType="#//expressions/SnapshotSelection">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="A selector for the snapshot to read. If DEFAULT, the entities will be read from the current session's default snapshot. If ALL is specified, all copies of instances in all snapshots is returned. If DATE, the lastSnapshotBeforeIsoTimestamp has to be set and all snapshots before that date are selected for which no successor exists that still lies before the timestamp specified. This means that the entity will be returned from all snapshots on concurrent branches that existed at the given point in time."/>
         </eAnnotations>
@@ -60,11 +61,7 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="snapshotIdentifier" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-          containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="all"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          containment="true" eOpposite="dataaccess.ecore#//expressions/Expression/all"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="SnapshotSelection">
       <eLiterals name="DEFAULT"/>

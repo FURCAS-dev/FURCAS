@@ -37,7 +37,7 @@ public interface Root extends EObject {
 	 * @return the value of the '<em>Id</em>' attribute.
 	 * @see #setId(String)
 	 * @see integration.xsd.XsdPackage#getRoot_Id()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getId();

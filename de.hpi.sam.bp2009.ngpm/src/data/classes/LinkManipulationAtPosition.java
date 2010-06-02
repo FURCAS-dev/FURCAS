@@ -39,7 +39,7 @@ public interface LinkManipulationAtPosition extends ExtentModifyingAssociationEn
 	 * @return the value of the '<em>At</em>' attribute.
 	 * @see #setAt(int)
 	 * @see data.classes.ClassesPackage#getLinkManipulationAtPosition_At()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	int getAt();

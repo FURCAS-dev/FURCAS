@@ -250,7 +250,8 @@ public class LiteralsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String OBJECT_LITERAL__VALUES_MUST_BE_PROVIDED_FOR_ALL_MANDATORY_PROPERTIES__EEXPRESSION = "self.valueClass.getEqualityRelevantAssociationEnds()->select(ae | ae.otherEnd().type.lowerMultiplicity > 0)->forAll(ae |\n      self.propertyValues->exists(pv | pv.forEnd.otherEnd() = ae))";
+	protected static final String OBJECT_LITERAL__VALUES_MUST_BE_PROVIDED_FOR_ALL_MANDATORY_PROPERTIES__EEXPRESSION = "self.valueClass.getEqualityRelevantAssociationEnds()->select(ae | ae.otherEnd().type.lowerMultiplicity > 0)->forAll(ae |" +
+		"      self.propertyValues->exists(pv | pv.forEnd.otherEnd() = ae))";
 
 	/**
 	 * Validates the ValuesMustBeProvidedForAllMandatoryProperties constraint of '<em>Object Literal</em>'.

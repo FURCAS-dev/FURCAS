@@ -35,7 +35,7 @@ public interface PackageOwner extends NamedElement {
 	 * @return the value of the '<em>Owned Packages</em>' containment reference.
 	 * @see #setOwnedPackages(modelmanagement.Package)
 	 * @see modelmanagement.ModelmanagementPackage#getPackageOwner_OwnedPackages()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	modelmanagement.Package getOwnedPackages();

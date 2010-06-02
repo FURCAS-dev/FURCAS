@@ -37,7 +37,7 @@ public interface AbapType extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapType_Name()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getName();

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface WithArgument extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Argument</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getArgumentOf <em>Argument Of</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Argument</em>' containment reference isn't clear,
@@ -36,8 +37,8 @@ public interface WithArgument extends EObject {
 	 * @return the value of the '<em>Argument</em>' containment reference.
 	 * @see #setArgument(Expression)
 	 * @see dataaccess.expressions.ExpressionsPackage#getWithArgument_Argument()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='argumentOf'"
+	 * @see dataaccess.expressions.Expression#getArgumentOf
+	 * @model opposite="argumentOf" containment="true"
 	 * @generated
 	 */
 	Expression getArgument();

@@ -17,6 +17,7 @@ import dataaccess.expressions.Expression;
  * The following features are supported:
  * <ul>
  *   <li>{@link data.classes.Parameter#getOwnerSignature <em>Owner Signature</em>}</li>
+ *   <li>{@link data.classes.Parameter#getParameterOfClass <em>Parameter Of Class</em>}</li>
  *   <li>{@link data.classes.Parameter#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
  * </p>
@@ -54,6 +55,34 @@ public interface Parameter extends NamedValue {
 	 * @generated
 	 */
 	void setOwnerSignature(Signature value);
+
+	/**
+	 * Returns the value of the '<em><b>Parameter Of Class</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link data.classes.SapClass#getFormalObjectParameters <em>Formal Object Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parameter Of Class</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameter Of Class</em>' container reference.
+	 * @see #setParameterOfClass(SapClass)
+	 * @see data.classes.ClassesPackage#getParameter_ParameterOfClass()
+	 * @see data.classes.SapClass#getFormalObjectParameters
+	 * @model opposite="formalObjectParameters"
+	 * @generated
+	 */
+	SapClass getParameterOfClass();
+
+	/**
+	 * Sets the value of the '{@link data.classes.Parameter#getParameterOfClass <em>Parameter Of Class</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parameter Of Class</em>' container reference.
+	 * @see #getParameterOfClass()
+	 * @generated
+	 */
+	void setParameterOfClass(SapClass value);
 
 	/**
 	 * Returns the value of the '<em><b>Default Value</b></em>' containment reference.

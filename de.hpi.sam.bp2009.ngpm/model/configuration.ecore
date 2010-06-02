@@ -59,19 +59,22 @@
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="A set of values of a specific type which can be added to a system. For example, if the type is &quot;Country&quot; then the value set could be a list of countries known to or relevant for the application.&#xA;&#xA;Value sets may be extensible or constant. In the &quot;Country&quot; example, the list of countries may change, be it because new countries are created or countries cease to exist because they get merged, or just because more countries are relevant for the application than originally thought.&#xA;&#xA;Such value sets are also known as &quot;BC Sets&quot; (Business Configuration Sets)."/>
       </eAnnotations>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensible" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensible" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="configurationBusinessOption"
           lowerBound="1" eType="#//businessconfiguration/BusinessOption" eOpposite="#//businessconfiguration/BusinessOption/valueSet"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"
           eType="#//businessconfiguration/ValueSetEntry" containment="true" eOpposite="#//businessconfiguration/ValueSetEntry/valueSet"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ValueSetEntry" eSuperTypes="modelmanagement.ecore#//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="canBeChanged" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="canBeChanged" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="If true, "/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="canBeDeleted" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="canBeDeleted" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="valueSet" lowerBound="1"
           eType="#//businessconfiguration/ValueSet" transient="true" eOpposite="#//businessconfiguration/ValueSet/entries"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
@@ -143,14 +146,16 @@
       <details key="documentation" value="An interesting extensibility construct to be looked at closer."/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="ContextCategory">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="rootValue" lowerBound="1"
           eType="#//context_drivers/ContextCategoryValue" containment="true" eOpposite="#//context_drivers/ContextCategoryValue/context"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="categoryConfiguration"
           upperBound="-1" eType="#//context_drivers/ContexConfiguration" eOpposite="#//context_drivers/ContexConfiguration/category"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ContextCategoryValue" eSuperTypes="#//context_drivers/ContextCategory">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//context_drivers/ContextCategory"
           transient="true" eOpposite="#//context_drivers/ContextCategory/rootValue"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="includedValuesConfiguration"

@@ -566,7 +566,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		initEReference(getSelection_SelectionExpr(), theExpressionsPackage.getExpression(), null, "selectionExpr", null, 1, 1, Selection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oqlQueryEClass, OqlQuery.class, "OqlQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOqlQuery_Condition(), theExpressionsPackage.getExpression(), null, "condition", null, 0, 1, OqlQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOqlQuery_Condition(), theExpressionsPackage.getExpression(), theExpressionsPackage.getExpression_ConditionOfOqlQuery(), "condition", null, 0, 1, OqlQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOqlQuery_FromClauses(), this.getFromClause(), this.getFromClause_FromClauseOfOqlQuery(), "fromClauses", null, 1, -1, OqlQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOqlQuery_Selected(), theActionsPackage.getIterator(), null, "selected", null, 1, -1, OqlQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -613,7 +613,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "ConditionMustBeBoolean WhereClauseMustBeSideEffectFree HasValueType SelectedIteratorsMustHaveClassTypeDefinitionAsType"
-		   });					
+		   });				
 		addAnnotation
 		  (fromClauseEClass, 
 		   source, 
@@ -635,17 +635,17 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		   source, 
 		   new String[] {
 			 "ConditionMustBeSideEffectFree", "self.selectionExpr.isSideEffectFree()",
-			 "ConditionMustBeBooleanOrNumeric", "self.selectionExpr.getType().oclIsKindOf(ClassTypeDefinition) and\n (\n    (\n      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\' and\n      self.selectionExpr.getType().upperMultiplicity = 1\n    )\n    or\n    (\n      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Number\' \n      and \n      self.object.getType().ordered\n    )\n  )"
+			 "ConditionMustBeBooleanOrNumeric", "self.selectionExpr.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n (\n    (\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\' and\n      self.selectionExpr.getType().upperMultiplicity = 1\n    )\n    or\n    (\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\' \n      and \n      self.object.getType().ordered\n    )\n  )"
 		   });				
 		addAnnotation
 		  (oqlQueryEClass, 
 		   source, 
 		   new String[] {
-			 "ConditionMustBeBoolean", "self.condition->notEmpty() implies\n    (self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\n     self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name=\'Boolean\')",
+			 "ConditionMustBeBoolean", "self.condition->notEmpty() implies\n    (self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n     self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name=\'Boolean\')",
 			 "WhereClauseMustBeSideEffectFree", "self.condition->forAll(c | c.isSideEffectFree())",
-			 "HasValueType", "self.getType().oclIsKindOf(ClassTypeDefinition) and self.getType().oclAsType(ClassTypeDefinition).clazz.valueType",
-			 "SelectedIteratorsMustHaveClassTypeDefinitionAsType", "self.selected->forAll(i | i.getType().oclIsKindOf(ClassTypeDefinition))"
-		   });					
+			 "HasValueType", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType",
+			 "SelectedIteratorsMustHaveClassTypeDefinitionAsType", "self.selected->forAll(i | i.getType().oclIsKindOf(data::classes::ClassTypeDefinition))"
+		   });				
 		addAnnotation
 		  (fromClauseEClass, 
 		   source, 
@@ -668,12 +668,6 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		   new String[] {
 			 "Property.oppositeRoleName", "selection"
 		   });				
-		addAnnotation
-		  (getOqlQuery_Condition(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "conditionOfOqlQuery"
-		   });		
 		addAnnotation
 		  (getOqlQuery_Selected(), 
 		   source, 

@@ -194,7 +194,9 @@ public class CollectionexpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ITERATE__ACCUMULATOR_TYPE_EQUALS_EXPRESSION_TYPE__EEXPRESSION = "self.accumulator->notEmpty() implies\n  (self.accumulator.ownedTypeDefinition->notEmpty() implies\n     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))";
+	protected static final String ITERATE__ACCUMULATOR_TYPE_EQUALS_EXPRESSION_TYPE__EEXPRESSION = "self.accumulator->notEmpty() implies" +
+		"  (self.accumulator.ownedTypeDefinition->notEmpty() implies" +
+		"     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))";
 
 	/**
 	 * Validates the AccumulatorTypeEqualsExpressionType constraint of '<em>Iterate</em>'.
@@ -319,7 +321,20 @@ public class CollectionexpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String COLLECTION_EXPRESSION_WITH_ARGUMENT__ARGUMENT_TYPE_MUST_CONFORM_TO_COLLECTION_EXPRESSION_TYPE__EEXPRESSION = "let snl : Integer = source.getType().getNestingLevel() in let anl : Integer = argument.getType().getNestingLevel() in\n    if snl = anl then\n      source.getType().conformsToIgnoringMultiplicity(argument.getType())\n    else\n      if snl = (anl + 1) then\n        source.getType().oclAsType(NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())\n      else\n        if (snl + 1) = anl then\n          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(NestedTypeDefinition).type)\n        else\n          false\n        endif\n      endif\n    endif";
+	protected static final String COLLECTION_EXPRESSION_WITH_ARGUMENT__ARGUMENT_TYPE_MUST_CONFORM_TO_COLLECTION_EXPRESSION_TYPE__EEXPRESSION = "let snl : Integer = source.getType().getNestingLevel() in let anl : Integer = argument.getType().getNestingLevel() in" +
+		"    if snl = anl then" +
+		"      source.getType().conformsToIgnoringMultiplicity(argument.getType())" +
+		"    else" +
+		"      if snl = (anl + 1) then" +
+		"        source.getType().oclAsType(data::classes::NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())" +
+		"      else" +
+		"        if (snl + 1) = anl then" +
+		"          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(data::classes::NestedTypeDefinition).type)" +
+		"        else" +
+		"          false" +
+		"        endif" +
+		"      endif" +
+		"    endif";
 
 	/**
 	 * Validates the ArgumentTypeMustConformToCollectionExpressionType constraint of '<em>Collection Expression With Argument</em>'.

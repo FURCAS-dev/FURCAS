@@ -42,7 +42,7 @@ public interface AbapClassImplementationAnnotation extends EObject {
 	 * @see abapmapping.AbapClassKind
 	 * @see #setKind(AbapClassKind)
 	 * @see abapmapping.AbapmappingPackage#getAbapClassImplementationAnnotation_Kind()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	AbapClassKind getKind();

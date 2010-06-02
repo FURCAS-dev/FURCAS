@@ -43,7 +43,7 @@ public interface LinkManipulationStatement extends Statement {
 	 * @return the value of the '<em>At</em>' attribute.
 	 * @see #setAt(int)
 	 * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement_At()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	int getAt();

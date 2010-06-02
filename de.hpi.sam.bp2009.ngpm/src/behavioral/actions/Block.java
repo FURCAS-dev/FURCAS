@@ -113,7 +113,7 @@ public interface Block extends FunctionSignatureImplementation, InScope {
 	 * <!-- begin-model-doc -->
 	 * Walks up the owningStatement/nestedBlocks association to find owning statements and their owning blocks transitively until it arrives at a block that is not owned by a statement. That block is then returned. Usually, such a block would be the implementation of either a function or a method signature.
 	 * <!-- end-model-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" unique="false" required="true" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='if self.owningStatement->notEmpty() then\n    self.owningStatement.block.getOutermostBlock()\n  else\n    self\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
@@ -123,7 +123,8 @@ public interface Block extends FunctionSignatureImplementation, InScope {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='self.statements->forAll(s|s.isSideEffectFreeForBlock(self))'"
+	 * @model unique="false" required="true" ordered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.statements->forAll(s|s.isSideEffectFreeForBlock(self))'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -137,17 +138,17 @@ public interface Block extends FunctionSignatureImplementation, InScope {
 	 * 
 	 * 
 	 * <!-- end-model-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.addNamedValuesWithNewNames(\n  -- Handle Foreach\n  let s:Set(NamedValue)=Set{} in\n  s->union(if owningStatement.oclIsKindOf(Foreach) then\n    owningStatement.oclAsType(Foreach).forVariable->asSet()\n  else\n    Set{}\n  endif)->union(\n  -- add parameters for those blocks that are used as a signature implementation\n  functionSignature.input->asSet()\n  )->union(\n  implements_.input->asSet()\n  ),\n  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block\n  if owningStatement->notEmpty() then\n    owningStatement.getNamedValuesInScope()\n  else\n    -- add formal object parameters from owning class\n    let oc:SapClass = self.getOwningClass() in\n    if oc->notEmpty() then\n      oc.formalObjectParameters->asSet()\n    else\n      Set{}\n    endif\n  endif)'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	NamedValue getNamedValuesInScope();
+	EList<NamedValue> getNamedValuesInScope();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" unique="false" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='let outermost:Block = self.getOutermostBlock() in\n  let implementedSignature:Signature = outermost.getImplementedSignature() in\n  if implementedSignature->notEmpty() then\n    implementedSignature.getOwningClass()\n  else\n    null\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated

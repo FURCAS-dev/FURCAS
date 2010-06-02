@@ -9,6 +9,7 @@ package data.classes;
 import behavioral.actions.Block;
 
 import modelmanagement.NamedElement;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,11 +63,11 @@ public interface NamedValue extends NamedElement, TypedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation"
+	 * @model kind="operation" ordered="false"
 	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.owner.getNamedValuesInScope()->union(\n    if self.oclIsKindOf(Parameter) then\n      self.oclAsType(Parameter).ownerSignature.getNamedValuesInScope()\n    else\n      if self.oclIsKindOf(Iterator) then\n        self.oclAsType(Iterator).boundToFor.getNamedValuesInScope()->asSet()->union(\n        self.oclAsType(Iterator).\"iterate\".getNamedValuesInScope()->asSet())\n      else\n        if self.oclIsKindOf(Constant) then\n          self.oclAsType(Constant).\"iterate\".getNamedValuesInScope()\n        else\n          Set{}    -- TODO further cases?\n        endif\n      endif\n    endif\n    )'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
-	NamedValue getNamedValuesInScope();
+	EList<NamedValue> getNamedValuesInScope();
 
 } // NamedValue

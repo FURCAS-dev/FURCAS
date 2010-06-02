@@ -47,7 +47,7 @@ public interface AssociationEnd extends NamedElement {
 	 * @return the value of the '<em>Navigable</em>' attribute.
 	 * @see #setNavigable(boolean)
 	 * @see data.classes.ClassesPackage#getAssociationEnd_Navigable()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isNavigable();
@@ -74,7 +74,7 @@ public interface AssociationEnd extends NamedElement {
 	 * @return the value of the '<em>Composite</em>' attribute.
 	 * @see #setComposite(boolean)
 	 * @see data.classes.ClassesPackage#getAssociationEnd_Composite()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isComposite();
@@ -101,7 +101,7 @@ public interface AssociationEnd extends NamedElement {
 	 * @return the value of the '<em>Contributes To Equality</em>' attribute.
 	 * @see #setContributesToEquality(boolean)
 	 * @see data.classes.ClassesPackage#getAssociationEnd_ContributesToEquality()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isContributesToEquality();
@@ -247,7 +247,8 @@ public interface AssociationEnd extends NamedElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://de.hpi.sam.bp2009.OCL body='association.ends->select(ae|ae <> self)->first()'"
+	 * @model unique="false" required="true" ordered="false"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='association.ends->select(ae|ae <> self)->first()'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */

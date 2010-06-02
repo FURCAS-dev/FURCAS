@@ -39,7 +39,7 @@ public interface DeploymentUnit extends PackageOwner, NamedElement {
 	 * @return the value of the '<em>Pcs Inside Company</em>' containment reference.
 	 * @see #setPcsInsideCompany(ProcessComponent)
 	 * @see modelmanagement.deploymentunits.DeploymentunitsPackage#getDeploymentUnit_PcsInsideCompany()
-	 * @model containment="true"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	ProcessComponent getPcsInsideCompany();

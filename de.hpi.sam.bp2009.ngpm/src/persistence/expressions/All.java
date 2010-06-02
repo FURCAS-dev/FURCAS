@@ -42,7 +42,7 @@ public interface All extends Expression {
 	 * @see persistence.expressions.SnapshotSelection
 	 * @see #setSnapshot(SnapshotSelection)
 	 * @see persistence.expressions.ExpressionsPackage#getAll_Snapshot()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	SnapshotSelection getSnapshot();
@@ -87,6 +87,7 @@ public interface All extends Expression {
 
 	/**
 	 * Returns the value of the '<em><b>Snapshot Identifier</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getAll <em>All</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Snapshot Identifier</em>' containment reference isn't clear,
@@ -96,8 +97,8 @@ public interface All extends Expression {
 	 * @return the value of the '<em>Snapshot Identifier</em>' containment reference.
 	 * @see #setSnapshotIdentifier(Expression)
 	 * @see persistence.expressions.ExpressionsPackage#getAll_SnapshotIdentifier()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='all'"
+	 * @see dataaccess.expressions.Expression#getAll
+	 * @model opposite="all" containment="true"
 	 * @generated
 	 */
 	Expression getSnapshotIdentifier();

@@ -43,7 +43,7 @@ public interface Foreach extends SingleBlockStatement {
 	 * @return the value of the '<em>Parallel</em>' attribute.
 	 * @see #setParallel(boolean)
 	 * @see behavioral.actions.ActionsPackage#getForeach_Parallel()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isParallel();

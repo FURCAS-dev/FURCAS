@@ -39,7 +39,7 @@ public interface SeverityInState extends EObject {
 	 * @see data.constraints.ObjectState
 	 * @see #setState(ObjectState)
 	 * @see data.constraints.ConstraintsPackage#getSeverityInState_State()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	ObjectState getState();
@@ -68,7 +68,7 @@ public interface SeverityInState extends EObject {
 	 * @see data.constraints.Severity
 	 * @see #setSeverity(Severity)
 	 * @see data.constraints.ConstraintsPackage#getSeverityInState_Severity()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	Severity getSeverity();

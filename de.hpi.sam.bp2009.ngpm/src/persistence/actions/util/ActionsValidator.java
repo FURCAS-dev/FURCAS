@@ -166,7 +166,11 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String STATEMENT_WITH_ENTITY_ARGUMENT__CAN_STORE_ONLY_ENTITIES__EEXPRESSION = "if self.argument.getType().oclIsKindOf(ClassTypeDefinition) then\n    not self.argument.getType().oclAsType(ClassTypeDefinition).clazz.valueType\n  else\n    false\n  endif";
+	protected static final String STATEMENT_WITH_ENTITY_ARGUMENT__CAN_STORE_ONLY_ENTITIES__EEXPRESSION = "if self.argument.getType().oclIsKindOf(ClassTypeDefinition) then" +
+		"    not self.argument.getType().oclAsType(ClassTypeDefinition).clazz.valueType" +
+		"  else" +
+		"    false" +
+		"  endif";
 
 	/**
 	 * Validates the CanStoreOnlyEntities constraint of '<em>Statement With Entity Argument</em>'.

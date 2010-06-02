@@ -628,12 +628,12 @@ public class Context_driversPackageImpl extends EPackageImpl implements Context_
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(contextCategoryEClass, ContextCategory.class, "ContextCategory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContextCategory_Name(), theEcorePackage.getEString(), "name", null, 0, 1, ContextCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContextCategory_Name(), theEcorePackage.getEString(), "name", null, 0, 1, ContextCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getContextCategory_RootValue(), this.getContextCategoryValue(), this.getContextCategoryValue_Context(), "rootValue", null, 1, 1, ContextCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContextCategory_CategoryConfiguration(), this.getContexConfiguration(), this.getContexConfiguration_Category(), "categoryConfiguration", null, 0, -1, ContextCategory.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextCategoryValueEClass, ContextCategoryValue.class, "ContextCategoryValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getContextCategoryValue_Value(), theEcorePackage.getEString(), "value", null, 0, 1, ContextCategoryValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getContextCategoryValue_Value(), theEcorePackage.getEString(), "value", null, 0, 1, ContextCategoryValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getContextCategoryValue_Context(), this.getContextCategory(), this.getContextCategory_RootValue(), "context", null, 0, 1, ContextCategoryValue.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContextCategoryValue_IncludedValuesConfiguration(), this.getContexConfiguration(), this.getContexConfiguration_IncludedValues(), "includedValuesConfiguration", null, 0, -1, ContextCategoryValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContextCategoryValue_Children(), this.getContextCategoryValue(), this.getContextCategoryValue_Parent(), "children", null, 0, -1, ContextCategoryValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

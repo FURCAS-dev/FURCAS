@@ -26,13 +26,14 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see dataaccess.expressions.ExpressionsPackage#getConditional()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL ConditionMustBeBoolean='self.condition.getType().upperMultiplicity = 1 and\n  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\''"
+ *        annotation="http://de.hpi.sam.bp2009.OCL ConditionMustBeBoolean='self.condition.getType().upperMultiplicity = 1 and\n  self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\''"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConditionMustBeBoolean'"
  * @generated
  */
 public interface Conditional extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getConditional <em>Conditional</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
@@ -42,8 +43,8 @@ public interface Conditional extends EObject {
 	 * @return the value of the '<em>Condition</em>' containment reference.
 	 * @see #setCondition(Expression)
 	 * @see dataaccess.expressions.ExpressionsPackage#getConditional_Condition()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='conditional'"
+	 * @see dataaccess.expressions.Expression#getConditional
+	 * @model opposite="conditional" containment="true" required="true"
 	 * @generated
 	 */
 	Expression getCondition();

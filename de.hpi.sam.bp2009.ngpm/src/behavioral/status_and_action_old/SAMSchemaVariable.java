@@ -43,7 +43,7 @@ public interface SAMSchemaVariable extends EObject {
 	 * @return the value of the '<em>Has State Guard</em>' attribute.
 	 * @see #setHasStateGuard(boolean)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMSchemaVariable_HasStateGuard()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isHasStateGuard();

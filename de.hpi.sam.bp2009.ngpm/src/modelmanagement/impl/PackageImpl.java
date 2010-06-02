@@ -185,30 +185,31 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #hasOwnershipCycle(modelmanagement.Package) <em>Has Ownership Cycle</em>}' operation.
+	 * The cached invocation delegate for the '{@link #hasOwnershipCycle(org.eclipse.emf.common.util.EList) <em>Has Ownership Cycle</em>}' operation.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #hasOwnershipCycle(modelmanagement.Package)
+   * <!-- end-user-doc -->
+	 * @see #hasOwnershipCycle(org.eclipse.emf.common.util.EList)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate HAS_OWNERSHIP_CYCLE_PACKAGE__EINVOCATION_DELEGATE = ((EOperation.Internal)ModelmanagementPackage.Literals.PACKAGE.getEOperations().get(0)).getInvocationDelegate();
+  protected static final EOperation.Internal.InvocationDelegate HAS_OWNERSHIP_CYCLE_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ModelmanagementPackage.Literals.PACKAGE.getEOperations().get(0)).getInvocationDelegate();
 
-	/**
+  /**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean hasOwnershipCycle(modelmanagement.Package pks) {
+  public boolean hasOwnershipCycle(EList<modelmanagement.Package> pks)
+  {
 		try {
-			return (Boolean)HAS_OWNERSHIP_CYCLE_PACKAGE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{pks}));
+			return (Boolean)HAS_OWNERSHIP_CYCLE_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{pks}));
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
 
-	/**
+  /**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated

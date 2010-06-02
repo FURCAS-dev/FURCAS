@@ -620,10 +620,10 @@ public class GenericsPackageImpl extends EPackageImpl implements GenericsPackage
 		initEReference(getParameterizedClassInstantiation_ActualTypeParametersForInstantiation(), this.getActualTypeParameter(), this.getActualTypeParameter_ParameterizedClassInstantiation(), "actualTypeParametersForInstantiation", null, 1, -1, ParameterizedClassInstantiation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getParameterizedClassInstantiation_ParameterizedClass(), theClassesPackage.getSapClass(), null, "parameterizedClass", null, 1, 1, ParameterizedClassInstantiation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(parameterizedClassInstantiationEClass, theClassesPackage.getSapClass(), "resolveFormalTypeParameter", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getFormalTypeParameter(), "ftp", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(parameterizedClassInstantiationEClass, theClassesPackage.getSapClass(), "resolveFormalTypeParameter", 0, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFormalTypeParameter(), "ftp", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(parameterizedClassInstantiationEClass, this.getClassParameterization(), "getClassParameterization", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(parameterizedClassInstantiationEClass, this.getClassParameterization(), "getClassParameterization", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(classParameterizationEClass, ClassParameterization.class, "ClassParameterization", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getClassParameterization_FormalTypeParameters(), this.getFormalTypeParameter(), this.getFormalTypeParameter_ParameterOf(), "formalTypeParameters", null, 1, -1, ClassParameterization.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

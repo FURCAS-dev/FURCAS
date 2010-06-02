@@ -649,12 +649,12 @@ public class CollectionexpressionsPackageImpl extends EPackageImpl implements Co
 		initEReference(getIterate_IteratorExpression(), theExpressionsPackage.getExpression(), theExpressionsPackage.getExpression_InIterator(), "iteratorExpression", null, 1, 1, Iterate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(collectionExpressionEClass, CollectionExpression.class, "CollectionExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCollectionExpression_Source(), theExpressionsPackage.getExpression(), null, "source", null, 1, 1, CollectionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCollectionExpression_Source(), theExpressionsPackage.getExpression(), theExpressionsPackage.getExpression_CollectionExpression(), "source", null, 1, 1, CollectionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(excludingAtEClass, ExcludingAt.class, "ExcludingAt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(withPositionEClass, WithPosition.class, "WithPosition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getWithPosition_At(), theEcorePackage.getEInt(), "at", null, 0, 1, WithPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWithPosition_At(), theEcorePackage.getEInt(), "at", null, 0, 1, WithPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(collectionExpressionWithArgumentEClass, CollectionExpressionWithArgument.class, "CollectionExpressionWithArgument", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -663,8 +663,6 @@ public class CollectionexpressionsPackageImpl extends EPackageImpl implements Co
 		createEcoreAnnotations();
 		// http://de.hpi.sam.bp2009.OCL
 		createDeAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 	}
 
 	/**
@@ -687,7 +685,7 @@ public class CollectionexpressionsPackageImpl extends EPackageImpl implements Co
 		   source, 
 		   new String[] {
 			 "constraints", "AccumulatorTypeEqualsExpressionType"
-		   });					
+		   });				
 		addAnnotation
 		  (withPositionEClass, 
 		   source, 
@@ -715,7 +713,7 @@ public class CollectionexpressionsPackageImpl extends EPackageImpl implements Co
 		   source, 
 		   new String[] {
 			 "AccumulatorTypeEqualsExpressionType", "self.accumulator->notEmpty() implies\n  (self.accumulator.ownedTypeDefinition->notEmpty() implies\n     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))"
-		   });					
+		   });				
 		addAnnotation
 		  (withPositionEClass, 
 		   source, 
@@ -726,24 +724,8 @@ public class CollectionexpressionsPackageImpl extends EPackageImpl implements Co
 		  (collectionExpressionWithArgumentEClass, 
 		   source, 
 		   new String[] {
-			 "ArgumentTypeMustConformToCollectionExpressionType", "let snl : Integer = source.getType().getNestingLevel() in let anl : Integer = argument.getType().getNestingLevel() in\n    if snl = anl then\n      source.getType().conformsToIgnoringMultiplicity(argument.getType())\n    else\n      if snl = (anl + 1) then\n        source.getType().oclAsType(NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())\n      else\n        if (snl + 1) = anl then\n          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(NestedTypeDefinition).type)\n        else\n          false\n        endif\n      endif\n    endif"
+			 "ArgumentTypeMustConformToCollectionExpressionType", "let snl : Integer = source.getType().getNestingLevel() in let anl : Integer = argument.getType().getNestingLevel() in\n    if snl = anl then\n      source.getType().conformsToIgnoringMultiplicity(argument.getType())\n    else\n      if snl = (anl + 1) then\n        source.getType().oclAsType(data::classes::NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())\n      else\n        if (snl + 1) = anl then\n          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(data::classes::NestedTypeDefinition).type)\n        else\n          false\n        endif\n      endif\n    endif"
 		   });	
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";									
-		addAnnotation
-		  (getCollectionExpression_Source(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "collectionExpression"
-		   });						
 	}
 
 } //CollectionexpressionsPackageImpl

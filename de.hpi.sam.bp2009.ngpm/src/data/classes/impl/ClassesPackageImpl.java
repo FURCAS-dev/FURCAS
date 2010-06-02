@@ -1474,11 +1474,21 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 	/**
 	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getParameter_ParameterOfClass()
+  {
+		return (EReference)parameterEClass.getEStructuralFeatures().get(1);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getParameter_DefaultValue() {
-		return (EReference)parameterEClass.getEStructuralFeatures().get(1);
+		return (EReference)parameterEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1832,6 +1842,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 
 		parameterEClass = createEClass(PARAMETER);
 		createEReference(parameterEClass, PARAMETER__OWNER_SIGNATURE);
+		createEReference(parameterEClass, PARAMETER__PARAMETER_OF_CLASS);
 		createEReference(parameterEClass, PARAMETER__DEFAULT_VALUE);
 
 		namedValueEClass = createEClass(NAMED_VALUE);
@@ -1946,7 +1957,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getAssociation_AbapAnnotation(), theAbapmappingPackage.getAbapAssociationImplementationAnnotation(), null, "abapAnnotation", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(signatureEClass, Signature.class, "Signature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSignature_SideEffectFree(), theEcorePackage.getEBoolean(), "sideEffectFree", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSignature_SideEffectFree(), theEcorePackage.getEBoolean(), "sideEffectFree", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSignature_Faults(), this.getSapClass(), this.getSapClass_SignaturesWithFault(), "faults", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_Output(), this.getTypeDefinition(), this.getTypeDefinition_SignaturesWithOutput(), "output", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_OwnedTypeDefinitions(), this.getTypeDefinition(), this.getTypeDefinition_OwnerSignature(), "ownedTypeDefinitions", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1955,29 +1966,29 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getSignature_Postconditions(), theConstraintsPackage.getConstraint(), null, "postconditions", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_AbapAnnotation(), theAbapmappingPackage.getAbapSignatureImplementationAnnotation(), null, "abapAnnotation", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(signatureEClass, theEcorePackage.getEBoolean(), "conformsTo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSignature(), "s", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(signatureEClass, theEcorePackage.getEBoolean(), "conformsTo", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSignature(), "s", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(signatureEClass, theEcorePackage.getEBoolean(), "conformsToExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSignature(), "s", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingConforming", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingTo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(signatureEClass, theEcorePackage.getEBoolean(), "conformsToExcluding", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSignature(), "s", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingConforming", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingTo", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(signatureEClass, this.getNamedValue(), "getNamedValuesInScope", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(signatureEClass, this.getNamedValue(), "getNamedValuesInScope", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(signatureEClass, this.getSapClass(), "getOwningClass", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(signatureEClass, this.getSapClass(), "getOwningClass", 0, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(associationEndEClass, AssociationEnd.class, "AssociationEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAssociationEnd_Navigable(), theEcorePackage.getEBoolean(), "navigable", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociationEnd_Composite(), theEcorePackage.getEBoolean(), "composite", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAssociationEnd_ContributesToEquality(), theEcorePackage.getEBoolean(), "contributesToEquality", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssociationEnd_Navigable(), theEcorePackage.getEBoolean(), "navigable", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAssociationEnd_Composite(), theEcorePackage.getEBoolean(), "composite", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAssociationEnd_ContributesToEquality(), theEcorePackage.getEBoolean(), "contributesToEquality", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssociationEnd_Association(), this.getAssociation(), this.getAssociation_Ends(), "association", null, 1, 1, AssociationEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociationEnd_Delegation(), this.getDelegation(), this.getDelegation_From(), "delegation", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociationEnd_SignatureImplementations(), this.getAssociationEndSignatureImplementation(), this.getAssociationEndSignatureImplementation_End(), "signatureImplementations", null, 0, -1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociationEnd_Type(), this.getClassTypeDefinition(), this.getClassTypeDefinition_AssociationEnd(), "type", null, 1, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociationEnd_AbapAnnotation(), theAbapmappingPackage.getAbapAssociationEndImplementationAnnotation(), null, "abapAnnotation", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(associationEndEClass, this.getAssociationEnd(), "otherEnd", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(associationEndEClass, this.getAssociationEnd(), "otherEnd", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(sapClassEClass, SapClass.class, "SapClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSapClass_Subscription(), theEventsPackage.getSubscription(), theEventsPackage.getSubscription_SubscribingClass(), "subscription", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1986,78 +1997,78 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getSapClass_SamDerivators(), theStatus_and_action_oldPackage.getSAMDerivator(), theStatus_and_action_oldPackage.getSAMDerivator_BusinessObject(), "samDerivators", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_SamStatusSchema(), theStatus_and_action_oldPackage.getSAMStatusSchema(), theStatus_and_action_oldPackage.getSAMStatusSchema_BusinessObjectNode(), "samStatusSchema", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_BehaviouralModel(), theAssemblyPackage.getStatusSchema(), theAssemblyPackage.getStatusSchema_Node(), "behaviouralModel", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSapClass_ValueType(), theEcorePackage.getEBoolean(), "valueType", null, 0, 1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSapClass_ValueType(), theEcorePackage.getEBoolean(), "valueType", null, 0, 1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSapClass_SignaturesWithFault(), this.getSignature(), this.getSignature_Faults(), "signaturesWithFault", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_ElementsOfType(), this.getClassTypeDefinition(), this.getClassTypeDefinition_Clazz(), "elementsOfType", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_Package_(), theModelmanagementPackage.getPackage(), theModelmanagementPackage.getPackage_Classes(), "package_", null, 0, 1, SapClass.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_AdaptedBy(), this.getTypeAdapter(), this.getTypeAdapter_To(), "adaptedBy", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_Adapters(), this.getTypeAdapter(), this.getTypeAdapter_Adapted(), "adapters", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSapClass_FormalObjectParameters(), this.getParameter(), null, "formalObjectParameters", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSapClass_FormalObjectParameters(), this.getParameter(), this.getParameter_ParameterOfClass(), "formalObjectParameters", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_ConverterBetweenParametrizations(), this.getConverterBetweenParametrizations(), this.getConverterBetweenParametrizations_Clazz(), "converterBetweenParametrizations", null, 0, 1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_Constraints(), theConstraintsPackage.getConstraint(), theConstraintsPackage.getConstraint_ConstrainedType(), "constraints", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_TimeDependency(), theTimedependencyPackage.getTimeDependency(), theTimedependencyPackage.getTimeDependency_TheClass(), "timeDependency", null, 0, 1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_Parameterization(), theGenericsPackage.getClassParameterization(), theGenericsPackage.getClassParameterization_OwningClassDefinition(), "parameterization", null, 0, 1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_AbapAnnotation(), theAbapmappingPackage.getAbapClassImplementationAnnotation(), null, "abapAnnotation", null, 0, 1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(sapClassEClass, theEcorePackage.getEBoolean(), "isAbstract", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, theEcorePackage.getEBoolean(), "isAbstract", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, theEcorePackage.getEBoolean(), "isParameterizedClassDefinition", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, theEcorePackage.getEBoolean(), "isParameterizedClassDefinition", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(sapClassEClass, theEcorePackage.getEBoolean(), "conformsTo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "type", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(sapClassEClass, theEcorePackage.getEBoolean(), "conformsTo", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "type", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getMethodSignature(), "allSignatures", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getMethodSignature(), "allSignatures", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getSapClass(), "delegatesTo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getSapClass(), "delegatesTo", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(sapClassEClass, theEcorePackage.getEBoolean(), "conformsToExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "type", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingConforming", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingTo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(sapClassEClass, theEcorePackage.getEBoolean(), "conformsToExcluding", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "type", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingConforming", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingTo", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getMethodSignature(), "signaturesWithDelegation", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getMethodSignature(), "signaturesWithDelegation", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getMethodSignature(), "delegatedSignatures", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getMethodSignature(), "delegatedSignatures", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getMethodSignature(), "adaptedSignatures", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getMethodSignature(), "adaptedSignatures", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(sapClassEClass, this.getMethodSignature(), "adaptedSignaturesExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excluding", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(sapClassEClass, this.getMethodSignature(), "adaptedSignaturesExcluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(sapClassEClass, this.getMethodSignature(), "allSignaturesExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excluding", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(sapClassEClass, this.getMethodSignature(), "allSignaturesExcluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(sapClassEClass, this.getMethodSignature(), "signaturesWithDelegationExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excluding", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(sapClassEClass, this.getMethodSignature(), "signaturesWithDelegationExcluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(sapClassEClass, this.getMethodSignature(), "delegatedSignaturesExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excluding", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(sapClassEClass, this.getMethodSignature(), "delegatedSignaturesExcluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getSapClass(), "getConformingClasses", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getSapClass(), "getConformingClasses", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getAssociationEnd(), "getAssociationEnds", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getAssociationEnd(), "getAssociationEnds", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getAssociationEnd(), "getEqualityRelevantAssociationEnds", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getAssociationEnd(), "getEqualityRelevantAssociationEnds", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getSapClass(), "getConformsToClasses", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getSapClass(), "getConformsToClasses", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getAssociationEnd(), "getConformsToAssociationEnds", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getAssociationEnd(), "getConformsToAssociationEnds", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getAssociationEnd(), "getConformsToCompositeParentAssociationEnds", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getAssociationEnd(), "getConformsToCompositeParentAssociationEnds", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(sapClassEClass, this.getAssociationEnd(), "getConformsToCompositeChildAssociationEnds", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(sapClassEClass, this.getAssociationEnd(), "getConformsToCompositeChildAssociationEnds", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(delegationEClass, Delegation.class, "Delegation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDelegation_AllFeatures(), theEcorePackage.getEBoolean(), "allFeatures", null, 0, 1, Delegation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDelegation_AllFeatures(), theEcorePackage.getEBoolean(), "allFeatures", null, 0, 1, Delegation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDelegation_From(), this.getAssociationEnd(), this.getAssociationEnd_Delegation(), "from", null, 1, 1, Delegation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypedElement_OwnedTypeDefinition(), this.getTypeDefinition(), this.getTypeDefinition_OwnerTypedElement(), "ownedTypeDefinition", null, 0, 1, TypedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(typedElementEClass, theEcorePackage.getEBoolean(), "conformsTo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getTypedElement(), "typedElement", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typedElementEClass, theEcorePackage.getEBoolean(), "conformsTo", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTypedElement(), "typedElement", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(typedElementEClass, this.getTypeDefinition(), "getType", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(typedElementEClass, this.getTypeDefinition(), "getType", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getContext_For_(), this.getSapClass(), null, "for_", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2065,17 +2076,17 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getContext_Condition(), theExpressionsPackage.getExpression(), null, "condition", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiplicityEClass, Multiplicity.class, "Multiplicity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMultiplicity_LowerMultiplicity(), theEcorePackage.getEInt(), "lowerMultiplicity", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMultiplicity_UpperMultiplicity(), theEcorePackage.getEInt(), "upperMultiplicity", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMultiplicity_Ordered(), theEcorePackage.getEBoolean(), "ordered", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getMultiplicity_Unique(), theEcorePackage.getEBoolean(), "unique", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getMultiplicity_LowerMultiplicity(), theEcorePackage.getEInt(), "lowerMultiplicity", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMultiplicity_UpperMultiplicity(), theEcorePackage.getEInt(), "upperMultiplicity", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMultiplicity_Ordered(), theEcorePackage.getEBoolean(), "ordered", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMultiplicity_Unique(), theEcorePackage.getEBoolean(), "unique", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		addEOperation(multiplicityEClass, theEcorePackage.getEBoolean(), "isMany", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(multiplicityEClass, theEcorePackage.getEBoolean(), "isMany", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(signatureImplementationEClass, SignatureImplementation.class, "SignatureImplementation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSignatureImplementation_Implements_(), this.getMethodSignature(), this.getMethodSignature_Implementation(), "implements_", null, 0, 1, SignatureImplementation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(signatureImplementationEClass, this.getSignature(), "getImplementedSignature", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(signatureImplementationEClass, this.getSignature(), "getImplementedSignature", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(linkTraversalEClass, LinkTraversal.class, "LinkTraversal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2092,45 +2103,45 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getClassTypeDefinition_ObjectParameters(), this.getActualObjectParameter(), this.getActualObjectParameter_ClassTypeDefinitions(), "objectParameters", null, 0, -1, ClassTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getClassTypeDefinition_OwnedObjectParameters(), this.getActualObjectParameter(), this.getActualObjectParameter_OwningClassTypeDefinition(), "ownedObjectParameters", null, 0, -1, ClassTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(classTypeDefinitionEClass, theEcorePackage.getEBoolean(), "objectParametersConformTo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getClassTypeDefinition(), "ctd", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(classTypeDefinitionEClass, theEcorePackage.getEBoolean(), "objectParametersConformTo", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getClassTypeDefinition(), "ctd", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(classTypeDefinitionEClass, theExpressionsPackage.getExpression(), "effectiveObjectParameters", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(classTypeDefinitionEClass, theExpressionsPackage.getExpression(), "effectiveObjectParameters", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
 		initEClass(typeDefinitionEClass, TypeDefinition.class, "TypeDefinition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeDefinition_SignaturesWithOutput(), this.getSignature(), this.getSignature_Output(), "signaturesWithOutput", null, 0, -1, TypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTypeDefinition_OwnerTypedElement(), this.getTypedElement(), this.getTypedElement_OwnedTypeDefinition(), "ownerTypedElement", null, 0, 1, TypeDefinition.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTypeDefinition_OwnerSignature(), this.getSignature(), this.getSignature_OwnedTypeDefinitions(), "ownerSignature", null, 0, 1, TypeDefinition.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "conformsTo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getTypeDefinition(), "typeDef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "conformsTo", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTypeDefinition(), "typeDef", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "conformsToExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getTypeDefinition(), "td", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingConforming", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingTo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "conformsToExcluding", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTypeDefinition(), "td", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingConforming", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingTo", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "multiplicityConformsTo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getTypeDefinition(), "td", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "multiplicityConformsTo", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTypeDefinition(), "td", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "conformsToIgnoringMultiplicityExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getTypeDefinition(), "td", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingConforming", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingTo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "conformsToIgnoringMultiplicityExcluding", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTypeDefinition(), "td", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingConforming", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingTo", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "conformsToIgnoringMultiplicity", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getTypeDefinition(), "typeDef", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeDefinitionEClass, theEcorePackage.getEBoolean(), "conformsToIgnoringMultiplicity", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getTypeDefinition(), "typeDef", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(typeDefinitionEClass, this.getTypedElement(), "getTypeUsage", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(typeDefinitionEClass, this.getTypedElement(), "getTypeUsage", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(typeDefinitionEClass, this.getTypeDefinition(), "getInnermost", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(typeDefinitionEClass, this.getTypeDefinition(), "getInnermost", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(typeDefinitionEClass, theEcorePackage.getEInt(), "getNestingLevel", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(typeDefinitionEClass, theEcorePackage.getEInt(), "getNestingLevel", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(typeDefinitionEClass, this.getNamedValue(), "getNamedValuesInScope", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(typeDefinitionEClass, this.getNamedValue(), "getNamedValuesInScope", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(nestedTypeDefinitionEClass, NestedTypeDefinition.class, "NestedTypeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNestedTypeDefinition_Op(), theEcorePackage.getEString(), "op", null, 0, 1, NestedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNestedTypeDefinition_Op(), theEcorePackage.getEString(), "op", null, 0, 1, NestedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getNestedTypeDefinition_Type(), this.getTypeDefinition(), null, "type", null, 1, 1, NestedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNestedTypeDefinition_OwnedTypeDefinition(), this.getTypeDefinition(), null, "ownedTypeDefinition", null, 0, 1, NestedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2144,7 +2155,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getMethodSignature_Owner(), this.getSignatureOwner(), this.getSignatureOwner_OwnedSignatures(), "owner", null, 0, 1, MethodSignature.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMethodSignature_Converter(), this.getConverterBetweenParametrizations(), this.getConverterBetweenParametrizations_ConversionMethod(), "converter", null, 0, 1, MethodSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(methodSignatureEClass, theEcorePackage.getEBoolean(), "isAbstract", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(methodSignatureEClass, theEcorePackage.getEBoolean(), "isAbstract", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(functionSignatureEClass, FunctionSignature.class, "FunctionSignature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionSignature_Implementation(), this.getFunctionSignatureImplementation(), this.getFunctionSignatureImplementation_FunctionSignature(), "implementation", null, 0, 1, FunctionSignature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2152,9 +2163,9 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getFunctionSignature_CellSetForValueFunction(), theAnalyticsPackage.getCellSet(), theAnalyticsPackage.getCellSet_ValueFunction(), "cellSetForValueFunction", null, 0, 1, FunctionSignature.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionSignature_CellSetForAggregationFunction(), theAnalyticsPackage.getCellSet(), theAnalyticsPackage.getCellSet_AggregationFunction(), "cellSetForAggregationFunction", null, 0, 1, FunctionSignature.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(functionSignatureEClass, theEcorePackage.getEBoolean(), "isAbstract", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(functionSignatureEClass, theEcorePackage.getEBoolean(), "isAbstract", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		addEOperation(functionSignatureEClass, theFpPackage.getAnonymousFunctionExpr(), "getImplementedAnonymousFunctionExpression", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(functionSignatureEClass, theFpPackage.getAnonymousFunctionExpr(), "getImplementedAnonymousFunctionExpression", 0, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(linkSettingEClass, LinkSetting.class, "LinkSetting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2162,31 +2173,32 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getTypeAdapter_To(), this.getSapClass(), this.getSapClass_AdaptedBy(), "to", null, 1, 1, TypeAdapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTypeAdapter_Adapted(), this.getSapClass(), this.getSapClass_Adapters(), "adapted", null, 1, 1, TypeAdapter.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(typeAdapterEClass, theEcorePackage.getEBoolean(), "conformsTo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "type", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeAdapterEClass, theEcorePackage.getEBoolean(), "conformsTo", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "type", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(typeAdapterEClass, theEcorePackage.getEBoolean(), "conformsToExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "type", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingConforming", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excludingTo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeAdapterEClass, theEcorePackage.getEBoolean(), "conformsToExcluding", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "type", 1, 1, !IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingConforming", 0, -1, !IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excludingTo", 0, -1, !IS_UNIQUE, IS_ORDERED);
 
-		addEOperation(typeAdapterEClass, this.getMethodSignature(), "allSignatures", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(typeAdapterEClass, this.getMethodSignature(), "allSignatures", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(typeAdapterEClass, this.getMethodSignature(), "allSignaturesExcluding", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getSapClass(), "excluding", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(typeAdapterEClass, this.getMethodSignature(), "allSignaturesExcluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getSapClass(), "excluding", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getParameter_OwnerSignature(), this.getSignature(), this.getSignature_Input(), "ownerSignature", null, 0, 1, Parameter.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_ParameterOfClass(), this.getSapClass(), this.getSapClass_FormalObjectParameters(), "parameterOfClass", null, 0, 1, Parameter.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getParameter_DefaultValue(), theExpressionsPackage.getExpression(), null, "defaultValue", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedValueEClass, NamedValue.class, "NamedValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNamedValue_Owner(), theActionsPackage.getBlock(), theActionsPackage.getBlock_Variables(), "owner", null, 0, 1, NamedValue.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(namedValueEClass, this.getNamedValue(), "getNamedValuesInScope", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(namedValueEClass, this.getNamedValue(), "getNamedValuesInScope", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(platformSpecificImplementationEClass, PlatformSpecificImplementation.class, "PlatformSpecificImplementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPlatformSpecificImplementation_TargetPlatform(), theEcorePackage.getEString(), "targetPlatform", null, 0, 1, PlatformSpecificImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPlatformSpecificImplementation_Implementation(), theEcorePackage.getEString(), "implementation", null, 0, 1, PlatformSpecificImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPlatformSpecificImplementation_TargetPlatform(), theEcorePackage.getEString(), "targetPlatform", null, 0, 1, PlatformSpecificImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPlatformSpecificImplementation_Implementation(), theEcorePackage.getEString(), "implementation", null, 0, 1, PlatformSpecificImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(nativeImplEClass, NativeImpl.class, "NativeImpl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNativeImpl_PlatformSpecificImplementaiton(), this.getPlatformSpecificImplementation(), null, "platformSpecificImplementaiton", null, 0, -1, NativeImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2199,12 +2211,12 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEClass(functionSignatureImplementationEClass, FunctionSignatureImplementation.class, "FunctionSignatureImplementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFunctionSignatureImplementation_FunctionSignature(), this.getFunctionSignature(), this.getFunctionSignature_Implementation(), "functionSignature", null, 0, 1, FunctionSignatureImplementation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(functionSignatureImplementationEClass, theEcorePackage.getEBoolean(), "isSideEffectFree", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(functionSignatureImplementationEClass, theEcorePackage.getEBoolean(), "isSideEffectFree", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(actualObjectParameterEClass, ActualObjectParameter.class, "ActualObjectParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActualObjectParameter_FormalObjectParameter(), this.getParameter(), null, "formalObjectParameter", null, 1, 1, ActualObjectParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getActualObjectParameter_ClassTypeDefinitions(), this.getClassTypeDefinition(), this.getClassTypeDefinition_ObjectParameters(), "classTypeDefinitions", null, 0, -1, ActualObjectParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getActualObjectParameter_Value(), theExpressionsPackage.getExpression(), null, "value", null, 1, 1, ActualObjectParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActualObjectParameter_Value(), theExpressionsPackage.getExpression(), theExpressionsPackage.getExpression_ActualObjectParameter(), "value", null, 1, 1, ActualObjectParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getActualObjectParameter_OwningClassTypeDefinition(), this.getClassTypeDefinition(), this.getClassTypeDefinition_OwnedObjectParameters(), "owningClassTypeDefinition", null, 1, 1, ActualObjectParameter.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(converterBetweenParametrizationsEClass, ConverterBetweenParametrizations.class, "ConverterBetweenParametrizations", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2212,13 +2224,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getConverterBetweenParametrizations_ConversionMethod(), this.getMethodSignature(), this.getMethodSignature_Converter(), "conversionMethod", null, 1, 1, ConverterBetweenParametrizations.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(linkManipulationAtPositionEClass, LinkManipulationAtPosition.class, "LinkManipulationAtPosition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLinkManipulationAtPosition_At(), theEcorePackage.getEInt(), "at", null, 0, 1, LinkManipulationAtPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLinkManipulationAtPosition_At(), theEcorePackage.getEInt(), "at", null, 0, 1, LinkManipulationAtPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(inScopeEClass, InScope.class, "InScope", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = addEOperation(inScopeEClass, this.getNamedValue(), "addNamedValuesWithNewNames", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNamedValue(), "inner", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNamedValue(), "outer", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(inScopeEClass, this.getNamedValue(), "addNamedValuesWithNewNames", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getNamedValue(), "inner", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getNamedValue(), "outer", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -2420,7 +2432,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });								
+		   });							
 		addAnnotation
 		  (delegationEClass, 
 		   source, 
@@ -2636,7 +2648,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });						
+		   });					
 		addAnnotation
 		  (converterBetweenParametrizationsEClass, 
 		   source, 
@@ -2842,7 +2854,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "body", "self.getConformsToClasses().getAssociationEnds()->select(ae|ae.otherEnd().composite)->asSet()"
-		   });								
+		   });							
 		addAnnotation
 		  (delegationEClass, 
 		   source, 
@@ -3064,7 +3076,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "body", "if self.oclIsKindOf(Block) then\n    self.oclAsType(Block).localIsSideEffectFree()\n  else\n    if self.oclIsKindOf(CellSet) then\n      self.oclAsType(CellSet).localIsSideEffectFree()\n    else\n      false\n    endif\n  endif"
-		   });						
+		   });					
 		addAnnotation
 		  (converterBetweenParametrizationsEClass, 
 		   source, 
@@ -3118,12 +3130,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   new String[] {
 			 "Property.oppositeRoleName", ""
 		   });																																																														
-		addAnnotation
-		  (getSapClass_FormalObjectParameters(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "parameterOfClass"
-		   });		
 		addAnnotation
 		  (getSapClass_AbapAnnotation(), 
 		   source, 
@@ -3183,12 +3189,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getActualObjectParameter_Value(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "actualObjectParameter"
 		   });							
 	}
 

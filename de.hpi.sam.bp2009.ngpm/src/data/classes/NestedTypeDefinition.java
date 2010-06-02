@@ -37,7 +37,7 @@ public interface NestedTypeDefinition extends TypeDefinition {
 	 * @return the value of the '<em>Op</em>' attribute.
 	 * @see #setOp(String)
 	 * @see data.classes.ClassesPackage#getNestedTypeDefinition_Op()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getOp();

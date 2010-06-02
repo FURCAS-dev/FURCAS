@@ -36,7 +36,7 @@ public interface SimpleContent extends AbstractContent {
 	 * @return the value of the '<em>Base</em>' attribute.
 	 * @see #setBase(String)
 	 * @see integration.xsd.XsdPackage#getSimpleContent_Base()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getBase();
@@ -62,7 +62,7 @@ public interface SimpleContent extends AbstractContent {
 	 * @return the value of the '<em>Enum Vals</em>' attribute.
 	 * @see #setEnumVals(String)
 	 * @see integration.xsd.XsdPackage#getSimpleContent_EnumVals()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getEnumVals();

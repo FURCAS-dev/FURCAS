@@ -43,7 +43,7 @@ public interface SAMAction extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_Name()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	String getName();
@@ -69,7 +69,7 @@ public interface SAMAction extends EObject {
 	 * @return the value of the '<em>Is Agent Action</em>' attribute.
 	 * @see #setIsAgentAction(boolean)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMAction_IsAgentAction()
-	 * @model
+	 * @model unique="false" ordered="false"
 	 * @generated
 	 */
 	boolean isIsAgentAction();

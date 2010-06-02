@@ -105,9 +105,9 @@ public class EqualsImpl extends ExpressionImpl implements Equals {
 		if (newLeft != left) {
 			NotificationChain msgs = null;
 			if (left != null)
-				msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.EQUALS__LEFT, null, msgs);
+				msgs = ((InternalEObject)left).eInverseRemove(this, ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS, Expression.class, msgs);
 			if (newLeft != null)
-				msgs = ((InternalEObject)newLeft).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.EQUALS__LEFT, null, msgs);
+				msgs = ((InternalEObject)newLeft).eInverseAdd(this, ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS, Expression.class, msgs);
 			msgs = basicSetLeft(newLeft, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -148,14 +148,34 @@ public class EqualsImpl extends ExpressionImpl implements Equals {
 		if (newRight != right) {
 			NotificationChain msgs = null;
 			if (right != null)
-				msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.EQUALS__RIGHT, null, msgs);
+				msgs = ((InternalEObject)right).eInverseRemove(this, ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS, Expression.class, msgs);
 			if (newRight != null)
-				msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.EQUALS__RIGHT, null, msgs);
+				msgs = ((InternalEObject)newRight).eInverseAdd(this, ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS, Expression.class, msgs);
 			msgs = basicSetRight(newRight, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EQUALS__RIGHT, newRight, newRight));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.EQUALS__LEFT:
+				if (left != null)
+					msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.EQUALS__LEFT, null, msgs);
+				return basicSetLeft((Expression)otherEnd, msgs);
+			case ExpressionsPackage.EQUALS__RIGHT:
+				if (right != null)
+					msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.EQUALS__RIGHT, null, msgs);
+				return basicSetRight((Expression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
