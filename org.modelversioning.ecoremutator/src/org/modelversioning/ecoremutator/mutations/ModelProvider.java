@@ -44,410 +44,427 @@ import org.modelversioning.ecoremutator.IModelProvider;
  */
 public class ModelProvider implements IModelProvider {
 
-	/**
-	 * The resource containing the model.
-	 */
-	private Resource modelResource;
+    /**
+     * an array of readable characters
+     */
+    protected static Character[] readableChars = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+            'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+            'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8',
+            '9' };
 
-	/**
-	 * The randomizer to use.
-	 */
-	private Random random = new Random();
+    /**
+     * The EPackage containing the meta model.
+     */
+    protected EPackage metaModelPackage;
 
-	/**
-	 * A list of objects to exclude from selection for mutation.
-	 */
-	private Set<EObject> excludedObjects = new HashSet<EObject>();
+    /**
+     * The resource containing the model.
+     */
+    protected Resource modelResource;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Resource getModelResource() {
-		return modelResource;
-	}
+    /**
+     * The randomizer to use.
+     */
+    protected Random random = new Random();
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setModelResource(Resource modelResource) {
-		this.modelResource = modelResource;
-	}
+    /**
+     * A list of objects to exclude from selection for mutation.
+     */
+    protected Set<EObject> excludedObjects = new HashSet<EObject>();
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void addToExcludedObjects(EObject eObject, boolean excludeChildren) {
-		this.excludedObjects.add(eObject);
-		if (excludeChildren) {
-			TreeIterator<Object> contents = EcoreUtil.getAllContents(eObject,
-					true);
-			while (contents.hasNext()) {
-				Object next = contents.next();
-				if (next instanceof EModelElement) {
-					this.excludedObjects.add((EModelElement) next);
-				}
-			}
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public Resource getModelResource() {
+        return modelResource;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void addToExcludedObjects(Collection<EObject> listOfEObject,
-			boolean excludeChildren) {
-		for (EObject eObject : listOfEObject) {
-			addToExcludedObjects(eObject, excludeChildren);
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public void setModelResource(Resource modelResource) {
+        this.modelResource = modelResource;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EObject getRandomEObject() {
-		TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(
-				modelResource, true);
-		EList<EObject> eObjectList = new BasicEList<EObject>();
-		while (treeIterator.hasNext()) {
-			Object object = treeIterator.next();
-			if (object instanceof EModelElement) {
-				EObject eObject = (EModelElement) object;
-				eObjectList.add(eObject);
-			}
-		}
-		eObjectList.removeAll(excludedObjects);
-		if (eObjectList.size() > 0) {
-			return eObjectList.get(random.nextInt(eObjectList.size()));
-		} else {
-			return null;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public void addToExcludedObjects(EObject eObject, boolean excludeChildren) {
+        this.excludedObjects.add(eObject);
+        if (excludeChildren) {
+            TreeIterator<Object> contents = EcoreUtil.getAllContents(eObject, true);
+            while (contents.hasNext()) {
+                Object next = contents.next();
+                if (next instanceof EModelElement) {
+                    this.excludedObjects.add((EModelElement) next);
+                }
+            }
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EObject getRandomEObject(EClass metaClass) {
-		TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(
-				modelResource, true);
-		EList<EObject> eObjectList = new BasicEList<EObject>();
-		while (treeIterator.hasNext()) {
-			Object object = treeIterator.next();
-			if (object instanceof EModelElement) {
-				EObject eObject = (EModelElement) object;
-				if (metaClass.equals(eObject.eClass())) {
-					eObjectList.add(eObject);
-				}
-			}
-		}
-		eObjectList.removeAll(excludedObjects);
-		if (eObjectList.size() > 0) {
-			return eObjectList.get(random.nextInt(eObjectList.size()));
-		} else {
-			return null;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public void addToExcludedObjects(Collection<EObject> listOfEObject, boolean excludeChildren) {
+        for (EObject eObject : listOfEObject) {
+            addToExcludedObjects(eObject, excludeChildren);
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EObject getRandomEObjectNotContainingMoreObjectsThan(int objectCount) {
-		TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(
-				modelResource, true);
-		EList<EObject> eObjectList = new BasicEList<EObject>();
-		while (treeIterator.hasNext()) {
-			Object object = treeIterator.next();
-			if (object instanceof EModelElement) {
-				EObject eObject = (EModelElement) object;
-				if (objectCount >= getContentSize(eObject)) {
-					eObjectList.add(eObject);
-				}
-			}
-		}
-		eObjectList.removeAll(excludedObjects);
-		if (eObjectList.size() > 0) {
-			return eObjectList.get(random.nextInt(eObjectList.size()));
-		} else {
-			return null;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EObject getRandomEObject() {
+        TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(modelResource, true);
+        EList<EObject> eObjectList = new BasicEList<EObject>();
+        while (treeIterator.hasNext()) {
+            Object object = treeIterator.next();
+            if (object instanceof EObject) {
+                EObject eObject = (EObject) object;
+                eObjectList.add(eObject);
+            }
+        }
+        eObjectList.removeAll(excludedObjects);
+        if (eObjectList.size() > 0) {
+            return eObjectList.get(random.nextInt(eObjectList.size()));
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EObject getRandomEObjectHavingFeature(EStructuralFeature feature) {
-		TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(
-				modelResource, true);
-		EList<EObject> eObjectList = new BasicEList<EObject>();
-		while (treeIterator.hasNext()) {
-			Object object = treeIterator.next();
-			if (object instanceof EModelElement) {
-				EObject eObject = (EModelElement) object;
-				EClass eClass = eObject.eClass();
-				if (eClass.getEAllStructuralFeatures().contains(feature)) {
-					eObjectList.add(eObject);
-				}
-			}
-		}
-		eObjectList.removeAll(excludedObjects);
-		if (eObjectList.size() > 0) {
-			return eObjectList.get(random.nextInt(eObjectList.size()));
-		} else {
-			return null;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EObject getRandomEObject(EClass metaClass) {
+        TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(modelResource, true);
+        EList<EObject> eObjectList = new BasicEList<EObject>();
+        while (treeIterator.hasNext()) {
+            Object object = treeIterator.next();
+            if (object instanceof EModelElement) {
+                EObject eObject = (EModelElement) object;
+                if (metaClass.equals(eObject.eClass())) {
+                    eObjectList.add(eObject);
+                }
+            }
+        }
+        eObjectList.removeAll(excludedObjects);
+        if (eObjectList.size() > 0) {
+            return eObjectList.get(random.nextInt(eObjectList.size()));
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public int getModelSize() {
-		TreeIterator<Object> allContents = EcoreUtil.getAllContents(
-				this.modelResource, true);
-		return count(allContents);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EObject getRandomEObjectNotContainingMoreObjectsThan(int objectCount) {
+        TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(modelResource, true);
+        EList<EObject> eObjectList = new BasicEList<EObject>();
+        while (treeIterator.hasNext()) {
+            Object object = treeIterator.next();
+            if (object instanceof EModelElement) {
+                EObject eObject = (EModelElement) object;
+                if (objectCount >= getContentSize(eObject)) {
+                    eObjectList.add(eObject);
+                }
+            }
+        }
+        eObjectList.removeAll(excludedObjects);
+        if (eObjectList.size() > 0) {
+            return eObjectList.get(random.nextInt(eObjectList.size()));
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EStructuralFeature getRandomFeature(EObject eObject) {
-		EList<EStructuralFeature> features = new BasicEList<EStructuralFeature>();
-		for (EStructuralFeature feature : eObject.eClass()
-				.getEAllStructuralFeatures()) {
-			if (!feature.isTransient() && !feature.isDerived()) {
-				features.add(feature);
-			}
-		}
-		if (features.size() > 0) {
-			return features.get(random.nextInt(features.size()));
-		} else {
-			return null;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EObject getRandomEObjectHavingFeature(EStructuralFeature feature) {
+        TreeIterator<Object> treeIterator = EcoreUtil.getAllContents(modelResource, true);
+        EList<EObject> eObjectList = new BasicEList<EObject>();
+        while (treeIterator.hasNext()) {
+            Object object = treeIterator.next();
+            if (object instanceof EObject) {
+                EObject eObject = (EObject) object;
+                EClass eClass = eObject.eClass();
+                if (eClass.getEAllStructuralFeatures().contains(feature)) {
+                    eObjectList.add(eObject);
+                }
+            }
+        }
+        eObjectList.removeAll(excludedObjects);
+        if (eObjectList.size() > 0) {
+            return eObjectList.get(random.nextInt(eObjectList.size()));
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EStructuralFeature getRandomMultiValuedFeature(EObject eObject) {
-		EList<EStructuralFeature> multiValuedFeatures = new BasicEList<EStructuralFeature>();
-		for (EStructuralFeature feature : eObject.eClass()
-				.getEAllStructuralFeatures()) {
-			if (feature.isMany() && !feature.isTransient()
-					&& !feature.isDerived()) {
-				multiValuedFeatures.add(feature);
-			}
-		}
-		if (multiValuedFeatures.size() > 0) {
-			return multiValuedFeatures.get(random.nextInt(multiValuedFeatures
-					.size()));
-		} else {
-			return null;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public int getModelSize() {
+        TreeIterator<Object> allContents = EcoreUtil.getAllContents(this.modelResource, true);
+        return count(allContents);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EStructuralFeature getRandomSingleValuedFeature(EObject eObject) {
-		EList<EStructuralFeature> singleValuedFeatures = new BasicEList<EStructuralFeature>();
-		for (EStructuralFeature feature : eObject.eClass()
-				.getEAllStructuralFeatures()) {
-			if (!feature.isMany() && feature.isChangeable()
-					&& !feature.isTransient() && !feature.isDerived()) {
-				singleValuedFeatures.add(feature);
-			}
-		}
-		if (singleValuedFeatures.size() > 0) {
-			return singleValuedFeatures.get(random.nextInt(singleValuedFeatures
-					.size()));
-		} else {
-			return null;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EStructuralFeature getRandomFeature(EObject eObject) {
+        EList<EStructuralFeature> features = new BasicEList<EStructuralFeature>();
+        for (EStructuralFeature feature : eObject.eClass().getEAllStructuralFeatures()) {
+            if (!feature.isTransient() && !feature.isDerived()) {
+                features.add(feature);
+            }
+        }
+        if (features.size() > 0) {
+            return features.get(random.nextInt(features.size()));
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EPackage getPackage() {
-		Assert.isTrue(modelResource.getContents().size() > 0);
-		return modelResource.getContents().get(0).eClass().getEPackage();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EStructuralFeature getRandomMultiValuedFeature(EObject eObject) {
+        EList<EStructuralFeature> multiValuedFeatures = new BasicEList<EStructuralFeature>();
+        for (EStructuralFeature feature : eObject.eClass().getEAllStructuralFeatures()) {
+            if (feature.isMany() && !feature.isTransient() && !feature.isDerived()) {
+                multiValuedFeatures.add(feature);
+            }
+        }
+        if (multiValuedFeatures.size() > 0) {
+            return multiValuedFeatures.get(random.nextInt(multiValuedFeatures.size()));
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EClass getRandomConcreteClass() {
-		EList<EClass> classes = new BasicEList<EClass>();
-		for (EClassifier classifier : getPackage().getEClassifiers()) {
-			if (classifier instanceof EClass) {
-				if (!((EClass) classifier).isAbstract()) {
-					classes.add((EClass) classifier);
-				}
-			}
-		}
-		return classes.get(random.nextInt(classes.size()));
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EStructuralFeature getRandomSingleValuedFeature(EObject eObject) {
+        EList<EStructuralFeature> singleValuedFeatures = new BasicEList<EStructuralFeature>();
+        for (EStructuralFeature feature : eObject.eClass().getEAllStructuralFeatures()) {
+            if (!feature.isMany() && feature.isChangeable() && !feature.isTransient() && !feature.isDerived()) {
+                singleValuedFeatures.add(feature);
+            }
+        }
+        if (singleValuedFeatures.size() > 0) {
+            return singleValuedFeatures.get(random.nextInt(singleValuedFeatures.size()));
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EList<EStructuralFeature> getAllStructuralFeatures() {
-		EList<EStructuralFeature> features = new BasicEList<EStructuralFeature>();
-		for (EClassifier classifyer : getPackage().getEClassifiers()) {
-			if (classifyer instanceof EClass) {
-				EClass eClass = (EClass) classifyer;
-				for (EStructuralFeature feature : eClass
-						.getEStructuralFeatures()) {
-					features.add(feature);
-				}
-			}
-		}
-		return features;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EPackage getPackage() {
+        Assert.isTrue(modelResource.getContents().size() > 0);
+        return modelResource.getContents().get(0).eClass().getEPackage();
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EStructuralFeature getRandomFeatureHavingType(EClass eClass) {
-		return getRandomFeatureHavingType(eClass, false);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EClass getRandomConcreteClass() {
+        EList<EClass> classes = new BasicEList<EClass>();
+        for (EClassifier classifier : getPackage().getEClassifiers()) {
+            if (classifier instanceof EClass) {
+                if (!((EClass) classifier).isAbstract()) {
+                    classes.add((EClass) classifier);
+                }
+            }
+        }
+        return classes.get(random.nextInt(classes.size()));
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EStructuralFeature getRandomFeatureHavingType(EClass eClass,
-			boolean isContainment) {
-		EList<EStructuralFeature> features = new BasicEList<EStructuralFeature>();
-		for (EStructuralFeature feature : getAllStructuralFeatures()) {
-			if (eClass.equals(feature.getEType())) {
-				if (!isContainment) {
-					features.add(feature);
-				} else {
-					if (feature instanceof EReference) {
-						EReference eReference = (EReference) feature;
-						if (eReference.isContainment()) {
-							features.add(feature);
-						}
-					}
-				}
-			}
-		}
-		if (features.size() > 0) {
-			return features.get(random.nextInt(features.size()));
-		} else {
-			return null;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EList<EStructuralFeature> getAllStructuralFeatures() {
+        EList<EStructuralFeature> features = new BasicEList<EStructuralFeature>();
+        for (EClassifier classifyer : getPackage().getEClassifiers()) {
+            if (classifyer instanceof EClass) {
+                EClass eClass = (EClass) classifyer;
+                for (EStructuralFeature feature : eClass.getEStructuralFeatures()) {
+                    features.add(feature);
+                }
+            }
+        }
+        return features;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public EList<EObject> getChildren(EObject eObject) {
-		EList<EObject> children = new BasicEList<EObject>();
-		Iterator<EObject> iterator = EcoreUtil.getAllContents(eObject, true);
-		while (iterator.hasNext()) {
-			EObject next = iterator.next();
-			if (next instanceof EModelElement) {
-				children.add(next);
-			}
-		}
-		return children;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    public EStructuralFeature getRandomFeatureHavingType(EClass eClass) {
+        return getRandomFeatureHavingType(eClass, false);
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Object getRandomValue(EStructuralFeature feature) {
-		try {
+    /**
+     * {@inheritDoc}
+     */
+    public EStructuralFeature getRandomFeatureHavingType(EClass eClass, boolean isContainment) {
+        EList<EStructuralFeature> features = new BasicEList<EStructuralFeature>();
+        EList<EClass> classes = new BasicEList<EClass>(eClass.getEAllSuperTypes());
+        classes.add(eClass);
+        for (EStructuralFeature feature : getAllStructuralFeatures()) {
+            if (classes.contains(feature.getEType())) {
+                if (!isContainment) {
+                    features.add(feature);
+                } else {
+                    if (feature instanceof EReference) {
+                        EReference eReference = (EReference) feature;
+                        if (eReference.isContainment()) {
+                            features.add(feature);
+                        }
+                    }
+                }
+            }
+        }
+        if (features.size() > 0) {
+            return features.get(random.nextInt(features.size()));
+        } else {
+            return null;
+        }
+    }
 
-			EClassifier eType = feature.getEType();
+    /**
+     * {@inheritDoc}
+     */
+    public EList<EObject> getChildren(EObject eObject) {
+        EList<EObject> children = new BasicEList<EObject>();
+        Iterator<EObject> iterator = EcoreUtil.getAllContents(eObject, true);
+        while (iterator.hasNext()) {
+            EObject next = iterator.next();
+            if (next instanceof EModelElement) {
+                children.add(next);
+            }
+        }
+        return children;
+    }
 
-			if (eType instanceof EClass) {
+    /**
+     * {@inheritDoc}
+     */
+    public Object getRandomValue(EStructuralFeature feature) {
+        try {
 
-				return getRandomEObject((EClass) eType);
+            EClassifier eType = feature.getEType();
 
-			} else if (eType instanceof EEnum) {
+            if (eType instanceof EClass) {
 
-				EEnum eEnum = (EEnum) eType;
-				return eEnum.getELiterals().get(
-						random.nextInt(eEnum.getELiterals().size()));
+                return getRandomEObject((EClass) eType);
 
-			} else if (eType instanceof EDataType) {
+            } else if (eType instanceof EEnum) {
 
-				// handle String data types
-				if ("java.lang.String".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return getRandomString();
-				} else if ("int".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.lang.Integer".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.math.BigDecimal".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.math.BigInteger".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return random.nextInt(100);
-				} else if ("boolean".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.lang.Boolean".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return random.nextBoolean();
-				} else if ("byte".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.lang.Byte".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return (byte) random.nextInt(100);
-				} else if ("char".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.lang.Character".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return getRandomString().toCharArray();
-				} else if ("java.lang.Date".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return new Date();
-				} else if ("double".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.lang.Double".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return random.nextDouble();
-				} else if ("float".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.lang.Float".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return random.nextFloat();
-				} else if ("long".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.lang.Long".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return random.nextLong();
-				} else if ("short".equals(eType.getInstanceClassName()) //$NON-NLS-1$
-						|| "java.lang.Short".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
-					return (short) random.nextInt(100);
-				}
-			}
+                EEnum eEnum = (EEnum) eType;
+                return eEnum.getELiterals().get(random.nextInt(eEnum.getELiterals().size()));
 
-			return null;
+            } else if (eType instanceof EDataType) {
 
-		} catch (ClassCastException e) {
-			return null;
-		}
-	}
+                // handle String data types
+                if ("java.lang.String".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return getRandomString();
+                } else if ("int".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.lang.Integer".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.math.BigDecimal".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.math.BigInteger".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return random.nextInt(100);
+                } else if ("boolean".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.lang.Boolean".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return random.nextBoolean();
+                } else if ("byte".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.lang.Byte".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return (byte) random.nextInt(100);
+                } else if ("char".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.lang.Character".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return getRandomString().toCharArray();
+                } else if ("java.lang.Date".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return new Date(random.nextLong());
+                } else if ("double".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.lang.Double".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return random.nextDouble();
+                } else if ("float".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.lang.Float".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return random.nextFloat();
+                } else if ("long".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.lang.Long".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return random.nextLong();
+                } else if ("short".equals(eType.getInstanceClassName()) //$NON-NLS-1$
+                        || "java.lang.Short".equals(eType.getInstanceClassName())) { //$NON-NLS-1$
+                    return (short) random.nextInt(100);
+                }
+            }
 
-	/**
-	 * Returns the size of <em>all children</em> (including grand children and
-	 * so on) of the specified <code>eObject</code>.
-	 * 
-	 * @param eObject
-	 *            to get children size of.
-	 * @return the size.
-	 */
-	private int getContentSize(EObject eObject) {
-		TreeIterator<Object> allContents = EcoreUtil.getAllContents(eObject,
-				true);
-		return count(allContents);
-	}
+            return null;
 
-	/**
-	 * Counts the contents of the specified <code>iterator</code>.
-	 * 
-	 * @param iterator
-	 *            to count objects of.
-	 * @return the size of all objects held by the iterator.
-	 */
-	private int count(TreeIterator<Object> iterator) {
-		int size = 0;
-		while (iterator.hasNext()) {
-			if (iterator.next() instanceof EModelElement) {
-				size++;
-			}
-		}
-		return size;
-	}
+        } catch (ClassCastException e) {
+            return null;
+        }
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getRandomString() {
-		return EcoreUtil.generateUUID();
-	}
+    /**
+     * Returns the size of <em>all children</em> (including grand children and so on) of the specified <code>eObject</code>.
+     * 
+     * @param eObject
+     *            to get children size of.
+     * @return the size.
+     */
+    private int getContentSize(EObject eObject) {
+        TreeIterator<Object> allContents = EcoreUtil.getAllContents(eObject, true);
+        return count(allContents);
+    }
+
+    /**
+     * Counts the contents of the specified <code>iterator</code>.
+     * 
+     * @param iterator
+     *            to count objects of.
+     * @return the size of all objects held by the iterator.
+     */
+    private int count(TreeIterator<Object> iterator) {
+        int size = 0;
+        while (iterator.hasNext()) {
+            if (iterator.next() instanceof EModelElement) {
+                size++;
+            }
+        }
+        return size;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getRandomString() {
+        int length = random.nextInt(50);
+        String result = "";
+        for (int i = 0; i < length; i++) {
+            result += readableChars[random.nextInt(readableChars.length)];
+        }
+        return result;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public EPackage getMetaModelPackage() {
+        return metaModelPackage;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setMetaModelPackage(EPackage metaModelPackage) {
+        this.metaModelPackage = metaModelPackage;
+    }
 
 }
