@@ -641,7 +641,7 @@
 				    tool       	"MOF"
 				    name       	"sap2mof.OperationCodeOcl"
 				    value      	(value Text 
-|context SapClass::conformsToExcluding(type:SapClass, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean
+|context SapClass::conformsToExcluding(type:SapClass, excludingConforming:Set(SapClass), excludingTo:Set(SapClass)):Boolean
 |body:
 |  if oclIsUndefined() then
 |    false
@@ -1423,11 +1423,11 @@
 |      if self.oclAsType(behavioral::actions::Constant).initExpression->notEmpty() then
 |        self.oclAsType(behavioral::actions::Constant).initExpression.getType()
 |      else
-|         if self.oclAsType(behavioral::actions::Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator]->notEmpty() then
+|         if self.oclAsType(behavioral::actions::Constant)._iterate->notEmpty() then
 |           if self.oclAsType(behavioral::actions::Constant).initExpression->notEmpty() then
 |             self.oclAsType(behavioral::actions::Constant).initExpression.getType()
 |           else
-|             self.oclAsType(behavioral::actions::Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()
+|             self.oclAsType(behavioral::actions::Constant)._iterate.iteratorExpression.getType()
 |           endif
 |         else
 |           null
@@ -1445,7 +1445,7 @@
 |      else
 |        let selection:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).selection.object->asSet() in
 |        let groupby:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object->asSet() in
-|        let iterateexp:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator)."iterate".source->asSet() in
+|        let iterateexp:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator)._iterate.source->asSet() in
 |        let iteratesource:Set(dataaccess::expressions::Expression)=selection->union(groupby)->union(iterateexp) in
 |        if iteratesource->notEmpty() then
 |          if iteratesource->any(true).getType().oclIsKindOf(data::classes::NestedTypeDefinition) then
@@ -2854,10 +2854,10 @@
 |    else
 |      if self.oclIsKindOf(behavioral::actions::Iterator) then
 |        self.oclAsType(behavioral::actions::Iterator).boundToFor.getNamedValuesInScope()->asSet()->union(
-|        self.oclAsType(behavioral::actions::Iterator)."iterate".getNamedValuesInScope()->asSet())
+|        self.oclAsType(behavioral::actions::Iterator)._iterate.getNamedValuesInScope()->asSet())
 |      else
 |        if self.oclIsKindOf(behavioral::actions::Constant) then
-|          self.oclAsType(behavioral::actions::Constant)."iterate".getNamedValuesInScope()
+|          self.oclAsType(behavioral::actions::Constant)._iterate.getNamedValuesInScope()
 |        else
 |          Set{}    -- TODO further cases?
 |        endif
