@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2002-2009 IBM Corporation and others.
+ * Copyright (c) 2002-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -2521,6 +2521,11 @@ public abstract class GenBaseImpl extends EObjectImpl implements GenBase
 
   protected String indent(String text, String indentation, String lineDelimiter)
   {
+    return indent(text, indentation, lineDelimiter, false);
+  }
+
+  protected String indent(String text, String indentation, String lineDelimiter, boolean escape)
+  {
     if (text == null)
     {
       return null;
@@ -2544,6 +2549,60 @@ public abstract class GenBaseImpl extends EObjectImpl implements GenBase
           {
             stringBuffer.replace(i, i + (i + 1 < stringBuffer.length() && stringBuffer.charAt(i + 1) == '\n' ? 2 : 1), separator);
             i += increment;
+            break;
+          }
+          case '\b':
+          {
+            if (escape)
+            {
+              stringBuffer.replace(i, i + 1, "\\b");
+              i += 1;              
+            }
+            break;
+          }
+          case '\t':
+          {
+            if (escape)
+            {
+              stringBuffer.replace(i, i + 1, "\\t");
+              i += 1;              
+            }
+            break;
+          }
+          case '\f':
+          {
+            if (escape)
+            {
+              stringBuffer.replace(i, i + 1, "\\f");
+              i += 1;              
+            }
+            break;
+          }
+          case '\"':
+          {
+            if (escape)
+            {
+              stringBuffer.replace(i, i + 1, "\\\"");
+              i += 1;              
+            }
+            break;
+          }
+          case '\'':
+          {
+            if (escape)
+            {
+              stringBuffer.replace(i, i + 1, "\\\'");
+              i += 1;              
+            }
+            break;
+          }
+          case '\\':
+          {
+            if (escape)
+            {
+              stringBuffer.replace(i, i + 1, "\\\\");
+              i += 1;              
+            }
             break;
           }
         }

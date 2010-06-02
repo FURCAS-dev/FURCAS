@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2002-2009 IBM Corporation and others.
+ * Copyright (c) 2002-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -325,7 +325,7 @@ public abstract class GenClassifierImpl extends GenBaseImpl implements GenClassi
 
   public String getConstraintExpression(String constraint, String indentation)
   {
-    return indent(getConstraintExpression(constraint).replace('\r', ' ').replace("\n", "\\n"), indentation);
+    return indent(getConstraintExpression(constraint), indentation + "\"", "\" +" + getGenModel().getNonNLS() + getGenModel().getLineDelimiter(), true);
   }
 
   public String getValidationDelegate(String constraint)

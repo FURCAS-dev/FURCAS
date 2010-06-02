@@ -997,7 +997,7 @@ public class GenOperationImpl extends GenTypedElementImpl implements GenOperatio
 
   public String getInvariantExpression(String indentation)
   {
-    return indent(getInvariantExpression(), indentation + "\"", "\" +" + getGenModel().getNonNLS() + getGenModel().getLineDelimiter());
+    return indent(getInvariantExpression(), indentation + "\"", "\" +" + getGenModel().getNonNLS() + getGenModel().getLineDelimiter(), true);
   }
 
   public String getValidationDelegate()
