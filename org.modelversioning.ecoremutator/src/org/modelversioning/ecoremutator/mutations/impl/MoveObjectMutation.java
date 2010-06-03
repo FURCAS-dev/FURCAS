@@ -12,6 +12,8 @@
 
 package org.modelversioning.ecoremutator.mutations.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
@@ -29,79 +31,77 @@ import org.modelversioning.ecoremutator.tracker.IMutationTracker;
  * 
  */
 public class MoveObjectMutation extends AbstractMutation {
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getId() {
-		return "mutation.moveObject";
-	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * Moves a random object to a random feature of another random object.
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean mutate(IModelProvider modelProvider, IMutationTracker tracker) {
-		boolean success = false;
+    private int mutationCount = 0;
 
-		// get object to move
-		EObject eObjectToMove = modelProvider.getRandomEObject();
-		if (eObjectToMove != null) {
-			// get target feature
-			EStructuralFeature targetFeature = modelProvider
-					.getRandomFeatureHavingType(eObjectToMove.eClass(), true);
-			if (targetFeature != null) {
-				// get target object
-				EObject targetObject = modelProvider
-						.getRandomEObjectHavingFeature(targetFeature);
-				if (targetObject != null) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getId() {
+        return "mutation.moveObject";
+    }
 
-					if (!targetObject.equals(eObjectToMove)
-							&& !EcoreUtil.isAncestor(targetObject,
-									eObjectToMove)) {
-						Object currentValue = targetObject.eGet(targetFeature,
-								true);
-						if (currentValue instanceof List) {
-							// add to list
-							try {
-								((List) currentValue).add(eObjectToMove);
-								success = true;
-							} catch (ClassCastException e) {
-								// do nothing
-							}
-						} else {
-							// set to feature
-							targetObject.eSet(targetFeature, eObjectToMove);
-							success = true;
-						}
-						if (success) {
-							String message = "Moved "
-									+ eObjectToMove.toString() + " to "
-									+ targetObject + " using feature "
-									+ targetFeature.getName();
-							log(IStatus.INFO, message);
-							// track mutation
-							tracker.track(this.getId(), message, true,
-									toEObjectList(eObjectToMove),
-									toFeatureList(targetFeature));
-							return true;
-						}
-					}
-				}
-			}
-		}
+    /**
+     * {@inheritDoc}
+     * 
+     * Moves a random object to a random feature of another random object.
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean mutate(IModelProvider modelProvider, IMutationTracker tracker) {
+        mutationCount ++;
+        if (mutationCount % 1000 == 0) {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            System.out.println("" + sdf.format(Calendar.getInstance().getTime()) + ": Movemutations: " + mutationCount);
+        }
+        boolean success = false;
 
-		// track failing mutation
-		String message = "Model provider did not return a suitable object, "
-				+ "target feature, or target to move.";
-		log(IStatus.WARNING, message);
-		tracker.track(this.getId(), message, false, toEObjectList(null),
-				toFeatureList(null));
+        // get object to move
+        EObject eObjectToMove = modelProvider.getRandomEObject();
+        if (eObjectToMove != null) {
+            // get target feature
+            EStructuralFeature targetFeature = modelProvider.getRandomFeatureHavingType(eObjectToMove.eClass(), true);
+            if (targetFeature != null) {
+                // get target object
+                EObject targetObject = modelProvider.getRandomEObjectHavingFeature(targetFeature);
+                if (targetObject != null) {
 
-		return false;
-	}
+                    if (!targetObject.equals(eObjectToMove) && !EcoreUtil.isAncestor(targetObject, eObjectToMove)) {
+                        Object currentValue = targetObject.eGet(targetFeature, true);
+                        if (currentValue instanceof List) {
+                            // add to list
+                            try {
+                                ((List) currentValue).add(eObjectToMove);
+                                success = true;
+                            } catch (ClassCastException e) {
+                                // do nothing
+                            }
+                        } else {
+                            // set to feature
+                            targetObject.eSet(targetFeature, eObjectToMove);
+                            success = true;
+                        }
+                        if (success) {
+                            String message = "Moved " + eObjectToMove.toString() + " to " + targetObject + " using feature "
+                                    + targetFeature.getName();
+                            log(IStatus.INFO, message);
+                            // track mutation
+                            tracker
+                                    .track(this.getId(), message, true, toEObjectList(eObjectToMove),
+                                            toFeatureList(targetFeature));
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        // track failing mutation
+        String message = "Model provider did not return a suitable object, " + "target feature, or target to move.";
+        log(IStatus.WARNING, message);
+        tracker.track(this.getId(), message, false, toEObjectList(null), toFeatureList(null));
+
+        return false;
+    }
 }

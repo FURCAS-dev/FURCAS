@@ -12,6 +12,8 @@
 
 package org.modelversioning.ecoremutator.mutations.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
@@ -30,6 +32,7 @@ import org.modelversioning.ecoremutator.tracker.IMutationTracker;
  */
 public class UpdateFeatureMutation extends AbstractMutation {
 
+    int mutationCount = 0;
     /**
      * {@inheritDoc}
      * 
@@ -38,6 +41,11 @@ public class UpdateFeatureMutation extends AbstractMutation {
     @SuppressWarnings("unchecked")
     @Override
     public boolean mutate(IModelProvider modelProvider, IMutationTracker tracker) {
+        mutationCount++;
+        if (mutationCount % 1000 == 0) {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+            System.out.println("" + sdf.format(Calendar.getInstance().getTime()) + ": Updatemutations: " + mutationCount);
+        }
         boolean success = false;
         Exception occurredException = null;
 
