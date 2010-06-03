@@ -60,23 +60,36 @@ Other references:
 </p>
 <ul>
 	<li>
+		The Object Constraint Language: Getting Your Models Ready for MDA.
+		Jos Warmer and Anneke Kleppe. (Addison-Wesley Object Technology) 
+	</li>
+	<li>
 		<a target="_blank" href="http://www.omg.org/technology/documents/modeling_spec_catalog.htm#OCL">OCL</a> specification.
 	</li>
+	<li>
+		<a target="_blank" href="http://wiki.eclipse.org/MDT/OCLinEcore">OCLinEcore</a> wiki page.
+	</li>
+	
 </ul>
 <p class="small">[<a href="#top">back to top</a>]</p>
 
 <h2><a name="installation">Installing the MDT/OCL Examples</a></h2>
 <p>
 The OCLinEcore editor is not part of the core OCL functionality included in the
-Modeling Package. 
-
-FIXME - describe use of Modeling Discovery UI (if it's there in RC3 EPP)
-and/or Update Site.
+Eclipse Modeling Tools Package. 
+</p>
+<p>
+If you have installed the Eclipse Modeling Tools Package, or installed the
+Amalgam project on some other Eclipse package, you can use the Modeling Discovery
+UI to install the MDT/OCL Examples.
+</p>
+<p>
+FIXME -- Need an RC3 Modeling EPP to provide a screenshot --.
 </p>
 
 <h2><a name="ecore-editing">Using the OCLinEcore text editor for Ecore</a></h2>
 <p>
-There are many different (comaptible) ways to create and edit Ecore models.
+There are many different (compatible) ways to create and edit Ecore models.
 </p>
 <ul>
 	<li>An Ecore Model may be created from an XSD schema file</li>
@@ -84,12 +97,12 @@ There are many different (comaptible) ways to create and edit Ecore models.
 	<li>An Ecore Model may be created from annotated Java file</li>
 	<li>The Sample Ecore Editor provides tree editing</li>
 	<li>The Ecore Tools project provides graphical editing</li>
-	<li>Papyrus provides a UML editing that may be converted to Ecore</li>
+	<li>Papyrus provides UML editing that may be converted to Ecore</li>
 </ul>
 Here we introduce the OCLinEcore editor that provides text editing, which is
 appropriate when a non-trivial amount of OCL enrichment is required.
 <p>
-All the above approaches update an Ecore file, so the user is free to choose
+All the above approaches update a <b>*.ecore</b> file, so the user is free to choose
 whichever editing approach is best suited for the planned changes.
 </p>
 <h3><a name="new-project">Create a New EMF Project</a></h3>
@@ -103,7 +116,7 @@ In the <b>New Project</b> dialog left-click to expand <b>Eclipse Modeling Framew
 </p>
 <img src="new_project.png" alt="New Project" />
 <p>
-In the <b>New Empty EMF Project</b> dialog type <b>Tutorial</b> as the project name and left-click on <b>Finish</b>.
+In the <b>New Empty EMF Project</b> dialog type <b>Tutorial</b> as the project name and left-click on <b>Next</b>.
 </p>
 <img src="new_empty_emf_project.png" alt="New Empty EMF Project" />
 
@@ -141,7 +154,11 @@ and select <b>Open With-&gt;OCLinEcore (Ecore) Editor</b>.
 <img src="empty_ecore.png" alt="Empty Ecore Editor" />
 <p>
 The first time you open a file in the project with one of the Xtext-based editors, you
-will be asked <b>Do you want the Xtext nature to be added to this project</b>. Click <b>Yes</b>
+will be asked
+</p>
+<img src="xtext_nature.png" alt="Xtext Nature Query" />
+<p>
+Click <b>Yes</b>
 to avoid answering the question in the future.
 </p>
 <p>
@@ -221,11 +238,11 @@ to <tt>EString</tt> and <tt>EBigInteger</tt> in Ecore.
 <h2><a name="create-model">Create a Dynamic Model Instance</a></h2>
 <p>
 At this point a corresponding EMF tutorial would show how to generate Java code for
-and an editor the meta-model. Here we are concerned with modeling, so we will 
+the meta-model and for an editor for the meta-model. Here we are concerned with modeling, so we will 
 continue with the models alone.
 </p>
 <p>
-In the outline right-click on <b>Library</b> to show the context-sensitive menu
+In the outline, right-click on <b>Library</b> to show the context-sensitive menu
 and then left-click on <b>Create Dynamic Instance...</b> to start to create a
 new Dynamic Model with <tt>Library</tt> at its root.
 </p>
@@ -238,8 +255,8 @@ to expand it, then on <b>tutorial</b> to expand it.)
 </p>
 <img src="create_dynamic_instance.png" alt="Create Dynamic Instance" />
 <p>
-In the <b>Create Dynamic Instance</b> dialog select <tt>Tutorial/model</tt> as
-the parent folder for the <tt>Tutorial.xmi</tt> dynamic model instance and left-click <b>Finish</b>.
+In the <b>Create Dynamic Instance</b> dialog select <b>Tutorial/model</b> as
+the parent folder for the <b>Tutorial.xmi</b> dynamic model instance and left-click <b>Finish</b>.
 </p>
 <img src="create_dynamic_instance_dialog.png" alt="Create Dynamic Instance Dialog" />
 <p>
@@ -253,7 +270,7 @@ be seen in the Properties View.
 <b>Show Properties View</b>.)
 </p>
 <p>
-From the right-button menu <tt>Library</tt> use <b>New Child-&gt;Books Book</b> twice,
+From the right-button menu for <tt>Library</tt> use <b>New Child-&gt;Books Book</b> twice,
 use <b>New Child-&gt;Loans Loan</b> once and <b>New Child-&gt;Members Member</b> three times
 to populate the model with two books, one loan and three members. 
 </p>
@@ -264,16 +281,16 @@ has one copy and that b2 has 2 copies.
 </p>
 <img src="model_copies.png" alt="Model Showing Copies" />
 <p>
-The books and members now have distinct titles in the outline, so that
-when you left-click to select the Loan and edit its Book and Member attributes
+The books and members now have distinct titles in the outline. 
+When you left-click to select the Loan and edit its Book and Member attributes,
 the associated pull-down has meaningful entries. Specify that the Loan is for
 <tt>b2</tt> by <tt>m3</tt>.
 </p>
 <img src="model_pull_down.png" alt="Model Pull-Down Menu" />
 <p>
 The configuration so far is simple, three members, two books and one loan. We can
-validate that this by right-clicking on the Library node, and left-clicking Validate
-to validate Library and all its children.
+validate that this by right-clicking on the <tt>Library</tt> node, and left-clicking
+to <b>Validate</b> <tt>Library</tt> and all its children.
 </p>
 <img src="validate_menu.png" alt="Validate Menu" />
 <p>
@@ -305,7 +322,7 @@ resolve an entry problem.)
 <p>
 We will now create two further identical loans of <tt>b2</tt> by <tt>m3</tt>. This
 may conveniently be performed by left-clicking to select the existing loan,
-typing Ctrl-C to copy it, left-clicking to select the library as a new parent,
+typing Ctrl-C to copy it, left-clicking to select the <tt>Library</tt> as the new parent,
 then typing Ctrl-V to paste it on the library. Repeat so that there are three
 identical loans.
 </p>
@@ -326,8 +343,8 @@ provides this capability.
 </p>
 <p>
 The constraint can be realized as an invariant on a book that specifies that
-that the size of the selection of loans involving the book is less than or equal
-to the number of copies of the book.
+that (the size of the (selection of loans involving the book)) is less than or equal
+to (the number of copies of the book).
 </p>
 <p>
 Close the <b>Tutorial.xmi</b> editor before modifying its meta-model. (Beware that
@@ -347,12 +364,12 @@ Add the invariant shown below to the meta-model.
   }
 </pre>
 <p>
-This is expressed by the <tt>SufficientCopies</tt> invariant constraint for a Book.
+The required semantic is expressed by the <tt>SufficientCopies</tt> invariant constraint for a Book.
 For a valid model the SufficientCopies invariant must always be true.
 </p>
 <p>
-If you reopen the <tt>Tutorial.xmi</tt> editor and invoke Validate for the Library,
-you will now get a validation error.
+If you reopen the <b>Tutorial.xmi</b> editor and invoke <b>Validate</b> for the <tt>Library</tt>,
+you will now get a validation error. Left click <b>Details</b> for details.
 </p>
 <img src="validation_unsuccessful.png" alt="Validation Unsuccessful" />
 <p>
@@ -370,7 +387,7 @@ how OCL expressions can be exercised. OCL is a very powerful compact language;
 the example hides a loop over all the loans. More complex examples may easily
 involve three or four levels of hidden loops on a single line, but may equally
 easily have simple errors. It is therefore helpful to simplify expressions
-and use helper operations and properties to modularise them. These may be
+and use helper operations and properties to modularise them. These may then be
 exercised using the OCL Console.
 </p>
 
@@ -387,6 +404,10 @@ To make the OCL Console visible, first make the <b>Console</b> view visible by
 left click on <b>Interactive OCL</b>.
 </p>
 <img src="ocl_console_menu.png" alt="OCL Console menu" />
+<p>
+Alternatively, you can just invoke <b>Show OCL Console</b> from the right button menu
+within the <b>Sample Ecore Editor</b> or <b>Sample Reflective Ecore Editor</b>.
+</p>
 <p>
 The <b>Interactive OCL</b> console comprises two main text panes. The upper pane
 displays results. The lower pane supports entry of queries.
@@ -498,18 +519,19 @@ There are now two validation failures.
 
 <h2><a name="java-code">Generating Java Code</a></h2>
 <p>
-We have shown how OCL may be used to enrich Ecore meta-models and how model instances can be created
-and validated and how expressions evaluated, without generating any Java code.
+We have shown how OCL may be used to enrich Ecore meta-models, how model instances can be created
+and validated and how expressions can be evaluated, all without generating any Java code.
 </p>
 <p>
-Exactly the same facilities are available if you do generate Java code and as a result gain some speed
+Exactly the same facilities are available if you do generate Java code and as a result you gain some speed
 benefits. In the MDT/OCL 3.0.0 (Helios) release the generated Java code for OCL is
-interpreted and so the speed gains occur only for the EMF models. In a future release
+interpreted and so the speed gains occur only for the EMF models. In a future release,
 the OCL will be converted to Java giving significant speed improvements.
 </p>
 <p>
 Generating Java code is exactly the same as for any other EMF project; with one important
-difference.
+difference; you must set <b>Operation Reflection</b>
+to true.
 </p>
 <p>
 Select the <b>Tutorial.ecore</b> file and invoke <b>New-&gt;Other...</b> from the right button menu
@@ -517,7 +539,7 @@ and select <b>Eclipse Modeling Framework</b> and <b>EMF Generator Model</b>.
 </p>
 <img src="new_emf_generator.png" alt="New EMF Generator" />
 <p>
-Select <b>Finish</b>.
+Select <b>Next</b>.
 </p>
 <img src="new_emf_generator_model.png" alt="New EMF Generator Model" />
 <p>
@@ -545,15 +567,97 @@ root <b>Tutorial</b> and scroll down the <b>Properties</b> view and set <b>Opera
 to true.
 </p>
 <p>
-You may now invoke <b>Generate Model Code</b> to generate Java models that invoke OCL. The one that is not is highlighted. Select the
-root <b>Tutorial</b> and scroll down the <b>Properties</b> view and set <b>Operation Reflection</b>
-to true.
+You may now invoke <b>Generate Model Code</b> from the right button menu of either <b>Tutorial</b>
+to generate Java models that invoke OCL.
 </p>
 <img src="gen_model_menu.png" alt="Gen Model" />
+
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h3><a name="java-details">Java Details</a></h3>
 <p>
-BUG (present in Helios RC3): If you want to generate Java code, the entire OCL expression for each invariant
-must be on one line; OCL associated with operations and properties may be multi-line.
+You can check that the OCL appears in your Java by looking at <b>TutorialValidator.java</b>
+where you'll find the OCL expression as a String awaiting compilation at run-time, and
+the validate invocation that triggers that compilation and execution.
 </p>
+<pre>
+protected static final String MEMBER__AT_MOST_TWO_LOANS__EEXPRESSION = "\n" +
+	"\t\t\tloans-&gt;size() &lt;= 2";
+</pre>
+<pre>
+public boolean validateMember_AtMostTwoLoans(Member member, DiagnosticChain diagnostics, Map&lt;Object, Object&gt; context) {
+	return
+		validate
+			(TutorialPackage.Literals.MEMBER,
+			 member,
+			 diagnostics,
+			 context,
+			 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+			 "AtMostTwoLoans",
+			 MEMBER__AT_MOST_TWO_LOANS__EEXPRESSION,
+			 Diagnostic.ERROR,
+			 DIAGNOSTIC_SOURCE,
+			 0);
+}
+</pre>
+<p>
+Similarly in <b>BookImpl</b> you will find the declaration of a cached delegate and
+the dynamic invocation that provokes the first time compilation.
+</p>
+<pre>
+protected static final EOperation.Internal.InvocationDelegate IS_AVAILABLE__EINVOCATION_DELEGATE = ((EOperation.Internal)TutorialPackage.Literals.BOOK___IS_AVAILABLE).getInvocationDelegate();
+</pre>
+<pre>
+public boolean isAvailable() {
+	try {
+		return (Boolean)IS_AVAILABLE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+	}
+	catch (InvocationTargetException ite) {
+		throw new WrappedException(ite);
+	}
+}
+</pre>
+<p>
+The OCL expression for the invocation delegate may be found in <b>TutorialPackageImpl.createOCLAnnotations()</b>.
+</p>
+<pre>
+addAnnotation
+  (getBook__IsAvailable(), 
+   source, 
+   new String[] {
+	 "body", "loans-&gt;size() &lt; copies"
+   });		
+</pre>
+
+<p class="small">[<a href="#top">back to top</a>]</p>
+
+<h3><a name="api-invariants">API Invariants</a></h3>
+<p>
+The invariants we have used so far do not contribute to the class API.
+</p>
+<p>
+If you want to have fine grain control of which validations are performed,
+perhaps because in some incremental context not all are appropriate, you
+may use the operation form of an invariant. 
+</p>
+<pre>
+  class Book
+  {
+    operation sufficientCopies(diagnostics : ecore::EDiagnosticChain,
+      context : ecore::EMap&lt;ecore::EJavaObject,ecore::EJavaObject&gt;) : Boolean
+    {
+	  body: library.loans-&gt;select(book=self)-&gt;size() &lt;= copies;
+    }
+    attribute name : String;
+    attribute copies : Integer;
+    property library#books : Library;
+  }
+</pre>
+<p>
+Note that the operation must have a Boolean return (true for valid) and
+diagnostics and context arguments. 
+</p>
+<p class="small">[<a href="#top">back to top</a>]</p>
 
 <h2><a name="summary">Summary</a></h2>
 <p>
