@@ -164,16 +164,13 @@ extends MappingEvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
         P property = pc.getReferredProperty();
         OCLExpression<C> source = pc.getSource();
         String name = "undefined";
-        String referEnd="undefinded";
+        
         if(property instanceof EStructuralFeature){
             name = ((EStructuralFeature) property).getName();
-//            if (property instanceof EReference){
-//                referEnd = ((EReference) property).getEReferenceType().getName();
-//                return referEnd;
-//                }
+
         }
         if (source instanceof PropertyCallExp<?, ?>){
-            Object refProp = ((PropertyCallExp) source).getReferredProperty();
+            Object refProp = ((PropertyCallExp<?, ?>) source).getReferredProperty();
             if(refProp instanceof EReference){
                 Object navigation = source.accept(this);
                  return navigation+"***"+name;    
