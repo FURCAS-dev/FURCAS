@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: plugin.xml,v 1.1 2010/03/11 10:13:26 ewillink Exp $
+ * $Id: plugin.xml,v 1.2 2010/06/03 06:28:20 ewillink Exp $
  */
 -->
 <plugin>
@@ -46,6 +46,16 @@
                menubarPath="org.eclipse.emf.ecoreMenuID/additions"
                icon="$nl$/icons/elcl16/oclconsole_co.gif"
                id="org.eclipse.ocl.examples.interpreter.ShowEcoreConsoleAction"/>
+      </editorContribution> 
+      <editorContribution
+            id="org.eclipse.ocl.examples.interpreter.ecoreReflectiveEditorContribution"
+            targetID="org.eclipse.emf.ecore.presentation.ReflectiveEditorID">
+         <action
+               label="%_UI_ShowOCLConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowEcoreConsoleDelegate"
+               menubarPath="org.eclipse.emf.ecoreMenuID/additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowEcoreReflectiveConsoleAction"/>
       </editorContribution> 
       <editorContribution
             id="org.eclipse.ocl.examples.interpreter.umlEditorContribution"
@@ -86,6 +96,16 @@
                menubarPath="additions"
                icon="$nl$/icons/elcl16/oclconsole_co.gif"
                id="org.eclipse.ocl.examples.interpreter.ShowEcoreConsoleAction"/>
+      </viewerContribution>
+      <viewerContribution
+            targetID="org.eclipse.emf.ecore.presentation.ReflectiveEditorID"
+            id="org.eclipse.ocl.examples.ecoreReflectiveViewerContribution">
+         <action
+               label="%_UI_ShowOCLConsole_label"
+               class="org.eclipse.ocl.examples.interpreter.actions.ShowEcoreConsoleDelegate"
+               menubarPath="additions"
+               icon="$nl$/icons/elcl16/oclconsole_co.gif"
+               id="org.eclipse.ocl.examples.interpreter.ShowEcoreReflectiveConsoleAction"/>
       </viewerContribution>
       <viewerContribution
             targetID="org.eclipse.uml2.uml.editor.presentation.UMLEditorID"
