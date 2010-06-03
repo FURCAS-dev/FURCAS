@@ -18,6 +18,7 @@ import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 public class ClassFilter extends EventFilter {
 
     protected EClass wantedClass;
+    protected boolean includeSubClasses = false;
 
     public ClassFilter() {
         super();
@@ -27,8 +28,12 @@ public class ClassFilter extends EventFilter {
         super();
         setWantedClass(subClass);
         setNegated(negated);
+        setIncludeSubClasses(includeSubclasses);
+        
     }
-
+    public void setIncludeSubClasses(boolean includeSubClasses) {
+        this.includeSubClasses = includeSubClasses;
+    }
     public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
         EList<NotificationIdentifier> result = new BasicEList<NotificationIdentifier>();
         result.add(identifier);
@@ -37,9 +42,27 @@ public class ClassFilter extends EventFilter {
         return result;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
+
+
+    public EClass getWantedClass() {
+        return wantedClass;
+    }
+
+
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (includeSubClasses ? 1231 : 1237);
+        result = prime * result + ((wantedClass == null) ? 0 : wantedClass.hashCode());
+        return result;
+    }
+
+    /* (non-Javadoc)
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -51,29 +74,14 @@ public class ClassFilter extends EventFilter {
         if (getClass() != obj.getClass())
             return false;
         ClassFilter other = (ClassFilter) obj;
+        if (includeSubClasses != other.includeSubClasses)
+            return false;
         if (wantedClass == null) {
             if (other.wantedClass != null)
                 return false;
         } else if (!wantedClass.equals(other.wantedClass))
             return false;
         return true;
-    }
-
-    public EClass getWantedClass() {
-        return wantedClass;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((wantedClass == null) ? 0 : wantedClass.hashCode());
-        return result;
     }
 
     public boolean matchesFor(Notification event) {
@@ -86,7 +94,11 @@ public class ClassFilter extends EventFilter {
         if (((EObject) notifier).eClass().equals(getWantedClass())) {
             return true;
         }
-        return ((EObject) notifier).eClass().getEAllSuperTypes().contains(getWantedClass());
+        if(getIncludeSubClasses()){
+            return ((EObject) notifier).eClass().getEAllSuperTypes().contains(getWantedClass());   
+        }else{
+            return ((EObject) notifier).eClass().equals(getWantedClass());
+        }
     }
 
     public void setWantedClass(EClass newWantedClass) {
@@ -101,9 +113,7 @@ public class ClassFilter extends EventFilter {
     }
 
     public boolean getIncludeSubClasses() {
-        // TODO Auto-generated methodgetIncludeSubClasses stub
-//        System.out.println("getIncludeSubClasses");
-        return false;
+        return this.includeSubClasses;
         
     }
     @Override

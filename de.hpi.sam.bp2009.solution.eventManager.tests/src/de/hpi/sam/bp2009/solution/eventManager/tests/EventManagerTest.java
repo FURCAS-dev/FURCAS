@@ -10,13 +10,8 @@ import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.notify.impl.NotifierImpl;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.junit.Test;
 
 import company.CompanyFactory;
@@ -31,7 +26,6 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ContainmentFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
-import de.hpi.sam.bp2009.solution.eventManager.tests.util.EventManagerHelper;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
@@ -39,7 +33,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper
 public class EventManagerTest extends BaseDepartmentTest {
 
     protected EventManager fixture = null;
-    private Notifier noti;
     private EventFilter filter;
     private Adapter adapter;
     private Notification lastMsg;
@@ -76,9 +69,8 @@ public class EventManagerTest extends BaseDepartmentTest {
     public void setUp() {
         super.setUp();
         this.createInstances(1, 3, 4);
-        setFixture(EventManagerFactory.eINSTANCE.createEventManagerTableBased());
-        noti = new NotifierImpl();
-        matchingNotification = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge,
+        setFixture(EventManagerFactory.eINSTANCE.getEventManagerFor(this.comp.eResource().getResourceSet()));
+        matchingNotification = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.employeeAge,
                 new Long(23), new Long(42));
 
         filter = new AttributeFilter(this.employeeAge);
@@ -101,17 +93,12 @@ public class EventManagerTest extends BaseDepartmentTest {
     @Override
     public void tearDown() {
         setFixture(null);
-        noti = null;
         filter = null;
         adapter = null;
         lastMsg = null;
         matchingNotification = null;
     }
 
-    public void testSubscribe__EList_EventFilter_Adapter() {
-        getFixture().subscribe(EventManagerHelper.getEListFor(noti), filter, adapter);
-        assertTrue(noti.eAdapters().size() == 1);
-    }
 
     public void testSubscribeTransactional__EList_EventFilter_Adapter() {
         System.err.println("Implement ME -- SubscribeTransactional__EList_EventFilter_Adapter");
@@ -126,7 +113,7 @@ public class EventManagerTest extends BaseDepartmentTest {
         /*
          * register Application
          */
-        getFixture().subscribe(EventManagerHelper.getEListFor(noti), filter, adapter);
+        getFixture().subscribe(filter, adapter);
 
         getFixture().handleEMFEvent(matchingNotification);
 
@@ -163,10 +150,8 @@ public class EventManagerTest extends BaseDepartmentTest {
     private void filterStatementsWithEM(EventFilter filter, Bool b) {
 
         MyApp app = new MyApp(b);
-        EventManager m = EventManagerFactory.eINSTANCE.createEventManagerTableBased();
-        EList<Notifier> l = new BasicEList<Notifier>();
-        l.add(this.comp.eResource());
-        m.subscribe(l, filter, app);
+        EventManager m = EventManagerFactory.eINSTANCE.getEventManagerFor(this.comp.eResource().getResourceSet());
+        m.subscribe(filter, app);
     }
 
     public class Bool {
@@ -174,31 +159,31 @@ public class EventManagerTest extends BaseDepartmentTest {
     }
 
     public void testUnsubscribe__Adapter() {
-        getFixture().subscribe(EventManagerHelper.getEListFor(noti), filter, adapter);
+        getFixture().subscribe(filter, adapter);
         getFixture().unsubscribe(adapter);
 
         assertFalse((matchingNotification.equals(lastMsg)));
         assertNull(lastMsg);
     }
     public void testResourceAddContainmentFilter(){
-       Resource r = new ResourceImpl();
+       Resource r = this.comp.eResource();
        Bool b = new Bool();
-       getFixture().subscribe(EventManagerHelper.getEListFor((Notifier)r), ContainmentFilter.INSTANCE, new MyApp(b));
+       getFixture().subscribe(ContainmentFilter.INSTANCE, new MyApp(b));
        r.getContents().add(this.aEmployee);
        assertTrue(b.is);
     }
     public void testResourceRemoveContainmentFilter(){
-        Resource r = new ResourceImpl();
+        Resource r = this.comp.eResource();
         Bool b = new Bool();
         r.getContents().add(this.aEmployee);
-        getFixture().subscribe(EventManagerHelper.getEListFor((Notifier)r), ContainmentFilter.INSTANCE, new MyApp(b));
+        getFixture().subscribe(ContainmentFilter.INSTANCE, new MyApp(b));
         r.getContents().remove(this.aEmployee);
         assertTrue(b.is);
      }
     public void testResourceCompositeAddContainmentFilter(){
-        Resource r = new ResourceImpl();
+        Resource r = this.comp.eResource();
         Bool b = new Bool();
-        getFixture().subscribe(EventManagerHelper.getEListFor((Notifier)r), new ClassFilter(department, false, false), new MyApp(b));
+        getFixture().subscribe( new ClassFilter(department, false, false), new MyApp(b));
         r.getContents().add(this.aDivision);
         assertTrue(b.is);
      }
@@ -229,6 +214,6 @@ public class EventManagerTest extends BaseDepartmentTest {
         
         
         
-    }
+    }    
 
 } // EventManagerTest

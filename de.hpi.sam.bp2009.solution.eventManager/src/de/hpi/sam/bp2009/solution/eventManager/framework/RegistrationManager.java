@@ -450,16 +450,16 @@ public abstract class RegistrationManager {
             ClassFilter classFilter = (ClassFilter) source;
 
             return getSubTypeFilterTree(classFilter);
-            // }else if (source instanceof PackageFilter) {
-            // /**
-            // * This method replaces ExtentFilters that have a filterCriterion of type <code>
-            // * RefPackage</code> with a
-            // * collection of OR-Connected ExtentFilterFilters that represent all transitively contained
-            // * <code>RefClasses</code>
-            // */
-            // PackageFilter extentFilter = (PackageFilter) source;
-            //
-            // return getExpandedExtentFilterTree(extentFilter);
+             }else if (source instanceof PackageFilter) {
+             /**
+             * This method replaces ExtentFilters that have a filterCriterion of type <code>
+             * EPackage</code> with a
+             * collection of OR-Connected ExtentFilterFilters that represent all transitively contained
+             * <code>RefClasses</code>
+             */
+             PackageFilter extentFilter = (PackageFilter) source;
+            
+             return getExpandedExtentFilterTree(extentFilter);
         } else
             return source;
     }
@@ -564,8 +564,8 @@ public abstract class RegistrationManager {
     /**
      * computes an OR-connected filter tree which represents an explicit registration to all subtypes of the parameter
      * 
-     * @param clazz
-     *            the class of which all subtypes are computed
+     * @param filter {@link ClassFilter} which should {@link ClassFilter#getIncludeSubClasses()}
+     * @return or filter, which contains the filter itself and new filter for all subtypes
      */
     static EventFilter getSubTypeFilterTree(ClassFilter filter) {
         EventFilter subTypeFilterTree = null;
@@ -580,7 +580,11 @@ public abstract class RegistrationManager {
         int index = 0;
         orFilterOperands[index++] = filter;
         for (EClass subClass : subClasses) {
-            orFilterOperands[index++] = new ClassFilter(subClass, false, false);
+                ClassFilter copy = filter.clone();
+                copy.setWantedClass(subClass);
+                copy.setNegated(false);
+                copy.setIncludeSubClasses(false);
+                orFilterOperands[index++] =copy;
         }
         subTypeFilterTree = new OrFilter(orFilterOperands);
 

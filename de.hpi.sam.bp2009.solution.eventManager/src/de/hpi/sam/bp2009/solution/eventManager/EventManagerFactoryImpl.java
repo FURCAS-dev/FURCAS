@@ -1,5 +1,11 @@
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import java.lang.ref.WeakReference;
+import java.util.Iterator;
+import java.util.WeakHashMap;
+
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter;
@@ -12,6 +18,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 
 public class EventManagerFactoryImpl implements EventManagerFactory {
+    WeakHashMap<ResourceSet,WeakReference<EventManager>> setToManager= new WeakHashMap<ResourceSet, WeakReference<EventManager>>();
+
     public static EventManagerFactory init() {
         return new EventManagerFactoryImpl();
     }
@@ -19,13 +27,13 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     public EventManagerFactoryImpl() {
         super();
     }
-
-    public EventManager createEventManager() {
-        EventManager eventManager = new EventManagerImpl();
-        return eventManager;
-    }
-    public EventManager createEventManagerTableBased() {
-        EventManager eventManager = new de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased();
+    public EventManager getEventManagerFor(ResourceSet set) {
+        EventManager cached = setToManager.get(set)==null?null:setToManager.get(set).get();
+        if(cached!=null){
+            return cached;
+        }
+        EventManager eventManager = new de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased(set);
+        setToManager.put(set, new WeakReference<EventManager>(eventManager));
         return eventManager;
     }
     public EventTypeFilter createEventTypeFilter() {

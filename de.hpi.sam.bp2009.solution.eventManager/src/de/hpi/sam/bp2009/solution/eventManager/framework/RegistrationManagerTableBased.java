@@ -147,17 +147,18 @@ class RegistrationManagerTableBased extends RegistrationManager {
         allTables.add(table);
         tableByFilterType.put(table.getIdentifier(), table);
 
-        table = new TableInstanceFilter(false);
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-        affectedTablesOnElementRepartitioning.add(table);
-
-        table = new TableInstanceFilter(true);
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-        affectedTablesOnElementRepartitioning.add(table);
+//        TODO check if instance filter used
+//        table = new TableInstanceFilter(false);
+//        setUsualEvents(table);
+//        allTables.add(table);
+//        tableByFilterType.put(table.getIdentifier(), table);
+//        affectedTablesOnElementRepartitioning.add(table);
+//
+//        table = new TableInstanceFilter(true);
+//        setUsualEvents(table);
+//        allTables.add(table);
+//        tableByFilterType.put(table.getIdentifier(), table);
+//        affectedTablesOnElementRepartitioning.add(table);
 
         table = new TableForEventTypeFilter();
         // addTableForEventType(table, ElementCreateEventImpl.class);

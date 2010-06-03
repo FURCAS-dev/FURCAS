@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.eventManager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
 import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
@@ -20,8 +21,13 @@ public class PackageFilter extends EventFilter {
 
     @Override
     public boolean matchesFor(Notification event) {
-        // TODO Auto-generated methodmatchesFor stub
-        System.out.println("matchesFor");
+        if(event.getNotifier()!=null && event.getNotifier() instanceof EObject){
+            for(EPackage p= ((EObject) event.getNotifier()).eClass().getEPackage();p!=null; p=p.getESuperPackage()){
+                if(p.equals(getEPackage())){
+                    return true;
+                }
+            }
+        }
         return false;
 
     }
@@ -34,20 +40,37 @@ public class PackageFilter extends EventFilter {
 
     }
 
+
+
+    /* (non-Javadoc)
+     * @see java.lang.Object#hashCode()
+     */
     @Override
     public int hashCode() {
-        // TODO Auto-generated methodhashCode stub
-        System.out.println("hashCode");
-        return 0;
-
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((ePackage == null) ? 0 : ePackage.hashCode());
+        return result;
     }
 
+    /* (non-Javadoc)
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
     @Override
     public boolean equals(Object obj) {
-        // TODO Auto-generated methodequals stub
-        System.out.println("equals");
-        return false;
-
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        PackageFilter other = (PackageFilter) obj;
+        if (ePackage == null) {
+            if (other.ePackage != null)
+                return false;
+        } else if (!ePackage.equals(other.ePackage))
+            return false;
+        return true;
     }
 
     public EPackage getEPackage() {

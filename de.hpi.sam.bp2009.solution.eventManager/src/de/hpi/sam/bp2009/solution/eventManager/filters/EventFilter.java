@@ -14,7 +14,7 @@ import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 
 public abstract class EventFilter {
 
-    private boolean negated;
+    private boolean negated = false;
 
     public EventFilter() {
         super();

@@ -25,6 +25,9 @@ public class OldValueClassFilter extends ClassFilter {
         super();
         setWantedClass(affectedClass2);
     }
+    public OldValueClassFilter(EClass clazz, boolean includeSubclasses, boolean isNegated){
+        super(clazz, includeSubclasses, isNegated);
+    }
 
     @Override
     public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
@@ -47,12 +50,7 @@ public class OldValueClassFilter extends ClassFilter {
         if (getClass() != obj.getClass())
             return false;
         OldValueClassFilter other = (OldValueClassFilter) obj;
-        if (getWantedClass() == null) {
-            if (other.getWantedClass() != null)
-                return false;
-        } else if (!getWantedClass().equals(other.getWantedClass()))
-            return false;
-        return true;
+        return super.equals(other);
     }
 
     /*
@@ -62,10 +60,7 @@ public class OldValueClassFilter extends ClassFilter {
      */
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getWantedClass() == null) ? 0 : getWantedClass().hashCode());
-        return result;
+        return 43 * super.hashCode();
     }
 
     public boolean matchesFor(Notification event) {
@@ -98,11 +93,6 @@ public class OldValueClassFilter extends ClassFilter {
     public OldValueClassFilter clone(){
         return new OldValueClassFilter(getWantedClass());
 
-    }
-    @Override
-    public Object getFilterCriterion() {
-        return getWantedClass();
-        
     }
 
 } // OldValueClassFilterImpl

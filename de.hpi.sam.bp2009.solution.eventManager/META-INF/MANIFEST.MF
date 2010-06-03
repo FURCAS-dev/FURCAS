@@ -7,10 +7,23 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: de.hpi.sam.bp2009.solution.eventManager,
- de.hpi.sam.bp2009.solution.eventManager.filters,
- de.hpi.sam.bp2009.solution.eventManager.framework,
- de.hpi.sam.bp2009.solution.eventManager.util
+Export-Package: de.hpi.sam.bp2009.solution.eventManager;
+  uses:="org.eclipse.emf.ecore.resource,
+   org.eclipse.emf.common.util,
+   org.eclipse.emf.common.notify,
+   de.hpi.sam.bp2009.solution.eventManager.filters",
+ de.hpi.sam.bp2009.solution.eventManager.filters;
+  uses:="org.eclipse.emf.ecore,
+   org.eclipse.emf.common.util,
+   de.hpi.sam.bp2009.solution.eventManager,
+   org.eclipse.emf.common.notify",
+ de.hpi.sam.bp2009.solution.eventManager.framework;
+  uses:="org.eclipse.emf.ecore.resource,
+   org.eclipse.emf.ecore,
+   de.hpi.sam.bp2009.solution.eventManager,
+   org.eclipse.emf.common.notify,
+   de.hpi.sam.bp2009.solution.eventManager.filters",
+ de.hpi.sam.bp2009.solution.eventManager.util;uses:="org.eclipse.emf.ecore,org.eclipse.emf.common.notify,de.hpi.sam.bp2009.solution.eventManager.filters"
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.query2

@@ -1,5 +1,7 @@
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter;
@@ -15,8 +17,7 @@ public interface EventManagerFactory {
 
     EventManagerFactory eINSTANCE = de.hpi.sam.bp2009.solution.eventManager.EventManagerFactoryImpl.init();
 
-    EventManager createEventManager();
-    EventManager createEventManagerTableBased();
+    EventManager getEventManagerFor(ResourceSet set);
 
     EventTypeFilter createEventTypeFilter();
 

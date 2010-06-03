@@ -26,6 +26,10 @@ public class NewValueClassFilter extends ClassFilter {
         setWantedClass(affectedClass2);
     }
 
+    public NewValueClassFilter(EClass subClass, boolean includeSubclasses, boolean negated) {
+        super(subClass, includeSubclasses, negated);
+    }
+
     @Override
     public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
         identifier.getNewValueClassURIs().add(EcoreUtil.getURI(getWantedClass()));
@@ -47,12 +51,7 @@ public class NewValueClassFilter extends ClassFilter {
         if (getClass() != obj.getClass())
             return false;
         NewValueClassFilter other = (NewValueClassFilter) obj;
-        if (getWantedClass() == null) {
-            if (other.getWantedClass() != null)
-                return false;
-        } else if (!getWantedClass().equals(other.getWantedClass()))
-            return false;
-        return true;
+        return super.equals(other);
     }
 
     /*
@@ -62,10 +61,7 @@ public class NewValueClassFilter extends ClassFilter {
      */
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getWantedClass() == null) ? 0 : getWantedClass().hashCode());
-        return result;
+        return 37 * super.hashCode();
     }
 
     public boolean matchesFor(Notification event) {
@@ -95,11 +91,4 @@ public class NewValueClassFilter extends ClassFilter {
         return new NewValueClassFilter(getWantedClass());
 
     }
-
-    @Override
-    public Object getFilterCriterion() {
-        return getWantedClass();
-
-    }
-
 } // NewValueClassFilterImpl

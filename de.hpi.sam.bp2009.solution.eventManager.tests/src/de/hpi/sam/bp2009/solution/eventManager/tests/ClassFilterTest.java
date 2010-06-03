@@ -30,6 +30,7 @@ public class ClassFilterTest extends EventFilterTest {
 	private NotificationIdentifier id;
 	private DynamicEObjectImpl inst;
 	private NotificationImpl noti;
+    private EClass superCls;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,6 +90,9 @@ public class ClassFilterTest extends EventFilterTest {
 		setFixture(EventManagerFactory.eINSTANCE.createClassFilter());
 		cls = EcoreFactory.eINSTANCE.createEClass();
 		cls.setName("theClass");
+		superCls = EcoreFactory.eINSTANCE.createEClass();
+		superCls.setName("super");
+		cls.getESuperTypes().add(superCls);
 		inst = new DynamicEObjectImpl(cls);
 		id = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
 		noti = new TestNoti(0, false, false, inst);
@@ -135,5 +139,10 @@ public class ClassFilterTest extends EventFilterTest {
 		
 		assertEquals(EcoreUtil.getURI(cls), ni.getNotifierClassURI() );
 	}
+	public void testMatchesWithSubclasses(){
+	    getFixture().setIncludeSubClasses(true);
+	    getFixture().setWantedClass(superCls);
+            assertTrue("Matches an Event from the given class", 
+                    getFixture().matchesFor(noti));	}
 
 } //ClassFilterTest

@@ -2,22 +2,17 @@ package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventAdapter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 /**
@@ -31,38 +26,16 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
  */
 
 public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventManager.EventManager {
-    /**
-     * @author Philipp The EContentAdapter Implementation used for registering on the root notifiers
-     */
-    private class EventAdapter extends EContentAdapter {
-        Set<WeakReference<org.eclipse.emf.common.notify.Notifier>> notis = new HashSet<WeakReference<org.eclipse.emf.common.notify.Notifier>>();
-
-        /**
-         * Registers this adapter on the given notifier and add the notifier to the intern list
-         * 
-         * @param newNoti
-         * @return false if the notifier is yet in the scope
-         */
-        boolean addToNotifier(org.eclipse.emf.common.notify.Notifier newNoti) {
-            if (newNoti.eAdapters().contains(this))
-                return false;
-            newNoti.eAdapters().add(this);
-            notis.add(new WeakReference<org.eclipse.emf.common.notify.Notifier>(newNoti));
-            return true;
-        }
-
-        @Override
-        public void notifyChanged(Notification notification) {
-            super.notifyChanged(notification);
-            handleEMFEvent(notification);
-        }
-    }
 
     /**
      * the EventAdapter instance for the EventManager
      */
-    EventAdapter adapter = new EventAdapter();
+    EventAdapter adapter = new EventAdapter(this);
 
+    /**
+     * Toogle the {@link EventManager} off, on given <code>false</code> and no {@link Notification}s will be delivered
+     * @param doFireEventsValue <code>false</code> to disable {@link Notification}delivery, <code>true</code> to enable
+     */
     public void setFireEvents(boolean doFireEventsValue) {
         doFireEvents = doFireEventsValue;
     }
@@ -86,8 +59,16 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
      */
     private RegistrationManagerTableBased registrationManager = null;
 
-    public EventManagerTableBased() {
+    private WeakReference<ResourceSet> resourceSet;
+
+    public EventManagerTableBased(ResourceSet set) {
         registrationManager = new RegistrationManagerTableBased();
+        set.eAdapters().add(adapter);
+        this.resourceSet= new WeakReference<ResourceSet>(set);
+    }
+    @Override
+    public ResourceSet getResourceSet() {
+        return resourceSet.get();
     }
 
     /* Methods from EventRegistry interface */
@@ -96,12 +77,9 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
      * @see EventRegistry#registerListener(ChangeListener, MoinEventFilter)
      */
     @Override
-    public void subscribe(Collection<? extends org.eclipse.emf.common.notify.Notifier> root,
+    public void subscribe(
             de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter eventFilterTree, Adapter listener) {
         register(listener, eventFilterTree, ListenerTypeEnum.postChange);
-        for (org.eclipse.emf.common.notify.Notifier n : root) {
-            adapter.addToNotifier(n);
-        }
     }
 
     /*
@@ -411,13 +389,6 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
         return null;
     }
 
-    @Override
-    public void subscribeTransactional(Collection<? extends org.eclipse.emf.common.notify.Notifier> root, EventFilter filter,
-            Adapter caller) {
-        // TODO Auto-generated methodsubscribeTransactional stub
-        System.out.println("subscribeTransactional");
-
-    }
 
     @Override
     public void notifyApplication(Adapter application, Notification msg, EventFilter matchingFilter) {
@@ -441,67 +412,17 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
     }
 
     @Override
-    public void subscribe(EventFilter filter, Adapter caller) {
-        subscribe(new HashSet<Notifier>(), filter, caller);
-    }
-
-    @Override
     public void subscribeTransactional(EventFilter filter, Adapter caller) {
-        subscribeTransactional(new HashSet<Notifier>(), filter, caller);
-
+        throw new UnsupportedOperationException();
     }
-
     @Override
-    public boolean detachFrom(Notifier... notifiers) {
-        boolean result = true;
-        for (WeakReference<Notifier> weak : adapter.notis) {
-            for (Notifier noti : notifiers) {
-                if (weak.get().equals(noti)) {
-                    weak.clear();
-                    if (noti instanceof EObject && ((EObject) noti).eContainer() != null
-                            && !((EObject) noti).eContainer().eAdapters().contains(adapter)) {
-                        // no notifier for the container is registered
-                        adapter.unsetTarget(noti);
-
-                    } else if (noti instanceof Resource && ((Resource) noti).getResourceSet() != null
-                            && !((Resource) noti).getResourceSet().eAdapters().contains(adapter)) {
-                        // no notifier for the ResourceSet is registered
-                        adapter.unsetTarget(noti);
-
-                    } else if (noti instanceof ResourceSet) {
-                        // ResourceSet
-                        adapter.unsetTarget(noti);
-                    } else {
-                        // adapter not detached
-                        result = false;
-                    }
-
-                }
-                ;
-            }
-
+    protected void finalize() throws Throwable {
+        if(this.getResourceSet()!=null && adapter!=null){
+            getResourceSet().eAdapters().remove(adapter);
         }
-        return result;
+        super.finalize();
+        
     }
-
-    @Override
-    public Collection<? extends Notifier> getAllNotifiers() {
-        Collection<Notifier> result = new HashSet<Notifier>();
-        for (WeakReference<Notifier> weak : adapter.notis) {
-            result.add(weak.get());
-        }
-        return result;
-    }
-
-    @Override
-    public boolean attachTo(Notifier... notifiers) {
-        for (Notifier n : notifiers) {
-            adapter.setTarget(n);
-        }
-        return getAllNotifiers().containsAll(Arrays.asList(notifiers));
-
-    }
-
     /*
      * EventDeferment will not be implemented yet:
      */

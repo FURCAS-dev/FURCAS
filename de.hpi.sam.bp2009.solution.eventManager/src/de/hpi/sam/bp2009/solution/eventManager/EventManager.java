@@ -6,11 +6,10 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
@@ -29,20 +28,10 @@ public interface EventManager {
      */
     void subscribe(EventFilter filter, Adapter caller);   
     
-    /**
-     * Additional to registering an {@link Adapter} with the filter which has to match for a {@link Notification}, 
-     * one can give a {@link Collection} of {@link Notifier}, on which the {@link EventManager} should be attached (increase the size of the scope)
-     * NOTE: idenpendent from the given notifier, an adapter will be notified for each {@link Notification} matching the filter from the whole scope of the {@link EventManager}
-     * @see EventManager#subscribe(EventFilter, Adapter)
-     * @param notifiers all notifiers to attach the {@link EventManager} on
-     * @param filter the {@link EventFilter} which is used to filter events for the given {@link Adapter}
-     * @param caller the adapter which should receive event which matches the filter
-     */
-    void subscribe(Collection<? extends Notifier> notifiers, EventFilter filter, Adapter caller);
+   
     
-    
+    @Deprecated
     void subscribeTransactional(EventFilter filter, Adapter caller);   
-    void subscribeTransactional(Collection<? extends Notifier> root, EventFilter filter, Adapter caller);
 
 
 
@@ -54,17 +43,11 @@ public interface EventManager {
     boolean unsubscribe(Adapter caller);
     
     /**
-     * Tries to detach the {@link EventManager} from the given {@link Notifier}s
-     * @param notifiers notifiers to detach from
-     * @return <code>true</code> if all {@link Notifier}s could be detached and no {@link Notifier} exists which contains the given {@link Notifier}s and as result prevent the EventManager from detaching
+     * Returns the {@link ResourceSet} of the {@link EventManager}, which defines the root for receiving event of composite {@link EObject}s
+     * @return the composition
      */
-    boolean detachFrom(Notifier... notifiers);
-    /**
-     * Gives all {@link Notifier}s where the {@link EventManager} was intentionally attached, so exclude all {@link Notifier}s which are in the compisition hierarchy 
-     * @return {@link Collection} of all {@link Notifier}s
-     */
-    Collection<? extends Notifier> getAllNotifiers();
-    boolean attachTo(Notifier... notifiers);
+    ResourceSet getResourceSet();
+    
 
     /*
      * INTERN METHODS should only be used by the EventManager
