@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst.impl;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -118,6 +120,15 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
         for(EObject sPkg: r.getContents()){
             if(sPkg instanceof EPackage){
+                if(EPackage.Registry.INSTANCE.containsKey(((EPackage) sPkg).getNsURI())){
+                     sPkg=(EPackage) EPackage.Registry.INSTANCE.get(((EPackage) sPkg).getNsURI());
+                     /*
+                      * change the current resource to the ecore from the loaded packages
+                      */
+                     r = sPkg.eResource();
+
+                    
+                }
                 if(((EPackage)sPkg).getEAnnotation(OCL_TYPES)!=null){
                     ((EPackage)sPkg).getEAnnotation(OCL_TYPES).getContents().clear();
                 }
@@ -125,7 +136,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             }
         }
         try {
-            r.save(null);
+            r.save(new FileOutputStream(new File(java.net.URI.create(fileUri.toString()))), null);
         } catch (IOException e) {
             getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", r));
         }

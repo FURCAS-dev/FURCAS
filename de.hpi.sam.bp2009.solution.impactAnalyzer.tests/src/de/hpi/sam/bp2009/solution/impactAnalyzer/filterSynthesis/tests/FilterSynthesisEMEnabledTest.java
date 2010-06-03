@@ -5,9 +5,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Test;
 
@@ -22,16 +19,25 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.ExampleApp;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
 public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
+    private EventManager m;
+
     @Override
     public void setUp() {
         super.setUp();
         this.eS = new HashSet<ExampleApp>();
+        m = EventManagerFactory.eINSTANCE.getEventManagerFor(this.comp.eResource().getResourceSet());
+
         
     }
     @Override
     public void tearDown() {
+        for(ExampleApp app:eS){
+            m.unsubscribe(app);
+        }
+        this.eS = null;
+        this.m= null;
         super.tearDown();
-        this.eS = null;        
+      
     }
     /**
      * Sends a {@link Notification} to IA and compares the returned affected statements to a set of expected affected statements.
@@ -251,7 +257,6 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
         expectedStmts.add(this.expensesRestrictionAST);
         expectedStmts.add(this.nastyConstraintAST);
         expectedStmts.add(this.boss10YearsOlderThanJuniorAST);
-
         assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
     }
 
@@ -278,7 +283,6 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
         expectedStmts.add(this.divisionBossSecretaryAST);
         expectedStmts.add(this.secretaryOlderThanBossAST);
         expectedStmts.add(this.expensesRestrictionAST);
-
         assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
     }
 
@@ -306,7 +310,6 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
         expectedStmts.add(this.divisionBossSecretaryAST);
         expectedStmts.add(this.secretaryOlderThanBossAST);
         expectedStmts.add(this.expensesRestrictionAST);
-
         assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
     }
 
@@ -427,15 +430,11 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
 
     private HashSet<OCLExpression> filterStatementsWithEM() {
         HashSet<OCLExpression> affectedStmts = new HashSet<OCLExpression>();
-        EventManager m = EventManagerFactory.eINSTANCE.createEventManagerTableBased();
-
         for (Iterator<OCLExpression> i = this.stmts.iterator(); i.hasNext();) {
             OCLExpression exp = i.next();
             EventFilter filter = this.ia.createFilterForExpression(exp, true);
             ExampleApp app = new ExampleApp(exp, affectedStmts);
-            EList<Notifier> l = new BasicEList<Notifier>();
-            l.add(this.comp.eResource());
-            m.subscribe(l, filter, app);
+            m.subscribe(filter, app);
             eS.add(app);
         }
         return affectedStmts;
