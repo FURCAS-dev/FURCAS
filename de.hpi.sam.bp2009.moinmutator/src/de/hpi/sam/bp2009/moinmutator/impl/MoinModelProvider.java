@@ -10,12 +10,14 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.model.AggregationKindEnum;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.EnumerationType;
+import com.sap.tc.moin.repository.mmi.model.IsOfType;
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
 import com.sap.tc.moin.repository.mmi.model.Reference;
 import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
+import com.sap.tc.moin.repository.mmi.model.TypedElement;
 import com.sap.tc.moin.repository.mmi.reflect.RefClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
@@ -120,10 +122,12 @@ public class MoinModelProvider implements IMoinModelProvider {
 
     @Override
     public StructuralFeature getRandomFeatureHavingType(MofClass type) {
+        IsOfType assoc = connection.getAssociation(IsOfType.ASSOCIATION_DESCRIPTOR);
+        Collection<TypedElement> typedElements = assoc.getTypedElements(type);
         List<StructuralFeature> list = new ArrayList<StructuralFeature>();
-        for (StructuralFeature f : getAllStructuralFeatures()) {
-            if (f.getType().equals(type)) {
-                list.add(f);
+        for (TypedElement f : typedElements) {
+            if (f instanceof StructuralFeature) {
+                list.add((StructuralFeature) f);
             }
         }
         if (list.size() == 0){
