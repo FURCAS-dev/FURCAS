@@ -18,7 +18,6 @@ import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
 import com.sap.tc.moin.repository.mmi.model.Reference;
 import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
 import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mql.MQLProcessor;
