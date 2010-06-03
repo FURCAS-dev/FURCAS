@@ -172,8 +172,8 @@ public class MoinModelProvider implements IMoinModelProvider {
     public RefObject getRandomInstanceHavingFeature(StructuralFeature feature) {
         RefObject result = null;
         RefFeatured x = feature.refImmediateComposite();
-        if (x instanceof RefClass) {
-            Collection<RefObject> c = ((RefClass) x).refAllOfClass();
+        if (x instanceof MofClass) {
+            Collection<RefObject> c = ((MofClass) x).refClass().refAllOfClass();
             result = (RefObject) c.toArray()[c.size()];
         }
         return result;
