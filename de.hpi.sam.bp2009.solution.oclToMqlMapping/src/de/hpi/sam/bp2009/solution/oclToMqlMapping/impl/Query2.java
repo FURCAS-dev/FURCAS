@@ -208,15 +208,17 @@ public class Query2  {
             QueryContext queryContext = setQueryContext(allO);
             ResultSet resultSet=null;
             QueryProcessor queryProcessor = setQueryProcessor();
-            String regex="([0-9A-Za-z]+)\\.([0-9A-Za-z]+)\\*\\*\\*([0-9A-Za-z]+)\\=([0-9A-Za-z]+)";
-            String stars = "\\*\\*\\*";
+//            String regex="([0-9A-Za-z]+)\\.([0-9A-Za-z]+)";//regex collect (Attribute) body
+            
             String alias = "([0-9A-Za-z]{1}\\.)";
-            Pattern pattern=Pattern.compile(regex);
-            Pattern patt=Pattern.compile(stars);
-            Pattern pat = Pattern.compile(alias);
-            Matcher match=pattern.matcher(stringBody);
-            Matcher match2=patt.matcher(stringBody);
-            Matcher match3=pat.matcher(stringBody);
+//            Pattern pattern=Pattern.compile(regex);
+            
+            Pattern pattern3 = Pattern.compile(alias);
+//            Matcher match=pattern.matcher(stringBody);
+            Matcher match3=pattern3.matcher(stringBody);
+//            boolean test1 = match.find();
+//            boolean test2 = match2.find();
+            boolean test3 = match3.find();
             if (body instanceof PropertyCallExp<?, ?>){
 
                 Object prop = ((PropertyCallExp) body).getReferredProperty();
@@ -228,7 +230,7 @@ public class Query2  {
                     //TODO delete "with" and "in assoc", compare with ebnf for right mql
                     try{
                         resultSet = queryProcessor.execute("select "+ali+" from  [" +uri1+ //$NON-NLS-1$
-                                "] as "+ali+" , [" +uri2+ " ]as a2 with (a1,a2) in assoc( " +stringBody+ ")", queryContext); //$NON-NLS-1$
+                                "] as "+ali+" , [" +uri2+ "] as a2 where " +stringBody+"=a2" , queryContext); //$NON-NLS-1$
                     }
                     catch (EvaluationHaltedException e) {
                         // evaluation stopped on demand, propagate further
@@ -254,7 +256,20 @@ public class Query2  {
                         result=null;
                     }
                     finally{
-                        result = buildResult(resultSet, queryContext, ali);
+                        if(!resultSet.isEmpty()){
+                            Collection<EObject> col= new HashSet<EObject>();
+                            for(int i=0; i<resultSet.getSize();i++){
+                                col.add((EObject) resultSet); //$NON-NLS-1$
+
+                            }
+                            result = col;
+                            System.out.println("successfull");
+                        }
+                        else {
+                            Collection<EObject> col= new HashSet<EObject>();
+                            
+                            result = col;
+                        }
                     } 
                 }
                 return result;
