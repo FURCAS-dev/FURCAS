@@ -18,11 +18,17 @@ import data.classes.SapClass;
 
 import data.classes.impl.TypedElementImpl;
 
+import dataaccess.analytics.AnalyticsPackage;
+import dataaccess.analytics.DimensionDefinition;
+import dataaccess.analytics.DimensionExpression;
+import dataaccess.analytics.GroupBy;
 import dataaccess.expressions.Conditional;
 import dataaccess.expressions.Equals;
 import dataaccess.expressions.Expression;
 import dataaccess.expressions.ExpressionsPackage;
 
+import dataaccess.expressions.FunctionCallExpression;
+import dataaccess.expressions.ObjectBasedExpression;
 import dataaccess.expressions.WithArgument;
 import dataaccess.expressions.collectionexpressions.CollectionExpression;
 import dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage;
@@ -63,7 +69,9 @@ import ui.templates.TemplatesPackage;
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getExpressionStatement <em>Expression Statement</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getInitExpressionFor <em>Init Expression For</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getActualObjectParameter <em>Actual Object Parameter</em>}</li>
+ *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getObjectBasedExpression <em>Object Based Expression</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getArgumentOf <em>Argument Of</em>}</li>
+ *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getBlockOfFunctionCallExpression <em>Block Of Function Call Expression</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getLeftOfEquals <em>Left Of Equals</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getRightOfEquals <em>Right Of Equals</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getConditional <em>Conditional</em>}</li>
@@ -71,6 +79,10 @@ import ui.templates.TemplatesPackage;
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getInIterator <em>In Iterator</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getConditionOfOqlQuery <em>Condition Of Oql Query</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getFromClause <em>From Clause</em>}</li>
+ *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getCellSetOfDimensionExpression <em>Cell Set Of Dimension Expression</em>}</li>
+ *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getFactsOfDimensionExpression <em>Facts Of Dimension Expression</em>}</li>
+ *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getDimension <em>Dimension</em>}</li>
+ *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getMapExpressionOfGroupBy <em>Map Expression Of Group By</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getTemplate <em>Template</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getAll <em>All</em>}</li>
  * </ul>
@@ -226,6 +238,47 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ObjectBasedExpression getObjectBasedExpression() {
+		if (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION) return null;
+		return (ObjectBasedExpression)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetObjectBasedExpression(ObjectBasedExpression newObjectBasedExpression, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newObjectBasedExpression, ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setObjectBasedExpression(ObjectBasedExpression newObjectBasedExpression) {
+		if (newObjectBasedExpression != eInternalContainer() || (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION && newObjectBasedExpression != null)) {
+			if (EcoreUtil.isAncestor(this, newObjectBasedExpression))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newObjectBasedExpression != null)
+				msgs = ((InternalEObject)newObjectBasedExpression).eInverseAdd(this, ExpressionsPackage.OBJECT_BASED_EXPRESSION__OBJECT, ObjectBasedExpression.class, msgs);
+			msgs = basicSetObjectBasedExpression(newObjectBasedExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION, newObjectBasedExpression, newObjectBasedExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public WithArgument getArgumentOf() {
 		if (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__ARGUMENT_OF) return null;
 		return (WithArgument)eContainer();
@@ -260,6 +313,47 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION__ARGUMENT_OF, newArgumentOf, newArgumentOf));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FunctionCallExpression getBlockOfFunctionCallExpression() {
+		if (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION) return null;
+		return (FunctionCallExpression)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetBlockOfFunctionCallExpression(FunctionCallExpression newBlockOfFunctionCallExpression, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newBlockOfFunctionCallExpression, ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBlockOfFunctionCallExpression(FunctionCallExpression newBlockOfFunctionCallExpression) {
+		if (newBlockOfFunctionCallExpression != eInternalContainer() || (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION && newBlockOfFunctionCallExpression != null)) {
+			if (EcoreUtil.isAncestor(this, newBlockOfFunctionCallExpression))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newBlockOfFunctionCallExpression != null)
+				msgs = ((InternalEObject)newBlockOfFunctionCallExpression).eInverseAdd(this, ExpressionsPackage.FUNCTION_CALL_EXPRESSION__CALLED_BLOCK, FunctionCallExpression.class, msgs);
+			msgs = basicSetBlockOfFunctionCallExpression(newBlockOfFunctionCallExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION, newBlockOfFunctionCallExpression, newBlockOfFunctionCallExpression));
 	}
 
 	/**
@@ -554,6 +648,170 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DimensionExpression getCellSetOfDimensionExpression() {
+		if (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION) return null;
+		return (DimensionExpression)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCellSetOfDimensionExpression(DimensionExpression newCellSetOfDimensionExpression, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newCellSetOfDimensionExpression, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCellSetOfDimensionExpression(DimensionExpression newCellSetOfDimensionExpression) {
+		if (newCellSetOfDimensionExpression != eInternalContainer() || (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION && newCellSetOfDimensionExpression != null)) {
+			if (EcoreUtil.isAncestor(this, newCellSetOfDimensionExpression))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newCellSetOfDimensionExpression != null)
+				msgs = ((InternalEObject)newCellSetOfDimensionExpression).eInverseAdd(this, AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, DimensionExpression.class, msgs);
+			msgs = basicSetCellSetOfDimensionExpression(newCellSetOfDimensionExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, newCellSetOfDimensionExpression, newCellSetOfDimensionExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DimensionExpression getFactsOfDimensionExpression() {
+		if (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION) return null;
+		return (DimensionExpression)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFactsOfDimensionExpression(DimensionExpression newFactsOfDimensionExpression, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newFactsOfDimensionExpression, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFactsOfDimensionExpression(DimensionExpression newFactsOfDimensionExpression) {
+		if (newFactsOfDimensionExpression != eInternalContainer() || (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION && newFactsOfDimensionExpression != null)) {
+			if (EcoreUtil.isAncestor(this, newFactsOfDimensionExpression))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newFactsOfDimensionExpression != null)
+				msgs = ((InternalEObject)newFactsOfDimensionExpression).eInverseAdd(this, AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, DimensionExpression.class, msgs);
+			msgs = basicSetFactsOfDimensionExpression(newFactsOfDimensionExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, newFactsOfDimensionExpression, newFactsOfDimensionExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DimensionDefinition getDimension() {
+		if (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__DIMENSION) return null;
+		return (DimensionDefinition)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDimension(DimensionDefinition newDimension, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newDimension, ExpressionsPackage.EXPRESSION__DIMENSION, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDimension(DimensionDefinition newDimension) {
+		if (newDimension != eInternalContainer() || (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__DIMENSION && newDimension != null)) {
+			if (EcoreUtil.isAncestor(this, newDimension))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newDimension != null)
+				msgs = ((InternalEObject)newDimension).eInverseAdd(this, AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION, DimensionDefinition.class, msgs);
+			msgs = basicSetDimension(newDimension, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION__DIMENSION, newDimension, newDimension));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GroupBy getMapExpressionOfGroupBy() {
+		if (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY) return null;
+		return (GroupBy)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMapExpressionOfGroupBy(GroupBy newMapExpressionOfGroupBy, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newMapExpressionOfGroupBy, ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMapExpressionOfGroupBy(GroupBy newMapExpressionOfGroupBy) {
+		if (newMapExpressionOfGroupBy != eInternalContainer() || (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY && newMapExpressionOfGroupBy != null)) {
+			if (EcoreUtil.isAncestor(this, newMapExpressionOfGroupBy))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newMapExpressionOfGroupBy != null)
+				msgs = ((InternalEObject)newMapExpressionOfGroupBy).eInverseAdd(this, AnalyticsPackage.GROUP_BY__MAP_EXPRESSION, GroupBy.class, msgs);
+			msgs = basicSetMapExpressionOfGroupBy(newMapExpressionOfGroupBy, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY, newMapExpressionOfGroupBy, newMapExpressionOfGroupBy));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public StringTemplate getTemplate() {
 		if (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__TEMPLATE) return null;
 		return (StringTemplate)eContainer();
@@ -819,10 +1077,18 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetActualObjectParameter((ActualObjectParameter)otherEnd, msgs);
+			case ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetObjectBasedExpression((ObjectBasedExpression)otherEnd, msgs);
 			case ExpressionsPackage.EXPRESSION__ARGUMENT_OF:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetArgumentOf((WithArgument)otherEnd, msgs);
+			case ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetBlockOfFunctionCallExpression((FunctionCallExpression)otherEnd, msgs);
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -851,6 +1117,22 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetFromClause((FromClause)otherEnd, msgs);
+			case ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetCellSetOfDimensionExpression((DimensionExpression)otherEnd, msgs);
+			case ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetFactsOfDimensionExpression((DimensionExpression)otherEnd, msgs);
+			case ExpressionsPackage.EXPRESSION__DIMENSION:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetDimension((DimensionDefinition)otherEnd, msgs);
+			case ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetMapExpressionOfGroupBy((GroupBy)otherEnd, msgs);
 			case ExpressionsPackage.EXPRESSION__TEMPLATE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -877,8 +1159,12 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return basicSetInitExpressionFor(null, msgs);
 			case ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER:
 				return basicSetActualObjectParameter(null, msgs);
+			case ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION:
+				return basicSetObjectBasedExpression(null, msgs);
 			case ExpressionsPackage.EXPRESSION__ARGUMENT_OF:
 				return basicSetArgumentOf(null, msgs);
+			case ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION:
+				return basicSetBlockOfFunctionCallExpression(null, msgs);
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				return basicSetLeftOfEquals(null, msgs);
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
@@ -893,6 +1179,14 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return basicSetConditionOfOqlQuery(null, msgs);
 			case ExpressionsPackage.EXPRESSION__FROM_CLAUSE:
 				return basicSetFromClause(null, msgs);
+			case ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION:
+				return basicSetCellSetOfDimensionExpression(null, msgs);
+			case ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION:
+				return basicSetFactsOfDimensionExpression(null, msgs);
+			case ExpressionsPackage.EXPRESSION__DIMENSION:
+				return basicSetDimension(null, msgs);
+			case ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY:
+				return basicSetMapExpressionOfGroupBy(null, msgs);
 			case ExpressionsPackage.EXPRESSION__TEMPLATE:
 				return basicSetTemplate(null, msgs);
 			case ExpressionsPackage.EXPRESSION__ALL:
@@ -915,8 +1209,12 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return eInternalContainer().eInverseRemove(this, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION, NamedValueWithOptionalInitExpression.class, msgs);
 			case ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER:
 				return eInternalContainer().eInverseRemove(this, ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, ActualObjectParameter.class, msgs);
+			case ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION:
+				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.OBJECT_BASED_EXPRESSION__OBJECT, ObjectBasedExpression.class, msgs);
 			case ExpressionsPackage.EXPRESSION__ARGUMENT_OF:
 				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.WITH_ARGUMENT__ARGUMENT, WithArgument.class, msgs);
+			case ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION:
+				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.FUNCTION_CALL_EXPRESSION__CALLED_BLOCK, FunctionCallExpression.class, msgs);
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.EQUALS__LEFT, Equals.class, msgs);
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
@@ -931,6 +1229,14 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return eInternalContainer().eInverseRemove(this, QueryPackage.OQL_QUERY__CONDITION, OqlQuery.class, msgs);
 			case ExpressionsPackage.EXPRESSION__FROM_CLAUSE:
 				return eInternalContainer().eInverseRemove(this, QueryPackage.FROM_CLAUSE__FROM_EXPRESSION, FromClause.class, msgs);
+			case ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION:
+				return eInternalContainer().eInverseRemove(this, AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, DimensionExpression.class, msgs);
+			case ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION:
+				return eInternalContainer().eInverseRemove(this, AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, DimensionExpression.class, msgs);
+			case ExpressionsPackage.EXPRESSION__DIMENSION:
+				return eInternalContainer().eInverseRemove(this, AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION, DimensionDefinition.class, msgs);
+			case ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY:
+				return eInternalContainer().eInverseRemove(this, AnalyticsPackage.GROUP_BY__MAP_EXPRESSION, GroupBy.class, msgs);
 			case ExpressionsPackage.EXPRESSION__TEMPLATE:
 				return eInternalContainer().eInverseRemove(this, TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS, StringTemplate.class, msgs);
 			case ExpressionsPackage.EXPRESSION__ALL:
@@ -953,8 +1259,12 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return getInitExpressionFor();
 			case ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER:
 				return getActualObjectParameter();
+			case ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION:
+				return getObjectBasedExpression();
 			case ExpressionsPackage.EXPRESSION__ARGUMENT_OF:
 				return getArgumentOf();
+			case ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION:
+				return getBlockOfFunctionCallExpression();
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				return getLeftOfEquals();
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
@@ -969,6 +1279,14 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return getConditionOfOqlQuery();
 			case ExpressionsPackage.EXPRESSION__FROM_CLAUSE:
 				return getFromClause();
+			case ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION:
+				return getCellSetOfDimensionExpression();
+			case ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION:
+				return getFactsOfDimensionExpression();
+			case ExpressionsPackage.EXPRESSION__DIMENSION:
+				return getDimension();
+			case ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY:
+				return getMapExpressionOfGroupBy();
 			case ExpressionsPackage.EXPRESSION__TEMPLATE:
 				return getTemplate();
 			case ExpressionsPackage.EXPRESSION__ALL:
@@ -994,8 +1312,14 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 			case ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER:
 				setActualObjectParameter((ActualObjectParameter)newValue);
 				return;
+			case ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION:
+				setObjectBasedExpression((ObjectBasedExpression)newValue);
+				return;
 			case ExpressionsPackage.EXPRESSION__ARGUMENT_OF:
 				setArgumentOf((WithArgument)newValue);
+				return;
+			case ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION:
+				setBlockOfFunctionCallExpression((FunctionCallExpression)newValue);
 				return;
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				setLeftOfEquals((Equals)newValue);
@@ -1017,6 +1341,18 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return;
 			case ExpressionsPackage.EXPRESSION__FROM_CLAUSE:
 				setFromClause((FromClause)newValue);
+				return;
+			case ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION:
+				setCellSetOfDimensionExpression((DimensionExpression)newValue);
+				return;
+			case ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION:
+				setFactsOfDimensionExpression((DimensionExpression)newValue);
+				return;
+			case ExpressionsPackage.EXPRESSION__DIMENSION:
+				setDimension((DimensionDefinition)newValue);
+				return;
+			case ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY:
+				setMapExpressionOfGroupBy((GroupBy)newValue);
 				return;
 			case ExpressionsPackage.EXPRESSION__TEMPLATE:
 				setTemplate((StringTemplate)newValue);
@@ -1045,8 +1381,14 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 			case ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER:
 				setActualObjectParameter((ActualObjectParameter)null);
 				return;
+			case ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION:
+				setObjectBasedExpression((ObjectBasedExpression)null);
+				return;
 			case ExpressionsPackage.EXPRESSION__ARGUMENT_OF:
 				setArgumentOf((WithArgument)null);
+				return;
+			case ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION:
+				setBlockOfFunctionCallExpression((FunctionCallExpression)null);
 				return;
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				setLeftOfEquals((Equals)null);
@@ -1068,6 +1410,18 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return;
 			case ExpressionsPackage.EXPRESSION__FROM_CLAUSE:
 				setFromClause((FromClause)null);
+				return;
+			case ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION:
+				setCellSetOfDimensionExpression((DimensionExpression)null);
+				return;
+			case ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION:
+				setFactsOfDimensionExpression((DimensionExpression)null);
+				return;
+			case ExpressionsPackage.EXPRESSION__DIMENSION:
+				setDimension((DimensionDefinition)null);
+				return;
+			case ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY:
+				setMapExpressionOfGroupBy((GroupBy)null);
 				return;
 			case ExpressionsPackage.EXPRESSION__TEMPLATE:
 				setTemplate((StringTemplate)null);
@@ -1093,8 +1447,12 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return getInitExpressionFor() != null;
 			case ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER:
 				return getActualObjectParameter() != null;
+			case ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION:
+				return getObjectBasedExpression() != null;
 			case ExpressionsPackage.EXPRESSION__ARGUMENT_OF:
 				return getArgumentOf() != null;
+			case ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION:
+				return getBlockOfFunctionCallExpression() != null;
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				return getLeftOfEquals() != null;
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
@@ -1109,6 +1467,14 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return getConditionOfOqlQuery() != null;
 			case ExpressionsPackage.EXPRESSION__FROM_CLAUSE:
 				return getFromClause() != null;
+			case ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION:
+				return getCellSetOfDimensionExpression() != null;
+			case ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION:
+				return getFactsOfDimensionExpression() != null;
+			case ExpressionsPackage.EXPRESSION__DIMENSION:
+				return getDimension() != null;
+			case ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY:
+				return getMapExpressionOfGroupBy() != null;
 			case ExpressionsPackage.EXPRESSION__TEMPLATE:
 				return getTemplate() != null;
 			case ExpressionsPackage.EXPRESSION__ALL:

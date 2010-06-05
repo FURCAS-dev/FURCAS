@@ -70,7 +70,6 @@ public interface LinkManipulationStatement extends Statement {
 	 * @see #setAssociation(Association)
 	 * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement_Association()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	Association getAssociation();
@@ -97,7 +96,6 @@ public interface LinkManipulationStatement extends Statement {
 	 * @return the value of the '<em>Objects</em>' containment reference list.
 	 * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement_Objects()
 	 * @model containment="true" lower="2" upper="2"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	EList<Expression> getObjects();

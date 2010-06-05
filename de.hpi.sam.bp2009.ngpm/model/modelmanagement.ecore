@@ -67,11 +67,7 @@
         eType="#//deploymentunits/DeploymentUnit" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="integrationScenarios" upperBound="-1"
         eType="ecore:EClass integration.ecore#//processintegration/IntegrationScenario"
-        containment="true">
-      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-        <details key="Property.oppositeRoleName" value=""/>
-      </eAnnotations>
-    </eStructuralFeatures>
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageOwner" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" ordered="false"

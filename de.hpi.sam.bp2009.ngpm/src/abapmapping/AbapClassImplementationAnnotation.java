@@ -70,7 +70,6 @@ public interface AbapClassImplementationAnnotation extends EObject {
 	 * @see #setAbapType(AbapType)
 	 * @see abapmapping.AbapmappingPackage#getAbapClassImplementationAnnotation_AbapType()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	AbapType getAbapType();

@@ -41,7 +41,7 @@ public interface ConfigurationEntity extends NamedElement {
 	 * @return the value of the '<em>Pick List</em>' reference.
 	 * @see #setPickList(ValueSet)
 	 * @see configuration.businessconfiguration.experimental.ExperimentalPackage#getConfigurationEntity_PickList()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	ValueSet getPickList();
@@ -68,7 +68,6 @@ public interface ConfigurationEntity extends NamedElement {
 	 * @see #setConfigurableItem(AssociationEnd)
 	 * @see configuration.businessconfiguration.experimental.ExperimentalPackage#getConfigurationEntity_ConfigurableItem()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	AssociationEnd getConfigurableItem();

@@ -72,7 +72,6 @@ public interface Application extends NamedElement {
 	 * @return the value of the '<em>Integration Scenarios</em>' containment reference list.
 	 * @see modelmanagement.ModelmanagementPackage#getApplication_IntegrationScenarios()
 	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	EList<IntegrationScenario> getIntegrationScenarios();

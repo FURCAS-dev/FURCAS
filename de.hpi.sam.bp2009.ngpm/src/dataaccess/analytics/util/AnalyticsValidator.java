@@ -357,7 +357,7 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String DIMENSION_EXPRESSION__FACTS_TYPE_CONFORMS_TO_FIRST_FUNCTION_PARAMETER_TYPE__EEXPRESSION = "self.facts.getType().conformsTo(self.dimension.ownerSignature.input->at(1).getType())";
+	protected static final String DIMENSION_EXPRESSION__FACTS_TYPE_CONFORMS_TO_FIRST_FUNCTION_PARAMETER_TYPE__EEXPRESSION = "self.facts.getType().conformsTo(self.dimensionParameter.ownerSignature.input->at(1).getType())";
 
 	/**
 	 * Validates the FactsTypeConformsToFirstFunctionParameterType constraint of '<em>Dimension Expression</em>'.
@@ -415,7 +415,7 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String DIMENSION_EXPRESSION__DIMENSION_PARAMETER_IS_NOT_FIRST__EEXPRESSION = "self.dimension.ownerSignature.input->indexOf(self.dimension) > 1";
+	protected static final String DIMENSION_EXPRESSION__DIMENSION_PARAMETER_IS_NOT_FIRST__EEXPRESSION = "self.dimensionParameter.ownerSignature.input->indexOf(self.dimensionParameter) > 1";
 
 	/**
 	 * Validates the DimensionParameterIsNotFirst constraint of '<em>Dimension Expression</em>'.

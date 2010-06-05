@@ -37,7 +37,6 @@ public interface BusinessPackage extends ConfigurationElement {
 	 * @return the value of the '<em>Business Topic</em>' containment reference list.
 	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getBusinessPackage_BusinessTopic()
 	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	EList<BusinessTopic> getBusinessTopic();

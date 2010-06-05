@@ -613,7 +613,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "ConditionMustBeBoolean WhereClauseMustBeSideEffectFree HasValueType SelectedIteratorsMustHaveClassTypeDefinitionAsType"
-		   });				
+		   });			
 		addAnnotation
 		  (fromClauseEClass, 
 		   source, 
@@ -645,7 +645,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 			 "WhereClauseMustBeSideEffectFree", "self.condition->forAll(c | c.isSideEffectFree())",
 			 "HasValueType", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType",
 			 "SelectedIteratorsMustHaveClassTypeDefinitionAsType", "self.selected->forAll(i | i.getType().oclIsKindOf(data::classes::ClassTypeDefinition))"
-		   });				
+		   });			
 		addAnnotation
 		  (fromClauseEClass, 
 		   source, 
@@ -668,12 +668,6 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		   new String[] {
 			 "Property.oppositeRoleName", "selection"
 		   });				
-		addAnnotation
-		  (getOqlQuery_Selected(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
 	}
 
 } //QueryPackageImpl

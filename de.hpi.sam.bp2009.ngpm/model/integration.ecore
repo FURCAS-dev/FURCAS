@@ -31,17 +31,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="uses" eType="#//processintegration/IntegrationScenario"
           transient="true" eOpposite="#//processintegration/IntegrationScenario/interactions"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="methodCalls" upperBound="-1"
-          eType="ecore:EClass dataaccess.ecore#//expressions/MethodCallExpression">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass dataaccess.ecore#//expressions/MethodCallExpression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subscriptions" upperBound="-1"
-          eType="ecore:EClass behavioral.ecore#//events/Subscription">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass behavioral.ecore#//events/Subscription"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="wsdl" nsURI="http:///integration/wsdl.ecore" nsPrefix="integration.wsdl">
@@ -60,39 +52,19 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Sequence" eSuperTypes="#//xsd/Containable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
-          eType="#//xsd/Containable">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//xsd/Containable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="#//xsd/Containable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
-          eType="#//xsd/Containable">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//xsd/Containable"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ComplexType" eSuperTypes="#//xsd/AbstractType">
       <eStructuralFeatures xsi:type="ecore:EReference" name="atts" upperBound="-1"
-          eType="#//xsd/Attribute">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//xsd/AbstractContent">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//xsd/Attribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="content" eType="#//xsd/AbstractContent"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ElementDefinition" eSuperTypes="#//xsd/NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//xsd/AbstractType">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//xsd/AbstractType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//xsd/Root">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
@@ -111,21 +83,13 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" ordered="false"
           unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
-          eType="#//xsd/SimpleType">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//xsd/SimpleType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Any" eSuperTypes="#//xsd/Containable"/>
     <eClassifiers xsi:type="ecore:EClass" name="Root" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false" unique="false"
           eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="anno" eType="#//xsd/Annotation">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="anno" eType="#//xsd/Annotation"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//xsd/Containable #//xsd/NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="Annotation">
@@ -148,11 +112,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SimpleType" eSuperTypes="#//xsd/AbstractType">
       <eStructuralFeatures xsi:type="ecore:EReference" name="content" lowerBound="1"
-          eType="#//xsd/SimpleContent">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//xsd/SimpleContent"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ElementReference" eSuperTypes="#//xsd/Containable #//xsd/NamedElement"/>
     <eClassifiers xsi:type="ecore:EClass" name="AbstractContent" abstract="true"/>
@@ -165,11 +125,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="ComplexContent" eSuperTypes="#//xsd/AbstractContent">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="mixed" ordered="false"
           unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="contentModel" eType="#//xsd/Containable">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="contentModel" eType="#//xsd/Containable"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="binding" nsURI="http:///integration/binding.ecore" nsPrefix="integration.binding">
@@ -188,22 +144,14 @@
         <details key="constraints" value="FunctionExpressionHasFunctionType"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="function" lowerBound="1"
-          eType="ecore:EClass dataaccess.ecore#//expressions/Expression" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass dataaccess.ecore#//expressions/Expression" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HttpBinding" abstract="true" eSuperTypes="#//binding/Binding">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Makes a function invokable through an HTTP requiest. A URL pattern can be specified that describes how URLs are to be matched and if/how parameter values are to be extracted from the URL."/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="urlPattern" lowerBound="1"
-          eType="#//binding/UrlPattern" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//binding/UrlPattern" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HttpGetBinding" eSuperTypes="#//binding/HttpBinding">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

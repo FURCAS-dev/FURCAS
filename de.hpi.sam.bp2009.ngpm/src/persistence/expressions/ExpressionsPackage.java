@@ -108,6 +108,15 @@ public interface ExpressionsPackage extends EPackage {
 	int ALL__ACTUAL_OBJECT_PARAMETER = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__OBJECT_BASED_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -115,6 +124,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ALL__ARGUMENT_OF = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__BLOCK_OF_FUNCTION_CALL_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -178,6 +196,42 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ALL__FROM_CLAUSE = dataaccess.expressions.ExpressionsPackage.EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__CELL_SET_OF_DIMENSION_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__FACTS_OF_DIMENSION_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__DIMENSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__MAP_EXPRESSION_OF_GROUP_BY = dataaccess.expressions.ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -280,6 +334,15 @@ public interface ExpressionsPackage extends EPackage {
 	int COMMIT__ACTUAL_OBJECT_PARAMETER = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__OBJECT_BASED_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,6 +350,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMMIT__ARGUMENT_OF = dataaccess.expressions.ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__BLOCK_OF_FUNCTION_CALL_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -350,6 +422,42 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMMIT__FROM_CLAUSE = dataaccess.expressions.ExpressionsPackage.EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__CELL_SET_OF_DIMENSION_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__FACTS_OF_DIMENSION_EXPRESSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__DIMENSION = dataaccess.expressions.ExpressionsPackage.EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__MAP_EXPRESSION_OF_GROUP_BY = dataaccess.expressions.ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -425,6 +533,15 @@ public interface ExpressionsPackage extends EPackage {
 	int SNAPSHOT__ACTUAL_OBJECT_PARAMETER = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__OBJECT_BASED_EXPRESSION = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -432,6 +549,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SNAPSHOT__ARGUMENT_OF = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__BLOCK_OF_FUNCTION_CALL_EXPRESSION = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -495,6 +621,42 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SNAPSHOT__FROM_CLAUSE = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__CELL_SET_OF_DIMENSION_EXPRESSION = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__FACTS_OF_DIMENSION_EXPRESSION = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__DIMENSION = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__MAP_EXPRESSION_OF_GROUP_BY = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.

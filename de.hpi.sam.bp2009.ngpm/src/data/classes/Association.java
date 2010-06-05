@@ -120,7 +120,7 @@ public interface Association extends NamedElement {
 	 * @return the value of the '<em>Abap Annotation</em>' reference.
 	 * @see #setAbapAnnotation(AbapAssociationImplementationAnnotation)
 	 * @see data.classes.ClassesPackage#getAssociation_AbapAnnotation()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	AbapAssociationImplementationAnnotation getAbapAnnotation();

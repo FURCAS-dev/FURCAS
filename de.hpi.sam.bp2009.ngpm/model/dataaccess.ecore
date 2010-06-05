@@ -22,7 +22,7 @@
       <eOperations name="isSideEffectFree" ordered="false" unique="false" lowerBound="1"
           eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="let parametersAndSignatureAreSideEffectFree:Boolean =&#xA;    self.oclIsKindOf(SignatureCallExpression) implies&#xA;      (self.oclAsType(SignatureCallExpression).parameters->forAll(p|p.isSideEffectFree())&#xA;       and self.oclAsType(SignatureCallExpression).getSignature().sideEffectFree)&#xA;  in&#xA;  if self.oclIsKindOf(ObjectBasedExpression) then&#xA;    self.oclAsType(ObjectBasedExpression).object.isSideEffectFree() and&#xA;    if self.oclIsKindOf(SignatureCallExpression) then&#xA;      parametersAndSignatureAreSideEffectFree&#xA;    else&#xA;      if self.oclIsKindOf(Replace) then&#xA;        self.oclAsType(Replace).with.isSideEffectFree()&#xA;      else&#xA;        if self.oclIsKindOf(ExpressionWithArgument) and self.oclAsType(ExpressionWithArgument).argument->notEmpty() then&#xA;          self.oclAsType(ExpressionWithArgument).argument.isSideEffectFree()&#xA;        else&#xA;          true&#xA;        endif&#xA;      endif&#xA;    endif&#xA;  else if self.oclIsKindOf(FunctionCallExpression) then&#xA;    parametersAndSignatureAreSideEffectFree and self.oclAsType(FunctionCallExpression).calledBlock.isSideEffectFree()&#xA;  else if self.oclIsKindOf(Equals) then&#xA;    self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()&#xA;  else if self.oclIsKindOf(ObjectCreationExpression) then&#xA;    self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType&#xA;  else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then&#xA;    self.oclAsType(dataaccess::analytics::DimensionExpression).dimension.ownerSignature.sideEffectFree&#xA;  else if self.oclIsKindOf(Ternary) then&#xA;    self.oclAsType(Ternary).condition.isSideEffectFree() and&#xA;    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and&#xA;    self.oclAsType(Ternary).falseExpr.isSideEffectFree()&#xA;  else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::CollectionExpression) then&#xA;    self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.isSideEffectFree() and&#xA;    if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then&#xA;      (self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression->notEmpty() implies&#xA;         self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and&#xA;      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.isSideEffectFree()&#xA;    else&#xA;      true&#xA;    endif&#xA;  else if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then&#xA;    self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())&#xA;  else if self.oclIsKindOf(persistence::expressions::All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or&#xA;  self.oclIsKindOf(dataaccess::expressions::literals::Literal) or self.oclIsKindOf(dataaccess::expressions::fp::AnonymousFunctionExpr) then&#xA;    true&#xA;  else if self.oclIsKindOf(dataaccess::query::Selection) then&#xA;    self.oclAsType(dataaccess::query::Selection).object.isSideEffectFree()&#xA;  else&#xA;    false&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif"/>
+          <details key="body" value="let parametersAndSignatureAreSideEffectFree:Boolean =&#xA;    self.oclIsKindOf(SignatureCallExpression) implies&#xA;      (self.oclAsType(SignatureCallExpression).parameters->forAll(p|p.isSideEffectFree())&#xA;       and self.oclAsType(SignatureCallExpression).getSignature().sideEffectFree)&#xA;  in&#xA;  if self.oclIsKindOf(ObjectBasedExpression) then&#xA;    self.oclAsType(ObjectBasedExpression).object.isSideEffectFree() and&#xA;    if self.oclIsKindOf(SignatureCallExpression) then&#xA;      parametersAndSignatureAreSideEffectFree&#xA;    else&#xA;      if self.oclIsKindOf(Replace) then&#xA;        self.oclAsType(Replace).with.isSideEffectFree()&#xA;      else&#xA;        if self.oclIsKindOf(ExpressionWithArgument) and self.oclAsType(ExpressionWithArgument).argument->notEmpty() then&#xA;          self.oclAsType(ExpressionWithArgument).argument.isSideEffectFree()&#xA;        else&#xA;          true&#xA;        endif&#xA;      endif&#xA;    endif&#xA;  else if self.oclIsKindOf(FunctionCallExpression) then&#xA;    parametersAndSignatureAreSideEffectFree and self.oclAsType(FunctionCallExpression).calledBlock.isSideEffectFree()&#xA;  else if self.oclIsKindOf(Equals) then&#xA;    self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()&#xA;  else if self.oclIsKindOf(ObjectCreationExpression) then&#xA;    self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType&#xA;  else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then&#xA;    self.oclAsType(dataaccess::analytics::DimensionExpression).dimensionParameter.ownerSignature.sideEffectFree&#xA;  else if self.oclIsKindOf(Ternary) then&#xA;    self.oclAsType(Ternary).condition.isSideEffectFree() and&#xA;    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and&#xA;    self.oclAsType(Ternary).falseExpr.isSideEffectFree()&#xA;  else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::CollectionExpression) then&#xA;    self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.isSideEffectFree() and&#xA;    if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then&#xA;      (self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression->notEmpty() implies&#xA;         self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and&#xA;      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.isSideEffectFree()&#xA;    else&#xA;      true&#xA;    endif&#xA;  else if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then&#xA;    self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())&#xA;  else if self.oclIsKindOf(persistence::expressions::All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or&#xA;  self.oclIsKindOf(dataaccess::expressions::literals::Literal) or self.oclIsKindOf(dataaccess::expressions::fp::AnonymousFunctionExpr) then&#xA;    true&#xA;  else if self.oclIsKindOf(dataaccess::query::Selection) then&#xA;    self.oclAsType(dataaccess::query::Selection).object.isSideEffectFree()&#xA;  else&#xA;    false&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif&#xA;  endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -90,6 +90,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="actualObjectParameter"
           eType="ecore:EClass data.ecore#//classes/ActualObjectParameter" transient="true"
           eOpposite="data.ecore#//classes/ActualObjectParameter/value"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="objectBasedExpression"
+          eType="#//expressions/ObjectBasedExpression" transient="true" eOpposite="#//expressions/ObjectBasedExpression/object"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="argumentOf" eType="#//expressions/WithArgument"
           transient="true" eOpposite="#//expressions/WithArgument/argument"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="blockOfFunctionCallExpression"
@@ -109,6 +111,14 @@
           eType="#//query/OqlQuery" transient="true" eOpposite="#//query/OqlQuery/condition"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromClause" eType="#//query/FromClause"
           transient="true" eOpposite="#//query/FromClause/fromExpression"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="cellSetOfDimensionExpression"
+          eType="#//analytics/DimensionExpression" transient="true" eOpposite="#//analytics/DimensionExpression/cellSet"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="factsOfDimensionExpression"
+          eType="#//analytics/DimensionExpression" transient="true" eOpposite="#//analytics/DimensionExpression/facts"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" eType="#//analytics/DimensionDefinition"
+          transient="true" eOpposite="#//analytics/DimensionDefinition/expression"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mapExpressionOfGroupBy"
+          eType="#//analytics/GroupBy" transient="true" eOpposite="#//analytics/GroupBy/mapExpression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="template" eType="ecore:EClass ui.ecore#//templates/StringTemplate"
           transient="true" eOpposite="ui.ecore#//templates/StringTemplate/expressions"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="all" eType="ecore:EClass persistence.ecore#//expressions/All"
@@ -125,11 +135,7 @@
         <details key="constraints" value="VariableExpressionType"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="variable" lowerBound="1"
-          eType="ecore:EClass data.ecore#//classes/NamedValue">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass data.ecore#//classes/NamedValue"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="MethodCallExpression" eSuperTypes="#//expressions/ObjectBasedExpression #//expressions/SignatureCallExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -149,11 +155,7 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="methodSignature" lowerBound="1"
-          eType="ecore:EClass data.ecore#//classes/MethodSignature">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass data.ecore#//classes/MethodSignature"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="creationExpression" eType="#//expressions/ObjectCreationExpression"
           transient="true" eOpposite="#//expressions/ObjectCreationExpression/initializers"/>
     </eClassifiers>
@@ -163,11 +165,7 @@
         <details key="documentation" value="A specific type of expression that is evaluated in the context of a specific object. Another expression is used to determine this object. An example for such an expression would be association navigation, where the object where the navigation starts has to be specified by the &quot;object&quot; expression."/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
-          eType="#//expressions/Expression" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="objectBasedExpression"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//expressions/Expression" containment="true" eOpposite="#//expressions/Expression/objectBasedExpression"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectCreationExpression" eSuperTypes="#//expressions/Expression">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
@@ -181,11 +179,7 @@
         <details key="constraints" value="CannotInstantiateAbstractClass ExpressionType HasToOwnTypeDefinition CannotInstantiateValueClass NoDuplicateInitializers"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="classToInstantiate" lowerBound="1"
-          eType="ecore:EClass data.ecore#//classes/SapClass">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass data.ecore#//classes/SapClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="initializers" upperBound="-1"
           eType="#//expressions/MethodCallExpression" containment="true" eOpposite="#//expressions/MethodCallExpression/creationExpression"/>
     </eClassifiers>
@@ -241,11 +235,7 @@
         <details key="constraints" value="ObjectTypeMustMatch ResultType EndMustBeNavigable"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="toEnd" lowerBound="1"
-          eType="ecore:EClass data.ecore#//classes/AssociationEnd">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass data.ecore#//classes/AssociationEnd"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SignatureCallExpression" abstract="true"
         eSuperTypes="#//expressions/Expression">
@@ -328,11 +318,7 @@
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="replace" lowerBound="1"
           eType="#//expressions/Replace" transient="true" eOpposite="#//expressions/Replace/steps"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="ecore:EClass data.ecore#//classes/AssociationEnd">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="to" lowerBound="1" eType="ecore:EClass data.ecore#//classes/AssociationEnd"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="filterFunction" eType="#//expressions/Expression"
           containment="true">
         <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -611,11 +597,7 @@
           <details key="constraints" value="SignatureAvailableOnObjectsClass MethodSignatureConformsToFunctionSignature"/>
         </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EReference" name="method" lowerBound="1"
-            eType="ecore:EClass data.ecore#//classes/MethodSignature">
-          <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-            <details key="Property.oppositeRoleName" value=""/>
-          </eAnnotations>
-        </eStructuralFeatures>
+            eType="ecore:EClass data.ecore#//classes/MethodSignature"/>
       </eClassifiers>
     </eSubpackages>
   </eSubpackages>
@@ -663,11 +645,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromClauses" lowerBound="1"
           upperBound="-1" eType="#//query/FromClause" containment="true" eOpposite="#//query/FromClause/fromClauseOfOqlQuery"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="selected" lowerBound="1"
-          upperBound="-1" eType="ecore:EClass behavioral.ecore#//actions/Iterator">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="ecore:EClass behavioral.ecore#//actions/Iterator"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FromClause">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
@@ -771,31 +749,19 @@
         <details key="documentation" value="For the given cell set, obtain all distinct characteristic values of the given dimension. For example, for a CellSet based on SalesOrderItem with one Dimension being Product, yield all products for which a SalesOrderItem exists in the CellSet.&#xA;&#xA;The type of this DimensionExpression is Set&lt;self.dimension.type>"/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="FactsTypeConformsToFirstFunctionParameterType" value="self.facts.getType().conformsTo(self.dimension.ownerSignature.input->at(1).getType())"/>
+        <details key="FactsTypeConformsToFirstFunctionParameterType" value="self.facts.getType().conformsTo(self.dimensionParameter.ownerSignature.input->at(1).getType())"/>
         <details key="CellSetExpressionMustHaveFunctionSignatureType" value="self.cellSet.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)"/>
-        <details key="DimensionParameterIsNotFirst" value="self.dimension.ownerSignature.input->indexOf(self.dimension) > 1"/>
+        <details key="DimensionParameterIsNotFirst" value="self.dimensionParameter.ownerSignature.input->indexOf(self.dimensionParameter) > 1"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="FactsTypeConformsToFirstFunctionParameterType CellSetExpressionMustHaveFunctionSignatureType DimensionParameterIsNotFirst"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="cellSet" lowerBound="1"
-          eType="#//expressions/Expression" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="cellSetOfDimensionExpression"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" lowerBound="1"
-          eType="ecore:EClass data.ecore#//classes/Parameter">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//expressions/Expression" containment="true" eOpposite="#//expressions/Expression/cellSetOfDimensionExpression"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dimensionParameter" lowerBound="1"
+          eType="ecore:EClass data.ecore#//classes/Parameter"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="facts" lowerBound="1"
-          eType="#//expressions/Expression" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="factsOfDimensionExpression"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//expressions/Expression" containment="true" eOpposite="#//expressions/Expression/factsOfDimensionExpression"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="GroupBy" eSuperTypes="#//expressions/ObjectBasedExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -810,29 +776,15 @@
         <details key="constraints" value="GroupedFactsIteratorMustExistIfMapExpressionExists MapExpressionMustBeSideEffectFree GroupByIteratorsMustHaveDistinctNames"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="dimensions" lowerBound="1"
-          upperBound="-1" eType="#//analytics/DimensionDefinition" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="groupBy"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          upperBound="-1" eType="#//analytics/DimensionDefinition" containment="true"
+          eOpposite="#//analytics/DimensionDefinition/groupBy"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fact" lowerBound="1"
-          eType="ecore:EClass behavioral.ecore#//actions/Iterator" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="factOfGroupBy"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass behavioral.ecore#//actions/Iterator" containment="true"
+          eOpposite="behavioral.ecore#//actions/Iterator/factOfGroupBy"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="mapExpression" eType="#//expressions/Expression"
-          containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="mapExpressionOfGroupBy"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          containment="true" eOpposite="#//expressions/Expression/mapExpressionOfGroupBy"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="groupedFacts" eType="ecore:EClass behavioral.ecore#//actions/Iterator"
-          containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="groupedFactsOfGroupBy"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          containment="true" eOpposite="behavioral.ecore#//actions/Iterator/groupedFactsOfGroupBy"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DimensionDefinition">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -852,18 +804,13 @@
           <details key="constraints" value="body"/>
         </eAnnotations>
       </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="groupBy" lowerBound="1"
+          eType="#//analytics/GroupBy" transient="true" eOpposite="#//analytics/GroupBy/dimensions"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
-          eType="#//expressions/Expression" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="dimension"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//expressions/Expression" containment="true" eOpposite="#//expressions/Expression/dimension"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" lowerBound="1"
-          eType="ecore:EClass behavioral.ecore#//actions/Iterator" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="dimension"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass behavioral.ecore#//actions/Iterator" containment="true"
+          eOpposite="behavioral.ecore#//actions/Iterator/dimension"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

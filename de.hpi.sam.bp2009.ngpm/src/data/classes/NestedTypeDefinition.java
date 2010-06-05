@@ -64,7 +64,6 @@ public interface NestedTypeDefinition extends TypeDefinition {
 	 * @see #setType(TypeDefinition)
 	 * @see data.classes.ClassesPackage#getNestedTypeDefinition_Type()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	TypeDefinition getType();

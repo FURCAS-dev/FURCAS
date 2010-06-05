@@ -35,7 +35,7 @@ public interface ElementDefinition extends NamedElement {
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(AbstractType)
 	 * @see integration.xsd.XsdPackage#getElementDefinition_Type()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	AbstractType getType();

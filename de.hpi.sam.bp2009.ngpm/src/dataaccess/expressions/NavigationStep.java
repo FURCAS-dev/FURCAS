@@ -70,7 +70,6 @@ public interface NavigationStep extends EObject {
 	 * @see #setTo(AssociationEnd)
 	 * @see dataaccess.expressions.ExpressionsPackage#getNavigationStep_To()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	AssociationEnd getTo();

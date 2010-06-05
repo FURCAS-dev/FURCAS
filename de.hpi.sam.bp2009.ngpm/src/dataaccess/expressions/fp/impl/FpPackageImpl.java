@@ -484,8 +484,6 @@ public class FpPackageImpl extends EPackageImpl implements FpPackage {
 		createEcoreAnnotations();
 		// http://de.hpi.sam.bp2009.OCL
 		createDeAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 	}
 
 	/**
@@ -520,7 +518,7 @@ public class FpPackageImpl extends EPackageImpl implements FpPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "SignatureAvailableOnObjectsClass MethodSignatureConformsToFunctionSignature"
-		   });	
+		   });
 	}
 
 	/**
@@ -551,23 +549,7 @@ public class FpPackageImpl extends EPackageImpl implements FpPackage {
 		   new String[] {
 			 "SignatureAvailableOnObjectsClass", "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(data::classes::SapClass))",
 			 "MethodSignatureConformsToFunctionSignature", "self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n    self.method.conformsTo(self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)"
-		   });		
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";												
-		addAnnotation
-		  (getFunctionFromMethodExpr_Method(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });
+		   });	
 	}
 
 } //FpPackageImpl

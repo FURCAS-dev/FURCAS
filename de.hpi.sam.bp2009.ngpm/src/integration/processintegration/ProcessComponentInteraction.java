@@ -72,7 +72,7 @@ public interface ProcessComponentInteraction extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Method Calls</em>' reference list.
 	 * @see integration.processintegration.ProcessintegrationPackage#getProcessComponentInteraction_MethodCalls()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	EList<MethodCallExpression> getMethodCalls();
@@ -88,7 +88,7 @@ public interface ProcessComponentInteraction extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Subscriptions</em>' reference list.
 	 * @see integration.processintegration.ProcessintegrationPackage#getProcessComponentInteraction_Subscriptions()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	EList<Subscription> getSubscriptions();

@@ -36,7 +36,6 @@ public interface SimpleType extends AbstractType {
 	 * @see #setContent(SimpleContent)
 	 * @see integration.xsd.XsdPackage#getSimpleType_Content()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	SimpleContent getContent();

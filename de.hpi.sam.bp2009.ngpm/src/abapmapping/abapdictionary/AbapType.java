@@ -64,7 +64,6 @@ public interface AbapType extends EObject {
 	 * @see #setXsdRepresentation(XsdType)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapType_XsdRepresentation()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	XsdType getXsdRepresentation();

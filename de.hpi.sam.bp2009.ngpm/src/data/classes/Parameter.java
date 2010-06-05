@@ -96,7 +96,6 @@ public interface Parameter extends NamedValue {
 	 * @see #setDefaultValue(Expression)
 	 * @see data.classes.ClassesPackage#getParameter_DefaultValue()
 	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	Expression getDefaultValue();

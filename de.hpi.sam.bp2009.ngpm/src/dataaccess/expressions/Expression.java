@@ -16,6 +16,9 @@ import data.classes.NamedValue;
 import data.classes.SapClass;
 import data.classes.TypedElement;
 
+import dataaccess.analytics.DimensionDefinition;
+import dataaccess.analytics.DimensionExpression;
+import dataaccess.analytics.GroupBy;
 import dataaccess.expressions.collectionexpressions.CollectionExpression;
 import dataaccess.expressions.collectionexpressions.Iterate;
 
@@ -41,7 +44,9 @@ import ui.templates.StringTemplate;
  *   <li>{@link dataaccess.expressions.Expression#getExpressionStatement <em>Expression Statement</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getInitExpressionFor <em>Init Expression For</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getActualObjectParameter <em>Actual Object Parameter</em>}</li>
+ *   <li>{@link dataaccess.expressions.Expression#getObjectBasedExpression <em>Object Based Expression</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getArgumentOf <em>Argument Of</em>}</li>
+ *   <li>{@link dataaccess.expressions.Expression#getBlockOfFunctionCallExpression <em>Block Of Function Call Expression</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getLeftOfEquals <em>Left Of Equals</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getRightOfEquals <em>Right Of Equals</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getConditional <em>Conditional</em>}</li>
@@ -49,6 +54,10 @@ import ui.templates.StringTemplate;
  *   <li>{@link dataaccess.expressions.Expression#getInIterator <em>In Iterator</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getConditionOfOqlQuery <em>Condition Of Oql Query</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getFromClause <em>From Clause</em>}</li>
+ *   <li>{@link dataaccess.expressions.Expression#getCellSetOfDimensionExpression <em>Cell Set Of Dimension Expression</em>}</li>
+ *   <li>{@link dataaccess.expressions.Expression#getFactsOfDimensionExpression <em>Facts Of Dimension Expression</em>}</li>
+ *   <li>{@link dataaccess.expressions.Expression#getDimension <em>Dimension</em>}</li>
+ *   <li>{@link dataaccess.expressions.Expression#getMapExpressionOfGroupBy <em>Map Expression Of Group By</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getTemplate <em>Template</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getAll <em>All</em>}</li>
  * </ul>
@@ -144,6 +153,34 @@ public interface Expression extends TypedElement, InScope {
 	void setActualObjectParameter(ActualObjectParameter value);
 
 	/**
+	 * Returns the value of the '<em><b>Object Based Expression</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.ObjectBasedExpression#getObject <em>Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Object Based Expression</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Object Based Expression</em>' container reference.
+	 * @see #setObjectBasedExpression(ObjectBasedExpression)
+	 * @see dataaccess.expressions.ExpressionsPackage#getExpression_ObjectBasedExpression()
+	 * @see dataaccess.expressions.ObjectBasedExpression#getObject
+	 * @model opposite="object"
+	 * @generated
+	 */
+	ObjectBasedExpression getObjectBasedExpression();
+
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.Expression#getObjectBasedExpression <em>Object Based Expression</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Object Based Expression</em>' container reference.
+	 * @see #getObjectBasedExpression()
+	 * @generated
+	 */
+	void setObjectBasedExpression(ObjectBasedExpression value);
+
+	/**
 	 * Returns the value of the '<em><b>Argument Of</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.WithArgument#getArgument <em>Argument</em>}'.
 	 * <!-- begin-user-doc -->
@@ -170,6 +207,34 @@ public interface Expression extends TypedElement, InScope {
 	 * @generated
 	 */
 	void setArgumentOf(WithArgument value);
+
+	/**
+	 * Returns the value of the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.FunctionCallExpression#getCalledBlock <em>Called Block</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Block Of Function Call Expression</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Block Of Function Call Expression</em>' container reference.
+	 * @see #setBlockOfFunctionCallExpression(FunctionCallExpression)
+	 * @see dataaccess.expressions.ExpressionsPackage#getExpression_BlockOfFunctionCallExpression()
+	 * @see dataaccess.expressions.FunctionCallExpression#getCalledBlock
+	 * @model opposite="calledBlock"
+	 * @generated
+	 */
+	FunctionCallExpression getBlockOfFunctionCallExpression();
+
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.Expression#getBlockOfFunctionCallExpression <em>Block Of Function Call Expression</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Block Of Function Call Expression</em>' container reference.
+	 * @see #getBlockOfFunctionCallExpression()
+	 * @generated
+	 */
+	void setBlockOfFunctionCallExpression(FunctionCallExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Left Of Equals</b></em>' container reference.
@@ -368,6 +433,118 @@ public interface Expression extends TypedElement, InScope {
 	void setFromClause(FromClause value);
 
 	/**
+	 * Returns the value of the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.DimensionExpression#getCellSet <em>Cell Set</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Cell Set Of Dimension Expression</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Cell Set Of Dimension Expression</em>' container reference.
+	 * @see #setCellSetOfDimensionExpression(DimensionExpression)
+	 * @see dataaccess.expressions.ExpressionsPackage#getExpression_CellSetOfDimensionExpression()
+	 * @see dataaccess.analytics.DimensionExpression#getCellSet
+	 * @model opposite="cellSet"
+	 * @generated
+	 */
+	DimensionExpression getCellSetOfDimensionExpression();
+
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.Expression#getCellSetOfDimensionExpression <em>Cell Set Of Dimension Expression</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Cell Set Of Dimension Expression</em>' container reference.
+	 * @see #getCellSetOfDimensionExpression()
+	 * @generated
+	 */
+	void setCellSetOfDimensionExpression(DimensionExpression value);
+
+	/**
+	 * Returns the value of the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.DimensionExpression#getFacts <em>Facts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Facts Of Dimension Expression</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Facts Of Dimension Expression</em>' container reference.
+	 * @see #setFactsOfDimensionExpression(DimensionExpression)
+	 * @see dataaccess.expressions.ExpressionsPackage#getExpression_FactsOfDimensionExpression()
+	 * @see dataaccess.analytics.DimensionExpression#getFacts
+	 * @model opposite="facts"
+	 * @generated
+	 */
+	DimensionExpression getFactsOfDimensionExpression();
+
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.Expression#getFactsOfDimensionExpression <em>Facts Of Dimension Expression</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Facts Of Dimension Expression</em>' container reference.
+	 * @see #getFactsOfDimensionExpression()
+	 * @generated
+	 */
+	void setFactsOfDimensionExpression(DimensionExpression value);
+
+	/**
+	 * Returns the value of the '<em><b>Dimension</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.DimensionDefinition#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dimension</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dimension</em>' container reference.
+	 * @see #setDimension(DimensionDefinition)
+	 * @see dataaccess.expressions.ExpressionsPackage#getExpression_Dimension()
+	 * @see dataaccess.analytics.DimensionDefinition#getExpression
+	 * @model opposite="expression"
+	 * @generated
+	 */
+	DimensionDefinition getDimension();
+
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.Expression#getDimension <em>Dimension</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dimension</em>' container reference.
+	 * @see #getDimension()
+	 * @generated
+	 */
+	void setDimension(DimensionDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.GroupBy#getMapExpression <em>Map Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Map Expression Of Group By</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Map Expression Of Group By</em>' container reference.
+	 * @see #setMapExpressionOfGroupBy(GroupBy)
+	 * @see dataaccess.expressions.ExpressionsPackage#getExpression_MapExpressionOfGroupBy()
+	 * @see dataaccess.analytics.GroupBy#getMapExpression
+	 * @model opposite="mapExpression"
+	 * @generated
+	 */
+	GroupBy getMapExpressionOfGroupBy();
+
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.Expression#getMapExpressionOfGroupBy <em>Map Expression Of Group By</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Map Expression Of Group By</em>' container reference.
+	 * @see #getMapExpressionOfGroupBy()
+	 * @generated
+	 */
+	void setMapExpressionOfGroupBy(GroupBy value);
+
+	/**
 	 * Returns the value of the '<em><b>Template</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link ui.templates.StringTemplate#getExpressions <em>Expressions</em>}'.
 	 * <!-- begin-user-doc -->
@@ -430,7 +607,7 @@ public interface Expression extends TypedElement, InScope {
 	 * Tells if this expression is side effect-free. An expression has a side effect if it invokes a method or a function that is not described as side effect-free. It is important to note that this has to be checked recursively for nested expressions.
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" unique="false" required="true" ordered="false"
-	 *        annotation="http://de.hpi.sam.bp2009.OCL body='let parametersAndSignatureAreSideEffectFree:Boolean =\n    self.oclIsKindOf(SignatureCallExpression) implies\n      (self.oclAsType(SignatureCallExpression).parameters->forAll(p|p.isSideEffectFree())\n       and self.oclAsType(SignatureCallExpression).getSignature().sideEffectFree)\n  in\n  if self.oclIsKindOf(ObjectBasedExpression) then\n    self.oclAsType(ObjectBasedExpression).object.isSideEffectFree() and\n    if self.oclIsKindOf(SignatureCallExpression) then\n      parametersAndSignatureAreSideEffectFree\n    else\n      if self.oclIsKindOf(Replace) then\n        self.oclAsType(Replace).with.isSideEffectFree()\n      else\n        if self.oclIsKindOf(ExpressionWithArgument) and self.oclAsType(ExpressionWithArgument).argument->notEmpty() then\n          self.oclAsType(ExpressionWithArgument).argument.isSideEffectFree()\n        else\n          true\n        endif\n      endif\n    endif\n  else if self.oclIsKindOf(FunctionCallExpression) then\n    parametersAndSignatureAreSideEffectFree and self.oclAsType(FunctionCallExpression).calledBlock.isSideEffectFree()\n  else if self.oclIsKindOf(Equals) then\n    self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()\n  else if self.oclIsKindOf(ObjectCreationExpression) then\n    self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType\n  else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then\n    self.oclAsType(dataaccess::analytics::DimensionExpression).dimension.ownerSignature.sideEffectFree\n  else if self.oclIsKindOf(Ternary) then\n    self.oclAsType(Ternary).condition.isSideEffectFree() and\n    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and\n    self.oclAsType(Ternary).falseExpr.isSideEffectFree()\n  else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::CollectionExpression) then\n    self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.isSideEffectFree() and\n    if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then\n      (self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression->notEmpty() implies\n         self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and\n      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.isSideEffectFree()\n    else\n      true\n    endif\n  else if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then\n    self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())\n  else if self.oclIsKindOf(persistence::expressions::All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or\n  self.oclIsKindOf(dataaccess::expressions::literals::Literal) or self.oclIsKindOf(dataaccess::expressions::fp::AnonymousFunctionExpr) then\n    true\n  else if self.oclIsKindOf(dataaccess::query::Selection) then\n    self.oclAsType(dataaccess::query::Selection).object.isSideEffectFree()\n  else\n    false\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif'"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='let parametersAndSignatureAreSideEffectFree:Boolean =\n    self.oclIsKindOf(SignatureCallExpression) implies\n      (self.oclAsType(SignatureCallExpression).parameters->forAll(p|p.isSideEffectFree())\n       and self.oclAsType(SignatureCallExpression).getSignature().sideEffectFree)\n  in\n  if self.oclIsKindOf(ObjectBasedExpression) then\n    self.oclAsType(ObjectBasedExpression).object.isSideEffectFree() and\n    if self.oclIsKindOf(SignatureCallExpression) then\n      parametersAndSignatureAreSideEffectFree\n    else\n      if self.oclIsKindOf(Replace) then\n        self.oclAsType(Replace).with.isSideEffectFree()\n      else\n        if self.oclIsKindOf(ExpressionWithArgument) and self.oclAsType(ExpressionWithArgument).argument->notEmpty() then\n          self.oclAsType(ExpressionWithArgument).argument.isSideEffectFree()\n        else\n          true\n        endif\n      endif\n    endif\n  else if self.oclIsKindOf(FunctionCallExpression) then\n    parametersAndSignatureAreSideEffectFree and self.oclAsType(FunctionCallExpression).calledBlock.isSideEffectFree()\n  else if self.oclIsKindOf(Equals) then\n    self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()\n  else if self.oclIsKindOf(ObjectCreationExpression) then\n    self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType\n  else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then\n    self.oclAsType(dataaccess::analytics::DimensionExpression).dimensionParameter.ownerSignature.sideEffectFree\n  else if self.oclIsKindOf(Ternary) then\n    self.oclAsType(Ternary).condition.isSideEffectFree() and\n    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and\n    self.oclAsType(Ternary).falseExpr.isSideEffectFree()\n  else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::CollectionExpression) then\n    self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.isSideEffectFree() and\n    if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then\n      (self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression->notEmpty() implies\n         self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and\n      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.isSideEffectFree()\n    else\n      true\n    endif\n  else if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then\n    self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())\n  else if self.oclIsKindOf(persistence::expressions::All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or\n  self.oclIsKindOf(dataaccess::expressions::literals::Literal) or self.oclIsKindOf(dataaccess::expressions::fp::AnonymousFunctionExpr) then\n    true\n  else if self.oclIsKindOf(dataaccess::query::Selection) then\n    self.oclAsType(dataaccess::query::Selection).object.isSideEffectFree()\n  else\n    false\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */

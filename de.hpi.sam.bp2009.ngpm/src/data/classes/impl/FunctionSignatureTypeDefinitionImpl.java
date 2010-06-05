@@ -103,11 +103,33 @@ public class FunctionSignatureTypeDefinitionImpl extends TypeDefinitionImpl impl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSignature(Signature newSignature) {
+	public NotificationChain basicSetSignature(Signature newSignature, NotificationChain msgs) {
 		Signature oldSignature = signature;
 		signature = newSignature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.FUNCTION_SIGNATURE_TYPE_DEFINITION__SIGNATURE, oldSignature, signature));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.FUNCTION_SIGNATURE_TYPE_DEFINITION__SIGNATURE, oldSignature, newSignature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSignature(Signature newSignature) {
+		if (newSignature != signature) {
+			NotificationChain msgs = null;
+			if (signature != null)
+				msgs = ((InternalEObject)signature).eInverseRemove(this, ClassesPackage.SIGNATURE__TYPE_DEFINITION, Signature.class, msgs);
+			if (newSignature != null)
+				msgs = ((InternalEObject)newSignature).eInverseAdd(this, ClassesPackage.SIGNATURE__TYPE_DEFINITION, Signature.class, msgs);
+			msgs = basicSetSignature(newSignature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.FUNCTION_SIGNATURE_TYPE_DEFINITION__SIGNATURE, newSignature, newSignature));
 	}
 
 	/**
@@ -159,8 +181,26 @@ public class FunctionSignatureTypeDefinitionImpl extends TypeDefinitionImpl impl
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ClassesPackage.FUNCTION_SIGNATURE_TYPE_DEFINITION__SIGNATURE:
+				if (signature != null)
+					msgs = ((InternalEObject)signature).eInverseRemove(this, ClassesPackage.SIGNATURE__TYPE_DEFINITION, Signature.class, msgs);
+				return basicSetSignature((Signature)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ClassesPackage.FUNCTION_SIGNATURE_TYPE_DEFINITION__SIGNATURE:
+				return basicSetSignature(null, msgs);
 			case ClassesPackage.FUNCTION_SIGNATURE_TYPE_DEFINITION__OWNED_SIGNATURE:
 				return basicSetOwnedSignature(null, msgs);
 		}

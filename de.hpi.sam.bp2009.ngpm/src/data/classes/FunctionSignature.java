@@ -161,7 +161,7 @@ public interface FunctionSignature extends Signature {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false" ordered="false"
-	 *        annotation="http://de.hpi.sam.bp2009.OCL body='let candidates:Sequence(AnonymousFunctionExpr) = self.typeDefinition.ownerTypedElement.oclAsType(AnonymousFunctionExpr)->asSequence() in\n  if candidates->isEmpty() then\n    null\n  else\n    candidates->at(1)\n  endif'"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='let candidates:Sequence(dataaccess::expressions::fp::AnonymousFunctionExpr) =\n         self.typeDefinition.ownerTypedElement.oclAsType(dataaccess::expressions::fp::AnonymousFunctionExpr)->asSequence() in\n  if candidates->isEmpty() then\n    null\n  else\n    candidates->at(1)\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */

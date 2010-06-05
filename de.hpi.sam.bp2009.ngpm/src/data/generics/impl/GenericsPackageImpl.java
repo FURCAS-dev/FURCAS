@@ -667,7 +667,7 @@ public class GenericsPackageImpl extends EPackageImpl implements GenericsPackage
 		   source, 
 		   new String[] {
 			 "constraints", "UseInSignaturesOfOwningParamerizedClassOnly UseInAssociationsOfOwningParameterizedClassOnly"
-		   });					
+		   });				
 		addAnnotation
 		  (parameterizedClassInstantiationEClass, 
 		   source, 
@@ -685,7 +685,7 @@ public class GenericsPackageImpl extends EPackageImpl implements GenericsPackage
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });				
+		   });			
 		addAnnotation
 		  (classParameterizationEClass, 
 		   source, 
@@ -714,7 +714,7 @@ public class GenericsPackageImpl extends EPackageImpl implements GenericsPackage
 		   new String[] {
 			 "UseInSignaturesOfOwningParamerizedClassOnly", "self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(data::classes::Parameter) implies \n   (s.oclAsType(data::classes::Parameter).ownerSignature.oclIsKindOf(data::classes::MethodSignature) and\n    s.oclAsType(data::classes::Parameter).ownerSignature.oclAsType(data::classes::MethodSignature).owner=self.parameterOf .owningClassDefinition)) and\n  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(data::classes::MethodSignature) and \n    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and\n    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition) and\n  self.signaturesWithFault->forAll(s| s.oclIsKindOf(data::classes::MethodSignature)  and \n    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and\n    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition)",
 			 "UseInAssociationsOfOwningParameterizedClassOnly", "self.elementsOfType.associationEnd->\n    forAll(ae | ae.otherEnd().type.clazz = self.parameterOf.owningClassDefinition)"
-		   });					
+		   });				
 		addAnnotation
 		  (parameterizedClassInstantiationEClass, 
 		   source, 
@@ -733,7 +733,7 @@ public class GenericsPackageImpl extends EPackageImpl implements GenericsPackage
 		   source, 
 		   new String[] {
 			 "body", "parameterizedClass.parameterization"
-		   });				
+		   });			
 		addAnnotation
 		  (classParameterizationEClass, 
 		   source, 
@@ -755,19 +755,7 @@ public class GenericsPackageImpl extends EPackageImpl implements GenericsPackage
 	 * @generated
 	 */
 	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";							
-		addAnnotation
-		  (getFormalTypeParameter_TypeConstraint(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });										
-		addAnnotation
-		  (getParameterizedClassInstantiation_ParameterizedClass(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });						
+		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";																			
 		addAnnotation
 		  (getActualTypeParameter_Type(), 
 		   source, 

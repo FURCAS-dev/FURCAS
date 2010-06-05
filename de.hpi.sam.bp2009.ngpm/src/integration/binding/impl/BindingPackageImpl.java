@@ -618,8 +618,6 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage {
 		createEcoreAnnotations();
 		// http://de.hpi.sam.bp2009.OCL
 		createDeAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 	}
 
 	/**
@@ -642,7 +640,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "FunctionExpressionHasFunctionType"
-		   });								
+		   });						
 	}
 
 	/**
@@ -658,29 +656,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage {
 		   source, 
 		   new String[] {
 			 "FunctionExpressionHasFunctionType", "self.function.getType().oclIsKindOf(FunctionSignatureTypeDefinition)"
-		   });									
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";						
-		addAnnotation
-		  (getBinding_Function(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });			
-		addAnnotation
-		  (getHttpBinding_UrlPattern(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });					
+		   });							
 	}
 
 } //BindingPackageImpl

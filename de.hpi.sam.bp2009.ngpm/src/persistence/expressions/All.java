@@ -70,7 +70,6 @@ public interface All extends Expression {
 	 * @see #setOfClass(SapClass)
 	 * @see persistence.expressions.ExpressionsPackage#getAll_OfClass()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	SapClass getOfClass();

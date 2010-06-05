@@ -807,8 +807,6 @@ public class AbapdictionaryPackageImpl extends EPackageImpl implements Abapdicti
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 		// http://de.hpi.sam.bp2009.OCL
 		createDeAnnotations();
 	}
@@ -827,58 +825,12 @@ public class AbapdictionaryPackageImpl extends EPackageImpl implements Abapdicti
 		   new String[] {
 			 "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
 			 "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
-		   });						
+		   });					
 		addAnnotation
 		  (codeEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "TypeOfValuesEqualsAbapType"
-		   });					
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";					
-		addAnnotation
-		  (getCodeValue_Type(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });				
-		addAnnotation
-		  (getCode_Values(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getDataElement_AbapType(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getAbapType_XsdRepresentation(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getAbapStructureType_Fields(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getAbapStructureField_Type(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
 		   });
 	}
 
@@ -889,13 +841,13 @@ public class AbapdictionaryPackageImpl extends EPackageImpl implements Abapdicti
 	 * @generated
 	 */
 	protected void createDeAnnotations() {
-		String source = "http://de.hpi.sam.bp2009.OCL";						
+		String source = "http://de.hpi.sam.bp2009.OCL";					
 		addAnnotation
 		  (codeEClass, 
 		   source, 
 		   new String[] {
 			 "TypeOfValuesEqualsAbapType", "self.values->forAll(cv:CodeValue |\n      cv.type = self.abapType)"
-		   });						
+		   });	
 	}
 
 } //AbapdictionaryPackageImpl

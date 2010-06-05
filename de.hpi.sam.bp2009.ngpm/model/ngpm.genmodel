@@ -81,6 +81,9 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference behavioral.ecore#//actions/Iterator/iterate"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference behavioral.ecore#//actions/Iterator/selection"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference behavioral.ecore#//actions/Iterator/fromClause"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference behavioral.ecore#//actions/Iterator/factOfGroupBy"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference behavioral.ecore#//actions/Iterator/dimension"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference behavioral.ecore#//actions/Iterator/groupedFactsOfGroupBy"/>
       </genClasses>
       <genClasses ecoreClass="behavioral.ecore#//actions/NamedValueDeclaration">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -307,8 +310,7 @@
     </nestedGenPackages>
   </genPackages>
   <genPackages prefix="Data" disposableProviderFactory="true" ecorePackage="data.ecore#/">
-    <nestedGenPackages prefix="Classes" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//classes">
+    <nestedGenPackages prefix="Classes" disposableProviderFactory="true" ecorePackage="data.ecore#//classes">
       <genClasses ecoreClass="data.ecore#//classes/Association">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference data.ecore#//classes/Association/ends"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference data.ecore#//classes/Association/package_"/>
@@ -581,8 +583,7 @@
         </genOperations>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Constraints" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//constraints">
+    <nestedGenPackages prefix="Constraints" disposableProviderFactory="true" ecorePackage="data.ecore#//constraints">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="data.ecore#//constraints/ObjectState">
         <genEnumLiterals ecoreEnumLiteral="data.ecore#//constraints/ObjectState/INITIAL"/>
         <genEnumLiterals ecoreEnumLiteral="data.ecore#//constraints/ObjectState/TRANSIENT"/>
@@ -606,12 +607,11 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute data.ecore#//constraints/SeverityInState/severity"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Quantitystructure" basePackage="data" disposableProviderFactory="true"
+    <nestedGenPackages prefix="Quantitystructure" disposableProviderFactory="true"
         ecorePackage="data.ecore#//quantitystructure">
       <genClasses ecoreClass="data.ecore#//quantitystructure/Dummy"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Timedependency" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//timedependency">
+    <nestedGenPackages prefix="Timedependency" disposableProviderFactory="true" ecorePackage="data.ecore#//timedependency">
       <genClasses ecoreClass="data.ecore#//timedependency/TimeDependency">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute data.ecore#//timedependency/TimeDependency/recordCutoffInMilliseconds"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute data.ecore#//timedependency/TimeDependency/canChangePast"/>
@@ -620,12 +620,10 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference data.ecore#//timedependency/TimeDependency/association"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Documents" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//documents">
+    <nestedGenPackages prefix="Documents" disposableProviderFactory="true" ecorePackage="data.ecore#//documents">
       <genClasses ecoreClass="data.ecore#//documents/Dummy"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Generics" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//generics">
+    <nestedGenPackages prefix="Generics" disposableProviderFactory="true" ecorePackage="data.ecore#//generics">
       <genClasses ecoreClass="data.ecore#//generics/FormalTypeParameter">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference data.ecore#//generics/FormalTypeParameter/parameterOf"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -655,8 +653,7 @@
             ecoreFeature="ecore:EReference data.ecore#//generics/ActualTypeParameter/formalTypeParameter"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Tuples" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//tuples">
+    <nestedGenPackages prefix="Tuples" disposableProviderFactory="true" ecorePackage="data.ecore#//tuples">
       <genClasses ecoreClass="data.ecore#//tuples/TupleTypeDefinition">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference data.ecore#//tuples/TupleTypeDefinition/elements"/>
       </genClasses>
@@ -664,11 +661,13 @@
     </nestedGenPackages>
   </genPackages>
   <genPackages prefix="Dataaccess" disposableProviderFactory="true" ecorePackage="dataaccess.ecore#/">
-    <nestedGenPackages prefix="Expressions" disposableProviderFactory="true" ecorePackage="dataaccess.ecore#//expressions">
+    <nestedGenPackages prefix="Expressions" basePackage="dataaccess" disposableProviderFactory="true"
+        ecorePackage="dataaccess.ecore#//expressions">
       <genClasses image="false" ecoreClass="dataaccess.ecore#//expressions/Expression">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/expressionStatement"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/initExpressionFor"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/actualObjectParameter"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/objectBasedExpression"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/argumentOf"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/blockOfFunctionCallExpression"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/leftOfEquals"/>
@@ -678,6 +677,10 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/inIterator"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/conditionOfOqlQuery"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/fromClause"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/cellSetOfDimensionExpression"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/factsOfDimensionExpression"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/dimension"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/mapExpressionOfGroupBy"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/template"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/Expression/all"/>
         <genOperations ecoreOperation="dataaccess.ecore#//expressions/Expression/isSideEffectFree"/>
@@ -752,7 +755,8 @@
       <genClasses image="false" ecoreClass="dataaccess.ecore#//expressions/ExpressionWithArgument"/>
       <genClasses image="false" ecoreClass="dataaccess.ecore#//expressions/ConditionalExpression"/>
       <genClasses ecoreClass="dataaccess.ecore#//expressions/Map"/>
-      <nestedGenPackages prefix="Literals" disposableProviderFactory="true" ecorePackage="dataaccess.ecore#//expressions/literals">
+      <nestedGenPackages prefix="Literals" basePackage="dataaccess.expressions" disposableProviderFactory="true"
+          ecorePackage="dataaccess.ecore#//expressions/literals">
         <genClasses ecoreClass="dataaccess.ecore#//expressions/literals/Literal">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute dataaccess.ecore#//expressions/literals/Literal/literal"/>
         </genClasses>
@@ -775,8 +779,8 @@
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//expressions/literals/ValueInit/value"/>
         </genClasses>
       </nestedGenPackages>
-      <nestedGenPackages prefix="Collectionexpressions" disposableProviderFactory="true"
-          ecorePackage="dataaccess.ecore#//expressions/collectionexpressions">
+      <nestedGenPackages prefix="Collectionexpressions" basePackage="dataaccess.expressions"
+          disposableProviderFactory="true" ecorePackage="dataaccess.ecore#//expressions/collectionexpressions">
         <genClasses ecoreClass="dataaccess.ecore#//expressions/collectionexpressions/Including"/>
         <genClasses ecoreClass="dataaccess.ecore#//expressions/collectionexpressions/Excluding"/>
         <genClasses ecoreClass="dataaccess.ecore#//expressions/collectionexpressions/IncludingAt"/>
@@ -794,7 +798,8 @@
         </genClasses>
         <genClasses image="false" ecoreClass="dataaccess.ecore#//expressions/collectionexpressions/CollectionExpressionWithArgument"/>
       </nestedGenPackages>
-      <nestedGenPackages prefix="Fp" disposableProviderFactory="true" ecorePackage="dataaccess.ecore#//expressions/fp">
+      <nestedGenPackages prefix="Fp" basePackage="dataaccess.expressions" disposableProviderFactory="true"
+          ecorePackage="dataaccess.ecore#//expressions/fp">
         <genClasses ecoreClass="dataaccess.ecore#//expressions/fp/AnonymousFunctionExpr">
           <genOperations ecoreOperation="dataaccess.ecore#//expressions/fp/AnonymousFunctionExpr/getImplementation"/>
         </genClasses>
@@ -804,7 +809,8 @@
         </genClasses>
       </nestedGenPackages>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Query" disposableProviderFactory="true" ecorePackage="dataaccess.ecore#//query">
+    <nestedGenPackages prefix="Query" basePackage="dataaccess" disposableProviderFactory="true"
+        ecorePackage="dataaccess.ecore#//query">
       <genClasses ecoreClass="dataaccess.ecore#//query/Selection">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//query/Selection/iterator"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//query/Selection/selectionExpr"/>
@@ -821,7 +827,8 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//query/FromClause/alias"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Analytics" disposableProviderFactory="true" ecorePackage="dataaccess.ecore#//analytics">
+    <nestedGenPackages prefix="Analytics" basePackage="dataaccess" disposableProviderFactory="true"
+        ecorePackage="dataaccess.ecore#//analytics">
       <genClasses ecoreClass="dataaccess.ecore#//analytics/Dimension">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/Dimension/cellSet"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/Dimension/characteristicFunction"/>
@@ -838,7 +845,7 @@
       <genClasses ecoreClass="dataaccess.ecore#//analytics/DimensionExpression">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/DimensionExpression/cellSet"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/DimensionExpression/dimension"/>
+            ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/DimensionExpression/dimensionParameter"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/DimensionExpression/facts"/>
       </genClasses>
       <genClasses ecoreClass="dataaccess.ecore#//analytics/GroupBy">
@@ -848,6 +855,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/GroupBy/groupedFacts"/>
       </genClasses>
       <genClasses ecoreClass="dataaccess.ecore#//analytics/DimensionDefinition">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/DimensionDefinition/groupBy"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/DimensionDefinition/expression"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference dataaccess.ecore#//analytics/DimensionDefinition/iterator"/>
         <genOperations ecoreOperation="dataaccess.ecore#//analytics/DimensionDefinition/getName"/>

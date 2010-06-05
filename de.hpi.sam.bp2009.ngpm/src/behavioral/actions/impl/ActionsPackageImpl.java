@@ -848,6 +848,33 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getIterator_FactOfGroupBy() {
+		return (EReference)iteratorEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIterator_Dimension() {
+		return (EReference)iteratorEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getIterator_GroupedFactsOfGroupBy() {
+		return (EReference)iteratorEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getNamedValueDeclaration() {
 		return namedValueDeclarationEClass;
 	}
@@ -1011,6 +1038,9 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		createEReference(iteratorEClass, ITERATOR__ITERATE);
 		createEReference(iteratorEClass, ITERATOR__SELECTION);
 		createEReference(iteratorEClass, ITERATOR__FROM_CLAUSE);
+		createEReference(iteratorEClass, ITERATOR__FACT_OF_GROUP_BY);
+		createEReference(iteratorEClass, ITERATOR__DIMENSION);
+		createEReference(iteratorEClass, ITERATOR__GROUPED_FACTS_OF_GROUP_BY);
 
 		namedValueDeclarationEClass = createEClass(NAMED_VALUE_DECLARATION);
 		createEReference(namedValueDeclarationEClass, NAMED_VALUE_DECLARATION__NAMED_VALUE);
@@ -1058,6 +1088,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 		CollectionexpressionsPackage theCollectionexpressionsPackage = (CollectionexpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(CollectionexpressionsPackage.eNS_URI);
 		QueryPackage theQueryPackage = (QueryPackage)EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
+		AnalyticsPackage theAnalyticsPackage = (AnalyticsPackage)EPackage.Registry.INSTANCE.getEPackage(AnalyticsPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1167,6 +1198,9 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		initEReference(getIterator_Iterate(), theCollectionexpressionsPackage.getIterate(), theCollectionexpressionsPackage.getIterate_Iterators(), "iterate", null, 0, 1, Iterator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIterator_Selection(), theQueryPackage.getSelection(), theQueryPackage.getSelection_Iterator(), "selection", null, 0, 1, Iterator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIterator_FromClause(), theQueryPackage.getFromClause(), theQueryPackage.getFromClause_Alias(), "fromClause", null, 0, 1, Iterator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIterator_FactOfGroupBy(), theAnalyticsPackage.getGroupBy(), theAnalyticsPackage.getGroupBy_Fact(), "factOfGroupBy", null, 0, 1, Iterator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIterator_Dimension(), theAnalyticsPackage.getDimensionDefinition(), theAnalyticsPackage.getDimensionDefinition_Iterator(), "dimension", null, 0, 1, Iterator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIterator_GroupedFactsOfGroupBy(), theAnalyticsPackage.getGroupBy(), theAnalyticsPackage.getGroupBy_GroupedFacts(), "groupedFactsOfGroupBy", null, 0, 1, Iterator.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedValueDeclarationEClass, NamedValueDeclaration.class, "NamedValueDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNamedValueDeclaration_NamedValue(), this.getNamedValueWithOptionalInitExpression(), this.getNamedValueWithOptionalInitExpression_NamedValueDeclaration(), "namedValue", null, 1, 1, NamedValueDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1192,8 +1226,6 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		createEcoreAnnotations();
 		// http://de.hpi.sam.bp2009.OCL
 		createDeAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 	}
 
 	/**
@@ -1300,7 +1332,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "VariableOwnedByRightBlock"
-		   });					
+		   });				
 		addAnnotation
 		  (returnEClass, 
 		   source, 
@@ -1312,7 +1344,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "ObjectsMustConformToEndTypes BlockMustNotImplementSideEffectFreeSignature NoValueMustBeModified"
-		   });							
+		   });					
 		addAnnotation
 		  (constantEClass, 
 		   source, 
@@ -1439,7 +1471,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   source, 
 		   new String[] {
 			 "VariableOwnedByRightBlock", "self.forVariable.owner = self.nestedBlocks->at(1)"
-		   });					
+		   });				
 		addAnnotation
 		  (returnEClass, 
 		   source, 
@@ -1454,7 +1486,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 			 "ObjectsMustConformToEndTypes", "Sequence{1..self.objects->size()}->forAll(i:Integer |\n    objects->at(i).getType().conformsTo(association.ends->at(i).type))",
 			 "BlockMustNotImplementSideEffectFreeSignature", "self.block.getImplementedSignature()->notEmpty() implies\n  not self.block.getImplementedSignature().sideEffectFree",
 			 "NoValueMustBeModified", "self.association.ends->forAll(ae:AssociationEnd |\n    ae.type.clazz.valueType implies not ae.contributesToEquality)"
-		   });							
+		   });					
 		addAnnotation
 		  (constantEClass, 
 		   source, 
@@ -1479,34 +1511,6 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   new String[] {
 			 "AssignmentCompatibility", "self.initExpression->forAll(ie | ie.getType().conformsTo(self.getType()))"
 		   });	
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";																																									
-		addAnnotation
-		  (getForeach_Collection(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });										
-		addAnnotation
-		  (getLinkManipulationStatement_Association(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getLinkManipulationStatement_Objects(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });												
 	}
 
 } //ActionsPackageImpl

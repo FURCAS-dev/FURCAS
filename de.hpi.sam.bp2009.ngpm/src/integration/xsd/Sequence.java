@@ -36,7 +36,7 @@ public interface Sequence extends Containable {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Children</em>' reference list.
 	 * @see integration.xsd.XsdPackage#getSequence_Children()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	EList<Containable> getChildren();

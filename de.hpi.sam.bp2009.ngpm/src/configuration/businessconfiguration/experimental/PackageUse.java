@@ -44,7 +44,6 @@ public interface PackageUse extends EObject {
 	 * @see #setPackage_(modelmanagement.Package)
 	 * @see configuration.businessconfiguration.experimental.ExperimentalPackage#getPackageUse_Package_()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	modelmanagement.Package getPackage_();
@@ -70,7 +69,7 @@ public interface PackageUse extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Setting</em>' reference list.
 	 * @see configuration.businessconfiguration.experimental.ExperimentalPackage#getPackageUse_Setting()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	EList<ConfigurationSetting> getSetting();

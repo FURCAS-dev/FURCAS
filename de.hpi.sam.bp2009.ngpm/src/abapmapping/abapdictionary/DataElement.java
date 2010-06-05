@@ -36,7 +36,6 @@ public interface DataElement extends UnstructuredAbapType {
 	 * @see #setAbapType(AbapPrimtiveType)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getDataElement_AbapType()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	AbapPrimtiveType getAbapType();

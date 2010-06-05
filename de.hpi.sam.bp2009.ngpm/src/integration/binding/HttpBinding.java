@@ -40,7 +40,6 @@ public interface HttpBinding extends Binding {
 	 * @see #setUrlPattern(UrlPattern)
 	 * @see integration.binding.BindingPackage#getHttpBinding_UrlPattern()
 	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	UrlPattern getUrlPattern();

@@ -9,6 +9,7 @@ package data.classes.impl;
 import abapmapping.AbapSignatureImplementationAnnotation;
 
 import data.classes.ClassesPackage;
+import data.classes.FunctionSignatureTypeDefinition;
 import data.classes.NamedValue;
 import data.classes.Parameter;
 import data.classes.SapClass;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -51,6 +53,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link data.classes.impl.SignatureImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link data.classes.impl.SignatureImpl#getOwnedTypeDefinitions <em>Owned Type Definitions</em>}</li>
  *   <li>{@link data.classes.impl.SignatureImpl#getInput <em>Input</em>}</li>
+ *   <li>{@link data.classes.impl.SignatureImpl#getTypeDefinition <em>Type Definition</em>}</li>
  *   <li>{@link data.classes.impl.SignatureImpl#getPreconditions <em>Preconditions</em>}</li>
  *   <li>{@link data.classes.impl.SignatureImpl#getPostconditions <em>Postconditions</em>}</li>
  *   <li>{@link data.classes.impl.SignatureImpl#getAbapAnnotation <em>Abap Annotation</em>}</li>
@@ -119,6 +122,16 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 	 * @ordered
 	 */
 	protected EList<Parameter> input;
+
+	/**
+	 * The cached value of the '{@link #getTypeDefinition() <em>Type Definition</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTypeDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FunctionSignatureTypeDefinition> typeDefinition;
 
 	/**
 	 * The cached value of the '{@link #getPreconditions() <em>Preconditions</em>}' containment reference list.
@@ -370,6 +383,18 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<FunctionSignatureTypeDefinition> getTypeDefinition() {
+		if (typeDefinition == null) {
+			typeDefinition = new EObjectWithInverseResolvingEList<FunctionSignatureTypeDefinition>(FunctionSignatureTypeDefinition.class, this, ClassesPackage.SIGNATURE__TYPE_DEFINITION, ClassesPackage.FUNCTION_SIGNATURE_TYPE_DEFINITION__SIGNATURE);
+		}
+		return typeDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Constraint> getPreconditions() {
 		if (preconditions == null) {
 			preconditions = new EObjectContainmentEList<Constraint>(Constraint.class, this, ClassesPackage.SIGNATURE__PRECONDITIONS);
@@ -546,6 +571,8 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 				return basicSetOwnedTypeDefinitions((TypeDefinition)otherEnd, msgs);
 			case ClassesPackage.SIGNATURE__INPUT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInput()).basicAdd(otherEnd, msgs);
+			case ClassesPackage.SIGNATURE__TYPE_DEFINITION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTypeDefinition()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -566,6 +593,8 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 				return basicSetOwnedTypeDefinitions(null, msgs);
 			case ClassesPackage.SIGNATURE__INPUT:
 				return ((InternalEList<?>)getInput()).basicRemove(otherEnd, msgs);
+			case ClassesPackage.SIGNATURE__TYPE_DEFINITION:
+				return ((InternalEList<?>)getTypeDefinition()).basicRemove(otherEnd, msgs);
 			case ClassesPackage.SIGNATURE__PRECONDITIONS:
 				return ((InternalEList<?>)getPreconditions()).basicRemove(otherEnd, msgs);
 			case ClassesPackage.SIGNATURE__POSTCONDITIONS:
@@ -594,6 +623,8 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 				return getOwnedTypeDefinitions();
 			case ClassesPackage.SIGNATURE__INPUT:
 				return getInput();
+			case ClassesPackage.SIGNATURE__TYPE_DEFINITION:
+				return getTypeDefinition();
 			case ClassesPackage.SIGNATURE__PRECONDITIONS:
 				return getPreconditions();
 			case ClassesPackage.SIGNATURE__POSTCONDITIONS:
@@ -629,6 +660,10 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 			case ClassesPackage.SIGNATURE__INPUT:
 				getInput().clear();
 				getInput().addAll((Collection<? extends Parameter>)newValue);
+				return;
+			case ClassesPackage.SIGNATURE__TYPE_DEFINITION:
+				getTypeDefinition().clear();
+				getTypeDefinition().addAll((Collection<? extends FunctionSignatureTypeDefinition>)newValue);
 				return;
 			case ClassesPackage.SIGNATURE__PRECONDITIONS:
 				getPreconditions().clear();
@@ -668,6 +703,9 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 			case ClassesPackage.SIGNATURE__INPUT:
 				getInput().clear();
 				return;
+			case ClassesPackage.SIGNATURE__TYPE_DEFINITION:
+				getTypeDefinition().clear();
+				return;
 			case ClassesPackage.SIGNATURE__PRECONDITIONS:
 				getPreconditions().clear();
 				return;
@@ -699,6 +737,8 @@ public abstract class SignatureImpl extends EObjectImpl implements Signature {
 				return ownedTypeDefinitions != null;
 			case ClassesPackage.SIGNATURE__INPUT:
 				return input != null && !input.isEmpty();
+			case ClassesPackage.SIGNATURE__TYPE_DEFINITION:
+				return typeDefinition != null && !typeDefinition.isEmpty();
 			case ClassesPackage.SIGNATURE__PRECONDITIONS:
 				return preconditions != null && !preconditions.isEmpty();
 			case ClassesPackage.SIGNATURE__POSTCONDITIONS:

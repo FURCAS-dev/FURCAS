@@ -71,7 +71,6 @@ public interface MethodCallExpression extends ObjectBasedExpression, SignatureCa
 	 * @see #setMethodSignature(MethodSignature)
 	 * @see dataaccess.expressions.ExpressionsPackage#getMethodCallExpression_MethodSignature()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	MethodSignature getMethodSignature();

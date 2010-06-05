@@ -44,7 +44,6 @@ public interface VariableExpression extends Expression {
 	 * @see #setVariable(NamedValue)
 	 * @see dataaccess.expressions.ExpressionsPackage#getVariableExpression_Variable()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	NamedValue getVariable();

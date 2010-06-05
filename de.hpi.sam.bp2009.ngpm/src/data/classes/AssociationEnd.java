@@ -229,7 +229,7 @@ public interface AssociationEnd extends NamedElement {
 	 * @return the value of the '<em>Abap Annotation</em>' reference.
 	 * @see #setAbapAnnotation(AbapAssociationEndImplementationAnnotation)
 	 * @see data.classes.ClassesPackage#getAssociationEnd_AbapAnnotation()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	AbapAssociationEndImplementationAnnotation getAbapAnnotation();

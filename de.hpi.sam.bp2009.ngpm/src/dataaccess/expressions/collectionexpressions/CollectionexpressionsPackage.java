@@ -109,6 +109,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int COLLECTION_EXPRESSION__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION__OBJECT_BASED_EXPRESSION = ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -116,6 +125,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLLECTION_EXPRESSION__ARGUMENT_OF = ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION = ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -179,6 +197,42 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLLECTION_EXPRESSION__FROM_CLAUSE = ExpressionsPackage.EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION__DIMENSION = ExpressionsPackage.EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY = ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -263,6 +317,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int COLLECTION_EXPRESSION_WITH_ARGUMENT__ACTUAL_OBJECT_PARAMETER = COLLECTION_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION_WITH_ARGUMENT__OBJECT_BASED_EXPRESSION = COLLECTION_EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,6 +333,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLLECTION_EXPRESSION_WITH_ARGUMENT__ARGUMENT_OF = COLLECTION_EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION_WITH_ARGUMENT__BLOCK_OF_FUNCTION_CALL_EXPRESSION = COLLECTION_EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -333,6 +405,42 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLLECTION_EXPRESSION_WITH_ARGUMENT__FROM_CLAUSE = COLLECTION_EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION_WITH_ARGUMENT__CELL_SET_OF_DIMENSION_EXPRESSION = COLLECTION_EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION_WITH_ARGUMENT__FACTS_OF_DIMENSION_EXPRESSION = COLLECTION_EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION_WITH_ARGUMENT__DIMENSION = COLLECTION_EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION_WITH_ARGUMENT__MAP_EXPRESSION_OF_GROUP_BY = COLLECTION_EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -426,6 +534,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int INCLUDING__ACTUAL_OBJECT_PARAMETER = COLLECTION_EXPRESSION_WITH_ARGUMENT__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING__OBJECT_BASED_EXPRESSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -433,6 +550,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INCLUDING__ARGUMENT_OF = COLLECTION_EXPRESSION_WITH_ARGUMENT__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING__BLOCK_OF_FUNCTION_CALL_EXPRESSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -496,6 +622,42 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INCLUDING__FROM_CLAUSE = COLLECTION_EXPRESSION_WITH_ARGUMENT__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING__CELL_SET_OF_DIMENSION_EXPRESSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING__FACTS_OF_DIMENSION_EXPRESSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING__DIMENSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING__MAP_EXPRESSION_OF_GROUP_BY = COLLECTION_EXPRESSION_WITH_ARGUMENT__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -589,6 +751,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int EXCLUDING__ACTUAL_OBJECT_PARAMETER = COLLECTION_EXPRESSION_WITH_ARGUMENT__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING__OBJECT_BASED_EXPRESSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -596,6 +767,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXCLUDING__ARGUMENT_OF = COLLECTION_EXPRESSION_WITH_ARGUMENT__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING__BLOCK_OF_FUNCTION_CALL_EXPRESSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -659,6 +839,42 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXCLUDING__FROM_CLAUSE = COLLECTION_EXPRESSION_WITH_ARGUMENT__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING__CELL_SET_OF_DIMENSION_EXPRESSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING__FACTS_OF_DIMENSION_EXPRESSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING__DIMENSION = COLLECTION_EXPRESSION_WITH_ARGUMENT__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING__MAP_EXPRESSION_OF_GROUP_BY = COLLECTION_EXPRESSION_WITH_ARGUMENT__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -752,6 +968,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int INCLUDING_AT__ACTUAL_OBJECT_PARAMETER = INCLUDING__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING_AT__OBJECT_BASED_EXPRESSION = INCLUDING__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -759,6 +984,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INCLUDING_AT__ARGUMENT_OF = INCLUDING__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING_AT__BLOCK_OF_FUNCTION_CALL_EXPRESSION = INCLUDING__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -822,6 +1056,42 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INCLUDING_AT__FROM_CLAUSE = INCLUDING__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING_AT__CELL_SET_OF_DIMENSION_EXPRESSION = INCLUDING__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING_AT__FACTS_OF_DIMENSION_EXPRESSION = INCLUDING__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING_AT__DIMENSION = INCLUDING__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING_AT__MAP_EXPRESSION_OF_GROUP_BY = INCLUDING__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -924,6 +1194,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int ITERATE__ACTUAL_OBJECT_PARAMETER = COLLECTION_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE__OBJECT_BASED_EXPRESSION = COLLECTION_EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -931,6 +1210,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITERATE__ARGUMENT_OF = COLLECTION_EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE__BLOCK_OF_FUNCTION_CALL_EXPRESSION = COLLECTION_EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -994,6 +1282,42 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITERATE__FROM_CLAUSE = COLLECTION_EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE__CELL_SET_OF_DIMENSION_EXPRESSION = COLLECTION_EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE__FACTS_OF_DIMENSION_EXPRESSION = COLLECTION_EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE__DIMENSION = COLLECTION_EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE__MAP_EXPRESSION_OF_GROUP_BY = COLLECTION_EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -1105,6 +1429,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int EXCLUDING_AT__ACTUAL_OBJECT_PARAMETER = EXCLUDING__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING_AT__OBJECT_BASED_EXPRESSION = EXCLUDING__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1112,6 +1445,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXCLUDING_AT__ARGUMENT_OF = EXCLUDING__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING_AT__BLOCK_OF_FUNCTION_CALL_EXPRESSION = EXCLUDING__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -1175,6 +1517,42 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXCLUDING_AT__FROM_CLAUSE = EXCLUDING__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING_AT__CELL_SET_OF_DIMENSION_EXPRESSION = EXCLUDING__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING_AT__FACTS_OF_DIMENSION_EXPRESSION = EXCLUDING__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING_AT__DIMENSION = EXCLUDING__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING_AT__MAP_EXPRESSION_OF_GROUP_BY = EXCLUDING__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -1277,6 +1655,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int WITH_POSITION__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_POSITION__OBJECT_BASED_EXPRESSION = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1284,6 +1671,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int WITH_POSITION__ARGUMENT_OF = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_POSITION__BLOCK_OF_FUNCTION_CALL_EXPRESSION = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -1347,6 +1743,42 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int WITH_POSITION__FROM_CLAUSE = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_POSITION__CELL_SET_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_POSITION__FACTS_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_POSITION__DIMENSION = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_POSITION__MAP_EXPRESSION_OF_GROUP_BY = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.

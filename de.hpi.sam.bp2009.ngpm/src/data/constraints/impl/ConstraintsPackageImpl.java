@@ -617,7 +617,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		   source, 
 		   new String[] {
 			 "constraints", "ExpressionTypeMustBeBoolean MustBeOwned"
-		   });		
+		   });	
 	}
 
 	/**
@@ -634,7 +634,7 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		   new String[] {
 			 "ExpressionTypeMustBeBoolean", "self.constraintExpression.getType().upperMultiplicity = 1 and\n  self.constraintExpression.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.constraintExpression.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'",
 			 "MustBeOwned", "self.constrainedType->notEmpty() or\n  self.theContext->notEmpty() or\n  self.preconditionForSignature->notEmpty() or\n  self.postconditionForSignature->notEmpty()"
-		   });			
+		   });		
 	}
 
 	/**
@@ -650,12 +650,6 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", "constraint"
-		   });		
-		addAnnotation
-		  (getConstraint_ConstraintExpression(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
 		   });
 	}
 

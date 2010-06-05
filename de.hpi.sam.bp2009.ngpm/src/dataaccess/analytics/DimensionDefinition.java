@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link dataaccess.analytics.DimensionDefinition#getGroupBy <em>Group By</em>}</li>
  *   <li>{@link dataaccess.analytics.DimensionDefinition#getExpression <em>Expression</em>}</li>
  *   <li>{@link dataaccess.analytics.DimensionDefinition#getIterator <em>Iterator</em>}</li>
  * </ul>
@@ -36,7 +37,36 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DimensionDefinition extends EObject {
 	/**
+	 * Returns the value of the '<em><b>Group By</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.GroupBy#getDimensions <em>Dimensions</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Group By</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Group By</em>' container reference.
+	 * @see #setGroupBy(GroupBy)
+	 * @see dataaccess.analytics.AnalyticsPackage#getDimensionDefinition_GroupBy()
+	 * @see dataaccess.analytics.GroupBy#getDimensions
+	 * @model opposite="dimensions" required="true"
+	 * @generated
+	 */
+	GroupBy getGroupBy();
+
+	/**
+	 * Sets the value of the '{@link dataaccess.analytics.DimensionDefinition#getGroupBy <em>Group By</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Group By</em>' container reference.
+	 * @see #getGroupBy()
+	 * @generated
+	 */
+	void setGroupBy(GroupBy value);
+
+	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getDimension <em>Dimension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression</em>' containment reference isn't clear,
@@ -46,8 +76,8 @@ public interface DimensionDefinition extends EObject {
 	 * @return the value of the '<em>Expression</em>' containment reference.
 	 * @see #setExpression(Expression)
 	 * @see dataaccess.analytics.AnalyticsPackage#getDimensionDefinition_Expression()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='dimension'"
+	 * @see dataaccess.expressions.Expression#getDimension
+	 * @model opposite="dimension" containment="true" required="true"
 	 * @generated
 	 */
 	Expression getExpression();
@@ -64,6 +94,7 @@ public interface DimensionDefinition extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getDimension <em>Dimension</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Iterator</em>' containment reference isn't clear,
@@ -73,8 +104,8 @@ public interface DimensionDefinition extends EObject {
 	 * @return the value of the '<em>Iterator</em>' containment reference.
 	 * @see #setIterator(Iterator)
 	 * @see dataaccess.analytics.AnalyticsPackage#getDimensionDefinition_Iterator()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='dimension'"
+	 * @see behavioral.actions.Iterator#getDimension
+	 * @model opposite="dimension" containment="true" required="true"
 	 * @generated
 	 */
 	Iterator getIterator();

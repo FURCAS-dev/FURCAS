@@ -194,13 +194,22 @@ public interface ClassesPackage extends EPackage {
 	int SIGNATURE__INPUT = 4;
 
 	/**
+	 * The feature id for the '<em><b>Type Definition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNATURE__TYPE_DEFINITION = 5;
+
+	/**
 	 * The feature id for the '<em><b>Preconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNATURE__PRECONDITIONS = 5;
+	int SIGNATURE__PRECONDITIONS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Postconditions</b></em>' containment reference list.
@@ -209,7 +218,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNATURE__POSTCONDITIONS = 6;
+	int SIGNATURE__POSTCONDITIONS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Abap Annotation</b></em>' reference.
@@ -218,7 +227,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNATURE__ABAP_ANNOTATION = 7;
+	int SIGNATURE__ABAP_ANNOTATION = 8;
 
 	/**
 	 * The number of structural features of the '<em>Signature</em>' class.
@@ -227,7 +236,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIGNATURE_FEATURE_COUNT = 8;
+	int SIGNATURE_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link data.classes.impl.AssociationEndImpl <em>Association End</em>}' class.
@@ -1536,6 +1545,15 @@ public interface ClassesPackage extends EPackage {
 	int METHOD_SIGNATURE__INPUT = SIGNATURE__INPUT;
 
 	/**
+	 * The feature id for the '<em><b>Type Definition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_SIGNATURE__TYPE_DEFINITION = SIGNATURE__TYPE_DEFINITION;
+
+	/**
 	 * The feature id for the '<em><b>Preconditions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1679,6 +1697,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_SIGNATURE__INPUT = SIGNATURE__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Type Definition</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_SIGNATURE__TYPE_DEFINITION = SIGNATURE__TYPE_DEFINITION;
 
 	/**
 	 * The feature id for the '<em><b>Preconditions</b></em>' containment reference list.
@@ -2331,6 +2358,17 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSignature_Input();
+
+	/**
+	 * Returns the meta object for the reference list '{@link data.classes.Signature#getTypeDefinition <em>Type Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Type Definition</em>'.
+	 * @see data.classes.Signature#getTypeDefinition()
+	 * @see #getSignature()
+	 * @generated
+	 */
+	EReference getSignature_TypeDefinition();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link data.classes.Signature#getPreconditions <em>Preconditions</em>}'.
@@ -3614,6 +3652,14 @@ public interface ClassesPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SIGNATURE__INPUT = eINSTANCE.getSignature_Input();
+
+		/**
+		 * The meta object literal for the '<em><b>Type Definition</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SIGNATURE__TYPE_DEFINITION = eINSTANCE.getSignature_TypeDefinition();
 
 		/**
 		 * The meta object literal for the '<em><b>Preconditions</b></em>' containment reference list feature.

@@ -43,7 +43,6 @@ public interface TupleTypeDefinition extends TypeDefinition {
 	 * @return the value of the '<em>Elements</em>' containment reference list.
 	 * @see data.tuples.TuplesPackage#getTupleTypeDefinition_Elements()
 	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	EList<TupleElement> getElements();

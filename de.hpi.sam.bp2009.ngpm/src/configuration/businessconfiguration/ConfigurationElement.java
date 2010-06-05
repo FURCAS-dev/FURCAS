@@ -38,7 +38,7 @@ public interface ConfigurationElement extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Applicable In Context</em>' reference list.
 	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getConfigurationElement_ApplicableInContext()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	EList<ScopingContext> getApplicableInContext();

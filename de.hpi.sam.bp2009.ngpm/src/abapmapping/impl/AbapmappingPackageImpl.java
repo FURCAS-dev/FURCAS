@@ -601,8 +601,6 @@ public class AbapmappingPackageImpl extends EPackageImpl implements AbapmappingP
 		createEcoreAnnotations();
 		// http://de.hpi.sam.bp2009.OCL
 		createDeAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 	}
 
 	/**
@@ -625,7 +623,7 @@ public class AbapmappingPackageImpl extends EPackageImpl implements AbapmappingP
 		   source, 
 		   new String[] {
 			 "constraints", "AbapTypeMustBeUnstructured"
-		   });	
+		   });
 	}
 
 	/**
@@ -641,23 +639,7 @@ public class AbapmappingPackageImpl extends EPackageImpl implements AbapmappingP
 		   source, 
 		   new String[] {
 			 "AbapTypeMustBeUnstructured", "self.kind = AbapClassKind::ABAP_TYPE implies\n    self.abapType.oclIsKindOf(UnstructuredAbapType)"
-		   });		
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";					
-		addAnnotation
-		  (getAbapClassImplementationAnnotation_AbapType(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });
+		   });	
 	}
 
 } //AbapmappingPackageImpl

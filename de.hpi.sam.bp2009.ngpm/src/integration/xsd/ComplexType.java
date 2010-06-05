@@ -37,7 +37,7 @@ public interface ComplexType extends AbstractType {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Atts</em>' reference list.
 	 * @see integration.xsd.XsdPackage#getComplexType_Atts()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	EList<Attribute> getAtts();
@@ -53,7 +53,7 @@ public interface ComplexType extends AbstractType {
 	 * @return the value of the '<em>Content</em>' reference.
 	 * @see #setContent(AbstractContent)
 	 * @see integration.xsd.XsdPackage#getComplexType_Content()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	AbstractContent getContent();

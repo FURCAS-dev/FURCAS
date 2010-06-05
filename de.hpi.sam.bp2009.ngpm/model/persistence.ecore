@@ -55,11 +55,7 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="ofClass" lowerBound="1"
-          eType="ecore:EClass data.ecore#//classes/SapClass">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass data.ecore#//classes/SapClass"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="snapshotIdentifier" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
           containment="true" eOpposite="dataaccess.ecore#//expressions/Expression/all"/>
     </eClassifiers>

@@ -65,7 +65,6 @@ public interface Code extends DataElement {
 	 * @return the value of the '<em>Values</em>' containment reference list.
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getCode_Values()
 	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	EList<CodeValue> getValues();

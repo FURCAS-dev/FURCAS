@@ -54,7 +54,6 @@ public interface Context extends NamedElement {
 	 * @see #setFor_(SapClass)
 	 * @see data.classes.ClassesPackage#getContext_For_()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	SapClass getFor_();
@@ -99,7 +98,6 @@ public interface Context extends NamedElement {
 	 * @see #setCondition(Expression)
 	 * @see data.classes.ClassesPackage#getContext_Condition()
 	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	Expression getCondition();

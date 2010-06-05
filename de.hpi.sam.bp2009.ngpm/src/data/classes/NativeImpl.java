@@ -37,7 +37,6 @@ public interface NativeImpl extends SignatureImplementation {
 	 * @return the value of the '<em>Platform Specific Implementaiton</em>' containment reference list.
 	 * @see data.classes.ClassesPackage#getNativeImpl_PlatformSpecificImplementaiton()
 	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	EList<PlatformSpecificImplementation> getPlatformSpecificImplementaiton();

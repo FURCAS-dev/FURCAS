@@ -109,6 +109,15 @@ public interface LiteralsPackage extends EPackage {
 	int LITERAL__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__OBJECT_BASED_EXPRESSION = ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -116,6 +125,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL__ARGUMENT_OF = ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION = ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -179,6 +197,42 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int LITERAL__FROM_CLAUSE = ExpressionsPackage.EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__FACTS_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__DIMENSION = ExpressionsPackage.EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__MAP_EXPRESSION_OF_GROUP_BY = ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -263,6 +317,15 @@ public interface LiteralsPackage extends EPackage {
 	int BINARY_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__OBJECT_BASED_EXPRESSION = LITERAL__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -270,6 +333,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION = LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -333,6 +405,42 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LITERAL__FROM_CLAUSE = LITERAL__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION = LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__FACTS_OF_DIMENSION_EXPRESSION = LITERAL__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__DIMENSION = LITERAL__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__MAP_EXPRESSION_OF_GROUP_BY = LITERAL__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -417,6 +525,15 @@ public interface LiteralsPackage extends EPackage {
 	int STRING_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__OBJECT_BASED_EXPRESSION = LITERAL__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -424,6 +541,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION = LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -487,6 +613,42 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int STRING_LITERAL__FROM_CLAUSE = LITERAL__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION = LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__FACTS_OF_DIMENSION_EXPRESSION = LITERAL__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__DIMENSION = LITERAL__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__MAP_EXPRESSION_OF_GROUP_BY = LITERAL__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -571,6 +733,15 @@ public interface LiteralsPackage extends EPackage {
 	int NUMBER_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__OBJECT_BASED_EXPRESSION = LITERAL__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -578,6 +749,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMBER_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION = LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -641,6 +821,42 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMBER_LITERAL__FROM_CLAUSE = LITERAL__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION = LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__FACTS_OF_DIMENSION_EXPRESSION = LITERAL__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__DIMENSION = LITERAL__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__MAP_EXPRESSION_OF_GROUP_BY = LITERAL__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -725,6 +941,15 @@ public interface LiteralsPackage extends EPackage {
 	int TIME_POINT_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__OBJECT_BASED_EXPRESSION = LITERAL__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -732,6 +957,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_POINT_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION = LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -795,6 +1029,42 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_POINT_LITERAL__FROM_CLAUSE = LITERAL__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION = LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__FACTS_OF_DIMENSION_EXPRESSION = LITERAL__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__DIMENSION = LITERAL__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__MAP_EXPRESSION_OF_GROUP_BY = LITERAL__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -879,6 +1149,15 @@ public interface LiteralsPackage extends EPackage {
 	int BOOLEAN_LITERAL__ACTUAL_OBJECT_PARAMETER = LITERAL__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__OBJECT_BASED_EXPRESSION = LITERAL__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -886,6 +1165,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL__ARGUMENT_OF = LITERAL__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION = LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -949,6 +1237,42 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BOOLEAN_LITERAL__FROM_CLAUSE = LITERAL__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION = LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__FACTS_OF_DIMENSION_EXPRESSION = LITERAL__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__DIMENSION = LITERAL__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__MAP_EXPRESSION_OF_GROUP_BY = LITERAL__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -1033,6 +1357,15 @@ public interface LiteralsPackage extends EPackage {
 	int OBJECT_LITERAL__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__OBJECT_BASED_EXPRESSION = ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1040,6 +1373,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_LITERAL__ARGUMENT_OF = ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__BLOCK_OF_FUNCTION_CALL_EXPRESSION = ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -1103,6 +1445,42 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_LITERAL__FROM_CLAUSE = ExpressionsPackage.EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__CELL_SET_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__FACTS_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__DIMENSION = ExpressionsPackage.EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__MAP_EXPRESSION_OF_GROUP_BY = ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.

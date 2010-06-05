@@ -1460,7 +1460,7 @@ public class ExpressionsValidator extends EObjectValidator {
 	 */
 	protected static final String MAP__ARGUMENT_MUST_BE_SINGLE_ARGUMENT_FUNCTION_WITH_NON_VOID_OUTPUT__EEXPRESSION = "let fstd:data::classes::TypeDefinition = self.argument.getType() in" +
 		"  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and" +
-		"  (let sig:Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in" +
+		"  (let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in" +
 		"  (sig.output->notEmpty() and" +
 		"  sig.input->size() = 1))";
 

@@ -93,7 +93,6 @@ public interface Attribute extends NamedElement {
 	 * @see #setType(SimpleType)
 	 * @see integration.xsd.XsdPackage#getAttribute_Type()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	SimpleType getType();

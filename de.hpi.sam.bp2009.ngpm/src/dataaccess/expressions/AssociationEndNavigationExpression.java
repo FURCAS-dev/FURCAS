@@ -42,7 +42,6 @@ public interface AssociationEndNavigationExpression extends ObjectBasedExpressio
 	 * @see #setToEnd(AssociationEnd)
 	 * @see dataaccess.expressions.ExpressionsPackage#getAssociationEndNavigationExpression_ToEnd()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	AssociationEnd getToEnd();

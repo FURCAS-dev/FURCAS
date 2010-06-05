@@ -585,40 +585,38 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
   /**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpression_ArgumentOf()
-  {
+	public EReference getExpression_ObjectBasedExpression() {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(3);
 	}
 
-  /**
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpression_LeftOfEquals()
+  public EReference getExpression_ArgumentOf()
   {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(4);
 	}
 
   /**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpression_RightOfEquals()
-  {
+	public EReference getExpression_BlockOfFunctionCallExpression() {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(5);
 	}
 
-  /**
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpression_Conditional()
+  public EReference getExpression_LeftOfEquals()
   {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(6);
 	}
@@ -628,26 +626,27 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpression_CollectionExpression()
+  public EReference getExpression_RightOfEquals()
   {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(7);
 	}
 
   /**
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+   * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpression_InIterator() {
+  public EReference getExpression_Conditional()
+  {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(8);
 	}
 
-	/**
+  /**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpression_ConditionOfOqlQuery()
+  public EReference getExpression_CollectionExpression()
   {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(9);
 	}
@@ -657,8 +656,63 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpression_FromClause() {
+	public EReference getExpression_InIterator() {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_ConditionOfOqlQuery()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(11);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpression_FromClause() {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpression_CellSetOfDimensionExpression() {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(13);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpression_FactsOfDimensionExpression() {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(14);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpression_Dimension() {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(15);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpression_MapExpressionOfGroupBy() {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(16);
 	}
 
 	/**
@@ -667,7 +721,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @generated
 	 */
 	public EReference getExpression_Template() {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(11);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -677,7 +731,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 */
   public EReference getExpression_All()
   {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(12);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(18);
 	}
 
   /**
@@ -1099,7 +1153,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		createEReference(expressionEClass, EXPRESSION__EXPRESSION_STATEMENT);
 		createEReference(expressionEClass, EXPRESSION__INIT_EXPRESSION_FOR);
 		createEReference(expressionEClass, EXPRESSION__ACTUAL_OBJECT_PARAMETER);
+		createEReference(expressionEClass, EXPRESSION__OBJECT_BASED_EXPRESSION);
 		createEReference(expressionEClass, EXPRESSION__ARGUMENT_OF);
+		createEReference(expressionEClass, EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION);
 		createEReference(expressionEClass, EXPRESSION__LEFT_OF_EQUALS);
 		createEReference(expressionEClass, EXPRESSION__RIGHT_OF_EQUALS);
 		createEReference(expressionEClass, EXPRESSION__CONDITIONAL);
@@ -1107,6 +1163,10 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		createEReference(expressionEClass, EXPRESSION__IN_ITERATOR);
 		createEReference(expressionEClass, EXPRESSION__CONDITION_OF_OQL_QUERY);
 		createEReference(expressionEClass, EXPRESSION__FROM_CLAUSE);
+		createEReference(expressionEClass, EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION);
+		createEReference(expressionEClass, EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION);
+		createEReference(expressionEClass, EXPRESSION__DIMENSION);
+		createEReference(expressionEClass, EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY);
 		createEReference(expressionEClass, EXPRESSION__TEMPLATE);
 		createEReference(expressionEClass, EXPRESSION__ALL);
 
@@ -1206,6 +1266,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		ClassesPackage theClassesPackage = (ClassesPackage)EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI);
 		ActionsPackage theActionsPackage = (ActionsPackage)EPackage.Registry.INSTANCE.getEPackage(ActionsPackage.eNS_URI);
 		QueryPackage theQueryPackage = (QueryPackage)EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI);
+		AnalyticsPackage theAnalyticsPackage = (AnalyticsPackage)EPackage.Registry.INSTANCE.getEPackage(AnalyticsPackage.eNS_URI);
 		TemplatesPackage theTemplatesPackage = (TemplatesPackage)EPackage.Registry.INSTANCE.getEPackage(TemplatesPackage.eNS_URI);
 		persistence.expressions.ExpressionsPackage theExpressionsPackage_1 = (persistence.expressions.ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(persistence.expressions.ExpressionsPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
@@ -1252,7 +1313,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEReference(getExpression_ExpressionStatement(), theActionsPackage.getExpressionStatement(), theActionsPackage.getExpressionStatement_Expression(), "expressionStatement", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_InitExpressionFor(), theActionsPackage.getNamedValueWithOptionalInitExpression(), theActionsPackage.getNamedValueWithOptionalInitExpression_InitExpression(), "initExpressionFor", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_ActualObjectParameter(), theClassesPackage.getActualObjectParameter(), theClassesPackage.getActualObjectParameter_Value(), "actualObjectParameter", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_ObjectBasedExpression(), this.getObjectBasedExpression(), this.getObjectBasedExpression_Object(), "objectBasedExpression", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_ArgumentOf(), this.getWithArgument(), this.getWithArgument_Argument(), "argumentOf", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_BlockOfFunctionCallExpression(), this.getFunctionCallExpression(), this.getFunctionCallExpression_CalledBlock(), "blockOfFunctionCallExpression", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_LeftOfEquals(), this.getEquals(), this.getEquals_Left(), "leftOfEquals", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_RightOfEquals(), this.getEquals(), this.getEquals_Right(), "rightOfEquals", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_Conditional(), this.getConditional(), this.getConditional_Condition(), "conditional", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1260,6 +1323,10 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEReference(getExpression_InIterator(), theCollectionexpressionsPackage.getIterate(), theCollectionexpressionsPackage.getIterate_IteratorExpression(), "inIterator", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_ConditionOfOqlQuery(), theQueryPackage.getOqlQuery(), theQueryPackage.getOqlQuery_Condition(), "conditionOfOqlQuery", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_FromClause(), theQueryPackage.getFromClause(), theQueryPackage.getFromClause_FromExpression(), "fromClause", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_CellSetOfDimensionExpression(), theAnalyticsPackage.getDimensionExpression(), theAnalyticsPackage.getDimensionExpression_CellSet(), "cellSetOfDimensionExpression", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_FactsOfDimensionExpression(), theAnalyticsPackage.getDimensionExpression(), theAnalyticsPackage.getDimensionExpression_Facts(), "factsOfDimensionExpression", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_Dimension(), theAnalyticsPackage.getDimensionDefinition(), theAnalyticsPackage.getDimensionDefinition_Expression(), "dimension", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_MapExpressionOfGroupBy(), theAnalyticsPackage.getGroupBy(), theAnalyticsPackage.getGroupBy_MapExpression(), "mapExpressionOfGroupBy", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_Template(), theTemplatesPackage.getStringTemplate(), theTemplatesPackage.getStringTemplate_Expressions(), "template", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_All(), theExpressionsPackage_1.getAll(), theExpressionsPackage_1.getAll_SnapshotIdentifier(), "all", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1285,14 +1352,14 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEReference(getMethodCallExpression_CreationExpression(), this.getObjectCreationExpression(), this.getObjectCreationExpression_Initializers(), "creationExpression", null, 0, 1, MethodCallExpression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(objectBasedExpressionEClass, ObjectBasedExpression.class, "ObjectBasedExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getObjectBasedExpression_Object(), this.getExpression(), null, "object", null, 1, 1, ObjectBasedExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getObjectBasedExpression_Object(), this.getExpression(), this.getExpression_ObjectBasedExpression(), "object", null, 1, 1, ObjectBasedExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(objectCreationExpressionEClass, ObjectCreationExpression.class, "ObjectCreationExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getObjectCreationExpression_ClassToInstantiate(), theClassesPackage.getSapClass(), null, "classToInstantiate", null, 1, 1, ObjectCreationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getObjectCreationExpression_Initializers(), this.getMethodCallExpression(), this.getMethodCallExpression_CreationExpression(), "initializers", null, 0, -1, ObjectCreationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionCallExpressionEClass, FunctionCallExpression.class, "FunctionCallExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionCallExpression_CalledBlock(), this.getExpression(), null, "calledBlock", null, 1, 1, FunctionCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionCallExpression_CalledBlock(), this.getExpression(), this.getExpression_BlockOfFunctionCallExpression(), "calledBlock", null, 1, 1, FunctionCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(withArgumentEClass, WithArgument.class, "WithArgument", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWithArgument_Argument(), this.getExpression(), this.getExpression_ArgumentOf(), "argument", null, 0, 1, WithArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1413,25 +1480,25 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "constraints", "VariableExpressionType"
-		   });					
+		   });				
 		addAnnotation
 		  (methodCallExpressionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "ObjectMustSupportOperation OutputMultiplicities"
-		   });							
+		   });					
 		addAnnotation
 		  (objectCreationExpressionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "CannotInstantiateAbstractClass ExpressionType HasToOwnTypeDefinition CannotInstantiateValueClass NoDuplicateInitializers"
-		   });					
+		   });				
 		addAnnotation
 		  (functionCallExpressionEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "ResultType CalledBlockMustBeFunction"
-		   });						
+		   });					
 		addAnnotation
 		  (equalsEClass, 
 		   source, 
@@ -1443,7 +1510,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "constraints", "ObjectTypeMustMatch ResultType EndMustBeNavigable"
-		   });				
+		   });			
 		addAnnotation
 		  (signatureCallExpressionEClass, 
 		   source, 
@@ -1479,7 +1546,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "constraints", "FromEndAttachesToOutputOfPreviousStep FilterFunctionExpressionHasFunctionType FromEndMustBeEqualityRelevant"
-		   });					
+		   });				
 		addAnnotation
 		  (headEClass, 
 		   source, 
@@ -1530,7 +1597,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (expressionEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
-			 "body", "let parametersAndSignatureAreSideEffectFree:Boolean =\n    self.oclIsKindOf(SignatureCallExpression) implies\n      (self.oclAsType(SignatureCallExpression).parameters->forAll(p|p.isSideEffectFree())\n       and self.oclAsType(SignatureCallExpression).getSignature().sideEffectFree)\n  in\n  if self.oclIsKindOf(ObjectBasedExpression) then\n    self.oclAsType(ObjectBasedExpression).object.isSideEffectFree() and\n    if self.oclIsKindOf(SignatureCallExpression) then\n      parametersAndSignatureAreSideEffectFree\n    else\n      if self.oclIsKindOf(Replace) then\n        self.oclAsType(Replace).with.isSideEffectFree()\n      else\n        if self.oclIsKindOf(ExpressionWithArgument) and self.oclAsType(ExpressionWithArgument).argument->notEmpty() then\n          self.oclAsType(ExpressionWithArgument).argument.isSideEffectFree()\n        else\n          true\n        endif\n      endif\n    endif\n  else if self.oclIsKindOf(FunctionCallExpression) then\n    parametersAndSignatureAreSideEffectFree and self.oclAsType(FunctionCallExpression).calledBlock.isSideEffectFree()\n  else if self.oclIsKindOf(Equals) then\n    self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()\n  else if self.oclIsKindOf(ObjectCreationExpression) then\n    self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType\n  else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then\n    self.oclAsType(dataaccess::analytics::DimensionExpression).dimension.ownerSignature.sideEffectFree\n  else if self.oclIsKindOf(Ternary) then\n    self.oclAsType(Ternary).condition.isSideEffectFree() and\n    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and\n    self.oclAsType(Ternary).falseExpr.isSideEffectFree()\n  else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::CollectionExpression) then\n    self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.isSideEffectFree() and\n    if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then\n      (self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression->notEmpty() implies\n         self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and\n      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.isSideEffectFree()\n    else\n      true\n    endif\n  else if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then\n    self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())\n  else if self.oclIsKindOf(persistence::expressions::All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or\n  self.oclIsKindOf(dataaccess::expressions::literals::Literal) or self.oclIsKindOf(dataaccess::expressions::fp::AnonymousFunctionExpr) then\n    true\n  else if self.oclIsKindOf(dataaccess::query::Selection) then\n    self.oclAsType(dataaccess::query::Selection).object.isSideEffectFree()\n  else\n    false\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif"
+			 "body", "let parametersAndSignatureAreSideEffectFree:Boolean =\n    self.oclIsKindOf(SignatureCallExpression) implies\n      (self.oclAsType(SignatureCallExpression).parameters->forAll(p|p.isSideEffectFree())\n       and self.oclAsType(SignatureCallExpression).getSignature().sideEffectFree)\n  in\n  if self.oclIsKindOf(ObjectBasedExpression) then\n    self.oclAsType(ObjectBasedExpression).object.isSideEffectFree() and\n    if self.oclIsKindOf(SignatureCallExpression) then\n      parametersAndSignatureAreSideEffectFree\n    else\n      if self.oclIsKindOf(Replace) then\n        self.oclAsType(Replace).with.isSideEffectFree()\n      else\n        if self.oclIsKindOf(ExpressionWithArgument) and self.oclAsType(ExpressionWithArgument).argument->notEmpty() then\n          self.oclAsType(ExpressionWithArgument).argument.isSideEffectFree()\n        else\n          true\n        endif\n      endif\n    endif\n  else if self.oclIsKindOf(FunctionCallExpression) then\n    parametersAndSignatureAreSideEffectFree and self.oclAsType(FunctionCallExpression).calledBlock.isSideEffectFree()\n  else if self.oclIsKindOf(Equals) then\n    self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()\n  else if self.oclIsKindOf(ObjectCreationExpression) then\n    self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType\n  else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then\n    self.oclAsType(dataaccess::analytics::DimensionExpression).dimensionParameter.ownerSignature.sideEffectFree\n  else if self.oclIsKindOf(Ternary) then\n    self.oclAsType(Ternary).condition.isSideEffectFree() and\n    self.oclAsType(Ternary).trueExpr.isSideEffectFree() and\n    self.oclAsType(Ternary).falseExpr.isSideEffectFree()\n  else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::CollectionExpression) then\n    self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.isSideEffectFree() and\n    if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then\n      (self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression->notEmpty() implies\n         self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and\n      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.isSideEffectFree()\n    else\n      true\n    endif\n  else if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then\n    self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).propertyValues.value->forAll(v|v.isSideEffectFree())\n  else if self.oclIsKindOf(persistence::expressions::All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or\n  self.oclIsKindOf(dataaccess::expressions::literals::Literal) or self.oclIsKindOf(dataaccess::expressions::fp::AnonymousFunctionExpr) then\n    true\n  else if self.oclIsKindOf(dataaccess::query::Selection) then\n    self.oclAsType(dataaccess::query::Selection).object.isSideEffectFree()\n  else\n    false\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif\n  endif"
 		   });				
 		addAnnotation
 		  (expressionEClass.getEOperations().get(1), 
@@ -1567,14 +1634,14 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "VariableExpressionType", "self.getType().conformsTo(self.variable.getType())"
-		   });					
+		   });				
 		addAnnotation
 		  (methodCallExpressionEClass, 
 		   source, 
 		   new String[] {
 			 "ObjectMustSupportOperation", "self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(data::classes::SapClass))",
 			 "OutputMultiplicities", "(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and\n  (self.object.getType().lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))"
-		   });							
+		   });					
 		addAnnotation
 		  (objectCreationExpressionEClass, 
 		   source, 
@@ -1584,14 +1651,14 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 			 "HasToOwnTypeDefinition", "self.ownedTypeDefinition->notEmpty()",
 			 "CannotInstantiateValueClass", "not self.classToInstantiate.valueType",
 			 "NoDuplicateInitializers", "self.initializers->forAll( a, b | a <> b implies a.methodSignature <> b.methodSignature )"
-		   });					
+		   });				
 		addAnnotation
 		  (functionCallExpressionEClass, 
 		   source, 
 		   new String[] {
 			 "ResultType", "let fstd:data::classes::FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in\n\n  if fstd.isMany() then\n    -- calling multiple functions; test is somewhat fuzzy because it doesn\'t test condormance of nesting structure exactly\n    self.getType().isMany() and not self.getType().unique and\n    fstd.signature.output.getInnermost().conformsTo(self.getType().getInnermost()) and\n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n  else\n    -- calling a single function\n    fstd.signature.output.conformsTo(self.getType()) and \n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n  endif",
 			 "CalledBlockMustBeFunction", "self.calledBlock.getType().getInnermost().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)"
-		   });						
+		   });					
 		addAnnotation
 		  (equalsEClass, 
 		   source, 
@@ -1605,7 +1672,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 			 "ObjectTypeMustMatch", "self.object.getType().conformsToIgnoringMultiplicity(self.toEnd.otherEnd().type)",
 			 "ResultType", "self.getType() = self.toEnd.type",
 			 "EndMustBeNavigable", "self.toEnd.navigable"
-		   });				
+		   });			
 		addAnnotation
 		  (signatureCallExpressionEClass, 
 		   source, 
@@ -1646,7 +1713,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 			 "FromEndAttachesToOutputOfPreviousStep", "let i:Integer = self.replace.steps->indexOf(self) in\n  let t:data::classes::ClassTypeDefinition = if i=1 then\n      self.replace.object.getType().oclAsType(data::classes::ClassTypeDefinition)\n    else\n      self.replace.steps->at(-1 + i).to.type\n    endif\n  in\n\n  self.to.otherEnd().type.clazz.conformsTo(t.clazz)",
 			 "FilterFunctionExpressionHasFunctionType", "self.filterFunction->notEmpty() implies self.filterFunction.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)",
 			 "FromEndMustBeEqualityRelevant", "to.otherEnd().contributesToEquality"
-		   });					
+		   });				
 		addAnnotation
 		  (headEClass, 
 		   source, 
@@ -1682,7 +1749,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "ObjectTypeMustConformToFunctionArgument", "let fstd:data::classes::TypeDefinition = self.argument.getType() in\n  let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\n  let t:data::classes::TypeDefinition = self.object.getType() in\n  let argT:data::classes::TypeDefinition = sig.input->at(1).getType() in\n  -- if multiplicities match including multiplicities, that\'s ok\n  t.conformsTo(argT) or\n  -- otherwise, pick single multiplicity from object and try again\n  t.conformsToIgnoringMultiplicity(argT) or\n  (t.oclIsKindOf(data::classes::NestedTypeDefinition) and t.oclAsType(data::classes::NestedTypeDefinition).type.conformsTo(argT))",
-			 "ArgumentMustBeSingleArgumentFunctionWithNonVoidOutput", "let fstd:data::classes::TypeDefinition = self.argument.getType() in\n  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n  (let sig:Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\n  (sig.output->notEmpty() and\n  sig.input->size() = 1))",
+			 "ArgumentMustBeSingleArgumentFunctionWithNonVoidOutput", "let fstd:data::classes::TypeDefinition = self.argument.getType() in\n  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n  (let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\n  (sig.output->notEmpty() and\n  sig.input->size() = 1))",
 			 "MapFunctionMustBeSideEffectFree", "self.argument.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.sideEffectFree"
 		   });	
 	}
@@ -1694,43 +1761,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @generated
 	 */
 	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";																								
-		addAnnotation
-		  (getVariableExpression_Variable(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });						
-		addAnnotation
-		  (getMethodCallExpression_MethodSignature(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });			
-		addAnnotation
-		  (getObjectBasedExpression_Object(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "objectBasedExpression"
-		   });				
-		addAnnotation
-		  (getObjectCreationExpression_ClassToInstantiate(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });					
-		addAnnotation
-		  (getFunctionCallExpression_CalledBlock(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "blockOfFunctionCallExpression"
-		   });									
-		addAnnotation
-		  (getAssociationEndNavigationExpression_ToEnd(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });									
+		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";																																																
 		addAnnotation
 		  (getSignatureCallExpression_Parameters(), 
 		   source, 
@@ -1743,12 +1774,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   new String[] {
 			 "Property.oppositeRoleName", "withOfReplace"
 		   });				
-		addAnnotation
-		  (getNavigationStep_To(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
 		addAnnotation
 		  (getNavigationStep_FilterFunction(), 
 		   source, 

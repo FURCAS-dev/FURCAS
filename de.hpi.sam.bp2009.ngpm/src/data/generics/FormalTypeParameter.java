@@ -73,7 +73,7 @@ public interface FormalTypeParameter extends SapClass {
 	 * @return the value of the '<em>Type Constraint</em>' reference.
 	 * @see #setTypeConstraint(SapClass)
 	 * @see data.generics.GenericsPackage#getFormalTypeParameter_TypeConstraint()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	SapClass getTypeConstraint();

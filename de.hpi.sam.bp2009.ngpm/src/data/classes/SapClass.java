@@ -427,7 +427,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
 	 * @return the value of the '<em>Abap Annotation</em>' reference.
 	 * @see #setAbapAnnotation(AbapClassImplementationAnnotation)
 	 * @see data.classes.ClassesPackage#getSapClass_AbapAnnotation()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	AbapClassImplementationAnnotation getAbapAnnotation();

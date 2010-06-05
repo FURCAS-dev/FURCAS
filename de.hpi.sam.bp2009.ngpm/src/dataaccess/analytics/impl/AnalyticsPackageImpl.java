@@ -494,7 +494,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDimensionExpression_Dimension() {
+	public EReference getDimensionExpression_DimensionParameter() {
 		return (EReference)dimensionExpressionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -566,7 +566,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDimensionDefinition_Expression() {
+	public EReference getDimensionDefinition_GroupBy() {
 		return (EReference)dimensionDefinitionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -575,8 +575,17 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getDimensionDefinition_Iterator() {
+	public EReference getDimensionDefinition_Expression() {
 		return (EReference)dimensionDefinitionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDimensionDefinition_Iterator() {
+		return (EReference)dimensionDefinitionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -619,7 +628,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 
 		dimensionExpressionEClass = createEClass(DIMENSION_EXPRESSION);
 		createEReference(dimensionExpressionEClass, DIMENSION_EXPRESSION__CELL_SET);
-		createEReference(dimensionExpressionEClass, DIMENSION_EXPRESSION__DIMENSION);
+		createEReference(dimensionExpressionEClass, DIMENSION_EXPRESSION__DIMENSION_PARAMETER);
 		createEReference(dimensionExpressionEClass, DIMENSION_EXPRESSION__FACTS);
 
 		groupByEClass = createEClass(GROUP_BY);
@@ -629,6 +638,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		createEReference(groupByEClass, GROUP_BY__GROUPED_FACTS);
 
 		dimensionDefinitionEClass = createEClass(DIMENSION_DEFINITION);
+		createEReference(dimensionDefinitionEClass, DIMENSION_DEFINITION__GROUP_BY);
 		createEReference(dimensionDefinitionEClass, DIMENSION_DEFINITION__EXPRESSION);
 		createEReference(dimensionDefinitionEClass, DIMENSION_DEFINITION__ITERATOR);
 	}
@@ -691,19 +701,20 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		addEOperation(cellSetEClass, theEcorePackage.getEBoolean(), "localIsSideEffectFree", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(dimensionExpressionEClass, DimensionExpression.class, "DimensionExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDimensionExpression_CellSet(), theExpressionsPackage.getExpression(), null, "cellSet", null, 1, 1, DimensionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDimensionExpression_Dimension(), theClassesPackage.getParameter(), null, "dimension", null, 1, 1, DimensionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDimensionExpression_Facts(), theExpressionsPackage.getExpression(), null, "facts", null, 1, 1, DimensionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDimensionExpression_CellSet(), theExpressionsPackage.getExpression(), theExpressionsPackage.getExpression_CellSetOfDimensionExpression(), "cellSet", null, 1, 1, DimensionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDimensionExpression_DimensionParameter(), theClassesPackage.getParameter(), null, "dimensionParameter", null, 1, 1, DimensionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDimensionExpression_Facts(), theExpressionsPackage.getExpression(), theExpressionsPackage.getExpression_FactsOfDimensionExpression(), "facts", null, 1, 1, DimensionExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(groupByEClass, GroupBy.class, "GroupBy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGroupBy_Dimensions(), this.getDimensionDefinition(), null, "dimensions", null, 1, -1, GroupBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGroupBy_Fact(), theActionsPackage.getIterator(), null, "fact", null, 1, 1, GroupBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGroupBy_MapExpression(), theExpressionsPackage.getExpression(), null, "mapExpression", null, 0, 1, GroupBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGroupBy_GroupedFacts(), theActionsPackage.getIterator(), null, "groupedFacts", null, 0, 1, GroupBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGroupBy_Dimensions(), this.getDimensionDefinition(), this.getDimensionDefinition_GroupBy(), "dimensions", null, 1, -1, GroupBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGroupBy_Fact(), theActionsPackage.getIterator(), theActionsPackage.getIterator_FactOfGroupBy(), "fact", null, 1, 1, GroupBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGroupBy_MapExpression(), theExpressionsPackage.getExpression(), theExpressionsPackage.getExpression_MapExpressionOfGroupBy(), "mapExpression", null, 0, 1, GroupBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGroupBy_GroupedFacts(), theActionsPackage.getIterator(), theActionsPackage.getIterator_GroupedFactsOfGroupBy(), "groupedFacts", null, 0, 1, GroupBy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dimensionDefinitionEClass, DimensionDefinition.class, "DimensionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDimensionDefinition_Expression(), theExpressionsPackage.getExpression(), null, "expression", null, 1, 1, DimensionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDimensionDefinition_Iterator(), theActionsPackage.getIterator(), null, "iterator", null, 1, 1, DimensionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDimensionDefinition_GroupBy(), this.getGroupBy(), this.getGroupBy_Dimensions(), "groupBy", null, 1, 1, DimensionDefinition.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDimensionDefinition_Expression(), theExpressionsPackage.getExpression(), theExpressionsPackage.getExpression_Dimension(), "expression", null, 1, 1, DimensionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDimensionDefinition_Iterator(), theActionsPackage.getIterator(), theActionsPackage.getIterator_Dimension(), "iterator", null, 1, 1, DimensionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(dimensionDefinitionEClass, theEcorePackage.getEString(), "getName", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
@@ -769,13 +780,13 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		   source, 
 		   new String[] {
 			 "constraints", "FactsTypeConformsToFirstFunctionParameterType CellSetExpressionMustHaveFunctionSignatureType DimensionParameterIsNotFirst"
-		   });							
+		   });				
 		addAnnotation
 		  (groupByEClass, 
 		   source, 
 		   new String[] {
 			 "constraints", "GroupedFactsIteratorMustExistIfMapExpressionExists MapExpressionMustBeSideEffectFree GroupByIteratorsMustHaveDistinctNames"
-		   });								
+		   });				
 		addAnnotation
 		  (dimensionDefinitionEClass, 
 		   source, 
@@ -787,7 +798,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });		
+		   });
 	}
 
 	/**
@@ -836,10 +847,10 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		  (dimensionExpressionEClass, 
 		   source, 
 		   new String[] {
-			 "FactsTypeConformsToFirstFunctionParameterType", "self.facts.getType().conformsTo(self.dimension.ownerSignature.input->at(1).getType())",
+			 "FactsTypeConformsToFirstFunctionParameterType", "self.facts.getType().conformsTo(self.dimensionParameter.ownerSignature.input->at(1).getType())",
 			 "CellSetExpressionMustHaveFunctionSignatureType", "self.cellSet.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)",
-			 "DimensionParameterIsNotFirst", "self.dimension.ownerSignature.input->indexOf(self.dimension) > 1"
-		   });							
+			 "DimensionParameterIsNotFirst", "self.dimensionParameter.ownerSignature.input->indexOf(self.dimensionParameter) > 1"
+		   });				
 		addAnnotation
 		  (groupByEClass, 
 		   source, 
@@ -847,7 +858,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 			 "GroupedFactsIteratorMustExistIfMapExpressionExists", "self.mapExpression->notEmpty() implies self.groupedFacts->notEmpty()",
 			 "MapExpressionMustBeSideEffectFree", "if self.mapExpression->notEmpty() then\n    self.mapExpression.isSideEffectFree()\n  else\n    true\n  endif",
 			 "GroupByIteratorsMustHaveDistinctNames", "self.dimensions.iterator->asSet()->union(self.groupedFacts->asSet())->union(self.fact->asSet())->forAll(i, j | i<>j implies i.name<>j.name)"
-		   });								
+		   });				
 		addAnnotation
 		  (dimensionDefinitionEClass, 
 		   source, 
@@ -859,7 +870,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		   source, 
 		   new String[] {
 			 "body", "self.iterator.name"
-		   });			
+		   });	
 	}
 
 	/**
@@ -875,61 +886,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", "cellSet"
-		   });					
-		addAnnotation
-		  (getDimensionExpression_CellSet(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "cellSetOfDimensionExpression"
-		   });		
-		addAnnotation
-		  (getDimensionExpression_Dimension(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getDimensionExpression_Facts(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "factsOfDimensionExpression"
-		   });					
-		addAnnotation
-		  (getGroupBy_Dimensions(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "groupBy"
-		   });		
-		addAnnotation
-		  (getGroupBy_Fact(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "factOfGroupBy"
-		   });		
-		addAnnotation
-		  (getGroupBy_MapExpression(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "mapExpressionOfGroupBy"
-		   });		
-		addAnnotation
-		  (getGroupBy_GroupedFacts(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "groupedFactsOfGroupBy"
-		   });							
-		addAnnotation
-		  (getDimensionDefinition_Expression(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "dimension"
-		   });		
-		addAnnotation
-		  (getDimensionDefinition_Iterator(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "dimension"
-		   });
+		   });											
 	}
 
 } //AnalyticsPackageImpl

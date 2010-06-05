@@ -30,6 +30,7 @@ package dataaccess.expressions;
 public interface ObjectBasedExpression extends Expression {
 	/**
 	 * Returns the value of the '<em><b>Object</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getObjectBasedExpression <em>Object Based Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Object</em>' containment reference isn't clear,
@@ -39,8 +40,8 @@ public interface ObjectBasedExpression extends Expression {
 	 * @return the value of the '<em>Object</em>' containment reference.
 	 * @see #setObject(Expression)
 	 * @see dataaccess.expressions.ExpressionsPackage#getObjectBasedExpression_Object()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='objectBasedExpression'"
+	 * @see dataaccess.expressions.Expression#getObjectBasedExpression
+	 * @model opposite="objectBasedExpression" containment="true" required="true"
 	 * @generated
 	 */
 	Expression getObject();

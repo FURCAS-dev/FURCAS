@@ -121,7 +121,6 @@ public interface ValueSetEntry extends NamedElement {
 	 * @see #setValue(Expression)
 	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSetEntry_Value()
 	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	Expression getValue();

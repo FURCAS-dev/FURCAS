@@ -94,14 +94,30 @@ public class FunctionCallExpressionImpl extends SignatureCallExpressionImpl impl
 		if (newCalledBlock != calledBlock) {
 			NotificationChain msgs = null;
 			if (calledBlock != null)
-				msgs = ((InternalEObject)calledBlock).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.FUNCTION_CALL_EXPRESSION__CALLED_BLOCK, null, msgs);
+				msgs = ((InternalEObject)calledBlock).eInverseRemove(this, ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION, Expression.class, msgs);
 			if (newCalledBlock != null)
-				msgs = ((InternalEObject)newCalledBlock).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.FUNCTION_CALL_EXPRESSION__CALLED_BLOCK, null, msgs);
+				msgs = ((InternalEObject)newCalledBlock).eInverseAdd(this, ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION, Expression.class, msgs);
 			msgs = basicSetCalledBlock(newCalledBlock, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.FUNCTION_CALL_EXPRESSION__CALLED_BLOCK, newCalledBlock, newCalledBlock));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.FUNCTION_CALL_EXPRESSION__CALLED_BLOCK:
+				if (calledBlock != null)
+					msgs = ((InternalEObject)calledBlock).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.FUNCTION_CALL_EXPRESSION__CALLED_BLOCK, null, msgs);
+				return basicSetCalledBlock((Expression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

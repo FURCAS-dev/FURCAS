@@ -63,7 +63,7 @@ public interface Root extends EObject {
 	 * @return the value of the '<em>Anno</em>' reference.
 	 * @see #setAnno(Annotation)
 	 * @see integration.xsd.XsdPackage#getRoot_Anno()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	Annotation getAnno();

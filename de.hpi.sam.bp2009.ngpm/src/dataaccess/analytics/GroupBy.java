@@ -43,6 +43,7 @@ public interface GroupBy extends ObjectBasedExpression {
 	/**
 	 * Returns the value of the '<em><b>Dimensions</b></em>' containment reference list.
 	 * The list contents are of type {@link dataaccess.analytics.DimensionDefinition}.
+	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.DimensionDefinition#getGroupBy <em>Group By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dimensions</em>' containment reference list isn't clear,
@@ -51,14 +52,15 @@ public interface GroupBy extends ObjectBasedExpression {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Dimensions</em>' containment reference list.
 	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Dimensions()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='groupBy'"
+	 * @see dataaccess.analytics.DimensionDefinition#getGroupBy
+	 * @model opposite="groupBy" containment="true" required="true"
 	 * @generated
 	 */
 	EList<DimensionDefinition> getDimensions();
 
 	/**
 	 * Returns the value of the '<em><b>Fact</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getFactOfGroupBy <em>Fact Of Group By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Fact</em>' containment reference isn't clear,
@@ -68,8 +70,8 @@ public interface GroupBy extends ObjectBasedExpression {
 	 * @return the value of the '<em>Fact</em>' containment reference.
 	 * @see #setFact(Iterator)
 	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Fact()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='factOfGroupBy'"
+	 * @see behavioral.actions.Iterator#getFactOfGroupBy
+	 * @model opposite="factOfGroupBy" containment="true" required="true"
 	 * @generated
 	 */
 	Iterator getFact();
@@ -86,6 +88,7 @@ public interface GroupBy extends ObjectBasedExpression {
 
 	/**
 	 * Returns the value of the '<em><b>Map Expression</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getMapExpressionOfGroupBy <em>Map Expression Of Group By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Map Expression</em>' containment reference isn't clear,
@@ -95,8 +98,8 @@ public interface GroupBy extends ObjectBasedExpression {
 	 * @return the value of the '<em>Map Expression</em>' containment reference.
 	 * @see #setMapExpression(Expression)
 	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_MapExpression()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='mapExpressionOfGroupBy'"
+	 * @see dataaccess.expressions.Expression#getMapExpressionOfGroupBy
+	 * @model opposite="mapExpressionOfGroupBy" containment="true"
 	 * @generated
 	 */
 	Expression getMapExpression();
@@ -113,6 +116,7 @@ public interface GroupBy extends ObjectBasedExpression {
 
 	/**
 	 * Returns the value of the '<em><b>Grouped Facts</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getGroupedFactsOfGroupBy <em>Grouped Facts Of Group By</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Grouped Facts</em>' containment reference isn't clear,
@@ -122,8 +126,8 @@ public interface GroupBy extends ObjectBasedExpression {
 	 * @return the value of the '<em>Grouped Facts</em>' containment reference.
 	 * @see #setGroupedFacts(Iterator)
 	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_GroupedFacts()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='groupedFactsOfGroupBy'"
+	 * @see behavioral.actions.Iterator#getGroupedFactsOfGroupBy
+	 * @model opposite="groupedFactsOfGroupBy" containment="true"
 	 * @generated
 	 */
 	Iterator getGroupedFacts();

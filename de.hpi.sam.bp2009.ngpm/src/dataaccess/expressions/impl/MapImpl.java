@@ -95,14 +95,30 @@ public class MapImpl extends ExpressionWithArgumentImpl implements Map {
 		if (newObject != object) {
 			NotificationChain msgs = null;
 			if (object != null)
-				msgs = ((InternalEObject)object).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.MAP__OBJECT, null, msgs);
+				msgs = ((InternalEObject)object).eInverseRemove(this, ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION, Expression.class, msgs);
 			if (newObject != null)
-				msgs = ((InternalEObject)newObject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.MAP__OBJECT, null, msgs);
+				msgs = ((InternalEObject)newObject).eInverseAdd(this, ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION, Expression.class, msgs);
 			msgs = basicSetObject(newObject, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.MAP__OBJECT, newObject, newObject));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.MAP__OBJECT:
+				if (object != null)
+					msgs = ((InternalEObject)object).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.MAP__OBJECT, null, msgs);
+				return basicSetObject((Expression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

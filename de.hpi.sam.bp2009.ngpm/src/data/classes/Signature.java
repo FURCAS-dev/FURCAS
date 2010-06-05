@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link data.classes.Signature#getOutput <em>Output</em>}</li>
  *   <li>{@link data.classes.Signature#getOwnedTypeDefinitions <em>Owned Type Definitions</em>}</li>
  *   <li>{@link data.classes.Signature#getInput <em>Input</em>}</li>
+ *   <li>{@link data.classes.Signature#getTypeDefinition <em>Type Definition</em>}</li>
  *   <li>{@link data.classes.Signature#getPreconditions <em>Preconditions</em>}</li>
  *   <li>{@link data.classes.Signature#getPostconditions <em>Postconditions</em>}</li>
  *   <li>{@link data.classes.Signature#getAbapAnnotation <em>Abap Annotation</em>}</li>
@@ -178,6 +179,24 @@ public interface Signature extends EObject {
 	EList<Parameter> getInput();
 
 	/**
+	 * Returns the value of the '<em><b>Type Definition</b></em>' reference list.
+	 * The list contents are of type {@link data.classes.FunctionSignatureTypeDefinition}.
+	 * It is bidirectional and its opposite is '{@link data.classes.FunctionSignatureTypeDefinition#getSignature <em>Signature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type Definition</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type Definition</em>' reference list.
+	 * @see data.classes.ClassesPackage#getSignature_TypeDefinition()
+	 * @see data.classes.FunctionSignatureTypeDefinition#getSignature
+	 * @model opposite="signature"
+	 * @generated
+	 */
+	EList<FunctionSignatureTypeDefinition> getTypeDefinition();
+
+	/**
 	 * Returns the value of the '<em><b>Preconditions</b></em>' containment reference list.
 	 * The list contents are of type {@link data.constraints.Constraint}.
 	 * <!-- begin-user-doc -->
@@ -222,7 +241,7 @@ public interface Signature extends EObject {
 	 * @return the value of the '<em>Abap Annotation</em>' reference.
 	 * @see #setAbapAnnotation(AbapSignatureImplementationAnnotation)
 	 * @see data.classes.ClassesPackage#getSignature_AbapAnnotation()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	AbapSignatureImplementationAnnotation getAbapAnnotation();

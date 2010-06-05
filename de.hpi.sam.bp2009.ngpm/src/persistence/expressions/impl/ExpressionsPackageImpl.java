@@ -558,8 +558,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		createEcoreAnnotations();
 		// http://de.hpi.sam.bp2009.OCL
 		createDeAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 	}
 
 	/**
@@ -582,7 +580,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "constraints", "MustBeEntityClass ExpressionMustBeSnapshotOrTimePoint"
-		   });						
+		   });					
 		addAnnotation
 		  (commitEClass, 
 		   source, 
@@ -611,7 +609,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   new String[] {
 			 "MustBeEntityClass", "not self.ofClass.valueType",
 			 "ExpressionMustBeSnapshotOrTimePoint", "if self.snapshot = SnapshotSelection::SPECIFIED then\n    self.snapshotIdentifier.getType().upperMultiplicity = 1 and\n    self.snapshotIdentifier.getType().oclIsKindOf(ClassTypeDefinition) and\n   Set{\'Snapshot\', \'TimePoint\'}->includes(self.snapshotIdentifier.getType().oclAsType(ClassTypeDefinition).clazz.name)\n  else\n    true\n  endif"
-		   });						
+		   });					
 		addAnnotation
 		  (commitEClass, 
 		   source, 
@@ -624,22 +622,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   new String[] {
 			 "SourceObjectIsOfClassType", "self.object.getType().oclIsKindOf(ClassTypeDefinition)"
 		   });	
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";						
-		addAnnotation
-		  (getAll_OfClass(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });					
 	}
 
 } //ExpressionsPackageImpl

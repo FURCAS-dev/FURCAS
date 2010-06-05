@@ -63,7 +63,6 @@ public interface ParameterizedClassInstantiation extends SapClass {
 	 * @see #setParameterizedClass(SapClass)
 	 * @see data.generics.GenericsPackage#getParameterizedClassInstantiation_ParameterizedClass()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	SapClass getParameterizedClass();

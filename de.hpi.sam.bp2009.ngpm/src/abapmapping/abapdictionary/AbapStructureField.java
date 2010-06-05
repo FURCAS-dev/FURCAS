@@ -64,7 +64,6 @@ public interface AbapStructureField extends EObject {
 	 * @see #setType(AbapType)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureField_Type()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	AbapType getType();

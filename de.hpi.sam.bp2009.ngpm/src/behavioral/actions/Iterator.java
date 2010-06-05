@@ -8,6 +8,8 @@ package behavioral.actions;
 
 import data.classes.NamedValue;
 
+import dataaccess.analytics.DimensionDefinition;
+import dataaccess.analytics.GroupBy;
 import dataaccess.expressions.collectionexpressions.Iterate;
 
 import dataaccess.query.FromClause;
@@ -29,6 +31,9 @@ import dataaccess.query.Selection;
  *   <li>{@link behavioral.actions.Iterator#getIterate <em>Iterate</em>}</li>
  *   <li>{@link behavioral.actions.Iterator#getSelection <em>Selection</em>}</li>
  *   <li>{@link behavioral.actions.Iterator#getFromClause <em>From Clause</em>}</li>
+ *   <li>{@link behavioral.actions.Iterator#getFactOfGroupBy <em>Fact Of Group By</em>}</li>
+ *   <li>{@link behavioral.actions.Iterator#getDimension <em>Dimension</em>}</li>
+ *   <li>{@link behavioral.actions.Iterator#getGroupedFactsOfGroupBy <em>Grouped Facts Of Group By</em>}</li>
  * </ul>
  * </p>
  *
@@ -148,5 +153,89 @@ public interface Iterator extends NamedValue {
 	 * @generated
 	 */
 	void setFromClause(FromClause value);
+
+	/**
+	 * Returns the value of the '<em><b>Fact Of Group By</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.GroupBy#getFact <em>Fact</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Fact Of Group By</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Fact Of Group By</em>' container reference.
+	 * @see #setFactOfGroupBy(GroupBy)
+	 * @see behavioral.actions.ActionsPackage#getIterator_FactOfGroupBy()
+	 * @see dataaccess.analytics.GroupBy#getFact
+	 * @model opposite="fact"
+	 * @generated
+	 */
+	GroupBy getFactOfGroupBy();
+
+	/**
+	 * Sets the value of the '{@link behavioral.actions.Iterator#getFactOfGroupBy <em>Fact Of Group By</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Fact Of Group By</em>' container reference.
+	 * @see #getFactOfGroupBy()
+	 * @generated
+	 */
+	void setFactOfGroupBy(GroupBy value);
+
+	/**
+	 * Returns the value of the '<em><b>Dimension</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.DimensionDefinition#getIterator <em>Iterator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dimension</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dimension</em>' container reference.
+	 * @see #setDimension(DimensionDefinition)
+	 * @see behavioral.actions.ActionsPackage#getIterator_Dimension()
+	 * @see dataaccess.analytics.DimensionDefinition#getIterator
+	 * @model opposite="iterator"
+	 * @generated
+	 */
+	DimensionDefinition getDimension();
+
+	/**
+	 * Sets the value of the '{@link behavioral.actions.Iterator#getDimension <em>Dimension</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dimension</em>' container reference.
+	 * @see #getDimension()
+	 * @generated
+	 */
+	void setDimension(DimensionDefinition value);
+
+	/**
+	 * Returns the value of the '<em><b>Grouped Facts Of Group By</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.GroupBy#getGroupedFacts <em>Grouped Facts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Grouped Facts Of Group By</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Grouped Facts Of Group By</em>' container reference.
+	 * @see #setGroupedFactsOfGroupBy(GroupBy)
+	 * @see behavioral.actions.ActionsPackage#getIterator_GroupedFactsOfGroupBy()
+	 * @see dataaccess.analytics.GroupBy#getGroupedFacts
+	 * @model opposite="groupedFacts"
+	 * @generated
+	 */
+	GroupBy getGroupedFactsOfGroupBy();
+
+	/**
+	 * Sets the value of the '{@link behavioral.actions.Iterator#getGroupedFactsOfGroupBy <em>Grouped Facts Of Group By</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Grouped Facts Of Group By</em>' container reference.
+	 * @see #getGroupedFactsOfGroupBy()
+	 * @generated
+	 */
+	void setGroupedFactsOfGroupBy(GroupBy value);
 
 } // Iterator

@@ -693,7 +693,7 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });				
+		   });			
 	}
 
 	/**
@@ -716,7 +716,7 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
 		   source, 
 		   new String[] {
 			 "body", "if pks->includes(self) then\n    true\n  else\n    if self.owner->isEmpty() then\n      false\n    else\n      if self.owner.oclIsKindOf(Package) then\n        self.owner.oclAsType(Package).hasOwnershipCycle(pks->including(self))\n      else\n        false\n      endif\n    endif\n  endif"
-		   });					
+		   });				
 	}
 
 	/**
@@ -738,13 +738,7 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", "package_"
-		   });			
-		addAnnotation
-		  (getApplication_IntegrationScenarios(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });
+		   });	
 	}
 
 } //ModelmanagementPackageImpl

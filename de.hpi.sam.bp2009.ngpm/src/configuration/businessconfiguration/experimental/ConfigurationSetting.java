@@ -40,7 +40,6 @@ public interface ConfigurationSetting extends EObject {
 	 * @see #setEntity(ConfigurationEntity)
 	 * @see configuration.businessconfiguration.experimental.ExperimentalPackage#getConfigurationSetting_Entity()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	ConfigurationEntity getEntity();
@@ -67,7 +66,6 @@ public interface ConfigurationSetting extends EObject {
 	 * @see #setValue(Expression)
 	 * @see configuration.businessconfiguration.experimental.ExperimentalPackage#getConfigurationSetting_Value()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	Expression getValue();

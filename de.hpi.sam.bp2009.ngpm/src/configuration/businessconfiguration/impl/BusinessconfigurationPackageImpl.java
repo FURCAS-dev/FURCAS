@@ -774,8 +774,6 @@ public class BusinessconfigurationPackageImpl extends EPackageImpl implements Bu
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 	}
 
 	/**
@@ -792,47 +790,7 @@ public class BusinessconfigurationPackageImpl extends EPackageImpl implements Bu
 		   new String[] {
 			 "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
 			 "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
-		   });							
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";			
-		addAnnotation
-		  (getConfigurationElement_ApplicableInContext(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
 		   });		
-		addAnnotation
-		  (getBusinessTopic_BusinessOption(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getBusinessPackage_BusinessTopic(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getBusinessArea_BusinessPackage(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });				
-		addAnnotation
-		  (getValueSetEntry_Value(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });
 	}
 
 } //BusinessconfigurationPackageImpl

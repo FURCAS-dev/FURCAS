@@ -62,7 +62,7 @@ public interface ComplexContent extends AbstractContent {
 	 * @return the value of the '<em>Content Model</em>' reference.
 	 * @see #setContentModel(Containable)
 	 * @see integration.xsd.XsdPackage#getComplexContent_ContentModel()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	Containable getContentModel();

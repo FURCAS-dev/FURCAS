@@ -13,6 +13,7 @@ import dataaccess.analytics.DimensionExpression;
 
 import dataaccess.expressions.Expression;
 
+import dataaccess.expressions.ExpressionsPackage;
 import dataaccess.expressions.impl.ExpressionImpl;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -31,7 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link dataaccess.analytics.impl.DimensionExpressionImpl#getCellSet <em>Cell Set</em>}</li>
- *   <li>{@link dataaccess.analytics.impl.DimensionExpressionImpl#getDimension <em>Dimension</em>}</li>
+ *   <li>{@link dataaccess.analytics.impl.DimensionExpressionImpl#getDimensionParameter <em>Dimension Parameter</em>}</li>
  *   <li>{@link dataaccess.analytics.impl.DimensionExpressionImpl#getFacts <em>Facts</em>}</li>
  * </ul>
  * </p>
@@ -50,14 +51,14 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 	protected Expression cellSet;
 
 	/**
-	 * The cached value of the '{@link #getDimension() <em>Dimension</em>}' reference.
+	 * The cached value of the '{@link #getDimensionParameter() <em>Dimension Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDimension()
+	 * @see #getDimensionParameter()
 	 * @generated
 	 * @ordered
 	 */
-	protected Parameter dimension;
+	protected Parameter dimensionParameter;
 
 	/**
 	 * The cached value of the '{@link #getFacts() <em>Facts</em>}' containment reference.
@@ -121,9 +122,9 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 		if (newCellSet != cellSet) {
 			NotificationChain msgs = null;
 			if (cellSet != null)
-				msgs = ((InternalEObject)cellSet).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, null, msgs);
+				msgs = ((InternalEObject)cellSet).eInverseRemove(this, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
 			if (newCellSet != null)
-				msgs = ((InternalEObject)newCellSet).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, null, msgs);
+				msgs = ((InternalEObject)newCellSet).eInverseAdd(this, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
 			msgs = basicSetCellSet(newCellSet, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -136,16 +137,16 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Parameter getDimension() {
-		if (dimension != null && dimension.eIsProxy()) {
-			InternalEObject oldDimension = (InternalEObject)dimension;
-			dimension = (Parameter)eResolveProxy(oldDimension);
-			if (dimension != oldDimension) {
+	public Parameter getDimensionParameter() {
+		if (dimensionParameter != null && dimensionParameter.eIsProxy()) {
+			InternalEObject oldDimensionParameter = (InternalEObject)dimensionParameter;
+			dimensionParameter = (Parameter)eResolveProxy(oldDimensionParameter);
+			if (dimensionParameter != oldDimensionParameter) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION, oldDimension, dimension));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER, oldDimensionParameter, dimensionParameter));
 			}
 		}
-		return dimension;
+		return dimensionParameter;
 	}
 
 	/**
@@ -153,8 +154,8 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Parameter basicGetDimension() {
-		return dimension;
+	public Parameter basicGetDimensionParameter() {
+		return dimensionParameter;
 	}
 
 	/**
@@ -162,11 +163,11 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDimension(Parameter newDimension) {
-		Parameter oldDimension = dimension;
-		dimension = newDimension;
+	public void setDimensionParameter(Parameter newDimensionParameter) {
+		Parameter oldDimensionParameter = dimensionParameter;
+		dimensionParameter = newDimensionParameter;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION, oldDimension, dimension));
+			eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER, oldDimensionParameter, dimensionParameter));
 	}
 
 	/**
@@ -202,14 +203,34 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 		if (newFacts != facts) {
 			NotificationChain msgs = null;
 			if (facts != null)
-				msgs = ((InternalEObject)facts).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, null, msgs);
+				msgs = ((InternalEObject)facts).eInverseRemove(this, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
 			if (newFacts != null)
-				msgs = ((InternalEObject)newFacts).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, null, msgs);
+				msgs = ((InternalEObject)newFacts).eInverseAdd(this, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
 			msgs = basicSetFacts(newFacts, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, newFacts, newFacts));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
+				if (cellSet != null)
+					msgs = ((InternalEObject)cellSet).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, null, msgs);
+				return basicSetCellSet((Expression)otherEnd, msgs);
+			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
+				if (facts != null)
+					msgs = ((InternalEObject)facts).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, null, msgs);
+				return basicSetFacts((Expression)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -238,9 +259,9 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 		switch (featureID) {
 			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
 				return getCellSet();
-			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION:
-				if (resolve) return getDimension();
-				return basicGetDimension();
+			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
+				if (resolve) return getDimensionParameter();
+				return basicGetDimensionParameter();
 			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
 				return getFacts();
 		}
@@ -258,8 +279,8 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
 				setCellSet((Expression)newValue);
 				return;
-			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION:
-				setDimension((Parameter)newValue);
+			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
+				setDimensionParameter((Parameter)newValue);
 				return;
 			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
 				setFacts((Expression)newValue);
@@ -279,8 +300,8 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
 				setCellSet((Expression)null);
 				return;
-			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION:
-				setDimension((Parameter)null);
+			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
+				setDimensionParameter((Parameter)null);
 				return;
 			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
 				setFacts((Expression)null);
@@ -299,8 +320,8 @@ public class DimensionExpressionImpl extends ExpressionImpl implements Dimension
 		switch (featureID) {
 			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
 				return cellSet != null;
-			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION:
-				return dimension != null;
+			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
+				return dimensionParameter != null;
 			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
 				return facts != null;
 		}

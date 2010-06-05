@@ -36,7 +36,7 @@ public interface AbapStructureType extends AbapType {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Fields</em>' reference list.
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureType_Fields()
-	 * @model annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
+	 * @model
 	 * @generated
 	 */
 	EList<AbapStructureField> getFields();

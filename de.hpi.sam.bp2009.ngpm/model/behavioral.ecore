@@ -208,11 +208,7 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="parallel" ordered="false"
           unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="collection" lowerBound="1"
-          eType="ecore:EClass dataaccess.ecore#//expressions/Expression">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="forVariable" lowerBound="1"
           eType="#//actions/Iterator" containment="true" eOpposite="#//actions/Iterator/boundToFor"/>
     </eClassifiers>
@@ -255,18 +251,10 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="association" lowerBound="1"
-          eType="ecore:EClass data.ecore#//classes/Association">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="ecore:EClass data.ecore#//classes/Association"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="objects" lowerBound="2"
           upperBound="2" eType="ecore:EClass dataaccess.ecore#//expressions/Expression"
-          containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value=""/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ExpressionStatement" eSuperTypes="#//actions/Statement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
@@ -315,6 +303,13 @@
           transient="true" eOpposite="dataaccess.ecore#//query/Selection/iterator"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="fromClause" eType="ecore:EClass dataaccess.ecore#//query/FromClause"
           transient="true" eOpposite="dataaccess.ecore#//query/FromClause/alias"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="factOfGroupBy" eType="ecore:EClass dataaccess.ecore#//analytics/GroupBy"
+          transient="true" eOpposite="dataaccess.ecore#//analytics/GroupBy/fact"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="dimension" eType="ecore:EClass dataaccess.ecore#//analytics/DimensionDefinition"
+          transient="true" eOpposite="dataaccess.ecore#//analytics/DimensionDefinition/iterator"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="groupedFactsOfGroupBy"
+          eType="ecore:EClass dataaccess.ecore#//analytics/GroupBy" transient="true"
+          eOpposite="dataaccess.ecore#//analytics/GroupBy/groupedFacts"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="NamedValueDeclaration" eSuperTypes="#//actions/Statement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="namedValue" lowerBound="1"

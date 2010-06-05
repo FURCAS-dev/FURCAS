@@ -504,8 +504,6 @@ public class ProcessintegrationPackageImpl extends EPackageImpl implements Proce
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 	}
 
 	/**
@@ -522,28 +520,6 @@ public class ProcessintegrationPackageImpl extends EPackageImpl implements Proce
 		   new String[] {
 			 "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
 			 "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
-		   });		
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";			
-		addAnnotation
-		  (getProcessComponentInteraction_MethodCalls(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getProcessComponentInteraction_Subscriptions(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
 		   });
 	}
 

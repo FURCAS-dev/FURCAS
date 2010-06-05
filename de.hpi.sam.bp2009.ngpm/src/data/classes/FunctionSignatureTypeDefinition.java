@@ -27,6 +27,7 @@ package data.classes;
 public interface FunctionSignatureTypeDefinition extends TypeDefinition {
 	/**
 	 * Returns the value of the '<em><b>Signature</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link data.classes.Signature#getTypeDefinition <em>Type Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Signature</em>' reference isn't clear,
@@ -36,8 +37,8 @@ public interface FunctionSignatureTypeDefinition extends TypeDefinition {
 	 * @return the value of the '<em>Signature</em>' reference.
 	 * @see #setSignature(Signature)
 	 * @see data.classes.ClassesPackage#getFunctionSignatureTypeDefinition_Signature()
-	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='typeDefinition'"
+	 * @see data.classes.Signature#getTypeDefinition
+	 * @model opposite="typeDefinition" required="true"
 	 * @generated
 	 */
 	Signature getSignature();
@@ -64,7 +65,6 @@ public interface FunctionSignatureTypeDefinition extends TypeDefinition {
 	 * @see #setOwnedSignature(Signature)
 	 * @see data.classes.ClassesPackage#getFunctionSignatureTypeDefinition_OwnedSignature()
 	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	Signature getOwnedSignature();

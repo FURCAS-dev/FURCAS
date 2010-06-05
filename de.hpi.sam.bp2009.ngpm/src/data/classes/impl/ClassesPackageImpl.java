@@ -721,7 +721,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSignature_Preconditions() {
+	public EReference getSignature_TypeDefinition() {
 		return (EReference)signatureEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -730,7 +730,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSignature_Postconditions() {
+	public EReference getSignature_Preconditions() {
 		return (EReference)signatureEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -739,8 +739,17 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSignature_AbapAnnotation() {
+	public EReference getSignature_Postconditions() {
 		return (EReference)signatureEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSignature_AbapAnnotation() {
+		return (EReference)signatureEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -1738,6 +1747,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		createEReference(signatureEClass, SIGNATURE__OUTPUT);
 		createEReference(signatureEClass, SIGNATURE__OWNED_TYPE_DEFINITIONS);
 		createEReference(signatureEClass, SIGNATURE__INPUT);
+		createEReference(signatureEClass, SIGNATURE__TYPE_DEFINITION);
 		createEReference(signatureEClass, SIGNATURE__PRECONDITIONS);
 		createEReference(signatureEClass, SIGNATURE__POSTCONDITIONS);
 		createEReference(signatureEClass, SIGNATURE__ABAP_ANNOTATION);
@@ -1962,6 +1972,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getSignature_Output(), this.getTypeDefinition(), this.getTypeDefinition_SignaturesWithOutput(), "output", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_OwnedTypeDefinitions(), this.getTypeDefinition(), this.getTypeDefinition_OwnerSignature(), "ownedTypeDefinitions", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_Input(), this.getParameter(), this.getParameter_OwnerSignature(), "input", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSignature_TypeDefinition(), this.getFunctionSignatureTypeDefinition(), this.getFunctionSignatureTypeDefinition_Signature(), "typeDefinition", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_Preconditions(), theConstraintsPackage.getConstraint(), null, "preconditions", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_Postconditions(), theConstraintsPackage.getConstraint(), null, "postconditions", null, 0, -1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_AbapAnnotation(), theAbapmappingPackage.getAbapSignatureImplementationAnnotation(), null, "abapAnnotation", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2146,7 +2157,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getNestedTypeDefinition_OwnedTypeDefinition(), this.getTypeDefinition(), null, "ownedTypeDefinition", null, 0, 1, NestedTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionSignatureTypeDefinitionEClass, FunctionSignatureTypeDefinition.class, "FunctionSignatureTypeDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionSignatureTypeDefinition_Signature(), this.getSignature(), null, "signature", null, 1, 1, FunctionSignatureTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionSignatureTypeDefinition_Signature(), this.getSignature(), this.getSignature_TypeDefinition(), "signature", null, 1, 1, FunctionSignatureTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionSignatureTypeDefinition_OwnedSignature(), this.getSignature(), null, "ownedSignature", null, 0, 1, FunctionSignatureTypeDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(methodSignatureEClass, MethodSignature.class, "MethodSignature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2264,7 +2275,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "UniquenessOnBothEndsMustBeTheSame AtMostOneCompositeEnd AtLeastOneNavigableEnd AtMostOneEqualityContributionForTwoValueClasses AtMostOneOrderedEnd"
-		   });					
+		   });				
 		addAnnotation
 		  (signatureEClass, 
 		   source, 
@@ -2294,7 +2305,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });							
+		   });						
 		addAnnotation
 		  (associationEndEClass, 
 		   source, 
@@ -2306,7 +2317,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });							
+		   });						
 		addAnnotation
 		  (sapClassEClass, 
 		   source, 
@@ -2432,7 +2443,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });							
+		   });						
 		addAnnotation
 		  (delegationEClass, 
 		   source, 
@@ -2456,7 +2467,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "ConditionMustBeBoolean ConstraintForRightClass"
-		   });					
+		   });			
 		addAnnotation
 		  (multiplicityEClass.getEOperations().get(0), 
 		   source, 
@@ -2570,7 +2581,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "NestedIsAlwaysMany"
-		   });									
+		   });						
 		addAnnotation
 		  (methodSignatureEClass.getEOperations().get(0), 
 		   source, 
@@ -2630,13 +2641,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "DefaultValueType"
-		   });					
+		   });				
 		addAnnotation
 		  (namedValueEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });					
+		   });				
 		addAnnotation
 		  (extentModifyingAssociationEndSignatureImplementationEClass, 
 		   source, 
@@ -2648,7 +2659,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });					
+		   });				
 		addAnnotation
 		  (converterBetweenParametrizationsEClass, 
 		   source, 
@@ -2680,7 +2691,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			 "AtLeastOneNavigableEnd", "self.ends->select(ae:AssociationEnd | ae.navigable)->notEmpty()",
 			 "AtMostOneEqualityContributionForTwoValueClasses", "self.ends->select(contributesToEquality and type.clazz.valueType)->size() < 2",
 			 "AtMostOneOrderedEnd", "self.ends->select(ae|ae.type.ordered)->size() < 2"
-		   });					
+		   });				
 		addAnnotation
 		  (signatureEClass, 
 		   source, 
@@ -2710,7 +2721,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "body", "if self.oclIsKindOf(MethodSignature) then\n    let owner:SignatureOwner = self.oclAsType(MethodSignature).owner in\n    if owner.oclIsKindOf(SapClass) then\n      owner.oclAsType(SapClass)\n    else\n      null    -- e.g., TypeAdapter\n    endif\n  else\n    self.oclAsType(FunctionSignature).getImplementedAnonymousFunctionExpression().getOwningClass()\n  endif"
-		   });							
+		   });						
 		addAnnotation
 		  (associationEndEClass, 
 		   source, 
@@ -2725,7 +2736,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "body", "association.ends->select(ae|ae <> self)->first()"
-		   });							
+		   });						
 		addAnnotation
 		  (sapClassEClass, 
 		   source, 
@@ -2854,7 +2865,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "body", "self.getConformsToClasses().getAssociationEnds()->select(ae|ae.otherEnd().composite)->asSet()"
-		   });							
+		   });						
 		addAnnotation
 		  (delegationEClass, 
 		   source, 
@@ -2871,7 +2882,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		  (typedElementEClass.getEOperations().get(1), 
 		   source, 
 		   new String[] {
-			 "body", "if self.ownedTypeDefinition->notEmpty() then\n    self.ownedTypeDefinition\n  else\n    if self.oclIsKindOf(behavioral::actions::Variable) then\n      self.oclAsType(behavioral::actions::Variable).initExpression.getType()\n    else if self.oclIsKindOf(behavioral::actions::Constant) then\n      if self.oclAsType(behavioral::actions::Constant).initExpression->notEmpty() then\n        self.oclAsType(behavioral::actions::Constant).initExpression.getType()\n      else\n         if self.oclAsType(behavioral::actions::Constant)._iterate->notEmpty() then\n           if self.oclAsType(behavioral::actions::Constant).initExpression->notEmpty() then\n             self.oclAsType(behavioral::actions::Constant).initExpression.getType()\n           else\n             self.oclAsType(behavioral::actions::Constant)._iterate.iteratorExpression.getType()\n           endif\n         else\n           null\n         endif\n      endif\n    else if self.oclIsKindOf(behavioral::actions::Iterator) then\n      if self.oclAsType(behavioral::actions::Iterator).boundToFor->notEmpty() then\n        if self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclIsKindOf(data::classes::NestedTypeDefinition) then\n          -- if the selection\'s object has a nested type definition, un-nest by one level\n          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclAsType(data::classes::NestedTypeDefinition).type\n        else\n          -- the tool should infer a better match; this as a better default than \"null\"\n          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType()\n        endif\n      else\n        let selection:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).selection.object->asSet() in\n        let groupby:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object->asSet() in\n        let iterateexp:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator)._iterate.source->asSet() in\n        let iteratesource:Set(dataaccess::expressions::Expression)=selection->union(groupby)->union(iterateexp) in\n        if iteratesource->notEmpty() then\n          if iteratesource->any(true).getType().oclIsKindOf(data::classes::NestedTypeDefinition) then\n            -- if the Selection\'s/GroupBy\'s object has a nested type definition, un-nest by one level\n            iteratesource->any(true).getType().oclAsType(data::classes::NestedTypeDefinition).type\n          else\n            -- In this case the tool should create a cloned tpye definition with multiplicities set to 1;\n            -- Just in case the tool doesn\'t do this and for the case where the object has upper\n            -- multiplicity 1, use the object\'s type as the default for the \"self\" iterator\n            iteratesource->any(true).getType()\n          endif\n        else\n          if self.oclAsType(behavioral::actions::Iterator).groupedFactsOfGroupBy->notEmpty() then\n            -- the groups of a group-by expression can re-used the facts type\n            self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object.getType()\n          else\n            if self.oclAsType(behavioral::actions::Iterator).dimension->notEmpty() then\n              -- the DimensionDefinition\'s expression defines the dimension iterator\'s type\n              self.oclAsType(behavioral::actions::Iterator).dimension.expression.getType()\n            else\n              -- Then we have no idea how to infer the Iterator\'s type\n              null\n            endif\n          endif\n        endif\n      endif\n    else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Including) or self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Excluding) then\n      self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.getType()\n    else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then\n      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.getType()\n    else if self.oclIsKindOf(Parameter) then\n      if self.oclAsType(Parameter).defaultValue->notEmpty() then\n        self.oclAsType(Parameter).defaultValue.getType()\n      else\n        if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and\n        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation->notEmpty() and\n        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclIsKindOf(AssociationEndSignatureImplementation) then\n  \tlet impl:AssociationEndSignatureImplementation = self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclAsType(AssociationEndSignatureImplementation) in\n            impl.end.type\n        else\n          if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(FunctionSignature) then\n            if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension->notEmpty() then\n              self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension.cellSet.factsType\n            else\n              if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction->notEmpty() then\n                self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction.factsType\n              else\n                if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction->notEmpty() then\n                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction->notEmpty() then\n                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction.output\n                  else\n                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.factsType\n                  endif\n                else\n                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclIsKindOf(dataaccess::analytics::CellSet) then\n                    let pos:Integer = self.oclAsType(Parameter).ownerSignature.input->indexOf(self.oclAsType(Parameter)) in\n                    if pos = 1 then\n                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).factsType\n                    else\n                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).\n                          dimensions->at(-1+pos).characteristicFunction.output\n                    endif\n                  else\n                    null\n                  endif\n                endif\n              endif\n            endif\n          else\n            null\n          endif\n        endif\n      endif\n    else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then\n      -- TODO Here, the multiplicity would have to be forced to 0..*\n      self.oclAsType(dataaccess::analytics::DimensionExpression).dimension.getType()\n    else if self.oclIsKindOf(dataaccess::expressions::VariableExpression) then\n      self.oclAsType(dataaccess::expressions::VariableExpression).variable.getType()\n    else if self.oclIsKindOf(dataaccess::expressions::SignatureCallExpression) then\n      self.oclAsType(dataaccess::expressions::SignatureCallExpression).getSignature().output\n    else if self.oclIsKindOf(dataaccess::expressions::AssociationEndNavigationExpression) then\n      self.oclAsType(dataaccess::expressions::AssociationEndNavigationExpression).toEnd.type\n    else if self.oclIsKindOf(dataaccess::expressions::Replace) then\n      self.oclAsType(dataaccess::expressions::Replace).object.getType()\n    else if self.oclIsKindOf(dataaccess::expressions::Ternary) then\n      -- Find the \"least\" TypeDefinition to which both, trueExpr.getType() and falseExpr.getType() conform.\n      -- We determine the more general of the two types; we cannot synthesize a new TypeDefinition in OCL.\n      -- Doing so would have to be done by explicit typing, setting the ownedTypeDefinition explicitly\n      if self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType().conformsTo(self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()) then\n        self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()\n      else\n        self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType()\n      endif\n    else if self.oclIsKindOf(dataaccess::query::Selection) then\n      self.oclAsType(dataaccess::query::Selection).object.getType()\n    else\n      null\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n  endif"
+			 "body", "if self.ownedTypeDefinition->notEmpty() then\n    self.ownedTypeDefinition\n  else\n    if self.oclIsKindOf(behavioral::actions::Variable) then\n      self.oclAsType(behavioral::actions::Variable).initExpression.getType()\n    else if self.oclIsKindOf(behavioral::actions::Constant) then\n      if self.oclAsType(behavioral::actions::Constant).initExpression->notEmpty() then\n        self.oclAsType(behavioral::actions::Constant).initExpression.getType()\n      else\n         if self.oclAsType(behavioral::actions::Constant)._iterate->notEmpty() then\n           self.oclAsType(behavioral::actions::Constant)._iterate.iteratorExpression.getType()\n         else\n           null\n         endif\n      endif\n    else if self.oclIsKindOf(behavioral::actions::Iterator) then\n      if self.oclAsType(behavioral::actions::Iterator).boundToFor->notEmpty() then\n        if self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclIsKindOf(data::classes::NestedTypeDefinition) then\n          -- if the selection\'s object has a nested type definition, un-nest by one level\n          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclAsType(data::classes::NestedTypeDefinition).type\n        else\n          -- the tool should infer a better match; this as a better default than \"null\"\n          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType()\n        endif\n      else\n        let selection:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).selection.object->asSet() in\n        let groupby:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object->asSet() in\n        let iterateexp:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator)._iterate.source->asSet() in\n        let iteratesource:Set(dataaccess::expressions::Expression)=selection->union(groupby)->union(iterateexp) in\n        if iteratesource->notEmpty() then\n          if iteratesource->any(true).getType().oclIsKindOf(data::classes::NestedTypeDefinition) then\n            -- if the Selection\'s/GroupBy\'s object has a nested type definition, un-nest by one level\n            iteratesource->any(true).getType().oclAsType(data::classes::NestedTypeDefinition).type\n          else\n            -- In this case the tool should create a cloned tpye definition with multiplicities set to 1;\n            -- Just in case the tool doesn\'t do this and for the case where the object has upper\n            -- multiplicity 1, use the object\'s type as the default for the \"self\" iterator\n            iteratesource->any(true).getType()\n          endif\n        else\n          if self.oclAsType(behavioral::actions::Iterator).groupedFactsOfGroupBy->notEmpty() then\n            -- the groups of a group-by expression can re-used the facts type\n            self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object.getType()\n          else\n            if self.oclAsType(behavioral::actions::Iterator).dimension->notEmpty() then\n              -- the DimensionDefinition\'s expression defines the dimension iterator\'s type\n              self.oclAsType(behavioral::actions::Iterator).dimension.expression.getType()\n            else\n              -- Then we have no idea how to infer the Iterator\'s type\n              null\n            endif\n          endif\n        endif\n      endif\n    else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Including) or self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Excluding) then\n      self.oclAsType(dataaccess::expressions::collectionexpressions::CollectionExpression).source.getType()\n    else if self.oclIsKindOf(dataaccess::expressions::collectionexpressions::Iterate) then\n      self.oclAsType(dataaccess::expressions::collectionexpressions::Iterate).iteratorExpression.getType()\n    else if self.oclIsKindOf(Parameter) then\n      if self.oclAsType(Parameter).defaultValue->notEmpty() then\n        self.oclAsType(Parameter).defaultValue.getType()\n      else\n        if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and\n        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation->notEmpty() and\n        self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclIsKindOf(AssociationEndSignatureImplementation) then\n  \tlet impl:AssociationEndSignatureImplementation = self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclAsType(AssociationEndSignatureImplementation) in\n            impl.end.type\n        else\n          if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(FunctionSignature) then\n            if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension->notEmpty() then\n              self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).dimension.cellSet.factsType\n            else\n              if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction->notEmpty() then\n                self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForValueFunction.factsType\n              else\n                if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction->notEmpty() then\n                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction->notEmpty() then\n                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.valueFunction.output\n                  else\n                    self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.factsType\n                  endif\n                else\n                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclIsKindOf(dataaccess::analytics::CellSet) then\n                    let pos:Integer = self.oclAsType(Parameter).ownerSignature.input->indexOf(self.oclAsType(Parameter)) in\n                    if pos = 1 then\n                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).factsType\n                    else\n                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).\n                          dimensions->at(-1+pos).characteristicFunction.output\n                    endif\n                  else\n                    null\n                  endif\n                endif\n              endif\n            endif\n          else\n            null\n          endif\n        endif\n      endif\n    else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then\n      -- TODO Here, the multiplicity would have to be forced to 0..*\n      self.oclAsType(dataaccess::analytics::DimensionExpression).dimension.getType()\n    else if self.oclIsKindOf(dataaccess::expressions::VariableExpression) then\n      self.oclAsType(dataaccess::expressions::VariableExpression).variable.getType()\n    else if self.oclIsKindOf(dataaccess::expressions::SignatureCallExpression) then\n      self.oclAsType(dataaccess::expressions::SignatureCallExpression).getSignature().output\n    else if self.oclIsKindOf(dataaccess::expressions::AssociationEndNavigationExpression) then\n      self.oclAsType(dataaccess::expressions::AssociationEndNavigationExpression).toEnd.type\n    else if self.oclIsKindOf(dataaccess::expressions::Replace) then\n      self.oclAsType(dataaccess::expressions::Replace).object.getType()\n    else if self.oclIsKindOf(dataaccess::expressions::Ternary) then\n      -- Find the \"least\" TypeDefinition to which both, trueExpr.getType() and falseExpr.getType() conform.\n      -- We determine the more general of the two types; we cannot synthesize a new TypeDefinition in OCL.\n      -- Doing so would have to be done by explicit typing, setting the ownedTypeDefinition explicitly\n      if self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType().conformsTo(self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()) then\n        self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()\n      else\n        self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType()\n      endif\n    else if self.oclIsKindOf(dataaccess::query::Selection) then\n      self.oclAsType(dataaccess::query::Selection).object.getType()\n    else\n      null\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n    endif\n  endif"
 		   });					
 		addAnnotation
 		  (contextEClass, 
@@ -2879,7 +2890,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   new String[] {
 			 "ConditionMustBeBoolean", "self.condition.getType().upperMultiplicity = 1 and\n  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'",
 			 "ConstraintForRightClass", "self.constraints->forAll(c | c.constrainedType = self.for_)"
-		   });					
+		   });			
 		addAnnotation
 		  (multiplicityEClass.getEOperations().get(0), 
 		   source, 
@@ -2994,7 +3005,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "NestedIsAlwaysMany", "self.isMany()"
-		   });									
+		   });						
 		addAnnotation
 		  (methodSignatureEClass.getEOperations().get(0), 
 		   source, 
@@ -3011,7 +3022,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		  (functionSignatureEClass.getEOperations().get(1), 
 		   source, 
 		   new String[] {
-			 "body", "let candidates:Sequence(AnonymousFunctionExpr) = self.typeDefinition.ownerTypedElement.oclAsType(AnonymousFunctionExpr)->asSequence() in\n  if candidates->isEmpty() then\n    null\n  else\n    candidates->at(1)\n  endif"
+			 "body", "let candidates:Sequence(dataaccess::expressions::fp::AnonymousFunctionExpr) =\n         self.typeDefinition.ownerTypedElement.oclAsType(dataaccess::expressions::fp::AnonymousFunctionExpr)->asSequence() in\n  if candidates->isEmpty() then\n    null\n  else\n    candidates->at(1)\n  endif"
 		   });				
 		addAnnotation
 		  (linkSettingEClass, 
@@ -3057,13 +3068,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "DefaultValueType", "self.defaultValue->notEmpty() implies self.defaultValue.getType().conformsTo(self.getType())"
-		   });					
+		   });				
 		addAnnotation
 		  (namedValueEClass.getEOperations().get(0), 
 		   source, 
 		   new String[] {
 			 "body", "self.owner.getNamedValuesInScope()->union(\n    if self.oclIsKindOf(Parameter) then\n      self.oclAsType(Parameter).ownerSignature.getNamedValuesInScope()\n    else\n      if self.oclIsKindOf(behavioral::actions::Iterator) then\n        self.oclAsType(behavioral::actions::Iterator).boundToFor.getNamedValuesInScope()->asSet()->union(\n        self.oclAsType(behavioral::actions::Iterator)._iterate.getNamedValuesInScope()->asSet())\n      else\n        if self.oclIsKindOf(behavioral::actions::Constant) then\n          self.oclAsType(behavioral::actions::Constant)._iterate.getNamedValuesInScope()\n        else\n          Set{}    -- TODO further cases?\n        endif\n      endif\n    endif\n    )"
-		   });					
+		   });				
 		addAnnotation
 		  (extentModifyingAssociationEndSignatureImplementationEClass, 
 		   source, 
@@ -3076,7 +3087,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "body", "if self.oclIsKindOf(behavioral::actions::Block) then\n    self.oclAsType(behavioral::actions::Block).localIsSideEffectFree()\n  else\n    if self.oclIsKindOf(dataaccess::analytics::CellSet) then\n      self.oclAsType(dataaccess::analytics::CellSet).localIsSideEffectFree()\n    else\n      false\n    endif\n  endif"
-		   });					
+		   });				
 		addAnnotation
 		  (converterBetweenParametrizationsEClass, 
 		   source, 
@@ -3099,13 +3110,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";						
-		addAnnotation
-		  (getAssociation_AbapAnnotation(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });																
+		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";																				
 		addAnnotation
 		  (getSignature_Preconditions(), 
 		   source, 
@@ -3117,79 +3122,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", "postconditionForSignature"
-		   });		
-		addAnnotation
-		  (getSignature_AbapAnnotation(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });									
-		addAnnotation
-		  (getAssociationEnd_AbapAnnotation(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });																																																														
-		addAnnotation
-		  (getSapClass_AbapAnnotation(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });														
-		addAnnotation
-		  (getContext_For_(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getContext_Condition(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });																																																					
-		addAnnotation
-		  (getNestedTypeDefinition_Type(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
+		   });																																																																																																																																				
 		addAnnotation
 		  (getNestedTypeDefinition_OwnedTypeDefinition(), 
 		   source, 
 		   new String[] {
 			 "Property.oppositeRoleName", "owningNestedTypeDefinition"
-		   });		
-		addAnnotation
-		  (getFunctionSignatureTypeDefinition_Signature(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "typeDefinition"
-		   });		
-		addAnnotation
-		  (getFunctionSignatureTypeDefinition_OwnedSignature(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });																													
-		addAnnotation
-		  (getParameter_DefaultValue(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });					
-		addAnnotation
-		  (getNativeImpl_PlatformSpecificImplementaiton(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });							
-		addAnnotation
-		  (getActualObjectParameter_FormalObjectParameter(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });							
+		   });																																										
 	}
 
 } //ClassesPackageImpl

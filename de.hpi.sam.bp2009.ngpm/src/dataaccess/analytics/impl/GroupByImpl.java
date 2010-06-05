@@ -6,6 +6,7 @@
  */
 package dataaccess.analytics.impl;
 
+import behavioral.actions.ActionsPackage;
 import behavioral.actions.Iterator;
 
 import dataaccess.analytics.AnalyticsPackage;
@@ -14,6 +15,7 @@ import dataaccess.analytics.GroupBy;
 
 import dataaccess.expressions.Expression;
 
+import dataaccess.expressions.ExpressionsPackage;
 import dataaccess.expressions.impl.ObjectBasedExpressionImpl;
 
 import java.util.Collection;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -114,7 +117,7 @@ public class GroupByImpl extends ObjectBasedExpressionImpl implements GroupBy {
 	 */
 	public EList<DimensionDefinition> getDimensions() {
 		if (dimensions == null) {
-			dimensions = new EObjectContainmentEList<DimensionDefinition>(DimensionDefinition.class, this, AnalyticsPackage.GROUP_BY__DIMENSIONS);
+			dimensions = new EObjectContainmentWithInverseEList<DimensionDefinition>(DimensionDefinition.class, this, AnalyticsPackage.GROUP_BY__DIMENSIONS, AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY);
 		}
 		return dimensions;
 	}
@@ -152,9 +155,9 @@ public class GroupByImpl extends ObjectBasedExpressionImpl implements GroupBy {
 		if (newFact != fact) {
 			NotificationChain msgs = null;
 			if (fact != null)
-				msgs = ((InternalEObject)fact).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.GROUP_BY__FACT, null, msgs);
+				msgs = ((InternalEObject)fact).eInverseRemove(this, ActionsPackage.ITERATOR__FACT_OF_GROUP_BY, Iterator.class, msgs);
 			if (newFact != null)
-				msgs = ((InternalEObject)newFact).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.GROUP_BY__FACT, null, msgs);
+				msgs = ((InternalEObject)newFact).eInverseAdd(this, ActionsPackage.ITERATOR__FACT_OF_GROUP_BY, Iterator.class, msgs);
 			msgs = basicSetFact(newFact, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -195,9 +198,9 @@ public class GroupByImpl extends ObjectBasedExpressionImpl implements GroupBy {
 		if (newMapExpression != mapExpression) {
 			NotificationChain msgs = null;
 			if (mapExpression != null)
-				msgs = ((InternalEObject)mapExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.GROUP_BY__MAP_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject)mapExpression).eInverseRemove(this, ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY, Expression.class, msgs);
 			if (newMapExpression != null)
-				msgs = ((InternalEObject)newMapExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.GROUP_BY__MAP_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject)newMapExpression).eInverseAdd(this, ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY, Expression.class, msgs);
 			msgs = basicSetMapExpression(newMapExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -238,14 +241,41 @@ public class GroupByImpl extends ObjectBasedExpressionImpl implements GroupBy {
 		if (newGroupedFacts != groupedFacts) {
 			NotificationChain msgs = null;
 			if (groupedFacts != null)
-				msgs = ((InternalEObject)groupedFacts).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.GROUP_BY__GROUPED_FACTS, null, msgs);
+				msgs = ((InternalEObject)groupedFacts).eInverseRemove(this, ActionsPackage.ITERATOR__GROUPED_FACTS_OF_GROUP_BY, Iterator.class, msgs);
 			if (newGroupedFacts != null)
-				msgs = ((InternalEObject)newGroupedFacts).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.GROUP_BY__GROUPED_FACTS, null, msgs);
+				msgs = ((InternalEObject)newGroupedFacts).eInverseAdd(this, ActionsPackage.ITERATOR__GROUPED_FACTS_OF_GROUP_BY, Iterator.class, msgs);
 			msgs = basicSetGroupedFacts(newGroupedFacts, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.GROUP_BY__GROUPED_FACTS, newGroupedFacts, newGroupedFacts));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AnalyticsPackage.GROUP_BY__DIMENSIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getDimensions()).basicAdd(otherEnd, msgs);
+			case AnalyticsPackage.GROUP_BY__FACT:
+				if (fact != null)
+					msgs = ((InternalEObject)fact).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.GROUP_BY__FACT, null, msgs);
+				return basicSetFact((Iterator)otherEnd, msgs);
+			case AnalyticsPackage.GROUP_BY__MAP_EXPRESSION:
+				if (mapExpression != null)
+					msgs = ((InternalEObject)mapExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.GROUP_BY__MAP_EXPRESSION, null, msgs);
+				return basicSetMapExpression((Expression)otherEnd, msgs);
+			case AnalyticsPackage.GROUP_BY__GROUPED_FACTS:
+				if (groupedFacts != null)
+					msgs = ((InternalEObject)groupedFacts).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.GROUP_BY__GROUPED_FACTS, null, msgs);
+				return basicSetGroupedFacts((Iterator)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

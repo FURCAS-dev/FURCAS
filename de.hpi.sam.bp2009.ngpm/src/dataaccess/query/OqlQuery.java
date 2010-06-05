@@ -91,7 +91,6 @@ public interface OqlQuery extends Expression
 	 * @return the value of the '<em>Selected</em>' reference list.
 	 * @see dataaccess.query.QueryPackage#getOqlQuery_Selected()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
   EList<Iterator> getSelected();

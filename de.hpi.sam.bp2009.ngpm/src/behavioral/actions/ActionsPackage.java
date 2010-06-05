@@ -1108,13 +1108,40 @@ public interface ActionsPackage extends EPackage {
 	int ITERATOR__FROM_CLAUSE = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Fact Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR__FACT_OF_GROUP_BY = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR__DIMENSION = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Grouped Facts Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR__GROUPED_FACTS_OF_GROUP_BY = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Iterator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_FEATURE_COUNT = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 4;
+	int ITERATOR_FEATURE_COUNT = ClassesPackage.NAMED_VALUE_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link behavioral.actions.impl.NamedValueDeclarationImpl <em>Named Value Declaration</em>}' class.
@@ -1511,6 +1538,39 @@ public interface ActionsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIterator_FromClause();
+
+	/**
+	 * Returns the meta object for the container reference '{@link behavioral.actions.Iterator#getFactOfGroupBy <em>Fact Of Group By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Fact Of Group By</em>'.
+	 * @see behavioral.actions.Iterator#getFactOfGroupBy()
+	 * @see #getIterator()
+	 * @generated
+	 */
+	EReference getIterator_FactOfGroupBy();
+
+	/**
+	 * Returns the meta object for the container reference '{@link behavioral.actions.Iterator#getDimension <em>Dimension</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Dimension</em>'.
+	 * @see behavioral.actions.Iterator#getDimension()
+	 * @see #getIterator()
+	 * @generated
+	 */
+	EReference getIterator_Dimension();
+
+	/**
+	 * Returns the meta object for the container reference '{@link behavioral.actions.Iterator#getGroupedFactsOfGroupBy <em>Grouped Facts Of Group By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Grouped Facts Of Group By</em>'.
+	 * @see behavioral.actions.Iterator#getGroupedFactsOfGroupBy()
+	 * @see #getIterator()
+	 * @generated
+	 */
+	EReference getIterator_GroupedFactsOfGroupBy();
 
 	/**
 	 * Returns the meta object for class '{@link behavioral.actions.NamedValueDeclaration <em>Named Value Declaration</em>}'.
@@ -1941,6 +2001,30 @@ public interface ActionsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ITERATOR__FROM_CLAUSE = eINSTANCE.getIterator_FromClause();
+
+		/**
+		 * The meta object literal for the '<em><b>Fact Of Group By</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ITERATOR__FACT_OF_GROUP_BY = eINSTANCE.getIterator_FactOfGroupBy();
+
+		/**
+		 * The meta object literal for the '<em><b>Dimension</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ITERATOR__DIMENSION = eINSTANCE.getIterator_Dimension();
+
+		/**
+		 * The meta object literal for the '<em><b>Grouped Facts Of Group By</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ITERATOR__GROUPED_FACTS_OF_GROUP_BY = eINSTANCE.getIterator_GroupedFactsOfGroupBy();
 
 		/**
 		 * The meta object literal for the '{@link behavioral.actions.impl.NamedValueDeclarationImpl <em>Named Value Declaration</em>}' class.

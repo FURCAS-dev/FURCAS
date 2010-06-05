@@ -44,7 +44,6 @@ public interface FunctionFromMethodExpr extends ObjectBasedExpression {
 	 * @see #setMethod(MethodSignature)
 	 * @see dataaccess.expressions.fp.FpPackage#getFunctionFromMethodExpr_Method()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	MethodSignature getMethod();

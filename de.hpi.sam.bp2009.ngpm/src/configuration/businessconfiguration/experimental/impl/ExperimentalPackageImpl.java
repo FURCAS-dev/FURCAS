@@ -545,8 +545,6 @@ public class ExperimentalPackageImpl extends EPackageImpl implements Experimenta
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
-		// http://schema.omg.org/spec/MOF/2.0/emof.xml
-		createEmofAnnotations();
 	}
 
 	/**
@@ -563,53 +561,7 @@ public class ExperimentalPackageImpl extends EPackageImpl implements Experimenta
 		   new String[] {
 			 "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
 			 "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
-		   });							
-	}
-
-	/**
-	 * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";				
-		addAnnotation
-		  (getPackageUse_Package_(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getPackageUse_Setting(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getConfigurationEntity_PickList(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getConfigurationEntity_ConfigurableItem(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getConfigurationSetting_Entity(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });		
-		addAnnotation
-		  (getConfigurationSetting_Value(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", ""
-		   });
+		   });	
 	}
 
 } //ExperimentalPackageImpl

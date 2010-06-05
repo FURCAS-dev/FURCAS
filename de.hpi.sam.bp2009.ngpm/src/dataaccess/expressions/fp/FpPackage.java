@@ -108,6 +108,15 @@ public interface FpPackage extends EPackage {
 	int ANONYMOUS_FUNCTION_EXPR__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANONYMOUS_FUNCTION_EXPR__OBJECT_BASED_EXPRESSION = ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -115,6 +124,15 @@ public interface FpPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANONYMOUS_FUNCTION_EXPR__ARGUMENT_OF = ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANONYMOUS_FUNCTION_EXPR__BLOCK_OF_FUNCTION_CALL_EXPRESSION = ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -178,6 +196,42 @@ public interface FpPackage extends EPackage {
 	 * @ordered
 	 */
 	int ANONYMOUS_FUNCTION_EXPR__FROM_CLAUSE = ExpressionsPackage.EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANONYMOUS_FUNCTION_EXPR__CELL_SET_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANONYMOUS_FUNCTION_EXPR__FACTS_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANONYMOUS_FUNCTION_EXPR__DIMENSION = ExpressionsPackage.EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANONYMOUS_FUNCTION_EXPR__MAP_EXPRESSION_OF_GROUP_BY = ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -253,6 +307,15 @@ public interface FpPackage extends EPackage {
 	int FUNCTION_FROM_METHOD_EXPR__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
 	/**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_FROM_METHOD_EXPR__OBJECT_BASED_EXPRESSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+	/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -260,6 +323,15 @@ public interface FpPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_FROM_METHOD_EXPR__ARGUMENT_OF = ExpressionsPackage.OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
+
+	/**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_FROM_METHOD_EXPR__BLOCK_OF_FUNCTION_CALL_EXPRESSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
@@ -323,6 +395,42 @@ public interface FpPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_FROM_METHOD_EXPR__FROM_CLAUSE = ExpressionsPackage.OBJECT_BASED_EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_FROM_METHOD_EXPR__CELL_SET_OF_DIMENSION_EXPRESSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_FROM_METHOD_EXPR__FACTS_OF_DIMENSION_EXPRESSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_FROM_METHOD_EXPR__DIMENSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_FROM_METHOD_EXPR__MAP_EXPRESSION_OF_GROUP_BY = ExpressionsPackage.OBJECT_BASED_EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.

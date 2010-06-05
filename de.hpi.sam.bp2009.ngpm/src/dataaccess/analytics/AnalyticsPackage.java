@@ -243,6 +243,15 @@ public interface AnalyticsPackage extends EPackage {
   int DIMENSION_EXPRESSION__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
   /**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_EXPRESSION__OBJECT_BASED_EXPRESSION = ExpressionsPackage.EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+		/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -252,6 +261,15 @@ public interface AnalyticsPackage extends EPackage {
   int DIMENSION_EXPRESSION__ARGUMENT_OF = ExpressionsPackage.EXPRESSION__ARGUMENT_OF;
 
   /**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION = ExpressionsPackage.EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
+
+		/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -315,6 +333,42 @@ public interface AnalyticsPackage extends EPackage {
 	int DIMENSION_EXPRESSION__FROM_CLAUSE = ExpressionsPackage.EXPRESSION__FROM_CLAUSE;
 
 	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+		/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION = ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_EXPRESSION__DIMENSION = ExpressionsPackage.EXPRESSION__DIMENSION;
+
+	/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY = ExpressionsPackage.EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
+
+	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -332,23 +386,23 @@ public interface AnalyticsPackage extends EPackage {
 	 */
   int DIMENSION_EXPRESSION__ALL = ExpressionsPackage.EXPRESSION__ALL;
 
-  /**
+	/**
 	 * The feature id for the '<em><b>Cell Set</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	* <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_EXPRESSION__CELL_SET = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 0;
+int DIMENSION_EXPRESSION__CELL_SET = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Dimension</b></em>' reference.
+	 * The feature id for the '<em><b>Dimension Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_EXPRESSION__DIMENSION = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 1;
+	int DIMENSION_EXPRESSION__DIMENSION_PARAMETER = ExpressionsPackage.EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Facts</b></em>' containment reference.
@@ -415,6 +469,15 @@ public interface AnalyticsPackage extends EPackage {
   int GROUP_BY__ACTUAL_OBJECT_PARAMETER = ExpressionsPackage.OBJECT_BASED_EXPRESSION__ACTUAL_OBJECT_PARAMETER;
 
   /**
+	 * The feature id for the '<em><b>Object Based Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_BY__OBJECT_BASED_EXPRESSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__OBJECT_BASED_EXPRESSION;
+
+		/**
 	 * The feature id for the '<em><b>Argument Of</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -424,6 +487,15 @@ public interface AnalyticsPackage extends EPackage {
   int GROUP_BY__ARGUMENT_OF = ExpressionsPackage.OBJECT_BASED_EXPRESSION__ARGUMENT_OF;
 
   /**
+	 * The feature id for the '<em><b>Block Of Function Call Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_BY__BLOCK_OF_FUNCTION_CALL_EXPRESSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION;
+
+		/**
 	 * The feature id for the '<em><b>Left Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -485,6 +557,42 @@ public interface AnalyticsPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUP_BY__FROM_CLAUSE = ExpressionsPackage.OBJECT_BASED_EXPRESSION__FROM_CLAUSE;
+
+	/**
+	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_BY__CELL_SET_OF_DIMENSION_EXPRESSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION;
+
+		/**
+	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_BY__FACTS_OF_DIMENSION_EXPRESSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION;
+
+		/**
+	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_BY__DIMENSION = ExpressionsPackage.OBJECT_BASED_EXPRESSION__DIMENSION;
+
+		/**
+	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_BY__MAP_EXPRESSION_OF_GROUP_BY = ExpressionsPackage.OBJECT_BASED_EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -569,13 +677,22 @@ public interface AnalyticsPackage extends EPackage {
 	int DIMENSION_DEFINITION = 4;
 
 	/**
+	 * The feature id for the '<em><b>Group By</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_DEFINITION__GROUP_BY = 0;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_DEFINITION__EXPRESSION = 0;
+	int DIMENSION_DEFINITION__EXPRESSION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Iterator</b></em>' containment reference.
@@ -584,7 +701,7 @@ public interface AnalyticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_DEFINITION__ITERATOR = 1;
+	int DIMENSION_DEFINITION__ITERATOR = 2;
 
 	/**
 	 * The number of structural features of the '<em>Dimension Definition</em>' class.
@@ -593,7 +710,7 @@ public interface AnalyticsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_DEFINITION_FEATURE_COUNT = 2;
+	int DIMENSION_DEFINITION_FEATURE_COUNT = 3;
 
 
 	/**
@@ -704,15 +821,15 @@ public interface AnalyticsPackage extends EPackage {
 	EReference getDimensionExpression_CellSet();
 
 	/**
-	 * Returns the meta object for the reference '{@link dataaccess.analytics.DimensionExpression#getDimension <em>Dimension</em>}'.
+	 * Returns the meta object for the reference '{@link dataaccess.analytics.DimensionExpression#getDimensionParameter <em>Dimension Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Dimension</em>'.
-	 * @see dataaccess.analytics.DimensionExpression#getDimension()
+	 * @return the meta object for the reference '<em>Dimension Parameter</em>'.
+	 * @see dataaccess.analytics.DimensionExpression#getDimensionParameter()
 	 * @see #getDimensionExpression()
 	 * @generated
 	 */
-	EReference getDimensionExpression_Dimension();
+	EReference getDimensionExpression_DimensionParameter();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link dataaccess.analytics.DimensionExpression#getFacts <em>Facts</em>}'.
@@ -788,6 +905,17 @@ public interface AnalyticsPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDimensionDefinition();
+
+	/**
+	 * Returns the meta object for the container reference '{@link dataaccess.analytics.DimensionDefinition#getGroupBy <em>Group By</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Group By</em>'.
+	 * @see dataaccess.analytics.DimensionDefinition#getGroupBy()
+	 * @see #getDimensionDefinition()
+	 * @generated
+	 */
+	EReference getDimensionDefinition_GroupBy();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link dataaccess.analytics.DimensionDefinition#getExpression <em>Expression</em>}'.
@@ -920,12 +1048,12 @@ public interface AnalyticsPackage extends EPackage {
 		EReference DIMENSION_EXPRESSION__CELL_SET = eINSTANCE.getDimensionExpression_CellSet();
 
 		/**
-		 * The meta object literal for the '<em><b>Dimension</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Dimension Parameter</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DIMENSION_EXPRESSION__DIMENSION = eINSTANCE.getDimensionExpression_Dimension();
+		EReference DIMENSION_EXPRESSION__DIMENSION_PARAMETER = eINSTANCE.getDimensionExpression_DimensionParameter();
 
 		/**
 		 * The meta object literal for the '<em><b>Facts</b></em>' containment reference feature.
@@ -986,6 +1114,14 @@ public interface AnalyticsPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DIMENSION_DEFINITION = eINSTANCE.getDimensionDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Group By</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DIMENSION_DEFINITION__GROUP_BY = eINSTANCE.getDimensionDefinition_GroupBy();
 
 		/**
 		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.

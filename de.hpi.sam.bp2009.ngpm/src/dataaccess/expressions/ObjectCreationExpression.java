@@ -41,7 +41,6 @@ public interface ObjectCreationExpression extends Expression {
 	 * @see #setClassToInstantiate(SapClass)
 	 * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression_ClassToInstantiate()
 	 * @model required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	SapClass getClassToInstantiate();

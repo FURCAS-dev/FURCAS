@@ -6,13 +6,16 @@
  */
 package dataaccess.analytics.impl;
 
+import behavioral.actions.ActionsPackage;
 import behavioral.actions.Iterator;
 
 import dataaccess.analytics.AnalyticsPackage;
 import dataaccess.analytics.DimensionDefinition;
 
+import dataaccess.analytics.GroupBy;
 import dataaccess.expressions.Expression;
 
+import dataaccess.expressions.ExpressionsPackage;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -26,6 +29,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,6 +38,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link dataaccess.analytics.impl.DimensionDefinitionImpl#getGroupBy <em>Group By</em>}</li>
  *   <li>{@link dataaccess.analytics.impl.DimensionDefinitionImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link dataaccess.analytics.impl.DimensionDefinitionImpl#getIterator <em>Iterator</em>}</li>
  * </ul>
@@ -86,6 +91,47 @@ public class DimensionDefinitionImpl extends EObjectImpl implements DimensionDef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public GroupBy getGroupBy() {
+		if (eContainerFeatureID() != AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY) return null;
+		return (GroupBy)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetGroupBy(GroupBy newGroupBy, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newGroupBy, AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGroupBy(GroupBy newGroupBy) {
+		if (newGroupBy != eInternalContainer() || (eContainerFeatureID() != AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY && newGroupBy != null)) {
+			if (EcoreUtil.isAncestor(this, newGroupBy))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newGroupBy != null)
+				msgs = ((InternalEObject)newGroupBy).eInverseAdd(this, AnalyticsPackage.GROUP_BY__DIMENSIONS, GroupBy.class, msgs);
+			msgs = basicSetGroupBy(newGroupBy, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY, newGroupBy, newGroupBy));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Expression getExpression() {
 		return expression;
 	}
@@ -114,9 +160,9 @@ public class DimensionDefinitionImpl extends EObjectImpl implements DimensionDef
 		if (newExpression != expression) {
 			NotificationChain msgs = null;
 			if (expression != null)
-				msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION, null, msgs);
+				msgs = ((InternalEObject)expression).eInverseRemove(this, ExpressionsPackage.EXPRESSION__DIMENSION, Expression.class, msgs);
 			if (newExpression != null)
-				msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION, null, msgs);
+				msgs = ((InternalEObject)newExpression).eInverseAdd(this, ExpressionsPackage.EXPRESSION__DIMENSION, Expression.class, msgs);
 			msgs = basicSetExpression(newExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -157,9 +203,9 @@ public class DimensionDefinitionImpl extends EObjectImpl implements DimensionDef
 		if (newIterator != iterator) {
 			NotificationChain msgs = null;
 			if (iterator != null)
-				msgs = ((InternalEObject)iterator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_DEFINITION__ITERATOR, null, msgs);
+				msgs = ((InternalEObject)iterator).eInverseRemove(this, ActionsPackage.ITERATOR__DIMENSION, Iterator.class, msgs);
 			if (newIterator != null)
-				msgs = ((InternalEObject)newIterator).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_DEFINITION__ITERATOR, null, msgs);
+				msgs = ((InternalEObject)newIterator).eInverseAdd(this, ActionsPackage.ITERATOR__DIMENSION, Iterator.class, msgs);
 			msgs = basicSetIterator(newIterator, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -197,8 +243,34 @@ public class DimensionDefinitionImpl extends EObjectImpl implements DimensionDef
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetGroupBy((GroupBy)otherEnd, msgs);
+			case AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION:
+				if (expression != null)
+					msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION, null, msgs);
+				return basicSetExpression((Expression)otherEnd, msgs);
+			case AnalyticsPackage.DIMENSION_DEFINITION__ITERATOR:
+				if (iterator != null)
+					msgs = ((InternalEObject)iterator).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_DEFINITION__ITERATOR, null, msgs);
+				return basicSetIterator((Iterator)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY:
+				return basicSetGroupBy(null, msgs);
 			case AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION:
 				return basicSetExpression(null, msgs);
 			case AnalyticsPackage.DIMENSION_DEFINITION__ITERATOR:
@@ -213,8 +285,24 @@ public class DimensionDefinitionImpl extends EObjectImpl implements DimensionDef
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY:
+				return eInternalContainer().eInverseRemove(this, AnalyticsPackage.GROUP_BY__DIMENSIONS, GroupBy.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY:
+				return getGroupBy();
 			case AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION:
 				return getExpression();
 			case AnalyticsPackage.DIMENSION_DEFINITION__ITERATOR:
@@ -231,6 +319,9 @@ public class DimensionDefinitionImpl extends EObjectImpl implements DimensionDef
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY:
+				setGroupBy((GroupBy)newValue);
+				return;
 			case AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION:
 				setExpression((Expression)newValue);
 				return;
@@ -249,6 +340,9 @@ public class DimensionDefinitionImpl extends EObjectImpl implements DimensionDef
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY:
+				setGroupBy((GroupBy)null);
+				return;
 			case AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION:
 				setExpression((Expression)null);
 				return;
@@ -267,6 +361,8 @@ public class DimensionDefinitionImpl extends EObjectImpl implements DimensionDef
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case AnalyticsPackage.DIMENSION_DEFINITION__GROUP_BY:
+				return getGroupBy() != null;
 			case AnalyticsPackage.DIMENSION_DEFINITION__EXPRESSION:
 				return expression != null;
 			case AnalyticsPackage.DIMENSION_DEFINITION__ITERATOR:

@@ -125,7 +125,6 @@ public interface Constraint extends NamedElement {
 	 * @see #setConstraintExpression(Expression)
 	 * @see data.constraints.ConstraintsPackage#getConstraint_ConstraintExpression()
 	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName=''"
 	 * @generated
 	 */
 	Expression getConstraintExpression();
