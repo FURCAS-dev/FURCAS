@@ -109,7 +109,6 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
         try {
             r = load_resourceSet.getResource(fileUri, true);
             EcoreHelper.getInstance().addResourceToDefaultIndex(r);
-
             r.load(null);
         } catch (Exception e) {
             e.printStackTrace();
@@ -117,30 +116,54 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             return;
         }
 
-
         for(EObject sPkg: r.getContents()){
-            if(sPkg instanceof EPackage){
-                if(EPackage.Registry.INSTANCE.containsKey(((EPackage) sPkg).getNsURI())){
-                     sPkg=(EPackage) EPackage.Registry.INSTANCE.get(((EPackage) sPkg).getNsURI());
-                     /*
-                      * change the current resource to the ecore from the loaded packages
-                      */
-                     r = sPkg.eResource();
-
-                    
-                }
-                if(((EPackage)sPkg).getEAnnotation(OCL_TYPES)!=null){
-                    ((EPackage)sPkg).getEAnnotation(OCL_TYPES).getContents().clear();
-                }
-                traversalConvertOclAnnotations((EPackage)sPkg);
-            }
-        }
-        try {
-            r.save(new FileOutputStream(new File(java.net.URI.create(fileUri.toString()))), null);
-        } catch (IOException e) {
-            getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", r));
+          if (sPkg instanceof EPackage) {
+            lookupPackageInRegistryAndHandleOrRecurse(fileUri, (EPackage) sPkg);
+          }
         }
     }
+
+
+    private void lookupPackageInRegistryAndHandleOrRecurse(URI fileUri, EPackage sPkg)
+    {
+          if(EPackage.Registry.INSTANCE.containsKey(sPkg.getNsURI())){
+               handlePackage(fileUri, (EObject)EPackage.Registry.INSTANCE.get(sPkg.getNsURI()));
+          } else {
+            System.err.println("Couldn't find package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI()+
+              " in registry. Maybe empty top-level package?");
+            recursivelySearchForSubpackagesInRegistry(fileUri, sPkg);
+          }
+    }
+
+
+    private void handlePackage(URI fileUri, EObject sPkg)
+    {
+      EPackage registryPkg=(EPackage) EPackage.Registry.INSTANCE.get(((EPackage) sPkg).getNsURI());
+       /*
+        * change the current resource to the ecore from the loaded packages
+        */
+       Resource registryResource = registryPkg.eResource();
+       if(((EPackage)sPkg).getEAnnotation(OCL_TYPES)!=null){
+         ((EPackage)sPkg).getEAnnotation(OCL_TYPES).getContents().clear();
+       }
+       System.out.println("cONVERTING package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI());
+       traversalConvertOclAnnotations((EPackage)sPkg);
+       try {
+         registryResource.save(new FileOutputStream(new File(java.net.URI.create(fileUri.toString()))), null);
+       } catch (IOException e) {
+         getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", registryResource));
+       }
+    }
+
+    private void recursivelySearchForSubpackagesInRegistry(URI fileUri, EObject sPkg)
+    {
+      for (EObject content : sPkg.eContents()) {
+        if (content instanceof EPackage) {
+          lookupPackageInRegistryAndHandleOrRecurse(fileUri, (EPackage) content);
+        }
+      }
+    }
+
 
     /* (non-Javadoc)
      * @see de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement)
