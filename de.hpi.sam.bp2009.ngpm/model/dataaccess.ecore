@@ -92,6 +92,8 @@
           eOpposite="data.ecore#//classes/ActualObjectParameter/value"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="argumentOf" eType="#//expressions/WithArgument"
           transient="true" eOpposite="#//expressions/WithArgument/argument"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="blockOfFunctionCallExpression"
+          eType="#//expressions/FunctionCallExpression" transient="true" eOpposite="#//expressions/FunctionCallExpression/calledBlock"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="leftOfEquals" eType="#//expressions/Equals"
           transient="true" eOpposite="#//expressions/Equals/left"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="rightOfEquals" eType="#//expressions/Equals"
@@ -192,18 +194,14 @@
         <details key="documentation" value="An expression that is computed by first evaluating &quot;calledBlock&quot; and invoking the resulting block passing the &quot;argument&quot; expression. The value returned by the block constitutes the value of this expression. If the block terminates with a fault, the evaluation of this expression terminates with this fault.&#xA;&#xA;The type of the object computed by the &quot;parameters&quot; expression must conform to the input parameter types of the signature called.&#xA;&#xA;If the calledBock evaluates to more than one callable function, all functions will be called. Invocation ordering depends on the side effect-freeness of the signatures called."/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="ResultType" value="let fstd:FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in&#xA;&#xA;  if fstd.isMany() then&#xA;    -- calling multiple functions; test is somewhat fuzzy because it doesn't test condormance of nesting structure exactly&#xA;    self.getType().isMany() and not self.getType().unique and&#xA;    fstd.signature.output.getInnermost().conformsTo(self.getType().getInnermost()) and&#xA;    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))&#xA;  else&#xA;    -- calling a single function&#xA;    fstd.signature.output.conformsTo(self.getType()) and &#xA;    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))&#xA;  endif"/>
+        <details key="ResultType" value="let fstd:data::classes::FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in&#xA;&#xA;  if fstd.isMany() then&#xA;    -- calling multiple functions; test is somewhat fuzzy because it doesn't test condormance of nesting structure exactly&#xA;    self.getType().isMany() and not self.getType().unique and&#xA;    fstd.signature.output.getInnermost().conformsTo(self.getType().getInnermost()) and&#xA;    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))&#xA;  else&#xA;    -- calling a single function&#xA;    fstd.signature.output.conformsTo(self.getType()) and &#xA;    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))&#xA;  endif"/>
         <details key="CalledBlockMustBeFunction" value="self.calledBlock.getType().getInnermost().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="ResultType CalledBlockMustBeFunction"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="calledBlock" lowerBound="1"
-          eType="#//expressions/Expression" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="blockOfFunctionCallExpression"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//expressions/Expression" containment="true" eOpposite="#//expressions/Expression/blockOfFunctionCallExpression"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WithArgument" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="argument" eType="#//expressions/Expression"
@@ -413,7 +411,7 @@
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="ObjectTypeMustConformToFunctionArgument" value="let fstd:data::classes::TypeDefinition = self.argument.getType() in&#xA;  let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in&#xA;  let t:data::classes::TypeDefinition = self.object.getType() in&#xA;  let argT:data::classes::TypeDefinition = sig.input->at(1).getType() in&#xA;  -- if multiplicities match including multiplicities, that's ok&#xA;  t.conformsTo(argT) or&#xA;  -- otherwise, pick single multiplicity from object and try again&#xA;  t.conformsToIgnoringMultiplicity(argT) or&#xA;  (t.oclIsKindOf(data::classes::NestedTypeDefinition) and t.oclAsType(data::classes::NestedTypeDefinition).type.conformsTo(argT))"/>
-        <details key="ArgumentMustBeSingleArgumentFunctionWithNonVoidOutput" value="let fstd:TypeDefinition = self.argument.getType() in&#xA;  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and&#xA;  (let sig:Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in&#xA;  (sig.output->notEmpty() and&#xA;  sig.input->size() = 1))"/>
+        <details key="ArgumentMustBeSingleArgumentFunctionWithNonVoidOutput" value="let fstd:data::classes::TypeDefinition = self.argument.getType() in&#xA;  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and&#xA;  (let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in&#xA;  (sig.output->notEmpty() and&#xA;  sig.input->size() = 1))"/>
         <details key="MapFunctionMustBeSideEffectFree" value="self.argument.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.sideEffectFree"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

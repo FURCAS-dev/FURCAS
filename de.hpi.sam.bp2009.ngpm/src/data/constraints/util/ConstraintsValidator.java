@@ -130,8 +130,8 @@ public class ConstraintsValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String CONSTRAINT__EXPRESSION_TYPE_MUST_BE_BOOLEAN__EEXPRESSION = "self.constraintExpression.getType().upperMultiplicity = 1 and" +
-		"  self.constraintExpression.getType().oclIsKindOf(ClassTypeDefinition) and" +
-		"  self.constraintExpression.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'";
+		"  self.constraintExpression.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
+		"  self.constraintExpression.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'";
 
 	/**
 	 * Validates the ExpressionTypeMustBeBoolean constraint of '<em>Constraint</em>'.

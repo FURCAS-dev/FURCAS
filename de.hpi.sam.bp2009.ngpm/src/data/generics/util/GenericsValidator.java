@@ -144,15 +144,15 @@ public class GenericsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String FORMAL_TYPE_PARAMETER__USE_IN_SIGNATURES_OF_OWNING_PARAMERIZED_CLASS_ONLY__EEXPRESSION = "self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(Parameter) implies " +
-		"   (s.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and" +
-		"    s.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).owner=self.parameterOf .owningClassDefinition)) and" +
-		"  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(MethodSignature) and " +
-		"    s.oclAsType(MethodSignature).owner->notEmpty() and" +
-		"    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition) and" +
-		"  self.signaturesWithFault->forAll(s| s.oclIsKindOf(MethodSignature)  and " +
-		"    s.oclAsType(MethodSignature).owner->notEmpty() and" +
-		"    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition)";
+	protected static final String FORMAL_TYPE_PARAMETER__USE_IN_SIGNATURES_OF_OWNING_PARAMERIZED_CLASS_ONLY__EEXPRESSION = "self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(data::classes::Parameter) implies " +
+		"   (s.oclAsType(data::classes::Parameter).ownerSignature.oclIsKindOf(data::classes::MethodSignature) and" +
+		"    s.oclAsType(data::classes::Parameter).ownerSignature.oclAsType(data::classes::MethodSignature).owner=self.parameterOf .owningClassDefinition)) and" +
+		"  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(data::classes::MethodSignature) and " +
+		"    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and" +
+		"    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition) and" +
+		"  self.signaturesWithFault->forAll(s| s.oclIsKindOf(data::classes::MethodSignature)  and " +
+		"    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and" +
+		"    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition)";
 
 	/**
 	 * Validates the UseInSignaturesOfOwningParamerizedClassOnly constraint of '<em>Formal Type Parameter</em>'.

@@ -488,7 +488,7 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String FUNCTION_CALL_EXPRESSION__RESULT_TYPE__EEXPRESSION = "let fstd:FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in" +
+	protected static final String FUNCTION_CALL_EXPRESSION__RESULT_TYPE__EEXPRESSION = "let fstd:data::classes::FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in" +
 		"" +
 		"  if fstd.isMany() then" +
 		"    -- calling multiple functions; test is somewhat fuzzy because it doesn\'t test condormance of nesting structure exactly" +
@@ -1458,7 +1458,7 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String MAP__ARGUMENT_MUST_BE_SINGLE_ARGUMENT_FUNCTION_WITH_NON_VOID_OUTPUT__EEXPRESSION = "let fstd:TypeDefinition = self.argument.getType() in" +
+	protected static final String MAP__ARGUMENT_MUST_BE_SINGLE_ARGUMENT_FUNCTION_WITH_NON_VOID_OUTPUT__EEXPRESSION = "let fstd:data::classes::TypeDefinition = self.argument.getType() in" +
 		"  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and" +
 		"  (let sig:Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in" +
 		"  (sig.output->notEmpty() and" +
