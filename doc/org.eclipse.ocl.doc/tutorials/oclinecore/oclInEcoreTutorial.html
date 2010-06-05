@@ -76,15 +76,52 @@ Other references:
 <h2><a name="installation">Installing the MDT/OCL Examples</a></h2>
 <p>
 The OCLinEcore editor is not part of the core OCL functionality included in the
-Eclipse Modeling Tools Package. 
+Eclipse Modeling Tools Package, so although you may have OCL installed and be able
+to read this tutorial via the <b>Help-&gt;HelpContents-&gt;OCL Developer Guide</b>, you may
+not have the OCL examples installed.
 </p>
 <p>
-If you have installed the Eclipse Modeling Tools Package, or installed the
-Amalgam project on some other Eclipse package, you can use the Modeling Discovery
-UI to install the MDT/OCL Examples.
+An easy way to test whether you have the OCL Examples installed is
+to right click on a <b>*.ecore</b> file and see whether <b>OCLinEcore (Ecore) Editor</b>
+appears in the <b>Open With</b> submenu.
 </p>
 <p>
-FIXME -- Need an RC3 Modeling EPP to provide a screenshot --.
+If OCL is not installed at all, or if just the examples are not installed,
+the following installation step will automatically install the OCL Examples
+and all required projects such as <b>EMF</b>, <b>UML2</b>, <b>MWE2</b>, <b>Xpand</b>
+and <b>Xtext</b>.
+</p>
+<p>
+Left-click on <b>Help</b> in the title-bar then left-click on <b>Install New Software...</b>
+and select the <b>Helios - http://download.eclipse.org/releases/helios</b> update site
+from the pull-down menu to <b>Work with</b> and be patient while the available updates
+are identified. Then select <b>OCL Examples and Editors</b> from the <b>Modeling</b>
+category.
+</p>
+<img src="install_software_top.png" alt="Install Software Top Half" />
+<br>
+<br>
+<img src="install_software_bottom.png" alt="Install Software Bottom Half" />
+<p>
+Select <b>Next</b>.
+</p>
+<img src="install_details.png" alt="Install Details" />
+<p>
+Select <b>Next</b> again and read the license agreement. Set to accept it.
+</p>
+<img src="install_license.png" alt="Install License" />
+<p>
+Select <b>Finish</b> and be patient while the software is downloaded and installed.
+Select <b>Restart Now</b> when prompted to do so.
+</p>
+<p>
+Eclipse Modeling Projects have a large number of classes and so require a
+large amount of PermGen space on a Sun JVM. If you are using default Eclipse
+startup settings you are liable to encounter OutOfMemoryExceptions. Therefore
+follow the advice in
+<a href="http://wiki.eclipse.org/IRC_FAQ#How_do_I_start_Eclipse.3F">How do I start Eclipse</a>
+and set XX:PermSize to at least 64M, either on your Eclipse command line, or your
+Eclipse shortcut or in the <b>eclipse.ini</b> adjacent to <b>eclipse.exe</b>.
 </p>
 
 <h2><a name="ecore-editing">Using the OCLinEcore text editor for Ecore</a></h2>
@@ -112,13 +149,16 @@ We will first create a new project for this example; so invoke <b>File-&gt;New-&
 </p>
 <p>
 In the <b>New Project</b> dialog left-click to expand <b>Eclipse Modeling Framework</b>, then left-click to select
-<b>Empty EMF Project</b> and finally left-click on <b>Finish</b>.
+<b>Empty EMF Project</b>.
 </p>
 <img src="new_project.png" alt="New Project" />
 <p>
-In the <b>New Empty EMF Project</b> dialog type <b>Tutorial</b> as the project name and left-click on <b>Next</b>.
+Left-click on <b>Next</b> and in the <b>New Empty EMF Project</b> dialog type <b>Tutorial</b> as the project name.
 </p>
 <img src="new_empty_emf_project.png" alt="New Empty EMF Project" />
+<p>
+Left-click on <b>Finish</b>.
+</p>
 
 <h3><a name="new-model">Create a New Ecore Model</a></h3>
 <p>
@@ -128,16 +168,17 @@ and select <b>New-&gt;Other...</b>.
 </p>
 <p>
 In the <b>New</b> dialog left-click to expand <b>Eclipse Modeling Framework</b>, then left-click to select
-<b>Ecore Model</b> and finally left-click on <b>Next</b>.
+<b>Ecore Model</b>.
 </p>
 <img src="new_ecore_model.png" alt="New Ecore Model" />
 <p>
-In the <b>New Ecore Model</b> dialog type <b>Tutorial.ecore</b> as the file name and left-click on <b>Finish</b>.
+Left-click on <b>Next</b> and then in the <b>New Ecore Model</b> dialog type <b>Tutorial.ecore</b> as the file name.
 </p>
 <img src="new_ecore_model_dialog.png" alt="New Ecore Model Dialog" />
 <p>
-The <b>Sample Ecore</b> editor for <b>Tutorial.ecore</b> opens showing a tree view of a single unnamed <tt>EPackage</tt>.
+Left-click on <b>Finish</b>; The <b>Sample Ecore</b> editor for <b>Tutorial.ecore</b> opens showing a tree view of a single unnamed <tt>EPackage</tt>.
 </p>
+<img src="empty_ecore.png" alt="Empty Ecore Editor" />
 <p>
 Close the editor by left-clicking the cross on the editor tab.
 </p>
@@ -151,7 +192,6 @@ initial content.
 Right-click on the <b>Tutorial.ecore</b> file to pop-up the context-sensitive menu
 and select <b>Open With-&gt;OCLinEcore (Ecore) Editor</b>.
 </p>
-<img src="empty_ecore.png" alt="Empty Ecore Editor" />
 <p>
 The first time you open a file in the project with one of the Xtext-based editors, you
 will be asked
@@ -206,7 +246,7 @@ The syntax is fairly self explanatory, emulating OMG specifications with
 'name : type[multiplicity] { properties }'.
 </p>
 <ul>
-	<li><tt>import</tt> associates an alias for an EPackage (hence the trailing #/ in the URI).</li>
+	<li><tt>import</tt> associates an alias with  an external EPackage.</li>
 	<li><tt>package</tt> introduces an EPackage with name, nsPrefix and nsURI.</li>
 	<li><tt>class</tt> introduces an EClass with name and optional superclasses.</li>
 	<li><tt>attribute</tt> introduces a property with a datatype type (an EAttribute).</li>
@@ -215,10 +255,17 @@ The syntax is fairly self explanatory, emulating OMG specifications with
 	<li><tt>_'xxx'</tt> escapes an awkward or reserved word identifier.</li>
 </ul>
 <p>
-Completion assist (Ctrl Space) may be used for syntax assistance. Alternatively,
-the Sample Ecore Editor may be used to create a construct directly in Ecore,
-which can then be opened in the OCLinEcore editor to see the corresponding
-textual syntax.
+The import URI is the URI of a Package, so in the example the <tt>http://www.eclipse.org/emf/2002/Ecore</tt>
+is the URI of the model, <tt>#</tt> is the fragment separator and <tt>/</tt> is the path to
+the Package at the root of the XMI document.
+</p>
+<p>
+Completion assist (Ctrl Space) may be used for syntax assistance.
+</p>
+<p>In order to discover a syntax for which completion assist is insufficient,
+you may use the Sample Ecore Editor on a test file to create the kind of Ecore element
+that you require, and then open the test file with the OCLinEcore editor to see the
+corresponding textual syntax.
 </p>
 
 <h3><a name="tutorial-meta-model">The Tutorial Meta-Model</a></h3>
