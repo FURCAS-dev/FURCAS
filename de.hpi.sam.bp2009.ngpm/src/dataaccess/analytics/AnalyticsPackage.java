@@ -279,6 +279,15 @@ public interface AnalyticsPackage extends EPackage {
   int DIMENSION_EXPRESSION__LEFT_OF_EQUALS = ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIMENSION_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -505,6 +514,15 @@ int DIMENSION_EXPRESSION__CELL_SET = ExpressionsPackage.EXPRESSION_FEATURE_COUNT
   int GROUP_BY__LEFT_OF_EQUALS = ExpressionsPackage.OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP_BY__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = ExpressionsPackage.OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

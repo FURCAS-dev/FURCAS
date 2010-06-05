@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -119,7 +120,7 @@ public class MethodCallExpressionImpl extends ObjectBasedExpressionImpl implemen
 	 */
 	public EList<Expression> getParameters() {
 		if (parameters == null) {
-			parameters = new EObjectContainmentEList<Expression>(Expression.class, this, ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS);
+			parameters = new EObjectContainmentWithInverseEList<Expression>(Expression.class, this, ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS, ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL);
 		}
 		return parameters;
 	}
@@ -277,9 +278,12 @@ public class MethodCallExpressionImpl extends ObjectBasedExpressionImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameters()).basicAdd(otherEnd, msgs);
 			case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);

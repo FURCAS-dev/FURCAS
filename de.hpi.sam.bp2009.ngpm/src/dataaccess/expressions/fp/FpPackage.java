@@ -144,6 +144,15 @@ public interface FpPackage extends EPackage {
 	int ANONYMOUS_FUNCTION_EXPR__LEFT_OF_EQUALS = ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANONYMOUS_FUNCTION_EXPR__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -341,6 +350,15 @@ public interface FpPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTION_FROM_METHOD_EXPR__LEFT_OF_EQUALS = ExpressionsPackage.OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_FROM_METHOD_EXPR__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = ExpressionsPackage.OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
 
 	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.

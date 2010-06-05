@@ -29,6 +29,7 @@ import dataaccess.expressions.ExpressionsPackage;
 
 import dataaccess.expressions.FunctionCallExpression;
 import dataaccess.expressions.ObjectBasedExpression;
+import dataaccess.expressions.SignatureCallExpression;
 import dataaccess.expressions.WithArgument;
 import dataaccess.expressions.collectionexpressions.CollectionExpression;
 import dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage;
@@ -73,6 +74,7 @@ import ui.templates.TemplatesPackage;
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getArgumentOf <em>Argument Of</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getBlockOfFunctionCallExpression <em>Block Of Function Call Expression</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getLeftOfEquals <em>Left Of Equals</em>}</li>
+ *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getUsedAsArgumentInSignatureCall <em>Used As Argument In Signature Call</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getRightOfEquals <em>Right Of Equals</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getConditional <em>Conditional</em>}</li>
  *   <li>{@link dataaccess.expressions.impl.ExpressionImpl#getCollectionExpression <em>Collection Expression</em>}</li>
@@ -395,6 +397,47 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS, newLeftOfEquals, newLeftOfEquals));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SignatureCallExpression getUsedAsArgumentInSignatureCall() {
+		if (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL) return null;
+		return (SignatureCallExpression)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetUsedAsArgumentInSignatureCall(SignatureCallExpression newUsedAsArgumentInSignatureCall, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newUsedAsArgumentInSignatureCall, ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUsedAsArgumentInSignatureCall(SignatureCallExpression newUsedAsArgumentInSignatureCall) {
+		if (newUsedAsArgumentInSignatureCall != eInternalContainer() || (eContainerFeatureID() != ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL && newUsedAsArgumentInSignatureCall != null)) {
+			if (EcoreUtil.isAncestor(this, newUsedAsArgumentInSignatureCall))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newUsedAsArgumentInSignatureCall != null)
+				msgs = ((InternalEObject)newUsedAsArgumentInSignatureCall).eInverseAdd(this, ExpressionsPackage.SIGNATURE_CALL_EXPRESSION__PARAMETERS, SignatureCallExpression.class, msgs);
+			msgs = basicSetUsedAsArgumentInSignatureCall(newUsedAsArgumentInSignatureCall, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL, newUsedAsArgumentInSignatureCall, newUsedAsArgumentInSignatureCall));
 	}
 
 	/**
@@ -1093,6 +1136,10 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetLeftOfEquals((Equals)otherEnd, msgs);
+			case ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetUsedAsArgumentInSignatureCall((SignatureCallExpression)otherEnd, msgs);
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -1167,6 +1214,8 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return basicSetBlockOfFunctionCallExpression(null, msgs);
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				return basicSetLeftOfEquals(null, msgs);
+			case ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL:
+				return basicSetUsedAsArgumentInSignatureCall(null, msgs);
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
 				return basicSetRightOfEquals(null, msgs);
 			case ExpressionsPackage.EXPRESSION__CONDITIONAL:
@@ -1217,6 +1266,8 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.FUNCTION_CALL_EXPRESSION__CALLED_BLOCK, FunctionCallExpression.class, msgs);
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.EQUALS__LEFT, Equals.class, msgs);
+			case ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL:
+				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.SIGNATURE_CALL_EXPRESSION__PARAMETERS, SignatureCallExpression.class, msgs);
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
 				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.EQUALS__RIGHT, Equals.class, msgs);
 			case ExpressionsPackage.EXPRESSION__CONDITIONAL:
@@ -1267,6 +1318,8 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return getBlockOfFunctionCallExpression();
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				return getLeftOfEquals();
+			case ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL:
+				return getUsedAsArgumentInSignatureCall();
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
 				return getRightOfEquals();
 			case ExpressionsPackage.EXPRESSION__CONDITIONAL:
@@ -1323,6 +1376,9 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return;
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				setLeftOfEquals((Equals)newValue);
+				return;
+			case ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL:
+				setUsedAsArgumentInSignatureCall((SignatureCallExpression)newValue);
 				return;
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
 				setRightOfEquals((Equals)newValue);
@@ -1393,6 +1449,9 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				setLeftOfEquals((Equals)null);
 				return;
+			case ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL:
+				setUsedAsArgumentInSignatureCall((SignatureCallExpression)null);
+				return;
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
 				setRightOfEquals((Equals)null);
 				return;
@@ -1455,6 +1514,8 @@ public abstract class ExpressionImpl extends TypedElementImpl implements Express
 				return getBlockOfFunctionCallExpression() != null;
 			case ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS:
 				return getLeftOfEquals() != null;
+			case ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL:
+				return getUsedAsArgumentInSignatureCall() != null;
 			case ExpressionsPackage.EXPRESSION__RIGHT_OF_EQUALS:
 				return getRightOfEquals() != null;
 			case ExpressionsPackage.EXPRESSION__CONDITIONAL:

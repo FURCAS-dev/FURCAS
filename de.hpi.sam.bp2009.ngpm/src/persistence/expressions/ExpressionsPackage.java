@@ -144,6 +144,15 @@ public interface ExpressionsPackage extends EPackage {
 	int ALL__LEFT_OF_EQUALS = dataaccess.expressions.ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = dataaccess.expressions.ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -370,6 +379,15 @@ public interface ExpressionsPackage extends EPackage {
 	int COMMIT__LEFT_OF_EQUALS = dataaccess.expressions.ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = dataaccess.expressions.ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -567,6 +585,15 @@ public interface ExpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int SNAPSHOT__LEFT_OF_EQUALS = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SNAPSHOT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = dataaccess.expressions.ExpressionsPackage.OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
 
 	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.

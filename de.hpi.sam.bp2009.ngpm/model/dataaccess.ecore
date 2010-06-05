@@ -98,6 +98,8 @@
           eType="#//expressions/FunctionCallExpression" transient="true" eOpposite="#//expressions/FunctionCallExpression/calledBlock"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="leftOfEquals" eType="#//expressions/Equals"
           transient="true" eOpposite="#//expressions/Equals/left"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="usedAsArgumentInSignatureCall"
+          eType="#//expressions/SignatureCallExpression" transient="true" eOpposite="#//expressions/SignatureCallExpression/parameters"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="rightOfEquals" eType="#//expressions/Equals"
           transient="true" eOpposite="#//expressions/Equals/right"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="conditional" eType="#//expressions/Conditional"
@@ -268,11 +270,7 @@
         </eAnnotations>
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-          eType="#//expressions/Expression" containment="true">
-        <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
-          <details key="Property.oppositeRoleName" value="usedAsArgumentInSignatureCall"/>
-        </eAnnotations>
-      </eStructuralFeatures>
+          eType="#//expressions/Expression" containment="true" eOpposite="#//expressions/Expression/usedAsArgumentInSignatureCall"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ObjectCount" eSuperTypes="#//expressions/ObjectBasedExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">

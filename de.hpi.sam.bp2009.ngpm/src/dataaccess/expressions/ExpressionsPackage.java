@@ -148,13 +148,22 @@ public interface ExpressionsPackage extends EPackage {
   int EXPRESSION__LEFT_OF_EQUALS = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 6;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 7;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int EXPRESSION__RIGHT_OF_EQUALS = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 7;
+  int EXPRESSION__RIGHT_OF_EQUALS = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 8;
 
   /**
 	 * The feature id for the '<em><b>Conditional</b></em>' container reference.
@@ -163,7 +172,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-  int EXPRESSION__CONDITIONAL = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 8;
+  int EXPRESSION__CONDITIONAL = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 9;
 
   /**
 	 * The feature id for the '<em><b>Collection Expression</b></em>' container reference.
@@ -172,7 +181,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-  int EXPRESSION__COLLECTION_EXPRESSION = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 9;
+  int EXPRESSION__COLLECTION_EXPRESSION = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 10;
 
   /**
 	 * The feature id for the '<em><b>In Iterator</b></em>' container reference.
@@ -181,7 +190,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__IN_ITERATOR = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 10;
+	int EXPRESSION__IN_ITERATOR = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Condition Of Oql Query</b></em>' container reference.
@@ -190,7 +199,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-  int EXPRESSION__CONDITION_OF_OQL_QUERY = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 11;
+  int EXPRESSION__CONDITION_OF_OQL_QUERY = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 12;
 
   /**
 	 * The feature id for the '<em><b>From Clause</b></em>' container reference.
@@ -199,7 +208,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__FROM_CLAUSE = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 12;
+	int EXPRESSION__FROM_CLAUSE = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Cell Set Of Dimension Expression</b></em>' container reference.
@@ -208,7 +217,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 13;
+	int EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 14;
 
 		/**
 	 * The feature id for the '<em><b>Facts Of Dimension Expression</b></em>' container reference.
@@ -217,7 +226,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 14;
+	int EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 15;
 
 		/**
 	 * The feature id for the '<em><b>Dimension</b></em>' container reference.
@@ -226,7 +235,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__DIMENSION = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 15;
+	int EXPRESSION__DIMENSION = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 16;
 
 		/**
 	 * The feature id for the '<em><b>Map Expression Of Group By</b></em>' container reference.
@@ -235,7 +244,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 16;
+	int EXPRESSION__MAP_EXPRESSION_OF_GROUP_BY = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 17;
 
 	/**
 	 * The feature id for the '<em><b>Template</b></em>' container reference.
@@ -244,7 +253,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION__TEMPLATE = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 17;
+	int EXPRESSION__TEMPLATE = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 18;
 
 	/**
 	 * The feature id for the '<em><b>All</b></em>' container reference.
@@ -253,7 +262,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-  int EXPRESSION__ALL = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 18;
+  int EXPRESSION__ALL = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 19;
 
   /**
 	 * The number of structural features of the '<em>Expression</em>' class.
@@ -262,7 +271,7 @@ public interface ExpressionsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_FEATURE_COUNT = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 19;
+	int EXPRESSION_FEATURE_COUNT = ClassesPackage.TYPED_ELEMENT_FEATURE_COUNT + 20;
 
 	/**
 	 * The meta object id for the '{@link dataaccess.expressions.impl.VariableExpressionImpl <em>Variable Expression</em>}' class.
@@ -347,6 +356,15 @@ public interface ExpressionsPackage extends EPackage {
   int VARIABLE_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -555,6 +573,15 @@ public interface ExpressionsPackage extends EPackage {
   int OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -763,6 +790,15 @@ public interface ExpressionsPackage extends EPackage {
   int METHOD_CALL_EXPRESSION__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_CALL_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1007,6 +1043,15 @@ public interface ExpressionsPackage extends EPackage {
   int OBJECT_CREATION_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_CREATION_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1224,6 +1269,15 @@ public interface ExpressionsPackage extends EPackage {
   int SIGNATURE_CALL_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIGNATURE_CALL_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1432,6 +1486,15 @@ public interface ExpressionsPackage extends EPackage {
   int FUNCTION_CALL_EXPRESSION__LEFT_OF_EQUALS = SIGNATURE_CALL_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_CALL_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = SIGNATURE_CALL_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1677,6 +1740,15 @@ public interface ExpressionsPackage extends EPackage {
   int THIS__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THIS__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1876,6 +1948,15 @@ public interface ExpressionsPackage extends EPackage {
   int EQUALS__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALS__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2093,6 +2174,15 @@ public interface ExpressionsPackage extends EPackage {
   int ASSOCIATION_END_NAVIGATION_EXPRESSION__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION_END_NAVIGATION_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2310,6 +2400,15 @@ public interface ExpressionsPackage extends EPackage {
   int OBJECT_COUNT__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_COUNT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2518,6 +2617,15 @@ public interface ExpressionsPackage extends EPackage {
   int REPLACE__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REPLACE__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2790,6 +2898,15 @@ public interface ExpressionsPackage extends EPackage {
   int HEAD__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int HEAD__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2998,6 +3115,15 @@ public interface ExpressionsPackage extends EPackage {
   int TAIL__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAIL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3206,6 +3332,15 @@ public interface ExpressionsPackage extends EPackage {
   int AS_LIST__LEFT_OF_EQUALS = OBJECT_BASED_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AS_LIST__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = OBJECT_BASED_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3442,6 +3577,15 @@ public interface ExpressionsPackage extends EPackage {
   int CONDITIONAL_EXPRESSION__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3650,6 +3794,15 @@ public interface ExpressionsPackage extends EPackage {
   int TERNARY__LEFT_OF_EQUALS = CONDITIONAL_EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TERNARY__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = CONDITIONAL_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3876,6 +4029,15 @@ public interface ExpressionsPackage extends EPackage {
   int CONTENT_EQUALS__LEFT_OF_EQUALS = EQUALS__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTENT_EQUALS__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EQUALS__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4093,6 +4255,15 @@ public interface ExpressionsPackage extends EPackage {
   int EXPRESSION_WITH_ARGUMENT__LEFT_OF_EQUALS = EXPRESSION__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_WITH_ARGUMENT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4301,6 +4472,15 @@ public interface ExpressionsPackage extends EPackage {
   int MAP__LEFT_OF_EQUALS = EXPRESSION_WITH_ARGUMENT__LEFT_OF_EQUALS;
 
   /**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MAP__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXPRESSION_WITH_ARGUMENT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+		/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4524,6 +4704,17 @@ public interface ExpressionsPackage extends EPackage {
   EReference getExpression_LeftOfEquals();
 
   /**
+	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall <em>Used As Argument In Signature Call</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Used As Argument In Signature Call</em>'.
+	 * @see dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall()
+	 * @see #getExpression()
+	 * @generated
+	 */
+	EReference getExpression_UsedAsArgumentInSignatureCall();
+
+		/**
 	 * Returns the meta object for the container reference '{@link dataaccess.expressions.Expression#getRightOfEquals <em>Right Of Equals</em>}'.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5195,6 +5386,14 @@ public interface ExpressionsPackage extends EPackage {
     EReference EXPRESSION__LEFT_OF_EQUALS = eINSTANCE.getExpression_LeftOfEquals();
 
     /**
+		 * The meta object literal for the '<em><b>Used As Argument In Signature Call</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = eINSTANCE.getExpression_UsedAsArgumentInSignatureCall();
+
+				/**
 		 * The meta object literal for the '<em><b>Right Of Equals</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

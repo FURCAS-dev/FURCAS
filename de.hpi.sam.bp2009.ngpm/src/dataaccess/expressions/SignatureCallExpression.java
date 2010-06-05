@@ -33,6 +33,7 @@ public interface SignatureCallExpression extends Expression {
 	/**
 	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
 	 * The list contents are of type {@link dataaccess.expressions.Expression}.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall <em>Used As Argument In Signature Call</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
@@ -41,8 +42,8 @@ public interface SignatureCallExpression extends Expression {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parameters</em>' containment reference list.
 	 * @see dataaccess.expressions.ExpressionsPackage#getSignatureCallExpression_Parameters()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='usedAsArgumentInSignatureCall'"
+	 * @see dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall
+	 * @model opposite="usedAsArgumentInSignatureCall" containment="true"
 	 * @generated
 	 */
 	EList<Expression> getParameters();

@@ -145,6 +145,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int COLLECTION_EXPRESSION__LEFT_OF_EQUALS = ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -351,6 +360,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int COLLECTION_EXPRESSION_WITH_ARGUMENT__LEFT_OF_EQUALS = COLLECTION_EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_EXPRESSION_WITH_ARGUMENT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = COLLECTION_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
 
 	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
@@ -570,6 +588,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int INCLUDING__LEFT_OF_EQUALS = COLLECTION_EXPRESSION_WITH_ARGUMENT__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = COLLECTION_EXPRESSION_WITH_ARGUMENT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -787,6 +814,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int EXCLUDING__LEFT_OF_EQUALS = COLLECTION_EXPRESSION_WITH_ARGUMENT__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = COLLECTION_EXPRESSION_WITH_ARGUMENT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1002,6 +1038,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int INCLUDING_AT__LEFT_OF_EQUALS = INCLUDING__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCLUDING_AT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = INCLUDING__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
 
 	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
@@ -1228,6 +1273,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITERATE__LEFT_OF_EQUALS = COLLECTION_EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = COLLECTION_EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
 
 	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
@@ -1465,6 +1519,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	int EXCLUDING_AT__LEFT_OF_EQUALS = EXCLUDING__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXCLUDING_AT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = EXCLUDING__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1689,6 +1752,15 @@ public interface CollectionexpressionsPackage extends EPackage {
 	 * @ordered
 	 */
 	int WITH_POSITION__LEFT_OF_EQUALS = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WITH_POSITION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = ExpressionsPackage.EXPRESSION_WITH_ARGUMENT__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
 
 	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.

@@ -623,20 +623,19 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
   /**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpression_RightOfEquals()
-  {
+	public EReference getExpression_UsedAsArgumentInSignatureCall() {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(7);
 	}
 
-  /**
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpression_Conditional()
+  public EReference getExpression_RightOfEquals()
   {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(8);
 	}
@@ -646,9 +645,19 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EReference getExpression_CollectionExpression()
+  public EReference getExpression_Conditional()
   {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(9);
+	}
+
+  /**
+	 * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+	 * @generated
+	 */
+  public EReference getExpression_CollectionExpression()
+  {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(10);
 	}
 
   /**
@@ -657,7 +666,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @generated
 	 */
 	public EReference getExpression_InIterator() {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(10);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(11);
 	}
 
 	/**
@@ -667,7 +676,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 */
   public EReference getExpression_ConditionOfOqlQuery()
   {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(11);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(12);
 	}
 
   /**
@@ -676,7 +685,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @generated
 	 */
 	public EReference getExpression_FromClause() {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(12);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(13);
 	}
 
 	/**
@@ -685,15 +694,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @generated
 	 */
 	public EReference getExpression_CellSetOfDimensionExpression() {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(13);
-	}
-
-		/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExpression_FactsOfDimensionExpression() {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(14);
 	}
 
@@ -702,7 +702,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpression_Dimension() {
+	public EReference getExpression_FactsOfDimensionExpression() {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(15);
 	}
 
@@ -711,8 +711,17 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExpression_MapExpressionOfGroupBy() {
+	public EReference getExpression_Dimension() {
 		return (EReference)expressionEClass.getEStructuralFeatures().get(16);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpression_MapExpressionOfGroupBy() {
+		return (EReference)expressionEClass.getEStructuralFeatures().get(17);
 	}
 
 	/**
@@ -721,7 +730,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @generated
 	 */
 	public EReference getExpression_Template() {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(17);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(18);
 	}
 
 	/**
@@ -731,7 +740,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 */
   public EReference getExpression_All()
   {
-		return (EReference)expressionEClass.getEStructuralFeatures().get(18);
+		return (EReference)expressionEClass.getEStructuralFeatures().get(19);
 	}
 
   /**
@@ -1157,6 +1166,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		createEReference(expressionEClass, EXPRESSION__ARGUMENT_OF);
 		createEReference(expressionEClass, EXPRESSION__BLOCK_OF_FUNCTION_CALL_EXPRESSION);
 		createEReference(expressionEClass, EXPRESSION__LEFT_OF_EQUALS);
+		createEReference(expressionEClass, EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL);
 		createEReference(expressionEClass, EXPRESSION__RIGHT_OF_EQUALS);
 		createEReference(expressionEClass, EXPRESSION__CONDITIONAL);
 		createEReference(expressionEClass, EXPRESSION__COLLECTION_EXPRESSION);
@@ -1317,6 +1327,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEReference(getExpression_ArgumentOf(), this.getWithArgument(), this.getWithArgument_Argument(), "argumentOf", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_BlockOfFunctionCallExpression(), this.getFunctionCallExpression(), this.getFunctionCallExpression_CalledBlock(), "blockOfFunctionCallExpression", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_LeftOfEquals(), this.getEquals(), this.getEquals_Left(), "leftOfEquals", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExpression_UsedAsArgumentInSignatureCall(), this.getSignatureCallExpression(), this.getSignatureCallExpression_Parameters(), "usedAsArgumentInSignatureCall", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_RightOfEquals(), this.getEquals(), this.getEquals_Right(), "rightOfEquals", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_Conditional(), this.getConditional(), this.getConditional_Condition(), "conditional", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExpression_CollectionExpression(), theCollectionexpressionsPackage.getCollectionExpression(), theCollectionexpressionsPackage.getCollectionExpression_Source(), "collectionExpression", null, 0, 1, Expression.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1374,7 +1385,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		initEReference(getAssociationEndNavigationExpression_ToEnd(), theClassesPackage.getAssociationEnd(), null, "toEnd", null, 1, 1, AssociationEndNavigationExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(signatureCallExpressionEClass, SignatureCallExpression.class, "SignatureCallExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSignatureCallExpression_Parameters(), this.getExpression(), null, "parameters", null, 0, -1, SignatureCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSignatureCallExpression_Parameters(), this.getExpression(), this.getExpression_UsedAsArgumentInSignatureCall(), "parameters", null, 0, -1, SignatureCallExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(signatureCallExpressionEClass, theClassesPackage.getSignature(), "getSignature", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
@@ -1528,7 +1539,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "constraints", "body"
-		   });					
+		   });				
 		addAnnotation
 		  (objectCountEClass, 
 		   source, 
@@ -1691,7 +1702,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "body", "if self.oclIsKindOf(FunctionCallExpression) then\n      self.oclAsType(FunctionCallExpression).calledBlock.getType()\n  else\n      self.oclAsType(MethodCallExpression).object.getType()\n  endif"
-		   });					
+		   });				
 		addAnnotation
 		  (objectCountEClass, 
 		   source, 
@@ -1761,13 +1772,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 	 * @generated
 	 */
 	protected void createEmofAnnotations() {
-		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";																																																
-		addAnnotation
-		  (getSignatureCallExpression_Parameters(), 
-		   source, 
-		   new String[] {
-			 "Property.oppositeRoleName", "usedAsArgumentInSignatureCall"
-		   });								
+		String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";																																																						
 		addAnnotation
 		  (getReplace_With(), 
 		   source, 

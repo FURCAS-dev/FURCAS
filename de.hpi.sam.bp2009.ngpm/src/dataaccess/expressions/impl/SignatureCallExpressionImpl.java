@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -79,7 +80,7 @@ public abstract class SignatureCallExpressionImpl extends ExpressionImpl impleme
 	 */
 	public EList<Expression> getParameters() {
 		if (parameters == null) {
-			parameters = new EObjectContainmentEList<Expression>(Expression.class, this, ExpressionsPackage.SIGNATURE_CALL_EXPRESSION__PARAMETERS);
+			parameters = new EObjectContainmentWithInverseEList<Expression>(Expression.class, this, ExpressionsPackage.SIGNATURE_CALL_EXPRESSION__PARAMETERS, ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL);
 		}
 		return parameters;
 	}
@@ -130,6 +131,21 @@ public abstract class SignatureCallExpressionImpl extends ExpressionImpl impleme
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExpressionsPackage.SIGNATURE_CALL_EXPRESSION__PARAMETERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameters()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

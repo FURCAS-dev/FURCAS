@@ -48,6 +48,7 @@ import ui.templates.StringTemplate;
  *   <li>{@link dataaccess.expressions.Expression#getArgumentOf <em>Argument Of</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getBlockOfFunctionCallExpression <em>Block Of Function Call Expression</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getLeftOfEquals <em>Left Of Equals</em>}</li>
+ *   <li>{@link dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall <em>Used As Argument In Signature Call</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getRightOfEquals <em>Right Of Equals</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getConditional <em>Conditional</em>}</li>
  *   <li>{@link dataaccess.expressions.Expression#getCollectionExpression <em>Collection Expression</em>}</li>
@@ -263,6 +264,34 @@ public interface Expression extends TypedElement, InScope {
 	 * @generated
 	 */
 	void setLeftOfEquals(Equals value);
+
+	/**
+	 * Returns the value of the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.SignatureCallExpression#getParameters <em>Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Used As Argument In Signature Call</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Used As Argument In Signature Call</em>' container reference.
+	 * @see #setUsedAsArgumentInSignatureCall(SignatureCallExpression)
+	 * @see dataaccess.expressions.ExpressionsPackage#getExpression_UsedAsArgumentInSignatureCall()
+	 * @see dataaccess.expressions.SignatureCallExpression#getParameters
+	 * @model opposite="parameters"
+	 * @generated
+	 */
+	SignatureCallExpression getUsedAsArgumentInSignatureCall();
+
+	/**
+	 * Sets the value of the '{@link dataaccess.expressions.Expression#getUsedAsArgumentInSignatureCall <em>Used As Argument In Signature Call</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Used As Argument In Signature Call</em>' container reference.
+	 * @see #getUsedAsArgumentInSignatureCall()
+	 * @generated
+	 */
+	void setUsedAsArgumentInSignatureCall(SignatureCallExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Right Of Equals</b></em>' container reference.

@@ -145,6 +145,15 @@ public interface LiteralsPackage extends EPackage {
 	int LITERAL__LEFT_OF_EQUALS = ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -351,6 +360,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int BINARY_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
 
 	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
@@ -561,6 +579,15 @@ public interface LiteralsPackage extends EPackage {
 	int STRING_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -767,6 +794,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int NUMBER_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
 
 	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
@@ -977,6 +1013,15 @@ public interface LiteralsPackage extends EPackage {
 	int TIME_POINT_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_POINT_LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1185,6 +1230,15 @@ public interface LiteralsPackage extends EPackage {
 	int BOOLEAN_LITERAL__LEFT_OF_EQUALS = LITERAL__LEFT_OF_EQUALS;
 
 	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
+
+	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1391,6 +1445,15 @@ public interface LiteralsPackage extends EPackage {
 	 * @ordered
 	 */
 	int OBJECT_LITERAL__LEFT_OF_EQUALS = ExpressionsPackage.EXPRESSION__LEFT_OF_EQUALS;
+
+	/**
+	 * The feature id for the '<em><b>Used As Argument In Signature Call</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OBJECT_LITERAL__USED_AS_ARGUMENT_IN_SIGNATURE_CALL = ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL;
 
 	/**
 	 * The feature id for the '<em><b>Right Of Equals</b></em>' container reference.
