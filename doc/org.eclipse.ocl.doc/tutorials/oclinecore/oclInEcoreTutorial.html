@@ -99,8 +99,8 @@ are identified. Then select <b>OCL Examples and Editors</b> from the <b>Modeling
 category.
 </p>
 <img src="install_software_top.png" alt="Install Software Top Half" />
-<br>
-<br>
+<br></br>
+<br></br>
 <img src="install_software_bottom.png" alt="Install Software Bottom Half" />
 <p>
 Select <b>Next</b>.
@@ -114,6 +114,7 @@ Select <b>Next</b> again and read the license agreement. Set to accept it.
 Select <b>Finish</b> and be patient while the software is downloaded and installed.
 Select <b>Restart Now</b> when prompted to do so.
 </p>
+<h2><a name="toubleshooting">Troubleshooting</a></h2>
 <p>
 Eclipse Modeling Projects have a large number of classes and so require a
 large amount of PermGen space on a Sun JVM. If you are using default Eclipse
@@ -123,6 +124,11 @@ follow the advice in
 and set XX:PermSize to at least 64M, either on your Eclipse command line, or your
 Eclipse shortcut or in the <b>eclipse.ini</b> adjacent to <b>eclipse.exe</b>.
 </p>
+<p>
+Beware that the editor is a very new example; there is validation of name references
+but not of their types; this is work in progress. Sometimes spurious
+errors are displayed, which may go away with a <b>Save</b>,
+but may require an editor close and reopen. </p>
 
 <h2><a name="ecore-editing">Using the OCLinEcore text editor for Ecore</a></h2>
 <p>
