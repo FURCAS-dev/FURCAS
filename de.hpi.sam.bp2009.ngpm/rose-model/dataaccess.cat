@@ -349,7 +349,7 @@
 |body:
 |  let objectBasedExpressions:Set(Expression)=self.objectBasedExpression->asSet() in
 |  let argumentsOf:Set(Expression)=self.argumentOf->select(ao | ao.oclIsKindOf(Expression)).oclAsType(ExpressionWithArgument)->asSet() in
-|  let equals:Set(Expression)=Set{}->union(self.leftOfEquals->asSet())->union(self.rightOfEquals->asSet()) in
+|  let equals:Set(Expression)=self.leftOfEquals->asSet()->union(self.rightOfEquals->asSet()) in
 |  let blocksOfFunctionCallExpression:Set(Expression)=self.blockOfFunctionCallExpression->asSet() in
 |  let signatureCalls:Set(Expression)=self.usedAsArgumentInSignatureCall->asSet() in
 |  let creationExpression:Set(Expression)=if self.oclIsKindOf(MethodCallExpression) then
@@ -2257,6 +2257,23 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"450E63AB03A2"
+				    compartment 	(object Compartment
+					Parent_View 	@15
+					location   	(671, 333)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	TRUE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					icon_style 	"Icon"
+					fill_color 	16777215
+					anchor     	2
+					nlines     	7
+					max_width  	0)
 				    width      	552
 				    height     	482
 				    annotation 	8
@@ -4171,6 +4188,23 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"450E63AB03A2"
+				    compartment 	(object Compartment
+					Parent_View 	@90
+					location   	(1034, 889)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	TRUE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					icon_style 	"Icon"
+					fill_color 	16777215
+					anchor     	2
+					nlines     	7
+					max_width  	0)
 				    width      	552
 				    height     	482
 				    annotation 	8
@@ -5551,6 +5585,23 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"450E63AB03A2"
+				    compartment 	(object Compartment
+					Parent_View 	@154
+					location   	(368, 1083)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	TRUE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					icon_style 	"Icon"
+					fill_color 	16777215
+					anchor     	2
+					nlines     	7
+					max_width  	0)
 				    width      	552
 				    height     	482
 				    annotation 	8
@@ -6412,6 +6463,23 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"450E63AB03A2"
+				    compartment 	(object Compartment
+					Parent_View 	@193
+					location   	(206, 796)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	TRUE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					icon_style 	"Icon"
+					fill_color 	16777215
+					anchor     	2
+					nlines     	7
+					max_width  	0)
 				    width      	552
 				    height     	482
 				    annotation 	8
@@ -8889,6 +8957,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@304
+				location   	(401, 695)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	706
 			    height     	436
 			    annotation 	8
@@ -9557,6 +9642,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@337
+				location   	(635, 636)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	704
 			    height     	436
 			    annotation 	8
@@ -11459,6 +11561,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@417
+				location   	(77, 610)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	704
 			    height     	436
 			    annotation 	8
@@ -12335,6 +12454,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@457
+				location   	(1609, 452)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	706
 			    height     	436
 			    annotation 	8
@@ -13313,6 +13449,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@506
+				location   	(668, 1006)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	552
 			    height     	436
 			    annotation 	8
@@ -14063,6 +14216,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@541
+				location   	(412, 529)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	1169
 			    height     	250
 			    annotation 	8)
@@ -15433,6 +15603,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@608
+				location   	(186, 148)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	552
 			    height     	436
 			    annotation 	8
@@ -16535,6 +16722,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@643
+				location   	(877, 333)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -17476,6 +17680,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@687
+				location   	(680, 885)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -22449,6 +22670,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@884
+				location   	(1282, 445)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	552
 			    height     	482
 			    annotation 	8
