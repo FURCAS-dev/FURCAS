@@ -1,7 +1,7 @@
 
 (object Petal
     version    	50
-    _written   	"Rose 8.5.0506.2811"
+    _written   	"Rose 8.3.0407.2800"
     charSet    	0)
 
 (object Class_Category "data"
@@ -3652,6 +3652,11 @@
 		    documentation 	"If FunctionSignatureTypeDefinition is also to be used for functions derived from (methods + this), then the signature may as well be a MethodSignature."
 		    roles      	(list role_list
 			(object Role "signature"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"48A02BD6002E"
 			    label      	"signature"
 			    supplier   	"Logical View::data::classes::Signature"
@@ -3660,11 +3665,17 @@
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "typeDefinition"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"48A02BD6007D"
 			    label      	"typeDefinition"
 			    supplier   	"Logical View::data::classes::FunctionSignatureTypeDefinition"
 			    quidu      	"47B9A9AD03B9"
-			    client_cardinality 	(value cardinality "0..*"))))
+			    client_cardinality 	(value cardinality "0..*")
+			    is_navigable 	TRUE)))
 		(object Association "OwnedSignatures"
 		    quid       	"48A041470119"
 		    documentation 	"these are the abstract signatures with no implementation"
@@ -4005,7 +4016,6 @@
 				fill_color 	13434879
 				nlines     	5
 				max_width  	947
-				justify    	1
 				label      	"TODO: Model propagation attributes for association ends (e.g., equality, delete, copy). This may also be related to differences between Entity and Value classes.")
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -4068,24 +4078,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@4
-				location   	(285, 623)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	1
-				max_width  	0
-				justify    	1)
 			    width      	434
 			    height     	136
 			    annotation 	8
@@ -4717,24 +4709,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
-			    compartment 	(object Compartment
-				Parent_View 	@35
-				location   	(992, 1363)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	0
-				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -4954,7 +4928,6 @@
 				fill_color 	13434879
 				nlines     	11
 				max_width  	1321
-				justify    	1
 				label      	
 |Describes the "Delegation" pattern. Instead of implementation inheritance, an association to the respective type can be used and marked as delegating. All features exposed by the association's other end's type are then also exposed by the class. If not all but only a few of the features shall be exposed, those can be explicitly marked for delegation.
 |If all features are exposed, the delegating class thus becomes conforming to the delegate class.
@@ -4981,7 +4954,6 @@
 				fill_color 	13434879
 				nlines     	9
 				max_width  	721
-				justify    	1
 				label      	
 |TODO: Add feature exposure for partial delegation;
 |Add a way to rename features during delegation (the "Projection" idea).
@@ -5569,24 +5541,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@72
-				location   	(2387, 1099)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	1
-				max_width  	0
-				justify    	1)
 			    width      	434
 			    height     	136
 			    annotation 	8
@@ -5805,7 +5759,6 @@
 				fill_color 	13434879
 				nlines     	6
 				max_width  	722
-				justify    	1
 				label      	"If FunctionSignatureTypeDefinition is also to be used for functions derived from (methods + this), then the signature may as well be a MethodSignature.")
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -5867,24 +5820,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
-			    compartment 	(object Compartment
-				Parent_View 	@84
-				location   	(1677, 628)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	0
-				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -6648,24 +6583,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@123
-				location   	(767, 958)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	1
-				max_width  	0
-				justify    	1)
 			    width      	412
 			    height     	134
 			    annotation 	8
@@ -7494,7 +7411,6 @@
 				fill_color 	13434879
 				nlines     	5
 				max_width  	847
-				justify    	1
 				label      	
 |TODO: When an object's type A c
 |onforms to a class B and there are contexts defined for B, will the B contexts w
@@ -7714,7 +7630,6 @@
 				fill_color 	13434879
 				nlines     	4
 				max_width  	672
-				justify    	1
 				label      	"name needs to be a derived property since for Signature it may be computed based on the implementation.")
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -7804,7 +7719,6 @@
 				anchor     	2
 				nlines     	1
 				max_width  	1956
-				justify    	1
 				compartmentItems 	(list Compartment
 				    "+ conformsTo(s : Signature) : Boolean"
 				    "+ conformsToExcluding(s : Signature, excludingConforming : SapClass, excludingTo : SapClass) : Boolean"))
@@ -8043,24 +7957,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@185
-				location   	(1360, 1065)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	1
-				max_width  	0
-				justify    	1)
 			    width      	434
 			    height     	136
 			    annotation 	8
@@ -9262,24 +9158,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47F112210022"
-			    compartment 	(object Compartment
-				Parent_View 	@246
-				location   	(330, 2040)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	5
-				max_width  	0
-				justify    	1)
 			    width      	508
 			    height     	336
 			    annotation 	8
@@ -9310,24 +9188,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@247
-				location   	(1694, 1416)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	22
-				max_width  	0
-				justify    	1)
 			    width      	986
 			    height     	1186
 			    annotation 	8
@@ -9840,24 +9700,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
-			    compartment 	(object Compartment
-				Parent_View 	@273
-				location   	(225, 1206)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	0
-				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -11013,24 +10855,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
-			    compartment 	(object Compartment
-				Parent_View 	@327
-				location   	(211, 141)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	0
-				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -11269,24 +11093,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4522A56F0149"
-			    compartment 	(object Compartment
-				Parent_View 	@338
-				location   	(367, 509)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	2
-				max_width  	0
-				justify    	1)
 			    width      	552
 			    height     	186
 			    annotation 	8
@@ -11522,7 +11328,6 @@
 				fill_color 	13434879
 				nlines     	7
 				max_width  	896
-				justify    	1
 				label      	
 |TODO / Idea: make Signature inherit from TypedElement, replacing the "output" association. This would allow the result type to be inferred if possible or being overridden by an explicit type definition.
 				)
@@ -11556,24 +11361,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4974995A0069"
-			    compartment 	(object Compartment
-				Parent_View 	@349
-				location   	(180, 2216)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	2
-				max_width  	0
-				justify    	1)
 			    width      	656
 			    height     	186
 			    annotation 	8
@@ -11858,24 +11645,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47B9A97A00CB"
-			    compartment 	(object Compartment
-				Parent_View 	@365
-				location   	(54, 962)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	10
-				max_width  	0
-				justify    	1)
 			    width      	818
 			    height     	586
 			    annotation 	8
@@ -11906,24 +11675,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@366
-				location   	(2384, 2244)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	22
-				max_width  	0
-				justify    	1)
 			    width      	419
 			    height     	363
 			    annotation 	8)
@@ -12031,7 +11782,6 @@
 				anchor     	2
 				nlines     	3
 				max_width  	1956
-				justify    	1
 				compartmentItems 	(list Compartment
 				    "+ conformsTo(s : Signature) : Boolean"
 				    "+ conformsToExcluding(s : Signature, excludingConforming : SapClass, excludingTo : SapClass) : Boolean"))
@@ -12940,24 +12690,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@414
-				location   	(1843, 1098)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	1
-				max_width  	0
-				justify    	1)
 			    width      	456
 			    height     	213
 			    annotation 	8)
@@ -12987,24 +12719,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47F112210022"
-			    compartment 	(object Compartment
-				Parent_View 	@415
-				location   	(768, 1070)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	5
-				max_width  	0
-				justify    	1)
 			    width      	508
 			    height     	336
 			    annotation 	8
@@ -13659,24 +13373,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
-			    compartment 	(object Compartment
-				Parent_View 	@446
-				location   	(963, 193)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	0
-				justify    	1)
 			    width      	314
 			    height     	236
 			    annotation 	8
@@ -13817,24 +13513,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4522A56F0149"
-			    compartment 	(object Compartment
-				Parent_View 	@452
-				location   	(1144, 752)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	2
-				max_width  	0
-				justify    	1)
 			    width      	552
 			    height     	186
 			    annotation 	8
@@ -16073,24 +15751,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@561
-				location   	(1213, 878)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	1
-				max_width  	412
-				justify    	1)
 			    width      	434
 			    height     	136
 			    annotation 	8
@@ -17973,7 +17633,6 @@
 				fill_color 	13434879
 				nlines     	6
 				max_width  	628
-				justify    	1
 				label      	"Similar to CCTS qualifications or domains as known from the ABAP dictionary")
 			    line_color 	3342489
 			    fill_color 	13434879
@@ -18005,7 +17664,6 @@
 				fill_color 	13434879
 				nlines     	6
 				max_width  	1095
-				justify    	1
 				label      	
 |Constraints apply to objects. Each constraint defines a matrix of state/severity telling how "severe" its violation is in a given state. States could, e.g., be transient, saved, active, compliant. Severities could be warning, error, illegal.
 				)
@@ -18176,24 +17834,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@646
-				location   	(1605, 620)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	2
-				max_width  	0
-				justify    	1)
 			    width      	432
 			    height     	232
 			    annotation 	8
@@ -19214,24 +18854,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@687
-				location   	(470, 708)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	22
-				max_width  	0
-				justify    	1)
 			    width      	986
 			    height     	1232
 			    annotation 	8
@@ -19990,7 +19612,6 @@
 				fill_color 	13434879
 				nlines     	15
 				max_width  	646
-				justify    	1
 				label      	
 |TODO: contemplate pulling Class into two parts: one outer hull that can be used as a Featured and constitutes a real type, and an inner part that only contains the definitions but is not usable as a full type. ParameterizedClass would then refer only to the inner part.
 |
@@ -20430,24 +20051,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@723
-				location   	(1427, 481)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	1
-				max_width  	0
-				justify    	1)
 			    width      	434
 			    height     	182
 			    annotation 	8
@@ -21725,24 +21328,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4432171B031E"
-			    compartment 	(object Compartment
-				Parent_View 	@783
-				location   	(2106, 1501)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	1
-				max_width  	0
-				justify    	1)
 			    width      	412
 			    height     	188
 			    annotation 	8
@@ -22276,24 +21861,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
-			    compartment 	(object Compartment
-				Parent_View 	@807
-				location   	(908, 426)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	0
-				justify    	1)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -22324,24 +21891,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47B9A97A00CB"
-			    compartment 	(object Compartment
-				Parent_View 	@808
-				location   	(1892, 442)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	10
-				max_width  	0
-				justify    	1)
 			    width      	794
 			    height     	472
 			    annotation 	8
@@ -22749,7 +22298,6 @@
 				fill_color 	13434879
 				nlines     	3
 				max_width  	1071
-				justify    	1
 				label      	
 |We now may introduce a specific copy statement that can copy the contents of a tuple into an object according to "intuitive" rules (think MOVE CORRESPONDING).
 				)
