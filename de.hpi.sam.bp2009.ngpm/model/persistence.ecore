@@ -27,7 +27,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="StatementWithEntityArgument" eSuperTypes="behavioral.ecore#//actions/StatementWithArgument">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="CanStoreOnlyEntities" value="if self.argument.getType().oclIsKindOf(ClassTypeDefinition) then&#xA;    not self.argument.getType().oclAsType(ClassTypeDefinition).clazz.valueType&#xA;  else&#xA;    false&#xA;  endif"/>
+        <details key="CanStoreOnlyEntities" value="if self.argument.getType().oclIsKindOf(data::classes::ClassTypeDefinition) then&#xA;    not self.argument.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType&#xA;  else&#xA;    false&#xA;  endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="CanStoreOnlyEntities"/>
@@ -43,7 +43,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="All" eSuperTypes="dataaccess.ecore#//expressions/Expression">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="MustBeEntityClass" value="not self.ofClass.valueType"/>
-        <details key="ExpressionMustBeSnapshotOrTimePoint" value="if self.snapshot = SnapshotSelection::SPECIFIED then&#xA;    self.snapshotIdentifier.getType().upperMultiplicity = 1 and&#xA;    self.snapshotIdentifier.getType().oclIsKindOf(ClassTypeDefinition) and&#xA;   Set{'Snapshot', 'TimePoint'}->includes(self.snapshotIdentifier.getType().oclAsType(ClassTypeDefinition).clazz.name)&#xA;  else&#xA;    true&#xA;  endif"/>
+        <details key="ExpressionMustBeSnapshotOrTimePoint" value="if self.snapshot = SnapshotSelection::SPECIFIED then&#xA;    self.snapshotIdentifier.getType().upperMultiplicity = 1 and&#xA;    self.snapshotIdentifier.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and&#xA;   Set{'Snapshot', 'TimePoint'}->includes(self.snapshotIdentifier.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name)&#xA;  else&#xA;    true&#xA;  endif"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="MustBeEntityClass ExpressionMustBeSnapshotOrTimePoint"/>
@@ -70,7 +70,7 @@
         <details key="documentation" value="Returns the Snapshot produced"/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="ReturnsSnapshot" value="self.getType().oclIsKindOf(ClassTypeDefinition) and&#xA;  self.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Snapshot'"/>
+        <details key="ReturnsSnapshot" value="self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and&#xA;  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Snapshot'"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="ReturnsSnapshot"/>
@@ -78,7 +78,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Snapshot" eSuperTypes="dataaccess.ecore#//expressions/ObjectBasedExpression">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="SourceObjectIsOfClassType" value="self.object.getType().oclIsKindOf(ClassTypeDefinition)"/>
+        <details key="SourceObjectIsOfClassType" value="self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="SourceObjectIsOfClassType"/>

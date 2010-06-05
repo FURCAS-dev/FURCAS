@@ -139,7 +139,7 @@
       </eOperations>
       <eOperations name="getNamedValuesInScope" ordered="false" upperBound="-1" eType="ecore:EClass data.ecore#//classes/NamedValue">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="self.addNamedValuesWithNewNames(&#xA;  -- Handle Foreach&#xA;  let s:Set(NamedValue)=Set{} in&#xA;  s->union(if owningStatement.oclIsKindOf(Foreach) then&#xA;    owningStatement.oclAsType(Foreach).forVariable->asSet()&#xA;  else&#xA;    Set{}&#xA;  endif)->union(&#xA;  -- add parameters for those blocks that are used as a signature implementation&#xA;  functionSignature.input->asSet()&#xA;  )->union(&#xA;  implements_.input->asSet()&#xA;  ),&#xA;  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block&#xA;  if owningStatement->notEmpty() then&#xA;    owningStatement.getNamedValuesInScope()&#xA;  else&#xA;    -- add formal object parameters from owning class&#xA;    let oc:SapClass = self.getOwningClass() in&#xA;    if oc->notEmpty() then&#xA;      oc.formalObjectParameters->asSet()&#xA;    else&#xA;      Set{}&#xA;    endif&#xA;  endif)"/>
+          <details key="body" value="self.addNamedValuesWithNewNames(&#xA;  -- Handle Foreach&#xA;  let s:Set(data::classes::NamedValue)=Set{} in&#xA;  s->union(if owningStatement.oclIsKindOf(Foreach) then&#xA;    owningStatement.oclAsType(Foreach).forVariable->asSet()&#xA;  else&#xA;    Set{}&#xA;  endif)->union(&#xA;  -- add parameters for those blocks that are used as a signature implementation&#xA;  functionSignature.input->asSet()&#xA;  )->union(&#xA;  implements_.input->asSet()&#xA;  ),&#xA;  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block&#xA;  if owningStatement->notEmpty() then&#xA;    owningStatement.getNamedValuesInScope()&#xA;  else&#xA;    -- add formal object parameters from owning class&#xA;    let oc:SapClass = self.getOwningClass() in&#xA;    if oc->notEmpty() then&#xA;      oc.formalObjectParameters->asSet()&#xA;    else&#xA;      Set{}&#xA;    endif&#xA;  endif)"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -150,7 +150,7 @@
       </eOperations>
       <eOperations name="getOwningClass" ordered="false" unique="false" eType="ecore:EClass data.ecore#//classes/SapClass">
         <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-          <details key="body" value="let outermost:Block = self.getOutermostBlock() in&#xA;  let implementedSignature:Signature = outermost.getImplementedSignature() in&#xA;  if implementedSignature->notEmpty() then&#xA;    implementedSignature.getOwningClass()&#xA;  else&#xA;    null&#xA;  endif"/>
+          <details key="body" value="let outermost:Block = self.getOutermostBlock() in&#xA;  let implementedSignature:data::classes::Signature = outermost.getImplementedSignature() in&#xA;  if implementedSignature->notEmpty() then&#xA;    implementedSignature.getOwningClass()&#xA;  else&#xA;    null&#xA;  endif"/>
         </eAnnotations>
         <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
           <details key="constraints" value="body"/>
@@ -239,7 +239,7 @@
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="ObjectsMustConformToEndTypes" value="Sequence{1..self.objects->size()}->forAll(i:Integer |&#xA;    objects->at(i).getType().conformsTo(association.ends->at(i).type))"/>
         <details key="BlockMustNotImplementSideEffectFreeSignature" value="self.block.getImplementedSignature()->notEmpty() implies&#xA;  not self.block.getImplementedSignature().sideEffectFree"/>
-        <details key="NoValueMustBeModified" value="self.association.ends->forAll(ae:AssociationEnd |&#xA;    ae.type.clazz.valueType implies not ae.contributesToEquality)"/>
+        <details key="NoValueMustBeModified" value="self.association.ends->forAll(ae:data::classes::AssociationEnd |&#xA;    ae.type.clazz.valueType implies not ae.contributesToEquality)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="ObjectsMustConformToEndTypes BlockMustNotImplementSideEffectFreeSignature NoValueMustBeModified"/>
@@ -371,7 +371,7 @@
         <details key="documentation" value="Represents an EventConsumer's interest in being notified about occurrences of events produced by one or more EventProducers. The subscription can specify rules that constrain which events the consumer is interested in. It is then the event infrastructure's task to optimize the event forwarding to the consumers appropriately."/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="SubscribingClassMatchProducer" value="self.producer.notificationSignatures->forAll(ms:MethodSignature |&#xA;    self.subscribingClass.allSignatures()->exists(s:MethodSignature|s.conformsTo(ms)))"/>
+        <details key="SubscribingClassMatchProducer" value="self.producer.notificationSignatures->forAll(ms:data::classes::MethodSignature |&#xA;    self.subscribingClass.allSignatures()->exists(s:data::classes::MethodSignature|s.conformsTo(ms)))"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="SubscribingClassMatchProducer"/>
@@ -395,7 +395,7 @@
         <details key="documentation" value="From Holger's slides:&#xA;&#xA;Event Patterns:&#xA;An event pattern is a decision rule that describes how to match a certain set of events&#xA;Each match is a (partially ordered) set of events that is an instance of the event pattern constructed by replacing variables in the pattern with values&#xA;It is similar to mathematical language for logical expressions&#xA;The main features of an event pattern language are (in order of complexity):&#xA;Basic event patterns to express patterns that match single event types&#xA;Content-based event matching in terms of the event type�s attributes&#xA;Pattern operators for expressing relationships between events&#xA;Like logical operators, set operators, structural operators (causes, is independent of, before)&#xA;Context that restricts matches of patterns to specific contexts in which events are observed&#xA;Context refers to information outside the events&#xA;Temporal operators to specify the timing of events that match a pattern, or when a pattern should or should not match&#xA;Like �at�, �after�, �during�&#xA;"/>
       </eAnnotations>
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="FilterBlockSignatureMatchNotificationSignature" value="self.subscription.producer.notificationSignatures->exists(ms:MethodSignature |&#xA;    ms.conformsTo(self.test.getImplementedSignature()))"/>
+        <details key="FilterBlockSignatureMatchNotificationSignature" value="self.subscription.producer.notificationSignatures->exists(ms:data::classes::MethodSignature |&#xA;    ms.conformsTo(self.test.getImplementedSignature()))"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="FilterBlockSignatureMatchNotificationSignature"/>

@@ -641,7 +641,7 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_MANIPULATION_STATEMENT__NO_VALUE_MUST_BE_MODIFIED__EEXPRESSION = "self.association.ends->forAll(ae:AssociationEnd |" +
+	protected static final String LINK_MANIPULATION_STATEMENT__NO_VALUE_MUST_BE_MODIFIED__EEXPRESSION = "self.association.ends->forAll(ae:data::classes::AssociationEnd |" +
 		"    ae.type.clazz.valueType implies not ae.contributesToEquality)";
 
 	/**

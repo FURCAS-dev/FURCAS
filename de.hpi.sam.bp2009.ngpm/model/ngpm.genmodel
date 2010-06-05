@@ -8,16 +8,13 @@
   <foreignModel>CURDIR</foreignModel>
   <foreignModel>.</foreignModel>
   <genPackages prefix="Behavioral" disposableProviderFactory="true" ecorePackage="behavioral.ecore#/">
-    <nestedGenPackages prefix="Bpdm" basePackage="behavioral" disposableProviderFactory="true"
-        ecorePackage="behavioral.ecore#//bpdm">
+    <nestedGenPackages prefix="Bpdm" disposableProviderFactory="true" ecorePackage="behavioral.ecore#//bpdm">
       <genClasses ecoreClass="behavioral.ecore#//bpdm/Dummy"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Businesstasks" basePackage="behavioral" disposableProviderFactory="true"
-        ecorePackage="behavioral.ecore#//businesstasks">
+    <nestedGenPackages prefix="Businesstasks" disposableProviderFactory="true" ecorePackage="behavioral.ecore#//businesstasks">
       <genClasses ecoreClass="behavioral.ecore#//businesstasks/TaskAgent"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Actions" basePackage="behavioral" disposableProviderFactory="true"
-        ecorePackage="behavioral.ecore#//actions">
+    <nestedGenPackages prefix="Actions" disposableProviderFactory="true" ecorePackage="behavioral.ecore#//actions">
       <genClasses ecoreClass="behavioral.ecore#//actions/Assignment">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference behavioral.ecore#//actions/Assignment/assignTo"/>
@@ -101,12 +98,10 @@
       </genClasses>
       <genClasses image="false" ecoreClass="behavioral.ecore#//actions/ConditionalStatement"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Rules" basePackage="behavioral" disposableProviderFactory="true"
-        ecorePackage="behavioral.ecore#//rules">
+    <nestedGenPackages prefix="Rules" disposableProviderFactory="true" ecorePackage="behavioral.ecore#//rules">
       <genClasses ecoreClass="behavioral.ecore#//rules/Dummy"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Events" basePackage="behavioral" disposableProviderFactory="true"
-        ecorePackage="behavioral.ecore#//events">
+    <nestedGenPackages prefix="Events" disposableProviderFactory="true" ecorePackage="behavioral.ecore#//events">
       <genClasses ecoreClass="behavioral.ecore#//events/Subscription">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference behavioral.ecore#//events/Subscription/producer"/>
@@ -123,11 +118,10 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference behavioral.ecore#//events/EventFilter/test"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Transactions" basePackage="behavioral" disposableProviderFactory="true"
-        ecorePackage="behavioral.ecore#//transactions">
+    <nestedGenPackages prefix="Transactions" disposableProviderFactory="true" ecorePackage="behavioral.ecore#//transactions">
       <genClasses ecoreClass="behavioral.ecore#//transactions/Dummy"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Status_and_action_old" basePackage="behavioral" disposableProviderFactory="true"
+    <nestedGenPackages prefix="Status_and_action_old" disposableProviderFactory="true"
         ecorePackage="behavioral.ecore#//status_and_action_old">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="behavioral.ecore#//status_and_action_old/SAMOperatorKindEnum">
         <genEnumLiterals ecoreEnumLiteral="behavioral.ecore#//status_and_action_old/SAMOperatorKindEnum/OR"/>
@@ -236,10 +230,9 @@
             ecoreFeature="ecore:EReference behavioral.ecore#//status_and_action_old/SAMSchemaDerivator/samTargetSchemaVariable"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Status_and_action" basePackage="behavioral" disposableProviderFactory="true"
+    <nestedGenPackages prefix="Status_and_action" disposableProviderFactory="true"
         ecorePackage="behavioral.ecore#//status_and_action">
-      <nestedGenPackages prefix="Design" basePackage="behavioral.status_and_action"
-          disposableProviderFactory="true" ecorePackage="behavioral.ecore#//status_and_action/design">
+      <nestedGenPackages prefix="Design" disposableProviderFactory="true" ecorePackage="behavioral.ecore#//status_and_action/design">
         <genClasses ecoreClass="behavioral.ecore#//status_and_action/design/BusinessObject">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference behavioral.ecore#//status_and_action/design/BusinessObject/nodes"/>
         </genClasses>
@@ -265,8 +258,7 @@
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute behavioral.ecore#//status_and_action/design/AbstractAction/isPreconditionFixed"/>
         </genClasses>
       </nestedGenPackages>
-      <nestedGenPackages prefix="Assembly" basePackage="behavioral.status_and_action"
-          disposableProviderFactory="true" ecorePackage="behavioral.ecore#//status_and_action/assembly">
+      <nestedGenPackages prefix="Assembly" disposableProviderFactory="true" ecorePackage="behavioral.ecore#//status_and_action/assembly">
         <genClasses ecoreClass="behavioral.ecore#//status_and_action/assembly/StatusSchema">
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference behavioral.ecore#//status_and_action/assembly/StatusSchema/node"/>
@@ -901,12 +893,10 @@
     </nestedGenPackages>
   </genPackages>
   <genPackages prefix="Ui" disposableProviderFactory="true" ecorePackage="ui.ecore#/">
-    <nestedGenPackages prefix="Data_binding" basePackage="ui" disposableProviderFactory="true"
-        ecorePackage="ui.ecore#//data_binding">
+    <nestedGenPackages prefix="Data_binding" disposableProviderFactory="true" ecorePackage="ui.ecore#//data_binding">
       <genClasses ecoreClass="ui.ecore#//data_binding/Dummy"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Templates" basePackage="ui" disposableProviderFactory="true"
-        ecorePackage="ui.ecore#//templates">
+    <nestedGenPackages prefix="Templates" disposableProviderFactory="true" ecorePackage="ui.ecore#//templates">
       <genClasses ecoreClass="ui.ecore#//templates/StringTemplate">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ui.ecore#//templates/StringTemplate/expressions"/>
       </genClasses>
@@ -1205,15 +1195,13 @@
     </nestedGenPackages>
   </genPackages>
   <genPackages prefix="Persistence" disposableProviderFactory="true" ecorePackage="persistence.ecore#/">
-    <nestedGenPackages prefix="Actions" basePackage="persistence" disposableProviderFactory="true"
-        ecorePackage="persistence.ecore#//actions">
+    <nestedGenPackages prefix="Actions" disposableProviderFactory="true" ecorePackage="persistence.ecore#//actions">
       <genClasses ecoreClass="persistence.ecore#//actions/Store"/>
       <genClasses ecoreClass="persistence.ecore#//actions/Delete"/>
       <genClasses ecoreClass="persistence.ecore#//actions/StatementWithEntityArgument"/>
       <genClasses ecoreClass="persistence.ecore#//actions/Rollback"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Expressions" basePackage="persistence" disposableProviderFactory="true"
-        ecorePackage="persistence.ecore#//expressions">
+    <nestedGenPackages prefix="Expressions" disposableProviderFactory="true" ecorePackage="persistence.ecore#//expressions">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="persistence.ecore#//expressions/SnapshotSelection">
         <genEnumLiterals ecoreEnumLiteral="persistence.ecore#//expressions/SnapshotSelection/DEFAULT"/>
         <genEnumLiterals ecoreEnumLiteral="persistence.ecore#//expressions/SnapshotSelection/ALL"/>

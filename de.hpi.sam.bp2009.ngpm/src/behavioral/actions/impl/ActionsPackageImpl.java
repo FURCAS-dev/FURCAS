@@ -1440,13 +1440,13 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		  (blockEClass.getEOperations().get(2), 
 		   source, 
 		   new String[] {
-			 "body", "self.addNamedValuesWithNewNames(\n  -- Handle Foreach\n  let s:Set(NamedValue)=Set{} in\n  s->union(if owningStatement.oclIsKindOf(Foreach) then\n    owningStatement.oclAsType(Foreach).forVariable->asSet()\n  else\n    Set{}\n  endif)->union(\n  -- add parameters for those blocks that are used as a signature implementation\n  functionSignature.input->asSet()\n  )->union(\n  implements_.input->asSet()\n  ),\n  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block\n  if owningStatement->notEmpty() then\n    owningStatement.getNamedValuesInScope()\n  else\n    -- add formal object parameters from owning class\n    let oc:SapClass = self.getOwningClass() in\n    if oc->notEmpty() then\n      oc.formalObjectParameters->asSet()\n    else\n      Set{}\n    endif\n  endif)"
+			 "body", "self.addNamedValuesWithNewNames(\n  -- Handle Foreach\n  let s:Set(data::classes::NamedValue)=Set{} in\n  s->union(if owningStatement.oclIsKindOf(Foreach) then\n    owningStatement.oclAsType(Foreach).forVariable->asSet()\n  else\n    Set{}\n  endif)->union(\n  -- add parameters for those blocks that are used as a signature implementation\n  functionSignature.input->asSet()\n  )->union(\n  implements_.input->asSet()\n  ),\n  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block\n  if owningStatement->notEmpty() then\n    owningStatement.getNamedValuesInScope()\n  else\n    -- add formal object parameters from owning class\n    let oc:SapClass = self.getOwningClass() in\n    if oc->notEmpty() then\n      oc.formalObjectParameters->asSet()\n    else\n      Set{}\n    endif\n  endif)"
 		   });				
 		addAnnotation
 		  (blockEClass.getEOperations().get(3), 
 		   source, 
 		   new String[] {
-			 "body", "let outermost:Block = self.getOutermostBlock() in\n  let implementedSignature:Signature = outermost.getImplementedSignature() in\n  if implementedSignature->notEmpty() then\n    implementedSignature.getOwningClass()\n  else\n    null\n  endif"
+			 "body", "let outermost:Block = self.getOutermostBlock() in\n  let implementedSignature:data::classes::Signature = outermost.getImplementedSignature() in\n  if implementedSignature->notEmpty() then\n    implementedSignature.getOwningClass()\n  else\n    null\n  endif"
 		   });			
 		addAnnotation
 		  (ifElseEClass.getEOperations().get(0), 
@@ -1485,7 +1485,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   new String[] {
 			 "ObjectsMustConformToEndTypes", "Sequence{1..self.objects->size()}->forAll(i:Integer |\n    objects->at(i).getType().conformsTo(association.ends->at(i).type))",
 			 "BlockMustNotImplementSideEffectFreeSignature", "self.block.getImplementedSignature()->notEmpty() implies\n  not self.block.getImplementedSignature().sideEffectFree",
-			 "NoValueMustBeModified", "self.association.ends->forAll(ae:AssociationEnd |\n    ae.type.clazz.valueType implies not ae.contributesToEquality)"
+			 "NoValueMustBeModified", "self.association.ends->forAll(ae:data::classes::AssociationEnd |\n    ae.type.clazz.valueType implies not ae.contributesToEquality)"
 		   });					
 		addAnnotation
 		  (constantEClass, 

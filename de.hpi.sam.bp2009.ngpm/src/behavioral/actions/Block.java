@@ -139,7 +139,7 @@ public interface Block extends FunctionSignatureImplementation, InScope {
 	 * 
 	 * <!-- end-model-doc -->
 	 * @model kind="operation" ordered="false"
-	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.addNamedValuesWithNewNames(\n  -- Handle Foreach\n  let s:Set(NamedValue)=Set{} in\n  s->union(if owningStatement.oclIsKindOf(Foreach) then\n    owningStatement.oclAsType(Foreach).forVariable->asSet()\n  else\n    Set{}\n  endif)->union(\n  -- add parameters for those blocks that are used as a signature implementation\n  functionSignature.input->asSet()\n  )->union(\n  implements_.input->asSet()\n  ),\n  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block\n  if owningStatement->notEmpty() then\n    owningStatement.getNamedValuesInScope()\n  else\n    -- add formal object parameters from owning class\n    let oc:SapClass = self.getOwningClass() in\n    if oc->notEmpty() then\n      oc.formalObjectParameters->asSet()\n    else\n      Set{}\n    endif\n  endif)'"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.addNamedValuesWithNewNames(\n  -- Handle Foreach\n  let s:Set(data::classes::NamedValue)=Set{} in\n  s->union(if owningStatement.oclIsKindOf(Foreach) then\n    owningStatement.oclAsType(Foreach).forVariable->asSet()\n  else\n    Set{}\n  endif)->union(\n  -- add parameters for those blocks that are used as a signature implementation\n  functionSignature.input->asSet()\n  )->union(\n  implements_.input->asSet()\n  ),\n  -- then ascend the block composition hierarchy and add all NamedValues defined in parent blocks before the occurrence of the statement with the nested block\n  if owningStatement->notEmpty() then\n    owningStatement.getNamedValuesInScope()\n  else\n    -- add formal object parameters from owning class\n    let oc:SapClass = self.getOwningClass() in\n    if oc->notEmpty() then\n      oc.formalObjectParameters->asSet()\n    else\n      Set{}\n    endif\n  endif)'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
@@ -149,7 +149,7 @@ public interface Block extends FunctionSignatureImplementation, InScope {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model kind="operation" unique="false" ordered="false"
-	 *        annotation="http://de.hpi.sam.bp2009.OCL body='let outermost:Block = self.getOutermostBlock() in\n  let implementedSignature:Signature = outermost.getImplementedSignature() in\n  if implementedSignature->notEmpty() then\n    implementedSignature.getOwningClass()\n  else\n    null\n  endif'"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='let outermost:Block = self.getOutermostBlock() in\n  let implementedSignature:data::classes::Signature = outermost.getImplementedSignature() in\n  if implementedSignature->notEmpty() then\n    implementedSignature.getOwningClass()\n  else\n    null\n  endif'"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
