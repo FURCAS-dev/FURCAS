@@ -2467,7 +2467,8 @@
 				    value      	(value Text 
 |context FunctionSignature::getImplementedAnonymousFunctionExpression():AnonymousFunctionExpr
 |body:
-|  let candidates:Sequence(AnonymousFunctionExpr) = self.typeDefinition.ownerTypedElement.oclAsType(AnonymousFunctionExpr)->asSequence() in
+|  let candidates:Sequence(AnonymousFunctionExpr) =
+|         self.typeDefinition.ownerTypedElement.oclAsType(dataaccess::expressions::fp::AnonymousFunctionExpr)->asSequence() in
 |  if candidates->isEmpty() then
 |    null
 |  else
@@ -5480,6 +5481,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47D67D190077"
+			    compartment 	(object Compartment
+				Parent_View 	@70
+				location   	(824, 1994)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	958
 			    height     	236
 			    annotation 	8
@@ -11391,6 +11409,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47D67D190077"
+			    compartment 	(object Compartment
+				Parent_View 	@350
+				location   	(171, 1587)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	958
 			    height     	236
 			    annotation 	8
