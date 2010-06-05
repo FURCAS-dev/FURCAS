@@ -357,7 +357,7 @@
 				    tool       	"MOF"
 				    name       	"sap2mof.OperationCodeOcl"
 				    value      	(value Text 
-|context Block::getNamedValuesInScope():Set(NamedValue)
+|context Block::getNamedValuesInScope():Set(data::classes::NamedValue)
 |body:
 |  self.addNamedValuesWithNewNames(
 |  -- Handle Foreach
@@ -377,7 +377,7 @@
 |    owningStatement.getNamedValuesInScope()
 |  else
 |    -- add formal object parameters from owning class
-|    let oc:SapClass = self.getOwningClass() in
+|    let oc:data::classes::SapClass = self.getOwningClass() in
 |    if oc->notEmpty() then
 |      oc.formalObjectParameters->asSet()
 |    else
