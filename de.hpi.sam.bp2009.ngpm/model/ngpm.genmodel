@@ -310,8 +310,7 @@
     </nestedGenPackages>
   </genPackages>
   <genPackages prefix="Data" disposableProviderFactory="true" ecorePackage="data.ecore#/">
-    <nestedGenPackages prefix="Classes" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//classes">
+    <nestedGenPackages prefix="Classes" disposableProviderFactory="true" ecorePackage="data.ecore#//classes">
       <genClasses ecoreClass="data.ecore#//classes/Association">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference data.ecore#//classes/Association/ends"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference data.ecore#//classes/Association/package_"/>
@@ -584,8 +583,7 @@
         </genOperations>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Constraints" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//constraints">
+    <nestedGenPackages prefix="Constraints" disposableProviderFactory="true" ecorePackage="data.ecore#//constraints">
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="data.ecore#//constraints/ObjectState">
         <genEnumLiterals ecoreEnumLiteral="data.ecore#//constraints/ObjectState/INITIAL"/>
         <genEnumLiterals ecoreEnumLiteral="data.ecore#//constraints/ObjectState/TRANSIENT"/>
@@ -609,12 +607,11 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute data.ecore#//constraints/SeverityInState/severity"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Quantitystructure" basePackage="data" disposableProviderFactory="true"
+    <nestedGenPackages prefix="Quantitystructure" disposableProviderFactory="true"
         ecorePackage="data.ecore#//quantitystructure">
       <genClasses ecoreClass="data.ecore#//quantitystructure/Dummy"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Timedependency" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//timedependency">
+    <nestedGenPackages prefix="Timedependency" disposableProviderFactory="true" ecorePackage="data.ecore#//timedependency">
       <genClasses ecoreClass="data.ecore#//timedependency/TimeDependency">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute data.ecore#//timedependency/TimeDependency/recordCutoffInMilliseconds"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute data.ecore#//timedependency/TimeDependency/canChangePast"/>
@@ -623,12 +620,10 @@
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference data.ecore#//timedependency/TimeDependency/association"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Documents" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//documents">
+    <nestedGenPackages prefix="Documents" disposableProviderFactory="true" ecorePackage="data.ecore#//documents">
       <genClasses ecoreClass="data.ecore#//documents/Dummy"/>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Generics" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//generics">
+    <nestedGenPackages prefix="Generics" disposableProviderFactory="true" ecorePackage="data.ecore#//generics">
       <genClasses ecoreClass="data.ecore#//generics/FormalTypeParameter">
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference data.ecore#//generics/FormalTypeParameter/parameterOf"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -658,8 +653,7 @@
             ecoreFeature="ecore:EReference data.ecore#//generics/ActualTypeParameter/formalTypeParameter"/>
       </genClasses>
     </nestedGenPackages>
-    <nestedGenPackages prefix="Tuples" basePackage="data" disposableProviderFactory="true"
-        ecorePackage="data.ecore#//tuples">
+    <nestedGenPackages prefix="Tuples" disposableProviderFactory="true" ecorePackage="data.ecore#//tuples">
       <genClasses ecoreClass="data.ecore#//tuples/TupleTypeDefinition">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference data.ecore#//tuples/TupleTypeDefinition/elements"/>
       </genClasses>
