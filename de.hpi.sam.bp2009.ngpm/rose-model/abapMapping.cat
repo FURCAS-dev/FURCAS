@@ -33,7 +33,7 @@
 |context AbapClassImplementationAnnotation
 |inv:
 |  self.kind = AbapClassKind::ABAP_TYPE implies
-|    self.abapType.oclIsKindOf(UnstructuredAbapType)
+|    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)
 				)
 			    opExportControl 	"Public"
 			    uid        	0)))))
@@ -202,6 +202,7 @@
 			(object ClassAttribute "xsdType"
 			    quid       	"47E8F751000F"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")
 			(object ClassAttribute "length"
 			    quid       	"47E8F75801C5"
@@ -211,6 +212,7 @@
 			(object ClassAttribute "pattern"
 			    quid       	"47E8F75E02DE"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")
 			(object ClassAttribute "totalDigits"
 			    quid       	"47E8F8B7002E"
@@ -237,6 +239,7 @@
 			(object ClassAttribute "value"
 			    quid       	"47E8FF8203A9"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")
 			(object ClassAttribute "description"
 			    quid       	"47F231CF0148"
@@ -254,6 +257,7 @@
 			(object ClassAttribute "extensible"
 			    quid       	"47E904F501C5"
 			    type       	"Boolean"
+			    quidu      	"39A2BDA60392"
 			    exportControl 	"Public"))
 		    nestedClasses 	(list nestedClasses
 			(object Class "TypeOfValuesEqualsAbapType"
@@ -285,6 +289,7 @@
 			(object ClassAttribute "name"
 			    quid       	"47E2434C030D"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")))
 		(object Class "AbapStructureType"
 		    quid       	"47E9016F00BB"
@@ -299,6 +304,7 @@
 			(object ClassAttribute "name"
 			    quid       	"47E9021501B5"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")))
 		(object Class "AbapPrimtiveType"
 		    quid       	"47E8F8D0037A"
@@ -410,37 +416,7 @@
 		    origin_x   	0
 		    origin_y   	1481
 		    items      	(list diagram_item_list
-			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapStructureType" @1
-			    ShowCompartmentStereotypes 	TRUE
-			    IncludeAttribute 	TRUE
-			    IncludeOperation 	TRUE
-			    location   	(1044, 1511)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    label      	(object ItemLabel
-				Parent_View 	@1
-				location   	(853, 1460)
-				fill_color 	13434879
-				nlines     	1
-				max_width  	382
-				justify    	0
-				label      	"AbapStructureType")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"47E9016F00BB"
-			    width      	400
-			    height     	126
-			    annotation 	8
-			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::UnstructuredAbapType" @2
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::UnstructuredAbapType" @1
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -455,7 +431,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@2
+				Parent_View 	@1
 				location   	(1647, 950)
 				fill_color 	13434879
 				nlines     	1
@@ -467,6 +443,36 @@
 			    fill_color 	13434879
 			    quidu      	"47E903250271"
 			    width      	464
+			    height     	126
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapStructureType" @2
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1044, 1511)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@2
+				location   	(853, 1460)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	382
+				justify    	0
+				label      	"AbapStructureType")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E9016F00BB"
+			    width      	400
 			    height     	126
 			    annotation 	8
 			    autoResize 	TRUE)
@@ -500,152 +506,7 @@
 			    height     	386
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapStructureField" @4
-			    ShowCompartmentStereotypes 	TRUE
-			    IncludeAttribute 	TRUE
-			    IncludeOperation 	TRUE
-			    location   	(234, 1501)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    label      	(object ItemLabel
-				Parent_View 	@4
-				location   	(41, 1420)
-				fill_color 	13434879
-				nlines     	1
-				max_width  	386
-				justify    	0
-				label      	"AbapStructureField")
-			    icon_style 	"Icon"
-			    line_color 	3342489
-			    fill_color 	13434879
-			    quidu      	"47E901E6036B"
-			    width      	404
-			    height     	186
-			    annotation 	8
-			    autoResize 	TRUE)
-			(object AssociationViewNew "AbapStructureFields" @5
-			    location   	(640, 1519)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    label      	(object SegLabel @6
-				Parent_View 	@5
-				location   	(639, 1504)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	TRUE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				anchor     	1
-				anchor_loc 	1
-				nlines     	1
-				max_width  	375
-				justify    	0
-				label      	"AbapStructureFields"
-				pctDist    	0.483333
-				height     	15
-				orientation 	0)
-			    stereotype 	TRUE
-			    line_color 	3342489
-			    quidu      	"47E901ED0119"
-			    roleview_list 	(list RoleViews
-				(object RoleView "fields" @7
-				    Parent_View 	@5
-				    location   	(-460, 1335)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    label      	(object SegLabel @8
-					Parent_View 	@7
-					location   	(496, 1575)
-					font       	(object Font
-					    size       	10
-					    face       	"Arial"
-					    bold       	FALSE
-					    italics    	FALSE
-					    underline  	FALSE
-					    strike     	FALSE
-					    color      	0
-					    default_color 	TRUE)
-					anchor     	1
-					anchor_loc 	1
-					nlines     	1
-					max_width  	120
-					justify    	0
-					label      	"+fields"
-					pctDist    	0.705882
-					height     	56
-					orientation 	0)
-				    stereotype 	TRUE
-				    line_color 	3342489
-				    quidu      	"47E901EE009C"
-				    client     	@5
-				    supplier   	@4
-				    vertices   	(list Points
-					(640, 1519)
-					(436, 1519))
-				    line_style 	3
-				    origin_attachment 	(640, 1519)
-				    terminal_attachment 	(436, 1519)
-				    label      	(object SegLabel @9
-					Parent_View 	@7
-					location   	(470, 1457)
-					font       	(object Font
-					    size       	10
-					    face       	"Arial"
-					    bold       	FALSE
-					    italics    	FALSE
-					    underline  	FALSE
-					    strike     	FALSE
-					    color      	0
-					    default_color 	TRUE)
-					anchor     	2
-					anchor_loc 	1
-					nlines     	1
-					max_width  	15
-					justify    	0
-					label      	"0..*"
-					pctDist    	0.833333
-					height     	62
-					orientation 	1))
-				(object RoleView "$UNNAMED$10" @10
-				    Parent_View 	@5
-				    location   	(-460, 1335)
-				    stereotype 	TRUE
-				    line_color 	3342489
-				    quidu      	"47E901EE00AB"
-				    client     	@5
-				    supplier   	@1
-				    vertices   	(list Points
-					(640, 1519)
-					(844, 1519))
-				    line_style 	3
-				    origin_attachment 	(640, 1519)
-				    terminal_attachment 	(844, 1519))))
-			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapType" @11
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapType" @4
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
 			    IncludeOperation 	TRUE
@@ -660,7 +521,7 @@
 				color      	0
 				default_color 	TRUE)
 			    label      	(object ItemLabel
-				Parent_View 	@11
+				Parent_View 	@4
 				location   	(1380, 521)
 				fill_color 	13434879
 				nlines     	1
@@ -671,36 +532,11 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47E1460601A5"
-			    compartment 	(object Compartment
-				Parent_View 	@11
-				location   	(1380, 582)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	2
-				max_width  	0)
 			    width      	314
 			    height     	186
 			    annotation 	8
 			    autoResize 	TRUE)
-			(object InheritTreeView "" @12
-			    location   	(1528, 828)
-			    line_color 	3342489
-			    fill_color 	13434879
-			    supplier   	@11
-			    vertices   	(list Points
-				(1528, 828)
-				(1528, 695)))
-			(object AssociationViewNew "AbapTypeXsdType" @13
+			(object AssociationViewNew "AbapTypeXsdType" @5
 			    location   	(931, 591)
 			    font       	(object Font
 				size       	10
@@ -711,8 +547,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @14
-				Parent_View 	@13
+			    label      	(object SegLabel @6
+				Parent_View 	@5
 				location   	(931, 532)
 				font       	(object Font
 				    size       	10
@@ -736,8 +572,8 @@
 			    line_color 	3342489
 			    quidu      	"47E8F73A036B"
 			    roleview_list 	(list RoleViews
-				(object RoleView "xsdRepresentation" @15
-				    Parent_View 	@13
+				(object RoleView "xsdRepresentation" @7
+				    Parent_View 	@5
 				    location   	(-977, -21)
 				    font       	(object Font
 					size       	10
@@ -748,8 +584,8 @@
 					strike     	FALSE
 					color      	0
 					default_color 	TRUE)
-				    label      	(object SegLabel @16
-					Parent_View 	@15
+				    label      	(object SegLabel @8
+					Parent_View 	@7
 					location   	(689, 632)
 					font       	(object Font
 					    size       	10
@@ -772,7 +608,7 @@
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"47E8F73B0109"
-				    client     	@13
+				    client     	@5
 				    supplier   	@3
 				    vertices   	(list Points
 					(931, 591)
@@ -780,8 +616,8 @@
 				    line_style 	3
 				    origin_attachment 	(931, 591)
 				    terminal_attachment 	(491, 591)
-				    label      	(object SegLabel @17
-					Parent_View 	@15
+				    label      	(object SegLabel @9
+					Parent_View 	@7
 					location   	(535, 538)
 					font       	(object Font
 					    size       	10
@@ -801,21 +637,166 @@
 					pctDist    	0.903409
 					height     	54
 					orientation 	1))
-				(object RoleView "$UNNAMED$12" @18
-				    Parent_View 	@13
+				(object RoleView "$UNNAMED$12" @10
+				    Parent_View 	@5
 				    location   	(-977, -21)
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"47E8F73B010B"
-				    client     	@13
-				    supplier   	@11
+				    client     	@5
+				    supplier   	@4
 				    vertices   	(list Points
 					(931, 591)
 					(1371, 591))
 				    line_style 	3
 				    origin_attachment 	(931, 591)
 				    terminal_attachment 	(1371, 591))))
-			(object AssociationViewNew "AbapStructureFieldType" @19
+			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::AbapStructureField" @11
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(234, 1501)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@11
+				location   	(41, 1420)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	386
+				justify    	0
+				label      	"AbapStructureField")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"47E901E6036B"
+			    width      	404
+			    height     	186
+			    annotation 	8
+			    autoResize 	TRUE)
+			(object AssociationViewNew "AbapStructureFields" @12
+			    location   	(640, 1519)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object SegLabel @13
+				Parent_View 	@12
+				location   	(639, 1504)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				anchor     	1
+				anchor_loc 	1
+				nlines     	1
+				max_width  	375
+				justify    	0
+				label      	"AbapStructureFields"
+				pctDist    	0.483333
+				height     	15
+				orientation 	0)
+			    stereotype 	TRUE
+			    line_color 	3342489
+			    quidu      	"47E901ED0119"
+			    roleview_list 	(list RoleViews
+				(object RoleView "fields" @14
+				    Parent_View 	@12
+				    location   	(-460, 1335)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    label      	(object SegLabel @15
+					Parent_View 	@14
+					location   	(496, 1575)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	1
+					anchor_loc 	1
+					nlines     	1
+					max_width  	120
+					justify    	0
+					label      	"+fields"
+					pctDist    	0.705882
+					height     	56
+					orientation 	0)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E901EE009C"
+				    client     	@12
+				    supplier   	@11
+				    vertices   	(list Points
+					(640, 1519)
+					(436, 1519))
+				    line_style 	3
+				    origin_attachment 	(640, 1519)
+				    terminal_attachment 	(436, 1519)
+				    label      	(object SegLabel @16
+					Parent_View 	@14
+					location   	(470, 1457)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	FALSE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					anchor     	2
+					anchor_loc 	1
+					nlines     	1
+					max_width  	15
+					justify    	0
+					label      	"0..*"
+					pctDist    	0.833333
+					height     	62
+					orientation 	1))
+				(object RoleView "$UNNAMED$10" @17
+				    Parent_View 	@12
+				    location   	(-460, 1335)
+				    stereotype 	TRUE
+				    line_color 	3342489
+				    quidu      	"47E901EE00AB"
+				    client     	@12
+				    supplier   	@2
+				    vertices   	(list Points
+					(640, 1519)
+					(844, 1519))
+				    line_style 	3
+				    origin_attachment 	(640, 1519)
+				    terminal_attachment 	(844, 1519))))
+			(object AssociationViewNew "AbapStructureFieldType" @18
 			    location   	(767, 906)
 			    font       	(object Font
 				size       	10
@@ -826,8 +807,8 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    label      	(object SegLabel @20
-				Parent_View 	@19
+			    label      	(object SegLabel @19
+				Parent_View 	@18
 				location   	(685, 925)
 				font       	(object Font
 				    size       	10
@@ -851,8 +832,8 @@
 			    line_color 	3342489
 			    quidu      	"47E90223029F"
 			    roleview_list 	(list RoleViews
-				(object RoleView "type" @21
-				    Parent_View 	@19
+				(object RoleView "type" @20
+				    Parent_View 	@18
 				    location   	(-116, -788)
 				    font       	(object Font
 					size       	10
@@ -863,8 +844,8 @@
 					strike     	FALSE
 					color      	0
 					default_color 	TRUE)
-				    label      	(object SegLabel @22
-					Parent_View 	@21
+				    label      	(object SegLabel @21
+					Parent_View 	@20
 					location   	(1125, 671)
 					font       	(object Font
 					    size       	10
@@ -887,15 +868,15 @@
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"47E902240177"
-				    client     	@19
-				    supplier   	@11
+				    client     	@18
+				    supplier   	@4
 				    vertices   	(list Points
 					(767, 906)
 					(862, 800)
 					(1370, 647))
 				    line_style 	0
-				    label      	(object SegLabel @23
-					Parent_View 	@21
+				    label      	(object SegLabel @22
+					Parent_View 	@20
 					location   	(1328, 703)
 					font       	(object Font
 					    size       	10
@@ -915,44 +896,52 @@
 					pctDist    	0.915834
 					height     	42
 					orientation 	1))
-				(object RoleView "$UNNAMED$11" @24
-				    Parent_View 	@19
+				(object RoleView "$UNNAMED$11" @23
+				    Parent_View 	@18
 				    location   	(-116, -788)
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"47E902240179"
-				    client     	@19
-				    supplier   	@4
+				    client     	@18
+				    supplier   	@11
 				    vertices   	(list Points
 					(767, 906)
 					(316, 1407))
 				    line_style 	0)))
+			(object InheritTreeView "" @24
+			    location   	(1528, 828)
+			    line_color 	3342489
+			    fill_color 	13434879
+			    supplier   	@4
+			    vertices   	(list Points
+				(1528, 828)
+				(1528, 695)))
 			(object InheritView "" @25
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"47E9023E0242"
-			    client     	@1
-			    supplier   	@11
+			    client     	@2
+			    supplier   	@4
 			    vertices   	(list Points
 				(1044, 1448)
 				(1044, 828))
 			    line_style 	3
 			    origin_attachment 	(1044, 1448)
 			    terminal_attachment 	(1044, 828)
-			    drawSupplier 	@12)
+			    drawSupplier 	@24)
 			(object InheritView "" @26
 			    stereotype 	TRUE
 			    line_color 	3342489
 			    quidu      	"47E903340186"
-			    client     	@2
-			    supplier   	@11
+			    client     	@1
+			    supplier   	@4
 			    vertices   	(list Points
 				(1870, 938)
 				(1870, 828))
 			    line_style 	3
 			    origin_attachment 	(1870, 938)
 			    terminal_attachment 	(1870, 828)
-			    drawSupplier 	@12)
+			    drawSupplier 	@24)
 			(object ClassView "Class" "Logical View::abapMapping::AbapDictionary::DataElement" @27
 			    ShowCompartmentStereotypes 	TRUE
 			    IncludeAttribute 	TRUE
@@ -987,7 +976,7 @@
 			    location   	(1870, 1276)
 			    line_color 	3342489
 			    fill_color 	13434879
-			    supplier   	@2
+			    supplier   	@1
 			    vertices   	(list Points
 				(1870, 1276)
 				(1870, 1064)))
@@ -996,7 +985,7 @@
 			    line_color 	3342489
 			    quidu      	"47E8F6CA01B5"
 			    client     	@27
-			    supplier   	@2
+			    supplier   	@1
 			    vertices   	(list Points
 				(1423, 1442)
 				(1423, 1276))
@@ -1196,7 +1185,7 @@
 			    line_color 	3342489
 			    quidu      	"47E8F72900EA"
 			    client     	@32
-			    supplier   	@2
+			    supplier   	@1
 			    vertices   	(list Points
 				(2326, 1437)
 				(2326, 1276))
@@ -1230,23 +1219,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"47E8FE7C009C"
-			    compartment 	(object Compartment
-				Parent_View 	@40
-				location   	(159, 1784)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	3
-				max_width  	0)
 			    width      	602
 			    height     	236
 			    annotation 	8
@@ -1665,23 +1637,6 @@
 		    line_color 	3342489
 		    fill_color 	13434879
 		    quidu      	"47E1460601A5"
-		    compartment 	(object Compartment
-			Parent_View 	@57
-			location   	(1915, 1439)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			icon_style 	"Icon"
-			fill_color 	16777215
-			anchor     	2
-			nlines     	2
-			max_width  	0)
 		    width      	340
 		    height     	232
 		    annotation 	8

@@ -84,6 +84,7 @@
 			(object ClassAttribute "extensible"
 			    quid       	"46E7DDB00119"
 			    type       	"Boolean"
+			    quidu      	"39A2BDA60392"
 			    exportControl 	"Public")))
 		(object Class "ValueSetEntry"
 		    quid       	"46E7DDDE0000"
@@ -97,10 +98,12 @@
 			    quid       	"46E7DE250109"
 			    documentation 	"If true, "
 			    type       	"Boolean"
+			    quidu      	"39A2BDA60392"
 			    exportControl 	"Public")
 			(object ClassAttribute "canBeDeleted"
 			    quid       	"46E7DE2A000F"
 			    type       	"Boolean"
+			    quidu      	"39A2BDA60392"
 			    exportControl 	"Public")))
 		(object Association "$UNNAMED$0"
 		    quid       	"452E2DA00013"
@@ -491,6 +494,23 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"450E63AB03A2"
+				    compartment 	(object Compartment
+					Parent_View 	@4
+					location   	(2675, 2138)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	TRUE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					icon_style 	"Icon"
+					fill_color 	16777215
+					anchor     	2
+					nlines     	7
+					max_width  	0)
 				    width      	284
 				    height     	172
 				    annotation 	8
@@ -916,7 +936,7 @@
 					icon_style 	"Icon"
 					fill_color 	16777215
 					anchor     	2
-					nlines     	4
+					nlines     	5
 					max_width  	0)
 				    width      	702
 				    height     	232
@@ -1470,6 +1490,23 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"450E63AB03A2"
+				    compartment 	(object Compartment
+					Parent_View 	@49
+					location   	(1044, 1719)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	TRUE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					icon_style 	"Icon"
+					fill_color 	16777215
+					anchor     	2
+					nlines     	7
+					max_width  	0)
 				    width      	284
 				    height     	172
 				    annotation 	8

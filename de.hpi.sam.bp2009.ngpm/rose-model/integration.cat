@@ -1474,6 +1474,7 @@
 				    value      	"1"))
 			    quid       	"3EB5288B021C"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public"))
 		    language   	"CORBA"
 		    abstract   	TRUE)
@@ -1544,6 +1545,7 @@
 				    value      	"2"))
 			    quid       	"3EB69DB401D4"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public"))
 		    language   	"CORBA")
 		(object Class "Any"
@@ -1565,6 +1567,7 @@
 				    value      	"2"))
 			    quid       	"3EB550E500A0"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public"))
 		    language   	"CORBA"
 		    abstract   	TRUE)
@@ -1591,10 +1594,12 @@
 				    value      	"1"))
 			    quid       	"3EB69AEE02FD"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")
 			(object ClassAttribute "appInfo"
 			    quid       	"3EFA2C5D006E"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public"))
 		    language   	"CORBA")
 		(object Class "Notation"
@@ -1613,6 +1618,7 @@
 				    value      	"1"))
 			    quid       	"3EB69BE1038A"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")
 			(object ClassAttribute "systemDec"
 			    attributes 	(list Attribute_Set
@@ -1622,6 +1628,7 @@
 				    value      	"2"))
 			    quid       	"3EB69BE8006D"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public"))
 		    language   	"CORBA")
 		(object Class "AttUseType"
@@ -1693,6 +1700,7 @@
 			(object ClassAttribute "base"
 			    quid       	"3EFAD7AA03AC"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")
 			(object ClassAttribute "enumVals"
 			    attributes 	(list Attribute_Set
@@ -1702,6 +1710,7 @@
 				    value      	(value Text "n")))
 			    quid       	"3EFAD7B4010E"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")))
 		(object Class "ComplexContent"
 		    quid       	"3EFAD32702E4"
@@ -1714,6 +1723,7 @@
 			(object ClassAttribute "mixed"
 			    quid       	"3EFAD6610334"
 			    type       	"Boolean"
+			    quidu      	"39A2BDA60392"
 			    exportControl 	"Public")))
 		(object Association "hasElemType"
 		    quid       	"3EB52907033E"
@@ -3836,7 +3846,7 @@
 					PDL        	
 |context Binding
 |inv:
-|  self.function.getType().oclIsKindOf(FunctionSignatureTypeDefinition)
+|  self.function.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)
 					)
 				    opExportControl 	"Public"
 				    uid        	0)))))
@@ -3885,6 +3895,7 @@
 			(object ClassAttribute "baseUrl"
 			    quid       	"497737D50203"
 			    type       	"String"
+			    quidu      	"39A2BDA60394"
 			    exportControl 	"Public")))
 		(object Class "RestUrlPattern"
 		    quid       	"4977365100BB"
@@ -4232,6 +4243,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@165
+				location   	(1055, 991)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	392
 			    height     	232
 			    annotation 	8
@@ -5236,6 +5264,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@213
+				location   	(1061, 690)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	0)
 			    width      	704
 			    height     	482
 			    annotation 	8
@@ -6201,7 +6246,7 @@
 				icon_style 	"Icon"
 				fill_color 	16777215
 				anchor     	2
-				nlines     	4
+				nlines     	5
 				max_width  	0)
 			    width      	702
 			    height     	232
