@@ -847,15 +847,21 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       }
       else
       {
-        EAnnotation oppositeRoleNameAnnotation = ref2.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
-        if (oppositeRoleNameAnnotation == null) {
+        if (ref1.getName() != null && ref1.getName().length() > 0)
+        {
+          EAnnotation oppositeRoleNameAnnotation = ref2.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
+          if (oppositeRoleNameAnnotation == null)
+          {
             oppositeRoleNameAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
             oppositeRoleNameAnnotation.setSource(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
             ref2.getEAnnotations().add(oppositeRoleNameAnnotation);
-        } else {
+          }
+          else
+          {
             oppositeRoleNameAnnotation.getDetails().clear();
+          }
+          oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref1.getName());
         }
-        oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref1.getName());
       }
       if (ref2Navigable)
       {
@@ -877,15 +883,21 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       }
       else
       {
-        EAnnotation oppositeRoleNameAnnotation = ref1.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
-        if (oppositeRoleNameAnnotation == null) {
+        if (ref2.getName() != null && ref2.getName().length() > 0)
+        {
+          EAnnotation oppositeRoleNameAnnotation = ref1.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
+          if (oppositeRoleNameAnnotation == null)
+          {
             oppositeRoleNameAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
             oppositeRoleNameAnnotation.setSource(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
             ref1.getEAnnotations().add(oppositeRoleNameAnnotation);
-        } else {
+          }
+          else
+          {
             oppositeRoleNameAnnotation.getDetails().clear();
+          }
+          oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref2.getName());
         }
-        oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref2.getName());
       }
     }
 
