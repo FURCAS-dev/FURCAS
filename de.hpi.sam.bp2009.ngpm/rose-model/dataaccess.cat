@@ -1300,6 +1300,11 @@
 		    quid       	"453649650215"
 		    roles      	(list role_list
 			(object Role "object"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4536496701B4"
 			    label      	"object"
 			    supplier   	"Logical View::dataaccess::expressions::Expression"
@@ -1308,11 +1313,17 @@
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "objectBasedExpression"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"4536496701C8"
 			    label      	"objectBasedExpression"
 			    supplier   	"Logical View::dataaccess::expressions::ObjectBasedExpression"
 			    quidu      	"453E0FC80335"
 			    client_cardinality 	(value cardinality "0..1")
+			    is_navigable 	TRUE
 			    is_aggregate 	TRUE)))
 		(object Association "$UNNAMED$3"
 		    quid       	"454BA28B0154"
@@ -3547,7 +3558,7 @@
 			    zoom       	100
 			    max_height 	28350
 			    max_width  	21600
-			    origin_x   	1125
+			    origin_x   	38
 			    origin_y   	0
 			    items      	(list diagram_item_list
 				(object ClassView "Class" "Logical View::dataaccess::expressions::collectionExpressions::Including" @66
@@ -4895,7 +4906,7 @@
 					fill_color 	16777215
 					anchor     	2
 					nlines     	3
-					max_width  	300)
+					max_width  	284)
 				    width      	314
 				    height     	282
 				    annotation 	8
@@ -6337,6 +6348,23 @@
 				    line_color 	3342489
 				    fill_color 	13434879
 				    quidu      	"4717B7BC031A"
+				    compartment 	(object Compartment
+					Parent_View 	@182
+					location   	(308, 282)
+					font       	(object Font
+					    size       	10
+					    face       	"Arial"
+					    bold       	FALSE
+					    italics    	TRUE
+					    underline  	FALSE
+					    strike     	FALSE
+					    color      	0
+					    default_color 	TRUE)
+					icon_style 	"Icon"
+					fill_color 	16777215
+					anchor     	2
+					nlines     	3
+					max_width  	0)
 				    width      	314
 				    height     	282
 				    annotation 	8
@@ -7445,6 +7473,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@233
+				location   	(1602, 689)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	300)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -8849,6 +8894,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@300
+				location   	(605, 363)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -9689,6 +9751,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@339
+				location   	(823, 332)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -12064,6 +12143,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@443
+				location   	(267, 348)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -13447,7 +13543,7 @@
 					label      	"+objectBasedExpression"
 					pctDist    	1.372414
 					height     	85
-					orientation 	0)
+					orientation 	1)
 				    stereotype 	TRUE
 				    line_color 	3342489
 				    quidu      	"4536496701C8"
@@ -14083,6 +14179,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@539
+				location   	(613, 279)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -16509,7 +16622,7 @@
 		    zoom       	100
 		    max_height 	28350
 		    max_width  	21600
-		    origin_x   	106
+		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
 			(object ClassView "Class" "Logical View::dataaccess::expressions::ObjectBasedExpression" @641
@@ -16598,6 +16711,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@643
+				location   	(877, 117)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	7
+				max_width  	543)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -17117,6 +17247,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@668
+				location   	(799, 345)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	300)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -18915,6 +19062,11 @@
 		    quid       	"4B8E7B5F0251"
 		    roles      	(list role_list
 			(object Role "dimensions"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4B8E7B60004E"
 			    label      	"dimensions"
 			    supplier   	"Logical View::dataaccess::analytics::DimensionDefinition"
@@ -18923,16 +19075,27 @@
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "groupBy"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"4B8E7B600050"
 			    label      	"groupBy"
 			    supplier   	"Logical View::dataaccess::analytics::GroupBy"
 			    quidu      	"4B8E7AA300CB"
 			    client_cardinality 	(value cardinality "1")
+			    is_navigable 	TRUE
 			    is_aggregate 	TRUE)))
 		(object Association "$UNNAMED$46"
 		    quid       	"4B8E7B8C01C5"
 		    roles      	(list role_list
 			(object Role "expression"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4B8E7B8F02FD"
 			    label      	"expression"
 			    supplier   	"Logical View::dataaccess::expressions::Expression"
@@ -18941,16 +19104,27 @@
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "dimension"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"4B8E7B8F034B"
 			    label      	"dimension"
 			    supplier   	"Logical View::dataaccess::analytics::DimensionDefinition"
 			    quidu      	"4B8E7B4F007D"
 			    client_cardinality 	(value cardinality "0..1")
+			    is_navigable 	TRUE
 			    is_aggregate 	TRUE)))
 		(object Association "$UNNAMED$47"
 		    quid       	"4B8E7BF9034B"
 		    roles      	(list role_list
 			(object Role "fact"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4B8E7BFA01A5"
 			    label      	"fact"
 			    supplier   	"Logical View::behavioral::actions::Iterator"
@@ -18959,16 +19133,27 @@
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "factOfGroupBy"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"4B8E7BFA01B5"
 			    label      	"factOfGroupBy"
 			    supplier   	"Logical View::dataaccess::analytics::GroupBy"
 			    quidu      	"4B8E7AA300CB"
 			    client_cardinality 	(value cardinality "0..1")
+			    is_navigable 	TRUE
 			    is_aggregate 	TRUE)))
 		(object Association "$UNNAMED$48"
 		    quid       	"4B8E7C2C0251"
 		    roles      	(list role_list
 			(object Role "iterator"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4B8E7C2D004E"
 			    label      	"iterator"
 			    supplier   	"Logical View::behavioral::actions::Iterator"
@@ -18977,17 +19162,28 @@
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "dimension"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"4B8E7C2D005D"
 			    label      	"dimension"
 			    supplier   	"Logical View::dataaccess::analytics::DimensionDefinition"
 			    quidu      	"4B8E7B4F007D"
 			    client_cardinality 	(value cardinality "0..1")
+			    is_navigable 	TRUE
 			    is_aggregate 	TRUE)))
 		(object Association "$UNNAMED$49"
 		    quid       	"4B8E80990000"
 		    documentation 	"The mapExpression is optional. If provided, it has the groupedFacts iterator in scope, as well as all dimensions' iterators."
 		    roles      	(list role_list
 			(object Role "mapExpression"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4B8E809B01A5"
 			    label      	"mapExpression"
 			    supplier   	"Logical View::dataaccess::expressions::Expression"
@@ -18996,17 +19192,28 @@
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "mapExpressionOfGroupBy"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"4B8E809B01E4"
 			    label      	"mapExpressionOfGroupBy"
 			    supplier   	"Logical View::dataaccess::analytics::GroupBy"
 			    quidu      	"4B8E7AA300CB"
 			    client_cardinality 	(value cardinality "0..1")
+			    is_navigable 	TRUE
 			    is_aggregate 	TRUE)))
 		(object Association "$UNNAMED$50"
 		    quid       	"4B8E8115033C"
 		    documentation 	"The groupedFacts iterator exists if a mapExpression is provided and is in scope for the mapExpression. It represents the group of facts that all have the same values for all dimension expressions."
 		    roles      	(list role_list
 			(object Role "groupedFacts"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 203)))
 			    quid       	"4B8E81160138"
 			    label      	"groupedFacts"
 			    supplier   	"Logical View::behavioral::actions::Iterator"
@@ -19015,11 +19222,17 @@
 			    Containment 	"By Value"
 			    is_navigable 	TRUE)
 			(object Role "groupedFactsOfGroupBy"
+			    attributes 	(list Attribute_Set
+				(object Attribute
+				    tool       	"MOF"
+				    name       	"sap2mof.store"
+				    value      	("RoleStoreKindSet" 202)))
 			    quid       	"4B8E81160148"
 			    label      	"groupedFactsOfGroupBy"
 			    supplier   	"Logical View::dataaccess::analytics::GroupBy"
 			    quidu      	"4B8E7AA300CB"
 			    client_cardinality 	(value cardinality "0..1")
+			    is_navigable 	TRUE
 			    is_aggregate 	TRUE))))
 	    logical_presentations 	(list unit_reference_list
 		(object ClassDiagram "Expressions"
@@ -19562,6 +19775,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@750
+				location   	(2415, 641)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -21012,6 +21242,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4717B7BC031A"
+			    compartment 	(object Compartment
+				Parent_View 	@817
+				location   	(124, 336)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	0)
 			    width      	314
 			    height     	282
 			    annotation 	8
@@ -22258,7 +22505,7 @@
 		    max_height 	28350
 		    max_width  	21600
 		    origin_x   	0
-		    origin_y   	218
+		    origin_y   	219
 		    items      	(list diagram_item_list
 			(object ClassView "Class" "Logical View::data::classes::NamedValue" @878
 			    ShowCompartmentStereotypes 	TRUE
@@ -22315,6 +22562,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"45013C240030"
+			    compartment 	(object Compartment
+				Parent_View 	@879
+				location   	(161, 1182)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	TRUE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	3
+				max_width  	596)
 			    width      	602
 			    height     	282
 			    annotation 	8
@@ -22411,6 +22675,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4B8E7B4F007D"
+			    compartment 	(object Compartment
+				Parent_View 	@883
+				location   	(2122, 1868)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	16777215
+				anchor     	2
+				nlines     	2
+				max_width  	246)
 			    width      	420
 			    height     	186
 			    annotation 	8
@@ -22441,6 +22722,23 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"450E63AB03A2"
+			    compartment 	(object Compartment
+				Parent_View 	@884
+				location   	(1282, 229)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	13434879
+				anchor     	2
+				nlines     	7
+				max_width  	540)
 			    width      	552
 			    height     	482
 			    annotation 	8
@@ -23219,7 +23517,7 @@
 					default_color 	TRUE)
 				    label      	(object SegLabel @924
 					Parent_View 	@923
-					location   	(1572, 1817)
+					location   	(1904, 1763)
 					font       	(object Font
 					    size       	10
 					    face       	"Arial"
@@ -23232,11 +23530,11 @@
 					anchor     	1
 					anchor_loc 	1
 					nlines     	1
-					max_width  	506
+					max_width  	507
 					justify    	0
 					label      	"+mapExpressionOfGroupBy"
-					pctDist    	1.091667
-					height     	88
+					pctDist    	1.070833
+					height     	98
 					orientation 	0)
 				    stereotype 	TRUE
 				    line_color 	3342489
@@ -23378,7 +23676,7 @@
 					anchor     	1
 					anchor_loc 	1
 					nlines     	1
-					max_width  	290
+					max_width  	291
 					justify    	0
 					label      	"+factOfGroupBy"
 					pctDist    	0.275000
