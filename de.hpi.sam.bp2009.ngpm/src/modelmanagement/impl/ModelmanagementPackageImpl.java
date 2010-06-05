@@ -441,7 +441,7 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_Configurability() {
+	public EReference getPackage_Owner() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -450,8 +450,17 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackage_Bindings() {
+	public EReference getPackage_Configurability() {
 		return (EReference)packageEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPackage_Bindings() {
+		return (EReference)packageEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -567,6 +576,7 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
 		createEReference(packageEClass, PACKAGE__ASSOCIATIONS);
 		createEReference(packageEClass, PACKAGE__CLASSES);
 		createEReference(packageEClass, PACKAGE__PARAMETERIZED_CLASSES);
+		createEReference(packageEClass, PACKAGE__OWNER);
 		createEReference(packageEClass, PACKAGE__CONFIGURABILITY);
 		createEReference(packageEClass, PACKAGE__BINDINGS);
 
@@ -636,6 +646,7 @@ public class ModelmanagementPackageImpl extends EPackageImpl implements Modelman
 		initEReference(getPackage_Associations(), theClassesPackage.getAssociation(), theClassesPackage.getAssociation_Package_(), "associations", null, 0, -1, modelmanagement.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPackage_Classes(), theClassesPackage.getSapClass(), theClassesPackage.getSapClass_Package_(), "classes", null, 0, -1, modelmanagement.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPackage_ParameterizedClasses(), theGenericsPackage.getClassParameterization(), theGenericsPackage.getClassParameterization_Package_(), "parameterizedClasses", null, 0, -1, modelmanagement.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackage_Owner(), this.getPackageOwner(), null, "owner", null, 0, 1, modelmanagement.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPackage_Configurability(), theExperimentalPackage.getConfigurationEntity(), null, "configurability", null, 0, -1, modelmanagement.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPackage_Bindings(), theBindingPackage.getBinding(), null, "bindings", null, 0, -1, modelmanagement.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

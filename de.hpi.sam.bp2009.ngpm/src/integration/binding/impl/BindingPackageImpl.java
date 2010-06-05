@@ -655,7 +655,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage {
 		  (bindingEClass, 
 		   source, 
 		   new String[] {
-			 "FunctionExpressionHasFunctionType", "self.function.getType().oclIsKindOf(FunctionSignatureTypeDefinition)"
+			 "FunctionExpressionHasFunctionType", "self.function.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)"
 		   });							
 	}
 

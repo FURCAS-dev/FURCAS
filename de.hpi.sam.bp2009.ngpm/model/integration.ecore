@@ -138,7 +138,7 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="Binding" abstract="true" eSuperTypes="modelmanagement.ecore#//NamedElement">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="FunctionExpressionHasFunctionType" value="self.function.getType().oclIsKindOf(FunctionSignatureTypeDefinition)"/>
+        <details key="FunctionExpressionHasFunctionType" value="self.function.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)"/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
         <details key="constraints" value="FunctionExpressionHasFunctionType"/>

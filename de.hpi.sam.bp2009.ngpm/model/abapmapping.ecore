@@ -9,7 +9,7 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="AbapClassImplementationAnnotation">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-      <details key="AbapTypeMustBeUnstructured" value="self.kind = AbapClassKind::ABAP_TYPE implies&#xA;    self.abapType.oclIsKindOf(UnstructuredAbapType)"/>
+      <details key="AbapTypeMustBeUnstructured" value="self.kind = AbapClassKind::ABAP_TYPE implies&#xA;    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="AbapTypeMustBeUnstructured"/>

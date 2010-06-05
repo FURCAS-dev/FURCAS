@@ -133,7 +133,7 @@ public class AbapmappingValidator extends EObjectValidator {
 	 * @generated
 	 */
 	protected static final String ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE_MUST_BE_UNSTRUCTURED__EEXPRESSION = "self.kind = AbapClassKind::ABAP_TYPE implies" +
-		"    self.abapType.oclIsKindOf(UnstructuredAbapType)";
+		"    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)";
 
 	/**
 	 * Validates the AbapTypeMustBeUnstructured constraint of '<em>Abap Class Implementation Annotation</em>'.

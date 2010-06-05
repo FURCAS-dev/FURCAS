@@ -134,7 +134,7 @@ public class BindingValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BINDING__FUNCTION_EXPRESSION_HAS_FUNCTION_TYPE__EEXPRESSION = "self.function.getType().oclIsKindOf(FunctionSignatureTypeDefinition)";
+	protected static final String BINDING__FUNCTION_EXPRESSION_HAS_FUNCTION_TYPE__EEXPRESSION = "self.function.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)";
 
 	/**
 	 * Validates the FunctionExpressionHasFunctionType constraint of '<em>Binding</em>'.

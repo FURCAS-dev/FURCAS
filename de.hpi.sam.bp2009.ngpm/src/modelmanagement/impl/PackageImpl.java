@@ -23,6 +23,8 @@ import java.util.Collection;
 
 import modelmanagement.ModelmanagementPackage;
 
+import modelmanagement.PackageOwner;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -33,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -47,6 +50,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link modelmanagement.impl.PackageImpl#getAssociations <em>Associations</em>}</li>
  *   <li>{@link modelmanagement.impl.PackageImpl#getClasses <em>Classes</em>}</li>
  *   <li>{@link modelmanagement.impl.PackageImpl#getParameterizedClasses <em>Parameterized Classes</em>}</li>
+ *   <li>{@link modelmanagement.impl.PackageImpl#getOwner <em>Owner</em>}</li>
  *   <li>{@link modelmanagement.impl.PackageImpl#getConfigurability <em>Configurability</em>}</li>
  *   <li>{@link modelmanagement.impl.PackageImpl#getBindings <em>Bindings</em>}</li>
  * </ul>
@@ -84,6 +88,16 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 	 * @ordered
 	 */
 	protected EList<ClassParameterization> parameterizedClasses;
+
+	/**
+	 * The cached value of the '{@link #getOwner() <em>Owner</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOwner()
+	 * @generated
+	 * @ordered
+	 */
+	protected PackageOwner owner;
 
 	/**
 	 * The cached value of the '{@link #getConfigurability() <em>Configurability</em>}' containment reference list.
@@ -158,6 +172,49 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 			parameterizedClasses = new EObjectContainmentWithInverseEList<ClassParameterization>(ClassParameterization.class, this, ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES, GenericsPackage.CLASS_PARAMETERIZATION__PACKAGE_);
 		}
 		return parameterizedClasses;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PackageOwner getOwner() {
+		return owner;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(PackageOwner newOwner, NotificationChain msgs) {
+		PackageOwner oldOwner = owner;
+		owner = newOwner;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelmanagementPackage.PACKAGE__OWNER, oldOwner, newOwner);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(PackageOwner newOwner) {
+		if (newOwner != owner) {
+			NotificationChain msgs = null;
+			if (owner != null)
+				msgs = ((InternalEObject)owner).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelmanagementPackage.PACKAGE__OWNER, null, msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelmanagementPackage.PACKAGE__OWNER, null, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelmanagementPackage.PACKAGE__OWNER, newOwner, newOwner));
 	}
 
 	/**
@@ -242,6 +299,8 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 				return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
 			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
 				return ((InternalEList<?>)getParameterizedClasses()).basicRemove(otherEnd, msgs);
+			case ModelmanagementPackage.PACKAGE__OWNER:
+				return basicSetOwner(null, msgs);
 			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
 				return ((InternalEList<?>)getConfigurability()).basicRemove(otherEnd, msgs);
 			case ModelmanagementPackage.PACKAGE__BINDINGS:
@@ -264,6 +323,8 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 				return getClasses();
 			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
 				return getParameterizedClasses();
+			case ModelmanagementPackage.PACKAGE__OWNER:
+				return getOwner();
 			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
 				return getConfigurability();
 			case ModelmanagementPackage.PACKAGE__BINDINGS:
@@ -292,6 +353,9 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
 				getParameterizedClasses().clear();
 				getParameterizedClasses().addAll((Collection<? extends ClassParameterization>)newValue);
+				return;
+			case ModelmanagementPackage.PACKAGE__OWNER:
+				setOwner((PackageOwner)newValue);
 				return;
 			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
 				getConfigurability().clear();
@@ -322,6 +386,9 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
 				getParameterizedClasses().clear();
 				return;
+			case ModelmanagementPackage.PACKAGE__OWNER:
+				setOwner((PackageOwner)null);
+				return;
 			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
 				getConfigurability().clear();
 				return;
@@ -346,6 +413,8 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 				return classes != null && !classes.isEmpty();
 			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
 				return parameterizedClasses != null && !parameterizedClasses.isEmpty();
+			case ModelmanagementPackage.PACKAGE__OWNER:
+				return owner != null;
 			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
 				return configurability != null && !configurability.isEmpty();
 			case ModelmanagementPackage.PACKAGE__BINDINGS:

@@ -638,7 +638,7 @@ public class AbapmappingPackageImpl extends EPackageImpl implements AbapmappingP
 		  (abapClassImplementationAnnotationEClass, 
 		   source, 
 		   new String[] {
-			 "AbapTypeMustBeUnstructured", "self.kind = AbapClassKind::ABAP_TYPE implies\n    self.abapType.oclIsKindOf(UnstructuredAbapType)"
+			 "AbapTypeMustBeUnstructured", "self.kind = AbapClassKind::ABAP_TYPE implies\n    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)"
 		   });	
 	}
 

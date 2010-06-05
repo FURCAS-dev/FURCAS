@@ -32,6 +32,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link modelmanagement.Package#getAssociations <em>Associations</em>}</li>
  *   <li>{@link modelmanagement.Package#getClasses <em>Classes</em>}</li>
  *   <li>{@link modelmanagement.Package#getParameterizedClasses <em>Parameterized Classes</em>}</li>
+ *   <li>{@link modelmanagement.Package#getOwner <em>Owner</em>}</li>
  *   <li>{@link modelmanagement.Package#getConfigurability <em>Configurability</em>}</li>
  *   <li>{@link modelmanagement.Package#getBindings <em>Bindings</em>}</li>
  * </ul>
@@ -96,6 +97,32 @@ public interface Package extends PackageOwner {
 	 * @generated
 	 */
 	EList<ClassParameterization> getParameterizedClasses();
+
+	/**
+	 * Returns the value of the '<em><b>Owner</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owner</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owner</em>' containment reference.
+	 * @see #setOwner(PackageOwner)
+	 * @see modelmanagement.ModelmanagementPackage#getPackage_Owner()
+	 * @model containment="true" ordered="false"
+	 * @generated
+	 */
+	PackageOwner getOwner();
+
+	/**
+	 * Sets the value of the '{@link modelmanagement.Package#getOwner <em>Owner</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owner</em>' containment reference.
+	 * @see #getOwner()
+	 * @generated
+	 */
+	void setOwner(PackageOwner value);
 
 	/**
 	 * Returns the value of the '<em><b>Configurability</b></em>' containment reference list.

@@ -211,13 +211,22 @@ public interface ModelmanagementPackage extends EPackage {
 	int PACKAGE__PARAMETERIZED_CLASSES = PACKAGE_OWNER_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Owner</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__OWNER = PACKAGE_OWNER_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Configurability</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__CONFIGURABILITY = PACKAGE_OWNER_FEATURE_COUNT + 3;
+	int PACKAGE__CONFIGURABILITY = PACKAGE_OWNER_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Bindings</b></em>' containment reference list.
@@ -226,7 +235,7 @@ public interface ModelmanagementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE__BINDINGS = PACKAGE_OWNER_FEATURE_COUNT + 4;
+	int PACKAGE__BINDINGS = PACKAGE_OWNER_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Package</em>' class.
@@ -235,7 +244,7 @@ public interface ModelmanagementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_FEATURE_COUNT = PACKAGE_OWNER_FEATURE_COUNT + 5;
+	int PACKAGE_FEATURE_COUNT = PACKAGE_OWNER_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link modelmanagement.impl.ApplicationImpl <em>Application</em>}' class.
@@ -354,6 +363,17 @@ public interface ModelmanagementPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPackage_ParameterizedClasses();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link modelmanagement.Package#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owner</em>'.
+	 * @see modelmanagement.Package#getOwner()
+	 * @see #getPackage()
+	 * @generated
+	 */
+	EReference getPackage_Owner();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link modelmanagement.Package#getConfigurability <em>Configurability</em>}'.
@@ -527,6 +547,14 @@ public interface ModelmanagementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PACKAGE__PARAMETERIZED_CLASSES = eINSTANCE.getPackage_ParameterizedClasses();
+
+		/**
+		 * The meta object literal for the '<em><b>Owner</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE__OWNER = eINSTANCE.getPackage_Owner();
 
 		/**
 		 * The meta object literal for the '<em><b>Configurability</b></em>' containment reference list feature.

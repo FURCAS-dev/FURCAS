@@ -38,6 +38,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterizedClasses" upperBound="-1"
         eType="ecore:EClass data.ecore#//generics/ClassParameterization" containment="true"
         eOpposite="data.ecore#//generics/ClassParameterization/package_"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
+        unique="false" eType="#//PackageOwner" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="configurability" upperBound="-1"
         eType="ecore:EClass configuration.ecore#//businessconfiguration/experimental/ConfigurationEntity"
         containment="true">
