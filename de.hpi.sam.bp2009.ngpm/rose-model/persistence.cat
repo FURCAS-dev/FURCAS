@@ -68,8 +68,8 @@
 					PDL        	
 |context StatementWithEntityArgument
 |inv:
-|  if self.argument.getType().oclIsKindOf(ClassTypeDefinition) then
-|    not self.argument.getType().oclAsType(ClassTypeDefinition).clazz.valueType
+|  if self.argument.getType().oclIsKindOf(data::classes::ClassTypeDefinition) then
+|    not self.argument.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType
 |  else
 |    false
 |  endif
@@ -623,8 +623,8 @@
 |inv:
 |  if self.snapshot = SnapshotSelection::SPECIFIED then
 |    self.snapshotIdentifier.getType().upperMultiplicity = 1 and
-|    self.snapshotIdentifier.getType().oclIsKindOf(ClassTypeDefinition) and
-|   Set{'Snapshot', 'TimePoint'}->includes(self.snapshotIdentifier.getType().oclAsType(ClassTypeDefinition).clazz.name)
+|    self.snapshotIdentifier.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+|   Set{'Snapshot', 'TimePoint'}->includes(self.snapshotIdentifier.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name)
 |  else
 |    true
 |  endif
@@ -667,8 +667,8 @@
 					PDL        	
 |context Commit
 |inv:
-|  self.getType().oclIsKindOf(ClassTypeDefinition) and
-|  self.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Snapshot'
+|  self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+|  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Snapshot'
 					)
 				    opExportControl 	"Public"
 				    uid        	0)))))
@@ -691,7 +691,7 @@
 					PDL        	
 |context Snapshot
 |inv:
-|  self.object.getType().oclIsKindOf(ClassTypeDefinition)
+|  self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition)
 					)
 				    opExportControl 	"Public"
 				    uid        	0)))))
@@ -784,23 +784,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"498C3EB901C5"
-			    compartment 	(object Compartment
-				Parent_View 	@24
-				location   	(2344, 314)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	5
-				max_width  	271)
 			    width      	398
 			    height     	392
 			    annotation 	8
@@ -864,7 +847,7 @@
 			    quidu      	"4432171B031E"
 			    compartment 	(object Compartment
 				Parent_View 	@26
-				location   	(2348, 841)
+				location   	(2348, 907)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -911,7 +894,7 @@
 			    quidu      	"450E63AB03A2"
 			    compartment 	(object Compartment
 				Parent_View 	@27
-				location   	(623, 173)
+				location   	(623, 389)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -977,23 +960,6 @@
 			    line_color 	3342489
 			    fill_color 	13434879
 			    quidu      	"4979C34B01C3"
-			    compartment 	(object Compartment
-				Parent_View 	@30
-				location   	(1218, 775)
-				font       	(object Font
-				    size       	10
-				    face       	"Arial"
-				    bold       	FALSE
-				    italics    	FALSE
-				    underline  	FALSE
-				    strike     	FALSE
-				    color      	0
-				    default_color 	TRUE)
-				icon_style 	"Icon"
-				fill_color 	16777215
-				anchor     	2
-				nlines     	2
-				max_width  	603)
 			    width      	616
 			    height     	186
 			    annotation 	8
