@@ -357,7 +357,7 @@
 				    tool       	"MOF"
 				    name       	"sap2mof.OperationCodeOcl"
 				    value      	(value Text 
-|context Block::getNamedValuesInScope():Set(data::classes::NamedValue)
+|context Block::getNamedValuesInScope():Set(NamedValue)
 |body:
 |  self.addNamedValuesWithNewNames(
 |  -- Handle Foreach
