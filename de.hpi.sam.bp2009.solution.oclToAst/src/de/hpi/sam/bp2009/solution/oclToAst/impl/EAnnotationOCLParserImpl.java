@@ -49,7 +49,6 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     /**
      * Data container for all informations around an exception
      * @author Philipp
-     *
      */
     private class ErrorMessageImpl implements ErrorMessage{
         private Exception e;
@@ -146,9 +145,10 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
        if(((EPackage)sPkg).getEAnnotation(OCL_TYPES)!=null){
          ((EPackage)sPkg).getEAnnotation(OCL_TYPES).getContents().clear();
        }
-       System.out.println("cONVERTING package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI());
+       System.out.println("Converting package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI());
        traversalConvertOclAnnotations((EPackage)sPkg);
        try {
+         // FIXME the registry resources are cut differently than the FS resources, namely by subpackage
          registryResource.save(new FileOutputStream(new File(java.net.URI.create(fileUri.toString()))), null);
        } catch (IOException e) {
          getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", registryResource));
