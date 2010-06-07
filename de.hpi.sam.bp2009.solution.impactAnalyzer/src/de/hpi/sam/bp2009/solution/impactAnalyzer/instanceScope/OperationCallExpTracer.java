@@ -12,6 +12,7 @@ import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
@@ -44,15 +45,18 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
         // TODO what about "product"?
     }
 
+    private final EAnnotationOCLParser annotationParser;
+    
     public OperationCallExpTracer(OperationCallExp expression) {
         super(expression);
+        annotationParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
     }
 
     @Override
     public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
         NavigationStep result;
 
-        OCLExpression body = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
+        OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
         if (body != null) {
             // an OCL-specified operation; trace back using the body expression
             result = pathCache.getPathForNode(body);
