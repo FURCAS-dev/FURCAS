@@ -27,18 +27,18 @@ import com.sap.ide.cts.editor.EditorUtil;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.test.util.FixtureBasedTest;
 import com.sap.mi.fwk.ui.ModelManagerUI;
-import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
+import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 
 /**
- * Base class for editor integration tests 
+ * Base class for editor integration tests
  *
  */
 @SuppressWarnings("restriction")
 public class CtsEditorTest extends FixtureBasedTest {
-	
+
 	public interface EditorRunnable {
 		void runEditAction(IDocument document) throws BadLocationException;
 	}
@@ -48,13 +48,13 @@ public class CtsEditorTest extends FixtureBasedTest {
 	    Workbench wb = Workbench.getInstance();
 	    wb.getIntroManager().closeIntro(wb.getIntroManager().getIntro());
 	}
-	
+
 	@After
 	public void cleanup() {
 	    GlobalDelayedReferenceResolver.getInstance().clearUnresolvedIAReferences();
 	}
-	
-	
+
+
 
 	public static List<String> list(String... entries) {
 		ArrayList<String> list = new ArrayList<String>();
@@ -67,8 +67,7 @@ public class CtsEditorTest extends FixtureBasedTest {
 		return list;
 	}
 
-	protected AbstractGrammarBasedEditor openEditor(RefObject refObject)
-			throws PartInitException {
+	protected AbstractGrammarBasedEditor openEditor(RefObject refObject) throws PartInitException {
 		AbstractGrammarBasedEditor editor = (AbstractGrammarBasedEditor) ModelManagerUI
 				.getEditorManager().openEditor(refObject, null, null);
 
@@ -79,9 +78,10 @@ public class CtsEditorTest extends FixtureBasedTest {
 	protected void saveAll(AbstractGrammarBasedEditor editor) throws CoreException {
 		for (Saveable s : editor.getSaveables()) {
 		    s.doSave(new NullProgressMonitor());
-		    GlobalDelayedReferenceResolver.getInstance().resolveReferences(new NullProgressMonitor());
 		}
-		
+
+		GlobalDelayedReferenceResolver.getInstance().resolveReferences(new NullProgressMonitor());
+		// when the above command has returns, we know that the reference resolver has finished running
 		if(!GlobalDelayedReferenceResolver.getInstance().hasEmptyQueue()) {
 		    fail("There are still delayed reference that were not re-evaluated.");
 		}
@@ -99,8 +99,7 @@ public class CtsEditorTest extends FixtureBasedTest {
 			document.completeInit(syntax, rootTemplate, editor.getParserFactory(), editor.getRecoveryStrategy(),editor.getParser(), new NullProgressMonitor());
 		}
 
-		if(document.getRootBlock().getType() == null || 
-			document.getRootBlock().getType().getParseRule() == null) {
+		if(document.getRootBlock().getType() == null || document.getRootBlock().getType().getParseRule() == null) {
 		    fail("Fixture model not correctly initialized check consistency of mapping model and fixture model!");
 		}
 		return document;

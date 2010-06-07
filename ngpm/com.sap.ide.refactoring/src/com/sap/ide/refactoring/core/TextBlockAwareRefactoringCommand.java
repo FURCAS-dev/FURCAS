@@ -11,45 +11,57 @@ import com.sap.tc.moin.repository.commands.CommandStack;
 public abstract class TextBlockAwareRefactoringCommand extends Command {
 
     protected RefactoringEditorFacade facade;
-    
-    private String preExecutionContent;
-    private String postExecutionContent;
+
+    private String preExecutionText;
+    private String postExecutionText;
     private RefactoringResult result;
-    
+
     private CommandHandle selfExecutionHandle;
 
     public TextBlockAwareRefactoringCommand(RefactoringEditorFacade facade, String description) {
 	super(facade.getConnection(), description);
 	this.facade = facade;
     }
-    
+
     /**
-     * Do what is necessary so that {@link #getPostExecutionContent()} reflects the desired changes.
-     * 
+     * Do what is necessary so that {@link #getTextualPostExecutionRepresentation()} reflects the desired changes.
+     *
      * @return A change object describing the performed changes.
      * The workspace remains unchanged until {@link Change#perform} is called.
      */
     public RefactoringResult runRefactoringForPreview() {
-	// Execute this refactoring and gather the preview content
+	System.out.println("-- Enter preview routine");
+	// Execute this refactoring to generate and gather the preview content
+	// Afterwards rollback the command, including all automatically, subsequently issued
+	// commands like the delayed reference re-resolving
 	runRefactoring();
-	assert result != null : "Refactoring command must provide result";
-	
-	// rollback the changes to the workspace
+
 	CommandStack stack = facade.getConnection().getCommandStack();
-	assert stack.getUndoStack().get(stack.getUndoStack().size()-1).equals(selfExecutionHandle) :
-	    "Refacotoring must be the most recent command .";
-	stack.undo();
-	
+
+	CommandHandle lastUndoneCmd = null;
+	while (stack.canUndo() && !selfExecutionHandle.equals(lastUndoneCmd)) {
+	    lastUndoneCmd = stack.getUndoStack().get(stack.getUndoStack().size()-1);
+	    System.out.println("   Undo refactoring: " + lastUndoneCmd.getDescription());
+	    stack.undo();
+	}
+
+	if (lastUndoneCmd != selfExecutionHandle) {
+	    throw new RefactoringCoreException("Unable to undo refactoring command issued for preview.");
+	}
+
 	// provide our caller with the previously gathered preview information
+	System.out.println("-- Exit preview routine");
 	return result;
     }
-    
+
     /**
-     * Perform the refactoring and apply it to the workspace. 
-     * 
+     * Perform the refactoring and apply it to the workspace.
+     *
      */
     public RefactoringResult runRefactoring() {
+	System.out.println("   Run refactoring: " + this.getDescription());
 	selfExecutionHandle = facade.getConnection().getCommandStack().execute(this);
+	assert result != null : "Refactoring command must provide result";
 	return result;
     }
 
@@ -59,26 +71,26 @@ public abstract class TextBlockAwareRefactoringCommand extends Command {
      */
     @Override
     public void doExecute() {
-	preExecutionContent = facade.getContentAsText();
+	preExecutionText = facade.getContentAsText();
 	performRefactoring();
 	RefactoringStatus status = validateChanges();
 	Change change = createChange();
-	postExecutionContent = facade.getContentAsText();
+	postExecutionText = facade.getContentAsText();
 	result = new RefactoringResult(change, status);
     }
-    
+
     /**
      * Do everything that is needed to transform the domain and the textblocks model.
      * This is run within the command context.
      */
-    protected abstract void performRefactoring();      
-    
+    protected abstract void performRefactoring();
+
     /**
-     * Validate the performed changes (e.g. show warning due to potential name conflicts).
+     * Post-Validate the performed changes (e.g. show warning due to potential name conflicts).
      * This is run within the command context; immediately before {@link #createChange()}.
      */
     protected abstract RefactoringStatus validateChanges();
-    
+
     /**
      * Change Factory Method. Can be subclassed by clients if needed.
      * This is run within the command context; immediately after {@link #validateChanges()}
@@ -86,13 +98,13 @@ public abstract class TextBlockAwareRefactoringCommand extends Command {
     protected Change createChange() {
 	return new TextBlockAwareModelChange(facade, this);
     }
-    
-    public String getPreExecutionContent() {
-        return preExecutionContent;
+
+    public String getTextualPreExecutionRepresentation() {
+        return preExecutionText;
     }
 
-    public String getPostExecutionContent() {
-        return postExecutionContent;
+    public String getTextualPostExecutionRepresentation() {
+        return postExecutionText;
     }
 
 }

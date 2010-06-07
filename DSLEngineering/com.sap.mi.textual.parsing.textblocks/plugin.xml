@@ -4,7 +4,7 @@
    <extension-point id="com.sap.mi.textual.parsing.referenceResolvingRegistration" name="ConcreteSyntax for Reference Resolving" schema="schema/com.sap.mi.textual.parsing.referenceResolvingRegistration.exsd"/>
    <extension
          point="com.sap.tc.moin.globalmodellistener.eventListeners">
-         <listener classname="com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver" />
+         <listener classname="com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver" />
    </extension>
 
 </plugin>

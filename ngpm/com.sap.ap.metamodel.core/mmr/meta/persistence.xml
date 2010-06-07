@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Tue May 11 23:22:30 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Sat Jun 05 15:55:21 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -305,7 +305,7 @@ inv:
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a49AE7B73034A' 
               name = 'all' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -317,21 +317,21 @@ inv:
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.934' 
+    <Model:Import xmi.id = 'G.789' 
       name = 'data' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'data.xml|a453E0C08006D'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.935' 
+    <Model:Import xmi.id = 'G.790' 
       name = 'dataaccess' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'dataaccess.xml|a453E0CD8006C'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.936' 
+    <Model:Import xmi.id = 'G.791' 
       name = 'behavioral' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

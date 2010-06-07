@@ -11,6 +11,8 @@ import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
@@ -169,7 +171,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	Set<AnnotatedRefObjectImpl> result = Collections.singleton(fromObject);
 	if (isAlwaysEmpty()) {
 	    result = Collections.emptySet();
@@ -177,7 +179,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	    // If the navigation along the sequence produces an empty set, we can abort
 	    // the navigation.
 	    for (int i=0; !result.isEmpty() && i<getSteps().length; i++) {
-		result = getSteps()[i].navigate(conn, result, cache);
+		result = getSteps()[i].navigate(conn, result, cache, throwExceptionWhenVisiting);
 	    }
 	}
 	return result;

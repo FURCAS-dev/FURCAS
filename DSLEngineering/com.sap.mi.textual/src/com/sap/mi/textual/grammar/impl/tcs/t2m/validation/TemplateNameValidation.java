@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-09-18 14:13:44 +0200 (Fr, 18 Sep 2009) $
- * @version $Revision: 7886 $
+ * Date: $Date: 2010-05-20 15:12:26 +0200 (Do, 20 Mai 2010) $
+ * @version $Revision: 9718 $
  * @author: $Author: c5106462 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl.tcs.t2m.validation;

@@ -10,6 +10,8 @@ import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
@@ -110,11 +112,11 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
     }
     
     @Override
-    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	Set<AnnotatedRefObjectImpl> result = new HashSet<AnnotatedRefObjectImpl>();
 	for (NavigationStep singleStep : getSteps()) {
 	    Set<AnnotatedRefObjectImpl> fromSet = Collections.singleton(fromObject);
-	    result.addAll(singleStep.navigate(conn, fromSet, cache));
+	    result.addAll(singleStep.navigate(conn, fromSet, cache, throwExceptionWhenVisiting));
 	}
 	return result;
     }

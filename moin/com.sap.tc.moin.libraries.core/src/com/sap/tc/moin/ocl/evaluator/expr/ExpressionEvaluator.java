@@ -71,7 +71,8 @@ public abstract class ExpressionEvaluator {
      * 
      * @param throwExceptionWhenVisiting an exception will be thrown when the evaluator tries to
      * navigate the {@link Pair#getA()} feature (an {@link Attribute} or {@link AssociationEnd})
-     * starting at the {@link Pair#getB()} element.
+     * starting at the {@link Pair#getB()} element. May be <tt>null</tt> which has the same effect
+     * as passing an empty map.
      */
     public abstract OclAny evaluate(CoreConnection connection, PropertyCallExp expression, OclAny sourceObject,
 	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting);
@@ -120,4 +121,17 @@ public abstract class ExpressionEvaluator {
         }
         return instance;
     }
+
+    /**
+     * Evaluates an OCL iterator expression body with a single iterator variable and sets the iterator variable to the
+     * <tt>sourceObject</tt> passed.
+     * 
+     * @param throwExceptionWhenVisiting
+     *            an exception will be thrown when the evaluator tries to navigate the {@link Pair#getA()} feature (an
+     *            {@link Attribute} or {@link AssociationEnd}) starting at the {@link Pair#getB()} element. May be
+     *            <tt>null</tt> which has the same effect as passing an empty map.
+     */
+    public abstract OclAny evaluateIteratorBody(CoreConnection connection, OclExpression expression,
+	    String iteratorName, OclAny sourceObject,
+	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting);
 }

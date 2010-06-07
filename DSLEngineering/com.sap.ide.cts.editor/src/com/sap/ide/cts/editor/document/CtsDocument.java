@@ -20,7 +20,7 @@ import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
 import com.sap.mi.fwk.ui.editor.ModelEditorInput;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
-import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
+import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
@@ -31,9 +31,9 @@ import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
 /**
  * A document implementation that is responsible for presenting a text blocks
  * model as an eclipse document to work on.
- * 
+ *
  * @author C5106462
- * 
+ *
  */
 public class CtsDocument extends AbstractDocument {
 
@@ -65,8 +65,8 @@ public class CtsDocument extends AbstractDocument {
      * @param parserFactory
      * @param recoveryStrategy
      * @param observableInjectingParser
-     * @param monitor 
-     * 
+     * @param monitor
+     *
      * @param grammarBasedEditor
      */
     public void completeInit(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
@@ -74,7 +74,6 @@ public class CtsDocument extends AbstractDocument {
 	    ModelEditorInputRecoveryStrategy recoveryStrategy, ObservableInjectingParser observableInjectingParser, IProgressMonitor monitor) {
 
 	syntax = concreteSyntax;
-	GlobalDelayedReferenceResolver.getInstance();
 	GlobalDelayedReferenceResolver.getInstance().registerReferenceForIncrementalEvaluation(syntax, syntax.get___Connection(),
 		MoinHelper.getOutermostPackageThroughClusteredImports(
 			syntax.get___Connection(), modelEditorInput.getRefObject()), observableInjectingParser,
@@ -112,20 +111,20 @@ public class CtsDocument extends AbstractDocument {
 	// document
 	completelyItitialized = true;
 	furcasDocumentSetupParticpant.setupCallback(this);
-	
+
 	//synchronize all tokens with values from model
 	textBlocksModelStore.expandToEditableVersion();
 	getTracker().set(rootBlock.getCachedString());
-	
+
 	//enable usage of cached string for get() operations as it is faster.
 	((TextBlocksModelStore)getStore()).getModel().setUsecache(true);
     }
 
-    
+
     /**
      * Get a corresponding root TextBlock for the given rootObject.
      * If no TextBlock does exist yet, a new one is created.
-     * 
+     *
      * @param concreteSyntax
      * @param rootTemplate
      * @param parserFactory
@@ -136,7 +135,7 @@ public class CtsDocument extends AbstractDocument {
     private TextBlock determineRootBlockForRootObject(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
 	    ModelEditorInputRecoveryStrategy recoveryStrategy, RefObject inputObject) {
-	
+
 	Connection con = rootObject.get___Connection();
 	TextblocksPackage tbPackage = con.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
 	TextBlock rootBlock = null;
@@ -218,7 +217,7 @@ public class CtsDocument extends AbstractDocument {
     /**
      * If {@link #completeInitialization()} was not called after the document
      * was created the method will return <code>false</code>.
-     * 
+     *
      * @return <code>true</code> if the Document was already completely
      *         initialized, <code>false</code> else.
      */

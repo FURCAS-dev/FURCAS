@@ -444,7 +444,7 @@ public class TestBasicExpressions extends TestCase {
 		    numberClass);
 	    s1.setOutput(numberTD);
 	    Block s1Impl = conn.createElement(Block.CLASS_DESCRIPTOR);
-	    s1.setImplementation(s1Impl);
+	    s1Impl.setImplements(s1);
 	    Return s1ImplReturn = conn.createElement(Return.CLASS_DESCRIPTOR);
 	    s1ImplReturn.setArgument(MetamodelUtils.createNumberLiteral(conn, "12345"));
 	    s1Impl.getStatements().add(s1ImplReturn);
@@ -467,7 +467,8 @@ public class TestBasicExpressions extends TestCase {
 	    c1ToC2Mce.setMethodSignature(s1);
 	    c1ToC2AdapterImplReturn.setArgument(c1ToC2Mce);
 	    impl.getStatements().add(c1ToC2AdapterImplReturn);
-	    adapterSig.setImplementation(impl);
+	    
+	    impl.setImplements(adapterSig);
 	    adapterSig.setOutput(numberTD);
 	    adapter.getOwnedSignatures().add(adapterSig);
 
@@ -490,7 +491,7 @@ public class TestBasicExpressions extends TestCase {
 	    c2ToC3Mce.setMethodSignature(s2);
 	    c2ToC3AdapterImplReturn.setArgument(c2ToC3Mce);
 	    impl2.getStatements().add(c2ToC3AdapterImplReturn);
-	    adapter2Sig.setImplementation(impl2);
+	    impl2.setImplements(adapter2Sig);
 	    adapter2.getOwnedSignatures().add(adapter2Sig);
 	    Collection<JmiException> exceptions = adapter
 		    .refVerifyConstraints(/* deepVerify */false);
@@ -775,7 +776,7 @@ public class TestBasicExpressions extends TestCase {
 		sig.setOutput(end.getType());
 		LinkTraversal getterImpl = conn.createElement(LinkTraversal.CLASS_DESCRIPTOR);
 		getterImpl.setEnd(end);
-		sig.setImplementation(getterImpl);
+		getterImpl.setImplements(sig);
 		break;
 	    case SETTER:
 		sig = conn.createElement(MethodSignature.CLASS_DESCRIPTOR);
@@ -785,7 +786,7 @@ public class TestBasicExpressions extends TestCase {
 		sig.getInput().add(param);
 		LinkSetting setterImpl = conn.createElement(LinkSetting.CLASS_DESCRIPTOR);
 		setterImpl.setEnd(end);
-		sig.setImplementation(setterImpl);
+		setterImpl.setImplements(sig);
 		break;
 	    case ADDER:
 		sig = conn.createElement(MethodSignature.CLASS_DESCRIPTOR);
@@ -795,7 +796,7 @@ public class TestBasicExpressions extends TestCase {
 		sig.getInput().add(param);
 		LinkAddition adderImpl = conn.createElement(LinkAddition.CLASS_DESCRIPTOR);
 		adderImpl.setEnd(end);
-		sig.setImplementation(adderImpl);
+		adderImpl.setImplements(sig);
 		break;
 	    case REMOVER:
 		sig = conn.createElement(MethodSignature.CLASS_DESCRIPTOR);
@@ -805,7 +806,7 @@ public class TestBasicExpressions extends TestCase {
 		sig.getInput().add(param);
 		LinkRemoval removerImpl = conn.createElement(LinkRemoval.CLASS_DESCRIPTOR);
 		removerImpl.setEnd(end);
-		sig.setImplementation(removerImpl);
+		removerImpl.setImplements(sig);
 		break;
 	    }
 	    otherEndClass.getOwnedSignatures().add(sig);

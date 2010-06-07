@@ -99,4 +99,8 @@ public class EvaluationContextImpl implements EvaluationContext {
         }
         this.variables.put( name, value );
     }
+    
+    public void unsetVariable(String name) {
+	this.variables.remove(name);
+    }
 }

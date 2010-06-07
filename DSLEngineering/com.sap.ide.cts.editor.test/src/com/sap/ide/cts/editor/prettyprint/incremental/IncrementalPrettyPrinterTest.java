@@ -61,7 +61,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
 						getProject(), new Path("src/Package1235568260162.types")));
 		method.setName("testMethod");
-		method.setOwner(clazz);
+		clazz.getOwnedSignatures().add(method);
 		try
 		{
 			connection.save();
@@ -96,7 +96,8 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
 						getProject(), new Path("src/Package1235568260162.types")));
 		method.setName("testMethod");
-		method.setOwner(clazz);
+		
+		clazz.getOwnedSignatures().add(method);
 		
 		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
@@ -218,7 +219,8 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
 						getProject(), new Path("src/Package1235568260162.types")));
 		method.setName("methodFromClass6");
-		method.setOwner(clazz);
+		
+		clazz.getOwnedSignatures().add(method);
 		
 		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
@@ -230,7 +232,8 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 		
 		this.printTextBlock(action.getRootBlock());
 		
-		method.setOwner(clazz2);
+		
+		clazz.getOwnedSignatures().add(method);
 		
 		action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);

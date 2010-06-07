@@ -8,6 +8,7 @@ import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
@@ -33,11 +34,11 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
  * 
  */
 public interface NavigationStep {
-    Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, Set<AnnotatedRefObjectImpl> from, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache);
+    Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, Set<AnnotatedRefObjectImpl> from, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting);
     
     /**
      * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is
-     * passed to {@link #navigate(CoreConnection, Set, Map)}. Those must return <tt>true</tt> here.
+     * passed to {@link #navigate(CoreConnection, Set, Map, Set)}. Those must return <tt>true</tt> here.
      * Examples are navigation steps returning all instances of a given type and the step always
      * returning the empty set.
      */

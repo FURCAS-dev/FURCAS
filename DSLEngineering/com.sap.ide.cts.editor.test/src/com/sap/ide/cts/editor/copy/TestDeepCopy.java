@@ -295,7 +295,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	pkg.setName("TestPakage");
 	c1.setPackage(pkg);
 	c2.setPackage(pkg);
-	a.setPackage(pkg);
+	pkg.getAssociations().add(a);
 
 	// make sure it that our assert works right
 	AssociationEnd originalFirst = a.getEnds().get(0);

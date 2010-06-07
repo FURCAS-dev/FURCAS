@@ -24,6 +24,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources;bundle-version="3.4.2"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
-Export-Package: com.sap.ide.refactoring.action.rename,
- com.sap.ide.refactoring.core.model,
- com.sap.ide.refactoring.core.textual
+Export-Package: com.sap.ide.refactoring.core.model.rename,
+ com.sap.ide.refactoring.op.rename

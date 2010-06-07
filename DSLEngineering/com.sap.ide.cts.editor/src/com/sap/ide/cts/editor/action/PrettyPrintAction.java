@@ -16,6 +16,7 @@ import textblocks.TextblocksPackage;
 import com.sap.ide.cts.dialogs.ChooseConcreteSyntaxDialog;
 import com.sap.ide.cts.dialogs.ChoosePrettyPrintModeDialog;
 import com.sap.ide.cts.dialogs.PrettyPrinterInfoDialog;
+import com.sap.ide.cts.dialogs.PrettyPrintingModes;
 import com.sap.ide.cts.editor.prettyprint.CtsTextBlockIncrementalTCSExtractorStream;
 import com.sap.ide.cts.editor.prettyprint.IncrementalPrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
@@ -116,10 +117,19 @@ public class PrettyPrintAction extends Action {
 				}
 				
 				boolean ppMode = false;
-				Object mode = new ChoosePrettyPrintModeDialog().execute(null);
-				if(mode instanceof String && mode.equals("conservative"))
+				ChoosePrettyPrintModeDialog ppmDialog = new ChoosePrettyPrintModeDialog();
+				ppmDialog.open();
+				PrettyPrintingModes mode = ppmDialog.getSelectedMode();
+				if(mode == null)
 				{
-					ppMode = true;
+					mode = PrettyPrintingModes.PROGRESSIVE;
+				}
+				switch(mode)
+				{
+					case CONSERVATIVE:
+					{
+						ppMode = true;
+					}
 				}
 
 				// Choose corresponding parser factory

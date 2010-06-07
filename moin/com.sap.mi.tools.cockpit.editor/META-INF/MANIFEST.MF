@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide,
  org.eclipse.ui.views,
  org.eclipse.ui.editors,
- org.eclipse.core.resources
+ org.eclipse.core.resources,
+ org.eclipse.core.expressions;bundle-version="3.4.100"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.mi.tools.cockpit.editor.model.properties
