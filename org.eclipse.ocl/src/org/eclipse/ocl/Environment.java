@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: Environment.java,v 1.6 2007/12/14 17:09:29 cdamus Exp $
+ * $Id: Environment.java,v 1.7 2010/05/03 09:32:32 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -773,8 +773,8 @@ public interface Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	/**
 	 * <p>
 	 * An interface that merges the {@link Environment} and
-	 * {@link BasicEnviroment} interfaces that define the
-	 * behaviour realised in abstract form by {@link AbstractEnviroment}.
+	 * {@link BasicEnvironment} interfaces that define the
+	 * behaviour realised in abstract form by {@link AbstractEnvironment}.
 	 * The purpose of this interface is primarily for internal use by the
 	 * parser and/or the particular environment implementation and its
 	 * corresponding factory.  Client applications will not usually need to

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenBaseImpl.java,v 1.73 2010/02/04 20:56:54 emerks Exp $
+ * $Id: GenBaseImpl.java,v 1.74 2010/06/04 14:14:15 khussey Exp $
  */
 package org.eclipse.emf.codegen.ecore.genmodel.impl;
 
@@ -2541,22 +2541,39 @@ public abstract class GenBaseImpl extends EObjectImpl implements GenBase
         {
           case '\n':
           {
-            stringBuffer.replace(i, i + (i + 1 < stringBuffer.length() && stringBuffer.charAt(i + 1) == '\r' ? 2 : 1), separator);
-            i += increment;
+            boolean crNext = i + 1 < stringBuffer.length() && stringBuffer.charAt(i + 1) == '\r';
+            if (escape)
+            {
+              stringBuffer.replace(i, i + (crNext ? 2 : 1), (crNext ? "\\n\\r" : "\\n") + separator);
+              i += increment + (crNext ? 4 : 2);
+            }
+            else
+            {
+              stringBuffer.replace(i, i + (crNext ? 2 : 1), separator);
+              i += increment;
+            }
             break;
           }
           case '\r':
           {
-            stringBuffer.replace(i, i + (i + 1 < stringBuffer.length() && stringBuffer.charAt(i + 1) == '\n' ? 2 : 1), separator);
-            i += increment;
+            boolean lfNext = i + 1 < stringBuffer.length() && stringBuffer.charAt(i + 1) == '\n';
+            if (escape)
+            {
+              stringBuffer.replace(i, i + (lfNext ? 2 : 1), (lfNext ? "\\r\\n" : "\\r") + separator);
+              i += increment + (lfNext ? 4 : 2);
+            }
+            else
+            {
+              stringBuffer.replace(i, i + (lfNext ? 2 : 1), separator);
+              i += increment;
+            }
             break;
           }
           case '\b':
           {
             if (escape)
             {
-              stringBuffer.replace(i, i + 1, "\\b");
-              i += 1;              
+              stringBuffer.replace(i, ++i, "\\b");
             }
             break;
           }
@@ -2564,8 +2581,7 @@ public abstract class GenBaseImpl extends EObjectImpl implements GenBase
           {
             if (escape)
             {
-              stringBuffer.replace(i, i + 1, "\\t");
-              i += 1;              
+              stringBuffer.replace(i, ++i, "\\t");
             }
             break;
           }
@@ -2573,8 +2589,7 @@ public abstract class GenBaseImpl extends EObjectImpl implements GenBase
           {
             if (escape)
             {
-              stringBuffer.replace(i, i + 1, "\\f");
-              i += 1;              
+              stringBuffer.replace(i, ++i, "\\f");
             }
             break;
           }
@@ -2582,17 +2597,7 @@ public abstract class GenBaseImpl extends EObjectImpl implements GenBase
           {
             if (escape)
             {
-              stringBuffer.replace(i, i + 1, "\\\"");
-              i += 1;              
-            }
-            break;
-          }
-          case '\'':
-          {
-            if (escape)
-            {
-              stringBuffer.replace(i, i + 1, "\\\'");
-              i += 1;              
+              stringBuffer.replace(i, ++i, "\\\"");
             }
             break;
           }
@@ -2600,8 +2605,7 @@ public abstract class GenBaseImpl extends EObjectImpl implements GenBase
           {
             if (escape)
             {
-              stringBuffer.replace(i, i + 1, "\\\\");
-              i += 1;              
+              stringBuffer.replace(i, ++i, "\\\\");
             }
             break;
           }

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.14 2008/11/24 00:24:49 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.15 2010/04/23 05:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -32,8 +32,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.uml.TypeType;
 import org.eclipse.ocl.uml.UMLPackage;
-
-//import org.eclipse.ocl.uml.internal.operations.TypeTypeOperations;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.uml2.common.util.CacheAdapter;

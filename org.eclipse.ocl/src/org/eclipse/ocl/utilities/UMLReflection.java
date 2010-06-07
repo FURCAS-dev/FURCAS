@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflection.java,v 1.6 2010/02/08 20:57:24 ewillink Exp $
+ * $Id: UMLReflection.java,v 1.7 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -630,7 +630,7 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
     /**
      * Obtains the list of element constraint by a constraint, as a list of
      * {@link EObject}s.  This list is modifiable, but only after an unsafe cast to
-     * establish a lower type bound. Therefore the {@link addConstrainedElement} method
+     * establish a lower type bound. Therefore the {@link #addConstrainedElement} method
      * should be used instead.
      * 
      * @param constraint a constraint

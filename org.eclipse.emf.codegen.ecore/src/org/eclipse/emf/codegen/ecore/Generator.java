@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2002-2008 IBM Corporation and others.
+ * Copyright (c) 2002-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Generator.java,v 1.37 2008/12/22 14:25:18 emerks Exp $
+ * $Id: Generator.java,v 1.39 2010/04/28 20:38:15 khussey Exp $
  */
 package org.eclipse.emf.codegen.ecore;
 
@@ -482,6 +482,7 @@ public class Generator extends CodeGen
   public static int EMF_PLUGIN_PROJECT_STYLE = 0x0010;
   public static int EMF_EMPTY_PROJECT_STYLE  = 0x0020;
   public static int EMF_TESTS_PROJECT_STYLE  = 0x0040;
+  public static int EMF_GWT_PROJECT_STYLE    = 0x0080;
 
   public static IProject createEMFProject
     (IPath javaSource,
@@ -715,7 +716,10 @@ public class Generator extends CodeGen
           String [] natureIds = projectDescription.getNatureIds();
           if (natureIds == null)
           {
-            natureIds = new String [] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" };
+            natureIds = 
+              ((style & EMF_GWT_PROJECT_STYLE) == 0 ? 
+                  new String [] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" } :
+                  new String [] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature", "com.google.gwt.eclipse.core.gwtNature" });
           }
           else
           {
@@ -733,6 +737,13 @@ public class Generator extends CodeGen
               System.arraycopy(oldNatureIds, 0, natureIds, 0, oldNatureIds.length);
               natureIds[oldNatureIds.length] = "org.eclipse.pde.PluginNature";
             }
+            if ((style & EMF_GWT_PROJECT_STYLE) != 0 && !project.hasNature("com.google.gwt.eclipse.core.gwtNature"))
+            {
+              String [] oldNatureIds = natureIds;
+              natureIds = new String [oldNatureIds.length + 1];
+              System.arraycopy(oldNatureIds, 0, natureIds, 0, oldNatureIds.length);
+              natureIds[oldNatureIds.length] = "com.google.gwt.eclipse.core.gwtNature";
+            }
           }
           projectDescription.setNatureIds(natureIds);
   
@@ -743,6 +754,8 @@ public class Generator extends CodeGen
           }
           boolean hasManifestBuilder = false;
           boolean hasSchemaBuilder = false;
+          boolean hasGWTProjectValidator = false;
+          boolean hasWebAppProjectValidator = false;
           for (int i = 0; i < builders.length; ++i)
           {
             if ("org.eclipse.pde.ManifestBuilder".equals(builders[i].getBuilderName()))
@@ -752,6 +765,14 @@ public class Generator extends CodeGen
             if ("org.eclipse.pde.SchemaBuilder".equals(builders[i].getBuilderName()))
             {
               hasSchemaBuilder = true;
+            }
+            if ("com.google.gwt.eclipse.core.gwtProjectValidator".equals(builders[i].getBuilderName()))
+            {
+              hasGWTProjectValidator = true;
+            }
+            if ("com.google.gdt.eclipse.core.webAppProjectValidator".equals(builders[i].getBuilderName()))
+            {
+              hasWebAppProjectValidator = true;
             }
           }
           if (!hasManifestBuilder)
@@ -769,6 +790,22 @@ public class Generator extends CodeGen
             System.arraycopy(oldBuilders, 0, builders, 0, oldBuilders.length);
             builders[oldBuilders.length] = projectDescription.newCommand();
             builders[oldBuilders.length].setBuilderName("org.eclipse.pde.SchemaBuilder");
+          }
+          if ((style & EMF_GWT_PROJECT_STYLE) != 0 && !hasGWTProjectValidator)
+          {
+            ICommand [] oldBuilders = builders;
+            builders = new ICommand [oldBuilders.length + 1];
+            System.arraycopy(oldBuilders, 0, builders, 0, oldBuilders.length);
+            builders[oldBuilders.length] = projectDescription.newCommand();
+            builders[oldBuilders.length].setBuilderName("com.google.gwt.eclipse.core.gwtProjectValidator");
+          }
+          if ((style & EMF_GWT_PROJECT_STYLE) != 0 && !hasWebAppProjectValidator)
+          {
+            ICommand [] oldBuilders = builders;
+            builders = new ICommand [oldBuilders.length + 1];
+            System.arraycopy(oldBuilders, 0, builders, 0, oldBuilders.length);
+            builders[oldBuilders.length] = projectDescription.newCommand();
+            builders[oldBuilders.length].setBuilderName("com.google.gdt.eclipse.core.webAppProjectValidator");
           }
           projectDescription.setBuildSpec(builders);
   
@@ -835,6 +872,11 @@ public class Generator extends CodeGen
             if ((style & EMF_PLUGIN_PROJECT_STYLE) != 0)
             {
               classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")));
+
+              if ((style & EMF_GWT_PROJECT_STYLE) != 0)
+              {
+                classpathEntries.add(JavaCore.newContainerEntry(new Path("com.google.gwt.eclipse.core.GWT_CONTAINER")));
+              }
   
               // Remove variables since the plugin.xml should provide the complete path information.
               //
@@ -886,7 +928,7 @@ public class Generator extends CodeGen
               {
                 CodeGenUtil.EclipseUtil.addClasspathEntries(classpathEntries, "JUNIT", "org.junit");
               }
-  
+
               if (pluginVariables != null)
               {
                 for (Iterator<?> i = pluginVariables.iterator(); i.hasNext(); )

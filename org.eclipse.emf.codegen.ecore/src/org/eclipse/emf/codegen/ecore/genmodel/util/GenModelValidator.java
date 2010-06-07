@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2007 IBM Corporation and others.
+ * Copyright (c) 2007-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenModelValidator.java,v 1.5 2010/03/11 02:31:38 khussey Exp $
+ * $Id: GenModelValidator.java,v 1.7 2010/04/28 20:38:17 khussey Exp $
  */
 package org.eclipse.emf.codegen.ecore.genmodel.util;
 
@@ -155,6 +155,8 @@ public class GenModelValidator extends EObjectValidator
         return validateGenJDKLevel((GenJDKLevel)value, diagnostics, context);
       case GenModelPackage.GEN_RUNTIME_VERSION:
         return validateGenRuntimeVersion((GenRuntimeVersion)value, diagnostics, context);
+      case GenModelPackage.GEN_RUNTIME_PLATFORM:
+        return validateGenRuntimePlatform((GenRuntimePlatform)value, diagnostics, context);
       default:
         return true;
     }
@@ -401,6 +403,16 @@ public class GenModelValidator extends EObjectValidator
    * @generated
    */
   public boolean validateGenRuntimeVersion(GenRuntimeVersion genRuntimeVersion, DiagnosticChain diagnostics, Map<Object, Object> context)
+  {
+    return true;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateGenRuntimePlatform(GenRuntimePlatform genRuntimePlatform, DiagnosticChain diagnostics, Map<Object, Object> context)
   {
     return true;
   }

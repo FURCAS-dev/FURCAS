@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenClassifierImpl.java,v 1.16 2009/11/16 19:26:46 khussey Exp $
+ * $Id: GenClassifierImpl.java,v 1.17 2010/06/04 14:14:15 khussey Exp $
  */
 package org.eclipse.emf.codegen.ecore.genmodel.impl;
 

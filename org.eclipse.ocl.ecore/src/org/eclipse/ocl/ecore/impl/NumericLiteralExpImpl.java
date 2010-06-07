@@ -12,12 +12,11 @@
  *
  * </copyright>
  *
- * $Id: NumericLiteralExpImpl.java,v 1.4 2008/11/24 00:39:36 cdamus Exp $
+ * $Id: NumericLiteralExpImpl.java,v 1.5 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.NumericLiteralExp;
 

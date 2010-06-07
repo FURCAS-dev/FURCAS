@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.11 2010/02/09 21:04:21 ewillink Exp $
+ * $Id: AbstractParser.java,v 1.12 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -112,7 +112,6 @@ public abstract class AbstractParser {
 	}
 
 	/**
-	 * @return
 	 * @deprecated clients should invoke {@link #parser()}
 	 */
 	@Deprecated

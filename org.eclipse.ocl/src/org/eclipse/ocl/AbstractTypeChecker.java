@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.7 2010/02/03 19:54:13 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.8 2010/05/03 09:32:32 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -63,7 +63,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * </p>
  * <p>
  * This class is not intended to be extended by clients. They should extend
- * {@link AbstractTypeResolver} instead, so that {@link TypeChekcer} can be
+ * {@link AbstractTypeResolver} instead, so that {@link TypeChecker} can be
  * successfully adapted by {@link AbstractEnvironment}. However, if an already
  * implemented {@link TypeResolver} wants to exploit the type checking system
  * extensibility, it may extend this class.
@@ -752,15 +752,10 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 	 * Finds the most specific (re)definition of an attribute in the specified
 	 * classifier.
 	 * 
-	 * @param env
-	 *            the OCL environment
 	 * @param owner
 	 *            the classifier to search
 	 * @param name
 	 *            the name of the operation
-	 * @param args
-	 *            a list of arguments to match against the operation signature,
-	 *            as either expressions or variables
 	 * 
 	 * @return the matching operation, or <code>null</code> if not found
 	 */

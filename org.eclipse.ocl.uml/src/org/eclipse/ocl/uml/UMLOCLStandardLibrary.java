@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLOCLStandardLibrary.java,v 1.3 2010/04/08 06:23:32 ewillink Exp $
+ * $Id: UMLOCLStandardLibrary.java,v 1.4 2010/05/03 09:32:43 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -136,7 +136,7 @@ public class UMLOCLStandardLibrary implements OCLStandardLibrary<Classifier>{
 	}
 	
 	/**
-	 * @return the {@link EPackage} which contains the OCL predefined types.
+	 * @return the {@link Package} which contains the OCL predefined types.
 	 */
 	public Package getOCLStdLibPackage() {
 		return OCLStandardLibraryImpl.stdlibPackage;

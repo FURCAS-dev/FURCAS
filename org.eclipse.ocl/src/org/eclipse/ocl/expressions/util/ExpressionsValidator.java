@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsValidator.java,v 1.2 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: ExpressionsValidator.java,v 1.3 2010/04/23 05:53:03 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.util;
 
@@ -21,12 +21,46 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.EObjectValidator;
-
 import org.eclipse.ocl.expressions.*;
+import org.eclipse.ocl.expressions.AssociationClassCallExp;
+import org.eclipse.ocl.expressions.BooleanLiteralExp;
+import org.eclipse.ocl.expressions.CallExp;
+import org.eclipse.ocl.expressions.CollectionItem;
+import org.eclipse.ocl.expressions.CollectionKind;
+import org.eclipse.ocl.expressions.CollectionLiteralExp;
+import org.eclipse.ocl.expressions.CollectionLiteralPart;
+import org.eclipse.ocl.expressions.CollectionRange;
+import org.eclipse.ocl.expressions.EnumLiteralExp;
+import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.expressions.FeatureCallExp;
+import org.eclipse.ocl.expressions.IfExp;
+import org.eclipse.ocl.expressions.IntegerLiteralExp;
+import org.eclipse.ocl.expressions.InvalidLiteralExp;
+import org.eclipse.ocl.expressions.IterateExp;
+import org.eclipse.ocl.expressions.IteratorExp;
+import org.eclipse.ocl.expressions.LetExp;
+import org.eclipse.ocl.expressions.LiteralExp;
+import org.eclipse.ocl.expressions.LoopExp;
+import org.eclipse.ocl.expressions.MessageExp;
+import org.eclipse.ocl.expressions.NavigationCallExp;
+import org.eclipse.ocl.expressions.NullLiteralExp;
+import org.eclipse.ocl.expressions.NumericLiteralExp;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.expressions.OperationCallExp;
+import org.eclipse.ocl.expressions.PrimitiveLiteralExp;
+import org.eclipse.ocl.expressions.PropertyCallExp;
+import org.eclipse.ocl.expressions.RealLiteralExp;
+import org.eclipse.ocl.expressions.StateExp;
+import org.eclipse.ocl.expressions.StringLiteralExp;
+import org.eclipse.ocl.expressions.TupleLiteralExp;
+import org.eclipse.ocl.expressions.TupleLiteralPart;
+import org.eclipse.ocl.expressions.TypeExp;
+import org.eclipse.ocl.expressions.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.expressions.UnspecifiedValueExp;
+import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.internal.OCLPlugin;
 
 /**

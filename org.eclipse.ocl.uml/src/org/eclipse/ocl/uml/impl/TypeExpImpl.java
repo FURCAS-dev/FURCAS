@@ -13,20 +13,16 @@
  * 
  * </copyright>
  *
- * $Id: TypeExpImpl.java,v 1.7 2009/01/23 17:16:11 cdamus Exp $
+ * $Id: TypeExpImpl.java,v 1.8 2010/04/23 05:52:13 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.expressions.ExpressionsPackage;
-
 import org.eclipse.ocl.uml.TypeExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;

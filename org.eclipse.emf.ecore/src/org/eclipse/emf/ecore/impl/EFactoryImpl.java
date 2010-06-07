@@ -70,183 +70,176 @@ import org.eclipse.emf.ecore.xml.type.util.XMLTypeUtil;
 public class EFactoryImpl extends EModelElementImpl implements EFactory
 {
   /**
-   * The cached value of the '{@link #getEPackage() <em>EPackage</em>}' reference.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getEPackage() <em>EPackage</em>}' reference.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEPackage()
-   * @generated
-   * @ordered
-   */
+     * @see #getEPackage()
+     * @generated
+     * @ordered
+     */
   protected EPackage ePackage;
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   protected EFactoryImpl()
   {
-    super();
-  }
+        super();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   protected EClass eStaticClass()
   {
-    return EcorePackage.Literals.EFACTORY;
-  }
+        return EcorePackage.Literals.EFACTORY;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public EPackage getEPackage()
   {
-    return ePackage;
-  }
+        return ePackage;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setEPackage(EPackage newEPackage)
   {
-    if (newEPackage != ePackage)
-    {
-      NotificationChain msgs = null;
-      if (ePackage != null)
-        msgs = ((InternalEObject)ePackage).eInverseRemove(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE, EPackage.class, msgs);
-      if (newEPackage != null)
-        msgs = ((InternalEObject)newEPackage).eInverseAdd(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE, EPackage.class, msgs);
-      msgs = basicSetEPackage(newEPackage, msgs);
-      if (msgs != null) msgs.dispatch();
+        if (newEPackage != ePackage) {
+            NotificationChain msgs = null;
+            if (ePackage != null)
+                msgs = ((InternalEObject)ePackage).eInverseRemove(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE, EPackage.class, msgs);
+            if (newEPackage != null)
+                msgs = ((InternalEObject)newEPackage).eInverseAdd(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE, EPackage.class, msgs);
+            msgs = basicSetEPackage(newEPackage, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EFACTORY__EPACKAGE, newEPackage, newEPackage));
     }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EFACTORY__EPACKAGE, newEPackage, newEPackage));
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public NotificationChain basicSetEPackage(EPackage newEPackage, NotificationChain msgs)
   {
-    EPackage oldEPackage = ePackage;
-    ePackage = newEPackage;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.EFACTORY__EPACKAGE, oldEPackage, newEPackage);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+        EPackage oldEPackage = ePackage;
+        ePackage = newEPackage;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EcorePackage.EFACTORY__EPACKAGE, oldEPackage, newEPackage);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
-    return msgs;
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EFACTORY__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.EFACTORY__EPACKAGE:
-        return getEPackage();
+        switch (featureID) {
+            case EcorePackage.EFACTORY__EANNOTATIONS:
+                return getEAnnotations();
+            case EcorePackage.EFACTORY__EPACKAGE:
+                return getEPackage();
+        }
+        return eDynamicGet(featureID, resolve, coreType);
     }
-    return eDynamicGet(featureID, resolve, coreType);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EFACTORY__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.EFACTORY__EPACKAGE:
-        setEPackage((EPackage)newValue);
-        return;
+        switch (featureID) {
+            case EcorePackage.EFACTORY__EANNOTATIONS:
+                getEAnnotations().clear();
+                getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+                return;
+            case EcorePackage.EFACTORY__EPACKAGE:
+                setEPackage((EPackage)newValue);
+                return;
+        }
+        eDynamicSet(featureID, newValue);
     }
-    eDynamicSet(featureID, newValue);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EFACTORY__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.EFACTORY__EPACKAGE:
-        setEPackage((EPackage)null);
-        return;
+        switch (featureID) {
+            case EcorePackage.EFACTORY__EANNOTATIONS:
+                getEAnnotations().clear();
+                return;
+            case EcorePackage.EFACTORY__EPACKAGE:
+                setEPackage((EPackage)null);
+                return;
+        }
+        eDynamicUnset(featureID);
     }
-    eDynamicUnset(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EFACTORY__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.EFACTORY__EPACKAGE:
-        return ePackage != null;
+        switch (featureID) {
+            case EcorePackage.EFACTORY__EANNOTATIONS:
+                return eAnnotations != null && !eAnnotations.isEmpty();
+            case EcorePackage.EFACTORY__EPACKAGE:
+                return ePackage != null;
+        }
+        return eDynamicIsSet(featureID);
     }
-    return eDynamicIsSet(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
   {
-    switch (operationID)
-    {
-      case EcorePackage.EFACTORY___GET_EANNOTATION__STRING:
-        return getEAnnotation((String)arguments.get(0));
-      case EcorePackage.EFACTORY___CREATE__ECLASS:
-        return create((EClass)arguments.get(0));
-      case EcorePackage.EFACTORY___CREATE_FROM_STRING__EDATATYPE_STRING:
-        return createFromString((EDataType)arguments.get(0), (String)arguments.get(1));
-      case EcorePackage.EFACTORY___CONVERT_TO_STRING__EDATATYPE_OBJECT:
-        return convertToString((EDataType)arguments.get(0), arguments.get(1));
+        switch (operationID) {
+            case EcorePackage.EFACTORY___GET_EANNOTATION__STRING:
+                return getEAnnotation((String)arguments.get(0));
+            case EcorePackage.EFACTORY___CREATE__ECLASS:
+                return create((EClass)arguments.get(0));
+            case EcorePackage.EFACTORY___CREATE_FROM_STRING__EDATATYPE_STRING:
+                return createFromString((EDataType)arguments.get(0), (String)arguments.get(1));
+            case EcorePackage.EFACTORY___CONVERT_TO_STRING__EDATATYPE_OBJECT:
+                return convertToString((EDataType)arguments.get(0), arguments.get(1));
+        }
+        return eDynamicInvoke(operationID, arguments);
     }
-    return eDynamicInvoke(operationID, arguments);
-  }
 
   /**
    * @generated modifiable
@@ -682,43 +675,41 @@ public class EFactoryImpl extends EModelElementImpl implements EFactory
 
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EFACTORY__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
-      case EcorePackage.EFACTORY__EPACKAGE:
-        if (ePackage != null)
-          msgs = ((InternalEObject)ePackage).eInverseRemove(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE, EPackage.class, msgs);
-        return basicSetEPackage((EPackage)otherEnd, msgs);
+        switch (featureID) {
+            case EcorePackage.EFACTORY__EANNOTATIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+            case EcorePackage.EFACTORY__EPACKAGE:
+                if (ePackage != null)
+                    msgs = ((InternalEObject)ePackage).eInverseRemove(this, EcorePackage.EPACKAGE__EFACTORY_INSTANCE, EPackage.class, msgs);
+                return basicSetEPackage((EPackage)otherEnd, msgs);
+        }
+        return eDynamicInverseAdd(otherEnd, featureID, msgs);
     }
-    return eDynamicInverseAdd(otherEnd, featureID, msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EFACTORY__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EFACTORY__EPACKAGE:
-        return basicSetEPackage(null, msgs);
+        switch (featureID) {
+            case EcorePackage.EFACTORY__EANNOTATIONS:
+                return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+            case EcorePackage.EFACTORY__EPACKAGE:
+                return basicSetEPackage(null, msgs);
+        }
+        return eDynamicInverseRemove(otherEnd, featureID, msgs);
     }
-    return eDynamicInverseRemove(otherEnd, featureID, msgs);
-  }
 
   protected String replaceWhiteSpace(String value)
   {

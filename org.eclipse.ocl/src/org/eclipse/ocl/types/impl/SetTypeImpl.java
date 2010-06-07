@@ -13,11 +13,12 @@
  * 
  * </copyright>
  *
- * $Id: SetTypeImpl.java,v 1.6 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: SetTypeImpl.java,v 1.7 2010/04/23 05:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.expressions.CollectionKind;

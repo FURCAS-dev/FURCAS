@@ -35,138 +35,138 @@ public interface EcoreFactory extends EFactory
   EcoreFactory eINSTANCE = org.eclipse.emf.ecore.impl.EcoreFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>EObject</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EObject</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EObject</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EObject</em>'.
+     * @generated
+     */
   EObject createEObject();
 
   /**
-   * Returns a new object of class '<em>EAttribute</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EAttribute</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EAttribute</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EAttribute</em>'.
+     * @generated
+     */
   EAttribute createEAttribute();
 
   /**
-   * Returns a new object of class '<em>EAnnotation</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EAnnotation</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EAnnotation</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EAnnotation</em>'.
+     * @generated
+     */
   EAnnotation createEAnnotation();
 
   /**
-   * Returns a new object of class '<em>EClass</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EClass</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EClass</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EClass</em>'.
+     * @generated
+     */
   EClass createEClass();
 
   /**
-   * Returns a new object of class '<em>EData Type</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EData Type</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EData Type</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EData Type</em>'.
+     * @generated
+     */
   EDataType createEDataType();
 
   /**
-   * Returns a new object of class '<em>EParameter</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EParameter</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EParameter</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EParameter</em>'.
+     * @generated
+     */
   EParameter createEParameter();
 
   /**
-   * Returns a new object of class '<em>EOperation</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EOperation</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EOperation</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EOperation</em>'.
+     * @generated
+     */
   EOperation createEOperation();
 
   /**
-   * Returns a new object of class '<em>EPackage</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EPackage</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EPackage</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EPackage</em>'.
+     * @generated
+     */
   EPackage createEPackage();
 
   /**
-   * Returns a new object of class '<em>EFactory</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EFactory</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EFactory</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EFactory</em>'.
+     * @generated
+     */
   EFactory createEFactory();
 
   /**
-   * Returns a new object of class '<em>EEnum Literal</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EEnum Literal</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EEnum Literal</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EEnum Literal</em>'.
+     * @generated
+     */
   EEnumLiteral createEEnumLiteral();
 
   /**
-   * Returns a new object of class '<em>EEnum</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EEnum</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EEnum</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EEnum</em>'.
+     * @generated
+     */
   EEnum createEEnum();
 
   /**
-   * Returns a new object of class '<em>EReference</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EReference</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EReference</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EReference</em>'.
+     * @generated
+     */
   EReference createEReference();
 
   /**
-   * Returns a new object of class '<em>EGeneric Type</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EGeneric Type</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EGeneric Type</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EGeneric Type</em>'.
+     * @generated
+     */
   EGenericType createEGenericType();
 
   /**
-   * Returns a new object of class '<em>EType Parameter</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>EType Parameter</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EType Parameter</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>EType Parameter</em>'.
+     * @generated
+     */
   ETypeParameter createETypeParameter();
 
   /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
+     * @return the package supported by this factory.
+     * @generated
+     */
   EcorePackage getEcorePackage();
 
 } //EcoreFactory

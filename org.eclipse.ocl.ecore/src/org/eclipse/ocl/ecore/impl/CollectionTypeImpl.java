@@ -13,16 +13,13 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.15 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.16 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
-//import org.eclipse.emf.common.util.BasicDiagnostic;
-//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -33,9 +30,6 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EDataTypeImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-//import org.eclipse.emf.ecore.plugin.EcorePlugin;
-//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
@@ -45,8 +39,6 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
 import org.eclipse.ocl.types.TypesPackage;
-
-//import org.eclipse.ocl.types.util.TypesValidator;
 import org.eclipse.ocl.types.operations.CollectionTypeOperations;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.PredefinedType;

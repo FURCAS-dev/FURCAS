@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.14 2009/12/27 15:49:51 asanchez Exp $
+ * $Id: CSTPackageImpl.java,v 1.15 2010/04/23 05:53:03 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -2803,7 +2803,7 @@ public class CSTPackageImpl
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$	    
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$		
 		addAnnotation(oclExpressionCSEClass, source, new String[]{
 			"name", "OclExpressionCS" //$NON-NLS-1$ //$NON-NLS-2$
 		});

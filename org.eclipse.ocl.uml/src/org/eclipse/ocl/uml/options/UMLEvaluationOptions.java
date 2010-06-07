@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEvaluationOptions.java,v 1.1 2007/11/06 19:47:23 cdamus Exp $
+ * $Id: UMLEvaluationOptions.java,v 1.2 2010/05/03 09:32:42 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.options;
@@ -36,12 +36,12 @@ public class UMLEvaluationOptions {
     /**
      * <p>
      * Evaluation mode option determining whether we are working with M1
-     * instance models ({@link UMLEvaluationEnvironment.EvaluationMode#INSTANCE_MODEL}, M0 objects
-     * ({@link UMLEvaluationEnvironment.EvaluationMode#RUNTIME_OBJECTS}), or indeterminate, in which
-     * last case we guess on-the-fly ({@link UMLEvaluationEnvironment.EvaluationMode#ADAPTIVE}).
+     * instance models ({@link EvaluationMode#INSTANCE_MODEL}, M0 objects
+     * ({@link EvaluationMode#RUNTIME_OBJECTS}), or indeterminate, in which
+     * last case we guess on-the-fly ({@link EvaluationMode#ADAPTIVE}).
      * </p><p>
      * For compatibility with the 1.1 release behaviour, the default value of
-     * this option is {@link UMLEvaluationEnvironment.EvaluationMode#ADAPTIVE}.
+     * this option is {@link EvaluationMode#ADAPTIVE}.
      * </p>
      */
     public static final Option<EvaluationMode> EVALUATION_MODE = new

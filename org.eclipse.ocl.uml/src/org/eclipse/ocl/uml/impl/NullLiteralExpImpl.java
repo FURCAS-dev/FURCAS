@@ -13,12 +13,11 @@
  * 
  * </copyright>
  *
- * $Id: NullLiteralExpImpl.java,v 1.6 2009/01/23 17:16:12 cdamus Exp $
+ * $Id: NullLiteralExpImpl.java,v 1.7 2010/04/23 05:52:14 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.ocl.uml.NullLiteralExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;

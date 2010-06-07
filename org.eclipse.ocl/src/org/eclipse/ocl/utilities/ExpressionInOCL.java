@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCL.java,v 1.8 2009/12/22 18:54:06 ewillink Exp $
+ * $Id: ExpressionInOCL.java,v 1.9 2010/05/03 09:32:32 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 

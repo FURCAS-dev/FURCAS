@@ -9,7 +9,7 @@
      Contributors:
          Adolfo Sanchez-Barbudo Herrera - initial API and implementation
      
-     $Id: plugin.xml,v 1.1 2009/12/23 17:01:18 asanchez Exp $
+     $Id: plugin.xml,v 1.2 2010/04/19 09:30:36 asanchez Exp $
  -->
 
 <plugin>   
@@ -21,12 +21,12 @@
             id="org.eclipse.ocl.activity"
             name="%_UI_capabilities.activity.name">
       </activity>
-      <!-- Pattern bindings --> 
+      <!-- Activity pattern bindings --> 
       
       <!-- Contributions to Examples --> 
       <activityPatternBinding
             activityId="org.eclipse.ocl.activity"
-            pattern="org\.eclipse\.emf\.ocl\.examples.*">
+            pattern="org\.eclipse\.ocl\.examples.*">
       </activityPatternBinding>
       
       <!-- Contributions to UI -->
@@ -34,5 +34,15 @@
             activityId="org.eclipse.ocl.activity"
             pattern="org\.eclipse\.ocl\.ui.*">
       </activityPatternBinding>
+      
+      <!-- Category definition -->
+       <category id="org.eclipse.ocl.category"
+            name="%_UI_capabilities.category.name"
+            description="%_UI_capabilities.category.description"/>
+            
+      <!-- Category-Activity binding and default enablement -->
+      <categoryActivityBinding categoryId="org.eclipse.ocl.category"
+            activityId="org.eclipse.ocl.activity"/>
+      <defaultEnablement id="org.eclipse.ocl.activity"/>
    </extension>
 </plugin>

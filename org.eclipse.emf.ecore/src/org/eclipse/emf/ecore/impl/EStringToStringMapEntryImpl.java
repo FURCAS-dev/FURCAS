@@ -42,88 +42,88 @@ import org.eclipse.emf.ecore.EcorePackage;
 public class EStringToStringMapEntryImpl extends MinimalEObjectImpl.Container implements BasicEMap.Entry<String,String>
 {
   /**
-   * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTypedKey()
-   * @generated
-   * @ordered
-   */
+     * @see #getTypedKey()
+     * @generated
+     * @ordered
+     */
   protected static final String KEY_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTypedKey()
-   * @generated
-   * @ordered
-   */
+     * @see #getTypedKey()
+     * @generated
+     * @ordered
+     */
   protected String key = KEY_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTypedValue()
-   * @generated
-   * @ordered
-   */
+     * @see #getTypedValue()
+     * @generated
+     * @ordered
+     */
   protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTypedValue()
-   * @generated
-   * @ordered
-   */
+     * @see #getTypedValue()
+     * @generated
+     * @ordered
+     */
   protected String value = VALUE_EDEFAULT;
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   protected EStringToStringMapEntryImpl()
   {
-    super();
-  }
+        super();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   protected EClass eStaticClass()
   {
-    return EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY;
-  }
+        return EcorePackage.Literals.ESTRING_TO_STRING_MAP_ENTRY;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public String getTypedKey()
   {
-    return key;
-  }
+        return key;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setTypedKeyGen(String newKey)
   {
-    String oldKey = key;
-    key = newKey;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY, oldKey, key));
-  }
+        String oldKey = key;
+        key = newKey;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY, oldKey, key));
+    }
 
   public void setTypedKey(String newKey)
   {
@@ -131,207 +131,202 @@ public class EStringToStringMapEntryImpl extends MinimalEObjectImpl.Container im
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public String getTypedValue()
   {
-    return value;
-  }
+        return value;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setTypedValue(String newValue)
   {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE, oldValue, value));
-  }
+        String oldValue = value;
+        value = newValue;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE, oldValue, value));
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY:
-        return getTypedKey();
-      case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE:
-        return getTypedValue();
+        switch (featureID) {
+            case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY:
+                return getTypedKey();
+            case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE:
+                return getTypedValue();
+        }
+        return eDynamicGet(featureID, resolve, coreType);
     }
-    return eDynamicGet(featureID, resolve, coreType);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY:
-        setTypedKey((String)newValue);
-        return;
-      case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE:
-        setTypedValue((String)newValue);
-        return;
+        switch (featureID) {
+            case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY:
+                setTypedKey((String)newValue);
+                return;
+            case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE:
+                setTypedValue((String)newValue);
+                return;
+        }
+        eDynamicSet(featureID, newValue);
     }
-    eDynamicSet(featureID, newValue);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY:
-        setTypedKey(KEY_EDEFAULT);
-        return;
-      case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE:
-        setTypedValue(VALUE_EDEFAULT);
-        return;
+        switch (featureID) {
+            case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY:
+                setTypedKey(KEY_EDEFAULT);
+                return;
+            case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE:
+                setTypedValue(VALUE_EDEFAULT);
+                return;
+        }
+        eDynamicUnset(featureID);
     }
-    eDynamicUnset(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY:
-        return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
-      case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        switch (featureID) {
+            case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__KEY:
+                return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+            case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY__VALUE:
+                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        }
+        return eDynamicIsSet(featureID);
     }
-    return eDynamicIsSet(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (key: ");
-    result.append(key);
-    result.append(", value: ");
-    result.append(value);
-    result.append(')');
-    return result.toString();
-  }
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (key: ");
+        result.append(key);
+        result.append(", value: ");
+        result.append(value);
+        result.append(')');
+        return result.toString();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   protected int hash= -1;
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public int getHash()
   {
-    if (hash == -1)
-    {
-      Object theKey = getKey();
-      hash = (theKey == null ? 0 : theKey.hashCode());
+        if (hash == -1) {
+            Object theKey = getKey();
+            hash = (theKey == null ? 0 : theKey.hashCode());
+        }
+        return hash;
     }
-    return hash;
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setHash(int hash)
   {
-    this.hash = hash;
-  }
+        this.hash = hash;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public String getKey()
   {
-    return getTypedKey();
-  }
+        return getTypedKey();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setKey(String key)
   {
-    setTypedKey(key);
-  }
+        setTypedKey(key);
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public String getValue()
   {
-    return getTypedValue();
-  }
+        return getTypedValue();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public String setValue(String value)
   {
-    String oldValue = getValue();
-    setTypedValue(value);
-    return oldValue;
-  }
+        String oldValue = getValue();
+        setTypedValue(value);
+        return oldValue;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   public EMap<String, String> getEMap()
   {
-    EObject container = eContainer();
-    return container == null ? null : (EMap<String, String>)container.eGet(eContainmentFeature());
-  }
+        EObject container = eContainer();
+        return container == null ? null : (EMap<String, String>)container.eGet(eContainmentFeature());
+    }
 
 } //EStringToStringMapEntryImpl

@@ -1,7 +1,7 @@
 /**
  * <copyright> 
  *
- * Copyright (c) 2002-2007 IBM Corporation and others.
+ * Copyright (c) 2002-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenDataTypeImpl.java,v 1.36 2009/03/13 21:09:47 davidms Exp $
+ * $Id: GenDataTypeImpl.java,v 1.38 2010/04/28 20:38:10 khussey Exp $
  */
 package org.eclipse.emf.codegen.ecore.genmodel.impl;
 
@@ -404,7 +404,8 @@ public class GenDataTypeImpl extends GenClassifierImpl implements GenDataType
 
   public boolean isArrayType()
   {
-    return getEcoreDataType().getInstanceClassName().indexOf('[') != -1;
+    String instanceClassName = getEcoreDataType().getInstanceClassName();
+    return instanceClassName != null && instanceClassName.indexOf('[') != -1;
   }
 
   public boolean isObjectType()

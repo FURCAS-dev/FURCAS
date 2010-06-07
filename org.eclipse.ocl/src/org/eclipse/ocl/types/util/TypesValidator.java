@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesValidator.java,v 1.4 2009/12/06 18:13:20 ewillink Exp $
+ * $Id: TypesValidator.java,v 1.5 2010/04/23 05:53:03 ewillink Exp $
  */
 package org.eclipse.ocl.types.util;
 

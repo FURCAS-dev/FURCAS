@@ -13,29 +13,23 @@
  * 
  * </copyright>
  *
- * $Id: TypeTypeImpl.java,v 1.12 2008/11/24 00:38:51 cdamus Exp $
+ * $Id: TypeTypeImpl.java,v 1.13 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.TypeType;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
-
 import org.eclipse.ocl.types.TypesPackage;
-
 import org.eclipse.ocl.utilities.PredefinedType;
 
 /**

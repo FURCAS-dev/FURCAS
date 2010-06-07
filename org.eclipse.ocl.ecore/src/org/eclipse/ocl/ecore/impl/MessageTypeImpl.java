@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.11 2008/11/24 00:39:50 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.12 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,9 +21,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
-//import org.eclipse.emf.common.util.BasicDiagnostic;
-//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DelegatingEList;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ECollections;
@@ -37,16 +34,11 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-//import org.eclipse.emf.ecore.plugin.EcorePlugin;
-//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.MessageType;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.types.TypesPackage;
-
-//import org.eclipse.ocl.types.util.TypesValidator;
 import org.eclipse.ocl.types.operations.MessageTypeOperations;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.PredefinedType;

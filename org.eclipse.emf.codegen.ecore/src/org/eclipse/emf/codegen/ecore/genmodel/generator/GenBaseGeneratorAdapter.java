@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006-2008 IBM Corporation and others.
+ * Copyright (c) 2006-2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: GenBaseGeneratorAdapter.java,v 1.15 2008/06/06 12:48:11 emerks Exp $
+ * $Id: GenBaseGeneratorAdapter.java,v 1.17 2010/04/28 20:38:16 khussey Exp $
  */
 package org.eclipse.emf.codegen.ecore.genmodel.generator;
 
@@ -35,6 +35,7 @@ import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenBase;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
+import org.eclipse.emf.codegen.ecore.genmodel.GenRuntimePlatform;
 import org.eclipse.emf.codegen.jet.JETEmitter;
 import org.eclipse.emf.codegen.jet.JETException;
 import org.eclipse.emf.common.EMFPlugin;
@@ -413,6 +414,11 @@ public class GenBaseGeneratorAdapter extends AbstractGeneratorAdapter
             if (EDIT_PROJECT_TYPE.equals(projectType))   style = Generator.EMF_EDIT_PROJECT_STYLE;
             if (EDITOR_PROJECT_TYPE.equals(projectType)) style = Generator.EMF_EDITOR_PROJECT_STYLE;
             if (TESTS_PROJECT_TYPE.equals(projectType))  style = Generator.EMF_TESTS_PROJECT_STYLE;
+
+            if (genModel.getRuntimePlatform() == GenRuntimePlatform.GWT)
+            {
+              style |= Generator.EMF_GWT_PROJECT_STYLE; 
+            }
 
             if ((style & Generator.EMF_TESTS_PROJECT_STYLE) != 0)
             {

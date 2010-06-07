@@ -53,13 +53,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ETypeParameterImpl extends ENamedElementImpl implements ETypeParameter
 {
   /**
-   * The cached value of the '{@link #getEBounds() <em>EBounds</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getEBounds() <em>EBounds</em>}' containment reference list.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEBounds()
-   * @generated
-   * @ordered
-   */
+     * @see #getEBounds()
+     * @generated
+     * @ordered
+     */
   protected EList<EGenericType> eBounds;
 
   /**
@@ -70,25 +70,25 @@ public class ETypeParameterImpl extends ENamedElementImpl implements ETypeParame
   protected Set<EGenericType> eGenericTypes;
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   protected ETypeParameterImpl()
   {
-    super();
-  }
+        super();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   protected EClass eStaticClass()
   {
-    return EcorePackage.Literals.ETYPE_PARAMETER;
-  }
+        return EcorePackage.Literals.ETYPE_PARAMETER;
+    }
 
   /**
    * <!-- begin-user-doc -->
@@ -244,110 +244,105 @@ public class ETypeParameterImpl extends ENamedElementImpl implements ETypeParame
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
-        return ((InternalEList<?>)getEBounds()).basicRemove(otherEnd, msgs);
+        switch (featureID) {
+            case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
+                return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+            case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
+                return ((InternalEList<?>)getEBounds()).basicRemove(otherEnd, msgs);
+        }
+        return eDynamicInverseRemove(otherEnd, featureID, msgs);
     }
-    return eDynamicInverseRemove(otherEnd, featureID, msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.ETYPE_PARAMETER__NAME:
-        return getName();
-      case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
-        return getEBounds();
+        switch (featureID) {
+            case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
+                return getEAnnotations();
+            case EcorePackage.ETYPE_PARAMETER__NAME:
+                return getName();
+            case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
+                return getEBounds();
+        }
+        return eDynamicGet(featureID, resolve, coreType);
     }
-    return eDynamicGet(featureID, resolve, coreType);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.ETYPE_PARAMETER__NAME:
-        setName((String)newValue);
-        return;
-      case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
-        getEBounds().clear();
-        getEBounds().addAll((Collection<? extends EGenericType>)newValue);
-        return;
+        switch (featureID) {
+            case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
+                getEAnnotations().clear();
+                getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+                return;
+            case EcorePackage.ETYPE_PARAMETER__NAME:
+                setName((String)newValue);
+                return;
+            case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
+                getEBounds().clear();
+                getEBounds().addAll((Collection<? extends EGenericType>)newValue);
+                return;
+        }
+        eDynamicSet(featureID, newValue);
     }
-    eDynamicSet(featureID, newValue);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.ETYPE_PARAMETER__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
-        getEBounds().clear();
-        return;
+        switch (featureID) {
+            case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
+                getEAnnotations().clear();
+                return;
+            case EcorePackage.ETYPE_PARAMETER__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
+                getEBounds().clear();
+                return;
+        }
+        eDynamicUnset(featureID);
     }
-    eDynamicUnset(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.ETYPE_PARAMETER__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
-        return eBounds != null && !eBounds.isEmpty();
+        switch (featureID) {
+            case EcorePackage.ETYPE_PARAMETER__EANNOTATIONS:
+                return eAnnotations != null && !eAnnotations.isEmpty();
+            case EcorePackage.ETYPE_PARAMETER__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case EcorePackage.ETYPE_PARAMETER__EBOUNDS:
+                return eBounds != null && !eBounds.isEmpty();
+        }
+        return eDynamicIsSet(featureID);
     }
-    return eDynamicIsSet(featureID);
-  }
 
 } //ETypeParameterImpl

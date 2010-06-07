@@ -13,18 +13,15 @@
  * 
  * </copyright>
  *
- * $Id: SendSignalActionImpl.java,v 1.7 2008/11/24 00:38:28 cdamus Exp $
+ * $Id: SendSignalActionImpl.java,v 1.8 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.SendSignalAction;
 

@@ -13,15 +13,15 @@
  * 
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.7 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.8 2010/04/23 05:53:02 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
-import java.util.Map;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;

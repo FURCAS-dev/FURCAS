@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.11 2010/02/08 20:57:00 ewillink Exp $
+ * $Id: UMLReflectionImpl.java,v 1.12 2010/05/03 09:32:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -681,7 +681,7 @@ public class UMLReflectionImpl
      * require the arguments to be {@link InternalEObject}s.
      * 
      * @param ancestor a prospective ancestor element
-     * @param descendant a prospective descendent element
+     * @param descendent a prospective descendent element
      * @return <code>true</code> if the ancestor contains (recursively) the
      *    descendent
      */

@@ -50,63 +50,63 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
 {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
+     * @see #getValue()
+     * @generated
+     * @ordered
+     */
   protected static final int VALUE_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
+     * @see #getValue()
+     * @generated
+     * @ordered
+     */
   protected int value = VALUE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getInstance() <em>Instance</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #getInstance() <em>Instance</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getInstance()
-   * @generated
-   * @ordered
-   */
+     * @see #getInstance()
+     * @generated
+     * @ordered
+     */
   protected static final Enumerator INSTANCE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getInstance() <em>Instance</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getInstance() <em>Instance</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getInstance()
-   * @generated
-   * @ordered
-   */
+     * @see #getInstance()
+     * @generated
+     * @ordered
+     */
   protected Enumerator instance = INSTANCE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLiteral()
-   * @generated
-   * @ordered
-   */
+     * @see #getLiteral()
+     * @generated
+     * @ordered
+     */
   protected static final String LITERAL_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getLiteral() <em>Literal</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLiteral()
-   * @generated
-   * @ordered
-   */
+     * @see #getLiteral()
+     * @generated
+     * @ordered
+     */
   protected String literal = LITERAL_EDEFAULT;
 
   /**
@@ -120,38 +120,38 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   protected EClass eStaticClass()
   {
-    return EcorePackage.Literals.EENUM_LITERAL;
-  }
+        return EcorePackage.Literals.EENUM_LITERAL;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public int getValue()
   {
-    return value;
-  }
+        return value;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setValue(int newValue)
   {
-    int oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EENUM_LITERAL__VALUE, oldValue, value));
-  }
+        int oldValue = value;
+        value = newValue;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EENUM_LITERAL__VALUE, oldValue, value));
+    }
 
   /**
    * <!-- begin-user-doc -->
@@ -186,17 +186,17 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setInstanceGen(Enumerator newInstance)
   {
-    Enumerator oldInstance = instance;
-    instance = newInstance;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EENUM_LITERAL__INSTANCE, oldInstance, instance));
-  }
+        Enumerator oldInstance = instance;
+        instance = newInstance;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EENUM_LITERAL__INSTANCE, oldInstance, instance));
+    }
 
   public void setInstance(Enumerator newInstance)
   {
@@ -217,14 +217,14 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public String getLiteralGen()
   {
-    return literal;
-  }
+        return literal;
+    }
 
   public String getLiteral()
   {
@@ -233,17 +233,17 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
   
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setLiteral(String newLiteral)
   {
-    String oldLiteral = literal;
-    literal = newLiteral;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EENUM_LITERAL__LITERAL, oldLiteral, literal));
-  }
+        String oldLiteral = literal;
+        literal = newLiteral;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.EENUM_LITERAL__LITERAL, oldLiteral, literal));
+    }
 
   /**
    * <!-- begin-user-doc -->
@@ -256,171 +256,164 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return eBasicSetContainer(otherEnd, EcorePackage.EENUM_LITERAL__EENUM, msgs);
+        switch (featureID) {
+            case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+            case EcorePackage.EENUM_LITERAL__EENUM:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return eBasicSetContainer(otherEnd, EcorePackage.EENUM_LITERAL__EENUM, msgs);
+        }
+        return eDynamicInverseAdd(otherEnd, featureID, msgs);
     }
-    return eDynamicInverseAdd(otherEnd, featureID, msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        return eBasicSetContainer(null, EcorePackage.EENUM_LITERAL__EENUM, msgs);
+        switch (featureID) {
+            case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+                return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+            case EcorePackage.EENUM_LITERAL__EENUM:
+                return eBasicSetContainer(null, EcorePackage.EENUM_LITERAL__EENUM, msgs);
+        }
+        return eDynamicInverseRemove(otherEnd, featureID, msgs);
     }
-    return eDynamicInverseRemove(otherEnd, featureID, msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
-    switch (eContainerFeatureID())
-    {
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        return eInternalContainer().eInverseRemove(this, EcorePackage.EENUM__ELITERALS, EEnum.class, msgs);
+        switch (eContainerFeatureID()) {
+            case EcorePackage.EENUM_LITERAL__EENUM:
+                return eInternalContainer().eInverseRemove(this, EcorePackage.EENUM__ELITERALS, EEnum.class, msgs);
+        }
+        return eDynamicBasicRemoveFromContainer(msgs);
     }
-    return eDynamicBasicRemoveFromContainer(msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.EENUM_LITERAL__NAME:
-        return getName();
-      case EcorePackage.EENUM_LITERAL__VALUE:
-        return getValue();
-      case EcorePackage.EENUM_LITERAL__INSTANCE:
-        return getInstance();
-      case EcorePackage.EENUM_LITERAL__LITERAL:
-        return getLiteral();
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        return getEEnum();
+        switch (featureID) {
+            case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+                return getEAnnotations();
+            case EcorePackage.EENUM_LITERAL__NAME:
+                return getName();
+            case EcorePackage.EENUM_LITERAL__VALUE:
+                return getValue();
+            case EcorePackage.EENUM_LITERAL__INSTANCE:
+                return getInstance();
+            case EcorePackage.EENUM_LITERAL__LITERAL:
+                return getLiteral();
+            case EcorePackage.EENUM_LITERAL__EENUM:
+                return getEEnum();
+        }
+        return eDynamicGet(featureID, resolve, coreType);
     }
-    return eDynamicGet(featureID, resolve, coreType);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.EENUM_LITERAL__NAME:
-        setName((String)newValue);
-        return;
-      case EcorePackage.EENUM_LITERAL__VALUE:
-        setValue((Integer)newValue);
-        return;
-      case EcorePackage.EENUM_LITERAL__INSTANCE:
-        setInstance((Enumerator)newValue);
-        return;
-      case EcorePackage.EENUM_LITERAL__LITERAL:
-        setLiteral((String)newValue);
-        return;
+        switch (featureID) {
+            case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+                getEAnnotations().clear();
+                getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+                return;
+            case EcorePackage.EENUM_LITERAL__NAME:
+                setName((String)newValue);
+                return;
+            case EcorePackage.EENUM_LITERAL__VALUE:
+                setValue((Integer)newValue);
+                return;
+            case EcorePackage.EENUM_LITERAL__INSTANCE:
+                setInstance((Enumerator)newValue);
+                return;
+            case EcorePackage.EENUM_LITERAL__LITERAL:
+                setLiteral((String)newValue);
+                return;
+        }
+        eDynamicSet(featureID, newValue);
     }
-    eDynamicSet(featureID, newValue);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.EENUM_LITERAL__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case EcorePackage.EENUM_LITERAL__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
-      case EcorePackage.EENUM_LITERAL__INSTANCE:
-        setInstance(INSTANCE_EDEFAULT);
-        return;
-      case EcorePackage.EENUM_LITERAL__LITERAL:
-        setLiteral(LITERAL_EDEFAULT);
-        return;
+        switch (featureID) {
+            case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+                getEAnnotations().clear();
+                return;
+            case EcorePackage.EENUM_LITERAL__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case EcorePackage.EENUM_LITERAL__VALUE:
+                setValue(VALUE_EDEFAULT);
+                return;
+            case EcorePackage.EENUM_LITERAL__INSTANCE:
+                setInstance(INSTANCE_EDEFAULT);
+                return;
+            case EcorePackage.EENUM_LITERAL__LITERAL:
+                setLiteral(LITERAL_EDEFAULT);
+                return;
+        }
+        eDynamicUnset(featureID);
     }
-    eDynamicUnset(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.EENUM_LITERAL__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.EENUM_LITERAL__VALUE:
-        return value != VALUE_EDEFAULT;
-      case EcorePackage.EENUM_LITERAL__INSTANCE:
-        return INSTANCE_EDEFAULT == null ? instance != null : !INSTANCE_EDEFAULT.equals(instance);
-      case EcorePackage.EENUM_LITERAL__LITERAL:
-        return LITERAL_EDEFAULT == null ? literal != null : !LITERAL_EDEFAULT.equals(literal);
-      case EcorePackage.EENUM_LITERAL__EENUM:
-        return getEEnum() != null;
+        switch (featureID) {
+            case EcorePackage.EENUM_LITERAL__EANNOTATIONS:
+                return eAnnotations != null && !eAnnotations.isEmpty();
+            case EcorePackage.EENUM_LITERAL__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case EcorePackage.EENUM_LITERAL__VALUE:
+                return value != VALUE_EDEFAULT;
+            case EcorePackage.EENUM_LITERAL__INSTANCE:
+                return INSTANCE_EDEFAULT == null ? instance != null : !INSTANCE_EDEFAULT.equals(instance);
+            case EcorePackage.EENUM_LITERAL__LITERAL:
+                return LITERAL_EDEFAULT == null ? literal != null : !LITERAL_EDEFAULT.equals(literal);
+            case EcorePackage.EENUM_LITERAL__EENUM:
+                return getEEnum() != null;
+        }
+        return eDynamicIsSet(featureID);
     }
-    return eDynamicIsSet(featureID);
-  }
 
   @Override
   public String toString()
@@ -429,23 +422,23 @@ public class EEnumLiteralImpl extends ENamedElementImpl implements EEnumLiteral
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public String toStringGen()
   {
-    if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (value: ");
-    result.append(value);
-    result.append(", instance: ");
-    result.append(instance);
-    result.append(", literal: ");
-    result.append(literal);
-    result.append(')');
-    return result.toString();
-  }
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (value: ");
+        result.append(value);
+        result.append(", instance: ");
+        result.append(instance);
+        result.append(", literal: ");
+        result.append(literal);
+        result.append(')');
+        return result.toString();
+    }
 
 }

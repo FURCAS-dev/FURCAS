@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionsAdapterFactory.java,v 1.7 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: ExpressionsAdapterFactory.java,v 1.8 2010/04/23 05:53:03 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.util;
 
@@ -21,7 +21,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.expressions.*;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
 import org.eclipse.ocl.expressions.CallExp;

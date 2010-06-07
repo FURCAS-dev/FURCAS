@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleTypeImpl.java,v 1.9 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: TupleTypeImpl.java,v 1.10 2010/04/23 05:52:40 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -22,9 +22,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
-//import org.eclipse.emf.common.util.BasicDiagnostic;
-//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DelegatingEList;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
@@ -35,14 +32,9 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EClassImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-//import org.eclipse.emf.ecore.plugin.EcorePlugin;
-//import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.TupleType;
-
-//import org.eclipse.ocl.types.util.TypesValidator;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.types.operations.TupleTypeOperations;
 import org.eclipse.ocl.util.Tuple;

@@ -60,25 +60,25 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   protected int metaObjectID = -1;
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   protected EClassifierImpl()
   {
-    super();
-  }
+        super();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   protected EClass eStaticClass()
   {
-    return EcorePackage.Literals.ECLASSIFIER;
-  }
+        return EcorePackage.Literals.ECLASSIFIER;
+    }
 
   /**
    * <!-- begin-user-doc -->
@@ -105,61 +105,58 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ECLASSIFIER__EANNOTATIONS:
-        return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
-      case EcorePackage.ECLASSIFIER__EPACKAGE:
-        if (eInternalContainer() != null)
-          msgs = eBasicRemoveFromContainer(msgs);
-        return eBasicSetContainer(otherEnd, EcorePackage.ECLASSIFIER__EPACKAGE, msgs);
+        switch (featureID) {
+            case EcorePackage.ECLASSIFIER__EANNOTATIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getEAnnotations()).basicAdd(otherEnd, msgs);
+            case EcorePackage.ECLASSIFIER__EPACKAGE:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return eBasicSetContainer(otherEnd, EcorePackage.ECLASSIFIER__EPACKAGE, msgs);
+        }
+        return eDynamicInverseAdd(otherEnd, featureID, msgs);
     }
-    return eDynamicInverseAdd(otherEnd, featureID, msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ECLASSIFIER__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.ECLASSIFIER__EPACKAGE:
-        return eBasicSetContainer(null, EcorePackage.ECLASSIFIER__EPACKAGE, msgs);
-      case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
-        return ((InternalEList<?>)getETypeParameters()).basicRemove(otherEnd, msgs);
+        switch (featureID) {
+            case EcorePackage.ECLASSIFIER__EANNOTATIONS:
+                return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+            case EcorePackage.ECLASSIFIER__EPACKAGE:
+                return eBasicSetContainer(null, EcorePackage.ECLASSIFIER__EPACKAGE, msgs);
+            case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
+                return ((InternalEList<?>)getETypeParameters()).basicRemove(otherEnd, msgs);
+        }
+        return eDynamicInverseRemove(otherEnd, featureID, msgs);
     }
-    return eDynamicInverseRemove(otherEnd, featureID, msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
   {
-    switch (eContainerFeatureID())
-    {
-      case EcorePackage.ECLASSIFIER__EPACKAGE:
-        return eInternalContainer().eInverseRemove(this, EcorePackage.EPACKAGE__ECLASSIFIERS, EPackage.class, msgs);
+        switch (eContainerFeatureID()) {
+            case EcorePackage.ECLASSIFIER__EPACKAGE:
+                return eInternalContainer().eInverseRemove(this, EcorePackage.EPACKAGE__ECLASSIFIERS, EPackage.class, msgs);
+        }
+        return eDynamicBasicRemoveFromContainer(msgs);
     }
-    return eDynamicBasicRemoveFromContainer(msgs);
-  }
 
   public void setClassifierID(int id)
   {
@@ -351,13 +348,13 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   protected static final Class<?> INSTANCE_CLASS_EDEFAULT = null;
 
   /**
-   * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #getDefaultValue() <em>Default Value</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDefaultValue()
-   * @generated
-   * @ordered
-   */
+     * @see #getDefaultValue()
+     * @generated
+     * @ordered
+     */
   protected static final Object DEFAULT_VALUE_EDEFAULT = null;
 
   /**
@@ -382,13 +379,13 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   protected String instanceTypeName;
 
   /**
-   * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getETypeParameters() <em>EType Parameters</em>}' containment reference list.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getETypeParameters()
-   * @generated
-   * @ordered
-   */
+     * @see #getETypeParameters()
+     * @generated
+     * @ordered
+     */
   protected EList<ETypeParameter> eTypeParameters;
 
   /**
@@ -687,15 +684,15 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public EPackage getEPackageGen()
   {
-    if (eContainerFeatureID() != EcorePackage.ECLASSIFIER__EPACKAGE) return null;
-    return (EPackage)eContainer();
-  }
+        if (eContainerFeatureID() != EcorePackage.ECLASSIFIER__EPACKAGE) return null;
+        return (EPackage)eContainer();
+    }
 
   /**
    * A package protected typed cache for the containing package.
@@ -736,29 +733,28 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public EPackage basicGetEPackage()
   {
-    if (eContainerFeatureID() != EcorePackage.ECLASSIFIER__EPACKAGE) return null;
-    return (EPackage)eInternalContainer();
-  }
+        if (eContainerFeatureID() != EcorePackage.ECLASSIFIER__EPACKAGE) return null;
+        return (EPackage)eInternalContainer();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public EList<ETypeParameter> getETypeParameters()
   {
-    if (eTypeParameters == null)
-    {
-      eTypeParameters = new EObjectContainmentEList.Resolving<ETypeParameter>(ETypeParameter.class, this, EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS);
+        if (eTypeParameters == null) {
+            eTypeParameters = new EObjectContainmentEList.Resolving<ETypeParameter>(ETypeParameter.class, this, EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS);
+        }
+        return eTypeParameters;
     }
-    return eTypeParameters;
-  }
 
   /**
    * <!-- begin-user-doc -->
@@ -780,146 +776,141 @@ public abstract class EClassifierImpl extends ENamedElementImpl implements EClas
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ECLASSIFIER__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.ECLASSIFIER__NAME:
-        return getName();
-      case EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME:
-        return getInstanceClassName();
-      case EcorePackage.ECLASSIFIER__INSTANCE_CLASS:
-        return getInstanceClass();
-      case EcorePackage.ECLASSIFIER__DEFAULT_VALUE:
-        return getDefaultValue();
-      case EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME:
-        return getInstanceTypeName();
-      case EcorePackage.ECLASSIFIER__EPACKAGE:
-        if (resolve) return getEPackage();
-        return basicGetEPackage();
-      case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
-        return getETypeParameters();
+        switch (featureID) {
+            case EcorePackage.ECLASSIFIER__EANNOTATIONS:
+                return getEAnnotations();
+            case EcorePackage.ECLASSIFIER__NAME:
+                return getName();
+            case EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME:
+                return getInstanceClassName();
+            case EcorePackage.ECLASSIFIER__INSTANCE_CLASS:
+                return getInstanceClass();
+            case EcorePackage.ECLASSIFIER__DEFAULT_VALUE:
+                return getDefaultValue();
+            case EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME:
+                return getInstanceTypeName();
+            case EcorePackage.ECLASSIFIER__EPACKAGE:
+                if (resolve) return getEPackage();
+                return basicGetEPackage();
+            case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
+                return getETypeParameters();
+        }
+        return eDynamicGet(featureID, resolve, coreType);
     }
-    return eDynamicGet(featureID, resolve, coreType);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ECLASSIFIER__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.ECLASSIFIER__NAME:
-        setName((String)newValue);
-        return;
-      case EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME:
-        setInstanceClassName((String)newValue);
-        return;
-      case EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME:
-        setInstanceTypeName((String)newValue);
-        return;
-      case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
-        getETypeParameters().clear();
-        getETypeParameters().addAll((Collection<? extends ETypeParameter>)newValue);
-        return;
+        switch (featureID) {
+            case EcorePackage.ECLASSIFIER__EANNOTATIONS:
+                getEAnnotations().clear();
+                getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+                return;
+            case EcorePackage.ECLASSIFIER__NAME:
+                setName((String)newValue);
+                return;
+            case EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME:
+                setInstanceClassName((String)newValue);
+                return;
+            case EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME:
+                setInstanceTypeName((String)newValue);
+                return;
+            case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
+                getETypeParameters().clear();
+                getETypeParameters().addAll((Collection<? extends ETypeParameter>)newValue);
+                return;
+        }
+        eDynamicSet(featureID, newValue);
     }
-    eDynamicSet(featureID, newValue);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ECLASSIFIER__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.ECLASSIFIER__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME:
-        unsetInstanceClassName();
-        return;
-      case EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME:
-        unsetInstanceTypeName();
-        return;
-      case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
-        getETypeParameters().clear();
-        return;
+        switch (featureID) {
+            case EcorePackage.ECLASSIFIER__EANNOTATIONS:
+                getEAnnotations().clear();
+                return;
+            case EcorePackage.ECLASSIFIER__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME:
+                unsetInstanceClassName();
+                return;
+            case EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME:
+                unsetInstanceTypeName();
+                return;
+            case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
+                getETypeParameters().clear();
+                return;
+        }
+        eDynamicUnset(featureID);
     }
-    eDynamicUnset(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ECLASSIFIER__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.ECLASSIFIER__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME:
-        return isSetInstanceClassName();
-      case EcorePackage.ECLASSIFIER__INSTANCE_CLASS:
-        return getInstanceClass() != null;
-      case EcorePackage.ECLASSIFIER__DEFAULT_VALUE:
-        return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT.equals(getDefaultValue());
-      case EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME:
-        return isSetInstanceTypeName();
-      case EcorePackage.ECLASSIFIER__EPACKAGE:
-        return basicGetEPackage() != null;
-      case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
-        return eTypeParameters != null && !eTypeParameters.isEmpty();
+        switch (featureID) {
+            case EcorePackage.ECLASSIFIER__EANNOTATIONS:
+                return eAnnotations != null && !eAnnotations.isEmpty();
+            case EcorePackage.ECLASSIFIER__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME:
+                return isSetInstanceClassName();
+            case EcorePackage.ECLASSIFIER__INSTANCE_CLASS:
+                return getInstanceClass() != null;
+            case EcorePackage.ECLASSIFIER__DEFAULT_VALUE:
+                return DEFAULT_VALUE_EDEFAULT == null ? getDefaultValue() != null : !DEFAULT_VALUE_EDEFAULT.equals(getDefaultValue());
+            case EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME:
+                return isSetInstanceTypeName();
+            case EcorePackage.ECLASSIFIER__EPACKAGE:
+                return basicGetEPackage() != null;
+            case EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS:
+                return eTypeParameters != null && !eTypeParameters.isEmpty();
+        }
+        return eDynamicIsSet(featureID);
     }
-    return eDynamicIsSet(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException
   {
-    switch (operationID)
-    {
-      case EcorePackage.ECLASSIFIER___GET_EANNOTATION__STRING:
-        return getEAnnotation((String)arguments.get(0));
-      case EcorePackage.ECLASSIFIER___IS_INSTANCE__OBJECT:
-        return isInstance(arguments.get(0));
-      case EcorePackage.ECLASSIFIER___GET_CLASSIFIER_ID:
-        return getClassifierID();
+        switch (operationID) {
+            case EcorePackage.ECLASSIFIER___GET_EANNOTATION__STRING:
+                return getEAnnotation((String)arguments.get(0));
+            case EcorePackage.ECLASSIFIER___IS_INSTANCE__OBJECT:
+                return isInstance(arguments.get(0));
+            case EcorePackage.ECLASSIFIER___GET_CLASSIFIER_ID:
+                return getClassifierID();
+        }
+        return eDynamicInvoke(operationID, arguments);
     }
-    return eDynamicInvoke(operationID, arguments);
-  }
 
   protected BasicExtendedMetaData.EClassifierExtendedMetaData eClassifierExtendedMetaData;
 

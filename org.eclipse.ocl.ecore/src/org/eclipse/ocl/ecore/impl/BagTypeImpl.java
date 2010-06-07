@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: BagTypeImpl.java,v 1.9 2008/11/24 00:40:18 cdamus Exp $
+ * $Id: BagTypeImpl.java,v 1.10 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -22,7 +22,6 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-
 import org.eclipse.ocl.ecore.BagType;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.expressions.CollectionKind;

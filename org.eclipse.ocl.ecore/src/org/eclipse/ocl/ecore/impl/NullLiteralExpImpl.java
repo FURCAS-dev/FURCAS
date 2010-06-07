@@ -13,13 +13,12 @@
  *   
  * </copyright>
  *
- * $Id: NullLiteralExpImpl.java,v 1.6 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: NullLiteralExpImpl.java,v 1.7 2010/04/23 05:52:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.utilities.Visitor;

@@ -15,7 +15,7 @@
 *
 * </copyright>
 *
-* $Id: AbstractLexer.java,v 1.5 2010/02/03 19:54:12 ewillink Exp $
+* $Id: AbstractLexer.java,v 1.6 2010/05/03 09:32:32 ewillink Exp $
 */
 
 package org.eclipse.ocl.lpg;
@@ -83,7 +83,7 @@ public abstract class AbstractLexer
 
     /**
 	 * Define the input text as a given array of characters.
-     * @param buffer the characters
+     * @param inputChars the characters
      * @deprecated clients should use {@link #reset(char[], String)}
      */
 	@Deprecated
@@ -155,7 +155,7 @@ public abstract class AbstractLexer
      * 
      * @param input_chars the new lexer's input
      * @param filename a file name used for logging when encountering errors/warnings
-     * @param lexer's tab length.
+     * @param tab lexer's tab length.
      *  
 	 * @since 3.0
      */

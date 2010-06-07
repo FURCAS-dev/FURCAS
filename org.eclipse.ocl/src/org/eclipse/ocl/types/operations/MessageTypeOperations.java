@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeOperations.java,v 1.3 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: MessageTypeOperations.java,v 1.4 2010/04/23 05:53:03 ewillink Exp $
  */
 package org.eclipse.ocl.types.operations;
 
@@ -23,9 +23,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.ocl.types.MessageType;
-
 import org.eclipse.ocl.types.util.TypesValidator;
 
 /**

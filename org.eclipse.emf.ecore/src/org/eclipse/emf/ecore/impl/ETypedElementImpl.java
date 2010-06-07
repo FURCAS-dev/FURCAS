@@ -55,103 +55,103 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public abstract class ETypedElementImpl extends ENamedElementImpl implements ETypedElement
 {
   /**
-   * The default value of the '{@link #isOrdered() <em>Ordered</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #isOrdered() <em>Ordered</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isOrdered()
-   * @generated
-   * @ordered
-   */
+     * @see #isOrdered()
+     * @generated
+     * @ordered
+     */
   protected static final boolean ORDERED_EDEFAULT = true;
 
   /**
-   * The flag representing the value of the '{@link #isOrdered() <em>Ordered</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The flag representing the value of the '{@link #isOrdered() <em>Ordered</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isOrdered()
-   * @generated
-   * @ordered
-   */
+     * @see #isOrdered()
+     * @generated
+     * @ordered
+     */
   protected static final int ORDERED_EFLAG = 1 << 8;
 
   /**
-   * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isUnique()
-   * @generated
-   * @ordered
-   */
+     * @see #isUnique()
+     * @generated
+     * @ordered
+     */
   protected static final boolean UNIQUE_EDEFAULT = true;
 
   /**
-   * The flag representing the value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The flag representing the value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isUnique()
-   * @generated
-   * @ordered
-   */
+     * @see #isUnique()
+     * @generated
+     * @ordered
+     */
   protected static final int UNIQUE_EFLAG = 1 << 9;
 
   /**
-   * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLowerBound()
-   * @generated
-   * @ordered
-   */
+     * @see #getLowerBound()
+     * @generated
+     * @ordered
+     */
   protected static final int LOWER_BOUND_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getLowerBound() <em>Lower Bound</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLowerBound()
-   * @generated
-   * @ordered
-   */
+     * @see #getLowerBound()
+     * @generated
+     * @ordered
+     */
   protected int lowerBound = LOWER_BOUND_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getUpperBound()
-   * @generated
-   * @ordered
-   */
+     * @see #getUpperBound()
+     * @generated
+     * @ordered
+     */
   protected static final int UPPER_BOUND_EDEFAULT = 1;
 
   /**
-   * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getUpperBound() <em>Upper Bound</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getUpperBound()
-   * @generated
-   * @ordered
-   */
+     * @see #getUpperBound()
+     * @generated
+     * @ordered
+     */
   protected int upperBound = UPPER_BOUND_EDEFAULT;
 
   /**
-   * The default value of the '{@link #isMany() <em>Many</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #isMany() <em>Many</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isMany()
-   * @generated
-   * @ordered
-   */
+     * @see #isMany()
+     * @generated
+     * @ordered
+     */
   protected static final boolean MANY_EDEFAULT = false;
 
   /**
-   * The default value of the '{@link #isRequired() <em>Required</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #isRequired() <em>Required</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isRequired()
-   * @generated
-   * @ordered
-   */
+     * @see #isRequired()
+     * @generated
+     * @ordered
+     */
   protected static final boolean REQUIRED_EDEFAULT = false;
 
   /**
@@ -175,16 +175,16 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   protected EGenericType eGenericType;
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   protected ETypedElementImpl()
   {
-    super();
-    eFlags |= ORDERED_EFLAG;
-    eFlags |= UNIQUE_EFLAG;
-  }
+        super();
+        eFlags |= ORDERED_EFLAG;
+        eFlags |= UNIQUE_EFLAG;
+    }
 
   @Override
   protected void freeze()
@@ -194,107 +194,107 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   protected EClass eStaticClass()
   {
-    return EcorePackage.Literals.ETYPED_ELEMENT;
-  }
+        return EcorePackage.Literals.ETYPED_ELEMENT;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public boolean isOrdered()
   {
-    return (eFlags & ORDERED_EFLAG) != 0;
-  }
+        return (eFlags & ORDERED_EFLAG) != 0;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setOrdered(boolean newOrdered)
   {
-    boolean oldOrdered = (eFlags & ORDERED_EFLAG) != 0;
-    if (newOrdered) eFlags |= ORDERED_EFLAG; else eFlags &= ~ORDERED_EFLAG;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__ORDERED, oldOrdered, newOrdered));
-  }
+        boolean oldOrdered = (eFlags & ORDERED_EFLAG) != 0;
+        if (newOrdered) eFlags |= ORDERED_EFLAG; else eFlags &= ~ORDERED_EFLAG;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__ORDERED, oldOrdered, newOrdered));
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public boolean isUnique()
   {
-    return (eFlags & UNIQUE_EFLAG) != 0;
-  }
+        return (eFlags & UNIQUE_EFLAG) != 0;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setUnique(boolean newUnique)
   {
-    boolean oldUnique = (eFlags & UNIQUE_EFLAG) != 0;
-    if (newUnique) eFlags |= UNIQUE_EFLAG; else eFlags &= ~UNIQUE_EFLAG;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__UNIQUE, oldUnique, newUnique));
-  }
+        boolean oldUnique = (eFlags & UNIQUE_EFLAG) != 0;
+        if (newUnique) eFlags |= UNIQUE_EFLAG; else eFlags &= ~UNIQUE_EFLAG;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__UNIQUE, oldUnique, newUnique));
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public int getLowerBound()
   {
-    return lowerBound;
-  }
+        return lowerBound;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setLowerBound(int newLowerBound)
   {
-    int oldLowerBound = lowerBound;
-    lowerBound = newLowerBound;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__LOWER_BOUND, oldLowerBound, lowerBound));
-  }
+        int oldLowerBound = lowerBound;
+        lowerBound = newLowerBound;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__LOWER_BOUND, oldLowerBound, lowerBound));
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public int getUpperBound()
   {
-    return upperBound;
-  }
+        return upperBound;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setUpperBound(int newUpperBound)
   {
-    int oldUpperBound = upperBound;
-    upperBound = newUpperBound;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__UPPER_BOUND, oldUpperBound, upperBound));
-  }
+        int oldUpperBound = upperBound;
+        upperBound = newUpperBound;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EcorePackage.ETYPED_ELEMENT__UPPER_BOUND, oldUpperBound, upperBound));
+    }
 
   public boolean isMany()
   {
@@ -510,191 +510,186 @@ public abstract class ETypedElementImpl extends ENamedElementImpl implements ETy
   }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
-        return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
-      case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
-        return basicUnsetEGenericType(msgs);
+        switch (featureID) {
+            case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
+                return ((InternalEList<?>)getEAnnotations()).basicRemove(otherEnd, msgs);
+            case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
+                return basicUnsetEGenericType(msgs);
+        }
+        return eDynamicInverseRemove(otherEnd, featureID, msgs);
     }
-    return eDynamicInverseRemove(otherEnd, featureID, msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
-        return getEAnnotations();
-      case EcorePackage.ETYPED_ELEMENT__NAME:
-        return getName();
-      case EcorePackage.ETYPED_ELEMENT__ORDERED:
-        return isOrdered();
-      case EcorePackage.ETYPED_ELEMENT__UNIQUE:
-        return isUnique();
-      case EcorePackage.ETYPED_ELEMENT__LOWER_BOUND:
-        return getLowerBound();
-      case EcorePackage.ETYPED_ELEMENT__UPPER_BOUND:
-        return getUpperBound();
-      case EcorePackage.ETYPED_ELEMENT__MANY:
-        return isMany();
-      case EcorePackage.ETYPED_ELEMENT__REQUIRED:
-        return isRequired();
-      case EcorePackage.ETYPED_ELEMENT__ETYPE:
-        if (resolve) return getEType();
-        return basicGetEType();
-      case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
-        return getEGenericType();
+        switch (featureID) {
+            case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
+                return getEAnnotations();
+            case EcorePackage.ETYPED_ELEMENT__NAME:
+                return getName();
+            case EcorePackage.ETYPED_ELEMENT__ORDERED:
+                return isOrdered();
+            case EcorePackage.ETYPED_ELEMENT__UNIQUE:
+                return isUnique();
+            case EcorePackage.ETYPED_ELEMENT__LOWER_BOUND:
+                return getLowerBound();
+            case EcorePackage.ETYPED_ELEMENT__UPPER_BOUND:
+                return getUpperBound();
+            case EcorePackage.ETYPED_ELEMENT__MANY:
+                return isMany();
+            case EcorePackage.ETYPED_ELEMENT__REQUIRED:
+                return isRequired();
+            case EcorePackage.ETYPED_ELEMENT__ETYPE:
+                if (resolve) return getEType();
+                return basicGetEType();
+            case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
+                return getEGenericType();
+        }
+        return eDynamicGet(featureID, resolve, coreType);
     }
-    return eDynamicGet(featureID, resolve, coreType);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
-        getEAnnotations().clear();
-        getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__NAME:
-        setName((String)newValue);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__ORDERED:
-        setOrdered((Boolean)newValue);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__UNIQUE:
-        setUnique((Boolean)newValue);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__LOWER_BOUND:
-        setLowerBound((Integer)newValue);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__UPPER_BOUND:
-        setUpperBound((Integer)newValue);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__ETYPE:
-        setEType((EClassifier)newValue);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
-        setEGenericType((EGenericType)newValue);
-        return;
+        switch (featureID) {
+            case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
+                getEAnnotations().clear();
+                getEAnnotations().addAll((Collection<? extends EAnnotation>)newValue);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__NAME:
+                setName((String)newValue);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__ORDERED:
+                setOrdered((Boolean)newValue);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__UNIQUE:
+                setUnique((Boolean)newValue);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__LOWER_BOUND:
+                setLowerBound((Integer)newValue);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__UPPER_BOUND:
+                setUpperBound((Integer)newValue);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__ETYPE:
+                setEType((EClassifier)newValue);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
+                setEGenericType((EGenericType)newValue);
+                return;
+        }
+        eDynamicSet(featureID, newValue);
     }
-    eDynamicSet(featureID, newValue);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
-        getEAnnotations().clear();
-        return;
-      case EcorePackage.ETYPED_ELEMENT__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__ORDERED:
-        setOrdered(ORDERED_EDEFAULT);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__UNIQUE:
-        setUnique(UNIQUE_EDEFAULT);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__LOWER_BOUND:
-        setLowerBound(LOWER_BOUND_EDEFAULT);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__UPPER_BOUND:
-        setUpperBound(UPPER_BOUND_EDEFAULT);
-        return;
-      case EcorePackage.ETYPED_ELEMENT__ETYPE:
-        unsetEType();
-        return;
-      case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
-        unsetEGenericType();
-        return;
+        switch (featureID) {
+            case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
+                getEAnnotations().clear();
+                return;
+            case EcorePackage.ETYPED_ELEMENT__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__ORDERED:
+                setOrdered(ORDERED_EDEFAULT);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__UNIQUE:
+                setUnique(UNIQUE_EDEFAULT);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__LOWER_BOUND:
+                setLowerBound(LOWER_BOUND_EDEFAULT);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__UPPER_BOUND:
+                setUpperBound(UPPER_BOUND_EDEFAULT);
+                return;
+            case EcorePackage.ETYPED_ELEMENT__ETYPE:
+                unsetEType();
+                return;
+            case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
+                unsetEGenericType();
+                return;
+        }
+        eDynamicUnset(featureID);
     }
-    eDynamicUnset(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
-        return eAnnotations != null && !eAnnotations.isEmpty();
-      case EcorePackage.ETYPED_ELEMENT__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case EcorePackage.ETYPED_ELEMENT__ORDERED:
-        return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
-      case EcorePackage.ETYPED_ELEMENT__UNIQUE:
-        return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
-      case EcorePackage.ETYPED_ELEMENT__LOWER_BOUND:
-        return lowerBound != LOWER_BOUND_EDEFAULT;
-      case EcorePackage.ETYPED_ELEMENT__UPPER_BOUND:
-        return upperBound != UPPER_BOUND_EDEFAULT;
-      case EcorePackage.ETYPED_ELEMENT__MANY:
-        return isMany() != MANY_EDEFAULT;
-      case EcorePackage.ETYPED_ELEMENT__REQUIRED:
-        return isRequired() != REQUIRED_EDEFAULT;
-      case EcorePackage.ETYPED_ELEMENT__ETYPE:
-        return isSetEType();
-      case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
-        return isSetEGenericType();
+        switch (featureID) {
+            case EcorePackage.ETYPED_ELEMENT__EANNOTATIONS:
+                return eAnnotations != null && !eAnnotations.isEmpty();
+            case EcorePackage.ETYPED_ELEMENT__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case EcorePackage.ETYPED_ELEMENT__ORDERED:
+                return ((eFlags & ORDERED_EFLAG) != 0) != ORDERED_EDEFAULT;
+            case EcorePackage.ETYPED_ELEMENT__UNIQUE:
+                return ((eFlags & UNIQUE_EFLAG) != 0) != UNIQUE_EDEFAULT;
+            case EcorePackage.ETYPED_ELEMENT__LOWER_BOUND:
+                return lowerBound != LOWER_BOUND_EDEFAULT;
+            case EcorePackage.ETYPED_ELEMENT__UPPER_BOUND:
+                return upperBound != UPPER_BOUND_EDEFAULT;
+            case EcorePackage.ETYPED_ELEMENT__MANY:
+                return isMany() != MANY_EDEFAULT;
+            case EcorePackage.ETYPED_ELEMENT__REQUIRED:
+                return isRequired() != REQUIRED_EDEFAULT;
+            case EcorePackage.ETYPED_ELEMENT__ETYPE:
+                return isSetEType();
+            case EcorePackage.ETYPED_ELEMENT__EGENERIC_TYPE:
+                return isSetEGenericType();
+        }
+        return eDynamicIsSet(featureID);
     }
-    return eDynamicIsSet(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (ordered: ");
-    result.append((eFlags & ORDERED_EFLAG) != 0);
-    result.append(", unique: ");
-    result.append((eFlags & UNIQUE_EFLAG) != 0);
-    result.append(", lowerBound: ");
-    result.append(lowerBound);
-    result.append(", upperBound: ");
-    result.append(upperBound);
-    result.append(')');
-    return result.toString();
-  }
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (ordered: ");
+        result.append((eFlags & ORDERED_EFLAG) != 0);
+        result.append(", unique: ");
+        result.append((eFlags & UNIQUE_EFLAG) != 0);
+        result.append(", lowerBound: ");
+        result.append(lowerBound);
+        result.append(", upperBound: ");
+        result.append(upperBound);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ETypedElementImpl
