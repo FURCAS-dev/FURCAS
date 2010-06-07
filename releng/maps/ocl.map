@@ -16,7 +16,7 @@ plugin@org.eclipse.ocl.ecore=v201005061704,:pserver:anonymous@dev.eclipse.org:/c
 plugin@org.eclipse.ocl.uml=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml
 
 feature@org.eclipse.ocl.doc=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc-feature
-plugin@org.eclipse.ocl.doc=v201006010100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc
+plugin@org.eclipse.ocl.doc=v201006080200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc
 
 feature@org.eclipse.ocl.edit=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit-feature
 plugin@org.eclipse.ocl.edit=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit
@@ -29,7 +29,7 @@ plugin@org.eclipse.ocl.examples.common=v201005061704,:pserver:anonymous@dev.ecli
 plugin@org.eclipse.ocl.examples.editor.model=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.model
 plugin@org.eclipse.ocl.examples.editor.model.edit=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.model.edit
 plugin@org.eclipse.ocl.examples.editor.model.editor=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.editor.model.editor
-plugin@org.eclipse.ocl.examples.interpreter=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.interpreter
+plugin@org.eclipse.ocl.examples.interpreter=v201006080200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.interpreter
 plugin@org.eclipse.ocl.examples.modelregistry=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry
 plugin@org.eclipse.ocl.examples.modelregistry.edit=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry.edit
 plugin@org.eclipse.ocl.examples.modelregistry.editor=v201005061704,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.modelregistry.editor
@@ -46,7 +46,7 @@ plugin@org.eclipse.ocl.examples.xtext.completeocl.ui=v201006010100,:pserver:anon
 plugin@org.eclipse.ocl.examples.xtext.essentialocl=v201006010100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl
 plugin@org.eclipse.ocl.examples.xtext.essentialocl.ui=v201006010100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.essentialocl.ui
 plugin@org.eclipse.ocl.examples.xtext.oclinecore=v201005241840,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclinecore
-plugin@org.eclipse.ocl.examples.xtext.oclinecore.ui=v201006010100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclinecore.ui
+plugin@org.eclipse.ocl.examples.xtext.oclinecore.ui=v201006080200,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclinecore.ui
 plugin@org.eclipse.ocl.examples.xtext.oclstdlib=v201006010100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclstdlib
 plugin@org.eclipse.ocl.examples.xtext.oclstdlib.ui=v201006010100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.ocl.examples.xtext.oclstdlib.ui
 
@@ -69,5 +69,5 @@ plugin@org.eclipse.emf.examples.library.edit=R2_5_0,:pserver:anonymous@dev.eclip
 plugin@org.eclipse.emf.examples.library.editor=R2_5_0,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.editor
 
 !*** LPG Distribution
-plugin@lpg.runtime.java,2.0.17=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100519200754/bundles/lpg.runtime.java_2.0.17.v201004271640.jar
-plugin@lpg.runtime.java.source,2.0.17=GET,http://download.eclipse.org/tools/orbit/downloads/drops/S20100519200754/bundles/lpg.runtime.java.source_2.0.17.v201004271640.jar
+plugin@lpg.runtime.java,2.0.17=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/bundles/lpg.runtime.java_2.0.17.v201004271640.jar
+plugin@lpg.runtime.java.source,2.0.17=GET,http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/bundles/lpg.runtime.java.source_2.0.17.v201004271640.jar
