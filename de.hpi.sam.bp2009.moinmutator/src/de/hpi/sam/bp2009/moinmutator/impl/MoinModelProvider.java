@@ -35,6 +35,9 @@ public class MoinModelProvider implements IMoinModelProvider {
             'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8',
             '9' };
 
+    /**
+     * The MOIN {@link Connection} holding the meta model as well as the instance to mutate
+     */
     protected Connection connection;
 
     /**
@@ -47,8 +50,14 @@ public class MoinModelProvider implements IMoinModelProvider {
      */
     protected final Random random;
 
-    public MoinModelProvider(Connection conn, long randomSeed) {
+    /**
+     * The {@link MofPackage} containing the meta model
+     */
+    private MofPackage pckg;
+
+    public MoinModelProvider(Connection conn, MofPackage p, long randomSeed) {
         connection = conn;
+        pckg = p;
         random = new Random(randomSeed);
     }
 
@@ -69,11 +78,11 @@ public class MoinModelProvider implements IMoinModelProvider {
 
     @Override
     public Collection<StructuralFeature> getAllStructuralFeatures() {
-        ArrayList<StructuralFeature> result = new ArrayList<StructuralFeature>();
-        for (RefObject o : getAllInstances()){
-            if (o instanceof StructuralFeature){
-                result.add((StructuralFeature) o);
-            }
+        MQLProcessor mql = connection.getMQLProcessor();
+        MQLResultSet elements = mql.execute("select o from StructuralFeature as o", mql.getQueryScopeProvider(false, null, (String[]) null));
+        Collection<StructuralFeature> result = new ArrayList<StructuralFeature>();
+        for (RefObject o : elements.getRefObjects("o")){
+            result.add((StructuralFeature)o);
         }
         return result;
     }
@@ -95,7 +104,7 @@ public class MoinModelProvider implements IMoinModelProvider {
 
     @Override
     public MofPackage getPackage() {
-        return getAllInstances().iterator().next().refOutermostPackage().refMetaObject();
+        return pckg;
     }
 
     @Override
@@ -137,10 +146,20 @@ public class MoinModelProvider implements IMoinModelProvider {
 
     @Override
     public StructuralFeature getRandomFeatureHavingType(MofClass type, boolean isContainment) {
+        IsOfType assoc = connection.getAssociation(IsOfType.ASSOCIATION_DESCRIPTOR);
+        Collection<TypedElement> typedElements = assoc.getTypedElements(type);
         List<StructuralFeature> list = new ArrayList<StructuralFeature>();
-        for (StructuralFeature f : getAllStructuralFeatures()){
-            if (f.getType().equals(type) && f instanceof Reference && isContainment == (((Reference)f).getExposedEnd().getAggregation() == AggregationKindEnum.COMPOSITE)){
-                list.add(f);
+        for (TypedElement f : typedElements) {
+            if (f instanceof StructuralFeature) {
+                if (f instanceof Reference){
+                    if ((((Reference)f).getExposedEnd().getAggregation() == AggregationKindEnum.COMPOSITE) == isContainment){
+                        //get all references with the correct containment setting
+                        list.add((StructuralFeature) f);
+                    }
+                }else {
+                    //only references have containment settings, if f is not a reference, just add it to the list
+                    list.add((StructuralFeature) f);
+                }
             }
         }
         if (list.size() == 0){
