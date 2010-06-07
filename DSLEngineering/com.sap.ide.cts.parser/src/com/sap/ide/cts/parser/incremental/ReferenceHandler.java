@@ -5,8 +5,8 @@ import textblocks.LexedToken;
 import textblocks.TextBlock;
 
 import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**

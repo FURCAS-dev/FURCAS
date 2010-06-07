@@ -46,7 +46,8 @@ public class ActionsEditor extends AbstractGrammarBasedEditor {
 				if(!oldBlock.equals(block)) {
 					RefObject parent = (RefObject) oldBlock.refImmediateComposite();
 					if(parent instanceof MethodSignature) {
-						((MethodSignature)parent).setImplementation(block);
+						//((MethodSignature)parent).setImplementation(block);
+						block.setImplements((MethodSignature) parent);
 						((Partitionable)parent).get___Partition().assignElementIncludingChildren(block);
 						((Partitionable)parent).get___Partition().assignElementIncludingChildren(newRoot);
 					}

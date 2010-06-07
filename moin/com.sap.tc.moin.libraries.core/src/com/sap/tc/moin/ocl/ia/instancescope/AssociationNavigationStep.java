@@ -16,6 +16,7 @@ import com.sap.tc.moin.repository.mmi.model.Association;
 import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndInternal;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
@@ -29,7 +30,7 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
     }
     
     @Override
-    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	Set<AnnotatedRefObjectImpl> result;
 
 	Association assoc = (Association) ((AssociationEndInternal) toEnd).getContainer(conn);

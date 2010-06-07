@@ -1,29 +1,14 @@
 package com.sap.ap.cts.refactoring.model;
 
-import com.sap.ide.refactoring.core.model.NamedElement;
+import com.sap.ide.refactoring.core.model.rename.NamedElementDefaultImpl;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-public class NamedElementAdapter implements NamedElement {
 
-    private final modelmanagement.NamedElement wrapped;
+public class NamedElementAdapter extends NamedElementDefaultImpl {
 
-    public NamedElementAdapter(modelmanagement.NamedElement wrapped) {
-	this.wrapped = wrapped;
+    public NamedElementAdapter(RefObject wrapped) {
+	super(wrapped);
     }
 
-    @Override
-    public String getName() {
-	return wrapped.getName();
-    }
-
-    @Override
-    public void setName(String newName) {
-	wrapped.setName(newName);
-    }
-
-    @Override
-    public RefObject getOriginalElement() {
-	return wrapped;
-    }
 
 }

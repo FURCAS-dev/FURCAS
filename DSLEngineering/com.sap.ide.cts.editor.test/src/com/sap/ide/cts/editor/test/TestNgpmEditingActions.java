@@ -31,7 +31,7 @@ import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
 import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
 import com.sap.ide.cts.parser.incremental.IncrementalParsingUtil;
 import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
+import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.repository.NullPartitionNotEmptyException;

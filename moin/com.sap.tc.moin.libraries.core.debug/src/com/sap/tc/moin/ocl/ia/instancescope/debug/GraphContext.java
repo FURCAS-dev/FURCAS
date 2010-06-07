@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sap.tc.moin.ocl.ia.instancescope.AbstractNavigationStep;
 import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 
 import y.base.Edge;
@@ -33,14 +34,12 @@ public class GraphContext {
     private Map<NavigationStep, Node> visitedEndNodes = new HashMap<NavigationStep, Node>();
     private Map<Node, NavigationStep> reverseVisitedEndNodes = new HashMap<Node, NavigationStep>();
 
-    private Map<Node, Integer> nodeNumberList = new HashMap<Node, Integer>();
     private ArrayList<Node> groupNodeLog = new ArrayList<Node>();
     
     private NodeMap nodeDescription = graph.createNodeMap();
     private HierarchyManager hierarchyManager = new HierarchyManager(graph);
 
     private boolean nestingActive = true;
-    private int nodeCounter;
 
     public void setHierarchyManager(HierarchyManager hierachyManager) {
 	this.hierarchyManager = hierachyManager;
@@ -107,14 +106,10 @@ public class GraphContext {
 			"Invariant broken: A node must not have multiple steps and a step must not have multiple nodes.");
 	    }
 
-	    nodeCounter++;
-
 	    ((Graph2D) graph).getRealizer(newNode).setLabelText(
-		    String.valueOf(nodeCounter) + "\n[Hash: " + navStep.hashCode() + "]");
+		   "\n[ID: " + ((AbstractNavigationStep)navStep).getId() + "]");
 
 	    refreshNodeStyle(newNode);
-
-	    nodeNumberList.put(newNode, nodeCounter);
 	} else {
 	    newNode = visitedNodes.get(navStep);
 	}
@@ -122,6 +117,11 @@ public class GraphContext {
 	return newNode;
     }
 
+    /**
+     * Adjusts width of node according to label text width
+     * 
+     * @param node
+     */
     public void refreshNodeStyle(Node node) {
 	((Graph2D) graph).getRealizer(node).setWidth(((Graph2D) graph).getRealizer(node).getLabel().getWidth() + 20);
     }
@@ -138,10 +138,7 @@ public class GraphContext {
 			"Invariant broken: A node must not have multiple steps and a step must not have multiple nodes.");
 	    }
 
-	    Integer nodeNumber = nodeNumberList.get(visitedNodes.get(navStep));
-	    nodeNumberList.put(newNode, nodeNumber);
-
-	    ((Graph2D) graph).getRealizer(newNode).setLabelText(nodeNumber.toString());
+	    ((Graph2D) graph).getRealizer(newNode).setLabelText(String.valueOf(((AbstractNavigationStep)navStep).getId()));
 	    refreshNodeStyle(newNode);
 	} else {
 	    newNode = getVisitedEndNodes().get(navStep);
@@ -153,14 +150,12 @@ public class GraphContext {
     public void setLabelTextForNode(String text, Node node) {
 	if (reverseVisitedNodes.containsKey(node) && !getReverseVisitedEndNodes().containsKey(node)) {
 	    ((Graph2D) graph).getRealizer(node).setLabelText(
-		    nodeNumberList.get(node).toString() + text + "\n[Hash: " + reverseVisitedNodes.get(node).hashCode() + "]");
+		    text + "\n[ID: " + ((AbstractNavigationStep)reverseVisitedNodes.get(node)).getId() + "]");
 
 	    refreshNodeStyle(node);
 	} else if (!reverseVisitedNodes.containsKey(node) && getReverseVisitedEndNodes().containsKey(node)) {
 	    ((Graph2D) graph).getRealizer(node).setLabelText(
-		    nodeNumberList.get(node).toString() + text + "\n[Hash: " + getReverseVisitedEndNodes().get(node).hashCode()
-			    + "]");
-
+		    text + "\n[ID: " + ((AbstractNavigationStep)getReverseVisitedEndNodes().get(node)).getId() + "]");
 	    refreshNodeStyle(node);
 	} else {
 	    throw new RuntimeException("Can't set label text for node " + node.toString());

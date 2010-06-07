@@ -45,6 +45,12 @@ public interface EvaluationContext {
      * @param value the variable value
      */
     public void setVariable( String name, OclAny value );
+    
+    /**
+     * Removes a variable from this context such that when {@link #getVariable(String)} is
+     * called for <tt>name</tt>, <tt>null</tt> will result.
+     */
+    public void unsetVariable(String name);
 
     /**
      * Create a new EvaluationContext which is stacked on top of this context,

@@ -9,6 +9,8 @@ import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 public class AllInstancesNavigationStep extends AbstractNavigationStep {
@@ -29,7 +31,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
     /**
      * Constructs a non-{@link NavigationStep#isAbsolute() absolute} navigation step that
      * computes all instances of <tt>targetType</tt> and all its direct and indirect subtypes,
-     * if the <tt>fromObject</tt> passed to {@link #navigate(CoreConnection, RefObjectImpl, Map)}
+     * if the <tt>fromObject</tt> passed to {@link #navigate(CoreConnection, RefObjectImpl, Map, Set)}
      * conforms to the <tt>sourceType</tt>. Otherwise, an empty set is returned. The
      * consideration of the <tt>fromObject</tt> is the reason why if constructed with this
      * constructor an object of this class is not absolute.
@@ -46,7 +48,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	Set<AnnotatedRefObjectImpl> result = new HashSet<AnnotatedRefObjectImpl>();
 	for (RefObjectImpl roi : InstanceScopeAnalysis.getAllPossibleContextInstances(conn, getTargetType())) {
 	    result.add(annotateRefObject(conn, fromObject, roi));

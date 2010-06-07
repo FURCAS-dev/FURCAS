@@ -1,9 +1,6 @@
 package com.sap.ide.refactoring.test;
 
-import junit.framework.Assert;
-
 import org.antlr.runtime.Lexer;
-import org.eclipse.jface.text.source.ISourceViewer;
 
 import textblocks.TextBlock;
 
@@ -20,9 +17,9 @@ import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 /**
  * Version of the RefactoringEditorFacade which can work without a running
  * editor and is therefore suited for tests which do not need a UI.
- * 
+ *
  * @author D049157
- * 
+ *
  */
 public class RefactoringEditorFacadeStub extends RefactoringEditorFacade {
 
@@ -42,7 +39,7 @@ public class RefactoringEditorFacadeStub extends RefactoringEditorFacade {
 	this.rootBlock = rootBlock;
 
 	this.textBlocksModel = new TextBlocksModel(rootBlock, getModelElementInvestigator());
-	
+
     }
 
     private IModelElementInvestigator getModelElementInvestigator() {
@@ -62,17 +59,11 @@ public class RefactoringEditorFacadeStub extends RefactoringEditorFacade {
     }
 
     @Override
-    public ISourceViewer getSourceViewer() {
-	Assert.fail("Non GUI components should not rely on the SourceViewer.");
-	return null;
-    }
-
-    @Override
     public TextBlocksModel getTextBlocksModel() {
 	return textBlocksModel;
     }
 
-    
+
     @Override
     protected ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> getParserFactory() {
 	return parserFactory;

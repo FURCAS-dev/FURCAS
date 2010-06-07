@@ -1,11 +1,7 @@
 **Model Error: Attribute name classes duplicates another attribute or (implicit) reference in class Logical View::modelmanagement::Package
 **Model Error: Attribute "Logical View::modelmanagement::Package::classes" is a duplicate.  Check and correct the model--this export will not be usable.
-**Model Error: Default role name "salesOrder" in Association "A_salesOrder_vendor" ending at class "Logical View::runtime::testWithRoles::SalesOrder" duplicates another role name accessible to the originating class.  This rule must have a unique name.
-**Model Error: Role name "b" in Association "CtoB" ending at class "Logical View::runtime::testWithPolymorphicAssociations::B" duplicates another attribute in or role name accessible to the originating-end class.  This role must have a unique name.
-**Model Error: Role name "a" in Association "CtoB" ending at class "Logical View::runtime::testWithPolymorphicAssociations::C" duplicates another attribute in or role name accessible to the originating-end class.  This role must have a unique name.
-**Model Error: Default role name "statusDerivator" in Association "A_target_statusDerivator" ending at class "StatusDerivator" duplicates another role name accessible to the originating class.  This rule must have a unique name.
-**Model Error: Default role name "serviceInterfaceOperation" in Association "A_responseMessageType_serviceInterfaceOperation" ending at class "ServiceInterfaceOperation" duplicates another role name accessible to the originating class.  This rule must have a unique name.
-**Model Error: Default role name "serviceInterfaceOperation" in Association "A_faultMessageType_serviceInterfaceOperation" ending at class "ServiceInterfaceOperation" duplicates another role name accessible to the originating class.  This rule must have a unique name.
+**Model Error: Attribute name associations duplicates another attribute or (implicit) reference in class Logical View::modelmanagement::Package
+**Model Error: Attribute "Logical View::modelmanagement::Package::associations" is a duplicate.  Check and correct the model--this export will not be usable.
 *Warning: Association found with no name between 'Variable' and 'Assignment'.  The name 'A_assignTo_assignments' has been created for it.
 *Warning: Association found with no name between 'Statement' and 'Block'.  The name 'A_statements_block' has been created for it.
 *Warning: Association found with no name between 'NamedValue' and 'Block'.  The name 'A_variables_owner' has been created for it.
@@ -92,7 +88,7 @@
 *Warning: Association found with no name between 'FunctionSignature' and 'CellSet'.  The name 'A_valueFunction_cellSetForValueFunction' has been created for it.
 *Warning: Association found with no name between 'FunctionSignature' and 'CellSet'.  The name 'A_aggregationFunction_cellSetForAggregationFunction' has been created for it.
 *Warning: Association found with no name between 'Expression' and 'DimensionExpression'.  The name 'A_cellSet_cellSetOfDimensionExpression' has been created for it.
-*Warning: Association found with no name between 'Parameter' and 'DimensionExpression'.  The name 'A_dimension_dimensionExpression' has been created for it.
+*Warning: Association found with no name between 'Parameter' and 'DimensionExpression'.  The name 'A_dimensionParameter_dimensionExpression' has been created for it.
 *Warning: Association found with no name between 'TypeDefinition' and 'CellSet'.  The name 'A_factsType_cellSet' has been created for it.
 *Warning: Association found with no name between 'Expression' and 'DimensionExpression'.  The name 'A_facts_factsOfDimensionExpression' has been created for it.
 *Warning: Association found with no name between 'DimensionDefinition' and 'GroupBy'.  The name 'A_dimensions_groupBy' has been created for it.

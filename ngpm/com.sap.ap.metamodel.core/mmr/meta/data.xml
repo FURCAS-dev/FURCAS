@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Tue May 11 23:22:29 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Sat Jun 05 15:55:21 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -134,7 +134,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.782' 
+        <Model:Tag xmi.id = 'G.635' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -148,6 +148,7 @@ inv:
             <Model:ModelElement xmi.idref = 'ra47F12A8C021B'/>  <!-- data.classes.Signature.input -->
             <Model:ModelElement xmi.idref = 'ra47B9ABAF02AF'/>  <!-- data.classes.AssociationEnd.type -->
             <Model:ModelElement xmi.idref = 'ra4795967B0020'/>  <!-- data.classes.SapClass.package_ -->
+            <Model:ModelElement xmi.idref = 'ra49B150D6032C'/>  <!-- data.classes.SapClass.formalObjectParameters -->
             <Model:ModelElement xmi.idref = 'ra456DB5E0037B'/>  <!-- data.classes.Delegation.from -->
             <Model:ModelElement xmi.idref = 'ra47CBF418010A'/>  <!-- data.classes.TypedElement.ownedTypeDefinition -->
             <Model:ModelElement xmi.idref = 'ra47D67F7201BC'/>  <!-- data.classes.SignatureImplementation.implements_ -->
@@ -155,11 +156,13 @@ inv:
             <Model:ModelElement xmi.idref = 'ra4784F7F5005F'/>  <!-- data.classes.ClassTypeDefinition.clazz -->
             <Model:ModelElement xmi.idref = 'ra49B1561E0157'/>  <!-- data.classes.ClassTypeDefinition.objectParameters -->
             <Model:ModelElement xmi.idref = 'ra4AD595C100DA'/>  <!-- data.classes.ClassTypeDefinition.ownedObjectParameters -->
+            <Model:ModelElement xmi.idref = 'ra48A02BD6002E'/>  <!-- data.classes.FunctionSignatureTypeDefinition.signature -->
             <Model:ModelElement xmi.idref = 'ra49B15BB60196'/>  <!-- data.classes.MethodSignature.converter -->
             <Model:ModelElement xmi.idref = 'ra4975FB7F01F5'/>  <!-- data.classes.FunctionSignature.implementation -->
             <Model:ModelElement xmi.idref = 'ra47F112BE01FC'/>  <!-- data.classes.TypeAdapter.to -->
             <Model:ModelElement xmi.idref = 'ra47F112EE01B9'/>  <!-- data.classes.TypeAdapter.adapted -->
             <Model:ModelElement xmi.idref = 'ra48A04147011B'/>  <!-- data.classes.SignatureOwner.ownedSignatures -->
+            <Model:ModelElement xmi.idref = 'ra49B1561C02CE'/>  <!-- data.classes.ActualObjectParameter.value -->
             <Model:ModelElement xmi.idref = 'ra49B15A62039B'/>  <!-- data.classes.ConverterBetweenParametrizations.clazz -->
             <Model:ModelElement xmi.idref = 'a443B53200210'/>
             <Model:ModelElement xmi.idref = 'a44EC56620059'/>
@@ -179,16 +182,19 @@ inv:
             <Model:ModelElement xmi.idref = 'a47F112EE01B9'/>
             <Model:ModelElement xmi.idref = 'a47F12A8C021B'/>
             <Model:ModelElement xmi.idref = 'a489CAD350196'/>
+            <Model:ModelElement xmi.idref = 'a48A02BD6002E'/>
             <Model:ModelElement xmi.idref = 'a48A04147011B'/>
             <Model:ModelElement xmi.idref = 'a4975FB7F01F5'/>
+            <Model:ModelElement xmi.idref = 'a49B150D6032C'/>
             <Model:ModelElement xmi.idref = 'a49B1561E0157'/>
+            <Model:ModelElement xmi.idref = 'a49B1561C02CE'/>
             <Model:ModelElement xmi.idref = 'a49B15A62039B'/>
             <Model:ModelElement xmi.idref = 'a49B15BB60196'/>
             <Model:ModelElement xmi.idref = 'a4AD595C100DA'/>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.783' 
+        <Model:Tag xmi.id = 'G.636' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -196,6 +202,7 @@ inv:
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'ra4795A52A03B9'/>  <!-- data.classes.Association.package_ -->
+            <Model:ModelElement xmi.idref = 'ra48A02BD6007D'/>  <!-- data.classes.Signature.typeDefinition -->
             <Model:ModelElement xmi.idref = 'ra44EC5662005B'/>  <!-- data.classes.AssociationEnd.association -->
             <Model:ModelElement xmi.idref = 'ra456DB5E0037D'/>  <!-- data.classes.AssociationEnd.delegation -->
             <Model:ModelElement xmi.idref = 'ra4784F7F5005E'/>  <!-- data.classes.SapClass.elementsOfType -->
@@ -209,6 +216,7 @@ inv:
             <Model:ModelElement xmi.idref = 'ra47CD54E60251'/>  <!-- data.classes.NestedTypeDefinition.ownedTypeDefinition -->
             <Model:ModelElement xmi.idref = 'ra47D67F7201BD'/>  <!-- data.classes.MethodSignature.implementation -->
             <Model:ModelElement xmi.idref = 'ra48A04147011A'/>  <!-- data.classes.MethodSignature.owner -->
+            <Model:ModelElement xmi.idref = 'ra49B150D6035B'/>  <!-- data.classes.Parameter.parameterOfClass -->
             <Model:ModelElement xmi.idref = 'ra489CAD350177'/>  <!-- data.classes.NativeImpl.platformSpecificImplementaiton -->
             <Model:ModelElement xmi.idref = 'ra4975FB7F01F6'/>  <!-- data.classes.FunctionSignatureImplementation.functionSignature -->
             <Model:ModelElement xmi.idref = 'ra49B1561E0159'/>  <!-- data.classes.ActualObjectParameter.classTypeDefinitions -->
@@ -228,16 +236,19 @@ inv:
             <Model:ModelElement xmi.idref = 'a47F112BE0232'/>
             <Model:ModelElement xmi.idref = 'a47F112EE01EC'/>
             <Model:ModelElement xmi.idref = 'a489CAD350177'/>
+            <Model:ModelElement xmi.idref = 'a48A02BD6007D'/>
             <Model:ModelElement xmi.idref = 'a48A04147011A'/>
             <Model:ModelElement xmi.idref = 'a4975FB7F01F6'/>
+            <Model:ModelElement xmi.idref = 'a49B150D6035B'/>
             <Model:ModelElement xmi.idref = 'a49B1561E0159'/>
+            <Model:ModelElement xmi.idref = 'a49B1561D007D'/>
             <Model:ModelElement xmi.idref = 'a49B15A620399'/>
             <Model:ModelElement xmi.idref = 'a49B15BB60138'/>
             <Model:ModelElement xmi.idref = 'a4AD595C100DC'/>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Uniqueness on both ends must be the same'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.784' 
+        <Model:Tag xmi.id = 'G.637' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Uniqueness on both ends must be the same&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -248,7 +259,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Associations between two value types that affect equality of both types are currently not supported. It would lead to a recursive equality definition and therefore to recursive value constructors.'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.785' 
+        <Model:Tag xmi.id = 'G.638' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Associations between two value types that affect equality of both types are currently not supported. It would lead to a recursive equality definition and therefore to recursive value constructors.&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -328,6 +339,21 @@ The enforcement of side effect freeness is the SignatureImplementation subclasse
               </Model:TypedElement.type>
               <Model:Reference.referencedEnd>
                 <Model:AssociationEnd xmi.idref = 'a47F12A8C021B'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== data.classes.Signature.typeDefinition    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra48A02BD6007D' 
+              name = 'typeDefinition' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47B9A9AD03B9'/>  <!-- data.classes.FunctionSignatureTypeDefinition -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a48A02BD6007D'/>
               </Model:Reference.referencedEnd>
             </Model:Reference>
             <!-- ==================== data.classes.Signature.sideEffectFree    [Attribute] ==================== -->
@@ -477,7 +503,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::conformsTo(s:Signature):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.787' 
+        <Model:Tag xmi.id = 'G.640' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::conformsTo(s:Signature):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -494,7 +520,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::conformsToExcluding(s:Signature, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.788' 
+        <Model:Tag xmi.id = 'G.641' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::conformsToExcluding(s:Signature, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -520,7 +546,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.789' 
+        <Model:Tag xmi.id = 'G.642' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -533,14 +559,14 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::getOwningClass():SapClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.790' 
+        <Model:Tag xmi.id = 'G.643' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::getOwningClass():SapClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context Signature::getOwningClass():SapClass
 body:
   if self.oclIsKindOf(MethodSignature) then
-    let owner = self.oclAsType(MethodSignature).owner in
+    let owner:SignatureOwner = self.oclAsType(MethodSignature).owner in
     if owner.oclIsKindOf(SapClass) then
       owner.oclAsType(SapClass)
     else
@@ -750,7 +776,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context AssociationEnd::otherEnd():AssociationEnd...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.791' 
+        <Model:Tag xmi.id = 'G.644' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context AssociationEnd::otherEnd():AssociationEnd...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -763,7 +789,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Exposing classes equal opposite ends type'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.792' 
+        <Model:Tag xmi.id = 'G.645' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Exposing classes equal opposite ends type&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -774,7 +800,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='If the association is equality relevant for the value and it is not the only attribute of the value, there may be an unlimited number of values connected to the other end. The multiplicity of the end must be *.'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.793' 
+        <Model:Tag xmi.id = 'G.646' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;If the association is equality relevant for the value and it is not the only attribute of the value, there may be an unlimited number of values connected to the other end. The multiplicity of the end must be *.&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -1420,7 +1446,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.requiresPartition=True    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.794' 
+        <Model:Tag xmi.id = 'G.647' 
           name = 'org.omg.sap2mof.requiresPartition=True' annotation = '' 
           tagId = 'org.omg.sap2mof.requiresPartition' >
           <Model:Tag.values>
@@ -1432,7 +1458,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::isAbstract():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.795' 
+        <Model:Tag xmi.id = 'G.648' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::isAbstract():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1445,7 +1471,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::isParameterizedClassDefinition():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.796' 
+        <Model:Tag xmi.id = 'G.649' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::isParameterizedClassDefinition():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1458,7 +1484,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::conformsTo(type:SapClass):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.797' 
+        <Model:Tag xmi.id = 'G.650' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::conformsTo(type:SapClass):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1475,7 +1501,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::allSignatures():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.798' 
+        <Model:Tag xmi.id = 'G.651' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::allSignatures():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1488,17 +1514,17 @@ self.allSignaturesExcluding(Set{})</XMI.any>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatesTo():Set(SapClass)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.799' 
+        <Model:Tag xmi.id = 'G.652' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatesTo():Set(SapClass)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context SapClass::delegatesTo():Set(SapClass)
 body:
-  if self.oclIsKindOf(ParameterizedClassInstantiation) then
-    self.oclAsType(ParameterizedClassInstantiation).parameterizedClass.delegatesTo()
+  if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then
+    self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.delegatesTo()
   else
-    if self.oclIsKindOf(FormalTypeParameter) then
-      self.oclAsType(FormalTypeParameter).typeConstraint-&gt;collect(c:SapClass | c.delegatesTo())-&gt;flatten()-&gt;asSet()
+    if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+      self.oclAsType(data::generics::FormalTypeParameter).typeConstraint-&gt;collect(c:SapClass | c.delegatesTo())-&gt;flatten()-&gt;asSet()
     else
       -- TODO improve OCL impact analysis algorithm so that this doesn't kill performance:
       -- Set{}  -- use this for good performance
@@ -1511,7 +1537,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::conformsToExcluding(type:SapClass, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.800' 
+        <Model:Tag xmi.id = 'G.653' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::conformsToExcluding(type:SapClass, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1528,9 +1554,9 @@ body:
      true
   else
     self.adapters-&gt;exists(a|a.to.conformsToExcluding(type, excludingConforming-&gt;including(self), excludingTo-&gt;including(type))) or
-    (if self.oclIsKindOf(FormalTypeParameter) then
-        if self.oclAsType(FormalTypeParameter).typeConstraint-&gt;notEmpty() then
-            self.oclAsType(FormalTypeParameter).typeConstraint.conformsToExcluding(type, excludingConforming-&gt;including(self), excludingTo-&gt;including(type))
+    (if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+        if self.oclAsType(data::generics::FormalTypeParameter).typeConstraint-&gt;notEmpty() then
+            self.oclAsType(data::generics::FormalTypeParameter).typeConstraint.conformsToExcluding(type, excludingConforming-&gt;including(self), excludingTo-&gt;including(type))
         else
             false
         endif
@@ -1546,7 +1572,7 @@ endif</XMI.any>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::signaturesWithDelegation():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.801' 
+        <Model:Tag xmi.id = 'G.654' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::signaturesWithDelegation():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1559,7 +1585,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatedSignatures():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.802' 
+        <Model:Tag xmi.id = 'G.655' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatedSignatures():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1572,7 +1598,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::adaptedSignatures():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.803' 
+        <Model:Tag xmi.id = 'G.656' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::adaptedSignatures():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1586,18 +1612,18 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::adaptedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.804' 
+        <Model:Tag xmi.id = 'G.657' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::adaptedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context SapClass::adaptedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)
 body:
   if excluding-&gt;count(self)=0 then
-    if self.oclIsKindOf(ParameterizedClassInstantiation) then
-      self.oclAsType(ParameterizedClassInstantiation).parameterizedClass.adaptedSignaturesExcluding(excluding-&gt;including(self))
+    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then
+      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.adaptedSignaturesExcluding(excluding-&gt;including(self))
     else
-      if self.oclIsKindOf(FormalTypeParameter) then
-        self.oclAsType(FormalTypeParameter).typeConstraint-&gt;collect(c:SapClass | c.adaptedSignaturesExcluding(excluding-&gt;including(self)))-&gt;flatten()-&gt;asSet()
+      if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint-&gt;collect(c:SapClass | c.adaptedSignaturesExcluding(excluding-&gt;including(self)))-&gt;flatten()-&gt;asSet()
       else
         self.adapters.allSignaturesExcluding(excluding-&gt;including(self))
           -&gt;select(s | not self.ownedSignatures-&gt;exists(os | os.conformsTo(s)))
@@ -1614,18 +1640,18 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.805' 
+        <Model:Tag xmi.id = 'G.658' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context SapClass::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)
 body:
   if excluding-&gt;count(self)=0 then
-    if self.oclIsKindOf(ParameterizedClassInstantiation) then
-      self.oclAsType(ParameterizedClassInstantiation).parameterizedClass.allSignaturesExcluding(excluding-&gt;including(self))
+    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then
+      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.allSignaturesExcluding(excluding-&gt;including(self))
     else
-      if self.oclIsKindOf(FormalTypeParameter) then
-        self.oclAsType(FormalTypeParameter).typeConstraint-&gt;collect(c:SapClass | c.allSignaturesExcluding(excluding-&gt;including(self)))-&gt;flatten()-&gt;asSet()
+      if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint-&gt;collect(c:SapClass | c.allSignaturesExcluding(excluding-&gt;including(self)))-&gt;flatten()-&gt;asSet()
       else
         self.signaturesWithDelegationExcluding(excluding)-&gt;union(self.adaptedSignaturesExcluding(excluding))
       endif
@@ -1639,18 +1665,18 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::signaturesWithDelegationExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.806' 
+        <Model:Tag xmi.id = 'G.659' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::signaturesWithDelegationExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context SapClass::signaturesWithDelegationExcluding(excluding:Set(SapClass)):Set(MethodSignature)
 body:
 if excluding-&gt;count(self)=0 then 
-    if self.oclIsKindOf(ParameterizedClassInstantiation) then
-      self.oclAsType(ParameterizedClassInstantiation).parameterizedClass.signaturesWithDelegationExcluding(excluding-&gt;including(self))
+    if self.oclIsKindOf(data::generics::ParameterizedClassInstantiation) then
+      self.oclAsType(data::generics::ParameterizedClassInstantiation).parameterizedClass.signaturesWithDelegationExcluding(excluding-&gt;including(self))
     else
-      if self.oclIsKindOf(FormalTypeParameter) then
-        self.oclAsType(FormalTypeParameter).typeConstraint-&gt;collect(c:SapClass | c.signaturesWithDelegationExcluding(excluding-&gt;including(self)))-&gt;flatten()-&gt;asSet()
+      if self.oclIsKindOf(data::generics::FormalTypeParameter) then
+        self.oclAsType(data::generics::FormalTypeParameter).typeConstraint-&gt;collect(c:SapClass | c.signaturesWithDelegationExcluding(excluding-&gt;including(self)))-&gt;flatten()-&gt;asSet()
       else
         self.ownedSignatures-&gt;union(self.delegatesTo().signaturesWithDelegationExcluding(excluding-&gt;including(self)))-&gt;flatten()-&gt;asSet()
       endif
@@ -1664,7 +1690,7 @@ endif</XMI.any>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.807' 
+        <Model:Tag xmi.id = 'G.660' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::delegatedSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1681,7 +1707,7 @@ endif</XMI.any>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformingClasses():Set(SapClass)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.808' 
+        <Model:Tag xmi.id = 'G.661' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformingClasses():Set(SapClass)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1696,7 +1722,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.809' 
+        <Model:Tag xmi.id = 'G.662' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1709,7 +1735,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getEqualityRelevantAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.810' 
+        <Model:Tag xmi.id = 'G.663' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getEqualityRelevantAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1722,7 +1748,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToClasses():Set(SapClass)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.811' 
+        <Model:Tag xmi.id = 'G.664' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToClasses():Set(SapClass)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1735,7 +1761,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.812' 
+        <Model:Tag xmi.id = 'G.665' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1748,7 +1774,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToCompositeParentAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.813' 
+        <Model:Tag xmi.id = 'G.666' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToCompositeParentAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1761,7 +1787,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToCompositeChildAssociationEnds():Set(AssociationEnd)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.814' 
+        <Model:Tag xmi.id = 'G.667' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SapClass::getConformsToCompositeChildAssociationEnds():Set(AssociationEnd)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1830,7 +1856,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='TO end must have multiplicity of One'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.815' 
+        <Model:Tag xmi.id = 'G.668' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;TO end must have multiplicity of One&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -1916,7 +1942,7 @@ TODO the inference for Iterator elements used in an Iterate expression needs to 
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypedElement::conformsTo(typedElement:TypedElement):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.816' 
+        <Model:Tag xmi.id = 'G.669' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypedElement::conformsTo(typedElement:TypedElement):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1930,7 +1956,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypedElement::getType():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.817' 
+        <Model:Tag xmi.id = 'G.670' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypedElement::getType():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1939,40 +1965,36 @@ body:
   if self.ownedTypeDefinition-&gt;notEmpty() then
     self.ownedTypeDefinition
   else
-    if self.oclIsKindOf(Variable) then
-      self.oclAsType(Variable).initExpression.getType()
-    else if self.oclIsKindOf(Constant) then
-      if self.oclAsType(Constant).initExpression-&gt;notEmpty() then
-        self.oclAsType(Constant).initExpression.getType()
+    if self.oclIsKindOf(behavioral::actions::Variable) then
+      self.oclAsType(behavioral::actions::Variable).initExpression.getType()
+    else if self.oclIsKindOf(behavioral::actions::Constant) then
+      if self.oclAsType(behavioral::actions::Constant).initExpression-&gt;notEmpty() then
+        self.oclAsType(behavioral::actions::Constant).initExpression.getType()
       else
-         if self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator]-&gt;notEmpty() then
-           if self.oclAsType(Constant).initExpression-&gt;notEmpty() then
-             self.oclAsType(Constant).initExpression.getType()
-           else
-             self.oclAsType(Constant)."iterate"[dataaccess::expressions::collectionExpressions::IterateAccumulator].iteratorExpression.getType()
-           endif
+         if self.oclAsType(behavioral::actions::Constant)."iterate"-&gt;notEmpty() then
+           self.oclAsType(behavioral::actions::Constant)."iterate".iteratorExpression.getType()
          else
            null
          endif
       endif
-    else if self.oclIsKindOf(Iterator) then
-      if self.oclAsType(Iterator).boundToFor-&gt;notEmpty() then
-        if self.oclAsType(Iterator).boundToFor.collection.getType().oclIsKindOf(NestedTypeDefinition) then
+    else if self.oclIsKindOf(behavioral::actions::Iterator) then
+      if self.oclAsType(behavioral::actions::Iterator).boundToFor-&gt;notEmpty() then
+        if self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclIsKindOf(data::classes::NestedTypeDefinition) then
           -- if the selection's object has a nested type definition, un-nest by one level
-          self.oclAsType(Iterator).boundToFor.collection.getType().oclAsType(NestedTypeDefinition).type
+          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType().oclAsType(data::classes::NestedTypeDefinition).type
         else
           -- the tool should infer a better match; this as a better default than "null"
-          self.oclAsType(Iterator).boundToFor.collection.getType()
+          self.oclAsType(behavioral::actions::Iterator).boundToFor.collection.getType()
         endif
       else
-        let selection:Set(Expression)=self.oclAsType(Iterator).selection.object-&gt;asSet() in
-        let groupby:Set(Expression)=self.oclAsType(Iterator).factOfGroupBy.object-&gt;asSet() in
-        let iterateexp:Set(Expression)=self.oclAsType(Iterator)."iterate".source-&gt;asSet() in
-        let iteratesource:Set(Expression)=selection-&gt;union(groupby)-&gt;union(iterateexp) in
+        let selection:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).selection.object-&gt;asSet() in
+        let groupby:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object-&gt;asSet() in
+        let iterateexp:Set(dataaccess::expressions::Expression)=self.oclAsType(behavioral::actions::Iterator)."iterate".source-&gt;asSet() in
+        let iteratesource:Set(dataaccess::expressions::Expression)=selection-&gt;union(groupby)-&gt;union(iterateexp) in
         if iteratesource-&gt;notEmpty() then
-          if iteratesource-&gt;any(true).getType().oclIsKindOf(NestedTypeDefinition) then
+          if iteratesource-&gt;any(true).getType().oclIsKindOf(data::classes::NestedTypeDefinition) then
             -- if the Selection's/GroupBy's object has a nested type definition, un-nest by one level
-            iteratesource-&gt;any(true).getType().oclAsType(NestedTypeDefinition).type
+            iteratesource-&gt;any(true).getType().oclAsType(data::classes::NestedTypeDefinition).type
           else
             -- In this case the tool should create a cloned tpye definition with multiplicities set to 1;
             -- Just in case the tool doesn't do this and for the case where the object has upper
@@ -1980,13 +2002,13 @@ body:
             iteratesource-&gt;any(true).getType()
           endif
         else
-          if self.oclAsType(Iterator).groupedFactsOfGroupBy-&gt;notEmpty() then
+          if self.oclAsType(behavioral::actions::Iterator).groupedFactsOfGroupBy-&gt;notEmpty() then
             -- the groups of a group-by expression can re-used the facts type
-            self.oclAsType(Iterator).factOfGroupBy.object.getType()
+            self.oclAsType(behavioral::actions::Iterator).factOfGroupBy.object.getType()
           else
-            if self.oclAsType(Iterator).dimension-&gt;notEmpty() then
+            if self.oclAsType(behavioral::actions::Iterator).dimension-&gt;notEmpty() then
               -- the DimensionDefinition's expression defines the dimension iterator's type
-              self.oclAsType(Iterator).dimension.expression.getType()
+              self.oclAsType(behavioral::actions::Iterator).dimension.expression.getType()
             else
               -- Then we have no idea how to infer the Iterator's type
               null
@@ -1994,10 +2016,10 @@ body:
           endif
         endif
       endif
-    else if self.oclIsKindOf(Including) or self.oclIsKindOf(Excluding) then
-      self.oclAsType(CollectionExpression).source.getType()
-    else if self.oclIsKindOf(Iterate) then
-      self.oclAsType(Iterate).iteratorExpression.getType()
+    else if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::Including) or self.oclIsKindOf(dataaccess::expressions::collectionExpressions::Excluding) then
+      self.oclAsType(dataaccess::expressions::collectionExpressions::CollectionExpression).source.getType()
+    else if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::Iterate) then
+      self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).iteratorExpression.getType()
     else if self.oclIsKindOf(Parameter) then
       if self.oclAsType(Parameter).defaultValue-&gt;notEmpty() then
         self.oclAsType(Parameter).defaultValue.getType()
@@ -2005,7 +2027,7 @@ body:
         if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and
         self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation-&gt;notEmpty() and
         self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclIsKindOf(AssociationEndSignatureImplementation) then
-  &#x0009;let impl = self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclAsType(AssociationEndSignatureImplementation) in
+  &#x0009;let impl:AssociationEndSignatureImplementation = self.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).implementation.oclAsType(AssociationEndSignatureImplementation) in
             impl.end.type
         else
           if self.oclAsType(Parameter).ownerSignature.oclIsKindOf(FunctionSignature) then
@@ -2022,12 +2044,12 @@ body:
                     self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).cellSetForAggregationFunction.factsType
                   endif
                 else
-                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclIsKindOf(CellSet) then
+                  if self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclIsKindOf(dataaccess::analytics::CellSet) then
                     let pos:Integer = self.oclAsType(Parameter).ownerSignature.input-&gt;indexOf(self.oclAsType(Parameter)) in
                     if pos = 1 then
-                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(CellSet).factsType
+                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).factsType
                     else
-                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(CellSet).
+                      self.oclAsType(Parameter).ownerSignature.oclAsType(FunctionSignature).implementation.oclAsType(dataaccess::analytics::CellSet).
                           dimensions-&gt;at(-1+pos).characteristicFunction.output
                     endif
                   else
@@ -2041,28 +2063,28 @@ body:
           endif
         endif
       endif
-    else if self.oclIsKindOf(DimensionExpression) then
+    else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then
       -- TODO Here, the multiplicity would have to be forced to 0..*
-      self.oclAsType(DimensionExpression).dimension.getType()
-    else if self.oclIsKindOf(VariableExpression) then
-      self.oclAsType(VariableExpression).variable.getType()
-    else if self.oclIsKindOf(SignatureCallExpression) then
-      self.oclAsType(SignatureCallExpression).getSignature().output
-    else if self.oclIsKindOf(AssociationEndNavigationExpression) then
-      self.oclAsType(AssociationEndNavigationExpression).toEnd.type
-    else if self.oclIsKindOf(Replace) then
-      self.oclAsType(Replace).object.getType()
-    else if self.oclIsKindOf(Ternary) then
+      self.oclAsType(dataaccess::analytics::DimensionExpression).dimensionParameter.getType()
+    else if self.oclIsKindOf(dataaccess::expressions::VariableExpression) then
+      self.oclAsType(dataaccess::expressions::VariableExpression).variable.getType()
+    else if self.oclIsKindOf(dataaccess::expressions::SignatureCallExpression) then
+      self.oclAsType(dataaccess::expressions::SignatureCallExpression).getSignature().output
+    else if self.oclIsKindOf(dataaccess::expressions::AssociationEndNavigationExpression) then
+      self.oclAsType(dataaccess::expressions::AssociationEndNavigationExpression).toEnd.type
+    else if self.oclIsKindOf(dataaccess::expressions::Replace) then
+      self.oclAsType(dataaccess::expressions::Replace).object.getType()
+    else if self.oclIsKindOf(dataaccess::expressions::Ternary) then
       -- Find the "least" TypeDefinition to which both, trueExpr.getType() and falseExpr.getType() conform.
       -- We determine the more general of the two types; we cannot synthesize a new TypeDefinition in OCL.
       -- Doing so would have to be done by explicit typing, setting the ownedTypeDefinition explicitly
-      if self.oclAsType(Ternary).trueExpr.getType().conformsTo(self.oclAsType(Ternary).falseExpr.getType()) then
-        self.oclAsType(Ternary).falseExpr.getType()
+      if self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType().conformsTo(self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()) then
+        self.oclAsType(dataaccess::expressions::Ternary).falseExpr.getType()
       else
-        self.oclAsType(Ternary).trueExpr.getType()
+        self.oclAsType(dataaccess::expressions::Ternary).trueExpr.getType()
       endif
-    else if self.oclIsKindOf(Selection) then
-      self.oclAsType(Selection).object.getType()
+    else if self.oclIsKindOf(dataaccess::query::Selection) then
+      self.oclAsType(dataaccess::query::Selection).object.getType()
     else
       null
     endif
@@ -2178,7 +2200,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Condition must be boolean'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.818' 
+        <Model:Tag xmi.id = 'G.671' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Condition must be boolean&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -2267,7 +2289,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Multiplicity::isMany():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.819' 
+        <Model:Tag xmi.id = 'G.672' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Multiplicity::isMany():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2321,7 +2343,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::getImplementedSignature():Signature...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.820' 
+        <Model:Tag xmi.id = 'G.673' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::getImplementedSignature():Signature...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2385,7 +2407,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Signature has input or output does not match association end type'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.821' 
+        <Model:Tag xmi.id = 'G.674' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Signature has input or output does not match association end type&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -2426,7 +2448,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Signature has output or input does not match association end type'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.822' 
+        <Model:Tag xmi.id = 'G.675' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Signature has output or input does not match association end type&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -2514,7 +2536,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Implementation must be owned in other end class'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.823' 
+        <Model:Tag xmi.id = 'G.676' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Implementation must be owned in other end class&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -2649,7 +2671,7 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context ClassTypeDefinition
 inv:
-  let numberOfMandatoryParameters =
+  let numberOfMandatoryParameters:Integer =
     self.clazz.formalObjectParameters-&gt;select(p|p.defaultValue-&gt;isEmpty())-&gt;size()
   in
   self.objectParameters-&gt;size() &gt;= numberOfMandatoryParameters and
@@ -2665,7 +2687,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context ClassTypeDefinition::objectParametersConformTo(ctd:ClassTypeDefinition):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.824' 
+        <Model:Tag xmi.id = 'G.677' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context ClassTypeDefinition::objectParametersConformTo(ctd:ClassTypeDefinition):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2684,7 +2706,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context ClassTypeDefinition::effectiveObjectParameters():Sequence(Expression)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.825' 
+        <Model:Tag xmi.id = 'G.678' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context ClassTypeDefinition::effectiveObjectParameters():Sequence(Expression)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3012,7 +3034,7 @@ Ordereness and uniquness conform if td has more relaxed requirements. Thus, they
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsTo(typeDef:TypeDefinition):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.826' 
+        <Model:Tag xmi.id = 'G.679' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsTo(typeDef:TypeDefinition):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3032,7 +3054,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToExcluding(td:TypeDefinition, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.827' 
+        <Model:Tag xmi.id = 'G.680' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToExcluding(td:TypeDefinition, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3054,7 +3076,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::multiplicityConformsTo(td:TypeDefinition):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.828' 
+        <Model:Tag xmi.id = 'G.681' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::multiplicityConformsTo(td:TypeDefinition):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3088,7 +3110,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToIgnoringMultiplicityExcluding(td:TypeDefinition, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.829' 
+        <Model:Tag xmi.id = 'G.682' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToIgnoringMultiplicityExcluding(td:TypeDefinition, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3120,7 +3142,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToIgnoringMultiplicity(typeDef:TypeDefinition):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.830' 
+        <Model:Tag xmi.id = 'G.683' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::conformsToIgnoringMultiplicity(typeDef:TypeDefinition):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3137,7 +3159,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getTypeUsage():Set(TypedElement)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.831' 
+        <Model:Tag xmi.id = 'G.684' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getTypeUsage():Set(TypedElement)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3150,7 +3172,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getInnermost():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.832' 
+        <Model:Tag xmi.id = 'G.685' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getInnermost():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3167,7 +3189,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getNestingLevel():Integer...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.833' 
+        <Model:Tag xmi.id = 'G.686' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getNestingLevel():Integer...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3184,14 +3206,14 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.834' 
+        <Model:Tag xmi.id = 'G.687' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeDefinition::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context TypeDefinition::getNamedValuesInScope():Set(NamedValue)
 body:
   -- find owner of type definition and collect the named values in scope for the owner
-  (let ownerSig = self.ownerSignature in
+  (let ownerSig:Signature = self.ownerSignature in
   if ownerSig-&gt;notEmpty() and ownerSig.oclIsKindOf(Signature) then
     ownerSig.oclAsType(Signature).getNamedValuesInScope()
   else
@@ -3199,8 +3221,8 @@ body:
   endif)-&gt;union(
 
   if self.ownerTypedElement-&gt;notEmpty() then
-    if self.ownerTypedElement.oclIsKindOf(Expression) then
-      self.ownerTypedElement.oclAsType(Expression).getNamedValuesInScope()
+    if self.ownerTypedElement.oclIsKindOf(dataaccess::expressions::Expression) then
+      self.ownerTypedElement.oclAsType(dataaccess::expressions::Expression).getNamedValuesInScope()
     else
       if self.ownerTypedElement.oclIsKindOf(NamedValue) then
         self.ownerTypedElement.oclAsType(NamedValue).getNamedValuesInScope()
@@ -3403,7 +3425,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context MethodSignature::isAbstract():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.835' 
+        <Model:Tag xmi.id = 'G.688' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context MethodSignature::isAbstract():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3478,7 +3500,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context FunctionSignature::isAbstract():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.836' 
+        <Model:Tag xmi.id = 'G.689' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context FunctionSignature::isAbstract():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3491,13 +3513,14 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context FunctionSignature::getImplementedAnonymousFunctionExpression():AnonymousFunctionExpr...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.837' 
+        <Model:Tag xmi.id = 'G.690' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context FunctionSignature::getImplementedAnonymousFunctionExpression():AnonymousFunctionExpr...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context FunctionSignature::getImplementedAnonymousFunctionExpression():AnonymousFunctionExpr
 body:
-  let candidates = self.typeDefinition.ownerTypedElement.oclAsType(AnonymousFunctionExpr)-&gt;asSequence() in
+  let candidates:Sequence(dataaccess::expressions::fp::AnonymousFunctionExpr) =
+         self.typeDefinition.ownerTypedElement.oclAsType(dataaccess::expressions::fp::AnonymousFunctionExpr)-&gt;asSequence() in
   if candidates-&gt;isEmpty() then
     null
   else
@@ -3539,7 +3562,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Signature\'s output or input does not match association end type'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.838' 
+        <Model:Tag xmi.id = 'G.691' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Signature\&apos;s output or input does not match association end type&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -3777,7 +3800,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::conformsTo(type:SapClass):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.839' 
+        <Model:Tag xmi.id = 'G.692' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::conformsTo(type:SapClass):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3792,7 +3815,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::conformsToExcluding(type:SapClass, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.840' 
+        <Model:Tag xmi.id = 'G.693' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::conformsToExcluding(type:SapClass, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3811,7 +3834,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::allSignatures():Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.841' 
+        <Model:Tag xmi.id = 'G.694' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::allSignatures():Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3825,7 +3848,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.842' 
+        <Model:Tag xmi.id = 'G.695' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context TypeAdapter::allSignaturesExcluding(excluding:Set(SapClass)):Set(MethodSignature)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3840,7 +3863,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='All signatures must conform to TO class signatures'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.843' 
+        <Model:Tag xmi.id = 'G.696' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;All signatures must conform to TO class signatures&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -3851,7 +3874,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Signatures can not be abstract'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.844' 
+        <Model:Tag xmi.id = 'G.697' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Signatures can not be abstract&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -3886,6 +3909,21 @@ body:
               </Model:TypedElement.type>
               <Model:Reference.referencedEnd>
                 <Model:AssociationEnd xmi.idref = 'a47F12A8C021C'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== data.classes.Parameter.parameterOfClass    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra49B150D6035B' 
+              name = 'parameterOfClass' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4432171B031E'/>  <!-- data.classes.SapClass -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a49B150D6035B'/>
               </Model:Reference.referencedEnd>
             </Model:Reference>
             <!-- ==================== data.classes.Parameter.defaultValue    [Reference] ==================== -->
@@ -3949,7 +3987,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context NamedValue::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.845' 
+        <Model:Tag xmi.id = 'G.698' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context NamedValue::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3959,12 +3997,12 @@ body:
     if self.oclIsKindOf(Parameter) then
       self.oclAsType(Parameter).ownerSignature.getNamedValuesInScope()
     else
-      if self.oclIsKindOf(Iterator) then
-        self.oclAsType(Iterator).boundToFor.getNamedValuesInScope()-&gt;asSet()-&gt;union(
-        self.oclAsType(Iterator)."iterate".getNamedValuesInScope()-&gt;asSet())
+      if self.oclIsKindOf(behavioral::actions::Iterator) then
+        self.oclAsType(behavioral::actions::Iterator).boundToFor.getNamedValuesInScope()-&gt;asSet()-&gt;union(
+        self.oclAsType(behavioral::actions::Iterator)."iterate".getNamedValuesInScope()-&gt;asSet())
       else
-        if self.oclIsKindOf(Constant) then
-          self.oclAsType(Constant)."iterate".getNamedValuesInScope()
+        if self.oclIsKindOf(behavioral::actions::Constant) then
+          self.oclAsType(behavioral::actions::Constant)."iterate".getNamedValuesInScope()
         else
           Set{}    -- TODO further cases?
         endif
@@ -4150,17 +4188,17 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context FunctionSignatureImplementation::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.846' 
+        <Model:Tag xmi.id = 'G.699' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context FunctionSignatureImplementation::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context FunctionSignatureImplementation::isSideEffectFree():Boolean
 body:
-  if self.oclIsKindOf(Block) then
-    self.oclAsType(Block).localIsSideEffectFree()
+  if self.oclIsKindOf(behavioral::actions::Block) then
+    self.oclAsType(behavioral::actions::Block).localIsSideEffectFree()
   else
-    if self.oclIsKindOf(CellSet) then
-      self.oclAsType(CellSet).localIsSideEffectFree()
+    if self.oclIsKindOf(dataaccess::analytics::CellSet) then
+      self.oclAsType(dataaccess::analytics::CellSet).localIsSideEffectFree()
     else
       false
     endif
@@ -4379,7 +4417,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context InScope::addNamedValuesWithNewNames(inner:Set(NamedValue), outer:Set(NamedValue)):Set(NamedValue)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.847' 
+        <Model:Tag xmi.id = 'G.700' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context InScope::addNamedValuesWithNewNames(inner:Set(NamedValue), outer:Set(NamedValue)):Set(NamedValue)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -5000,7 +5038,7 @@ Note that the input argument itself is not tagged with a name. It is not intende
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a48A02BD6007D' 
               name = 'typeDefinition' annotation = '' 
-              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
               </Model:AssociationEnd.multiplicity>
@@ -5112,7 +5150,7 @@ Note that the input argument itself is not tagged with a name. It is not intende
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a49B150D6035B' 
               name = 'parameterOfClass' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -5196,7 +5234,7 @@ Note that the input argument itself is not tagged with a name. It is not intende
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a49B1561D007D' 
               name = 'actualObjectParameter' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -5320,21 +5358,21 @@ Note that the input argument itself is not tagged with a name. It is not intende
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.786' 
+    <Model:Import xmi.id = 'G.639' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.848' 
+    <Model:Import xmi.id = 'G.701' 
       name = 'dataaccess' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'dataaccess.xml|a453E0CD8006C'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.849' 
+    <Model:Import xmi.id = 'G.702' 
       name = 'modelmanagement' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -5412,8 +5450,8 @@ Note that the input argument itself is not tagged with a name. It is not intende
                 <XMI.any xmi.type = 'string' xmi.name = ''>context Constraint
 inv:
   self.constraintExpression.getType().upperMultiplicity = 1 and
-  self.constraintExpression.getType().oclIsKindOf(ClassTypeDefinition) and
-  self.constraintExpression.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Boolean'</XMI.any>
+  self.constraintExpression.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+  self.constraintExpression.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Boolean'</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a450E61B602EE'/>  <!-- data.constraints.Constraint -->
@@ -5439,7 +5477,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.constraints.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.850' 
+        <Model:Tag xmi.id = 'G.703' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -5453,7 +5491,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.constraints.org.omg.sap2mof.violationMessageExpression='Expression type must be Boolean'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.851' 
+        <Model:Tag xmi.id = 'G.704' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Expression type must be Boolean&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -5464,7 +5502,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.constraints.org.omg.sap2mof.violationMessageExpression='Constraint must be owned by Class or Context'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.852' 
+        <Model:Tag xmi.id = 'G.705' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Constraint must be owned by Class or Context&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -5595,7 +5633,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Association>
         <!-- ==================== data.constraints.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.853' 
+        <Model:Tag xmi.id = 'G.706' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -5960,15 +5998,15 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context FormalTypeParameter
 inv:
-  self.elementsOfType.getTypeUsage()-&gt;forAll(s | s.oclIsKindOf(Parameter) implies 
-   (s.oclAsType(Parameter).ownerSignature.oclIsKindOf(MethodSignature) and
-    s.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature).owner=self.parameterOf .owningClassDefinition)) and
-  self.elementsOfType.signaturesWithOutput-&gt;forAll(s| s.oclIsKindOf(MethodSignature) and 
-    s.oclAsType(MethodSignature).owner-&gt;notEmpty() and
-    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition) and
-  self.signaturesWithFault-&gt;forAll(s| s.oclIsKindOf(MethodSignature)  and 
-    s.oclAsType(MethodSignature).owner-&gt;notEmpty() and
-    s.oclAsType(MethodSignature).owner=self.parameterOf.owningClassDefinition)</XMI.any>
+  self.elementsOfType.getTypeUsage()-&gt;forAll(s | s.oclIsKindOf(data::classes::Parameter) implies 
+   (s.oclAsType(data::classes::Parameter).ownerSignature.oclIsKindOf(data::classes::MethodSignature) and
+    s.oclAsType(data::classes::Parameter).ownerSignature.oclAsType(data::classes::MethodSignature).owner=self.parameterOf .owningClassDefinition)) and
+  self.elementsOfType.signaturesWithOutput-&gt;forAll(s| s.oclIsKindOf(data::classes::MethodSignature) and 
+    s.oclAsType(data::classes::MethodSignature).owner-&gt;notEmpty() and
+    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition) and
+  self.signaturesWithFault-&gt;forAll(s| s.oclIsKindOf(data::classes::MethodSignature)  and 
+    s.oclAsType(data::classes::MethodSignature).owner-&gt;notEmpty() and
+    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition)</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a456EAA6B008E'/>  <!-- data.generics.FormalTypeParameter -->
@@ -6111,7 +6149,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.generics.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.854' 
+        <Model:Tag xmi.id = 'G.707' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -6128,7 +6166,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.generics.org.omg.sap2mof.OperationCodeOcl=context ParameterizedClassInstantiation::resolveFormalTypeParameter(ftp:FormalTypeParameter):SapClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.855' 
+        <Model:Tag xmi.id = 'G.708' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context ParameterizedClassInstantiation::resolveFormalTypeParameter(ftp:FormalTypeParameter):SapClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -6142,7 +6180,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.generics.org.omg.sap2mof.OperationCodeOcl=context ParameterizedClassInstantiation::getClassParameterization():ClassParameterization...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.856' 
+        <Model:Tag xmi.id = 'G.709' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context ParameterizedClassInstantiation::getClassParameterization():ClassParameterization...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -6225,7 +6263,7 @@ self.formalTypeParameters-&gt;forAll(i,j|i&lt;&gt;j implies i.name&lt;&gt;j.name
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.generics.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.857' 
+        <Model:Tag xmi.id = 'G.710' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -6604,7 +6642,7 @@ inv:
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.858' 
+    <Model:Import xmi.id = 'G.711' 
       name = 'behavioral' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

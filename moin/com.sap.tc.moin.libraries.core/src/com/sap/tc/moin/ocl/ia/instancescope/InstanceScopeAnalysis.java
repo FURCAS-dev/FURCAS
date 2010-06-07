@@ -182,8 +182,12 @@ public class InstanceScopeAnalysis {
 			// the source element may have been deleted already by subsequent events; at this point,
 			// this makes it impossible to trace the change event back to a context; all we have is
 			// the LRI of a no longer existing model element...
+			Set<Pair<RefFeatured, RefObject>> throwExceptionWhenCrossing = null;
+			if (changeEvent instanceof LinkChangeEvent) {
+			    throwExceptionWhenCrossing = getThrowExceptionWhenCrossing((LinkChangeEvent) changeEvent, conn);
+			}
 			for (AnnotatedRefObjectImpl roi : self(attributeOrAssociationEndCall, sourceAndTargetElement
-				.getA(), context, conn, cache)) {
+				.getA(), context, conn, cache, throwExceptionWhenCrossing)) {
 			    if (result.add(roi.getElement().get___Mri()) &&
 				    leadsToEmptySet == LeadsToEmptySetResult.NO_BECAUSE_OF_OPERATION_WITHOUT_PARAMETERS) {
 				Statistics.getInstance().affectedElementComputedForSourceOfParameterlessOperation(
@@ -255,11 +259,56 @@ public class InstanceScopeAnalysis {
 	    } else {
 		PropertyCallExp isSourceOf = ((PropertyCallExpInternal) e).getAppliedProperty(conn);
 		if (isSourceOf == null) {
+		    /**
+		     * if e is:
+		     * 
+		     * 		Expression e: associationEnd->asSet()
+ 				===== in expression =====
+				self.elementsOfType->collect(>>>associationEnd->asSet()<<<)->asSet()
+ 				===== which is the body of operation getAssociationEnds =====
+ 				
+ 		     * then e is not the source of a PropertyCallExp. Still, it is emitted from the
+ 		     * ->collect expression and hence ends up as one element of the subsequent ->asSet()
+ 		     * PropertyCallExp. We're trying to find out if e evaluates to an empty set in order to find out
+ 		     * if the overall expression maz have changed at all based on the original change event.
+ 		     * This comes down to proving that the existence of the link does not impact the overall
+ 		     * expression value. The approach taken is based on the assumption that the attribute or
+ 		     * association end call expression itself appears in a "collect" expression such that
+ 		     * if for the particular link affected by the change an empty set results from the
+ 		     * "collect" body, nothing will be added to the "collect" expression's value. That's
+ 		     * why continuations resulting in empty sets imply that no change occurs on the root
+ 		     * expression's value.
+ 		     * 
+ 		     * If in the expression
+
+    				<tt>x->collect(i | e_i)</tt>
+
+		     * the expression e_i evaluates to an empty set for an element i from x before and after the change,
+		     * then the change does not impact the value of the overall expression x->collect(i | e_i).
+		     * 
+		     * In x->asSet(), x->asSequence(), ..., if x evaluates to an empty set, then so does the x->as...() expression.
+		     * However, we can construct expressions where an asSet() does have impact on the emptyness of the result:
+		     * 
+		     * 		Bag{1, 1}->excluding(1)->isEmpty()          == false
+		     * 		Bag{1, 1}->asSet()->excluding(1)->isEmpty() == true
+		     * 
+		     * 
+ 		     * 
+ 		     * TODO I don't think we ensure that this approach is only used for ->collect expressions.
+ 		     * 
+ 		     * Note also that this may not even apply anymore for a ->collectNested expression because
+ 		     * the empty set explicitly needs to be part of the collectNested expression.
+ 		     * 
+		     */
 		    // check if body of an operation; then check to right of calling expressions
 		    if (o instanceof RefObjectImpl) {
 			result = nonPropertyCallLeadsToEmptySet(e, (RefObjectImpl) o, conn, originalEvent);
 		    } else if (o instanceof OclCollection) {
-			result = nonPropertyCallLeadsToEmptySet(e, (OclCollection) o, conn, originalEvent);
+			if (((OclCollection) o).getWrappedCollection().isEmpty()) {
+			    result = LeadsToEmptySetResult.YES;
+			} else {
+			    result = nonPropertyCallLeadsToEmptySet(e, (OclCollection) o, conn, originalEvent);
+			}
 		    } else {
 			result = LeadsToEmptySetResult.NO_BECAUSE_NON_REF_OBJECT_REACHED;
 		    }
@@ -354,6 +403,7 @@ public class InstanceScopeAnalysis {
 	    }
 	} else {
 	    // e is not a root expression
+	    // TODO Check if e is body of ->collect(...) or ->collectNested iterator; in that case, proceed with that IteratorExp, checking if it is a PropertyCallExp's source or an operation's body. But think again about correctness: what if the ->collect would have returned more results in reality? We would continue with incomplete ->collect results... 
 	    result = LeadsToEmptySetResult.NO_BECAUSE_OF_NON_PROPERTY_CALL;
 	}
 	// TODO how to pass on the information about which operation calls lead to empty results in which context?
@@ -432,7 +482,7 @@ public class InstanceScopeAnalysis {
 	return result;
     }
 
-    private Set<Pair<RefFeatured, RefObject>> getThrowExceptionWhenCrossing(LinkChangeEvent originalEvent,
+    private static Set<Pair<RefFeatured, RefObject>> getThrowExceptionWhenCrossing(LinkChangeEvent originalEvent,
 	    CoreConnection conn) {
 	Set<Pair<RefFeatured, RefObject>> throwExceptionWhenCrossing = new HashSet<Pair<RefFeatured, RefObject>>();
 	RefFeatured eventMetaObject = originalEvent.getAffectedMetaObject(conn);
@@ -450,7 +500,7 @@ public class InstanceScopeAnalysis {
 	return throwExceptionWhenCrossing;
     }
     
-    private OclAny evaluate(PropertyCallExp e, RefObjectImpl source, LinkChangeEvent originalEvent, CoreConnection conn)
+    private static OclAny evaluate(PropertyCallExp e, RefObjectImpl source, LinkChangeEvent originalEvent, CoreConnection conn)
     throws EvaluatorException {
 	OclAny sourceContext;
 	if (source != null) {
@@ -619,14 +669,15 @@ public class InstanceScopeAnalysis {
      * there are no other {@link RefObject} elements that are not part of the result and for which the source expression
      * evaluates to <tt>sourceElement</tt>. This means, all contexts for which the source expression evaluates to
      * <tt>sourceElement</tt> are guaranteed to be found.
+     * @param throwExceptionWhenVisiting TODO
      */
     private Set<AnnotatedRefObjectImpl> self(ModelPropertyCallExp attributeOrAssociationEndCall, RefObjectImpl sourceElement,
-	    MofClass context, CoreConnection connection, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	    MofClass context, CoreConnection connection, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	NavigationStep step = getNavigationStepsToSelfForExpression(connection, attributeOrAssociationEndCall
 		.getSource(), context);
 	Set<AnnotatedRefObjectImpl> sourceElementAsSet = Collections.singleton(
 		new AnnotatedRefObjectImpl("<start>\nat object: "+sourceElement, sourceElement));
-	Set<AnnotatedRefObjectImpl> result = step.navigate(connection, sourceElementAsSet, cache);
+	Set<AnnotatedRefObjectImpl> result = step.navigate(connection, sourceElementAsSet, cache, throwExceptionWhenVisiting);
 	Statistics.getInstance().stepPerformed(step);
 	return result;
     }

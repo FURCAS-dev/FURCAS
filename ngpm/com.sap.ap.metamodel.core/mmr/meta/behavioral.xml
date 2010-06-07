@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Tue May 11 23:22:29 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Sat Jun 05 15:55:21 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -103,7 +103,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.757' 
+        <Model:Tag xmi.id = 'G.610' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -114,12 +114,18 @@ inv:
             <Model:ModelElement xmi.idref = 'ra454606FA01F3'/>  <!-- behavioral.actions.Block.statements -->
             <Model:ModelElement xmi.idref = 'ra45472E2F0043'/>  <!-- behavioral.actions.Block.variables -->
             <Model:ModelElement xmi.idref = 'ra471DF5CA0119'/>  <!-- behavioral.actions.Foreach.forVariable -->
+            <Model:ModelElement xmi.idref = 'ra45AA9A1F00DB'/>  <!-- behavioral.actions.ExpressionStatement.expression -->
+            <Model:ModelElement xmi.idref = 'ra49B64B6F0279'/>  <!-- behavioral.actions.NamedValueDeclaration.namedValue -->
             <Model:ModelElement xmi.idref = 'ra49255F030128'/>  <!-- behavioral.actions.StatementWithNestedBlocks.nestedBlocks -->
+            <Model:ModelElement xmi.idref = 'ra47A71B140109'/>  <!-- behavioral.actions.NamedValueWithOptionalInitExpression.initExpression -->
             <Model:ModelElement xmi.idref = 'a4522A2B703D3'/>
             <Model:ModelElement xmi.idref = 'a454606FA01F3'/>
             <Model:ModelElement xmi.idref = 'a45472E2F0043'/>
+            <Model:ModelElement xmi.idref = 'a45AA9A1F00DB'/>
             <Model:ModelElement xmi.idref = 'a471DF5CA0119'/>
+            <Model:ModelElement xmi.idref = 'a47A71B140109'/>
             <Model:ModelElement xmi.idref = 'a49255F030128'/>
+            <Model:ModelElement xmi.idref = 'a49B64B6F0279'/>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.Statement    [Class] ==================== -->
@@ -252,7 +258,7 @@ TODO We need a more context-sensitive definition of sideEffectFree. While assign
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::getOutermostBlock():Block...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.758' 
+        <Model:Tag xmi.id = 'G.611' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::getOutermostBlock():Block...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -265,7 +271,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.759' 
+        <Model:Tag xmi.id = 'G.612' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -285,7 +291,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFreeForBlock(block:Block):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.760' 
+        <Model:Tag xmi.id = 'G.613' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFreeForBlock(block:Block):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -305,14 +311,14 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.761' 
+        <Model:Tag xmi.id = 'G.614' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context Statement::getNamedValuesInScope():Set(NamedValue)
 body:
   -- collect all NamedValue declarations introduced by statements in this statement's owning block, prior to this statement.
-  let pos = self.block.statements-&gt;indexOf(self) in
+  let pos:Integer = self.block.statements-&gt;indexOf(self) in
   if pos &gt; 1 then
     self.addNamedValuesWithNewNames(
     if self.block.statements-&gt;at(-1+pos).oclIsKindOf(NamedValueDeclaration) then
@@ -331,7 +337,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::getOwningClass():SapClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.762' 
+        <Model:Tag xmi.id = 'G.615' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::getOwningClass():SapClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -528,7 +534,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.763' 
+        <Model:Tag xmi.id = 'G.616' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -537,12 +543,16 @@ inv:
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'ra49255F0300DB'/>  <!-- behavioral.actions.Block.owningStatement -->
             <Model:ModelElement xmi.idref = 'ra4522A2B703D5'/>  <!-- behavioral.actions.Variable.assignments -->
+            <Model:ModelElement xmi.idref = 'ra49B64B6F027B'/>  <!-- behavioral.actions.NamedValueWithOptionalInitExpression.namedValueDeclaration -->
             <Model:ModelElement xmi.idref = 'a4522A2B703D5'/>
+            <Model:ModelElement xmi.idref = 'a45AA9A1F010E'/>
+            <Model:ModelElement xmi.idref = 'a47A71B140128'/>
             <Model:ModelElement xmi.idref = 'a49255F0300DB'/>
+            <Model:ModelElement xmi.idref = 'a49B64B6F027B'/>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getOutermostBlock():Block...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.764' 
+        <Model:Tag xmi.id = 'G.617' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getOutermostBlock():Block...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -559,7 +569,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context Block::localIsSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.765' 
+        <Model:Tag xmi.id = 'G.618' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::localIsSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -572,7 +582,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.766' 
+        <Model:Tag xmi.id = 'G.619' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -596,7 +606,7 @@ body:
     owningStatement.getNamedValuesInScope()
   else
     -- add formal object parameters from owning class
-    let oc = self.getOwningClass() in
+    let oc:SapClass = self.getOwningClass() in
     if oc-&gt;notEmpty() then
       oc.formalObjectParameters-&gt;asSet()
     else
@@ -609,14 +619,14 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getOwningClass():SapClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.767' 
+        <Model:Tag xmi.id = 'G.620' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getOwningClass():SapClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context Block::getOwningClass():SapClass
 body:
-  let outermost = self.getOutermostBlock() in
-  let implementedSignature = outermost.getImplementedSignature() in
+  let outermost:Block = self.getOutermostBlock() in
+  let implementedSignature:Signature = outermost.getImplementedSignature() in
   if implementedSignature-&gt;notEmpty() then
     implementedSignature.getOwningClass()
   else
@@ -676,7 +686,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context IfElse::getIfBlock():Block...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.768' 
+        <Model:Tag xmi.id = 'G.621' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context IfElse::getIfBlock():Block...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -689,7 +699,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context IfElse::getElseBlock():Block...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.769' 
+        <Model:Tag xmi.id = 'G.622' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context IfElse::getElseBlock():Block...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -736,7 +746,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavioral.actions.org.omg.sap2mof.OperationCodeOcl=context WhileLoop::getLoopBody():Block...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.770' 
+        <Model:Tag xmi.id = 'G.623' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context WhileLoop::getLoopBody():Block...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1242,6 +1252,21 @@ inv:
                 <Model:AssociationEnd xmi.idref = 'a47A71B140109'/>
               </Model:Reference.referencedEnd>
             </Model:Reference>
+            <!-- ==================== behavioral.actions.NamedValueWithOptionalInitExpression.namedValueDeclaration    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra49B64B6F027B' 
+              name = 'namedValueDeclaration' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a48873D45021C'/>  <!-- behavioral.actions.NamedValueDeclaration -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a49B64B6F027B'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
             <!-- ==================== behavioral.actions.NamedValueWithOptionalInitExpression.AssignmentCompatibility    [Constraint] ==================== -->
             <Model:Constraint xmi.id = 'a49889C4B0335' 
               name = 'AssignmentCompatibility' annotation = '' 
@@ -1453,7 +1478,7 @@ inv:
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a45AA9A1F010E' 
               name = 'expressionStatement' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -1509,7 +1534,7 @@ inv:
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a47A71B140128' 
               name = 'initExpressionFor' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -1565,7 +1590,7 @@ inv:
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a49B64B6F027B' 
               name = 'namedValueDeclaration' annotation = '' 
-              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -1577,21 +1602,21 @@ inv:
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.771' 
+    <Model:Import xmi.id = 'G.624' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.772' 
+    <Model:Import xmi.id = 'G.625' 
       name = 'data' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'data.xml|a453E0C08006D'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.773' 
+    <Model:Import xmi.id = 'G.626' 
       name = 'dataaccess' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -1714,7 +1739,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavioral.events.org.omg.sap2mof.store=if_reference    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.774' 
+        <Model:Tag xmi.id = 'G.627' 
           name = 'org.omg.sap2mof.store=if_reference' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -1726,7 +1751,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.events.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.775' 
+        <Model:Tag xmi.id = 'G.628' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -1741,7 +1766,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavioral.events.org.omg.sap2mof.violationMessageExpression='Subscribing class signatures must match producer\'s notification signatures'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.776' 
+        <Model:Tag xmi.id = 'G.629' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Subscribing class signatures must match producer\&apos;s notification signatures&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -1791,7 +1816,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavioral.events.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.777' 
+        <Model:Tag xmi.id = 'G.630' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -2104,7 +2129,7 @@ Also, mark in the models how pieces of data-modifying functionality can share tr
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavioral.status_and_action_old.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.778' 
+        <Model:Tag xmi.id = 'G.631' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -2947,7 +2972,7 @@ Also, mark in the models how pieces of data-modifying functionality can share tr
           </Model:Namespace.contents>
         </Model:Association>
         <!-- ==================== behavioral.status_and_action_old.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.779' 
+        <Model:Tag xmi.id = 'G.632' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -4298,7 +4323,7 @@ S&amp;AM could be regarded a view on other constraint and event registration met
               </Model:Namespace.contents>
             </Model:Association>
             <!-- ==================== behavioral.status_and_action.assembly.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.780' 
+            <Model:Tag xmi.id = 'G.633' 
               name = 'org.omg.sap2mof.store=yes' annotation = '' 
               tagId = 'org.omg.sap2mof.store' >
               <Model:Tag.values>
@@ -4424,7 +4449,7 @@ S&amp;AM could be regarded a view on other constraint and event registration met
         </Model:Package>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.781' 
+    <Model:Import xmi.id = 'G.634' 
       name = 'modelmanagement' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

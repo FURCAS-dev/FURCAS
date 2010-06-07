@@ -51,18 +51,18 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 /**
  * Document history used by {@link CtsHistoryDocument} to manage and record
  * snapshots and DocumentEvents.
- * 
+ *
  * @author D049157
- * 
+ *
  */
 public class DocumentHistory implements IDocumentListener {
 
     /**
      * Set this to false to disable snapshotting.
-     * 
+     *
      * Automatically set to false once an internal error occurs
      */
-    private Boolean isActive = true;
+    private Boolean isActive = false;
 
     private static final String PRI_ENDING = ".types";
     private static final String PRI_FOLDER = "src/";
@@ -111,13 +111,13 @@ public class DocumentHistory implements IDocumentListener {
 
     /**
      * Get the DocumentEvent history of the given snapshot version.
-     * 
+     *
      * @return
      */
     public Collection<DocumentEvent> getHistory(SnapshotVersion version) {
 	Session session = getSessionOfVersion(version);
 	return session.eventHistory;
-	    
+
     }
 
     private Session getSessionOfVersion(SnapshotVersion version) {
@@ -128,12 +128,12 @@ public class DocumentHistory implements IDocumentListener {
 	    return completedSession;
     	}
     }
-    
+
     /**
      * Create a new snapshot of the actual document model. The previous
      * snapshot can now be persisted.
-     * @param monitor 
-     * 
+     * @param monitor
+     *
      * @return
      */
     public Boolean createNewSnapshot(IProgressMonitor monitor) {
@@ -174,12 +174,12 @@ public class DocumentHistory implements IDocumentListener {
     /**
      * Write the snapshot of the given version to disk. The copy will be renamed
      * and placed next to the original version.
-     * 
+     *
      * <b>Warning: </b> If the persisted result seems invalid or does not show
      * up (e.g. link from composite parent to this new copy is broken), then you
      * may have encountered a MOIN bug. Please delete
      * .metadata\.plugins\com.sap.tc.moin.facility.primary and then check again
-     * 
+     *
      * @param testCaseName, the prefix of the created partitions
      * @return the MRI of the copied document root. Will be null if persisting
      *         was not successful
@@ -236,7 +236,7 @@ public class DocumentHistory implements IDocumentListener {
      * Copy the document's rootObject including its composition and dependent
      * model elements, as well as all textblocks. The copy result is placed into
      * the null partition.
-     * 
+     *
      * @param rootObject
      * @param rootBlock
      * @return
@@ -279,7 +279,7 @@ public class DocumentHistory implements IDocumentListener {
      * Repartition the copied model elements and move them from the null
      * partition to a transient partition structure resembling the source
      * structure.
-     * 
+     *
      * @param resultSet
      * @param snapshotIdentifier
      * @return the created transient partitions
@@ -400,7 +400,7 @@ public class DocumentHistory implements IDocumentListener {
 
     /**
      * Materialize the given TransientPartitions.
-     * 
+     *
      * @return all newly created partitions
      */
     private Collection<ModelPartition> persistTransientPartitions(String testCaseName,
@@ -434,7 +434,7 @@ public class DocumentHistory implements IDocumentListener {
 
     /**
      * Create a new connection for the given project.
-     * 
+     *
      * @param project
      * @param connection
      * @return
@@ -460,7 +460,7 @@ public class DocumentHistory implements IDocumentListener {
     /**
      * Deactivate event listeners on the given connection for save,
      * uninterrupted copying
-     * 
+     *
      * @param co
      */
     private void disableEventListeners(Connection co) {
@@ -472,7 +472,7 @@ public class DocumentHistory implements IDocumentListener {
 
     /**
      * Restore deactivated event listeners on the given connection
-     * 
+     *
      * @param co
      */
     private void enableEventListeners(Connection co) {

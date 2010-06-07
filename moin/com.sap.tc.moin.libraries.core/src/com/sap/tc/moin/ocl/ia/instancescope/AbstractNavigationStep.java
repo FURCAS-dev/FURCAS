@@ -14,6 +14,8 @@ import com.sap.tc.moin.ocl.utils.impl.OclSerializer;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
@@ -168,7 +170,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      */
     @Override
     public Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, Set<AnnotatedRefObjectImpl> from,
-	    Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	    Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	incrementNavigateCounter(conn, from);
 	
 	Set<AnnotatedRefObjectImpl> result = new HashSet<AnnotatedRefObjectImpl>();
@@ -179,7 +181,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	    for (AnnotatedRefObjectImpl fromObject : from) {
 		// for absolute steps, don't do the source type check and invoke just once, passing null for "from"
 		if (isAbsolute() || AbstractTracer.doesTypeMatch(conn, getSourceType(), fromObject.getElement())) {
-		    for (AnnotatedRefObjectImpl singleResult : getFromCacheOrNavigate(conn, fromObject, cache)) {
+		    for (AnnotatedRefObjectImpl singleResult : getFromCacheOrNavigate(conn, fromObject, cache, throwExceptionWhenVisiting)) {
 			if (AbstractTracer.doesTypeMatch(conn, getTargetType(), singleResult.getElement())) {
 			    result.add(singleResult);
 			}
@@ -192,13 +194,13 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     }
     
     private Collection<AnnotatedRefObjectImpl> getFromCacheOrNavigate(CoreConnection conn,
-	    AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+	    AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	Set<AnnotatedRefObjectImpl> result;
 	Pair<NavigationStep, RefObjectImpl> cacheKey = new Pair<NavigationStep, RefObjectImpl>(this, fromObject.getElement());
 	result = cache.get(cacheKey);
 	if (result == null) {
 	    cacheMisses++;
-	    result = navigate(conn, fromObject, cache);
+	    result = navigate(conn, fromObject, cache, throwExceptionWhenVisiting);
 	    if (result.contains(null)) {
 		throw new RuntimeException("OCL Instance Scope Analysis hit a null value where it shouldn't have");
 	    } else {
@@ -237,7 +239,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     }
     
     protected abstract Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject,
-	    Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache);
+	    Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting);
 
     public String toString() {
 	Map<NavigationStep, Integer> visited = new HashMap<NavigationStep, Integer>();
@@ -278,4 +280,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	return visited.contains(this) ? 0 : 1;
     }
     
+    public int getId() {
+	return id;
+    }
 }

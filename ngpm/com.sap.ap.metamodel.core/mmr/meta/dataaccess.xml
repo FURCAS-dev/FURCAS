@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Tue May 11 23:22:29 2010' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Sat Jun 05 15:55:21 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -211,7 +211,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== dataaccess.expressions.literals.org.omg.sap2mof.OperationCodeOcl=context ObjectLiteral::isEqualTo(o:ObjectLiteral):Boolean...    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.860' 
+            <Model:Tag xmi.id = 'G.713' 
               name = 'org.omg.sap2mof.OperationCodeOcl=context ObjectLiteral::isEqualTo(o:ObjectLiteral):Boolean...' annotation = '' 
               tagId = 'org.omg.sap2mof.OperationCodeOcl' >
               <Model:Tag.values>
@@ -514,7 +514,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== dataaccess.expressions.collectionExpressions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.862' 
+            <Model:Tag xmi.id = 'G.715' 
               name = 'org.omg.sap2mof.store=no' annotation = '' 
               tagId = 'org.omg.sap2mof.store' >
               <Model:Tag.values>
@@ -522,6 +522,8 @@ inv:
               </Model:Tag.values>
               <Model:Tag.elements>
                 <Model:ModelElement xmi.idref = 'ra475963450186'/>  <!-- dataaccess.expressions.collectionExpressions.Iterate.iteratorExpression -->
+                <Model:ModelElement xmi.idref = 'ra47595F930196'/>  <!-- dataaccess.expressions.collectionExpressions.CollectionExpression.source -->
+                <Model:ModelElement xmi.idref = 'a47595F930196'/>
                 <Model:ModelElement xmi.idref = 'a475963450186'/>
               </Model:Tag.elements>
             </Model:Tag>
@@ -629,10 +631,10 @@ inv:
       source.getType().conformsToIgnoringMultiplicity(argument.getType())
     else
       if snl = (anl + 1) then
-        source.getType().oclAsType(NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())
+        source.getType().oclAsType(data::classes::NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())
       else
         if (snl + 1) = anl then
-          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(NestedTypeDefinition).type)
+          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(data::classes::NestedTypeDefinition).type)
         else
           false
         endif
@@ -663,7 +665,7 @@ inv:
                 </Model:AssociationEnd>
                 <Model:AssociationEnd xmi.id = 'a47595F9301C5' 
                   name = 'collectionExpression' annotation = '' 
-                  isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+                  isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
                   <Model:AssociationEnd.multiplicity>
                     <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
                   </Model:AssociationEnd.multiplicity>
@@ -673,6 +675,17 @@ inv:
                 </Model:AssociationEnd>
               </Model:Namespace.contents>
             </Model:Association>
+            <!-- ==================== dataaccess.expressions.collectionExpressions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
+            <Model:Tag xmi.id = 'G.716' 
+              name = 'org.omg.sap2mof.store=yes' annotation = '' 
+              tagId = 'org.omg.sap2mof.store' >
+              <Model:Tag.values>
+                <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+              </Model:Tag.values>
+              <Model:Tag.elements>
+                <Model:ModelElement xmi.idref = 'a47595F9301C5'/>
+              </Model:Tag.elements>
+            </Model:Tag>
             <!-- ==================== dataaccess.expressions.collectionExpressions.IterateIterator    [Association] ==================== -->
             <Model:Association xmi.id = 'a4759625301D4' 
               name = 'IterateIterator' annotation = '' 
@@ -808,8 +821,8 @@ Note that there can be other expressions that evaluate to a function, such as an
                   <Model:Constraint.expression>
                     <XMI.any xmi.type = 'string' xmi.name = ''>context AnonymousFunctionExpr
 inv:
-  self.getType().oclIsKindOf(FunctionSignatureTypeDefinition) and
-  self.getType().oclAsType(FunctionSignatureTypeDefinition).signature.oclAsType(FunctionSignature).implementation-&gt;notEmpty()</XMI.any>
+  self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and
+  self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation-&gt;notEmpty()</XMI.any>
                   </Model:Constraint.expression>
                   <Model:Constraint.constrainedElements>
                     <Model:ModelElement xmi.idref = 'a47A0757E02EC'/>  <!-- dataaccess.expressions.fp.AnonymousFunctionExpr -->
@@ -835,7 +848,7 @@ inv:
                   <Model:Constraint.expression>
                     <XMI.any xmi.type = 'string' xmi.name = ''>context AnonymousFunctionExpr
 inv:
-  self.ownedTypeDefinition.oclAsType(FunctionSignatureTypeDefinition).signature.oclIsKindOf(FunctionSignature)</XMI.any>
+  self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclIsKindOf(data::classes::FunctionSignature)</XMI.any>
                   </Model:Constraint.expression>
                   <Model:Constraint.constrainedElements>
                     <Model:ModelElement xmi.idref = 'a47A0757E02EC'/>  <!-- dataaccess.expressions.fp.AnonymousFunctionExpr -->
@@ -844,13 +857,13 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== dataaccess.expressions.fp.org.omg.sap2mof.OperationCodeOcl=context AnonymousFunctionExpr::getImplementation():FunctionSignatureImplementation...    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.864' 
+            <Model:Tag xmi.id = 'G.718' 
               name = 'org.omg.sap2mof.OperationCodeOcl=context AnonymousFunctionExpr::getImplementation():FunctionSignatureImplementation...' annotation = '' 
               tagId = 'org.omg.sap2mof.OperationCodeOcl' >
               <Model:Tag.values>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context AnonymousFunctionExpr::getImplementation():FunctionSignatureImplementation
 body:
-  self.ownedTypeDefinition.oclAsType(FunctionSignatureTypeDefinition).signature.oclAsType(FunctionSignature).implementation</XMI.any>
+  self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation</XMI.any>
               </Model:Tag.values>
               <Model:Tag.elements>
                 <Model:ModelElement xmi.idref = 'a47FF305F00CB'/>  <!-- dataaccess.expressions.fp.AnonymousFunctionExpr.getImplementation -->
@@ -891,8 +904,8 @@ body:
                   <Model:Constraint.expression>
                     <XMI.any xmi.type = 'string' xmi.name = ''>context FunctionFromMethodExpr
 inv:
-  self.object.getType().oclIsKindOf(ClassTypeDefinition) and
-  self.object.getType().oclAsType(ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(SapClass))</XMI.any>
+  self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(data::classes::SapClass))</XMI.any>
                   </Model:Constraint.expression>
                   <Model:Constraint.constrainedElements>
                     <Model:ModelElement xmi.idref = 'a487F6B6D0177'/>  <!-- dataaccess.expressions.fp.FunctionFromMethodExpr -->
@@ -905,8 +918,8 @@ inv:
                   <Model:Constraint.expression>
                     <XMI.any xmi.type = 'string' xmi.name = ''>context FunctionFromMethodExpr
 inv:
-    self.getType().oclIsKindOf(FunctionSignatureTypeDefinition) and
-    self.method.conformsTo(self.getType().oclAsType(FunctionSignatureTypeDefinition).signature)</XMI.any>
+    self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and
+    self.method.conformsTo(self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)</XMI.any>
                   </Model:Constraint.expression>
                   <Model:Constraint.constrainedElements>
                     <Model:ModelElement xmi.idref = 'a487F6B6D0177'/>  <!-- dataaccess.expressions.fp.FunctionFromMethodExpr -->
@@ -954,6 +967,96 @@ inv:
             <Model:GeneralizableElement xml:link = 'simple' href = 'data.xml|a4B85514B0119'/>
           </Model:GeneralizableElement.supertypes>
           <Model:Namespace.contents>
+            <!-- ==================== dataaccess.expressions.Expression.objectBasedExpression    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4536496701C8' 
+              name = 'objectBasedExpression' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a453E0FC80335'/>  <!-- dataaccess.expressions.ObjectBasedExpression -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4536496701C8'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.expressions.Expression.argumentOf    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4577E58D0259' 
+              name = 'argumentOf' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4577E587019C'/>  <!-- dataaccess.expressions.WithArgument -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4577E58D0259'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.expressions.Expression.blockOfFunctionCallExpression    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra45473F6A0316' 
+              name = 'blockOfFunctionCallExpression' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a45473F620076'/>  <!-- dataaccess.expressions.FunctionCallExpression -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a45473F6A0316'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.expressions.Expression.leftOfEquals    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4759584402FD' 
+              name = 'leftOfEquals' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a475958230399'/>  <!-- dataaccess.expressions.Equals -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4759584402FD'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.expressions.Expression.rightOfEquals    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra49765700009D' 
+              name = 'rightOfEquals' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a475958230399'/>  <!-- dataaccess.expressions.Equals -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a49765700009D'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== dataaccess.expressions.Expression.conditional    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra45471B93020F' 
+              name = 'conditional' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a45471B4401F7'/>  <!-- dataaccess.expressions.Conditional -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a45471B93020F'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
             <!-- ==================== dataaccess.expressions.Expression.isSideEffectFree    [Operation] ==================== -->
             <Model:Operation xmi.id = 'a489D64AF0399' 
               name = 'isSideEffectFree' annotation = 'Tells if this expression is side effect-free. An expression has a side effect if it invokes a method or a function that is not described as side effect-free. It is important to note that this has to be checked recursively for nested expressions.' 
@@ -1077,8 +1180,35 @@ The issue with this operation is that each time a new inbound composite relatios
             </Model:Operation>
           </Model:Namespace.contents>
         </Model:Class>
+        <!-- ==================== dataaccess.expressions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.719' 
+          name = 'org.omg.sap2mof.store=yes' annotation = '' 
+          tagId = 'org.omg.sap2mof.store' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'ra4536496701C8'/>  <!-- dataaccess.expressions.Expression.objectBasedExpression -->
+            <Model:ModelElement xmi.idref = 'ra4577E58D0259'/>  <!-- dataaccess.expressions.Expression.argumentOf -->
+            <Model:ModelElement xmi.idref = 'ra45473F6A0316'/>  <!-- dataaccess.expressions.Expression.blockOfFunctionCallExpression -->
+            <Model:ModelElement xmi.idref = 'ra4759584402FD'/>  <!-- dataaccess.expressions.Expression.leftOfEquals -->
+            <Model:ModelElement xmi.idref = 'ra49765700009D'/>  <!-- dataaccess.expressions.Expression.rightOfEquals -->
+            <Model:ModelElement xmi.idref = 'ra45471B93020F'/>  <!-- dataaccess.expressions.Expression.conditional -->
+            <Model:ModelElement xmi.idref = 'ra4B1CF930036B'/>  <!-- dataaccess.expressions.ObjectCreationExpression.initializers -->
+            <Model:ModelElement xmi.idref = 'ra499D404600CD'/>  <!-- dataaccess.expressions.NavigationStep.replace -->
+            <Model:ModelElement xmi.idref = 'a4536496701C8'/>
+            <Model:ModelElement xmi.idref = 'a4577E58D0259'/>
+            <Model:ModelElement xmi.idref = 'a45473F6A0316'/>
+            <Model:ModelElement xmi.idref = 'a4759584402FD'/>
+            <Model:ModelElement xmi.idref = 'a49765700009D'/>
+            <Model:ModelElement xmi.idref = 'a499D404600CD'/>
+            <Model:ModelElement xmi.idref = 'a45471B93020F'/>
+            <Model:ModelElement xmi.idref = 'a4B1CF930036B'/>
+            <Model:ModelElement xml:link = 'simple' href = 'persistence.xml|a49AE7B73034A'/>
+          </Model:Tag.elements>
+        </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.865' 
+        <Model:Tag xmi.id = 'G.720' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1110,28 +1240,28 @@ body:
     self.oclAsType(Equals).left.isSideEffectFree() and self.oclAsType(Equals).right.isSideEffectFree()
   else if self.oclIsKindOf(ObjectCreationExpression) then
     self.oclAsType(ObjectCreationExpression).classToInstantiate.valueType
-  else if self.oclIsKindOf(DimensionExpression) then
-    self.oclAsType(DimensionExpression).dimension.ownerSignature.sideEffectFree
+  else if self.oclIsKindOf(dataaccess::analytics::DimensionExpression) then
+    self.oclAsType(dataaccess::analytics::DimensionExpression).dimensionParameter.ownerSignature.sideEffectFree
   else if self.oclIsKindOf(Ternary) then
     self.oclAsType(Ternary).condition.isSideEffectFree() and
     self.oclAsType(Ternary).trueExpr.isSideEffectFree() and
     self.oclAsType(Ternary).falseExpr.isSideEffectFree()
-  else if self.oclIsKindOf(CollectionExpression) then
-    self.oclAsType(CollectionExpression).source.isSideEffectFree() and
-    if self.oclIsKindOf(Iterate) then
-      (self.oclAsType(Iterate).accumulator.initExpression-&gt;notEmpty() implies
-         self.oclAsType(Iterate).accumulator.initExpression.isSideEffectFree()) and
-      self.oclAsType(Iterate).iteratorExpression.isSideEffectFree()
+  else if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::CollectionExpression) then
+    self.oclAsType(dataaccess::expressions::collectionExpressions::CollectionExpression).source.isSideEffectFree() and
+    if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::Iterate) then
+      (self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).accumulator.initExpression-&gt;notEmpty() implies
+         self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).accumulator.initExpression.isSideEffectFree()) and
+      self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).iteratorExpression.isSideEffectFree()
     else
       true
     endif
-  else if self.oclIsKindOf(ObjectLiteral) then
-    self.oclAsType(ObjectLiteral).propertyValues.value-&gt;forAll(v|v.isSideEffectFree())
-  else if self.oclIsKindOf(All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or
-  self.oclIsKindOf(Literal) or self.oclIsKindOf(AnonymousFunctionExpr) then
+  else if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then
+    self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).propertyValues.value-&gt;forAll(v|v.isSideEffectFree())
+  else if self.oclIsKindOf(persistence::expressions::All) or self.oclIsKindOf(Replace) or self.oclIsKindOf(This) or self.oclIsKindOf(VariableExpression) or
+  self.oclIsKindOf(dataaccess::expressions::literals::Literal) or self.oclIsKindOf(dataaccess::expressions::fp::AnonymousFunctionExpr) then
     true
-  else if self.oclIsKindOf(Selection) then
-    self.oclAsType(Selection).object.isSideEffectFree()
+  else if self.oclIsKindOf(dataaccess::query::Selection) then
+    self.oclAsType(dataaccess::query::Selection).object.isSideEffectFree()
   else
     false
   endif
@@ -1150,7 +1280,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::evaluatesToEqualAs(e:Expression):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.866' 
+        <Model:Tag xmi.id = 'G.721' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::evaluatesToEqualAs(e:Expression):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1159,14 +1289,14 @@ body:
   if self=e then
     true
   else
-  if self.oclIsKindOf(NumberLiteral) and e.oclIsKindOf(NumberLiteral) then
-    self.oclAsType(NumberLiteral).literal=e.oclAsType(NumberLiteral).literal
+  if self.oclIsKindOf(dataaccess::expressions::literals::NumberLiteral) and e.oclIsKindOf(dataaccess::expressions::literals::NumberLiteral) then
+    self.oclAsType(dataaccess::expressions::literals::NumberLiteral).literal=e.oclAsType(dataaccess::expressions::literals::NumberLiteral).literal
   else
-    if self.oclIsKindOf(StringLiteral) and e.oclIsKindOf(StringLiteral) then
-      self.oclAsType(StringLiteral).literal=e.oclAsType(StringLiteral).literal
+    if self.oclIsKindOf(dataaccess::expressions::literals::StringLiteral) and e.oclIsKindOf(dataaccess::expressions::literals::StringLiteral) then
+      self.oclAsType(dataaccess::expressions::literals::StringLiteral).literal=e.oclAsType(dataaccess::expressions::literals::StringLiteral).literal
     else
-      if self.oclIsKindOf(ObjectLiteral) and e.oclIsKindOf(ObjectLiteral) then
-        self.oclAsType(ObjectLiteral).isEqualTo(e.oclAsType(ObjectLiteral))
+      if self.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) and e.oclIsKindOf(dataaccess::expressions::literals::ObjectLiteral) then
+        self.oclAsType(dataaccess::expressions::literals::ObjectLiteral).isEqualTo(e.oclAsType(dataaccess::expressions::literals::ObjectLiteral))
       else
         if self.oclIsKindOf(VariableExpression) and e.oclIsKindOf(VariableExpression) then
           self.oclAsType(VariableExpression).variable = e.oclAsType(VariableExpression).variable
@@ -1182,16 +1312,16 @@ body:
             <Model:ModelElement xmi.idref = 'a49C0CF0601F4'/>  <!-- dataaccess.expressions.Expression.evaluatesToEqualAs -->
           </Model:Tag.elements>
         </Model:Tag>
-        <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(Iterator)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.867' 
-          name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(Iterator)...' annotation = '' 
+        <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(behavioral::actions::Iterator)...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.722' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(behavioral::actions::Iterator)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
-            <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::getUsedAliases():Set(Iterator)
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::getUsedAliases():Set(behavioral::actions::Iterator)
 body:
   if self.oclIsKindOf(VariableExpression) then
-    if self.oclAsType(VariableExpression).variable.oclIsKindOf(Iterator) then
-      self.oclAsType(VariableExpression).variable.oclAsType(Iterator)-&gt;select(i | i.fromClause-&gt;notEmpty())-&gt;asSet()
+    if self.oclAsType(VariableExpression).variable.oclIsKindOf(behavioral::actions::Iterator) then
+      self.oclAsType(VariableExpression).variable.oclAsType(behavioral::actions::Iterator)-&gt;select(i | i.fromClause-&gt;notEmpty())-&gt;asSet()
     else
       Set{}
     endif
@@ -1201,12 +1331,12 @@ body:
       self.oclAsType(Replace).steps.filterFunction.getUsedAliases()-&gt;flatten()-&gt;asSet())-&gt;union(
       self.oclAsType(Replace).with.getUsedAliases())
     else
-      if self.oclIsKindOf(Selection) then
-        self.oclAsType(Selection).object.getUsedAliases()-&gt;union(
-        self.oclAsType(Selection).selectionExpr.getUsedAliases())
+      if self.oclIsKindOf(dataaccess::query::Selection) then
+        self.oclAsType(dataaccess::query::Selection).object.getUsedAliases()-&gt;union(
+        self.oclAsType(dataaccess::query::Selection).selectionExpr.getUsedAliases())
       else
         if self.oclIsKindOf(ObjectBasedExpression) then
-          let objectAliases = self.oclAsType(ObjectBasedExpression).object.getUsedAliases() in
+          let objectAliases:Set(behavioral::actions::Iterator) = self.oclAsType(ObjectBasedExpression).object.getUsedAliases() in
           if self.oclIsKindOf(MethodCallExpression) then
             objectAliases-&gt;union(self.oclAsType(MethodCallExpression).parameters.getUsedAliases()-&gt;flatten()-&gt;asSet())
           else
@@ -1221,21 +1351,21 @@ body:
                            self.oclAsType(FunctionCallExpression).parameters.getUsedAliases()-&gt;flatten()-&gt;asSet())
             else
               if self.oclIsKindOf(Ternary) then
-                let sat = self.oclAsType(Ternary) in
+                let sat:Ternary = self.oclAsType(Ternary) in
                 sat.condition.getUsedAliases()-&gt;union(sat.trueExpr.getUsedAliases())-&gt;union(sat.falseExpr.getUsedAliases())
              else
-                 if self.oclIsKindOf(CollectionExpressionWithArgument) then
-                  self.oclAsType(CollectionExpressionWithArgument).argument.getUsedAliases()-&gt;union(
-                  self.oclAsType(CollectionExpressionWithArgument).source.getUsedAliases())
+                 if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::CollectionExpressionWithArgument) then
+                  self.oclAsType(dataaccess::expressions::collectionExpressions::CollectionExpressionWithArgument).argument.getUsedAliases()-&gt;union(
+                  self.oclAsType(dataaccess::expressions::collectionExpressions::CollectionExpressionWithArgument).source.getUsedAliases())
                 else
-                  if self.oclIsKindOf(Iterate) then
-                    self.oclAsType(Iterate).iteratorExpression.getUsedAliases()-&gt;union(
-                    self.oclAsType(Iterate).accumulator.initExpression.getUsedAliases())-&gt;union(
-                    self.oclAsType(Iterate).source.getUsedAliases())
+                  if self.oclIsKindOf(dataaccess::expressions::collectionExpressions::Iterate) then
+                    self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).iteratorExpression.getUsedAliases()-&gt;union(
+                    self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).accumulator.initExpression.getUsedAliases())-&gt;union(
+                    self.oclAsType(dataaccess::expressions::collectionExpressions::Iterate).source.getUsedAliases())
                   else
-                    if self.oclIsKindOf(OqlQuery) then
-                      self.oclAsType(OqlQuery).fromClauses.fromExpression.getUsedAliases()-&gt;flatten()-&gt;asSet()-&gt;union(
-                      self.oclAsType(OqlQuery).condition.getUsedAliases())
+                    if self.oclIsKindOf(dataaccess::query::OqlQuery) then
+                      self.oclAsType(dataaccess::query::OqlQuery).fromClauses.fromExpression.getUsedAliases()-&gt;flatten()-&gt;asSet()-&gt;union(
+                      self.oclAsType(dataaccess::query::OqlQuery).condition.getUsedAliases())
                     else
                       Set{}
                     endif
@@ -1254,7 +1384,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getNamedValuesInScope():Set(NamedValue)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.868' 
+        <Model:Tag xmi.id = 'G.723' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getNamedValuesInScope():Set(NamedValue)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1264,12 +1394,12 @@ body:
 
   -- First, collect those NamedValues defined immediately for this expression:
   -- an iterate's body expression sees the iterators and the accumulator
-  let accumulator:Set(NamedValue)=self.inIterator.accumulator-&gt;asSet() in
-  let iterators:Set(NamedValue)=self.inIterator.iterators-&gt;asSet() in
+  let accumulator:Set(data::classes::NamedValue)=self.inIterator.accumulator-&gt;asSet() in
+  let iterators:Set(data::classes::NamedValue)=self.inIterator.iterators-&gt;asSet() in
   -- an OQL "from" clause sees all aliases left of it
-  let oqlAliases:Set(NamedValue)=(if self.fromClause-&gt;notEmpty() then
-    let fromClauses = self.fromClause.fromClauseOfOqlQuery.fromClauses in
-    let fcIndex = fromClauses-&gt;indexOf(self.fromClause) in
+  let oqlAliases:Set(data::classes::NamedValue)=(if self.fromClause-&gt;notEmpty() then
+    let fromClauses:OrderedSet(dataaccess::query::FromClause) = self.fromClause.fromClauseOfOqlQuery.fromClauses in
+    let fcIndex:Integer = fromClauses-&gt;indexOf(self.fromClause) in
       Sequence{1..-1+fcIndex}-&gt;collect(i | fromClauses-&gt;at(i).alias)-&gt;asSet()
   else
     Set{}
@@ -1277,12 +1407,12 @@ body:
   -- an OQL "where" clause sees all aliases defined by any of the OQL expression's "from" entries
   self.conditionOfOqlQuery.fromClauses.alias-&gt;asSet()) in
   -- a Selection defines an implicit iterator for its filter expression
-  let selectionIterator:Set(NamedValue)=self.selection.iterator-&gt;asSet() in
+  let selectionIterator:Set(data::classes::NamedValue)=self.selection.iterator-&gt;asSet() in
   -- a GroupBy's mapExpression sees all dimension iterators and the groupedFacts iterator
-  let groupByMapExpressionIterators:Set(NamedValue)=self.mapExpressionOfGroupBy.groupedFacts-&gt;asSet()-&gt;union(
+  let groupByMapExpressionIterators:Set(data::classes::NamedValue)=self.mapExpressionOfGroupBy.groupedFacts-&gt;asSet()-&gt;union(
                                                     self.mapExpressionOfGroupBy.dimensions.iterator-&gt;asSet()) in
   -- a GroupBy's dimension expression sees the facts iterator
-  let groupByDimensionFactIterator:Set(NamedValue)=self.dimension.groupBy.fact-&gt;asSet() in
+  let groupByDimensionFactIterator:Set(data::classes::NamedValue)=self.dimension.groupBy.fact-&gt;asSet() in
 
   accumulator-&gt;union(iterators)-&gt;union(oqlAliases)-&gt;union(selectionIterator)-&gt;union(groupByMapExpressionIterators)-&gt;
   union(groupByDimensionFactIterator),
@@ -1299,17 +1429,17 @@ body:
         self.expressionStatement.getNamedValuesInScope()
       else
         if self.conditional-&gt;notEmpty() then
-          if self.conditional.oclIsKindOf(ConditionalStatement) then
-            self.conditional.oclAsType(ConditionalStatement).getNamedValuesInScope()
+          if self.conditional.oclIsKindOf(behavioral::actions::ConditionalStatement) then
+            self.conditional.oclAsType(behavioral::actions::ConditionalStatement).getNamedValuesInScope()
           else
             self.conditional.oclAsType(ConditionalExpression).getNamedValuesInScope()
           endif
         else
-          if self.argumentOf-&gt;notEmpty() and self.argumentOf.oclIsKindOf(StatementWithArgument) then
-            self.argumentOf.oclAsType(StatementWithArgument).getNamedValuesInScope()
+          if self.argumentOf-&gt;notEmpty() and self.argumentOf.oclIsKindOf(behavioral::actions::StatementWithArgument) then
+            self.argumentOf.oclAsType(behavioral::actions::StatementWithArgument).getNamedValuesInScope()
           else
             -- add all variables in scope for owning expressions
-            let oe = self.getOwningExpression() in
+            let oe:Expression = self.getOwningExpression() in
               if oe-&gt;isEmpty() then
                 Set{}
               else
@@ -1327,7 +1457,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningExpression():Expression...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.869' 
+        <Model:Tag xmi.id = 'G.724' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningExpression():Expression...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1372,24 +1502,24 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningClass():SapClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.870' 
+        <Model:Tag xmi.id = 'G.725' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getOwningClass():SapClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::getOwningClass():SapClass
 body:
-  let oe = self.getOwningExpression() in
+  let oe:Expression = self.getOwningExpression() in
   if oe-&gt;notEmpty() then
     oe.getOwningClass()
   else
     if self.expressionStatement-&gt;notEmpty() then
       self.expressionStatement.getOwningClass()
     else
-      if self.conditional-&gt;notEmpty() and self.conditional.oclIsKindOf(Statement) then
-        self.conditional.oclAsType(ConditionalStatement).getOwningClass()
+      if self.conditional-&gt;notEmpty() and self.conditional.oclIsKindOf(behavioral::actions::Statement) then
+        self.conditional.oclAsType(behavioral::actions::ConditionalStatement).getOwningClass()
       else
-        if self.argumentOf-&gt;notEmpty() and self.argumentOf.oclIsKindOf(StatementWithArgument) then
-          self.argumentOf.oclAsType(StatementWithArgument).getOwningClass()
+        if self.argumentOf-&gt;notEmpty() and self.argumentOf.oclIsKindOf(behavioral::actions::StatementWithArgument) then
+          self.argumentOf.oclAsType(behavioral::actions::StatementWithArgument).getOwningClass()
         else
           if self.initExpressionFor.namedValueDeclaration-&gt;notEmpty() then
             self.initExpressionFor.namedValueDeclaration.getOwningClass()
@@ -1517,8 +1647,8 @@ The object expression must evaluate to a single value, i.e., a TypeDefinition wi
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context MethodCallExpression
 inv:
-  self.object.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and
-  self.object.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(SapClass))</XMI.any>
+  self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and
+  self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(data::classes::SapClass))</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4522E05D00A8'/>  <!-- dataaccess.expressions.MethodCallExpression -->
@@ -1541,7 +1671,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.871' 
+        <Model:Tag xmi.id = 'G.726' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -1549,9 +1679,23 @@ inv:
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'ra4B1CF930036D'/>  <!-- dataaccess.expressions.MethodCallExpression.creationExpression -->
+            <Model:ModelElement xmi.idref = 'ra4536496701B4'/>  <!-- dataaccess.expressions.ObjectBasedExpression.object -->
+            <Model:ModelElement xmi.idref = 'ra45473F6A0302'/>  <!-- dataaccess.expressions.FunctionCallExpression.calledBlock -->
+            <Model:ModelElement xmi.idref = 'ra4577E58D025A'/>  <!-- dataaccess.expressions.WithArgument.argument -->
+            <Model:ModelElement xmi.idref = 'ra4759584402DE'/>  <!-- dataaccess.expressions.Equals.left -->
+            <Model:ModelElement xmi.idref = 'ra49765700006E'/>  <!-- dataaccess.expressions.Equals.right -->
             <Model:ModelElement xmi.idref = 'ra499D404600CB'/>  <!-- dataaccess.expressions.Replace.steps -->
+            <Model:ModelElement xmi.idref = 'ra45471B930205'/>  <!-- dataaccess.expressions.Conditional.condition -->
+            <Model:ModelElement xmi.idref = 'a4536496701B4'/>
+            <Model:ModelElement xmi.idref = 'a4577E58D025A'/>
+            <Model:ModelElement xmi.idref = 'a45473F6A0302'/>
+            <Model:ModelElement xmi.idref = 'a4759584402DE'/>
+            <Model:ModelElement xmi.idref = 'a49765700006E'/>
             <Model:ModelElement xmi.idref = 'a499D404600CB'/>
+            <Model:ModelElement xmi.idref = 'a45471B930205'/>
             <Model:ModelElement xmi.idref = 'a4B1CF930036D'/>
+            <Model:ModelElement xml:link = 'simple' href = 'persistence.xml|ra49AE7B73031B'/>
+            <Model:ModelElement xml:link = 'simple' href = 'persistence.xml|a49AE7B73031B'/>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.ObjectBasedExpression    [Class] ==================== -->
@@ -1646,8 +1790,8 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context ObjectCreationExpression
 inv:
-  self.getType().oclIsKindOf(ClassTypeDefinition) and
-  self.getType().oclAsType(ClassTypeDefinition).clazz = self.classToInstantiate and
+  self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz = self.classToInstantiate and
   self.getType().lowerMultiplicity = 1 and
   self.getType().upperMultiplicity = 1</XMI.any>
               </Model:Constraint.expression>
@@ -1696,20 +1840,6 @@ inv:
             </Model:Constraint>
           </Model:Namespace.contents>
         </Model:Class>
-        <!-- ==================== dataaccess.expressions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.872' 
-          name = 'org.omg.sap2mof.store=yes' annotation = '' 
-          tagId = 'org.omg.sap2mof.store' >
-          <Model:Tag.values>
-            <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
-          </Model:Tag.values>
-          <Model:Tag.elements>
-            <Model:ModelElement xmi.idref = 'ra4B1CF930036B'/>  <!-- dataaccess.expressions.ObjectCreationExpression.initializers -->
-            <Model:ModelElement xmi.idref = 'ra499D404600CD'/>  <!-- dataaccess.expressions.NavigationStep.replace -->
-            <Model:ModelElement xmi.idref = 'a499D404600CD'/>
-            <Model:ModelElement xmi.idref = 'a4B1CF930036B'/>
-          </Model:Tag.elements>
-        </Model:Tag>
         <!-- ==================== dataaccess.expressions.FunctionCallExpression    [Class] ==================== -->
         <Model:Class xmi.id = 'a45473F620076' 
           name = 'FunctionCallExpression' 
@@ -1750,7 +1880,7 @@ If the calledBock evaluates to more than one callable function, all functions wi
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context FunctionCallExpression
 inv:
-  let fstd:FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(FunctionSignatureTypeDefinition) in
+  let fstd:data::classes::FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in
 
   if fstd.isMany() then
     -- calling multiple functions; test is somewhat fuzzy because it doesn't test condormance of nesting structure exactly
@@ -1776,7 +1906,7 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context FunctionCallExpression
 inv:
-  self.calledBlock.getType().getInnermost().oclIsKindOf(FunctionSignatureTypeDefinition)</XMI.any>
+  self.calledBlock.getType().getInnermost().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a45473F620076'/>  <!-- dataaccess.expressions.FunctionCallExpression -->
@@ -2021,7 +2151,7 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context SignatureCallExpression
 inv:
-  let numberOfMandatoryParameters =
+  let numberOfMandatoryParameters:Integer =
     self.getSignature().input-&gt;select(p|p.defaultValue-&gt;isEmpty())-&gt;size()
   in
   self.parameters-&gt;size() &gt;= numberOfMandatoryParameters and
@@ -2044,15 +2174,16 @@ inv:
         self.getType().oclIsUndefined()
     else 
         if self.getMultiplicityOfCallTarget().isMany() and self.getSignature().output.isMany() then
-            let ntd = self.getType().oclAsType(NestedTypeDefinition) in
-                self.getType().oclIsKindOf(NestedTypeDefinition) and 
+            let ntd:data::classes::NestedTypeDefinition = self.getType().oclAsType(data::classes::NestedTypeDefinition) in
+                self.getType().oclIsKindOf(data::classes::NestedTypeDefinition) and 
                 ntd.unique = false and
                 ntd.ordered = self.getMultiplicityOfCallTarget().ordered and
                 ntd.lowerMultiplicity = self.getMultiplicityOfCallTarget().lowerMultiplicity and
                 ntd.upperMultiplicity = self.getMultiplicityOfCallTarget().upperMultiplicity and
                 self.getSignature().output.conformsTo(ntd.type)
         else
-            let target = self.getMultiplicityOfCallTarget() in let output = self.getSignature().output in 
+            let target:data::classes::Multiplicity = self.getMultiplicityOfCallTarget() in
+            let output:data::classes::TypeDefinition = self.getSignature().output in 
                 ( output.isMany() implies self.getType().unique = output.unique ) and
                 ( ( output.isMany() or target.isMany() ) implies ( self.getType().ordered = (output.ordered or target.ordered) ) ) and
                 ( self.getType().lowerMultiplicity = (output.lowerMultiplicity * target.lowerMultiplicity)) and
@@ -2072,14 +2203,14 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getSignature():Signature...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.873' 
+        <Model:Tag xmi.id = 'G.727' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getSignature():Signature...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context SignatureCallExpression::getSignature():Signature
 body:
   if self.oclIsKindOf(FunctionCallExpression) then
-    self.oclAsType(FunctionCallExpression).calledBlock.getType().getInnermost().oclAsType(FunctionSignatureTypeDefinition).signature
+    self.oclAsType(FunctionCallExpression).calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature
   else
     self.oclAsType(MethodCallExpression).methodSignature
   endif
@@ -2090,7 +2221,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.expressions.org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getMultiplicityOfCallTarget():Multiplicity...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.874' 
+        <Model:Tag xmi.id = 'G.728' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureCallExpression::getMultiplicityOfCallTarget():Multiplicity...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2129,8 +2260,8 @@ Type inference in getType() can be done once TypeDefinition is a value type that
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context ObjectCount
 inv:
-  self.getType().oclIsKindOf(ClassTypeDefinition) and
-  self.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Number'</XMI.any>
+  self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Number'</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a48E9DE8C030D'/>  <!-- dataaccess.expressions.ObjectCount -->
@@ -2205,8 +2336,8 @@ The replacement always produces a value of the same type as the source value. It
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context Replace
 inv:
-  self.object.getType().oclIsKindOf(ClassTypeDefinition) and
-  self.object.getType().oclAsType(ClassTypeDefinition).clazz.valueType</XMI.any>
+  self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a499C2988038A'/>  <!-- dataaccess.expressions.Replace -->
@@ -2290,8 +2421,13 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context NavigationStep
 inv:
-  let i = self.replace.steps-&gt;indexOf(self) in
-  let t = if i=1 then self.replace.object.getType().oclAsType(ClassTypeDefinition) else self.replace.steps-&gt;at(-1 + i).to.type endif in
+  let i:Integer = self.replace.steps-&gt;indexOf(self) in
+  let t:data::classes::ClassTypeDefinition = if i=1 then
+      self.replace.object.getType().oclAsType(data::classes::ClassTypeDefinition)
+    else
+      self.replace.steps-&gt;at(-1 + i).to.type
+    endif
+  in
 
   self.to.otherEnd().type.clazz.conformsTo(t.clazz)</XMI.any>
               </Model:Constraint.expression>
@@ -2306,7 +2442,7 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context NavigationStep
 inv:
-  self.filterFunction-&gt;notEmpty() implies self.filterFunction.getType().oclIsKindOf(FunctionSignatureTypeDefinition)</XMI.any>
+  self.filterFunction-&gt;notEmpty() implies self.filterFunction.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a499D4031000F'/>  <!-- dataaccess.expressions.NavigationStep -->
@@ -2422,8 +2558,8 @@ inv:
                 <XMI.any xmi.type = 'string' xmi.name = ''>context Conditional
 inv:
   self.condition.getType().upperMultiplicity = 1 and
-  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and
-  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Boolean'</XMI.any>
+  self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+  self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Boolean'</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a45471B4401F7'/>  <!-- dataaccess.expressions.Conditional -->
@@ -2509,10 +2645,10 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context ContentEquals
 inv:
-  self.left.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and
-  self.right.getType().getInnermost().oclIsKindOf(ClassTypeDefinition) and
-  not self.left.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.valueType and
-  not self.right.getType().getInnermost().oclAsType(ClassTypeDefinition).clazz.valueType</XMI.any>
+  self.left.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and
+  self.right.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and
+  not self.left.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType and
+  not self.right.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4B06A82B0109'/>  <!-- dataaccess.expressions.ContentEquals -->
@@ -2562,15 +2698,15 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context Map
 inv:
-  let fstd = self.argument.getType() in
-  let sig = fstd.oclAsType(FunctionSignatureTypeDefinition).signature in
-  let t = self.object.getType() in
-  let argT = sig.input-&gt;at(1).getType() in
+  let fstd:data::classes::TypeDefinition = self.argument.getType() in
+  let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in
+  let t:data::classes::TypeDefinition = self.object.getType() in
+  let argT:data::classes::TypeDefinition = sig.input-&gt;at(1).getType() in
   -- if multiplicities match including multiplicities, that's ok
   t.conformsTo(argT) or
   -- otherwise, pick single multiplicity from object and try again
   t.conformsToIgnoringMultiplicity(argT) or
-  (t.oclIsKindOf(NestedTypeDefinition) and t.oclAsType(NestedTypeDefinition).type.conformsTo(argT))</XMI.any>
+  (t.oclIsKindOf(data::classes::NestedTypeDefinition) and t.oclAsType(data::classes::NestedTypeDefinition).type.conformsTo(argT))</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4B8D1E5103B9'/>  <!-- dataaccess.expressions.Map -->
@@ -2583,9 +2719,9 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context Map
 inv:
-  let fstd = self.argument.getType() in
-  fstd.oclIsKindOf(FunctionSignatureTypeDefinition) and
-  (let sig = fstd.oclAsType(FunctionSignatureTypeDefinition).signature in
+  let fstd:data::classes::TypeDefinition = self.argument.getType() in
+  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and
+  (let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in
   (sig.output-&gt;notEmpty() and
   sig.input-&gt;size() = 1))</XMI.any>
               </Model:Constraint.expression>
@@ -2600,7 +2736,7 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context Map
 inv:
-  self.argument.getType().oclAsType(FunctionSignatureTypeDefinition).signature.sideEffectFree</XMI.any>
+  self.argument.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.sideEffectFree</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4B8D1E5103B9'/>  <!-- dataaccess.expressions.Map -->
@@ -2654,7 +2790,7 @@ inv:
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4536496701C8' 
               name = 'objectBasedExpression' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -2700,7 +2836,7 @@ inv:
           <Model:Namespace.contents>
             <Model:AssociationEnd xmi.id = 'a4577E58D0259' 
               name = 'argumentOf' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -2738,7 +2874,7 @@ inv:
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a45473F6A0316' 
               name = 'blockOfFunctionCallExpression' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -2766,7 +2902,7 @@ inv:
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4759584402FD' 
               name = 'leftOfEquals' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -2878,7 +3014,7 @@ inv:
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a49765700009D' 
               name = 'rightOfEquals' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -3077,7 +3213,7 @@ For example, if an Address value class has a property of type Province, and ther
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a45471B93020F' 
               name = 'conditional' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -3117,21 +3253,21 @@ For example, if an Address value class has a property of type Province, and ther
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.859' 
+    <Model:Import xmi.id = 'G.712' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.861' 
+    <Model:Import xmi.id = 'G.714' 
       name = 'data' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'data.xml|a453E0C08006D'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.863' 
+    <Model:Import xmi.id = 'G.717' 
       name = 'behavioral' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -3219,15 +3355,15 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context Selection
 inv:
-  self.selectionExpr.getType().oclIsKindOf(ClassTypeDefinition) and
+  self.selectionExpr.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
  (
     (
-      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Boolean' and
+      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Boolean' and
       self.selectionExpr.getType().upperMultiplicity = 1
     )
     or
     (
-      self.selectionExpr.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Number' 
+      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Number' 
       and 
       self.object.getType().ordered
     )
@@ -3240,7 +3376,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.query.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.875' 
+        <Model:Tag xmi.id = 'G.729' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3327,8 +3463,8 @@ inv:
                 <XMI.any xmi.type = 'string' xmi.name = ''>context OqlQuery
 inv:
   self.condition-&gt;notEmpty() implies
-    (self.condition.getType().oclIsKindOf(ClassTypeDefinition) and
-     self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name='Boolean')</XMI.any>
+    (self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and
+     self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name='Boolean')</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4B2755FC01F4'/>  <!-- dataaccess.query.OqlQuery -->
@@ -3354,7 +3490,7 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context OqlQuery
 inv:
-  self.getType().oclIsKindOf(ClassTypeDefinition) and self.getType().oclAsType(ClassTypeDefinition).clazz.valueType</XMI.any>
+  self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4B2755FC01F4'/>  <!-- dataaccess.query.OqlQuery -->
@@ -3367,7 +3503,7 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context OqlQuery
 inv:
-  self.selected-&gt;forAll(i | i.getType().oclIsKindOf(ClassTypeDefinition))</XMI.any>
+  self.selected-&gt;forAll(i | i.getType().oclIsKindOf(data::classes::ClassTypeDefinition))</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4B2755FC01F4'/>  <!-- dataaccess.query.OqlQuery -->
@@ -3445,7 +3581,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.query.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.876' 
+        <Model:Tag xmi.id = 'G.730' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3534,7 +3670,7 @@ inv:
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4B275626038A' 
               name = 'conditionOfOqlQuery' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -3934,7 +4070,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.877' 
+        <Model:Tag xmi.id = 'G.731' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3942,11 +4078,27 @@ inv:
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'ra4717D8CE0116'/>  <!-- dataaccess.analytics.CellSet.dimensions -->
+            <Model:ModelElement xmi.idref = 'ra4718AACC0167'/>  <!-- dataaccess.analytics.DimensionExpression.cellSet -->
+            <Model:ModelElement xmi.idref = 'ra4A3A526302DE'/>  <!-- dataaccess.analytics.DimensionExpression.facts -->
+            <Model:ModelElement xmi.idref = 'ra4B8E7B60004E'/>  <!-- dataaccess.analytics.GroupBy.dimensions -->
+            <Model:ModelElement xmi.idref = 'ra4B8E7BFA01A5'/>  <!-- dataaccess.analytics.GroupBy.fact -->
+            <Model:ModelElement xmi.idref = 'ra4B8E809B01A5'/>  <!-- dataaccess.analytics.GroupBy.mapExpression -->
+            <Model:ModelElement xmi.idref = 'ra4B8E81160138'/>  <!-- dataaccess.analytics.GroupBy.groupedFacts -->
+            <Model:ModelElement xmi.idref = 'ra4B8E7B8F02FD'/>  <!-- dataaccess.analytics.DimensionDefinition.expression -->
+            <Model:ModelElement xmi.idref = 'ra4B8E7C2D004E'/>  <!-- dataaccess.analytics.DimensionDefinition.iterator -->
             <Model:ModelElement xmi.idref = 'a4717D8CE0116'/>
+            <Model:ModelElement xmi.idref = 'a4718AACC0167'/>
+            <Model:ModelElement xmi.idref = 'a4A3A526302DE'/>
+            <Model:ModelElement xmi.idref = 'a4B8E7B60004E'/>
+            <Model:ModelElement xmi.idref = 'a4B8E7B8F02FD'/>
+            <Model:ModelElement xmi.idref = 'a4B8E7BFA01A5'/>
+            <Model:ModelElement xmi.idref = 'a4B8E7C2D004E'/>
+            <Model:ModelElement xmi.idref = 'a4B8E809B01A5'/>
+            <Model:ModelElement xmi.idref = 'a4B8E81160138'/>
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context CellSet::keyFigureType():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.878' 
+        <Model:Tag xmi.id = 'G.732' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context CellSet::keyFigureType():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3963,7 +4115,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context CellSet::cellType():TypeDefinition...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.879' 
+        <Model:Tag xmi.id = 'G.733' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context CellSet::cellType():TypeDefinition...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3976,7 +4128,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context CellSet::localIsSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.880' 
+        <Model:Tag xmi.id = 'G.734' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context CellSet::localIsSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -4022,9 +4174,9 @@ The type of this DimensionExpression is Set&lt;self.dimension.type&gt;</Model:Mo
                 <Model:AssociationEnd xmi.idref = 'a4718AACC0167'/>
               </Model:Reference.referencedEnd>
             </Model:Reference>
-            <!-- ==================== dataaccess.analytics.DimensionExpression.dimension    [Reference] ==================== -->
+            <!-- ==================== dataaccess.analytics.DimensionExpression.dimensionParameter    [Reference] ==================== -->
             <Model:Reference xmi.id = 'ra4718AB19002E' 
-              name = 'dimension' annotation = '' 
+              name = 'dimensionParameter' annotation = '' 
               scope = 'instance_level' visibility = 'public_vis' 
               isChangeable = 'true' >
               <Model:StructuralFeature.multiplicity>
@@ -4059,7 +4211,7 @@ The type of this DimensionExpression is Set&lt;self.dimension.type&gt;</Model:Mo
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context DimensionExpression
 inv:
-  self.facts.getType().conformsTo(self.dimension.ownerSignature.input-&gt;at(1).getType())</XMI.any>
+  self.facts.getType().conformsTo(self.dimensionParameter.ownerSignature.input-&gt;at(1).getType())</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4718AA7E0167'/>  <!-- dataaccess.analytics.DimensionExpression -->
@@ -4072,7 +4224,7 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context DimensionExpression
 inv:
-  self.cellSet.getType().oclIsKindOf(FunctionSignatureTypeDefinition)</XMI.any>
+  self.cellSet.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4718AA7E0167'/>  <!-- dataaccess.analytics.DimensionExpression -->
@@ -4085,7 +4237,7 @@ inv:
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context DimensionExpression
 inv:
-  self.dimension.ownerSignature.input-&gt;indexOf(self.dimension) &gt; 1</XMI.any>
+  self.dimensionParameter.ownerSignature.input-&gt;indexOf(self.dimensionParameter) &gt; 1</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4718AA7E0167'/>  <!-- dataaccess.analytics.DimensionExpression -->
@@ -4224,6 +4376,21 @@ inv:
             <Model:Constraint xmi.idref = 'a4B8E8B0803A9'/>  <!-- dataaccess.analytics.DimensionDefinition.DimensionExpressionMustBeSideEffectFree -->
           </Model:ModelElement.constraints>
           <Model:Namespace.contents>
+            <!-- ==================== dataaccess.analytics.DimensionDefinition.groupBy    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B8E7B600050' 
+              name = 'groupBy' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B8E7AA300CB'/>  <!-- dataaccess.analytics.GroupBy -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B8E7B600050'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
             <!-- ==================== dataaccess.analytics.DimensionDefinition.expression    [Reference] ==================== -->
             <Model:Reference xmi.id = 'ra4B8E7B8F02FD' 
               name = 'expression' annotation = '' 
@@ -4287,8 +4454,27 @@ inv:
             </Model:Constraint>
           </Model:Namespace.contents>
         </Model:Class>
+        <!-- ==================== dataaccess.analytics.org.omg.sap2mof.store=yes    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.735' 
+          name = 'org.omg.sap2mof.store=yes' annotation = '' 
+          tagId = 'org.omg.sap2mof.store' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'ra4B8E7B600050'/>  <!-- dataaccess.analytics.DimensionDefinition.groupBy -->
+            <Model:ModelElement xmi.idref = 'a4718AACC0169'/>
+            <Model:ModelElement xmi.idref = 'a4A3A5263032C'/>
+            <Model:ModelElement xmi.idref = 'a4B8E7B600050'/>
+            <Model:ModelElement xmi.idref = 'a4B8E7B8F034B'/>
+            <Model:ModelElement xmi.idref = 'a4B8E7BFA01B5'/>
+            <Model:ModelElement xmi.idref = 'a4B8E7C2D005D'/>
+            <Model:ModelElement xmi.idref = 'a4B8E809B01E4'/>
+            <Model:ModelElement xmi.idref = 'a4B8E81160148'/>
+          </Model:Tag.elements>
+        </Model:Tag>
         <!-- ==================== dataaccess.analytics.org.omg.sap2mof.OperationCodeOcl=context DimensionDefinition::getName():String...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.881' 
+        <Model:Tag xmi.id = 'G.736' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context DimensionDefinition::getName():String...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -4433,7 +4619,7 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4718AACC0169' 
               name = 'cellSetOfDimensionExpression' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -4443,14 +4629,14 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
-        <!-- ==================== dataaccess.analytics.A_dimension_dimensionExpression    [Association] ==================== -->
+        <!-- ==================== dataaccess.analytics.A_dimensionParameter_dimensionExpression    [Association] ==================== -->
         <Model:Association xmi.id = 'a4718AB170222' 
-          name = 'A_dimension_dimensionExpression' annotation = '' 
+          name = 'A_dimensionParameter_dimensionExpression' annotation = '' 
           isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
           isDerived = 'false' >
           <Model:Namespace.contents>
             <Model:AssociationEnd xmi.id = 'a4718AB19002E' 
-              name = 'dimension' annotation = '' 
+              name = 'dimensionParameter' annotation = '' 
               isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
@@ -4517,7 +4703,7 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4A3A5263032C' 
               name = 'factsOfDimensionExpression' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -4545,7 +4731,7 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4B8E7B600050' 
               name = 'groupBy' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -4573,7 +4759,7 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4B8E7B8F034B' 
               name = 'dimension' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -4601,7 +4787,7 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4B8E7BFA01B5' 
               name = 'factOfGroupBy' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -4629,7 +4815,7 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4B8E7C2D005D' 
               name = 'dimension' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -4657,7 +4843,7 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4B8E809B01E4' 
               name = 'mapExpressionOfGroupBy' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -4685,7 +4871,7 @@ The block specified to determined this value has to have a signature whose input
             </Model:AssociationEnd>
             <Model:AssociationEnd xmi.id = 'a4B8E81160148' 
               name = 'groupedFactsOfGroupBy' annotation = '' 
-              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
               <Model:AssociationEnd.multiplicity>
                 <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
               </Model:AssociationEnd.multiplicity>
@@ -4697,7 +4883,7 @@ The block specified to determined this value has to have a signature whose input
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.882' 
+    <Model:Import xmi.id = 'G.737' 
       name = 'modelmanagement' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

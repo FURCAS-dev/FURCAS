@@ -916,7 +916,7 @@
 					icon_style 	"Icon"
 					fill_color 	16777215
 					anchor     	2
-					nlines     	3
+					nlines     	4
 					max_width  	0)
 				    width      	702
 				    height     	232

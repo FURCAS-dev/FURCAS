@@ -26,7 +26,7 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
 
     public TextBlockAwareModelChange(RefactoringEditorFacade facade, TextBlockAwareRefactoringCommand command) {
 	super(command.getDescription());
-	
+
 	this.command = command;
 	this.facade = facade;
     }
@@ -36,9 +36,10 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
 	return facade.getDecoratedDomainRootObject();
     }
 
+
     @Override
     public void initializeValidationData(IProgressMonitor pm) {
-	
+
     }
 
     @Override
@@ -56,30 +57,30 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
     @Override
     public Change perform(IProgressMonitor pm) throws CoreException {
 	pm.beginTask("Applying Refactoring: " + command.getDescription(), 2);
-	
+
 	// Finally, re-apply the desired changes.
 	command.runRefactoring();
 	pm.worked(1);
-	
+
 	facade.refreshUI();
 	pm.done();
 	return new NullChange();
     }
 
-    
+
 // ######## Provider change as a textual representation for the compare viewer  ########
-    
+
     @Override
     public String getCurrentContent(IProgressMonitor pm) throws CoreException {
-	return command.getPreExecutionContent();
+	return command.getTextualPreExecutionRepresentation();
     }
 
     @Override
     public String getPreviewContent(IProgressMonitor pm) throws CoreException {
 	if (isEnabled()) {
-	    return command.getPostExecutionContent();
+	    return command.getTextualPostExecutionRepresentation();
 	} else {
-	    return command.getPreExecutionContent();
+	    return command.getTextualPreExecutionRepresentation();
 	}
     }
 
@@ -130,7 +131,8 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
 		message = "BadLocationException"; //$NON-NLS-1$
 	    }
 	    throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-		    IRefactoringCoreStatusCodes.BAD_LOCATION, message, e));
+ IRefactoringCoreStatusCodes.BAD_LOCATION,
+		    message, e));
 	}
     }
 

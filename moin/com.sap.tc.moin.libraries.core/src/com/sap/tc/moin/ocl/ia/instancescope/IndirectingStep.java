@@ -9,6 +9,8 @@ import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
@@ -25,7 +27,7 @@ public class IndirectingStep extends AbstractNavigationStep {
     private boolean equalsOrHashCodeCalledBeforeActualStepSet = false;
 
     /**
-     * The set of objects for which {@link #navigate(CoreConnection, RefObjectImpl, Map)} is currently being evaluated on
+     * The set of objects for which {@link #navigate(CoreConnection, RefObjectImpl, Map, Set)} is currently being evaluated on
      * this step instance, keyed by the current thread by means of using a {@link ThreadLocal}. This is used to avoid
      * endless recursions. Navigating the same thing again starting from the same object wouldn't contribute new things.
      * So in that case, an empty set will be returned.
@@ -92,14 +94,14 @@ public class IndirectingStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache) {
+    protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	Set<AnnotatedRefObjectImpl> result;
 	if (currentlyEvaluatingNavigateFor.get().contains(fromObject.getElement()) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
 	    currentlyEvaluatingNavigateFor.get().add(fromObject.getElement());
 	    Set<AnnotatedRefObjectImpl> set = Collections.singleton(fromObject);
-	    result = actualStep.navigate(conn, set, cache);
+	    result = actualStep.navigate(conn, set, cache, throwExceptionWhenVisiting);
 	    currentlyEvaluatingNavigateFor.get().remove(fromObject.getElement());
 	}
 	return result;

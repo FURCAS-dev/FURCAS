@@ -1477,7 +1477,7 @@ syntax Class(k=0 ) {
                 ;
         
         operatorTemplate DimensionExpression(operators = arrowOp, source = 'cellSet')
-                : "dim" "(" facts "," dimension{as=identifier,
+                : "dim" "(" facts "," dimensionParameter{as=identifier,
                      query="OCL:self.cellSet.getType().oclAsType(FunctionSignatureTypeDefinition).signature.input",
                      filter="->select(p|p.name=?)", invert="name"}
                    ")"

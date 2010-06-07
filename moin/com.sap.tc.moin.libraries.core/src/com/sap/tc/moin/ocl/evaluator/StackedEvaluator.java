@@ -55,7 +55,6 @@ import org.omg.ocl.expressions.__impl.IntegerLiteralExpImpl;
 import org.omg.ocl.expressions.__impl.IterateExpImpl;
 import org.omg.ocl.expressions.__impl.LetExpImpl;
 import org.omg.ocl.expressions.__impl.LoopExpInternal;
-import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import org.omg.ocl.expressions.__impl.OperationCallExpImpl;
 import org.omg.ocl.expressions.__impl.PropertyCallExpInternal;
 import org.omg.ocl.expressions.__impl.RealLiteralExpImpl;
@@ -87,7 +86,6 @@ import com.sap.tc.moin.ocl.evaluator.stdlib.OclVoid;
 import com.sap.tc.moin.ocl.evaluator.stdlib.OperationNotFoundException;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclCollectionImpl;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclInvalidImpl;
-import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclSequenceImpl;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclVoidImpl;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.iterators.AnyHandler;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.iterators.CollectHandler;
@@ -587,9 +585,7 @@ public class StackedEvaluator extends ExpressionEvaluator {
 
         private String getNameFromExpression( ) {
 
-            if ( 1 == 2 ) {
-                return null;
-            } else if ( this.myExpression instanceof IfExp ) {
+            if ( this.myExpression instanceof IfExp ) {
                 return "if"; //$NON-NLS-1$
             } else if ( this.myExpression instanceof LetExp ) {
                 return "let " + ( (LetExp) this.myExpression ).getVariable( ).getName( ) + " in"; //$NON-NLS-1$ //$NON-NLS-2$
@@ -876,12 +872,31 @@ public class StackedEvaluator extends ExpressionEvaluator {
 	try {
 	    OclExpression sourceExpr = ((PropertyCallExpInternal) expression).getSource(connection);
 	    new EvaluationContextImpl(sourceObject); // push sourceObject onto the evaluation context stack
+	    EvaluationContext.CurrentContext.get().unsetVariable(OclConstants.VAR_SELF);
 	    ContextStack contextStack = new ContextStack();
 	    MyContext rootCtx = new MyContext(connection, expression, NodeRoleTypes.Root, /* serializer */null);
 	    MyContext sourceCtx = new MyContext(connection, sourceExpr, NodeRoleTypes.Source, /* serializer */null);
 	    contextStack.push(sourceCtx);
 	    contextStack.pop(sourceObject); // sets the value on the sourceCtx to sourceObject
 	    rootCtx.addChild(sourceCtx);
+	    contextStack.push(rootCtx);
+	    MyContext currentContext = evaluateWithStack(contextStack, connection, throwExceptionWhenVisiting, /* serializer */
+		    null);
+	    return currentContext.getValue();
+	} finally {
+	    EvaluationContext.CurrentContext.reset();
+	}
+    }
+
+    @Override
+    public OclAny evaluateIteratorBody(CoreConnection connection, OclExpression expression, String iteratorName, OclAny sourceObject,
+	    Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
+	try {
+	    new EvaluationContextImpl(sourceObject); // push sourceObject onto the evaluation context stack
+	    EvaluationContext.CurrentContext.get().unsetVariable(OclConstants.VAR_SELF);
+	    EvaluationContext.CurrentContext.get().setVariable(iteratorName, sourceObject);
+	    ContextStack contextStack = new ContextStack();
+	    MyContext rootCtx = new MyContext(connection, expression, NodeRoleTypes.Root, /* serializer */null);
 	    contextStack.push(rootCtx);
 	    MyContext currentContext = evaluateWithStack(contextStack, connection, throwExceptionWhenVisiting, /* serializer */
 		    null);

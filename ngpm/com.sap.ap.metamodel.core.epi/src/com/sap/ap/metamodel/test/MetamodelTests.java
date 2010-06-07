@@ -172,7 +172,7 @@ public class MetamodelTests extends TestCase {
 	p.setName("p");
 	c1.setPackage(p);
 	c2.setPackage(p);
-	a.setPackage(p);
+	p.getAssociations().add(a);
 	for (AssociationEnd ae:a.getEnds()) {
 	    ae.setContributesToEquality(true);
 	}
@@ -200,7 +200,7 @@ public class MetamodelTests extends TestCase {
 	p.setName("p");
 	c1.setPackage(p);
 	c2.setPackage(p);
-	a.setPackage(p);
+	p.getAssociations().add(a);
 	assertEquals("c1", a.getEnds().get(0).getName());
 	a.getEnds().get(0).setContributesToEquality(true);
 	
@@ -210,7 +210,9 @@ public class MetamodelTests extends TestCase {
 	getter.setOutput(a.getEnds().get(1).getType());
 	LinkTraversal linkTraversal = (LinkTraversal) conn.getClass(LinkTraversal.CLASS_DESCRIPTOR).refCreateInstance();
 	linkTraversal.setEnd(a.getEnds().get(1));
-	getter.setImplementation(linkTraversal);
+	linkTraversal.setImplements(getter);
+	
+	
 	c1.getOwnedSignatures().add(getter);
 	
 	Collection<JmiException> exceptions = a.refVerifyConstraints(/*deepVerify*/true);
@@ -225,7 +227,7 @@ public class MetamodelTests extends TestCase {
 	setter.setName("setC2");
 	LinkSetting linkSetting = (LinkSetting) conn.getClass(LinkSetting.CLASS_DESCRIPTOR).refCreateInstance();
 	linkSetting.setEnd(a.getEnds().get(1));
-	setter.setImplementation(linkSetting);
+	linkSetting.setImplements(setter);
 	Parameter setterParam = (Parameter) conn.getClass(Parameter.CLASS_DESCRIPTOR).refCreateInstance();
 	setterParam.setName("c2Param");
 	setter.getInput().add(setterParam);
@@ -288,7 +290,8 @@ public class MetamodelTests extends TestCase {
 	adapterSig.setName("s2");
 	Block impl = (Block) ((BehavioralPackage) conn.getPackage(/*containerName*/ null, "behavioral")).getActions().
 			getBlock().refCreateInstance();
-	adapterSig.setImplementation(impl);
+	impl.setImplements(adapterSig);
+	
 	adapter.getOwnedSignatures().add(adapterSig);
 	Collection<JmiException> exceptions = adapter.refVerifyConstraints(/*deepVerify*/false);
 	assertTrue("Adapter should be valid but has "+
@@ -321,7 +324,9 @@ public class MetamodelTests extends TestCase {
 	adapterSig.setName("s2");
 	Block impl = (Block) ((BehavioralPackage) conn.getPackage(/*containerName*/ null, "behavioral")).getActions().
 			getBlock().refCreateInstance();
-	adapterSig.setImplementation(impl);
+	
+	impl.setImplements(adapterSig);
+		
 	adapter.getOwnedSignatures().add(adapterSig);
 	SapClass c3 = (SapClass) classesPackage.getSapClass().refCreateInstance();
 	c2.setName("C3");
@@ -336,7 +341,10 @@ public class MetamodelTests extends TestCase {
 	adapterSig.setName("s3");
 	Block impl2 = (Block) ((BehavioralPackage) conn.getPackage(/*containerName*/ null, "behavioral")).getActions().
 			getBlock().refCreateInstance();
-	adapter2Sig.setImplementation(impl2);
+	
+	impl2.setImplements(adapter2Sig);
+	
+	
 	adapter2.getOwnedSignatures().add(adapter2Sig);
 	Collection<JmiException> exceptions = adapter.refVerifyConstraints(/*deepVerify*/false);
 	assertTrue("Adapter should be valid but has "+

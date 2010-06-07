@@ -83,14 +83,14 @@ public class DimensionExpressionInterpreter implements Interpreter<DimensionExpr
 	CellSet cellSet = (CellSet) cellSetFunction.getImplementation();
 	Set<LogicalWrapper> wrappedDimensionValues = new LinkedHashSet<LogicalWrapper>();
 	Set<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> dimensionValues = new LinkedHashSet<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();
-	int dimensionIndex = dimensionExpression.getDimension().getOwnerSignature().getInput().indexOf(dimensionExpression.getDimension()) - 1;
+	int dimensionIndex = dimensionExpression.getDimensionParameter().getOwnerSignature().getInput().indexOf(dimensionExpression.getDimensionParameter()) - 1;
 	Dimension dimension = cellSet.getDimensions().get(dimensionIndex);
 	FunctionSignatureImplementation impl = dimension.getCharacteristicFunction().getImplementation();
 	// TODO correct nested multiplicity handling, removing the "flatten()"
 	// call again
 	for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> fact : facts.flatten()) {
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> dimensionValueForFact = interpreter.convert(
-		    callSingleArgFunction(interpreter, fact, impl), dimensionExpression.getDimension().getType());
+		    callSingleArgFunction(interpreter, fact, impl), dimensionExpression.getDimensionParameter().getType());
 	    // compare dimension values ignoring snapshot
 	    LogicalWrapper lw = new LogicalWrapper(dimensionValueForFact);
 	    if (!wrappedDimensionValues.contains(lw)) {

@@ -3,7 +3,7 @@ package com.sap.ap.cts.refactoring.adaptation;
 import org.eclipse.core.runtime.IAdapterFactory;
 
 import com.sap.ap.cts.refactoring.model.NamedElementAdapter;
-import com.sap.ide.refactoring.core.model.NamedElement;
+import com.sap.ide.refactoring.core.model.rename.NamedElement;
 
 public class RefactoringModelAdapterFactory implements IAdapterFactory {
 
