@@ -182,8 +182,8 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
 
     public void walk(OCLExpression expression) {
         if (!visitedExpressions.contains(expression)) {
-            safeVisit(expression);
             visitedExpressions.add(expression);
+            safeVisit(expression);   
         }
     }
 }
