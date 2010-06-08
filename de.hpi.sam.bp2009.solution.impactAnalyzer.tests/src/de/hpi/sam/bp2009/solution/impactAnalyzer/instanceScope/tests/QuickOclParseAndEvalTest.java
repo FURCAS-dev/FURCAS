@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
@@ -26,7 +27,7 @@ public class QuickOclParseAndEvalTest extends TestCase
   private SapClass class2;
   private Parameter param;
   private ClassTypeDefinition ctd;
-  private MethodSignature context;
+  private MethodSignature signature;
   private OCL ocl;
   private Helper oclHelper;
 
@@ -37,14 +38,14 @@ public class QuickOclParseAndEvalTest extends TestCase
     class1.setName("class1");
     class2 = ClassesFactory.eINSTANCE.createSapClass();
     class2.setName("class2");
-    context = ClassesFactory.eINSTANCE.createMethodSignature();
-    context.setName("context");
+    signature = ClassesFactory.eINSTANCE.createMethodSignature();
+    signature.setName("context");
     param = ClassesFactory.eINSTANCE.createParameter();
     param.setName("p");
     ctd = ClassesFactory.eINSTANCE.createClassTypeDefinition();
     ctd.setClazz(class1);
     param.setOwnedTypeDefinition(ctd);
-    context.setOwner(class2);
+    signature.setOwner(class2);
     ocl = OCL.newInstance();
     oclHelper = ocl.createOCLHelper();
     oclHelper.setContext(ClassesPackage.eINSTANCE.getParameter());
@@ -82,4 +83,42 @@ public class QuickOclParseAndEvalTest extends TestCase
     Object result4 = ocl.evaluate(param, expression4);
     assertTrue(((Bag< ? >)result4).contains(null));
   }
+
+  public void testParseAndEvaluateOclExpressionWithImplicitCollectOverOperationCallResult() throws ParserException
+  {
+    OCLExpression expression4 = oclHelper.createQuery("self.ownedTypeDefinition.oclAsType(data::classes::ClassTypeDefinition).clazz.getAssociationEnds().otherEnd()");
+    Object result4 = ocl.evaluate(param, expression4);
+    assertTrue(((EObject) result4).eClass().getName().equals("OclInvalid_Class"));
+  }
+
+  public void testParseAndEvaluateOclExpressionWithImplicitSetLiteral() throws ParserException
+  {
+    OCLExpression expression4 = oclHelper.createQuery("self.ownedTypeDefinition->isEmpty()");
+    Object result4 = ocl.evaluate(param, expression4);
+    assertFalse((Boolean) result4);
+  }
+
+  public void testParseAndEvaluateOclExpressionWithImplicitSetLiteralCheckingForIsEmpty() throws ParserException
+  {
+    param.setOwnedTypeDefinition(null);
+    OCLExpression expression5 = oclHelper.createQuery("self.ownedTypeDefinition->isEmpty()");
+    Object result5 = ocl.evaluate(param, expression5);
+    assertTrue((Boolean) result5);
+  }
+
+  public void testParseAndEvaluateOclExpressionWithNullInSetLiteral() throws ParserException
+  {
+    param.setOwnedTypeDefinition(null);
+    OCLExpression expression5 = oclHelper.createQuery("Set{null}->isEmpty()");
+    Object result5 = ocl.evaluate(param, expression5);
+    assertTrue((Boolean) result5);
+  }
+
+  public void testParseAndEvaluateOclExpressionWithEmptySetLiteralIncludingNull() throws ParserException
+  {
+    OCLExpression expression4 = oclHelper.createQuery("Set{}->including(null)->isEmpty()");
+    Object result4 = ocl.evaluate(param, expression4);
+    assertFalse((Boolean) result4);
+  }
+
 }
