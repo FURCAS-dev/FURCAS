@@ -48,23 +48,35 @@ public class PathCache {
 		return result;
 	}
 
-	/**
-	 * A factory method for {@link NavigationStep}s that combines a sequence of navigation steps into a single new one.
-	 * In doing so, shortcuts may be taken. For example, if the last step is an absolute step, it is returned as the
-	 * result because all prior navigations are irrelevant.
-	 * @param debugInfo
-	 *            may be <tt>null</tt>; optionally, use this to tell a debugging user to which OCL (sub-)expression the
-	 *            navigation step to create belongs
-	 */
-	protected NavigationStep navigationStepFromSequence(OCLExpression debugInfo, NavigationStep... steps) {
-		NavigationStep result;
-		if (steps[steps.length-1].isAbsolute()) {
-			result = steps[steps.length-1];
-		} else {
-			result = new NavigationStepSequence(debugInfo, steps);
-		}
-		return result;
+    /**
+     * A factory method for {@link NavigationStep}s that combines a sequence of
+     * navigation steps into a single new one. In doing so, shortcuts may be
+     * taken. For example, if the last step is an absolute step, it is returned
+     * as the result because all prior navigations are irrelevant.
+     * 
+     * @param expression
+     *            Additionally, this is used to tell a debugging user to which
+     *            OCL (sub-)expression the navigation step to create belong (see
+     *            {@link AbstractNavigationStep#getDebugInfo()}). The step
+     *            constructed here must be used as the resulting navigation step
+     *            for <tt>expression</tt>. Callers therefore should ensure that
+     *            in case this operation is called multiple times on the same
+     *            object for the same expression, then the steps have to have
+     *            equal semantics because subsequent calls will pull the result
+     *            from the cache if available instead of creating a new one.
+     */
+    protected NavigationStep navigationStepFromSequence(OCLExpression expression, NavigationStep... steps) {
+	NavigationStep result = getPathForNode(expression);
+	if (result == null) {
+	    if (steps[steps.length - 1].isAbsolute()) {
+		result = steps[steps.length - 1];
+	    } else {
+		result = new NavigationStepSequence(expression, steps);
+	    }
+	    put(expression, result);
 	}
+	return result;
+    }
 
 	/**
 	 * Creates a navigation step of type {@link IndirectingStep} which can be filled in later
