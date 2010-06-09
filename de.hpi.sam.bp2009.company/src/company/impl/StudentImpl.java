@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class StudentImpl extends EmployeeImpl implements Student {
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     protected StudentImpl() {
-                super();
-        }
+    super();
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-                return CompanyPackage.Literals.STUDENT;
-        }
+    return CompanyPackage.Literals.STUDENT;
+  }
 
 } //StudentImpl
