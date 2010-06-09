@@ -96,46 +96,7 @@ public class GraphInformationApplicator {
 
 	return step;
     }
-    
-/*    public void applyOclInformation(CoreConnection conn) {
-	Node[] nodeArray = context.getGraph().getNodeArray();
 
-	for (Node node : nodeArray) {
-	    AbstractNavigationStep navigationStep = (AbstractNavigationStep) context.getReverseVisitedNodes().get(node);
-
-	    if (navigationStep != null) {
-		applyOclForNode(navigationStep, node, conn);
-	    } else {
-		if (context.getVisitedEndNodes().containsValue(node)) {
-		    AbstractNavigationStep navigationStepEndNode = (AbstractNavigationStep) context.getReverseVisitedEndNodes().get(node);
-		    applyOclForNode(navigationStepEndNode, node, conn);
-		}
-	    }
-	}
-    }
-    
-    private void applyOclForNode(AbstractNavigationStep step, Node node, CoreConnection conn) {
-	try {
-	    if (conn != null) {
-
-		String singleOclText = OclSerializer.getInstance(conn).serialize((OclExpression) step.getDebugInfo(),
-			new RefPackage[0]);
-		String rootOclInfo = "\nin root expression\n";
-		StringBuffer rootOclExpression = new StringBuffer();
-
-		rootOclExpression.append(OclSerializer.getInstance(conn).serializeAndHighlight(
-			getRootExpression((RefObjectImpl) step.getDebugInfo(), conn), (OclExpression) step.getDebugInfo(),
-			new RefPackage[0]));
-
-		context.getNodeDescription().set(node, singleOclText + rootOclInfo + rootOclExpression.toString());
-	    }
-	} catch (OclSerializationException e) {
-	    e.printStackTrace();
-	}
-    }
-*/
-    
-    
     public void applyNavigationCountColoring(NavigationStep firstLevelNavigationStep) {
 	createNavigationPercentageList(firstLevelNavigationStep);
 	applyColoringBasedOnNavigationPercentageList();
@@ -258,58 +219,5 @@ public class GraphInformationApplicator {
 	elTarget.setText(target);
 	elTarget.setFontSize(10);
     }
-    
-    /* Disabled Code block, because feature to annotate graphs with OCL expression is not possible yet
-     * 
-
-    protected OclExpression getRootExpression(RefObjectImpl x, CoreConnection conn) {
-	RefObjectImpl parent = getLogicalImmediateComposite(x, conn);
-	while (parent != null) {
-	    x = parent;
-	    parent = getLogicalImmediateComposite(x, conn);
-	}
-	return (OclExpression) x;
-    }
-
-    private RefObjectImpl getLogicalImmediateComposite(RefObjectImpl x, CoreConnection conn) {
-	RefObjectImpl result = (RefObjectImpl) x.refImmediateComposite(conn.getSession());
-	if (result == null) {
-	    if (x instanceof VariableDeclaration) {
-		// maybe this is a tuplePart of a TupleLiteralExp
-		ATuplePartTupleLiteralExpImpl a = (ATuplePartTupleLiteralExpImpl) conn
-			.getAssociation(ATuplePartTupleLiteralExp.ASSOCIATION_DESCRIPTOR);
-		JmiListImpl<TupleLiteralExp> tupleLiteralCollection = ((JmiListImpl<TupleLiteralExp>) a.getTupleLiteralExp(conn,
-			(VariableDeclaration) x));
-		result = ((TupleLiteralExpImpl) tupleLiteralCollection.iterator(conn).next());
-	    } else {
-		// check if x is the expression defining a collection item in a
-		// collection literal expression
-		AItemCollectionItemImpl a = (AItemCollectionItemImpl) conn
-			.getAssociation(AItemCollectionItem.ASSOCIATION_DESCRIPTOR);
-		result = (RefObjectImpl) a.getCollectionItem(conn, (OclExpression) x);
-		if (result == null) {
-		    // check if x is the "first" or "last" expression in a
-		    // CollectionRange
-		    AFirstCollectionRangeImpl firstAssoc = (AFirstCollectionRangeImpl) conn
-			    .getAssociation(AFirstCollectionRange.ASSOCIATION_DESCRIPTOR);
-		    result = (RefObjectImpl) firstAssoc.getCollectionRange(conn, (OclExpression) x);
-		    if (result == null) {
-			ALastCollectionRangeImpl lastAssoc = (ALastCollectionRangeImpl) conn
-				.getAssociation(ALastCollectionRange.ASSOCIATION_DESCRIPTOR);
-			result = (RefObjectImpl) lastAssoc.getCollectionRange(conn, (OclExpression) x);
-		    }
-		}
-		if (result != null && result instanceof CollectionLiteralPart) {
-		    // walk right through to the collection literal expression
-		    APartsCollectionLiteralExpImpl cleAssoc = (APartsCollectionLiteralExpImpl) conn
-			    .getAssociation(APartsCollectionLiteralExp.ASSOCIATION_DESCRIPTOR);
-		    result = (RefObjectImpl) ((JmiListImpl<CollectionLiteralExp>) cleAssoc.getCollectionLiteralExp(conn,
-			    (CollectionLiteralPart) result)).iterator(conn).next();
-		}
-	    }
-	}
-	return result;
-    }
-    */
     
 }

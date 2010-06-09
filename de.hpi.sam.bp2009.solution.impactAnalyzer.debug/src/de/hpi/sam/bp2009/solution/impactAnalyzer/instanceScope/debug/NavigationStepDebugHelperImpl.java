@@ -50,11 +50,6 @@ public class NavigationStepDebugHelperImpl {
 	    GraphInformationApplicator informationApplicator = new GraphInformationApplicator(graphContext);
 	    
 	    informationApplicator.applyNavigationCountColoring(step);
-        	
-	    //TODO: Port feature to annotate graph
-	    //if(conn != null)
-            //informationApplicator.applyOclInformation(conn);
-	    
 	    informationApplicator.applyAllEdgeLabels();
 	}
 	

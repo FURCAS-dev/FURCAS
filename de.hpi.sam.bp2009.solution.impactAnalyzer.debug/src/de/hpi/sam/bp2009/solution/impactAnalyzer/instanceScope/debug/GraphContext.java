@@ -111,6 +111,7 @@ public class GraphContext {
 	    }
 
 	    setIdToNode(newNode, ((AbstractNavigationStep)navStep).getId());
+	    setDebugInfoToNode(newNode, navStep.getDebugInfo().toString());
 	    
 	    refreshNodeStyle(newNode);
 	} else {
@@ -119,7 +120,6 @@ public class GraphContext {
 
 	return newNode;
     }
-
     
     /**
      * Adjusts width of node according to label text width
@@ -138,6 +138,11 @@ public class GraphContext {
 	    idLabel.setFontSize(10);
 	    ((Graph2D)graph).getRealizer(node).addLabel(idLabel);
     }
+    
+    private void setDebugInfoToNode(Node newNode, String debugInfo) {
+	getNodeDescription().set(newNode, debugInfo);
+    }
+
 
     public Node createEndNode(NavigationStep navStep) {
 	Node newNode;
