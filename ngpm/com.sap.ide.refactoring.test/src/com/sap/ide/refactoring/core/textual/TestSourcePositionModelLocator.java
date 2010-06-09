@@ -16,12 +16,12 @@ import textblocks.DocumentNode;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.ide.cts.editor.test.RunletEditorTest;
+import com.sap.ide.refactoring.test.RefactoringEditorIntegrationTest;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-public class TestSourcePositionModelLocator extends RunletEditorTest {
+public class TestSourcePositionModelLocator extends RefactoringEditorIntegrationTest {
 
     /**
      * System under test
@@ -34,11 +34,11 @@ public class TestSourcePositionModelLocator extends RunletEditorTest {
 
     /**
      * Initialize class members for the next testcase run
-     * 
+     *
      * @param className
      */
     private void initializeForClass(String className) {
-	final RefObject refObject = findClass(className);
+	final RefObject refObject = findRunletClass(className);
 	assertNotNull(refObject);
 	assertTrue(refObject.is___Alive());
 
@@ -54,7 +54,7 @@ public class TestSourcePositionModelLocator extends RunletEditorTest {
 	    fail(e.getMessage());
 	}
     }
-    
+
     @Test
     public void testSourceViewerOffsetHandlingAssumption() {
 	initializeForClass("OrderedAssocTestCase");
@@ -62,17 +62,17 @@ public class TestSourcePositionModelLocator extends RunletEditorTest {
 	setCursor(0);
 	assertEquals(0, viewer.getSelectedRange().x);
 	assertEquals(0, viewer.getSelectedRange().y);
-	
+
 	setCursor(10);
 	assertEquals(10, viewer.getSelectedRange().x);
 	assertEquals(0, viewer.getSelectedRange().y);
-	
+
 	selectRange(10, 20);
 	assertEquals(10, viewer.getSelectedRange().x);
-	assertEquals(20, viewer.getSelectedRange().y);	
+	assertEquals(20, viewer.getSelectedRange().y);
     }
-    
-    
+
+
     @Test
     public void testFindSingleSelectedCorrespondingModelElements() {
 	initializeForClass("OrderedAssocTestCase");
@@ -81,42 +81,42 @@ public class TestSourcePositionModelLocator extends RunletEditorTest {
 	Collection<RefObject> selected = sut.findSelectedCorrespondingModelElements();
 
 	assertEquals(1, selected.size());
-	assertEquals(findClass("OrderedAssocTestCase"), selected.iterator().next());
+	assertEquals(findRunletClass("OrderedAssocTestCase"), selected.iterator().next());
     }
 
     @Test
     public void testFindRootBlockForFullSelection() {
 	initializeForClass("OrderedAssocTestCase");
-	
+
 	selectRange(0, document.getLength());
 	Collection<DocumentNode> selected = sut.findSelecetedTextBlocks();
-	
+
 	assertEquals("Only root TextBlock shall be contained", 1, selected.size());
 	DocumentNode rootNode = selected.iterator().next();
 	assertEquals(rootNode, TbNavigationUtil.getUltraRoot(rootNode));
     }
-    
+
     @Test
     public void testFindCorrespondingModelElementsForFullSelection() {
 	initializeForClass("OrderedAssocTestCase");
 
 	selectRange(0, document.getLength());
 	Collection<RefObject> selected = sut.findSelectedCorrespondingModelElements();
-		
+
 	assertEquals(1, selected.size());
-	assertEquals(findClass("OrderedAssocTestCase"), selected.iterator().next());
+	assertEquals(findRunletClass("OrderedAssocTestCase"), selected.iterator().next());
     }
-    
+
     @Test
     public void testFindReferencedModelElementsForSelectedWord() {
 	initializeForClass("RedefineParameterTst2");
 	String text = document.get();
-	
+
 	selectRange(text.indexOf("Number"), "Number".length());
 	Collection<RefObject> selected = sut.findSelectedReferencedModelElements();
-		
+
 	assertEquals(1, selected.size());
-	assertEquals(findClass("Number"), selected.iterator().next());
+	assertEquals(findRunletClass("Number"), selected.iterator().next());
     }
 
     /**
@@ -126,16 +126,16 @@ public class TestSourcePositionModelLocator extends RunletEditorTest {
     @Test
     public void testFindMultipleSelectedCorrespondingModelElements() {
 	initializeForClass("RedefineParameterTst2");
-	
+
 	String wholeClass = document.get();
 	String methodOnly  = wholeClass.substring(wholeClass.indexOf("{") + 1, wholeClass.lastIndexOf("}"));
 	int offsetOfMethodInClass = wholeClass.indexOf(methodOnly);
 	int statementStart = methodOnly.indexOf("var m") - 1; // begin of the first statement
 	int statementsEnd = methodOnly.lastIndexOf(";") - 1; // end of the second statement
-	
+
 	selectRange(offsetOfMethodInClass + statementStart, statementsEnd - statementStart);
-	Collection<RefObject> selected = sut.findSelectedCorrespondingModelElements();	
-	
+	Collection<RefObject> selected = sut.findSelectedCorrespondingModelElements();
+
 	assertEquals(2, selected.size());
     }
 
@@ -147,20 +147,20 @@ public class TestSourcePositionModelLocator extends RunletEditorTest {
     public void testFindSelectedReferencedModelElements() {
 	initializeForClass("RedefineParameterTst2");
 	String text = document.get();
-	
+
 	int usageIndex = text.lastIndexOf("m");
 	int varDeclIndex = text.substring(0, usageIndex).lastIndexOf("m");
-	
+
 	selectRange(usageIndex, 1);
 	Collection<RefObject> referenced = sut.findSelectedReferencedModelElements();
 	assertEquals(1, referenced.size());
 	RefObject varDeclReferenced = referenced.iterator().next();
-	
+
 	selectRange(varDeclIndex, 1);
 	Collection<RefObject> corresponding = sut.findSelectedCorrespondingModelElements();
 	assertEquals(1, corresponding.size());
 	RefObject varDecl = corresponding.iterator().next();
-	
+
 	assertEquals(varDecl, varDeclReferenced);
     }
 
@@ -171,7 +171,7 @@ public class TestSourcePositionModelLocator extends RunletEditorTest {
     private void selectRange(int offset, int length) {
 	viewer.setSelectedRange(offset, length); // set cursor within class name
     }
-    
+
     @After
     public void releaseResources() {
 	if (editor != null) {

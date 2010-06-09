@@ -7,7 +7,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 public class NamedElementAdapter extends NamedElementDefaultImpl {
 
     public NamedElementAdapter(RefObject wrapped) {
-	super(wrapped);
+	super(wrapped, "name");
     }
 
 

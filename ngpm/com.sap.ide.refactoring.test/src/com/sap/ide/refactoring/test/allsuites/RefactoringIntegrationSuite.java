@@ -6,7 +6,9 @@ import com.sap.ide.cts.editor.test.util.ExtSuite;
 import com.sap.ide.refactoring.core.textual.TestSourcePositionModelLocator;
 
 @RunWith(ExtSuite.class)
-@ExtSuite.SuiteClasses( {TestSourcePositionModelLocator.class})
+@ExtSuite.SuiteClasses({
+    	TestSourcePositionModelLocator.class,
+})
 @ExtSuite.SuitePackages( {})
 public class RefactoringIntegrationSuite {
     // needed to  hold annotation

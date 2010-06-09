@@ -1,8 +1,6 @@
 package com.sap.ide.cts.editor.action;
 
 import org.antlr.runtime.Lexer;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.ISharedImages;
@@ -17,6 +15,7 @@ import com.sap.ide.cts.dialogs.ChooseConcreteSyntaxDialog;
 import com.sap.ide.cts.dialogs.ChoosePrettyPrintModeDialog;
 import com.sap.ide.cts.dialogs.PrettyPrinterInfoDialog;
 import com.sap.ide.cts.dialogs.PrettyPrintingModes;
+import com.sap.ide.cts.editor.EditorUtil;
 import com.sap.ide.cts.editor.prettyprint.CtsTextBlockIncrementalTCSExtractorStream;
 import com.sap.ide.cts.editor.prettyprint.IncrementalPrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
@@ -31,10 +30,10 @@ import com.sap.tc.moin.repository.mql.MQLProcessor;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
 
 /**
- * 
+ *
  * @author Andreas Landerer
  * @version 1.0
- * 
+ *
  */
 public class PrettyPrintAction extends Action {
 
@@ -115,7 +114,7 @@ public class PrettyPrintAction extends Action {
 					throw new Exception(
 							"No template found to print model element!");
 				}
-				
+
 				boolean ppMode = false;
 				ChoosePrettyPrintModeDialog ppmDialog = new ChoosePrettyPrintModeDialog();
 				ppmDialog.open();
@@ -132,30 +131,12 @@ public class PrettyPrintAction extends Action {
 					}
 				}
 
-				// Choose corresponding parser factory
-				IConfigurationElement[] config = Platform
-						.getExtensionRegistry().getConfigurationElementsFor(
-								"com.sap.ide.cts.parser.parserFactory");
-				if (config != null && config.length > 0) {
-					for (IConfigurationElement configElement : config) {
-
-						String languageID = configElement
-								.getAttribute("languageID");
-						if (languageID != null
-								&& languageID.equals(syntax.getName())) {
-							AbstractParserFactory<ObservableInjectingParser, Lexer> parserFactory = (AbstractParserFactory<ObservableInjectingParser, Lexer>) configElement
-									.createExecutableExtension("dynamicParserFactoryClass");
-							stream = new CtsTextBlockIncrementalTCSExtractorStream(
-									connection
-											.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR),
-									modelElement.get___Partition(),
-									parserFactory, ppMode);
-							break;
-						}
-					}
-				} else {
-					throw new Exception("No Parser Factory registered!");
-				}
+				AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory =
+				    EditorUtil.constructParserFactoryForSyntax(syntax);
+				stream = new CtsTextBlockIncrementalTCSExtractorStream(
+    					connection.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR),
+    					modelElement.get___Partition(),
+    					parserFactory, ppMode);
 
 				// pretty print textblock
 				this.pp.prettyPrint(rootTbs, modelElement, syntax, stream,

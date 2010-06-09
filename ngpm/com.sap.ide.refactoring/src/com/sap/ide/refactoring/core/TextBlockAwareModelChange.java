@@ -18,18 +18,36 @@ import org.eclipse.ltk.core.refactoring.TextEditBasedChangeGroup;
 
 import com.sap.ide.refactoring.Activator;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
+import com.sap.tc.moin.repository.commands.CommandHandle;
 
 public class TextBlockAwareModelChange extends TextEditBasedChange {
 
-    private final TextBlockAwareRefactoringCommand command;
     private final RefactoringEditorFacade facade;
+    private final RefactoringStatus status;
 
-    public TextBlockAwareModelChange(RefactoringEditorFacade facade, TextBlockAwareRefactoringCommand command) {
-	super(command.getDescription());
+    /**
+     * The executed refactoring.
+     */
+    private final CommandHandle refactoringCommandHandle;
 
-	this.command = command;
+    /**
+     * The newest command directly or inderictly triggered by the command
+     * (e.g. reference re-evaluations)
+     */
+    private final CommandHandle dependentCommandHandle;
+
+
+
+    public TextBlockAwareModelChange(RefactoringEditorFacade facade, RefactoringStatus status, CommandHandle refactoringCommandHandle, CommandHandle dependentCommandHandle) {
+	super(refactoringCommandHandle.getDescription());
+
 	this.facade = facade;
+	this.status = status;
+	this.refactoringCommandHandle = refactoringCommandHandle;
+	this.dependentCommandHandle = dependentCommandHandle;
+	refactoringCommandHandle = dependentCommandHandle;
     }
+
 
     @Override
     public Object getModifiedElement() {
@@ -44,10 +62,12 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
 
     @Override
     public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-	if (command.canExecute()) {
-	    return new RefactoringStatus();
+	CommandUndoRedoHelper helper = new CommandUndoRedoHelper(facade.getConnection());
+	if (helper.peekRedoStack().equals(refactoringCommandHandle)) {
+	    return status;
 	} else {
-	    return RefactoringStatus.createFatalErrorStatus("Workspace has changed. Refactoring is no longer valid");
+	    return RefactoringStatus.createFatalErrorStatus("Subsequent commands have been executed.  The Refactoring is no longer valid." +
+	    	" It can no longer be applied.");
 	}
     }
 
@@ -56,10 +76,11 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
      */
     @Override
     public Change perform(IProgressMonitor pm) throws CoreException {
-	pm.beginTask("Applying Refactoring: " + command.getDescription(), 2);
+	pm.beginTask("Applying Refactoring: " + refactoringCommandHandle.getDescription(), 2);
 
 	// Finally, re-apply the desired changes.
-	command.runRefactoring();
+	CommandUndoRedoHelper helper = new CommandUndoRedoHelper(facade.getConnection());
+	helper.redoRefactoring(dependentCommandHandle);
 	pm.worked(1);
 
 	facade.refreshUI();
@@ -72,15 +93,15 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
 
     @Override
     public String getCurrentContent(IProgressMonitor pm) throws CoreException {
-	return command.getTextualPreExecutionRepresentation();
+	return "getCurrentConten"; //command.getTextualPreExecutionRepresentation();
     }
 
     @Override
     public String getPreviewContent(IProgressMonitor pm) throws CoreException {
 	if (isEnabled()) {
-	    return command.getTextualPostExecutionRepresentation();
+	    return "getPreviewContent"; //command.getTextualPostExecutionRepresentation();
 	} else {
-	    return command.getTextualPreExecutionRepresentation();
+	    return "getPreviewContent"; //command.getTextualPreExecutionRepresentation();
 	}
     }
 
@@ -130,10 +151,11 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
 	    if (message == null) {
 		message = "BadLocationException"; //$NON-NLS-1$
 	    }
-	    throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
- IRefactoringCoreStatusCodes.BAD_LOCATION,
+	    throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, IRefactoringCoreStatusCodes.BAD_LOCATION,
 		    message, e));
 	}
     }
+
+
 
 }
