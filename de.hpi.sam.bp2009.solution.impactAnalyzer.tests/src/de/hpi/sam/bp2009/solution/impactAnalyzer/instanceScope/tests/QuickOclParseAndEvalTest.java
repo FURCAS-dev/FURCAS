@@ -51,6 +51,43 @@ public class QuickOclParseAndEvalTest extends TestCase
     oclHelper.setContext(ClassesPackage.eINSTANCE.getParameter());
   }
 
+  /**
+   * Ensures that an OclInvalid value does not pass a select filter, yet the select iterator
+   * returns a valid result
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionWithCollectOfNullValue() throws ParserException
+  {
+    OCLExpression expression5 = oclHelper.createQuery("Set{1, 2}->collect(null)");
+    Object result5 = ocl.evaluate(param, expression5);
+    assertEquals(2, ((Collection<?>) result5).size());
+    assertTrue(((Collection<?>) result5).contains(null));
+  }
+
+  /**
+   * Ensures that an OclInvalid value does not pass a select filter, yet the select iterator
+   * returns a valid result
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionWithCollectOverOclInvalid() throws ParserException
+  {
+    OCLExpression expression5 = oclHelper.createQuery("Set{self, invalid}->collect(i | i)");
+    Object result5 = ocl.evaluate(param, expression5);
+    assertTrue(((EObject) result5).eClass().getName().equals("OclInvalid_Class"));
+  }
+
+  /**
+   * Ensures that an OclInvalid value does not pass a select filter, yet the select iterator
+   * returns a valid result
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionWithSelectOverOclInvalid() throws ParserException
+  {
+    OCLExpression expression5 = oclHelper.createQuery("Set{self, invalid}->select(i | i.name = 'p')");
+    Object result5 = ocl.evaluate(param, expression5);
+    assertEquals(1, ((Collection<?>) result5).size());
+  }
+
   @Test
   public void testParseAndEvaluateOclExpression() throws ParserException
   {
@@ -59,6 +96,7 @@ public class QuickOclParseAndEvalTest extends TestCase
     assertEquals(class1, result);
   }
 
+  @Test
   public void testParseAndEvaluateOclExpressionWithPropertyCallOnNullValue() throws ParserException
   {
     param.setOwnedTypeDefinition(null);
@@ -67,6 +105,7 @@ public class QuickOclParseAndEvalTest extends TestCase
     assertTrue((Boolean)result2);
   }
 
+  @Test
   public void testParseAndEvaluateOclExpressionWithCollectOverNullValue() throws ParserException
   {
     param.setOwnedTypeDefinition(null);
@@ -75,6 +114,7 @@ public class QuickOclParseAndEvalTest extends TestCase
     assertEquals(0, ((Collection< ? >)result3).size());
   }
 
+  @Test
   public void testParseAndEvaluateOclExpressionCollectWithBodyEvaluatingToNull() throws ParserException
   {
     param.setOwnedTypeDefinition(ctd);
@@ -84,6 +124,7 @@ public class QuickOclParseAndEvalTest extends TestCase
     assertTrue(((Bag< ? >)result4).contains(null));
   }
 
+  @Test
   public void testParseAndEvaluateOclExpressionWithImplicitCollectOverOperationCallResult() throws ParserException
   {
     OCLExpression expression4 = oclHelper.createQuery("self.ownedTypeDefinition.oclAsType(data::classes::ClassTypeDefinition).clazz.getAssociationEnds().otherEnd()");
@@ -91,6 +132,15 @@ public class QuickOclParseAndEvalTest extends TestCase
     assertTrue(((EObject) result4).eClass().getName().equals("OclInvalid_Class"));
   }
 
+  @Test
+  public void testParseAndEvaluateOclExpressionWithDelegatesToSimulationt() throws ParserException
+  {
+    OCLExpression expression4 = oclHelper.createQuery("self.ownedTypeDefinition.oclAsType(data::classes::ClassTypeDefinition).clazz.getAssociationEnds().otherEnd()->select(delegation->notEmpty()).type.clazz->reject(c|c=self)->asSet()");
+    Object result4 = ocl.evaluate(param, expression4);
+    assertTrue(((EObject) result4).eClass().getName().equals("OclInvalid_Class"));
+  }
+
+  @Test
   public void testParseAndEvaluateOclExpressionWithImplicitSetLiteral() throws ParserException
   {
     OCLExpression expression4 = oclHelper.createQuery("self.ownedTypeDefinition->isEmpty()");
@@ -98,6 +148,7 @@ public class QuickOclParseAndEvalTest extends TestCase
     assertFalse((Boolean) result4);
   }
 
+  @Test
   public void testParseAndEvaluateOclExpressionWithImplicitSetLiteralCheckingForIsEmpty() throws ParserException
   {
     param.setOwnedTypeDefinition(null);
@@ -106,6 +157,7 @@ public class QuickOclParseAndEvalTest extends TestCase
     assertTrue((Boolean) result5);
   }
 
+  @Test
   public void testParseAndEvaluateOclExpressionWithNullInSetLiteral() throws ParserException
   {
     param.setOwnedTypeDefinition(null);
@@ -114,6 +166,7 @@ public class QuickOclParseAndEvalTest extends TestCase
     assertTrue((Boolean) result5);
   }
 
+  @Test
   public void testParseAndEvaluateOclExpressionWithEmptySetLiteralIncludingNull() throws ParserException
   {
     OCLExpression expression4 = oclHelper.createQuery("Set{}->including(null)->isEmpty()");
