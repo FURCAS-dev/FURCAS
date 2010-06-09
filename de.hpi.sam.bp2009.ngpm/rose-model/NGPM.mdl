@@ -180,8 +180,8 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object CategoryView "Logical View::behavioral::status_and_action" @1
-			location   	(1528, 1050)
+		    (object NoteView @1
+			location   	(894, 215)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -193,18 +193,15 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@1
-			    location   	(1374, 949)
+			    location   	(403, 156)
 			    fill_color 	13434879
 			    nlines     	2
-			    max_width  	308
-			    justify    	0
-			    label      	"status_and_action")
-			icon_style 	"Icon"
+			    max_width  	946
+			    label      	"This is the Ecore version of the NGPM metamodel")
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"474A122E006C"
-			width      	320
-			height     	214)))))
+			width      	1006
+			height     	131)))))
     root_subsystem 	(object SubSystem "Component View"
 	quid       	"45229A900231"
 	physical_models 	(list unit_reference_list)
