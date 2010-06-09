@@ -48,7 +48,7 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  * for the initial evaluation of those {@link OCLExpression}s on new element, and therefore, context element creation events
  * are not of interest.
  * 
- * @author tobias.hoppe
+ * @author Tobias Hoppe
  */
 
 public class FilterSynthesisImpl extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
@@ -135,11 +135,9 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
             filters.add(createFilterForElementInsertionOrDeletion(cls));
         } else {
             if (opCallExp.getOperationCode() > 0){
-                safeVisit(opCallExp.getSource());
-                for ( org.eclipse.ocl.expressions.OCLExpression<EClassifier> args: opCallExp.getArgument()){
-                    safeVisit(args);
-                }               
+                //std. library operation nothing to do
             } else {
+                // handle self defined operation
                 EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
                 OCLExpression body = parser.getExpressionFromAnnotationsOf(opCallExp.getReferredOperation(), "body");
                 if (body != null) {
