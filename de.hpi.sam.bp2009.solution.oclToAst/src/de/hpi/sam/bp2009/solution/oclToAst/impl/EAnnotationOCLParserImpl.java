@@ -216,6 +216,9 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
             if (expr == null)
                 return;
+                
+            a.getContents().add(expr);
+            
             /*
              * Iterate the AST, search for OCL specific types, and add them to the resource of the EAnnotation
              */
@@ -227,7 +230,6 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
                 getAllOccurredErrorMessages().add(new ErrorMessageImpl(new IllegalArgumentException(), "No Package as root element available", modelElement));
             }
 
-            a.getContents().add(expr);
 
         }
     }
