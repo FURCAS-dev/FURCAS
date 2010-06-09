@@ -21,6 +21,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 
 import company.CompanyFactory;
 import company.CompanyPackage;
@@ -34,6 +35,7 @@ import company.impl.FreelanceImpl;
 /**
  * This is the super class for all tests based on the Department model.
  */
+@Ignore
 public class BaseDepartmentTest extends TestCase {
 
     protected ResourceSet rs = null;
