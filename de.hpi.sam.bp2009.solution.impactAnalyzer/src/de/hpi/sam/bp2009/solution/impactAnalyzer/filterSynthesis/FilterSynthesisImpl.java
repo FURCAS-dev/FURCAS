@@ -1,8 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -63,7 +63,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     /**
      * For each operation body analyzed, stores the calls to the operation that were visited
      */
-    final private Map<OCLExpression, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OCLExpression, Set<OperationCallExp>>();
+    final private Map<OCLExpression, Set<OperationCallExp>> visitedOperationBodies = new LinkedHashMap<OCLExpression, Set<OperationCallExp>>();
 
     /**
      * @param exp The {@link OCLExpression} the filter should be created for. 
