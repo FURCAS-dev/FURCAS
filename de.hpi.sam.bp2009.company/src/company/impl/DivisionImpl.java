@@ -42,319 +42,328 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class DivisionImpl extends EObjectImpl implements Division {
     /**
-         * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-         * <!-- begin-user-doc -->
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see #getName()
-         * @generated
-         * @ordered
-         */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
     protected static final String NAME_EDEFAULT = null;
 
     /**
-         * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-         * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see #getName()
-         * @generated
-         * @ordered
-         */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
     protected String name = NAME_EDEFAULT;
 
     /**
-         * The cached value of the '{@link #getDepartment() <em>Department</em>}' containment reference list.
-         * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getDepartment() <em>Department</em>}' containment reference list.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see #getDepartment()
-         * @generated
-         * @ordered
-         */
+   * @see #getDepartment()
+   * @generated
+   * @ordered
+   */
     protected EList<Department> department;
 
     /**
-         * The cached value of the '{@link #getDirector() <em>Director</em>}' containment reference.
-         * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getDirector() <em>Director</em>}' containment reference.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see #getDirector()
-         * @generated
-         * @ordered
-         */
+   * @see #getDirector()
+   * @generated
+   * @ordered
+   */
     protected Employee director;
 
     /**
-         * The default value of the '{@link #getBudget() <em>Budget</em>}' attribute.
-         * <!-- begin-user-doc -->
+   * The default value of the '{@link #getBudget() <em>Budget</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see #getBudget()
-         * @generated
-         * @ordered
-         */
+   * @see #getBudget()
+   * @generated
+   * @ordered
+   */
     protected static final long BUDGET_EDEFAULT = 0L;
 
     /**
-         * The cached value of the '{@link #getBudget() <em>Budget</em>}' attribute.
-         * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getBudget() <em>Budget</em>}' attribute.
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see #getBudget()
-         * @generated
-         * @ordered
-         */
+   * @see #getBudget()
+   * @generated
+   * @ordered
+   */
     protected long budget = BUDGET_EDEFAULT;
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     protected DivisionImpl() {
-                super();
-        }
+    super();
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     @Override
     protected EClass eStaticClass() {
-                return CompanyPackage.Literals.DIVISION;
-        }
+    return CompanyPackage.Literals.DIVISION;
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     public String getName() {
-                return name;
-        }
+    return name;
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     public void setName(String newName) {
-                String oldName = name;
-                name = newName;
-                if (eNotificationRequired())
-                        eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__NAME, oldName, name));
-        }
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__NAME, oldName, name));
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     public EList<Department> getDepartment() {
-                if (department == null) {
-                        department = new EObjectContainmentEList<Department>(Department.class, this, CompanyPackage.DIVISION__DEPARTMENT);
-                }
-                return department;
-        }
+    if (department == null)
+    {
+      department = new EObjectContainmentEList<Department>(Department.class, this, CompanyPackage.DIVISION__DEPARTMENT);
+    }
+    return department;
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     public Employee getDirector() {
-                return director;
-        }
+    return director;
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     public NotificationChain basicSetDirector(Employee newDirector, NotificationChain msgs) {
-                Employee oldDirector = director;
-                director = newDirector;
-                if (eNotificationRequired()) {
-                        ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__DIRECTOR, oldDirector, newDirector);
-                        if (msgs == null) msgs = notification; else msgs.add(notification);
-                }
-                return msgs;
-        }
+    Employee oldDirector = director;
+    director = newDirector;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__DIRECTOR, oldDirector, newDirector);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     public void setDirector(Employee newDirector) {
-                if (newDirector != director) {
-                        NotificationChain msgs = null;
-                        if (director != null)
-                                msgs = ((InternalEObject)director).eInverseRemove(this, CompanyPackage.EMPLOYEE__DIRECTED, Employee.class, msgs);
-                        if (newDirector != null)
-                                msgs = ((InternalEObject)newDirector).eInverseAdd(this, CompanyPackage.EMPLOYEE__DIRECTED, Employee.class, msgs);
-                        msgs = basicSetDirector(newDirector, msgs);
-                        if (msgs != null) msgs.dispatch();
-                }
-                else if (eNotificationRequired())
-                        eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__DIRECTOR, newDirector, newDirector));
-        }
+    if (newDirector != director)
+    {
+      NotificationChain msgs = null;
+      if (director != null)
+        msgs = ((InternalEObject)director).eInverseRemove(this, CompanyPackage.EMPLOYEE__DIRECTED, Employee.class, msgs);
+      if (newDirector != null)
+        msgs = ((InternalEObject)newDirector).eInverseAdd(this, CompanyPackage.EMPLOYEE__DIRECTED, Employee.class, msgs);
+      msgs = basicSetDirector(newDirector, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__DIRECTOR, newDirector, newDirector));
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     public long getBudget() {
-                return budget;
-        }
+    return budget;
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     public void setBudget(long newBudget) {
-                long oldBudget = budget;
-                budget = newBudget;
-                if (eNotificationRequired())
-                        eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__BUDGET, oldBudget, budget));
-        }
+    long oldBudget = budget;
+    budget = newBudget;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.DIVISION__BUDGET, oldBudget, budget));
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-                switch (featureID) {
-                        case CompanyPackage.DIVISION__DIRECTOR:
-                                if (director != null)
-                                        msgs = ((InternalEObject)director).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompanyPackage.DIVISION__DIRECTOR, null, msgs);
-                                return basicSetDirector((Employee)otherEnd, msgs);
-                }
-                return super.eInverseAdd(otherEnd, featureID, msgs);
-        }
+    switch (featureID)
+    {
+      case CompanyPackage.DIVISION__DIRECTOR:
+        if (director != null)
+          msgs = ((InternalEObject)director).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - CompanyPackage.DIVISION__DIRECTOR, null, msgs);
+        return basicSetDirector((Employee)otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
 
 				/**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-                switch (featureID) {
-                        case CompanyPackage.DIVISION__DEPARTMENT:
-                                return ((InternalEList<?>)getDepartment()).basicRemove(otherEnd, msgs);
-                        case CompanyPackage.DIVISION__DIRECTOR:
-                                return basicSetDirector(null, msgs);
-                }
-                return super.eInverseRemove(otherEnd, featureID, msgs);
-        }
+    switch (featureID)
+    {
+      case CompanyPackage.DIVISION__DEPARTMENT:
+        return ((InternalEList<?>)getDepartment()).basicRemove(otherEnd, msgs);
+      case CompanyPackage.DIVISION__DIRECTOR:
+        return basicSetDirector(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-                switch (featureID) {
-                        case CompanyPackage.DIVISION__NAME:
-                                return getName();
-                        case CompanyPackage.DIVISION__DEPARTMENT:
-                                return getDepartment();
-                        case CompanyPackage.DIVISION__DIRECTOR:
-                                return getDirector();
-                        case CompanyPackage.DIVISION__BUDGET:
-                                return getBudget();
-                }
-                return super.eGet(featureID, resolve, coreType);
-        }
+    switch (featureID)
+    {
+      case CompanyPackage.DIVISION__NAME:
+        return getName();
+      case CompanyPackage.DIVISION__DEPARTMENT:
+        return getDepartment();
+      case CompanyPackage.DIVISION__DIRECTOR:
+        return getDirector();
+      case CompanyPackage.DIVISION__BUDGET:
+        return getBudget();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-                switch (featureID) {
-                        case CompanyPackage.DIVISION__NAME:
-                                setName((String)newValue);
-                                return;
-                        case CompanyPackage.DIVISION__DEPARTMENT:
-                                getDepartment().clear();
-                                getDepartment().addAll((Collection<? extends Department>)newValue);
-                                return;
-                        case CompanyPackage.DIVISION__DIRECTOR:
-                                setDirector((Employee)newValue);
-                                return;
-                        case CompanyPackage.DIVISION__BUDGET:
-                                setBudget((Long)newValue);
-                                return;
-                }
-                super.eSet(featureID, newValue);
-        }
+    switch (featureID)
+    {
+      case CompanyPackage.DIVISION__NAME:
+        setName((String)newValue);
+        return;
+      case CompanyPackage.DIVISION__DEPARTMENT:
+        getDepartment().clear();
+        getDepartment().addAll((Collection<? extends Department>)newValue);
+        return;
+      case CompanyPackage.DIVISION__DIRECTOR:
+        setDirector((Employee)newValue);
+        return;
+      case CompanyPackage.DIVISION__BUDGET:
+        setBudget((Long)newValue);
+        return;
+    }
+    super.eSet(featureID, newValue);
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     @Override
     public void eUnset(int featureID) {
-                switch (featureID) {
-                        case CompanyPackage.DIVISION__NAME:
-                                setName(NAME_EDEFAULT);
-                                return;
-                        case CompanyPackage.DIVISION__DEPARTMENT:
-                                getDepartment().clear();
-                                return;
-                        case CompanyPackage.DIVISION__DIRECTOR:
-                                setDirector((Employee)null);
-                                return;
-                        case CompanyPackage.DIVISION__BUDGET:
-                                setBudget(BUDGET_EDEFAULT);
-                                return;
-                }
-                super.eUnset(featureID);
-        }
+    switch (featureID)
+    {
+      case CompanyPackage.DIVISION__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case CompanyPackage.DIVISION__DEPARTMENT:
+        getDepartment().clear();
+        return;
+      case CompanyPackage.DIVISION__DIRECTOR:
+        setDirector((Employee)null);
+        return;
+      case CompanyPackage.DIVISION__BUDGET:
+        setBudget(BUDGET_EDEFAULT);
+        return;
+    }
+    super.eUnset(featureID);
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     @Override
     public boolean eIsSet(int featureID) {
-                switch (featureID) {
-                        case CompanyPackage.DIVISION__NAME:
-                                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-                        case CompanyPackage.DIVISION__DEPARTMENT:
-                                return department != null && !department.isEmpty();
-                        case CompanyPackage.DIVISION__DIRECTOR:
-                                return director != null;
-                        case CompanyPackage.DIVISION__BUDGET:
-                                return budget != BUDGET_EDEFAULT;
-                }
-                return super.eIsSet(featureID);
-        }
+    switch (featureID)
+    {
+      case CompanyPackage.DIVISION__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case CompanyPackage.DIVISION__DEPARTMENT:
+        return department != null && !department.isEmpty();
+      case CompanyPackage.DIVISION__DIRECTOR:
+        return director != null;
+      case CompanyPackage.DIVISION__BUDGET:
+        return budget != BUDGET_EDEFAULT;
+    }
+    return super.eIsSet(featureID);
+  }
 
     /**
-         * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+   * @generated
+   */
     @Override
     public String toString() {
-                if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-                StringBuffer result = new StringBuffer(super.toString());
-                result.append(" (name: ");
-                result.append(name);
-                result.append(", budget: ");
-                result.append(budget);
-                result.append(')');
-                return result.toString();
-        }
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(", budget: ");
+    result.append(budget);
+    result.append(')');
+    return result.toString();
+  }
 
 } //DivisionImpl

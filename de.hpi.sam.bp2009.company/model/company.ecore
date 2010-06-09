@@ -98,7 +98,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="department" upperBound="-1"
         eType="#//Department" containment="true" resolveProxies="false">
-      <eAnnotations>
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
         <details key="Property.oppositeRoleName" value="department2division"/>
       </eAnnotations>
     </eStructuralFeatures>
