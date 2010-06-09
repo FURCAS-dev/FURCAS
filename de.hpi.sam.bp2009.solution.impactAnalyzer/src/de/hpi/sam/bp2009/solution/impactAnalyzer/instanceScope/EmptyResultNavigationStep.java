@@ -16,7 +16,7 @@ public class EmptyResultNavigationStep extends AbsoluteNavigationStep {
 	}
 
 	@Override
-	protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
+	public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 		return "<empty>";
 	}
 

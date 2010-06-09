@@ -134,7 +134,7 @@ public class IndirectingStep extends AbstractNavigationStep {
     }
     
     @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
+    public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 	return "(i)"
 		+ ((actualStep != null) ? ((actualStep instanceof AbstractNavigationStep ? ((AbstractNavigationStep) actualStep)
 			.contentToString(visited, indent) : actualStep.toString())) : "null");

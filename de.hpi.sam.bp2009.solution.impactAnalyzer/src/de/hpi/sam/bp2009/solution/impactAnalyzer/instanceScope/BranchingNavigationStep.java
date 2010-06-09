@@ -113,7 +113,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
     }
 
     @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
+    public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
         StringBuilder sb = new StringBuilder();
         boolean first = true;
         sb.append("{\n");

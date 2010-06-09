@@ -24,14 +24,18 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private EClass sourceType;
     private EClass targetType;
     private OCLExpression debugInfo;
-    private int navigateCounter;
     private int cacheMisses;
     private int resultObjectsCounter;
     private Set<AlwaysEmptyChangeListener> alwaysEmptyChangeListeners;
     private Set<SourceTypeChangeListener> sourceTypeChangeListeners;
     private Set<TargetTypeChangeListener> targetTypeChangeListeners;
     private boolean alwaysEmpty;
-
+    
+    /**
+     * The navigateCounter counts how many times the navigate method of this NavigationStep is called
+     */
+    private int navigateCounter;
+    
     public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo2) {
         this.sourceType = sourceType;
         this.targetType = targetType;
@@ -47,7 +51,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     }
 
     public EClass getSourceType() {
-        return this.sourceType;
+        return this.sourceType;    
     }
 
     @Override
@@ -108,6 +112,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     protected void incrementNavigateCounter(Set<AnnotatedEObject> from){
         navigateCounter++;
     }
+    
 
     /**
      * Breaks down the navigation from the <tt>from</tt> set to the individual elements in <tt>from</tt> and
@@ -203,7 +208,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         }
     }
 
-    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
+    public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
         return "";
     }
 
@@ -245,4 +250,8 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         return visited.contains(this) ? 0 : 1;
     }
 
+    public int getId(){
+	return id;
+    }
+    
 }

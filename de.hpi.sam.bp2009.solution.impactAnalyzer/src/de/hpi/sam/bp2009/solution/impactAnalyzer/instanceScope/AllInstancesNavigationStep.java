@@ -49,7 +49,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 	}
 
 	@Override
-	protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
+	public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 		return "allInstances("+getTargetType().getName()+")";
 	}
 }

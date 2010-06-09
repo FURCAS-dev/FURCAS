@@ -40,7 +40,7 @@ public class IdentityNavigationStep extends AbstractNavigationStep {
 	}
 
 	@Override
-	protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
+	public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 		return "this";
 	}
 }
