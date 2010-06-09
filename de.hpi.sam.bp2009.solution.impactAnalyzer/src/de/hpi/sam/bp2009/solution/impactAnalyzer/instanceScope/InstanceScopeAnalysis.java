@@ -32,11 +32,13 @@ import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.EnumLiteralExp;
 import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IntegerLiteralExp;
+import org.eclipse.ocl.ecore.InvalidLiteralExp;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LiteralExp;
 import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.OppositePropertyCallExp;
@@ -140,6 +142,10 @@ public class InstanceScopeAnalysis {
             return new TypeExpTracer((TypeExp) expression);
         case EcorePackage.VARIABLE_EXP:
             return new VariableExpTracer((VariableExp) expression);
+        case EcorePackage.NULL_LITERAL_EXP:
+            return new NullLiteralExpTracer((NullLiteralExp) expression);
+        case EcorePackage.INVALID_LITERAL_EXP:
+            return new InvalidlLiteralExpTracer((InvalidLiteralExp) expression);
         default:
             throw new RuntimeException("Unsupported expression type " + expression.eClass().getName());
         }

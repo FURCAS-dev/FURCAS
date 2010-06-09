@@ -31,10 +31,6 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	return (Variable) getExpression().getReferredVariable();
     }
 
-    private boolean isNull() {
-	return getVariableDeclaration().getName().equals("null");
-    }
-
     private boolean isLetVariable() {
         // let variables are contained in the letExp
         Variable exp = getVariableDeclaration();  
@@ -73,8 +69,6 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	    result = tracebackLetVariable(context, pathCache, filterSynthesizer);
 	} else if (isOperationParameter()) {
 	    result = tracebackOperationParameter(context, pathCache, filterSynthesizer);
-	} else if (isNull()) {
-	    result = new EmptyResultNavigationStep(getExpression());
 	} else {
 	    throw new RuntimeException("Unknown variable expression that is neither an iterator variable "
 		    + "nor an iterate result variable nor an operation parameter nor a let variable nor self: "
