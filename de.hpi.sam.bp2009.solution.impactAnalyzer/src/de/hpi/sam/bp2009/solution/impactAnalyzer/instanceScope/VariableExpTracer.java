@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -12,16 +13,14 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.IterateExp;
-import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
-
-
 
 public class VariableExpTracer extends AbstractTracer<VariableExp> {
     public VariableExpTracer(VariableExp expression) {
@@ -54,7 +53,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 
     private boolean isIteratorVariable() {
         Variable exp = getVariableDeclaration();  
-	return (exp.eContainer() instanceof IteratorExp && ((IteratorExp)exp.eContainer()).getIterator().contains(exp));
+	return (exp.eContainer() instanceof LoopExp && ((LoopExp)exp.eContainer()).getIterator().contains(exp));
     }
 
     private boolean isSelf() {
@@ -86,7 +85,12 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 
     private NavigationStep tracebackOperationParameter(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	OCLExpression rootExpression = getRootExpression();
-	EOperation op = InstanceScopeAnalysis.getDefines(rootExpression);
+	
+	// all operation bodies must have been reached through at least one call; all calls are
+	// recorded in the filter synthesizer's cache. Therefore, we can determine the relationship
+	// between body and EOperation.
+	EOperation op = filterSynthesizer.getCallsOf(rootExpression).iterator().next().getReferredOperation();
+	
 	int pos = getParameterPosition(op);
 	List<NavigationStep> stepsPerCall = new ArrayList<NavigationStep>();
 	IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression());
@@ -95,7 +99,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	// invalidate all cache entries that depend on this step. Or we add steps produced for new calls to this
 	// step as the calls get added; but that may require a re-assessment of the isAlwaysEmpty() calls.
 	// This may not pay off.
-	for (OperationCallExp call : filterSynthesizer.getCallsOf( rootExpression)) {
+	for (OperationCallExp call : filterSynthesizer.getCallsOf(rootExpression)) {
 	    OCLExpression argumentExpression = (OCLExpression) call.getArgument().get(pos);
 	    stepsPerCall.add(pathCache.getOrCreateNavigationPath(argumentExpression, context, filterSynthesizer));
 	}
@@ -154,14 +158,24 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 
     private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	return pathCache.getOrCreateNavigationPath(
-	        (OCLExpression) ((IteratorExp) getVariableDeclaration().eContainer()).getSource(),
+	        (OCLExpression) ((LoopExp) getVariableDeclaration().eContainer()).getSource(),
 	        context, 
 	        filterSynthesizer);
     }
 
     private NavigationStep tracebackSelf(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	NavigationStep result;
-	EOperation op = InstanceScopeAnalysis.getDefines(getRootExpression());
+	
+	// all operation bodies must have been reached through at least one call; all calls are
+	// recorded in the filter synthesizer's cache. Therefore, we can determine the relationship
+	// between body and EOperation.
+	Set<OperationCallExp> filterSynthesizerCallCache = filterSynthesizer.getCallsOf(getRootExpression());
+	EOperation op = null;
+	
+	if(!filterSynthesizerCallCache.isEmpty()){
+	    op = filterSynthesizerCallCache.iterator().next().getReferredOperation();
+	}
+	
 	if (op != null) {
 	    // in an operation, self needs to be traced back to all source expressions of
 	    // calls to that operation
