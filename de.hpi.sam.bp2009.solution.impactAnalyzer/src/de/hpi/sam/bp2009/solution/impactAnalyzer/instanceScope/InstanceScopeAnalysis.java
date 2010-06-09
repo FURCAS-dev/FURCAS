@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -99,40 +98,6 @@ public class InstanceScopeAnalysis {
             }
         }
         return result;
-    }
-
-    /**
-     * For an "impl" object representing an OCL expression, obtains the {@link EOperation} for which it is the body.
-     * {@link OCLExpression<EClassifier>#getDefines()} is used because on "impl" objects the getters that receive the
-     * {@link CoreConnection} need to be called. If the expression is not a body of an operation, <tt>null</tt> is returned.
-     * Otherwise, the first operation (usually there would be at most one) for which <tt>expression</tt> is the operation body is
-     * returned.
-     */
-    protected static EOperation getDefines(OCLExpression expression) {
-        // TODO: check correctness of this query
-        // FIXME should never be reached by standard operations (currently "implies" reaches this point)
-        String query = "select op from [" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEOperation())
-                + "] as op, " + "[" + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEAnnotation())
-                + "] as annotation, " + "["
-                + EcoreUtil.getURI(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEAnnotation_Details().getEType())
-                + "] as details, " + "[" + EcoreUtil.getURI(expression.eClass()) + "] as ocl "
-                +
-                // "in elements [[" + "]] " +
-                "where op.eAnnotations = annotation " + "where annotation.details = details " + "where details.key = 'body' "
-                + "where annotation.contents = ocl";
-        QueryContext scope = new ProjectBasedScopeProviderImpl(expression.eResource()).getForwardScopeAsQueryContext();
-        ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(query,
-                scope);
-        if (!resultSet.isEmpty()) {
-            // return the first match
-            return (EOperation) expression.eResource().getEObject(resultSet.getUri(0, "op").toString());
-        }
-        return null;
-        // EAnnotationOCLParser annoParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-        // EOperation operation = ((OperationCallExp) ((IteratorExp) expression).getBody()).getReferredOperation();
-        // annoParser.convertOclAnnotation(operation);
-        // OCLExpression bodyExpr = annoParser.getExpressionFromAnnotationsOf(operation, "body");
-        // return ;
     }
 
     /**
