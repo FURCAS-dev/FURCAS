@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -37,7 +38,9 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
 	 * We still need to be able to determine the scope of, e.g., <tt>self</tt> or operation parameters
 	 * and therefore need to ascend what may be called the "logical composition hierarchy" of an OCL
 	 * expression. Therefore, this operation ascends the real composition hierarchy until it finds a
-	 * <tt>null</tt> parent. In this case, it tries the aforementioned "logical compositions" one after
+	 * <tt>null</tt> parent or a parent of type constraint or EAnnotation.
+	 * 
+	 * In this case, it tries the aforementioned "logical compositions" one after
 	 * the other. If for one such association another element is found, ascending continues there.
 	 */
 	protected OCLExpression getRootExpression() {
@@ -45,23 +48,18 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
 	}
 
 	protected OCLExpression getRootExpression(EObject x) {
-		EObject parent = getLogicalImmediateComposite(x);
-		while (parent != null) {
+		EObject parent = (EObject) x.eContainer();
+		
+		// The root expression could be contained in an Constraint or an EAnnotation. Therefore stop ascending
+		// if parent is instance of a container type. 
+		while (parent != null && !(parent instanceof Constraint) && !(parent instanceof EAnnotation)) {
 			x = parent;
-			parent = getLogicalImmediateComposite(x);
-		}
-		if (x instanceof Constraint){
-		    return (OCLExpression) ((Constraint) x).getSpecification().getBodyExpression();
+			parent = (EObject) x.eContainer();
 		}
 		if (x instanceof OCLExpression){
 		    return (OCLExpression) x;
 		}
 		throw new IllegalArgumentException();
-	}
-
-	private EObject getLogicalImmediateComposite(EObject x) {
-		EObject result = (EObject) x.eContainer();
-		return result;
 	}
 
 	/**
