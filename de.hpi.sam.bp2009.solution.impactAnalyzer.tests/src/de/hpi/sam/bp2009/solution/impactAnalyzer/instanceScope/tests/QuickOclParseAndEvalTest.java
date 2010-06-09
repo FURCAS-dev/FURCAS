@@ -129,15 +129,15 @@ public class QuickOclParseAndEvalTest extends TestCase
   {
     OCLExpression expression4 = oclHelper.createQuery("self.ownedTypeDefinition.oclAsType(data::classes::ClassTypeDefinition).clazz.getAssociationEnds().otherEnd()");
     Object result4 = ocl.evaluate(param, expression4);
-    assertTrue(((EObject) result4).eClass().getName().equals("OclInvalid_Class"));
+    assertTrue(((Collection<?>) result4).isEmpty());
   }
 
   @Test
-  public void testParseAndEvaluateOclExpressionWithDelegatesToSimulationt() throws ParserException
+  public void testParseAndEvaluateOclExpressionWithDelegatesToSimulation() throws ParserException
   {
     OCLExpression expression4 = oclHelper.createQuery("self.ownedTypeDefinition.oclAsType(data::classes::ClassTypeDefinition).clazz.getAssociationEnds().otherEnd()->select(delegation->notEmpty()).type.clazz->reject(c|c=self)->asSet()");
     Object result4 = ocl.evaluate(param, expression4);
-    assertTrue(((EObject) result4).eClass().getName().equals("OclInvalid_Class"));
+    assertTrue(((Collection<?>) result4).isEmpty());
   }
 
   @Test
