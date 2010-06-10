@@ -90,6 +90,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     private NavigationStep handleAssociationCall(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer){
         OCLExpression sourceExp = (OCLExpression) getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
+        // TODO from Axel for Martin: can the property called on a TupleType really be an EReference? If not, remove this "if" clause
         if (sourceType instanceof TupleType) {
             OCLExpression tupleValueExp = null;
             //this should be pushed on the stack
