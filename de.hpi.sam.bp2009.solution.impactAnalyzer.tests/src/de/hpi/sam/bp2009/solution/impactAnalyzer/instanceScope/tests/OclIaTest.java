@@ -60,6 +60,57 @@ public class OclIaTest extends BaseDepartmentTest {
     }
 
     @Test
+    public void testTupleLiteralWithImmediatePropertyCall() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testTupleLiteralWithImmediatePropertyCall:\n" +
+                "Tuple{c=self}.c.name",
+                this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        this.cp.eResource().getContents().add(c);
+        c.setName("oldName");
+        EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
+        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
+        assertTrue(impact.size() == 1 && impact.contains(c));
+    }
+
+    @Test
+    public void testTupleLiteralPassedThroughLetVariable() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testTupleLiteralPassedThroughLetVariable:\n" +
+                "let t:Tuple(c:data::classes::SapClass) = Tuple{c=self} in\n"+
+                "t.c.name",
+                this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        this.cp.eResource().getContents().add(c);
+        c.setName("oldName");
+        EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
+        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
+        assertTrue(impact.size() == 1 && impact.contains(c));
+    }
+
+    @Test
+    public void testTupleLiteralPassedThroughTwoLetVariables() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testTupleLiteralPassedThroughLetVariable:\n" +
+                "let t1:Tuple(c:data::classes::SapClass) = Tuple{c=self} in\n"+
+                "let t2:Tuple(c:data::classes::SapClass) = t1 in\n"+
+                "t2.c.name",
+                this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        this.cp.eResource().getContents().add(c);
+        c.setName("oldName");
+        EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
+        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
+        assertTrue(impact.size() == 1 && impact.contains(c));
+    }
+
+    @Test
     public void testLongRunningNavigationPathConstruction() {
         OCLExpression expression = (OCLExpression) parse(testLongRunningNavigationPathExpression,this.cp).iterator().next()
                 .getSpecification().getBodyExpression();
