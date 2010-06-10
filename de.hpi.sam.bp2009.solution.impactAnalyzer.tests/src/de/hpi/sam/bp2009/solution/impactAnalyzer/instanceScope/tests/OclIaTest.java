@@ -111,6 +111,22 @@ public class OclIaTest extends BaseDepartmentTest {
     }
 
     @Test
+    public void testNestedTupleLiteral() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testNestedTupleLiteral:\n" +
+                "Tuple{c:Tuple(d:data::classes::SapClass)=Tuple{d=self}}.c.d.name",
+                this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        this.cp.eResource().getContents().add(c);
+        c.setName("oldName");
+        EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
+        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
+        assertTrue(impact.size() == 1 && impact.contains(c));
+    }
+
+    @Test
     public void testLongRunningNavigationPathConstruction() {
         OCLExpression expression = (OCLExpression) parse(testLongRunningNavigationPathExpression,this.cp).iterator().next()
                 .getSpecification().getBodyExpression();
