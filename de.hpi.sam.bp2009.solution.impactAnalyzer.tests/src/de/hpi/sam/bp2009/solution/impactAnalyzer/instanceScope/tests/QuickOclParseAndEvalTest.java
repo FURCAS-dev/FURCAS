@@ -56,6 +56,19 @@ public class QuickOclParseAndEvalTest extends TestCase
    * returns a valid result
    */
   @Test
+  public void testParseAndEvaluateOclExpressionWithTupleWithNull() throws ParserException
+  {
+    param.setName(null);
+    OCLExpression expression5 = oclHelper.createQuery("Tuple{c:Tuple(d:String)=Tuple{d=self.name}}.c.d");
+    Object result5 = ocl.evaluate(param, expression5);
+    assertNull(result5);
+  }
+
+  /**
+   * Ensures that an OclInvalid value does not pass a select filter, yet the select iterator
+   * returns a valid result
+   */
+  @Test
   public void testParseAndEvaluateOclExpressionWithCollectOfNullValue() throws ParserException
   {
     OCLExpression expression5 = oclHelper.createQuery("Set{1, 2}->collect(null)");

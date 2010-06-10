@@ -9,8 +9,8 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesis
 
 public class OppositePropertyCallExpTracer extends  AbstractTracer<OppositePropertyCallExp> {
 
-    protected OppositePropertyCallExpTracer(OppositePropertyCallExp expression) {
-        super(expression);
+    protected OppositePropertyCallExpTracer(OppositePropertyCallExp expression, String[] tuplePartNames) {
+        super(expression, tuplePartNames);
     }
 
     @Override

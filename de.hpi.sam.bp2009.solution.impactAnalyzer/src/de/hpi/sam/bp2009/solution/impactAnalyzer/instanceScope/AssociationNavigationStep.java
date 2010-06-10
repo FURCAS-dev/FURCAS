@@ -44,14 +44,14 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
                 while (it.hasNext()) {
                     Object elem = it.next();
                     if (elem instanceof EObject) {
-                        result.add(new AnnotatedEObject((EObject) elem, fromObject.getTupleIdentifierStack()));
+                        result.add(new AnnotatedEObject((EObject) elem));
                     }
                 }
             }
         } else {
             // eGet(toEnd) will return an EObject
             if (ref != null) {
-                result.add(new AnnotatedEObject((EObject) ref, fromObject.getTupleIdentifierStack()));
+                result.add(new AnnotatedEObject((EObject) ref));
             }
         }
 

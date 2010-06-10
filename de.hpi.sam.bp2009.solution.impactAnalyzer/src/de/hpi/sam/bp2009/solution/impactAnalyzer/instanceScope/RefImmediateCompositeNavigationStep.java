@@ -20,8 +20,7 @@ public class RefImmediateCompositeNavigationStep extends AbstractNavigationStep 
 	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
 		Set<AnnotatedEObject> result = Collections.singleton(new AnnotatedEObject(
 		        fromObject.eContainer(), 
-		        getDebugInfo().toString(), 
-		        fromObject.getTupleIdentifierStack()));
+		        getDebugInfo().toString()));
 		return result;
 	}
 }

@@ -1,8 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -10,18 +7,15 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
-import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleType;
-import org.eclipse.ocl.ecore.VariableExp;
-import org.eclipse.ocl.expressions.TupleLiteralPart;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 
 
 public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
-    public PropertyCallExpTracer(PropertyCallExp expression) {
-        super(expression);
+    public PropertyCallExpTracer(PropertyCallExp expression, String[] tuplePartNames) {
+        super(expression, tuplePartNames);
     }
 
     @Override
@@ -92,79 +86,51 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         EClassifier sourceType = sourceExp.getType();
         // TODO from Axel for Martin: can the property called on a TupleType really be an EReference? If not, remove this "if" clause
         if (sourceType instanceof TupleType) {
-            OCLExpression tupleValueExp = null;
-            //this should be pushed on the stack
-            String referredAttributeName = getExpression().getReferredProperty().getName();
-            List<TupleLiteralPart<EClassifier, EStructuralFeature>> tupleParts = ((TupleLiteralExp)((VariableExp)sourceExp).getReferredVariable().getInitExpression()).getPart();
-            for (Iterator<TupleLiteralPart<EClassifier, EStructuralFeature>> i = tupleParts.iterator(); i.hasNext();) {
-                TupleLiteralPart<EClassifier, EStructuralFeature> tuplePart = i.next();
-                if (tuplePart.getName().equals(referredAttributeName)) {
-                    tupleValueExp = (OCLExpression) tuplePart.getValue();
-                    break;
-                }
-            }
-            if (tupleValueExp == null) {
-                throw new RuntimeException("Internal error. Couldn't find tuple part named " + referredAttributeName);
-            }
-            //return a navigation sequence consisting of a TupleLiteralExpStep(which pushes the needed symbol on the stack) and the getOrCreateNavPath
-            return pathCache.navigationStepFromSequence(getExpression(),
-                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, filterSynthesizer),
-                    new TupleNavigationStep(context, context, getExpression(), referredAttributeName));
+            return getNavigationStepForTuplePartAccess(context, pathCache, filterSynthesizer, sourceExp);
 
         } else {
-            NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer);
-            EReference forwardRef = (EReference)getExpression().getReferredProperty();
+            NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer,
+                    getTupleLiteralPartNamesToLookFor());
+            EReference forwardRef = (EReference) getExpression().getReferredProperty();
             NavigationStep reverseTraversal;
-            if (forwardRef.getEOpposite() != null){
-                reverseTraversal = new AssociationNavigationStep(
-                        getInnermostElementType(getExpression().getType()),
-                        getInnermostElementType(sourceType),
-                        forwardRef.getEOpposite(),
-                        getExpression());
-            }else if(forwardRef.isContainment()){
+            if (forwardRef.getEOpposite() != null) {
+                reverseTraversal = new AssociationNavigationStep(getInnermostElementType(getExpression().getType()),
+                        getInnermostElementType(sourceType), forwardRef.getEOpposite(), getExpression());
+            } else if (forwardRef.isContainment()) {
                 /*
                  * opposite of an EContainment Reference is the EContainer
                  */
-                reverseTraversal = new RefImmediateCompositeNavigationStep(getInnermostElementType(getExpression().getType()), getInnermostElementType(sourceType),  getExpression());
-            }else{
-//                System.err.println("Missing EOpposite. At this point we should implement a clever way to get the opposite reference. At the moment we use allInstances!");
-//                reverseTraversal = new AllInstancesNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression().getSource().getType(), getExpression());
-                reverseTraversal = new OppositePropertyNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression().getSource().getType(), forwardRef, getExpression());
+                reverseTraversal = new RefImmediateCompositeNavigationStep(getInnermostElementType(getExpression().getType()),
+                        getInnermostElementType(sourceType), getExpression());
+            } else {
+                // System.err.println("Missing EOpposite. At this point we should implement a clever way to get the opposite reference. At the moment we use allInstances!");
+                // reverseTraversal = new AllInstancesNavigationStep(forwardRef.getEReferenceType(), (EClass)
+                // getExpression().getSource().getType(), getExpression());
+                reverseTraversal = new OppositePropertyNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression()
+                        .getSource().getType(), forwardRef, getExpression());
             }
-            return pathCache.navigationStepFromSequence(getExpression(), reverseTraversal, sourceStep);
+            return pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(), reverseTraversal,
+                    sourceStep);
         }
+    }
+
+    private NavigationStep getNavigationStepForTuplePartAccess(EClass context, PathCache pathCache,
+            FilterSynthesisImpl filterSynthesizer, OCLExpression sourceExp) {
+        String referredAttributeName = getExpression().getReferredProperty().getName();
+        return pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(), context, filterSynthesizer,
+                getExtendedListOfTuplePartNames(referredAttributeName));
     } 
 
     private NavigationStep handleAttributeCall(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer){
         OCLExpression sourceExp = (OCLExpression) getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
         if (sourceType instanceof TupleType) {
-            OCLExpression tupleValueExp = null;
-            String referredAttributeName = getExpression().getReferredProperty().getName();
-            List<TupleLiteralPart<EClassifier, EStructuralFeature>> tupleParts = ((TupleLiteralExp)((VariableExp)sourceExp).getReferredVariable().getInitExpression()).getPart();
-            for (Iterator<TupleLiteralPart<EClassifier, EStructuralFeature>> i = tupleParts.iterator(); i.hasNext();) {
-                TupleLiteralPart<EClassifier, EStructuralFeature> tuplePart = i.next();
-                if (tuplePart.getName().equals(referredAttributeName)) {
-                    tupleValueExp = (OCLExpression) tuplePart.getValue();
-                    break;
-                }
-            }
-            if (tupleValueExp == null) {
-                throw new RuntimeException("Internal error. Couldn't find tuple part named " + referredAttributeName);
-            }
-            //return a navigation sequence consisting of a TupleLiteralExpStep(which pushes the needed symbol on the stack) and the getOrCreateNavPath
-            return pathCache.navigationStepFromSequence(getExpression(),
-                    pathCache.getOrCreateNavigationPath(tupleValueExp, context, filterSynthesizer),
-                    new TupleNavigationStep(context, context, getExpression(), referredAttributeName));
-
+            return getNavigationStepForTuplePartAccess(context, pathCache, filterSynthesizer, sourceExp);
         } else {
-            return pathCache.navigationStepFromSequence(
-                    getExpression(),
-                    new RefImmediateCompositeNavigationStep(
-                            (EClass) getExpression().getType(),
-                            (EClass) sourceType,
-                            getExpression()),
-                            pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer));
+            return pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(),
+                    new RefImmediateCompositeNavigationStep((EClass) getExpression().getType(), (EClass) sourceType,
+                            getExpression()), pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer,
+                            getTupleLiteralPartNamesToLookFor()));
         }
     }
 }

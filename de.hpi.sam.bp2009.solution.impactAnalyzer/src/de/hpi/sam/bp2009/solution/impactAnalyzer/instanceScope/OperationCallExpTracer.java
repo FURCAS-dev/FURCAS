@@ -47,8 +47,8 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
 
     private final EAnnotationOCLParser annotationParser;
     
-    public OperationCallExpTracer(OperationCallExp expression) {
-        super(expression);
+    public OperationCallExpTracer(OperationCallExp expression, String[] tuplePartNames) {
+        super(expression, tuplePartNames);
         annotationParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
     }
 
@@ -59,10 +59,10 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
         OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
         if (body != null) {
             // an OCL-specified operation; trace back using the body expression
-            result = pathCache.getPathForNode(body);
+            result = pathCache.getPathForNode(body, getTupleLiteralPartNamesToLookFor());
             if (result == null) {
-                IndirectingStep bodyStep = pathCache.createIndirectingStepFor(body);
-                Tracer bodyTracer = InstanceScopeAnalysis.getTracer(body);
+                IndirectingStep bodyStep = pathCache.createIndirectingStepFor(body, getTupleLiteralPartNamesToLookFor());
+                Tracer bodyTracer = InstanceScopeAnalysis.createTracer(body, getTupleLiteralPartNamesToLookFor());
                 NavigationStep actualStep = bodyTracer.traceback(context, pathCache, filterSynthesizer);
                 bodyStep.setActualStep(actualStep);
                 result = bodyStep;
@@ -76,8 +76,8 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                     IdentityNavigationStep identityStep = new IdentityNavigationStep((EClass) getExpression().getType(), (EClass) type,
                             getExpression());
                     NavigationStep sourceStep = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(),
-                            context, filterSynthesizer);
-                    result = pathCache.navigationStepFromSequence(getExpression(), identityStep, sourceStep);
+                            context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+                    result = pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(), identityStep, sourceStep);
                 } else {
                     throw new RuntimeException("What else could be the argument of oclAsType if not a TypeExp? "
                             + (argument.eClass()).getName());
@@ -85,10 +85,10 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
             } else if (sourcePassThroughStdLibOpNames.contains(opName)) {
                 // FIXME handle product
                 NavigationStep sourcePath = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression()
-                        .getSource(), context, filterSynthesizer);
+                        .getSource(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
                 if (argumentPassThroughStdLibOpNames.contains(opName)) {
                     OCLExpression argument = (OCLExpression) (getExpression().getArgument()).get(0);
-                    NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(argument, context, filterSynthesizer);
+                    NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(argument, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
                     result = new BranchingNavigationStep(
                             getInnermostElementType(getExpression().getType()),
                             context,

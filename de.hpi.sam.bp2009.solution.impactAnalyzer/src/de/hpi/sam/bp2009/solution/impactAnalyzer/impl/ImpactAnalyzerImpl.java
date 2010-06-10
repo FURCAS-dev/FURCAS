@@ -44,14 +44,6 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         this.expToFilterSyn = expToFilterSyn;
     }
 
-    /**
-     * @param pathCache
-     *            the pathCache to set
-     */
-    protected void setPathCache(PathCache pathCache) {
-        this.pathCache = pathCache;
-    }
-
     @Override
     public EventFilter createFilterForExpression(OCLExpression expression, boolean notifyNewContextElements) {
         FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(expression, notifyNewContextElements);
@@ -67,15 +59,6 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         InstanceScopeAnalysis instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, this.getPathCache(), this
                 .getExpToFilterSyn().get(expression));
         return instanceScopeAnalysis.getContextObjects(event);
-    }
-
-    /**
-     * resets all instance variables of the {@link ImpactAnalyzer}
-     * 
-     */
-    public void reset() {
-        this.getExpToFilterSyn().clear();
-        this.setPathCache(new PathCache());
     }
 
 } // ImpactAnalyzerImpl

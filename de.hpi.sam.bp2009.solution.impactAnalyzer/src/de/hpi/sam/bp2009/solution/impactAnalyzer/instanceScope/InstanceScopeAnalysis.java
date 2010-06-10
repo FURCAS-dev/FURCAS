@@ -103,49 +103,52 @@ public class InstanceScopeAnalysis {
     }
 
     /**
-     * Factory method that creats an instance of some {@link Tracer}-implementing class specific to the type of the OCL
+     * Factory method that creates an instance of some {@link Tracer}-implementing class specific to the type of the OCL
      * <tt>expression</tt>.
+     * @param caller the calling tracer from which the list of tuple part names to look for are copied
+     * unchanged to the new tracer created by this operation. May be <tt>null</tt> in which case the
+     * new tracer does not look for any tuple literal parts initially.
      */
-    protected static Tracer getTracer(OCLExpression expression) {
+    protected static Tracer createTracer(OCLExpression expression, String[] tuplePartNames) {
         // Using the class loader is another option, but that would create implicit naming conventions.
         // Thats why we do the mapping "manually".
         switch (expression.eClass().getClassifierID()) {
         case EcorePackage.PROPERTY_CALL_EXP:
-            return new PropertyCallExpTracer((PropertyCallExp) expression);
+            return new PropertyCallExpTracer((PropertyCallExp) expression, tuplePartNames);
         case EcorePackage.BOOLEAN_LITERAL_EXP:
-            return new BooleanLiteralExpTracer((BooleanLiteralExp) expression);
+            return new BooleanLiteralExpTracer((BooleanLiteralExp) expression, tuplePartNames);
         case EcorePackage.COLLECTION_LITERAL_EXP:
-            return new CollectionLiteralExpTracer((CollectionLiteralExp) expression);
+            return new CollectionLiteralExpTracer((CollectionLiteralExp) expression, tuplePartNames);
         case EcorePackage.ENUM_LITERAL_EXP:
-            return new EnumLiteralExpTracer((EnumLiteralExp) expression);
+            return new EnumLiteralExpTracer((EnumLiteralExp) expression, tuplePartNames);
         case EcorePackage.IF_EXP:
-            return new IfExpTracer((IfExp) expression);
+            return new IfExpTracer((IfExp) expression, tuplePartNames);
         case EcorePackage.INTEGER_LITERAL_EXP:
-            return new IntegerLiteralExpTracer((IntegerLiteralExp) expression);
+            return new IntegerLiteralExpTracer((IntegerLiteralExp) expression, tuplePartNames);
         case EcorePackage.ITERATE_EXP:
-            return new IterateExpTracer((IterateExp) expression);
+            return new IterateExpTracer((IterateExp) expression, tuplePartNames);
         case EcorePackage.ITERATOR_EXP:
-            return new IteratorExpTracer((IteratorExp) expression);
+            return new IteratorExpTracer((IteratorExp) expression, tuplePartNames);
         case EcorePackage.LET_EXP:
-            return new LetExpTracer((LetExp) expression);
+            return new LetExpTracer((LetExp) expression, tuplePartNames);
         case EcorePackage.OPERATION_CALL_EXP:
-            return new OperationCallExpTracer((OperationCallExp) expression);
+            return new OperationCallExpTracer((OperationCallExp) expression, tuplePartNames);
         case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP:
-            return new OppositePropertyCallExpTracer((OppositePropertyCallExp) expression);
+            return new OppositePropertyCallExpTracer((OppositePropertyCallExp) expression, tuplePartNames);
         case EcorePackage.REAL_LITERAL_EXP:
-            return new RealLiteralExpTracer((RealLiteralExp) expression);
+            return new RealLiteralExpTracer((RealLiteralExp) expression, tuplePartNames);
         case EcorePackage.STRING_LITERAL_EXP:
-            return new StringLiteralExpTracer((StringLiteralExp) expression);
+            return new StringLiteralExpTracer((StringLiteralExp) expression, tuplePartNames);
         case EcorePackage.TUPLE_LITERAL_EXP:
-            return new TupleLiteralExpTracer((TupleLiteralExp) expression);
+            return new TupleLiteralExpTracer((TupleLiteralExp) expression, tuplePartNames);
         case EcorePackage.TYPE_EXP:
-            return new TypeExpTracer((TypeExp) expression);
+            return new TypeExpTracer((TypeExp) expression, tuplePartNames);
         case EcorePackage.VARIABLE_EXP:
-            return new VariableExpTracer((VariableExp) expression);
+            return new VariableExpTracer((VariableExp) expression, tuplePartNames);
         case EcorePackage.NULL_LITERAL_EXP:
-            return new NullLiteralExpTracer((NullLiteralExp) expression);
+            return new NullLiteralExpTracer((NullLiteralExp) expression, tuplePartNames);
         case EcorePackage.INVALID_LITERAL_EXP:
-            return new InvalidlLiteralExpTracer((InvalidLiteralExp) expression);
+            return new InvalidlLiteralExpTracer((InvalidLiteralExp) expression, tuplePartNames);
         default:
             throw new RuntimeException("Unsupported expression type " + expression.eClass().getName());
         }
@@ -411,7 +414,7 @@ public class InstanceScopeAnalysis {
     private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
         NavigationStep result = expressionToStep.get(exp);
         if (result == null) {
-            result = getTracer(exp).traceback(context, pathCache, filterSynthesizer);
+            result = createTracer(exp, /* calling tracer */ null).traceback(context, pathCache, filterSynthesizer);
             expressionToStep.put(exp, result);
         }
         return result;
