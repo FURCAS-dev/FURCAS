@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.ClassTemplate;
 import tcs.Template;
+import textblocks.TextBlock;
 
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -35,7 +35,8 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 
 
 	@Override
-	public Collection<? extends RefObject> createModelElementsFromTextBlock(TextBlockProxy newVersion, ModelPartition defaultPartition) {
+	public Collection<? extends RefObject> createModelElementsFromTextBlock(TextBlockProxy newVersion,
+			TextBlock textBlock, TextBlock parent, ModelPartition defaultPartition) {
 		List<RefObject> elements = new ArrayList<RefObject>(newVersion
 			.getCorrespondingModelElements().size());
 		for (IModelElementProxy proxy : newVersion.getCorrespondingModelElements()) {
@@ -55,14 +56,7 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 						}
 					}
 				}
-
 				instantiateProxy(elements, proxy, template);
-//				if (partitionHandler.getMainPartitionContent().equalsIgnoreCase("all") || partitionHandler.getMainPartitionContent().equalsIgnoreCase("textblocks") ) {
-
-					partitionHandler.assignFromProxy(proxy, newVersion.getSequenceElement(), template, defaultPartition);
-//				}
-
-				
 
 			}
 		}

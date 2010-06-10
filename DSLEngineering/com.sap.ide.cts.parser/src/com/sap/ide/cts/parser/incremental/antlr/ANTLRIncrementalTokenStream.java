@@ -40,6 +40,7 @@ public class ANTLRIncrementalTokenStream extends CommonTokenStream implements
 	/**
 	 * Resets all states to the intial values.
 	 */
+	@Override
 	public void reset(){
 		seek(-1);
 		tokens.clear();
@@ -122,7 +123,7 @@ public class ANTLRIncrementalTokenStream extends CommonTokenStream implements
 	    List<AbstractToken> returnList = new ArrayList<AbstractToken>();
 	    if (endToken != null) { // need to check token offsets to see whether they are before endToken or not
 	        for (Iterator<AbstractToken> iterator = offChannelTokens.iterator(); iterator.hasNext();) {
-	            AbstractToken offChannelToken = (AbstractToken) iterator.next();
+	            AbstractToken offChannelToken = iterator.next();
 	            if (TbUtil.getAbsoluteOffset(offChannelToken) < TbUtil.getAbsoluteOffset(endToken)) {
 	                returnList.add(offChannelToken);
 	            } else { // do not add token
@@ -134,7 +135,7 @@ public class ANTLRIncrementalTokenStream extends CommonTokenStream implements
 	            offChannelTokens.clear();
 	        } else { // can happen for great lookaheads.
 	            for (Iterator<AbstractToken> iterator = returnList.iterator(); iterator.hasNext();) {
-	                AbstractToken addedToken = (AbstractToken) iterator.next();
+	                AbstractToken addedToken = iterator.next();
 	                offChannelTokens.remove(addedToken); 
 	            }
 	        }

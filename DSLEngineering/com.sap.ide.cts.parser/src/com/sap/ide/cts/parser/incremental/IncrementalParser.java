@@ -18,7 +18,6 @@ import java.util.Set;
 import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
 import tcs.OperatorTemplate;
-import tcs.PartitionHandling;
 import tcs.Property;
 import tcs.Template;
 import textblockdefinition.TextBlockDefinition;
@@ -490,8 +489,8 @@ public class IncrementalParser extends IncrementalRecognizer {
 
 		TokenRelocationUtil.makeRelativeOffsetRecursively(resultBean.textBlock);
 		result = resultBean.textBlock;
-		
-		assignWithIdentityComparison( oldVersion.get___Partition(), result, null );
+	
+		//assignWithIdentityComparison( oldVersion.get___Partition(),null, result, result.getType().getParseRule()  );
 
 		if (resultBean.reuseType
 				.equals(TextBlockReuseStrategy.ReuseType.DELETE)) {
@@ -569,11 +568,12 @@ public class IncrementalParser extends IncrementalRecognizer {
 	
 	//assign an element (textblock or model element) to the correspondent partition
 	private void assignWithIdentityComparison( ModelPartition partition,
-			RefObject result, Template template) {
+			RefObject result, TextBlock textBlock,TextBlock parent, Template template) {
 	
-		
-		if (result instanceof TextBlock) {
-			TextBlock resultTB = (TextBlock) result;
+			if (result == null) {
+			TextBlock resultTB =  textBlock;
+			PartitionHandlingWithRefObject partitionHandlingWithRefObject = new PartitionHandlingWithRefObject(null, resultTB);
+
 			if (resultTB.getType().getParseRule() instanceof ClassTemplate) {
 				ClassTemplate classTemp = (ClassTemplate) resultTB.getType().getParseRule();
 				if (classTemp.getPartitionHandling().getContent() != null) {
@@ -594,7 +594,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 							+ "in Incremental  has been stored in .....");
 					
 
-					partitionHandler.assignToPartition(partition, (RefObject) result,
+					partitionHandler.assignToPartition(partition, resultTB,parent,partitionHandlingWithRefObject,
 							classTemp);
 				}
 			}
@@ -615,12 +615,13 @@ public class IncrementalParser extends IncrementalRecognizer {
 					System.out.println("The element " + refGetValue
 							+ "in Incremental has been stored in .....");
 
-					partitionHandler.assignToPartition(partition, (RefObject) result,
+					partitionHandler.assignToPartition(partition,  resultTB,parent,partitionHandlingWithRefObject,
 							resultTB.getType().getParseRule());
 				}
 
 			}
 		} else {
+			PartitionHandlingWithRefObject partitionHandlingWithRefObject2 = new PartitionHandlingWithRefObject(null, textBlock);
 			if (template instanceof ClassTemplate) {
 				ClassTemplate classTemp = (ClassTemplate) template;
 				if (classTemp.getPartitionHandling().getContent() != null) {
@@ -640,7 +641,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 					System.out.println("The element " + refGetValue
 							+ "in Incremental has been stored in .....");
 					
-					partitionHandler.assignToPartition(partition, (RefObject) result,
+					partitionHandler.assignToPartition(partition, result, textBlock,parent,partitionHandlingWithRefObject2,
 							classTemp);
 				}
 			}
@@ -661,7 +662,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 					System.out.println("The element " + refGetValue
 							+ "in Incremental has been stored in .....");
 
-					partitionHandler.assignToPartition(partition, (RefObject) result,
+					partitionHandler.assignToPartition(partition, result, textBlock,parent,partitionHandlingWithRefObject2,
 							template);
 				}
 
@@ -791,17 +792,25 @@ public class IncrementalParser extends IncrementalRecognizer {
 								boolean isInTransientPartition = IncrementalParsingUtil
 										.isInTransientPartition(correspondingNewElement);
 								if (isInTransientPartition) {
-									
+									TextBlock parent1= null;
 									//assign to the correspondent partition
-									assignWithIdentityComparison(getDefaultPartition(), correspondingNewElement, newVersion.getType()
+									if (parent instanceof TextBlock) {
+										parent1 = (TextBlock)parent;
+									}
+									
+									assignWithIdentityComparison(getDefaultPartition(), correspondingNewElement, newVersion ,parent1, newVersion.getType()
 											.getParseRule());
 
 								}
 							}
 						}
+						TextBlock parent2= null;
+						if (parent instanceof TextBlock) {
+							parent2 = (TextBlock)parent;
+						}
 						
 						//assign to the correspondent partition
-						assignWithIdentityComparison(getDefaultPartition(), (RefObject)newVersion, newVersion.getType()
+						assignWithIdentityComparison(getDefaultPartition(), newVersion, newVersion ,parent2, newVersion.getType()
 											.getParseRule());
 						
 
@@ -826,9 +835,13 @@ public class IncrementalParser extends IncrementalRecognizer {
 					// one
 					for (RefObject correspondingNewCandidate : newVersion
 							.getCorrespondingModelElements()) {
+						TextBlock parent3 = null;
+						if (parent instanceof TextBlock) {
+							parent3 = (TextBlock)parent;
+						}
 						
 						//assign to the correspondent partition
-						assignWithIdentityComparison(getDefaultPartition(), correspondingNewCandidate,  newVersion.getType().getParseRule());
+						assignWithIdentityComparison(getDefaultPartition(), correspondingNewCandidate,newVersion, parent3, newVersion.getType().getParseRule());
 						
 					}
 				}

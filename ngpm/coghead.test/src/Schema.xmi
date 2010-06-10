@@ -1,10 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Partition xmlns:m='http://xml.sap.com/moin'>
-<C n='sap.com/moin/mm/coghead' i='1' v=''/>
-<M c='1' q='coghead.Schema' i='49D62CFB32044570206511DE92260019D29902CC'/>
-<M c='1' q='coghead.A_schema_collection' i='49D62CFB3209007E206511DE8AB20019D29902CC' se='0' ce='1' oe='-1'/>
-<coghead.Schema m:c='1' m:i='E01DFA6E8B373F40304311DFBA2FC41C8D150765'/>
-<coghead.A_schema_collection c='1'>
-<L f='E01DFA6E8B373F40304311DFBA2FC41C8D150765' s='local:E01DFA6E8B3850B0304311DFC3DAC41C8D150765'/>
-</coghead.A_schema_collection>
-</Partition>
+<Partition/>

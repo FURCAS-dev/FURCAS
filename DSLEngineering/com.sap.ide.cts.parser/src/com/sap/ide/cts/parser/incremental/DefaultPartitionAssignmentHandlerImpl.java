@@ -1,5 +1,7 @@
 package com.sap.ide.cts.parser.incremental;
 
+import org.w3c.dom.Text;
+
 import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
 import tcs.PartitionHandling;
@@ -19,7 +21,6 @@ import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
 import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
 import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 public class DefaultPartitionAssignmentHandlerImpl implements
 		PartitionAssignmentHandler {
@@ -30,45 +31,96 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 	private ModelPartition mainPartition;
 	private ConcreteSyntax concreteSyntax2;
 	private SetInteractiveResult interactiveResult;
+	private String interactiveContent = "nothing";
 
 	/**
-	 * Assigns the <code>newElement</code> with the given Template
+	 * Assigns the <code>textblock</code> with the given Template
 	 * <code>template</code> to a partition according to the given Tag
 	 * ""org.omg.sap2mof.requiresPartition" in the metamodel. If the tag is
 	 * false or not specified assigns the <code>newElement</code> to the created
 	 * partition <code>partition</code> or to the defaultPartition .
 	 * 
 	 * @param partition
+	 * @param textblock
+	 * @param template
+	 */
+
+	public void assignToPartition(ModelPartition partition,
+			TextBlock textblock,TextBlock parent,PartitionHandlingWithRefObject partitionHandlingWithRef, Template template) {
+		assignToPartition(partition, textblock, textblock,parent,partitionHandlingWithRef, template);
+	}
+
+	/**
+	 * Assigns the <code>newElement</code> with the <code>textblock</code> and
+	 * the given Template <code>template</code> to a partition according to the
+	 * given Tag ""org.omg.sap2mof.requiresPartition" in the metamodel. If the
+	 * tag is false or not specified assigns the <code>newElement</code> to the
+	 * created partition <code>partition</code> or to the defaultPartition .
+	 * 
+	 * @param partition
 	 * @param newElement
+	 * @param textblock
 	 * @param template
 	 */
 	@Override
+	
 	public void assignToPartition(ModelPartition partition,
-			RefObject newElement, Template template) {
+			RefObject newElement, TextBlock textblock,TextBlock parent,PartitionHandlingWithRefObject partitionHandlingWithRefObject1, Template template) {
 		if (template != null) {
 			if (template instanceof ClassTemplate) {
-
+				PartitionHandlingWithRefObject partitionHandlingWithRefObject = null;
 				ClassTemplate classTemplate = (ClassTemplate) template;
-				classTemplate.getPartitionHandling();
+				
+				if (partitionHandlingWithRefObject1.getPartitionHandling() != null) {
+					partitionHandlingWithRefObject = partitionHandlingWithRefObject1;
+				} else {
+					partitionHandlingWithRefObject = new PartitionHandlingWithRefObject(classTemplate.getPartitionHandling(), newElement);
+				}
 				PRI originalPartition = partition.getPri();
 
 				/*
 				 * the automatic partition of ClassTemplate
 				 */
 
-				if (classTemplate.getPartitionHandling() == null) {
+				if (partitionHandlingWithRefObject.getPartitionHandling() == null) {
 
-					// to check if the default partition has been set from the
-					// concrete syntax
-					if (template.getConcretesyntax() != null) {
+					PartitionHandlingWithRefObject parentPartitionHandling = takeParentPartitionHandling(textblock, parent);
+					// assign to Parent, if it have a PartitionHandling
+					if (parentPartitionHandling.getPartitionHandling() != null) {
+
+						if (parentPartitionHandling.getPartitionHandling().isAutomaticPartition()) {
+							
+							assignToPartitionAutomatic(partition, originalPartition,
+									newElement, textblock,parent, partitionHandlingWithRefObject ,classTemplate, newElement
+											.get___Connection(), getMainPartition(),
+									template.getConcretesyntax());
+							
+						} else {
+							assignToPartitionNotAutomatic(partition,
+									newElement, textblock,partitionHandlingWithRefObject, classTemplate,
+									newElement.get___Connection(),
+									getMainPartition());
+						}
+
+					} else if (template.getConcretesyntax() != null) {
+						// Assign to DefaultPartition(concreteSyntax partition)
 						if (template.getConcretesyntax().getPartitionHandling() != null) {
 							partition = getMainPartition();
-							// setPartition(partition);
-							System.out.println("");
-							System.out.println(partition);
-							System.out.println("");
-							partition
-									.assignElementIncludingChildren(newElement);
+
+							if (template.getConcretesyntax()
+									.getPartitionHandling()
+									.isAutomaticPartition()) {
+								System.out.println("");
+								System.out.println(partition);
+								System.out.println("");
+								partition
+										.assignElementIncludingChildren(newElement);
+							} else {
+								assignToPartitionNotAutomatic(partition,
+										newElement, textblock ,partitionHandlingWithRefObject, classTemplate,
+										newElement.get___Connection(),
+										getMainPartition());
+							}
 
 						}
 					} else {
@@ -79,11 +131,11 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 						partition.assignElementIncludingChildren(newElement);
 					}
 
-				} else if (classTemplate.getPartitionHandling()
+				} else if (partitionHandlingWithRefObject.getPartitionHandling()
 						.isAutomaticPartition()) {
 
 					assignToPartitionAutomatic(partition, originalPartition,
-							newElement, classTemplate, newElement
+							newElement, textblock,parent, partitionHandlingWithRefObject ,classTemplate, newElement
 									.get___Connection(), getMainPartition(),
 							template.getConcretesyntax());
 
@@ -91,11 +143,11 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 					 * The manual partition of ClassTemplate
 					 */
 
-				} else if (!classTemplate.getPartitionHandling()
+				} else if (!partitionHandlingWithRefObject.getPartitionHandling()
 						.isAutomaticPartition()) {
 
-					assignToPartitionNotAutomatic(partition,
-							newElement, classTemplate, newElement
+					assignToPartitionNotAutomatic(partition, newElement,
+							textblock,partitionHandlingWithRefObject, classTemplate, newElement
 									.get___Connection(), getMainPartition());
 				}
 				/*
@@ -106,13 +158,13 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 				PRI originalPartition = partition.getPri();
 				if (getMainPartition() != null) {
 					assignToPartitionWithoutTemplate(getMainPartition(),
-							originalPartition, newElement, newElement
-									.get___Connection(), getMainPartition(),
+							originalPartition, newElement, textblock,
+							newElement.get___Connection(), getMainPartition(),
 							template.getConcretesyntax());
 				} else {
 					assignToPartitionWithoutTemplate(partition,
-							originalPartition, newElement, newElement
-									.get___Connection(), getMainPartition(),
+							originalPartition, newElement, textblock,
+							newElement.get___Connection(), getMainPartition(),
 							template.getConcretesyntax());
 
 				}
@@ -122,26 +174,82 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 		}
 
 	}
+	
+
+
+	/**
+	 * Assigns the <code>textblock</code> and the PartitionHandling
+	 * <code>template</code> to a partition according to the given Tag
+	 * ""org.omg.sap2mof.requiresPartition" in the metamodel. If the tag is
+	 * false or not specified assigns the <code>refObject</code> to the created
+	 * partition <code>partition</code> or to the defaultPartition .
+	 * 
+	 * @param partition
+	 * @param textblock
+	 * @param partitionHandling
+	 */
+
+	public void assignToPartition(ModelPartition partition,
+			TextBlock textblock,TextBlock parent, PartitionHandlingWithRefObject partitionHandling) {
+		assignToPartition(partition, (RefObject) textblock, textblock,parent,
+				partitionHandling);
+	}
 
 	/*
-	 * Assign a partition for Property if needed
+	 * Assign a partition to Property if needed
+	 */
+	/**
+	 * Assigns the <code>refObject</code> with the <code>textblock</code> and
+	 * the PartitionHandling <code>template</code> to a partition according to
+	 * the given Tag ""org.omg.sap2mof.requiresPartition" in the metamodel. If
+	 * the tag is false or not specified assigns the <code>refObject</code> to
+	 * the created partition <code>partition</code> or to the defaultPartition .
+	 * 
+	 * @param partition
+	 * @param newElement
+	 * @param textblock
+	 * @param partitionHandling
 	 */
 	@Override
 	public void assignToPartition(ModelPartition partition,
-			RefObject refObject, PartitionHandling partitionHandling) {
+			RefObject refObject, TextBlock textblock,TextBlock parent,
+			PartitionHandlingWithRefObject partitionHandling) {
 		PRI originalPartition = partition.getPri();
 		setMainPartition(getMainPartition());
 
-		if (partitionHandling == null) {
-			// to check if the default partition has been set from the
-			// concrete syntax
-			if (getConcreteSyntax() != null) {
+		if (partitionHandling.getPartitionHandling() == null) {
+			
+
+			PartitionHandlingWithRefObject parentPartitionHandling2 = takeParentPartitionHandling(textblock, parent);
+			// assign to Parent, if it have a PartitionHandling
+			if (parentPartitionHandling2.getPartitionHandling()!= null) {
+
+				if (parentPartitionHandling2.getPartitionHandling().isAutomaticPartition()) {
+					assignToPartitionAutomaticForProperty(partition, originalPartition,
+							refObject, textblock,parent, partitionHandling, refObject
+									.get___Connection(), getMainPartition(),
+							getConcreteSyntax());
+				} else  if (!partitionHandling.getPartitionHandling().isAutomaticPartition()){
+					assignToPartitionNotAutomaticForProperty(partition,
+							refObject, textblock, partitionHandling, refObject
+									.get___Connection());
+				}
+				
+			} else if (getConcreteSyntax() != null) {
 				if (getConcreteSyntax().getPartitionHandling() != null) {
 					partition = getMainPartition();
-					System.out.println("");
-					System.out.println(partition);
-					System.out.println("");
-					partition.assignElementIncludingChildren(refObject);
+
+					if (getConcreteSyntax().getPartitionHandling()
+							.isAutomaticPartition()) {
+						System.out.println("");
+						System.out.println(partition);
+						System.out.println("");
+						partition.assignElementIncludingChildren(refObject);
+					} else {
+						assignToPartitionNotAutomaticForProperty(partition,
+								refObject, textblock, partitionHandling,
+								refObject.get___Connection());
+					}
 				}
 			} else {
 				partition = refObject.get___Partition();
@@ -151,20 +259,20 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 				partition.assignElementIncludingChildren(refObject);
 			}
 
-		} else if (partitionHandling.isAutomaticPartition()) {
+		} else if (partitionHandling.getPartitionHandling().isAutomaticPartition()) {
 
 			assignToPartitionAutomaticForProperty(partition, originalPartition,
-					refObject, partitionHandling, refObject.get___Connection(),
-					getMainPartition(), getConcreteSyntax());
+					refObject, textblock,parent, partitionHandling, refObject
+							.get___Connection(), getMainPartition(),
+					getConcreteSyntax());
 			/*
 			 * The manual partition of ClassTemplate
 			 */
 
-		} else if (!partitionHandling.isAutomaticPartition()) {
+		} else if (!partitionHandling.getPartitionHandling().isAutomaticPartition()) {
 
-			assignToPartitionNotAutomaticForProperty(partition,
-					 refObject, partitionHandling, refObject
-							.get___Connection());
+			assignToPartitionNotAutomaticForProperty(partition, refObject,
+					textblock, partitionHandling, refObject.get___Connection());
 		}
 
 	}
@@ -172,14 +280,22 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 	// automatic partition for Properties
 	private void assignToPartitionAutomaticForProperty(
 			ModelPartition partition, PRI originalPartition,
-			RefObject refObject, PartitionHandling partitionHandling,
-			Connection connection, ModelPartition mainPartition,
-			ConcreteSyntax concreteSyntax) {
+			RefObject refObject, TextBlock textb1,TextBlock parent,
+			PartitionHandlingWithRefObject partitionHandling, Connection connection,
+			ModelPartition mainPartition, ConcreteSyntax concreteSyntax) {
 
-		if ((partitionHandling.getContainer() == null)
-				&& (partitionHandling.getName() == null)) {
+		if ((partitionHandling.getPartitionHandling().getContainer() == null)
+				&& (partitionHandling.getPartitionHandling().getName() == null)) {
+			PartitionHandlingWithRefObject parentPartitionHandling3 = takeParentPartitionHandling(textb1,parent);
+			// assign to Parent, if it have a PartitionHandling
+			if (parentPartitionHandling3 != null) {
+				assignToPartitionAutomaticForProperty(
+						 partition,  originalPartition,
+						 refObject,  textb1,parent,
+						 parentPartitionHandling3,  connection,
+						 mainPartition,  concreteSyntax);
 
-			if (mainPartition != null) {
+			} else if (mainPartition != null) {
 				partition = mainPartition; // the partition of the main
 				// (concrete
 				// syntax will be taken)
@@ -193,15 +309,15 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 			}
 
-		} else if ((partitionHandling != null)
-				&& (partitionHandling.getName() == null)) {
+		} else if ((partitionHandling.getPartitionHandling() != null)
+				&& (partitionHandling.getPartitionHandling().getName() == null)) {
 			PRI newTargetPRI = connection.getSession().getMoin()
 					.createPri(
 							originalPartition.getDataAreaDescriptor()
 									.getFacilityId(),
 							originalPartition.getDataAreaDescriptor()
 									.getDataAreaName(),
-							partitionHandling.getContainer(),
+							partitionHandling.getPartitionHandling().getContainer(),
 							originalPartition.getPartitionName()); // The
 			// original
 			// name
@@ -210,8 +326,8 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 			// taken
 			partition = connection.createPartition(newTargetPRI);
 
-		} else if ((partitionHandling.getContainer() == null)
-				&& (partitionHandling.getName() != null)) {
+		} else if ((partitionHandling.getPartitionHandling().getContainer() == null)
+				&& (partitionHandling.getPartitionHandling().getName() != null)) {
 
 			PRI newTargetPRI = connection.getSession().getMoin()
 					.createPri(
@@ -221,7 +337,8 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 									.getDataAreaName(),
 							originalPartition.getContainerName(),
 							evaluatedOCLForProperty(refObject,
-									partitionHandling, connection));
+									partitionHandling,
+									connection));
 
 			if (connection.getPartition(newTargetPRI) != null) {
 				partition = connection.getPartition(newTargetPRI);
@@ -243,13 +360,21 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 	// automatic partition for classTemplate
 	private void assignToPartitionAutomatic(ModelPartition partition,
-			PRI originalPartition, RefObject newElement,
+			PRI originalPartition, RefObject newElement, TextBlock textb2,TextBlock parent,PartitionHandlingWithRefObject partitionHandlingWithRefObject,
 			ClassTemplate classTemplate, Connection connection,
 			ModelPartition mainPartition, ConcreteSyntax concreteSyntax) {
 
-		if ((classTemplate.getPartitionHandling().getContainer() == null)
-				&& (classTemplate.getPartitionHandling().getName() == null)) {
-			if (mainPartition != null) {
+		if ((partitionHandlingWithRefObject.getPartitionHandling().getContainer() == null)
+				&& (partitionHandlingWithRefObject.getPartitionHandling().getName() == null)) {
+
+			PartitionHandlingWithRefObject parentPartitionHandling4 = takeParentPartitionHandling(textb2, parent);
+			// assign to Parent, if it have a PartitionHandling
+			if (parentPartitionHandling4 != null) {
+				assignToPartitionAutomatic( partition,
+						 originalPartition,  newElement,  textb2, parent, parentPartitionHandling4,
+						 classTemplate,  connection,
+						 mainPartition,  concreteSyntax);
+			} else if (mainPartition != null) {
 				partition = mainPartition;
 			} else {
 				partition = connection.getPartition(originalPartition);// the
@@ -261,8 +386,8 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 			}
 
-		} else if ((classTemplate.getPartitionHandling().getContainer() != null)
-				&& (classTemplate.getPartitionHandling().getName() == null)) {
+		} else if ((partitionHandlingWithRefObject.getPartitionHandling().getContainer() != null)
+				&& (partitionHandlingWithRefObject.getPartitionHandling().getName() == null)) {
 			PRI newTargetPRI = connection
 					.getSession()
 					.getMoin()
@@ -271,7 +396,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 									.getFacilityId(),
 							originalPartition.getDataAreaDescriptor()
 									.getDataAreaName(),
-							classTemplate.getPartitionHandling().getContainer(),
+									partitionHandlingWithRefObject.getPartitionHandling().getContainer(),
 							originalPartition.getPartitionName()); // The
 			// original
 			// name
@@ -280,8 +405,8 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 			// taken
 			partition = connection.createPartition(newTargetPRI);
 
-		} else if ((classTemplate.getPartitionHandling().getContainer() == null)
-				&& (classTemplate.getPartitionHandling().getName() != null)) {
+		} else if ((partitionHandlingWithRefObject.getPartitionHandling().getContainer() == null)
+				&& (partitionHandlingWithRefObject.getPartitionHandling().getName() != null)) {
 			PRI newTargetPRI = connection.getSession().getMoin()
 					.createPri(
 							originalPartition.getDataAreaDescriptor()
@@ -289,7 +414,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 							originalPartition.getDataAreaDescriptor()
 									.getDataAreaName(),
 							originalPartition.getContainerName(),
-							evaluateOCL(newElement, classTemplate, connection));
+							evaluateOCL(newElement, classTemplate,partitionHandlingWithRefObject, connection));
 
 			if (connection.getPartition(newTargetPRI) != null) {
 				partition = connection.getPartition(newTargetPRI);
@@ -310,8 +435,9 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 	// to assign the partition for elements that are not ClassTemplate or
 	// Property
 	private void assignToPartitionWithoutTemplate(ModelPartition partition,
-			PRI originalPartition, RefObject newElement, Connection connection,
-			ModelPartition mainPartition, ConcreteSyntax concreteSyntax) {
+			PRI originalPartition, RefObject newElement, TextBlock textb3,
+			Connection connection, ModelPartition mainPartition,
+			ConcreteSyntax concreteSyntax) {
 		originalPartition = partition.getPri();
 		PRI targetPRI = connection.getSession().getMoin().createPri(
 				originalPartition.getDataAreaDescriptor().getFacilityId(),
@@ -323,7 +449,8 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 		if (connection.partitionExists(targetPRI)) {
 			partition = connection.getPartition(targetPRI);
 		} else {
-			partition = connection.createPartition(targetPRI);
+			partition = mainPartition;
+			// partition = connection.createPartition(targetPRI);
 		}
 		System.out.println("");
 		System.out.println(partition);
@@ -334,62 +461,67 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 	// not automatic partition for Properties
 	private void assignToPartitionNotAutomaticForProperty(
-			ModelPartition partition,
-			RefObject refObject, PartitionHandling partitionHandling,
-			Connection connection) {
-		
-
-		if(interactiveResult == null || !interactiveResult.isInteractivePartition()) {
-			interactiveResult = interactivePartitionHandler
-					.getPartitionFor(partitionHandling,
-							partition, refObject, connection);
+			ModelPartition partition, RefObject refObject, TextBlock textb4,
+			PartitionHandlingWithRefObject partitionHandling, Connection connection) {
+		// interactiveContent = "";
+		if (interactiveResult == null
+				|| !interactiveResult.isInteractivePartition()) {
+			interactiveResult = interactivePartitionHandler.getPartitionFor(
+					partitionHandling.getPartitionHandling(), partition, refObject, connection);
 		}
-
-		if (refObject instanceof TextBlock) {
+		interactiveContent = interactiveResult.getMainPartitionContent();
+		if (refObject instanceof TextBlock
+				&& (interactiveContent.equalsIgnoreCase("textBlocks") || interactiveContent
+						.equalsIgnoreCase("all"))) {
 			TextBlock resultTB = (TextBlock) refObject;
-			if (interactiveResult.getMainPartitionContent().equalsIgnoreCase(
-					"all")
-					|| interactiveResult.getMainPartitionContent()
-							.equalsIgnoreCase("textblocks")) {
-
-				if (interactiveResult.getPri_Result() != null) {
-					// to check if the partition already exists!
-					if (connection.partitionExists(interactiveResult
-							.getPri_Result())) {
-						partition = connection.getPartition(interactiveResult
-								.getPri_Result());
-					} else {
-						partition = connection
-								.createPartition(interactiveResult
-										.getPri_Result());
-
-					}
-
-				} else {
-					/*
-					 * the user don´t want a manual partition and it will be
-					 * stored in the main partition
-					 */
-					if (getMainPartition() != null) {
-						partition = getMainPartition();
-					} else {
-						partition = refObject.get___Partition();
-					}
-
-				}
-
-			}
-			System.out.println("");
-			System.out.println(partition);
-			System.out.println("");
-
-			partition.assignElementIncludingChildren(resultTB);
 			
+			if (interactiveResult.getPri_Result() != null) {
+				// to check if the partition already exists!
+				if (connection.partitionExists(interactiveResult
+						.getPri_Result())) {
+					partition = connection.getPartition(interactiveResult
+							.getPri_Result());
+				} else {
+					partition = connection.createPartition(interactiveResult
+							.getPri_Result());
+
+				}
+				System.out.println("");
+				System.out.println("The textBlock" + resultTB
+						+ "has been stored in");
+				System.out.println("");
+
+				System.out.println("");
+				System.out.println(partition);
+				System.out.println("");
+
+				partition.assignElementIncludingChildren(resultTB);
+
+			} else {
+				/*
+				 * the user don´t want a manual partition and it will be stored
+				 * in the main partition
+				 */
+				if (getMainPartition() != null) {
+					partition = getMainPartition();
+				} else {
+					partition = refObject.get___Partition();
+				}
+				System.out.println("");
+				System.out.println("The textBlock" + resultTB
+						+ "has been stored in");
+				System.out.println("");
+
+				System.out.println("");
+				System.out.println(partition);
+				System.out.println("");
+
+				partition.assignElementIncludingChildren(resultTB);
+			}
+
 		} else {
-			if (interactiveResult.getMainPartitionContent().equalsIgnoreCase(
-					"all")
-					|| interactiveResult.getMainPartitionContent()
-							.equalsIgnoreCase("model")) {
+			if ( (!(refObject instanceof TextBlock)) &&(interactiveContent.equalsIgnoreCase("all")
+					|| interactiveContent.equalsIgnoreCase("model"))) {
 
 				if (interactiveResult.getPri_Result() != null) {
 					// to check if the partition already exists!
@@ -403,6 +535,11 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 										.getPri_Result());
 
 					}
+					System.out.println("");
+					System.out.println(partition);
+					System.out.println("");
+
+					partition.assignElementIncludingChildren(refObject);
 
 				} else {
 					/*
@@ -414,40 +551,36 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 					} else {
 						partition = refObject.get___Partition();
 					}
+					System.out.println("");
+					System.out.println(partition);
+					System.out.println("");
 
+					partition.assignElementIncludingChildren(refObject);
 				}
+				
+			} 
 
-			}
-			System.out.println("");
-			System.out.println(partition);
-			System.out.println("");
-
-			partition.assignElementIncludingChildren(refObject);
 		}
-
-		
 
 	}
 
 	// not automatic partition for classTemplate
 
-	private void assignToPartitionNotAutomatic(ModelPartition partition, RefObject refObject,
-			ClassTemplate classTemplate, Connection connection,
-			ModelPartition mainPartition) {
-		
-		
-		if(interactiveResult == null || !interactiveResult.isInteractivePartition()) {
-			interactiveResult = interactivePartitionHandler
-					.getPartitionFor(classTemplate.getPartitionHandling(),
-							partition, refObject, connection);
+	private void assignToPartitionNotAutomatic(ModelPartition partition,
+			RefObject refObject, TextBlock textb5,PartitionHandlingWithRefObject partitionHandling, ClassTemplate classTemplate,
+			Connection connection, ModelPartition mainPartition) {
+		interactiveContent = "";
+		if (interactiveResult == null
+				|| !interactiveResult.isInteractivePartition()) {
+			interactiveResult = interactivePartitionHandler.getPartitionFor(
+					partitionHandling.getPartitionHandling(), partition, refObject,
+					connection);
 		}
-		
-		if (refObject instanceof TextBlock) {
+		interactiveContent = interactiveResult.getMainPartitionContent();
+
+		if (refObject instanceof TextBlock && (interactiveContent.equalsIgnoreCase("textBlocks") || interactiveContent
+				.equalsIgnoreCase("all"))) {
 			TextBlock resultTB = (TextBlock) refObject;
-			if (interactiveResult.getMainPartitionContent().equalsIgnoreCase(
-					"all")
-					|| interactiveResult.getMainPartitionContent()
-							.equalsIgnoreCase("textblocks")) {
 
 				if (interactiveResult.getPri_Result() != null) {
 					// to check if the partition already exists!
@@ -461,6 +594,11 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 										.getPri_Result());
 
 					}
+					System.out.println("");
+					System.out.println(partition);
+					System.out.println("");
+
+					partition.assignElementIncludingChildren(resultTB);
 
 				} else {
 					/*
@@ -472,21 +610,17 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 					} else {
 						partition = refObject.get___Partition();
 					}
+					System.out.println("");
+					System.out.println(partition);
+					System.out.println("");
 
+					partition.assignElementIncludingChildren(resultTB);
 				}
+				
 
-			}
-			System.out.println("");
-			System.out.println(partition);
-			System.out.println("");
-
-			partition.assignElementIncludingChildren(resultTB);
-			
 		} else {
-			if (interactiveResult.getMainPartitionContent().equalsIgnoreCase(
-					"all")
-					|| interactiveResult.getMainPartitionContent()
-							.equalsIgnoreCase("model")) {
+			if ((!(refObject instanceof TextBlock)) && (interactiveContent.equalsIgnoreCase("all")
+					|| interactiveContent.equalsIgnoreCase("model"))) {
 
 				if (interactiveResult.getPri_Result() != null) {
 					// to check if the partition already exists!
@@ -500,6 +634,12 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 										.getPri_Result());
 
 					}
+					
+					System.out.println("");
+					System.out.println(partition);
+					System.out.println("");
+
+					partition.assignElementIncludingChildren(refObject);
 
 				} else {
 					/*
@@ -511,15 +651,15 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 					} else {
 						partition = refObject.get___Partition();
 					}
+					System.out.println("");
+					System.out.println(partition);
+					System.out.println("");
 
+					partition.assignElementIncludingChildren(refObject);
 				}
-
+				
 			}
-			System.out.println("");
-			System.out.println(partition);
-			System.out.println("");
-
-			partition.assignElementIncludingChildren(refObject);
+		
 		}
 
 	}
@@ -530,8 +670,9 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 	@Override
 	public String evaluatedOCLForProperty(RefObject inputRefObject,
-			PartitionHandling partitionHandling, Connection connection) {
+			 PartitionHandlingWithRefObject partitionHandling, Connection connection) {
 
+//		RefObject refObject = partitionHandling.getRefObject();
 		RefObject refObject = inputRefObject;
 
 		String evaluatedOCL = "";
@@ -544,30 +685,31 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 		if (reg == null) {
 
 			try {
+				
 
 				refObject.refOutermostPackage().getClass().getPackage();
 
 				reg = connection.getOclRegistryService().getFreestyleRegistry()
 						.createExpressionRegistration(
-								refObject.get___Mri().toString(),
-								partitionHandling.getName(),
+								 refObject.get___Mri().toString(),
+								partitionHandling.getPartitionHandling().getName(),
 								OclRegistrationSeverity.Warning,
 								new String[] { "TCSPropertyQuery" },
-								refObject.refClass(), packagesForLookup);
+								 refObject.refClass(), packagesForLookup);
 			} catch (JmiException e) {
 				e.printStackTrace();
 			} catch (OclManagerException e) {
 				e.printStackTrace();
 			}
 			try {
-				evaluatedOCL = reg.evaluateExpression(refObject).toString();
+				evaluatedOCL = reg.evaluateExpression( refObject).toString();
 			} catch (OclManagerException e) {
 				e.printStackTrace();
 			}
 
 		} else {
 			try {
-				evaluatedOCL = reg.evaluateExpression(refObject).toString();
+				evaluatedOCL = reg.evaluateExpression( refObject).toString();
 			} catch (OclManagerException e) {
 				e.printStackTrace();
 			}
@@ -577,24 +719,23 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 	}
 
-	private String evaluateOCL(RefObject inputRefObject, Template template,
+	private String evaluateOCL(RefObject inputRefObject, Template template,PartitionHandlingWithRefObject partitionHandling,
 			Connection connection) {
 		RefObject refObject = null;
 		String evaluatedOCL = "";
 		packagesForLookup = new RefPackage[1];
-		ClassTemplate classTemplate = null;
+		
 
-		if (inputRefObject instanceof TextBlock) {
+		if (partitionHandling.getRefObject() instanceof TextBlock) {
 
-			evaluatedOCL = evaluatedOCL_For_TextBlocks(inputRefObject,
-					template, packagesForLookup, connection);
+			evaluatedOCL = evaluatedOCL_For_TextBlocks(partitionHandling.getRefObject(),
+					template,partitionHandling, packagesForLookup, connection);
 
 		} else {
 
-			refObject = inputRefObject;
+			refObject = partitionHandling.getRefObject();
 			packagesForLookup[0] = refObject.refOutermostPackage();
 
-			classTemplate = (ClassTemplate) template;
 			OclExpressionRegistration reg = (OclExpressionRegistration) connection
 					.getOclRegistryService().getFreestyleRegistry()
 					.getRegistration(refObject.get___Mri().toString());
@@ -608,7 +749,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 							.getFreestyleRegistry()
 							.createExpressionRegistration(
 									refObject.get___Mri().toString(),
-									classTemplate.getPartitionHandling()
+									partitionHandling.getPartitionHandling()
 											.getName(),
 									OclRegistrationSeverity.Warning,
 									new String[] { "TCSPropertyQuery" },
@@ -638,15 +779,14 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 	}
 
 	private String evaluatedOCL_For_TextBlocks(RefObject inputRefObject,
-			Template template, RefPackage[] packagesForLookup2,
+			Template template,PartitionHandlingWithRefObject partitionHandling, RefPackage[] packagesForLookup2,
 			Connection connection) {
 		RefObject refObject = null;
 		String unnamed = "";
 		String evaluatedOCL = "";
 		packagesForLookup = new RefPackage[1];
-		ClassTemplate classTemplate = null;
 
-		TextBlock tb = (TextBlock) inputRefObject;
+		TextBlock tb = (TextBlock) partitionHandling.getRefObject();
 
 		if (((TextBlock) inputRefObject).getCorrespondingModelElements().size() > 1) {
 			for (RefObject newRefObject : ((TextBlock) inputRefObject)
@@ -672,11 +812,57 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 					}
 				}
 			}
+
+			// refObject = inputRefObject;
+			// unnamed = classTemplate.getPartitionHandling().getName().replace(
+			// "self.name", " \'_unnamed \' ");
+			packagesForLookup[0] = refObject.refOutermostPackage();
+
+			OclExpressionRegistration reg = (OclExpressionRegistration) connection
+					.getOclRegistryService().getFreestyleRegistry()
+					.getRegistration(refObject.get___Mri().toString());
+			if (reg == null) {
+
+				try {
+
+					refObject.refOutermostPackage().getClass().getPackage();
+
+					// if (((TextBlock) inputRefObject)
+					// .getCorrespondingModelElements().size() == 0) {
+
+					reg = connection.getOclRegistryService()
+							.getFreestyleRegistry()
+							.createExpressionRegistration(
+									refObject.get___Mri().toString(),
+									partitionHandling.getPartitionHandling()
+											.getName(),
+									OclRegistrationSeverity.Warning,
+									new String[] { "TCSPropertyQuery" },
+									refObject.refClass(), packagesForLookup);
+					// }
+				} catch (JmiException e) {
+					e.printStackTrace();
+				} catch (OclManagerException e) {
+					e.printStackTrace();
+				}
+				try {
+					evaluatedOCL = reg.evaluateExpression(refObject).toString();
+				} catch (OclManagerException e) {
+					e.printStackTrace();
+				}
+			} else {
+				try {
+					evaluatedOCL = reg.evaluateExpression(refObject).toString();
+				} catch (OclManagerException e) {
+					e.printStackTrace();
+				}
+
+			}
+
 		} else if (((TextBlock) inputRefObject).getCorrespondingModelElements()
 				.size() == 0) {
 			refObject = inputRefObject;
-			classTemplate = (ClassTemplate) template;
-			unnamed = classTemplate.getPartitionHandling().getName().replace(
+			unnamed = partitionHandling.getPartitionHandling().getName().replace(
 					"self.name", " \'_unnamed \' ");
 			packagesForLookup[0] = refObject.refOutermostPackage();
 
@@ -729,7 +915,6 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 			packagesForLookup[0] = refObject.refOutermostPackage();
 
-			classTemplate = (ClassTemplate) template;
 			OclExpressionRegistration reg = (OclExpressionRegistration) connection
 					.getOclRegistryService().getFreestyleRegistry()
 					.getRegistration(refObject.get___Mri().toString());
@@ -743,7 +928,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 							.getFreestyleRegistry()
 							.createExpressionRegistration(
 									refObject.get___Mri().toString(),
-									classTemplate.getPartitionHandling()
+									partitionHandling.getPartitionHandling()
 											.getName(),
 									OclRegistrationSeverity.Warning,
 									new String[] { "TCSPropertyQuery" },
@@ -803,255 +988,466 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 	@Override
 	public void assignFromProxy(IModelElementProxy proxy, SequenceElement se,
-			Template template, ModelPartition defaultPartition) {
+			TextBlock textBlock, TextBlock parent, Template template,
+			ModelPartition defaultPartition) {
+		setInteractivePartitionHandler(interactivePartitionHandler);
 		RefObject result = (RefObject) proxy.getRealObject();
 		if (!proxy.isReferenceOnly()) {
 
 			if (result instanceof TextBlock) {
-				assign_TB_Fromproxy(proxy, se, template, defaultPartition);
+				assign_TB_Fromproxy(proxy, textBlock,parent, se, template,
+						defaultPartition);
 
 			} else {
 				// if result is a model element
-				assign_Model_from_Proxy(proxy, se, template, defaultPartition);
+				assign_Model_from_Proxy(proxy, se, textBlock,parent, template,
+						defaultPartition);
 			}
-
-			setInteractivePartitionHandler(interactivePartitionHandler);
 
 		}
 
 	}
 
 	private void assign_Model_from_Proxy(IModelElementProxy proxy,
-			SequenceElement se, Template template,
+			SequenceElement se, TextBlock tb2,TextBlock parent, Template template,
 			ModelPartition defaultPartition) {
 		RefObject result = (RefObject) proxy.getRealObject();
+	
+		
+		if (interactiveContent != null) {
+			if (!(interactiveContent.equalsIgnoreCase("textblocks"))) {
+				if (se != null && se instanceof Property) {
+					
+					Property seqElement = (Property) se;
+					if ((TcsUtil.getPartitionHandlingParg(seqElement) != null)
+							&& ((seqElement).getPropertyArgs() != null)) {
+						// to lcheck
 
-		if (se != null && se instanceof Property) {
-			Property seqElement = (Property) se;
-
-			if ((TcsUtil.getPartitionHandlingParg(seqElement) != null)
-					&& ((seqElement).getPropertyArgs() != null)) {
-				// to lcheck
-
-				if (TcsUtil.getPartitionHandlingParg(seqElement)
-						.getPartitionhandling().getContent().toString()
-						.equalsIgnoreCase("all")
-						|| TcsUtil.getPartitionHandlingParg(seqElement)
+						if (TcsUtil.getPartitionHandlingParg(seqElement)
 								.getPartitionhandling().getContent().toString()
-								.equalsIgnoreCase("texblocks")) {
+								.equalsIgnoreCase("all")
+								|| TcsUtil.getPartitionHandlingParg(seqElement)
+										.getPartitionhandling().getContent()
+										.toString().equalsIgnoreCase("model")) {
 
-					// the model element will be
-					// stored just when content
-					// equals all or model
-					Object refGetValue = "";
-					try {
-						refGetValue = result.refGetValue("name");
-					} catch (Exception e) {
-						// TODO: handle exception
+							// the model element will be
+							// stored just when content
+							// equals all or model
+							Object refGetValue = "";
+							try {
+								refGetValue = result.refGetValue("name");
+							} catch (Exception e) {
+								// TODO: handle exception
+							}
+							System.out
+									.println("The element "
+											+ result
+											+ " mit name "
+											+ refGetValue
+											+ " in assignFromProxy1 has been stored in .....");
+							PartitionHandlingWithRefObject partitionHandlingWithRefObject = new PartitionHandlingWithRefObject(TcsUtil
+											.getPartitionHandlingParg(
+													seqElement)
+											.getPartitionhandling(), result);
+							assignToPartition(defaultPartition, result, tb2,parent,
+									partitionHandlingWithRefObject);
+						}else {
+							defaultPartition.assignElementIncludingChildren(result);
+						}
+					} else {
+						if (template instanceof ClassTemplate
+								&& ((ClassTemplate) template).getPartitionHandling() != null) {
+
+							if (((ClassTemplate) template).getPartitionHandling()
+									.getContent().toString().equalsIgnoreCase("model")
+									|| ((ClassTemplate) template)
+											.getPartitionHandling().getContent()
+											.toString().equalsIgnoreCase("all")) {
+								Object refGetValue = "";
+								try {
+									refGetValue = result.refGetValue("name");
+								} catch (Exception e) {
+									// TODO: handle exception
+								}
+								System.out
+										.println("The element "
+												+ result
+												+ "mit name "
+												+ refGetValue
+												+ "in assignFromProxy30 has been stored in .....");
+								PartitionHandlingWithRefObject parthandl2 = new PartitionHandlingWithRefObject(null, result);
+								assignToPartition(defaultPartition, result, tb2,parent,parthandl2,
+										template);
+
+							}else {
+								defaultPartition.assignElementIncludingChildren(result);
+							}
+
+						} else {
+							PartitionHandlingWithRefObject parentPartitionHandling3 = takeParentPartitionHandling(tb2, parent);
+							if (parentPartitionHandling3.getPartitionHandling() != null) {
+								if (parentPartitionHandling3.getPartitionHandling().getContent()
+										.toString().equalsIgnoreCase("all")
+										|| parentPartitionHandling3.getPartitionHandling().getContent()
+												.toString().equals("model")) {
+									Object refGetValue = "";
+									try {
+										refGetValue = result.refGetValue("name");
+									} catch (Exception e) {
+										// TODO: handle exception
+									}
+									System.out
+											.println("The element "
+													+ result
+													+ "mit name "
+													+ refGetValue
+													+ "in assignFromProxy2 has been stored in .....");
+
+									assignToPartition(defaultPartition, result,
+											tb2,parent, parentPartitionHandling3, template);
+
+								}else {
+									defaultPartition.assignElementIncludingChildren(result);
+								}
+							} else {
+								PartitionHandlingWithRefObject parthandl = new PartitionHandlingWithRefObject(null, result);
+								if ((getMainPartitionContent()
+										.equalsIgnoreCase("all"))
+										|| (getMainPartitionContent()
+												.equalsIgnoreCase("model"))) {
+									Object refGetValue = "";
+									try {
+										refGetValue = result.refGetValue("name");
+									} catch (Exception e) {
+										// TODO: handle exception
+									}
+									System.out
+											.println("The element "
+													+ result
+													+ " mit name "
+													+ refGetValue
+													+ " in assignFromProxy2 has been stored in .....");
+									
+									assignToPartition(defaultPartition, result,
+											tb2,parent, parthandl,template);
+
+								}else {
+									defaultPartition.assignElementIncludingChildren(result);
+								}
+							}
+						}
+
+					
+
 					}
-					System.out.println("The element " + result + " mit name "
-							+ refGetValue
-							+ " in assignFromProxy1 has been stored in .....");
 
-					assignToPartition(defaultPartition, result, TcsUtil
-							.getPartitionHandlingParg(seqElement)
-							.getPartitionhandling());
-				}
-			} else {
+				} else if (template instanceof ClassTemplate
+						&& ((ClassTemplate) template).getPartitionHandling() != null) {
 
-				if ((getMainPartitionContent().equalsIgnoreCase("all"))
-						|| (getMainPartitionContent()
-								.equalsIgnoreCase("texblocks"))) {
-					Object refGetValue = "";
-					try {
-						refGetValue = result.refGetValue("name");
-					} catch (Exception e) {
-						// TODO: handle exception
+					if (((ClassTemplate) template).getPartitionHandling()
+							.getContent().toString().equalsIgnoreCase("model")
+							|| ((ClassTemplate) template)
+									.getPartitionHandling().getContent()
+									.toString().equalsIgnoreCase("all")) {
+						Object refGetValue = "";
+						try {
+							refGetValue = result.refGetValue("name");
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
+						System.out
+								.println("The element "
+										+ result
+										+ "mit name "
+										+ refGetValue
+										+ "in assignFromProxy30 has been stored in .....");
+						PartitionHandlingWithRefObject parthandl2 = new PartitionHandlingWithRefObject(null, result);
+						assignToPartition(defaultPartition, result, tb2,parent,parthandl2,
+								template);
+
+					}else {
+						defaultPartition.assignElementIncludingChildren(result);
 					}
-					System.out.println("The element " + result + " mit name "
-							+ refGetValue
-							+ " in assignFromProxy2 has been stored in .....");
 
-					assignToPartition(defaultPartition, result, template);
+				} else {
+					
+					PartitionHandlingWithRefObject parentPartitionHandling1 = takeParentPartitionHandling(tb2, parent);
+					if (parentPartitionHandling1.getPartitionHandling() != null) {
+						if (parentPartitionHandling1.getPartitionHandling().getContent().toString()
+								.equalsIgnoreCase("all")
+								|| parentPartitionHandling1.getPartitionHandling().getContent()
+										.toString().equals("model")) {
+							Object refGetValue = "";
+							try {
+								refGetValue = result.refGetValue("name");
+							} catch (Exception e) {
+								// TODO: handle exception
+							}
+							System.out
+									.println("The element "
+											+ result
+											+ "mit name "
+											+ refGetValue
+											+ "in assignFromProxy31 has been stored in .....");
+							assignToPartition(defaultPartition, result, tb2,parent,
+									parentPartitionHandling1, template);
 
+						}else {
+							defaultPartition.assignElementIncludingChildren(result);
+						}
+					} else if ((getMainPartitionContent()
+							.equalsIgnoreCase("all"))
+							|| (getMainPartitionContent()
+									.equalsIgnoreCase("model"))) {
+						PartitionHandlingWithRefObject parthandl4 = new PartitionHandlingWithRefObject(null, result);
+
+						Object refGetValue = "";
+						try {
+							refGetValue = result.refGetValue("name");
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
+						System.out
+								.println("The element "
+										+ result
+										+ "mit name "
+										+ refGetValue
+										+ "in assignFromProxy32 has been stored in .....");
+
+						assignToPartition(defaultPartition, result, tb2,parent,parthandl4,
+								template);
+
+					}else {
+						defaultPartition.assignElementIncludingChildren(result);
+					}
 				}
 			}
 
-		} else if (template instanceof ClassTemplate
-				&& ((ClassTemplate) template).getPartitionHandling() != null) {
-
-			if (((ClassTemplate) template).getPartitionHandling().getContent()
-					.toString().equalsIgnoreCase("textblocks")
-					|| ((ClassTemplate) template).getPartitionHandling()
-							.getContent().toString().equalsIgnoreCase("all")) {
-				Object refGetValue = "";
-				try {
-					refGetValue = result.refGetValue("name");
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				System.out.println("The element " + result + "mit name "
-						+ refGetValue
-						+ "in assignFromProxy3 has been stored in .....");
-
-				assignToPartition(defaultPartition, result, template);
-
-			}
-
-		} else if (template instanceof ConcreteSyntax) {
-
-			if (((ConcreteSyntax) template).getPartitionHandling().getContent()
-					.toString().equalsIgnoreCase("textblocks")
-					|| ((ConcreteSyntax) template).getPartitionHandling()
-							.getContent().toString().equalsIgnoreCase("all")) {
-				Object refGetValue = "";
-				try {
-					refGetValue = result.refGetValue("name");
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				System.out.println("The element " + result + "mit name "
-						+ refGetValue
-						+ "in assignFromProxy3 has been stored in .....");
-
-				assignToPartition(defaultPartition, result, template);
-
-			}
-		} else {
-
-			if ((getMainPartitionContent().equalsIgnoreCase("all"))
-					|| (getMainPartitionContent().equalsIgnoreCase("texblocks"))) {
-				Object refGetValue = "";
-				try {
-					refGetValue = result.refGetValue("name");
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				System.out.println("The element " + result + "mit name "
-						+ refGetValue
-						+ "in assignFromProxy3 has been stored in .....");
-
-				assignToPartition(defaultPartition, result, template);
-
-			}
 		}
-
 	}
 
 	private void assign_TB_Fromproxy(IModelElementProxy proxy,
-			SequenceElement se, Template template,
+			TextBlock textBlock1, TextBlock parent, SequenceElement se, Template template,
 			ModelPartition defaultPartition) {
 		RefObject result = (RefObject) proxy.getRealObject();
+		
+		if (interactiveContent != null) {
+			if (!(interactiveContent.equalsIgnoreCase("model"))) {
 
-		if (se != null && se instanceof Property) {
-			Property seqElement = (Property) se;
+				if (se != null && se instanceof Property) {
+					Property seqElement = (Property) se;
 
-			if ((TcsUtil.getPartitionHandlingParg(seqElement) != null)
-					&& ((seqElement).getPropertyArgs() != null)) {
-				// to lcheck
+					if ((TcsUtil.getPartitionHandlingParg(seqElement) != null)
+							&& ((seqElement).getPropertyArgs() != null)) {
+						// to lcheck
 
-				if (TcsUtil.getPartitionHandlingParg(seqElement)
-						.getPartitionhandling().getContent().toString()
-						.equalsIgnoreCase("all")
-						|| TcsUtil.getPartitionHandlingParg(seqElement)
+						if (TcsUtil.getPartitionHandlingParg(seqElement)
 								.getPartitionhandling().getContent().toString()
-								.equalsIgnoreCase("texblocks")) {
+								.equalsIgnoreCase("all")
+								|| TcsUtil.getPartitionHandlingParg(seqElement)
+										.getPartitionhandling().getContent()
+										.toString().equalsIgnoreCase(
+												"textblocks")) {
 
-					// the model element will be
-					// stored just when content
-					// equals all or model
-					Object refGetValue = "";
-					try {
-						refGetValue = result.refGetValue("name");
-					} catch (Exception e) {
-						// TODO: handle exception
+							// the model element will be
+							// stored just when content
+							// equals all or model
+							Object refGetValue = "";
+							try {
+								refGetValue = result.refGetValue("name");
+							} catch (Exception e) {
+								// TODO: handle exception
+							}
+							System.out
+									.println("The element "
+											+ result
+											+ " mit name "
+											+ refGetValue
+											+ " in assignFromProxy1 has been stored in .....");
+							PartitionHandlingWithRefObject partitionHandlingWithRefObject1 = new PartitionHandlingWithRefObject(TcsUtil.getPartitionHandlingParg(
+												seqElement)
+												.getPartitionhandling(), result);
+							if (result instanceof TextBlock) {
+								assignToPartition(defaultPartition,
+										(TextBlock) result, (TextBlock) result,
+										partitionHandlingWithRefObject1);
+							} else {
+								assignToPartition(defaultPartition,
+										(RefObject) result, textBlock1,parent, partitionHandlingWithRefObject1);
+							}
+
+						}
+//						else {
+//							defaultPartition.assignElementIncludingChildren(result);
+//						}
+					} else {
+						if (template instanceof ClassTemplate
+								&& ((ClassTemplate) template).getPartitionHandling()
+										.getContent() != null) {
+
+							if (((ClassTemplate) template).getPartitionHandling()
+									.getContent().toString().equalsIgnoreCase(
+											"textblocks")
+									|| ((ClassTemplate) template)
+											.getPartitionHandling().getContent()
+											.toString().equalsIgnoreCase("all")) {
+								Object refGetValue = "";
+								try {
+									refGetValue = result.refGetValue("name");
+								} catch (Exception e) {
+									// TODO: handle exception
+								}
+								System.out
+										.println("The element "
+												+ result
+												+ "mit name "
+												+ refGetValue
+												+ "in assignFromProxy311 has been stored in .....");
+								PartitionHandlingWithRefObject partHandl5 = new PartitionHandlingWithRefObject(null, result);
+								assignToPartition(defaultPartition, (TextBlock) result,parent,partHandl5,
+										template);
+
+							}
+//							else {
+//								defaultPartition.assignElementIncludingChildren(result);
+//							}
+
+						} else {
+							PartitionHandlingWithRefObject parentPartitionHandling1 = null;
+							if (result instanceof TextBlock) {
+								parentPartitionHandling1 = takeParentPartitionHandling((TextBlock) result, parent);
+							} else {
+								parentPartitionHandling1 = takeParentPartitionHandling(textBlock1, parent);
+							}
+
+							if (parentPartitionHandling1.getPartitionHandling() != null) {
+								if (parentPartitionHandling1.getPartitionHandling().getContent()
+										.toString().equalsIgnoreCase("all")
+										|| parentPartitionHandling1.getPartitionHandling().getContent()
+												.toString().equals("textblocks")) {
+
+									System.out
+											.println("The element "
+													+ result
+													+ "in CtsDocument has been stored in .....");
+
+									assignToPartition(defaultPartition,
+											(TextBlock) result,parent,parentPartitionHandling1, template);
+								}
+//								else {
+//									defaultPartition.assignElementIncludingChildren(result);
+//								}
+							} else if ((getMainPartitionContent()
+									.equalsIgnoreCase("all"))
+									|| (getMainPartitionContent()
+											.equalsIgnoreCase("textblocks"))) {
+								PartitionHandlingWithRefObject partHandl4 = new PartitionHandlingWithRefObject(null, result);
+								Object refGetValue = "";
+								try {
+									refGetValue = result.refGetValue("name");
+								} catch (Exception e) {
+									// TODO: handle exception
+								}
+								System.out
+										.println("The element "
+												+ result
+												+ " mit name "
+												+ refGetValue
+												+ " in assignFromProxy2 has been stored in .....");
+
+								assignToPartition(defaultPartition,
+										(TextBlock) result, parent,partHandl4, template);
+
+							}
+//							else {
+//								defaultPartition.assignElementIncludingChildren(result);
+//							}
+						}
+						
+						
+						
+						
 					}
-					System.out.println("The element " + result + " mit name "
-							+ refGetValue
-							+ " in assignFromProxy1 has been stored in .....");
 
-					assignToPartition(defaultPartition, result, TcsUtil
-							.getPartitionHandlingParg(seqElement)
-							.getPartitionhandling());
+				} else if (template instanceof ClassTemplate
+						&& ((ClassTemplate) template).getPartitionHandling()
+								.getContent() != null) {
+
+					if (((ClassTemplate) template).getPartitionHandling()
+							.getContent().toString().equalsIgnoreCase(
+									"textblocks")
+							|| ((ClassTemplate) template)
+									.getPartitionHandling().getContent()
+									.toString().equalsIgnoreCase("all")) {
+						Object refGetValue = "";
+						try {
+							refGetValue = result.refGetValue("name");
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
+						System.out
+								.println("The element "
+										+ result
+										+ "mit name "
+										+ refGetValue
+										+ "in assignFromProxy311 has been stored in .....");
+						PartitionHandlingWithRefObject partHandl5 = new PartitionHandlingWithRefObject(null, result);
+						assignToPartition(defaultPartition, (TextBlock) result,parent,partHandl5,
+								template);
+
+					}
+//					else {
+//						defaultPartition.assignElementIncludingChildren(result);				
+//						}
+
+				} else {
+
+					PartitionHandlingWithRefObject parentPartitionHandling2 = null;
+					if (result instanceof TextBlock) {
+						parentPartitionHandling2 = takeParentPartitionHandling((TextBlock) result, parent);
+					} else {
+						parentPartitionHandling2 = takeParentPartitionHandling(textBlock1, parent);
+					}
+					if (parentPartitionHandling2.getPartitionHandling() != null) {
+						if (parentPartitionHandling2.getPartitionHandling().getContent().toString()
+								.equalsIgnoreCase("all")
+								|| parentPartitionHandling2.getPartitionHandling().getContent()
+										.toString().equals("textblocks")) {
+
+							System.out.println("The element " + result
+									+ "in assignTB has been stored in .....");
+
+							assignToPartition(defaultPartition,
+									(TextBlock) result, parent,parentPartitionHandling2, template);
+						}
+//						else {
+//							defaultPartition.assignElementIncludingChildren(result);
+//						}
+					}
 				}
-			} else {
 
 				if ((getMainPartitionContent().equalsIgnoreCase("all"))
 						|| (getMainPartitionContent()
-								.equalsIgnoreCase("texblocks"))) {
+								.equalsIgnoreCase("textblocks"))) {
 					Object refGetValue = "";
 					try {
 						refGetValue = result.refGetValue("name");
 					} catch (Exception e) {
 						// TODO: handle exception
 					}
-					System.out.println("The element " + result + " mit name "
+					System.out.println("The element " + result + "mit name "
 							+ refGetValue
-							+ " in assignFromProxy2 has been stored in .....");
-
-					assignToPartition(defaultPartition, result, template);
+							+ "in assignTB has been stored in .....");
+					PartitionHandlingWithRefObject partHandl6 = new PartitionHandlingWithRefObject(null, result);
+					assignToPartition(defaultPartition, (TextBlock) result,parent,partHandl6,
+							template);
 
 				}
+//				else {
+//					defaultPartition.assignElementIncludingChildren(result);
+//				}
 			}
 
-		} else if (template instanceof ClassTemplate
-				&& ((ClassTemplate) template).getPartitionHandling()
-						.getContent() != null) {
-
-			if (((ClassTemplate) template).getPartitionHandling().getContent()
-					.toString().equalsIgnoreCase("textblocks")
-					|| ((ClassTemplate) template).getPartitionHandling()
-							.getContent().toString().equalsIgnoreCase("all")) {
-				Object refGetValue = "";
-				try {
-					refGetValue = result.refGetValue("name");
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				System.out.println("The element " + result + "mit name "
-						+ refGetValue
-						+ "in assignFromProxy3 has been stored in .....");
-
-				assignToPartition(defaultPartition, result, template);
-
-			}
-
-		} else if (template instanceof ConcreteSyntax) {
-
-			if (((ConcreteSyntax) template).getPartitionHandling().getContent()
-					.toString().equalsIgnoreCase("textblocks")
-					|| ((ConcreteSyntax) template).getPartitionHandling()
-							.getContent().toString().equalsIgnoreCase("all")) {
-				Object refGetValue = "";
-				try {
-					refGetValue = result.refGetValue("name");
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				System.out.println("The element " + result + "mit name "
-						+ refGetValue
-						+ "in assignFromProxy3 has been stored in .....");
-
-				assignToPartition(defaultPartition, result, template);
-
-			}
-		} else {
-
-			if ((getMainPartitionContent().equalsIgnoreCase("all"))
-					|| (getMainPartitionContent().equalsIgnoreCase("texblocks"))) {
-				Object refGetValue = "";
-				try {
-					refGetValue = result.refGetValue("name");
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				System.out.println("The element " + result + "mit name "
-						+ refGetValue
-						+ "in assignFromProxy3 has been stored in .....");
-
-				assignToPartition(defaultPartition, result, template);
-
-			}
 		}
 
 	}
@@ -1103,22 +1499,7 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 					setMainPartitionContent(mainPartitionContent);
 				}
 			} else {
-				// SetInteractiveResult interactiveResult3 =
-				// interactivePartitionHandler
-				// .getPartitionFor(concreteSyntax.getPartitionHandling(),defaultPartition1,
-				// concreteSyntax, connection);
-				//				
-				// if (interactiveResult3.getPri_Result()!= null) {
-				// if (connection.partitionExists(concretSyntax_PRI)) {
-				// mainPartition = connection.getPartition(concretSyntax_PRI);
-				// setMainPartition(mainPartition);
-				//
-				// } else {
-				// mainPartition = connection
-				// .createPartition(concretSyntax_PRI);
-				// setMainPartition(mainPartition);
-				// }
-				// }
+				
 				PRI concretSyntax_PRI1 = null;
 				concretSyntax_PRI1 = getPRI_Of_ConcreteSyntax(concreteSyntax,
 						connection, defaultPartition1);
@@ -1140,8 +1521,6 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 				}
 
 			}
-			// setInteractivePartitionHandler(interactivePartitionHandler);
-
 		}
 
 	}
@@ -1177,24 +1556,54 @@ public class DefaultPartitionAssignmentHandlerImpl implements
 
 		} else if ((concrete_syntax.getPartitionHandling().getContainer() == null)
 				&& (concrete_syntax.getPartitionHandling().getName() != null)) {
+			PartitionHandlingWithRefObject partHand = new PartitionHandlingWithRefObject(concrete_syntax.getPartitionHandling(), concrete_syntax);
 			newPRI = connection.getSession().getMoin().createPri(
 					defaultPartition2.getPri().getDataAreaDescriptor()
 							.getFacilityId(),
 					defaultPartition2.getPri().getDataAreaDescriptor()
 							.getDataAreaName(),
 					defaultPartition2.getPri().getContainerName(),
-					evaluatedOCLForProperty(concrete_syntax, concrete_syntax
-							.getPartitionHandling(), connection));
+					evaluatedOCLForProperty(concrete_syntax, partHand, connection));
 
 		}
 		return newPRI;
 	}
 
-	// @Override
-	// public void setInteractivePartition(
-	// InteractivePartitionHandler interactivePartitionHandler) {
-	// // TODO Auto-generated method stub
-	//		
-	// }
+	@Override
+	public PartitionHandlingWithRefObject takeParentPartitionHandling(TextBlock textblock,
+			TextBlock parent) {
+			PartitionHandlingWithRefObject partHand = null;
+			if (textblock == null) {
+				return partHand;
+			}
+			Template temp1 = textblock.getType().getParseRule();
+			if (temp1 instanceof ClassTemplate) {
+				ClassTemplate temp = (ClassTemplate) temp1;
+				if (temp == null) {
+					return partHand;
+				} else {
+					if(textblock.getCorrespondingModelElements().size() > 0) {
+						partHand = new PartitionHandlingWithRefObject(temp.getPartitionHandling(), 
+							textblock.getCorrespondingModelElements().iterator().next());
+					}
+				}
+				if ( partHand == null || partHand.getPartitionHandling() == null) {
+					if (parent != null) {
+						textblock = parent;
+						parent = parent.getParentBlock();
+						return takeParentPartitionHandling( textblock, parent);
+					} else {
+						return partHand;
+					}
+				}
+			}
+
+			return partHand;
+
+		}
+
+	
+
+
 
 }

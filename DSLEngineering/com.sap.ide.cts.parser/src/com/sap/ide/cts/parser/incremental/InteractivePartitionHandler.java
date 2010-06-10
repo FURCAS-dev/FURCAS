@@ -1,7 +1,5 @@
 package com.sap.ide.cts.parser.incremental;
 
-import java.util.HashMap;
-
 import tcs.PartitionHandling;
 
 import com.sap.tc.moin.repository.Connection;

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Partition xmlns:m='http://xml.sap.com/moin'>
 <C n='demo.sap.com/tcsmeta' i='1' v=''/>
-<C n='sap.com/moin/mm/coghead' i='2' v=''/>
 <M c='1' q='textblocks.TextBlock' i='480716BCBE2C3EAC0C5F11DDB70900016CE99C52'/>
 <M c='1' q='textblocks.LexedToken' i='480716BCBE2DC5420C5F11DDA75D00016CE99C52'/>
 <M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
 <M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.TextBlock_Contains_Subblocks' i='480716BCBE2DC5490C5F11DDB5A500016CE99C52' se='1' ce='1' oe='0'/>
-<M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
-<M c='2' q='coghead.action.UserDefinedAction' i='49DA875A69A64C3A22FD11DE9C810019D29902CC'/>
-<M c='2' q='coghead.action.A_signature_action' i='49DA875A69A8964622FD11DEA3B40019D29902CC' se='1' ce='1' oe='-1'/>
 <textblocks.OmittedToken m:c='1' m:i='E007956A864CE22A310411DFAD37D5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
 <textblocks.LexedToken m:c='1' m:i='E007956A864CE22B310411DFADD0D5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='5' offsetRelative='true' value='name8' lookahead='1' lookback='1' state='0' type='4' isOperator='false'/>
 <textblocks.TextBlock m:c='1' m:i='E007956A8A5AF056310411DF9E25D5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='42' length='41' offsetRelative='true' isComplete='true'>
@@ -17,47 +13,12 @@
 <parentAltChoices v='1'/>
 <parentAltChoices v='1'/>
 </textblocks.TextBlock>
-<coghead.action.UserDefinedAction m:c='2' m:i='E007956A8BAD39E1310411DF93C2D5628D150765' name='name8' scope='RECORD' sideEffectFree='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0A5ADB593446774310711DF9F4CD5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
-<textblocks.LexedToken m:c='1' m:i='E0A5ADB593446775310711DFC9F9D5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='4' offsetRelative='true' value='name' lookahead='2' lookback='1' state='0' type='4' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0A5ADB59346B160310711DF9981D5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
-<textblocks.LexedToken m:c='1' m:i='E0A5ADB59346B161310711DF9DB2D5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='5' offsetRelative='true' value='name2' lookahead='1' lookback='1' state='0' type='4' isOperator='false'/>
-<textblocks.TextBlock m:c='1' m:i='E0A5ADB5A2D53CA3310711DFB539D5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='26' length='39' offsetRelative='true' isComplete='true'>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-</textblocks.TextBlock>
-<coghead.action.UserDefinedAction m:c='2' m:i='E0A5ADB5BD8A3E10310711DFAE62D5628D150765' name='name' scope='RECORD' sideEffectFree='false'/>
-<textblocks.TextBlock m:c='1' m:i='E0A5ADB5BF071A15310711DFA7C0D5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='65' length='39' offsetRelative='true' isComplete='true'>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-</textblocks.TextBlock>
-<coghead.action.UserDefinedAction m:c='2' m:i='E0A5ADB5E5FE3AE0310711DFCC6DD5628D150765' name='name2' scope='RECORD' sideEffectFree='false'/>
 <textblocks.TextBlock_Contains_Tokens c='1'>
 <L f='E007956A864CE22A310411DFAD37D5628D150765' s='E007956A8A5AF056310411DF9E25D5628D150765'/>
 <L f='E007956A864CE22B310411DFADD0D5628D150765' s='E007956A8A5AF056310411DF9E25D5628D150765'/>
-<L f='E0A5ADB593446774310711DF9F4CD5628D150765' s='E0A5ADB5A2D53CA3310711DFB539D5628D150765'/>
-<L f='E0A5ADB593446775310711DFC9F9D5628D150765' s='E0A5ADB5A2D53CA3310711DFB539D5628D150765'/>
-<L f='E0A5ADB59346B160310711DF9981D5628D150765' s='E0A5ADB5BF071A15310711DFA7C0D5628D150765'/>
-<L f='E0A5ADB59346B161310711DF9DB2D5628D150765' s='E0A5ADB5BF071A15310711DFA7C0D5628D150765'/>
 </textblocks.TextBlock_Contains_Tokens>
 <textblocks.TextBlock_Contains_Subblocks c='1'>
 <L f='local:E007956A8AC3C440310411DF9732D5628D150765' s='E007956A8A5AF056310411DF9E25D5628D150765'/>
 <L f='local:E007956A8B339D11310411DFA89DD5628D150765' s='E007956A8A5AF056310411DF9E25D5628D150765'/>
-<L f='local:E0A5ADB5A355DE55310711DF9A8FD5628D150765' s='E0A5ADB5A2D53CA3310711DFB539D5628D150765'/>
-<L f='local:E0A5ADB5B4A182E0310711DFC5A3D5628D150765' s='E0A5ADB5A2D53CA3310711DFB539D5628D150765'/>
-<L f='local:E0A5ADB5C15F3AE5310711DFCD4DD5628D150765' s='E0A5ADB5BF071A15310711DFA7C0D5628D150765'/>
-<L f='local:E0A5ADB5D59B48A0310711DF8932D5628D150765' s='E0A5ADB5BF071A15310711DFA7C0D5628D150765'/>
 </textblocks.TextBlock_Contains_Subblocks>
-<textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
-<L f='E007956A8BAD39E1310411DF93C2D5628D150765' s='E007956A8A5AF056310411DF9E25D5628D150765'/>
-<L f='E0A5ADB5BD8A3E10310711DFAE62D5628D150765' s='E0A5ADB5A2D53CA3310711DFB539D5628D150765'/>
-<L f='E0A5ADB5E5FE3AE0310711DFCC6DD5628D150765' s='E0A5ADB5BF071A15310711DFA7C0D5628D150765'/>
-</textblocks.DocumentNode_References_CorrespondingModelElement>
-<coghead.action.A_signature_action c='2'>
-<L f='local:E007956A8B339D10310411DFB0D0D5628D150765' s='E007956A8BAD39E1310411DF93C2D5628D150765'/>
-<L f='local:E0A5ADB5B2D611B0310711DFAE2CD5628D150765' s='E0A5ADB5BD8A3E10310711DFAE62D5628D150765'/>
-<L f='local:E0A5ADB5D33C4A00310711DF92ADD5628D150765' s='E0A5ADB5E5FE3AE0310711DFCC6DD5628D150765'/>
-</coghead.action.A_signature_action>
 </Partition>

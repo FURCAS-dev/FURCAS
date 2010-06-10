@@ -90,7 +90,7 @@ public class TextBlockProxy{
 		    ((ClassTemplate)getTemplate()).isReferenceOnly()) {
 		addReferencedElement(newModelElement);
 	    } else {
-		this.correspondingModelElements.add(newModelElement);
+		this.correspondingModelElements.add(0, newModelElement);
 	    }
 	}
 

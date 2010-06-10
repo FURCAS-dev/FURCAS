@@ -38,79 +38,6 @@
 <parentAltChoices v='1'/>
 </textblocks.TextBlock>
 <coghead.Field m:c='2' m:i='E007956AFBE86AD0312811DF96EFF25B8D150765' name='quantity' cardinality='1' unique='false' type='number'/>
-<textblocks.OmittedToken m:c='1' m:i='E0356A042F65229031AB11DFCA6DF56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
-<textblocks.LexedToken m:c='1' m:i='E0356A042F6549A031AB11DFBE5EF56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='6' offsetRelative='true' value='string' lookahead='2' lookback='1' state='0' type='68' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0356A042F6570B031AB11DF9F1CF56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='8' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='99' type='44'/>
-<textblocks.LexedToken m:c='1' m:i='E0356A042F6597C031AB11DFBA9BF56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='9' length='2' offsetRelative='true' value='s1' lookahead='1' lookback='1' state='0' type='4' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0356A042F660CF031AB11DFB0E3F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
-<textblocks.LexedToken m:c='1' m:i='E0356A042F66340031AB11DF962CF56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='6' offsetRelative='true' value='string' lookahead='2' lookback='1' state='0' type='68' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0356A042F665B1031AB11DFA364F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='8' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='99' type='44'/>
-<textblocks.LexedToken m:c='1' m:i='E0356A042F66822031AB11DFA424F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='9' length='2' offsetRelative='true' value='s2' lookahead='1' lookback='1' state='0' type='4' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0356A042F66F75031AB11DFA0B4F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
-<textblocks.LexedToken m:c='1' m:i='E0356A042F671E6031AB11DFC45BF56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='6' offsetRelative='true' value='string' lookahead='2' lookback='1' state='0' type='68' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0356A042F676C8031AB11DF934BF56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='8' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='99' type='44'/>
-<textblocks.LexedToken m:c='1' m:i='E0356A042F67939031AB11DF8364F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='9' length='2' offsetRelative='true' value='s3' lookahead='1' lookback='1' state='0' type='4' isOperator='false'/>
-<textblocks.TextBlock m:c='1' m:i='E0356A042F743DC031AB11DF9134F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='11' offsetRelative='true' isComplete='true'>
-<parentAltChoices v='1'/>
-<parentAltChoices v='2'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-</textblocks.TextBlock>
-<coghead.Field m:c='2' m:i='E0356A042F76128031AB11DFA744F56A8D150765' name='s1' cardinality='1' unique='false' type='string'/>
-<textblocks.TextBlock m:c='1' m:i='E0356A042F76FCE031AB11DF9737F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='12' length='11' offsetRelative='true' isComplete='true'>
-<parentAltChoices v='1'/>
-<parentAltChoices v='2'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-</textblocks.TextBlock>
-<coghead.Field m:c='2' m:i='E0356A042F77C03031AB11DFAF99F56A8D150765' name='s2' cardinality='1' unique='false' type='string'/>
-<textblocks.TextBlock m:c='1' m:i='E0356A042F78838031AB11DF808FF56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='25' length='11' offsetRelative='true' isComplete='true'>
-<parentAltChoices v='1'/>
-<parentAltChoices v='2'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-</textblocks.TextBlock>
-<coghead.Field m:c='2' m:i='E0356A042F796DE031AB11DF97CDF56A8D150765' name='s3' cardinality='1' unique='false' type='string'/>
-<textblocks.OmittedToken m:c='1' m:i='E0C4897F943729E0311D11DFC8E0C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
-<textblocks.LexedToken m:c='1' m:i='E0C4897F943750F0311D11DFBA42C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='6' offsetRelative='true' value='string' lookahead='2' lookback='1' state='0' type='68' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0C4897F943750F1311D11DF9D3FC6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='8' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='99' type='44'/>
-<textblocks.LexedToken m:c='1' m:i='E0C4897F94377800311D11DF9C2BC6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='9' length='2' offsetRelative='true' value='s3' lookahead='1' lookback='1' state='0' type='4' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0C4897F9437C620311D11DF94C5C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='99' type='44'/>
-<textblocks.OmittedToken m:c='1' m:i='E0C4897F9437ED30311D11DFAE74C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='1' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
-<textblocks.LexedToken m:c='1' m:i='E0C4897F94381440311D11DFB678C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='3' length='6' offsetRelative='true' value='string' lookahead='2' lookback='1' state='0' type='68' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0C4897F94383B50311D11DFAB54C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='9' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='99' type='44'/>
-<textblocks.LexedToken m:c='1' m:i='E0C4897F94386260311D11DFABF3C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='10' length='2' offsetRelative='true' value='s4' lookahead='1' lookback='1' state='0' type='4' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0C4897F9438B080311D11DFAED2C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
-<textblocks.LexedToken m:c='1' m:i='E0C4897F9438D790311D11DFB440C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='6' offsetRelative='true' value='string' lookahead='2' lookback='1' state='0' type='68' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0C4897F9438FEA0311D11DFABDCC6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='8' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='99' type='44'/>
-<textblocks.LexedToken m:c='1' m:i='E0C4897F943925B0311D11DFA9A9C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='9' length='2' offsetRelative='true' value='s5' lookahead='1' lookback='1' state='0' type='4' isOperator='false'/>
-<textblocks.TextBlock m:c='1' m:i='E0C4897F97E4EFA0311D11DF9A4FC6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='11' offsetRelative='true' isComplete='true'>
-<parentAltChoices v='1'/>
-<parentAltChoices v='2'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-</textblocks.TextBlock>
-<coghead.Field m:c='2' m:i='E0C4897F987596E0311D11DF805DC6038D150765' name='s3' cardinality='1' unique='false' type='string'/>
-<textblocks.TextBlock m:c='1' m:i='E0C4897F98BE38A0311D11DFA0EFC6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='12' length='12' offsetRelative='true' isComplete='true'>
-<parentAltChoices v='1'/>
-<parentAltChoices v='2'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-</textblocks.TextBlock>
-<coghead.Field m:c='2' m:i='E0C4897F99353D60311D11DF94B5C6038D150765' name='s4' cardinality='1' unique='false' type='string'/>
-<textblocks.TextBlock m:c='1' m:i='E0C4897F9956CF20311D11DFC824C6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='25' length='11' offsetRelative='true' isComplete='true'>
-<parentAltChoices v='1'/>
-<parentAltChoices v='2'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-<parentAltChoices v='1'/>
-</textblocks.TextBlock>
-<coghead.Field m:c='2' m:i='E0C4897F99944D50311D11DFC65FC6038D150765' name='s5' cardinality='1' unique='false' type='string'/>
 <textblocks.TextBlock_Contains_Tokens c='1'>
 <L f='E007956AF74D37D0312811DF96E9F25B8D150765' s='E007956AFAB0FC40312811DF81E4F25B8D150765'/>
 <L f='E007956AF74D5EE0312811DF9651F25B8D150765' s='E007956AFAB0FC40312811DF81E4F25B8D150765'/>
@@ -124,31 +51,6 @@
 <L f='E007956AF74E9760312811DFBDF0F25B8D150765' s='E007956AFB220D90312811DF97F9F25B8D150765'/>
 <L f='E007956AF74EBE70312811DF8A53F25B8D150765' s='E007956AFB220D90312811DF97F9F25B8D150765'/>
 <L f='E007956AF74EE580312811DF930DF25B8D150765' s='E007956AFB220D90312811DF97F9F25B8D150765'/>
-<L f='E0356A042F65229031AB11DFCA6DF56A8D150765' s='E0356A042F743DC031AB11DF9134F56A8D150765'/>
-<L f='E0356A042F6549A031AB11DFBE5EF56A8D150765' s='E0356A042F743DC031AB11DF9134F56A8D150765'/>
-<L f='E0356A042F6570B031AB11DF9F1CF56A8D150765' s='E0356A042F743DC031AB11DF9134F56A8D150765'/>
-<L f='E0356A042F6597C031AB11DFBA9BF56A8D150765' s='E0356A042F743DC031AB11DF9134F56A8D150765'/>
-<L f='E0356A042F660CF031AB11DFB0E3F56A8D150765' s='E0356A042F76FCE031AB11DF9737F56A8D150765'/>
-<L f='E0356A042F66340031AB11DF962CF56A8D150765' s='E0356A042F76FCE031AB11DF9737F56A8D150765'/>
-<L f='E0356A042F665B1031AB11DFA364F56A8D150765' s='E0356A042F76FCE031AB11DF9737F56A8D150765'/>
-<L f='E0356A042F66822031AB11DFA424F56A8D150765' s='E0356A042F76FCE031AB11DF9737F56A8D150765'/>
-<L f='E0356A042F66F75031AB11DFA0B4F56A8D150765' s='E0356A042F78838031AB11DF808FF56A8D150765'/>
-<L f='E0356A042F671E6031AB11DFC45BF56A8D150765' s='E0356A042F78838031AB11DF808FF56A8D150765'/>
-<L f='E0356A042F676C8031AB11DF934BF56A8D150765' s='E0356A042F78838031AB11DF808FF56A8D150765'/>
-<L f='E0356A042F67939031AB11DF8364F56A8D150765' s='E0356A042F78838031AB11DF808FF56A8D150765'/>
-<L f='E0C4897F943729E0311D11DFC8E0C6038D150765' s='E0C4897F97E4EFA0311D11DF9A4FC6038D150765'/>
-<L f='E0C4897F943750F0311D11DFBA42C6038D150765' s='E0C4897F97E4EFA0311D11DF9A4FC6038D150765'/>
-<L f='E0C4897F943750F1311D11DF9D3FC6038D150765' s='E0C4897F97E4EFA0311D11DF9A4FC6038D150765'/>
-<L f='E0C4897F94377800311D11DF9C2BC6038D150765' s='E0C4897F97E4EFA0311D11DF9A4FC6038D150765'/>
-<L f='E0C4897F9437C620311D11DF94C5C6038D150765' s='E0C4897F98BE38A0311D11DFA0EFC6038D150765'/>
-<L f='E0C4897F9437ED30311D11DFAE74C6038D150765' s='E0C4897F98BE38A0311D11DFA0EFC6038D150765'/>
-<L f='E0C4897F94381440311D11DFB678C6038D150765' s='E0C4897F98BE38A0311D11DFA0EFC6038D150765'/>
-<L f='E0C4897F94383B50311D11DFAB54C6038D150765' s='E0C4897F98BE38A0311D11DFA0EFC6038D150765'/>
-<L f='E0C4897F94386260311D11DFABF3C6038D150765' s='E0C4897F98BE38A0311D11DFA0EFC6038D150765'/>
-<L f='E0C4897F9438B080311D11DFAED2C6038D150765' s='E0C4897F9956CF20311D11DFC824C6038D150765'/>
-<L f='E0C4897F9438D790311D11DFB440C6038D150765' s='E0C4897F9956CF20311D11DFC824C6038D150765'/>
-<L f='E0C4897F9438FEA0311D11DFABDCC6038D150765' s='E0C4897F9956CF20311D11DFC824C6038D150765'/>
-<L f='E0C4897F943925B0311D11DFA9A9C6038D150765' s='E0C4897F9956CF20311D11DFC824C6038D150765'/>
 </textblocks.TextBlock_Contains_Tokens>
 <textblocks.TextBlock_Contains_Subblocks c='1'>
 <L f='local:E007956AFB4E4DB0312811DFB5E5F25B8D150765' s='E007956AFB220D90312811DF97F9F25B8D150765'/>
@@ -156,21 +58,9 @@
 <textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
 <L f='E007956AFAFF1C40312811DFCBC3F25B8D150765' s='E007956AFAB0FC40312811DF81E4F25B8D150765'/>
 <L f='E007956AFBE86AD0312811DF96EFF25B8D150765' s='E007956AFB220D90312811DF97F9F25B8D150765'/>
-<L f='E0356A042F76128031AB11DFA744F56A8D150765' s='E0356A042F743DC031AB11DF9134F56A8D150765'/>
-<L f='E0356A042F77C03031AB11DFAF99F56A8D150765' s='E0356A042F76FCE031AB11DF9737F56A8D150765'/>
-<L f='E0356A042F796DE031AB11DF97CDF56A8D150765' s='E0356A042F78838031AB11DF808FF56A8D150765'/>
-<L f='E0C4897F987596E0311D11DF805DC6038D150765' s='E0C4897F97E4EFA0311D11DF9A4FC6038D150765'/>
-<L f='E0C4897F99353D60311D11DF94B5C6038D150765' s='E0C4897F98BE38A0311D11DFA0EFC6038D150765'/>
-<L f='E0C4897F99944D50311D11DFC65FC6038D150765' s='E0C4897F9956CF20311D11DFC824C6038D150765'/>
 </textblocks.DocumentNode_References_CorrespondingModelElement>
 <coghead.A_entries_schema c='2'>
 <L f='E007956AFAFF1C40312811DFCBC3F25B8D150765' s='local:E007956AFECACA40312811DFADF6F25B8D150765'/>
 <L f='E007956AFBE86AD0312811DF96EFF25B8D150765' s='local:E007956AFECACA40312811DFADF6F25B8D150765'/>
-<L f='E0356A042F76128031AB11DFA744F56A8D150765' s='local:E0356A042F7A0A2031AB11DF8FD7F56A8D150765'/>
-<L f='E0356A042F77C03031AB11DFAF99F56A8D150765' s='local:E0356A042F7A0A2031AB11DF8FD7F56A8D150765'/>
-<L f='E0356A042F796DE031AB11DF97CDF56A8D150765' s='local:E0356A042F7A0A2031AB11DF8FD7F56A8D150765'/>
-<L f='E0C4897F987596E0311D11DF805DC6038D150765' s='local:E0C4897F9A136860311D11DFC7CAC6038D150765'/>
-<L f='E0C4897F99353D60311D11DF94B5C6038D150765' s='local:E0C4897F9A136860311D11DFC7CAC6038D150765'/>
-<L f='E0C4897F99944D50311D11DFC65FC6038D150765' s='local:E0C4897F9A136860311D11DFC7CAC6038D150765'/>
 </coghead.A_entries_schema>
 </Partition>

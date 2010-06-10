@@ -4,58 +4,30 @@
 <C n='sap.com/moin/mm/coghead' i='2' v=''/>
 <M c='1' q='textblocks.TextBlock' i='480716BCBE2C3EAC0C5F11DDB70900016CE99C52'/>
 <M c='1' q='textblocks.LexedToken' i='480716BCBE2DC5420C5F11DDA75D00016CE99C52'/>
-<M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
 <M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.TextBlock_Contains_Subblocks' i='480716BCBE2DC5490C5F11DDB5A500016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
 <M c='2' q='coghead.Schema' i='49D62CFB32044570206511DE92260019D29902CC'/>
 <M c='2' q='coghead.A_schema_collection' i='49D62CFB3209007E206511DE8AB20019D29902CC' se='0' ce='1' oe='-1'/>
 <textblocks.TextBlock m:c='1' m:i='E007956A88B30CB6310411DFBA7CD5628D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='25' length='17' offsetRelative='true' isComplete='true' parentAltChoices='1'/>
-<coghead.Schema m:c='2' m:i='E007956A8A5AC941310411DFB229D5628D150765'/>
 <textblocks.LexedToken m:c='1' m:i='E007956AF74DFB20312811DF89B7F25B8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='14' length='1' offsetRelative='true' value=';' lookahead='1' lookback='1' state='0' type='14' isOperator='false'/>
 <textblocks.LexedToken m:c='1' m:i='E007956AF74F5AB0312811DF92A6F25B8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='43' length='1' offsetRelative='true' value=';' lookahead='1' lookback='1' state='0' type='14' isOperator='false'/>
 <textblocks.TextBlock m:c='1' m:i='E007956AFA897710312811DFC070F25B8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='19' length='118' offsetRelative='true' isComplete='true' parentAltChoices='1'/>
 <coghead.Schema m:c='2' m:i='E007956AFECACA40312811DFADF6F25B8D150765'/>
-<textblocks.LexedToken m:c='1' m:i='E0356A042F65E5E031AB11DFB82EF56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='11' length='1' offsetRelative='true' value=';' lookahead='1' lookback='1' state='0' type='14' isOperator='false'/>
-<textblocks.OmittedToken m:c='1' m:i='E0356A042F66A93031AB11DF8D00F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='23' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='99' type='44'/>
-<textblocks.LexedToken m:c='1' m:i='E0356A042F66D04031AB11DFCBE0F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='24' length='1' offsetRelative='true' value=';' lookahead='1' lookback='1' state='0' type='14' isOperator='false'/>
-<textblocks.TextBlock m:c='1' m:i='E0356A042F72DE3031AB11DFB033F56A8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='26' length='36' offsetRelative='true' isComplete='true' parentAltChoices='1'/>
-<coghead.Schema m:c='2' m:i='E0356A042F7A0A2031AB11DF8FD7F56A8D150765'/>
-<textblocks.LexedToken m:c='1' m:i='E0C4897F94379F10311D11DF9D7DC6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='11' length='1' offsetRelative='true' value=';' lookahead='1' lookback='1' state='0' type='14' isOperator='false'/>
-<textblocks.LexedToken m:c='1' m:i='E0C4897F94388970311D11DF831BC6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='24' length='1' offsetRelative='true' value=';' lookahead='1' lookback='1' state='0' type='14' isOperator='false'/>
-<textblocks.TextBlock m:c='1' m:i='E0C4897F979485B0311D11DFAEDAC6038D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='27' length='36' offsetRelative='true' isComplete='true' parentAltChoices='1'/>
-<coghead.Schema m:c='2' m:i='E0C4897F9A136860311D11DFC7CAC6038D150765'/>
 <textblocks.TextBlock_Contains_Tokens c='1'>
 <L f='E007956AF74DFB20312811DF89B7F25B8D150765' s='E007956AFA897710312811DFC070F25B8D150765'/>
 <L f='E007956AF74F5AB0312811DF92A6F25B8D150765' s='E007956AFA897710312811DFC070F25B8D150765'/>
-<L f='E0356A042F65E5E031AB11DFB82EF56A8D150765' s='E0356A042F72DE3031AB11DFB033F56A8D150765'/>
-<L f='E0356A042F66A93031AB11DF8D00F56A8D150765' s='E0356A042F72DE3031AB11DFB033F56A8D150765'/>
-<L f='E0356A042F66D04031AB11DFCBE0F56A8D150765' s='E0356A042F72DE3031AB11DFB033F56A8D150765'/>
-<L f='E0C4897F94379F10311D11DF9D7DC6038D150765' s='E0C4897F979485B0311D11DFAEDAC6038D150765'/>
-<L f='E0C4897F94388970311D11DF831BC6038D150765' s='E0C4897F979485B0311D11DFAEDAC6038D150765'/>
 </textblocks.TextBlock_Contains_Tokens>
 <textblocks.TextBlock_Contains_Subblocks c='1'>
 <L f='local:E007956A893ADA55310411DFCDC7D5628D150765' s='E007956A88B30CB6310411DFBA7CD5628D150765'/>
 <L f='local:E007956AFAB0FC40312811DF81E4F25B8D150765' s='E007956AFA897710312811DFC070F25B8D150765'/>
 <L f='local:E007956AFB220D90312811DF97F9F25B8D150765' s='E007956AFA897710312811DFC070F25B8D150765'/>
 <L f='local:E007956AFC0DA610312811DFB54CF25B8D150765' s='E007956AFA897710312811DFC070F25B8D150765'/>
-<L f='local:E0356A042F743DC031AB11DF9134F56A8D150765' s='E0356A042F72DE3031AB11DFB033F56A8D150765'/>
-<L f='local:E0356A042F76FCE031AB11DF9737F56A8D150765' s='E0356A042F72DE3031AB11DFB033F56A8D150765'/>
-<L f='local:E0356A042F78838031AB11DF808FF56A8D150765' s='E0356A042F72DE3031AB11DFB033F56A8D150765'/>
-<L f='local:E0C4897F97E4EFA0311D11DF9A4FC6038D150765' s='E0C4897F979485B0311D11DFAEDAC6038D150765'/>
-<L f='local:E0C4897F98BE38A0311D11DFA0EFC6038D150765' s='E0C4897F979485B0311D11DFAEDAC6038D150765'/>
-<L f='local:E0C4897F9956CF20311D11DFC824C6038D150765' s='E0C4897F979485B0311D11DFAEDAC6038D150765'/>
 </textblocks.TextBlock_Contains_Subblocks>
 <textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
-<L f='E007956A8A5AC941310411DFB229D5628D150765' s='E007956A88B30CB6310411DFBA7CD5628D150765'/>
 <L f='E007956AFECACA40312811DFADF6F25B8D150765' s='E007956AFA897710312811DFC070F25B8D150765'/>
-<L f='E0356A042F7A0A2031AB11DF8FD7F56A8D150765' s='E0356A042F72DE3031AB11DFB033F56A8D150765'/>
-<L f='E0C4897F9A136860311D11DFC7CAC6038D150765' s='E0C4897F979485B0311D11DFAEDAC6038D150765'/>
 </textblocks.DocumentNode_References_CorrespondingModelElement>
 <coghead.A_schema_collection c='2'>
-<L f='E007956A8A5AC941310411DFB229D5628D150765' s='local:E007956A8BAF83D6310411DFC5C2D5628D150765'/>
 <L f='E007956AFECACA40312811DFADF6F25B8D150765' s='local:E007956AFF2C9950312811DFB721F25B8D150765'/>
-<L f='E0356A042F7A0A2031AB11DF8FD7F56A8D150765' s='local:E0356A042F7B69B031AB11DFBB49F56A8D150765'/>
-<L f='E0C4897F9A136860311D11DFC7CAC6038D150765' s='local:E0C4897F9A6AD730311D11DFC13EC6038D150765'/>
 </coghead.A_schema_collection>
 </Partition>

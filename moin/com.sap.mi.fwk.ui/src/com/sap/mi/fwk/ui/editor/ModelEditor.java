@@ -743,7 +743,7 @@ public class ModelEditor extends PlatformObject implements IModelEditor {
                             return; // disposed
                         }
                         RefBaseObject obj = in.getRefObject();
-                        if (obj == null || !((Partitionable) obj).is___Alive()) {
+                        if ((obj == null || !((Partitionable) obj).is___Alive()) && !mConnection.isDirty()) {
                             // object is gone so try to close
                             final IWorkbenchPage page = site.getPage();
                             if (sTracer.isLoggable(Level.FINE)) {

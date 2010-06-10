@@ -15,7 +15,6 @@ import tcs.Property;
 import tcs.PropertyReference;
 import tcs.SequenceElement;
 import tcs.Template;
-import textblockdefinition.TextblockDefinitionGeneralisation;
 import textblocks.AbstractToken;
 import textblocks.DocumentNode;
 import textblocks.LexedToken;

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Partition xmlns:m='http://xml.sap.com/moin'>
 <C n='demo.sap.com/tcsmeta' i='1' v=''/>
-<C n='sap.com/moin/mm/coghead' i='2' v=''/>
 <M c='1' q='textblocks.TextBlock' i='480716BCBE2C3EAC0C5F11DDB70900016CE99C52'/>
 <M c='1' q='textblocks.LexedToken' i='480716BCBE2DC5420C5F11DDA75D00016CE99C52'/>
 <M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
 <M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.TextBlock_Contains_Subblocks' i='480716BCBE2DC5490C5F11DDB5A500016CE99C52' se='1' ce='1' oe='0'/>
-<M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
-<M c='2' q='coghead.Field' i='49D62CFB3209005A206511DE83200019D29902CC'/>
-<M c='2' q='coghead.A_entries_schema' i='49D62CFB320DE284206511DEA81B0019D29902CC' se='0' ce='1' oe='-1'/>
 <textblocks.OmittedToken m:c='1' m:i='E01DFA6E8B260130304311DFC89DC41C8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='99' type='43'/>
 <textblocks.OmittedToken m:c='1' m:i='E01DFA6E8B262840304311DF95A3C41C8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='1' offsetRelative='true' value='&#9;' lookahead='1' lookback='1' state='99' type='44'/>
 <textblocks.LexedToken m:c='1' m:i='E01DFA6E8B262841304311DFBE92C41C8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='3' length='6' offsetRelative='true' value='string' lookahead='2' lookback='1' state='0' type='68' isOperator='false'/>
@@ -34,7 +30,6 @@
 <parentAltChoices v='1'/>
 <parentAltChoices v='1'/>
 </textblocks.TextBlock>
-<coghead.Field m:c='2' m:i='E01DFA6E8B332090304311DFC9BEC41C8D150765' name='name' cardinality='1' unique='false' type='string'/>
 <textblocks.TextBlock m:c='1' m:i='E01DFA6E8B33BCD0304311DF8A36C41C8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='15' length='34' offsetRelative='true' isComplete='true'>
 <parentAltChoices v='1'/>
 <parentAltChoices v='2'/>
@@ -42,7 +37,6 @@
 <parentAltChoices v='1'/>
 <parentAltChoices v='1'/>
 </textblocks.TextBlock>
-<coghead.Field m:c='2' m:i='E01DFA6E8B351C60304311DFA8CAC41C8D150765' name='nickname' cardinality='1' unique='false' type='string'/>
 <textblocks.TextBlock m:c='1' m:i='E01DFA6E8B35DFB0304311DFAAE0C41C8D150765' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='50' length='13' offsetRelative='true' isComplete='true'>
 <parentAltChoices v='1'/>
 <parentAltChoices v='2'/>
@@ -50,7 +44,6 @@
 <parentAltChoices v='1'/>
 <parentAltChoices v='1'/>
 </textblocks.TextBlock>
-<coghead.Field m:c='2' m:i='E01DFA6E8B36A300304311DFB721C41C8D150765' name='age' cardinality='1' unique='false' type='number'/>
 <textblocks.TextBlock_Contains_Tokens c='1'>
 <L f='E01DFA6E8B260130304311DFC89DC41C8D150765' s='E01DFA6E8B3199F0304311DFC982C41C8D150765'/>
 <L f='E01DFA6E8B262840304311DF95A3C41C8D150765' s='E01DFA6E8B3199F0304311DFC982C41C8D150765'/>
@@ -73,14 +66,4 @@
 <textblocks.TextBlock_Contains_Subblocks c='1'>
 <L f='local:E01DFA6E8B34A730304311DFC781C41C8D150765' s='E01DFA6E8B33BCD0304311DF8A36C41C8D150765'/>
 </textblocks.TextBlock_Contains_Subblocks>
-<textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
-<L f='E01DFA6E8B332090304311DFC9BEC41C8D150765' s='E01DFA6E8B3199F0304311DFC982C41C8D150765'/>
-<L f='E01DFA6E8B351C60304311DFA8CAC41C8D150765' s='E01DFA6E8B33BCD0304311DF8A36C41C8D150765'/>
-<L f='E01DFA6E8B36A300304311DFB721C41C8D150765' s='E01DFA6E8B35DFB0304311DFAAE0C41C8D150765'/>
-</textblocks.DocumentNode_References_CorrespondingModelElement>
-<coghead.A_entries_schema c='2'>
-<L f='E01DFA6E8B332090304311DFC9BEC41C8D150765' s='local:E01DFA6E8B373F40304311DFBA2FC41C8D150765'/>
-<L f='E01DFA6E8B351C60304311DFA8CAC41C8D150765' s='local:E01DFA6E8B373F40304311DFBA2FC41C8D150765'/>
-<L f='E01DFA6E8B36A300304311DFB721C41C8D150765' s='local:E01DFA6E8B373F40304311DFBA2FC41C8D150765'/>
-</coghead.A_entries_schema>
 </Partition>

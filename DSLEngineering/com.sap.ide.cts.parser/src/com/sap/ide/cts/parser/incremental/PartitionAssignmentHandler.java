@@ -4,41 +4,18 @@ import tcs.ConcreteSyntax;
 import tcs.PartitionHandling;
 import tcs.SequenceElement;
 import tcs.Template;
+import textblocks.TextBlock;
 
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public interface PartitionAssignmentHandler {
 
 	
-	/**
-	 * evaluate the OCL expression of the given element <tt>inputRefObject<tt>
-	 * 
-	 * @param inputRefObject
-	 * @param partitionHandling
-	 * @param connection
-	 * 
-	 * @return the name of the partition
-	 */
 	
-	String evaluatedOCLForProperty(RefObject inputRefObject,
-			PartitionHandling partitionHandling, Connection connection);
 
-//	/**
-//	 * assign the given element<tt>newElement<tt> to her correspondent partition
-//	 * 
-//	 * @param elementInPartition
-//	 * @param newElement
-//	 * @param template
-//	 * @param connection
-//	 * @param mainPartition
-//	 * @param concreteSyntax
-//	 */
-//	void assignToPartition(RefObject elementInPartition, RefObject newElement,
-//			Template template);
 
 	/**
 	 * assign the given element<tt>newElement<tt> to her correspondent partition
@@ -46,12 +23,12 @@ public interface PartitionAssignmentHandler {
 	 * @param partition
 	 * @param newElement
 	 * @param template
-	 * @param connection
-	 * @param mainPartition
-	 * @param concreteSyntax
+	 * @param partitionHandling
 	 */
-	void assignToPartition(ModelPartition partition, RefObject newElement,
-			Template template);
+
+	
+	void assignToPartition(ModelPartition partition,
+			 TextBlock textblock, TextBlock parent, PartitionHandlingWithRefObject partitionHandling, Template template);
 
 	/**
 	 * assign the given element<tt>newElement<tt> that is a property or a concrete syntax to her correspondent partition
@@ -63,10 +40,22 @@ public interface PartitionAssignmentHandler {
 	 * @param mainPartition
 	 * @param concreteSyntax
 	 */
-	void assignToPartition(ModelPartition partition, RefObject refObject,
-			PartitionHandling partitionHandling);
+	void assignToPartition(ModelPartition partition, TextBlock textblock,TextBlock parent,
+			PartitionHandlingWithRefObject partitionHandling);
 
-	
+	/**
+	 * assign the given element<tt>newElement<tt> that is a property or a concrete syntax to her correspondent partition
+	 * 
+	 * @param partition
+	 * @param refObject
+	 * @param template
+	 * @param connection
+	 * @param mainPartition
+	 * @param concreteSyntax
+	 */
+	void assignToPartition(ModelPartition partition, RefObject refObject, TextBlock textblock,TextBlock parent,
+			PartitionHandlingWithRefObject partitionHandling);
+
 
 	/**
 	 * assign the given element <tt>proxy<tt> to his specified partition
@@ -75,7 +64,9 @@ public interface PartitionAssignmentHandler {
 	 * @param template
 	 * @param defaultPartition 
 	 */
-	void assignFromProxy(IModelElementProxy proxy, SequenceElement se, Template template, ModelPartition defaultPartition);
+	void assignToPartition(ModelPartition partition, RefObject newElement,
+			TextBlock textblock,TextBlock parent, PartitionHandlingWithRefObject partitionHandling,
+			Template template);
 
 
 	/**
@@ -97,6 +88,26 @@ public interface PartitionAssignmentHandler {
 
 	void setInteractivePartitionHandler(
 			InteractivePartitionHandler interactivePartitionHandler);
+	
+	/**
+	 * assign the given element <tt>proxy<tt> with the correspondent <tt>textBlock<tt>to his specified partition
+	 * @param proxy
+	 * @param parent 
+	 * @param result
+	 * @param template
+	 * @param defaultPartition 
+	 */
+	void assignFromProxy(IModelElementProxy proxy,
+			SequenceElement sequenceElement, TextBlock textBlock,
+			TextBlock parent, Template template, ModelPartition defaultPartition);
 
+
+	PartitionHandlingWithRefObject takeParentPartitionHandling(TextBlock textblock, TextBlock parent);
+
+	String evaluatedOCLForProperty(RefObject inputRefObject,
+			PartitionHandlingWithRefObject partitionHandling,
+			Connection connection); 
+
+	
 
 }

@@ -94,8 +94,19 @@ public class InteractivePartitionHandlerImpl extends Dialog implements
 				text.setText("The TextBlock of the Element : " + name);
 			}
 		} else {
-			name = (String) newElement.refGetValue("name");
-			text.setText("the Element with the value : " + name);
+			try {
+				name = (String) newElement.refGetValue("name");
+				if (name.equalsIgnoreCase("")) {
+					text.setText("the Element with the value : " + name);
+				}else {
+					name =  (String)newElement.refMofId();
+					text.setText("the Element with the value : " + name);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			
 		}
 
 		final Button browse = new Button(shell3, SWT.PUSH);
@@ -139,31 +150,24 @@ public class InteractivePartitionHandlerImpl extends Dialog implements
 					targetPRI = ModelManager.getPartitionService().getPRI(
 							project, path);
 					setResult.setPri_Result(targetPRI);
-					System.out.println("browse was clicked ");
 					browse.setEnabled(false);
 				} else if (event.widget == ok) {
-					System.out.println("ok was clicked ");
 					if (button1.getSelection()) {
 						response = "Model";
 						setResult.setMainPartitionContent(response);
-						System.out.println("Model was clicked ");
 					} else if (button2.getSelection()) {
-						response = "Textblocks";
+						response = "textblocks";
 						setResult.setMainPartitionContent(response);
-						System.out.println("Textblocks was clicked ");
 					} else {
 						response = "All";
 						setResult.setMainPartitionContent(response);
-						System.out.println("All was clicked ");
 					}
 					if (button4.getSelection()) {
 						setResult.setInteractivePartition(true);
-						System.out.println("For All the Elements was clicked ");
 					}
 					shell3.close();
 
 				} else if (event.widget == cancel) {
-					System.out.println("cancel was clicked ");
 					 shell3.close();
 				}
 			}
