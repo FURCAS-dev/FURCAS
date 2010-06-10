@@ -9,13 +9,13 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesis
 
 
 public class IterateExpTracer extends AbstractTracer<IterateExp> {
-	public IterateExpTracer(IterateExp expression) {
-		super(expression);
+	public IterateExpTracer(IterateExp expression, String[] tuplePartNames) {
+		super(expression, tuplePartNames);
 	}
 
 	@Override
 	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-		return pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getBody(), context, filterSynthesizer);
+		return pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getBody(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
 	}
 
 }

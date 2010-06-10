@@ -15,8 +15,8 @@ import org.eclipse.ocl.expressions.CollectionLiteralPart;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExp> {
-    public CollectionLiteralExpTracer(CollectionLiteralExp expression) {
-        super(expression);
+    public CollectionLiteralExpTracer(CollectionLiteralExp expression, String[] tuplePartNames) {
+        super(expression, tuplePartNames);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
             CollectionLiteralPart<EClassifier> part = i.next();
             if (part instanceof CollectionItem) {
                 steps.add(pathCache.getOrCreateNavigationPath((OCLExpression) ((CollectionItem) part)
-                        .getItem(), context, filterSynthesizer));
+                        .getItem(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
             }
         }
         EClass innermostType = getInnermostElementType(getExpression().getType());

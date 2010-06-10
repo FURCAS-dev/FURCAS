@@ -7,14 +7,14 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 public class IfExpTracer extends AbstractTracer<IfExp> {
-	public IfExpTracer(IfExp expression) {
-		super(expression);
+	public IfExpTracer(IfExp expression, String[] tuplePartNames) {
+		super(expression, tuplePartNames);
 	}
 
 	@Override
 	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-		NavigationStep thenPath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getThenExpression(), context, filterSynthesizer);
-		NavigationStep elsePath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getElseExpression(), context, filterSynthesizer);
+		NavigationStep thenPath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getThenExpression(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+		NavigationStep elsePath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getElseExpression(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
 		return new BranchingNavigationStep(getInnermostElementType(getExpression().getType()), context, getExpression(), thenPath, elsePath);
 	}
 

@@ -9,8 +9,8 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesis
 
 
 public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
-	public IteratorExpTracer(IteratorExp expression) {
-		super(expression);
+	public IteratorExpTracer(IteratorExp expression, String[] tuplePartNames) {
+		super(expression, tuplePartNames);
 	}
 
 	@Override
@@ -19,10 +19,10 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
 		String name = getExpression().getName();
 		if (name.equals("select") || name.equals("reject") || name.equals("sortedBy") || name.equals("any")) {
 			result = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getSource(),
-					context, filterSynthesizer);
+					context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
 		} else if (name.equals("collect") || name.equals("collectNested")) {
 			result = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getBody(),
-					context, filterSynthesizer);
+					context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
 		} else {
 			// boolean or other non-class-type-result iterator
 			result = new EmptyResultNavigationStep(getExpression());
