@@ -30,10 +30,9 @@ public class PartialEvaluator {
         return helper;
     }
 
+    // TODO allow clients to call evaluate without specifying a valid context object which leads to leaving self undefined, throwing an exception if self is being accessed
     public Object evaluate(Object context, CallExp e, Object valueOfSourceExpression) {
-        // TODO somehow set the value of the source expression in the evaluation environment, in a thread-safe manner
         factory.setExpressionValue((OCLExpression) e.getSource(), valueOfSourceExpression);
-        // ((PartialEcoreEvaluationEnvironment) ocl.getEvaluationEnvironment()).set
         return ocl.evaluate(context, e);
     }
 }
