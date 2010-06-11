@@ -89,7 +89,10 @@ public class PartialEvaluator {
                 if (oldCallExpValueEqualsNewCallExpValue) {
                     result = true;
                 } else {
-                    ResourceSet rs = new ResourceSetImpl();
+                    ResourceSet rs = callExp.eResource().getResourceSet();
+                    if (rs == null) {
+                        rs = new ResourceSetImpl();
+                    }
                     EcoreHelper helper = EcoreHelper.getInstance();
                     Collection<EObject> appliedElement = helper.reverseNavigate(callExp, ExpressionsPackage.eINSTANCE.getCallExp_Source(),
                             helper.getQueryContext(rs), rs);
