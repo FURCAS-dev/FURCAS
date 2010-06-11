@@ -57,4 +57,19 @@ public class PartialEvaluatorTest extends TestCase {
             // this is what we expected
         }
     }
+
+    @Test
+    public void testPartialEvaluateAccessingUndefinedSelfVariable() throws ParserException {
+        evaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
+        OCLExpression expression = evaluator.getHelper().createQuery(
+                "self.ownedSignatures->select(name='abc')->any(true).name.size() + self.name.size()");
+        assertTrue(expression instanceof OperationCallExp);
+        OperationCallExp oce = (OperationCallExp) expression;
+        try {
+            evaluator.evaluate(null, oce, 3);
+            fail("Expected ValueNotFoundException");
+        } catch (ValueNotFoundException e) {
+            // this is what we expected
+        }
+    }
 }
