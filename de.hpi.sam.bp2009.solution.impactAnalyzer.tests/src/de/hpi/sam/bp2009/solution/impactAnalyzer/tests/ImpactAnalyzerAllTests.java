@@ -1,12 +1,15 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.tests;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.FilterSynthesisEMEnabledTest;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.FilterSynthesisTest;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.OclIaTest;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.RevPathComputationTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 import junit.textui.TestRunner;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.tests.PartialEvaluatorTest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.FilterSynthesisEMEnabledTest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.FilterSynthesisTest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.NavigationStepDebugGraphTest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.OclIaTest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.QuickOclParseAndEvalTest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.RevPathComputationTest;
 
 
 public class ImpactAnalyzerAllTests extends TestSuite{
@@ -17,6 +20,9 @@ public class ImpactAnalyzerAllTests extends TestSuite{
 
     public static Test suite() {
         TestSuite suite = new ImpactAnalyzerAllTests("Impact Analyzer Tests");
+        suite.addTestSuite(PartialEvaluatorTest.class);
+        suite.addTestSuite(NavigationStepDebugGraphTest.class);
+        suite.addTestSuite(QuickOclParseAndEvalTest.class);
         suite.addTestSuite(FilterSynthesisTest.class);
         suite.addTestSuite(FilterSynthesisEMEnabledTest.class);
         suite.addTestSuite(OclIaTest.class);

@@ -10,13 +10,16 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore,
- de.hpi.sam.bp2009.solution.eventManager
+ de.hpi.sam.bp2009.solution.eventManager,
+ org.eclipse.osgi,
+ org.eclipse.emf.common
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
+ de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation,
  de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
  de.hpi.sam.bp2009.solution.impactAnalyzer.impl;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
  de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
- de.hpi.sam.bp2009.solution.impactAnalyzer.util;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
- de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug
+ de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug,
+ de.hpi.sam.bp2009.solution.impactAnalyzer.util;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer"
 Import-Package: de.hpi.sam.bp2009.solution.oclToAst,
  de.hpi.sam.bp2009.solution.scopeProvider,
  de.hpi.sam.bp2009.solution.scopeProvider.impl,
@@ -24,3 +27,4 @@ Import-Package: de.hpi.sam.bp2009.solution.oclToAst,
  org.eclipse.emf.query.index.ui,
  org.eclipse.emf.query2,
  org.eclipse.core.runtime
+Bundle-Activator: de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin
