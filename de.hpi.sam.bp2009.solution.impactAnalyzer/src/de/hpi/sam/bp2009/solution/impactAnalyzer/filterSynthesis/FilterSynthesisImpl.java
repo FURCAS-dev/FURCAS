@@ -35,6 +35,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -49,10 +50,11 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  * are not of interest.
  * 
  * @author Tobias Hoppe
+ * @author Axel Uhl
  */
-
 public class FilterSynthesisImpl extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
-EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
+EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint>
+implements OperationBodyToCallMapper {
 
     final private boolean notifyNewContextElements;
     /**
@@ -95,12 +97,11 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     }
 
     /**
-     * Returns all the calls to the operation whose body is <tt>operationBody</tt> that are reachable
-     * from the root expression analyzed by this {@link FilterSynthesis}. If no such calls exist,
-     * an empty set is returned.
+     * Returns all the calls to the operation whose body is <tt>operationBodyExpression</tt> that are reachable from the root
+     * expression analyzed by this {@link FilterSynthesis}. If no such calls exist, an empty set is returned.
      */
-    public Set<OperationCallExp> getCallsOf(OCLExpression rootExpression) {
-        Set<OperationCallExp> result = visitedOperationBodies.get(rootExpression);
+    public Set<OperationCallExp> getCallsOf(OCLExpression operationBodyExpression) {
+        Set<OperationCallExp> result = visitedOperationBodies.get(operationBodyExpression);
         if (result == null) {
             result = Collections.emptySet();
         }

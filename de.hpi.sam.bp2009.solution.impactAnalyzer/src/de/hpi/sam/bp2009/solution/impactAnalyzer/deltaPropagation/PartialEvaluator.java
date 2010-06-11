@@ -1,9 +1,21 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 
+import java.util.Collection;
+import java.util.Set;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.expressions.ExpressionsPackage;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
 
 /**
  * Can evaluate a {@link CallExp} expression, given the evaluation result of its {@link CallExp#getSource() source}
@@ -46,5 +58,75 @@ public class PartialEvaluator {
     public Object evaluate(Object context, CallExp e, Object valueOfSourceExpression) {
         factory.setExpressionValue((OCLExpression) e.getSource(), valueOfSourceExpression);
         return ocl.evaluate(context, e);
+    }
+    
+    /**
+     * Determines the operation of which <tt>bodyExpression</tt> is the body. If <tt>bodyOperation</tt>
+     * is not the body of an operation in the scope of <tt>mapper</tt>, then <tt>null</tt> is returned.
+     */
+    private EOperation getOperationFromBody(OCLExpression bodyExpression, OperationBodyToCallMapper mapper) {
+        EOperation result = null;
+        Set<OperationCallExp> calls = mapper.getCallsOf(bodyExpression);
+        if (!calls.isEmpty()) {
+            result = calls.iterator().next().getReferredOperation();
+        }
+        return result;
+    }
+    
+    public boolean hasNoEffectOnOverallExpression(CallExp callExp, Object oldSourceValue, Object newSourceValue,
+            OperationBodyToCallMapper mapper) {
+        boolean result;
+        boolean oldEqualsNew = (oldSourceValue == null && newSourceValue == null) ||
+                               (oldSourceValue != null && oldSourceValue.equals(newSourceValue));
+        if (oldEqualsNew) {
+            result = true;
+        } else {
+            try {
+                Object oldCallExpValue = evaluate(/* self context */null, callExp, oldSourceValue);
+                Object newCallExpValue = evaluate(/* self context */null, callExp, newSourceValue);
+                boolean oldCallExpValueEqualsNewCallExpValue = (oldCallExpValue == null && newCallExpValue == null)
+                        || (oldCallExpValue != null && oldCallExpValue.equals(newCallExpValue));
+                if (oldCallExpValueEqualsNewCallExpValue) {
+                    result = true;
+                } else {
+                    ResourceSet rs = new ResourceSetImpl();
+                    EcoreHelper helper = EcoreHelper.getInstance();
+                    Collection<EObject> appliedElement = helper.reverseNavigate(callExp, ExpressionsPackage.eINSTANCE.getCallExp_Source(),
+                            helper.getQueryContext(rs), rs);
+                    if (!appliedElement.isEmpty()) {
+                        CallExp callExpCallingCallExp = (CallExp) appliedElement.iterator().next();
+                        result = hasNoEffectOnOverallExpression(callExpCallingCallExp, oldCallExpValue, newCallExpValue, mapper);
+                    } else {
+                        // not source of another CallExp; check if it's an operation body
+                        EOperation op = getOperationFromBody(callExp, mapper);
+                        if (op != null) {
+                            result = true;
+                            for (OperationCallExp call : mapper.getCallsOf(callExp)) {
+                                Collection<EObject> appliedElementOfOperationCall = helper.reverseNavigate(call,
+                                        ExpressionsPackage.eINSTANCE.getCallExp_Source(), helper.getQueryContext(rs),
+                                        rs);
+                                if (appliedElementOfOperationCall.isEmpty()) {
+                                    result = false; // operation call not source of another CallExp
+                                    break;
+                                } else {
+                                    result = hasNoEffectOnOverallExpression(call, oldCallExpValue, newCallExpValue, mapper);
+                                    if (!result) {
+                                        // if one operation call may have an effect then so may the original change
+                                        break;
+                                    }
+                                }
+                            }
+                        } else {
+                            // not an operation body
+                            result = false;
+                        }
+                    }
+                }
+            } catch (ValueNotFoundException e) {
+                // can't perform the partial evaluation due to access to undefined variable
+                result = false; // we don't know, so we have to answer conservatively
+            }
+        }
+        return result;
     }
 }
