@@ -17,6 +17,7 @@ import data.classes.ClassesPackage;
 import data.classes.MethodSignature;
 import data.classes.Parameter;
 import data.classes.SapClass;
+import data.classes.TypeAdapter;
 import dataaccess.expressions.ExpressionsFactory;
 import dataaccess.expressions.MethodCallExpression;
 import dataaccess.expressions.VariableExpression;
@@ -57,6 +58,31 @@ public class OclIaTest extends BaseDepartmentTest {
 
         this.cp = null;
         this.ia = null;
+    }
+
+    @Test
+    public void testTupleLiteralUsedTwice() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testTupleLiteralUsedTwice:\n" +
+                "let t:Tuple(c:data::classes::SapClass, d:data::classes::SapClass) = Tuple{c=self, d=self.adapters.to->first()} in\n"+
+                "Set{t.c.name, t.d.name}",
+                this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        SapClass d = ClassesFactory.eINSTANCE.createSapClass();
+        d.setName("D");
+        this.cp.eResource().getContents().add(c);
+        c.setName("oldName");
+        TypeAdapter ta = ClassesFactory.eINSTANCE.createTypeAdapter();
+        ta.setAdapted(c);
+        ta.setTo(d);
+        EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
+        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
+        assertTrue(impact.size() == 1 && impact.contains(c));
+        Notification noti2 = NotificationHelper.createAttributeChangeNotification(d, att, "D", "newD");
+        Collection<EObject> impact2 = this.ia.getContextObjects(noti2, expression, d.eClass());
+        assertTrue(impact2.size() == 2 && impact2.contains(c) && impact2.contains(d));
     }
 
     @Test
