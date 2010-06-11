@@ -219,6 +219,7 @@ public class RegistrationIterator<Type> implements Iterator<Type> {
     /**
      * initialises all members.
      */
+    @SuppressWarnings("unchecked")
     private void init() {
 
         _size = 0;
@@ -282,7 +283,7 @@ public class RegistrationIterator<Type> implements Iterator<Type> {
      * @param increaseSize a flag which indicates whether the _size member is being increased or decreased
      * @return the position of the next free entry in the array.
      */
-    private int addListToArray(List listToAdd, List[] arrayToAddTo, int position, boolean increaseSize) {
+    private int addListToArray(List<?> listToAdd, List<?>[] arrayToAddTo, int position, boolean increaseSize) {
         if (!listToAdd.isEmpty()) {
             arrayToAddTo[position] = listToAdd;
 

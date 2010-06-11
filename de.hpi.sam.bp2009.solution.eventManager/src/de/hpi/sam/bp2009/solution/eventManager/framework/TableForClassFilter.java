@@ -3,8 +3,6 @@ package de.hpi.sam.bp2009.solution.eventManager.framework;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 
-import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
-
 /**
  * The ClassFilterTable manages all Registrations containing {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.ClassFilter}.
  * 
