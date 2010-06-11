@@ -2,6 +2,8 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.tests;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -16,6 +18,7 @@ import data.classes.ClassesPackage;
 import data.classes.SapClass;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 public class PartialEvaluatorTest extends TestCase {
     private PartialEvaluator evaluator;
@@ -71,5 +74,19 @@ public class PartialEvaluatorTest extends TestCase {
         } catch (ValueNotFoundException e) {
             // this is what we expected
         }
+    }
+
+    @Test
+    public void testNoEffectForTrivialExpression() throws ParserException {
+        evaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
+        ResourceSet rs = new ResourceSetImpl();
+        OCLExpression expression = evaluator.getHelper().createQuery(
+                "self.name.size()");
+        rs.getResources().add(expression.eResource());
+        assertTrue(expression instanceof OperationCallExp);
+        OperationCallExp oce = (OperationCallExp) expression;
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */ false);
+        assertTrue(evaluator.hasNoEffectOnOverallExpression(oce, "Humba", "Trala", mapper));
+        assertFalse(evaluator.hasNoEffectOnOverallExpression(oce, "Humba", "Humba Humba", mapper));
     }
 }
