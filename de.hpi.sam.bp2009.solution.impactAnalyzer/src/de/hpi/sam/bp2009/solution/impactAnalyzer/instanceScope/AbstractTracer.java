@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -8,13 +7,13 @@ import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionRange;
 import org.eclipse.ocl.ecore.CollectionType;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralPart;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 
 public abstract class AbstractTracer<T extends EObject> implements Tracer {
     private T expression;
@@ -114,22 +113,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * element is found, ascending continues there.
      */
     protected OCLExpression getRootExpression() {
-        return getRootExpression(getExpression());
-    }
-
-    protected OCLExpression getRootExpression(EObject x) {
-        EObject parent = (EObject) x.eContainer();
-
-        // The root expression could be contained in an Constraint or an EAnnotation. Therefore stop ascending
-        // if parent is instance of a container type.
-        while (parent != null && !(parent instanceof Constraint) && !(parent instanceof EAnnotation)) {
-            x = parent;
-            parent = (EObject) x.eContainer();
-        }
-        if (x instanceof OCLExpression) {
-            return (OCLExpression) x;
-        }
-        throw new IllegalArgumentException();
+        return OclHelper.getRootExpression(getExpression());
     }
 
     /**
