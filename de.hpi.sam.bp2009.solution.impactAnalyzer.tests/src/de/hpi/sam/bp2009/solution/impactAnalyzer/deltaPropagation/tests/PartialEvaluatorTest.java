@@ -89,4 +89,8 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(evaluator.hasNoEffectOnOverallExpression(oce, "Humba", "Trala", mapper));
         assertFalse(evaluator.hasNoEffectOnOverallExpression(oce, "Humba", "Humba Humba", mapper));
     }
+    
+    // TODO add a test case that computes delegatesTo() and pass old and new value for self.elementsOfType
+    // (getAssociationEnds()) and for association.ends (otherEnd()) with a suitable test model that does
+    // not use delegation on either association end
 }
