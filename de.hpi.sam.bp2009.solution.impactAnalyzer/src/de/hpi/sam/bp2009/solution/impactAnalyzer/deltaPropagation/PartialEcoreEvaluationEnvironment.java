@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 
@@ -64,7 +65,11 @@ public class PartialEcoreEvaluationEnvironment extends EcoreEvaluationEnvironmen
             String message = "The name: "+name+" already has a binding: "+map.get(name);
             throw new IllegalArgumentException(message);
         }
-        map.put(name, value);
+        // A null value for self means that no context is being set during partial evaluation.
+        // To cause an exception to be thrown upon access to self, we don't enter it.
+        if (!Environment.SELF_VARIABLE_NAME.equals(name) || value != null) {
+            map.put(name, value);
+        }
     }
 
     /**
