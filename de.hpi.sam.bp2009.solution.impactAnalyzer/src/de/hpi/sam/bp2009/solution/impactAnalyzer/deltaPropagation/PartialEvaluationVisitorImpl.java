@@ -17,6 +17,7 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.EvaluationVisitorImpl;
+import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.SendSignalAction;
@@ -47,6 +48,18 @@ import org.eclipse.ocl.expressions.VariableExp;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin;
 
+/**
+ * When a {@link ValueNotFoundException} occurs during evaluating an expression, it is not caught, logged ans
+ * swallowed but forwarded to the caller.<p>
+ * 
+ * All <tt>visit...</tt> operations check if the expression to evaluate is the {@link #sourceExpression} passed
+ * to the constructor. If so, instead of actually evaluating the expression, the {@link #valueOfSourceExpression}
+ * object is returned which was also passed to the constructor. This allows for partial evaluation of any
+ * {@link CallExp} with a given value for the source expression.
+ * 
+ * @author Axel Uhl
+ *
+ */
 public class PartialEvaluationVisitorImpl
         extends
         EvaluationVisitorImpl<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
