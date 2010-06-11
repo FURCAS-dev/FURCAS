@@ -270,6 +270,7 @@ public abstract class RegistrationManager {
     }
 
     // private long time=0;
+    @SuppressWarnings("unchecked")
     protected Collection<Registration> getRegistrationsFor(Notification event) {
         // TODO Performance optimizations can probably be done here - VERY CENTRAL METHOD
         // caching is done in the subclass SessionRegistrationManager
@@ -363,7 +364,7 @@ public abstract class RegistrationManager {
          */
         if (!possibleYesSetEntries.isEmpty()) {
             for (int i = 0; i < nsi_count; i++) {
-                for (Iterator noSetRegistrationIterator = noSetIterators[i]; noSetRegistrationIterator.hasNext();) {
+                for (Iterator<Registration> noSetRegistrationIterator = noSetIterators[i]; noSetRegistrationIterator.hasNext();) {
                     possibleYesSetEntries.remove(noSetRegistrationIterator.next());
                 }
             }
