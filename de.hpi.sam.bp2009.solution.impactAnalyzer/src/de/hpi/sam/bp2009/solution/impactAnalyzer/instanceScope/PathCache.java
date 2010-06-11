@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.Tuple.Pair;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 /**
  * The instance scope analysis's goal is to compute {@link NavigationStep} objects for each {@link AttributeCallExp} and
