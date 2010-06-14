@@ -1,13 +1,9 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.AbstractNavigationStep;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.NavigationStep;
 
 import y.base.Edge;
 import y.base.Graph;
@@ -19,8 +15,9 @@ import y.view.Graph2D;
 import y.view.LineType;
 import y.view.NodeLabel;
 import y.view.NodeRealizer;
-import y.view.ShapeNodeRealizer;
 import y.view.hierarchy.HierarchyManager;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.AbstractNavigationStep;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.NavigationStep;
 
 /**
  * The GraphContext is a context within the process of building the graph structure. Therefore it holds the graph object of

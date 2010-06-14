@@ -2,9 +2,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug.extraction
 
 import y.base.Node;
 import y.base.NodeList;
-import y.view.Graph2D;
-import y.view.NodeLabel;
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.AbstractNavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.AllInstancesNavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.AssociationNavigationStep;
@@ -12,7 +9,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.EmptyResultNaviga
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.IdentityNavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.NavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.RefImmediateCompositeNavigationStep;
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug.GraphContext;
 
 
