@@ -29,7 +29,6 @@ import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
-import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
@@ -218,7 +217,7 @@ public class Query2  {
             Matcher match3=pattern3.matcher(stringBody);
 //            boolean test1 = match.find();
 //            boolean test2 = match2.find();
-            boolean test3 = match3.find();
+            match3.find();
             if (body instanceof PropertyCallExp<?, ?>){
 
                 Object prop = ((PropertyCallExp) body).getReferredProperty();
