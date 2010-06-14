@@ -15,3 +15,4 @@ Import-Package: company,
  data.classes,
  de.hpi.sam.petriNet,
  org.eclipse.emf.query2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

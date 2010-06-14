@@ -1,10 +1,7 @@
 package de.hpi.sam.bp2009.solution.oclToMqlMapping.tests;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -13,7 +10,6 @@ import java.util.regex.Pattern;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -21,7 +17,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Test;
@@ -37,7 +32,6 @@ import company.impl.DepartmentImpl;
 import company.impl.DivisionImpl;
 import company.impl.EmployeeImpl;
 import company.impl.FreelanceImpl;
-
 
 import de.hpi.sam.bp2009.solution.oclToMqlMapping.impl.MappingOCL;
 
