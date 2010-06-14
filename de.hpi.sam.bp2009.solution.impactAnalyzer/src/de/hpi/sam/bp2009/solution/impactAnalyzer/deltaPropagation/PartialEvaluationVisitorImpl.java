@@ -148,6 +148,7 @@ public class PartialEvaluationVisitorImpl
         return super.visitVariableExp(v);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Object visitPropertyCallExp(PropertyCallExp<EClassifier, EStructuralFeature> pc) {
         if (pc == sourceExpression) {
@@ -186,10 +187,9 @@ public class PartialEvaluationVisitorImpl
                     }
                 }
                 localResult = getEvaluationEnvironment().navigateProperty(property, qualifiers, context);
-                if ((pc.getType() instanceof CollectionType<?, ?>) && !(result instanceof Collection<?>)) {
+                if ((pc.getType() instanceof CollectionType<?, ?>) && !(localResult instanceof Collection<?>)) {
                     // this was an XSD "unspecified multiplicity". Now that we know what
                     // the multiplicity is, we can coerce it to a collection value
-                    @SuppressWarnings("unchecked")
                     CollectionKind kind = ((CollectionType<EClassifier, EOperation>) pc.getType()).getKind();
                     Collection<Object> collection = CollectionUtil.createNewCollection(kind);
                     collection.add(localResult);
@@ -198,27 +198,43 @@ public class PartialEvaluationVisitorImpl
             }
         }
         
-        if (atPre != null && atPre.getNotifier() != null && atPre.getNotifier() == context && pc == atPre.getFeature()) {
+        if (atPre != null && atPre.getNotifier() != null && atPre.getNotifier() == context && pc.getReferredProperty() == atPre.getFeature()) {
             // evaluate property call based on the model state that existed before the change
             // described by the atPre notification
             switch (atPre.getEventType()) {
             case Notification.ADD:
                 // if the addition operated on the result of the source expression, remove the element from the local results
                 // again
+                // TODO remove at correct position if provided and collection is ordered (a List)
+                ((Collection<?>) localResult).remove(atPre.getNewValue());
+                break;
             case Notification.ADD_MANY:
                 // if the addition operated on the result of the source expression, remove the elements from the local results
                 // again
+                // TODO remove at correct position if provided and collection is ordered (a List)
+                ((Collection<?>) localResult).removeAll((Collection<?>) atPre.getNewValue());
+                break;
             case Notification.MOVE:
                 // if the move operated on the result of the source expression, move the element back to the old index
                 // indicated by getOldIntValue()
+                break;
             case Notification.REMOVE:
                 // if the removal operated on the result of the source expression, add the element back at the index provided
+                // TODO restore at appropriate position if provided and collection is ordered (a list)
+                ((Collection<Object>) localResult).add(atPre.getOldValue());
+                break;
             case Notification.REMOVE_MANY:
                 // if the removal operated on the result of the source expression, add the elements back in the order provided by
                 // the getOldValue() collection
+                // TODO restore at appropriate position if provided and collection is ordered (a list)
+                ((Collection<Object>) localResult).addAll((Collection<?>) atPre.getOldValue());
+                break;
             case Notification.SET:
             case Notification.UNSET:
                 // if the setting/unsetting operated on the result of the source expression, return the old value
+                // TODO restore old value at position specified by index, if any, and if the local result is a collection
+                localResult = atPre.getOldValue();
+                break;
             default:
                 throw new RuntimeException("Don't understand @pre notification " + atPre);
             }
