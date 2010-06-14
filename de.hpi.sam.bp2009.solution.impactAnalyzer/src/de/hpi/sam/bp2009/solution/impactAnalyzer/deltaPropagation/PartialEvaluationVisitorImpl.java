@@ -199,19 +199,19 @@ public class PartialEvaluationVisitorImpl
         }
         
         if (atPre != null && atPre.getNotifier() != null && atPre.getNotifier() == context && pc.getReferredProperty() == atPre.getFeature()) {
+            CollectionKind kind = (pc.getType() instanceof CollectionType<?,?>) ?
+                    ((CollectionType<EClassifier, EOperation>) pc.getType()).getKind() : null;
             // evaluate property call based on the model state that existed before the change
             // described by the atPre notification
             switch (atPre.getEventType()) {
             case Notification.ADD:
                 // if the addition operated on the result of the source expression, remove the element from the local results
                 // again
-                // TODO remove at correct position if provided and collection is ordered (a List)
-                ((Collection<?>) localResult).remove(atPre.getNewValue());
+                localResult = removeAt((Collection<?>) localResult, kind);
                 break;
             case Notification.ADD_MANY:
                 // if the addition operated on the result of the source expression, remove the elements from the local results
                 // again
-                // TODO remove at correct position if provided and collection is ordered (a List)
                 ((Collection<?>) localResult).removeAll((Collection<?>) atPre.getNewValue());
                 break;
             case Notification.MOVE:
@@ -220,8 +220,7 @@ public class PartialEvaluationVisitorImpl
                 break;
             case Notification.REMOVE:
                 // if the removal operated on the result of the source expression, add the element back at the index provided
-                // TODO restore at appropriate position if provided and collection is ordered (a list)
-                ((Collection<Object>) localResult).add(atPre.getOldValue());
+                localResult = insertAt((Collection<Object>) localResult, kind);
                 break;
             case Notification.REMOVE_MANY:
                 // if the removal operated on the result of the source expression, add the elements back in the order provided by
@@ -240,6 +239,83 @@ public class PartialEvaluationVisitorImpl
             }
         }
         return localResult;
+    }
+
+    /**
+     * Removes {@link #atPre}'s new value from the <tt>from</tt> collection. If the collection kind indicates an
+     * ordered collection and the {@link #atPre} event specifies a valid index, removal will take place at the
+     * index specified after a check that at that index the {@link #atPre}.{@link Notification#getNewValue() getNewValue()}
+     * object is found.<p>
+     * 
+     * Precondition: {@link #atPre} <tt>!= null</tt>
+     */
+    private <T> Collection<T> removeAt(Collection<T> from, CollectionKind kind) {
+        Collection<T> result;
+        if ((kind == CollectionKind.SEQUENCE_LITERAL || kind == CollectionKind.ORDERED_SET_LITERAL)
+                && atPre.getPosition() != Notification.NO_INDEX) {
+            if (from instanceof List<?>) {
+                if (((List<?>) from).get(atPre.getPosition()) != atPre.getNewValue()) {
+                    throw new RuntimeException("Internal error. Didn't find "+atPre.getNewValue()+
+                            " at position "+atPre.getPosition());
+                } else {
+                    ((List<?>) from).remove(atPre.getPosition());
+                    result = from;
+                }
+            } else {
+                // ordered but not a list; probably an OrderedSet rendered as a LinkedHashMap; we need to copy
+                result = CollectionUtil.createNewCollection(kind);
+                int i=0;
+                for (T t : from) {
+                    if (i++ != atPre.getPosition()) {
+                        result.add(t);
+                    }
+                }
+            }
+        } else {
+            from.remove(atPre.getNewValue());
+            result = from;
+        }
+        return result;
+    }
+
+    /**
+     * Adds {@link #atPre}'s old value to the <tt>into</tt> collection. If the collection kind indicates an
+     * ordered collection and the {@link #atPre} event specifies a valid index, insertion will take place at the
+     * index specified.<p>
+     * 
+     * Precondition: {@link #atPre} <tt>!= null</tt>
+     */
+    @SuppressWarnings("unchecked")
+    private <T> Collection<T> insertAt(Collection<T> into, CollectionKind kind) {
+        Collection<T> result;
+        if ((kind == CollectionKind.SEQUENCE_LITERAL || kind == CollectionKind.ORDERED_SET_LITERAL)
+                && atPre.getPosition() != Notification.NO_INDEX) {
+            if (into instanceof List<?>) {
+                ((List<T>) into).add(atPre.getPosition(), (T) atPre.getOldValue());
+                result = into;
+            } else {
+                // ordered but not a list; probably an OrderedSet rendered as a LinkedHashMap; we need to copy
+                // maybe we're lucky and can append to the end:
+                if (atPre.getPosition() >= into.size()) {
+                    into.add((T) atPre.getOldValue());
+                    result = into;
+                } else {
+                    result = CollectionUtil.createNewCollection(kind);
+                    int i = 0;
+                    for (T t : into) {
+                        if (i++ == atPre.getPosition()) {
+                            result.add((T) atPre.getOldValue());
+                            i++;
+                        }
+                        result.add(t);
+                    }
+                }
+            }
+        } else {
+            into.add((T) atPre.getOldValue());
+            result = into;
+        }
+        return result;
     }
 
     @Override

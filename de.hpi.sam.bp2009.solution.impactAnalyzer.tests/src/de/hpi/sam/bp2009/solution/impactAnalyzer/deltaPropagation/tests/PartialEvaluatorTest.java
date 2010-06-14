@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.tests;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 
 import junit.framework.TestCase;
 
@@ -205,6 +206,46 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(c.getOwnedSignatures().contains(signature1));
         assertFalse(c.getOwnedSignatures().contains(signature2));
         assertEquals("sig1", c.getOwnedSignatures().iterator().next().getName());
+    }
+
+    @Test
+    public void testAtPreEvaluationWithSingleRemoveFromReferenceWithOrdering() throws ParserException {
+        final MethodSignature signature1 = ClassesFactory.eINSTANCE.createMethodSignature();
+        signature1.setName("sig1");
+        final MethodSignature signature2 = ClassesFactory.eINSTANCE.createMethodSignature();
+        signature2.setName("sig2");
+        final SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        c.getOwnedSignatures().add(signature1);
+        c.getOwnedSignatures().add(signature2);
+        final boolean testResult[] = new boolean[1];
+        c.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification n) {
+                try {
+                    final ResourceSet rs = new ResourceSetImpl();
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n);
+                    myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
+                    OCLExpression expression = myEvaluator.getHelper().createQuery("self.ownedSignatures.name");
+                    rs.getResources().add(expression.eResource());
+                    assertTrue(expression instanceof IteratorExp);
+                    IteratorExp ie = (IteratorExp) expression;
+                    PropertyCallExp pce = (PropertyCallExp) ie.getSource(); // self.ownedSignatures
+                    Object result = myEvaluator.evaluate(null, pce, c);
+                    Iterator<?> i = ((Collection<?>) result).iterator();
+                    testResult[0] = result instanceof Collection<?> && ((Collection<?>) result).size() == 2
+                            && "sig1".equals(((MethodSignature) i.next()).getName())
+                            && "sig2".equals(((MethodSignature) i.next()).getName());
+                } catch (ParserException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        c.getOwnedSignatures().remove(signature1);
+        assertTrue(testResult[0]);
+        assertEquals(1, c.getOwnedSignatures().size());
+        assertFalse(c.getOwnedSignatures().contains(signature1));
+        assertTrue(c.getOwnedSignatures().contains(signature2));
+        assertEquals("sig2", c.getOwnedSignatures().iterator().next().getName());
     }
 
     // TODO add a test case that computes delegatesTo() and pass old and new value for self.elementsOfType
