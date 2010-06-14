@@ -69,10 +69,10 @@ public class MoveObjectMutation extends AbstractMutation {
 
                     if (!targetObject.equals(eObjectToMove) && !EcoreUtil.isAncestor(targetObject, eObjectToMove)) {
                         Object currentValue = targetObject.eGet(targetFeature, true);
-                        if (currentValue instanceof List) {
+                        if (currentValue instanceof List<?>) {
                             // add to list
                             try {
-                                ((List) currentValue).add(eObjectToMove);
+                                ((List<EObject>) currentValue).add(eObjectToMove);
                                 success = true;
                             } catch (ClassCastException e) {
                                 // do nothing

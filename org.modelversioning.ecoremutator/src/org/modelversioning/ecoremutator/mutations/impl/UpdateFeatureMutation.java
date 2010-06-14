@@ -67,8 +67,8 @@ public class UpdateFeatureMutation extends AbstractMutation {
                             // get list
                             Object listValue = eObjectToUpdate.eGet(targetFeature, true);
                             success = true;
-                            if (listValue instanceof List) {
-                                ((List) listValue).add(value);
+                            if (listValue instanceof List<?>) {
+                                ((List<Object>) listValue).add(value);
                                 success = true;
                             }
                         }
