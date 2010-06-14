@@ -62,7 +62,6 @@ extends EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
             // evaluation stopped on demand, propagate further
             throw e;
         } catch (RuntimeException e) {
-            String msg = e.getLocalizedMessage();
             noMap=true;
             // failure to evaluate results in invalid
 
