@@ -71,8 +71,8 @@ public class AddObjectMutation extends AbstractMutation {
                                 // get list
                                 Object listValue = parent.eGet(feature, true);
                                 success = true;
-                                if (listValue instanceof List) {
-                                    ((List) listValue).add(eObject);
+                                if (listValue instanceof List<?>) {
+                                    ((List<EObject>) listValue).add(eObject);
                                     success = true;
                                 }
                             }
