@@ -154,7 +154,6 @@ public class PartialEvaluationVisitorImpl
         if (pc == sourceExpression) {
             return valueOfSourceExpression;
         }
-
         /*
          * These are the sources of the super implementation copied here which is ugly. We only want to get access to the value of
          * the source expression because it may be needed for the comparison with the atPre event later.
@@ -197,10 +196,11 @@ public class PartialEvaluationVisitorImpl
                 }
             }
         }
-        
-        if (atPre != null && atPre.getNotifier() != null && atPre.getNotifier() == context && pc.getReferredProperty() == atPre.getFeature()) {
-            CollectionKind kind = (pc.getType() instanceof CollectionType<?,?>) ?
-                    ((CollectionType<EClassifier, EOperation>) pc.getType()).getKind() : null;
+
+        if (atPre != null && atPre.getNotifier() != null && atPre.getNotifier() == context
+                && pc.getReferredProperty() == atPre.getFeature()) {
+            CollectionKind kind = (pc.getType() instanceof CollectionType<?, ?>) ? ((CollectionType<EClassifier, EOperation>) pc
+                    .getType()).getKind() : null;
             // evaluate property call based on the model state that existed before the change
             // described by the atPre notification
             switch (atPre.getEventType()) {
@@ -217,6 +217,7 @@ public class PartialEvaluationVisitorImpl
             case Notification.MOVE:
                 // if the move operated on the result of the source expression, move the element back to the old index
                 // indicated by getOldIntValue()
+                localResult = move((Collection<?>) localResult, kind);
                 break;
             case Notification.REMOVE:
                 // if the removal operated on the result of the source expression, add the element back at the index provided
@@ -242,10 +243,61 @@ public class PartialEvaluationVisitorImpl
     }
 
     /**
-     * Removes {@link #atPre}'s new value from the <tt>from</tt> collection. If the collection kind indicates an
-     * ordered collection and the {@link #atPre} event specifies a valid index, removal will take place at the
-     * index specified after a check that at that index the {@link #atPre}.{@link Notification#getNewValue() getNewValue()}
-     * object is found.<p>
+     * Moves the {@link #atPre}'s {@link Notification#getNewValue() new value} from the new position
+     * described by {@link #atPre}.{@link Notification#getPosition() getPosition()} to the old position
+     * described by  {@link #atPre}.{@link Notification#getOldValue() getOldValue()}. Does what is needed,
+     * including cloning the collection and fixing the order by iteration if necessary.
+     */
+    @SuppressWarnings("unchecked")
+    private <T> Collection<T> move(Collection<T> collection, CollectionKind kind) {
+        Collection<T> result = collection;
+        if ((kind == CollectionKind.SEQUENCE_LITERAL || kind == CollectionKind.ORDERED_SET_LITERAL)
+                && atPre.getPosition() != Notification.NO_INDEX) {
+            int oldPositionBeforeMove = (Integer) atPre.getOldValue();
+            int newPositionAfterMove = atPre.getPosition();
+            if (collection instanceof List<?>) {
+                if (((List<?>) collection).get(atPre.getPosition()) != atPre.getNewValue()) {
+                    throw new RuntimeException("Internal error. Didn't find " + atPre.getNewValue() + " at position "
+                            + atPre.getPosition());
+                } else {
+                    ((List<T>) collection).remove(newPositionAfterMove);
+                    ((List<T>) collection).add(oldPositionBeforeMove, (T) atPre.getNewValue());
+                    result = collection;
+                }
+            } else {
+                if (oldPositionBeforeMove >= collection.size()) {
+                    // can handle by remove and add at end
+                    collection.remove(atPre.getNewValue());
+                    collection.add((T) atPre.getNewValue());
+                } else {
+                    // ordered but not a list; probably an OrderedSet rendered as a LinkedHashMap; we need to copy
+                    result = CollectionUtil.createNewCollection(kind);
+                    int sourcePos = 0;
+                    int targetPos = 0;
+                    for (T t : collection) {
+                        if (targetPos == oldPositionBeforeMove) {
+                            result.add((T) atPre.getNewValue());
+                            targetPos++;
+                        }
+                        if (sourcePos != newPositionAfterMove) {
+                            result.add(t);
+                            targetPos++;
+                        }
+                        sourcePos++;
+                    }
+                }
+            }
+        }
+        // no action required otherwise because the collection is not ordered and moving is not defined
+        // on an unordered collection
+        return result;
+    }
+
+    /**
+     * Removes {@link #atPre}'s new value from the <tt>from</tt> collection. If the collection kind indicates an ordered
+     * collection and the {@link #atPre} event specifies a valid index, removal will take place at the index specified after a
+     * check that at that index the {@link #atPre}.{@link Notification#getNewValue() getNewValue()} object is found.
+     * <p>
      * 
      * Precondition: {@link #atPre} <tt>!= null</tt>
      */
@@ -255,8 +307,8 @@ public class PartialEvaluationVisitorImpl
                 && atPre.getPosition() != Notification.NO_INDEX) {
             if (from instanceof List<?>) {
                 if (((List<?>) from).get(atPre.getPosition()) != atPre.getNewValue()) {
-                    throw new RuntimeException("Internal error. Didn't find "+atPre.getNewValue()+
-                            " at position "+atPre.getPosition());
+                    throw new RuntimeException("Internal error. Didn't find " + atPre.getNewValue() + " at position "
+                            + atPre.getPosition());
                 } else {
                     ((List<?>) from).remove(atPre.getPosition());
                     result = from;
@@ -264,7 +316,7 @@ public class PartialEvaluationVisitorImpl
             } else {
                 // ordered but not a list; probably an OrderedSet rendered as a LinkedHashMap; we need to copy
                 result = CollectionUtil.createNewCollection(kind);
-                int i=0;
+                int i = 0;
                 for (T t : from) {
                     if (i++ != atPre.getPosition()) {
                         result.add(t);
@@ -279,9 +331,9 @@ public class PartialEvaluationVisitorImpl
     }
 
     /**
-     * Adds {@link #atPre}'s old value to the <tt>into</tt> collection. If the collection kind indicates an
-     * ordered collection and the {@link #atPre} event specifies a valid index, insertion will take place at the
-     * index specified.<p>
+     * Adds {@link #atPre}'s old value to the <tt>into</tt> collection. If the collection kind indicates an ordered collection and
+     * the {@link #atPre} event specifies a valid index, insertion will take place at the index specified.
+     * <p>
      * 
      * Precondition: {@link #atPre} <tt>!= null</tt>
      */
@@ -318,13 +370,100 @@ public class PartialEvaluationVisitorImpl
         return result;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Object visitOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> pc) {
         if (pc == sourceExpression) {
             return valueOfSourceExpression;
         }
-        // TODO perform @pre handling
-        return super.visitOppositePropertyCallExp(pc);
+        /*
+         * These are the sources of the super implementation copied here which is ugly. We only want to get access to the value of
+         * the source expression because it may be needed for the comparison with the atPre event later.
+         * 
+         * TODO evaluate source expression here and cache the result before delegating to super.visitPropertyCallExp; when then
+         * super.visitPropertyCallExp asks the visitor to evaluate the source expression, the result is taken from the cache
+         */
+        EStructuralFeature property = pc.getReferredOppositeProperty();
+        OCLExpression<EClassifier> source = pc.getSource();
+        // evaluate source
+        Object context = source.accept(getVisitor());
+        Object localResult;
+        // if source is undefined, result is OclInvalid
+        if (isUndefined(context)) {
+            localResult = getInvalid();
+        } else {
+            OCLExpression<EClassifier> derivation = getPropertyBody(property);
+            if (derivation != null) {
+                // this is an additional property
+                localResult = navigate(property, derivation, context);
+            } else {
+                List<Object> qualifiers;
+                if (pc.getQualifier().isEmpty()) {
+                    qualifiers = Collections.emptyList();
+                } else {
+                    // handle qualified association navigation
+                    qualifiers = new java.util.ArrayList<Object>();
+                    for (OCLExpression<EClassifier> q : pc.getQualifier()) {
+                        qualifiers.add(q.accept(getVisitor()));
+                    }
+                }
+                localResult = getEvaluationEnvironment().navigateOppositeProperty(property, qualifiers, context);
+                if ((pc.getType() instanceof CollectionType<?, ?>) && !(localResult instanceof Collection<?>)) {
+                    // this was an XSD "unspecified multiplicity". Now that we know what
+                    // the multiplicity is, we can coerce it to a collection value
+                    CollectionKind kind = ((CollectionType<EClassifier, EOperation>) pc.getType()).getKind();
+                    Collection<Object> collection = CollectionUtil.createNewCollection(kind);
+                    collection.add(localResult);
+                    localResult = collection;
+                }
+            }
+        }
+        
+        // for @pre with opposite properties there can't be any ordering
+        if (atPre != null
+                // the source of the opposite property call expression is the target of a normal EMF notification
+                // because the notification talks about a forward reference; the old and new value described by the
+                // event may be a collection of elements or a single element. Check if the source appears somewhere
+                // in the notification's old or new value:
+                && ((atPre.getOldValue() != null && ((atPre.getOldValue() instanceof Collection<?> &&
+                        ((Collection<?>) atPre.getOldValue()).contains(context)) || atPre.getOldValue() == context))
+                        || (atPre.getNewValue() != null && ((atPre.getNewValue() instanceof Collection<?> &&
+                                ((Collection<?>) atPre.getNewValue()).contains(context)) || atPre.getNewValue() == context)))
+                && pc.getReferredOppositeProperty() == atPre.getFeature()) {
+            // evaluate property call based on the model state that existed before the change
+            // described by the atPre notification
+            switch (atPre.getEventType()) {
+            case Notification.ADD:
+            case Notification.ADD_MANY:
+                // if the addition operated on the result of the source expression, remove the element from the local results
+                // again
+                ((Collection<?>) localResult).remove(atPre.getNotifier());
+                break;
+            case Notification.MOVE:
+                // there is no ordering for opposite properties in Ecore; it's safe to ignore this notification
+                break;
+            case Notification.REMOVE:
+            case Notification.REMOVE_MANY:
+                // if the removal operated on the result of the source expression, add the element back at the index provided
+                ((Collection<Object>) localResult).add(atPre.getNotifier());
+                break;
+            case Notification.SET:
+            case Notification.UNSET:
+                if (atPre.getOldValue() == context) {
+                    // the notification tells that previously the source context was referenced by the notifier;
+                    // re-add the notifier to the result:
+                    ((Collection<Object>) localResult).add(atPre.getNotifier());
+                } else if (atPre.getNewValue() == context) {
+                    // the notification tells that after the change the source context is referenced by the notifier;
+                    // remove the notifier from the result:
+                    ((Collection<Object>) localResult).remove(atPre.getNotifier());
+                }
+                break;
+            default:
+                throw new RuntimeException("Don't understand @pre notification " + atPre);
+            }
+        }
+        return localResult;
     }
 
     @Override
