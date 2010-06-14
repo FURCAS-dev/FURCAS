@@ -323,6 +323,7 @@ public class PartialEvaluationVisitorImpl
         if (pc == sourceExpression) {
             return valueOfSourceExpression;
         }
+        // TODO perform @pre handling
         return super.visitOppositePropertyCallExp(pc);
     }
 
