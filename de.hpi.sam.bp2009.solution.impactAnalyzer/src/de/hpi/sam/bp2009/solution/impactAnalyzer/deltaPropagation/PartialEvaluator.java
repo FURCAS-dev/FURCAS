@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 import java.util.Collection;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -27,11 +28,27 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
 public class PartialEvaluator {
     private OCL ocl;
     private Helper helper;
-    private PartialEcoreEnvironmentFactory factory = new PartialEcoreEnvironmentFactory();
+    private PartialEcoreEnvironmentFactory factory;
     
     public PartialEvaluator() {
+        factory = new PartialEcoreEnvironmentFactory();
+        initOcl();
+    }
+
+    private void initOcl() {
         ocl = OCL.newInstance(factory);
         helper = ocl.createOCLHelper();
+    }
+    
+    /**
+     * Taking a {@link Notification} object such that an evaluation will be based on the state *before* the notification.
+     * For example, if the notification indicates the removal of a reference from an element <tt>e1</tt> to an element <tt>e2</tt>
+     * across reference <tt>r</tt> then when during partial evaluation <tt>r</tt> is traversed starting from <tt>e1</tt>
+     * then <tt>e2</tt> will show in the results although in the current version of the model it would not.
+     */
+    public PartialEvaluator(Notification atPre) {
+        factory = new PartialEcoreEnvironmentFactory(atPre);
+        initOcl();
     }
     
     public OCL getOcl() {

@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -23,10 +24,34 @@ import org.eclipse.ocl.ecore.SendSignalAction;
 public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
     private Object valueOfSourceExpression;
     private OCLExpression sourceExpression;
+    
+    /**
+     * A {@link Notification} object such that an evaluation performed with the {@link EvaluationVisitor} returned by this
+     * factory's {@link #createEvaluationVisitor(Environment, EvaluationEnvironment, Map)} operation will be based on the state
+     * *before* the notification. For example, if the notification indicates the removal of a reference from an element
+     * <tt>e1</tt> to an element <tt>e2</tt> across reference <tt>r</tt> then when during partial evaluation <tt>r</tt> is
+     * traversed starting from <tt>e1</tt> then <tt>e2</tt> will show in the results although in the current version of the model
+     * it would not.<p>
+     * 
+     * If <tt>null</tt>, the expression will be evaluated on the model as is.
+     */
+    private Notification atPre;
 
     public PartialEcoreEnvironmentFactory() {
     }
-    
+
+    /**
+     * Taking a {@link Notification} object such that an evaluation performed with the {@link EvaluationVisitor} returned by this
+     * factory's {@link #createEvaluationVisitor(Environment, EvaluationEnvironment, Map)} operation will be based on the state
+     * *before* the notification. For example, if the notification indicates the removal of a reference from an element
+     * <tt>e1</tt> to an element <tt>e2</tt> across reference <tt>r</tt> then when during partial evaluation <tt>r</tt> is
+     * traversed starting from <tt>e1</tt> then <tt>e2</tt> will show in the results although in the current version of the model
+     * it would not.
+     */
+    public PartialEcoreEnvironmentFactory(Notification atPre) {
+        this.atPre = atPre;
+    }
+
     // implements the inherited specification
     public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
         return new PartialEcoreEvaluationEnvironment();
@@ -46,9 +71,7 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
             Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> evalEnv,
             Map<? extends EClass, ? extends Set<? extends EObject>> extentMap) {
-        EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> result =
-            new PartialEvaluationVisitorImpl(env, evalEnv, extentMap, sourceExpression, valueOfSourceExpression);
-        return result;
+        return new PartialEvaluationVisitorImpl(env, evalEnv, extentMap, sourceExpression, valueOfSourceExpression, atPre);
     }
 
     public void setExpressionValue(OCLExpression sourceExpression, Object valueOfSourceExpression) {
