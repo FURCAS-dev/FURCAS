@@ -1,19 +1,11 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug.test;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import org.junit.Test;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.AssociationNavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.BranchingNavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.IndirectingStep;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.NavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.NavigationStepSequence;
-
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug.NavigationStepDebugHelperImpl;
 
 public class GraphTest {
@@ -135,27 +127,4 @@ public class GraphTest {
 	printToString(branch, BASE_PRINT_PATH + "testAllGraph.step");	**/
     }
     
-    
-    private void printToString(NavigationStep step, String path){
-	File f = new File(path);
-	
-	try {
-	    f.createNewFile();
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
-	
-	FileWriter writer;
-	try {
-	    writer = new FileWriter(f);
-
-	    BufferedWriter bufferedWriter = new BufferedWriter(writer);
-        	
-	    bufferedWriter.write(step.toString());
-	    bufferedWriter.flush();
-	    bufferedWriter.close();
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
-    }
 }
