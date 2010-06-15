@@ -447,11 +447,13 @@ public class PartialEvaluationVisitorImpl
         if (isUndefined(context)) {
             localResult = getInvalid();
         } else {
-            OCLExpression<EClassifier> derivation = getPropertyBody(property);
+            // TODO consider introduction of derivation expressions also for opposite property; for now it's not supported
+            /* OCLExpression<EClassifier> derivation = getPropertyBody(property);
             if (derivation != null) {
                 // this is an additional property
                 localResult = navigate(property, derivation, context);
             } else {
+            */
                 List<Object> qualifiers;
                 if (pc.getQualifier().isEmpty()) {
                     qualifiers = Collections.emptyList();
@@ -471,7 +473,7 @@ public class PartialEvaluationVisitorImpl
                     collection.add(localResult);
                     localResult = collection;
                 }
-            }
+            // }
         }
         
         // for @pre with opposite properties there can't be any ordering
