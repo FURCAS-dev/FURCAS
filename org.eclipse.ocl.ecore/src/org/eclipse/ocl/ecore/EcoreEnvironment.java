@@ -769,6 +769,9 @@ public class EcoreEnvironment
 								.execute(resourceQuery)) {
 								result.add(desc.getURI());
 							}
+							for (Resource r : rs.getResources()) {
+								result.add(r.getURI());
+							}
 						}
 					});
 				return result.toArray(new URI[0]);
