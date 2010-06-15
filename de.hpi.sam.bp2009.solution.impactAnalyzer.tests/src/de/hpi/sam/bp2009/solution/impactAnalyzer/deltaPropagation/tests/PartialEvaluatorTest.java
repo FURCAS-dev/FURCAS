@@ -5,23 +5,31 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import junit.framework.TestCase;
-
 import modelmanagement.ModelmanagementPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import company.CompanyFactory;
+import company.CompanyPackage;
+import company.Department;
+import company.Division;
 
 import data.classes.ClassesFactory;
 import data.classes.ClassesPackage;
@@ -342,6 +350,89 @@ public class PartialEvaluatorTest extends TestCase {
         c.eUnset(ModelmanagementPackage.eINSTANCE.getNamedElement_Name());
         assertTrue(testResult[0]);
         assertNull(c.getName());
+    }
+    
+    @Test
+    public void testPartialEvaluationWithOppositeProperty() throws ParserException {
+        final ResourceSet rs = new ResourceSetImpl();
+        final Resource r = new XMIResourceImpl(URI.createURI("http://humba/trala"));
+        rs.getResources().add(r);
+        final Division division = CompanyFactory.eINSTANCE.createDivision();
+        r.getContents().add(division);
+        final Department department = CompanyFactory.eINSTANCE.createDepartment();
+        division.getDepartment().add(department);
+        evaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment());
+        OCLExpression expression = evaluator.getHelper().createQuery("self.department2division");
+        rs.getResources().add(expression.eResource());
+        assertTrue(expression instanceof OppositePropertyCallExp);
+        OppositePropertyCallExp pce = (OppositePropertyCallExp) expression;
+        Object result = evaluator.evaluate(null, pce, department);
+        assertTrue(result instanceof Collection<?>);
+        assertTrue(((Collection<?>) result).contains(division));
+    }
+    
+    @Test
+    public void testAtPreEvaluationWithSettingOppositeProperty() throws ParserException {
+        final ResourceSet rs = new ResourceSetImpl();
+        final Resource r = new XMIResourceImpl(URI.createURI("http://humba/trala"));
+        rs.getResources().add(r);
+        final Division division = CompanyFactory.eINSTANCE.createDivision();
+        r.getContents().add(division);
+        final Department department = CompanyFactory.eINSTANCE.createDepartment();
+        r.getContents().add(department);
+        final boolean testResult[] = new boolean[1];
+        division.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification n) {
+                try {
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n);
+                    myEvaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment());
+                    OCLExpression expression = myEvaluator.getHelper().createQuery("self.department2division");
+                    rs.getResources().add(expression.eResource());
+                    assertTrue(expression instanceof OppositePropertyCallExp);
+                    OppositePropertyCallExp pce = (OppositePropertyCallExp) expression;
+                    Object result = myEvaluator.evaluate(null, pce, department);
+                    testResult[0] = result == null || (result instanceof Collection<?> && ((Collection<?>) result).isEmpty());
+                } catch (ParserException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        division.getDepartment().add(department);
+        assertTrue(testResult[0]);
+        assertTrue(division.getDepartment().contains(department));
+    }
+    
+    @Test
+    public void testAtPreEvaluationWithUnsettingOppositeProperty() throws ParserException {
+        final ResourceSet rs = new ResourceSetImpl();
+        final Resource r = new XMIResourceImpl(URI.createURI("http://humba/trala"));
+        rs.getResources().add(r);
+        final Division division = CompanyFactory.eINSTANCE.createDivision();
+        r.getContents().add(division);
+        final Department department = CompanyFactory.eINSTANCE.createDepartment();
+        division.getDepartment().add(department);
+        final boolean testResult[] = new boolean[1];
+        division.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification n) {
+                try {
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n);
+                    myEvaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment());
+                    OCLExpression expression = myEvaluator.getHelper().createQuery("self.department2division");
+                    rs.getResources().add(expression.eResource());
+                    assertTrue(expression instanceof OppositePropertyCallExp);
+                    OppositePropertyCallExp pce = (OppositePropertyCallExp) expression;
+                    Object result = myEvaluator.evaluate(null, pce, department);
+                    testResult[0] = result instanceof Collection<?> && ((Collection<?>) result).contains(division);
+                } catch (ParserException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        r.getContents().add(department);
+        assertTrue(testResult[0]);
+        assertFalse(division.getDepartment().contains(department));
     }
     
     // TODO add test cases for opposite property call expressions
