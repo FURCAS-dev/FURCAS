@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -224,10 +225,10 @@ public class PartialEvaluationVisitorImpl
                 localResult = insertAt((Collection<Object>) localResult, kind);
                 break;
             case Notification.REMOVE_MANY:
-                // if the removal operated on the result of the source expression, add the elements back in the order provided by
-                // the getOldValue() collection
+                // if the removal operated on the result of the source expression, add the elements back at the positions
+                // given in the getNewValue() int[].
                 // TODO restore at appropriate position if provided and collection is ordered (a list)
-                ((Collection<Object>) localResult).addAll((Collection<?>) atPre.getOldValue());
+                localResult = insertManyAt((Collection<Object>) localResult, kind);
                 break;
             case Notification.SET:
             case Notification.UNSET:
@@ -240,6 +241,60 @@ public class PartialEvaluationVisitorImpl
             }
         }
         return localResult;
+    }
+
+    /**
+     * Assumes that {@link #atPre}.{@link Notification#getOldValue()} contains a collection of the
+     * objects that were removed and that {@link #atPre}.{@link Notification#getNewValue()} is an
+     * <tt>int[]</tt> describing the old positions at which the elements were removed.
+     * 
+     * @param <T>
+     * @param into
+     * @param kind
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    private <T> Collection<T> insertManyAt(Collection<T> into, CollectionKind kind) {
+        Collection<T> result;
+        int[] oldPositions = (int[]) atPre.getNewValue();
+        if ((kind == CollectionKind.SEQUENCE_LITERAL || kind == CollectionKind.ORDERED_SET_LITERAL)
+                && atPre.getPosition() != Notification.NO_INDEX) {
+            if (into instanceof List<?>) {
+                int i=0;
+                for (T t : ((Collection<T>) atPre.getOldValue())) {
+                    ((List<T>) into).add(oldPositions[i++], t);
+                }
+                result = into;
+            } else {
+                // ordered but not a list; probably an OrderedSet rendered as a LinkedHashMap; we need to copy
+                // maybe we're lucky and can append to the end:
+                if (oldPositions[0] >= into.size()) {
+                    for (T t : ((Collection<T>) atPre.getOldValue())) {
+                        ((List<T>) into).add(t);
+                    }
+                    result = into;
+                } else {
+                    result = CollectionUtil.createNewCollection(kind);
+                    int i = 0;
+                    Iterator<T> removedIter = ((Collection<T>) atPre.getOldValue()).iterator();
+                    int sourcePos = 0;
+                    int targetPos = 0;
+                    for (T t : into) {
+                        if (targetPos == oldPositions[i]) {
+                            result.add(removedIter.next());
+                            targetPos++;
+                        }
+                        result.add(t);
+                        targetPos++;
+                        sourcePos++;
+                    }
+                }
+            }
+        } else {
+            into.add((T) atPre.getOldValue());
+            result = into;
+        }
+        return result;
     }
 
     /**
