@@ -6,6 +6,8 @@ import java.util.Iterator;
 
 import junit.framework.TestCase;
 
+import modelmanagement.ModelmanagementPackage;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -287,7 +289,61 @@ public class PartialEvaluatorTest extends TestCase {
         assertEquals(1, c.getOwnedSignatures().indexOf(signature1));
     }
     
-    // TODO add test cases for SET/UNSET
+    @Test
+    public void testAtPreEvaluationWithSetName() throws ParserException {
+        final SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        final boolean testResult[] = new boolean[1];
+        c.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification n) {
+                try {
+                    final ResourceSet rs = new ResourceSetImpl();
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n);
+                    myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
+                    OCLExpression expression = myEvaluator.getHelper().createQuery("self.name");
+                    rs.getResources().add(expression.eResource());
+                    assertTrue(expression instanceof PropertyCallExp);
+                    PropertyCallExp pce = (PropertyCallExp) expression;
+                    Object result = myEvaluator.evaluate(null, pce, c);
+                    testResult[0] = result == null;
+                } catch (ParserException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        c.setName("MyClass");
+        assertTrue(testResult[0]);
+        c.getName().equals("MyClass");
+    }
+    
+    @Test
+    public void testAtPreEvaluationWithUnsetName() throws ParserException {
+        final SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        final boolean testResult[] = new boolean[1];
+        c.setName("MyClass");
+        c.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification n) {
+                try {
+                    final ResourceSet rs = new ResourceSetImpl();
+                    PartialEvaluator myEvaluator = new PartialEvaluator(n);
+                    myEvaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
+                    OCLExpression expression = myEvaluator.getHelper().createQuery("self.name");
+                    rs.getResources().add(expression.eResource());
+                    assertTrue(expression instanceof PropertyCallExp);
+                    PropertyCallExp pce = (PropertyCallExp) expression;
+                    Object result = myEvaluator.evaluate(null, pce, c);
+                    testResult[0] = result instanceof String && ((String) result).equals("MyClass");
+                } catch (ParserException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        c.eUnset(ModelmanagementPackage.eINSTANCE.getNamedElement_Name());
+        assertTrue(testResult[0]);
+        assertNull(c.getName());
+    }
+    
     // TODO add test cases for opposite property call expressions
 
     // TODO add a test case that computes delegatesTo() and pass old and new value for self.elementsOfType
