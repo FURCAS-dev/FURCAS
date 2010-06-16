@@ -439,12 +439,6 @@ public class PartialEvaluatorTest extends TestCase {
         assertFalse(division.getDepartment().contains(department));
     }
     
-
-    // FIXME Issue with recursive operations may exist: if the sourceExpression belongs to the body of a recursive operation and
-    // evaluating it performs a recursive call and the source expression may depend on operation parameters or the self object
-    // then the sourceExpressionValue must not be used during recursive evaluation. First produce this error in a failing test
-    // case, then fix.
-    
     /**
      * Partially evaluate a recursive operation such that during partial evaluation a recursive call happens.
      * The source expression for which the value is provided is an operation parameter on which the recursive call
@@ -484,9 +478,6 @@ public class PartialEvaluatorTest extends TestCase {
         Object result = evaluator.evaluate(null, selfSubDepartment_Iterate, Collections.singletonList(department));
         assertEquals(600, result);
     }
-    
-
-    
 
     // TODO add a test case that computes delegatesTo() and pass old and new value for self.elementsOfType
     // (getAssociationEnds()) and for association.ends (otherEnd()) with a suitable test model that does
