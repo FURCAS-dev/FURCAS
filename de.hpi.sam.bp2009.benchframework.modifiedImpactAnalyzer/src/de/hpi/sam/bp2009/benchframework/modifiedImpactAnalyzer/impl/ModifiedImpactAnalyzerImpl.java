@@ -30,15 +30,14 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl {
         super();      
     }
 
+    public ModifiedImpactAnalyzerResultImpl IAResult = new ModifiedImpactAnalyzerResultImpl();
+    
     @Override
     public EventFilter createFilterForExpression(OCLExpression expression, boolean notifyNewContextElements) {
         long before = System.nanoTime();
-        System.out.println("Modified version of the Filter Synthesis to benchmark time consumtion");
-        ModifiedFilterSynthesisImpl filtersyn = new ModifiedFilterSynthesisImpl(expression, notifyNewContextElements);
+        EventFilter result = super.createFilterForExpression(expression, notifyNewContextElements);
         long after = System.nanoTime();
-        this.getExpToFilterSyn().put(expression, filtersyn);
-        EventFilter result = filtersyn.getSynthesisedFilter();
-        System.out.println("Time for FilterSynthesis: " + (after - before) + "ns");
+        IAResult.getExpToFilterTime().put(expression, (after - before));
         return result;    
     }
 
@@ -48,6 +47,7 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl {
         long before = System.nanoTime();
         Collection<EObject> result = super.getContextObjects(event, expression, context);
         long after = System.nanoTime();
+        //TODO insert time consumption into csv output
         System.out.println("Time for calculating context objects: " + (after - before) + "ns");
         return result;  
     }

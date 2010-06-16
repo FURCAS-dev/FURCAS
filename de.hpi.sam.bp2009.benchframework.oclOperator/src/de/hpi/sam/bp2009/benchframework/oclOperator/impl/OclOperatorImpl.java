@@ -72,6 +72,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
     private static final String DESCRIPTION = "Evaluates a specific ocl expression";
     private HashMap<Notification, Set<Constraint>> affectedExprs = new HashMap<Notification, Set<Constraint>>();
 
+    public static HashMap<String, List<Constraint>> stringToConstraints = new HashMap<String, List<Constraint>>();
     /**
      * The cached value of the '{@link #getOption() <em>Option</em>}' containment reference.
      * <!-- begin-user-doc -->
@@ -492,7 +493,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         setResult(OclOperatorFactory.eINSTANCE.createOclResult());
         if (option instanceof OclOptionObject){
             for (String query: ((OclOptionObject) option).getConstraints()){
-                ((OclResultImpl)getResult()).addQuery("\"" + query + "\"");
+                ((OclResultImpl)getResult()).addQuery(query);
             }
             if(((OclOptionObject) option).isUseImpactAnalyzer())
                 registerQueriesIA(this.getTestRun().getModel(), (OclOptionObject) option);
@@ -540,6 +541,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 
                 OCLInput input = new OCLInput(con);
                 List<Constraint> test = ocl.parse(input);
+                OclOperatorImpl.stringToConstraints.put(con, test);
                 for(Constraint c:test)
                     list.add(c);
             } catch (ParserException e) {
@@ -591,6 +593,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
                     }
                 });
             }
+            ((OclResultImpl)getResult()).setExpToFilterTime(ia.IAResult.getExpToFilterTime());
             getResult().setMessage(getResult().getMessage() + "\n Totally registered OCL Expressions: " + expCount );
             
         }
