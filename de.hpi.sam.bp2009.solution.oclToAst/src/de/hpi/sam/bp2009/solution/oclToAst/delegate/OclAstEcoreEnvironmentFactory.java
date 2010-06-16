@@ -35,6 +35,8 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.SendSignalAction;
 
+import de.hpi.sam.bp2009.solution.oclToAst.OclAstEvaluationVisitor;
+
 public class OclAstEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
     public static OclAstEcoreEnvironmentFactory INSTANCE = new OclAstEcoreEnvironmentFactory();
 

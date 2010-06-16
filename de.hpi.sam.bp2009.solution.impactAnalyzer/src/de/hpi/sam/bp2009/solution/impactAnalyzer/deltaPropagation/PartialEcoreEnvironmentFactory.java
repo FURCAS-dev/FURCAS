@@ -65,13 +65,22 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
 
     /**
      * Creates a visitor. The {@link #isEvaluationTracingEnabled()} result is ignored here. Unfortunately,
-     * the <tt>TracingEvaluationVisitor</tt> class is not visible here.
+     * the <tt>TracingEvaluationVisitor</tt> class is not visible here. The {@link #sourceExpression}
+     * and {@link #valueOfSourceExpression} are passed to the {@link PartialEvaluationVisitorImpl}
+     * constructor and are nulled out before the constructor is called. As a consequence of this, subsequent
+     * requests to this factory to create a visitor will result in visitors that don't treat the
+     * source expression special anymore. This prevents incorrect use of the cached value during
+     * recursions.
      */
     public EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEvaluationVisitor(
             Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> evalEnv,
             Map<? extends EClass, ? extends Set<? extends EObject>> extentMap) {
-        return new PartialEvaluationVisitorImpl(env, evalEnv, extentMap, sourceExpression, valueOfSourceExpression, atPre);
+        OCLExpression localSourceExpression = sourceExpression;
+        sourceExpression = null;
+        Object localValueOfSourceExpression = valueOfSourceExpression;
+        valueOfSourceExpression = null;
+        return new PartialEvaluationVisitorImpl(env, evalEnv, extentMap, localSourceExpression, localValueOfSourceExpression, atPre);
     }
 
     public void setExpressionValue(OCLExpression sourceExpression, Object valueOfSourceExpression) {
