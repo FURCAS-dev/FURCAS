@@ -37,6 +37,7 @@ import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
@@ -47,8 +48,6 @@ import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -549,12 +548,14 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 
         }
 
-        final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
+        //final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
+        final ModifiedImpactAnalyzerImpl ia = new ModifiedImpactAnalyzerImpl();
         //final EventManager em = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
+        EventManager em = EventManagerFactory.eINSTANCE.getEventManagerFor(resource);
         final QueryEvaluator qe = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator.class);
 
-        EventManager em = EventManagerFactory.eINSTANCE.getEventManagerFor(resource);
-        //final ImpactAnalyzer ia = new ImpactAnalyzerImpl();
+        
+        
         if(ia== null)
             throw new IllegalArgumentException("Invalid Testrun, no Impact Analyzer defined");
         else if(em == null)
