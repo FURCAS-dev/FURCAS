@@ -41,6 +41,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
+import de.hpi.sam.bp2009.solution.oclToAst.delegate.OclAstEcoreEnvironmentFactory;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
@@ -178,7 +179,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (e == null)
                 return;
             // TODO can the following lines be pulled out of the loop? This may speed things up a little
-            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new OclAstEcoreEnvironmentFactory());
             new ProjectDependencyQueryContextProvider().apply(ocl);
             Helper helper = ocl.createOCLHelper();
             /*
