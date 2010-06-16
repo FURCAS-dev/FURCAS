@@ -14,7 +14,7 @@
  *
  * $Id: EMF_codetemplates.xml,v 1.1 2008/05/06 20:12:20 nickb Exp $
  */
-package de.hpi.sam.bp2009.solution.oclToAst.delegate;
+package de.hpi.sam.bp2009.solution.oclToAst;
 
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +35,9 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+import de.hpi.sam.bp2009.solution.oclToAst.delegate.InvocationBehaviorForAnnotations;
+import de.hpi.sam.bp2009.solution.oclToAst.delegate.SettingBehaviorForAnnotations;
 
 public class OclAstEvaluationVisitor
         extends

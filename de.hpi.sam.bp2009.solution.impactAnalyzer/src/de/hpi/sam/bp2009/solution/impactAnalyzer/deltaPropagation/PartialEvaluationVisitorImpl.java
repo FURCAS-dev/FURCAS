@@ -21,7 +21,6 @@ import org.eclipse.ocl.AbstractEvaluationVisitor;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationHaltedException;
-import org.eclipse.ocl.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
@@ -55,9 +54,10 @@ import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin;
+import de.hpi.sam.bp2009.solution.oclToAst.OclAstEvaluationVisitor;
 
 /**
- * When a {@link ValueNotFoundException} occurs during evaluating an expression, it is not caught, logged ans swallowed but
+ * When a {@link ValueNotFoundException} occurs during evaluating an expression, it is not caught, logged and swallowed but
  * forwarded to the caller.
  * <p>
  * 
@@ -67,17 +67,17 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin;
  * source expression.
  * <p>
  * 
- * FIXME Issue with recursive operations may exist: if the sourceExpression belongs to the body of a recursive operation and
- * evaluating it performs a recursive call and the source expression may depend on operation parameters or the self object then
- * the sourceExpressionValue must not be used during recursive evaluation. First produce this error in a failing test case, then
- * fix.
+ * When the {@link #sourceExpression} has once been evaluated it is nulled out so that when due to recursion it is
+ * evaluated again, evaluation is based on the current environment and not on the cached {@link #valueOfSourceExpression}.
+ * Without this it could happen that, e.g., the value for a <tt>self</tt> {@link org.eclipse.ocl.ecore.VariableExp} is
+ * cached but would have to have a different value upon recursive evaluation.
  * 
  * @author Axel Uhl
  * 
  */
 public class PartialEvaluationVisitorImpl
         extends
-        EvaluationVisitorImpl<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
+        OclAstEvaluationVisitor {
     private org.eclipse.ocl.ecore.OCLExpression sourceExpression;
     private Object valueOfSourceExpression;
 
@@ -112,6 +112,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitOperationCallExp(OperationCallExp<EClassifier, EOperation> oc) {
         if (oc == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitOperationCallExp(oc);
@@ -120,6 +121,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitIterateExp(IterateExp<EClassifier, EParameter> ie) {
         if (ie == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitIterateExp(ie);
@@ -128,6 +130,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitIteratorExp(IteratorExp<EClassifier, EParameter> ie) {
         if (ie == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitIteratorExp(ie);
@@ -136,6 +139,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitEnumLiteralExp(EnumLiteralExp<EClassifier, EEnumLiteral> el) {
         if (el == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitEnumLiteralExp(el);
@@ -144,6 +148,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitVariableExp(VariableExp<EClassifier, EParameter> v) {
         if (v == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitVariableExp(v);
@@ -153,6 +158,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitPropertyCallExp(PropertyCallExp<EClassifier, EStructuralFeature> pc) {
         if (pc == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         /*
@@ -429,6 +435,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> pc) {
         if (pc == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         /*
@@ -526,6 +533,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitAssociationClassCallExp(AssociationClassCallExp<EClassifier, EStructuralFeature> ae) {
         if (ae == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitAssociationClassCallExp(ae);
@@ -534,6 +542,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitIfExp(IfExp<EClassifier> ie) {
         if (ie == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitIfExp(ie);
@@ -542,6 +551,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitTypeExp(TypeExp<EClassifier> t) {
         if (t == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitTypeExp(t);
@@ -550,6 +560,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitStateExp(StateExp<EClassifier, EObject> s) {
         if (s == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitStateExp(s);
@@ -558,6 +569,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitMessageExp(MessageExp<EClassifier, CallOperationAction, SendSignalAction> m) {
         if (m == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitMessageExp(m);
@@ -566,6 +578,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitUnspecifiedValueExp(UnspecifiedValueExp<EClassifier> uv) {
         if (uv == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitUnspecifiedValueExp(uv);
@@ -574,6 +587,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitIntegerLiteralExp(IntegerLiteralExp<EClassifier> il) {
         if (il == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitIntegerLiteralExp(il);
@@ -582,6 +596,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitUnlimitedNaturalLiteralExp(UnlimitedNaturalLiteralExp<EClassifier> literalExp) {
         if (literalExp == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitUnlimitedNaturalLiteralExp(literalExp);
@@ -590,6 +605,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitRealLiteralExp(RealLiteralExp<EClassifier> rl) {
         if (rl == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitRealLiteralExp(rl);
@@ -598,6 +614,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitStringLiteralExp(StringLiteralExp<EClassifier> sl) {
         if (sl == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitStringLiteralExp(sl);
@@ -606,6 +623,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitBooleanLiteralExp(BooleanLiteralExp<EClassifier> bl) {
         if (bl == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitBooleanLiteralExp(bl);
@@ -614,6 +632,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitInvalidLiteralExp(InvalidLiteralExp<EClassifier> il) {
         if (il == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitInvalidLiteralExp(il);
@@ -622,6 +641,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitNullLiteralExp(NullLiteralExp<EClassifier> il) {
         if (il == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitNullLiteralExp(il);
@@ -630,6 +650,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitLetExp(LetExp<EClassifier, EParameter> l) {
         if (l == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitLetExp(l);
@@ -638,6 +659,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitCollectionLiteralExp(CollectionLiteralExp<EClassifier> cl) {
         if (cl == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitCollectionLiteralExp(cl);
@@ -646,6 +668,7 @@ public class PartialEvaluationVisitorImpl
     @Override
     public Object visitTupleLiteralExp(TupleLiteralExp<EClassifier, EStructuralFeature> tl) {
         if (tl == sourceExpression) {
+            sourceExpression = null;
             return valueOfSourceExpression;
         }
         return super.visitTupleLiteralExp(tl);
