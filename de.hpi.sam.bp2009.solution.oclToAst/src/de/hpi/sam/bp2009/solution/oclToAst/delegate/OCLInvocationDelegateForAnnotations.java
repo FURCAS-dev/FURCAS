@@ -19,14 +19,19 @@ package de.hpi.sam.bp2009.solution.oclToAst.delegate;
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.delegate.DelegateResourceAdapter;
 import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
@@ -44,15 +49,33 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextPro
 public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate {
     private OCLExpression body;
     private ValueConverter converter;
+    final private OCL ocl;
 
     public OCLInvocationDelegateForAnnotations(OCLDelegateDomain delegateDomain, EOperation operation) {
         super(delegateDomain, operation);
         this.converter = operation.isMany() ? ValueConverter.LIST : ValueConverter.VERBATIM;
+        ocl = createOclWithOclAstEnvironment(operation);
+    }
+
+    private OCL createOclWithOclAstEnvironment(EOperation operation) {
+        EPackage ePackage = (EPackage) ((EClass) operation.eContainer()).eContainer();
+        Resource res = ePackage.eResource();
+        ResourceSet resourceSet = res.getResourceSet();
+        OclAstEcoreEnvironmentFactory envFactory;
+        if (res != null && resourceSet != null) {
+            // it's a dynamic package. Use the local package registry
+            EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
+            envFactory = new OclAstEcoreEnvironmentFactory(packageRegistry);
+            DelegateResourceAdapter.getAdapter(res);
+        } else {
+            // the shared instance uses the static package registry
+            envFactory = OclAstEcoreEnvironmentFactory.INSTANCE;
+        }
+        return OCL.newInstance(envFactory);
     }
 
     @Override
     public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-        OCL ocl = delegateDomain.getOCL();
         new ProjectDependencyQueryContextProvider().apply(ocl);
         if (body == null) {
             body = InvocationBehaviorForAnnotations.INSTANCE.getOperationBody(ocl, eOperation);
