@@ -172,8 +172,8 @@ public class RandomNumberOptionObjectImpl extends OptionObjectImpl implements Ra
 	 */
 	public Integer getNextInt(Integer upperLimit) {
 		int number;
-		if (getNumberList().size() <= getNumberListIndex()){
-			number = getNumberGenerator().nextInt(upperLimit);
+		if (getNumberList().size() <= getNumberListIndex() || upperLimit <= getNumberListIndex()){
+			number = getNumberGenerator().nextInt(upperLimit.intValue());
 			getNumberList().add(number);	
 		}else
 			number = getNumberList().get(getNumberListIndex());

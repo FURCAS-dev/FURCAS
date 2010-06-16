@@ -65,7 +65,7 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String MESSAGE_EDEFAULT = null;
+	protected static final String MESSAGE_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getMessage() <em>Message</em>}' attribute.

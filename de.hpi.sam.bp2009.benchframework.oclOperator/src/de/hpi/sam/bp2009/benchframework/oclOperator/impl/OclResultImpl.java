@@ -198,12 +198,19 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	 * @generated NOT
 	 */
 	public String getCSV() {
-		String msg = "";
-		if (queries == null) return msg;
+	    StringBuilder sb = new StringBuilder();
+            sb.append("");
+		if (queries == null) return sb.toString();
+		sb.append("Total Number of OCL Expressions: ");
+		sb.append(getQueries().size());
+		sb.append(" , Time to generate Filter:");
 		for (String query: getQueries()){
-			if (msg != "") msg += " + ";
-			msg += (query);
+			if (sb.toString() != "") sb.append(" ,\n ");
+			sb.append(query);
+			//TODO calculate concrete time
+			sb.append(" , " + 1000000 + " ns ");
 		}
-		return msg;
+		sb.append(getMessage());
+		return sb.toString();
 	}
 } //OclResultImpl
