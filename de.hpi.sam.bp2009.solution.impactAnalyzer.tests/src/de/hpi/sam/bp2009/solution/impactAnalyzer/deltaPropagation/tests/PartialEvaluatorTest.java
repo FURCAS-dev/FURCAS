@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.CallExp;
+import org.eclipse.ocl.ecore.IfExp;
+import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -38,6 +40,8 @@ import data.classes.SapClass;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class PartialEvaluatorTest extends TestCase {
     private PartialEvaluator evaluator;
@@ -435,15 +439,56 @@ public class PartialEvaluatorTest extends TestCase {
         assertFalse(division.getDepartment().contains(department));
     }
     
-    // TODO add test cases for opposite property call expressions
-
-    // TODO add a test case that computes delegatesTo() and pass old and new value for self.elementsOfType
-    // (getAssociationEnds()) and for association.ends (otherEnd()) with a suitable test model that does
-    // not use delegation on either association end
 
     // FIXME Issue with recursive operations may exist: if the sourceExpression belongs to the body of a recursive operation and
     // evaluating it performs a recursive call and the source expression may depend on operation parameters or the self object
     // then the sourceExpressionValue must not be used during recursive evaluation. First produce this error in a failing test
     // case, then fix.
+    
+    /**
+     * Partially evaluate a recursive operation such that during partial evaluation a recursive call happens.
+     * The source expression for which the value is provided is an operation parameter on which the recursive call
+     * will take place, but with a different parameter value. This way, during the recursive call evaluating the
+     * source expression for which the value was provided for the first call needs to be computed normally.
+     */
+    @Test
+    public void testAtPreEvaluationForParameterInRecursiveOperation() throws ParserException {
+        final ResourceSet rs = new ResourceSetImpl();
+        final Resource r = new XMIResourceImpl(URI.createURI("http://humba/trala"));
+        rs.getResources().add(r);
+        final Department department = CompanyFactory.eINSTANCE.createDepartment();
+        department.setBudget(100);
+        r.getContents().add(department);
+        Department sub = CompanyFactory.eINSTANCE.createDepartment();
+        sub.setBudget(200);
+        department.getSubDepartment().add(sub);
+        Department subsub = CompanyFactory.eINSTANCE.createDepartment();
+        subsub.setBudget(300);
+        sub.getSubDepartment().add(subsub);
 
+        evaluator.getHelper().setContext(CompanyPackage.eINSTANCE.getDepartment());
+        EAnnotationOCLParser annotationsParser =OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+        OCLExpression sumBudgetBody = annotationsParser.getExpressionFromAnnotationsOf(CompanyPackage.eINSTANCE.getDepartment().getEOperations().get(1), "body");
+        /* expression expected:
+         * if self.subDepartment->size() >= 1 then
+              self.subDepartment->iterate(department; return : Integer = 0 | return + department.sumBudget()) + self.budget
+           else
+              self.budget
+           endif 
+         */
+        assertTrue(sumBudgetBody instanceof IfExp);
+        IfExp ifExp = (IfExp) sumBudgetBody;
+        IterateExp selfSubDepartment_Iterate =
+          (IterateExp) ((OperationCallExp) ifExp.getThenExpression()) // iterate+self.budget
+            .getSource();   // self.subDepartment->iterate(...)
+        Object result = evaluator.evaluate(null, selfSubDepartment_Iterate, Collections.singletonList(department));
+        assertEquals(600, result);
+    }
+    
+
+    
+
+    // TODO add a test case that computes delegatesTo() and pass old and new value for self.elementsOfType
+    // (getAssociationEnds()) and for association.ends (otherEnd()) with a suitable test model that does
+    // not use delegation on either association end
 }

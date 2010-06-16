@@ -11,7 +11,7 @@
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="The PrimitiveTypes Package contains MOF's standard collection of technology-neutral primitive data types. &#xD;&#xA;These types are available for use in all MOF metamodels and are also used by the MOF Model. &#xD;&#xA;Note: Technology mappings shall recognize standard PrimitiveType instance based on their qualified names. &#xD;&#xA;Multiple primitiveType instances with the samename shall be deemed to mean the same thing."/>
   </eAnnotations>
-  <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="long"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="int"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Float" instanceClassName="float"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Double" instanceClassName="double"/>
   <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
