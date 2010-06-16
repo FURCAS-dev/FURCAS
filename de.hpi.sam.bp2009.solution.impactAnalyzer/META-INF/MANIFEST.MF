@@ -16,7 +16,7 @@ Require-Bundle: org.eclipse.emf.ecore,
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation,
  de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
- de.hpi.sam.bp2009.solution.impactAnalyzer.impl;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
+ de.hpi.sam.bp2009.solution.impactAnalyzer.impl,
  de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
  de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug,
  de.hpi.sam.bp2009.solution.impactAnalyzer.util;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer"

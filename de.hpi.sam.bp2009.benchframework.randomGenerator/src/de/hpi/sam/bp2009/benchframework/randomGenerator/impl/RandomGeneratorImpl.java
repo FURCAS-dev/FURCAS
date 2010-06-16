@@ -315,7 +315,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		assert(number<metaClasses.size());
 
 		//instantiate the meta model
-		Integer n = number == 0 ? ((RandomNumberOptionObject)getOption()).getNextInt(metaClasses.size()): number;		
+		Integer n = number == null ? ((RandomNumberOptionObject)getOption()).getNextInt(metaClasses.size()): number;		
 		instantiate(metaClasses.get(n), resource);
 	}
 
@@ -535,6 +535,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		//don't try to instantiate abstract classes, find all non abstract subclasses and instantiate one of them instead
 		if(metaCls.isAbstract()) {	
 			ArrayList<? extends EClass> clsList = getImplementationForAbstractClass(metaCls, metaClasses);
+			System.out.println();
 			int i = ((RandomGeneratorOptionObject)getOption()).getNextInt(clsList.size());
 			return instantiate(clsList.get(i), res);
 		}
