@@ -79,8 +79,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      */
     @Test
     public void testAttributeValueChangedEventAge() {
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, new Long(23),
-                new Long(42));
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, 23,
+                42);
 
         HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
@@ -100,7 +100,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     @Test
     public void testAttributeValueChangedEventAssignment() {
         Notification noti = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment,
-                new Long(23), new Long(42));
+                23, 42);
 
         HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
@@ -129,8 +129,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      */
     @Test
     public void testAttributeValueChangedEventSalary() {
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeSalary, new Long(
-                1234), new Long(1234));
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeSalary, 
+                1234, 1234);
 
         HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
@@ -148,7 +148,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     @Test
     public void testAttributeValueChangedEventBudget() {
         Notification noti = NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget,
-                new Long(1234), new Long(1234));
+                1234, 1234);
 
         HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
@@ -163,7 +163,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     @Test
     public void testAttributeValueChangedEventEmployeeBudget() {
         Notification noti = NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget,
-                new Long(1234), new Long(4000));
+                1234, 4000);
 
         HashSet<OCLExpression> affectedStmts = filterStatementsForNotification(noti);
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();

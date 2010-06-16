@@ -47,8 +47,8 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
         comp.eResource().getContents().add(this.aEmployee);
 
         HashSet<OCLExpression> affectedStmts = filterStatementsWithEM();
-        NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, new Long(23),
-                new Long(42));
+        NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeAge, 23,
+                42);
 
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.oldEmployeeAST);
@@ -71,8 +71,8 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
 
         HashSet<OCLExpression> affectedStmts = filterStatementsWithEM();
 
-        NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment, new Long(23),
-                new Long(42));
+        NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.freelanceAssignment, 23,
+                42);
 
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.validAssignmentAST);
@@ -106,7 +106,7 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
 
         HashSet<OCLExpression> affectedStmts = filterStatementsWithEM();
 
-        NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeSalary, new Long(1234), new Long(1234));
+        NotificationHelper.createAttributeChangeNotification(this.aEmployee, this.employeeSalary, 1234, 1234);
 
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.bossHighestSalaryAST);
@@ -126,8 +126,8 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
 
         HashSet<OCLExpression> affectedStmts = filterStatementsWithEM();
 
-        NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget, new Long(1234), new Long(
-                1234));
+        NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget, 1234, 
+                1234);
 
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         expectedStmts.add(this.expensesRestrictionAST);
@@ -144,8 +144,8 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
 
         HashSet<OCLExpression> affectedStmts = filterStatementsWithEM();
 
-        NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget, new Long(1234), new Long(
-                4000));
+        NotificationHelper.createAttributeChangeNotification(this.aDepartment, this.departmentBudget, 1234, 
+                4000);
 
         Set<OCLExpression> expectedStmts = new HashSet<OCLExpression>();
         // added by bp2009

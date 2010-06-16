@@ -9,7 +9,11 @@ package company.impl;
 import company.CompanyPackage;
 import company.Student;
 
+import java.lang.reflect.InvocationTargetException;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,22 +26,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class StudentImpl extends EmployeeImpl implements Student {
     /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
     protected StudentImpl() {
-    super();
-  }
+		super();
+	}
 
     /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-    return CompanyPackage.Literals.STUDENT;
-  }
+		return CompanyPackage.Literals.STUDENT;
+	}
 
 } //StudentImpl

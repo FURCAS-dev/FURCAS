@@ -71,7 +71,7 @@ public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {
 	
 	Notification noti;
 	
-	noti = NotificationHelper.createAttributeChangeNotification(this.dep3, this.departmentBudget, new Long(this.dep3.getBudget()), new Long(this.dep3.getBudget() + 20));
+	noti = NotificationHelper.createAttributeChangeNotification(this.dep3, this.departmentBudget, this.dep3.getBudget(), this.dep3.getBudget() + 20);
 	Collection<EObject> instances = computeAffectedInstances(stmts, noti, ia, this.dep1.eClass());
 	
 	compareInstances(instances, new EObject[] { this.dep1, this.dep2, this.dep3 });

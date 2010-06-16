@@ -92,8 +92,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Notification noti;
 
         // change salary of an employee
-        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeSalary, new Long(this.e1.getSalary()),
-                new Long(this.e1.getSalary()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeSalary, this.e1.getSalary(),
+                this.e1.getSalary());
         Collection<EObject> instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.dep1 });
     }
@@ -116,8 +116,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances;
 
         // change salary of the boss
-        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeSalary, new Long(this.boss1
-                .getSalary()), new Long(this.boss1.getSalary()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeSalary, this.boss1
+                .getSalary(), this.boss1.getSalary());
         instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.dep1 });
 
@@ -187,8 +187,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Notification noti;
 
         // change age of an employee
-        noti = NotificationHelper.createAttributeChangeNotification(this.e2, this.employeeAge, new Long(this.e2.getAge()),
-                new Long(this.e2.getAge()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.e2, this.employeeAge, this.e2.getAge(),
+                this.e2.getAge());
         instances = computeAffectedInstances(stmts, noti, ia, this.employee);
         compareInstances(instances, new EObject[] { this.e2 });
     }
@@ -208,8 +208,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Notification noti;
 
         // change age of the boss
-        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeAge, new Long(this.boss1.getAge()),
-                new Long(this.boss1.getAge()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeAge, this.boss1.getAge(),
+                this.boss1.getAge());
         instances = computeAffectedInstances(stmts, noti, ia, this.employee);
         compareInstances(instances, new EObject[] { this.e1, this.e2, this.boss1, this.stud1 });
 
@@ -297,8 +297,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Notification noti;
         Collection<EObject> instances;
         // change age of an employee
-        noti = NotificationHelper.createAttributeChangeNotification(this.e2, this.employeeAge, new Long(this.e2.getAge()),
-                new Long(this.e2.getAge()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.e2, this.employeeAge, this.e2.getAge(),
+                this.e2.getAge());
         instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.dep1 });
 
@@ -319,8 +319,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Notification noti;
         Collection<EObject> instances;
         // change age of the boss
-        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeAge, new Long(this.boss1.getAge()),
-                new Long(this.boss1.getAge()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeAge, this.boss1.getAge(),
+                this.boss1.getAge());
         instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.dep1 });
     }
@@ -434,8 +434,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         createFilters(stmts, ia, false);
 
         // change age of an employee
-        Notification noti = NotificationHelper.createAttributeChangeNotification(this.e4, this.freelanceAssignment, new Long(
-                this.e4.getAssignment()), new Long(this.e4.getAssignment()));
+        Notification noti = NotificationHelper.createAttributeChangeNotification(this.e4, this.freelanceAssignment, 
+                this.e4.getAssignment(), this.e4.getAssignment());
         Collection<EObject> instances = computeAffectedInstances(stmts, noti, ia, this.freelance);
         compareInstances(instances, new EObject[] { this.e4 });
         System.out.println("--------------------------------------------------\n");
@@ -457,8 +457,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Notification noti;
         Collection<EObject> instances;
         // change age of an employee
-        noti = NotificationHelper.createAttributeChangeNotification(this.e2, this.employeeAge, new Long(this.e2.getAge()),
-                new Long(this.e2.getAge()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.e2, this.employeeAge, this.e2.getAge(),
+                this.e2.getAge());
         instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.dep1 });
 
@@ -480,8 +480,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances;
 
         // change maxJuniors of a Department
-        noti = NotificationHelper.createAttributeChangeNotification(this.dep1, this.departmentMaxJuniors, new Long(this.dep1
-                .getMaxJuniors()), new Long(this.dep1.getMaxJuniors()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.dep1, this.departmentMaxJuniors, this.dep1
+                .getMaxJuniors(), this.dep1.getMaxJuniors());
         instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.dep1 });
 
@@ -604,8 +604,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances;
 
         // change salary of an employee
-        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeSalary, new Long(this.e1.getSalary()),
-                new Long(this.e1.getSalary()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeSalary, this.e1.getSalary(),
+                this.e1.getSalary());
         instances = computeAffectedInstances(stmts, noti, ia, this.division);
         compareInstances(instances, new EObject[] { this.div });
 
@@ -629,8 +629,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances;
 
         // change salary of the boss
-        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeSalary, new Long(this.boss1
-                .getSalary()), new Long(this.boss1.getSalary()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeSalary, this.boss1
+                .getSalary(), this.boss1.getSalary());
         instances = computeAffectedInstances(stmts, noti, ia, this.division);
         compareInstances(instances, new EObject[] { this.div });
 
@@ -655,7 +655,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
 
         // change budget of the division
         noti = NotificationHelper.createAttributeChangeNotification(this.div, this.divisionBudget,
-                new Long(this.div.getBudget()), new Long(this.div.getBudget()));
+                this.div.getBudget(), this.div.getBudget());
         instances = computeAffectedInstances(stmts, noti, ia, this.division);
         compareInstances(instances, new EObject[] { this.div });
 
@@ -761,8 +761,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances;
 
         // change age of secretary
-        noti = NotificationHelper.createAttributeChangeNotification(this.secretary, this.employeeAge, new Long(this.secretary
-                .getAge()), new Long(this.secretary.getAge()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.secretary, this.employeeAge, this.secretary
+                .getAge(), this.secretary.getAge());
         instances = computeAffectedInstances(stmts, noti, ia, this.employee);
         compareInstances(instances, new EObject[] { this.director, this.secretary });
     }
@@ -787,8 +787,8 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances;
 
         // change age of director
-        noti = NotificationHelper.createAttributeChangeNotification(this.director, this.employeeAge, new Long(this.director
-                .getAge()), new Long(this.director.getAge()));
+        noti = NotificationHelper.createAttributeChangeNotification(this.director, this.employeeAge, this.director
+                .getAge(), this.director.getAge());
         instances = computeAffectedInstances(stmts, noti, ia, this.employee);
         compareInstances(instances, new EObject[] { this.director });
 
@@ -813,7 +813,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances;
 
         // change age of employee
-        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeAge, new Long(42), new Long(1));
+        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeAge, 42, 1);
         instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.e1.getEmployer() });
     }
@@ -836,7 +836,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances;
 
         // change age of boss
-        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeAge, new Long(42), new Long(52));
+        noti = NotificationHelper.createAttributeChangeNotification(this.boss1, this.employeeAge, 42, 52);
         instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.e1.getEmployer() });
 
@@ -886,7 +886,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
 
         // change salary of employee
         noti = NotificationHelper
-                .createAttributeChangeNotification(this.e1, this.employeeSalary, new Long(1234), new Long(12345));
+                .createAttributeChangeNotification(this.e1, this.employeeSalary, 1234, 12345);
         instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.dep1 });
     }
@@ -909,7 +909,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         Collection<EObject> instances;
 
         // change age of employee
-        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeAge, new Long(23), new Long(34));
+        noti = NotificationHelper.createAttributeChangeNotification(this.e1, this.employeeAge, 23, 34);
         instances = computeAffectedInstances(stmts, noti, ia, this.department);
         compareInstances(instances, new EObject[] { this.dep1 });
     }
