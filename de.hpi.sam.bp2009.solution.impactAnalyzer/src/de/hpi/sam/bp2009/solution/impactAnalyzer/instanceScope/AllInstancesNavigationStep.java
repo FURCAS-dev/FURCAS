@@ -1,10 +1,12 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
@@ -45,7 +47,11 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 
 	@Override
 	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
-		return InstanceScopeAnalysis.getAllPossibleContextInstances(fromObject.eResource(), getTargetType());
+	        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+	        for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances(fromObject.eResource(), getTargetType())) {
+	            result.add(annotateEObject(fromObject, roi));
+	        }
+	        return result;
 	}
 
 	@Override
