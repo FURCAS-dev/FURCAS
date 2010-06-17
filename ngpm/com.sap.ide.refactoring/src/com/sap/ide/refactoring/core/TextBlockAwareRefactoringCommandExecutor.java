@@ -1,13 +1,15 @@
 package com.sap.ide.refactoring.core;
 
 
+import java.util.Collection;
+
 import org.eclipse.ltk.core.refactoring.Change;
+import org.eclipse.ltk.core.refactoring.CompositeChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 import com.sap.ide.refactoring.core.textual.TextBlocksNeedingPrettyPrintChangeListener;
 import com.sap.ide.refactoring.core.textual.UpdateTextBlocksCommand;
-import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.CommandHandle;
 import com.sap.tc.moin.repository.events.filter.ConnectionFilter;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
@@ -43,41 +45,27 @@ public class TextBlockAwareRefactoringCommandExecutor {
 	return result;
     }
 
-
-    private void setupModelElementChangeListener() {
-	EventFilter filter = new ConnectionFilter(facade.getConnection());
-
-	listener = new TextBlocksNeedingPrettyPrintChangeListener();
-	facade.getConnection().getSession().getEventRegistry().registerListener(listener, filter);
-    }
-
-    private void tearDownModelElementChangeListener() {
-	facade.getConnection().getSession().getEventRegistry().deregister(listener);
-	listener = null;
-    }
-
     private RefactoringResult runRefactoringInternal(AbstractRefactoringCommand cmd) {
 	System.out.println("   Run refactoring: " + cmd.getDescription());
 	CommandUndoRedoHelper helper = new CommandUndoRedoHelper(facade.getConnection());
 	RefactoringResult result = null;
 	RefactoringStatus status = new RefactoringStatus();
 	try {
-	    RefactoringStatus preStatus = cmd.preValidate();
+	    // REFACTORING START: run several commands
+	    status.merge(cmd.preValidate());
 	    CommandHandle refactoringCmdHandle = cmd.execute();
-	    RefactoringStatus postStatus = cmd.postValidate();
+	    status.merge(cmd.postValidate());
 	    // Synchronously, directly after the refactoring several update/change handlers perform their
 	    // work. This includes delayed reference resolving.
 
-	    Command prettyPrintCmd = new UpdateTextBlocksCommand(facade.getConnection(),
+	    UpdateTextBlocksCommand prettyPrintCmd = new UpdateTextBlocksCommand(facade.getConnection(),
 		    listener.getTextBlocksNeedingPrettyPrinting(), listener.getTextBlocksNeedingShortPrettyPrinting());
 	    prettyPrintCmd.execute();
 
+	    // REFACTORING ENDED: last command run
 	    CommandHandle dependentCommandHandle =  helper.peekUndoStack(); //captures the handle of the last of these commands
 
-	    status.merge(preStatus);
-	    status.merge(postStatus);
-
-	    Change change = createChange(status, refactoringCmdHandle, dependentCommandHandle);
+	    Change change = createChange(status, refactoringCmdHandle, dependentCommandHandle, prettyPrintCmd.getTextBlockChanges());
 	    result = new RefactoringResult(refactoringCmdHandle, change, status);
 	} catch (RefactoringCoreException e) {
 	    result = new RefactoringResult(e.asRefactoringStatus());
@@ -95,11 +83,28 @@ public class TextBlockAwareRefactoringCommandExecutor {
       * @param refactoringCommandHandle  The executed refactoring.
       * @param dependentCommandHandle  The newest command directly or inderictly triggered by the command
       * (e.g. reference re-evaluations)
+     * @param collection
       * @return
       */
-    private Change createChange(RefactoringStatus status, CommandHandle refactoringCommandHandle, CommandHandle dependentCommandHandle) {
-	return new TextBlockAwareModelChange(facade, status, refactoringCommandHandle, dependentCommandHandle);
+    private Change createChange(RefactoringStatus status, CommandHandle refactoringCommandHandle, CommandHandle dependentCommandHandle, Collection<Change> textBlockChanges) {
+	CompositeChange change = new CompositeChange(refactoringCommandHandle.getDescription());
+	change.add(new ModelChange(facade, status, refactoringCommandHandle, dependentCommandHandle));
+	change.addAll(textBlockChanges.toArray(new Change[textBlockChanges.size()]));
+	return change;
     }
+
+    private void setupModelElementChangeListener() {
+	EventFilter filter = new ConnectionFilter(facade.getConnection());
+
+	listener = new TextBlocksNeedingPrettyPrintChangeListener();
+	facade.getConnection().getSession().getEventRegistry().registerListener(listener, filter);
+    }
+
+    private void tearDownModelElementChangeListener() {
+	facade.getConnection().getSession().getEventRegistry().deregister(listener);
+	listener = null;
+    }
+
 
 
 

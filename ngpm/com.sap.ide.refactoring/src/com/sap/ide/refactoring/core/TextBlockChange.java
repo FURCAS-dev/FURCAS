@@ -16,44 +16,33 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.TextEditBasedChange;
 import org.eclipse.ltk.core.refactoring.TextEditBasedChangeGroup;
 
+import textblocks.TextBlock;
+
 import com.sap.ide.refactoring.Activator;
-import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
-import com.sap.tc.moin.repository.commands.CommandHandle;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-public class TextBlockAwareModelChange extends TextEditBasedChange {
+public class TextBlockChange extends TextEditBasedChange {
 
-    private final RefactoringEditorFacade facade;
-    private final RefactoringStatus status;
+    private final RefObject correspondingRootObject;
+    private String preChangeState;
+    private String postChangeState;
+    private String changeDescription = "Pretty Print";
 
-    /**
-     * The executed refactoring.
-     */
-    private final CommandHandle refactoringCommandHandle;
-
-    /**
-     * The newest command directly or inderictly triggered by the command
-     * (e.g. reference re-evaluations)
-     */
-    private final CommandHandle dependentCommandHandle;
-
-
-
-    public TextBlockAwareModelChange(RefactoringEditorFacade facade, RefactoringStatus status, CommandHandle refactoringCommandHandle, CommandHandle dependentCommandHandle) {
-	super(refactoringCommandHandle.getDescription());
-
-	this.facade = facade;
-	this.status = status;
-	this.refactoringCommandHandle = refactoringCommandHandle;
-	this.dependentCommandHandle = dependentCommandHandle;
-	refactoringCommandHandle = dependentCommandHandle;
+    public TextBlockChange(RefObject correspondingRootObject) {
+	super("Pretty Print");
+	this.correspondingRootObject = correspondingRootObject;
     }
-
 
     @Override
     public Object getModifiedElement() {
-	return facade.getDecoratedDomainRootObject();
+	return correspondingRootObject;
     }
 
+    @Override
+    public String getName() {
+	return changeDescription + " " + ((MofClass) correspondingRootObject.refMetaObject()).getName();
+    }
 
     @Override
     public void initializeValidationData(IProgressMonitor pm) {
@@ -62,46 +51,25 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
 
     @Override
     public RefactoringStatus isValid(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-	CommandUndoRedoHelper helper = new CommandUndoRedoHelper(facade.getConnection());
-	if (helper.peekRedoStack().equals(refactoringCommandHandle)) {
-	    return status;
-	} else {
-	    return RefactoringStatus.createFatalErrorStatus("Subsequent commands have been executed.  The Refactoring is no longer valid." +
-	    	" It can no longer be applied.");
-	}
+	return new RefactoringStatus();
     }
 
-    /**
-     * User has accepted the change and desires that the refactoring is applied to his workspace.
-     */
     @Override
     public Change perform(IProgressMonitor pm) throws CoreException {
-	pm.beginTask("Applying Refactoring: " + refactoringCommandHandle.getDescription(), 2);
-
-	// Finally, re-apply the desired changes.
-	CommandUndoRedoHelper helper = new CommandUndoRedoHelper(facade.getConnection());
-	helper.redoRefactoring(dependentCommandHandle);
-	pm.worked(1);
-
-	facade.refreshUI();
-	pm.done();
 	return new NullChange();
     }
 
-
-// ######## Provider change as a textual representation for the compare viewer  ########
-
     @Override
     public String getCurrentContent(IProgressMonitor pm) throws CoreException {
-	return "getCurrentConten"; //command.getTextualPreExecutionRepresentation();
+	return preChangeState;
     }
 
     @Override
     public String getPreviewContent(IProgressMonitor pm) throws CoreException {
 	if (isEnabled()) {
-	    return "getPreviewContent"; //command.getTextualPostExecutionRepresentation();
+	    return postChangeState;
 	} else {
-	    return "getPreviewContent"; //command.getTextualPreExecutionRepresentation();
+	    return preChangeState;
 	}
     }
 
@@ -124,11 +92,13 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
 		int startLine = Math.max(document.getLineOfOffset(region.getOffset()) - surroundingLines, 0);
 		int endLine;
 		if (region.getLength() == 0) {
-		    // no lines are in the region, so remove one from the context,
-		    // or else spurious changes show up that look like deletes from the source
+		    // no lines are in the region, so remove one from the
+		    // context,
+		    // or else spurious changes show up that look like deletes
+		    // from the source
 		    if (surroundingLines == 0) {
 			// empty: show nothing
-			return ""; //$NON-NLS-1$
+			return "";
 		    }
 
 		    endLine = Math.min(document.getLineOfOffset(region.getOffset()) + surroundingLines - 1, document
@@ -149,13 +119,27 @@ public class TextBlockAwareModelChange extends TextEditBasedChange {
 	} catch (BadLocationException e) {
 	    String message = e.getMessage();
 	    if (message == null) {
-		message = "BadLocationException"; //$NON-NLS-1$
+		message = "BadLocationException";
 	    }
 	    throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, IRefactoringCoreStatusCodes.BAD_LOCATION,
 		    message, e));
 	}
     }
 
+    public void fetchPreChangeState(TextBlock textBlock) {
+	preChangeState = getTextFromTextBlock(textBlock);
+    }
 
+    public void fetchPostChangeState(String description, TextBlock textBlock) {
+	changeDescription = description;
+	postChangeState = getTextFromTextBlock(textBlock);
+    }
+
+    private String getTextFromTextBlock(TextBlock textBlock) {
+	// TODO: find a way how to do this properly...
+	// We cannot just rely on the cache.
+	String text = textBlock.getCachedString();
+	return text == null ? "" : text;
+    }
 
 }

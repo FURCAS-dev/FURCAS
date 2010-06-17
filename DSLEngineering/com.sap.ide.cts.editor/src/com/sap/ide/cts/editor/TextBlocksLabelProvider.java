@@ -64,7 +64,9 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 		StringBuffer sb = new StringBuffer();
 		if (element instanceof TextBlock) {
 			TextBlock tb = (TextBlock) element;
-			sb.append("Corresponding elements:");
+			if (!tb.getCorrespondingModelElements().isEmpty()){
+			    sb.append(" Corresponding elements: ");
+			}
 			for (RefObject correspsondingME : tb.getCorrespondingModelElements()) {
 				sb.append(correspsondingME.refMetaObject().refGetValue("name"));
 				try {
@@ -76,7 +78,9 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 					appendId(sb, correspsondingME);
 				}
 			}
-			sb.append("Referenced elements:");
+			if (!tb.getReferencedElements().isEmpty()) {
+			    sb.append(" Referenced elements: ");
+			}
 			for (RefObject referencedME : tb.getReferencedElements()) {
 				sb.append(referencedME.refMetaObject().refGetValue("name"));
 				try {
@@ -94,7 +98,9 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 			String tokenValue = shortPrettyPrinter.resynchronizeToEditableState(tok);
 			sb.append(tokenValue.replaceAll("\n", "\\\\n").replaceAll("\r", "\\\\r").replaceAll("\t", "\\\\t"));
 			sb.append("\"");
-			sb.append("Corresponding elements:");
+			if (!tok.getCorrespondingModelElements().isEmpty()){
+			    sb.append(" Corresponding elements: ");
+			}
 			for (RefObject correspsondingME : tok.getCorrespondingModelElements()) {
 				sb.append(correspsondingME.refMetaObject().refGetValue("name"));
 				try {
@@ -106,7 +112,9 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 					appendId(sb, correspsondingME);
 				}
 			}
-			sb.append("Referenced elements:");
+			if (!tok.getReferencedElements().isEmpty()) {
+			    sb.append(" Referenced elements: ");
+			}
 			for (RefObject referencedME : tok.getReferencedElements()) {
 			        if(referencedME != null) {
         				sb.append(referencedME.refMetaObject().refGetValue("name"));

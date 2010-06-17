@@ -139,12 +139,12 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
     }
 
     private void assertTextBlockInTupleList(List<ModelElementTextBlockTuple> tuples, TextBlock tb) {
-	boolean found = findTextBlockInTupleList(tuples, tb);
+	boolean found = tuples != null && findTextBlockInTupleList(tuples, tb);
 	assertTrue(found);
     }
 
     private void assertTextBlockInTupleList(String message, List<ModelElementTextBlockTuple> tuples, TextBlock tb) {
-	boolean found = findTextBlockInTupleList(tuples, tb);
+	boolean found = tuples != null && findTextBlockInTupleList(tuples, tb);
 	assertTrue(message, found);
     }
 
