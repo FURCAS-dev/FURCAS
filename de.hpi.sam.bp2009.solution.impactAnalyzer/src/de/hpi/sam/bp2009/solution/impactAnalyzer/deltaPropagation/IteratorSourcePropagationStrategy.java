@@ -17,17 +17,22 @@ public class IteratorSourcePropagationStrategy extends DeltaPropagationStrategyW
     }
 
     @Override
-    public Collection<Pair<OCLExpression, Collection<Object>>> mapDelta(OCLExpression sourceOfCollect, Collection<Object> delta) {
+    public Collection<Pair<OCLExpression, Collection<Object>>> mapDelta(OCLExpression sourceOfIterator, Collection<Object> delta) {
         return PartialEvaluator.getResultCollectionFromSingleDelta(getPropagatesTo(), flatten(
                 getEvaluator().evaluate(null, (CallExp) getPropagatesTo(), delta)));
     }
 
+    @SuppressWarnings("unchecked")
     private Collection<Object> flatten(Object o) {
         Collection<Object> result;
         if (o instanceof Collection<?>) {
-            result = new HashSet<Object>();
-            for (Object subO : (Collection<?>) o) {
-                result.addAll(flatten(subO));
+            if (((Collection<?>) o).isEmpty()) {
+                result = (Collection<Object>) o;
+            } else {
+                result = new HashSet<Object>();
+                for (Object subO : (Collection<?>) o) {
+                    result.addAll(flatten(subO));
+                }
             }
         } else {
             result = Collections.singleton(o);
