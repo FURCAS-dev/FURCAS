@@ -31,7 +31,7 @@ import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 /**
  * A tree walker that finds and remembers all expressions of type {@link AttributeCallExp} and
@@ -49,9 +49,11 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     private final Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = new HashMap<EReference, Set<NavigationCallExp>>();
     private final Set<OCLExpression> visitedExpressions = new HashSet<OCLExpression>();
     private final Map<EClassifier, Set<OperationCallExp>> allInstancesCalls = new HashMap<EClassifier, Set<OperationCallExp>>();
+    private final FilterSynthesisImpl filterSynthesis;
 
-    public AssociationEndAndAttributeCallFinder() {
+    public AssociationEndAndAttributeCallFinder(FilterSynthesisImpl filterSynthesizer) {
         super();
+        filterSynthesis = filterSynthesizer;
     }
 
     @Override
@@ -111,7 +113,8 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
             List<EPackage> argumentResults) {
         
         EOperation referredOperation = ((OperationCallExp) callExp).getReferredOperation();
-        OCLExpression bodyExpr = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().getExpressionFromAnnotationsOf(referredOperation, "body");
+//        OCLExpression bodyExpr1 = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser().getExpressionFromAnnotationsOf(referredOperation, "body");
+        OCLExpression bodyExpr = filterSynthesis.getBodyForCall((OperationCallExp) callExp);
         if (bodyExpr != null) {
             walk(bodyExpr);
         } else if (referredOperation.getName().equals(PredefinedType.ALL_INSTANCES_NAME)) {
