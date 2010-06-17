@@ -12,11 +12,16 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.CallExp;
+import org.eclipse.ocl.ecore.IfExp;
+import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
+import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
@@ -201,9 +206,98 @@ public class PartialEvaluator {
      * that mapping <tt>e</tt>'s delta is possible at all, or <tt>null</tt> if no propagation strategy is
      * defined or possible to define for the use of <tt>e</tt>.
      */
-    private DeltaPropagationStrategy getDeltaPropagationStrategy(OCLExpression e) {
-        // TODO implement getDeltaPropagationStrategy
-        return null;
+    private DeltaPropagationStrategy getDeltaPropagationStrategy(OCLExpression e, OperationBodyToCallMapper mapper) {
+        DeltaPropagationStrategy result = null;
+        ResourceSet rs = e.eResource().getResourceSet();
+        if (rs == null) {
+            rs = new ResourceSetImpl();
+        }
+        EcoreHelper helper = EcoreHelper.getInstance();
+        Collection<EObject> appliedElements = helper.reverseNavigate(e, ExpressionsPackage.eINSTANCE.getCallExp_Source(),
+                helper.getQueryContext(rs), rs);
+        if (!appliedElements.isEmpty()) {
+            OCLExpression appliedElement = (OCLExpression) appliedElements.iterator().next();
+            if (appliedElement instanceof IteratorExp) {
+                IteratorExp loopExp = (IteratorExp) appliedElement;
+                switch (OCLStandardLibraryUtil.getOperationCode(loopExp.getName())) {
+                case PredefinedType.COLLECT:
+                case PredefinedType.SELECT:
+                case PredefinedType.REJECT:
+                    result = new IteratorSourcePropagationStrategy(loopExp, this);
+                    break;
+                }
+            } else if (appliedElement instanceof OperationCallExp) {
+                switch (OCLStandardLibraryUtil.getOperationCode(((OperationCallExp) appliedElement).getReferredOperation().getName())) {
+                case PredefinedType.UNION:
+                case PredefinedType.INTERSECTION:
+                case PredefinedType.MINUS:
+                case PredefinedType.INCLUDING:
+                case PredefinedType.EXCLUDING:
+                case PredefinedType.APPEND:
+                case PredefinedType.PREPEND:
+                case PredefinedType.INSERT_AT:
+                case PredefinedType.AS_BAG:
+                case PredefinedType.AS_ORDERED_SET:
+                case PredefinedType.AS_SEQUENCE:
+                case PredefinedType.AS_SET:
+                case PredefinedType.FLATTEN:
+                // case PredefinedType.REVERSE  // not supported as of now
+                    result = new IdentityPropagationStrategy(appliedElement);
+                    break;
+                }
+            }
+        } else {
+            // Not the source of a CallExp.
+            // Check if e is the last parameter expression of a call to any of the stdlib operations
+            // that are monotonic in their last parameter:
+            Collection<EObject> operationCallOfParameters = helper.reverseNavigate(e, ExpressionsPackage.eINSTANCE.getOperationCallExp_Argument(),
+                    helper.getQueryContext(rs), rs);
+            if (!operationCallOfParameters.isEmpty()) {
+                OperationCallExp operationCall = (OperationCallExp) operationCallOfParameters.iterator().next();
+                if (e == operationCall.getArgument().get(operationCall.getArgument().size() - 1)) { // last parameter?
+                    switch (OCLStandardLibraryUtil.getOperationCode(operationCall.getReferredOperation().getName())) {
+                    case PredefinedType.UNION:
+                    case PredefinedType.INTERSECTION:
+                    case PredefinedType.INCLUDING:
+                    case PredefinedType.APPEND:
+                    case PredefinedType.PREPEND:
+                    case PredefinedType.INSERT_AT:
+                        result = new IdentityPropagationStrategy(operationCall);
+                        break;
+                    }
+                }
+            } else {
+                // not a parameter of an operation; check if e is the thenExpression or elseExpression of an IfExp
+                Collection<EObject> thenExpForIfExp = helper.reverseNavigate(e, ExpressionsPackage.eINSTANCE.getIfExp_ThenExpression(),
+                        helper.getQueryContext(rs), rs);
+                Collection<EObject> elseExpForIfExp = helper.reverseNavigate(e, ExpressionsPackage.eINSTANCE.getIfExp_ElseExpression(),
+                        helper.getQueryContext(rs), rs);
+                if (!thenExpForIfExp.isEmpty()) {
+                    result = new IdentityPropagationStrategy((IfExp) thenExpForIfExp.iterator().next());
+                } else if (!elseExpForIfExp.isEmpty()) { 
+                    result = new IdentityPropagationStrategy((IfExp) elseExpForIfExp.iterator().next());
+                } else {
+                    // no then or else expression of an IfExp
+                    // Check if e is the body of an operation:
+                    Set<OperationCallExp> callsOfOperationBody = mapper.getCallsOf(e);
+                    if (!callsOfOperationBody.isEmpty()) {
+                        result = new OperationBodyPropagationStrategy(mapper);
+                    } else {
+                        // Not an operation body whose operation is called anywhere in the scope of the overall expression.
+                        // Check is e is the body of a ->collect expression
+                        Collection<EObject> bodyOfLoopExp = helper.reverseNavigate(e, ExpressionsPackage.eINSTANCE.getLoopExp_Body(),
+                                helper.getQueryContext(rs), rs);
+                        if (!bodyOfLoopExp.isEmpty()) {
+                            LoopExp loopExp = (LoopExp) bodyOfLoopExp.iterator().next();
+                            if (OCLStandardLibraryUtil.getOperationCode(loopExp.getName()) == PredefinedType.COLLECT) {
+                                result = new IdentityPropagationStrategy(loopExp);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result;
     }
 
     /**
@@ -234,24 +328,35 @@ public class PartialEvaluator {
      */
     private Collection<Pair<OCLExpression, Collection<Object>>> transitivelyPropagateDelta(OCLExpression e, Collection<Object> delta,
             OperationBodyToCallMapper mapper) {
-        DeltaPropagationStrategy propagationStrategy = getDeltaPropagationStrategy(e);
+        DeltaPropagationStrategy propagationStrategy = getDeltaPropagationStrategy(e, mapper);
         Collection<Pair<OCLExpression, Collection<Object>>> result;
         if (propagationStrategy == null) {
-            // no (further) propagation possible
-            if (delta == null || delta.isEmpty()) {
-                // no change anyhow
-                result = Collections.emptySet();
-            } else {
-                result = Collections.singleton(new Pair<OCLExpression, Collection<Object>>(e, delta));
-            }
+            result = getResultCollectionFromSingleDelta(e, delta);
         } else {
-            Collection<Pair<OCLExpression, Collection<Object>>> propagated = propagationStrategy.mapDelta(e, delta, mapper);
-            result = new HashSet<Pair<OCLExpression, Collection<Object>>>();
-            for (Pair<OCLExpression, Collection<Object>> singlePropagationResult : propagated) {
-                Collection<Pair<OCLExpression, Collection<Object>>> singleResult = transitivelyPropagateDelta(
-                        singlePropagationResult.getA(), singlePropagationResult.getB(), mapper);
-                result.addAll(singleResult);
+            Collection<Pair<OCLExpression, Collection<Object>>> propagated = propagationStrategy.mapDelta(e, delta);
+            if (propagated == null) {
+                result = getResultCollectionFromSingleDelta(e, delta);
+            } else {
+                result = new HashSet<Pair<OCLExpression, Collection<Object>>>();
+                for (Pair<OCLExpression, Collection<Object>> singlePropagationResult : propagated) {
+                    Collection<Pair<OCLExpression, Collection<Object>>> singleResult = transitivelyPropagateDelta(
+                            singlePropagationResult.getA(), singlePropagationResult.getB(), mapper);
+                    result.addAll(singleResult);
+                }
             }
+        }
+        return result;
+    }
+
+    static Collection<Pair<OCLExpression, Collection<Object>>> getResultCollectionFromSingleDelta(OCLExpression e,
+            Collection<Object> delta) {
+        Collection<Pair<OCLExpression, Collection<Object>>> result;
+        // no (further) propagation possible
+        if (delta == null || delta.isEmpty()) {
+            // no change anyhow
+            result = Collections.emptySet();
+        } else {
+            result = Collections.singleton(new Pair<OCLExpression, Collection<Object>>(e, delta));
         }
         return result;
     }
