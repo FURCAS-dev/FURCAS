@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import textblocks.DocumentNode;
 import textblocks.DocumentNodeReferencedElement;
@@ -30,6 +31,37 @@ public class TextBlockInChangeCalculator {
 	public ModelElementTextBlockTuple(RefObject modelElement, TextBlock textBlock) {
 	    this.modelElement = modelElement;
 	    this.textBlock = textBlock;
+	}
+
+	@Override
+	public int hashCode() {
+	    final int prime = 31;
+	    int result = 1;
+	    result = prime * result + ((modelElement == null) ? 0 : modelElement.hashCode());
+	    result = prime * result + ((textBlock == null) ? 0 : textBlock.hashCode());
+	    return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+	    if (this == obj)
+		return true;
+	    if (obj == null)
+		return false;
+	    if (getClass() != obj.getClass())
+		return false;
+	    ModelElementTextBlockTuple other = (ModelElementTextBlockTuple) obj;
+	    if (modelElement == null) {
+		if (other.modelElement != null)
+		    return false;
+	    } else if (!modelElement.equals(other.modelElement))
+		return false;
+	    if (textBlock == null) {
+		if (other.textBlock != null)
+		    return false;
+	    } else if (!textBlock.equals(other.textBlock))
+		return false;
+	    return true;
 	}
     }
 
@@ -57,10 +89,6 @@ public class TextBlockInChangeCalculator {
     }
 
     private boolean isValidTextBlock(DocumentNode tbToAdd) {
-	if (tbToAdd instanceof TextBlock && ((TextBlock) tbToAdd).getType() == null ) {
-	    System.out.println("Skipping TB because its mapping is broken");
-	    return false;
-	}
 	if (!TbUtil.getNewestVersion(tbToAdd).equals(tbToAdd)) {
 	    System.out.println("Skipping TB because it was of an older version");
 	    return false;
@@ -168,12 +196,20 @@ public class TextBlockInChangeCalculator {
     }
 
     public Map<RefObject, List<ModelElementTextBlockTuple>> getTextBlocksNeedingPrettyPrinting() {
-	return correspondingTextBlocksPerRootObject;
+	Map<RefObject, List<ModelElementTextBlockTuple>> cpy = new HashMap<RefObject, List<ModelElementTextBlockTuple>>(correspondingTextBlocksPerRootObject);
+	for (Entry<RefObject, List<ModelElementTextBlockTuple>> entry : cpy.entrySet()) {
+	    cpy.put(entry.getKey(), new LinkedList<ModelElementTextBlockTuple>(entry.getValue()));
+	}
+	return cpy;
 
     }
 
     public Map<RefObject, List<ModelElementTextBlockTuple>> getTextBlocksNeedingShortPrettyPrinting() {
-	return referencingTextBlocksPerRootObject;
+	Map<RefObject, List<ModelElementTextBlockTuple>> cpy = new HashMap<RefObject, List<ModelElementTextBlockTuple>>(referencingTextBlocksPerRootObject);
+	for (Entry<RefObject, List<ModelElementTextBlockTuple>> entry : cpy.entrySet()) {
+	    cpy.put(entry.getKey(), new LinkedList<ModelElementTextBlockTuple>(entry.getValue()));
+	}
+	return cpy;
     }
 
 

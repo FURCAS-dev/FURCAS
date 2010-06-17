@@ -4,7 +4,6 @@ import junit.framework.Assert;
 import ngpm.NgpmPackage;
 
 import org.eclipse.core.runtime.Path;
-import org.eclipse.ui.PartInitException;
 import org.junit.Test;
 
 import textblocks.TextBlock;
@@ -31,26 +30,18 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
         clazz.setName("IppTestClass1");
         PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, true);
         action.runWithEvent(null);
-        AbstractGrammarBasedEditor editor = null;
-		try
-		{
-			editor = openEditor(clazz);
-		}
-		catch (PartInitException e)
-		{
-			e.printStackTrace();
-		}
-		
+        AbstractGrammarBasedEditor editor = openEditor(clazz);
+
 		String ppClazz = action.getRootBlock().getCachedString();
 		if(ppClazz != null)
 		{
 			this.printTextBlock(action.getRootBlock());
 			Assert.assertTrue(ppClazz.contains("class " + clazz.getName()));
 		}
-		
+
         close(editor);
 	}
-	
+
 	@Test
 	public void prettyPrintMethodWithinClass()
 	{
@@ -58,7 +49,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
         SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
         clazz.setName("IppTestClass2");
 		MethodSignature method = (MethodSignature) rootPkg.getData().getClasses().getMethodSignature().
-				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
+				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection,
 						getProject(), new Path("src/Package1235568260162.types")));
 		method.setName("testMethod");
 		clazz.getOwnedSignatures().add(method);
@@ -72,20 +63,11 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 		}
 		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, true);
 		action.runWithEvent(null);
-		AbstractGrammarBasedEditor editor = null;
-		try
-		{
-			editor = openEditor(clazz);
-		}
-		catch (PartInitException e)
-		{
-			e.printStackTrace();
-		}
-		
+		AbstractGrammarBasedEditor editor = openEditor(clazz);
 		this.printTextBlock(action.getRootBlock());
         close(editor);
 	}
-	
+
 	@Test
 	public void prettyPrintMethodAfterChangesInDomainModel()
 	{
@@ -93,15 +75,15 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
         SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
         clazz.setName("IppTestClass3");
 		MethodSignature method = (MethodSignature) rootPkg.getData().getClasses().getMethodSignature().
-				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
+				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection,
 						getProject(), new Path("src/Package1235568260162.types")));
 		method.setName("testMethod");
-		
+
 		clazz.getOwnedSignatures().add(method);
-		
+
 		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
-		
+
 		try
 		{
 			connection.save();
@@ -111,12 +93,12 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 			e.printStackTrace();
 			return;
 		}
-		
+
 		method.setName("testMethodChanged");
-		
+
 		PrettyPrintAction action2 = new PrettyPrintAction((MofClass) method.refMetaObject(), method, true);
 		action2.runWithEvent(null);
-		
+
 		try
 		{
 			connection.save();
@@ -126,10 +108,10 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 			e.printStackTrace();
 			return;
 		}
-		
+
 		this.printTextBlock(action.getRootBlock());
 	}
-	
+
 	@Test
 	public void prettyPrintAssociationAfterRename()
 	{
@@ -165,10 +147,10 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
         a2.setType(a2ctd);
         assoc.getEnds().add(a1);
         assoc.getEnds().add(a2);
-        
+
         PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
-		
+
 		String ppClazz = action.getRootBlock().getCachedString();
 		if(ppClazz != null)
 		{
@@ -178,7 +160,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 		{
 			Assert.assertTrue("Pretty Printing not successfull!", false);
 		}
-		
+
 		try
 		{
 			connection.save();
@@ -188,12 +170,12 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 			e.printStackTrace();
 			return;
 		}
-		
+
 		a1.setName("new_a1");
-		
+
 		PrettyPrintAction action2 = new PrettyPrintAction((MofClass) a2ctd.refMetaObject(), a2ctd, true);
 		action2.runWithEvent(null);
-		
+
 		try
 		{
 			connection.save();
@@ -203,10 +185,10 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 			e.printStackTrace();
 			return;
 		}
-		
+
 		this.printTextBlock(action.getRootBlock());
 	}
-	
+
 	@Test
 	public void prettyPrintAfterMethodRelocation()
 	{
@@ -216,36 +198,36 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
         SapClass clazz2 = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, getProject(), new Path("src/Package1235568260162.types")));
         clazz2.setName("IppClass7");
 		MethodSignature method = (MethodSignature) rootPkg.getData().getClasses().getMethodSignature().
-				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection, 
+				refCreateInstanceInPartition(ModelManager.getPartitionService().getPartition(connection,
 						getProject(), new Path("src/Package1235568260162.types")));
 		method.setName("methodFromClass6");
-		
+
 		clazz.getOwnedSignatures().add(method);
-		
+
 		PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
-		
+
 		this.printTextBlock(action.getRootBlock());
-		
+
 		action = new PrettyPrintAction((MofClass) clazz2.refMetaObject(), clazz2, false);
 		action.runWithEvent(null);
-		
+
 		this.printTextBlock(action.getRootBlock());
-		
-		
+
+
 		clazz.getOwnedSignatures().add(method);
-		
+
 		action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
 		action.runWithEvent(null);
-		
+
 		this.printTextBlock(action.getRootBlock());
-		
+
 		action = new PrettyPrintAction((MofClass) clazz2.refMetaObject(), clazz2, false);
 		action.runWithEvent(null);
-		
+
 		this.printTextBlock(action.getRootBlock());
 	}
-	
+
 	@Test
 	public void prettyPrintAfterTernaryChange()
 	{
@@ -254,16 +236,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
         clazz.setName("IppTestClass8");
         PrettyPrintAction action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
         action.runWithEvent(null);
-        AbstractGrammarBasedEditor editor = null;
-		try
-		{
-			editor = openEditor(clazz);
-		}
-		catch (PartInitException e)
-		{
-			e.printStackTrace();
-		}
-		
+        AbstractGrammarBasedEditor editor = openEditor(clazz);
 		String ppClazz = action.getRootBlock().getCachedString();
 		if(ppClazz != null)
 		{
@@ -273,15 +246,8 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 		clazz.setValueType(true);
 		action = new PrettyPrintAction((MofClass) clazz.refMetaObject(), clazz, false);
         action.runWithEvent(null);
-		try
-		{
-			editor = openEditor(clazz);
-		}
-		catch (PartInitException e)
-		{
-			e.printStackTrace();
-		}
-		
+        	editor = openEditor(clazz);
+
 		ppClazz = action.getRootBlock().getCachedString();
 		if(ppClazz != null)
 		{
@@ -290,7 +256,7 @@ public class IncrementalPrettyPrinterTest extends IncrementalPrettyPrinterHelper
 		}
         close(editor);
 	}
-	
+
 	private void printTextBlock(TextBlock textblock)
 	{
 		if(textblock != null)

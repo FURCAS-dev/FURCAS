@@ -11,7 +11,7 @@ import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
- * This class enables incremental pretty printing by using the class PrettyPrinter. 
+ * This class enables incremental pretty printing by using the class PrettyPrinter.
  * However it extends the original non-incremental pretty printer by the possibility of
  * pretty printing particular model elements rather than only root elements.
  * @author Andreas Landerer
@@ -63,10 +63,10 @@ public class IncrementalPrettyPrinter
 			{
 				oldTbForSource = (TextBlock) o;
 				iOldTbLength = oldTbForSource.getLength();
-				
+
 				// if template has no syntax contribution, pretty printing is
 				// currently not possible
-				if(oldTbForSource.getType() == null || !template.equals(oldTbForSource.getType().getParseRule())) 
+				if(oldTbForSource.getType() == null || !template.equals(oldTbForSource.getType().getParseRule()))
 				{
 					oldTbForSource = null;
 					continue;
@@ -93,15 +93,15 @@ public class IncrementalPrettyPrinter
 					{
 						toDelete = cachedString.substring(iOldAbsoluteOffset,
 								iOldAbsoluteOffset + iOldTbLength);
+						cachedString = cachedString.replace(toDelete, "");
 					}
-					cachedString = cachedString.replace(toDelete, "");
 					parent.setCachedString(cachedString);
 				}
 				//oldTbForSource.refDelete();
 				break;
 			}
 		}
-		
+
 		// text block is either subblock or root block
 		// avoids pretty printing of text blocks with no syntax contribution
 		if(oldTbForSource != null || rootTbs.length == 0)
@@ -116,7 +116,7 @@ public class IncrementalPrettyPrinter
 			{
 				rootBlock = ((CtsTextBlockIncrementalTCSExtractorStream) target)
 						.getRootBlock();
-	
+
 				// if textblock has got a parent, hang up rootBlock and modify
 				// cachedString
 				if (parent != null)
@@ -154,7 +154,7 @@ public class IncrementalPrettyPrinter
 		assert(context != null);
 		assert(textblock != null);
 		assert(syntax != null);
-		
+
 		for(TextBlock parent = textblock.getParentBlock(); parent != null; parent = parent.getParentBlock())
 		{
 			Template t = parent.getType().getParseRule();
@@ -162,7 +162,7 @@ public class IncrementalPrettyPrinter
 			if(t instanceof ClassTemplate)
 			{
 				tp = (ClassTemplate) t;
-				
+
 				if(tp != null)
 				{
 					context.getClassTemplates().add(0, tp);
