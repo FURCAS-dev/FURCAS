@@ -44,19 +44,19 @@ public class TbUtil {
     /**
      * Computes the absolute offset of the given {@link DocumentNode} by traversing all transitive
      * parents recursively.
-     * 
-     * 
+     *
+     *
      * @param node
      * @return the absolute offset of the given {@link DocumentNode}
      */
     public static int getAbsoluteOffset(DocumentNode node) {
 	// implementation without isOffsetRelative
 	/*
-	 * 
+	 *
 	 * int absoluteOffset = node.getOffset(); TextBlock parent =
 	 * TbNavigationUtil.getParentBlock(node); while (parent != null) { absoluteOffset +=
 	 * parent.getOffset(); parent = parent.getParentBlock(); }
-	 * 
+	 *
 	 * return absoluteOffset;
 	 */
 
@@ -84,13 +84,13 @@ public class TbUtil {
     /**
      * Searches the newest version of the textblock starting from CURRENT, then PREVIOUS else
      * REFERENCE
-     * 
+     *
      * @param tb
      * @return
      */
     public static DocumentNode getNewestVersion(DocumentNode tb) {
 	// TODO is it possible that there is already a CURRENT version?
-	if (tb.getVersion().equals(VersionEnum.CURRENT)) {
+	if (VersionEnum.CURRENT.equals(tb.getVersion())) {
 		return tb;
 	}
 	for (DocumentNode tbv : tb.getOtherVersions()) {
@@ -107,17 +107,17 @@ public class TbUtil {
      * Creates a new copy of the given {@link DocumentNode} having the given newVersion set as
      * version. THe whole containment structure will also be copied. The new version will also added
      * to the <code>otherVersions</code> reference and vice versa.
-     * 
+     *
      * @param node
      *                the rootBlock that should be copied, make sure that it has the correct
      *                version, as only this version of the whole tree will be copied. All other
      *                elements will only be referenced by the new version.
      * @param newVersion
      * 			The target version that will be created.
-     * @param manifestValues 
+     * @param manifestValues
      * 			If set to true all token values will be manifested using the {@link ShortPrettyPrinter}.
      * 			This means that if the given input tb model s a flyweight it will be turned into a complete
-     * 			editable representation.      
+     * 			editable representation.
      * @param shortPrettyPrinter
      * 			The pretty printer used for the manifestation of token values. If <code>manifestValues</code>
      * 			is set to false this may be <code>null</code>;
@@ -178,7 +178,7 @@ public class TbUtil {
      * References the versions of <code>n1</code> and <code>n2</code> with each other. Also
      * previously existing other versions of <code>n1</code> and <code>n2</code> will be
      * referenced by this.
-     * 
+     *
      * @param n1
      * @param n2
      */
@@ -222,9 +222,9 @@ public class TbUtil {
      * this is the deep copy policy for textblock versions Only the given
      * <code>versionToBeCopied</code> is copied, all other elements and document node versions
      * will not be copied but only referenced by the copied version
-     * 
+     *
      * @author C5106462
-     * 
+     *
      */
     private static class TextBlockDeepCopyPolicyHandler implements DeepCopyPolicyHandler {
 	private final Version versionToBeCopied;
@@ -259,7 +259,7 @@ public class TbUtil {
     /**
      * Helper function that returns teh sublist without the leading bos and trailing eos tokens.
      * Throws IllegalArgumentExceptions, if bos or eos is not found in the right place.
-     * 
+     *
      * @param nodes
      *                nodes list to trim
      * @return nodes list without leading eos and trailing bos tokens
@@ -282,7 +282,7 @@ public class TbUtil {
     /**
      * Helper function that creates a map with the node and all hierarchical parents mapped to their
      * hierarchy level
-     * 
+     *
      * @param node
      *                DocumentNode to start at
      * @param level
@@ -307,7 +307,7 @@ public class TbUtil {
     /**
      * Returns the relative offset (position) of the absoluteOffset in relation to the start offset
      * of the given node.
-     * 
+     *
      * @param absoluteOffset
      *                offset absolute to the beginning of the document text
      * @param node
@@ -320,9 +320,9 @@ public class TbUtil {
 
     /**
      * Checks, weather a RefObject has been deleted.
-     * 
+     *
      * Calls a function and checks, if InvalidObjectException is thrown.
-     * 
+     *
      * @param o
      *                RefObject to check
      * @return true, if RefObject was deleted, false otherwise
@@ -339,7 +339,7 @@ public class TbUtil {
 
     /**
      * returns true if node has a parent in parent hierarchy which is parentBlock
-     * 
+     *
      * @param parentBlock
      * @param documentNode
      * @return
@@ -391,7 +391,7 @@ public class TbUtil {
      * for an element that matches the {@link QualifiedNamedElement#getMetaReference()} of the
      * template that was used to create the textblock. This is not a hundred percent guarantee, as
      * multiple elements may reside in the corresponding model elements.
-     * 
+     *
      * @param parentBlock
      * @return The element from {@link DocumentNode#getCorrespondingModelElements()} that was most
      *         probably created using the template of the {@link TextBlock}. <code>null</code> if
@@ -415,7 +415,7 @@ public class TbUtil {
      * by a "context" template will add a context using the <tt>contextBuilder</tt>. The context
      * contents created by <tt>addToContext</tt> templates will <em>not</em> be added to these
      * contexts here.
-     * 
+     *
      * @param fromHereOutwards
      * @param contextBuilder
      */
@@ -437,7 +437,7 @@ public class TbUtil {
 	    tcs.Template template = t.getType().getParseRule();
 	    if (template instanceof ContextTemplate) {
 		tags = ((ContextTemplate) template).getContextTags();
-	    } 
+	    }
 	    if (tags != null) {
 		for (RefObject element : t.getCorrespondingModelElements()) {
 		    contextBuilder.addContext(new ResolvedModelElementProxy(element), tags.getTags()
@@ -458,7 +458,7 @@ public class TbUtil {
     /**
      * Gives the absolute offset of the first token that is not an {@link OmittedToken} and that is still
      * transitively contained in parentBlock.
-     * 
+     *
      * @param parentBlock
      * @return
      */
@@ -473,7 +473,7 @@ public class TbUtil {
 	/**
      * Gives the length of the block starting from first token that is not an {@link OmittedToken} and that is still
      * transitively contained in parentBlock.
-     * 
+     *
      * @param parentBlock
      * @return
      */
@@ -481,7 +481,7 @@ public class TbUtil {
 		int absoluteOffsetTok = getAbsoluteOffsetWithoutBlanks(parentBlock);
 		return parentBlock.getLength() - (absoluteOffsetTok  - TbUtil.getAbsoluteOffset(parentBlock));
 	}
-	
+
 	public static boolean isTextBlockOfType(ClassTemplate rootTemplate,
     	    TextBlock block) {
         	return block.getType() != null
@@ -514,7 +514,12 @@ public class TbUtil {
         public static Collection<TextBlock> filterVersionedTextBlockForNewest(
             Collection<TextBlock> tbs) {
             for (TextBlock textBlock : new ArrayList<TextBlock>(tbs)) {
-                if(!TbUtil.getNewestVersion(textBlock).equals(textBlock)) {
+        	if (textBlock == null) {
+        	    System.out.println("WTF tb was null");
+        	    tbs.remove(null);
+        	    continue;
+        	}
+                if(!textBlock.equals(TbUtil.getNewestVersion(textBlock))) {
                     tbs.remove(textBlock);
                 }
             }
@@ -543,7 +548,7 @@ public class TbUtil {
                 newContext.setResultModelElement(resultElement);
                 contextBlock.getForeachContext().add(newContext);
             }
-        
+
         }
 
 }

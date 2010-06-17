@@ -56,7 +56,7 @@ public class Tuple {
             boolean result;
             if ( this == obj ) {
                 result = true;
-            } else if ( obj instanceof Pair ) {
+            } else if ( obj instanceof Pair<?, ?> ) {
                 Pair<?, ?> pair = (Pair<?, ?>) obj;
                 result = ( this.a != null && this.a.equals( pair.a ) || this.a == null && pair.a == null ) && ( this.b != null && this.b.equals( pair.b ) || this.b == null && pair.b == null );
             } else {
@@ -142,7 +142,7 @@ public class Tuple {
             boolean result;
             if ( this == obj ) {
                 result = true;
-            } else if ( obj instanceof Triple ) {
+            } else if ( obj instanceof Triple<?, ?, ?> ) {
                 Triple<?, ?, ?> thrice = (Triple<?, ?, ?>) obj;
                 result = ( this.a != null && this.a.equals( thrice.a ) || this.a == null && thrice.a == null ) && ( this.b != null && this.b.equals( thrice.b ) || this.b == null && thrice.b == null ) && ( this.c != null && this.c.equals( thrice.c ) || this.c == null && thrice.c == null );
             } else {

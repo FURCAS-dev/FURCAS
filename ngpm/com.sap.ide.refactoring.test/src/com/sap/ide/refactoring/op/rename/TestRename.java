@@ -1,6 +1,7 @@
 package com.sap.ide.refactoring.op.rename;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -10,10 +11,11 @@ import java.util.Collection;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.ltk.core.refactoring.Change;
+import org.eclipse.ltk.core.refactoring.CompositeChange;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.ide.refactoring.core.TextBlockAwareModelChange;
+import com.sap.ide.refactoring.core.TextBlockChange;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 import com.sap.ide.refactoring.test.RefactoringBaseTest;
 import com.sap.tc.moin.repository.events.ChangeListener;
@@ -76,10 +78,18 @@ public class TestRename extends RefactoringBaseTest {
 	assertTrue("Old name must still be present.", facade.getContentAsText().contains("Class1"));
     }
 
+    /**
+     * This is a whitebox test: We make heavy assumption on implementations interna...
+     */
     @Test
     public void testRenamRefactoringPreviewChange() throws Exception {
-	// Make some assumptions on the internal implementation
-	TextBlockAwareModelChange textualChange = (TextBlockAwareModelChange) rename("Class1", "NewName");
+	CompositeChange change = (CompositeChange) rename("Class1", "NewName");
+	assertNotNull("Mapping must not be broken", facade.getTextBlocksModel().getRoot().getType());
+
+	// If the following breaks we have either changed the way we return changes
+	// or a block was not pretty printed as expected and therefore no change object was created.
+	TextBlockChange textualChange = (TextBlockChange) ((CompositeChange) change.getChildren()[1]).getChildren()[0];
+
 
 	String preview = textualChange.getPreviewContent(new NullProgressMonitor());
 	String current = textualChange.getCurrentContent(new NullProgressMonitor());

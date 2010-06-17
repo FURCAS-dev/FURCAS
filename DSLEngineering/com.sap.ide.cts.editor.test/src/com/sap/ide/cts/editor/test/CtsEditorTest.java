@@ -67,12 +67,16 @@ public class CtsEditorTest extends FixtureBasedTest {
 		return list;
 	}
 
-	protected AbstractGrammarBasedEditor openEditor(RefObject refObject) throws PartInitException {
-		AbstractGrammarBasedEditor editor = (AbstractGrammarBasedEditor) ModelManagerUI
-				.getEditorManager().openEditor(refObject, null, null);
-
-		assertNotNull(editor);
-		return editor;
+	protected AbstractGrammarBasedEditor openEditor(RefObject refObject) {
+		try {
+		    AbstractGrammarBasedEditor editor = (AbstractGrammarBasedEditor) ModelManagerUI
+		    		.getEditorManager().openEditor(refObject, null, null);
+		    assertNotNull(editor);
+		    return editor;
+		} catch (PartInitException e) {
+		    fail(e.getMessage());
+		}
+		return null;
 	}
 
 	protected void saveAll(AbstractGrammarBasedEditor editor) throws CoreException {
