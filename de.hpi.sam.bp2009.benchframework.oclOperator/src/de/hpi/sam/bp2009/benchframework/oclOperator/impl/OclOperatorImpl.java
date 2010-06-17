@@ -549,7 +549,9 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
             }
 
         }
-
+        /*
+         * TODO refactor so that no direct dependencies between operators
+         */
         //final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
         final ModifiedImpactAnalyzerImpl ia = new ModifiedImpactAnalyzerImpl();
         //final EventManager em = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
@@ -558,9 +560,10 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 
         
         
-        if(ia== null)
-            throw new IllegalArgumentException("Invalid Testrun, no Impact Analyzer defined");
-        else if(em == null)
+//        if(ia== null)
+//            throw new IllegalArgumentException("Invalid Testrun, no Impact Analyzer defined");
+//        else 
+        if(em == null)
             throw new IllegalArgumentException("Invalid Testrun, no Event Manager defined");
         else if(qe == null)
             throw new IllegalArgumentException("Invalid Testrun, no Query Evaluator defined");
