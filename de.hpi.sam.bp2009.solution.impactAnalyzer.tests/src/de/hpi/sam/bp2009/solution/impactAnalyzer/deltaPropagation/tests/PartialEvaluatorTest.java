@@ -36,6 +36,7 @@ import company.Division;
 import data.classes.ClassesFactory;
 import data.classes.ClassesPackage;
 import data.classes.MethodSignature;
+import data.classes.Parameter;
 import data.classes.SapClass;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
@@ -108,12 +109,12 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(expression instanceof OperationCallExp);
         OperationCallExp oce = (OperationCallExp) expression;
         FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false);
-        assertTrue(evaluator.hasNoEffectOnOverallExpression(oce, "Humba", "Trala", mapper));
-        assertFalse(evaluator.hasNoEffectOnOverallExpression(oce, "Humba", "Humba Humba", mapper));
+        assertTrue(evaluator.hasNoEffectOnOverallExpression((OCLExpression) oce.getSource(), "Humba", "Trala", mapper));
+        assertFalse(evaluator.hasNoEffectOnOverallExpression((OCLExpression) oce.getSource(), "Humba", "Humba Humba", mapper));
     }
 
     @Test
-    public void testNoEffectForSelectSource() throws ParserException {
+    public void testNoEffectForFullValuesOfSelectSource() throws ParserException {
         evaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
         MethodSignature ms = ClassesFactory.eINSTANCE.createMethodSignature();
         ms.setName("def");
@@ -123,11 +124,32 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(expression instanceof IteratorExp);
         IteratorExp iteratorExp = (IteratorExp) expression;
         FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false);
-        assertTrue(evaluator.hasNoEffectOnOverallExpression(iteratorExp, Collections.EMPTY_SET,
+        assertTrue(evaluator.hasNoEffectOnOverallExpression((OCLExpression) iteratorExp.getSource(), Collections.EMPTY_SET,
                 Collections.singleton(ms), mapper));
         ms.setName("abc");
-        assertFalse(evaluator.hasNoEffectOnOverallExpression(iteratorExp, Collections.EMPTY_SET,
+        assertFalse(evaluator.hasNoEffectOnOverallExpression((OCLExpression) iteratorExp.getSource(), Collections.EMPTY_SET,
                 Collections.singleton(ms), mapper));
+    }
+
+    @Test
+    public void testNoEffectForDeltaOfSelectSource() throws ParserException {
+        evaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
+        Parameter p = ClassesFactory.eINSTANCE.createParameter();
+        p.setName("def");
+        ResourceSet rs = new ResourceSetImpl();
+        // the following expresssion becomes self.ownedSignatures->collect(s | s.input)->select(name='abc')
+        OCLExpression expression = evaluator.getHelper().createQuery("self.ownedSignatures.input->select(name='abc')");
+        rs.getResources().add(expression.eResource());
+        assertTrue(expression instanceof IteratorExp);
+        IteratorExp selectExp = (IteratorExp) expression; // select
+        IteratorExp collectExp = (IteratorExp) selectExp.getSource();
+        PropertyCallExp inputPropertyCallExp = (PropertyCallExp) collectExp.getBody(); // s.input->select(...)
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false);
+        assertTrue(evaluator.hasNoEffectOnOverallExpression(inputPropertyCallExp, Collections.EMPTY_SET,
+                Collections.singleton(p), mapper));
+        p.setName("abc");
+        assertFalse(evaluator.hasNoEffectOnOverallExpression(inputPropertyCallExp, Collections.EMPTY_SET,
+                Collections.singleton(p), mapper));
     }
 
     @Test
