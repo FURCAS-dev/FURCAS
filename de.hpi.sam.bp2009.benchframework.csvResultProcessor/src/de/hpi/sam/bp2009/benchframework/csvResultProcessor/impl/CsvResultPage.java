@@ -138,6 +138,8 @@ public class CsvResultPage extends WizardPage {
                                             + " , \n , for: " 
                                             + no);
                                 }
+                                r.setMessage(r.getMessage() 
+                                        + "evaluation time for all ");
                             }
                             String msg;
                             if (r != null){

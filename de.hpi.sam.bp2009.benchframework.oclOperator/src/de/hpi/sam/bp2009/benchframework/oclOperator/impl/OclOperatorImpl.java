@@ -31,6 +31,7 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OCL.Query;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
@@ -526,7 +527,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
      */
     public void registerQueriesIA(ResourceSet resource, OclOptionObject option) {
         assert(resource!=null);
-        EList<Constraint> list= new BasicEList<Constraint>();
+        final EList<Constraint> allConstraints= new BasicEList<Constraint>();
         OCL ocl = OCL.newInstance();
         for(String con: option.getConstraints()){
             try {
@@ -543,7 +544,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
                 List<Constraint> test = ocl.parse(input);
                 OclOperatorImpl.stringToConstraints.put(con, test);
                 for(Constraint c:test)
-                    list.add(c);
+                    allConstraints.add(c);
             } catch (ParserException e) {
                 throw new IllegalArgumentException("Invalid Query, parsing failed " + e.getMessage(), e);
             }
@@ -556,20 +557,18 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         final ModifiedImpactAnalyzerImpl ia = new ModifiedImpactAnalyzerImpl();
         //final EventManager em = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
         EventManager em = EventManagerFactory.eINSTANCE.getEventManagerFor(resource);
-        final QueryEvaluator qe = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator.class);
-
+        final QueryEvaluator qe = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator.class);        
         
-        
-//        if(ia== null)
-//            throw new IllegalArgumentException("Invalid Testrun, no Impact Analyzer defined");
-//        else 
+        if(ia== null)
+            throw new IllegalArgumentException("Invalid Testrun, no Impact Analyzer defined");
+        else 
         if(em == null)
             throw new IllegalArgumentException("Invalid Testrun, no Event Manager defined");
         else if(qe == null)
             throw new IllegalArgumentException("Invalid Testrun, no Query Evaluator defined");
         else{
             int expCount = 0;
-            for (final Constraint item: list){
+            for (final Constraint item: allConstraints){
                 final OCLExpression exp = (OCLExpression) item.getSpecification().getBodyExpression();
                 EventFilter filter = ia.createFilterForExpression(exp, true);
                 expCount++;
@@ -585,14 +584,55 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
                             expSet.add(item);
                             affectedExprs.put(msg, expSet);
                         }
-                        // analyze reduction of context instances by usage of IA                         
-                        Collection<EObject> contextInstances = ia.getContextObjects(msg, exp, ((EClass)(item.getSpecification().getContextVariable().getType())));
-                        // TODO calculate number of all instances for comparison with IA-Version
+                        // analyze reduction of context instances by usage of IA
+                        EClass context = ((EClass)(item.getSpecification().getContextVariable().getType()));
+                        Collection<EObject> contextInstances = ia.getContextObjects(msg, exp, context);
+                        // calculate number of all instances for comparison with IA-Version
+                        EList<EObject> allInstances = getAllInstances(context);
                         getResult().setMessage(getResult().getMessage() + 
                                 "\n Number of context Instances for Expression: , " + item.toString() + 
-                                " , with IA: , " + contextInstances.size() + 
-                                " ,  naive: , UNKNOWN");                     			        
+                                " , with IA : , " + contextInstances.size() + 
+                                " ,  naive: , " + allInstances.size());
+                        // execution time benchmarking
+                        EList<EObject> scope = new BasicEList<EObject>();
+                        for (EObject o: contextInstances){
+                            scope.add(o);
+                        }
+                        Query query = OCL.newInstance().createQuery(item);
+                        long before = System.nanoTime();
+                        //evaluate query on instances calculated by IA
+                        qe.evaluateQuery(query , scope);
+                        long after = System.nanoTime();
+                        //evaluate query on all instances of given context
+                        long beforeNaive = System.nanoTime();
+                        qe.evaluateQuery(query, allInstances);
+                        long afterNaive = System.nanoTime();
+                        getResult().setMessage(getResult().getMessage() 
+                                + " , Execution Time: , with Instance Scope: , "
+                                + (after - before) + "ns , naive: , " + (afterNaive - beforeNaive) + "ns" );
+                        
+                        //evaluate all queries without IA to calculate time savings using IA
+                        long timeResult = 0;
+                        for (Constraint con: allConstraints){
+                            EList<EObject> all = getAllInstances((EClass)(con.getSpecification().getContextVariable().getType()));
+                            long beforeWithoutIA = System.nanoTime();
+                            qe.evaluateQuery(query, all);
+                            long afterWithoutIA = System.nanoTime();
+                            timeResult += (afterWithoutIA - beforeWithoutIA);
+                        }
+                        getResult().setMessage(getResult().getMessage()
+                                + " , without IA: , " + timeResult + "ns");
+                        
                         super.notifyChanged(msg);
+                    }
+
+                    private EList<EObject> getAllInstances(EClass context) {
+                        //FIXME find all instances of meta class given by context 
+                        // this probably doesn't work like intended
+                        EList<EObject> allInstances = new BasicEList<EObject>();
+                        allInstances.addAll(context.eContents());
+                        allInstances.addAll(context.eCrossReferences());
+                        return allInstances;
                     }
                 });
             }

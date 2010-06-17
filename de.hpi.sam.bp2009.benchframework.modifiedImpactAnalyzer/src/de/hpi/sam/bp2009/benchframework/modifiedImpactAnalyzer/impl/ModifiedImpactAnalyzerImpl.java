@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -47,8 +48,23 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl {
         long before = System.nanoTime();
         Collection<EObject> result = super.getContextObjects(event, expression, context);
         long after = System.nanoTime();
-        //TODO insert time consumption into csv output
-        System.out.println("Time for calculating context objects: " + (after - before) + "ns");
+        if (IAResult.getExpToInsScopeTime().containsKey(expression)){
+            //check whether there exists an entry for the given notification or not
+            if (IAResult.getExpToInsScopeTime().get(expression).containsKey(event)){
+                //override old time benchmarking
+                IAResult.getExpToInsScopeTime().get(expression).remove(event);
+                IAResult.getExpToInsScopeTime().get(expression).put(event, (after - before));
+            }
+            else{
+                IAResult.getExpToInsScopeTime().get(expression).put(event, (after - before));
+            }
+        }
+        else {
+            // create new entry for expression
+            HashMap<Notification, Long> evToTime = new HashMap<Notification, Long>();
+            evToTime.put(event, (after - before));
+            IAResult.getExpToInsScopeTime().put(expression, evToTime);
+        }
         return result;  
     }
 
