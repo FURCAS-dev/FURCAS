@@ -1,6 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -17,6 +19,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 /**
  * Can evaluate a {@link CallExp} expression, given the evaluation result of its {@link CallExp#getSource() source}
@@ -89,7 +92,26 @@ public class PartialEvaluator {
         }
         return result;
     }
-    
+
+    /**
+     * Determines if a change of <tt>callExp</tt>'s source expression's value from <tt>oldSourceValue</tt> to
+     * <tt>newSourceValue</tt> may or may not have an effect on the overall expression by which <tt>callExp</tt> is used. If this
+     * methods returns <tt>true</tt> then this guarantees that the change has no effect. If it returns <tt>false</tt> this only
+     * means that the absence of an effect could not be proven and that it is still possible that the change had no effect.
+     * <p>
+     * 
+     * The method first applies partial evaluation along chains of {@link CallExp} and operation calls. If the computation of the
+     * full value based on old and new source value reaches the end of such a chain of {@link CallExp} and operation
+     * body/operation call constructs, {@link #transitivelyPropagateDelta(OCLExpression, Collection)} tries to
+     * propagate the delta between old and new value further. If the result of this delta propagation is empty for all
+     * expressions to which it propagates then this proves that the original change indicated by <tt>oldSourceValue</tt>
+     * and <tt>newSourceValue</tt> has no effect on the overall expression.
+     * 
+     * @param mapper
+     *            needs to be able to map an operation body in which <tt>callExp</tt> is used to the calls of that operation, as
+     *            well as all operation calls in which those calls appear (transitively) to the calls of those operations, and so
+     *            on, for the overall expression for which the effect of the change is to be analyzed.
+     */
     public boolean hasNoEffectOnOverallExpression(CallExp callExp, Object oldSourceValue, Object newSourceValue,
             OperationBodyToCallMapper mapper) {
         boolean result;
@@ -106,6 +128,7 @@ public class PartialEvaluator {
                 if (oldCallExpValueEqualsNewCallExpValue) {
                     result = true;
                 } else {
+                    // Is callExp source of another CallExp?
                     ResourceSet rs = callExp.eResource().getResourceSet();
                     if (rs == null) {
                         rs = new ResourceSetImpl();
@@ -114,6 +137,7 @@ public class PartialEvaluator {
                     Collection<EObject> appliedElement = helper.reverseNavigate(callExp, ExpressionsPackage.eINSTANCE.getCallExp_Source(),
                             helper.getQueryContext(rs), rs);
                     if (!appliedElement.isEmpty()) {
+                        // yes, it's source of another CallExp; recurse:
                         CallExp callExpCallingCallExp = (CallExp) appliedElement.iterator().next();
                         result = hasNoEffectOnOverallExpression(callExpCallingCallExp, oldCallExpValue, newCallExpValue, mapper);
                     } else {
@@ -137,14 +161,96 @@ public class PartialEvaluator {
                                 }
                             }
                         } else {
-                            // not an operation body
-                            result = false;
+                            // not an operation body either; try delta propagation:
+                            Collection<Object> delta = symmetricDifference(oldSourceValue, newSourceValue);
+                            result = transitivelyPropagateDelta(callExp, delta, mapper).isEmpty();
                         }
                     }
                 }
             } catch (ValueNotFoundException e) {
                 // can't perform the partial evaluation due to access to undefined variable
                 result = false; // we don't know, so we have to answer conservatively
+            }
+        }
+        return result;
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Collection<Object> symmetricDifference(Object oldSourceValue, Object newSourceValue) {
+        Collection<Object> result;
+        Collection<Object> oldSourceValueAsCollection = ((oldSourceValue instanceof Collection<?> ? (Collection<Object>) oldSourceValue
+                : Collections.singleton(oldSourceValue)));
+        Collection<Object> newSourceValueAsCollection = ((newSourceValue instanceof Collection<?> ? (Collection<Object>) newSourceValue
+                : Collections.singleton(newSourceValue)));
+        result = new HashSet<Object>();
+        result.addAll(oldSourceValueAsCollection);
+        result.removeAll(newSourceValueAsCollection);
+        Collection<Object> newSourceValueMinusOldSourceValue = new HashSet<Object>();
+        newSourceValueMinusOldSourceValue.addAll(newSourceValueAsCollection);
+        newSourceValueMinusOldSourceValue.removeAll(oldSourceValueAsCollection);
+        result.addAll(newSourceValueMinusOldSourceValue);
+        return result;
+    }
+
+    /**
+     * Determines a strategy that can propagate a delta for <tt>e</tt>'s value to a superset of the
+     * delta for another expression using <tt>e</tt>. For example, the delta of the source expression
+     * of an <tt>asSet()</tt> call propagates to the <tt>asSet()</tt> call expression unchanged.
+     * 
+     * @return a propagation strategy if the expression using <tt>e</tt> is monotonic in <tt>e</tt> such
+     * that mapping <tt>e</tt>'s delta is possible at all, or <tt>null</tt> if no propagation strategy is
+     * defined or possible to define for the use of <tt>e</tt>.
+     */
+    private DeltaPropagationStrategy getDeltaPropagationStrategy(OCLExpression e) {
+        // TODO implement getDeltaPropagationStrategy
+        return null;
+    }
+
+    /**
+     * Tries to find a {@link DeltaPropagationStrategy propagation strategy} for the combination of the OCL expression <tt>e</tt>
+     * and a given <tt>delta</tt> for its evaluation result. If no such strategy is found, the pair of <tt>e</tt> and
+     * <tt>delta</tt> is returned. Otherwise, the strategy is applied, and the <tt>delta</tt> is mapped to a delta for another
+     * expression using <tt>e</tt>. The result of this step is recursively passed to this method so that propagation terminates
+     * when no propagation strategy can be found for an expression.
+     * <p>
+     * 
+     * When the object collection returned in the {@link Pair#getB b} component of the result is empty then this means that the
+     * overall expression in which <tt>e</tt> occurs will not be affected by the <tt>delta</tt> of <tt>e</tt>'s value.
+     * <p>
+     * 
+     * <b>Postcondition</b>:
+     * <tt>this.{@link #getDeltaPropagationStrategy(OCLExpression) getDeltaPropagationStrategy}(result.getA()) == null</tt>
+     * 
+     * @param delta
+     *            may be null, empty or a valid non-empty collection specifying a delta in <tt>e</tt>'s evaluation result
+     * @param mapper
+     *            needs to be able to map an operation body in which <tt>callExp</tt> is used to the calls of that operation, as
+     *            well as all operation calls in which those calls appear (transitively) to the calls of those operations, and so
+     *            on, for the overall expression for which the effect of the change is to be analyzed.
+     * @return zero or more pairs with a non-<tt>null</tt>, non-empty {@link Pair#getB b} component which is a collection
+     *         specifying the delta to which <tt>delta</tt> maps for the expression returned as the {@link Pair#getA a} component
+     *         of the pair contained in the collection returned. If the collection returned is empty this means that
+     *         the <tt>delta</tt> of <tt>e</tt>'s value has no effect on the overall expression in which <tt>e</tt> appears.
+     */
+    private Collection<Pair<OCLExpression, Collection<Object>>> transitivelyPropagateDelta(OCLExpression e, Collection<Object> delta,
+            OperationBodyToCallMapper mapper) {
+        DeltaPropagationStrategy propagationStrategy = getDeltaPropagationStrategy(e);
+        Collection<Pair<OCLExpression, Collection<Object>>> result;
+        if (propagationStrategy == null) {
+            // no (further) propagation possible
+            if (delta == null || delta.isEmpty()) {
+                // no change anyhow
+                result = Collections.emptySet();
+            } else {
+                result = Collections.singleton(new Pair<OCLExpression, Collection<Object>>(e, delta));
+            }
+        } else {
+            Collection<Pair<OCLExpression, Collection<Object>>> propagated = propagationStrategy.mapDelta(e, delta, mapper);
+            result = new HashSet<Pair<OCLExpression, Collection<Object>>>();
+            for (Pair<OCLExpression, Collection<Object>> singlePropagationResult : propagated) {
+                Collection<Pair<OCLExpression, Collection<Object>>> singleResult = transitivelyPropagateDelta(
+                        singlePropagationResult.getA(), singlePropagationResult.getB(), mapper);
+                result.addAll(singleResult);
             }
         }
         return result;
