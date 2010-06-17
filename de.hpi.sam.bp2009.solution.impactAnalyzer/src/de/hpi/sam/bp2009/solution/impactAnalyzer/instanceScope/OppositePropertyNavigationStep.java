@@ -36,7 +36,7 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep {
             EcoreHelper.getInstance().reverseNavigate(fromObject.getAnnotatedObject(), (EReference) property, scope, result);
         }
         for (EObject o : result) {
-            returnValue.add(new AnnotatedEObject(o));
+            returnValue.add(annotateEObject(fromObject, o));
         }
         return returnValue;
     }

@@ -24,7 +24,7 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
  */
 public class AnnotatedEObject implements EObject{
     private final String annotation;
-    private final EObject refObject;
+    private final EObject eObject;
     
     /**
      * Constructor of the {@link AnnotatedEObject}.
@@ -33,7 +33,7 @@ public class AnnotatedEObject implements EObject{
      * @param annotation an annotationString, assumed to be "" if omitted
      */
     public AnnotatedEObject(EObject annotatedObject, String annotation){
-        this.refObject = annotatedObject;
+        this.eObject = annotatedObject;
         this.annotation = annotation;
     }
     /**
@@ -63,106 +63,106 @@ public class AnnotatedEObject implements EObject{
     }
     
     public EObject getAnnotatedObject(){
-        return refObject;
+        return eObject;
     }
     
     @Override
     public TreeIterator<EObject> eAllContents() {
-        return refObject.eAllContents();
+        return eObject.eAllContents();
     }
 
     @Override
     public EClass eClass() {
-        return refObject.eClass();
+        return eObject.eClass();
     }
 
     @Override
     public EObject eContainer() {
-        return refObject.eContainer();
+        return eObject.eContainer();
     }
 
     @Override
     public EStructuralFeature eContainingFeature() {
-        return refObject.eContainingFeature();
+        return eObject.eContainingFeature();
     }
 
     @Override
     public EReference eContainmentFeature() {
-        return refObject.eContainmentFeature();
+        return eObject.eContainmentFeature();
     }
 
     @Override
     public EList<EObject> eContents() {
-        return refObject.eContents();
+        return eObject.eContents();
     }
 
     @Override
     public EList<EObject> eCrossReferences() {
-        return refObject.eCrossReferences();
+        return eObject.eCrossReferences();
     }
 
     @Override
     public Object eGet(EStructuralFeature feature) {
-        return refObject.eGet(feature);
+        return eObject.eGet(feature);
     }
 
     @Override
     public Object eGet(EStructuralFeature feature, boolean resolve) {
-        return refObject.eGet(feature, resolve);
+        return eObject.eGet(feature, resolve);
     }
 
     @Override
     public Object eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
-        return refObject.eInvoke(operation, arguments);
+        return eObject.eInvoke(operation, arguments);
     }
 
     @Override
     public boolean eIsProxy() {
-        return refObject.eIsProxy();
+        return eObject.eIsProxy();
     }
 
     @Override
     public boolean eIsSet(EStructuralFeature feature) {
-        return refObject.eIsSet(feature);
+        return eObject.eIsSet(feature);
     }
 
     @Override
     public Resource eResource() {
-        return refObject.eResource();
+        return eObject.eResource();
     }
 
     @Override
     public void eSet(EStructuralFeature feature, Object newValue) {
-        refObject.eSet(feature, newValue);
+        eObject.eSet(feature, newValue);
     }
 
     @Override
     public void eUnset(EStructuralFeature feature) {
-        refObject.eUnset(feature);        
+        eObject.eUnset(feature);        
     }
 
     @Override
     public EList<Adapter> eAdapters() {
-        return refObject.eAdapters();
+        return eObject.eAdapters();
     }
 
     @Override
     public boolean eDeliver() {
-        return refObject.eDeliver();
+        return eObject.eDeliver();
     }
 
     @Override
     public void eNotify(Notification notification) {
-        refObject.eNotify(notification);
+        eObject.eNotify(notification);
     }
 
     @Override
     public void eSetDeliver(boolean deliver) {
-        refObject.eSetDeliver(deliver);
+        eObject.eSetDeliver(deliver);
     }
     
     @Override
     public String toString() {
-        return super.toString() + " (annotatedObject: " + refObject.toString() + ") (annotation: " + annotation + ")";
+        return super.toString() + " (annotatedObject: " + eObject.toString() + ") (annotation: " + annotation + ")";
     }
 }
