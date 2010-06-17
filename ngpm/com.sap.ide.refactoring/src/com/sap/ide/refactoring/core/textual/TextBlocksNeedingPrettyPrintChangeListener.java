@@ -21,12 +21,21 @@ public class TextBlocksNeedingPrettyPrintChangeListener implements ChangeListene
     public void notify(ChangeEvent event) {
 	if (event instanceof ElementChangeEvent) {
 	    ElementChangeEvent elementEvent = (ElementChangeEvent) event;
-	    tbChangeCalculator.add(elementEvent.getAffectedElement(event.getEventTriggerConnection()));
+	    RefObject affectedElement = elementEvent.getAffectedElement(event.getEventTriggerConnection());
+	    if (affectedElement != null) {
+		tbChangeCalculator.add(affectedElement);
+	    }
 	}
 	if (event instanceof LinkChangeEvent) {
 	    LinkChangeEvent linkEvent = (LinkChangeEvent) event;
-	    tbChangeCalculator.add(linkEvent.getFirstLinkEnd(event.getEventTriggerConnection()));
-	    tbChangeCalculator.add(linkEvent.getSecondLinkEnd(event.getEventTriggerConnection()));
+	    RefObject affectedElement = linkEvent.getFirstLinkEnd(event.getEventTriggerConnection());
+	    if (affectedElement != null) {
+		tbChangeCalculator.add(affectedElement);
+	    }
+	    affectedElement = linkEvent.getSecondLinkEnd(event.getEventTriggerConnection());
+	    if (affectedElement != null) {
+		tbChangeCalculator.add(affectedElement);
+	    }
 	}
     }
 
