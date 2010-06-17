@@ -33,6 +33,9 @@ import company.CompanyPackage;
 import company.Department;
 import company.Division;
 
+import data.classes.Association;
+import data.classes.AssociationEnd;
+import data.classes.ClassTypeDefinition;
 import data.classes.ClassesFactory;
 import data.classes.ClassesPackage;
 import data.classes.MethodSignature;
@@ -150,6 +153,43 @@ public class PartialEvaluatorTest extends TestCase {
         p.setName("abc");
         assertFalse(evaluator.hasNoEffectOnOverallExpression(inputPropertyCallExp, Collections.EMPTY_SET,
                 Collections.singleton(p), mapper));
+    }
+
+    @Test
+    public void testNoEffectForDeltaOfDelegatesToPart() throws ParserException {
+        evaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
+        SapClass c1 = ClassesFactory.eINSTANCE.createSapClass();
+        c1.setName("c1");
+        SapClass c2 = ClassesFactory.eINSTANCE.createSapClass();
+        c2.setName("c2");
+        ClassTypeDefinition ctdc1 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctdc1.setClazz(c1);
+        ClassTypeDefinition ctdc2 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctdc2.setClazz(c2);
+        Association assoc = ClassesFactory.eINSTANCE.createAssociation();
+        assoc.setName("assoc");
+        AssociationEnd ae1 = ClassesFactory.eINSTANCE.createAssociationEnd();
+        ae1.setName("ae1");
+        ae1.setType(ctdc1);
+        AssociationEnd ae2 = ClassesFactory.eINSTANCE.createAssociationEnd();
+        ae2.setName("ae2");
+        ae2.setType(ctdc2);
+        assoc.getEnds().add(ae1);
+        assoc.getEnds().add(ae2);
+        ResourceSet rs = new ResourceSetImpl();
+        // the following expresssion becomes self.ownedSignatures->collect(s | s.input)->select(name='abc')
+        OCLExpression expression = evaluator.getHelper().createQuery("self.getAssociationEnds().otherEnd()->select(delegation->notEmpty()).type.clazz->reject(c|c=self)->asSet()");
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false);
+        OperationCallExp getAssociationEnds = ((OperationCallExp) ((IteratorExp) ((IteratorExp) ((IteratorExp) ((IteratorExp) ((IteratorExp) ((CallExp) expression) /*asSet*/.getSource())/*reject*/.getSource())/*collect(clazz)*/.getSource())/*collect(type)*/.getSource())/*select(delegation->notEmpty())*/.getSource())/*collect(otherEnd())*/.getSource())/*self.getAssociationEnds()*/;
+        // getAssociationEnds(): self.elementsOfType->collect(associationEnd->asSet())->asSet()
+        OCLExpression getAssociationEndsBody = mapper.getBodyForCall(getAssociationEnds);
+        PropertyCallExp selfElementsOfType = (PropertyCallExp) ((IteratorExp) ((OperationCallExp) getAssociationEndsBody).getSource())/*collect*/.getSource();
+        rs.getResources().add(expression.eResource());
+        assertTrue(evaluator.hasNoEffectOnOverallExpression(selfElementsOfType, Collections.EMPTY_SET,
+                Collections.singleton(ctdc1), mapper));
+        ae2.setDelegation(ClassesFactory.eINSTANCE.createDelegation());
+        assertFalse(evaluator.hasNoEffectOnOverallExpression(selfElementsOfType, Collections.EMPTY_SET,
+                Collections.singleton(ctdc1), mapper));
     }
 
     @Test
