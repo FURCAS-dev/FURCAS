@@ -43,6 +43,7 @@ import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
 import de.hpi.sam.bp2009.solution.oclToAst.delegate.OclAstEcoreEnvironmentFactory;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     ResourceChanger rc= new ResourceChanger();
@@ -78,6 +79,8 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
     }
     private List<ErrorMessage> messages = new ArrayList<ErrorMessage>();
+    private ResourceSet resourceSet = new ResourceSetImpl();
+    private EPackage.Registry registry = EPackage.Registry.INSTANCE;
 
     public static void main(String[] args) {
         String uri = "file://c:/Documents%20and%20Settings/D043530/emfmdrs-workspace/com.sap.mdrs.ecore/model/mdrs.ecore";
@@ -96,18 +99,13 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
      */
     @Override
     public  void convertAnnotations(URI fileUri) {
-        ResourceSet load_resourceSet = new ResourceSetImpl();
-
-        /*
-         * Register XML Factory implementation using DEFAULT_EXTENSION
-         */
-        load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new EcoreResourceFactoryImpl());
         /*
          * Load the resource using the URI
+         * Factory get infered by the ResourceFactoryRegistry
          */
         Resource r =null;
         try {
-            r = load_resourceSet.getResource(fileUri, true);
+            r = resourceSet.getResource(fileUri, true);
             EcoreHelper.getInstance().addResourceToDefaultIndex(r);
             r.load(null);
         } catch (Exception e) {
@@ -115,6 +113,22 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource load."+fileUri, r));
             return;
         }
+        Collection<EPackage> saltPackages = new HashSet<EPackage>();
+        /*
+         * collect all EPackages inScope
+         */
+        ProjectBasedScopeProviderImpl scopi = new ProjectBasedScopeProviderImpl(r);
+        for(EObject o: scopi.getForwardScopeAsEObjects()){
+            if(o instanceof EPackage){
+                saltPackages.add((EPackage) o);
+                }
+        }
+        for(EObject o: scopi.getBackwardScopeAsEObjects()){
+            if(o instanceof EPackage){
+                saltPackages.add((EPackage) o);
+                }
+        }
+        this.registry =new OclAstRegistry(EPackage.Registry.INSTANCE, saltPackages );
 
         for(EObject sPkg: r.getContents()){
           if (sPkg instanceof EPackage) {
@@ -127,7 +141,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     private void lookupPackageInRegistryAndHandleOrRecurse(URI fileUri, EPackage sPkg)
     {
           if(EPackage.Registry.INSTANCE.containsKey(sPkg.getNsURI())){
-               handlePackage(fileUri, (EObject)EPackage.Registry.INSTANCE.get(sPkg.getNsURI()));
+               handlePackage(fileUri, sPkg);
           } else {
             System.err.println("Couldn't find package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI()+
               " in registry. Maybe empty top-level package?");
@@ -137,12 +151,10 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
 
     private void handlePackage(URI fileUri, EObject sPkg)
-    {
-      EPackage registryPkg=(EPackage) EPackage.Registry.INSTANCE.get(((EPackage) sPkg).getNsURI());
-       /*
+    {       /*
         * change the current resource to the ecore from the loaded packages
         */
-       Resource registryResource = registryPkg.eResource();
+       Resource rs = sPkg.eResource();
        if(((EPackage)sPkg).getEAnnotation(OCL_TYPES)!=null){
          ((EPackage)sPkg).getEAnnotation(OCL_TYPES).getContents().clear();
        }
@@ -150,9 +162,9 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
        traversalConvertOclAnnotations((EPackage)sPkg);
        try {
          // FIXME the registry resources are cut differently than the FS resources, namely by subpackage
-         registryResource.save(new FileOutputStream(new File(java.net.URI.create(fileUri.toString()))), null);
+           rs.save(new FileOutputStream(new File(java.net.URI.create(fileUri.toString()))), null);
        } catch (IOException e) {
-         getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", registryResource));
+         getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", sPkg));
        }
     }
 
@@ -179,7 +191,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (e == null)
                 return;
             // TODO can the following lines be pulled out of the loop? This may speed things up a little
-            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new OclAstEcoreEnvironmentFactory());
+            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new OclAstEcoreEnvironmentFactory(this.registry));
             new ProjectDependencyQueryContextProvider().apply(ocl);
             Helper helper = ocl.createOCLHelper();
             /*

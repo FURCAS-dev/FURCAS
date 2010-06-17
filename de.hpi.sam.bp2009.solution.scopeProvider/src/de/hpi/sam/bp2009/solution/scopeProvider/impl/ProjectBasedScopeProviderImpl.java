@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.query2.QueryContext;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
@@ -242,38 +241,22 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         }
         IResource member = project.findMember("model", true);
         project.getLocation().toFile().listFiles();
-        if (member == null || !(member instanceof IFolder))
-            throw new IllegalArgumentException(project.getName() + " does not contain a model folder. It is invalid.");
+        if (member == null || !(member instanceof IFolder)){
+            System.err.println("WARNING!!"+ project.getName() + " does not contain a model folder. It is invalid.");
+//            throw new IllegalArgumentException(project.getName() + " does not contain a model folder. It is invalid.");
+            return null;
+        }
         return (IFolder) member;
     }
 
     private Set<Resource> getAllResourceFromDirectory(IFolder modelDirectory) throws CoreException {
         final Set<Resource> resources = new HashSet<Resource>();
         for (IResource f : modelDirectory.members()) {
-            boolean successful = false;
-
-            if (f.getFileExtension().endsWith("xmi")) {
-                successful = checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI.createURI(f.getLocationURI()
+            boolean successful = checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI.createURI(f.getLocationURI()
                         .toString()));
-                XMIResourceImpl r = new XMIResourceImpl(URI.createURI(f.getLocationURI().toString()));
-                /*
-                 * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
-                 */
-                try {
-                    r.load(null);
-                    successful = true;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    // TODO: handle exception
-                }
-
-                if (r.getErrors().size() > 0)
-                    successful = false;
-            }
 
             if (successful)
-                addNewOrInMemoryResource(resources, URI.createURI(f.getLocationURI().toString()));
-            // r.unload();
+                addNewOrInMemoryResource(resources, URI.createURI(f.getLocationURI().toString()),f.getFileExtension());
 
         }
 
@@ -307,14 +290,19 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
      *            Set to add in resource
      * @param uri
      *            uri of the resource to add
+     * @param extension
+     *            resource file extension to infer the appropriate ResourceImpl
      */
-    private void addNewOrInMemoryResource(final Set<Resource> resources, URI uri) {
+    private void addNewOrInMemoryResource(final Set<Resource> resources, URI uri, String extension) {
         Resource inMemory = null;
         for (Resource r : getInMemoryResources())
             if (uri.equals(r.getURI()))
                 inMemory = r;
-
-        resources.add(inMemory == null ? new XMIResourceImpl(uri) : inMemory);
+        if(inMemory == null){
+                resources.add(new ResourceSetImpl().getResource(uri, true));
+        }else{
+            resources.add(inMemory);
+        }
     }
 
     private Collection<IProject> scopeAsProjects(Boolean forward) {
@@ -336,6 +324,9 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         Collection<Resource> result = new HashSet<Resource>();
         for (IProject project : projects) {
             IFolder modelDir = getModelDirectoryFromProject(project);
+            if(modelDir==null){
+                continue;
+            }
             try {
                 result.addAll(getAllResourceFromDirectory(modelDir));
             } catch (CoreException e) {
@@ -427,24 +418,27 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         /*
          * Register XML Factory implementation using DEFAULT_EXTENSION
          */
-        load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
+        //Resource.Factory.Registry.INSTANCE.getFactory(uri);
+        //load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
         /*
          * Load the resource using the URI
          */
-        Resource r = load_resourceSet.getResource(uri, true);
+        try {
+            Resource r = load_resourceSet.getResource(uri, true);
 
         /*
          * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
          */
-        try {
+        
             r.load(null);
             successful = true;
+            if (r.getErrors().size() > 0)
+                successful = false;
         } catch (Exception e) {
             // TODO: handle exception
         }
 
-        if (r.getErrors().size() > 0)
-            successful = false;
+
         return successful;
     }
 
