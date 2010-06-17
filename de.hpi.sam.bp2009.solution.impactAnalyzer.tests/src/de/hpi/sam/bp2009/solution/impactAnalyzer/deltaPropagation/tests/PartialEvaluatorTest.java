@@ -113,6 +113,24 @@ public class PartialEvaluatorTest extends TestCase {
     }
 
     @Test
+    public void testNoEffectForSelectSource() throws ParserException {
+        evaluator.getHelper().setContext(ClassesPackage.eINSTANCE.getSapClass());
+        MethodSignature ms = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms.setName("def");
+        ResourceSet rs = new ResourceSetImpl();
+        OCLExpression expression = evaluator.getHelper().createQuery("self.ownedSignatures->select(name='abc')");
+        rs.getResources().add(expression.eResource());
+        assertTrue(expression instanceof IteratorExp);
+        IteratorExp iteratorExp = (IteratorExp) expression;
+        FilterSynthesisImpl mapper = new FilterSynthesisImpl(expression, /* notifyNewContextElements */false);
+        assertTrue(evaluator.hasNoEffectOnOverallExpression(iteratorExp, Collections.EMPTY_SET,
+                Collections.singleton(ms), mapper));
+        ms.setName("abc");
+        assertFalse(evaluator.hasNoEffectOnOverallExpression(iteratorExp, Collections.EMPTY_SET,
+                Collections.singleton(ms), mapper));
+    }
+
+    @Test
     public void testSimpleAtPreEvaluation() throws ParserException {
         final MethodSignature signature = ClassesFactory.eINSTANCE.createMethodSignature();
         signature.setName("oldM");
