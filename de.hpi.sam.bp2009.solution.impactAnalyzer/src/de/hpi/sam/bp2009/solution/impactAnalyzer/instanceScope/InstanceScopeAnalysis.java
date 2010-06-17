@@ -169,7 +169,7 @@ public class InstanceScopeAnalysis {
         if (expression == null || exprContext == null || pathCache == null || filterSynthesizer == null) {
             throw new IllegalArgumentException("Arguments must not be null");
         }
-        associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder();
+        associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder(filterSynthesizer);
         associationEndAndAttributeCallFinder.walk(expression);
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
         this.pathCache = pathCache;

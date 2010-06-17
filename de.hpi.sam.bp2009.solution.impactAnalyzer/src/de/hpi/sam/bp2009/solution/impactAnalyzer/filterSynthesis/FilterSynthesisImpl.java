@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -106,6 +107,20 @@ implements OperationBodyToCallMapper {
             result = Collections.emptySet();
         }
         return result;
+    }
+    
+    /**
+     * Looks up if the {@link OCLExpression} that is called by the given {@link OperationCallExp} has already been visited. 
+     * @param call The {@link OperationCallExp} to look for
+     * @return the {@link OCLExpression} that defines the body of the called operation
+     */
+    public OCLExpression getBodyForCall(OperationCallExp call){
+        for (Entry<OCLExpression, Set<OperationCallExp>> entry : visitedOperationBodies.entrySet()){
+            if (entry.getValue().contains(call)){
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 
     @Override
