@@ -118,13 +118,24 @@ public class EcoreHelper {
      * @param rs used to resolve the element URIs resulting from the query
      */
     public void reverseNavigate(EObject from, EReference forwardReference, QueryContext scope, ResourceSet rs, Collection<EObject> result) {
-        EClass owningType = getOwningType(forwardReference);
-        final ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(
-                "select target from [" + EcoreUtil.getURI(from.eClass()) + "] as source in elements {[" + //$NON-NLS-1$
-                        EcoreUtil.getURI(from) + "]}, [" + EcoreUtil.getURI(owningType) + "] as target "
-                        + "where target.\"" + forwardReference.getName() + "\" = source ", scope); //$NON-NLS-1$
-        for (int i = 0; i < resultSet.getSize(); i++) {
-            result.add(rs.getEObject(resultSet.getUri(i, "target"), /* loadOnDemand */true)); //$NON-NLS-1$
+        if (forwardReference.isContainment()) {
+            EObject container = from.eContainer();
+            if (container != null) {
+                if ((forwardReference.isMany() && ((Collection<?>) container.eGet(forwardReference)).contains(from))
+                        || (!forwardReference.isMany() && container == from)) {
+                    result.add(container);
+                }
+            }
+        } else {
+            EClass owningType = getOwningType(forwardReference);
+            final ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance())
+                    .execute(
+                            "select target from [" + EcoreUtil.getURI(from.eClass()) + "] as source in elements {[" + //$NON-NLS-1$
+                                    EcoreUtil.getURI(from) + "]}, [" + EcoreUtil.getURI(owningType) + "] as target "
+                                    + "where target.\"" + forwardReference.getName() + "\" = source ", scope); //$NON-NLS-1$
+            for (int i = 0; i < resultSet.getSize(); i++) {
+                result.add(rs.getEObject(resultSet.getUri(i, "target"), /* loadOnDemand */true)); //$NON-NLS-1$
+            }
         }
     }
 
