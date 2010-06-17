@@ -6,7 +6,6 @@ import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 /**
@@ -24,16 +23,11 @@ public interface DeltaPropagationStrategy {
      * e.g., when <tt>e</tt> is the body of an operation which gets called by several {@link OperationCallExp} expressions in the
      * context of the overall expression for which to analyze the change propagation.
      * 
-     * @param mapper
-     *            needs to be able to map an operation body in which <tt>callExp</tt> is used to the calls of that operation, as
-     *            well as all operation calls in which those calls appear (transitively) to the calls of those operations, and so
-     *            on, for the overall expression for which the effect of the change is to be analyzed.
      * @return <tt>null</tt> if the delta cannot be propagated, or zero or more pairs each of which containing the expression to
      *         which the original <tt>delta</tt> propagates monotonically and the mapped, non-<tt>null</tt> non-empty delta in the
      *         {@link Pair#getB b} component of the pair returned. If <tt>delta</tt> propagates to an empty delta for some
      *         other expression, no entry is created for this in the result collection. If a non-<tt>null</tt> but empty collection is returned
      *         this means that the <tt>delta</tt> of <tt>e</tt>'s value has no effect on the overall expression analyzed.
      */
-    Collection<Pair<OCLExpression, Collection<Object>>> mapDelta(OCLExpression e, Collection<Object> delta,
-            OperationBodyToCallMapper mapper);
+    Collection<Pair<OCLExpression, Collection<Object>>> mapDelta(OCLExpression e, Collection<Object> delta);
 }

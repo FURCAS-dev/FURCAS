@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.eventManager,
  org.eclipse.osgi,
- org.eclipse.emf.common
+ org.eclipse.emf.common,
+ org.eclipse.ocl
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation,
  de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
