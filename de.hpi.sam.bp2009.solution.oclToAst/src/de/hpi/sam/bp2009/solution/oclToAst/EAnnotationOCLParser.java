@@ -35,7 +35,7 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
  * @see de.hpi.sam.bp2009.solution.oclToAst.OclToAstPackage#getEAnnotationOCLParser()
  */
 public interface EAnnotationOCLParser {
-    public static String ANNOTATION_SOURCE ="http://de.hpi.sam.bp2009.OCL";
+    public static final String ANNOTATION_SOURCE ="http://de.hpi.sam.bp2009.OCL";
     //		OCLDelegateDomain.OCL_DELEGATE_URI;
 
     public static final String EXPRESSION_NOT_FOUND= "Not compiled expression found, please use the OclToAst conversion to attach the compile expression to your model element ";
