@@ -184,11 +184,14 @@ public class InstanceScopeAnalysis {
             Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
             for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
                 AnnotatedEObject sourceElement = getSourceElement(event, attributeOrAssociationEndCall);
-                if (sourceElement != null) {
-                    Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
-                    // the source element may have been deleted already by subsequent events; at this point,
-                    // this makes it impossible to trace the change event back to a context; all we have is
-                    result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), cache));
+                // TODO contemplate parallel execution of hasNoEffectOnOverallExpression and self which both may take long and we don't know which one takes longer
+                if (!hasNoEffectOnOverallExpression(event, attributeOrAssociationEndCall, sourceElement)) {
+                    if (sourceElement != null) {
+                        Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
+                        // the source element may have been deleted already by subsequent events; at this point,
+                        // this makes it impossible to trace the change event back to a context; all we have is
+                        result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), cache));
+                    }
                 }
             }
             Iterator<AnnotatedEObject> it = result.iterator();
@@ -198,6 +201,19 @@ public class InstanceScopeAnalysis {
             }
         }
         return resultCollection;
+    }
+
+    private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
+            AnnotatedEObject sourceElement) {
+        /*
+        PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event);
+        Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
+        PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator();
+        Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
+        boolean result = partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
+        */
+        // TODO continue here
+        return false;
     }
 
     private Collection<EObject> handleLifeCycleEvent(Notification event) {
@@ -437,7 +453,8 @@ public class InstanceScopeAnalysis {
     private AnnotatedEObject getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
         assert NotificationHelper.isAttributeValueChangeEvent(changeEvent)
                 || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
-        AnnotatedEObject result = new AnnotatedEObject((EObject) changeEvent.getNotifier());
+        AnnotatedEObject result = new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>\nat object: "
+                + changeEvent.getNotifier());
         if (!attributeOrAssociationEndCall.getSource().getType().isInstance(result.getAnnotatedObject())) {
             result = null; // can't be source element of attributeOrAssociationEndCall because of incompatible type
             // also see the ASCII arts in AssociationEndCallExpTracer.traceback

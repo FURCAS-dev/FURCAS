@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
@@ -147,10 +147,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
                         + "\n ===== in expression =====\n"
                         // TODO highlight getDebugInfo() expression in root expression
                         + OclHelper.getRootExpression(getDebugInfo()) +
-                        getDefines(OclHelper.getRootExpression(getDebugInfo())) != null ? "\n ===== which is the body of operation "
+                        ((getDefines(OclHelper.getRootExpression(getDebugInfo())) != null) ? "\n ===== which is the body of operation "
                                 + getDefines(
                                         OclHelper.getRootExpression(getDebugInfo()))
-                                        .getName() + " =====" : "";
+                                        .getName() + " =====" : "");
             } else {
                 return notInDebugMode;
             }
@@ -287,11 +287,14 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     protected static boolean haveIntersectingSubclassTree(EClass a, EClass b) {
         boolean result = a==null || b==null || a.equals(b);
         if (!result) {
-            Collection<Object> targetSubtypesIncludingTargetType = EcoreUtil.getObjectsByType(a.getEPackage().getEClassifiers(), a);
+            Collection<EClass> targetSubtypesIncludingTargetType = EcoreHelper.getInstance().getAllSubclasses(a);
+            targetSubtypesIncludingTargetType.add(a);
             if (targetSubtypesIncludingTargetType.contains(b)) {
                 result = true;
             } else {
-                for (Object sourceSubType : EcoreUtil.getObjectsByType(b.getEPackage().getEClassifiers(), b)) {
+                Collection<EClass> sourceSubtypesIncludingSourceType = EcoreHelper.getInstance().getAllSubclasses(b);
+                sourceSubtypesIncludingSourceType.add(b);
+                for (Object sourceSubType : sourceSubtypesIncludingSourceType) {
                     if (targetSubtypesIncludingTargetType.contains((EClassifier)sourceSubType)) {
                         result = true;
                         break;

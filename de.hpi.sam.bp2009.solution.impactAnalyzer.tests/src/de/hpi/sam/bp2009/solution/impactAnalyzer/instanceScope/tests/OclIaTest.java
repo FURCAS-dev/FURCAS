@@ -3,10 +3,14 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Test;
 
@@ -175,10 +179,15 @@ public class OclIaTest extends BaseDepartmentTest {
         OCLExpression exp = (OCLExpression) parse(testLowerMultiplicityPropagationForMethodCallOnParameterUsage,this.cp).iterator()
                 .next().getSpecification().getBodyExpression();
         this.cp.eResource().getContents().add(exp);
+        ResourceSet rs = new ResourceSetImpl();
+        Resource r = new XMIResourceImpl(URI.createURI("http://humba/trala"));
+        rs.getResources().add(r);
         // construct something like "abc".length(), then change multiplicity of "abc" from 1..1 to 0..1
         MethodSignature length = ClassesFactory.eINSTANCE.createMethodSignature();
+        r.getContents().add(length);
         length.setName("length");
         SapClass numberClass = ClassesFactory.eINSTANCE.createSapClass();
+        r.getContents().add(numberClass);
         numberClass.setName("Number");
         ClassTypeDefinition msOutput = ClassesFactory.eINSTANCE.createClassTypeDefinition();
         msOutput.setClazz(numberClass);
@@ -190,10 +199,15 @@ public class OclIaTest extends BaseDepartmentTest {
         ctd.setLowerMultiplicity(1);
         ctd.setUpperMultiplicity(1);
         MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
+        r.getContents().add(mce);
         mce.setOwnedTypeDefinition(ctd);
         mce.setMethodSignature(length);
         Parameter p = ClassesFactory.eINSTANCE.createParameter();
+        r.getContents().add(p);
+        p.setName("p");
         SapClass stringClass = ClassesFactory.eINSTANCE.createSapClass();
+        r.getContents().add(stringClass);
+        stringClass.setName("String");
         ClassTypeDefinition otDef = ClassesFactory.eINSTANCE.createClassTypeDefinition();
         otDef.setClazz(stringClass);
         otDef.setUpperMultiplicity(1);
