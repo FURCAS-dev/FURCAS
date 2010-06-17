@@ -13,8 +13,6 @@ import org.eclipse.swt.widgets.Composite;
 
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals;
-import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals;
-import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals;
 import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluatorNotifyLiterals;
 
 public class ExecutionTimeWizardPage extends WizardPage {
@@ -85,17 +83,18 @@ public class ExecutionTimeWizardPage extends WizardPage {
 		//map a point name to the corresponding literal
 		nameToLiteral = new HashMap<String, Integer>();
 		//adds all measurement points from IA to the comboboxes
-		for( ModifiedImpactAnalyzerNotifyLiterals literal: ModifiedImpactAnalyzerNotifyLiterals.values()){			
-			String name = literal.name();
-			int value = literal.getValue();
-			addLiteralToBoxes(name, value, IMPACT_ANALYZER);
-		}
-		//adds all measurement points from EM to the comboboxes
-		for( ModifiedEventManagerNotifyLiterals literal: ModifiedEventManagerNotifyLiterals.values()){
-			String name = literal.name();
-			int value = literal.getValue();
-			addLiteralToBoxes(name, value, EVENT_MANAGER);
-		}
+		//FIXME add new literals for measurements
+//		for( ModifiedImpactAnalyzerNotifyLiterals literal: ModifiedImpactAnalyzerNotifyLiterals.values()){			
+//			String name = literal.name();
+//			int value = literal.getValue();
+//			addLiteralToBoxes(name, value, IMPACT_ANALYZER);
+//		}
+//		//adds all measurement points from EM to the comboboxes
+//		for( ModifiedEventManagerNotifyLiterals literal: ModifiedEventManagerNotifyLiterals.values()){
+//			String name = literal.name();
+//			int value = literal.getValue();
+//			addLiteralToBoxes(name, value, EVENT_MANAGER);
+//		}
 		//adds all measurement points from OclOpt to the comboboxes
 		for(  QueryEvaluatorNotifyLiterals literal: QueryEvaluatorNotifyLiterals.values()){
 			String name = literal.name();
