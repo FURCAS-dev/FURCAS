@@ -18,9 +18,8 @@ public class RefImmediateCompositeNavigationStep extends AbstractNavigationStep 
 
 	@Override
 	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
-		Set<AnnotatedEObject> result = Collections.singleton(new AnnotatedEObject(
-		        fromObject.eContainer(), 
-		        getDebugInfo().toString()));
+		Set<AnnotatedEObject> result = Collections.singleton(annotateEObject(fromObject, 
+		        fromObject.eContainer()));
 		return result;
 	}
 }

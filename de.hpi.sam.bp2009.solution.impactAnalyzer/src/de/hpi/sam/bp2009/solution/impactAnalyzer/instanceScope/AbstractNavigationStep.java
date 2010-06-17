@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collection;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,12 +9,17 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
 
 public abstract class AbstractNavigationStep implements NavigationStep {
@@ -30,16 +34,17 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private Set<SourceTypeChangeListener> sourceTypeChangeListeners;
     private Set<TargetTypeChangeListener> targetTypeChangeListeners;
     private boolean alwaysEmpty;
+    private String annotation;
     
     /**
      * The navigateCounter counts how many times the navigate method of this NavigationStep is called
      */
     private int navigateCounter;
     
-    public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo2) {
+    public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
         this.sourceType = sourceType;
         this.targetType = targetType;
-        this.debugInfo = debugInfo2;
+        this.debugInfo = debugInfo;
         this.alwaysEmptyChangeListeners = new HashSet<AlwaysEmptyChangeListener>();
         this.sourceTypeChangeListeners = new HashSet<SourceTypeChangeListener>();
         this.targetTypeChangeListeners = new HashSet<TargetTypeChangeListener>();
@@ -102,6 +107,68 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     @Override
     public OCLExpression getDebugInfo() {
         return debugInfo;
+    }
+
+    protected AnnotatedEObject annotateEObject(AnnotatedEObject fromObject,
+            EObject next) {
+        final String notInDebugMode = "To enable annotations, set the system property de.hpi.sam.bp2009.solution.impactAnalyzer.debug to true, "
+                + "e.g., by using the VM argument -Dde.hpi.sam.bp2009.solution.impactAnalyzer.debug=true";
+        final boolean debugMode = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug");
+        if (debugMode) {
+            return new AnnotatedEObject(next, fromObject.getAnnotation()+
+                "\n------------- tracing back through ---------------\n"+
+                getAnnotation()+
+                "\narriving at object: "+next);
+        } else {
+            return new AnnotatedEObject(next, notInDebugMode);
+        }
+    }
+
+    protected String getAnnotation() {
+        if (annotation == null) {
+            annotation = getVerboseDebugInfo();
+        }
+        return annotation;
+    }
+
+    /**
+     * Constructs a human-readable description of the OCL expression used as debug info for this
+     * navigation step. This includes traveling up to the root expression in which the debug info
+     * expression is embedded.
+     */
+    private String getVerboseDebugInfo() {
+        final String notInDebugMode = "To enable annotations, set the system property de.hpi.sam.bp2009.solution.impactAnalyzer.debug to true, "
+                + "e.g., by using the VM argument -Dde.hpi.sam.bp2009.solution.impactAnalyzer.debug=true";
+        final boolean debugMode = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug");
+        try {
+            if (debugMode) {
+                return "Step's expression: "
+                        + getDebugInfo()
+                        + "\n ===== in expression =====\n"
+                        // TODO highlight getDebugInfo() expression in root expression
+                        + OclHelper.getRootExpression(getDebugInfo()) +
+                        getDefines(OclHelper.getRootExpression(getDebugInfo())) != null ? "\n ===== which is the body of operation "
+                                + getDefines(
+                                        OclHelper.getRootExpression(getDebugInfo()))
+                                        .getName() + " =====" : "";
+            } else {
+                return notInDebugMode;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private EOperation getDefines(OCLExpression rootExpression) {
+        EOperation result = null;
+        if (rootExpression.eContainer() instanceof EAnnotation) {
+            EAnnotation annotation = (EAnnotation) rootExpression.eContainer();
+            if (annotation.getSource().equals(EAnnotationOCLParser.ANNOTATION_SOURCE) &&
+                    annotation.eContainer() instanceof EOperation) {
+                result = (EOperation) annotation.eContainer();
+            }
+        }
+        return result;
     }
 
     /**

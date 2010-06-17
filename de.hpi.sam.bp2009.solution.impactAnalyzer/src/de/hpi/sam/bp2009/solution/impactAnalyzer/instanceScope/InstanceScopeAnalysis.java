@@ -77,8 +77,8 @@ public class InstanceScopeAnalysis {
             PredefinedType.EQUAL_NAME, PredefinedType.LESS_THAN_NAME, PredefinedType.LESS_THAN_EQUAL_NAME,
             PredefinedType.GREATER_THAN_NAME, PredefinedType.GREATER_THAN_EQUAL_NAME, PredefinedType.NOT_EQUAL_NAME }));
 
-    protected static Set<AnnotatedEObject> getAllPossibleContextInstances(Resource container, EClass context) {
-        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+    protected static Set<EObject> getAllPossibleContextInstances(Resource container, EClass context) {
+        Set<EObject> result = new HashSet<EObject>();
 
         List<EClass> classes = new ArrayList<EClass>(EcoreHelper.getInstance().getAllSubclasses(context));
         classes.add(context);
@@ -94,8 +94,7 @@ public class InstanceScopeAnalysis {
                     String uri = resultSet.getUri(i, "obj").toString();
                     String uriFragment = uri.split("#")[1];
                     EObject obj = container.getEObject(uriFragment);
-                    AnnotatedEObject annObj = new AnnotatedEObject(obj);
-                    result.add(annObj);
+                    result.add(obj);
                 }
             }
         }
@@ -178,32 +177,31 @@ public class InstanceScopeAnalysis {
     }
 
     public Collection<EObject> getContextObjects(Notification event) {
-        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+        Collection<EObject> resultCollection;
         if (NotificationHelper.isElementLifeCycleEvent(event)) {
-            handleLifeCycleEvent(event, result);
-        }
-        // TODO fix this optimization
-//        if (isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(event, "")) {
-//            return Collections.emptySet();
-//        }
-        for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
-            AnnotatedEObject sourceElement = getSourceElement(event, attributeOrAssociationEndCall);
-            if (sourceElement != null) {
-                Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
-                // the source element may have been deleted already by subsequent events; at this point,
-                // this makes it impossible to trace the change event back to a context; all we have is
-                result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), cache));
+            resultCollection = handleLifeCycleEvent(event);
+        } else {
+            Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+            for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
+                AnnotatedEObject sourceElement = getSourceElement(event, attributeOrAssociationEndCall);
+                if (sourceElement != null) {
+                    Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
+                    // the source element may have been deleted already by subsequent events; at this point,
+                    // this makes it impossible to trace the change event back to a context; all we have is
+                    result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), cache));
+                }
             }
-        }
-        Iterator<AnnotatedEObject> it = result.iterator();
-        Collection<EObject> resultCollection = new HashSet<EObject>();
-        while (it.hasNext()) {
-            resultCollection.add(it.next().getAnnotatedObject());
+            Iterator<AnnotatedEObject> it = result.iterator();
+            resultCollection = new HashSet<EObject>();
+            while (it.hasNext()) {
+                resultCollection.add(it.next().getAnnotatedObject());
+            }
         }
         return resultCollection;
     }
 
-    private void handleLifeCycleEvent(Notification event, Set<AnnotatedEObject> result) {
+    private Collection<EObject> handleLifeCycleEvent(Notification event) {
+        Collection<EObject> result = new HashSet<EObject>();
         Boolean addEvent = NotificationHelper.isAddEvent(event);
         Resource container;
         Set<EClass> relevantClasses = new HashSet<EClass>();
@@ -230,7 +228,7 @@ public class InstanceScopeAnalysis {
                         result.addAll(getAllPossibleContextInstances(container, getContext()));
                     }
                     if (addEvent && relevantClasses.contains(((EObject) value).eClass())) {
-                        result.add(new AnnotatedEObject((EObject) value));
+                        result.add((EObject) value);
                     }
                 }
             }
@@ -250,6 +248,7 @@ public class InstanceScopeAnalysis {
                 }
             }
         }
+        return result;
     }
 
     /**
