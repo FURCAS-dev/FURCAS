@@ -559,9 +559,6 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         EventManager em = EventManagerFactory.eINSTANCE.getEventManagerFor(resource);
         final QueryEvaluator qe = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator.class);        
         
-        if(ia== null)
-            throw new IllegalArgumentException("Invalid Testrun, no Impact Analyzer defined");
-        else 
         if(em == null)
             throw new IllegalArgumentException("Invalid Testrun, no Event Manager defined");
         else if(qe == null)
