@@ -20,13 +20,13 @@ public class ImpactAnalyzerAllTests extends TestSuite{
 
     public static Test suite() {
         TestSuite suite = new ImpactAnalyzerAllTests("Impact Analyzer Tests");
+        suite.addTestSuite(OclIaTest.class);
+        suite.addTestSuite(RevPathComputationTest.class);
         suite.addTestSuite(PartialEvaluatorTest.class);
         suite.addTestSuite(NavigationStepDebugGraphTest.class);
         suite.addTestSuite(QuickOclParseAndEvalTest.class);
         suite.addTestSuite(FilterSynthesisTest.class);
         suite.addTestSuite(FilterSynthesisEMEnabledTest.class);
-        suite.addTestSuite(OclIaTest.class);
-        suite.addTestSuite(RevPathComputationTest.class);
         return suite;
     }
 

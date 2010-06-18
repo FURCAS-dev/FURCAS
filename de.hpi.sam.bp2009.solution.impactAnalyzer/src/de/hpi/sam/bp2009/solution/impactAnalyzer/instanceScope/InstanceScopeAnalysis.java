@@ -53,8 +53,10 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.eventManager.util.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 /**
@@ -168,8 +170,7 @@ public class InstanceScopeAnalysis {
         if (expression == null || exprContext == null || pathCache == null || filterSynthesizer == null) {
             throw new IllegalArgumentException("Arguments must not be null");
         }
-        associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder(filterSynthesizer);
-        associationEndAndAttributeCallFinder.walk(expression);
+        associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder(filterSynthesizer, expression);
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
         this.pathCache = pathCache;
         this.context = exprContext;
@@ -181,10 +182,13 @@ public class InstanceScopeAnalysis {
         if (NotificationHelper.isElementLifeCycleEvent(event)) {
             resultCollection = handleLifeCycleEvent(event);
         } else {
-            Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
-            for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
-                AnnotatedEObject sourceElement = getSourceElement(event, attributeOrAssociationEndCall);
-                // TODO contemplate parallel execution of hasNoEffectOnOverallExpression and self which both may take long and we don't know which one takes longer
+            resultCollection = new HashSet<EObject>();
+        }
+        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+        for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
+            for (AnnotatedEObject sourceElement : getSourceElement(event, attributeOrAssociationEndCall)) {
+                // TODO contemplate parallel execution of hasNoEffectOnOverallExpression and self which both may take long and we
+                // don't know which one takes longer
                 if (!hasNoEffectOnOverallExpression(event, attributeOrAssociationEndCall, sourceElement)) {
                     if (sourceElement != null) {
                         Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
@@ -194,35 +198,28 @@ public class InstanceScopeAnalysis {
                     }
                 }
             }
-            Iterator<AnnotatedEObject> it = result.iterator();
-            resultCollection = new HashSet<EObject>();
-            while (it.hasNext()) {
-                resultCollection.add(it.next().getAnnotatedObject());
-            }
+        }
+        Iterator<AnnotatedEObject> it = result.iterator();
+        while (it.hasNext()) {
+            resultCollection.add(it.next().getAnnotatedObject());
         }
         return resultCollection;
     }
 
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
             AnnotatedEObject sourceElement) {
-        /*
         PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event);
         Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
         PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator();
         Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
         boolean result = partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
-        */
-        // TODO continue here
-        return false;
+        return result;
     }
 
     private Collection<EObject> handleLifeCycleEvent(Notification event) {
         Collection<EObject> result = new HashSet<EObject>();
         Boolean addEvent = NotificationHelper.isAddEvent(event);
         Resource container;
-        Set<EClass> relevantClasses = new HashSet<EClass>();
-        relevantClasses.add(getContext());
-        relevantClasses.addAll(getContext().getEAllSuperTypes());
         if (event.getNotifier() instanceof EObject) {
             container = ((EObject) event.getNotifier()).eResource();
         } else if (event.getNotifier() instanceof Resource) {
@@ -243,9 +240,6 @@ public class InstanceScopeAnalysis {
                     if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
                         result.addAll(getAllPossibleContextInstances(container, getContext()));
                     }
-                    if (addEvent && relevantClasses.contains(((EObject) value).eClass())) {
-                        result.add((EObject) value);
-                    }
                 }
             }
         } else {
@@ -258,9 +252,6 @@ public class InstanceScopeAnalysis {
             if (value instanceof EObject) {
                 if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
                     result.addAll(getAllPossibleContextInstances(container, getContext()));
-                }
-                if (addEvent && relevantClasses.contains(((EObject) value).eClass())) {
-                    result.add(new AnnotatedEObject((EObject) value));
                 }
             }
         }
@@ -403,10 +394,6 @@ public class InstanceScopeAnalysis {
 
             Set<NavigationCallExp> localResult = new HashSet<NavigationCallExp>();
             localResult.addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ref));
-            if (ref.getEOpposite() != null) {
-                // TODO: check if the EOpposite is really needed
-                localResult.addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ref.getEOpposite()));
-            }
             result = localResult;
         } else {
             result = Collections.emptySet();
@@ -450,14 +437,51 @@ public class InstanceScopeAnalysis {
      *         cannot be resolved (anymore). This is still an open issue. See the to-do marker below. In all other cases, the
      *         source element on which the event occured, is returned.
      */
-    private AnnotatedEObject getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
+    private Collection<AnnotatedEObject> getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
         assert NotificationHelper.isAttributeValueChangeEvent(changeEvent)
                 || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
-        AnnotatedEObject result = new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>\nat object: "
-                + changeEvent.getNotifier());
-        if (!attributeOrAssociationEndCall.getSource().getType().isInstance(result.getAnnotatedObject())) {
-            result = null; // can't be source element of attributeOrAssociationEndCall because of incompatible type
-            // also see the ASCII arts in AssociationEndCallExpTracer.traceback
+        EClassifier sourceType = attributeOrAssociationEndCall.getSource().getType();
+        Collection<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+        // can't be source element of attributeOrAssociationEndCall because of incompatible type
+        // also see the ASCII arts in AssociationEndCallExpTracer.traceback
+        if (attributeOrAssociationEndCall instanceof PropertyCallExp) {
+            if (sourceType.isInstance(changeEvent.getNotifier())) {
+                result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>\nat object: "
+                        + changeEvent.getNotifier()));
+            }
+        } else if (attributeOrAssociationEndCall instanceof OppositePropertyCallExp) {
+            // the old and new object(s) are the source(s) of the opposite property call expression
+            for (Object o : getSourceElementsForOppositePropertyCallExp(changeEvent)) {
+                if (sourceType.isInstance(o)) {
+                    result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>\nat object: "
+                            + o));
+                }
+            }
+        } else {
+            throw new RuntimeException("Can only handle PropertyCallExp and OppositePropertyCallExp expression types, not "+
+                    attributeOrAssociationEndCall.getClass().getName());
+        }
+        return result;
+    }
+
+    private Collection<Object> getSourceElementsForOppositePropertyCallExp(Notification changeEvent) {
+        Collection<Object> result = new HashSet<Object>();
+        Object oldValue = changeEvent.getOldValue();
+        Object newValue = changeEvent.getNewValue();
+        switch (changeEvent.getEventType()) {
+        case Notification.SET:
+        case Notification.UNSET:
+            result.addAll(OclHelper.flatten(oldValue));
+            result.addAll(OclHelper.flatten(newValue));
+            break;
+        case Notification.ADD:
+        case Notification.ADD_MANY:
+            result.addAll(OclHelper.flatten(newValue));
+            break;
+        case Notification.REMOVE:
+        case Notification.REMOVE_MANY:
+            result.addAll(OclHelper.flatten(oldValue));
+            break;
         }
         return result;
     }
