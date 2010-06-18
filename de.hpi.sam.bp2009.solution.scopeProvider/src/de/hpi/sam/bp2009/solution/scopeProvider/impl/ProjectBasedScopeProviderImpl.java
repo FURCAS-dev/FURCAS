@@ -298,7 +298,12 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             if (uri.equals(r.getURI()))
                 inMemory = r;
         if(inMemory == null){
-                resources.add(new ResourceSetImpl().getResource(uri, true));
+                if(rs==null){            
+                    System.err.println("WARNING!! New ResourceSet created for \""+uri+"\". This is usually unexpected");
+                    resources.add(new ResourceSetImpl().getResource(uri, true));
+                }else{
+                    resources.add(rs.getResource(uri, true));
+                }
         }else{
             resources.add(inMemory);
         }
