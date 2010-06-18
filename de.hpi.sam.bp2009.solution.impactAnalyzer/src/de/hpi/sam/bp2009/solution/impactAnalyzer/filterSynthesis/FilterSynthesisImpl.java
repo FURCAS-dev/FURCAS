@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.CallOperationAction;
@@ -25,6 +26,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
+import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.parser.OCLParsersym;
@@ -133,6 +135,18 @@ implements OperationBodyToCallMapper {
         }
         else {            
             filters.add(EventFilterFactory.getInstance().createFilterForStructuralFeature( cls, propCallExp.getReferredProperty( )));     
+        }
+        return result;
+    }
+    
+    @Override
+    protected EPackage handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
+            EPackage sourceResult, List<EPackage> qualifierResults) {
+        if (callExp.getReferredOppositeProperty() instanceof EReference){
+            EClass cls = (EClass) callExp.getSource().getType();
+            filters.add(EventFilterFactory.getInstance().createFilterForStructuralFeature( cls, callExp.getReferredOppositeProperty( )));
+        } else {
+            System.err.println("Unhandled EStructuralFeature as referredOppositeProperty in FilterSynthesis.");
         }
         return result;
     }
