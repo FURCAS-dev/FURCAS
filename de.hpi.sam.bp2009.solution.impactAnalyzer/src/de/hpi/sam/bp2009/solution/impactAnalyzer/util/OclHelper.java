@@ -1,5 +1,9 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.util;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.Constraint;
@@ -26,5 +30,22 @@ public class OclHelper {
         throw new IllegalArgumentException();
     }
     
-    
+    @SuppressWarnings("unchecked")
+    public static Collection<Object> flatten(Object o) {
+        Collection<Object> result;
+        if (o instanceof Collection<?>) {
+            if (((Collection<?>) o).isEmpty()) {
+                result = (Collection<Object>) o;
+            } else {
+                result = new HashSet<Object>();
+                for (Object subO : (Collection<?>) o) {
+                    result.addAll(flatten(subO));
+                }
+            }
+        } else {
+            result = Collections.singleton(o);
+        }
+        return result;
+    }
+
 }

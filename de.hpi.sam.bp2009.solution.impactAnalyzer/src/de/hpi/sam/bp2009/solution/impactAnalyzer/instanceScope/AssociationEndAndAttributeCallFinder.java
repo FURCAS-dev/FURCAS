@@ -51,9 +51,10 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
     private final Map<EClassifier, Set<OperationCallExp>> allInstancesCalls = new HashMap<EClassifier, Set<OperationCallExp>>();
     private final FilterSynthesisImpl filterSynthesis;
 
-    public AssociationEndAndAttributeCallFinder(FilterSynthesisImpl filterSynthesizer) {
+    public AssociationEndAndAttributeCallFinder(FilterSynthesisImpl filterSynthesizer, OCLExpression expression) {
         super();
         filterSynthesis = filterSynthesizer;
+        walk(expression);
     }
 
     @Override
@@ -183,7 +184,7 @@ EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constr
         return result;
     }
 
-    public void walk(OCLExpression expression) {
+    private void walk(OCLExpression expression) {
         if (!visitedExpressions.contains(expression)) {
             visitedExpressions.add(expression);
             safeVisit(expression);   
