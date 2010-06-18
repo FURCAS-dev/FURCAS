@@ -6,8 +6,6 @@
  */
 package de.hpi.sam.bp2009.solution.oclToAst.impl;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -95,13 +93,14 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
     /**
      * Loads the resource specified by the given uri with the default {@link EcoreResourceFactoryImpl}, parse all matching EAnnotations and saves the resource
+     * It will be created only one resource set for all loaded resources
      * @param fileUri
      */
     @Override
     public  void convertAnnotations(URI fileUri) {
         /*
          * Load the resource using the URI
-         * Factory get infered by the ResourceFactoryRegistry
+         * Factory get inferred by the ResourceFactoryRegistry
          */
         Resource r =null;
         try {
@@ -129,25 +128,29 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
                 }
         }
         this.registry =new OclAstRegistry(EPackage.Registry.INSTANCE, saltPackages );
-
+        /*
+         * enable lookups from the resource set
+         */
+        resourceSet.setPackageRegistry(this.registry);
+        
         for(EObject sPkg: r.getContents()){
           if (sPkg instanceof EPackage) {
-            lookupPackageInRegistryAndHandleOrRecurse(fileUri, (EPackage) sPkg);
+            handlePackage(fileUri, (EPackage) sPkg);
           }
         }
     }
 
 
-    private void lookupPackageInRegistryAndHandleOrRecurse(URI fileUri, EPackage sPkg)
-    {
-          if(EPackage.Registry.INSTANCE.containsKey(sPkg.getNsURI())){
-               handlePackage(fileUri, sPkg);
-          } else {
-            System.err.println("Couldn't find package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI()+
-              " in registry. Maybe empty top-level package?");
-            recursivelySearchForSubpackagesInRegistry(fileUri, sPkg);
-          }
-    }
+//    private void lookupPackageInRegistryAndHandleOrRecurse(URI fileUri, EPackage sPkg)
+//    {
+//          if(EPackage.Registry.INSTANCE.containsKey(sPkg.getNsURI())){
+//               handlePackage(fileUri, sPkg);
+//          } else {
+//            System.err.println("Couldn't find package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI()+
+//              " in registry. Maybe empty top-level package?");
+//            recursivelySearchForSubpackagesInRegistry(fileUri, sPkg);
+//          }
+//    }
 
 
     private void handlePackage(URI fileUri, EObject sPkg)
@@ -161,21 +164,20 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
        System.out.println("Converting package "+((EPackage) sPkg).getName()+" with nsURI "+((EPackage) sPkg).getNsURI());
        traversalConvertOclAnnotations((EPackage)sPkg);
        try {
-         // FIXME the registry resources are cut differently than the FS resources, namely by subpackage
-           rs.save(new FileOutputStream(new File(java.net.URI.create(fileUri.toString()))), null);
+           rs.save(null);
        } catch (IOException e) {
          getAllOccurredErrorMessages().add(new ErrorMessageImpl(e, "Error during Resource save.", sPkg));
        }
     }
 
-    private void recursivelySearchForSubpackagesInRegistry(URI fileUri, EObject sPkg)
-    {
-      for (EObject content : sPkg.eContents()) {
-        if (content instanceof EPackage) {
-          lookupPackageInRegistryAndHandleOrRecurse(fileUri, (EPackage) content);
-        }
-      }
-    }
+//    private void recursivelySearchForSubpackagesInRegistry(URI fileUri, EObject sPkg)
+//    {
+//      for (EObject content : sPkg.eContents()) {
+//        if (content instanceof EPackage) {
+//          lookupPackageInRegistryAndHandleOrRecurse(fileUri, (EPackage) content);
+//        }
+//      }
+//    }
 
 
     /* (non-Javadoc)
@@ -333,7 +335,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     }
 
     /**
-     * Adds all given oclTypes to the oclTypes annotation of the given pacakge
+     * Adds all given oclTypes to the oclTypes annotation of the given package
      * @param collection all types to add
      * @param p the package to get the annotation
      */
@@ -351,8 +353,8 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
         p.getEAnnotations().add(annotation);
         /*
-         * after resolving all names of BagTypes are set
-         * due to a bug in the BagTypeImpl this is neccessary
+         * after resolving, all names of BagTypes are set
+         * due to a bug in the BagTypeImpl this is necessary
          */
         for(EObject o: collection){
             EcoreUtil.getURI(o);
