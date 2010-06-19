@@ -6,6 +6,16 @@
  */
 package company.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import primitivetypes.PrimitivetypesPackage;
+import primitivetypes.impl.PrimitivetypesPackageImpl;
+
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Department;
@@ -13,21 +23,7 @@ import company.Division;
 import company.Employee;
 import company.Freelance;
 import company.Student;
-
 import company.util.CompanyValidator;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import primitivetypes.PrimitivetypesPackage;
-
-import primitivetypes.impl.PrimitivetypesPackageImpl;
 
 /**
  * <!-- begin-user-doc -->

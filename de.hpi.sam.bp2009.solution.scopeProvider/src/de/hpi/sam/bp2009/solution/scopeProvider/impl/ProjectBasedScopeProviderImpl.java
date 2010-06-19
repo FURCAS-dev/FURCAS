@@ -248,7 +248,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return (IFolder) member;
     }
 
-    private Set<Resource> getAllResourceFromDirectory(IFolder modelDirectory) throws CoreException {
+    private Set<Resource> getAllResourcesFromDirectory(IFolder modelDirectory) throws CoreException {
         final Set<Resource> resources = new HashSet<Resource>();
         for (IResource f : modelDirectory.members()) {
             boolean successful = checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI.createURI(f.getLocationURI()
@@ -332,7 +332,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
                 continue;
             }
             try {
-                result.addAll(getAllResourceFromDirectory(modelDir));
+                result.addAll(getAllResourcesFromDirectory(modelDir));
             } catch (CoreException e) {
                 // TODO Add Exception to an intern array of errors
                 e.printStackTrace();
