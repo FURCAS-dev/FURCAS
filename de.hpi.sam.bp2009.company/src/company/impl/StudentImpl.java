@@ -6,14 +6,10 @@
  */
 package company.impl;
 
+import org.eclipse.emf.ecore.EClass;
+
 import company.CompanyPackage;
 import company.Student;
-
-import java.lang.reflect.InvocationTargetException;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
 
 /**
  * <!-- begin-user-doc -->
