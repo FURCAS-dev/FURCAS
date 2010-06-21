@@ -10,12 +10,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 
 public class NewValueClassFilter extends ClassFilter {
-
 
     public NewValueClassFilter() {
         super();
@@ -28,13 +24,6 @@ public class NewValueClassFilter extends ClassFilter {
 
     public NewValueClassFilter(EClass subClass, boolean includeSubclasses, boolean negated) {
         super(subClass, includeSubclasses, negated);
-    }
-
-    @Override
-    public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
-        identifier.getNewValueClassURIs().add(EcoreUtil.getURI(getWantedClass()));
-        return getEListForNotificationIdentifier(identifier);
-
     }
 
     /*

@@ -7,13 +7,8 @@
 package de.hpi.sam.bp2009.solution.eventManager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 
 public class ClassFilter extends EventFilter {
 
@@ -29,28 +24,20 @@ public class ClassFilter extends EventFilter {
         setWantedClass(subClass);
         setNegated(negated);
         setIncludeSubClasses(includeSubclasses);
-        
+
     }
+
     public void setIncludeSubClasses(boolean includeSubClasses) {
         this.includeSubClasses = includeSubClasses;
     }
-    public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
-        EList<NotificationIdentifier> result = new BasicEList<NotificationIdentifier>();
-        result.add(identifier);
-
-        identifier.setNotifierClassURI(EcoreUtil.getURI(getWantedClass()));
-        return result;
-    }
-
-
 
     public EClass getWantedClass() {
         return wantedClass;
     }
 
-
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -62,7 +49,9 @@ public class ClassFilter extends EventFilter {
         return result;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -94,9 +83,9 @@ public class ClassFilter extends EventFilter {
         if (((EObject) notifier).eClass().equals(getWantedClass())) {
             return true;
         }
-        if(getIncludeSubClasses()){
-            return ((EObject) notifier).eClass().getEAllSuperTypes().contains(getWantedClass());   
-        }else{
+        if (getIncludeSubClasses()) {
+            return ((EObject) notifier).eClass().getEAllSuperTypes().contains(getWantedClass());
+        } else {
             return ((EObject) notifier).eClass().equals(getWantedClass());
         }
     }
@@ -114,16 +103,18 @@ public class ClassFilter extends EventFilter {
 
     public boolean getIncludeSubClasses() {
         return this.includeSubClasses;
-        
+
     }
+
     @Override
     public ClassFilter clone() {
         return new ClassFilter(getWantedClass(), getIncludeSubClasses(), isNegated());
-        
+
     }
+
     @Override
     public Object getFilterCriterion() {
         return getWantedClass();
-        
+
     }
 } // ClassFilterImpl

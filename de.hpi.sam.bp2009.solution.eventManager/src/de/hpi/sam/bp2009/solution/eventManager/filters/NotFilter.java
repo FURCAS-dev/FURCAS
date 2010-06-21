@@ -1,33 +1,24 @@
 package de.hpi.sam.bp2009.solution.eventManager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 
 public class NotFilter extends LogicalOperationFilter {
     public NotFilter() {
         super();
     }
+
     public NotFilter(EventFilter subTypeFilterTree) {
         filters.add(subTypeFilterTree);
     }
 
     @Override
     public boolean matchesFor(Notification event) {
-        if(filters.isEmpty())
+        if (filters.isEmpty())
             return true;
         return !(filters.iterator().next().matchesFor(event));
 
     }
 
-    @Override
-    public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
-        // TODO Auto-generated methodbuildNotificationIdentifiers stub
-        System.out.println("buildNotificationIdentifiers");
-        throw new UnsupportedOperationException("buildNotificationIdentifiers not yet implemented");
-
-    }
     /*
      * (non-Javadoc)
      * 
@@ -62,11 +53,11 @@ public class NotFilter extends LogicalOperationFilter {
             return false;
         return true;
     }
-    
+
     @Override
-    public NotFilter clone(){
+    public NotFilter clone() {
         return new NotFilter(cloneContents()[0]);
-        
+
     }
 
 }

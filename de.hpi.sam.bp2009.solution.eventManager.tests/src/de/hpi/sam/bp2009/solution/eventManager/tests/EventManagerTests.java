@@ -15,14 +15,12 @@ import junit.textui.TestRunner;
  * <!-- begin-user-doc -->
  * A test suite for the '<em><b>eventManager</b></em>' package.
  * <!-- end-user-doc -->
- * @generated
  */
 public class EventManagerTests extends TestSuite {
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public static void main(String[] args) {
 		TestRunner.run(suite());
@@ -31,7 +29,6 @@ public class EventManagerTests extends TestSuite {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public static Test suite() {
 		TestSuite suite = new EventManagerTests("eventManager Tests");
@@ -45,8 +42,6 @@ public class EventManagerTests extends TestSuite {
 		suite.addTestSuite(OldValueClassFilterTest.class);
 		suite.addTestSuite(NewValueClassFilterTest.class);
 		suite.addTestSuite(StructuralFeatureFilterTest.class);
-		suite.addTestSuite(NotificationIdentifierTest.class);
-		suite.addTestSuite(NotificationIdentifierBuilderTest.class);
 		suite.addTestSuite(ContainmentFilterTest.class);
 		return suite;
 	}
@@ -54,7 +49,6 @@ public class EventManagerTests extends TestSuite {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public EventManagerTests(String name) {
 		super(name);

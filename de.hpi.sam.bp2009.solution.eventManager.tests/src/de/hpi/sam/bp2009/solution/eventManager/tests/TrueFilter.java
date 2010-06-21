@@ -1,25 +1,13 @@
 package de.hpi.sam.bp2009.solution.eventManager.tests;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 final class TrueFilter extends EventFilter {
     @Override
     public boolean matchesFor(Notification event) {
         return true;
-
-    }
-
-    @Override
-    public EList<NotificationIdentifier> buildNotificationIdentifiers(
-            NotificationIdentifier identifier) {
-        EList<NotificationIdentifier> test = new BasicEList<NotificationIdentifier>();
-        test.add(identifier);
-        return test ;
 
     }
 

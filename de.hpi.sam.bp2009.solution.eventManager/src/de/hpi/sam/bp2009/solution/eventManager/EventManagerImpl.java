@@ -8,10 +8,8 @@ package de.hpi.sam.bp2009.solution.eventManager;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -19,11 +17,11 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.framework.RecursiveContaimentNotificationCreator;
 
 public class EventManagerImpl implements EventManager {
     private EventAdapter adapter = new EventAdapter(this);
-    private HashMap<NotificationIdentifier, Set<Adapter>> identifierToListener = new HashMap<NotificationIdentifier, Set<Adapter>>();
-    private NotificationIdentifierBuilder bld = EventManagerFactory.eINSTANCE.createNotificationIdentifierBuilder();
+    private HashMap<EventFilter, Adapter> filterToListener = new HashMap<EventFilter, Adapter>();
     private WeakReference<ResourceSet> resourceSet;
 
     protected EventManagerImpl(ResourceSet set) {
@@ -37,22 +35,17 @@ public class EventManagerImpl implements EventManager {
     }
 
     public void handleEMFEvent(Notification notification) {
-        for (NotificationIdentifier id : bld.buildFrom(notification)) {
-            for (Adapter a : getListenerList(id)) {
-                notifyApplication(a, notification, null);
+        Collection<Notification> notis = RecursiveContaimentNotificationCreator.createNotificationForComposites(notification);
+        for(Notification noti: notis){
+            for (EventFilter filter : this.filterToListener.keySet()) {
+                if(filter.matchesFor(noti)){
+                    this.notifyApplication(this.filterToListener.get(filter), noti, filter);
+                }
             }
         }
 
-    }
 
-    private Set<Adapter> getListenerList(NotificationIdentifier id) {
-        Set<Adapter> rs = identifierToListener.get(id);
-        if (rs == null) {
-            return Collections.emptySet();
-        }
-        return rs;
     }
-
     public void notifyApplication(Adapter application, Notification event, EventFilter matchingFilter) {
         application.notifyChanged(event);
     }
@@ -66,20 +59,22 @@ public class EventManagerImpl implements EventManager {
     public void subscribe(Notifier root, EventFilter filter, Adapter caller) {
         if(root!=null)
             root.eAdapters().add(adapter);
-        for (NotificationIdentifier id : filter.buildNotificationIdentifiers(EventManagerFactory.eINSTANCE
-                .createNotificationIdentifier())) {
-            if (identifierToListener.get(id) == null) {
-                identifierToListener.put(id, new HashSet<Adapter>());
-            }
-            getListenerList(id).add(caller);
-        }
+       this.filterToListener.put(filter, caller);
 
     }
 
     public boolean unsubscribe(Adapter caller) {
         boolean result = false;
-        for (Set<Adapter> set : identifierToListener.values()) {
-            result = result ? result : set.remove(caller);
+        if(this.filterToListener.containsValue(caller)){
+            Entry<EventFilter, Adapter> resultingEntry=null;
+            for(Entry<EventFilter, Adapter> entry:this.filterToListener.entrySet()){
+                if(entry.getValue()==caller){
+                    resultingEntry = entry;
+                    break;
+                }
+            }
+            return this.filterToListener.remove(resultingEntry.getKey()) != null;
+            
         }
         return result;
     }

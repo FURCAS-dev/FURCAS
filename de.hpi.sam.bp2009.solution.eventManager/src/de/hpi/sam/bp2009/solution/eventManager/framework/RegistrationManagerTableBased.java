@@ -18,8 +18,6 @@ import org.eclipse.emf.common.notify.Notification;
  */
 class RegistrationManagerTableBased extends RegistrationManager {
 
-    private Collection<TableForEventFilter> affectedTablesOnElementRepartitioning;
-
     public RegistrationManagerTableBased() {
         super();
     }
@@ -127,8 +125,6 @@ class RegistrationManagerTableBased extends RegistrationManager {
     protected void init() {
         TableForEventFilter table = null;
         allTables = new HashSet<TableForEventFilter>();
-        affectedTablesOnElementRepartitioning = new ArrayList<TableForEventFilter>(4);
-
         table = new TableForAssociationFilter();
         setUsualEvents(table);
         allTables.add(table);

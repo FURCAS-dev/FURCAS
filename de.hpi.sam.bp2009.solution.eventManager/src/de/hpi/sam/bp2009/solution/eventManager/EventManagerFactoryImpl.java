@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.solution.eventManager;
 
 import java.lang.ref.WeakReference;
-import java.util.Iterator;
 import java.util.WeakHashMap;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -77,16 +76,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     public NewValueClassFilter createNewValueClassFilter() {
         NewValueClassFilter newValueClassFilter = new NewValueClassFilter();
         return newValueClassFilter;
-    }
-
-    public NotificationIdentifier createNotificationIdentifier() {
-        NotificationIdentifier notificationIdentifier = new NotificationIdentifier();
-        return notificationIdentifier;
-    }
-
-    public NotificationIdentifierBuilder createNotificationIdentifierBuilder() {
-        NotificationIdentifierBuilder notificationIdentifierBuilder = new NotificationIdentifierBuilder();
-        return notificationIdentifierBuilder;
     }
 
     public ContainmentFilter createContainmentFilter() {

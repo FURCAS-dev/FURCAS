@@ -7,18 +7,13 @@
 package de.hpi.sam.bp2009.solution.eventManager.tests;
 
 import junit.textui.TestRunner;
-
-import org.eclipse.emf.common.util.EList;
-
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 
 /**
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Or Filter</b></em>'.
  * <!-- end-user-doc -->
- * @generated NOT
  */
 public class OrFilterTest extends AndFilterTest {
 
@@ -29,7 +24,6 @@ public class OrFilterTest extends AndFilterTest {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public static void main(String[] args) {
 		TestRunner.run(OrFilterTest.class);
@@ -39,7 +33,6 @@ public class OrFilterTest extends AndFilterTest {
 	 * Returns the fixture for this Or Filter test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generatedNOT
 	 */
 	protected LogicalOperationFilter getFixtureOR() {
 		return (LogicalOperationFilter)fixture;
@@ -49,7 +42,6 @@ public class OrFilterTest extends AndFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#setUp()
-	 * @generated
 	 */
 	@Override
 	public void setUp()   {
@@ -61,7 +53,6 @@ public class OrFilterTest extends AndFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#tearDown()
-	 * @generated
 	 */
 	@Override
 	public void tearDown()   {
@@ -74,7 +65,6 @@ public class OrFilterTest extends AndFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
-	 * @generated NOT
 	 */
 	public void testMatchesFor__NotificationTwoTrue() {
 		getFixtureOR().getOperands().add(trueFilter);
@@ -90,18 +80,6 @@ public class OrFilterTest extends AndFilterTest {
 		getFixtureOR().getOperands().add(falseFilter);
 		getFixtureOR().getOperands().add(trueFilter);
 		assertTrue("Two true/false is true", getFixtureOR().matchesFor(null));
-	}
-
-	public void testBuildNotificationIdentifiers__NotificationIdentifier() {
-		getFixtureOR().getOperands().add(falseFilter);
-		getFixtureOR().getOperands().add(trueFilter);
-		NotificationIdentifier id = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
-		EList<NotificationIdentifier> result = getFixtureOR().buildNotificationIdentifiers(id);
-		assertTrue(result.size()== 2);
-		assertTrue(result.contains(id));
-		id.setEventType(666);
-		assertTrue(result.contains(id));
-
 	}
 
 } //OrFilterTest
