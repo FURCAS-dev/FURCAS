@@ -31,6 +31,21 @@ import org.modelversioning.ecoremutator.tracker.IMutationTracker;
  * 
  */
 public class UpdateFeatureMutation extends AbstractMutation {
+    
+    private Class<? extends EStructuralFeature> featureType;
+    
+    public UpdateFeatureMutation() {
+        featureType = EStructuralFeature.class;
+    }
+    
+    /**
+     * Creates an {@link UpdateFeatureMutation} that is limited to a specific type of feature.
+     * @param featureType
+     *          the type of feature to update
+     */
+    public UpdateFeatureMutation(Class<? extends EStructuralFeature> featureType){
+        this.featureType = featureType;
+    }
 
     int mutationCount = 0;
     /**
@@ -55,7 +70,7 @@ public class UpdateFeatureMutation extends AbstractMutation {
             // get target feature
             EStructuralFeature targetFeature = modelProvider.getRandomFeature(eObjectToUpdate);
             // guard null and containment feature (otherwise it would be a move)
-            if (targetFeature != null && !isContainmentFeature(targetFeature)) {
+            if (targetFeature != null && !isContainmentFeature(targetFeature) && featureType.isInstance(targetFeature)) {
                 // get random value
                 Object value = modelProvider.getRandomValue(targetFeature);
                 if (value != null) {

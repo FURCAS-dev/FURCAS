@@ -50,6 +50,14 @@ public class EcoreMutator {
      * Tracker to specify to called mutators.
      */
     private IMutationTracker tracker = new CSVMutationTracker();
+    
+    public EcoreMutator() {
+        super();
+    }
+    
+    public EcoreMutator(long seed){
+        random = new Random(seed);
+    }
 
     /**
      * Adds a mutation with default weight (1).
