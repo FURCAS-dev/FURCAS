@@ -21,85 +21,90 @@ import org.modelversioning.ecoremutator.mutations.AbstractMutation;
 import org.modelversioning.ecoremutator.tracker.IMutationTracker;
 
 /**
- * Unsets a random {@link EStructuralFeature} (that is not a containment
- * feature) of a random {@link EObject}.
+ * Unsets a random {@link EStructuralFeature} (that is not a containment feature) of a random {@link EObject}.
  * 
  * @author <a href="mailto:langer@big.tuwien.ac.at">Philip Langer</a>
  * 
  */
 public class UnsetFeatureMutation extends AbstractMutation {
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * Unsets a random {@link EStructuralFeature} (that is not a containment
-	 * feature) of a random {@link EObject}.
-	 */
-	@Override
-	public boolean mutate(IModelProvider modelProvider, IMutationTracker tracker) {
-		Exception occurredException = null;
+    private Class<? extends EStructuralFeature> featureType;
 
-		// get object to update
-		EObject eObjectToUpdate = modelProvider.getRandomEObject();
-		if (eObjectToUpdate != null) {
-			// get target feature
-			EStructuralFeature targetFeature = modelProvider
-					.getRandomFeature(eObjectToUpdate);
-			// guard null and containment feature (otherwise it would be a move)
-			if (targetFeature != null && !isContainmentFeature(targetFeature)) {
-				try {
-					eObjectToUpdate.eUnset(targetFeature);
-					String message = "Unset " + eObjectToUpdate.toString()
-							+ " at " + targetFeature.getName();
-					log(IStatus.INFO, message);
-					// track mutation
-					tracker.track(this.getId(), message, true,
-							toEObjectList(eObjectToUpdate),
-							toFeatureList(targetFeature));
-					return true;
-				} catch (ClassCastException cce) {
-					occurredException = cce;
-				} catch (IllegalArgumentException iae) {
-					occurredException = iae;
-				} catch (ArrayStoreException ase) {
-					occurredException = ase;
-				}
-			}
-		}
+    public UnsetFeatureMutation() {
+        featureType = EStructuralFeature.class;
+    }
+    
+    /**
+     * Creates an {@link UnsetFeatureMutation} for a specific type of feature.
+     * @param featureType
+     *          the type of feature to unset.
+     */
+    public UnsetFeatureMutation(Class<? extends EStructuralFeature> featureType) {
+        this.featureType = featureType;
+    }
+    
+    /**
+     * {@inheritDoc}
+     * 
+     * Unsets a random {@link EStructuralFeature} (that is not a containment feature) of a random {@link EObject}.
+     */
+    @Override
+    public boolean mutate(IModelProvider modelProvider, IMutationTracker tracker) {
+        Exception occurredException = null;
 
-		// track failing mutation
-		String message = "Model provider did not return a suitable object, "
-				+ "target feature, or value to update.";
-		log(IStatus.WARNING, message, occurredException);
-		tracker.track(this.getId(), message, false, toEObjectList(null),
-				toFeatureList(null));
+        // get object to update
+        EObject eObjectToUpdate = modelProvider.getRandomEObject();
+        if (eObjectToUpdate != null) {
+            // get target feature
+            EStructuralFeature targetFeature = modelProvider.getRandomFeature(eObjectToUpdate);
+            // guard null and containment feature (otherwise it would be a move)
+            if (targetFeature != null && !isContainmentFeature(targetFeature) && featureType.isInstance(targetFeature)) {
+                try {
+                    eObjectToUpdate.eUnset(targetFeature);
+                    String message = "Unset " + eObjectToUpdate.toString() + " at " + targetFeature.getName();
+                    log(IStatus.INFO, message);
+                    // track mutation
+                    tracker.track(this.getId(), message, true, toEObjectList(eObjectToUpdate), toFeatureList(targetFeature));
+                    return true;
+                } catch (ClassCastException cce) {
+                    occurredException = cce;
+                } catch (IllegalArgumentException iae) {
+                    occurredException = iae;
+                } catch (ArrayStoreException ase) {
+                    occurredException = ase;
+                }
+            }
+        }
 
-		return false;
-	}
+        // track failing mutation
+        String message = "Model provider did not return a suitable object, " + "target feature, or value to update.";
+        log(IStatus.WARNING, message, occurredException);
+        tracker.track(this.getId(), message, false, toEObjectList(null), toFeatureList(null));
 
-	/**
-	 * Specifies whether the specified <code>feature</code> is a containment
-	 * feature.
-	 * 
-	 * @param feature
-	 *            to check.
-	 * @return <code>true</code> if containment feature, otherwise
-	 *         <code>false</code>.
-	 */
-	private boolean isContainmentFeature(EStructuralFeature feature) {
-		if (feature instanceof EReference) {
-			if (((EReference) feature).isContainment()) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getId() {
-		return "mutation.unsetFeature";
-	}
+        return false;
+    }
+
+    /**
+     * Specifies whether the specified <code>feature</code> is a containment feature.
+     * 
+     * @param feature
+     *            to check.
+     * @return <code>true</code> if containment feature, otherwise <code>false</code>.
+     */
+    private boolean isContainmentFeature(EStructuralFeature feature) {
+        if (feature instanceof EReference) {
+            if (((EReference) feature).isContainment()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getId() {
+        return "mutation.unsetFeature";
+    }
 }
