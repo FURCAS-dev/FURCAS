@@ -8,6 +8,12 @@
     <details key="invocationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="PetriNet">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="modelName"/>
+    </eAnnotations>
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="modelName" value="self.elements->notEmpty()"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" lowerBound="10"
         upperBound="-1" eType="#//Element" containment="true" eOpposite="#//Element/diagram"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -18,6 +24,13 @@
         eType="#//PetriNet" eOpposite="#//PetriNet/elements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Place" eSuperTypes="#//Node">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="numberOfTokens number"/>
+    </eAnnotations>
+    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+      <details key="numberOfTokens" value="self.noTokens > 3"/>
+      <details key="number" value="self.noTokens > 34"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="noTokens" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testHiddenOpposite" eType="#//Node">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
@@ -33,12 +46,6 @@
         eType="#//Node" eOpposite="#//Node/incomingArcs"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true" eSuperTypes="#//Element">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="mustNotHaveHiddenOpposite"/>
-    </eAnnotations>
-    <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-      <details key="mustNotHaveHiddenOpposite" value="self.hiddenOpposite->isEmpty()"/>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingArcs" eType="#//Arc"
         eOpposite="#//Arc/source"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingArcs" eType="#//Arc"

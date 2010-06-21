@@ -9,7 +9,6 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridLayout;
@@ -78,7 +77,7 @@ public class SimpleResultPage extends WizardPage {
         for(Operator o:ops){
             ResultObject r = o.getResult();
             if (o instanceof OclOperatorImpl){
-                HashMap<Notification, Set<Constraint>> affectedExprs = ((OclOperatorImpl)o).getAffectedExprs();
+                HashMap<Notification, Set<String>> affectedExprs = ((OclOperatorImpl)o).getAffectedExprs();
                 for (Notification noti: affectedExprs.keySet()){
                     r.setMessage(r.getMessage()
                             + "\n" + affectedExprs.get(noti).size() 

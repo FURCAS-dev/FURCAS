@@ -42,199 +42,199 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class PetriNetImpl extends EObjectImpl implements PetriNet {
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElements()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getElements()
+     * @generated
+     * @ordered
+     */
 	protected EList<Element> elements;
 
 	/**
-	 * The default value of the '{@link #getDiagramName() <em>Diagram Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getDiagramName() <em>Diagram Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDiagramName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDiagramName()
+     * @generated
+     * @ordered
+     */
 	protected static final String DIAGRAM_NAME_EDEFAULT = "Petri Net 1.0";
 	/**
-	 * The cached value of the '{@link #getDiagramName() <em>Diagram Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDiagramName() <em>Diagram Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDiagramName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDiagramName()
+     * @generated
+     * @ordered
+     */
 	protected String diagramName = DIAGRAM_NAME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PetriNetImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return PetriNetPackage.Literals.PETRI_NET;
-	}
+        return PetriNetPackage.Literals.PETRI_NET;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Element> getElements() {
-		if (elements == null) {
-			elements = new EObjectContainmentWithInverseEList<Element>(Element.class, this, PetriNetPackage.PETRI_NET__ELEMENTS, PetriNetPackage.ELEMENT__DIAGRAM);
-		}
-		return elements;
-	}
+        if (elements == null) {
+            elements = new EObjectContainmentWithInverseEList<Element>(Element.class, this, PetriNetPackage.PETRI_NET__ELEMENTS, PetriNetPackage.ELEMENT__DIAGRAM);
+        }
+        return elements;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getDiagramName() {
-		return diagramName;
-	}
+        return diagramName;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDiagramName(String newDiagramName) {
-		String oldDiagramName = diagramName;
-		diagramName = newDiagramName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.PETRI_NET__DIAGRAM_NAME, oldDiagramName, diagramName));
-	}
+        String oldDiagramName = diagramName;
+        diagramName = newDiagramName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.PETRI_NET__DIAGRAM_NAME, oldDiagramName, diagramName));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case PetriNetPackage.PETRI_NET__ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElements()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PETRI_NET__ELEMENTS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getElements()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case PetriNetPackage.PETRI_NET__ELEMENTS:
-				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PETRI_NET__ELEMENTS:
+                return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case PetriNetPackage.PETRI_NET__ELEMENTS:
-				return getElements();
-			case PetriNetPackage.PETRI_NET__DIAGRAM_NAME:
-				return getDiagramName();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PETRI_NET__ELEMENTS:
+                return getElements();
+            case PetriNetPackage.PETRI_NET__DIAGRAM_NAME:
+                return getDiagramName();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case PetriNetPackage.PETRI_NET__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends Element>)newValue);
-				return;
-			case PetriNetPackage.PETRI_NET__DIAGRAM_NAME:
-				setDiagramName((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PETRI_NET__ELEMENTS:
+                getElements().clear();
+                getElements().addAll((Collection<? extends Element>)newValue);
+                return;
+            case PetriNetPackage.PETRI_NET__DIAGRAM_NAME:
+                setDiagramName((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case PetriNetPackage.PETRI_NET__ELEMENTS:
-				getElements().clear();
-				return;
-			case PetriNetPackage.PETRI_NET__DIAGRAM_NAME:
-				setDiagramName(DIAGRAM_NAME_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PETRI_NET__ELEMENTS:
+                getElements().clear();
+                return;
+            case PetriNetPackage.PETRI_NET__DIAGRAM_NAME:
+                setDiagramName(DIAGRAM_NAME_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case PetriNetPackage.PETRI_NET__ELEMENTS:
-				return elements != null && !elements.isEmpty();
-			case PetriNetPackage.PETRI_NET__DIAGRAM_NAME:
-				return DIAGRAM_NAME_EDEFAULT == null ? diagramName != null : !DIAGRAM_NAME_EDEFAULT.equals(diagramName);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PETRI_NET__ELEMENTS:
+                return elements != null && !elements.isEmpty();
+            case PetriNetPackage.PETRI_NET__DIAGRAM_NAME:
+                return DIAGRAM_NAME_EDEFAULT == null ? diagramName != null : !DIAGRAM_NAME_EDEFAULT.equals(diagramName);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (diagramName: ");
-		result.append(diagramName);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (diagramName: ");
+        result.append(diagramName);
+        result.append(')');
+        return result.toString();
+    }
 
 } //PetriNetImpl

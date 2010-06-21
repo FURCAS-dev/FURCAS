@@ -24,109 +24,109 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class PetriNetFactoryImpl extends EFactoryImpl implements PetriNetFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static PetriNetFactory init() {
-		try {
-			PetriNetFactory thePetriNetFactory = (PetriNetFactory)EPackage.Registry.INSTANCE.getEFactory("http://petriNet/1.0"); 
-			if (thePetriNetFactory != null) {
-				return thePetriNetFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new PetriNetFactoryImpl();
-	}
+        try {
+            PetriNetFactory thePetriNetFactory = (PetriNetFactory)EPackage.Registry.INSTANCE.getEFactory("http://petriNet/1.0"); 
+            if (thePetriNetFactory != null) {
+                return thePetriNetFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new PetriNetFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PetriNetFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case PetriNetPackage.PETRI_NET: return createPetriNet();
-			case PetriNetPackage.PLACE: return createPlace();
-			case PetriNetPackage.TRANSITION: return createTransition();
-			case PetriNetPackage.ARC: return createArc();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case PetriNetPackage.PETRI_NET: return createPetriNet();
+            case PetriNetPackage.PLACE: return createPlace();
+            case PetriNetPackage.TRANSITION: return createTransition();
+            case PetriNetPackage.ARC: return createArc();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PetriNet createPetriNet() {
-		PetriNetImpl petriNet = new PetriNetImpl();
-		return petriNet;
-	}
+        PetriNetImpl petriNet = new PetriNetImpl();
+        return petriNet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Place createPlace() {
-		PlaceImpl place = new PlaceImpl();
-		return place;
-	}
+        PlaceImpl place = new PlaceImpl();
+        return place;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Transition createTransition() {
-		TransitionImpl transition = new TransitionImpl();
-		return transition;
-	}
+        TransitionImpl transition = new TransitionImpl();
+        return transition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Arc createArc() {
-		ArcImpl arc = new ArcImpl();
-		return arc;
-	}
+        ArcImpl arc = new ArcImpl();
+        return arc;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PetriNetPackage getPetriNetPackage() {
-		return (PetriNetPackage)getEPackage();
-	}
+        return (PetriNetPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static PetriNetPackage getPackage() {
-		return PetriNetPackage.eINSTANCE;
-	}
+        return PetriNetPackage.eINSTANCE;
+    }
 
 } //PetriNetFactoryImpl

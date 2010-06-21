@@ -12,7 +12,6 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 
 /**
  * Implementation of the {@link ImpactAnalyzer}

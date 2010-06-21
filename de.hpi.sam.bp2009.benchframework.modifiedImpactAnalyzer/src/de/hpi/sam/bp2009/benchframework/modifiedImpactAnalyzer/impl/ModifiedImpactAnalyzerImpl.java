@@ -38,7 +38,7 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl {
         long before = System.nanoTime();
         EventFilter result = super.createFilterForExpression(expression, notifyNewContextElements);
         long after = System.nanoTime();
-        IAResult.getExpToFilterTime().put(expression, (after - before));
+        IAResult.getExpToFilterTime().put(expression.toString(), (after - before));
         return result;    
     }
 

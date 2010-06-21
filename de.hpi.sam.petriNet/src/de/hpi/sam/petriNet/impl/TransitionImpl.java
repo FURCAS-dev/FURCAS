@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class TransitionImpl extends NodeImpl implements Transition {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TransitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return PetriNetPackage.Literals.TRANSITION;
-	}
+        return PetriNetPackage.Literals.TRANSITION;
+    }
 
 } //TransitionImpl

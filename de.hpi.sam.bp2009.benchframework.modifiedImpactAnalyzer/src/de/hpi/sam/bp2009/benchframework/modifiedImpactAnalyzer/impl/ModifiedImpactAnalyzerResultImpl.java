@@ -19,7 +19,7 @@ public class ModifiedImpactAnalyzerResultImpl extends ResultObjectImpl {
      * in nanoseconds needed to create event filter for the given expression
      * 
      */
-    private HashMap<OCLExpression, Long> expToFilterTime = new HashMap<OCLExpression, Long>();
+    private HashMap<String, Long> expToFilterTime = new HashMap<String, Long>();
     
 
     private HashMap<OCLExpression, HashMap<Notification, Long>> expToInsScopeTime = new HashMap<OCLExpression, HashMap<Notification,Long>>();
@@ -36,7 +36,7 @@ public class ModifiedImpactAnalyzerResultImpl extends ResultObjectImpl {
         super();
     }
 
-    public HashMap<OCLExpression, Long> getExpToFilterTime() {
+    public HashMap<String, Long> getExpToFilterTime() {
         return expToFilterTime;
     }
 
