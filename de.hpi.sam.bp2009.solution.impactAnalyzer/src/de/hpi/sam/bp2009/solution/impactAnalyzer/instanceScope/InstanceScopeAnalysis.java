@@ -53,6 +53,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.eventManager.util.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.BenchmarkExecutionController;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
@@ -71,7 +72,7 @@ public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
     private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
     private final Map<OCLExpression, NavigationStep> expressionToStep;
-    private final PathCache pathCache;
+     private final PathCache pathCache = new PathCache();
     private final FilterSynthesisImpl filterSynthesizer;
     private final EClass context;
 
@@ -165,14 +166,12 @@ public class InstanceScopeAnalysis {
      *            invoked for model elements; using this cache avoids redundant path calculations for common subexpressions, such
      *            as operation bodies called by several expressions.
      */
-    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, PathCache pathCache,
-            FilterSynthesisImpl filterSynthesizer) {
-        if (expression == null || exprContext == null || pathCache == null || filterSynthesizer == null) {
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer) {
+        if (expression == null || exprContext == null || filterSynthesizer == null) {
             throw new IllegalArgumentException("Arguments must not be null");
         }
         associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder(filterSynthesizer, expression);
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
-        this.pathCache = pathCache;
         this.context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
     }
@@ -207,13 +206,12 @@ public class InstanceScopeAnalysis {
     }
 
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
-            AnnotatedEObject sourceElement) {
-        PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event);
-        Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
-        PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator();
-        Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
-        boolean result = partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
-        return result;
+            AnnotatedEObject sourceElement){
+	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event);
+	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
+	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator();
+	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
+	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
     }
 
     private Collection<EObject> handleLifeCycleEvent(Notification event) {

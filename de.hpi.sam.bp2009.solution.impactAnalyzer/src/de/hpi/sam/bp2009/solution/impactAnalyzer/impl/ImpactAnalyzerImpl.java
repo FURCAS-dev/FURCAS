@@ -20,20 +20,12 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.PathCache;
 public class ImpactAnalyzerImpl implements ImpactAnalyzer {
 
     private HashMap<OCLExpression, FilterSynthesisImpl> expToFilterSyn = new HashMap<OCLExpression, FilterSynthesisImpl>();
-    private PathCache pathCache = new PathCache();
 
     /**
      * @return the expToFilterSyn
      */
     protected HashMap<OCLExpression, FilterSynthesisImpl> getExpToFilterSyn() {
         return expToFilterSyn;
-    }
-
-    /**
-     * @return the pathCache
-     */
-    protected PathCache getPathCache() {
-        return pathCache;
     }
 
     /**
@@ -56,8 +48,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         if (!(this.getExpToFilterSyn().containsKey(expression))) {
             createFilterForExpression(expression, true);
         }
-        InstanceScopeAnalysis instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, this.getPathCache(), this
-                .getExpToFilterSyn().get(expression));
+        InstanceScopeAnalysis instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, this.getExpToFilterSyn().get(expression));
         return instanceScopeAnalysis.getContextObjects(event);
     }
 
