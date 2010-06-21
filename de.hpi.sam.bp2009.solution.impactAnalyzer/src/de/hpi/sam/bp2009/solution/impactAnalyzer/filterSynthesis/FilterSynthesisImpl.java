@@ -140,7 +140,7 @@ implements OperationBodyToCallMapper {
     }
     
     @Override
-    protected EPackage handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
+    public EPackage handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
             EPackage sourceResult, List<EPackage> qualifierResults) {
         if (callExp.getReferredOppositeProperty() instanceof EReference){
             EClass cls = (EClass) callExp.getSource().getType();

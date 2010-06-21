@@ -74,12 +74,13 @@ public class OclOptionObjectImpl extends OptionObjectImpl implements OclOptionOb
 	}
 
 	public static OptionObject defaultValue(){
-		OclOptionObjectImpl def = new OclOptionObjectImpl();
-		//TODO weiterreichen der Eingabe der Constraints an die Gui
+		OclOptionObjectImpl oclOption = new OclOptionObjectImpl();
+		//TODO parse Constraints from meta-model
+		//TODO show parsed constraints in GUI
 		EList<String> list= new BasicEList<String>();
-		list.add("context Class0: self.attribute0 < 10");
-		def.getConstraints().addAll(list);
-		return def;
+		//list.add("context Class0: self.attribute0 < 10");
+		oclOption.getConstraints().addAll(list);
+		return oclOption;
 	}
 	/**
 	 * <!-- begin-user-doc -->

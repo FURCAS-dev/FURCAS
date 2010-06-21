@@ -22,65 +22,63 @@ package de.hpi.sam.petriNet;
  *
  * @see de.hpi.sam.petriNet.PetriNetPackage#getNode()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='mustNotHaveHiddenOpposite'"
- *        annotation="http://de.hpi.sam.bp2009.OCL mustNotHaveHiddenOpposite='self.hiddenOpposite->isEmpty()'"
  * @generated
  */
 public interface Node extends Element {
 	/**
-	 * Returns the value of the '<em><b>Outgoing Arcs</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link de.hpi.sam.petriNet.Arc#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Outgoing Arcs</b></em>' reference.
+     * It is bidirectional and its opposite is '{@link de.hpi.sam.petriNet.Arc#getSource <em>Source</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Outgoing Arcs</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Outgoing Arcs</em>' reference.
-	 * @see #setOutgoingArcs(Arc)
-	 * @see de.hpi.sam.petriNet.PetriNetPackage#getNode_OutgoingArcs()
-	 * @see de.hpi.sam.petriNet.Arc#getSource
-	 * @model opposite="source"
-	 * @generated
-	 */
+     * @return the value of the '<em>Outgoing Arcs</em>' reference.
+     * @see #setOutgoingArcs(Arc)
+     * @see de.hpi.sam.petriNet.PetriNetPackage#getNode_OutgoingArcs()
+     * @see de.hpi.sam.petriNet.Arc#getSource
+     * @model opposite="source"
+     * @generated
+     */
 	Arc getOutgoingArcs();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.petriNet.Node#getOutgoingArcs <em>Outgoing Arcs</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.hpi.sam.petriNet.Node#getOutgoingArcs <em>Outgoing Arcs</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Outgoing Arcs</em>' reference.
-	 * @see #getOutgoingArcs()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Outgoing Arcs</em>' reference.
+     * @see #getOutgoingArcs()
+     * @generated
+     */
 	void setOutgoingArcs(Arc value);
 
 	/**
-	 * Returns the value of the '<em><b>Incoming Arcs</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link de.hpi.sam.petriNet.Arc#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Incoming Arcs</b></em>' reference.
+     * It is bidirectional and its opposite is '{@link de.hpi.sam.petriNet.Arc#getTarget <em>Target</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Arcs</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Incoming Arcs</em>' reference.
-	 * @see #setIncomingArcs(Arc)
-	 * @see de.hpi.sam.petriNet.PetriNetPackage#getNode_IncomingArcs()
-	 * @see de.hpi.sam.petriNet.Arc#getTarget
-	 * @model opposite="target"
-	 * @generated
-	 */
+     * @return the value of the '<em>Incoming Arcs</em>' reference.
+     * @see #setIncomingArcs(Arc)
+     * @see de.hpi.sam.petriNet.PetriNetPackage#getNode_IncomingArcs()
+     * @see de.hpi.sam.petriNet.Arc#getTarget
+     * @model opposite="target"
+     * @generated
+     */
 	Arc getIncomingArcs();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.petriNet.Node#getIncomingArcs <em>Incoming Arcs</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link de.hpi.sam.petriNet.Node#getIncomingArcs <em>Incoming Arcs</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Incoming Arcs</em>' reference.
-	 * @see #getIncomingArcs()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Incoming Arcs</em>' reference.
+     * @see #getIncomingArcs()
+     * @generated
+     */
 	void setIncomingArcs(Arc value);
 
 } // Node

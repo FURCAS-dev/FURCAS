@@ -127,11 +127,11 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
                 saltPackages.add((EPackage) o);
                 }
         }
-        this.registry =new OclAstRegistry(EPackage.Registry.INSTANCE, saltPackages );
+        this.setRegistry(new OclAstRegistry(EPackage.Registry.INSTANCE, saltPackages ));
         /*
          * enable lookups from the resource set
          */
-        resourceSet.setPackageRegistry(this.registry);
+        resourceSet.setPackageRegistry(this.getRegistry());
         
         for(EObject sPkg: r.getContents()){
           if (sPkg instanceof EPackage) {
@@ -193,7 +193,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (e == null)
                 return;
             // TODO can the following lines be pulled out of the loop? This may speed things up a little
-            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new OclAstEcoreEnvironmentFactory(this.registry));
+            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new OclAstEcoreEnvironmentFactory(this.getRegistry()));
             new ProjectDependencyQueryContextProvider().apply(ocl);
             Helper helper = ocl.createOCLHelper();
             /*
@@ -376,5 +376,15 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             current=current.eContainer();
         }
         return p;
+    }
+
+
+    private void setRegistry(EPackage.Registry registry) {
+        this.registry = registry;
+    }
+
+
+    private EPackage.Registry getRegistry() {
+        return registry;
     }
 } // EAnnotationOCLParserImpl

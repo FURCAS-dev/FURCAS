@@ -31,196 +31,196 @@ import de.hpi.sam.petriNet.Place;
  */
 public class PlaceImpl extends NodeImpl implements Place {
 	/**
-	 * The default value of the '{@link #getNoTokens() <em>No Tokens</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getNoTokens() <em>No Tokens</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNoTokens()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getNoTokens()
+     * @generated
+     * @ordered
+     */
 	protected static final int NO_TOKENS_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getNoTokens() <em>No Tokens</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getNoTokens() <em>No Tokens</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNoTokens()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getNoTokens()
+     * @generated
+     * @ordered
+     */
 	protected int noTokens = NO_TOKENS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTestHiddenOpposite() <em>Test Hidden Opposite</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTestHiddenOpposite() <em>Test Hidden Opposite</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTestHiddenOpposite()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTestHiddenOpposite()
+     * @generated
+     * @ordered
+     */
 	protected Node testHiddenOpposite;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PlaceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return PetriNetPackage.Literals.PLACE;
-	}
+        return PetriNetPackage.Literals.PLACE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getNoTokens() {
-		return noTokens;
-	}
+        return noTokens;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setNoTokens(int newNoTokens) {
-		int oldNoTokens = noTokens;
-		noTokens = newNoTokens;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.PLACE__NO_TOKENS, oldNoTokens, noTokens));
-	}
+        int oldNoTokens = noTokens;
+        noTokens = newNoTokens;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.PLACE__NO_TOKENS, oldNoTokens, noTokens));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Node getTestHiddenOpposite() {
-		if (testHiddenOpposite != null && testHiddenOpposite.eIsProxy()) {
-			InternalEObject oldTestHiddenOpposite = (InternalEObject)testHiddenOpposite;
-			testHiddenOpposite = (Node)eResolveProxy(oldTestHiddenOpposite);
-			if (testHiddenOpposite != oldTestHiddenOpposite) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE, oldTestHiddenOpposite, testHiddenOpposite));
-			}
-		}
-		return testHiddenOpposite;
-	}
+        if (testHiddenOpposite != null && testHiddenOpposite.eIsProxy()) {
+            InternalEObject oldTestHiddenOpposite = (InternalEObject)testHiddenOpposite;
+            testHiddenOpposite = (Node)eResolveProxy(oldTestHiddenOpposite);
+            if (testHiddenOpposite != oldTestHiddenOpposite) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE, oldTestHiddenOpposite, testHiddenOpposite));
+            }
+        }
+        return testHiddenOpposite;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Node basicGetTestHiddenOpposite() {
-		return testHiddenOpposite;
-	}
+        return testHiddenOpposite;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTestHiddenOpposite(Node newTestHiddenOpposite) {
-		Node oldTestHiddenOpposite = testHiddenOpposite;
-		testHiddenOpposite = newTestHiddenOpposite;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE, oldTestHiddenOpposite, testHiddenOpposite));
-	}
+        Node oldTestHiddenOpposite = testHiddenOpposite;
+        testHiddenOpposite = newTestHiddenOpposite;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE, oldTestHiddenOpposite, testHiddenOpposite));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case PetriNetPackage.PLACE__NO_TOKENS:
-				return getNoTokens();
-			case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
-				if (resolve) return getTestHiddenOpposite();
-				return basicGetTestHiddenOpposite();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PLACE__NO_TOKENS:
+                return getNoTokens();
+            case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
+                if (resolve) return getTestHiddenOpposite();
+                return basicGetTestHiddenOpposite();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case PetriNetPackage.PLACE__NO_TOKENS:
-				setNoTokens((Integer)newValue);
-				return;
-			case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
-				setTestHiddenOpposite((Node)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PLACE__NO_TOKENS:
+                setNoTokens((Integer)newValue);
+                return;
+            case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
+                setTestHiddenOpposite((Node)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case PetriNetPackage.PLACE__NO_TOKENS:
-				setNoTokens(NO_TOKENS_EDEFAULT);
-				return;
-			case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
-				setTestHiddenOpposite((Node)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PLACE__NO_TOKENS:
+                setNoTokens(NO_TOKENS_EDEFAULT);
+                return;
+            case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
+                setTestHiddenOpposite((Node)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case PetriNetPackage.PLACE__NO_TOKENS:
-				return noTokens != NO_TOKENS_EDEFAULT;
-			case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
-				return testHiddenOpposite != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case PetriNetPackage.PLACE__NO_TOKENS:
+                return noTokens != NO_TOKENS_EDEFAULT;
+            case PetriNetPackage.PLACE__TEST_HIDDEN_OPPOSITE:
+                return testHiddenOpposite != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (noTokens: ");
-		result.append(noTokens);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (noTokens: ");
+        result.append(noTokens);
+        result.append(')');
+        return result.toString();
+    }
 
 } //PlaceImpl

@@ -36,165 +36,165 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public abstract class ElementImpl extends EObjectImpl implements Element {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ElementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return PetriNetPackage.Literals.ELEMENT;
-	}
+        return PetriNetPackage.Literals.ELEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PetriNet getDiagram() {
-		if (eContainerFeatureID() != PetriNetPackage.ELEMENT__DIAGRAM) return null;
-		return (PetriNet)eContainer();
-	}
+        if (eContainerFeatureID() != PetriNetPackage.ELEMENT__DIAGRAM) return null;
+        return (PetriNet)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetDiagram(PetriNet newDiagram, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newDiagram, PetriNetPackage.ELEMENT__DIAGRAM, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newDiagram, PetriNetPackage.ELEMENT__DIAGRAM, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDiagram(PetriNet newDiagram) {
-		if (newDiagram != eInternalContainer() || (eContainerFeatureID() != PetriNetPackage.ELEMENT__DIAGRAM && newDiagram != null)) {
-			if (EcoreUtil.isAncestor(this, newDiagram))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newDiagram != null)
-				msgs = ((InternalEObject)newDiagram).eInverseAdd(this, PetriNetPackage.PETRI_NET__ELEMENTS, PetriNet.class, msgs);
-			msgs = basicSetDiagram(newDiagram, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.ELEMENT__DIAGRAM, newDiagram, newDiagram));
-	}
+        if (newDiagram != eInternalContainer() || (eContainerFeatureID() != PetriNetPackage.ELEMENT__DIAGRAM && newDiagram != null)) {
+            if (EcoreUtil.isAncestor(this, newDiagram))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newDiagram != null)
+                msgs = ((InternalEObject)newDiagram).eInverseAdd(this, PetriNetPackage.PETRI_NET__ELEMENTS, PetriNet.class, msgs);
+            msgs = basicSetDiagram(newDiagram, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, PetriNetPackage.ELEMENT__DIAGRAM, newDiagram, newDiagram));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case PetriNetPackage.ELEMENT__DIAGRAM:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetDiagram((PetriNet)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case PetriNetPackage.ELEMENT__DIAGRAM:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetDiagram((PetriNet)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case PetriNetPackage.ELEMENT__DIAGRAM:
-				return basicSetDiagram(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case PetriNetPackage.ELEMENT__DIAGRAM:
+                return basicSetDiagram(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case PetriNetPackage.ELEMENT__DIAGRAM:
-				return eInternalContainer().eInverseRemove(this, PetriNetPackage.PETRI_NET__ELEMENTS, PetriNet.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case PetriNetPackage.ELEMENT__DIAGRAM:
+                return eInternalContainer().eInverseRemove(this, PetriNetPackage.PETRI_NET__ELEMENTS, PetriNet.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case PetriNetPackage.ELEMENT__DIAGRAM:
-				return getDiagram();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case PetriNetPackage.ELEMENT__DIAGRAM:
+                return getDiagram();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case PetriNetPackage.ELEMENT__DIAGRAM:
-				setDiagram((PetriNet)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case PetriNetPackage.ELEMENT__DIAGRAM:
+                setDiagram((PetriNet)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case PetriNetPackage.ELEMENT__DIAGRAM:
-				setDiagram((PetriNet)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case PetriNetPackage.ELEMENT__DIAGRAM:
+                setDiagram((PetriNet)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case PetriNetPackage.ELEMENT__DIAGRAM:
-				return getDiagram() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case PetriNetPackage.ELEMENT__DIAGRAM:
+                return getDiagram() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ElementImpl

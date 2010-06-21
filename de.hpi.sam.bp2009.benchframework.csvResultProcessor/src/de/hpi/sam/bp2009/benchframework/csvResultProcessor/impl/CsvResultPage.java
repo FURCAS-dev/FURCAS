@@ -9,7 +9,6 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -128,7 +127,7 @@ public class CsvResultPage extends WizardPage {
                         for (Operator op : ops) {
                             ResultObject r = op.getResult();
                             if (op instanceof OclOperatorImpl){
-                                HashMap<Notification, Set<Constraint>> affectedExprs = ((OclOperatorImpl)op).getAffectedExprs();
+                                HashMap<Notification, Set<String>> affectedExprs = ((OclOperatorImpl)op).getAffectedExprs();
                                 for (Notification noti: affectedExprs.keySet()){
                                     String no = noti.toString();
                                     no = no.replace("eventType", " , eventType");

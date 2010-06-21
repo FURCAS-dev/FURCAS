@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -49,7 +47,7 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	 */
 	protected Map<String, Boolean> queriesToResults;
 	
-	private HashMap<OCLExpression, Long> expToFilterTime = new HashMap<OCLExpression, Long>();
+	private HashMap<String, Long> expToFilterTime = new HashMap<String, Long>();
 	
 	protected EList<String> queries = new BasicEList<String>();
 
@@ -209,25 +207,23 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 		sb.append("Total Number of OCL Expressions: ");
 		sb.append(getQueries().size());
 		sb.append(" , Time to generate Filter:");
-		for (String query: getQueries()){
-			if (sb.toString() != "") sb.append(" ,\n ");
-			sb.append(query);
-			//it would be assumed, that a query string only includes one OCLExpression
-			for (Constraint cons : OclOperatorImpl.stringToConstraints.get(query)){
-			    OCLExpression exp = (OCLExpression) cons.getSpecification().getBodyExpression();
-		                 Long time = getExpToFilterTime().get(exp);
-		                 sb.append(" , " + time.toString() + " ns ");
-			}
+		for (String query: getExpToFilterTime().keySet()){
+		    if (sb.toString() != "") sb.append(" ,\n ");
+		    sb.append(query);
+		    //add time for filter calculation
+		    Long time = getExpToFilterTime().get(query);
+		    sb.append(" , " + time.toString() + " ns ");
+
 		}
 		sb.append(getMessage());
 		return sb.toString();
 	}
 
-    public void setExpToFilterTime(HashMap<OCLExpression, Long> expToFilterTime) {
+    public void setExpToFilterTime(HashMap<String, Long> expToFilterTime) {
         this.expToFilterTime = expToFilterTime;
     }
 
-    public HashMap<OCLExpression, Long> getExpToFilterTime() {
+    public HashMap<String, Long> getExpToFilterTime() {
         return expToFilterTime;
     }
 } //OclResultImpl
