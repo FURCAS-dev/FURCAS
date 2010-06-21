@@ -37,10 +37,6 @@ public interface EventManagerFactory {
 
     NewValueClassFilter createNewValueClassFilter();
 
-    NotificationIdentifier createNotificationIdentifier();
-
-    NotificationIdentifierBuilder createNotificationIdentifierBuilder();
-
     ContainmentFilter createContainmentFilter();
 
 } // EventManagerFactory

@@ -9,13 +9,10 @@ package de.hpi.sam.bp2009.solution.eventManager.tests;
 import junit.textui.TestRunner;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import company.CompanyFactory;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
@@ -23,7 +20,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>New Value Class Filter</b></em>'.
  * <!-- end-user-doc -->
- * @generated
  */
 public class NewValueClassFilterTest extends EventFilterTest {
 
@@ -32,7 +28,6 @@ public class NewValueClassFilterTest extends EventFilterTest {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public static void main(String[] args) {
 		TestRunner.run(NewValueClassFilterTest.class);
@@ -42,7 +37,6 @@ public class NewValueClassFilterTest extends EventFilterTest {
 	 * Constructs a new New Value Class Filter test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	public NewValueClassFilterTest() {
 		super();
@@ -52,7 +46,6 @@ public class NewValueClassFilterTest extends EventFilterTest {
 	 * Returns the fixture for this New Value Class Filter test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	protected NewValueClassFilter getFixture() {
@@ -63,7 +56,6 @@ public class NewValueClassFilterTest extends EventFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#setUp()
-	 * @generated NOT
 	 */
 	@Override
 	public void setUp() {
@@ -77,7 +69,6 @@ public class NewValueClassFilterTest extends EventFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#tearDown()
-	 * @generated NOT
 	 */
 	@Override
 	public void tearDown() {
@@ -97,17 +88,5 @@ public class NewValueClassFilterTest extends EventFilterTest {
 
 	}
 
-	@Override
-	public void testBuildNotificationIdentifiers__NotificationIdentifier() {
-		NotificationIdentifier idIn = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
-		NotificationIdentifier should = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
-		should.getNewValueClassURIs().add(EcoreUtil.getURI(this.department));
-		
-		getFixture().setWantedClass(department);
-		EList<NotificationIdentifier> result = getFixture().buildNotificationIdentifiers(idIn);
-		assertTrue(result.size()==1);
-		assertTrue(result.contains(should));
-
-	}
 
 } //NewValueClassFilterTest

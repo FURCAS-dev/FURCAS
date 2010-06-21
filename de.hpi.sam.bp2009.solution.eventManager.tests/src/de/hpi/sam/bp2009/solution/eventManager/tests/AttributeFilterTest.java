@@ -24,14 +24,12 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter;
  *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute) <em>Set Attribute</em>}</li>
  * </ul>
  * </p>
- * @generated
  */
 public class AttributeFilterTest extends StructuralFeatureFilterTest {
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public static void main(String[] args) {
 		TestRunner.run(AttributeFilterTest.class);
@@ -41,7 +39,6 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * Constructs a new Attribute Filter test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	public AttributeFilterTest() {
 		super();
@@ -54,7 +51,6 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * Returns the fixture for this Attribute Filter test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	protected AttributeFilter getFixture() {
@@ -65,7 +61,6 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#setUp()
-	 * @generated NOT
 	 */
 	@Override
 	public void setUp()  {
@@ -79,7 +74,6 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#tearDown()
-	 * @generated NOT
 	 */
 	@Override
 	public void tearDown()   {
@@ -93,7 +87,6 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute)
-	 * @generated NOT
 	 */
 	public void testSetAttribute__EAttribute() {
 		getFixture().setAttribute(attribute);

@@ -1,11 +1,7 @@
 package de.hpi.sam.bp2009.solution.eventManager.tests;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 final class MatchFilter extends EventFilter {
@@ -25,14 +21,6 @@ final class MatchFilter extends EventFilter {
     public boolean matchesFor(Notification event) {	
         return this.eventManagerTest.matchingNotification.equals(event);}
 
-    @Override
-    public EList<NotificationIdentifier> buildNotificationIdentifiers(
-            NotificationIdentifier identifier) {
-        EList<NotificationIdentifier> result = new BasicEList<NotificationIdentifier>();
-        result.addAll(EventManagerFactory.eINSTANCE.createNotificationIdentifierBuilder().buildFrom(this.eventManagerTest.matchingNotification));
-        return result;
-
-    }
     int hash =new Double(Math.random()).intValue();
     /* (non-Javadoc)
      * @see java.lang.Object#hashCode()

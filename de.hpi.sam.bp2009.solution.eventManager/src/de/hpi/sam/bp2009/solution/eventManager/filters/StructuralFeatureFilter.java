@@ -7,12 +7,7 @@
 package de.hpi.sam.bp2009.solution.eventManager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 
 public abstract class StructuralFeatureFilter extends EventFilter {
 
@@ -29,14 +24,6 @@ public abstract class StructuralFeatureFilter extends EventFilter {
 
     public EStructuralFeature getFeature() {
         return feature;
-    }
-
-    public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
-        EList<NotificationIdentifier> result = new BasicEList<NotificationIdentifier>();
-        result.add(identifier);
-
-        identifier.setFeatureURI(EcoreUtil.getURI(getFeature()));
-        return result;
     }
 
     /*

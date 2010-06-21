@@ -24,14 +24,12 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
  *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter#setReference(org.eclipse.emf.ecore.EReference) <em>Set Reference</em>}</li>
  * </ul>
  * </p>
- * @generated
  */
 public class AssociationFilterTest extends StructuralFeatureFilterTest {
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public static void main(String[] args) {
 		TestRunner.run(AssociationFilterTest.class);
@@ -41,7 +39,6 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 	 * Constructs a new Association Filter test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	public AssociationFilterTest() {
 		super();
@@ -54,7 +51,6 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 	 * Returns the fixture for this Association Filter test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	protected AssociationFilter getFixture() {
@@ -81,7 +77,6 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#tearDown()
-	 * @generated NOT
 	 */
 	@Override
 	public void tearDown() {
@@ -95,7 +90,6 @@ public class AssociationFilterTest extends StructuralFeatureFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter#setReference(org.eclipse.emf.ecore.EReference)
-	 * @generated NOT
 	 */
 	public void testSetReference__EReference() {
 		getFixture().setReference(reference);

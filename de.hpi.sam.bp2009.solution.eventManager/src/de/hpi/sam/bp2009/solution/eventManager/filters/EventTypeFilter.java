@@ -7,10 +7,6 @@
 package de.hpi.sam.bp2009.solution.eventManager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 
 public class EventTypeFilter extends EventFilter {
 
@@ -29,13 +25,6 @@ public class EventTypeFilter extends EventFilter {
     public EventTypeFilter(Integer eventType2) {
         super();
         setEventType(eventType2);
-    }
-
-    public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
-        EList<NotificationIdentifier> result = new BasicEList<NotificationIdentifier>();
-        result.add(identifier);
-        identifier.setEventType(getEventType());
-        return result;
     }
 
     /*
@@ -129,11 +118,13 @@ public class EventTypeFilter extends EventFilter {
 
         return "filter undefined";
     }
+
     @Override
-    public EventTypeFilter clone(){
+    public EventTypeFilter clone() {
         return new EventTypeFilter(getEventType());
-        
+
     }
+
     @Override
     public Object getFilterCriterion() {
         return getEventType();

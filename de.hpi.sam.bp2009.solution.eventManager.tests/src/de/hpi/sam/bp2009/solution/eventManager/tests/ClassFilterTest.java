@@ -12,22 +12,18 @@ import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 
 /**
  * <!-- begin-user-doc -->
  * A test case for the model object '<em><b>Class Filter</b></em>'.
  * <!-- end-user-doc -->
- * @generated
  */
 public class ClassFilterTest extends EventFilterTest {
 
 	private EClass cls;
-	private NotificationIdentifier id;
 	private DynamicEObjectImpl inst;
 	private NotificationImpl noti;
     private EClass superCls;
@@ -35,7 +31,6 @@ public class ClassFilterTest extends EventFilterTest {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public static void main(String[] args) {
 		TestRunner.run(ClassFilterTest.class);
@@ -46,7 +41,6 @@ public class ClassFilterTest extends EventFilterTest {
 	 * Constructs a new Class Filter test case with the given name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	public ClassFilterTest() {
 		super();
@@ -57,7 +51,6 @@ public class ClassFilterTest extends EventFilterTest {
 	 * Returns the fixture for this Class Filter test case.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	protected ClassFilter getFixture() {
@@ -83,7 +76,6 @@ public class ClassFilterTest extends EventFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#setUp()
-	 * @generated NOT
 	 */
 	@Override
 	public void setUp() {
@@ -94,7 +86,6 @@ public class ClassFilterTest extends EventFilterTest {
 		superCls.setName("super");
 		cls.getESuperTypes().add(superCls);
 		inst = new DynamicEObjectImpl(cls);
-		id = EventManagerFactory.eINSTANCE.createNotificationIdentifier();
 		noti = new TestNoti(0, false, false, inst);
 	}
 
@@ -102,13 +93,11 @@ public class ClassFilterTest extends EventFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see junit.framework.TestCase#tearDown()
-	 * @generated NOT
 	 */
 	@Override
 	public void tearDown()    {
 		cls = null;
 		inst = null;
-		id = null;
 		noti = null;
 		setFixture(null);
 	}
@@ -118,7 +107,6 @@ public class ClassFilterTest extends EventFilterTest {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
-	 * @generated NOT
 	 */
 	public void testMatchesFor__Notification() {
 		getFixture().setWantedClass(cls);
@@ -126,19 +114,6 @@ public class ClassFilterTest extends EventFilterTest {
 				getFixture().matchesFor(noti));
 	}
 
-	/**
-	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#buildNotificationIdentifiers(de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier) <em>Build Notification Identifiers</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#buildNotificationIdentifiers(de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier)
-	 * @generated NOT
-	 */
-	public void testBuildNotificationIdentifiers__NotificationIdentifier() {
-		getFixture().setWantedClass(cls);
-		NotificationIdentifier ni = getFixture().buildNotificationIdentifiers(id).get(0);
-		
-		assertEquals(EcoreUtil.getURI(cls), ni.getNotifierClassURI() );
-	}
 	public void testMatchesWithSubclasses(){
 	    getFixture().setIncludeSubClasses(true);
 	    getFixture().setWantedClass(superCls);

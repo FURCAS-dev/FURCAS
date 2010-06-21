@@ -1,11 +1,8 @@
 package de.hpi.sam.bp2009.solution.eventManager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
-import de.hpi.sam.bp2009.solution.eventManager.NotificationIdentifier;
 
 public class PackageFilter extends EventFilter {
 
@@ -21,9 +18,9 @@ public class PackageFilter extends EventFilter {
 
     @Override
     public boolean matchesFor(Notification event) {
-        if(event.getNotifier()!=null && event.getNotifier() instanceof EObject){
-            for(EPackage p= ((EObject) event.getNotifier()).eClass().getEPackage();p!=null; p=p.getESuperPackage()){
-                if(p.equals(getEPackage())){
+        if (event.getNotifier() != null && event.getNotifier() instanceof EObject) {
+            for (EPackage p = ((EObject) event.getNotifier()).eClass().getEPackage(); p != null; p = p.getESuperPackage()) {
+                if (p.equals(getEPackage())) {
                     return true;
                 }
             }
@@ -32,17 +29,9 @@ public class PackageFilter extends EventFilter {
 
     }
 
-    @Override
-    public EList<NotificationIdentifier> buildNotificationIdentifiers(NotificationIdentifier identifier) {
-        // TODO Auto-generated methodbuildNotificationIdentifiers stub
-        System.out.println("buildNotificationIdentifiers");
-        return null;
-
-    }
-
-
-
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -53,7 +42,9 @@ public class PackageFilter extends EventFilter {
         return result;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
@@ -78,10 +69,11 @@ public class PackageFilter extends EventFilter {
     }
 
     @Override
-    public PackageFilter clone(){
+    public PackageFilter clone() {
         return new PackageFilter(getEPackage());
 
     }
+
     @Override
     public Object getFilterCriterion() {
         return getEPackage();

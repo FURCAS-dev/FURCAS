@@ -67,7 +67,7 @@ public abstract class TableForEventFilter {
     @SuppressWarnings("unchecked") 
     void register(EventFilter filter, Registration registration) {
 
-        FilterTableEntry entry = tableEntryByFilterCriterion.get(filter.getFilterCriterion());
+        FilterTableEntry<Registration> entry = tableEntryByFilterCriterion.get(filter.getFilterCriterion());
 
         if (entry == null) {
             entry = new FilterTableEntry<Registration>();
@@ -90,8 +90,8 @@ public abstract class TableForEventFilter {
             /*
              * Registration used for other criterion yet, store in a list (happens rarely)
              */
-            if (criterion instanceof List){
-                ((List)criterion).add(filter.getFilterCriterion());
+            if (criterion instanceof List<?>){
+                ((List<Object>)criterion).add(filter.getFilterCriterion());
             }else{
                 List<Object> criterions = new ArrayList<Object>(2);
                 criterions.add(criterion);
@@ -114,7 +114,7 @@ public abstract class TableForEventFilter {
         if (criterion == null)
             return; // registration not stored in this table
 
-        if (criterion instanceof List){
+        if (criterion instanceof List<?>){
             for (Object filterCriterion : (List<Object>)criterion) {
                 _deregister(registration,filterCriterion);
             }
