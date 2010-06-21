@@ -231,10 +231,10 @@ public class Query2  {
                     URI uri2=EcoreUtil.getURI(eclass2);
                     String ali = stringBody.substring(match3.start(1), stringBody.indexOf("."));
                     String alia= "a2";
-                    
+
                     try{
                         resultSet = queryProcessor.execute("select "+alia+" from  [" + uri1 + //$NON-NLS-1$
-                                "] as "+ali+" , [" +uri2+ "] as a2 where "+stringBody+" in ( select p2 from [" + uri2+"] as p2)", queryContext);
+                                "] as "+ali+" , [" +uri2+ "] as a2 where "+stringBody +" in (select p2 from ["+uri2+"] as p2)", queryContext);
                     }
                     catch (EvaluationHaltedException e) {
                         // evaluation stopped on demand, propagate further
@@ -243,36 +243,29 @@ public class Query2  {
                         result=null;
                     }
                     finally{
-                      //FIXME missing the number of associations, in ocl the result is sth like 
-                        //{null=5, company\\.impl\\.DivisionImpl@([0-9A-Za-z]+) \\(name: Div1, budget: 1234567\\)=1}
-//                        result = buildResult(resultSet, queryContext, ali);
                         if(!resultSet.isEmpty()){
-                            Collection<EObject> col= new HashSet<EObject>();
-                            for(int i=0; i<resultSet.getSize();i++){
-                                col.add(queryContext.getResourceSet().getEObject(resultSet.getUri(i, alia), /* loadOnDemand */true)); //$NON-NLS-1$
-
-                            }
-                            Object obj = col;
+                            Map<EObject,Integer> col= new HashMap<EObject, Integer>();
                             int count = 1;
-                            Map<Object, Integer> map= new HashMap<Object,Integer>();
-                            map.put(obj,count);
-                            for(int i = 0;i<resultSet.getSize();i++){
-                               URI[] uris = resultSet.getUris(alia);
-                               for(int j=0;j<uris.length;j++){
-                                   URI uri = uris[j];
-                                   System.out.println(uri);
-                               }
-                               
+                            for(int i=0; i<resultSet.getSize();i++){
+                                EObject value = queryContext.getResourceSet().getEObject(resultSet.getUri(i, alia), /* loadOnDemand */true); //$NON-NLS-1$
+                                if(col.containsValue(value)){
+                                    count++;
+                                    col.put(value, count);   
                                 }
-                            
-                            result=col;
+                                else{
+                                    count=1;
+                                    col.put(value, count);
+                                }
+                            }
+                            result = col;
                             System.out.println("successfull");
                         }
                         else {
-                            Map<Object, Integer> col= new HashMap<Object,Integer>();
+                            Collection<EObject> col= new HashSet<EObject>();
 
                             result = col;
                         }
+
                     }
 
                 }else if(prop instanceof EAttribute){
