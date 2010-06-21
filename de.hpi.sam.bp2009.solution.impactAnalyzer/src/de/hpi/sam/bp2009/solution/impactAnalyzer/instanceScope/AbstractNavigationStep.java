@@ -30,9 +30,9 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private OCLExpression debugInfo;
     private int cacheMisses;
     private int resultObjectsCounter;
-    private Set<AlwaysEmptyChangeListener> alwaysEmptyChangeListeners;
-    private Set<SourceTypeChangeListener> sourceTypeChangeListeners;
-    private Set<TargetTypeChangeListener> targetTypeChangeListeners;
+    private Set<AlwaysEmptyChangeListener> alwaysEmptyChangeListeners = null;
+    private Set<SourceTypeChangeListener> sourceTypeChangeListeners = null;
+    private Set<TargetTypeChangeListener> targetTypeChangeListeners = null;
     private boolean alwaysEmpty;
     private String annotation;
     
@@ -45,9 +45,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         this.sourceType = sourceType;
         this.targetType = targetType;
         this.debugInfo = debugInfo;
-        this.alwaysEmptyChangeListeners = new HashSet<AlwaysEmptyChangeListener>();
-        this.sourceTypeChangeListeners = new HashSet<SourceTypeChangeListener>();
-        this.targetTypeChangeListeners = new HashSet<TargetTypeChangeListener>();
         this.id = idCounter++;
     }
 
@@ -61,17 +58,29 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 
     @Override
     public void addAlwaysEmptyChangeListener(AlwaysEmptyChangeListener listener) {
+	if(this.alwaysEmptyChangeListeners == null){
+	    this.alwaysEmptyChangeListeners = new HashSet<AlwaysEmptyChangeListener>(1);
+	}
+	
         alwaysEmptyChangeListeners.add(listener);
     }
 
     @Override
     public void addASourceTypeChangeListener(SourceTypeChangeListener listener) {
+	if(this.sourceTypeChangeListeners == null){
+	    this.sourceTypeChangeListeners = new HashSet<SourceTypeChangeListener>(1);
+	}
+	
         sourceTypeChangeListeners.add(listener);
     }
 
     @Override
     public void addTargetTypeChangeListener(TargetTypeChangeListener listener) {
-        targetTypeChangeListeners.add(listener);
+	if(this.targetTypeChangeListeners == null){
+	    this.targetTypeChangeListeners = new HashSet<TargetTypeChangeListener>(1);
+	}
+	
+	targetTypeChangeListeners.add(listener);
     }
 
     void setSourceType(EClass sourceType) {
@@ -79,8 +88,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         || (this.sourceType != null && !this.sourceType.equals(sourceType));
         if (changed) {
             this.sourceType = sourceType;
-            for (SourceTypeChangeListener listener : sourceTypeChangeListeners) {
-                listener.sourceTypeChanged(this);
+            if(sourceTypeChangeListeners != null){
+                for (SourceTypeChangeListener listener : sourceTypeChangeListeners) {
+                    listener.sourceTypeChanged(this);
+                }
             }
         }
     }
@@ -90,8 +101,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         || (this.targetType != null && !this.targetType.equals(targetType));
         if (changed) {
             this.targetType = targetType;
-            for (TargetTypeChangeListener listener : targetTypeChangeListeners) {
-                listener.targetTypeChanged(this);
+            if(targetTypeChangeListeners != null){
+                for (TargetTypeChangeListener listener : targetTypeChangeListeners) {
+                    listener.targetTypeChanged(this);
+                }
             }
         }
     }
@@ -246,8 +259,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     protected void setAlwaysEmpty() {
         if (!this.alwaysEmpty) {
             this.alwaysEmpty = true;
-            for (AlwaysEmptyChangeListener listener : alwaysEmptyChangeListeners) {
-                listener.alwaysEmptyChanged(this);
+            if(alwaysEmptyChangeListeners != null){
+                for (AlwaysEmptyChangeListener listener : alwaysEmptyChangeListeners) {
+                    listener.alwaysEmptyChanged(this);
+                }
             }
         }
     }
