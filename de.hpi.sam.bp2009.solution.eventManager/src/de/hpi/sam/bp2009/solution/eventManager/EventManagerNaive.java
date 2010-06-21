@@ -19,12 +19,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.framework.RecursiveContaimentNotificationCreator;
 
-public class EventManagerImpl implements EventManager {
+public class EventManagerNaive implements EventManager {
     private EventAdapter adapter = new EventAdapter(this);
     private HashMap<EventFilter, Adapter> filterToListener = new HashMap<EventFilter, Adapter>();
     private WeakReference<ResourceSet> resourceSet;
 
-    protected EventManagerImpl(ResourceSet set) {
+    protected EventManagerNaive(ResourceSet set) {
         super();
         adapter.setTarget(set);
         this.resourceSet= new WeakReference<ResourceSet>(set);
