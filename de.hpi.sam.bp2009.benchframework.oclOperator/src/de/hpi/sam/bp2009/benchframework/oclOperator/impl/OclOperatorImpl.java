@@ -20,11 +20,13 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -32,20 +34,14 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.emf.query2.QueryExecutionException;
-import org.eclipse.emf.query2.QueryFormatException;
-import org.eclipse.emf.query2.QueryProcessorFactory;
-import org.eclipse.emf.query2.QueryResultException;
-import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCL.Query;
-
-import company.CompanyPackage;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
@@ -65,7 +61,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
-import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
+import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -542,7 +538,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
     private class ExpressionWithContext{
         public OCLExpression expr;
         public EClass classifier;
-        
+
         public ExpressionWithContext(OCLExpression e, EClass c) {      
             classifier=c;
             expr = e;
@@ -551,60 +547,76 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
             return "context " + classifier.getName() + " : " + expr.toString();
         }
     }
-    
-    public void registerQueriesIA(ResourceSet resourceSet, OclOptionObject option) {
+
+    private void addConstraintToConstraintList(EAnnotation a, Map<String, ExpressionWithContext> allConstraints, EClassifier c){
+        if (a == null)return;
+        int index=0;
+        for (Entry<String, String> detail : a.getDetails()) {
+            String e = detail.getValue();
+            if (e == null){
+                break;
+            }else{
+                allConstraints.put(e, new ExpressionWithContext((OCLExpression) a.getContents().get(index),(EClass) c) );
+            }
+            index++;
+        }
+    }
+    boolean gotParsed = false;
+
+    public void registerQueriesIA(ResourceSet resourceSet, OclOptionObject option) {        
         assert(resourceSet!=null);
         this.res = resourceSet;
         final Map<String, ExpressionWithContext> allConstraints= new HashMap<String, ExpressionWithContext>();
         EAnnotationOCLParser oclParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-        EPackage pkg = resourceSet.getResources().get(0).getContents().get(0).eClass().getEPackage();
-        oclParser.traversalConvertOclAnnotations(pkg);
-        EList<EPackage> allPkg = pkg.getESubpackages();
-        allPkg.add(pkg);
+        TreeIterator<EObject> ti = resourceSet.getResources().get(0).getAllContents();
+        Set<EPackage> allPkg = new HashSet<EPackage>();
+        while (ti.hasNext()){
+            allPkg.add(ti.next().eClass().getEPackage());           
+        }
+        if (!gotParsed)
+        for(EPackage pkg:allPkg){
+            oclParser.traversalConvertOclAnnotations(pkg);
+        }           
+        gotParsed = true;
         for (EPackage p:allPkg){
-            //TODO operations must be considered, because their exists also statements
-            for(EClassifier c:p.getEClassifiers()){
-                if (c instanceof EModelElement){
-                    EAnnotation a =((EModelElement)c).getEAnnotation("http://de.hpi.sam.bp2009.OCL");
-                    if (a ==  null){
-                        continue;
+            for(EClassifier c:p.getEClassifiers()){                
+                EAnnotation a =c.getEAnnotation("http://de.hpi.sam.bp2009.OCL");                   
+                addConstraintToConstraintList(a, allConstraints, c);                                                         
+                if (c instanceof EClass) {
+                    for (EOperation op : ((EClass) c).getEOperations()){
+                        a = op.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
+                        addConstraintToConstraintList(a, allConstraints, c);
                     }
-                    int index=0;
-                    for (Entry<String, String> detail : a.getDetails()) {
-                        String e = detail.getValue();
-                        if (e == null){
-                            break;
-                        }else{
-                            allConstraints.put(e, new ExpressionWithContext((OCLExpression) a.getContents().get(index),(EClass) c) );
-                        }
-                        index++;
+                    for (EAttribute at : ((EClass) c).getEAttributes()){
+                        a = at.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
+                        addConstraintToConstraintList(a, allConstraints, c);                            
                     }
                 }
             }
         }
-//        OCL ocl = OCL.newInstance();
-        
-//        for(String con: option.getConstraints()){
-//            try {
-//                String uri = resource.getResources().get(0).getContents().get(0).eClass().getEPackage().getNsURI();
-//                EPackage basePackage = resource.getPackageRegistry().getEPackage(uri);
-//                String nsPrefix = basePackage.getNsPrefix();
-//                EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
-//                ArrayList<String> path = new ArrayList<String>();
-//                path.add(nsPrefix);
-//
-//                ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
-//
-//                OCLInput input = new OCLInput(con);
-//                List<Constraint> test = ocl.parse(input);
-//                OclOperatorImpl.stringToConstraints.put(con, test);
-//                for(Constraint c:test)
-//                    allConstraints.add(c);
-//            } catch (ParserException e) {
-//                throw new IllegalArgumentException("Invalid Query, parsing failed " + e.getMessage(), e);
-//            }
-//
-//        }
+        //        OCL ocl = OCL.newInstance();
+
+        //        for(String con: option.getConstraints()){
+        //            try {
+        //                String uri = resource.getResources().get(0).getContents().get(0).eClass().getEPackage().getNsURI();
+        //                EPackage basePackage = resource.getPackageRegistry().getEPackage(uri);
+        //                String nsPrefix = basePackage.getNsPrefix();
+        //                EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
+        //                ArrayList<String> path = new ArrayList<String>();
+        //                path.add(nsPrefix);
+        //
+        //                ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
+        //
+        //                OCLInput input = new OCLInput(con);
+        //                List<Constraint> test = ocl.parse(input);
+        //                OclOperatorImpl.stringToConstraints.put(con, test);
+        //                for(Constraint c:test)
+        //                    allConstraints.add(c);
+        //            } catch (ParserException e) {
+        //                throw new IllegalArgumentException("Invalid Query, parsing failed " + e.getMessage(), e);
+        //            }
+        //
+        //        }
         /*
          * TODO refactor so that no direct dependencies between operators
          */
@@ -613,7 +625,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         //final EventManager em = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
         EventManager em = EventManagerFactory.eINSTANCE.getEventManagerFor(resourceSet);
         final QueryEvaluator qe = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator.class);        
-        
+
         if(em == null)
             throw new IllegalArgumentException("Invalid Testrun, no Event Manager defined");
         else if(qe == null)
@@ -622,13 +634,11 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
             int expCount = 0;
             ((OclResultImpl)getResult()).setExpToFilterTime(ia.IAResult.getExpToFilterTime());
             for (final Entry<String, ExpressionWithContext> entry: allConstraints.entrySet()){
-                final OCLExpression exp = entry.getValue().expr;
-                EPackage.Registry.INSTANCE.put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
+                final OCLExpression exp = entry.getValue().expr;               
                 ((OclResultImpl)getResult()).addQuery(entry.getValue().toString());
                 EventFilter filter = ia.createFilterForExpression(exp, true);
                 expCount++;
 
-                
                 em.subscribe(filter, new AdapterImpl() {
                     @Override
                     public void notifyChanged(Notification msg) {
@@ -667,8 +677,8 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
                         long afterNaive = System.nanoTime();
                         getResult().setMessage(getResult().getMessage() 
                                 + " , Execution Time: , with Instance Scope: , "
-                                + (after - before) + "ns , Class Scope: , " + (afterNaive - beforeNaive) + "ns" );
-                        
+                                + (after - before) + " , Class Scope: , " + (afterNaive - beforeNaive));
+
                         //evaluate all queries without IA to calculate time savings using IA
                         long timeResult = 0;
                         for (ExpressionWithContext con: allConstraints.values()){
@@ -679,52 +689,70 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
                             timeResult += (afterWithoutIA - beforeWithoutIA);
                         }
                         getResult().setMessage(getResult().getMessage()
-                                + " , without IA: , " + timeResult + "ns");
-                        
+                                + " , without IA: , " + timeResult);
+
                         super.notifyChanged(msg);
                     }
 
                     private EList<EObject> getAllInstances(EClass context) {
                         EList<EObject> allInstances = new BasicEList<EObject>();
-                        try {
-                            allInstances = new BasicEList<EObject>();
-                            for(Resource r:res.getResources()){                                                      
-                                List<EClass> classes = new ArrayList<EClass>(EcoreHelper.getInstance().getAllSubclasses(context));
-                                classes.add(context);
+                        allInstances = new BasicEList<EObject>();
 
-                                QueryContext scope = new ProjectBasedScopeProviderImpl(r).getForwardScopeAsQueryContext();
+                        List<EClass> classes = new ArrayList<EClass>(EcoreHelper.getInstance().getAllSubclasses(context));
+                        classes.add(context);
+                        OCL ocl = OCL.newInstance();
+                        Helper helper= ocl.createOCLHelper();          
+                        Resource r = res.getResources().get(0);
+                        EcoreHelper.getInstance().addResourceToDefaultIndex(r);
 
-                                for (EClass c : classes) {
-                                    String query = "select obj from [" + EcoreUtil.getURI(c) + "] as obj";
-                                    ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(
-                                            query, scope);
-                                    if (!resultSet.isEmpty()) {
-                                        for (int i = 0; i < resultSet.getSize(); i++) {
-                                            String uri = resultSet.getUri(i, "obj").toString();
-                                            String uriFragment = uri.split("#")[1];
-                                            EObject obj = r.getEObject(uriFragment);
-                                            allInstances.add(obj);
+                        TreeIterator<EObject> it = r.getAllContents();  
+                        Map<EClass, Set<EObject>> map = new HashMap<EClass, Set<EObject>>();
+
+                        while(it.hasNext()){
+                            EObject element =it.next();
+
+                            if(map.get(element.eClass())==null)
+                                map.put(element.eClass(), new HashSet<EObject>());
+                            map.get(element.eClass()).add(element);
+
+                        }
+                        ocl.setExtentMap(map);
+
+                        ProjectDependencyQueryContextProvider queryScopeProv = new ProjectDependencyQueryContextProvider();
+
+
+
+                        queryScopeProv.apply(ocl);
+
+
+
+                        for (EClass c : classes) {
+                            helper.setContext(c);
+                            try {
+                                QueryContext scope = queryScopeProv.getQueryContext(r.getContents().get(0));
+                                OCLExpression query = helper.createQuery(c.getName() + ".allInstances()");
+                                Object objResult = ocl.evaluate(scope, query);
+                                System.out.println(objResult);
+                                if (objResult instanceof Collection<?>){
+                                    for (Object o : (Collection<?>)objResult){
+                                        if (o instanceof EObject){
+                                            allInstances.add((EObject) o);
                                         }
                                     }
                                 }
+                            } catch (ParserException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
                             }
-                        } catch (QueryFormatException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        } catch (QueryExecutionException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        } catch (QueryResultException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
+
                         }
                         return allInstances;
                     }
                 });
             }
-            
+
             getResult().setMessage(getResult().getMessage() + "\n Totally registered OCL Expressions: " + expCount );
-            
+
         }
     }
 
