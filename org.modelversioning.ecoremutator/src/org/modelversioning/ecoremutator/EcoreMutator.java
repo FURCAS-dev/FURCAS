@@ -160,7 +160,7 @@ public class EcoreMutator {
 
         // call a random mutation for <code>mutationCount</code> times
         for (int i = 0; i < mutationCount; i++) {
-            System.out.println("" + i + "mutations (" + i/(mutationCount/100) + "%) successfull.");
+            System.out.println("" + i + " mutations (" + i/(mutationCount/100.0) + "%) successfull.");
             int selectedMutationIndex = random.nextInt(weightedMutationIds.size());
             String selectedMutationId = weightedMutationIds.get(selectedMutationIndex);
             Mutation selectedMutator = mutations.get(selectedMutationId);
