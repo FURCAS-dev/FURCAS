@@ -11,7 +11,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -332,11 +332,11 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
         EcoreMutator mutator = new EcoreMutator(mutatorseed);
         Mutation m1 = new AddObjectMutation();
         mutator.addMutation(m1);
-        mutator.mutate(modelProvider, ((RandomNumberOptionObject) getOption()).getNextInt());
+        mutator.mutate(modelProvider, ((RandomNumberOptionObject) getOption()).getNextInt(2000));
         mutator.removeMutation(m1);
-        Mutation m2 = new UpdateFeatureMutation(EReference.class);
+        Mutation m2 = new UpdateFeatureMutation(EStructuralFeature.class);
         mutator.addMutation(m2);
-        mutator.mutate(modelProvider, ((RandomNumberOptionObject) getOption()).getNextInt());
+        mutator.mutate(modelProvider, ((RandomNumberOptionObject) getOption()).getNextInt(1000));
         mutator.removeMutation(m2);
     }
 
