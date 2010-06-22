@@ -145,7 +145,12 @@ public class EcoreMutator {
      *            options for the mutation.
      */
     public void mutate(IModelProvider modelProvider, int mutationCount, Map<Object, Object> options) {
+        Integer maxTries = 0;
+        int totalTries = 0;
         // create weighted mutation list
+        if (options.containsKey("maxTries")){
+            maxTries = (Integer)options.get("maxTries");
+        }
         List<String> weightedMutationIds = new ArrayList<String>();
         for (String mutationId : this.mutations.keySet()) {
             for (int i = 0; i < mutationWeights.get(mutationId); i++) {
@@ -155,6 +160,7 @@ public class EcoreMutator {
 
         // call a random mutation for <code>mutationCount</code> times
         for (int i = 0; i < mutationCount; i++) {
+            System.out.println("" + i + "mutations (" + i/(mutationCount/100) + "%) successfull.");
             int selectedMutationIndex = random.nextInt(weightedMutationIds.size());
             String selectedMutationId = weightedMutationIds.get(selectedMutationIndex);
             Mutation selectedMutator = mutations.get(selectedMutationId);
@@ -162,6 +168,10 @@ public class EcoreMutator {
             if (!success) {
                 // set counter one back
                 i--;
+            }
+            totalTries++;
+            if (maxTries != 0 && totalTries >= maxTries){
+                break;
             }
         }
     }

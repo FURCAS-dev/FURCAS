@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.URI;
@@ -335,8 +337,10 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
         mutator.mutate(modelProvider, ((RandomNumberOptionObject) getOption()).getNextInt(5000));
         mutator.removeMutation(m1);
         Mutation m2 = new UpdateFeatureMutation(EStructuralFeature.class);
+        HashMap<Object, Object> options = new HashMap<Object, Object>();
+        options.put("maxTries", 10000);
         mutator.addMutation(m2);
-        mutator.mutate(modelProvider, ((RandomNumberOptionObject) getOption()).getNextInt(5000));
+        mutator.mutate(modelProvider, ((RandomNumberOptionObject) getOption()).getNextInt(5000), options);
         mutator.removeMutation(m2);
     }
 
