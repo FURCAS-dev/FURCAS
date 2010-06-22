@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.randomModelModifier.impl;
 
+import java.util.HashMap;
 import java.util.Random;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -143,25 +144,26 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
         if (getTestRun().getModel() == null)
             throw new IllegalStateException("Random Model Modifier needs a Model in the Testrun");
 
-        for (int i = 0; i < ((RandomModelModifierOptionObject) getOption()).getTimes(); i++) {
-            switch (((RandomModelModifierOptionObject) getOption()).getTask()) {
-            case CLASS_CREATE:
-                getResult().setStatus(createRandomClass() ? Status.SUCCESSFUL : Status.FAILED);
-                break;
-            case CLASS_DELETE:
-                getResult().setStatus(deleteRandomClass() ? Status.SUCCESSFUL : Status.FAILED);
-                break;
-            case REFERENCE_CREATE:
-                getResult().setStatus(createRandomReference() ? Status.SUCCESSFUL : Status.FAILED);
-                break;
-            case REFERENCE_DELETE:
-                getResult().setStatus(deleteRandomReference() ? Status.SUCCESSFUL : Status.FAILED);
-                break;
-            case MODIFY_ATTRIBUTE:
-                getResult().setStatus(modifyRandomAttribute() ? Status.SUCCESSFUL : Status.FAILED);
-                break;
-            }
+        Integer times = ((RandomModelModifierOptionObject) getOption()).getTimes();
+
+        switch (((RandomModelModifierOptionObject) getOption()).getTask()) {
+        case CLASS_CREATE:
+            getResult().setStatus(createRandomClass(times) ? Status.SUCCESSFUL : Status.FAILED);
+            break;
+        case CLASS_DELETE:
+            getResult().setStatus(deleteRandomClass(times) ? Status.SUCCESSFUL : Status.FAILED);
+            break;
+        case REFERENCE_CREATE:
+            getResult().setStatus(createRandomReference(times) ? Status.SUCCESSFUL : Status.FAILED);
+            break;
+        case REFERENCE_DELETE:
+            getResult().setStatus(deleteRandomReference(times) ? Status.SUCCESSFUL : Status.FAILED);
+            break;
+        case MODIFY_ATTRIBUTE:
+            getResult().setStatus(modifyRandomAttribute(times) ? Status.SUCCESSFUL : Status.FAILED);
+            break;
         }
+
         if (getResult().getStatus() == Status.SUCCESSFUL) {
             getResult().setMessage(SUCCESS_MESSAGE);
         } else if (getResult().getStatus() == Status.FAILED) {
@@ -339,11 +341,13 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
      * actual value is not the default one. If it is the default value, it will be unset. In case there are no classes with
      * attributes in the given list, nothing will happen
      */
-    private boolean modifyRandomAttribute() {
-        
+    private boolean modifyRandomAttribute(int times) {
+
+        HashMap<Object, Object> options = new HashMap<Object, Object>();
+        options.put("maxTries", times * 3);
         UpdateFeatureMutation m = new UpdateFeatureMutation(EAttribute.class);
         mutator.addMutation(m);
-        mutator.mutate(modelProvider, 1);
+        mutator.mutate(modelProvider, times, options);
         mutator.removeMutation(m);
         return true;
     }
@@ -352,10 +356,12 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
      * Remove a random reference of a random class. If the random class has no references, try it with another class. In case
      * there are no classes with references in the given list, nothing will happen.
      */
-    private boolean deleteRandomReference() {
+    private boolean deleteRandomReference(int times) {
+        HashMap<Object, Object> options = new HashMap<Object, Object>();
+        options.put("maxTries", times * 3);
         UnsetFeatureMutation m = new UnsetFeatureMutation(EReference.class);
         mutator.addMutation(m);
-        mutator.mutate(modelProvider, 1);
+        mutator.mutate(modelProvider, times, options);
         mutator.removeMutation(m);
         return true;
     }
@@ -364,10 +370,12 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
      * Creates a random reference of a random class. It the random class has no references, try it with another class. In case
      * there are no classes with references in the given list, nothing will happen.
      */
-    private boolean createRandomReference() {
+    private boolean createRandomReference(int times) {
+        HashMap<Object, Object> options = new HashMap<Object, Object>();
+        options.put("maxTries", times * 3);
         UpdateFeatureMutation m = new UpdateFeatureMutation(EReference.class);
         mutator.addMutation(m);
-        mutator.mutate(modelProvider, 1);
+        mutator.mutate(modelProvider, times, options);
         mutator.removeMutation(m);
         return true;
     }
@@ -375,26 +383,30 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
     /**
      * Delete a random class and remove it from classList
      */
-    private boolean deleteRandomClass() {
+    private boolean deleteRandomClass(int times) {
+        HashMap<Object, Object> options = new HashMap<Object, Object>();
+        options.put("maxTries", times * 3);
         int size = modelProvider.getModelSize();
         DeleteObjectMutation m = new DeleteObjectMutation();
         mutator.addMutation(m);
-        mutator.mutate(modelProvider, 1);
+        mutator.mutate(modelProvider, times, options);
         mutator.removeMutation(m);
-        
+
         return size - 1 == modelProvider.getModelSize();
     }
 
     /**
      * Create a random class and add it to classList
      */
-    private boolean createRandomClass() {
+    private boolean createRandomClass(int times) {
+        HashMap<Object, Object> options = new HashMap<Object, Object>();
+        options.put("maxTries", times * 3);
         int size = modelProvider.getModelSize();
         AddObjectMutation m = new AddObjectMutation();
         mutator.addMutation(m);
-        mutator.mutate(modelProvider, 1);
+        mutator.mutate(modelProvider, times, options);
         mutator.removeMutation(m);
-        
+
         return size + 1 == modelProvider.getModelSize();
     }
 

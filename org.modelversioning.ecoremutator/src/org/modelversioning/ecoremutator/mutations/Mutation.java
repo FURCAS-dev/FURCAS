@@ -26,40 +26,38 @@ import org.modelversioning.ecoremutator.tracker.IMutationTracker;
  */
 public interface Mutation {
 
-	/**
-	 * Returns the Id of this mutation.
-	 * 
-	 * @return
-	 */
-	String getId();
+    /**
+     * Returns the Id of this mutation.
+     * 
+     * @return
+     */
+    String getId();
 
-	/**
-	 * Sets the logger to log the actions of this mutator to.
-	 * 
-	 * @param logger
-	 *            to set.
-	 */
-	void setLogger(ILog logger);
+    /**
+     * Sets the logger to log the actions of this mutator to.
+     * 
+     * @param logger
+     *            to set.
+     */
+    void setLogger(ILog logger);
 
-	/**
-	 * Sets the options.
-	 * 
-	 * @param options
-	 *            to set.
-	 */
-	void setOptions(Map<Object, Object> options);
+    /**
+     * Sets the options.
+     * 
+     * @param options
+     *            to set.
+     */
+    void setOptions(Map<Object, Object> options);
 
-	/**
-	 * Applies this mutation to the model provided by the specified
-	 * <code>modelProvider</code>.
-	 * 
-	 * @param modelProvider
-	 *            the {@link ModelProvider} to set.
-	 * @param tracker
-	 *            to track mutator actions to.
-	 * @return <code>true</code> if mutation has been applied. Otherwise
-	 *         <code>false</code>.
-	 */
-	boolean mutate(IModelProvider modelProvider, IMutationTracker tracker);
+    /**
+     * Applies this mutation to the model provided by the specified <code>modelProvider</code>.
+     * 
+     * @param modelProvider
+     *            the {@link ModelProvider} to set.
+     * @param tracker
+     *            to track mutator actions to.
+     * @return <code>true</code> if mutation has been applied. Otherwise <code>false</code>.
+     */
+    boolean mutate(IModelProvider modelProvider, IMutationTracker tracker);
 
 }
