@@ -16,11 +16,10 @@ Require-Bundle: de.hpi.sam.bp2009.benchframework;visibility:=reexport,
  de.hpi.sam.bp2009.solution.oclToAst;bundle-version="1.0.0",
  de.hpi.sam.petriNet;bundle-version="1.0.0",
  de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer;bundle-version="1.0.0",
- de.hpi.sam.bp2009.company;bundle-version="1.0.0"
+ de.hpi.sam.bp2009.solution.scopeProvider;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: de.hpi.sam.bp2009.benchframework.oclOperator,
  de.hpi.sam.bp2009.benchframework.oclOperator.impl
-Import-Package: de.hpi.sam.bp2009.solution.scopeProvider.impl,
- org.eclipse.emf.query.index,
+Import-Package: org.eclipse.emf.query.index,
  org.eclipse.emf.query.index.ui,
  org.eclipse.emf.query2
