@@ -38,14 +38,16 @@ class RegistrationManagerTableBased extends RegistrationManager {
             // this is the post change phase - the entry in the HashMap will not
             // be needed any more
             // ((ChangeEventImpl) event).registrations = null;
-            setRegistrationsForEvent(event,null);
+//            FIXME change the caching to support equal notifications
+//            setRegistrationsForEvent(event,null);
             // it might happen, that a listener deregistered between the pre and
             // the post event
             result.retainAll(allRegistrations);
         }
 
         // return reduceCollectionToMatchingListenerType(result, ((ChangeEventImpl)event).getDedicatedListenerType());
-        return reduceCollectionToMatchingListenerType(result, ListenerTypeEnum.postChange);
+        //TODO when additional ListenerTypes supported, add handling here
+        return result;
     }
 
     /**
@@ -107,6 +109,7 @@ class RegistrationManagerTableBased extends RegistrationManager {
      *            flag which determines whether (Post-)ChangeListeners or PreChangeListeners are returned
      * @return all registrations that were registered either by a Post- or a PreChangeListener
      */
+    @SuppressWarnings("unused")
     private Collection<Registration> reduceCollectionToMatchingListenerType(Collection<Registration> registrations,
             ListenerTypeEnum listenerType) {
 

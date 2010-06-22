@@ -47,7 +47,7 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
      * the associated AdapterCapsule for a Listener. For each type of Listener there is a seperate AdapterCapsule (That's why
      * there might be multiply AdapterCapsules for one Listener instance (the instance could have been registered multiple times))
      */
-    private WeakHashMap<Adapter, Collection<AdapterCapsule>> notifierByListener = new WeakHashMap<Adapter, Collection<AdapterCapsule>>();
+    protected WeakHashMap<Adapter, Collection<AdapterCapsule>> notifierByListener = new WeakHashMap<Adapter, Collection<AdapterCapsule>>();
 
     /**
      * this is needed for performance reasons mainly
@@ -135,11 +135,11 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
         AdapterCapsule notifier = null;
         if (listenerType.matches(listenersForNotifier)) {
 
-            notifier = new AdapterCapsule(listenerRef, listenerType);
+            notifier = new AdapterCapsule(listenerRef, listenerType, this);
 
         } else if (listenerType.matches(listenersForDeferringNotifier)) {
 
-            notifier = new DeferringNotifier(listenerRef, listenerType);
+            notifier = new DeferringNotifier(listenerRef, listenerType, this);
         } else {
             // TODO log (and throw exception?)
         }
@@ -398,6 +398,10 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
 
     @Override
     public void handleEMFEvent(Notification notification) {
+        if(notifierByListener.isEmpty()){
+            System.err.println("Warning! EventManager get notified although no listener is subscribed");
+            return;
+        }
         for (Notification n : RecursiveContaimentNotificationCreator.createNotificationForComposites(notification)) {
             fireChangeEvent(n);
         }

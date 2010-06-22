@@ -9,7 +9,9 @@ package de.hpi.sam.bp2009.solution.eventManager;
 import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -21,14 +23,15 @@ import de.hpi.sam.bp2009.solution.eventManager.framework.RecursiveContaimentNoti
 
 public class EventManagerNaive implements EventManager {
     private EventAdapter adapter = new EventAdapter(this);
-    private HashMap<EventFilter, Adapter> filterToListener = new HashMap<EventFilter, Adapter>();
+    protected HashMap<EventFilter, Set<Adapter>> filterToListener = new HashMap<EventFilter, Set<Adapter>>();
     private WeakReference<ResourceSet> resourceSet;
 
-    protected EventManagerNaive(ResourceSet set) {
+    public EventManagerNaive(ResourceSet set) {
         super();
         adapter.setTarget(set);
-        this.resourceSet= new WeakReference<ResourceSet>(set);
+        this.resourceSet = new WeakReference<ResourceSet>(set);
     }
+
     @Override
     public ResourceSet getResourceSet() {
         return resourceSet.get();
@@ -36,16 +39,19 @@ public class EventManagerNaive implements EventManager {
 
     public void handleEMFEvent(Notification notification) {
         Collection<Notification> notis = RecursiveContaimentNotificationCreator.createNotificationForComposites(notification);
-        for(Notification noti: notis){
+        for (Notification noti : notis) {
             for (EventFilter filter : this.filterToListener.keySet()) {
-                if(filter.matchesFor(noti)){
-                    this.notifyApplication(this.filterToListener.get(filter), noti, filter);
+                if (filter.matchesFor(noti)) {
+                    for (Adapter a : this.filterToListener.get(filter)) {
+                        this.notifyApplication(a, noti, filter);
+
+                    }
                 }
             }
         }
 
-
     }
+
     public void notifyApplication(Adapter application, Notification event, EventFilter matchingFilter) {
         application.notifyChanged(event);
     }
@@ -57,44 +63,49 @@ public class EventManagerNaive implements EventManager {
     }
 
     public void subscribe(Notifier root, EventFilter filter, Adapter caller) {
-        if(root!=null)
+        if (root != null)
             root.eAdapters().add(adapter);
-       this.filterToListener.put(filter, caller);
+        if (this.filterToListener.get(filter) == null) {
+            this.filterToListener.put(filter, new HashSet<Adapter>());
+        }
+        this.filterToListener.get(filter).add(caller);
 
     }
 
     public boolean unsubscribe(Adapter caller) {
         boolean result = false;
-        if(this.filterToListener.containsValue(caller)){
-            Entry<EventFilter, Adapter> resultingEntry=null;
-            for(Entry<EventFilter, Adapter> entry:this.filterToListener.entrySet()){
-                if(entry.getValue()==caller){
-                    resultingEntry = entry;
-                    break;
-                }
+        Entry<EventFilter, Set<Adapter>> resultingEntry = null;
+        for (Entry<EventFilter, Set<Adapter>> entry : this.filterToListener.entrySet()) {
+            if (entry.getValue().contains(caller)) {
+                resultingEntry = entry;
+                result = entry.getValue().remove(caller);
+                break;
             }
-            return this.filterToListener.remove(resultingEntry.getKey()) != null;
-            
         }
+        if (resultingEntry != null && resultingEntry.getValue().size() == 0) {
+            return this.filterToListener.remove(resultingEntry.getKey()) != null;
+        }
+
         return result;
     }
 
     @Override
     public void subscribe(EventFilter filter, Adapter caller) {
-        subscribe((Notifier)null, filter, caller);
-        
+        subscribe((Notifier) null, filter, caller);
+
     }
 
     @Override
     public void subscribeTransactional(EventFilter filter, Adapter caller) {
         throw new UnsupportedOperationException();
     }
+
     @Override
     protected void finalize() throws Throwable {
-        if(this.getResourceSet()!=null && adapter!=null){
+        if (this.getResourceSet() != null && adapter != null) {
             adapter.unsetTarget(getResourceSet());
         }
         super.finalize();
-        
+
     }
 } // EventManagerImpl
