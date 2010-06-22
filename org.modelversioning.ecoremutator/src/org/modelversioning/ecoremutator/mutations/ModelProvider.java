@@ -12,14 +12,15 @@
 
 package org.modelversioning.ecoremutator.mutations;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -60,7 +61,7 @@ public class ModelProvider implements IModelProvider {
     /**
      * The EPackage containing the meta model.
      */
-    protected EPackage metaModelPackage;
+    protected List<EPackage> metaModelPackages;
 
     /**
      * The resource containing the model.
@@ -102,11 +103,13 @@ public class ModelProvider implements IModelProvider {
      */
     public EList<EStructuralFeature> getAllStructuralFeatures() {
         EList<EStructuralFeature> features = new BasicEList<EStructuralFeature>();
-        for (EClassifier classifyer : getPackage().getEClassifiers()) {
-            if (classifyer instanceof EClass) {
-                EClass eClass = (EClass) classifyer;
-                for (EStructuralFeature feature : eClass.getEStructuralFeatures()) {
-                    features.add(feature);
+        for (EPackage p : getPackages()) {
+            for (EClassifier classifyer : p.getEClassifiers()) {
+                if (classifyer instanceof EClass) {
+                    EClass eClass = (EClass) classifyer;
+                    for (EStructuralFeature feature : eClass.getEStructuralFeatures()) {
+                        features.add(feature);
+                    }
                 }
             }
         }
@@ -132,8 +135,8 @@ public class ModelProvider implements IModelProvider {
      * {@inheritDoc}
      */
     @Override
-    public EPackage getMetaModelPackage() {
-        return metaModelPackage;
+    public List<EPackage> getMetaModelPackages() {
+        return metaModelPackages;
     }
 
     /**
@@ -154,9 +157,10 @@ public class ModelProvider implements IModelProvider {
     /**
      * {@inheritDoc}
      */
-    public EPackage getPackage() {
-        Assert.isTrue(modelResource.getContents().size() > 0);
-        return modelResource.getContents().get(0).eClass().getEPackage();
+    public List<EPackage> getPackages() {
+        // Assert.isTrue(modelResource.getContents().size() > 0);
+        // return modelResource.getContents().get(0).eClass().getEPackage();
+        return getMetaModelPackages();
     }
 
     /**
@@ -164,10 +168,12 @@ public class ModelProvider implements IModelProvider {
      */
     public EClass getRandomConcreteClass() {
         EList<EClass> classes = new BasicEList<EClass>();
-        for (EClassifier classifier : getPackage().getEClassifiers()) {
-            if (classifier instanceof EClass) {
-                if (!((EClass) classifier).isAbstract()) {
-                    classes.add((EClass) classifier);
+        for (EPackage p : getPackages()) {
+            for (EClassifier classifier : p.getEClassifiers()) {
+                if (classifier instanceof EClass) {
+                    if (!((EClass) classifier).isAbstract()) {
+                        classes.add((EClass) classifier);
+                    }
                 }
             }
         }
@@ -427,8 +433,11 @@ public class ModelProvider implements IModelProvider {
      * {@inheritDoc}
      */
     @Override
-    public void setMetaModelPackage(EPackage metaModelPackage) {
-        this.metaModelPackage = metaModelPackage;
+    public void setMetaModelPackages(EPackage... metaModelPackages) {
+        this.metaModelPackages = new ArrayList<EPackage>();
+        for (EPackage p : metaModelPackages) {
+            this.metaModelPackages.add(p);
+        }
     }
 
     /**

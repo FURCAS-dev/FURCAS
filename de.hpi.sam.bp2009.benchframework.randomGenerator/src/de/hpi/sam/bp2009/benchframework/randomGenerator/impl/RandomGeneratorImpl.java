@@ -108,7 +108,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
      * @generated
      * @ordered
      */
-    protected String description = DESCRIPTION_EDEFAULT;    
+    protected String description = DESCRIPTION_EDEFAULT;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -327,8 +327,8 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
      */
     public void generateRandomModel(Integer number, Resource resource, EPackage metaModel) {
         IModelProvider modelProvider = new SeededModelProvider(providerseed);
-        modelProvider.setMetaModelPackage(metaModel);
-        modelProvider.setModelResource(resource);      
+        modelProvider.setMetaModelPackages(metaModel);
+        modelProvider.setModelResource(resource);
         EcoreMutator mutator = new EcoreMutator(mutatorseed);
         Mutation m1 = new AddObjectMutation();
         mutator.addMutation(m1);
@@ -350,21 +350,28 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
     @Override
     public void execute() {
         RandomGeneratorOptionObject options = (RandomGeneratorOptionObject) getOption();
-        // make sure to start at index 0 even if executed multiple times
-        options.setNumberListIndex(0);
-        EPackage metaModel = options.getMetaModel();
+        if (options.getInstanceLoaded()) {
+            // a model instance has already been loaded
+            this.getTestRun().setModel(options.getModelInstance());
+            setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
+            getResult().setStatus(Status.SUCCESSFUL);
+            getResult().setMessage("Loaded " + result.toString());
+        } else {
+            // make sure to start at index 0 even if executed multiple times
+            options.setNumberListIndex(0);
+            EPackage metaModel = options.getMetaModel();
 
-        ResourceSetImpl resultRS = new ResourceSetImpl();
-        Resource result = resultRS.createResource(URI
-                .createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/generatedInstance1"));
-        resultRS.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
-        generateRandomModel(null, result, metaModel);
-        this.getTestRun().setModel(resultRS);
-        setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
-        getResult().setStatus(Status.SUCCESSFUL);
-        getResult().setMessage("Generated " + result.toString());
-        // reset the numberListIndex in case the generator is executed multiple times
-
+            ResourceSetImpl resultRS = new ResourceSetImpl();
+            Resource result = resultRS.createResource(URI
+                    .createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/generatedInstance1"));
+            resultRS.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
+            generateRandomModel(null, result, metaModel);
+            this.getTestRun().setModel(resultRS);
+            setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
+            getResult().setStatus(Status.SUCCESSFUL);
+            getResult().setMessage("Generated " + result.toString());
+            // reset the numberListIndex in case the generator is executed multiple times
+        }
     }
 
     /**
