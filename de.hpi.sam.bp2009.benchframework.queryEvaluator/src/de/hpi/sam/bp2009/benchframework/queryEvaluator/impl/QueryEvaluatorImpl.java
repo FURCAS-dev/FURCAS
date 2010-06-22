@@ -56,9 +56,10 @@ public class QueryEvaluatorImpl extends EObjectImpl implements QueryEvaluator {
 	public boolean evaluateQuery(Query query, EList<?> contextInstances) {
 		UUID id = UUID.randomUUID();
 		eNotify(new ENotificationImpl(this, QueryEvaluatorLiterals.START_QUERY_EVALUATION_VALUE, Notification.NO_FEATURE_ID, id, QueryEvaluatorLiterals.START_QUERY_EVALUATION.getName()));
-		boolean result = query.check(contextInstances);
+		query.evaluate(contextInstances);
+//		boolean result = query.check(contextInstances);
 		eNotify(new ENotificationImpl(this, QueryEvaluatorLiterals.END_QUERY_EVALUATION_VALUE, Notification.NO_FEATURE_ID, id, QueryEvaluatorLiterals.END_QUERY_EVALUATION.getName()));
-		return result;
+		return true;
 	}
 
 } //QueryEvaluatorImpl
