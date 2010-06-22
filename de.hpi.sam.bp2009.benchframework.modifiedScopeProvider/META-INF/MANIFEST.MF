@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer;singleton:=true
+Bundle-SymbolicName: de.hpi.sam.bp2009.benchframework.modifiedScopeProvider;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
