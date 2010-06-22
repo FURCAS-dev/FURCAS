@@ -143,7 +143,7 @@ implements OperationBodyToCallMapper {
     public EPackage handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
             EPackage sourceResult, List<EPackage> qualifierResults) {
         if (callExp.getReferredOppositeProperty() instanceof EReference){
-            EClass cls = (EClass) callExp.getSource().getType();
+            EClass cls = (EClass) callExp.getReferredOppositeProperty().eContainer();
             filters.add(EventFilterFactory.getInstance().createFilterForStructuralFeature( cls, callExp.getReferredOppositeProperty( )));
         } else {
             System.err.println("Unhandled EStructuralFeature as referredOppositeProperty in FilterSynthesis.");
