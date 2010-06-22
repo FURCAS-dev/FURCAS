@@ -5,6 +5,8 @@ import java.lang.ref.WeakReference;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+
 /**
  * The <code>Notifier</code> encapsulates the knowledge how to notify the listeners.
  * 
@@ -21,10 +23,13 @@ public class AdapterCapsule {
      * the type of the listener that will be notified.
      */
     protected ListenerTypeEnum _listenerType = null;
+
+    protected EventManager _manager;
     
-    public AdapterCapsule(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType) {
+    public AdapterCapsule(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType, EventManager manager) {
         _listener = listener;
         _listenerType=listenerType;
+        _manager = manager;
     }
 
     /**
@@ -103,7 +108,8 @@ public class AdapterCapsule {
         
         if (dedicatedListenerType.matches(ListenerTypeEnum.preChange)) {
             try {
-                 _listener.get().notifyChanged(event);
+                _manager.notifyApplication(_listener.get(), event, null);
+//                 _listener.get().notifyChanged(event);
             } catch (VetoException e) {
                 // VetoExceptions are OK, so pass them on to the next exception block
                 throw e;
@@ -113,7 +119,9 @@ public class AdapterCapsule {
             }
         } else if (dedicatedListenerType.matches(ListenerTypeEnum.postChange)) {
             try {
-                (_listener.get()).notifyChanged(event);
+                _manager.notifyApplication(_listener.get(), event, null);
+
+//                (_listener.get()).notifyChanged(event);
             } catch (VetoException e) {
                 // VetoExceptions are OK, so pass them on to the next exception block
                 throw e;

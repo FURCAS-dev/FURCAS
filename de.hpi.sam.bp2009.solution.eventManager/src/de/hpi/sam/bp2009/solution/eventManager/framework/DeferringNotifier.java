@@ -6,6 +6,8 @@ import java.util.HashSet;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+
 /**
  * The DeferringNotifier is responsible for queuing all events that are fired within a command.
  * Is is assumed, that all events that are fired from a connection with an open command belong 
@@ -21,8 +23,8 @@ public class DeferringNotifier extends AdapterCapsule {
      */
     protected HashSet<Notification> deferredEvents = new HashSet<Notification>();
     
-    public DeferringNotifier(WeakReference<? extends Adapter> _listenerRef,ListenerTypeEnum _listenerType){
-        super(_listenerRef,_listenerType);
+    public DeferringNotifier(WeakReference<? extends Adapter> _listenerRef,ListenerTypeEnum _listenerType, EventManager _manager){
+        super(_listenerRef,_listenerType, _manager);
     }
 
     @Override
@@ -41,11 +43,15 @@ public class DeferringNotifier extends AdapterCapsule {
     public void deliverDeferredEvents() {
         if (getListenerType().matches(ListenerTypeEnum.preCommit)){
             for(Notification n:deferredEvents){
-                _listener.get().notifyChanged(n);
+                _manager.notifyApplication(_listener.get(), n, null);
+
+//                _listener.get().notifyChanged(n);
             }
         }else if (getListenerType().matches(ListenerTypeEnum.postCommit)){
             for(Notification n:deferredEvents){
-                _listener.get().notifyChanged(n);
+                _manager.notifyApplication(_listener.get(), n, null);
+
+//                _listener.get().notifyChanged(n);
             }           
         }else{
             //may not happen

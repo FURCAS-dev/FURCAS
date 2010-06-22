@@ -275,7 +275,7 @@ public abstract class RegistrationManager {
         // TODO Performance optimizations can probably be done here - VERY CENTRAL METHOD
         // caching is done in the subclass SessionRegistrationManager
    
-        // long mtime=System.currentTimeMillis();
+         long mtime=System.nanoTime();
 
         // In Docu: Green cells
         Iterator<Registration>[] yesSetIterators = new Iterator[allTables.size()];
@@ -328,7 +328,8 @@ public abstract class RegistrationManager {
                 estimatedYesSetSize += regIt.getSize();
             }
         }
-
+        System.out.println("Time to collect registrations "+ (System.nanoTime()-mtime ));
+        mtime = System.nanoTime();
         /*
          * collect all registrations for the event. The collected registrations are stored in a set, because a multiple appearance
          * means that someone registered for (X and Y) and both conditions were fulfilled. In this case, a cient would probably
@@ -389,6 +390,9 @@ public abstract class RegistrationManager {
         // yesSet.remove((Registration) noSetRegistrationIterator.next());
         // }
         // time+=(System.currentTimeMillis()-mtime);
+        
+        System.out.println("Time to collect combine "+ (System.nanoTime() -mtime));
+
         return yesSet;
     }
 
@@ -787,7 +791,16 @@ public abstract class RegistrationManager {
         else
             return multiplyOut(lof, new LinkedList<LogicalOperationFilter>(), 0);
     }
-
+    static long getLeafCount (EventFilter f){
+        if(f instanceof LogicalOperationFilter){
+            long count =0l;
+            for(EventFilter o: ((LogicalOperationFilter) f).getOperands()){
+                count +=getLeafCount(o);
+            }
+            return count;
+        }
+        return 1l;
+    }
     /**
      * transforms a subtree from e.g. (a | b) & (c | d) to (a & c) | (a & d) | (b & c) | (b & d) where a,b,c,d represent instances
      * of <code>MoinEventFilter</code>s.
@@ -800,7 +813,7 @@ public abstract class RegistrationManager {
      */
     private static LogicalOperationFilter multiplyOut(LogicalOperationFilter filter,
             List<LogicalOperationFilter> intermediateResult, int index) {
-
+//        System.out.println("Depth: "+ getDepth(filter) + " Leaves: "+getLeafCount(filter));
         List<EventFilter> operands = new ArrayList<EventFilter>(filter.getOperands());
         if (operands.size() < 2)
             return filter;
