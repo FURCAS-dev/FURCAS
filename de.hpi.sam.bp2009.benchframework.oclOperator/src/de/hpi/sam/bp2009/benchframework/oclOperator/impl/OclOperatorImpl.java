@@ -45,6 +45,8 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OCL.Query;
 
+import company.CompanyPackage;
+
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
@@ -621,6 +623,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
             ((OclResultImpl)getResult()).setExpToFilterTime(ia.IAResult.getExpToFilterTime());
             for (final Entry<String, ExpressionWithContext> entry: allConstraints.entrySet()){
                 final OCLExpression exp = entry.getValue().expr;
+                EPackage.Registry.INSTANCE.put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
                 ((OclResultImpl)getResult()).addQuery(entry.getValue().toString());
                 EventFilter filter = ia.createFilterForExpression(exp, true);
                 expCount++;

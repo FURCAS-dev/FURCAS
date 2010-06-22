@@ -43,14 +43,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Department">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-      <details key="NotBossFreelance" value="not self.boss.oclIsTypeOf(Freelance)"/>
+      <details key="NotBossFreelance" value="not (self.boss.oclIsTypeOf(Freelance))"/>
       <details key="OldEmployee" value="self.employee->exists(e | e.age > 45)"/>
       <details key="MaxJuniors" value="self.employee->select(e|e.age &lt; 25)->size()&#xD;&#xA;&lt;self.maxJuniors"/>
       <details key="BossHighestSalary" value="self.employee->select(e|e.salary >= self.boss.salary)->size() &lt;= 1"/>
       <details key="boss10YearsOlderThanJunior" value="let t:Tuple(boss:Employee,junior:Employee)=&#xD;&#xA;Tuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in&#xD;&#xA;t.boss.age > t.junior.age + 10"/>
       <details key="BudgetRestriction" value="self.calcExpenses() &lt;= self.budget"/>
       <details key="MaxJuniorsWarning" value="if self.maxJuniors > 1&#xD;&#xA;then&#xD;&#xA;self.employee->select(e|e.age &lt; 25)->size()&#xD;&#xA;&lt;self.maxJuniors - 1&#xD;&#xA;else&#xD;&#xA;true&#xD;&#xA;endif"/>
-      <details key="departmentMustHaveDivision" value="context Department inv departmentMustHaveDivision: self.department2division->notEmpty()"/>
+      <details key="departmentMustHaveDivision" value="self.department2division->notEmpty()"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="NotBossFreelance OldEmployee MaxJuniors BossHighestSalary boss10YearsOlderThanJunior BudgetRestriction MaxJuniorsWarning departmentMustHaveDivision"/>

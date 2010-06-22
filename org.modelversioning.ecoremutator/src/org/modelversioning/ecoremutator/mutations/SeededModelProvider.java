@@ -13,6 +13,7 @@ import java.util.Random;
  */
 public class SeededModelProvider extends ModelProvider {
     public SeededModelProvider(long seed) {
+        super();
         random = new Random(seed);
     }
     

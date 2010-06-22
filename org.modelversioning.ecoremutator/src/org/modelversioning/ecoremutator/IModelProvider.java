@@ -1,6 +1,7 @@
 package org.modelversioning.ecoremutator;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -15,15 +16,15 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 public interface IModelProvider {
     /**
-     * @return the EPackage containing the meta model.
+     * @return the List<EPackage> containing the meta model.
      */
-    public abstract EPackage getMetaModelPackage();
+    public abstract List<EPackage> getMetaModelPackages();
     
     /**
      * @param metaModelPackage
-     *            the package containing the meta model
+     *            the packages containing the meta model
      */
-    public abstract void setMetaModelPackage(EPackage metaModelPackage);
+    public abstract void setMetaModelPackages(EPackage... metaModelPackages);
 
     /**
      * @return the modelResource
@@ -126,11 +127,11 @@ public interface IModelProvider {
     public abstract EStructuralFeature getRandomSingleValuedFeature(EObject eObject);
 
     /**
-     * Returns the meta package of the instance contained by the model resource.
+     * Returns the meta packages of the instance contained by the model resource.
      * 
      * @return the meta {@link EPackage}
      */
-    public abstract EPackage getPackage();
+    public abstract List<EPackage> getPackages();
 
     /**
      * Returns a concrete random class of the package defining the meta classes of the current model instance.

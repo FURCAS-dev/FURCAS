@@ -137,7 +137,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
         Resource modelResource = getTestRun().getModel().getResources().get(0);
         modelProvider.setModelResource(modelResource);
         EPackage metaModelPackage = modelResource.getAllContents().next().eClass().getEPackage();
-        modelProvider.setMetaModelPackage(metaModelPackage);
+        modelProvider.setMetaModelPackages(metaModelPackage);
         mutator = new EcoreMutator(mutatorseed);
 
         if (getTestRun().getModel() == null)
