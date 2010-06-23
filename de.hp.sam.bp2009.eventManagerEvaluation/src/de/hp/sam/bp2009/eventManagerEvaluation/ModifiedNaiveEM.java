@@ -1,3 +1,4 @@
+package de.hp.sam.bp2009.eventManagerEvaluation;
 import java.io.IOException;
 import java.io.Writer;
 
@@ -5,31 +6,24 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerNaive;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
 
-/**
- * 
- */
 
-/**
- * @author Philipp
- *
- */
-public class ModifiedTableEM extends EventManagerTableBased {
+public class ModifiedNaiveEM extends EventManagerNaive {
 
     private long startHandleEvent =0L;
     private Writer writer;
 
     /**
      * @param set
-     * @param writer 
      */
-    public ModifiedTableEM(ResourceSet set, Writer writer) {
+    public ModifiedNaiveEM(ResourceSet set, Writer w) {
         super(set);
-        this.writer= writer;
+        this.writer = w;
         // TODO Auto-generated constructor stub
     }
+
 
     /* (non-Javadoc)
      * @see de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased#notifyApplication(org.eclipse.emf.common.notify.Adapter, org.eclipse.emf.common.notify.Notification, de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter)
@@ -46,18 +40,17 @@ public class ModifiedTableEM extends EventManagerTableBased {
      */
     @Override
     public void handleEMFEvent(Notification notification) {
-        if(notifierByListener.isEmpty()){
+        this.startHandleEvent=System.nanoTime();
+        if(this.filterToListener.isEmpty()){
             return;
         }
-        this.startHandleEvent=System.nanoTime();
-        super.handleEMFEvent(notification);        
+        super.handleEMFEvent(notification);
         try {
             writer.write((System.nanoTime()-startHandleEvent)+",");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
         
     }
 
@@ -70,5 +63,4 @@ public class ModifiedTableEM extends EventManagerTableBased {
         return super.unsubscribe(caller);
         
     }
-    
 }

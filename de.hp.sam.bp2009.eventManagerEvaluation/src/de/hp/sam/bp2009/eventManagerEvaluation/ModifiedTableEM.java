@@ -1,3 +1,4 @@
+package de.hp.sam.bp2009.eventManagerEvaluation;
 import java.io.IOException;
 import java.io.Writer;
 
@@ -5,24 +6,31 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerNaive;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
 
+/**
+ * 
+ */
 
-public class ModifiedNaiveEM extends EventManagerNaive {
+/**
+ * @author Philipp
+ *
+ */
+public class ModifiedTableEM extends EventManagerTableBased {
 
     private long startHandleEvent =0L;
     private Writer writer;
 
     /**
      * @param set
+     * @param writer 
      */
-    public ModifiedNaiveEM(ResourceSet set, Writer w) {
+    public ModifiedTableEM(ResourceSet set, Writer writer) {
         super(set);
-        this.writer = w;
+        this.writer= writer;
         // TODO Auto-generated constructor stub
     }
-
 
     /* (non-Javadoc)
      * @see de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased#notifyApplication(org.eclipse.emf.common.notify.Adapter, org.eclipse.emf.common.notify.Notification, de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter)
@@ -39,17 +47,18 @@ public class ModifiedNaiveEM extends EventManagerNaive {
      */
     @Override
     public void handleEMFEvent(Notification notification) {
-        this.startHandleEvent=System.nanoTime();
-        if(this.filterToListener.isEmpty()){
+        if(notifierByListener.isEmpty()){
             return;
         }
-        super.handleEMFEvent(notification);
+        this.startHandleEvent=System.nanoTime();
+        super.handleEMFEvent(notification);        
         try {
             writer.write((System.nanoTime()-startHandleEvent)+",");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
         
     }
 
@@ -62,4 +71,5 @@ public class ModifiedNaiveEM extends EventManagerNaive {
         return super.unsubscribe(caller);
         
     }
+    
 }
