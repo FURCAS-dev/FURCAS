@@ -209,10 +209,11 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 		sb.append(" , Time to generate Filter:");
 		for (String query: getExpToFilterTime().keySet()){
 		    if (sb.toString() != "") sb.append(" ,\n ");
-		    sb.append(query);
+		    
 		    //add time for filter calculation
 		    Long time = getExpToFilterTime().get(query);
-		    sb.append(" , " + time.toString());
+		    sb.append(time.toString()+ " , ");
+		    sb.append(query);
 
 		}
 		sb.append(getMessage());

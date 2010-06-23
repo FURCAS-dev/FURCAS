@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -33,8 +34,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.emf.query2.QueryContext;
@@ -61,7 +60,6 @@ import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerNaive;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
@@ -549,6 +547,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
             return "context " + classifier.getName() + " : " + expr.toString();
         }
     }
+    public HashMap<Notification, List<Long>> notiToAllInstances = new HashMap<Notification, List<Long>>();
 
     private void addConstraintToConstraintList(EAnnotation a, Map<String, ExpressionWithContext> allConstraints, EClassifier c){
         if (a == null)return;
@@ -628,19 +627,9 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         //final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
         final ModifiedImpactAnalyzerImpl ia = new ModifiedImpactAnalyzerImpl();
         //final EventManager em = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
-        final EventManager naiveEM = new EventManagerNaive(new ResourceSetImpl());
-        final EventManager tableEM = new EventManagerTableBased(new ResourceSetImpl());
-        EContentAdapter contentAdapter = new EContentAdapter(){
-            public void notifyChanged(Notification notification) {
-                System.out.print(".");
-                t1 = System.nanoTime();
-                naiveEM.handleEMFEvent(notification);
-                t2 = System.nanoTime();
-                tableEM.handleEMFEvent(notification);
-            };
-        };
+        final EventManager naiveEM = new EventManagerNaive(resourceSet);
         
-        resourceSet.eAdapters().add(contentAdapter);
+       
         final QueryEvaluator qe = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator.class);        
 
         if(naiveEM == null)
@@ -650,6 +639,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         else{
             int expCount = 0;
             ((OclResultImpl)getResult()).setExpToFilterTime(ia.IAResult.getExpToFilterTime());
+            notiToAllInstances.clear();
             for (final Entry<String, ExpressionWithContext> entry: allConstraints.entrySet()){
                 final OCLExpression exp = entry.getValue().expr;               
                 ((OclResultImpl)getResult()).addQuery(entry.getValue().toString());
@@ -660,93 +650,71 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
                     @Override
                     public void notifyChanged(Notification msg) {
 
-                        long timeNaive = System.nanoTime()-t1;
-                        //collect affected expressions for each model change
-                        collectAffectedExpressionsForNoti(entry, msg);
-                        // analyze reduction of context instances by usage of IA
-                        EClass context = entry.getValue().classifier;
-                        Collection<EObject> contextInstances = ia.getContextObjects(msg, exp, context);
-                        // calculate number of all instances for comparison with IA-Version
-                        EList<EObject> allInstances = getAllInstances(context);                       
-                        getResult().setMessage(getResult().getMessage() + 
-                                "\n Time for naive EM: , "+timeNaive+" , Number of context Instances for Expression: , " + entry.getValue().toString() + 
-                                " , with IA : , " + contextInstances.size() + 
-                                " ,  naive: , " + allInstances.size());
-                        // execution time benchmarking
-                        EList<EObject> scope = new BasicEList<EObject>();
-                        for (EObject o: contextInstances){
-                            scope.add(o);
-                        }
-                        Query query = OCL.newInstance().createQuery(entry.getValue().expr);
-                        //time consumption for Instance Scope and Class Scope evaluation
-                        timeUsageInstanceVsClassScope(qe, allInstances, scope, query);
-                        //evaluate all queries without IA to calculate time savings using IA
-                        long timeResult = 0;
-                        timeForAllInstancesWithoutIA(allConstraints, qe, query, timeResult);
                         
 
+                        // analyze reduction of context instances by usage of IA
+                        EClass context = entry.getValue().classifier;
+                        long beforeIA = System.nanoTime();
+                        Collection<EObject> contextInstances = ia.getContextObjects(msg, exp, context);
+                        long afterIA = System.nanoTime();
+                        EList<EObject> contextIns = new BasicEList<EObject>();
+                        contextIns.addAll(contextInstances);
+                        // calculate number of all instances for comparison with IA-Version
+                        EList<EObject> allInstances = getAllInstances(context);                       
+                        // execution time benchmarking
+                        Query query = OCL.newInstance().createQuery(entry.getValue().expr);
+                        //time consumption for Instance Scope and Class Scope evaluation
+                        long before = System.nanoTime();
+                        qe.evaluateQuery(query, contextIns);
+                        long after = System.nanoTime();
+                        
+                        long beforeNaive = System.nanoTime();
+                        qe.evaluateQuery(query, allInstances);
+                        long afterNaive = System.nanoTime();
+                        getResult().setMessage(getResult().getMessage() 
+                                + "\n IA_Execute_Time: , " + (afterIA-beforeIA) + ", IA_Eval_Time: , "+ (after-before) + " , IA_Instances: , " + contextInstances.size() + ", C_Time: , " + (afterNaive - beforeNaive) + " , C_Instances: , " + allInstances.size());
+                                                
+                        //collect affected expressions for each model change
+                        if (getAffectedExprs().containsKey(msg)){
+                            getAffectedExprs().get(msg).add(entry.getValue().toString());
+                        }
+                        else {
+                            HashSet<String> expSet = new HashSet<String>();
+                            expSet.add(entry.getValue().toString());
+                            getAffectedExprs().put(msg, expSet);
+                          //evaluate all queries without IA to calculate time savings using IA
+                            long timeResult = 0;
+                            long instances = 0;
+                            int count = 0;
+                            for (ExpressionWithContext con: allConstraints.values()){
+                                count++;
+                                EList<EObject> all = getAllInstances(con.classifier);
+                                long beforeWithoutIA = System.nanoTime();
+                                qe.evaluateQuery(query, all);
+                                long afterWithoutIA = System.nanoTime();
+                                timeResult += (afterWithoutIA - beforeWithoutIA);
+                                instances += all.size();
+                                if (count % 20 == 0)
+                                    System.out.print(count + " ");
+                            }
+                            List<Long> times = new LinkedList<Long>();
+                            times.add(new Long(timeResult));
+                            times.add(new Long(instances));
+                            notiToAllInstances.put(msg, times);
+                        }       
+                        List<Long> times = notiToAllInstances.get(msg);
+                        getResult().setMessage(getResult().getMessage() + 
+                                ", without IA: , time: , " + times.get(0) + " , Instances: , " + times.get(1) + ", Expression: , " + entry.getValue().toString() + 
+                                " , , , ,  event: , " + msg);
+                        
                         super.notifyChanged(msg);
                     }});
                                
-                tableEM.subscribe(filter, new AdapterImpl(){
-                    @Override
-                    public void notifyChanged(Notification msg) {
-                        long timeTable = System.nanoTime()-t2;
-                        //collect affected expressions for each model change
-                        collectAffectedExpressionsForNoti(entry, msg);                      
-                        getResult().setMessage(getResult().getMessage() + 
-                                "\n Time for table: ,"+timeTable);
-
-                        
-
-                        super.notifyChanged(msg);
-                    }});
+                
             }
             getResult().setMessage(getResult().getMessage() + "\n Totally registered OCL Expressions: " + expCount );
         }
     } 
-    
-    private void timeUsageInstanceVsClassScope(final QueryEvaluator qe, EList<EObject> allInstances,
-            EList<EObject> scope, Query query) {
-        long before = System.nanoTime();
-        //evaluate query on instances calculated by IA
-        qe.evaluateQuery(query , scope);
-        long after = System.nanoTime();
-        //evaluate query on all instances of given context
-        long beforeNaive = System.nanoTime();
-        qe.evaluateQuery(query, allInstances);
-        long afterNaive = System.nanoTime();
-        getResult().setMessage(getResult().getMessage() 
-                + " , Execution Time: , with Instance Scope: , "
-                + (after - before) + " , Class Scope: , " + (afterNaive - beforeNaive));
-    }
-    
-    private void timeForAllInstancesWithoutIA(final Map<String, ExpressionWithContext> allConstraints,
-            final QueryEvaluator qe, Query query, long timeResult) {
-        int i=0;
-        for (ExpressionWithContext con: allConstraints.values()){
-            System.out.println(i++);
-            EList<EObject> all = getAllInstances(con.classifier);
-            long beforeWithoutIA = System.nanoTime();
-            qe.evaluateQuery(query, all);
-            long afterWithoutIA = System.nanoTime();
-            timeResult += (afterWithoutIA - beforeWithoutIA);
-        }
-        getResult().setMessage(getResult().getMessage()
-                + " , without IA: , " + timeResult);
-    }
-    
-    private void collectAffectedExpressionsForNoti(final Entry<String, ExpressionWithContext> entry,
-            Notification msg) {
-        if (getAffectedExprs().containsKey(msg)){
-            getAffectedExprs().get(msg).add(entry.getValue().toString());
-        }
-        else {
-            HashSet<String> expSet = new HashSet<String>();
-            expSet.add(entry.getValue().toString());
-            getAffectedExprs().put(msg, expSet);
-        }
-    }
 
     private EList<EObject> getAllInstances(EClass context) {
         EList<EObject> allInstances = new BasicEList<EObject>();
