@@ -2,51 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework.csvResultProcessor"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework.loopOperator2.0"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework.oclOperator"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework.queryEvaluator"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework.randomGenerator"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework.randomModelModifier"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.benchframework.simpleResultProcessor"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.company"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.ngpm"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.solution.eventManager"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.solution.eventManager.tests"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.solution.impactAnalyzer"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.solution.impactAnalyzer.tests"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.solution.oclToAst"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.solution.oclToAst.tests"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.solution.scopeProvider"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.bp2009.solution.scopeProvider.tests"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.hugeModel"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.petriNet"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.petriNet.edit"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.petriNet.editor"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/de.hpi.sam.petriNet.tests"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/EcoreModelsAllMof"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.common"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.ecore"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.ecore.change"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.ecore.edit"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.ecore.xmi"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.edit"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.edit.ui"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.importer"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.importer.rose"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.query"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.query.index.internal"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.query.index.internal.test"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.query.index.ui"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.query.ocl"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.emf.query2"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ocl"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.ocl.ecore"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.modelversioning.ecoremutator"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/org.modelversioning.ecoremutator.test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -275,8 +275,6 @@ public abstract class RegistrationManager {
         // TODO Performance optimizations can probably be done here - VERY CENTRAL METHOD
         // caching is done in the subclass SessionRegistrationManager
    
-         long mtime=System.nanoTime();
-
         // In Docu: Green cells
         Iterator<Registration>[] yesSetIterators = new Iterator[allTables.size()];
         // In Docu: Red cells
@@ -328,8 +326,6 @@ public abstract class RegistrationManager {
                 estimatedYesSetSize += regIt.getSize();
             }
         }
-        System.out.println("Time to collect registrations "+ (System.nanoTime()-mtime ));
-        mtime = System.nanoTime();
         /*
          * collect all registrations for the event. The collected registrations are stored in a set, because a multiple appearance
          * means that someone registered for (X and Y) and both conditions were fulfilled. In this case, a cient would probably
@@ -391,8 +387,6 @@ public abstract class RegistrationManager {
         // }
         // time+=(System.currentTimeMillis()-mtime);
         
-        System.out.println("Time to collect combine "+ (System.nanoTime() -mtime));
-
         return yesSet;
     }
 

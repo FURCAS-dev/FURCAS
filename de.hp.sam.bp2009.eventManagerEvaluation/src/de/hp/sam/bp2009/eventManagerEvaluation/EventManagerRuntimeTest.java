@@ -1,31 +1,54 @@
+package de.hp.sam.bp2009.eventManagerEvaluation;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import company.CompanyPackage;
-
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerNaive;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
+import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
+import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 /**
  * @author Philipp
@@ -35,7 +58,7 @@ public class EventManagerRuntimeTest {
         @Override
         public void notifyChanged(Notification msg) {
             try {
-                Thread.currentThread().sleep(10);
+				Thread.sleep(10);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -68,70 +91,83 @@ public class EventManagerRuntimeTest {
         }
         return 1l;
     }
+    private static class ExpressionWithContext{
+        public OCLExpression expr;
+        public EClass classifier;
 
+        public ExpressionWithContext(OCLExpression e, EClass c) {      
+            classifier=c;
+            expr = e;
+        }
+        public String toString(){
+            return "context " + classifier.getName() + " : " + expr.toString();
+        }
+    }
+    private static void addConstraintToConstraintList(EAnnotation a, Map<String, ExpressionWithContext> allConstraints, EClassifier c){
+        if (a == null)return;
+        int index=0;
+        for (Entry<String, String> detail : a.getDetails()) {
+            String e = detail.getValue();
+            if (e == null){
+                break;
+            }else{
+                allConstraints.put(e, new ExpressionWithContext((OCLExpression) a.getContents().get(index),(EClass) c) );
+            }
+            index++;
+        }
+    }
     public static void main(String[] args) throws IOException {
-
+/*
+ * create resource
+ */
         ResourceSet set = new ResourceSetImpl();
         set.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
         set.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
         Resource r = set.createResource(URI.createFileURI("C:\\Users\\Philipp\\bob.xmi"));
-        for (int i = 0; i < 100; i++) {
-            RandomGeneratorFactory.eINSTANCE.createRandomGenerator().generateRandomModel(null, r, CompanyPackage.eINSTANCE);
-        }
-
-        int filterMaximum = 200;
-        int adapterMaximum = 1000;
-        int filterStepWidth = 10;
-        int adapterStepWidth = 50;
+        r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+        ResourceSet set1 = new ResourceSetImpl();
+        set1.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
+        set1.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
+        Resource r1 = set1.createResource(URI.createFileURI("C:\\Users\\Philipp\\bob.xmi"));
+        r1.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+/*
+ * Get expressions from meta model
+ */
+        Map<String,EventFilter> filters = getAllExprFilterOfModel(CompanyPackage.eINSTANCE);        
         File f = new File("bob2.csv");
         Writer fw = new FileWriter(f);
-
-        fw.write("Filtersize,,");
-        for (int x = 1; x < adapterMaximum; x += adapterStepWidth) {
-            fw.write("Adapter, " + x + ",,");
-        }
-        fw.write("\n");
-        fw.write("Depth,Leafcount,");
-        for (int x = 1; x < adapterMaximum; x += adapterStepWidth) {
-            fw.write("Time for subscription,First EventHandling,Second EventHandling,");
-        }
-        fw.write("\n");
-        for (int x = 1; x < filterMaximum; x += filterStepWidth) {
-            EventFilter finalF = createFilterWith8Depth();
-            for (int i = 0; i < x; i++) {
-                finalF = new AndFilter(finalF, createFilterWith8Depth(), new OrFilter(createFilterWith8Depth(),
-                        createFilterWith8Depth(), createFilterWith8Depth()), createFilterWith8Depth());
-            }
-            fw.write(getDepth(finalF, 0l) + ",");
-            fw.write(getLeafCount(finalF) + ",");
-            System.out.println("FilterLimit "+x);
-
-            for (int y = 1; y < adapterMaximum; y += adapterStepWidth) {
-                System.out.print(".");
-                fw.flush();
-                testRun(set, r, finalF, y, fw);
-            }
-            fw.write("\n");
-        }
-        System.out.println("\n");
+//        firstTestScenario(set, r, fw);
         
-        for (int x = 1; x < filterMaximum; x += filterStepWidth) {
-            System.out.println("FilterLimit "+x);
+        fw.write("Expression, " +
+        		"Filter Depth, " +
+        		"Filter Leave Count, " +
+        		"TIme to subscribe naive, " +
+        		"Time to subscribe table, " +
+        		"Event Handling naive, " +
+        		"Event Handling Table");
+        for(Entry<String, EventFilter>entry: filters.entrySet()){
+        	fw.write("\n");
+        	fw.write(entry.getKey()+",");
+        	
+        	EventFilter filter = entry.getValue();
 
-            EventFilter finalF = createFilterWith8Depth();
-            for (int i = 0; i < x; i++) {
-                finalF = new AndFilter(finalF, createFilterWith8Depth(), new OrFilter(createFilterWith8Depth(),
-                        createFilterWith8Depth(), createFilterWith8Depth()), createFilterWith8Depth());
-            }
-            fw.write(getDepth(finalF, 0l) + ",");
-            fw.write(getLeafCount(finalF) + ",");
+        	fw.write(getDepth(filter, 0)+",");
+        	fw.write(getLeafCount(filter)+",");
+        	EventManager naive = new ModifiedNaiveEM(set, fw);
+        	EventManager table = new ModifiedTableEM(set1, fw);
+        	Adapter a = new AdapterImpl();
+        	long startTIme = System.nanoTime();
+        	naive.subscribe(filter, a);
+        	fw.write((System.nanoTime()-startTIme)+",");
+        	startTIme = System.nanoTime();
+        	table.subscribe(filter, a);
+        	fw.write((System.nanoTime()-startTIme)+",");
+        	r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+        	r1.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+        	
+        	naive.unsubscribe(a);
+        	table.unsubscribe(a);
 
-            for (int y = 1; y < adapterMaximum; y += adapterStepWidth) {
-                System.out.print(".");
-                fw.flush();
-                testRun2(set, r, finalF, y, fw);
-            }
-            fw.write("\n");
         }
         fw.close();
 
@@ -154,6 +190,103 @@ public class EventManagerRuntimeTest {
         // testElementAdd(set, r, new ModifiedNaiveEM(set), finalF, limit2);
 
     }
+
+	private static void firstTestScenario(ResourceSet set, Resource r, Writer fw)
+			throws IOException {
+		int filterMaximum = 500;
+        int adapterMaximum = 1000;
+        int filterStepWidth = 100;
+        int adapterStepWidth = 100;
+
+
+        fw.write("Filtersize,,");
+        for (int x = 1; x < adapterMaximum; x += adapterStepWidth) {
+            fw.write("Adapter, " + x + ",,");
+        }
+        fw.write("\n");
+        fw.write("Depth,Leafcount,");
+        for (int x = 1; x < adapterMaximum; x += adapterStepWidth) {
+            fw.write("Time for subscription,First EventHandling,Second EventHandling,");
+        }
+        fw.write("\n");
+        for (int x = 1; x < filterMaximum; x += filterStepWidth) {
+//            EventFilter finalF = createFilterWith8Depth();
+//            for (int i = 0; i < x; i++) {
+//                finalF = new AndFilter(finalF, createFilterWith8Depth(), new OrFilter(createFilterWith8Depth(),
+//                        createFilterWith8Depth(), createFilterWith8Depth()), createFilterWith8Depth());
+//            }
+        	OrFilter finalF = new OrFilter();
+        	for (int i = 0; i < x; i++) {
+        		finalF.getOperands().add(new NewValueClassFilter(CompanyPackage.eINSTANCE.getEmployee(), true, false));
+        	}
+
+            fw.write(getDepth(finalF, 0l) + ",");
+            fw.write(getLeafCount(finalF) + ",");
+            System.out.println("FilterLimit "+x);
+
+            for (int y = 1; y < adapterMaximum; y += adapterStepWidth) {
+                System.out.print(".");
+                fw.flush();
+
+                testRun2(set, r, finalF, y, fw);
+
+            }
+            fw.write("\n");
+        }
+        System.out.println("\n");
+        
+        for (int x = 1; x < filterMaximum; x += filterStepWidth) {
+            System.out.println("FilterLimit "+x);
+
+            EventFilter finalF = createFilterWith8Depth();
+            for (int i = 0; i < x; i++) {
+                finalF = new AndFilter(finalF, createFilterWith8Depth(), new OrFilter(createFilterWith8Depth(),
+                        createFilterWith8Depth(), createFilterWith8Depth()), createFilterWith8Depth());
+            }
+            fw.write(getDepth(finalF, 0l) + ",");
+            fw.write(getLeafCount(finalF) + ",");
+
+            for (int y = 1; y < adapterMaximum; y += adapterStepWidth) {
+                System.out.print(".");
+                fw.flush();
+                testRun(set, r, finalF, y, fw);
+            }
+            fw.write("\n");
+        }
+	}
+
+	private static Map<String, EventFilter> getAllExprFilterOfModel(EPackage... ps) {
+		Map<String, ExpressionWithContext> allConstraints= new HashMap<String, ExpressionWithContext>();
+        EAnnotationOCLParser oclParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+        Set<EPackage> allPkg = new HashSet<EPackage>();
+        for(EPackage pkg:ps){
+            oclParser.traversalConvertOclAnnotations(pkg);
+        }           
+        for (EPackage p:ps){
+            for(EClassifier c:p.getEClassifiers()){                
+                EAnnotation a =c.getEAnnotation("http://de.hpi.sam.bp2009.OCL");                   
+                addConstraintToConstraintList(a, allConstraints, c);                                                         
+                if (c instanceof EClass) {
+                    for (EOperation op : ((EClass) c).getEOperations()){
+                        a = op.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
+                        addConstraintToConstraintList(a, allConstraints, c);
+                    }
+                    for (EAttribute at : ((EClass) c).getEAttributes()){
+                        a = at.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
+                        addConstraintToConstraintList(a, allConstraints, c);                            
+                    }
+                }
+            }
+        }
+        
+        ImpactAnalyzer iA = new ImpactAnalyzerImpl();
+        
+        Map<String, EventFilter> filters = new HashMap<String, EventFilter>();
+        for (Entry<String, ExpressionWithContext> entry: allConstraints.entrySet()){
+        	filters.put(entry.getKey(),iA.createFilterForExpression(entry.getValue().expr, true));
+        }
+		return filters;
+	}
 
     private static void testRun(ResourceSet set, Resource r, EventFilter finalF, int limit2, Writer writer) {
 
@@ -186,9 +319,10 @@ public class EventManagerRuntimeTest {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }  
-        
-        r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getEmployee()));
-        r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getEmployee()));
+        for(int x = 0; x<1000; x++){
+        	r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+        	r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+        }
         for (Adapter a : adapters) {
             em.unsubscribe(a);
         }
@@ -196,15 +330,15 @@ public class EventManagerRuntimeTest {
 
     static EventFilter createFilterWith8Depth() {
         OrFilter result = new OrFilter();
-        AndFilter level1 = new AndFilter();
+        OrFilter level1 = new OrFilter();
         OrFilter level2 = new OrFilter();
-        AndFilter level3 = new AndFilter();
+        OrFilter level3 = new OrFilter();
         OrFilter level4 = new OrFilter();
-        AndFilter level5 = new AndFilter();
+        OrFilter level5 = new OrFilter();
         OrFilter level6 = new OrFilter();
-        AndFilter level7 = new AndFilter();
+        OrFilter level7 = new OrFilter();
         OrFilter level8 = new OrFilter();
-        AndFilter level9 = new AndFilter();
+        OrFilter level9 = new OrFilter();
 
         level9.getOperands().add(
                 EventFilterFactory.getInstance()
