@@ -9,13 +9,6 @@
 -->
 
 <plugin>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <package
-            uri="http://de.hpi.sam.bp2009.benchframework.oclOperator"
-            class="de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage"
-            genModel="model/ocloperator.genmodel"/>
-   </extension>
    <extension
          point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
       <operator
