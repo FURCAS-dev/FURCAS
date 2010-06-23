@@ -212,7 +212,7 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 		    sb.append(query);
 		    //add time for filter calculation
 		    Long time = getExpToFilterTime().get(query);
-		    sb.append(" , " + time.toString() + " ns ");
+		    sb.append(" , " + time.toString());
 
 		}
 		sb.append(getMessage());
