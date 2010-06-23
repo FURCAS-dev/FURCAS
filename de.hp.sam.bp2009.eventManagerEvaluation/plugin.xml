@@ -12,7 +12,7 @@
    <extension
          point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
       <operator
-            operatorClass="de.hp.sam.bp2009.eventManagerEvaluation.Operator">
+            operatorClass="de.hpi.sam.bp2009.benchframework.eventManagerEvaluation.impl.EventManagerOperatorImpl">
       </operator>
    </extension>
 

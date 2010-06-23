@@ -172,6 +172,8 @@ public class RegistrationIterator<Type> implements Iterator<Type> {
     }
 
     /**
+     * This methods gives if no negated,
+     * a registration which is in the matched YesSet of the eventFilter table or in an unaffected NoSet
      * @return the object that will be returned at the next call to the {@link #next()} method.
      */
     private Type internalNext() {
@@ -196,6 +198,9 @@ public class RegistrationIterator<Type> implements Iterator<Type> {
             result = currentIncludeList.get(currentRegistration);
             currentRegistration++;
 
+            /*
+             * if registration should be skipped (e.g registration of affected filter table entries
+             */
             if (registrationsToExclude.containsKey(result))
                 result=null;
 //            if (es_count > 0) { // There are excludeSets => result might be
