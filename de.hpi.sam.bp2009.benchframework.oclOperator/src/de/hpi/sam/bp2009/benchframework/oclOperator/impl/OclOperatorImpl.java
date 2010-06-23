@@ -569,6 +569,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
     public void registerQueriesIA(ResourceSet resourceSet, OclOptionObject option) {        
         assert(resourceSet!=null);
         this.res = resourceSet;
+        this.affectedExprs = new HashMap<Notification, Set<String>>();
         final Map<String, ExpressionWithContext> allConstraints= new HashMap<String, ExpressionWithContext>();
         EAnnotationOCLParser oclParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
         TreeIterator<EObject> ti = resourceSet.getResources().get(0).getAllContents();
