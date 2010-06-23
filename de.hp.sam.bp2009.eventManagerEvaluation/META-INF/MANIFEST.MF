@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: EventManagerEvaluation
-Bundle-SymbolicName: de.hp.sam.bp2009.eventManagerEvaluation;singleton:=true
+Bundle-SymbolicName: de.hpi.sam.bp2009.benchframework.eventManagerEvaluation;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Export-Package: de.hp.sam.bp2009.eventManagerEvaluation
 Require-Bundle: de.hpi.sam.bp2009.benchframework;bundle-version="1.0.0",
