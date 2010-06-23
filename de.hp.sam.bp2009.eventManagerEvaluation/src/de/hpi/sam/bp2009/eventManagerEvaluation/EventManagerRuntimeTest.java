@@ -1,4 +1,5 @@
-package de.hp.sam.bp2009.eventManagerEvaluation;
+package de.hpi.sam.bp2009.eventManagerEvaluation;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class EventManagerRuntimeTest {
         @Override
         public void notifyChanged(Notification msg) {
             try {
-				Thread.sleep(10);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -91,82 +92,97 @@ public class EventManagerRuntimeTest {
         }
         return 1l;
     }
-    private static class ExpressionWithContext{
+
+    private static class ExpressionWithContext {
         public OCLExpression expr;
         public EClass classifier;
 
-        public ExpressionWithContext(OCLExpression e, EClass c) {      
-            classifier=c;
+        public ExpressionWithContext(OCLExpression e, EClass c) {
+            classifier = c;
             expr = e;
         }
-        public String toString(){
+
+        public String toString() {
             return "context " + classifier.getName() + " : " + expr.toString();
         }
     }
-    private static void addConstraintToConstraintList(EAnnotation a, Map<String, ExpressionWithContext> allConstraints, EClassifier c){
-        if (a == null)return;
-        int index=0;
+
+    private static void addConstraintToConstraintList(EAnnotation a, Map<String, ExpressionWithContext> allConstraints,
+            EClassifier c) {
+        if (a == null)
+            return;
+        int index = 0;
         for (Entry<String, String> detail : a.getDetails()) {
             String e = detail.getValue();
-            if (e == null){
+            if (e == null) {
                 break;
-            }else{
-                allConstraints.put(e, new ExpressionWithContext((OCLExpression) a.getContents().get(index),(EClass) c) );
+            } else {
+                allConstraints.put(e, new ExpressionWithContext((OCLExpression) a.getContents().get(index), (EClass) c));
             }
             index++;
         }
     }
-    public static void main(String[] args) throws IOException {
-/*
- * create resource
- */
-        ResourceSet set = new ResourceSetImpl();
-        set.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
-        set.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
-        Resource r = set.createResource(URI.createFileURI("C:\\Users\\Philipp\\bob.xmi"));
-        r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
-        ResourceSet set1 = new ResourceSetImpl();
-        set1.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
-        set1.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
-        Resource r1 = set1.createResource(URI.createFileURI("C:\\Users\\Philipp\\bob.xmi"));
-        r1.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
-/*
- * Get expressions from meta model
- */
-        Map<String,EventFilter> filters = getAllExprFilterOfModel(CompanyPackage.eINSTANCE);        
-        File f = new File("bob2.csv");
-        Writer fw = new FileWriter(f);
-//        firstTestScenario(set, r, fw);
-        
-        fw.write("Expression, " +
-        		"Filter Depth, " +
-        		"Filter Leave Count, " +
-        		"TIme to subscribe naive, " +
-        		"Time to subscribe table, " +
-        		"Event Handling naive, " +
-        		"Event Handling Table");
-        for(Entry<String, EventFilter>entry: filters.entrySet()){
-        	fw.write("\n");
-        	fw.write(entry.getKey()+",");
-        	
-        	EventFilter filter = entry.getValue();
 
-        	fw.write(getDepth(filter, 0)+",");
-        	fw.write(getLeafCount(filter)+",");
-        	EventManager naive = new ModifiedNaiveEM(set, fw);
-        	EventManager table = new ModifiedTableEM(set1, fw);
-        	Adapter a = new AdapterImpl();
-        	long startTIme = System.nanoTime();
-        	naive.subscribe(filter, a);
-        	fw.write((System.nanoTime()-startTIme)+",");
-        	startTIme = System.nanoTime();
-        	table.subscribe(filter, a);
-        	fw.write((System.nanoTime()-startTIme)+",");
-        	r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
-        	r1.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
-        	
-        	naive.unsubscribe(a);
-        	table.unsubscribe(a);
+    public static void main(String[] args) throws IOException {
+        /*
+         * create resource
+         */
+        /*
+         * Get expressions from meta model
+         */
+        Map<String, EventFilter> filters = getAllExprFilterOfModel(CompanyPackage.eINSTANCE);
+        File f = new File("bob2.csv");
+        System.out.println(f.getAbsolutePath());
+        Writer fw = new FileWriter(f);
+        // firstTestScenario(set, r, fw);
+
+        fw.write("Expression, " + "Filter Depth, " + "Filter Leave Count, " + "TIme to subscribe naive, "
+                + "Time to subscribe table, " + "Event Handling naive, " + "Event Handling Table");
+        for (Entry<String, EventFilter> entry : filters.entrySet()) {
+            ResourceSet set = new ResourceSetImpl();
+            set.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
+            set.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
+            Resource r = set.createResource(URI.createFileURI("C:\\Users\\Philipp\\bob.xmi"));
+            r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+            ResourceSet set1 = new ResourceSetImpl();
+            set1.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
+            set1.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
+            Resource r1 = set1.createResource(URI.createFileURI("C:\\Users\\Philipp\\bob.xmi"));
+            r1.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+
+            /*
+             * number of adapter per manager
+             */
+            int limit = 1000;
+            
+            System.out.print(".");
+            fw.write("\n");
+            fw.write(entry.getKey() + ",");
+
+            EventFilter filter = entry.getValue();
+
+            fw.write(getDepth(filter, 0) + ",");
+            fw.write(getLeafCount(filter) + ",");
+            EventManager naive = new ModifiedNaiveEM(set, fw);
+            EventManager table = new ModifiedTableEM(set1, fw);
+            Adapter a = new AdapterImpl();
+            long startTIme = System.nanoTime();
+            naive.subscribe(filter, a);
+            fw.write((System.nanoTime() - startTIme) + ",");
+            startTIme = System.nanoTime();
+            table.subscribe(filter, a);
+            fw.write((System.nanoTime() - startTIme) + ",");
+            
+            for(int i = 0; i<limit; i++){
+                naive.subscribe(filter, new AdapterImpl());
+                table.subscribe(filter, new AdapterImpl());
+
+            }
+            r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+            r1.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+
+            naive.unsubscribe(a);
+            table.unsubscribe(a);
 
         }
         fw.close();
@@ -191,13 +207,11 @@ public class EventManagerRuntimeTest {
 
     }
 
-	private static void firstTestScenario(ResourceSet set, Resource r, Writer fw)
-			throws IOException {
-		int filterMaximum = 500;
+    private static void firstTestScenario(ResourceSet set, Resource r, Writer fw) throws IOException {
+        int filterMaximum = 500;
         int adapterMaximum = 1000;
         int filterStepWidth = 100;
         int adapterStepWidth = 100;
-
 
         fw.write("Filtersize,,");
         for (int x = 1; x < adapterMaximum; x += adapterStepWidth) {
@@ -210,19 +224,19 @@ public class EventManagerRuntimeTest {
         }
         fw.write("\n");
         for (int x = 1; x < filterMaximum; x += filterStepWidth) {
-//            EventFilter finalF = createFilterWith8Depth();
-//            for (int i = 0; i < x; i++) {
-//                finalF = new AndFilter(finalF, createFilterWith8Depth(), new OrFilter(createFilterWith8Depth(),
-//                        createFilterWith8Depth(), createFilterWith8Depth()), createFilterWith8Depth());
-//            }
-        	OrFilter finalF = new OrFilter();
-        	for (int i = 0; i < x; i++) {
-        		finalF.getOperands().add(new NewValueClassFilter(CompanyPackage.eINSTANCE.getEmployee(), true, false));
-        	}
+            // EventFilter finalF = createFilterWith8Depth();
+            // for (int i = 0; i < x; i++) {
+            // finalF = new AndFilter(finalF, createFilterWith8Depth(), new OrFilter(createFilterWith8Depth(),
+            // createFilterWith8Depth(), createFilterWith8Depth()), createFilterWith8Depth());
+            // }
+            OrFilter finalF = new OrFilter();
+            for (int i = 0; i < x; i++) {
+                finalF.getOperands().add(new NewValueClassFilter(CompanyPackage.eINSTANCE.getEmployee(), true, false));
+            }
 
             fw.write(getDepth(finalF, 0l) + ",");
             fw.write(getLeafCount(finalF) + ",");
-            System.out.println("FilterLimit "+x);
+            System.out.println("FilterLimit " + x);
 
             for (int y = 1; y < adapterMaximum; y += adapterStepWidth) {
                 System.out.print(".");
@@ -234,9 +248,9 @@ public class EventManagerRuntimeTest {
             fw.write("\n");
         }
         System.out.println("\n");
-        
+
         for (int x = 1; x < filterMaximum; x += filterStepWidth) {
-            System.out.println("FilterLimit "+x);
+            System.out.println("FilterLimit " + x);
 
             EventFilter finalF = createFilterWith8Depth();
             for (int i = 0; i < x; i++) {
@@ -253,46 +267,46 @@ public class EventManagerRuntimeTest {
             }
             fw.write("\n");
         }
-	}
+    }
 
-	private static Map<String, EventFilter> getAllExprFilterOfModel(EPackage... ps) {
-		Map<String, ExpressionWithContext> allConstraints= new HashMap<String, ExpressionWithContext>();
+    private static Map<String, EventFilter> getAllExprFilterOfModel(EPackage... ps) {
+        Map<String, ExpressionWithContext> allConstraints = new HashMap<String, ExpressionWithContext>();
         EAnnotationOCLParser oclParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
         Set<EPackage> allPkg = new HashSet<EPackage>();
-        for(EPackage pkg:ps){
+        for (EPackage pkg : ps) {
             oclParser.traversalConvertOclAnnotations(pkg);
-        }           
-        for (EPackage p:ps){
-            for(EClassifier c:p.getEClassifiers()){                
-                EAnnotation a =c.getEAnnotation("http://de.hpi.sam.bp2009.OCL");                   
-                addConstraintToConstraintList(a, allConstraints, c);                                                         
+        }
+        for (EPackage p : ps) {
+            for (EClassifier c : p.getEClassifiers()) {
+                EAnnotation a = c.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
+                addConstraintToConstraintList(a, allConstraints, c);
                 if (c instanceof EClass) {
-                    for (EOperation op : ((EClass) c).getEOperations()){
+                    for (EOperation op : ((EClass) c).getEOperations()) {
                         a = op.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
                         addConstraintToConstraintList(a, allConstraints, c);
                     }
-                    for (EAttribute at : ((EClass) c).getEAttributes()){
+                    for (EAttribute at : ((EClass) c).getEAttributes()) {
                         a = at.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
-                        addConstraintToConstraintList(a, allConstraints, c);                            
+                        addConstraintToConstraintList(a, allConstraints, c);
                     }
                 }
             }
         }
-        
+
         ImpactAnalyzer iA = new ImpactAnalyzerImpl();
-        
+
         Map<String, EventFilter> filters = new HashMap<String, EventFilter>();
-        for (Entry<String, ExpressionWithContext> entry: allConstraints.entrySet()){
-        	filters.put(entry.getKey(),iA.createFilterForExpression(entry.getValue().expr, true));
+        for (Entry<String, ExpressionWithContext> entry : allConstraints.entrySet()) {
+            filters.put(entry.getKey(), iA.createFilterForExpression(entry.getValue().expr, true));
         }
-		return filters;
-	}
+        return filters;
+    }
 
     private static void testRun(ResourceSet set, Resource r, EventFilter finalF, int limit2, Writer writer) {
 
         // System.out.println("Complex Filter Table based");
 
-        testElementAdd(set, r, new ModifiedTableEM(set, writer), finalF, limit2,writer);
+        testElementAdd(set, r, new ModifiedTableEM(set, writer), finalF, limit2, writer);
     }
 
     private static void testRun2(ResourceSet set, Resource r, EventFilter finalF, int limit2, Writer writer) {
@@ -304,24 +318,24 @@ public class EventManagerRuntimeTest {
 
     private static void testElementAdd(ResourceSet set, Resource r, EventManager em, EventFilter f, int limit, Writer fw) {
         Set<Adapter> adapters = new HashSet<Adapter>();
-        long totalSubTime=0l;
+        long totalSubTime = 0l;
         for (int i = 0; i < limit; i++) {
             MyAdapter a = new MyAdapter();
             long start = System.nanoTime();
             em.subscribe(f.clone(), a);
-            long duration = System.nanoTime()-start;
-            totalSubTime +=duration;
+            long duration = System.nanoTime() - start;
+            totalSubTime += duration;
             adapters.add(a);
         }
         try {
-            fw.write((totalSubTime/limit)+",");
+            fw.write((totalSubTime / limit) + ",");
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }  
-        for(int x = 0; x<1000; x++){
-        	r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
-        	r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+        }
+        for (int x = 0; x < 1000; x++) {
+            r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
+            r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
         }
         for (Adapter a : adapters) {
             em.unsubscribe(a);

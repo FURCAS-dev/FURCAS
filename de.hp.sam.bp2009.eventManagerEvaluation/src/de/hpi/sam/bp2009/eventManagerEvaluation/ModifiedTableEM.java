@@ -1,4 +1,4 @@
-package de.hp.sam.bp2009.eventManagerEvaluation;
+package de.hpi.sam.bp2009.eventManagerEvaluation;
 import java.io.IOException;
 import java.io.Writer;
 
@@ -21,6 +21,21 @@ public class ModifiedTableEM extends EventManagerTableBased {
 
     private long startHandleEvent =0L;
     private Writer writer;
+    private boolean enabled = true;
+
+    /**
+     * @return the enabled
+     */
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * @param enabled the enabled to set
+     */
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
     /**
      * @param set
@@ -53,7 +68,9 @@ public class ModifiedTableEM extends EventManagerTableBased {
         this.startHandleEvent=System.nanoTime();
         super.handleEMFEvent(notification);        
         try {
-            writer.write((System.nanoTime()-startHandleEvent)+",");
+            if(this.enabled){
+                writer.write((System.nanoTime()-startHandleEvent)+",");
+            }
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

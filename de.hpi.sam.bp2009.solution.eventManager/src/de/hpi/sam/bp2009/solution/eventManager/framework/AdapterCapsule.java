@@ -48,7 +48,7 @@ public class AdapterCapsule {
      * @return whether this instance is responsible for the listener-instance and the specified role or not.
      */
     public boolean isResponsibleFor(Adapter listener, ListenerTypeEnum listenerType){
-        if (_listener.get().equals(listener) && _listenerType.matches(listenerType))
+        if (_listener !=null && _listener.get()!=null && _listener.get().equals(listener) && _listenerType.matches(listenerType))
             return true;
         else
             return false;
