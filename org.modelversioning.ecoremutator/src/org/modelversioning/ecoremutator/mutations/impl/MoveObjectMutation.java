@@ -67,7 +67,7 @@ public class MoveObjectMutation extends AbstractMutation {
                 EObject targetObject = modelProvider.getRandomEObjectHavingFeature(targetFeature);
                 if (targetObject != null) {
 
-                    if (!targetObject.equals(eObjectToMove) && !EcoreUtil.isAncestor(targetObject, eObjectToMove)) {
+                    if (!targetObject.equals(eObjectToMove) && !EcoreUtil.isAncestor(targetObject, eObjectToMove) && spaceLeftToAddObject(targetObject, targetFeature)) {
                         Object currentValue = targetObject.eGet(targetFeature, true);
                         if (currentValue instanceof List<?>) {
                             // add to list
@@ -102,6 +102,18 @@ public class MoveObjectMutation extends AbstractMutation {
         log(IStatus.WARNING, message);
         tracker.track(this.getId(), message, false, toEObjectList(null), toFeatureList(null));
 
+        return false;
+    }
+
+    private boolean spaceLeftToAddObject(EObject targetObject, EStructuralFeature targetFeature) {
+        if (targetFeature.isMany() && ((List<?>)targetObject.eGet(targetFeature)).size() < targetFeature.getUpperBound()){
+            //multivalued feature that did not reach its upper bound
+            return true;
+        }
+        if (!targetFeature.isMany() && targetObject.eGet(targetFeature) == null){
+            //unset single valued feature
+            return true;
+        }
         return false;
     }
 }
