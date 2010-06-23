@@ -38,7 +38,6 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.ocl.LazyExtentMap;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
@@ -694,27 +693,10 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
                     public void notifyChanged(Notification msg) {
                         long timeTable = System.nanoTime()-t2;
                         //collect affected expressions for each model change
-                        collectAffectedExpressionsForNoti(entry, msg);
-                        // analyze reduction of context instances by usage of IA
-                        EClass context = entry.getValue().classifier;
-                        Collection<EObject> contextInstances = ia.getContextObjects(msg, exp, context);
-                        // calculate number of all instances for comparison with IA-Version
-                        EList<EObject> allInstances = getAllInstances(context);                       
+                        collectAffectedExpressionsForNoti(entry, msg);                      
                         getResult().setMessage(getResult().getMessage() + 
-                                "\n Time for table: ,"+timeTable+" , Number of context Instances for Expression: , " + entry.getValue().toString() + 
-                                " , with IA : , " + contextInstances.size() + 
-                                " ,  naive: , " + allInstances.size());
-                        // execution time benchmarking
-                        EList<EObject> scope = new BasicEList<EObject>();
-                        for (EObject o: contextInstances){
-                            scope.add(o);
-                        }
-                        Query query = OCL.newInstance().createQuery(entry.getValue().expr);
-                        //time consumption for Instance Scope and Class Scope evaluation
-                        timeUsageInstanceVsClassScope(qe, allInstances, scope, query);
-                        //evaluate all queries without IA to calculate time savings using IA
-                        long timeResult = 0;
-                        timeForAllInstancesWithoutIA(allConstraints, qe, query, timeResult);
+                                "\n Time for table: ,"+timeTable);
+
                         
 
                         super.notifyChanged(msg);
@@ -741,7 +723,9 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
     
     private void timeForAllInstancesWithoutIA(final Map<String, ExpressionWithContext> allConstraints,
             final QueryEvaluator qe, Query query, long timeResult) {
+        int i=0;
         for (ExpressionWithContext con: allConstraints.values()){
+            System.out.println(i++);
             EList<EObject> all = getAllInstances(con.classifier);
             long beforeWithoutIA = System.nanoTime();
             qe.evaluateQuery(query, all);
@@ -774,13 +758,18 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         Helper helper= ocl.createOCLHelper();          
         Resource r = res.getResources().get(0);
         EcoreHelper.getInstance().addResourceToDefaultIndex(r);       
-        ocl.setExtentMap(new LazyExtentMap<EClass, EObject>(context) {
+        TreeIterator<EObject> it = r.getAllContents();  
+        Map<EClass, Set<EObject>> map = new HashMap<EClass, Set<EObject>>();
 
-            @Override
-            protected boolean isInstance(EClass cls, EObject element) {                
-                return (cls.isInstance(element));
-            }
-        });
+        while(it.hasNext()){
+            EObject element =it.next();
+
+            if(map.get(element.eClass())==null)
+                map.put(element.eClass(), new HashSet<EObject>());
+            map.get(element.eClass()).add(element);
+
+        }
+        ocl.setExtentMap(map);
         ProjectDependencyQueryContextProvider queryScopeProv = new ProjectDependencyQueryContextProvider();
         queryScopeProv.apply(ocl);
 
