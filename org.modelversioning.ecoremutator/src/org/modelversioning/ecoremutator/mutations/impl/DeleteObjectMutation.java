@@ -22,75 +22,66 @@ import org.modelversioning.ecoremutator.tracker.IMutationTracker;
 /**
  * Deletes an {@link EObject}.
  * 
- * By default it only removes leave objects. Using the option
- * <code>DELETE_MAX_MODEL_PERCENTAGE</code>, clients may specify how many
- * percent of the complete model, the object selected for deletion may contain.
+ * By default it only removes leave objects. Using the option <code>DELETE_MAX_MODEL_PERCENTAGE</code>, clients may specify how
+ * many percent of the complete model, the object selected for deletion may contain.
  * 
  * @author <a href="mailto:langer@big.tuwien.ac.at">Philip Langer</a>
  * 
  */
 public class DeleteObjectMutation extends AbstractMutation {
 
-	/**
-	 * Option specifying how many percent of the complete model, the object
-	 * selected for deletion may contain. Default is 0.
-	 */
-	public static String DELETE_MAX_MODEL_PERCENTAGE = DeleteObjectMutation.class
-			.getCanonicalName()
-			+ "DELETE_MAX_MODEL_PERCENTAGE"; //$NON-NLS-1$
+    /**
+     * Option specifying how many percent of the complete model, the object selected for deletion may contain. Default is 0.
+     */
+    public static String DELETE_MAX_MODEL_PERCENTAGE = DeleteObjectMutation.class.getCanonicalName()
+            + "DELETE_MAX_MODEL_PERCENTAGE"; //$NON-NLS-1$
 
-	/**
-	 * Default value for {@link #DELETE_MAX_MODEL_PERCENTAGE}.
-	 */
-	private static int default_DELETE_MAX_MODEL_PERCENTAGE = 0;
+    /**
+     * Default value for {@link #DELETE_MAX_MODEL_PERCENTAGE}.
+     */
+    private static int default_DELETE_MAX_MODEL_PERCENTAGE = 0;
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * Deletes a random leave object.
-	 */
-	@Override
-	public boolean mutate(IModelProvider modelProvider, IMutationTracker tracker) {
-		boolean success = false;
-		// compute model size to maximally delete
-		int perc = (Integer) getOptionValue(DELETE_MAX_MODEL_PERCENTAGE,
-				default_DELETE_MAX_MODEL_PERCENTAGE);
-		int size = modelProvider.getModelSize() * perc;
-		if (size > 0) {
-			size = size / 100;
-		}
+    /**
+     * {@inheritDoc}
+     * 
+     * Deletes a random leave object.
+     */
+    @Override
+    public boolean mutate(IModelProvider modelProvider, IMutationTracker tracker) {
+        boolean success = false;
+        // compute model size to maximally delete
+        int perc = (Integer) getOptionValue(DELETE_MAX_MODEL_PERCENTAGE, default_DELETE_MAX_MODEL_PERCENTAGE);
+        int size = modelProvider.getModelSize() * perc;
+        if (size > 0) {
+            size = size / 100;
+        }
 
-		// get object to delete
-		EObject eObjectToDelete = modelProvider
-				.getRandomEObjectNotContainingMoreObjectsThan(size);
-		if (eObjectToDelete != null) {
-			// delete
-			EcoreUtil.delete(eObjectToDelete, true);
-			log(IStatus.INFO, "Deleted " + eObjectToDelete.toString());
-			// track mutation
-			tracker.track(this.getId(),
-					"Deleted " + eObjectToDelete.toString(), true,
-					toEObjectList(eObjectToDelete), toFeatureList(null));
-			success = true;
-		} else {
-			log(IStatus.WARNING,
-					"Model provider did not return a suitable object to delete.");
-			tracker
-					.track(
-							this.getId(),
-							"Model provider did not return a suitable object to delete.",
-							false, toEObjectList(null), toFeatureList(null));
-			success = false;
-		}
+        // get object to delete
+        //at the moment we don't care how many objects are deleted
+        EObject eObjectToDelete = modelProvider.getRandomEObject(); //NotContainingMoreObjectsThan(size);
+        if (eObjectToDelete != null) {
+            // delete
+            EcoreUtil.delete(eObjectToDelete, true);
+            log(IStatus.INFO, "Deleted " + eObjectToDelete.toString());
+            // track mutation
+            tracker.track(this.getId(), "Deleted " + eObjectToDelete.toString(), true, toEObjectList(eObjectToDelete),
+                    toFeatureList(null));
+            success = true;
+        } else {
+            log(IStatus.WARNING, "Model provider did not return a suitable object to delete.");
+            tracker.track(this.getId(), "Model provider did not return a suitable object to delete.", false, toEObjectList(null),
+                    toFeatureList(null));
+            success = false;
+        }
 
-		return success;
-	}
+        return success;
+    }
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String getId() {
-		return "mutation.deleteObject";
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getId() {
+        return "mutation.deleteObject";
+    }
 }
