@@ -73,7 +73,7 @@ public class ModifiedTableEM extends EventManagerTableBased {
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+//            e.printStackTrace();
         }
 
         

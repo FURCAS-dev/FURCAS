@@ -3,7 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: EventManagerEvaluation
 Bundle-SymbolicName: de.hpi.sam.bp2009.benchframework.eventManagerEvaluation;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Export-Package: de.hp.sam.bp2009.eventManagerEvaluation
+Export-Package: de.hpi.sam.bp2009.benchframework.eventManagerEvaluation,
+ de.hpi.sam.bp2009.benchframework.eventManagerEvaluation.impl,
+ de.hpi.sam.bp2009.benchframework.eventManagerEvaluation.util,
+ de.hpi.sam.bp2009.eventManagerEvaluation
 Require-Bundle: de.hpi.sam.bp2009.benchframework;bundle-version="1.0.0",
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ocl.ecore,
