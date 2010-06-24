@@ -6,7 +6,7 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.commands.Command;
 
 /**
- * Base class for Refactorings  of the domain model.
+ * Base class for commands used to refactor the domain model.
  *
  * (No need to care about TextBlock updates here)
  *
@@ -30,8 +30,7 @@ public abstract class AbstractRefactoringCommand extends Command {
     }
 
     /**
-     * Do everything that is needed to transform the domain and the textblocks model.
-     * This is run within the command context.
+     * Do everything that is needed to transform the domain.  This is run within the command context.
      */
     protected abstract void performRefactoring();
 

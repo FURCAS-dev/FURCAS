@@ -65,22 +65,13 @@ public class RenameInputPage extends UserInputWizardPage {
 	});
 	return textField;
     }
-
-    /**
-     * Performs input validation. Returns a <code>RefactoringStatus</code> which
-     * describes the result of input validation. <code>Null<code> is interpreted
-     * as no error.
-     */
+    
     protected RefactoringStatus validateTextField(String text) {
 	RefactoringStatus status = new RefactoringStatus();
 	status.merge(getRefactoring().setNewModelElementName(text));
 	return status;
     }
 
-    /**
-     * Checks the page's state and issues a corresponding error message. The
-     * page validation is computed by calling <code>validatePage</code>.
-     */
     protected void textModifiedCallback(String text) {
 	RefactoringStatus status = validateTextField(text);
 	setPageComplete(status);

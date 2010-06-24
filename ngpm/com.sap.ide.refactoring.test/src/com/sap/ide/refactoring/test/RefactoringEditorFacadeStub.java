@@ -65,7 +65,7 @@ public class RefactoringEditorFacadeStub extends RefactoringEditorFacade {
 
 
     @Override
-    protected ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> getParserFactory() {
+    public ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> getParserFactory() {
 	return parserFactory;
     }
 

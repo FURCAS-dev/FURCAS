@@ -33,7 +33,7 @@ public class Activator extends AbstractUIPlugin {
 
     /**
      * Log error.
-     *
+     * 
      * @param e
      *            the e
      */
@@ -65,7 +65,7 @@ public class Activator extends AbstractUIPlugin {
 
     /**
      * Prints the stack traces recursively.
-     *
+     * 
      * @param status
      *            the status
      */
@@ -83,10 +83,10 @@ public class Activator extends AbstractUIPlugin {
 
     /**
      * Gets the messages recursively.
-     *
+     * 
      * @param status
      *            the status
-     *
+     * 
      * @return the messages recursively
      */
     private static String getMessagesRecursively(IStatus status) {
@@ -101,7 +101,7 @@ public class Activator extends AbstractUIPlugin {
 
     /**
      * Log warning.
-     *
+     * 
      * @param e
      *            the e
      */
@@ -120,7 +120,7 @@ public class Activator extends AbstractUIPlugin {
 
     /**
      * Log warning.
-     *
+     * 
      * @param msg
      *            the msg
      */
@@ -137,30 +137,27 @@ public class Activator extends AbstractUIPlugin {
 
     /**
      * Log warning.
-     *
+     * 
      * @param msg
      *            the msg
      */
     public static void logError(String msg) {
-	if (msg != null) {
-	    if (getDefault() != null) {
-		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, msg, new Exception("Dummy Exception")));
-	    }
+	if (getDefault() != null) {
+	    getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, msg, new Exception("Dummy Exception")));
 	} else {
-	    System.out.println("Refactoring.logError: " + msg);
+	    System.out.println("Unknown Refactoring Error");
 	}
     }
 
     /**
      * Log info.
-     *
+     * 
      * @param info
      *            the info
      */
     public static void logInfo(String info) {
 	if (getDefault() != null) {
 	    getDefault().getLog().log(new Status(IStatus.INFO, PLUGIN_ID, IStatus.OK, info, null));
-
 	} else {
 	    System.out.println("Refactoring.logInfo: " + info);
 	}

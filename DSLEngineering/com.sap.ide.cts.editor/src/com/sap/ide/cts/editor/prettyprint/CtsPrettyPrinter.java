@@ -9,14 +9,10 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class CtsPrettyPrinter {
 
-	public static void prettyPrint(RefObject source, ConcreteSyntax syntax,
-			TCSExtractorStream target, ClassTemplate template, PrettyPrintContext context) throws SyntaxAndModelMismatchException {
-		PrettyPrinter pp = new PrettyPrinter();
-		if(target instanceof CtsTextBlockIncrementalTCSExtractorStream)
-		{
-			((CtsTextBlockIncrementalTCSExtractorStream) target).setPrettyPrinter(pp);
-		}
-		pp.prettyPrint(source, syntax, target, template, context);
+    public static void prettyPrint(RefObject source, ConcreteSyntax syntax, TCSExtractorStream target, ClassTemplate template,
+	    PrettyPrintContext context) throws SyntaxAndModelMismatchException {
+	PrettyPrinter pp = new PrettyPrinter();
+	pp.prettyPrint(source, syntax, target, template, context);
 
-	}
+    }
 }
