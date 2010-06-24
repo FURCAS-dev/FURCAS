@@ -3,12 +3,10 @@ package com.sap.ide.refactoring.core.textual;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.Collection;
 
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.ui.PartInitException;
 import org.junit.After;
 import org.junit.Test;
 
@@ -16,12 +14,12 @@ import textblocks.DocumentNode;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.ide.refactoring.test.RefactoringEditorIntegrationTest;
+import com.sap.ide.refactoring.test.RefactoringBaseTest;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-public class TestSourcePositionModelLocator extends RefactoringEditorIntegrationTest {
+public class TestSourcePositionModelLocator extends RefactoringBaseTest {
 
     /**
      * System under test
@@ -31,6 +29,10 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
     private ISourceViewer viewer;
     private CtsDocument document;
     private AbstractGrammarBasedEditor editor;
+
+    public TestSourcePositionModelLocator() {
+	isIntegrationTest = true;
+    }
 
     /**
      * Initialize class members for the next testcase run
@@ -42,17 +44,14 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
 	assertNotNull(refObject);
 	assertTrue(refObject.is___Alive());
 
-	try {
-	    editor = openEditor(refObject);
-	    document = getDocument(editor);
-	    TextBlocksModel model = document.getTextBlocksModelStore().getModel();
+	editor = openEditor(refObject);
+	document = getDocument(editor);
+	TextBlocksModel model = document.getTextBlocksModelStore().getModel();
 
-	    viewer = editor.getSourceViewerPublic();
-	    viewer.setEditable(false);
-	    sut = new SourcePositionModelLocator(model, viewer);
-	} catch (PartInitException e) {
-	    fail(e.getMessage());
-	}
+	viewer = editor.getSourceViewerPublic();
+	viewer.setEditable(false);
+	sut = new SourcePositionModelLocator(model, viewer);
+
     }
 
     @Test
@@ -71,7 +70,6 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
 	assertEquals(10, viewer.getSelectedRange().x);
 	assertEquals(20, viewer.getSelectedRange().y);
     }
-
 
     @Test
     public void testFindSingleSelectedCorrespondingModelElements() {
@@ -120,18 +118,20 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
     }
 
     /**
-     * The class has a method and within this method two statements.
-     * Select those two statements.
+     * The class has a method and within this method two statements. Select
+     * those two statements.
      */
     @Test
     public void testFindMultipleSelectedCorrespondingModelElements() {
 	initializeForClass("RedefineParameterTst2");
 
 	String wholeClass = document.get();
-	String methodOnly  = wholeClass.substring(wholeClass.indexOf("{") + 1, wholeClass.lastIndexOf("}"));
+	String methodOnly = wholeClass.substring(wholeClass.indexOf("{") + 1, wholeClass.lastIndexOf("}"));
 	int offsetOfMethodInClass = wholeClass.indexOf(methodOnly);
-	int statementStart = methodOnly.indexOf("var m") - 1; // begin of the first statement
-	int statementsEnd = methodOnly.lastIndexOf(";") - 1; // end of the second statement
+	int statementStart = methodOnly.indexOf("var m") - 1; // begin of the
+	// first statement
+	int statementsEnd = methodOnly.lastIndexOf(";") - 1; // end of the
+	// second statement
 
 	selectRange(offsetOfMethodInClass + statementStart, statementsEnd - statementStart);
 	Collection<RefObject> selected = sut.findSelectedCorrespondingModelElements();
@@ -140,8 +140,8 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
     }
 
     /**
-     * The class contains three occurrences of the variable "m".
-     * Test that the last one has a reference to second occurrence (var usage to declaration)
+     * The class contains three occurrences of the variable "m". Test that the
+     * last one has a reference to second occurrence (var usage to declaration)
      */
     @Test
     public void testFindSelectedReferencedModelElements() {

@@ -46,10 +46,9 @@ public class TestCommandUndoRedoHelper extends RefactoringBaseTest {
     private CommandUndoRedoHelper sut;
 
     @Before
-    public void init() {
+    public void setup() {
 	sut = new CommandUndoRedoHelper(connection);
     }
-
 
     @Test
     public void testInitialEmptyStacks() {

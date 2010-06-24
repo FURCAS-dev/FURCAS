@@ -10,6 +10,13 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 import com.sap.tc.moin.repository.commands.CommandHandle;
 
+/**
+ * Glue coding to fit the undo/redo based refactoring preview generation into 
+ * the Eclipse refacotoring workflow.
+ * 
+ * @author D049157
+ *
+ */
 public class ModelChange extends Change {
 
     private final RefactoringEditorFacade facade;
@@ -33,7 +40,6 @@ public class ModelChange extends Change {
 	this.status = status;
 	this.refactoringCommandHandle = refactoringCommandHandle;
 	this.dependentCommandHandle = dependentCommandHandle;
-	refactoringCommandHandle = dependentCommandHandle;
     }
 
     @Override
@@ -62,15 +68,11 @@ public class ModelChange extends Change {
      */
     @Override
     public Change perform(IProgressMonitor pm) throws CoreException {
-	pm.beginTask("Applying Refactoring: " + refactoringCommandHandle.getDescription(), 2);
-
 	// Finally, re-apply the desired changes.
 	CommandUndoRedoHelper helper = new CommandUndoRedoHelper(facade.getConnection());
-	helper.redoRefactoring(dependentCommandHandle);
-	pm.worked(1);
+	helper.redoRefactoring(dependentCommandHandle, pm);
 
 	facade.refreshUI();
-	pm.done();
 	return new NullChange();
     }
 

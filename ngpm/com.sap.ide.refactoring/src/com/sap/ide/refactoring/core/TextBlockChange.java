@@ -19,29 +19,30 @@ import org.eclipse.ltk.core.refactoring.TextEditBasedChangeGroup;
 import textblocks.TextBlock;
 
 import com.sap.ide.refactoring.Activator;
+import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
+import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class TextBlockChange extends TextEditBasedChange {
 
-    private final RefObject correspondingRootObject;
-    private String preChangeState;
-    private String postChangeState;
-    private String changeDescription = "Pretty Print";
+    private String preChangeState = "Unable to retrieve content"; // default/error message
+    private String postChangeState = "Unable to retrieve content"; // default/error message
+    private final RefObject rootObject;
 
-    public TextBlockChange(RefObject correspondingRootObject) {
+    public TextBlockChange(RefObject rootObject) {
 	super("Pretty Print");
-	this.correspondingRootObject = correspondingRootObject;
+	this.rootObject = rootObject;
     }
 
     @Override
     public Object getModifiedElement() {
-	return correspondingRootObject;
+	return rootObject;
     }
 
     @Override
     public String getName() {
-	return changeDescription + " " + ((MofClass) correspondingRootObject.refMetaObject()).getName();
+	return "Pretty Print " + ((MofClass) rootObject.refMetaObject()).getName();
     }
 
     @Override
@@ -127,18 +128,24 @@ public class TextBlockChange extends TextEditBasedChange {
     }
 
     public void fetchPreChangeState(TextBlock textBlock) {
+	System.out.println(">>>PRE");
 	preChangeState = getTextFromTextBlock(textBlock);
     }
 
-    public void fetchPostChangeState(String description, TextBlock textBlock) {
-	changeDescription = description;
+    public void fetchPostChangeState(TextBlock textBlock) {
+	System.out.println(">>>POST");
 	postChangeState = getTextFromTextBlock(textBlock);
     }
 
     private String getTextFromTextBlock(TextBlock textBlock) {
-	// TODO: find a way how to do this properly...
-	// We cannot just rely on the cache.
 	String text = textBlock.getCachedString();
+	// Remove the following check if the pretty printer has matured
+	if (TbNavigationUtil.isUltraRoot(textBlock)) {
+	    TextBlocksModel model = new TextBlocksModel(textBlock, /*modelAdapter*/ null);
+	    model.setUsecache(!model.isUsecache());
+	    assert text.equals(model.get(0, model.getLength())) : "Cache and Model must be in sync.";
+	}
+	System.out.println(text);
 	return text == null ? "" : text;
     }
 

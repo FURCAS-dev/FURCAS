@@ -55,7 +55,7 @@ public class TestTextBlockAwareRefactoringCommandExecutor extends RefactoringBas
 
 	@Override
 	protected void performRefactoring() {
-	    throw new RuntimeException("Huups I Crashed");
+	    throw new RuntimeException("Huups I Crashed (but on purpose, so don't worry!)");
 	}
     }
 
@@ -71,7 +71,7 @@ public class TestTextBlockAwareRefactoringCommandExecutor extends RefactoringBas
 	AbstractRefactoringCommand cmd = new PassingNullRefactoring(connection, "Passing");
 	sut = new TextBlockAwareRefactoringCommandExecutor(facade, cmd);
 
-	RefactoringResult result = sut.runRefactoring();
+	RefactoringResult result = sut.runRefactoring(new NullProgressMonitor());
 
 	assertTrue("Must have passed without errors", result.status.isOK());
 	assertTrue("Change must be applicable", result.change.isValid(new NullProgressMonitor()).isOK());
@@ -84,7 +84,7 @@ public class TestTextBlockAwareRefactoringCommandExecutor extends RefactoringBas
 	AbstractRefactoringCommand cmd = new FailingNullRefactoring(connection ,"Failing");
 	sut = new TextBlockAwareRefactoringCommandExecutor(facade, cmd);
 
-	RefactoringResult result = sut.runRefactoring();
+	RefactoringResult result = sut.runRefactoring(new NullProgressMonitor());
 
 	assertFalse("Must have failed", result.status.isOK());
 	assertFalse("Change must be applicable", result.change.isValid(new NullProgressMonitor()).isOK());
@@ -97,7 +97,7 @@ public class TestTextBlockAwareRefactoringCommandExecutor extends RefactoringBas
 	AbstractRefactoringCommand cmd = new CrashingNullRefactoring(connection ,"Failing");
 	sut = new TextBlockAwareRefactoringCommandExecutor(facade, cmd);
 
-	RefactoringResult result = sut.runRefactoring();
+	RefactoringResult result = sut.runRefactoring(new NullProgressMonitor());
 
 	assertFalse("Must have failed", result.status.isOK());
 	assertFalse("Change must not be applicable", result.change.isValid(new NullProgressMonitor()).isOK());
