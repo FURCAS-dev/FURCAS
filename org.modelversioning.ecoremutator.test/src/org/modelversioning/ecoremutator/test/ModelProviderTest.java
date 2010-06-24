@@ -225,8 +225,8 @@ public class ModelProviderTest extends TestCase {
 		EList<EStructuralFeature> features = modelProviderSample1
 				.getAllStructuralFeatures();
 		for (EStructuralFeature feature : features) {
-			assertEquals(modelProviderSample1.getPackage(), feature
-					.getEContainingClass().getEPackage());
+			assertTrue(modelProviderSample1.getPackages().contains(feature
+					.getEContainingClass().getEPackage()));
 		}
 	}
 
@@ -238,8 +238,8 @@ public class ModelProviderTest extends TestCase {
 		for (int i = 0; i < 50; i++) {
 			EClass eClass = modelProviderSample1.getRandomConcreteClass();
 			assertNotNull(eClass);
-			assertEquals(modelProviderSample1.getPackage(), eClass
-					.getEPackage());
+			assertTrue(modelProviderSample1.getPackages().contains(eClass
+					.getEPackage()));
 		}
 	}
 
@@ -248,7 +248,7 @@ public class ModelProviderTest extends TestCase {
 	 * {@link org.modelversioning.ecoremutator.mutations.ModelProvider#getRandomFeatureHavingType(EClass)}
 	 */
 	public void testGetRandomFeatureHavingType() {
-		EClassifier eClassifier = modelProviderSample1.getPackage()
+		EClassifier eClassifier = modelProviderSample1.getPackages().iterator().next()
 				.getEClassifier("EAttribute"); //$NON-NLS-1$
 		assertNotNull(eClassifier);
 		assertTrue(eClassifier instanceof EClass);
