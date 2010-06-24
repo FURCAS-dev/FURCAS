@@ -64,7 +64,7 @@ public class ModifiedNaiveEM extends EventManagerNaive {
                 writer.write((System.nanoTime()-startHandleEvent)+",");
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         
     }

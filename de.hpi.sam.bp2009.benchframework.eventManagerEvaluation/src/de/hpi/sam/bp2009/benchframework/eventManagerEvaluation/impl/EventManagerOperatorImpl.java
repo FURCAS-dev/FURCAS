@@ -7,6 +7,8 @@
 package de.hpi.sam.bp2009.benchframework.eventManagerEvaluation.impl;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
@@ -19,13 +21,17 @@ import de.hpi.sam.bp2009.eventManagerEvaluation.EventManagerRuntimeTest;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.TreeIterator;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -278,8 +284,18 @@ public class EventManagerOperatorImpl extends EObjectImpl implements EventManage
 
     @Override
     public void execute() {
+        ResourceSet resourceSet = this.getTestRun().getModel();
+        TreeIterator<EObject> ti = resourceSet.getResources().get(0).getAllContents();
+        Set<EPackage> allPkg = new HashSet<EPackage>();
+        while (ti.hasNext()){
+            allPkg.add(ti.next().eClass().getEPackage());           
+        }
+        EPackage[] initP = allPkg.size()>0? allPkg.toArray(new EPackage[allPkg.size()]): null;
+        
+        
+        
         try {
-            EventManagerRuntimeTest.main(null);
+            new EventManagerRuntimeTest().execute(initP);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

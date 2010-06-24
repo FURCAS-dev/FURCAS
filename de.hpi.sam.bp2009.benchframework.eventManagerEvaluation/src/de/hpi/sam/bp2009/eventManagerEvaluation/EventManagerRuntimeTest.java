@@ -4,27 +4,20 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Locale;
 import java.util.Map;
-import java.util.Random;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
@@ -35,16 +28,13 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import company.CompanyPackage;
-import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorFactory;
+
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerNaive;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
-import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
@@ -55,7 +45,7 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  * @author Philipp
  */
 public class EventManagerRuntimeTest {
-    private static class MyAdapter extends AdapterImpl {
+    private  class MyAdapter extends AdapterImpl {
         @Override
         public void notifyChanged(Notification msg) {
             try {
@@ -69,7 +59,7 @@ public class EventManagerRuntimeTest {
         }
     }
 
-    static long getDepth(EventFilter f, long l) {
+     long getDepth(EventFilter f, long l) {
 
         if (f instanceof LogicalOperationFilter) {
             l++;
@@ -82,7 +72,7 @@ public class EventManagerRuntimeTest {
         return l;
     }
 
-    static long getLeafCount(EventFilter f) {
+     long getLeafCount(EventFilter f) {
         if (f instanceof LogicalOperationFilter) {
             long count = 0l;
             for (EventFilter o : ((LogicalOperationFilter) f).getOperands()) {
@@ -93,7 +83,7 @@ public class EventManagerRuntimeTest {
         return 1l;
     }
 
-    private static class ExpressionWithContext {
+    private  class ExpressionWithContext {
         public OCLExpression expr;
         public EClass classifier;
 
@@ -107,7 +97,7 @@ public class EventManagerRuntimeTest {
         }
     }
 
-    private static void addConstraintToConstraintList(EAnnotation a, Map<String, ExpressionWithContext> allConstraints,
+    private  void addConstraintToConstraintList(EAnnotation a, Map<String, ExpressionWithContext> allConstraints,
             EClassifier c) {
         if (a == null)
             return;
@@ -123,20 +113,26 @@ public class EventManagerRuntimeTest {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public  void execute(EPackage... initPackages) throws IOException {
         /*
          * create resource
          */
         /*
          * Get expressions from meta model
          */
-        Map<String, EventFilter> filters = getAllExprFilterOfModel(CompanyPackage.eINSTANCE);
+        Map<String, EventFilter> filters;
+        if(initPackages!=null && initPackages.length>0){
+            filters= getAllExprFilterOfModel(initPackages);
+
+        }else{
+            filters= getAllExprFilterOfModel(CompanyPackage.eINSTANCE);
+        }
         File f = new File("bob2.csv");
         System.out.println(f.getAbsolutePath());
         Writer fw = new FileWriter(f);
         // firstTestScenario(set, r, fw);
 
-        fw.write("Expression, " + "Filter Depth, " + "Filter Leave Count, " + "TIme to subscribe naive, "
+        fw.write("Expression, " + "Filter Depth, " + "Filter Leave Count, " + "Time to subscribe naive, "
                 + "Time to subscribe table, " + "Event Handling naive, " + "Event Handling Table");
         for (Entry<String, EventFilter> entry : filters.entrySet()) {
             ResourceSet set = new ResourceSetImpl();
@@ -206,8 +202,11 @@ public class EventManagerRuntimeTest {
         // testElementAdd(set, r, new ModifiedNaiveEM(set), finalF, limit2);
 
     }
-
-    private static void firstTestScenario(ResourceSet set, Resource r, Writer fw) throws IOException {
+/*
+ * szenario not i use
+ */
+    @SuppressWarnings("unused")
+    private  void firstTestScenario(ResourceSet set, Resource r, Writer fw) throws IOException {
         int filterMaximum = 500;
         int adapterMaximum = 1000;
         int filterStepWidth = 100;
@@ -269,10 +268,9 @@ public class EventManagerRuntimeTest {
         }
     }
 
-    private static Map<String, EventFilter> getAllExprFilterOfModel(EPackage... ps) {
+    private  Map<String, EventFilter> getAllExprFilterOfModel(EPackage... ps) {
         Map<String, ExpressionWithContext> allConstraints = new HashMap<String, ExpressionWithContext>();
         EAnnotationOCLParser oclParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-        Set<EPackage> allPkg = new HashSet<EPackage>();
         for (EPackage pkg : ps) {
             oclParser.traversalConvertOclAnnotations(pkg);
         }
@@ -302,21 +300,21 @@ public class EventManagerRuntimeTest {
         return filters;
     }
 
-    private static void testRun(ResourceSet set, Resource r, EventFilter finalF, int limit2, Writer writer) {
+    private  void testRun(ResourceSet set, Resource r, EventFilter finalF, int limit2, Writer writer) {
 
         // System.out.println("Complex Filter Table based");
 
         testElementAdd(set, r, new ModifiedTableEM(set, writer), finalF, limit2, writer);
     }
 
-    private static void testRun2(ResourceSet set, Resource r, EventFilter finalF, int limit2, Writer writer) {
+    private  void testRun2(ResourceSet set, Resource r, EventFilter finalF, int limit2, Writer writer) {
 
         // System.out.println("Complex Filter Table based");
 
         testElementAdd(set, r, new ModifiedNaiveEM(set, writer), finalF, limit2, writer);
     }
 
-    private static void testElementAdd(ResourceSet set, Resource r, EventManager em, EventFilter f, int limit, Writer fw) {
+    private  void testElementAdd(ResourceSet set, Resource r, EventManager em, EventFilter f, int limit, Writer fw) {
         Set<Adapter> adapters = new HashSet<Adapter>();
         long totalSubTime = 0l;
         for (int i = 0; i < limit; i++) {
@@ -342,7 +340,7 @@ public class EventManagerRuntimeTest {
         }
     }
 
-    static EventFilter createFilterWith8Depth() {
+     EventFilter createFilterWith8Depth() {
         OrFilter result = new OrFilter();
         OrFilter level1 = new OrFilter();
         OrFilter level2 = new OrFilter();
