@@ -1,10 +1,8 @@
 package com.sap.ocl.oppositefinder.query2;
 
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -16,11 +14,21 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.index.query.IndexQueryFactory;
+import org.eclipse.emf.query.index.query.QueryCommand;
+import org.eclipse.emf.query.index.query.QueryExecutor;
+import org.eclipse.emf.query.index.query.ResourceQuery;
+import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query2.EcoreHelper;
+import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessorFactory;
+import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.ocl.ecore.DefaultOppositeEndFinder;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
-import org.eclipse.ocl.ecore.OppositeEndFinder;
 import org.eclipse.ocl.ecore.VoidType;
 
-public class Query2OppositeEndFinder implements OppositeEndFinder {
+public class Query2OppositeEndFinder extends DefaultOppositeEndFinder {
     public void findOppositeEnds(EClassifier classifier, String name, List<EStructuralFeature> ends) {
 
         if (!(classifier instanceof VoidType)) { // OclVoid has no properties, not even opposites
@@ -90,7 +98,8 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
 
     }
 
-    public Object navigateOppositeProperty(EStructuralFeature property, List<?> qualifiers, Object target)
+    @Override
+    public Object navigateOppositeProperty(EStructuralFeature property, Object target)
             throws IllegalArgumentException {
         if (target instanceof EObject) {
             EObject etarget = (EObject) target;
@@ -117,18 +126,6 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
                 rs = new ResourceSetImpl();
         }
         return getWorkspaceQueryContext(rs);
-    }
-
-    @Override
-    public Map<String, EStructuralFeature> getAllOppositeEnds(EClassifier classifier) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Object navigateOppositeProperty(EStructuralFeature property, Object target) {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }
