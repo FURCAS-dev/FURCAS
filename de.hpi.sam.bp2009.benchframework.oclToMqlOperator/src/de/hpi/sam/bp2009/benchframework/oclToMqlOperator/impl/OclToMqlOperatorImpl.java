@@ -472,28 +472,30 @@ public class OclToMqlOperatorImpl extends EObjectImpl implements OclToMqlOperato
     }/**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-      */
+     */
     public void executeQueries(ResourceSet resourceSet, OclToMqlOptionObject option) {
         OclToMqlUtil ocl = OclToMqlOperatorFactory.eINSTANCE.createOclToMqlUtil();
-//        QueryEvaluator queryEvaluator = getTestRun().getInstanceForClass(QueryEvaluator.class);
-        File file = new File("mql.csv");
-        System.out.println(file.getAbsolutePath());
+        //        QueryEvaluator queryEvaluator = getTestRun().getInstanceForClass(QueryEvaluator.class);
         FileWriter writer=null;
-        try {
-            writer = new FileWriter(file);
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
 
-        try {
-            writer.write("Expressions, ExecutionTime");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
         if (option instanceof OclToMqlOptionObject){
             if(((OclToMqlOptionObject) option).isUseEvaluator()){
+                File file = new File("ocl.csv");
+                System.out.println(file.getAbsolutePath());
+
+                try {
+                    writer = new FileWriter(file);
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+                try {
+                    writer.write("OCL-Bedingungen \t OCL (in s)");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 for(String con: option.getConstraints()){
                     long begin = System.nanoTime();
                     Object oclResult = ocl.evaluateOCL(con, resourceSet);
@@ -515,10 +517,26 @@ public class OclToMqlOperatorImpl extends EObjectImpl implements OclToMqlOperato
                     if(getResult() instanceof OclToMqlResult){
                         map.put(con, oclResult);
                         ((OclToMqlResult)getResult()).setQueriesToResults(map);
-                        
+
                     }
                 }}
             else{
+                File file = new File("mql.csv");
+                System.out.println(file.getAbsolutePath());
+
+                try {
+                    writer = new FileWriter(file);
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+                try {
+                    writer.write("OCL-Bedingungen \t OCL (in s)");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
                 for(String con: option.getConstraints()){
                     long begin = System.nanoTime();
                     Object mqlResult= ocl.evaluateMQL(con, resourceSet);
@@ -536,15 +554,15 @@ public class OclToMqlOperatorImpl extends EObjectImpl implements OclToMqlOperato
                         ((OclToMqlResult)getResult()).setQueriesToResults(map);
                     }
                 }
-   }
+            }
 
         }
-try {
-    writer.close();
-} catch (IOException e) {
-    // TODO Auto-generated catch block
-    e.printStackTrace();
-}
+        try {
+            writer.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -556,7 +574,7 @@ try {
         setResult(OclToMqlOperatorFactory.eINSTANCE.createOclToMqlResult());
         if (option instanceof OclToMqlOptionObject){
             executeQueries(this.getTestRun().getModel(),(OclToMqlOptionObject) option);
-            
+
             getResult().setStatus(Status.SUCCESSFUL);
             for (String query: ((OclToMqlOptionObject) option).getConstraints()){
                 ((OclToMqlResultImpl)getResult()).addQuery(query);
@@ -566,28 +584,28 @@ try {
             getResult().setMessage("Invalid OptionObject");
         }
     }
-//
-//    public void registerQueries(ResourceSet resourceSet, OclToMqlOptionObject option){
-//        assert(resourceSet!=null);
-//        new HashMap<Notification, Set<String>>();
-//
-//        //TODO try to use manuell parsing form gui
-//        //        OCL ocl = OCL.newInstance();
-//        //        MappingOCL mql =MappingOCL.newInstance();
-//
-//        String uri = resourceSet.getResources().get(0).getContents().get(0).eClass().getEPackage().getNsURI();
-//        EPackage basePackage = resourceSet.getPackageRegistry().getEPackage(uri);
-//        String nsPrefix = basePackage.getNsPrefix();
-//        EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
-//        ArrayList<String> path = new ArrayList<String>();
-//        path.add(nsPrefix);
-//
-//        //            ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
-//        //            mql = MappingOCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
-//
-//    }
-//
-//
+    //
+    //    public void registerQueries(ResourceSet resourceSet, OclToMqlOptionObject option){
+    //        assert(resourceSet!=null);
+    //        new HashMap<Notification, Set<String>>();
+    //
+    //        //TODO try to use manuell parsing form gui
+    //        //        OCL ocl = OCL.newInstance();
+    //        //        MappingOCL mql =MappingOCL.newInstance();
+    //
+    //        String uri = resourceSet.getResources().get(0).getContents().get(0).eClass().getEPackage().getNsURI();
+    //        EPackage basePackage = resourceSet.getPackageRegistry().getEPackage(uri);
+    //        String nsPrefix = basePackage.getNsPrefix();
+    //        EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
+    //        ArrayList<String> path = new ArrayList<String>();
+    //        path.add(nsPrefix);
+    //
+    //        //            ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
+    //        //            mql = MappingOCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
+    //
+    //    }
+    //
+    //
 }
 
 
