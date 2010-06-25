@@ -48,11 +48,9 @@ public class Query2OppositeEndFinder extends DefaultOppositeEndFinder {
     private static QueryContext getWorkspaceQueryContext(final ResourceSet rs) {
 
         return new QueryContext() {
-
             public URI[] getResourceScope() {
                 final List<URI> result = new ArrayList<URI>();
                 IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
-
                     public void execute(QueryExecutor queryExecutor) {
                         ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
                         for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
