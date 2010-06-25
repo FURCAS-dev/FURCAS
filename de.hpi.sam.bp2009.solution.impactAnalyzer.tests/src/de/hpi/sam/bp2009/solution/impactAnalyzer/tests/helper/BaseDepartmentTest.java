@@ -13,10 +13,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query.index.update.IndexUpdater;
+import org.eclipse.emf.query.index.update.ResourceIndexer;
+import org.eclipse.emf.query.index.update.UpdateCommand;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.After;
@@ -281,7 +284,32 @@ public class BaseDepartmentTest extends TestCase {
     @Before
     public void setUp() {
         beforeTestMethod(true);
-        EcoreEnvironment.updateIndex();
+        updateIndex();
+    }
+
+    private void updateIndex() {
+        IndexFactory.getInstance().executeUpdateCommand(new UpdateCommand() {
+            public void preCommitAction(IndexUpdater updater) {
+            }
+            public void postCommitAction() {
+            }
+
+            public void execute(IndexUpdater updater) {
+                final ResourceIndexer indexer = new ResourceIndexer();
+                List<String> uris = new ArrayList<String>();
+                for (String packUri : EPackage.Registry.INSTANCE.keySet()) {
+                    uris.add(packUri);
+                }
+                for (String packUri : uris) {
+                    try {
+                        indexer.resourceChanged(updater, EPackage.Registry.INSTANCE.getEPackage(packUri).eResource());
+                    } catch (Exception e) {
+                        System.err.println("Error indexing uri: " + packUri); //$NON-NLS-1$
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     @Override
