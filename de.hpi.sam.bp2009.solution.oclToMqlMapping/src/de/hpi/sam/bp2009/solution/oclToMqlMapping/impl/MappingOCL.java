@@ -17,6 +17,7 @@ import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -32,72 +33,88 @@ public class MappingOCL extends OCL{
         super(INSTANCE);
         // TODO Auto-generated constructor stub
     }
-
+    protected MappingOCL(Environment<
+            EPackage, EClassifier, EOperation, EStructuralFeature,
+            EEnumLiteral, EParameter, EObject,
+            CallOperationAction, SendSignalAction, Constraint,
+            EClass, EObject> env) {
+        super(env);
+    }
 
     public static MappingOCL newInstance() {
         return new MappingOCL(EcoreEnvironmentFactory.INSTANCE);
     }
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public Object evaluate(Object context, OCLExpression expression) {
 
-        // can determine a more appropriate context from the context
-        // variable of the expression, to account for stereotype constraints
-        context = getConstraintContext(getEnvironment(), context,
-                expression);
+    public static MappingOCL newInstance(Environment<
+            EPackage, EClassifier, EOperation, EStructuralFeature,
+            EEnumLiteral, EParameter, EObject,
+            CallOperationAction, SendSignalAction, Constraint,
+            EClass, EObject> env) {
 
-        EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> localEvalEnv = getEvaluationEnvironment();
-        localEvalEnv.add(Environment.SELF_VARIABLE_NAME, context);
-
-        Map<EClass, ? extends Set<? extends EObject>> extents = getExtentMap();
-        if (extents == null) {
-            // let the evaluation environment create one
-            extents = localEvalEnv.createExtentMap(context);
-        }
-
-        EvaluationVisitor<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ev ;
-        ev = new MappingEvaluationVisitor(getEnvironment(), localEvalEnv, extents);
-
-
-        Object result;
-
-        try {
-            result = ev.visitExpression((org.eclipse.ocl.expressions.OCLExpression<EClassifier>) expression);
-        } catch (EvaluationHaltedException e) {
-            result = getEnvironment().getOCLStandardLibrary().getInvalid();
-        } finally {
-            localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
-        }
-
-        return result;
+        return new MappingOCL(env);
     }
-    private Object getConstraintContext(
-            Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
-            Object element, OCLExpression expr) {
 
-        Object result = element;
+@SuppressWarnings({ "rawtypes", "unchecked" })
+public Object evaluate(Object context, OCLExpression expression) {
 
-        if (expr.eContainer() instanceof ExpressionInOCL<?, ?>) {
-            @SuppressWarnings("unchecked")
-            ExpressionInOCL<EClassifier, EParameter> specification =
-                (ExpressionInOCL<EClassifier, EParameter>) expr.eContainer();
+    // can determine a more appropriate context from the context
+    // variable of the expression, to account for stereotype constraints
+    context = getConstraintContext(getEnvironment(), context,
+            expression);
 
-            Variable<EClassifier, EParameter> contextVariable = specification.getContextVariable();
-            if (contextVariable != null) {
-                EClassifier contextClassifier = contextVariable.getType();
+    EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> localEvalEnv = getEvaluationEnvironment();
+    localEvalEnv.add(Environment.SELF_VARIABLE_NAME, context);
 
-                if ((contextClassifier != null) && env.getUMLReflection().isStereotype(
-                        contextClassifier)) {
+    Map<EClass, ? extends Set<? extends EObject>> extents = getExtentMap();
+    if (extents == null) {
+        // let the evaluation environment create one
+        extents = localEvalEnv.createExtentMap(context);
+    }
 
-                    Object application = env.getUMLReflection().getStereotypeApplication(
-                            element, contextClassifier);
+    EvaluationVisitor<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ev ;
+    ev = new MappingEvaluationVisitor(getEnvironment(), localEvalEnv, extents);
 
-                    if (application != null) {
-                        result = application;
-                    }
+
+    Object result;
+
+    try {
+        result = ev.visitExpression((org.eclipse.ocl.expressions.OCLExpression<EClassifier>) expression);
+    } catch (EvaluationHaltedException e) {
+        result = getEnvironment().getOCLStandardLibrary().getInvalid();
+    } finally {
+        localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
+    }
+
+    return result;
+}
+private Object getConstraintContext(
+        Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
+        Object element, OCLExpression expr) {
+
+    Object result = element;
+
+    if (expr.eContainer() instanceof ExpressionInOCL<?, ?>) {
+        @SuppressWarnings("unchecked")
+        ExpressionInOCL<EClassifier, EParameter> specification =
+            (ExpressionInOCL<EClassifier, EParameter>) expr.eContainer();
+
+        Variable<EClassifier, EParameter> contextVariable = specification.getContextVariable();
+        if (contextVariable != null) {
+            EClassifier contextClassifier = contextVariable.getType();
+
+            if ((contextClassifier != null) && env.getUMLReflection().isStereotype(
+                    contextClassifier)) {
+
+                Object application = env.getUMLReflection().getStereotypeApplication(
+                        element, contextClassifier);
+
+                if (application != null) {
+                    result = application;
                 }
             }
         }
+    }
 
-        return result;
-    }   
+    return result;
+}   
 }
