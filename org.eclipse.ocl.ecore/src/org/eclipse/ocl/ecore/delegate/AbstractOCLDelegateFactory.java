@@ -50,7 +50,7 @@ public abstract class AbstractOCLDelegateFactory
 		if (delegateDomain == null) {
 //			DelegateDomain.Factory.Registry.INSTANCE.put(OCLDelegateDomain.OCL_DELEGATE_URI, GLOBAL);
 			DelegateEPackageAdapter ePackageAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
-			delegateDomain = (OCLDelegateDomain) ePackageAdapter.createDelegateDomain(delegateURI);
+			delegateDomain = (OCLDelegateDomain) ePackageAdapter.createDelegateDomain(getURI());
 		}
 		return delegateDomain;
 	}

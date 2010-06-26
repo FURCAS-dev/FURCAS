@@ -60,7 +60,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
-import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
 import org.eclipse.emf.importer.rose.RoseImporterPlugin;
 import org.eclipse.emf.importer.rose.parser.RoseNode;
 import org.eclipse.emf.importer.rose.parser.Util;
@@ -71,32 +70,6 @@ import org.eclipse.emf.importer.rose.parser.Util;
  */
 public class RoseEcoreBuilder implements RoseVisitor
 {
-    private static final String SAP2MOF_OPERATION_CODE_OCL = "\"sap2mof.OperationCodeOcl\"";
-    private static final String UML2MOF_CLUSTERED_IMPORT = "\"uml2mof.clusteredImport\"";
-    private static final String ROSE2MOF_CONSTRAINED_ELEMENTS = "\"rose2mof.constrainedElements\"";
-    private static final String ROSE2MOF_RETURN_MULTIPLICITY = "rose2mof.return.multiplicity";
-    private static final String MOF = "\"MOF\"";
-    private static final String VALIDATION_DELEGATES = "validationDelegates";
-    private static final String INVOCATION_DELEGATES = "invocationDelegates";
-    private static final String INV = "inv";
-    private static final String COLON = ":";
-    private static final String DELEGATE_URI = "http://de.hpi.sam.bp2009.OCL";
-    private static final String ECORE_NS_URI = "http://www.eclipse.org/emf/2002/Ecore";
-    private static final String CONSTRAINTS = "constraints";
-    //do you want to parse the semantic tab info?
-    public boolean activateSemanticsTab = false;
-
-    class DeferredConstraintAnnotation{
-        public DeferredConstraintAnnotation(String constraintName, String constraintExpr, String clsName2) {
-            name=constraintName;
-            expr=constraintExpr;
-            clsName= clsName2;
-        }
-        String name;
-        String expr;
-        String clsName;
-    }
-
   public boolean noQualify = false;
   public boolean unsettablePrimitive = "true".equals(System.getProperty("EMF_UNSETTABLE_PRIMITIVE"));
 
@@ -122,9 +95,6 @@ public class RoseEcoreBuilder implements RoseVisitor
   // However, for now we're only using it as needed.
   //
   protected Map<EModelElement, RoseNode> eModelElementToRoseNodeMap = new HashMap<EModelElement, RoseNode>();
-  private List<DeferredConstraintAnnotation> deferredConstraints = new ArrayList<RoseEcoreBuilder.DeferredConstraintAnnotation>();
-  private List<EClassifier> allClasses = new ArrayList<EClassifier>();
-
 
   public RoseEcoreBuilder(RoseUtil roseUtil)
   {
@@ -167,12 +137,7 @@ public class RoseEcoreBuilder implements RoseVisitor
     }
     else if (objectType.equals(RoseStrings.CLASS))
     {
-        if (RoseStrings.CONSTRAINT_STEREOTYPE.equals(roseNode.getStereotype())){
-            visitConstraintClass(roseNode, roseNodeValue, objectKey, objectName, parent);
-        }
-        else{
-            visitClass(roseNode, roseNodeValue, objectKey, objectName, parent);
-        }
+      visitClass(roseNode, roseNodeValue, objectKey, objectName, parent);
     }
     else if (objectType.equals(RoseStrings.OPERATION))
     {
@@ -200,7 +165,7 @@ public class RoseEcoreBuilder implements RoseVisitor
     }
   }
 
-protected void visitClassCategory(RoseNode roseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
+  protected void visitClassCategory(RoseNode roseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
   {
     // Map to an EPackage.
     //
@@ -212,7 +177,6 @@ protected void visitClassCategory(RoseNode roseNode, String roseNodeValue, Strin
         parent = idToParentMap.get(id);
       }
       EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
-      addDelegateAnnotation(ePackage);
       if (parent instanceof EPackage)
       {
         // Add to package.
@@ -225,8 +189,6 @@ protected void visitClassCategory(RoseNode roseNode, String roseNodeValue, Strin
         EList<Object> list = (EList<Object>)parent;
         list.add(ePackage);
       }
-      // add clustered imports
-      addPackagesFromClusteredImports(roseNode, ePackage, UML2MOF_CLUSTERED_IMPORT);
       setEPackageProperties(roseNode, ePackage, objectName.toLowerCase());
     }
     else
@@ -234,135 +196,6 @@ protected void visitClassCategory(RoseNode roseNode, String roseNodeValue, Strin
       idToParentMap.put(roseNode.getRoseId(), parent);
     }
   }
-
-/**
- * @param roseNode
- * @param ePackage
- * @param property
- */
-private void addPackagesFromClusteredImports(RoseNode roseNode, EPackage ePackage, String property) {
-    for(RoseNode n: roseNode.getNodes()){
-          if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
-              
-              for(RoseNode attr: n.getNodes()){
-                  if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){
-                      String[] pkgNames = parseAttributesFromNode(attr, property);
-                      if(pkgNames == null)
-                          continue;
-                      for(String pkgName: pkgNames){ 
-                          EPackage pkg = EcoreFactory.eINSTANCE.createEPackage();
-                          ePackage.getESubpackages().add(pkg);
-                          setEPackageProperties(roseNode, pkg, pkgName);
-                      }                             
-                  }
-              }
-          }
-      }
-}
-
-protected void visitConstraintClass(RoseNode constraintClassRoseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
-  {
-    Util.getName(roseNodeValue);
-    String constraintName=objectName;
-    String constraintExpr="";
-    for(RoseNode n:constraintClassRoseNode.getNodes()){
-        if(RoseStrings.OPERATIONS.equalsIgnoreCase(Util.getType(n.getValue()))){
-            for(RoseNode op: n.getNodes()){
-                if(RoseStrings.OPERATION.equals(Util.getType(op.getValue())) && RoseStrings.OCL_OPERATION.equals(Util.getName(op.getValue()))){
-                    String fullOCLStatement = op.getSemantics();
-                    int invStart= fullOCLStatement.indexOf(INV);
-                    if(invStart!=-1){
-                        int colonStart=fullOCLStatement.indexOf(COLON);
-                        String newConstraintName=fullOCLStatement.substring(invStart+INV.length(),colonStart).trim();
-                        if(!newConstraintName.isEmpty())
-                            constraintName=newConstraintName;
-                            
-                        constraintExpr= fullOCLStatement.substring(colonStart+1).trim();
-                    }else{
-                        constraintExpr= fullOCLStatement;
-                    }
-                }
-            }
-        }
-       
-    }
-    if(!(parent instanceof EClassifier)){
-        if(parent instanceof EPackage){
-          
-            for(RoseNode n: constraintClassRoseNode.getNodes()){
-                if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
-                    
-                    for(RoseNode attr: n.getNodes()){
-                        if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){                         
-                            String[] clsNames = parseAttributesFromNode(attr, ROSE2MOF_CONSTRAINED_ELEMENTS);
-                            if(clsNames == null)
-                                continue;
-                            for(String clsName: clsNames){                               
-                                this.deferredConstraints.add(new DeferredConstraintAnnotation(constraintName, constraintExpr, clsName));
-                            }                             
-                        }
-                    }
-                }
-            }
-        }
-        return;
-    }
-    EClassifier clazz = (EClassifier) parent;
-    addConstraintToNamedElement(constraintName, constraintExpr, clazz);
-    
-}
-private String[] parseAttributesFromNode(RoseNode node, String property){
-    // there should be exactly 3 columns
-    if(node.getNodes().size()!=3)
-        return null;
-    // first column MOF
-    String firstAttrValue= node.getNodes().get(0).getValue();
-    
-    if(!MOF.equals(firstAttrValue))
-        return null;
-    //second column should define the given property"
-    String secondAttrValue= node.getNodes().get(1).getValue();
-    if(!property.equals(secondAttrValue))
-        return null;
-    String thirdAttrValue= Util.getName(node.getNodes().get(2).getNodes().get(0).getValue());
-     
-    // we have found a constraint
-    if(thirdAttrValue == null && SAP2MOF_OPERATION_CODE_OCL.equals(property)){
-        List<RoseNode> nodes = node.getNodes().get(2).getNodes().get(0).getNodes();
-        String[] forthAttrValue = new String[nodes.size()];
-        
-        int i = 0;
-        for(RoseNode n: nodes){
-            forthAttrValue[i] = n.getValue();
-            i++;
-        }  
-        return forthAttrValue;
-    }
-    return thirdAttrValue.split(",");
-}
-public void processDefferendConstraints(){   
-    for(EClassifier cls: this.allClasses){
-        for(DeferredConstraintAnnotation anno: deferredConstraints){
-            if(cls.getName().equals(anno.clsName)){
-                addConstraintToNamedElement(anno.name, anno.expr, cls);
-            }
-        }
-        
-    }
-}
-/**
- * @param constraintName
- * @param constraintExpr
- * @param element
- */
-private void addConstraintToNamedElement(String constraintName, String constraintExpr, ENamedElement element) {
-    EcoreUtil.setAnnotation(element, DELEGATE_URI, constraintName, constraintExpr);
-    String csString=EcoreUtil.getAnnotation(element, ECORE_NS_URI, CONSTRAINTS);
-    if(csString==null)
-        EcoreUtil.setAnnotation(element, ECORE_NS_URI, CONSTRAINTS, constraintName);
-    else
-        EcoreUtil.setAnnotation(element, ECORE_NS_URI, CONSTRAINTS, csString+" "+constraintName);
-}
 
   protected void visitClass(RoseNode roseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
   {
@@ -391,7 +224,6 @@ private void addConstraintToNamedElement(String constraintName, String constrain
         // Map to an EClass.
         //
         EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-        this.allClasses.add(eClass);
         String classifierName = roseNode.getClassifierName();
         if (classifierName == null || classifierName.length() == 0)
         {
@@ -478,7 +310,6 @@ private void addConstraintToNamedElement(String constraintName, String constrain
         // Map to an EClass.
         //
         EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-        this.allClasses.add(eClass);
         String classifierName = roseNode.getClassifierName();
         if (classifierName == null || classifierName.length() == 0)
         {
@@ -494,7 +325,6 @@ private void addConstraintToNamedElement(String constraintName, String constrain
         // Map to an EClass.
         //
         EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-        this.allClasses.add(eClass);
         String classifierName = roseNode.getClassifierName();
         if (classifierName == null || classifierName.length() == 0)
         {
@@ -506,13 +336,6 @@ private void addConstraintToNamedElement(String constraintName, String constrain
         eClass.setInstanceClassName("java.util.Map$Entry");
         build(roseNode, parent, eClass);
       }
-      else if (stereoTypeValue.equalsIgnoreCase("constraint"))
-      {
-        // look for an "OCL" operation and if found, extract OCL expression from Semantics node
-        // first, find owning class
-        String x=objectName;
-        x = x+"";
-      }
       else
       {
         warning(RoseImporterPlugin.INSTANCE.getString("_UI_UnrecognizedStereotype_message", new Object []{ stereoTypeValue, objectName }));
@@ -520,7 +343,6 @@ private void addConstraintToNamedElement(String constraintName, String constrain
         // Map to an eClass.
         //
         EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-        this.allClasses.add(eClass);
         String classifierName = roseNode.getClassifierName();
         if (classifierName == null || classifierName.length() == 0)
         {
@@ -537,7 +359,6 @@ private void addConstraintToNamedElement(String constraintName, String constrain
       // Map to an eClass.
       //
       EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-      this.allClasses.add(eClass);
       String classifierName = roseNode.getClassifierName();
       if (classifierName == null || classifierName.length() == 0)
       {
@@ -553,13 +374,8 @@ private void addConstraintToNamedElement(String constraintName, String constrain
   protected void visitOperation(RoseNode roseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
   {
     // Map to an EOperation.
-    if (RoseStrings.OCL_OPERATION.equals(objectName))
-            return;
     EOperation eOperation = EcoreFactory.eINSTANCE.createEOperation();
     String operationName = roseNode.getOperationName();
-    
-    addConstraintsForOperation(roseNode, eOperation);
-       
     String rawName = operationName;
     if (operationName == null || operationName.length() == 0)
     {
@@ -593,34 +409,6 @@ private void addConstraintToNamedElement(String constraintName, String constrain
       ((EClass)parent).getEOperations().add(eOperation);
     }
   }
-
-/**
- * @param roseNode the node, containing the rose operation
- * @param eOperation the operation the constraint should be added to
- */
-private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation) {
-    for(RoseNode n: roseNode.getNodes()){
-        if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
-           
-            for(RoseNode attr: n.getNodes()){
-                if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){                         
-                    String[] constraints = parseAttributesFromNode(attr, SAP2MOF_OPERATION_CODE_OCL);
-                    if(constraints == null)
-                        continue;
-                    StringBuilder result = new StringBuilder();
-                    for(String clsName: constraints){
-                        result.append(clsName);
-                        result.append('\n');
-                    } 
-                    result.delete(result.length()-1, result.length()); // delete last \n again
-                    String expr = result.substring(result.indexOf("body:") + 5).trim();
-                    //TODO ensure that the constrained name is always body and not pre/post/...
-                    addConstraintToNamedElement("body", expr, eOperation);
-                }
-            }
-        }
-    }
-}
 
   protected void visitParameter(RoseNode roseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
   {
@@ -845,24 +633,6 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
           roseUtil.typeTable.put(eGenericType1 == null ? ref1 : eGenericType1, "EObject");
         }
       }
-      else
-      {
-        if (ref1.getName() != null && ref1.getName().length() > 0)
-        {
-          EAnnotation oppositeRoleNameAnnotation = ref2.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
-          if (oppositeRoleNameAnnotation == null)
-          {
-            oppositeRoleNameAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-            oppositeRoleNameAnnotation.setSource(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
-            ref2.getEAnnotations().add(oppositeRoleNameAnnotation);
-          }
-          else
-          {
-            oppositeRoleNameAnnotation.getDetails().clear();
-          }
-          oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref1.getName());
-        }
-      }
       if (ref2Navigable)
       {
         ref1.setEOpposite(ref2);
@@ -879,24 +649,6 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
             role2.getRoseSupplier(),
             ref2.getName() }));
           roseUtil.typeTable.put(eGenericType2 == null ? ref2 : eGenericType2, "EObject");
-        }
-      }
-      else
-      {
-        if (ref2.getName() != null && ref2.getName().length() > 0)
-        {
-          EAnnotation oppositeRoleNameAnnotation = ref1.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
-          if (oppositeRoleNameAnnotation == null)
-          {
-            oppositeRoleNameAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-            oppositeRoleNameAnnotation.setSource(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
-            ref1.getEAnnotations().add(oppositeRoleNameAnnotation);
-          }
-          else
-          {
-            oppositeRoleNameAnnotation.getDetails().clear();
-          }
-          oppositeRoleNameAnnotation.getDetails().put("Property.oppositeRoleName", ref2.getName());
         }
       }
     }
@@ -1181,11 +933,11 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
   protected void setEOperationProperties(RoseNode roseNode, EOperation eOperation)
   {
     setETypedElementProperties(roseNode, eOperation);
-    eOperation.setOrdered(roseNode.isOrdered(true));
-    eOperation.setUnique(roseNode.isUnique(true));
+    eOperation.setOrdered(roseNode.isOrdered());
+    eOperation.setUnique(roseNode.isUnique());
     
     String semantics = roseNode.getSemantics();
-    if (semantics != null && activateSemanticsTab)
+    if (semantics != null)
     {
       EAnnotation eAnnotation = eOperation.getEAnnotation(GenModelPackage.eNS_URI);
       if (eAnnotation == null)
@@ -1342,8 +1094,8 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     eAttribute.setTransient(roseNode.isTransient());
     eAttribute.setVolatile(roseNode.isVolatile());
     eAttribute.setChangeable(roseNode.isChangeable());
-    eAttribute.setOrdered(roseNode.isOrdered(true));
-    eAttribute.setUnique(roseNode.isUnique(true));
+    eAttribute.setOrdered(roseNode.isOrdered());
+    eAttribute.setUnique(roseNode.isUnique());
     eAttribute.setUnsettable(roseNode.isUnsettable());
     eAttribute.setID(roseNode.isID());
 
@@ -1363,8 +1115,8 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     eReference.setChangeable(roseNode.isChangeable());
     eReference.setResolveProxies(roseNode.isResolveProxies());
     eReference.setUnsettable(roseNode.isUnsettable());
-    eReference.setOrdered(roseNode.isOrdered(true));
-    eReference.setUnique(roseNode.isUnique(true));
+    eReference.setOrdered(roseNode.isOrdered());
+    eReference.setUnique(roseNode.isUnique());
 
     setEStructuralFeatureVisibility(roseNode, eReference);
   }
@@ -1394,22 +1146,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
   {
     setEModelElementProperties(roseNode, eTypedElement);
 
-    String multiplicity;
-    if ( eTypedElement instanceof EReference) {
-        multiplicity = roseNode.getRoleMultiplicity();
-    } else if (eTypedElement instanceof EOperation) {
-      multiplicity = roseNode.getAttributeValue("MOF", ROSE2MOF_RETURN_MULTIPLICITY);
-      if (multiplicity == null) {
-        multiplicity = roseNode.getStereotype(); // default
-      }
-    } else if (eTypedElement instanceof EParameter) {
-      multiplicity = roseNode.getAttributeValue("MOF", "uml2mof.multiplicity");
-      if (multiplicity == null) {
-        multiplicity = roseNode.getStereotype(); // default
-      }
-    } else {
-        multiplicity = roseNode.getStereotype();
-    }
+    String multiplicity = eTypedElement instanceof EReference ?  roseNode.getRoleMultiplicity() : roseNode.getStereotype();
     if (multiplicity != null)
     {
       bounded.add(eTypedElement);
@@ -1637,9 +1374,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       }
     }
     */
-    setETypedElementProperties(roseNode, eParameter);
-    eParameter.setOrdered(roseNode.isOrdered(true));
-    eParameter.setUnique(roseNode.isUnique(true));
+    setEModelElementProperties(roseNode, eParameter);
     String quid = roseNode.getRoseRefId();
     if (quid != null && !quid.equals(""))
     {
@@ -2686,7 +2421,6 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
 
   public void createEPackageForRootClasses(EList<EObject> extent, RoseNode roseNode, String packageName)
   {
-      
     ArrayList<EObject> list = new ArrayList<EObject>();
     for (EObject eObject : extent)
     {
@@ -2699,7 +2433,6 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     if (!list.isEmpty())
     {
       EPackage ePackage = EcoreFactory.eINSTANCE.createEPackage();
-      addDelegateAnnotation(ePackage);
       setEPackageProperties(roseNode, ePackage, packageName.toLowerCase());
 
       extent.add(ePackage);
@@ -2712,10 +2445,6 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     }
   }
 
-  private void addDelegateAnnotation(EPackage packg){
-      EcoreUtil.setAnnotation(packg, ECORE_NS_URI, INVOCATION_DELEGATES, DELEGATE_URI);
-      EcoreUtil.setAnnotation(packg, ECORE_NS_URI, VALIDATION_DELEGATES, DELEGATE_URI);
-  }
   protected void build(RoseNode roseNode, Object parent, ENamedElement eNamedElement)
   {
     String quid = roseNode.getRoseId();

@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import lpg.runtime.IPrsStream;
@@ -73,6 +74,7 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
+import org.eclipse.ocl.internal.l10n.OCLMessages;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.parser.OCLAnalyzer;
@@ -87,6 +89,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * Engine for computation of possible syntax completions at a point in the
@@ -535,7 +538,13 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			    }
 			}
 		}
-		
+		for (Entry<String, P> hiddenOppositeNameAndForwardProperty : environment.getHiddenOppositeProperties(eClass).entrySet()) {
+			result.add(new ChoiceImpl(
+				hiddenOppositeNameAndForwardProperty.getKey(),
+				NLS.bind(OCLMessages.HiddenOppositeOf, getDescription(hiddenOppositeNameAndForwardProperty.getValue())),
+                ChoiceKind.PROPERTY,
+                hiddenOppositeNameAndForwardProperty.getValue()));
+		}
 		return result;
 	}
 	

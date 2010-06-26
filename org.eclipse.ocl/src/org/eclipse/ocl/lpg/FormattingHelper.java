@@ -28,7 +28,7 @@ public interface FormattingHelper
 {	 
 	/**
 	 * Return the Java class name of object. e.g. "org.eclipse.ocl.FormattingHelper".
-	 * @param object to be formatted
+	 * @param eObject to be formatted
 	 * @return non-null string describing the class of object
 	 */
 	public String formatClass(Object object);
@@ -43,7 +43,7 @@ public interface FormattingHelper
 	/**
 	 * Return the name of object. e.g. "name". The name may be obtained by
 	 * using known name methods such as ENamedElement.getName().
-	 * @param object to be formatted
+	 * @param type object to be formatted
 	 * @return non-null string describing the name of object
 	 */
 	public String formatName(Object object);

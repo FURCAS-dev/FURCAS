@@ -18,6 +18,7 @@
 
 package org.eclipse.ocl.uml;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -793,5 +794,10 @@ public class UMLEnvironment
 	public Classifier getOppositePropertyType(Classifier owner,
 			Property property) {
 		return (Classifier) property.getOpposite().getType();
+	}
+
+	public Map<String, Property> getHiddenOppositeProperties(
+			Classifier classifier) {
+		return Collections.emptyMap();
 	}
 }

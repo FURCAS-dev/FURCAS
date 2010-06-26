@@ -39,10 +39,6 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.query2.EcoreHelper;
-import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.ocl.AbstractEvaluationEnvironment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.LazyExtentMap;
@@ -68,35 +64,36 @@ import org.eclipse.ocl.utilities.PredefinedType;
 public class EcoreEvaluationEnvironment
     extends
     AbstractEvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject>
-	implements EvaluationEnvironment.Enumerations<EEnumLiteral>, QueryContextProvider {
+	implements EvaluationEnvironment.Enumerations<EEnumLiteral> {
 
-    private QueryContextProvider queryContextProvider;
+    private OppositeEndFinder oppositeEndFinder;
 
 	/**
      * Initializes me.
      */
     public EcoreEvaluationEnvironment() {
         super();
-        setQueryContextProvider(this);
     }
 
-    /**
-     * Initializes me with my parent evaluation environment (nesting scope).
-     * 
-     * @param parent
-     *            my parent (nesting scope); must not be <code>null</code>
-     */
+	/**
+	 * Initializes me with my parent evaluation environment (nesting scope). The
+	 * parent's {@link OppositeEndFinder} is copied to the new environment.
+	 * 
+	 * @param parent
+	 *            my parent (nesting scope); must not be <code>null</code>
+	 */
     public EcoreEvaluationEnvironment(
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
         super(parent);
-        if (parent instanceof EcoreEvaluationEnvironment) {
-        	queryContextProvider = ((EcoreEvaluationEnvironment) parent).getQueryContextProvider();
-        } else {
-        	queryContextProvider = this;
-        }
+        oppositeEndFinder = ((EcoreEvaluationEnvironment) parent).oppositeEndFinder;
     }
 
-    @Override
+    public EcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
+		this();
+		this.oppositeEndFinder = oppositeEndFinder;
+	}
+
+	@Override
     public Object callOperation(EOperation operation, int opcode,
             Object source, Object[] args)
         throws IllegalArgumentException {
@@ -212,44 +209,16 @@ public class EcoreEvaluationEnvironment
     public Object navigateOppositeProperty(EStructuralFeature property,
             List<?> qualifiers, Object target)
         throws IllegalArgumentException {
-		if (target instanceof EObject) {
-			EObject etarget = (EObject) target;
-			Collection<EObject> result = null;
-			if (property instanceof EReference
-				&& ((EClass) ((EReference) property).getEType()).isSuperTypeOf(etarget.eClass())) {
-				QueryContext queryContext = getQueryContextProvider().getQueryContext(etarget);
-				ResourceSet rs = etarget.eResource().getResourceSet();
-				if (rs == null) {
-					rs = new ResourceSetImpl();
-				}
-				result = EcoreHelper
-					.getInstance().reverseNavigate(etarget,
-						(EReference) property, queryContext, rs);
-			}
-			return result;
-		}
-        throw new IllegalArgumentException();
+    	Object result;
+    	if (property instanceof EReference && ((EReference) property).isContainment()) {
+    		result = ((EObject) target).eContainer();
+    	} else if (oppositeEndFinder == null) {
+    		result = null;
+    	} else {
+    		result = oppositeEndFinder.navigateOppositeProperty(property, target);
+    	}
+    	return result;
     }
-
-    /**
-     * Used to set the provider of a {@link QueryContext} for {@link #navigateOppositeProperty(EStructuralFeature, List, Object)}.
-     * By default, <tt>this</tt> is the query context provider (see {@link #getQueryContext(EObject)}) which naively responds
-     * with all resources known to the Eclipse workspace.
-     */
-	public void setQueryContextProvider(QueryContextProvider queryContextProvider) {
-		this.queryContextProvider = queryContextProvider;
-	}
-
-	public QueryContext getQueryContext(EObject etarget) {
-		ResourceSet rs = null;
-		if (etarget.eResource() != null) {
-			rs = etarget.eResource().getResourceSet();
-		}
-		if (rs == null) {
-			rs = new ResourceSetImpl();
-		}
-		return EcoreEnvironment.getWorkspaceQueryContext(rs);
-	}
 
     /**
      * Obtains the collection kind appropriate for representing the values of
@@ -461,7 +430,4 @@ public class EcoreEvaluationEnvironment
     	return enumerationLiteral.getInstance();
     }
 
-	private QueryContextProvider getQueryContextProvider() {
-		return queryContextProvider;
-	}
 }

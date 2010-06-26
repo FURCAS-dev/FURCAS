@@ -1,0 +1,62 @@
+package org.eclipse.ocl.ecore;
+
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+
+/**
+ * Implementations shall be able to find and navigate "hidden references" on a
+ * classifier by name. Such references can be declared by the annotation detail
+ * {@link EcoreEnvironment#PROPERTY_OPPOSITE_ROLE_NAME_KEY} on an
+ * {@link EAnnotation} with {@link EAnnotation#getSource() source}
+ * {@link EMOFExtendedMetaData#EMOF_PACKAGE_NS_URI_2_0} on an {@link EReference},
+ * thus declaring the name for the otherwise non-existing opposite.
+ * 
+ * @author Axel Uhl
+ * 
+ */
+public interface OppositeEndFinder {
+
+	/**
+	 * Looks for {@link EReference}s whose {@link ETypedElement#getEType() type}
+	 * is <code>classifier</code> or any of <code>classifier</code>'s super
+	 * types and that owns an {@link EAnnotation annotation} with source
+	 * {@link EMOFExtendedMetaData#EMOF_PACKAGE_NS_URI_2_0} containing a detail
+	 * entry with key {@link EcoreEnvironment#PROPERTY_OPPOSITE_ROLE_NAME_KEY}
+	 * and the value equalling <code>name</code>. Such references are added to
+	 * <code>ends</code>.
+	 */
+	void findOppositeEnds(EClassifier classifier, String name, List<EStructuralFeature> ends);
+
+	/**
+	 * Finds all {@link EReference}s whose {@link ETypedElement#getEType() type}
+	 * is <code>classifier</code> or any of <code>classifier</code>'s super
+	 * types and that own an {@link EAnnotation annotation} with source
+	 * {@link EMOFExtendedMetaData#EMOF_PACKAGE_NS_URI_2_0} containing a detail
+	 * entry with key {@link EcoreEnvironment#PROPERTY_OPPOSITE_ROLE_NAME_KEY}.
+	 * The value of the annotation detail is entered into the resulting map as a
+	 * key, the {@link EReference} on which the annotation was found is entered
+	 * into the result map as the corresponding value.
+	 * <p>
+	 * 
+	 * @return a non-<code>null</code> map of all "hidden references" accessible from
+	 *         <code>classifier</code> together with their corresponding forward
+	 *         references
+	 */
+	Map<String, EStructuralFeature> getAllOppositeEnds(EClassifier classifier);
+	
+	/**
+	 * Reverse-navigates the <code>property</code> starting at <code>target</code>.
+	 * As a result, one or more objects may result such that when navigating
+	 * <code>property</code> from any of those, then <code>target</code> will be
+	 * among the results. If no such objects are found, it is permissible for an
+	 * implementation to return <code>null</code>.
+	 */
+	Object navigateOppositeProperty(EStructuralFeature property, Object target);
+}

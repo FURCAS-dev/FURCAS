@@ -1947,28 +1947,18 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * evaluated first, then the value of the property "foo" would be accessed
 	 * on that object.
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
     public Object visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> pc) {
 		P property = pc.getReferredOppositeProperty();
 		OCLExpression<C> source = pc.getSource();
-
 		// evaluate source
 		Object context = source.accept(getVisitor());
-
 		// if source is undefined, result is OclInvalid
 		if (isUndefined(context)) {
             return getInvalid();
         }
-
-		OCLExpression<C> derivation = getPropertyBody(property);
-		if (derivation != null) {
-			// this is an additional property
-			
-			return navigate(property, derivation, context);
-		}
-		
 		List<Object> qualifiers;
-		
 		if (pc.getQualifier().isEmpty()) {
 			qualifiers = Collections.emptyList();
 		} else {
@@ -1979,21 +1969,17 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				qualifiers.add(q.accept(getVisitor()));
 			}
 		}
-		
 		Object result = getEvaluationEnvironment().navigateOppositeProperty(property, qualifiers, context);
-		
 		if ((pc.getType() instanceof CollectionType<?, ?>) && !(result instanceof Collection<?>)) {
 			// this was an XSD "unspecified multiplicity".  Now that we know what
 			//    the multiplicity is, we can coerce it to a collection value
-			@SuppressWarnings("unchecked")
 			CollectionKind kind = ((CollectionType<C, O>) pc.getType()).getKind();
-			
 			Collection<Object> collection = CollectionUtil.createNewCollection(kind);
-			
-			collection.add(result);
+			if (result != null) {
+				collection.add(result);
+			}
 			result = collection;
 		}
-		
 		return result;
 	}
 

@@ -35,7 +35,6 @@ public class RoseStrings
   public final static String COMPONENT_VIEW = "Component View";
   public final static String CONCURRENCY = "concurrency";
   public final static String CONSTRAINTS = "Constraints";
-  public final static String CONSTRAINT_STEREOTYPE = "constraint";
   public final static String CONSTVALUE = "ConstValue";
   public final static String CONTAINMENT = "Containment";
   public final static String CORBA = "CORBA";
@@ -50,7 +49,6 @@ public class RoseStrings
   public final static String DEFAULT_CATEGORY = "default__Category";
   public final static String DEFAULT_CLASS = "default__Class";
   public final static String DEFAULT_OPERATION = "default__Operation";
-  public final static String DEFAULT_PARAMETER = "default__Param";
   public final static String DEFAULT_ROLE = "default__Role";
   public final static String DEPLOYMENT_VIEW = "Deployment View";
   public final static String DERIVED = "derived";
@@ -210,5 +208,4 @@ public class RoseStrings
   public final static String WIDTH = "width";
   public final static String WITHJDK116 = "WithJDK116";
   public final static String ZOOM = "zoom";
-  public static final String OCL_OPERATION = "OCL";
 }

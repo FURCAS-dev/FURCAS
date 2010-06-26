@@ -39,6 +39,8 @@ import org.eclipse.ocl.utilities.Visitor;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 
+
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Opposite Property Call Exp</b></em>'.
@@ -52,6 +54,7 @@ import org.eclipse.uml2.uml.Property;
  *
  * @generated
  */
+@SuppressWarnings("restriction")
 public class OppositePropertyCallExpImpl
 		extends NavigationCallExpImpl
 		implements OppositePropertyCallExp {

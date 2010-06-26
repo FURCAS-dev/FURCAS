@@ -304,9 +304,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(anyType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(anyType,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(anyType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(anyType, diagnostics, context);
@@ -384,9 +381,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(voidType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(voidType,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(voidType, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -460,9 +454,6 @@ public class UMLValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(invalidType,
-				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(invalidType,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(invalidType,
@@ -546,9 +537,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(elementType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(elementType,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(elementType, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -627,9 +615,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(typeType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(typeType,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(typeType, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -703,9 +688,6 @@ public class UMLValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(messageType,
-				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(messageType,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(messageType,
@@ -800,9 +782,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				primitiveType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				primitiveType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(primitiveType, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -879,9 +858,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionType,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				collectionType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				collectionType, diagnostics, context);
@@ -968,9 +944,6 @@ public class UMLValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(tupleType,
-				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(tupleType,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(tupleType,
@@ -1064,9 +1037,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(bagType,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(bagType,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(bagType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(bagType, diagnostics, context);
@@ -1148,9 +1118,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(setType, diagnostics,
 				context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(setType,
-				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(setType,
 				diagnostics, context);
@@ -1241,9 +1208,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				orderedSetType, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				orderedSetType, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(orderedSetType, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -1327,9 +1291,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(sequenceType,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				sequenceType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				sequenceType, diagnostics, context);
@@ -1422,9 +1383,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				expressionInOCL, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				expressionInOCL, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(expressionInOCL, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -1491,9 +1449,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				associationClassCallExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				associationClassCallExp, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(associationClassCallExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
@@ -1548,9 +1503,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(navigationCallExp,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				navigationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				navigationCallExp, diagnostics, context);
@@ -1611,9 +1563,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				featureCallExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				featureCallExp, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(featureCallExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -1669,9 +1618,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(callExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(callExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(callExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(callExp, diagnostics, context);
@@ -1721,9 +1667,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(oclExpression,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				oclExpression, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				oclExpression, diagnostics, context);
@@ -1806,9 +1749,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				booleanLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				booleanLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(booleanLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
@@ -1870,9 +1810,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				primitiveLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				primitiveLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(primitiveLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
@@ -1929,9 +1866,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(literalExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(literalExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(literalExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -1983,9 +1917,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionItem,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				collectionItem, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				collectionItem, diagnostics, context);
@@ -2048,9 +1979,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				collectionLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				collectionLiteralPart, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionLiteralPart,
 				diagnostics, context);
 		if (result || diagnostics != null)
@@ -2102,9 +2030,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(collectionLiteralExp,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				collectionLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				collectionLiteralExp, diagnostics, context);
@@ -2186,9 +2111,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				collectionRange, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				collectionRange, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(collectionRange, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -2242,9 +2164,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(enumLiteralExp,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				enumLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				enumLiteralExp, diagnostics, context);
@@ -2308,9 +2227,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(ifExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(ifExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(ifExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(ifExp, diagnostics, context);
@@ -2367,9 +2283,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(integerLiteralExp,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				integerLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				integerLiteralExp, diagnostics, context);
@@ -2435,9 +2348,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				numericLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				numericLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(numericLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
@@ -2490,9 +2400,6 @@ public class UMLValidator
 				unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(
-				unlimitedNaturalLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
 				unlimitedNaturalLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
@@ -2560,9 +2467,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				invalidLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				invalidLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(invalidLiteralExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
@@ -2613,9 +2517,6 @@ public class UMLValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(iterateExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(iterateExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(iterateExp,
@@ -2696,9 +2597,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(loopExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(loopExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(loopExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(loopExp, diagnostics, context);
@@ -2759,9 +2657,6 @@ public class UMLValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(iteratorExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(iteratorExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(iteratorExp,
@@ -2849,9 +2744,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(letExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(letExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(letExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(letExp, diagnostics, context);
@@ -2902,9 +2794,6 @@ public class UMLValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(messageExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(messageExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(messageExp,
@@ -2985,9 +2874,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				nullLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				nullLiteralExp, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(nullLiteralExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -3040,9 +2926,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(operationCallExp,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				operationCallExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				operationCallExp, diagnostics, context);
@@ -3111,9 +2994,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				propertyCallExp, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				propertyCallExp, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(propertyCallExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -3170,9 +3050,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(realLiteralExp,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				realLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				realLiteralExp, diagnostics, context);
@@ -3236,9 +3113,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(stateExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(stateExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(stateExp, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -3290,9 +3164,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(stringLiteralExp,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				stringLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				stringLiteralExp, diagnostics, context);
@@ -3353,9 +3224,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(tupleLiteralExp,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				tupleLiteralExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				tupleLiteralExp, diagnostics, context);
@@ -3424,9 +3292,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				tupleLiteralPart, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				tupleLiteralPart, diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(tupleLiteralPart,
 				diagnostics, context);
 		if (result || diagnostics != null)
@@ -3483,9 +3348,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(typeExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(typeExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(typeExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_UniqueID(typeExp, diagnostics, context);
@@ -3537,9 +3399,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(unspecifiedValueExp,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				unspecifiedValueExp, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				unspecifiedValueExp, diagnostics, context);
@@ -3600,9 +3459,6 @@ public class UMLValidator
 			result &= validate_EveryBidirectionalReferenceIsPaired(variable,
 				diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(variable,
-				diagnostics, context);
-		if (result || diagnostics != null)
 			result &= validate_EveryProxyResolves(variable, diagnostics,
 				context);
 		if (result || diagnostics != null)
@@ -3652,9 +3508,6 @@ public class UMLValidator
 				context);
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(variableExp,
-				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(variableExp,
 				diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(variableExp,
@@ -3716,9 +3569,6 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= validate_EveryReferenceIsContained(templateParameterType,
 				diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validate_EveryBidirectionalReferenceIsPaired(
-				templateParameterType, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validate_EveryBidirectionalReferenceIsPaired(
 				templateParameterType, diagnostics, context);

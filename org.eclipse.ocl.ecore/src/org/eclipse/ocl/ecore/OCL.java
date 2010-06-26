@@ -118,7 +118,7 @@ public class OCL extends org.eclipse.ocl.OCL<
 		super(envFactory, resource);
 	}
 
-    /**
+	/**
      * Creates a new <code>OCL</code> using the shared Ecore environment
      * factory instance.
      * 
@@ -126,6 +126,17 @@ public class OCL extends org.eclipse.ocl.OCL<
      */
 	public static OCL newInstance() {
 		return new OCL(EcoreEnvironmentFactory.INSTANCE);
+	}
+	
+    /**
+     * Creates a new <code>OCL</code> creating a new Ecore environment
+     * factory instance that uses the <code>oppositeEndFinder</code>
+     * specified.
+     * 
+     * @return the new <code>OCL</code>
+     */
+	public static OCL newInstance(OppositeEndFinder oppositeEndFinder) {
+		return new OCL(new EcoreEnvironmentFactory(oppositeEndFinder));
 	}
 	
     /**

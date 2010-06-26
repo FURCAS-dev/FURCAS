@@ -18,14 +18,13 @@
 
 package org.eclipse.ocl.ecore;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -34,26 +33,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.query.IndexQueryFactory;
-import org.eclipse.emf.query.index.query.QueryCommand;
-import org.eclipse.emf.query.index.query.QueryExecutor;
-import org.eclipse.emf.query.index.query.ResourceQuery;
-import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
-import org.eclipse.emf.query.index.ui.IndexFactory;
-import org.eclipse.emf.query.index.update.IndexUpdater;
-import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommand;
-import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.emf.query2.QueryProcessorFactory;
-import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
@@ -133,6 +117,8 @@ public class EcoreEnvironment
 
 	private TypeResolver<EClassifier, EOperation, EStructuralFeature> typeResolver;
 
+	private final OppositeEndFinder oppositeEndFinder;
+
 	/**
 	 * Initializes me with a package registry for package look-ups.
 	 * 
@@ -140,7 +126,12 @@ public class EcoreEnvironment
 	 *            a package registry
 	 */
 	protected EcoreEnvironment(EPackage.Registry reg) {
-		registry = reg;
+		this(reg, new DefaultOppositeEndFinder(reg));
+	}
+
+	public EcoreEnvironment(EPackage.Registry registry, OppositeEndFinder oppositeEndFinder) {
+		this.registry = registry;
+		this.oppositeEndFinder = oppositeEndFinder;
 		typeResolver = createTypeResolver();
 	}
 
@@ -154,8 +145,13 @@ public class EcoreEnvironment
 	 *            a resource, which may or may not already have content
 	 */
 	protected EcoreEnvironment(EPackage.Registry reg, Resource resource) {
-		registry = reg;
+		this(reg, resource, new DefaultOppositeEndFinder(reg));
+	}
+
+	public EcoreEnvironment(EPackage.Registry registry, Resource resource, OppositeEndFinder oppositeEndFinder) {
+		this.registry = registry;
 		typeResolver = createTypeResolver(resource);
+		this.oppositeEndFinder = oppositeEndFinder;
 	}
 
 	/**
@@ -175,9 +171,11 @@ public class EcoreEnvironment
 		if (eparent != null) {
 			registry = eparent.registry;
 			typeResolver = eparent.getTypeResolver();
+			oppositeEndFinder = eparent.oppositeEndFinder;
 		} else {
 			registry = EPackage.Registry.INSTANCE;
 			typeResolver = createTypeResolver();
+			oppositeEndFinder = new DefaultOppositeEndFinder(registry);
 		}
 
 	}
@@ -707,80 +705,9 @@ public class EcoreEnvironment
 	@Override
 	protected void findOppositeEnds(EClassifier classifier, String name,
 			List<EStructuralFeature> ends) {
-		if (!(classifier instanceof VoidType)) { // OclVoid has no properties, not even opposites
-			ResourceSet rs = classifier.eResource().getResourceSet();
-			if (rs == null) {
-				rs = new ResourceSetImpl();
-			}
-			StringBuilder allClassifierSupertypeUris = new StringBuilder();
-			allClassifierSupertypeUris.append('[');
-			allClassifierSupertypeUris.append(EcoreUtil.getURI(classifier));
-			allClassifierSupertypeUris.append("]"); //$NON-NLS-1$
-			if (classifier instanceof EClass) { // don't do this for the VoidType
-				for (EClass supertype : ((EClass) classifier).getEAllSuperTypes()) {
-					allClassifierSupertypeUris.append(',');
-					allClassifierSupertypeUris.append('[');
-					allClassifierSupertypeUris.append(EcoreUtil.getURI(supertype));
-					allClassifierSupertypeUris.append(']');
-				}
-			}
-			final ResultSet result = QueryProcessorFactory
-				.getDefault()
-				.createQueryProcessor(IndexFactory.getInstance())
-				.execute(
-					"select oppositeParent from [http://www.eclipse.org/emf/2002/Ecore#//EReference] as oppositeParent, " + //$NON-NLS-1$
-						"[http://www.eclipse.org/emf/2002/Ecore#//EAnnotation] as annotation, " + //$NON-NLS-1$
-						"[http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry] as detail, " + //$NON-NLS-1$
-						"[http://www.eclipse.org/emf/2002/Ecore#//EClassifier] as classifier in elements {" + //$NON-NLS-1$
-						allClassifierSupertypeUris
-						+ "} " + //$NON-NLS-1$
-						"where oppositeParent.eAnnotations = annotation "+ //$NON-NLS-1$
-						"where annotation.details = detail " + //$NON-NLS-1$
-						"where detail.key = '" //$NON-NLS-1$
-						+ PROPERTY_OPPOSITE_ROLE_NAME_KEY
-						+ "' " + //$NON-NLS-1$ 
-						"where detail.value = '" + name + "' " + //$NON-NLS-1$ //$NON-NLS-2$
-						"where oppositeParent.eType = classifier", //$NON-NLS-1$
-					getWorkspaceQueryContext(rs)); 
-			for (int i = 0; i < result.getSize(); i++) {
-				ends.add((EReference) rs.getEObject(result.getUri(i,
-					"oppositeParent"), /* loadOnDemand */true)); //$NON-NLS-1$
-			}
+		if (oppositeEndFinder != null) {
+			oppositeEndFinder.findOppositeEnds(classifier, name, ends);
 		}
-	}
-
-	/**
-	 * Provides a query context that contains all resources known to the current
-	 * query2 index
-	 */
-	protected static QueryContext getWorkspaceQueryContext(final ResourceSet rs) {
-
-		return new QueryContext() {
-
-			public URI[] getResourceScope() {
-				final List<URI> result = new ArrayList<URI>();
-				IndexFactory.getInstance().executeQueryCommand(
-					new QueryCommand() {
-
-						public void execute(QueryExecutor queryExecutor) {
-							ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory
-								.createResourceQuery();
-							for (ResourceDescriptor desc : queryExecutor
-								.execute(resourceQuery)) {
-								result.add(desc.getURI());
-							}
-							for (Resource r : rs.getResources()) {
-								result.add(r.getURI());
-							}
-						}
-					});
-				return result.toArray(new URI[0]);
-			}
-
-			public ResourceSet getResourceSet() {
-				return rs;
-			}
-		};
 	}
 
 	public EClassifier getOppositePropertyType(EClassifier owner,
@@ -790,37 +717,18 @@ public class EcoreEnvironment
 			/* ordered */false, /* unique */false);
 	}
 
-	public static void updateIndex() {
-		IndexFactory.getInstance().executeUpdateCommand(new UpdateCommand() {
-
-			public void preCommitAction(IndexUpdater updater) {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void postCommitAction() {
-				// TODO Auto-generated method stub
-
-			}
-
-			public void execute(IndexUpdater updater) {
-				final ResourceIndexer indexer = new ResourceIndexer();
-				List<String> uris = new ArrayList<String>();
-				for (String packUri : EPackage.Registry.INSTANCE.keySet()) {
-					uris.add(packUri);
-				}
-				for (String packUri : uris) {
-					try {
-						indexer.resourceChanged(updater,
-							EPackage.Registry.INSTANCE.getEPackage(packUri)
-								.eResource());
-					} catch (Exception e) {
-						System.err.println("Error indexing uri: " + packUri); //$NON-NLS-1$
-						e.printStackTrace();
-					}
-				}
-			}
-		});
+	public Map<String, EStructuralFeature> getHiddenOppositeProperties(
+			EClassifier classifier) {
+		Map<String, EStructuralFeature> result;
+		if (oppositeEndFinder == null) {
+			result = Collections.emptyMap();
+		} else {
+			result = oppositeEndFinder.getAllOppositeEnds(classifier);
+		}
+		return result;
 	}
-
+	
+	public OppositeEndFinder getOppositeEndFinder() {
+		return oppositeEndFinder;
+	}
 }

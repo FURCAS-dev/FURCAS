@@ -1166,6 +1166,32 @@
           </templateBinding>
         </nestedClassifier>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WFCZAH69Ed-dfIaVcwZYqg" name="OppositePropertyCallExp">
+        <ownedRule xmi:id="_upQVsH69Ed-dfIaVcwZYqg" name="property_type">
+          <specification xmi:type="uml:OpaqueExpression" xmi:id="_upQVsX69Ed-dfIaVcwZYqg">
+            <language>OCL</language>
+            <body>type = referredProperty.opposite.type</body>
+          </specification>
+        </ownedRule>
+        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_tvbxwH69Ed-dfIaVcwZYqg" parameter="_tvbxwX69Ed-dfIaVcwZYqg _tvbxw369Ed-dfIaVcwZYqg">
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_tvbxwX69Ed-dfIaVcwZYqg" parameteredElement="_tvbxwn69Ed-dfIaVcwZYqg">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_tvbxwn69Ed-dfIaVcwZYqg" name="C" templateParameter="_tvbxwX69Ed-dfIaVcwZYqg"/>
+          </ownedParameter>
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_tvbxw369Ed-dfIaVcwZYqg" parameteredElement="_tvbxxH69Ed-dfIaVcwZYqg">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_tvbxxH69Ed-dfIaVcwZYqg" name="P" templateParameter="_tvbxw369Ed-dfIaVcwZYqg"/>
+          </ownedParameter>
+        </ownedTemplateSignature>
+        <generalization xmi:id="_hxEiUH69Ed-dfIaVcwZYqg" general="_un1aVtppEdu-d8Dv4wLx9Q"/>
+        <ownedAttribute xmi:id="_izYT4H69Ed-dfIaVcwZYqg" name="referredOppositeProperty" type="_un1aUtppEdu-d8Dv4wLx9Q" isOrdered="true">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_izYT4X69Ed-dfIaVcwZYqg"/>
+        </ownedAttribute>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_rPjO8H69Ed-dfIaVcwZYqg" name="NavigationCallExp_C_P">
+          <templateBinding xmi:id="_rPjO8X69Ed-dfIaVcwZYqg" signature="_unvVDtppEdu-d8Dv4wLx9Q">
+            <parameterSubstitution xmi:id="_rPjO8n69Ed-dfIaVcwZYqg" formal="_unvVD9ppEdu-d8Dv4wLx9Q" actual="_un1aUNppEdu-d8Dv4wLx9Q"/>
+            <parameterSubstitution xmi:id="_rPjO8369Ed-dfIaVcwZYqg" formal="_unvVEdppEdu-d8Dv4wLx9Q" actual="_un1aUtppEdu-d8Dv4wLx9Q"/>
+          </templateBinding>
+        </nestedClassifier>
+      </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_un1aWtppEdu-d8Dv4wLx9Q" memberEnd="_un1aVNppEdu-d8Dv4wLx9Q _un1aW9ppEdu-d8Dv4wLx9Q">
         <ownedEnd xmi:id="_un1aW9ppEdu-d8Dv4wLx9Q" type="_un1aTdppEdu-d8Dv4wLx9Q" association="_un1aWtppEdu-d8Dv4wLx9Q"/>
       </packagedElement>

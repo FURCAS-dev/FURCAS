@@ -434,87 +434,16 @@ public class RoseNode
     return "true".equalsIgnoreCase(attributeValue);
   }
 
-  public boolean isUnique(boolean defaultValue)
+  public boolean isUnique()
   {
-    // let MOF tab settings/defaults take precedence over the Ecore tab settings/defaults
-    String attributeValue = getAttributeValue("MOF", "uml2mof.isUnique");
-    if (attributeValue == null)
-    {
-      attributeValue = getAttributeValue("MOF", "rose2mof.return.isUnique");
-    }
-    if (attributeValue != null)
-    {
-      if ("true".equalsIgnoreCase(attributeValue))
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
-    }
-    attributeValue = getAttributeValue("Ecore", "isUnique");
-    if (attributeValue != null)
-    {
-      if ("true".equalsIgnoreCase(attributeValue))
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
-    }
-    return defaultValue;
+    String attributeValue = getAttributeValue("Ecore", "isUnique");
+    return !"false".equalsIgnoreCase(attributeValue);
   }
 
-  public boolean isOrdered(boolean defaultValue)
+  public boolean isOrdered()
   {
-    for (RoseNode n : getNodes())
-    {
-      if (n.getKey().equals("Constraints"))
-      {
-        StringTokenizer tokenizer = new StringTokenizer(n.getValue());
-        while (tokenizer.hasMoreTokens())
-        {
-          String token = tokenizer.nextToken();
-          if (token.equals("\"ordered\""))
-          {
-            return true;
-          }
-        }
-      }
-    }
-    // let MOF tab settings/defaults take precedence over the Ecore tab settings/defaults
-    String attributeValue = getAttributeValue("MOF", "uml2mof.isOrdered");
-    if (attributeValue == null)
-    {
-      attributeValue = getAttributeValue("MOF", "rose2mof.return.isOrdered");
-    }
-    if (attributeValue != null)
-    {
-      if ("true".equalsIgnoreCase(attributeValue))
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
-    }
-    attributeValue = getAttributeValue("Ecore", "isOrdered");
-    if (attributeValue != null)
-    {
-      if ("true".equalsIgnoreCase(attributeValue))
-      {
-        return true;
-      }
-      else
-      {
-        return false;
-      }
-    }
-    return defaultValue;
+    String attributeValue = getAttributeValue("Ecore", "isOrdered");
+    return !"false".equalsIgnoreCase(attributeValue);
   }
 
   public String getBasePackage()
@@ -662,7 +591,7 @@ public class RoseNode
    * This provides backwards compatibility for the renaming of "eCore" to
    * "Ecore".
    */
-  public String getAttributeValue(String tool, String name)
+  protected String getAttributeValue(String tool, String name)
   {
     String result = basicGetAttributeValue(tool, name);
     if (result == null && "Ecore".equals(tool))
@@ -838,11 +767,6 @@ public class RoseNode
                 break;
               }
               else if (objectType.equals(RoseStrings.OPERATION) && theName.equals(RoseStrings.DEFAULT_OPERATION))
-              {
-                attributeListNode = attribute.findNodeWithKey(RoseStrings.VALUE);
-                break;
-              }
-              else if (objectType.equals(RoseStrings.PARAMETER) && theName.equals(RoseStrings.DEFAULT_PARAMETER))
               {
                 attributeListNode = attribute.findNodeWithKey(RoseStrings.VALUE);
                 break;
