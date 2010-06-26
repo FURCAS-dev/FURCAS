@@ -38,6 +38,8 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegate;
 import org.eclipse.osgi.util.NLS;
 
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 
@@ -65,18 +67,19 @@ public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate {
         if (res != null && resourceSet != null) {
             // it's a dynamic package. Use the local package registry
             EPackage.Registry packageRegistry = resourceSet.getPackageRegistry();
-            envFactory = new OclAstEcoreEnvironmentFactory(packageRegistry);
+            envFactory = new OclAstEcoreEnvironmentFactory(packageRegistry, new Query2OppositeEndFinder(
+                    new ProjectDependencyQueryContextProvider()));
             DelegateResourceAdapter.getAdapter(res);
         } else {
             // the shared instance uses the static package registry
-            envFactory = OclAstEcoreEnvironmentFactory.INSTANCE;
+            envFactory = new OclAstEcoreEnvironmentFactory(new Query2OppositeEndFinder(
+                    new ProjectDependencyQueryContextProvider()));;
         }
         return OCL.newInstance(envFactory);
     }
 
     @Override
     public Object dynamicInvoke(InternalEObject target, EList<?> arguments) throws InvocationTargetException {
-        new ProjectDependencyQueryContextProvider().apply(ocl);
         if (body == null) {
             body = InvocationBehaviorForAnnotations.INSTANCE.getOperationBody(ocl, eOperation);
         }

@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
 /**
  * Factory for OCL operation-invocation delegates.
@@ -39,8 +39,11 @@ implements EOperation.Internal.InvocationDelegate.Factory {
 
     public EOperation.Internal.InvocationDelegate createInvocationDelegate(EOperation operation) {
         EPackage ePackage = operation.getEContainingClass().getEPackage();
-        new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
         return new OCLInvocationDelegateForAnnotations(getDelegateDomain(ePackage), operation);
+    }
+    
+    public String getURI() {
+        return EAnnotationOCLParser.ANNOTATION_SOURCE;
     }
 
     /**
@@ -54,7 +57,7 @@ implements EOperation.Internal.InvocationDelegate.Factory {
             EOperation.Internal.InvocationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
                     operation, EOperation.Internal.InvocationDelegate.Factory.Registry.class, null);
             if (localRegistry != null) {
-                EOperation.Internal.InvocationDelegate.Factory factory = localRegistry.getFactory(delegateURI);
+                EOperation.Internal.InvocationDelegate.Factory factory = localRegistry.getFactory(EAnnotationOCLParser.ANNOTATION_SOURCE);
                 if (factory != null) {
                     return factory.createInvocationDelegate(operation);
                 }
