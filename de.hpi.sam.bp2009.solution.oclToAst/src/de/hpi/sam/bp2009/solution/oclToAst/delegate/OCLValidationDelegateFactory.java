@@ -32,7 +32,7 @@ import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.ValidationDelegate;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
 /**
  * Factory for OCL derived-classifier validation delegates.
@@ -50,7 +50,6 @@ implements ValidationDelegate.Factory, EValidator.ValidationDelegate {	// EValid
 
     public ValidationDelegate createValidationDelegate(EClassifier classifier) {
         EPackage ePackage = classifier.getEPackage();
-        new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
         return new OCLValidationDelegateForAnnotations(getDelegateDomain(ePackage), classifier);
     }
 
@@ -58,10 +57,10 @@ implements ValidationDelegate.Factory, EValidator.ValidationDelegate {	// EValid
         if (delegateDomain == null) {
             EPackage ePackage = eClassifier.getEPackage();
             DelegateEPackageAdapter epAdapter = DelegateEPackageAdapter.getAdapter(ePackage);
-            delegateDomain = (OCLDelegateDomain) epAdapter.getDelegateDomain(delegateURI);
+            delegateDomain = (OCLDelegateDomain) epAdapter.getDelegateDomain(EAnnotationOCLParser.ANNOTATION_SOURCE);
         }
         DelegateEClassifierAdapter ecAdapter = DelegateEClassifierAdapter.getAdapter(eClassifier);
-        ValidationDelegate validationDelegate = ecAdapter.getValidationDelegate(delegateURI);
+        ValidationDelegate validationDelegate = ecAdapter.getValidationDelegate(EAnnotationOCLParser.ANNOTATION_SOURCE);
         return validationDelegate;
     }
 
@@ -83,6 +82,10 @@ implements ValidationDelegate.Factory, EValidator.ValidationDelegate {	// EValid
         return validationDelegate.validate(eDataType, value, context, constraint, expression);
     }
 
+    public String getURI() {
+        return EAnnotationOCLParser.ANNOTATION_SOURCE;
+    }
+
     /**
      * The Global variant of the Factory delegates to a local ResourceSet factory if one
      * can be located at the EOperation.Internal.InvocationDelegate.Factory.Registry
@@ -94,7 +97,7 @@ implements ValidationDelegate.Factory, EValidator.ValidationDelegate {	// EValid
             ValidationDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
                     classifier, ValidationDelegate.Factory.Registry.class, null);
             if (localRegistry != null) {
-                ValidationDelegate.Factory factory = localRegistry.getValidationDelegate(delegateURI);
+                ValidationDelegate.Factory factory = localRegistry.getValidationDelegate(EAnnotationOCLParser.ANNOTATION_SOURCE);
                 if (factory != null) {
                     return factory.createValidationDelegate(classifier);
                 }

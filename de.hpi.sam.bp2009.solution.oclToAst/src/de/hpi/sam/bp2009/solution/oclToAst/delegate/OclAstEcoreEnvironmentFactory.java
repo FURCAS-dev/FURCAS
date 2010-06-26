@@ -33,6 +33,7 @@ import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.ecore.OppositeEndFinder;
 import org.eclipse.ocl.ecore.SendSignalAction;
 
 import de.hpi.sam.bp2009.solution.oclToAst.OclAstEvaluationVisitor;
@@ -48,6 +49,14 @@ public class OclAstEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
         super(reg);
     }
 
+    public OclAstEcoreEnvironmentFactory(EPackage.Registry reg, OppositeEndFinder oppositeEndFinder) {
+        super(reg, oppositeEndFinder);
+    }
+    
+    public OclAstEcoreEnvironmentFactory(OppositeEndFinder oppositeEndFinder) {
+        super(oppositeEndFinder);
+    }
+    
     @Override
     public EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEvaluationVisitor(
             Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,

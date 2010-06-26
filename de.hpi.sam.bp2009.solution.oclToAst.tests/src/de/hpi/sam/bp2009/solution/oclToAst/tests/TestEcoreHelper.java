@@ -16,10 +16,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
+
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 import de.hpi.sam.petriNet.PetriNet;
@@ -78,12 +79,10 @@ public class TestEcoreHelper extends TestCase {
         Resource e = rs.createResource(URI.createURI("http://my.next.resource/somethingElse"));
         e.getContents().add(place);
         e.getContents().add(transition);
-        OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance();
+        OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
         Helper oclHelper = ocl.createOCLHelper();
         oclHelper.setContext(transition.eClass());
-		((EcoreEvaluationEnvironment) ocl.getEvaluationEnvironment())
-				.setQueryContextProvider(new ProjectDependencyQueryContextProvider());
-		OCLExpression expr = oclHelper.createQuery("self.hiddenOpposite");
+        OCLExpression expr = oclHelper.createQuery("self.hiddenOpposite");
         Object result = ocl.evaluate(transition, expr);
         assertTrue(result instanceof Collection<?>);
         assertEquals(place, ((Collection<?>) result).iterator().next());

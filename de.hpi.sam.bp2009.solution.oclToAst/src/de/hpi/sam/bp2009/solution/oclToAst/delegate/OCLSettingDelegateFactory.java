@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.delegate.DelegateResourceSetAdapter;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
 /**
  * Factory for OCL derived-attribute setting delegates.
@@ -37,8 +37,11 @@ public class OCLSettingDelegateFactory extends org.eclipse.ocl.ecore.delegate.OC
     }
     public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
         EPackage ePackage = structuralFeature.getEContainingClass().getEPackage();
-        new ProjectDependencyQueryContextProvider().apply(getDelegateDomain(ePackage).getOCL());
         return new OCLSettingDelegateForAnnotations(getDelegateDomain(ePackage), structuralFeature);
+    }
+
+    public String getURI() {
+        return EAnnotationOCLParser.ANNOTATION_SOURCE;
     }
 
     /**
@@ -48,12 +51,11 @@ public class OCLSettingDelegateFactory extends org.eclipse.ocl.ecore.delegate.OC
      */
     public static class Global extends OCLSettingDelegateFactory
     {
-
         public EStructuralFeature.Internal.SettingDelegate createSettingDelegate(EStructuralFeature structuralFeature) {
             EStructuralFeature.Internal.SettingDelegate.Factory.Registry localRegistry = DelegateResourceSetAdapter.getRegistry(
                     structuralFeature, EStructuralFeature.Internal.SettingDelegate.Factory.Registry.class, null);
             if (localRegistry != null) {
-                EStructuralFeature.Internal.SettingDelegate.Factory factory = localRegistry.getFactory(delegateURI);
+                EStructuralFeature.Internal.SettingDelegate.Factory factory = localRegistry.getFactory(EAnnotationOCLParser.ANNOTATION_SOURCE);
                 if (factory != null) {
                     return factory.createSettingDelegate(structuralFeature);
                 }

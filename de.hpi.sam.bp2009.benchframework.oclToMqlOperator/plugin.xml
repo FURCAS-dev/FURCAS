@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="de.hpi.sam.bp2009.benchframework.oclToMqlOperator.OcltoMqlOperatorPackage"
+            class="de.hpi.sam.bp2009.benchframework.oclToMqlOperator.OclToMqlOperatorPackage"
             uri="http://de.hpi.sam.bp2009.benchframework.oclToMqlOperator"
             genModel="model/oclToMqlOperator.genmodel"/>
    </extension>

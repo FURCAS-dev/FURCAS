@@ -49,7 +49,7 @@ public class OclAstEvaluationVisitor
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> evalEnv,
             Map<? extends EClass, ? extends Set<? extends EObject>> extentMap) {
         super(env, evalEnv, extentMap);
-        ocl = OCL.newInstance(getEnvironment());
+        ocl = OCL.newInstance(getEnvironment()); // this uses the OppositeEndFinder as defined on the environment's factory
     }
 
     @Override

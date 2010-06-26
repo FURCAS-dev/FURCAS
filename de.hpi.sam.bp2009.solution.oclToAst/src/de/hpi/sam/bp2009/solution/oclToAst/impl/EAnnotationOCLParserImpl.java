@@ -37,12 +37,18 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
 import de.hpi.sam.bp2009.solution.oclToAst.delegate.OclAstEcoreEnvironmentFactory;
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
+/**
+ * The {@link OCL} object created and used by this annotations parser is constructed with an {@link OclAstEcoreEnvironmentFactory}
+ * as environment factory, using a {@link ProjectDependencyQueryContextProvider} as query context provider.
+ */
 public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
     ResourceChanger rc= new ResourceChanger();
 
@@ -193,8 +199,8 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (e == null)
                 return;
             // TODO can the following lines be pulled out of the loop? This may speed things up a little
-            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new OclAstEcoreEnvironmentFactory(this.getRegistry()));
-            new ProjectDependencyQueryContextProvider().apply(ocl);
+            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new OclAstEcoreEnvironmentFactory(this.getRegistry(),
+                    new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider())));
             Helper helper = ocl.createOCLHelper();
             /*
              * set correct context

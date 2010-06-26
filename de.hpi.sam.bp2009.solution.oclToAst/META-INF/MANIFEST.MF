@@ -20,5 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.workbench,
  org.eclipse.jface,
  org.eclipse.core.resources,
- de.hpi.sam.bp2009.solution.scopeProvider
+ de.hpi.sam.bp2009.solution.scopeProvider,
+ com.sap.ocl.oppositefinder.query2
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: de.hpi.sam.bp2009.solution.oclToAst.Activator

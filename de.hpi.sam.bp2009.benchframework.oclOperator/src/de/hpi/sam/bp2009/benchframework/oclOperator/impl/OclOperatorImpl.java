@@ -13,8 +13,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -36,13 +36,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.EcoreHelper;
-import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCL.Query;
+import org.eclipse.ocl.ecore.OCLExpression;
+
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
@@ -633,11 +634,9 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
        
         final QueryEvaluator qe = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator.class);        
 
-        if(naiveEM == null)
-            throw new IllegalArgumentException("Invalid Testrun, no Event Manager defined");
-        else if(qe == null)
+        if(qe == null) {
             throw new IllegalArgumentException("Invalid Testrun, no Query Evaluator defined");
-        else{
+        } else {
             int expCount = 0;
             ((OclResultImpl)getResult()).setExpToFilterTime(ia.IAResult.getExpToFilterTime());
             notiToAllInstances.clear();
@@ -723,7 +722,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 
         List<EClass> classes = new ArrayList<EClass>(EcoreHelper.getInstance().getAllSubclasses(context));
         classes.add(context);
-        OCL ocl = OCL.newInstance();
+        OCL ocl = OCL.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
         Helper helper= ocl.createOCLHelper();          
         Resource r = res.getResources().get(0);
         EcoreHelper.getInstance().addResourceToDefaultIndex(r);       
@@ -739,15 +738,12 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 
         }
         ocl.setExtentMap(map);
-        ProjectDependencyQueryContextProvider queryScopeProv = new ProjectDependencyQueryContextProvider();
-        queryScopeProv.apply(ocl);
 
         for (EClass c : classes) {
             helper.setContext(c);
             try {
-                QueryContext scope = queryScopeProv.getQueryContext(r.getContents().get(0));
                 OCLExpression query = helper.createQuery(c.getName() + ".allInstances()");
-                Object objResult = ocl.evaluate(scope, query);                
+                Object objResult = ocl.evaluate(c, query);                
                 if (objResult instanceof Collection<?>){
                     for (Object o : (Collection<?>)objResult){
                         if (o instanceof EObject){
