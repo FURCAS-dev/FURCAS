@@ -7,7 +7,6 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -159,7 +158,7 @@ public class EventManagerRuntimeTest {
             /*
              * number of adapter per manager
              */
-            int limit = 1000;
+            //int limit = 1000;
             
             System.out.print(".");
             fw.write("\n");
