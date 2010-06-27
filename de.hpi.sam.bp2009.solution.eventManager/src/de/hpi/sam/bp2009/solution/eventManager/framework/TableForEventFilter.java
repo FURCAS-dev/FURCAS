@@ -156,7 +156,7 @@ public abstract class TableForEventFilter {
     RegistrationIterator<Registration> getRegistrationsFor(Notification event, boolean negated) {
 
         /*
-         * returns the fitler criterion which is of interest in context of the current EventFilterTable
+         * returns the filter criterion which is of interest in context of the current EventFilterTable
          */
         Object affectedFilterTableEntryKeys = getAffectedObject(event);
 
