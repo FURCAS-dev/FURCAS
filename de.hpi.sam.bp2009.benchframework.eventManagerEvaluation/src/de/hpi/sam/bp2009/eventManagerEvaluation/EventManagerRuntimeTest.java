@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -27,7 +28,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.ocl.OCLInput;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.helper.OCLHelper;
 
 import company.CompanyPackage;
 
@@ -40,6 +46,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.OclTestExpressionContainer.OclExpressionWithPackage;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -134,16 +142,28 @@ public class EventManagerRuntimeTest {
         Writer fw = new FileWriter(fileObject);
         // firstTestScenario(set, r, fw);
 
-        fw.write("Filter Count, " + "Event Handling naive, " + "Event Handling Table");
         ArrayList<EventFilter> list = new ArrayList<EventFilter>(filters.values());
-        ArrayList<EventFilter> list2 = new ArrayList<EventFilter>(filters.values());
-        for(int index=0; index<1000; index++){
-            for(EventFilter f1: list2){
-                list.add(new OrFilter(f1));
-            }
+        
+        ArrayList<OclExpressionWithPackage> adds = de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.OclTestExpressionContainer.getExpressionList();
+        ImpactAnalyzer iA = new ImpactAnalyzerImpl();
+        for(OclExpressionWithPackage entry:adds){
+            list.add(iA.createFilterForExpression(parse(entry.getOcl(), entry.getPackage()), true));
+            
         }
+//        ArrayList<EventFilter> list2 = new ArrayList<EventFilter>(filters.values());
+//        for(int index=0; index<1000; index++){
+//            for(EventFilter f1: list2){
+//                list.add(new OrFilter(f1));
+//            }
+//        }
+        fw.write("Leaf Count, Depth"+"\n");
+        for(EventFilter f: list){
+            fw.write(getLeafCount(f) +","+getDepth(f, 0)+"\n");
+        }
+        fw.write("Filter Count, Naive Registrations, TimeToSubscribe" + "Event Handling naive, " + "Event Handling Table");
+
         System.out.println("Filter count: "+list.size());
-        for (int index =0;index<list.size(); index++) {
+        for (int index =0;index<list.size(); index+=10) {
             ResourceSet set = new ResourceSetImpl();
             set.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
             set.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
@@ -161,6 +181,7 @@ public class EventManagerRuntimeTest {
             //int limit = 1000;
             
             System.out.print(".");
+            fw.flush();
             fw.write("\n");
             fw.write(index + ",");
 
@@ -176,7 +197,11 @@ public class EventManagerRuntimeTest {
 //            startTIme = System.nanoTime();
 //            table.subscribe(filter, a);
 //            fw.write((System.nanoTime() - startTIme) + ",");
+            
             ArrayList<Adapter> adapters = new ArrayList<Adapter>();
+            long max = Long.MIN_VALUE;
+            long min = Long.MAX_VALUE;
+            long overall=0;
             for(EventFilter f1: filter){
                 Adapter a1 = new AdapterImpl();
                 Adapter a2 = new AdapterImpl();
@@ -184,9 +209,18 @@ public class EventManagerRuntimeTest {
                 adapters.add(a2);
 
                 naive.subscribe(f1, a1);
+                long time = System.nanoTime();
                 table.subscribe(f1, a2);
-
+                time = System.nanoTime()-time;
+                max = Math.max(max, time);
+                min = Math.min(min, time);
+                overall+=time;
             }
+            System.out.println("MaxTime: " +max);
+            System.out.println("MinTime:" + min);
+//            System.out.println("Average:" +(overall/filter.size()));
+            fw.write(naive.getRegisteredCount()+",");
+            fw.write(overall +",");
             r.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
             naive.setEnabled(false);
             r1.getContents().add(new DynamicEObjectImpl(CompanyPackage.eINSTANCE.getDepartment()));
@@ -440,5 +474,27 @@ public class EventManagerRuntimeTest {
 
         return result;
     }
+     OCLExpression parse(String expression, EPackage basePackage) {
+         OCLInput exp = new OCLInput(expression);
+       String nsPrefix = basePackage.getNsPrefix();
+       EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
+       ArrayList<String> path = new ArrayList<String>();
+       path.add(nsPrefix);
+       OCL ocl = OCL.newInstance();
+       ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
+       OCLExpression result = null;
+       try {
+           ExpressionInOCL specification = ocl.parse(exp).iterator().next().getSpecification();
+           result = (OCLExpression)specification.getBodyExpression();
+                       
+           
+       } catch (ParserException e) {
+           System.err.println("Error while parsing Expression:" + exp);
+           e.printStackTrace();
+           System.exit(0);
+       }
+       return result;
+   }
+
 
 }

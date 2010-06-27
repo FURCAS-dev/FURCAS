@@ -78,4 +78,7 @@ public class ModifiedNaiveEM extends EventManagerNaive {
         return super.unsubscribe(caller);
         
     }
+    int getRegisteredCount(){
+        return this.filterToListener.size();
+    }
 }

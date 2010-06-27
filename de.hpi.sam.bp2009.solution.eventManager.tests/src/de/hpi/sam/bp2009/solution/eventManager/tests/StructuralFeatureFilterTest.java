@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import company.CompanyFactory;
 
+import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
@@ -61,7 +62,12 @@ public abstract class StructuralFeatureFilterTest extends EventFilterTest {
 	 */
 	@Override
 	public void setUp() {
-//		setFixture(EventManagerFactory.eINSTANCE.createStructuralFeatureFilter());
+		setFixture(new StructuralFeatureFilter() {
+                    @Override
+                    public EventFilter clone() {
+                        return null;
+                    }
+                });
 		super.setUp();
 		this.createInstances( 1, 5, 1 );
 		noti = NotificationHelper.createReferenceAddNotification(aDivision, departmentRef, CompanyFactory.eINSTANCE.createDepartment());
@@ -77,8 +83,12 @@ public abstract class StructuralFeatureFilterTest extends EventFilterTest {
 		setFixture(null);
 	}
 
-
-	@Override
+        /**
+         * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+         */
 	public void testMatchesFor__Notification() {
 		getFixture().setFeature(this.departmentRef);
 		assertTrue(getFixture().matchesFor(noti));

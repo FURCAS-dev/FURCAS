@@ -64,6 +64,7 @@ public class NotificationHelper {
             notifier.eSet(feature, newValue);
             return getNotificationfrom(myTestA);
         }
+        System.err.println("Warning! Invalid parameters for NotificationHelper#createAttributeChangeNotification");
         return null;
     }
 
@@ -80,6 +81,7 @@ public class NotificationHelper {
                 if (ob != null && ob instanceof EList<?>) {
                     ((EList<EObject>) ob).add(objectToAdd);
                 } else {
+                    System.err.println("Warning! Invalid parameters for NotificationHelper#createReferenceAddNotification");
                     return null;
                 }
             } else {
@@ -87,6 +89,7 @@ public class NotificationHelper {
             }
             return getNotificationfrom(myTestA);
         }
+        System.err.println("Warning! Invalid parameters for NotificationHelper#createReferenceAddNotification");
         return null;
     }
 
@@ -102,6 +105,7 @@ public class NotificationHelper {
                 if (ob != null && ob instanceof EList<?>) {
                     ((EList<EObject>) ob).remove(objectToRemove);
                 } else {
+                    System.err.println("Warning! Invalid parameters for NotificationHelper#createReferenceRemoveNotification");
                     return null;
                 }
             } else {
@@ -109,6 +113,8 @@ public class NotificationHelper {
             }
             return getNotificationfrom(myTestA);
         }
+        System.err.println("Warning! Invalid parameters for NotificationHelper#createReferenceRemoveNotification");
+
         return null;
     }
 
@@ -133,6 +139,7 @@ public class NotificationHelper {
                     }
                     notifier.eSet(feature, newValue);
                 } else {
+                    System.err.println("Warning! Invalid parameters for NotificationHelper#createReferenceChangeNotification");
                     return null;
                 }
             } else {
@@ -140,6 +147,7 @@ public class NotificationHelper {
             }
             return getNotificationfrom(myTestA);
         }
+        System.err.println("Warning! Invalid parameters for NotificationHelper#createReferenceChangeNotification");
         return null;
     }
 
@@ -154,6 +162,7 @@ public class NotificationHelper {
                 if (ob != null && ob instanceof EList<?>) {
                     ((EList<EObject>) ob).add(target);
                 } else {
+                    System.err.println("Warning! Invalid parameters for NotificationHelper#createElementAddNotification");
                     return null;
                 }
             } else {
