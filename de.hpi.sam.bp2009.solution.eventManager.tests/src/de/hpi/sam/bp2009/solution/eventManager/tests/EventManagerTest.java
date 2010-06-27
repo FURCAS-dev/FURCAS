@@ -71,7 +71,7 @@ public class EventManagerTest extends BaseDepartmentTest {
         this.createInstances(1, 3, 4);
         setFixture(EventManagerFactory.eINSTANCE.getEventManagerFor(this.comp.eResource().getResourceSet()));
         matchingNotification = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.employeeAge,
-                new Long(23), new Long(42));
+                new Integer(23), new Integer(42));
 
         filter = new AttributeFilter(this.employeeAge);
         adapter = new AdapterImpl() {

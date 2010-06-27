@@ -17,3 +17,4 @@ Require-Bundle: de.hpi.sam.bp2009.benchframework;bundle-version="1.0.0",
  de.hpi.sam.bp2009.solution.oclToAst,
  de.hpi.sam.bp2009.benchframework.queryEvaluator
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper

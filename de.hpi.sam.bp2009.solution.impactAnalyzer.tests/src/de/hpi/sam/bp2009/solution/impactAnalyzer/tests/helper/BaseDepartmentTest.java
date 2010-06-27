@@ -526,7 +526,7 @@ public class BaseDepartmentTest extends TestCase {
      *            to parse
      * @return a list of {@link Constraint}s parsed from given expression
      */
-    protected List<Constraint> parse(String expression, EPackage basePackage) {
+    public static List<Constraint> parse(String expression, EPackage basePackage) {
         OCLInput exp = new OCLInput(expression);
         String nsPrefix = basePackage.getNsPrefix();
         EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);

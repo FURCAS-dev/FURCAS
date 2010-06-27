@@ -17,107 +17,99 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 
 /**
- * <!-- begin-user-doc -->
- * A test case for the model object '<em><b>Class Filter</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A test case for the model object '<em><b>Class Filter</b></em>'. <!-- end-user-doc -->
  */
 public class ClassFilterTest extends EventFilterTest {
 
-	private EClass cls;
-	private DynamicEObjectImpl inst;
-	private NotificationImpl noti;
+    private EClass cls;
+    private DynamicEObjectImpl inst;
+    private NotificationImpl noti;
     private EClass superCls;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	public static void main(String[] args) {
-		TestRunner.run(ClassFilterTest.class);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     */
+    public static void main(String[] args) {
+        TestRunner.run(ClassFilterTest.class);
+    }
 
+    /**
+     * Constructs a new Class Filter test case with the given name. <!-- begin-user-doc --> <!-- end-user-doc -->
+     */
+    public ClassFilterTest() {
+        super();
+    }
 
-	/**
-	 * Constructs a new Class Filter test case with the given name.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	public ClassFilterTest() {
-		super();
-	}
+    /**
+     * Returns the fixture for this Class Filter test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+     */
+    @Override
+    protected ClassFilter getFixture() {
+        return (ClassFilter) fixture;
+    }
 
+    public class TestNoti extends NotificationImpl {
 
-	/**
-	 * Returns the fixture for this Class Filter test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	@Override
-	protected ClassFilter getFixture() {
-		return (ClassFilter)fixture;
-	}
+        private Object notifier;
 
+        public TestNoti(int eventType, boolean oldBooleanValue, boolean newBooleanValue, Object noti) {
+            super(eventType, oldBooleanValue, newBooleanValue);
+            notifier = noti;
+        }
 
-	public class TestNoti extends NotificationImpl{
+        @Override
+        public Object getNotifier() {
+            return notifier;
+        }
 
-		private Object notifier;
-		public TestNoti(int eventType, boolean oldBooleanValue,
-				boolean newBooleanValue, Object noti) {
-			super(eventType, oldBooleanValue, newBooleanValue);
-			notifier = noti;
-		}
-		@Override
-		public Object getNotifier() {
-			return notifier;
-		}
-		
-	}
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#setUp()
-	 */
-	@Override
-	public void setUp() {
-		setFixture(EventManagerFactory.eINSTANCE.createClassFilter());
-		cls = EcoreFactory.eINSTANCE.createEClass();
-		cls.setName("theClass");
-		superCls = EcoreFactory.eINSTANCE.createEClass();
-		superCls.setName("super");
-		cls.getESuperTypes().add(superCls);
-		inst = new DynamicEObjectImpl(cls);
-		noti = new TestNoti(0, false, false, inst);
-	}
+    }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	@Override
-	public void tearDown()    {
-		cls = null;
-		inst = null;
-		noti = null;
-		setFixture(null);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @see junit.framework.TestCase#setUp()
+     */
+    @Override
+    public void setUp() {
+        setFixture(EventManagerFactory.eINSTANCE.createClassFilter());
+        cls = EcoreFactory.eINSTANCE.createEClass();
+        cls.setName("theClass");
+        superCls = EcoreFactory.eINSTANCE.createEClass();
+        superCls.setName("super");
+        cls.getESuperTypes().add(superCls);
+        inst = new DynamicEObjectImpl(cls);
+        noti = new TestNoti(0, false, false, inst);
+    }
 
-	/**
-	 * Tests the '{@link de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification) <em>Matches For</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
-	 */
-	public void testMatchesFor__Notification() {
-		getFixture().setWantedClass(cls);
-		assertTrue("Matches an Event from the given class", 
-				getFixture().matchesFor(noti));
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @see junit.framework.TestCase#tearDown()
+     */
+    @Override
+    public void tearDown() {
+        cls = null;
+        inst = null;
+        noti = null;
+        setFixture(null);
+    }
 
-	public void testMatchesWithSubclasses(){
-	    getFixture().setIncludeSubClasses(true);
-	    getFixture().setWantedClass(superCls);
-            assertTrue("Matches an Event from the given class", 
-                    getFixture().matchesFor(noti));	}
+    /**
+     * Tests the '
+     * {@link de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     * <em>Matches For</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
+     */
+    public void testMatchesFor__Notification() {
+        getFixture().setWantedClass(cls);
+        assertTrue("Matches an Event from the given class", getFixture().matchesFor(noti));
+    }
 
-} //ClassFilterTest
+    public void testMatchesWithSubclasses() {
+        getFixture().setIncludeSubClasses(true);
+        getFixture().setWantedClass(superCls);
+        assertTrue("Matches an Event from the given class", getFixture().matchesFor(noti));
+    }
+
+} // ClassFilterTest
