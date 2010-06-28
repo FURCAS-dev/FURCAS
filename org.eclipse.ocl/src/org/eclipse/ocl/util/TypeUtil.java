@@ -30,6 +30,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.TypeChecker;
 import org.eclipse.ocl.expressions.CollectionKind;
@@ -262,13 +263,14 @@ public class TypeUtil {
      * @return the effective type of the property, which may not be a
      *    collection type despite its declared multiplicity in the association
      *    class case
+	 * @since 3.0
 	 */
 	public static <PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	C getOppositePropertyType(
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C owner,
 			P property) {
-       return env.getOppositePropertyType(owner, property);
+       return ((EnvironmentWithHiddenOpposites<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) env).getOppositePropertyType(owner, property);
 	}
 	
     /**

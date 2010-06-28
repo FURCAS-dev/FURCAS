@@ -41,6 +41,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.AbstractEnvironment;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.TypeResolver;
 import org.eclipse.ocl.ecore.internal.EcoreForeignMethods;
 import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
@@ -67,7 +68,8 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  */
 public class EcoreEnvironment
 		extends
-		AbstractEnvironment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
+		AbstractEnvironment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
+	implements EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
 
 	/**
 	 * The key that identifies opposite role names in an annotation
@@ -129,6 +131,9 @@ public class EcoreEnvironment
 		this(reg, new DefaultOppositeEndFinder(reg));
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public EcoreEnvironment(EPackage.Registry registry, OppositeEndFinder oppositeEndFinder) {
 		this.registry = registry;
 		this.oppositeEndFinder = oppositeEndFinder;
@@ -143,11 +148,15 @@ public class EcoreEnvironment
 	 *            a package registry
 	 * @param resource
 	 *            a resource, which may or may not already have content
+	 * @since 3.0
 	 */
 	protected EcoreEnvironment(EPackage.Registry reg, Resource resource) {
 		this(reg, resource, new DefaultOppositeEndFinder(reg));
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public EcoreEnvironment(EPackage.Registry registry, Resource resource, OppositeEndFinder oppositeEndFinder) {
 		this.registry = registry;
 		typeResolver = createTypeResolver(resource);
@@ -702,6 +711,9 @@ public class EcoreEnvironment
 			&& UMLReflection.POSTCONDITION.equals(constraint.getStereotype());
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	@Override
 	protected void findOppositeEnds(EClassifier classifier, String name,
 			List<EStructuralFeature> ends) {
@@ -710,6 +722,9 @@ public class EcoreEnvironment
 		}
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public EClassifier getOppositePropertyType(EClassifier owner,
 			EStructuralFeature property) {
 		return ((UMLReflectionImpl) getUMLReflection()).getOCLCollectionType(
@@ -717,6 +732,9 @@ public class EcoreEnvironment
 			/* ordered */false, /* unique */false);
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	public Map<String, EStructuralFeature> getHiddenOppositeProperties(
 			EClassifier classifier) {
 		Map<String, EStructuralFeature> result;
@@ -727,7 +745,10 @@ public class EcoreEnvironment
 		}
 		return result;
 	}
-	
+
+	/**
+	 * @since 3.0
+	 */
 	public OppositeEndFinder getOppositeEndFinder() {
 		return oppositeEndFinder;
 	}

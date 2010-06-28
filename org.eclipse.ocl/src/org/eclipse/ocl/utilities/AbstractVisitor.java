@@ -68,7 +68,7 @@ import org.eclipse.ocl.expressions.VariableExp;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
-		implements Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT> {
+		implements VisitorWithHiddenOpposite<T, C, O, P, EL, PM, S, COA, SSA, CT> {
     
     /**
      * Accumulator for the result of the AST visitation.
@@ -179,6 +179,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
     /**
      * Visits the opposite property-call source and then its qualifiers (if any).
      * Returns the result of {@link #handleOppositePropertyCallExp(OppositePropertyCallExp, Object, List)}.
+     * @since 3.0
      */
 	public T visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp) {
         // source is null when the property call expression is an
@@ -215,6 +216,7 @@ public abstract class AbstractVisitor<T, C, O, P, EL, PM, S, COA, SSA, CT>
      * @return the accumulated {@link #result}, by default
      * 
      * @see #visitOppositePropertyCallExp(OppositePropertyCallExp)
+     * @since 3.0
      */
     protected T handleOppositePropertyCallExp(OppositePropertyCallExp<C, P> callExp,
             T sourceResult, List<T> qualifierResults) {

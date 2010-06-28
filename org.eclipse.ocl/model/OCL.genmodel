@@ -248,9 +248,6 @@
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitConstraint">
           <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitConstraint/constraint"/>
         </genOperations>
-        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/Visitor/visitOppositePropertyCallExp">
-          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/Visitor/visitOppositePropertyCallExp/callExp"/>
-        </genOperations>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/TypedElement">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/TypedElement/C"/>
@@ -281,6 +278,21 @@
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/PredefinedType/O"/>
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/PredefinedType/getName"/>
         <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/PredefinedType/oclOperations"/>
+      </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/VisitorWithHiddenOpposite">
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/T"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/C"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/O"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/P"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/EL"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/PM"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/S"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/COA"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/SSA"/>
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/CT"/>
+        <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="OCL.ecore#//utilities/VisitorWithHiddenOpposite/visitOppositePropertyCallExp">
+          <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="OCL.ecore#//utilities/VisitorWithHiddenOpposite/visitOppositePropertyCallExp/callExp"/>
+        </genOperations>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Expressions" basePackage="org.eclipse.ocl"

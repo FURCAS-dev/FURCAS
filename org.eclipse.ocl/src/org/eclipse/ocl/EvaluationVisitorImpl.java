@@ -1969,8 +1969,10 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				qualifiers.add(q.accept(getVisitor()));
 			}
 		}
-		Object result = getEvaluationEnvironment().navigateOppositeProperty(property, qualifiers, context);
-		if ((pc.getType() instanceof CollectionType<?, ?>) && !(result instanceof Collection<?>)) {
+		Object result = ((EvaluationEnvironmentWithHiddenOpposites<P>) getEvaluationEnvironment())
+			.navigateOppositeProperty(property, qualifiers, context);
+		if ((pc.getType() instanceof CollectionType<?, ?>)
+			&& !(result instanceof Collection<?>)) {
 			// this was an XSD "unspecified multiplicity".  Now that we know what
 			//    the multiplicity is, we can coerce it to a collection value
 			CollectionKind kind = ((CollectionType<C, O>) pc.getType()).getKind();

@@ -659,15 +659,6 @@
           <eGenericType eTypeParameter="#//utilities/Visitor/CT"/>
         </eParameters>
       </eOperations>
-      <eOperations name="visitOppositePropertyCallExp">
-        <eGenericType eTypeParameter="#//utilities/Visitor/T"/>
-        <eParameters name="callExp" lowerBound="1">
-          <eGenericType eClassifier="#//expressions/OppositePropertyCallExp">
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/C"/>
-            <eTypeArguments eTypeParameter="#//utilities/Visitor/P"/>
-          </eGenericType>
-        </eParameters>
-      </eOperations>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" interface="true">
       <eTypeParameters name="C"/>
@@ -728,6 +719,39 @@
       <eOperations name="oclOperations" upperBound="-1">
         <eGenericType eTypeParameter="#//utilities/PredefinedType/O"/>
       </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VisitorWithHiddenOpposite" abstract="true">
+      <eTypeParameters name="T"/>
+      <eTypeParameters name="C"/>
+      <eTypeParameters name="O"/>
+      <eTypeParameters name="P"/>
+      <eTypeParameters name="EL"/>
+      <eTypeParameters name="PM"/>
+      <eTypeParameters name="S"/>
+      <eTypeParameters name="COA"/>
+      <eTypeParameters name="SSA"/>
+      <eTypeParameters name="CT"/>
+      <eOperations name="visitOppositePropertyCallExp">
+        <eGenericType eTypeParameter="#//utilities/VisitorWithHiddenOpposite/T"/>
+        <eParameters name="callExp" lowerBound="1">
+          <eGenericType eClassifier="#//expressions/OppositePropertyCallExp">
+            <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/C"/>
+            <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/P"/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+      <eGenericSuperTypes eClassifier="#//utilities/Visitor">
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/T"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/C"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/O"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/P"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/EL"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/PM"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/S"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/COA"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/SSA"/>
+        <eTypeArguments eTypeParameter="#//utilities/VisitorWithHiddenOpposite/CT"/>
+      </eGenericSuperTypes>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="expressions" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Expressions"

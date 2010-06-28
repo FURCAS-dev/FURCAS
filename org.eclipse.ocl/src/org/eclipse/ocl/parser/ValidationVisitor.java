@@ -81,6 +81,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
 
 /**
  * Checks the well-formedness rules for the expressions package
@@ -89,7 +90,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * @author Christian W. Damus (cdamus)
  */
 public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
-	implements Visitor<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> {
+	implements VisitorWithHiddenOpposite<Boolean, C, O, P, EL, PM, S, COA, SSA, CT> {
 	
 	private Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env = null;
     private UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> uml = null;
@@ -426,6 +427,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * 
 	 * @param pc the property call expression
 	 * @return Boolean -- true if validated
+	 * @since 3.0
 	 */
 	public Boolean visitOppositePropertyCallExp(OppositePropertyCallExp<C, P> pc) {
 		P property = pc.getReferredOppositeProperty();

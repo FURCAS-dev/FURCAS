@@ -36,6 +36,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.cst.ClassifierContextDeclCS;
@@ -88,7 +89,7 @@ import org.eclipse.ocl.util.UnicodeSupport;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 import org.eclipse.ocl.utilities.PredefinedType;
 import org.eclipse.ocl.utilities.UMLReflection;
-import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -326,7 +327,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	}
 
 	private class ASTVisitor
-		implements Visitor<List<Choice>, C, O, P, EL, PM, S, COA, SSA, CT> {
+		implements VisitorWithHiddenOpposite<List<Choice>, C, O, P, EL, PM, S, COA, SSA, CT> {
 
 		private final int completionPosition;
 		private final String text;
@@ -538,7 +539,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 			    }
 			}
 		}
-		for (Entry<String, P> hiddenOppositeNameAndForwardProperty : environment.getHiddenOppositeProperties(eClass).entrySet()) {
+		for (Entry<String, P> hiddenOppositeNameAndForwardProperty : ((EnvironmentWithHiddenOpposites<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>) environment).getHiddenOppositeProperties(eClass).entrySet()) {
 			result.add(new ChoiceImpl(
 				hiddenOppositeNameAndForwardProperty.getKey(),
 				NLS.bind(OCLMessages.HiddenOppositeOf, getDescription(hiddenOppositeNameAndForwardProperty.getValue())),

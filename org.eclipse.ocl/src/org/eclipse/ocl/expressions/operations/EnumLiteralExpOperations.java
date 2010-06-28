@@ -88,8 +88,8 @@ public class EnumLiteralExpOperations
 				|| !TypeUtil.exactTypeMatch(env, uml.getEnumeration(l), type)) {
 				result = false;
 				message = OCLMessages.bind(
-					OCLMessages.IllegalEnumLiteral_ERROR_, enumLiteralExp
-						.toString());
+					OCLMessages.IllegalEnumLiteral_ERROR_,
+					enumLiteralExp.toString());
 			}
 		}
 

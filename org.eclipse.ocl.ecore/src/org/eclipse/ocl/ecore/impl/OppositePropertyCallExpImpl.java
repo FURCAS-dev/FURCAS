@@ -37,6 +37,7 @@ import org.eclipse.ocl.expressions.util.ExpressionsValidator;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.TypeUtil;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,6 +51,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * </p>
  *
  * @generated
+ * @since 3.0
  */
 public class OppositePropertyCallExpImpl
 		extends NavigationCallExpImpl
@@ -276,7 +278,7 @@ public class OppositePropertyCallExpImpl
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, EClassifier, ?, EStructuralFeature, ?, ?, ?, ?, ?, ?>) v)
+		return ((VisitorWithHiddenOpposite<T, EClassifier, ?, EStructuralFeature, ?, ?, ?, ?, ?, ?>) v)
 			.visitOppositePropertyCallExp(this);
 	}
 } //OppositePropertyCallExpImpl

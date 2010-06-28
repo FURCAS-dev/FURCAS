@@ -69,39 +69,25 @@ public class OppositePropertyCallExpOperations
 	public static <C, P> boolean checkPropertyType(
 			OppositePropertyCallExp<C, P> oppositePropertyCallExp,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		boolean result = true;
-		Environment<?, C, ?, P, ?, ?, ?, ?, ?, ?, ?, ?> env = OCLUtil
-			.getValidationEnvironment(oppositePropertyCallExp, context);
-
-		if (env != null) {
-			P property = oppositePropertyCallExp.getReferredOppositeProperty();
-			OCLExpression<C> source = oppositePropertyCallExp.getSource();
-			C type = oppositePropertyCallExp.getType();
-
-			if ((property != null) && (source != null)) {
-				@SuppressWarnings("unchecked")
-				C refOwnerType = (C) ((EObject) property).eContainer();
-				if (!TypeUtil.exactTypeMatch(env, refOwnerType, type)) {
-					result = false;
-				}
-			}
-		}
-
-		if (!result) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
 			if (diagnostics != null) {
-				// TODO: Specific message
 				diagnostics
 					.add(new BasicDiagnostic(
 						Diagnostic.ERROR,
 						ExpressionsValidator.DIAGNOSTIC_SOURCE,
-						ExpressionsValidator.PROPERTY_CALL_EXP__PROPERTY_TYPE,
+						ExpressionsValidator.OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_TYPE,
 						org.eclipse.emf.ecore.plugin.EcorePlugin.INSTANCE
 							.getString(
 								"_UI_GenericInvariant_diagnostic", new Object[]{"checkPropertyType", org.eclipse.emf.ecore.util.EObjectValidator.getObjectLabel(oppositePropertyCallExp, context)}), //$NON-NLS-1$ //$NON-NLS-2$
 						new Object[]{oppositePropertyCallExp}));
 			}
+			return false;
 		}
-		return result;
+		return true;
 	}
 
 } // OppositePropertyCallExpOperations

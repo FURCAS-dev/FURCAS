@@ -148,22 +148,6 @@ public interface EvaluationEnvironment<C, O, P, CLS, E> {
     	throws IllegalArgumentException;
     
     /**
-     * Obtains the value of the specified operation, for the given source element,
-     * according to the particular metamodel semantics.
-     * 
-     * @param property the property to navigate in reverse direction
-     * @param qualifiers the association-end qualifier values, or an empty list
-     *     if none
-     * @param source the source element from where to start navigating / querying
-     * @return the property value
-     * 
-     * @throws IllegalArgumentException if the property is not supported by the
-     *     element or by this environment
-     */
-    Object navigateOppositeProperty(P property, List<?> qualifiers, Object source)
-    	throws IllegalArgumentException;
-    
-    /**
      * Obtains the instance of the specified association class that links the
      * specified source element, optionally via the specified property.
      * 

@@ -1045,6 +1045,7 @@ public class UMLItemProviderAdapterFactory extends UMLAdapterFactory implements
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
+	 * @since 3.0
 	 */
 	protected OppositePropertyCallExpItemProvider oppositePropertyCallExpItemProvider;
 

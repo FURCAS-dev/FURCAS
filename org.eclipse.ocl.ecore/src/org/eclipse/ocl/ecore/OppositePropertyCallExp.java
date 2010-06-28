@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @see org.eclipse.ocl.ecore.EcorePackage#getOppositePropertyCallExp()
  * @model
  * @generated
+ * @since 3.0
  */
 public interface OppositePropertyCallExp
 		extends

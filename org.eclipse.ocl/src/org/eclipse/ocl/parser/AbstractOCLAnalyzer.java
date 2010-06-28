@@ -38,6 +38,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
+import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;
@@ -2617,6 +2618,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *         does not resolve to an available property that shall be navigated in reverse
 	 * 
 	 * @see #simpleNameCS(SimpleNameCS, Environment, OCLExpression)
+	 * @since 3.0
 	 */
 	protected OppositePropertyCallExp<C, P> simpleOppositePropertyName(
 			SimpleNameCS simpleNameCS,
@@ -4652,7 +4654,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 *            the referenced property
 	 * @return the property's type
 	 * 
-	 * @since 1.3
+	 * @since 3.0
 	 */
 	protected C getOppositePropertyType(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
@@ -4910,13 +4912,16 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		}
 	}
 
+	/**
+	 * @since 3.0
+	 */
 	@SuppressWarnings("unchecked")
 	protected P lookupOppositeProperty(CSTNode cstNode,
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> env,
 			C owner, String name) {
 		try {
-			Environment.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
-				Environment.Lookup.class);
+			EnvironmentWithHiddenOpposites.Lookup<PK, C, O, P> lookup = OCLUtil.getAdapter(env,
+				EnvironmentWithHiddenOpposites.Lookup.class);
 			P property = lookup.tryLookupOppositeProperty(owner, name);
 
 			if (cstNode != null) {

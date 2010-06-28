@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
  * thus declaring the name for the otherwise non-existing opposite.
  * 
  * @author Axel Uhl
+ * @since 3.0
  * 
  */
 public interface OppositeEndFinder {

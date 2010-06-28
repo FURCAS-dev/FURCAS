@@ -414,6 +414,7 @@ public interface UMLFactory
 	 * <!-- end-user-doc -->
 	 * @return a new object of class '<em>Opposite Property Call Exp</em>'.
 	 * @generated
+	 * @since 3.0
 	 */
 	OppositePropertyCallExp createOppositePropertyCallExp();
 

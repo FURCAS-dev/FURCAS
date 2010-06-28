@@ -52,7 +52,8 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractEvaluationEnvironment<C, O, P, CLS, E>
-		implements EvaluationEnvironment<C, O, P, CLS, E>, Adaptable, Customizable {
+		implements EvaluationEnvironment<C, O, P, CLS, E>, Adaptable, Customizable,
+		EvaluationEnvironmentWithHiddenOpposites<P> {
 	
     private final EvaluationEnvironment<C, O, P, CLS, E> parent;
     private final Map<String, Object> map = new HashMap<String, Object>();

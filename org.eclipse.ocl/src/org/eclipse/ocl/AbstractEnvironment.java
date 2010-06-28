@@ -75,7 +75,7 @@ import org.eclipse.ocl.utilities.TypedElement;
 public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	extends AbstractBasicEnvironment
 	implements Environment.Internal<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>,
-	    Environment.Lookup<PK, C, O, P> {
+	    EnvironmentWithHiddenOpposites.Lookup<PK, C, O, P> {
     
 	/* Used to generate implicit iterator variables */
 	private int generatorInt = 0;
@@ -790,6 +790,9 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	}
 
     // implements the interface method
+	/**
+	 * @since 3.0
+	 */
 	public Variable<C, PM> lookupImplicitSourceForOppositeProperty(String name) {
 		Variable<C, PM> vdcl;
 		
@@ -1111,7 +1114,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * This default implementation simply delegates to the
      * {@link Environment#lookupOppositeProperty(Object, String)} method.
      * 
-     * @since 1.2
+     * @since 3.0
      */
     public P tryLookupOppositeProperty(C owner, String name)
         throws LookupException {
@@ -1195,6 +1198,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @throws LookupException in case that multiple non-navigable properties
      *     are found that have the same name and the problem option is ERROR
      *     or worse
+     * @since 3.0
      */
     public P lookupOppositeProperty(C owner, String name) throws LookupException {
         if (owner == null) {
@@ -1256,6 +1260,7 @@ public abstract class AbstractEnvironment<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
      * @param classifier a classifier at an association end
      * @param name the non-navigable end name to look for
      * @param ends collects the ends found by the subclass implementation
+     * @since 3.0
      */
     protected void findOppositeEnds(C classifier, String name, List<P> ends) {
         // no default implementation

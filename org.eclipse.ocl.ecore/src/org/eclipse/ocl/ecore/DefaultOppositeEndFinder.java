@@ -43,6 +43,7 @@ import org.eclipse.ocl.util.CollectionUtil;
  * well-defined query scope and a corresponding query engine.
  * 
  * @author Axel Uhl
+ * @since 3.0
  * 
  */
 public class DefaultOppositeEndFinder

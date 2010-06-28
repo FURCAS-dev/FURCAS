@@ -134,6 +134,7 @@ public class OCL extends org.eclipse.ocl.OCL<
      * specified.
      * 
      * @return the new <code>OCL</code>
+     * @since 3.0
      */
 	public static OCL newInstance(OppositeEndFinder oppositeEndFinder) {
 		return new OCL(new EcoreEnvironmentFactory(oppositeEndFinder));

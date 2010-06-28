@@ -35,6 +35,7 @@ import org.eclipse.ocl.expressions.operations.OppositePropertyCallExpOperations;
 import org.eclipse.ocl.uml.OppositePropertyCallExp;
 import org.eclipse.ocl.uml.UMLPackage;
 import org.eclipse.ocl.utilities.Visitor;
+import org.eclipse.ocl.utilities.VisitorWithHiddenOpposite;
 
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
@@ -53,6 +54,7 @@ import org.eclipse.uml2.uml.Property;
  * </p>
  *
  * @generated
+ * @since 3.0
  */
 @SuppressWarnings("restriction")
 public class OppositePropertyCallExpImpl
@@ -250,7 +252,7 @@ public class OppositePropertyCallExpImpl
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T, U extends Visitor<T, ?, ?, ?, ?, ?, ?, ?, ?, ?>> T accept(U v) {
-		return ((Visitor<T, Classifier, ?, Property, ?, ?, ?, ?, ?, ?>) v)
+		return ((VisitorWithHiddenOpposite<T, Classifier, ?, Property, ?, ?, ?, ?, ?, ?>) v)
 			.visitOppositePropertyCallExp(this);
 	}
 
