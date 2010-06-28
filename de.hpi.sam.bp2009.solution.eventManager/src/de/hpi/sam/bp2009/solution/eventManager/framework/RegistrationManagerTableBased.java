@@ -225,6 +225,7 @@ class RegistrationManagerTableBased extends RegistrationManager {
         addTableForEventType(table, Notification.REMOVE);
         addTableForEventType(table, Notification.ADD_MANY);
         addTableForEventType(table, Notification.REMOVE_MANY);
+        addTableForEventType(table, Notification.MOVE);
     }
 
 }
