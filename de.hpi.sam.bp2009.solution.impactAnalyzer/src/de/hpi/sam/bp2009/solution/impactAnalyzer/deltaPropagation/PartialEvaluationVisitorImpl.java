@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.AbstractEvaluationVisitor;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.EvaluationEnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CallOperationAction;
@@ -471,7 +472,7 @@ public class PartialEvaluationVisitorImpl
                         qualifiers.add(q.accept(getVisitor()));
                     }
                 }
-                localResult = getEvaluationEnvironment().navigateOppositeProperty(property, qualifiers, context);
+                localResult = ((EvaluationEnvironmentWithHiddenOpposites<EStructuralFeature>) getEvaluationEnvironment()).navigateOppositeProperty(property, qualifiers, context);
                 if ((pc.getType() instanceof CollectionType<?, ?>) && !(localResult instanceof Collection<?>)) {
                     // this was an XSD "unspecified multiplicity". Now that we know what
                     // the multiplicity is, we can coerce it to a collection value
