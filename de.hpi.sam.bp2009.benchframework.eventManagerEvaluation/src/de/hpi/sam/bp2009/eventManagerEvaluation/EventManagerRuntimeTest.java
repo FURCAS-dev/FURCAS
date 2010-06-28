@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -23,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -30,10 +30,9 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 import company.CompanyPackage;
 
@@ -47,7 +46,6 @@ import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.OclTestExpressionContainer.OclExpressionWithPackage;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -484,7 +482,7 @@ public class EventManagerRuntimeTest {
        ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
        OCLExpression result = null;
        try {
-           ExpressionInOCL specification = ocl.parse(exp).iterator().next().getSpecification();
+           ExpressionInOCL<EClassifier, EParameter> specification = ocl.parse(exp).iterator().next().getSpecification();
            result = (OCLExpression)specification.getBodyExpression();
                        
            
