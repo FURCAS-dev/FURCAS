@@ -13,14 +13,14 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://oclwithhiddenopposites/1.0"
-            class="oclwithhiddenopposites.OclwithhiddenoppositesPackage"
+            class="com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage"
             genModel="model/OclWithHiddenOpposites.genmodel"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
             type="oclwithhiddenopposites"
-            class="oclwithhiddenopposites.util.OclwithhiddenoppositesResourceFactoryImpl"/>
+            class="com.sap.emf.ocl.oclwithhiddenopposites.util.OclwithhiddenoppositesResourceFactoryImpl"/>
    </extension>
 
 </plugin>
