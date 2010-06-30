@@ -4,15 +4,13 @@
  *
  * $Id$
  */
-package com.sap.emf.ocl.oclwithhiddenopposites;
+package com.sap.emf.ocl.oclwithhiddenopposites.expressions;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.ocl.ecore.EcorePackage;
-
-import org.eclipse.ocl.utilities.UtilitiesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,18 +23,18 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesFactory
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsFactory
  * @model kind="package"
  * @generated
  */
-public interface OclwithhiddenoppositesPackage extends EPackage {
+public interface ExpressionsPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNAME = "oclwithhiddenopposites";
+	String eNAME = "expressions";
 
 	/**
 	 * The package namespace URI.
@@ -44,7 +42,7 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://oclwithhiddenopposites/1.0";
+	String eNS_URI = "http://www.sap.com/emf/oppositepropertycallexp";
 
 	/**
 	 * The package namespace name.
@@ -52,15 +50,7 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "oclwithhiddenopposites";
-
-	/**
-	 * The package content type ID.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	String eCONTENT_TYPE = "com.sap.emf.ocl.hiddenopposites";
+	String eNS_PREFIX = "oppositepropertycallexp";
 
 	/**
 	 * The singleton instance of the package.
@@ -68,14 +58,14 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	OclwithhiddenoppositesPackage eINSTANCE = com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl.init();
+	ExpressionsPackage eINSTANCE = com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl.ExpressionsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
+	 * The meta object id for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getOppositePropertyCallExp()
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl.OppositePropertyCallExpImpl
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl.ExpressionsPackageImpl#getOppositePropertyCallExp()
 	 * @generated
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP = 0;
@@ -260,56 +250,27 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP_FEATURE_COUNT = EcorePackage.NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
-	/**
-	 * The meta object id for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl <em>Visitor With Hidden Opposite</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getVisitorWithHiddenOpposite()
-	 * @generated
-	 */
-	int VISITOR_WITH_HIDDEN_OPPOSITE = 1;
 
 	/**
-	 * The number of structural features of the '<em>Visitor With Hidden Opposite</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VISITOR_WITH_HIDDEN_OPPOSITE_FEATURE_COUNT = UtilitiesPackage.VISITOR_FEATURE_COUNT + 0;
-
-
-	/**
-	 * Returns the meta object for class '{@link com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
+	 * Returns the meta object for class '{@link com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Opposite Property Call Exp</em>'.
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp
 	 * @generated
 	 */
 	EClass getOppositePropertyCallExp();
 
 	/**
-	 * Returns the meta object for the reference '{@link com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp#getReferredOppositeProperty <em>Referred Opposite Property</em>}'.
+	 * Returns the meta object for the reference '{@link com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp#getReferredOppositeProperty <em>Referred Opposite Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Referred Opposite Property</em>'.
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp#getReferredOppositeProperty()
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp#getReferredOppositeProperty()
 	 * @see #getOppositePropertyCallExp()
 	 * @generated
 	 */
 	EReference getOppositePropertyCallExp_ReferredOppositeProperty();
-
-	/**
-	 * Returns the meta object for class '{@link com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Visitor With Hidden Opposite</em>'.
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite
-	 * @generated
-	 */
-	EClass getVisitorWithHiddenOpposite();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -318,7 +279,7 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	OclwithhiddenoppositesFactory getOclwithhiddenoppositesFactory();
+	ExpressionsFactory getExpressionsFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -334,11 +295,11 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
+		 * The meta object literal for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl
-		 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getOppositePropertyCallExp()
+		 * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl.OppositePropertyCallExpImpl
+		 * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl.ExpressionsPackageImpl#getOppositePropertyCallExp()
 		 * @generated
 		 */
 		EClass OPPOSITE_PROPERTY_CALL_EXP = eINSTANCE.getOppositePropertyCallExp();
@@ -351,16 +312,6 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 		 */
 		EReference OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY = eINSTANCE.getOppositePropertyCallExp_ReferredOppositeProperty();
 
-		/**
-		 * The meta object literal for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl <em>Visitor With Hidden Opposite</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl
-		 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getVisitorWithHiddenOpposite()
-		 * @generated
-		 */
-		EClass VISITOR_WITH_HIDDEN_OPPOSITE = eINSTANCE.getVisitorWithHiddenOpposite();
-
 	}
 
-} //OclwithhiddenoppositesPackage
+} //ExpressionsPackage

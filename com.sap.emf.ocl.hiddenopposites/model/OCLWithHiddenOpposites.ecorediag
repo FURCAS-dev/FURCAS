@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_vYflYYQPEd-mguxyEAPoaQ" type="EcoreTools" name="OCLWithHiddenOpposites" measurementUnit="Pixel">
-  <children xmi:type="notation:Node" xmi:id="_xy0SwIQPEd-mguxyEAPoaQ" type="1001">
-    <children xmi:type="notation:Node" xmi:id="_xy2H8IQPEd-mguxyEAPoaQ" type="4001"/>
-    <children xmi:type="notation:Node" xmi:id="_xy3WEIQPEd-mguxyEAPoaQ" type="5001">
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_xy3WEYQPEd-mguxyEAPoaQ"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_xy3WEoQPEd-mguxyEAPoaQ"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_xy3WE4QPEd-mguxyEAPoaQ"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_xy39IIQPEd-mguxyEAPoaQ" type="5002">
-      <styles xmi:type="notation:DrawerStyle" xmi:id="_xy39IYQPEd-mguxyEAPoaQ"/>
-      <styles xmi:type="notation:SortingStyle" xmi:id="_xy39IoQPEd-mguxyEAPoaQ"/>
-      <styles xmi:type="notation:FilteringStyle" xmi:id="_xy39I4QPEd-mguxyEAPoaQ"/>
-    </children>
-    <styles xmi:type="notation:ShapeStyle" xmi:id="_xy0SwYQPEd-mguxyEAPoaQ" fontColor="4210752" fontName="Sans" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
-    <element xmi:type="ecore:EClass" href="OCLWithHiddenOpposites.ecore#//OppositePropertyCallExp"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xy0SwoQPEd-mguxyEAPoaQ" x="369" y="360"/>
-  </children>
   <children xmi:type="notation:Node" xmi:id="_Q-K0IIQTEd-mguxyEAPoaQ" type="1001">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Q-NQYIQTEd-mguxyEAPoaQ" source="Shortcut">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Q-NQYYQTEd-mguxyEAPoaQ" key="modelID" value="EcoreTools"/>
@@ -144,28 +128,6 @@
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_vYgMcIQPEd-mguxyEAPoaQ"/>
   <element xmi:type="ecore:EPackage" href="OCLWithHiddenOpposites.ecore#/"/>
-  <edges xmi:type="notation:Edge" xmi:id="_Q_K5sIQTEd-mguxyEAPoaQ" type="3002" source="_xy0SwIQPEd-mguxyEAPoaQ" target="_Q-K0IIQTEd-mguxyEAPoaQ">
-    <children xmi:type="notation:Node" xmi:id="_Q_LgwIQTEd-mguxyEAPoaQ" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_Q_LgwYQTEd-mguxyEAPoaQ" x="-38" y="-14"/>
-    </children>
-    <children xmi:type="notation:Node" xmi:id="_Q_MH0IQTEd-mguxyEAPoaQ" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_Q_MH0YQTEd-mguxyEAPoaQ" x="10" y="10"/>
-    </children>
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_Q_K5sYQTEd-mguxyEAPoaQ" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_Q_K5soQTEd-mguxyEAPoaQ" fontColor="4210752" fontName="Sans" fontHeight="10"/>
-    <element xmi:type="ecore:EReference" href="OCLWithHiddenOpposites.ecore#//OppositePropertyCallExp/referredOppositeProperty"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Q_K5s4QTEd-mguxyEAPoaQ" points="[0, 2, 148, 0]$[-146, 2, 2, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RAV-YIQTEd-mguxyEAPoaQ" id="(0.0,0.6666666666666666)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RAWlcIQTEd-mguxyEAPoaQ" id="(0.9869281045751634,0.5)"/>
-  </edges>
-  <edges xmi:type="notation:Edge" xmi:id="_Q_NV8IQTEd-mguxyEAPoaQ" type="3003" source="_xy0SwIQPEd-mguxyEAPoaQ" target="_Q-N3cIQTEd-mguxyEAPoaQ">
-    <styles xmi:type="notation:ConnectorStyle" xmi:id="_Q_NV8YQTEd-mguxyEAPoaQ" routing="Rectilinear" lineColor="4210752"/>
-    <styles xmi:type="notation:FontStyle" xmi:id="_Q_NV8oQTEd-mguxyEAPoaQ" fontName="Sans"/>
-    <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Q_NV84QTEd-mguxyEAPoaQ" points="[0, 0, -169, 60]$[0, -30, -169, 30]$[169, -30, 0, 30]$[169, -60, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RAWlcYQTEd-mguxyEAPoaQ" id="(0.49635036496350365,0.0)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RAWlcoQTEd-mguxyEAPoaQ" id="(0.24299065420560748,1.0)"/>
-  </edges>
   <edges xmi:type="notation:Edge" xmi:id="_ZhQPgIQTEd-mguxyEAPoaQ" type="3003" source="_Q-N3cIQTEd-mguxyEAPoaQ" target="_Zg5DIIQTEd-mguxyEAPoaQ">
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_ZhQPgYQTEd-mguxyEAPoaQ" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_ZhQPgoQTEd-mguxyEAPoaQ" fontName="Sans"/>

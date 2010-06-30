@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package com.sap.emf.ocl.oclwithhiddenopposites.util;
+package com.sap.emf.ocl.oclwithhiddenopposites.expressions.util;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.*;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -27,24 +27,23 @@ import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.Visitable;
-import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage
  * @generated
  */
-public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
+public class ExpressionsAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static OclwithhiddenoppositesPackage modelPackage;
+	protected static ExpressionsPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -52,9 +51,9 @@ public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclwithhiddenoppositesAdapterFactory() {
+	public ExpressionsAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = OclwithhiddenoppositesPackage.eINSTANCE;
+			modelPackage = ExpressionsPackage.eINSTANCE;
 		}
 	}
 
@@ -83,15 +82,11 @@ public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OclwithhiddenoppositesSwitch<Adapter> modelSwitch =
-		new OclwithhiddenoppositesSwitch<Adapter>() {
+	protected ExpressionsSwitch<Adapter> modelSwitch =
+		new ExpressionsSwitch<Adapter>() {
 			@Override
 			public Adapter caseOppositePropertyCallExp(OppositePropertyCallExp object) {
 				return createOppositePropertyCallExpAdapter();
-			}
-			@Override
-			public <T> Adapter caseVisitorWithHiddenOpposite(VisitorWithHiddenOpposite<T> object) {
-				return createVisitorWithHiddenOppositeAdapter();
 			}
 			@Override
 			public Adapter caseEModelElement(EModelElement object) {
@@ -154,10 +149,6 @@ public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
 				return createEcore_NavigationCallExpAdapter();
 			}
 			@Override
-			public <T, C, O, P, EL, PM, S, COA, SSA, CT> Adapter caseVisitor(Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
-				return createVisitorAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -178,30 +169,16 @@ public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp
 	 * @generated
 	 */
 	public Adapter createOppositePropertyCallExpAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite
-	 * @generated
-	 */
-	public Adapter createVisitorWithHiddenOppositeAdapter() {
 		return null;
 	}
 
@@ -416,20 +393,6 @@ public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.utilities.Visitor <em>Visitor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.ocl.utilities.Visitor
-	 * @generated
-	 */
-	public Adapter createVisitorAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
@@ -441,4 +404,4 @@ public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //OclwithhiddenoppositesAdapterFactory
+} //ExpressionsAdapterFactory

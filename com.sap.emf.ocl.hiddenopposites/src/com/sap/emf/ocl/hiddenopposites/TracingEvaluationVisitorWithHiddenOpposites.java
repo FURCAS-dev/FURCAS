@@ -41,7 +41,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 /**
  * A decorator for evaluation visitors that is installed when evaluation tracing

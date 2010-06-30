@@ -4,24 +4,28 @@
  *
  * $Id$
  */
-package com.sap.emf.ocl.oclwithhiddenopposites.impl;
+package com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesFactory;
-import com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage;
-import com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp;
-import com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsFactory;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
+
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.util.ExpressionsValidator;
+
+import com.sap.emf.ocl.oclwithhiddenopposites.utilities.UtilitiesPackage;
+
+import com.sap.emf.ocl.oclwithhiddenopposites.utilities.impl.UtilitiesPackageImpl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.ocl.ecore.EcorePackage;
-
-import org.eclipse.ocl.utilities.UtilitiesPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,20 +33,13 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OclwithhiddenoppositesPackageImpl extends EPackageImpl implements OclwithhiddenoppositesPackage {
+public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass oppositePropertyCallExpEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass visitorWithHiddenOppositeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -55,12 +52,12 @@ public class OclwithhiddenoppositesPackageImpl extends EPackageImpl implements O
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage#eNS_URI
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private OclwithhiddenoppositesPackageImpl() {
-		super(eNS_URI, OclwithhiddenoppositesFactory.eINSTANCE);
+	private ExpressionsPackageImpl() {
+		super(eNS_URI, ExpressionsFactory.eINSTANCE);
 	}
 
 	/**
@@ -73,7 +70,7 @@ public class OclwithhiddenoppositesPackageImpl extends EPackageImpl implements O
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link OclwithhiddenoppositesPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link ExpressionsPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -82,30 +79,44 @@ public class OclwithhiddenoppositesPackageImpl extends EPackageImpl implements O
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static OclwithhiddenoppositesPackage init() {
-		if (isInited) return (OclwithhiddenoppositesPackage)EPackage.Registry.INSTANCE.getEPackage(OclwithhiddenoppositesPackage.eNS_URI);
+	public static ExpressionsPackage init() {
+		if (isInited) return (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		OclwithhiddenoppositesPackageImpl theOclwithhiddenoppositesPackage = (OclwithhiddenoppositesPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OclwithhiddenoppositesPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new OclwithhiddenoppositesPackageImpl());
+		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ExpressionsPackageImpl());
 
 		isInited = true;
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		UtilitiesPackageImpl theUtilitiesPackage = (UtilitiesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) instanceof UtilitiesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI) : UtilitiesPackage.eINSTANCE);
+
 		// Create package meta-data objects
-		theOclwithhiddenoppositesPackage.createPackageContents();
+		theExpressionsPackage.createPackageContents();
+		theUtilitiesPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theOclwithhiddenoppositesPackage.initializePackageContents();
+		theExpressionsPackage.initializePackageContents();
+		theUtilitiesPackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theExpressionsPackage, 
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return ExpressionsValidator.INSTANCE;
+				 }
+			 });
 
 		// Mark meta-data to indicate it can't be changed
-		theOclwithhiddenoppositesPackage.freeze();
+		theExpressionsPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(OclwithhiddenoppositesPackage.eNS_URI, theOclwithhiddenoppositesPackage);
-		return theOclwithhiddenoppositesPackage;
+		EPackage.Registry.INSTANCE.put(ExpressionsPackage.eNS_URI, theExpressionsPackage);
+		return theExpressionsPackage;
 	}
 
 	/**
@@ -131,17 +142,8 @@ public class OclwithhiddenoppositesPackageImpl extends EPackageImpl implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVisitorWithHiddenOpposite() {
-		return visitorWithHiddenOppositeEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OclwithhiddenoppositesFactory getOclwithhiddenoppositesFactory() {
-		return (OclwithhiddenoppositesFactory)getEFactoryInstance();
+	public ExpressionsFactory getExpressionsFactory() {
+		return (ExpressionsFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -165,8 +167,6 @@ public class OclwithhiddenoppositesPackageImpl extends EPackageImpl implements O
 		// Create classes and their features
 		oppositePropertyCallExpEClass = createEClass(OPPOSITE_PROPERTY_CALL_EXP);
 		createEReference(oppositePropertyCallExpEClass, OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY);
-
-		visitorWithHiddenOppositeEClass = createEClass(VISITOR_WITH_HIDDEN_OPPOSITE);
 	}
 
 	/**
@@ -195,49 +195,29 @@ public class OclwithhiddenoppositesPackageImpl extends EPackageImpl implements O
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
-		UtilitiesPackage theUtilitiesPackage = (UtilitiesPackage)EPackage.Registry.INSTANCE.getEPackage(UtilitiesPackage.eNS_URI);
 
 		// Create type parameters
-		addETypeParameter(visitorWithHiddenOppositeEClass, "T");
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
 		oppositePropertyCallExpEClass.getESuperTypes().add(theEcorePackage.getNavigationCallExp());
-		EGenericType g1 = createEGenericType(theUtilitiesPackage.getVisitor());
-		EGenericType g2 = createEGenericType(theEcorePackage_1.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage_1.getEClassifier());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage_1.getEOperation());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage_1.getEStructuralFeature());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage_1.getEEnumLiteral());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage_1.getEParameter());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage_1.getEObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage.getCallOperationAction());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage.getSendSignalAction());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(theEcorePackage.getConstraint());
-		g1.getETypeArguments().add(g2);
-		visitorWithHiddenOppositeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(oppositePropertyCallExpEClass, OppositePropertyCallExp.class, "OppositePropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOppositePropertyCallExp_ReferredOppositeProperty(), theEcorePackage_1.getEReference(), null, "referredOppositeProperty", null, 0, 1, OppositePropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(visitorWithHiddenOppositeEClass, VisitorWithHiddenOpposite.class, "VisitorWithHiddenOpposite", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		EOperation op = addEOperation(visitorWithHiddenOppositeEClass, theEcorePackage_1.getEJavaObject(), "visitOppositePropertyCallExp", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getOppositePropertyCallExp(), "callExp", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(oppositePropertyCallExpEClass, ecorePackage.getEBoolean(), "property_type", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
 	}
 
-} //OclwithhiddenoppositesPackageImpl
+} //ExpressionsPackageImpl

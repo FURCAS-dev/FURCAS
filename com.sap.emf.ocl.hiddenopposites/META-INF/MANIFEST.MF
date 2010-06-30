@@ -8,9 +8,13 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.emf.ocl.hiddenopposites,
- com.sap.emf.ocl.oclwithhiddenopposites,
- com.sap.emf.ocl.oclwithhiddenopposites.impl,
- com.sap.emf.ocl.oclwithhiddenopposites.util
+ com.sap.emf.ocl.oclwithhiddenopposites.expressions,
+ com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl,
+ com.sap.emf.ocl.oclwithhiddenopposites.expressions.util,
+ com.sap.emf.ocl.oclwithhiddenopposites.util,
+ com.sap.emf.ocl.oclwithhiddenopposites.utilities,
+ com.sap.emf.ocl.oclwithhiddenopposites.utilities.impl,
+ com.sap.emf.ocl.oclwithhiddenopposites.utilities.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,

@@ -4,18 +4,30 @@
  *
  * $Id$
  */
-package com.sap.emf.ocl.oclwithhiddenopposites.impl;
+package com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage;
-import com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
+
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.util.ExpressionsValidator;
+
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.util.EObjectValidator;
 
 import org.eclipse.ocl.ecore.impl.NavigationCallExpImpl;
 
@@ -26,7 +38,7 @@ import org.eclipse.ocl.ecore.impl.NavigationCallExpImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl#getReferredOppositeProperty <em>Referred Opposite Property</em>}</li>
+ *   <li>{@link com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl.OppositePropertyCallExpImpl#getReferredOppositeProperty <em>Referred Opposite Property</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,7 +71,7 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return OclwithhiddenoppositesPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP;
+		return ExpressionsPackage.Literals.OPPOSITE_PROPERTY_CALL_EXP;
 	}
 
 	/**
@@ -73,7 +85,7 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 			referredOppositeProperty = (EReference)eResolveProxy(oldReferredOppositeProperty);
 			if (referredOppositeProperty != oldReferredOppositeProperty) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OclwithhiddenoppositesPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY, oldReferredOppositeProperty, referredOppositeProperty));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY, oldReferredOppositeProperty, referredOppositeProperty));
 			}
 		}
 		return referredOppositeProperty;
@@ -97,7 +109,32 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 		EReference oldReferredOppositeProperty = referredOppositeProperty;
 		referredOppositeProperty = newReferredOppositeProperty;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclwithhiddenoppositesPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY, oldReferredOppositeProperty, referredOppositeProperty));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY, oldReferredOppositeProperty, referredOppositeProperty));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean property_type(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 ExpressionsValidator.DIAGNOSTIC_SOURCE,
+						 ExpressionsValidator.OPPOSITE_PROPERTY_CALL_EXP__PROPERTY_TYPE,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "property_type", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -108,7 +145,7 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case OclwithhiddenoppositesPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY:
+			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY:
 				if (resolve) return getReferredOppositeProperty();
 				return basicGetReferredOppositeProperty();
 		}
@@ -123,7 +160,7 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case OclwithhiddenoppositesPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY:
+			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY:
 				setReferredOppositeProperty((EReference)newValue);
 				return;
 		}
@@ -138,7 +175,7 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case OclwithhiddenoppositesPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY:
+			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY:
 				setReferredOppositeProperty((EReference)null);
 				return;
 		}
@@ -153,7 +190,7 @@ public class OppositePropertyCallExpImpl extends NavigationCallExpImpl implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case OclwithhiddenoppositesPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY:
+			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY:
 				return referredOppositeProperty != null;
 		}
 		return super.eIsSet(featureID);

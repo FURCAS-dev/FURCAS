@@ -25,7 +25,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 public class EvaluationVisitorWithHiddenOppositesImpl extends
 		EvaluationVisitorImpl<EPackage, EClassifier, EOperation, EStructuralFeature,
