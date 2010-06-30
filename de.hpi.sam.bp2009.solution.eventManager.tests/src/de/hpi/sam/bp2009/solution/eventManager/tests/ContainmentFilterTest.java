@@ -57,7 +57,7 @@ public class ContainmentFilterTest extends EventFilterTest {
         return (ContainmentFilter) fixture;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings("unchecked")
     @Override
     public void setUp() {
         super.setUp();

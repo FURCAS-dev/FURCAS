@@ -4,7 +4,7 @@
 package de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl;
 
 import java.util.HashMap;
-import java.util.Set;
+import java.util.LinkedList;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -77,7 +77,7 @@ public class SimpleResultPage extends WizardPage {
         for(Operator o:ops){
             ResultObject r = o.getResult();
             if (o instanceof OclOperatorImpl){
-                HashMap<Notification, Set<String>> affectedExprs = ((OclOperatorImpl)o).getAffectedExprs();
+                HashMap<Notification, LinkedList<String>> affectedExprs = ((OclOperatorImpl)o).getAffectedExprs();
                 for (Notification noti: affectedExprs.keySet()){
                     r.setMessage(r.getMessage()
                             + "\n" + affectedExprs.get(noti).size() 
