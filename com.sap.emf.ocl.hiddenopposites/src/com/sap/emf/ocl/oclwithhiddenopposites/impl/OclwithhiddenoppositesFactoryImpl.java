@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites.impl;
+package com.sap.emf.ocl.oclwithhiddenopposites.impl;
 
-import oclwithhiddenopposites.*;
+import com.sap.emf.ocl.oclwithhiddenopposites.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;

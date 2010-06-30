@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites.util;
+package com.sap.emf.ocl.oclwithhiddenopposites.util;
 
 import org.eclipse.emf.common.util.URI;
 
@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * <!-- begin-user-doc -->
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
- * @see oclwithhiddenopposites.util.OclwithhiddenoppositesResourceImpl
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.util.OclwithhiddenoppositesResourceImpl
  * @generated
  */
 public class OclwithhiddenoppositesResourceFactoryImpl extends ResourceFactoryImpl {

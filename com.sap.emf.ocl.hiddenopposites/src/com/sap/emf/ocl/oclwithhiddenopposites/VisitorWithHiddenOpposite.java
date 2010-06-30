@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites;
+package com.sap.emf.ocl.oclwithhiddenopposites;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnumLiteral;
@@ -25,7 +25,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * <!-- end-user-doc -->
  *
  *
- * @see oclwithhiddenopposites.OclwithhiddenoppositesPackage#getVisitorWithHiddenOpposite()
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage#getVisitorWithHiddenOpposite()
  * @model abstract="true" superTypes="org.eclipse.ocl.utilities.Visitor<org.eclipse.emf.ecore.EJavaObject, org.eclipse.emf.ecore.EClassifier, org.eclipse.emf.ecore.EOperation, org.eclipse.emf.ecore.EStructuralFeature, org.eclipse.emf.ecore.EEnumLiteral, org.eclipse.emf.ecore.EParameter, org.eclipse.emf.ecore.EObject, org.eclipse.ocl.ecore.CallOperationAction, org.eclipse.ocl.ecore.SendSignalAction, org.eclipse.ocl.ecore.Constraint>"
  * @generated
  */

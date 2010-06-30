@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites;
+package com.sap.emf.ocl.oclwithhiddenopposites;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -25,7 +25,7 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see oclwithhiddenopposites.OclwithhiddenoppositesFactory
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesFactory
  * @model kind="package"
  * @generated
  */
@@ -55,19 +55,27 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 	String eNS_PREFIX = "oclwithhiddenopposites";
 
 	/**
+	 * The package content type ID.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eCONTENT_TYPE = "com.sap.emf.ocl.hiddenopposites";
+
+	/**
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	OclwithhiddenoppositesPackage eINSTANCE = oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl.init();
+	OclwithhiddenoppositesPackage eINSTANCE = com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link oclwithhiddenopposites.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
+	 * The meta object id for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see oclwithhiddenopposites.impl.OppositePropertyCallExpImpl
-	 * @see oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getOppositePropertyCallExp()
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getOppositePropertyCallExp()
 	 * @generated
 	 */
 	int OPPOSITE_PROPERTY_CALL_EXP = 0;
@@ -253,11 +261,11 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 	int OPPOSITE_PROPERTY_CALL_EXP_FEATURE_COUNT = EcorePackage.NAVIGATION_CALL_EXP_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl <em>Visitor With Hidden Opposite</em>}' class.
+	 * The meta object id for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl <em>Visitor With Hidden Opposite</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl
-	 * @see oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getVisitorWithHiddenOpposite()
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getVisitorWithHiddenOpposite()
 	 * @generated
 	 */
 	int VISITOR_WITH_HIDDEN_OPPOSITE = 1;
@@ -273,32 +281,32 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link oclwithhiddenopposites.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
+	 * Returns the meta object for class '{@link com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Opposite Property Call Exp</em>'.
-	 * @see oclwithhiddenopposites.OppositePropertyCallExp
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp
 	 * @generated
 	 */
 	EClass getOppositePropertyCallExp();
 
 	/**
-	 * Returns the meta object for the reference '{@link oclwithhiddenopposites.OppositePropertyCallExp#getReferredOppositeProperty <em>Referred Opposite Property</em>}'.
+	 * Returns the meta object for the reference '{@link com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp#getReferredOppositeProperty <em>Referred Opposite Property</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Referred Opposite Property</em>'.
-	 * @see oclwithhiddenopposites.OppositePropertyCallExp#getReferredOppositeProperty()
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp#getReferredOppositeProperty()
 	 * @see #getOppositePropertyCallExp()
 	 * @generated
 	 */
 	EReference getOppositePropertyCallExp_ReferredOppositeProperty();
 
 	/**
-	 * Returns the meta object for class '{@link oclwithhiddenopposites.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
+	 * Returns the meta object for class '{@link com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Visitor With Hidden Opposite</em>'.
-	 * @see oclwithhiddenopposites.VisitorWithHiddenOpposite
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite
 	 * @generated
 	 */
 	EClass getVisitorWithHiddenOpposite();
@@ -326,11 +334,11 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link oclwithhiddenopposites.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
+		 * The meta object literal for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl <em>Opposite Property Call Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see oclwithhiddenopposites.impl.OppositePropertyCallExpImpl
-		 * @see oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getOppositePropertyCallExp()
+		 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl
+		 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getOppositePropertyCallExp()
 		 * @generated
 		 */
 		EClass OPPOSITE_PROPERTY_CALL_EXP = eINSTANCE.getOppositePropertyCallExp();
@@ -344,11 +352,11 @@ public interface OclwithhiddenoppositesPackage extends EPackage {
 		EReference OPPOSITE_PROPERTY_CALL_EXP__REFERRED_OPPOSITE_PROPERTY = eINSTANCE.getOppositePropertyCallExp_ReferredOppositeProperty();
 
 		/**
-		 * The meta object literal for the '{@link oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl <em>Visitor With Hidden Opposite</em>}' class.
+		 * The meta object literal for the '{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl <em>Visitor With Hidden Opposite</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl
-		 * @see oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getVisitorWithHiddenOpposite()
+		 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.VisitorWithHiddenOppositeImpl
+		 * @see com.sap.emf.ocl.oclwithhiddenopposites.impl.OclwithhiddenoppositesPackageImpl#getVisitorWithHiddenOpposite()
 		 * @generated
 		 */
 		EClass VISITOR_WITH_HIDDEN_OPPOSITE = eINSTANCE.getVisitorWithHiddenOpposite();
