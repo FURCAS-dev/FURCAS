@@ -13,10 +13,11 @@ public class EvaluationEnvironmentWithHiddenOppositesImpl extends
 		EcoreEvaluationEnvironment implements
 		EvaluationEnvironmentWithHiddenOpposites {
 
-	private OppositeEndFinder oppositeEndFinder;
+	private final OppositeEndFinder oppositeEndFinder;
 
-	public EvaluationEnvironmentWithHiddenOppositesImpl() {
+	public EvaluationEnvironmentWithHiddenOppositesImpl(OppositeEndFinder oppositeEndFinder) {
 		super();
+		this.oppositeEndFinder = oppositeEndFinder;
 	}
 
 	public EvaluationEnvironmentWithHiddenOppositesImpl(

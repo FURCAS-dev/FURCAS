@@ -6,7 +6,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
@@ -16,6 +15,7 @@ import org.eclipse.ocl.helper.ConstraintKind;
 
 public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	private final OCL.Helper delegate;
+	private SyntaxHelperWithHiddenOpposites syntaxHelper;
 	
 	public OCLHelperWithOppositesImpl(OCL.Helper standardOCLHelper) {
 		this.delegate = standardOCLHelper;
@@ -25,8 +25,8 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
         return (OCL) delegate.getOCL();
     }
     
-    public Environment<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, ?, ?> getEnvironment() {
-        return delegate.getEnvironment();
+    public EcoreEnvironmentWithHiddenOpposites getEnvironment() {
+        return (EcoreEnvironmentWithHiddenOpposites) delegate.getEnvironment();
     }
     
     public Constraint createConstraint(ConstraintKind kind, String expression)
@@ -92,8 +92,22 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
     }
 
     public List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt) {
-        return delegate.getSyntaxHelp(constraintType, txt);
+    	return new SyntaxHelperWithHiddenOpposites(getEnvironment()).getSyntaxHelp(constraintType, txt);
     }
+    
+	/**
+	 * returns the ocl syntax helper object
+	 * 
+	 * @return OCLSyntaxHelper
+	 */
+	protected SyntaxHelperWithHiddenOpposites createSyntaxHelper() {
+		if (syntaxHelper == null) {
+			syntaxHelper = new SyntaxHelperWithHiddenOpposites(getEnvironment());
+		}
+		return syntaxHelper;
+	}
+	
+
 
     public boolean isValidating() {
         return delegate.isValidating();

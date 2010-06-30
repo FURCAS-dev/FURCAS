@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
@@ -24,13 +23,12 @@ public class OCLWithHiddenOpposites extends OCL {
 	}
 
 	protected OCLWithHiddenOpposites(
-			EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> envFactory,
+			EcoreEnvironmentFactoryWithHiddenOpposites envFactory,
 			Resource resource) {
 		super(envFactory, resource);
 	}
 
-	protected OCLWithHiddenOpposites(
-			EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> envFactory) {
+	protected OCLWithHiddenOpposites(EcoreEnvironmentFactoryWithHiddenOpposites envFactory) {
 		super(envFactory);
 	}
 
