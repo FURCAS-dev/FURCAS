@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package com.sap.emf.ocl.oclwithhiddenopposites.util;
+package com.sap.emf.ocl.oclwithhiddenopposites.utilities.util;
 
 import org.eclipse.emf.common.util.URI;
 
@@ -18,17 +18,17 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * <!-- begin-user-doc -->
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
- * @see com.sap.emf.ocl.oclwithhiddenopposites.util.OclwithhiddenoppositesResourceImpl
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.utilities.util.UtilitiesResourceImpl
  * @generated
  */
-public class OclwithhiddenoppositesResourceFactoryImpl extends ResourceFactoryImpl {
+public class UtilitiesResourceFactoryImpl extends ResourceFactoryImpl {
 	/**
 	 * Creates an instance of the resource factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclwithhiddenoppositesResourceFactoryImpl() {
+	public UtilitiesResourceFactoryImpl() {
 		super();
 	}
 
@@ -40,7 +40,7 @@ public class OclwithhiddenoppositesResourceFactoryImpl extends ResourceFactoryIm
 	 */
 	@Override
 	public Resource createResource(URI uri) {
-		XMLResource result = new OclwithhiddenoppositesResourceImpl(uri);
+		XMLResource result = new UtilitiesResourceImpl(uri);
 		result.getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 		result.getDefaultLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 
@@ -53,4 +53,4 @@ public class OclwithhiddenoppositesResourceFactoryImpl extends ResourceFactoryIm
 		return result;
 	}
 
-} //OclwithhiddenoppositesResourceFactoryImpl
+} //UtilitiesResourceFactoryImpl

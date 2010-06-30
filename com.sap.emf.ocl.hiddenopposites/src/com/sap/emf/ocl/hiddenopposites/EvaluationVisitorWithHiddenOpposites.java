@@ -13,7 +13,7 @@ import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.SendSignalAction;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite;
+import com.sap.emf.ocl.oclwithhiddenopposites.utilities.VisitorWithHiddenOpposite;
 
 public interface EvaluationVisitorWithHiddenOpposites extends
 		EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,

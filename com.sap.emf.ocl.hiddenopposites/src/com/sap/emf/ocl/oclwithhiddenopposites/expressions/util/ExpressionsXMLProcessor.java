@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package com.sap.emf.ocl.oclwithhiddenopposites.util;
+package com.sap.emf.ocl.oclwithhiddenopposites.expressions.util;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
 
 import java.util.Map;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OclwithhiddenoppositesXMLProcessor extends XMLProcessor {
+public class ExpressionsXMLProcessor extends XMLProcessor {
 
 	/**
 	 * Public constructor to instantiate the helper.
@@ -30,13 +30,13 @@ public class OclwithhiddenoppositesXMLProcessor extends XMLProcessor {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclwithhiddenoppositesXMLProcessor() {
+	public ExpressionsXMLProcessor() {
 		super((EPackage.Registry.INSTANCE));
-		OclwithhiddenoppositesPackage.eINSTANCE.eClass();
+		ExpressionsPackage.eINSTANCE.eClass();
 	}
 	
 	/**
-	 * Register for "*" and "xml" file extensions the OclwithhiddenoppositesResourceFactoryImpl factory.
+	 * Register for "*" and "xml" file extensions the ExpressionsResourceFactoryImpl factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -45,10 +45,10 @@ public class OclwithhiddenoppositesXMLProcessor extends XMLProcessor {
 	protected Map<String, Resource.Factory> getRegistrations() {
 		if (registrations == null) {
 			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new OclwithhiddenoppositesResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new OclwithhiddenoppositesResourceFactoryImpl());
+			registrations.put(XML_EXTENSION, new ExpressionsResourceFactoryImpl());
+			registrations.put(STAR_EXTENSION, new ExpressionsResourceFactoryImpl());
 		}
 		return registrations;
 	}
 
-} //OclwithhiddenoppositesXMLProcessor
+} //ExpressionsXMLProcessor

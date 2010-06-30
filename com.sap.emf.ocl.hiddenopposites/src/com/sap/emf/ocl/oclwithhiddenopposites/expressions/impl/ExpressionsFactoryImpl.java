@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package com.sap.emf.ocl.oclwithhiddenopposites.impl;
+package com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.*;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -22,24 +22,24 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public class OclwithhiddenoppositesFactoryImpl extends EFactoryImpl implements OclwithhiddenoppositesFactory {
+public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static OclwithhiddenoppositesFactory init() {
+	public static ExpressionsFactory init() {
 		try {
-			OclwithhiddenoppositesFactory theOclwithhiddenoppositesFactory = (OclwithhiddenoppositesFactory)EPackage.Registry.INSTANCE.getEFactory("http://oclwithhiddenopposites/1.0"); 
-			if (theOclwithhiddenoppositesFactory != null) {
-				return theOclwithhiddenoppositesFactory;
+			ExpressionsFactory theExpressionsFactory = (ExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.sap.com/emf/oppositepropertycallexp"); 
+			if (theExpressionsFactory != null) {
+				return theExpressionsFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new OclwithhiddenoppositesFactoryImpl();
+		return new ExpressionsFactoryImpl();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class OclwithhiddenoppositesFactoryImpl extends EFactoryImpl implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclwithhiddenoppositesFactoryImpl() {
+	public ExpressionsFactoryImpl() {
 		super();
 	}
 
@@ -60,7 +60,7 @@ public class OclwithhiddenoppositesFactoryImpl extends EFactoryImpl implements O
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case OclwithhiddenoppositesPackage.OPPOSITE_PROPERTY_CALL_EXP: return createOppositePropertyCallExp();
+			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP: return createOppositePropertyCallExp();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -81,8 +81,8 @@ public class OclwithhiddenoppositesFactoryImpl extends EFactoryImpl implements O
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclwithhiddenoppositesPackage getOclwithhiddenoppositesPackage() {
-		return (OclwithhiddenoppositesPackage)getEPackage();
+	public ExpressionsPackage getExpressionsPackage() {
+		return (ExpressionsPackage)getEPackage();
 	}
 
 	/**
@@ -92,8 +92,8 @@ public class OclwithhiddenoppositesFactoryImpl extends EFactoryImpl implements O
 	 * @generated
 	 */
 	@Deprecated
-	public static OclwithhiddenoppositesPackage getPackage() {
-		return OclwithhiddenoppositesPackage.eINSTANCE;
+	public static ExpressionsPackage getPackage() {
+		return ExpressionsPackage.eINSTANCE;
 	}
 
-} //OclwithhiddenoppositesFactoryImpl
+} //ExpressionsFactoryImpl

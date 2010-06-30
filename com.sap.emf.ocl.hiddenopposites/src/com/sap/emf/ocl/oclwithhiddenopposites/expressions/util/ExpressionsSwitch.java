@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package com.sap.emf.ocl.oclwithhiddenopposites.util;
+package com.sap.emf.ocl.oclwithhiddenopposites.expressions.util;
 
-import com.sap.emf.ocl.oclwithhiddenopposites.*;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.*;
 
 import java.util.List;
 
@@ -25,7 +25,6 @@ import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.Visitable;
-import org.eclipse.ocl.utilities.Visitor;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,17 +36,17 @@ import org.eclipse.ocl.utilities.Visitor;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage
  * @generated
  */
-public class OclwithhiddenoppositesSwitch<T1> {
+public class ExpressionsSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static OclwithhiddenoppositesPackage modelPackage;
+	protected static ExpressionsPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -55,9 +54,9 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclwithhiddenoppositesSwitch() {
+	public ExpressionsSwitch() {
 		if (modelPackage == null) {
-			modelPackage = OclwithhiddenoppositesPackage.eINSTANCE;
+			modelPackage = ExpressionsPackage.eINSTANCE;
 		}
 	}
 
@@ -68,7 +67,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public T1 doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject) {
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -79,7 +78,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T1 doSwitch(EClass theEClass, EObject theEObject) {
+	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
@@ -99,11 +98,11 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T1 doSwitch(int classifierID, EObject theEObject) {
+	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case OclwithhiddenoppositesPackage.OPPOSITE_PROPERTY_CALL_EXP: {
+			case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP: {
 				OppositePropertyCallExp oppositePropertyCallExp = (OppositePropertyCallExp)theEObject;
-				T1 result = caseOppositePropertyCallExp(oppositePropertyCallExp);
+				T result = caseOppositePropertyCallExp(oppositePropertyCallExp);
 				if (result == null) result = caseEcore_NavigationCallExp(oppositePropertyCallExp);
 				if (result == null) result = caseEcore_FeatureCallExp(oppositePropertyCallExp);
 				if (result == null) result = caseNavigationCallExp(oppositePropertyCallExp);
@@ -122,13 +121,6 @@ public class OclwithhiddenoppositesSwitch<T1> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OclwithhiddenoppositesPackage.VISITOR_WITH_HIDDEN_OPPOSITE: {
-				VisitorWithHiddenOpposite<?> visitorWithHiddenOpposite = (VisitorWithHiddenOpposite<?>)theEObject;
-				T1 result = caseVisitorWithHiddenOpposite(visitorWithHiddenOpposite);
-				if (result == null) result = caseVisitor(visitorWithHiddenOpposite);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -144,22 +136,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseOppositePropertyCallExp(OppositePropertyCallExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Visitor With Hidden Opposite</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Visitor With Hidden Opposite</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T> T1 caseVisitorWithHiddenOpposite(VisitorWithHiddenOpposite<T> object) {
+	public T caseOppositePropertyCallExp(OppositePropertyCallExp object) {
 		return null;
 	}
 
@@ -174,7 +151,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseEModelElement(EModelElement object) {
+	public T caseEModelElement(EModelElement object) {
 		return null;
 	}
 
@@ -189,7 +166,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseENamedElement(ENamedElement object) {
+	public T caseENamedElement(ENamedElement object) {
 		return null;
 	}
 
@@ -204,7 +181,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseETypedElement(ETypedElement object) {
+	public T caseETypedElement(ETypedElement object) {
 		return null;
 	}
 
@@ -219,7 +196,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T1 caseTypedElement(TypedElement<C> object) {
+	public <C> T caseTypedElement(TypedElement<C> object) {
 		return null;
 	}
 
@@ -234,7 +211,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseVisitable(Visitable object) {
+	public T caseVisitable(Visitable object) {
 		return null;
 	}
 
@@ -249,7 +226,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseASTNode(ASTNode object) {
+	public T caseASTNode(ASTNode object) {
 		return null;
 	}
 
@@ -264,7 +241,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T1 caseOCLExpression(OCLExpression<C> object) {
+	public <C> T caseOCLExpression(OCLExpression<C> object) {
 		return null;
 	}
 
@@ -279,7 +256,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseEcore_OCLExpression(org.eclipse.ocl.ecore.OCLExpression object) {
+	public T caseEcore_OCLExpression(org.eclipse.ocl.ecore.OCLExpression object) {
 		return null;
 	}
 
@@ -294,7 +271,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseCallingASTNode(CallingASTNode object) {
+	public T caseCallingASTNode(CallingASTNode object) {
 		return null;
 	}
 
@@ -309,7 +286,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T1 caseCallExp(CallExp<C> object) {
+	public <C> T caseCallExp(CallExp<C> object) {
 		return null;
 	}
 
@@ -324,7 +301,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseEcore_CallExp(org.eclipse.ocl.ecore.CallExp object) {
+	public T caseEcore_CallExp(org.eclipse.ocl.ecore.CallExp object) {
 		return null;
 	}
 
@@ -339,7 +316,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C> T1 caseFeatureCallExp(FeatureCallExp<C> object) {
+	public <C> T caseFeatureCallExp(FeatureCallExp<C> object) {
 		return null;
 	}
 
@@ -354,7 +331,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseEcore_FeatureCallExp(org.eclipse.ocl.ecore.FeatureCallExp object) {
+	public T caseEcore_FeatureCallExp(org.eclipse.ocl.ecore.FeatureCallExp object) {
 		return null;
 	}
 
@@ -369,7 +346,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public <C, P> T1 caseNavigationCallExp(NavigationCallExp<C, P> object) {
+	public <C, P> T caseNavigationCallExp(NavigationCallExp<C, P> object) {
 		return null;
 	}
 
@@ -384,22 +361,7 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T1 caseEcore_NavigationCallExp(org.eclipse.ocl.ecore.NavigationCallExp object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Visitor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Visitor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public <T, C, O, P, EL, PM, S, COA, SSA, CT> T1 caseVisitor(Visitor<T, C, O, P, EL, PM, S, COA, SSA, CT> object) {
+	public T caseEcore_NavigationCallExp(org.eclipse.ocl.ecore.NavigationCallExp object) {
 		return null;
 	}
 
@@ -414,8 +376,8 @@ public class OclwithhiddenoppositesSwitch<T1> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public T1 defaultCase(EObject object) {
+	public T defaultCase(EObject object) {
 		return null;
 	}
 
-} //OclwithhiddenoppositesSwitch
+} //ExpressionsSwitch

@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package com.sap.emf.ocl.oclwithhiddenopposites.util;
+package com.sap.emf.ocl.oclwithhiddenopposites.expressions.util;
 
 import org.eclipse.emf.common.util.URI;
 
@@ -14,10 +14,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * @see com.sap.emf.ocl.oclwithhiddenopposites.util.OclwithhiddenoppositesResourceFactoryImpl
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.expressions.util.ExpressionsResourceFactoryImpl
  * @generated
  */
-public class OclwithhiddenoppositesResourceImpl extends XMLResourceImpl {
+public class ExpressionsResourceImpl extends XMLResourceImpl {
 	/**
 	 * Creates an instance of the resource.
 	 * <!-- begin-user-doc -->
@@ -25,8 +25,8 @@ public class OclwithhiddenoppositesResourceImpl extends XMLResourceImpl {
 	 * @param uri the URI of the new resource.
 	 * @generated
 	 */
-	public OclwithhiddenoppositesResourceImpl(URI uri) {
+	public ExpressionsResourceImpl(URI uri) {
 		super(uri);
 	}
 
-} //OclwithhiddenoppositesResourceImpl
+} //ExpressionsResourceImpl
