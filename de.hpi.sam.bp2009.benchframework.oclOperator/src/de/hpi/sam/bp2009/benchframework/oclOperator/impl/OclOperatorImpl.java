@@ -85,7 +85,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 
     private static final String NAME = "Ocl Operator";
     private static final String DESCRIPTION = "Evaluates a specific ocl expression";
-    private HashMap<Notification, Set<String>> affectedExprs = new HashMap<Notification, Set<String>>();
+    private HashMap<Notification, LinkedList<String>> affectedExprs = new HashMap<Notification, LinkedList<String>>();
 
     public static HashMap<String, List<Constraint>> stringToConstraints = new HashMap<String, List<Constraint>>();
     private ResourceSet res;
@@ -570,7 +570,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
     public void registerQueriesIA(ResourceSet resourceSet, OclOptionObject option) {        
         assert(resourceSet!=null);
         this.res = resourceSet;
-        this.affectedExprs = new HashMap<Notification, Set<String>>();
+        this.affectedExprs = new HashMap<Notification, LinkedList<String>>();
         final Map<String, ExpressionWithContext> allConstraints= new HashMap<String, ExpressionWithContext>();
         EAnnotationOCLParser oclParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
         TreeIterator<EObject> ti = resourceSet.getResources().get(0).getAllContents();
@@ -679,7 +679,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
                             getAffectedExprs().get(msg).add(entry.getValue().toString());
                         }
                         else {
-                            HashSet<String> expSet = new HashSet<String>();
+                            LinkedList<String> expSet = new LinkedList<String>();
                             expSet.add(entry.getValue().toString());
                             getAffectedExprs().put(msg, expSet);
                           //evaluate all queries without IA to calculate time savings using IA
@@ -759,7 +759,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         return allInstances;
     }
 
-    public HashMap<Notification, Set<String>> getAffectedExprs() {
+    public HashMap<Notification, LinkedList<String>> getAffectedExprs() {
         return affectedExprs;
     }
 

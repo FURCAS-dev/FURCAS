@@ -380,6 +380,7 @@ public class OclToMqlUtilImpl extends EObjectImpl implements OclToMqlUtil {
      * @throws InvocationTargetException
      * @throws NoSuchMethodException
      */
+    @SuppressWarnings("unused")
     private static EClass getEClassForContext(String queryContext, EObject packageInstance){
         EClass eclass=null;
         try {

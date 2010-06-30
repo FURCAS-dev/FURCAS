@@ -49,7 +49,7 @@ public class Query2  {
  * @param mapev is the Mapping Evaluation Visitor, needed to instantiate a second Visitor to map the expression
  * @return result
  */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SuppressWarnings("unchecked")
     public static Object buildMqlQuery(Set<EObject> allO,  Object ocType, OCLExpression body, IteratorExp ie, MappingEvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> mapev){
         Object result = null;
         MqlMapperToString<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> mmts ;

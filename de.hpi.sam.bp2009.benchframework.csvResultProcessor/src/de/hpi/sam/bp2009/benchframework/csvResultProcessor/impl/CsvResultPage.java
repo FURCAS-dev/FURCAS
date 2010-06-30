@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Set;
+import java.util.LinkedList;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -127,7 +127,7 @@ public class CsvResultPage extends WizardPage {
                         for (Operator op : ops) {
                             ResultObject r = op.getResult();
                             if (op instanceof OclOperatorImpl){
-                                HashMap<Notification, Set<String>> affectedExprs = ((OclOperatorImpl)op).getAffectedExprs();
+                                HashMap<Notification, LinkedList<String>> affectedExprs = ((OclOperatorImpl)op).getAffectedExprs();
                                 for (Notification noti: affectedExprs.keySet()){
                                     String no = noti.toString();
                                     no = no.replace("eventType", " , eventType");

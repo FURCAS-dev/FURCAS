@@ -35,7 +35,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
@@ -200,7 +200,7 @@ implements OperationBodyToCallMapper {
      * @return a filter containing a element creation or deletion filter for all sub types of the given class
      */
     private EventFilter createFilterForElementInsertionOrDeletion(EClass clazz) {
-        LogicalOperationFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
+        OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
         for(EClass cls: EcoreHelper.getInstance().getAllSubclasses(clazz)){
             orFilter.getOperands().add(EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(cls));           
         }
