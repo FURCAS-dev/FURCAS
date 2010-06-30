@@ -1,7 +1,5 @@
 package com.sap.emf.ocl.hiddenopposites;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -28,8 +26,7 @@ public class EvaluationEnvironmentWithHiddenOppositesImpl extends
 	}
 
     @Override
-	public Object navigateOppositeProperty(EStructuralFeature property,
-			List<?> qualifiers, Object target) throws IllegalArgumentException {
+	public Object navigateOppositeProperty(EStructuralFeature property, Object target) throws IllegalArgumentException {
     	Object result;
     	if (property instanceof EReference && ((EReference) property).isContainment()) {
     		result = ((EObject) target).eContainer();
