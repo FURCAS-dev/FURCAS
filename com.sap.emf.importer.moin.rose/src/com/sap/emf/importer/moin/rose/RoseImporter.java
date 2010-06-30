@@ -76,7 +76,7 @@ public class RoseImporter extends ModelImporter
   @Override
   public String getID()
   {
-    return "org.eclipse.emf.importer.rose";
+    return "org.eclipse.emf.importer.moin.rose";
   }
 
   public Map<String, String> getPathMap()
