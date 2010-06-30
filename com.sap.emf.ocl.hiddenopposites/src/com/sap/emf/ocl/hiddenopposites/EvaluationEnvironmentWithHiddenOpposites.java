@@ -2,6 +2,9 @@ package com.sap.emf.ocl.hiddenopposites;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.AbstractEvaluationEnvironment;
+
 
 /**
  * Introduces the {@link #navigateOppositeProperty(P, List, Object)} method to
@@ -10,7 +13,7 @@ import java.util.List;
  * @author Axel Uhl
  *
  */
-public interface EvaluationEnvironmentWithHiddenOpposites<P> {
+public interface EvaluationEnvironmentWithHiddenOpposites {
     /**
      * Obtains the value of the specified operation, for the given source element,
      * according to the particular metamodel semantics.
@@ -25,7 +28,7 @@ public interface EvaluationEnvironmentWithHiddenOpposites<P> {
      *     element or by this environment
      * @since 3.0
      */
-    Object navigateOppositeProperty(P property, List<?> qualifiers, Object source)
+    Object navigateOppositeProperty(EStructuralFeature property, List<?> qualifiers, Object source)
     	throws IllegalArgumentException;
 
 }
