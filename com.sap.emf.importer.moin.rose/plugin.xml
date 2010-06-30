@@ -11,10 +11,6 @@
     <modelImporterDescriptor id="com.sap.emf.importer.moin.rose" name="%_UI_RoseModelImporter_label" icon="icons/full/obj16/RoseModelFile.gif" extensions="mdl" description="%_UI_RoseModelImporter_description" wizard="com.sap.emf.importer.moin.rose.ui.RoseImporterWizard" />
   </extension>
 
-  <extension point="org.eclipse.ant.core.extraClasspathEntries">
-    <extraClasspathEntry library="ant_tasks/importer.rose.tasks.jar" />
-  </extension>
-
   <extension point="org.eclipse.team.core.fileTypes">
     <fileTypes extension="mdl" type="text" />
     <fileTypes extension="cat" type="text" />
