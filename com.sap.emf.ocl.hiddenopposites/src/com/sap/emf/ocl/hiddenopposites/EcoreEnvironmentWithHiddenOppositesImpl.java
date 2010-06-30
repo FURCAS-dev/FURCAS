@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.AmbiguousLookupException;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.EnvironmentFactory;
 import org.eclipse.ocl.LookupException;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
@@ -40,7 +41,7 @@ import org.eclipse.ocl.types.PrimitiveType;
 public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 		implements EcoreEnvironmentWithHiddenOpposites {
 
-	private OppositeEndFinder oppositeEndFinder;
+	private final OppositeEndFinder oppositeEndFinder;
 
 	/**
 	 * The variables added using {@link #addElement(String, org.eclipse.ocl.expressions.Variable, boolean)}
@@ -50,18 +51,9 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 		new ArrayList<org.eclipse.ocl.expressions.Variable<EClassifier, EParameter>>();
 
 	protected EcoreEnvironmentWithHiddenOppositesImpl(
-			org.eclipse.emf.ecore.EPackage.Registry reg, Resource resource) {
-		super(reg, resource);
-	}
-
-	protected EcoreEnvironmentWithHiddenOppositesImpl(
-			org.eclipse.emf.ecore.EPackage.Registry reg) {
-		super(reg);
-	}
-
-	protected EcoreEnvironmentWithHiddenOppositesImpl(
 			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 		super(parent);
+		oppositeEndFinder = ((EcoreEnvironmentWithHiddenOppositesImpl) parent).oppositeEndFinder;
 	}
 
 	protected EcoreEnvironmentWithHiddenOppositesImpl(EPackage.Registry registry, OppositeEndFinder oppositeEndFinder) {
@@ -69,7 +61,12 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 		this.oppositeEndFinder = oppositeEndFinder;
 	}
 
-    /**
+	protected EcoreEnvironmentWithHiddenOppositesImpl(EPackage.Registry registry, Resource resource, OppositeEndFinder oppositeEndFinder) {
+		super(registry, resource);
+		this.oppositeEndFinder = oppositeEndFinder;
+	}
+
+	/**
      * Looks up a non-navigable association end on behalf of
      * the specified <code>owner</code> classifier (which is at that end).
      * 
@@ -334,5 +331,15 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 		if (oppositeEndFinder != null) {
 			oppositeEndFinder.findOppositeEnds(classifier, name, ends);
 		}
+	}
+	
+	// make visible in this package
+	@Override
+	protected void setFactory(EnvironmentFactory<
+			EPackage, EClassifier, EOperation, EStructuralFeature,
+			EEnumLiteral, EParameter,
+			EObject, CallOperationAction, SendSignalAction, Constraint,
+			EClass, EObject> factory) {
+		super.setFactory(factory);
 	}
 }

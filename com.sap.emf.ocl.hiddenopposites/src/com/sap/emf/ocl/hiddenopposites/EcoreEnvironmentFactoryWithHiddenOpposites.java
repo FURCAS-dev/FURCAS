@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
@@ -21,6 +22,8 @@ import org.eclipse.ocl.ecore.SendSignalAction;
 
 public class EcoreEnvironmentFactoryWithHiddenOpposites extends
 		EcoreEnvironmentFactory {
+
+	private OppositeEndFinder oppositeEndFinder;
 
 	@Override
 	public EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEvaluationVisitor(
@@ -36,30 +39,85 @@ public class EcoreEnvironmentFactoryWithHiddenOpposites extends
         return result;
 	}
 
-	@Override
-	public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEnvironment() {
-		// TODO Auto-generated method stub
-		return super.createEnvironment();
+	/**
+	 * Initializes me.  Environments that I create will use the global package
+     * registry to look up packages.
+	 */
+	public EcoreEnvironmentFactoryWithHiddenOpposites() {
+		this(EPackage.Registry.INSTANCE);
 	}
-
-	@Override
-	public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEnvironment(
-			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
-		// TODO Auto-generated method stub
-		return super.createEnvironment(parent);
+	
+	/**
+	 * Initializes me.  Environments that I create will use the global package
+     * registry to look up packages and the <code>oppositeEndFinder</code>
+     * specified to lookup up and navigate hidden opposites on references based on
+     * annotations.
+	 */
+	public EcoreEnvironmentFactoryWithHiddenOpposites(OppositeEndFinder oppositeEndFinder) {
+		this(EPackage.Registry.INSTANCE, oppositeEndFinder);
 	}
-
+	
+	/**
+	 * Initializes me with an <code>EPackage.Registry</code> that the
+     * environments I create will use to look up packages. As a finder for
+     * "hidden opposites" based on name annotations on the forward references
+     * for the non-existing opposite's name a <code>DefaultOppositeEndFinder</code>
+     * will be used. To not look for those annotations at all, use
+     * {@link #EcoreEnvironmentFactory(org.eclipse.emf.ecore.EPackage.Registry, OppositeEndFinder)}
+     * and pass <code>null</code> for the <code>OppositeEndFinder</code> argument.
+     * 
+     * @param reg my package registry (must not be <code>null</code>)
+	 */
+	public EcoreEnvironmentFactoryWithHiddenOpposites(EPackage.Registry reg) {
+		this(reg, new DefaultOppositeEndFinder(reg));
+	}
+	
+	/**
+	 * Initializes me with an <code>EPackage.Registry</code> that the
+     * environments I create will use to look up packages, and with an
+     * <code>OppositeEndFinder</code> that the environments I create
+     * will use to construct and evaluate <code>OppositePropertyCallExp</code>
+     * expressions based on name annotations on the forward references.
+     * 
+     * @param reg my package registry (must not be <code>null</code>)
+     * @param finder for opposite ends; may be <code>null</code> which means that
+     * no <code>OppositePropertyCallExp</code> expressions will be synthesized because
+     * no lookups can/will be performed for them. To use a default finder, use
+     * {@link #EcoreEnvironmentFactory(org.eclipse.emf.ecore.EPackage.Registry)} or
+     * {@link #EcoreEnvironmentFactory()}.
+	 */
+	public EcoreEnvironmentFactoryWithHiddenOpposites(EPackage.Registry reg, OppositeEndFinder oppositeEndFinder) {
+		super(reg);
+		this.oppositeEndFinder = oppositeEndFinder;
+	}
+	
+    // implements the inherited specification
+	@Override
+    public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
+	createEnvironment() {
+		EcoreEnvironmentWithHiddenOppositesImpl result = new EcoreEnvironmentWithHiddenOppositesImpl(getEPackageRegistry(), oppositeEndFinder);
+		result.setFactory(this);
+		return result;
+	}
+	
+    // implements the inherited specification
+	@Override
+    public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
+	loadEnvironment(Resource resource) {
+		EcoreEnvironmentWithHiddenOppositesImpl result = new EcoreEnvironmentWithHiddenOppositesImpl(getEPackageRegistry(), resource, oppositeEndFinder);
+		result.setFactory(this);
+		return result;
+	}
+	
 	@Override
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
-		// TODO Auto-generated method stub
-		return super.createEvaluationEnvironment();
+		return new EvaluationEnvironmentWithHiddenOppositesImpl(oppositeEndFinder);
 	}
 
 	@Override
 	public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment(
 			EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> parent) {
-		// TODO Auto-generated method stub
-		return super.createEvaluationEnvironment(parent);
+		return new EvaluationEnvironmentWithHiddenOppositesImpl(parent);
 	}
 
 }
