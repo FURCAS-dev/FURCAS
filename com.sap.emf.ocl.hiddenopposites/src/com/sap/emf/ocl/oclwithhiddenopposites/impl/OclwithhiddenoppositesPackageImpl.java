@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites.impl;
+package com.sap.emf.ocl.oclwithhiddenopposites.impl;
 
-import oclwithhiddenopposites.OclwithhiddenoppositesFactory;
-import oclwithhiddenopposites.OclwithhiddenoppositesPackage;
-import oclwithhiddenopposites.OppositePropertyCallExp;
-import oclwithhiddenopposites.VisitorWithHiddenOpposite;
+import com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesFactory;
+import com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage;
+import com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp;
+import com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
@@ -55,7 +55,7 @@ public class OclwithhiddenoppositesPackageImpl extends EPackageImpl implements O
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see oclwithhiddenopposites.OclwithhiddenoppositesPackage#eNS_URI
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

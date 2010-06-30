@@ -4,11 +4,11 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites.util;
+package com.sap.emf.ocl.oclwithhiddenopposites.util;
+
+import com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage;
 
 import java.util.Map;
-
-import oclwithhiddenopposites.OclwithhiddenoppositesPackage;
 
 import org.eclipse.emf.ecore.EPackage;
 

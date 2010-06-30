@@ -4,11 +4,11 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites.impl;
+package com.sap.emf.ocl.oclwithhiddenopposites.impl;
 
-import oclwithhiddenopposites.OclwithhiddenoppositesPackage;
-import oclwithhiddenopposites.OppositePropertyCallExp;
-import oclwithhiddenopposites.VisitorWithHiddenOpposite;
+import com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage;
+import com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp;
+import com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;

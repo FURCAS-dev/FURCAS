@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites.util;
+package com.sap.emf.ocl.oclwithhiddenopposites.util;
 
-import oclwithhiddenopposites.*;
+import com.sap.emf.ocl.oclwithhiddenopposites.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -34,7 +34,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see oclwithhiddenopposites.OclwithhiddenoppositesPackage
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage
  * @generated
  */
 public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
@@ -178,13 +178,13 @@ public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link oclwithhiddenopposites.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp <em>Opposite Property Call Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see oclwithhiddenopposites.OppositePropertyCallExp
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp
 	 * @generated
 	 */
 	public Adapter createOppositePropertyCallExpAdapter() {
@@ -192,13 +192,13 @@ public class OclwithhiddenoppositesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link oclwithhiddenopposites.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite <em>Visitor With Hidden Opposite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see oclwithhiddenopposites.VisitorWithHiddenOpposite
+	 * @see com.sap.emf.ocl.oclwithhiddenopposites.VisitorWithHiddenOpposite
 	 * @generated
 	 */
 	public Adapter createVisitorWithHiddenOppositeAdapter() {

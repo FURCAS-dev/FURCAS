@@ -4,11 +4,11 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites.util;
+package com.sap.emf.ocl.oclwithhiddenopposites.util;
+
+import com.sap.emf.ocl.oclwithhiddenopposites.*;
 
 import java.util.List;
-
-import oclwithhiddenopposites.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
@@ -37,7 +37,7 @@ import org.eclipse.ocl.utilities.Visitor;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see oclwithhiddenopposites.OclwithhiddenoppositesPackage
+ * @see com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage
  * @generated
  */
 public class OclwithhiddenoppositesSwitch<T1> {

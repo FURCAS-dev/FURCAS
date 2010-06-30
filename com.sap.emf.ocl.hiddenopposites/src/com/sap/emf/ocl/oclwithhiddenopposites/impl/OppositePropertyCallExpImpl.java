@@ -4,10 +4,10 @@
  *
  * $Id$
  */
-package oclwithhiddenopposites.impl;
+package com.sap.emf.ocl.oclwithhiddenopposites.impl;
 
-import oclwithhiddenopposites.OclwithhiddenoppositesPackage;
-import oclwithhiddenopposites.OppositePropertyCallExp;
+import com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage;
+import com.sap.emf.ocl.oclwithhiddenopposites.OppositePropertyCallExp;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -26,7 +26,7 @@ import org.eclipse.ocl.ecore.impl.NavigationCallExpImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link oclwithhiddenopposites.impl.OppositePropertyCallExpImpl#getReferredOppositeProperty <em>Referred Opposite Property</em>}</li>
+ *   <li>{@link com.sap.emf.ocl.oclwithhiddenopposites.impl.OppositePropertyCallExpImpl#getReferredOppositeProperty <em>Referred Opposite Property</em>}</li>
  * </ul>
  * </p>
  *
