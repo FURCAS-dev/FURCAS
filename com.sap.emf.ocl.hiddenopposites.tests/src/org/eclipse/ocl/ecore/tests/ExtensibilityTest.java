@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
-import org.eclipse.ocl.EnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.LookupException;
@@ -54,6 +53,8 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
+
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOpposites;
 
 /**
  * Tests the extensibility of the parser API.
@@ -181,17 +182,11 @@ public class ExtensibilityTest
 	    return OCL.newInstance(new WrapperEnvironmentFactory());
 	}
 	
-	class WrapperEnvironment implements EnvironmentWithHiddenOpposites<
-            EPackage, EClassifier, EOperation, EStructuralFeature,
-            EEnumLiteral, EParameter,
-            EObject, CallOperationAction, SendSignalAction, Constraint,
-            EClass, EObject> {
+	class WrapperEnvironment implements EcoreEnvironmentWithHiddenOpposites {
 	    
-	    private final EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
-	    delegate;
+	    private final EcoreEnvironmentWithHiddenOpposites delegate;
 	    
-        private final EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
-        parent;
+        private final EcoreEnvironmentWithHiddenOpposites parent;
         
         private final WrapperEnvironmentFactory factory;
         
@@ -205,8 +200,8 @@ public class ExtensibilityTest
             Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
             
             this.factory = factory;
-            this.delegate = (EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>) delegate;
-            this.parent = (EnvironmentWithHiddenOpposites<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>) parent;
+            this.delegate = (EcoreEnvironmentWithHiddenOpposites) delegate;
+            this.parent = (EcoreEnvironmentWithHiddenOpposites) parent;
         }
     
         public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> getParent() {

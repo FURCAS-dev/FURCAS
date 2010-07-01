@@ -26,8 +26,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.ecore.OperationCallExp;
-import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.OCLExpression;
+
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 
 /**
