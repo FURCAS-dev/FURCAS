@@ -3,14 +3,11 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Test;
 
@@ -24,7 +21,10 @@ import data.classes.SapClass;
 import data.classes.TypeAdapter;
 import dataaccess.expressions.ExpressionsFactory;
 import dataaccess.expressions.MethodCallExpression;
+import dataaccess.expressions.ObjectCreationExpression;
 import dataaccess.expressions.VariableExpression;
+import dataaccess.expressions.literals.LiteralsFactory;
+import dataaccess.expressions.literals.StringLiteral;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
@@ -32,19 +32,22 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper
 
 public class OclIaTest extends BaseDepartmentTest {
 
+    private static final String testAnalysisOfRecursiveOperationWithSelf = "context dataaccess::expressions::MethodCallExpression \n"
+            + "inv testAnalysisOfRecursiveOperationWithSelf: \n"
+            + "self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()->select(s | s.name = 'testMethod')";
+
     private EPackage cp;
 
     private ImpactAnalyzer ia;
 
     private String testLongRunningNavigationPathExpression = "context data::classes::AssociationEnd inv LongRunningNavigationPath: \n "
             + "'.'.concat(self.oclAsType(data::classes::AssociationEnd).name)";
-    private String testLowerMultiplicityPropagationForMethodCallOnParameterUsage = "context data::classes::ClassTypeDefinition inv testLowerMultiplicityPropagationForMethodCallOnParameterUsage: \n"
+
+    private String testLowerMultiplicityPropagationForMethodCall = "context data::classes::ClassTypeDefinition inv testLowerMultiplicityPropagationForMethodCallOnParameterUsage: \n"
             + "self.ownerTypedElement.oclAsType(dataaccess::expressions::MethodCallExpression).methodSignature.output.lowerMultiplicity * \n"
             + "self.ownerTypedElement.oclAsType(dataaccess::expressions::MethodCallExpression).object.getType().lowerMultiplicity";
 
     private ResourceSetImpl rs;
-
-
 
     @Override
     public void setUp() {
@@ -67,10 +70,9 @@ public class OclIaTest extends BaseDepartmentTest {
     @Test
     public void testTupleLiteralUsedTwice() {
         OCLExpression expression = (OCLExpression) parse(
-                "context data::classes::SapClass inv testTupleLiteralUsedTwice:\n" +
-                "let t:Tuple(c:data::classes::SapClass, d:data::classes::SapClass) = Tuple{c=self, d=self.adapters.to->first()} in\n"+
-                "Set{t.c.name, t.d.name}",
-                this.cp).iterator().next().getSpecification().getBodyExpression();
+                "context data::classes::SapClass inv testTupleLiteralUsedTwice:\n"
+                        + "let t:Tuple(c:data::classes::SapClass, d:data::classes::SapClass) = Tuple{c=self, d=self.adapters.to->first()} in\n"
+                        + "Set{t.c.name, t.d.name}", this.cp).iterator().next().getSpecification().getBodyExpression();
         this.cp.eResource().getContents().add(expression);
         SapClass c = ClassesFactory.eINSTANCE.createSapClass();
         SapClass d = ClassesFactory.eINSTANCE.createSapClass();
@@ -92,8 +94,7 @@ public class OclIaTest extends BaseDepartmentTest {
     @Test
     public void testTupleLiteralWithImmediatePropertyCall() {
         OCLExpression expression = (OCLExpression) parse(
-                "context data::classes::SapClass inv testTupleLiteralWithImmediatePropertyCall:\n" +
-                "Tuple{c=self}.c.name",
+                "context data::classes::SapClass inv testTupleLiteralWithImmediatePropertyCall:\n" + "Tuple{c=self}.c.name",
                 this.cp).iterator().next().getSpecification().getBodyExpression();
         this.cp.eResource().getContents().add(expression);
         SapClass c = ClassesFactory.eINSTANCE.createSapClass();
@@ -108,10 +109,9 @@ public class OclIaTest extends BaseDepartmentTest {
     @Test
     public void testTupleLiteralPassedThroughLetVariable() {
         OCLExpression expression = (OCLExpression) parse(
-                "context data::classes::SapClass inv testTupleLiteralPassedThroughLetVariable:\n" +
-                "let t:Tuple(c:data::classes::SapClass) = Tuple{c=self} in\n"+
-                "t.c.name",
-                this.cp).iterator().next().getSpecification().getBodyExpression();
+                "context data::classes::SapClass inv testTupleLiteralPassedThroughLetVariable:\n"
+                        + "let t:Tuple(c:data::classes::SapClass) = Tuple{c=self} in\n" + "t.c.name", this.cp).iterator().next()
+                .getSpecification().getBodyExpression();
         this.cp.eResource().getContents().add(expression);
         SapClass c = ClassesFactory.eINSTANCE.createSapClass();
         this.cp.eResource().getContents().add(c);
@@ -125,11 +125,10 @@ public class OclIaTest extends BaseDepartmentTest {
     @Test
     public void testTupleLiteralPassedThroughTwoLetVariables() {
         OCLExpression expression = (OCLExpression) parse(
-                "context data::classes::SapClass inv testTupleLiteralPassedThroughLetVariable:\n" +
-                "let t1:Tuple(c:data::classes::SapClass) = Tuple{c=self} in\n"+
-                "let t2:Tuple(c:data::classes::SapClass) = t1 in\n"+
-                "t2.c.name",
-                this.cp).iterator().next().getSpecification().getBodyExpression();
+                "context data::classes::SapClass inv testTupleLiteralPassedThroughLetVariable:\n"
+                        + "let t1:Tuple(c:data::classes::SapClass) = Tuple{c=self} in\n"
+                        + "let t2:Tuple(c:data::classes::SapClass) = t1 in\n" + "t2.c.name", this.cp).iterator().next()
+                .getSpecification().getBodyExpression();
         this.cp.eResource().getContents().add(expression);
         SapClass c = ClassesFactory.eINSTANCE.createSapClass();
         this.cp.eResource().getContents().add(c);
@@ -143,9 +142,9 @@ public class OclIaTest extends BaseDepartmentTest {
     @Test
     public void testNestedTupleLiteral() {
         OCLExpression expression = (OCLExpression) parse(
-                "context data::classes::SapClass inv testNestedTupleLiteral:\n" +
-                "Tuple{c:Tuple(d:data::classes::SapClass)=Tuple{d=self}}.c.d.name",
-                this.cp).iterator().next().getSpecification().getBodyExpression();
+                "context data::classes::SapClass inv testNestedTupleLiteral:\n"
+                        + "Tuple{c:Tuple(d:data::classes::SapClass)=Tuple{d=self}}.c.d.name", this.cp).iterator().next()
+                .getSpecification().getBodyExpression();
         this.cp.eResource().getContents().add(expression);
         SapClass c = ClassesFactory.eINSTANCE.createSapClass();
         this.cp.eResource().getContents().add(c);
@@ -158,7 +157,7 @@ public class OclIaTest extends BaseDepartmentTest {
 
     @Test
     public void testLongRunningNavigationPathConstruction() {
-        OCLExpression expression = (OCLExpression) parse(testLongRunningNavigationPathExpression,this.cp).iterator().next()
+        OCLExpression expression = (OCLExpression) parse(testLongRunningNavigationPathExpression, this.cp).iterator().next()
                 .getSpecification().getBodyExpression();
         this.cp.eResource().getContents().add(expression);
         AssociationEnd ae = ClassesFactory.eINSTANCE.createAssociationEnd();
@@ -173,15 +172,13 @@ public class OclIaTest extends BaseDepartmentTest {
      * self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity *
      * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity
      */
-  
+
     @Test
     public void testLowerMultiplicityPropagationForMethodCallOnParameterUsage() {
-        OCLExpression exp = (OCLExpression) parse(testLowerMultiplicityPropagationForMethodCallOnParameterUsage,this.cp).iterator()
-                .next().getSpecification().getBodyExpression();
-        this.cp.eResource().getContents().add(exp);
-        ResourceSet rs = new ResourceSetImpl();
-        Resource r = new XMIResourceImpl(URI.createURI("http://humba/trala"));
-        rs.getResources().add(r);
+        OCLExpression exp = (OCLExpression) parse(testLowerMultiplicityPropagationForMethodCall, this.cp).iterator().next()
+                .getSpecification().getBodyExpression();
+        Resource r = this.cp.eResource();
+        r.getContents().add(exp);
         // construct something like "abc".length(), then change multiplicity of "abc" from 1..1 to 0..1
         MethodSignature length = ClassesFactory.eINSTANCE.createMethodSignature();
         r.getContents().add(length);
@@ -216,12 +213,12 @@ public class OclIaTest extends BaseDepartmentTest {
         VariableExpression ve = ExpressionsFactory.eINSTANCE.createVariableExpression();
         ve.setVariable(p); // this should infer the variable expression's multiplicity to that of p
         mce.setObject(ve);
-        
-//        EAnnotationOCLParser pa = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-//        pa.traversalConvertOclAnnotations(ClassesPackage.eINSTANCE);
+
+        // EAnnotationOCLParser pa = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+        // pa.traversalConvertOclAnnotations(ClassesPackage.eINSTANCE);
 
         assertEquals(1, ve.getType().getLowerMultiplicity());
-        
+
         Notification noti = NotificationHelper.createChangeLowerMultiplicityNotification(p.getOwnedTypeDefinition(), 0);
         Collection<EObject> impact = this.ia.getContextObjects(noti, exp, ctd.eClass());
 
@@ -230,96 +227,99 @@ public class OclIaTest extends BaseDepartmentTest {
         assertTrue(impact.contains(ctd));
 
     }
-    
-    
-    //
-    //    
-    // /**
-    // * self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity *
-    // self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity
-    // */
-    // @Test
-    // public void testLowerMultiplicityPropagationForMethodCall() throws OclManagerException {
-    // final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
-    // "testLowerMultiplicityPropagationForMethodCall",
-    // "self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity",
-    // ClassTypeDefinition.CLASS_DESCRIPTOR);
-    // // construct something like "abc".length(), then change multiplicity of "abc" from 1..1 to 0..1
-    // MethodSignature length = connection.createElement(MethodSignature.CLASS_DESCRIPTOR);
-    // length.setName("length");
-    // SapClass numberClass = connection.createElement(SapClass.CLASS_DESCRIPTOR);
-    // numberClass.setName("Number");
-    // ClassTypeDefinition msOutput = MetamodelUtils.createClassTypeDefinitionExactlyOne(connection, numberClass);
-    // length.setOutput(msOutput);
-    // final ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinition(connection, numberClass, 1, 1);
-    // final MethodCallExpression mce = connection.createElement(MethodCallExpression.CLASS_DESCRIPTOR);
-    // mce.setOwnedTypeDefinition(ctd);
-    // mce.setMethodSignature(length);
-    // StringLiteral sl = connection.createElement(StringLiteral.CLASS_DESCRIPTOR);
-    // sl.setLiteral("abc");
-    // SapClass stringClass = connection.createElement(SapClass.CLASS_DESCRIPTOR);
-    // sl.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinitionExactlyOne(connection, stringClass));
-    // mce.setObject(sl);
-    // EventFilter eventFilter = registration.getEventFilter(/* notifyNewContextElement */ false);
-    // final boolean[] ok = new boolean[1];
-    // ChangeListener listener = new ChangeListener() {
-    // @Override
-    // public void notify(ChangeEvent event) {
-    // Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
-    // ok[0] = affectedElements.size() == 1 && affectedElements.contains(ctd.get___Mri());
-    // }
-    // };
-    // connection.getEventRegistry().registerListener(listener, eventFilter);
-    // try {
-    // sl.getOwnedTypeDefinition().setLowerMultiplicity(0);
-    // assertTrue(ok[0]);
-    // } finally {
-    // connection.getEventRegistry().deregister(listener);
-    // }
-    // }
-    //
-    // /**
-    // * data::classes::SapClass.allInstances()->select(c | c.name = 'something'
-    // */
-    // @Test
-    // public void testAnalysisOfRecursiveOperationWithSelf() throws OclManagerException {
-    // final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
-    // "testAnalysisOfRecursiveOperationWithSelf",
-    // "self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()->select(s | s.name = 'testMethod')",
-    // MethodCallExpression.CLASS_DESCRIPTOR);
-    //
-    // // construct something like "new HumbaClass1().m()"
-    // final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
-    // cl1.setName("HumbaClass1");
-    // MethodSignature ms = connection.createElement(MethodSignature.CLASS_DESCRIPTOR);
-    // ms.setName("testMethod");
-    // cl1.getOwnedSignatures().add(ms);
-    // final ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinition(connection, cl1, 1, 1);
-    // ctd.setClazz(null); // do that again later to cause the appropriate event
-    // final MethodCallExpression mce = connection.createElement(MethodCallExpression.CLASS_DESCRIPTOR);
-    // final ObjectCreationExpression oce = connection.createElement(ObjectCreationExpression.CLASS_DESCRIPTOR);
-    // oce.setClassToInstantiate(cl1);
-    // oce.setOwnedTypeDefinition(ctd);
-    // mce.setObject(oce);
-    // EventFilter eventFilter = registration.getEventFilter(/* notifyNewContextElement */ false);
-    // final boolean[] ok = new boolean[1];
-    // ChangeListener listener = new ChangeListener() {
-    // @Override
-    // public void notify(ChangeEvent event) {
-    // Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
-    // ok[0] = affectedElements.size() == 1 && affectedElements.contains(mce.get___Mri()) &&
-    // !affectedElements.contains(ctd.get___Mri());
-    // }
-    // };
-    // connection.getEventRegistry().registerListener(listener, eventFilter);
-    // try {
-    // ctd.setClazz(cl1);
-    // assertTrue(ok[0]);
-    // } finally {
-    // connection.getEventRegistry().deregister(listener);
-    // }
-    // }
-    //
+
+    /**
+     * self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity *
+     * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity
+     */
+    @Test
+    public void testLowerMultiplicityPropagationForMethodCall() {
+        OCLExpression exp = (OCLExpression) parse(testLowerMultiplicityPropagationForMethodCall, this.cp).iterator().next()
+                .getSpecification().getBodyExpression();
+        Resource r = this.cp.eResource();
+        r.getContents().add(exp);
+        // construct something like "abc".length(), then change multiplicity of "abc" from 1..1 to 0..1
+        MethodSignature length = ClassesFactory.eINSTANCE.createMethodSignature();
+        length.setName("length");
+        SapClass numberClass = ClassesFactory.eINSTANCE.createSapClass();
+        numberClass.setName("Number");
+        ClassTypeDefinition msOutput = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        msOutput.setClazz(numberClass);
+        msOutput.setLowerMultiplicity(1);
+        msOutput.setUpperMultiplicity(1);
+        length.setOutput(msOutput);
+        ClassTypeDefinition ctd1 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctd1.setClazz(numberClass);
+        ctd1.setLowerMultiplicity(1);
+        ctd1.setUpperMultiplicity(1);
+        MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
+        mce.setOwnedTypeDefinition(ctd1);
+        mce.setMethodSignature(length);
+        StringLiteral sl = LiteralsFactory.eINSTANCE.createStringLiteral();
+        sl.setLiteral("abc");
+        SapClass stringClass = ClassesFactory.eINSTANCE.createSapClass();
+        ClassTypeDefinition ctd2 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctd2.setClazz(stringClass);
+        ctd2.setLowerMultiplicity(1);
+        ctd2.setUpperMultiplicity(1);
+        sl.setOwnedTypeDefinition(ctd2);
+        mce.setObject(sl);
+
+        r.getContents().add(mce);
+        r.getContents().add(length);
+        r.getContents().add(numberClass);
+        r.getContents().add(stringClass);
+
+        assertEquals(1, sl.getOwnedTypeDefinition().getLowerMultiplicity());
+
+        Notification noti = NotificationHelper.createChangeLowerMultiplicityNotification(sl.getOwnedTypeDefinition(), 0);
+        Collection<EObject> impact = this.ia.getContextObjects(noti, exp, ctd1.eClass());
+
+        assertEquals(0, sl.getOwnedTypeDefinition().getLowerMultiplicity());
+        assertTrue(impact.size() == 1);
+        assertTrue(impact.contains(ctd1));
+
+    }
+
+    /**
+     * data::classes::SapClass.allInstances()->select(c | c.name = 'something'
+     */
+    @Test
+    public void testAnalysisOfRecursiveOperationWithSelf() {
+        OCLExpression exp = (OCLExpression) parse(testAnalysisOfRecursiveOperationWithSelf, this.cp).iterator().next()
+                .getSpecification().getBodyExpression();
+        Resource r = this.cp.eResource();
+        r.getContents().add(exp);
+        // construct something like "new HumbaClass1().m()"
+        final SapClass cl1 = ClassesFactory.eINSTANCE.createSapClass();
+        cl1.setName("Alice");
+        MethodSignature ms = ClassesFactory.eINSTANCE.createMethodSignature();
+        ms.setName("testMethod");
+        cl1.getOwnedSignatures().add(ms);
+        final ClassTypeDefinition ctd = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctd.setLowerMultiplicity(1);
+        ctd.setUpperMultiplicity(1);
+        ctd.setClazz(null); // do that again later to cause the appropriate event
+        final MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
+        final ObjectCreationExpression oce = ExpressionsFactory.eINSTANCE.createObjectCreationExpression();
+        oce.setClassToInstantiate(cl1);
+        oce.setOwnedTypeDefinition(ctd);
+        mce.setObject(oce);
+        
+        r.getContents().add(cl1);
+        r.getContents().add(ms);
+        r.getContents().add(mce);
+        r.getContents().add(oce);
+        
+
+        Notification noti = NotificationHelper.createChangeClazzNotification(ctd, cl1);
+        Collection<EObject> impact = this.ia.getContextObjects(noti, exp, ctd.eClass());
+
+        assertTrue(impact.size() == 1);
+        assertTrue(impact.contains(mce) && !impact.contains(ctd));
+        
+    }
+
     // /**
     // * data::classes::SapClass.allInstances()->select(c | c.name = 'something'
     // */

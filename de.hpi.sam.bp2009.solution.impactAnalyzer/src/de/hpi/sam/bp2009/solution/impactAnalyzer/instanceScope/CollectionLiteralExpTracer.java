@@ -30,8 +30,14 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
                         .getItem(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
             }
         }
-        EClass innermostType = getInnermostElementType(getExpression().getType());
-        return new BranchingNavigationStep(innermostType, innermostType, getExpression(), steps.toArray(new NavigationStep[0]));
+        if (getExpression().getPart().size() > 0){
+            EClass innermostType = getInnermostElementType(getExpression().getType());
+            return new BranchingNavigationStep(innermostType, innermostType, getExpression(), steps.toArray(new NavigationStep[0]));
+        }else{
+            //the collection was empty, like "Set{}"
+            return new EmptyResultNavigationStep(getExpression());
+        }
+        
     }
 
 }

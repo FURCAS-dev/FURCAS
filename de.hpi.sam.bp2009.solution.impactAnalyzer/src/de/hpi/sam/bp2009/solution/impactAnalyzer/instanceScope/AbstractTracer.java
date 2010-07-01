@@ -27,9 +27,9 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      *            the OCL expression for which this tracer shall determine a navigation step
      */
     protected AbstractTracer(T expression) {
-        this(expression, (String[]) /* tuplePartNames */ null);
+        this(expression, (String[]) /* tuplePartNames */null);
     }
-    
+
     /**
      * Specifies an explicit list of tuple part names to look for. Useful in combination with
      * {@link #getListOfTuplePartNamesWithFoundRemoved()}.
@@ -74,7 +74,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         result[0] = toAdd;
         return result;
     }
-    
+
     public String[] getExtendedListOfTuplePartNames(String toAdd) {
         return getExtendedListOfTuplePartNames(tuplePartNames, toAdd);
     }
@@ -155,6 +155,8 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         while (!(type instanceof EClass) && type instanceof CollectionType) {
             type = ((CollectionType) type).getElementType();
         }
+
         return (EClass) type;
+
     }
 }
