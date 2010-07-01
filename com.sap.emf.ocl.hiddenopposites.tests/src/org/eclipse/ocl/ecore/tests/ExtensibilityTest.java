@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -369,7 +370,7 @@ public class ExtensibilityTest
             return delegate.lookupProperty(owner, name);
         }
 
-        public EStructuralFeature lookupOppositeProperty(EClassifier owner, String name)
+        public EReference lookupOppositeProperty(EClassifier owner, String name)
             throws LookupException {
 	    return delegate.lookupOppositeProperty(owner, name);
 	}

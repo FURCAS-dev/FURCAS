@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.AmbiguousLookupException;
@@ -83,7 +84,7 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
      *     or worse
      * @since 3.0
      */
-    public EStructuralFeature lookupOppositeProperty(EClassifier owner, String name) throws LookupException {
+    public EReference lookupOppositeProperty(EClassifier owner, String name) throws LookupException {
         if (owner == null) {
             org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> vdcl = lookupImplicitSourceForOppositeProperty(name);
 
@@ -117,7 +118,7 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
             }
         }
         
-        return matches.get(0);
+        return (EReference) matches.get(0);
     }
 
     @Override
