@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://oclwithhiddenopposites/1.0"
-            class="com.sap.emf.ocl.oclwithhiddenopposites.OclwithhiddenoppositesPackage"
+            class="com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage"
             genModel="model/OclWithHiddenOpposites.genmodel"/>
    </extension>
 
