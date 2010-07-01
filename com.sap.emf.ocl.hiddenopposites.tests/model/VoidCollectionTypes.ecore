@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore" name="voidcollectiontypes"
+    nsURI="http://www.eclipse.org/test/voidcollectiontypes" nsPrefix="vct">
+  <eClassifiers xsi:type="ocl.ecore:SetType" name="Set(T)" instanceClassName="java.util.Set"
+      elementType="ocl.ecore:VoidType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
+  <eClassifiers xsi:type="ocl.ecore:BagType" name="Bag(OclVoid)" instanceClassName="org.eclipse.ocl.util.Bag"
+      elementType="ocl.ecore:VoidType http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
+</ecore:EPackage>
