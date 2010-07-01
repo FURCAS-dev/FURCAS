@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import data.classes.ClassTypeDefinition;
+import data.classes.SapClass;
 import data.classes.TypeDefinition;
 
 public class NotificationHelper {
@@ -201,6 +203,15 @@ public class NotificationHelper {
         TestAdapter myTestA = new TestAdapter();
         target.eAdapters().add(myTestA);
         target.getContents().add(objectToAdd);
+        return getNotificationfrom(myTestA);
+    }
+
+    public static Notification createChangeClazzNotification(ClassTypeDefinition notifier, SapClass value) {
+        TestAdapter myTestA = new TestAdapter();
+        notifier.eAdapters().add(myTestA);
+
+        notifier.setClazz(value);
+
         return getNotificationfrom(myTestA);
     }
 }
