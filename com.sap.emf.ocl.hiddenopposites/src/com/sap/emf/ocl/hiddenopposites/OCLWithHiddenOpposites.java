@@ -19,7 +19,6 @@ import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.OCLAnalyzer;
-import org.eclipse.ocl.parser.ValidationVisitor;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingLexer;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
 import org.eclipse.ocl.util.OCLUtil;

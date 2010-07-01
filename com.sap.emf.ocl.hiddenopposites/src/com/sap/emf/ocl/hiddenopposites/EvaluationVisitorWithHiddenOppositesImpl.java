@@ -82,8 +82,9 @@ public class EvaluationVisitorWithHiddenOppositesImpl extends
 			CollectionKind kind = ((CollectionType<EClassifier, EOperation>) opce.getType()).getKind();
 			
 			Collection<Object> collection = CollectionUtil.createNewCollection(kind);
-			
-			collection.add(result);
+			if (result != null) {
+			    collection.add(result);
+			}
 			result = collection;
 		}
 		
