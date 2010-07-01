@@ -69,9 +69,9 @@ import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderIm
  */
 public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
-    private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
+//    private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
     private final Map<OCLExpression, NavigationStep> expressionToStep;
-     private final PathCache pathCache = new PathCache();
+    private final PathCache pathCache = new PathCache();
     private final FilterSynthesisImpl filterSynthesizer;
     private final EClass context;
 
@@ -169,7 +169,6 @@ public class InstanceScopeAnalysis {
         if (expression == null || exprContext == null || filterSynthesizer == null) {
             throw new IllegalArgumentException("Arguments must not be null");
         }
-        associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder(filterSynthesizer, expression);
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
         this.context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
@@ -374,7 +373,7 @@ public class InstanceScopeAnalysis {
     }
 
     private boolean expressionContainsAllInstancesCallForType(EClassifier classifier) {
-        return !associationEndAndAttributeCallFinder.getAllInstancesCallsFor(classifier).isEmpty();
+        return !filterSynthesizer.getAllInstancesCallsFor(classifier).isEmpty();
     }
 
     /**
@@ -384,13 +383,13 @@ public class InstanceScopeAnalysis {
     private Set<? extends NavigationCallExp> getAttributeOrAssociationEndCalls(Notification changeEvent) {
         Set<? extends NavigationCallExp> result;
         if (NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
-            result = associationEndAndAttributeCallFinder.getAttributeCallExpressions((EAttribute) NotificationHelper
+            result = filterSynthesizer.getAttributeCallExpressions((EAttribute) NotificationHelper
                     .getNotificationFeature(changeEvent));
         } else if (NotificationHelper.isLinkLifeCycleEvent(changeEvent)) {
             EReference ref = (EReference) NotificationHelper.getNotificationFeature(changeEvent);
 
             Set<NavigationCallExp> localResult = new HashSet<NavigationCallExp>();
-            localResult.addAll(associationEndAndAttributeCallFinder.getAssociationEndCallExpressions(ref));
+            localResult.addAll(filterSynthesizer.getAssociationEndCallExpressions(ref));
             result = localResult;
         } else {
             result = Collections.emptySet();

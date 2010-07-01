@@ -6,7 +6,6 @@ package de.hpi.sam.bp2009.solution.eventManager.util;
 import java.util.Arrays;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -95,23 +94,27 @@ public class EventFilterFactory {
 		return or;
 
 	}
-	public EventFilter createFilterForStructuralFeature(EClass eClass,
+	public EventFilter createFilterForEAttribute(EClass eClass,
 			EStructuralFeature referredProperty) {
 		EventManagerFactory i = EventManagerFactory.eINSTANCE;
 		StructuralFeatureFilter sf = null;
-		if(referredProperty instanceof EAttribute){
-		    sf = i.createAttributeFilter();
-		}else{//EReference
-		    sf = i.createAssociationFilter();
-		}
-		
+		sf = i.createAttributeFilter();		
 		sf.setFeature(referredProperty);
 		
 		ClassFilter cf = i.createClassFilter();
-		cf.setWantedClass(eClass);
-		
-		return getAndFilterFor(sf,cf);
-
-		
+		cf.setWantedClass(eClass);		
+		return getAndFilterFor(sf,cf);		
 	}
+	
+	       public EventFilter createFilterForEReference(EClass eClass,
+                       EStructuralFeature referredProperty) {
+               EventManagerFactory i = EventManagerFactory.eINSTANCE;
+               StructuralFeatureFilter sf = null;              
+               sf = i.createAssociationFilter();              
+               sf.setFeature(referredProperty);
+               
+               ClassFilter cf = i.createClassFilter();
+               cf.setWantedClass(eClass);              
+               return getAndFilterFor(sf,cf);          
+       }
 }
