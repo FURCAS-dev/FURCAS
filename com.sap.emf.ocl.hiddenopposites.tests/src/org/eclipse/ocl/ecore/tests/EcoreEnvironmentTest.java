@@ -53,6 +53,11 @@ import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.options.ParsingOptions;
 
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
+
 /**
  * Tests the {@link ExpressionsUtil} class.
  *
@@ -187,7 +192,7 @@ public class EcoreEnvironmentTest
 		assertFalse(ocl.check("123-abc-456", constraint));
 	}
 	
-	class MyEnvironment extends EcoreEnvironment {
+	class MyEnvironment extends EcoreEnvironmentWithHiddenOppositesImpl {
 	    EOperation regexMatch;
 	    
 	    // this constructor is used to initialize the root environment
@@ -233,9 +238,9 @@ public class EcoreEnvironmentTest
 	    }
 	}
 
-	class MyEvaluationEnvironment extends EcoreEvaluationEnvironment {
+	class MyEvaluationEnvironment extends EvaluationEnvironmentWithHiddenOppositesImpl {
 	    MyEvaluationEnvironment() {
-	        super();
+	        super(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE));
 	    }
 
 	    MyEvaluationEnvironment(
@@ -261,7 +266,7 @@ public class EcoreEnvironmentTest
 	    }
 	}
 
-	class MyEnvironmentFactory extends EcoreEnvironmentFactory {
+	class MyEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
 	    @Override
         public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	    createEnvironment() {

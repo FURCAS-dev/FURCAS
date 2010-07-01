@@ -18,29 +18,29 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface ExpressionsFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+         * The singleton instance of the factory.
+         * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+         * @generated
+         */
 	ExpressionsFactory eINSTANCE = com.sap.emf.ocl.oclwithhiddenopposites.expressions.impl.ExpressionsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
-	 * <!-- begin-user-doc -->
+         * Returns a new object of class '<em>Opposite Property Call Exp</em>'.
+         * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Opposite Property Call Exp</em>'.
-	 * @generated
-	 */
+         * @return a new object of class '<em>Opposite Property Call Exp</em>'.
+         * @generated
+         */
 	OppositePropertyCallExp createOppositePropertyCallExp();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+         * Returns the package supported by this factory.
+         * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+         * @return the package supported by this factory.
+         * @generated
+         */
 	ExpressionsPackage getExpressionsPackage();
 
 } //ExpressionsFactory

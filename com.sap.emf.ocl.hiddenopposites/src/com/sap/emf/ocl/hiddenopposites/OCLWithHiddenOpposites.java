@@ -10,15 +10,68 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.SyntaxException;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.OCLAnalyzer;
+import org.eclipse.ocl.parser.ValidationVisitor;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingLexer;
 import org.eclipse.ocl.parser.backtracking.OCLBacktrackingParser;
+import org.eclipse.ocl.util.OCLUtil;
 
 public class OCLWithHiddenOpposites extends OCL {
+
+    @Override
+    public void validate(OCLExpression<EClassifier> expression) throws SemanticException {
+	// clear out old diagnostics
+	ProblemHandler ph = OCLUtil.getAdapter(getEnvironment(),
+		ProblemHandler.class);
+	if (ph != null) {
+		ph.beginValidation();
+	}
+
+	expression.accept(ValidationVisitorWithHiddenOpposite.getInstance(getEnvironment()));
+
+	if (ph != null) {
+		ph.endValidation();
+
+		try {
+			OCLUtil.checkForErrors(ph);
+		} catch (SyntaxException e) {
+			// shouldn't actually be able to get this from validation
+			throw new SemanticException(e.getDiagnostic());
+		}
+	}
+    }
+
+    @Override
+    public void validate(Constraint constraint) throws SemanticException {
+	// clear out old diagnostics
+	ProblemHandler ph = OCLUtil.getAdapter(getEnvironment(),
+		ProblemHandler.class);
+	if (ph != null) {
+		ph.beginValidation();
+	}
+
+	ValidationVisitorWithHiddenOpposite.getInstance(getEnvironment()).visitConstraint(
+		constraint);
+
+	if (ph != null) {
+		ph.endValidation();
+
+		try {
+			OCLUtil.checkForErrors(ph);
+		} catch (SyntaxException e) {
+			// shouldn't actually be able to get this from validation
+			throw new SemanticException(e.getDiagnostic());
+		}
+	}
+    }
 
     protected OCLWithHiddenOpposites(
 	    Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {

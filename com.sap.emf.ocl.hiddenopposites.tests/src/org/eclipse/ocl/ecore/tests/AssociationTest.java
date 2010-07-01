@@ -40,7 +40,6 @@ import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
@@ -53,6 +52,10 @@ import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.utilities.UMLReflection;
+
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 
 /**
@@ -583,7 +586,7 @@ public class AssociationTest
 	
 	@Override
 	protected OCL createOCL() {
-		return OCL.newInstance(new AssocClassFruitEnvironmentFactory());
+		return OCLWithHiddenOpposites.newInstance(new AssocClassFruitEnvironmentFactory());
 	}
 	
 	@Override
@@ -596,7 +599,7 @@ public class AssociationTest
 		fruitPackage = null;
 	}
 	
-	private class AssocClassFruitEnvironmentFactory extends EcoreEnvironmentFactory {
+	private class AssocClassFruitEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
 
 		public AssocClassFruitEnvironmentFactory() {
 			super(resourceSet.getPackageRegistry());
@@ -614,7 +617,7 @@ public class AssociationTest
 		}
 	}
 	
-	private class AssocClassFruitEnvironment extends EcoreEnvironment implements InitEnvironment {
+	private class AssocClassFruitEnvironment extends EcoreEnvironmentWithHiddenOppositesImpl implements InitEnvironment {
 		private List<EStructuralFeature> stemEnds =
 			new java.util.ArrayList<EStructuralFeature>(2);
 		

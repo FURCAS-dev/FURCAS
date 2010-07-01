@@ -44,13 +44,15 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.tests.TestReflection;
+
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 @SuppressWarnings("nls")
 public class EcoreTestReflection extends UMLReflectionImpl implements TestReflection<
@@ -65,10 +67,10 @@ EOperation, EParameter, EStructuralFeature, EAttribute, EReference,
 EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 {
 	public static final EcoreTestReflection INSTANCE = new EcoreTestReflection();
-	public static final String PLUGIN_ID = "org.eclipse.ocl.ecore.tests";
+	public static final String PLUGIN_ID = "com.sap.emf.ocl.hiddenopposites.tests";
 
 	public static OCL createOCL() {
-		OCL newInstance = OCL.newInstance();
+		OCL newInstance = OCLWithHiddenOpposites.newInstance();
 		String repairs = System.getProperty(PLUGIN_ID + ".repairs");
 		if (repairs != null)
 			newInstance.setParserRepairCount(Integer.parseInt(repairs));
@@ -105,7 +107,7 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 	}
 
 	public OCL createOCL(ResourceSet resourceSet) {
-		return OCL.newInstance(new EcoreEnvironmentFactory(resourceSet.getPackageRegistry()));
+		return OCLWithHiddenOpposites.newInstance(new EcoreEnvironmentFactoryWithHiddenOpposites(resourceSet.getPackageRegistry()));
 	}
 
 	public EAttribute createOwnedAttribute(EClass aClass, String name, EClassifier type) {

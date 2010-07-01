@@ -33,11 +33,11 @@ import org.eclipse.ocl.utilities.Visitor;
  */
 public interface VisitorWithHiddenOpposite<T> extends Visitor<T, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint> {
 	/**
-	 * <!-- begin-user-doc -->
+         * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model callExpRequired="true"
-	 * @generated
-	 */
-	Object visitOppositePropertyCallExp(OppositePropertyCallExp callExp);
+         * @model callExpRequired="true"
+         * @generated
+         */
+	T visitOppositePropertyCallExp(OppositePropertyCallExp callExp);
 
 } // VisitorWithHiddenOpposite

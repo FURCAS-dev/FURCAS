@@ -50,6 +50,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+
 /**
  * Tests for serialization of OCL constraints and expressions.
  *
@@ -521,7 +523,7 @@ public class SerializationTest
 //		result.setFactory(this);
         
         
-        return OCL.newInstance(environment);
+        return OCLWithHiddenOpposites.newInstance(environment);
     }
 	
 	protected OCLExpression<EClassifier> parseExpression(

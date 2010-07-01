@@ -22,7 +22,10 @@ package org.eclipse.ocl.ecore.tests;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.util.Collections;
+
+import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -44,9 +47,10 @@ import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.SendSignalAction;
-import org.eclipse.ocl.ecore.internal.OCLFactoryImpl;
 import org.eclipse.ocl.tests.GenericFruitTestSuite;
 import org.eclipse.ocl.utilities.OCLFactory;
+
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 
 /**
  * Extended test framework for tests using the Ecore binding and the Fruit meta-model.
@@ -57,6 +61,28 @@ import org.eclipse.ocl.utilities.OCLFactory;
 public abstract class AbstractTestSuite
 	extends GenericFruitTestSuite<EObject, EPackage, EClassifier, EClassifier, EClass, EDataType, EClassifier, EEnum, EOperation, EParameter, EStructuralFeature,
 	EAttribute, EReference, EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint> {
+
+	@Override
+	public URI getTestModelURI(String localFileName) {
+		String testPlugInId = staticReflection.getTestPlugInId();
+		try {
+			java.lang.Class<?> platformClass = java.lang.Class.forName("org.eclipse.core.runtime.Platform");
+			Method getBundle = platformClass.getDeclaredMethod("getBundle", new java.lang.Class[] {String.class});
+			Object bundle = getBundle.invoke(null, new Object[] {testPlugInId});
+			
+			if (bundle != null) {
+				Method getEntry = bundle.getClass().getMethod("getEntry", new java.lang.Class[] {String.class});
+				URL url = (URL) getEntry.invoke(bundle, new Object[] {localFileName});
+				return URI.createURI(url.toString());
+			}
+		} catch (Exception e) {
+			// not running in Eclipse
+		}
+		String urlString = System.getProperty(testPlugInId);
+		if (urlString == null)
+			TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-2$
+		return URI.createFileURI(urlString + "/" + localFileName);
+	}
 
 	protected static final org.eclipse.ocl.ecore.EcorePackage ocltypes =
         org.eclipse.ocl.ecore.EcorePackage.eINSTANCE;
@@ -103,7 +129,7 @@ public abstract class AbstractTestSuite
 	protected EReference tree_fruits;
 	protected EReference tree_fruitsDroppedUnder;
 	
-	protected final OCLFactory oclFactory = OCLFactoryImpl.INSTANCE;
+	protected final OCLFactory oclFactory = new EcoreEnvironmentFactoryWithHiddenOpposites().createEnvironment().getOCLFactory();
 
 	/**
 	 * Adds parser-style independent tests to the test suite.

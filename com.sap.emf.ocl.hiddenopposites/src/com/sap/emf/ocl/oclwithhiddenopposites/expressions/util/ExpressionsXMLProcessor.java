@@ -25,30 +25,30 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 public class ExpressionsXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc -->
+         * Public constructor to instantiate the helper.
+         * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+         * @generated
+         */
 	public ExpressionsXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		ExpressionsPackage.eINSTANCE.eClass();
-	}
+                super((EPackage.Registry.INSTANCE));
+                ExpressionsPackage.eINSTANCE.eClass();
+        }
 	
 	/**
-	 * Register for "*" and "xml" file extensions the ExpressionsResourceFactoryImpl factory.
-	 * <!-- begin-user-doc -->
+         * Register for "*" and "xml" file extensions the ExpressionsResourceFactoryImpl factory.
+         * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+         * @generated
+         */
 	@Override
 	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations.put(XML_EXTENSION, new ExpressionsResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION, new ExpressionsResourceFactoryImpl());
-		}
-		return registrations;
-	}
+                if (registrations == null) {
+                        super.getRegistrations();
+                        registrations.put(XML_EXTENSION, new ExpressionsResourceFactoryImpl());
+                        registrations.put(STAR_EXTENSION, new ExpressionsResourceFactoryImpl());
+                }
+                return registrations;
+        }
 
 } //ExpressionsXMLProcessor

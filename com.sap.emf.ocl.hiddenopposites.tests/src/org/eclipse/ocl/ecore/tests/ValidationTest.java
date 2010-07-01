@@ -39,6 +39,10 @@ import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.utilities.UMLReflection;
 
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+
 
 /**
  * Tests the validation of OCL expressions.
@@ -134,10 +138,10 @@ public class ValidationTest extends AbstractTestSuite {
 
 	@Override
 	protected OCL createOCL() {
-		return OCL.newInstance(new CustomFruitEnvironmentFactory());
+		return OCLWithHiddenOpposites.newInstance(new CustomFruitEnvironmentFactory());
 	}
 	
-	private class CustomFruitEnvironmentFactory extends EcoreEnvironmentFactory {
+	private class CustomFruitEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
 
 		public CustomFruitEnvironmentFactory() {
 			super(resourceSet.getPackageRegistry());
@@ -155,7 +159,7 @@ public class ValidationTest extends AbstractTestSuite {
 		}
 	}
 	
-	private class CustomFruitEnvironment extends EcoreEnvironment {
+	private class CustomFruitEnvironment extends EcoreEnvironmentWithHiddenOppositesImpl {
 		public CustomFruitEnvironment(CustomFruitEnvironmentFactory factory) {
 			super(resourceSet.getPackageRegistry());
 			

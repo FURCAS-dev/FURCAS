@@ -21,7 +21,6 @@ import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.ParsingOptions;
-import org.eclipse.ocl.parser.ValidationVisitor;
 import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
@@ -646,11 +645,11 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 
     private void validate(EcoreEnvironmentWithHiddenOpposites env, OCLExpression<EClassifier> expression)
 	    throws ParserException {
-	expression.accept(ValidationVisitor.getInstance(env));
+	expression.accept(ValidationVisitorWithHiddenOpposite.getInstance(env));
     }
 
     private void validate(EcoreEnvironmentWithHiddenOpposites env, Constraint constraint) throws ParserException {
-	ValidationVisitor.getInstance(env).visitConstraint(constraint);
+	ValidationVisitorWithHiddenOpposite.getInstance(env).visitConstraint(constraint);
     }
 
     /**
