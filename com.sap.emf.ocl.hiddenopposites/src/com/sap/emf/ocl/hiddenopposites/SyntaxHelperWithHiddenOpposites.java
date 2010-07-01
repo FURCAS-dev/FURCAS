@@ -86,7 +86,6 @@ import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
-import org.eclipse.ocl.parser.OCLAnalyzer;
 import org.eclipse.ocl.parser.OCLParsersym;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.types.OCLStandardLibrary;
@@ -858,13 +857,13 @@ public class SyntaxHelperWithHiddenOpposites {
      */
     private List<IToken> tokenize(String text) {
 	// TODO use more specific analyzer
-	OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> analyzer = new OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>(
+	OCLAnalyzerWithHiddenOpposites analyzer = new OCLAnalyzerWithHiddenOpposites(
 	        environment, text);
 	return tokenize(analyzer);
     }
 
     private List<IToken> tokenize(
-	    OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> analyzer) {
+	    OCLAnalyzerWithHiddenOpposites analyzer) {
 	IToken token = null;
 	List<IToken> result = new ArrayList<IToken>();
 	IPrsStream parser = analyzer.getAbstractParser().getIPrsStream();
@@ -953,7 +952,7 @@ public class SyntaxHelperWithHiddenOpposites {
 		// look backwards past the path name to see whether there is an
 		// "oclIsInState(" before it
 		// TODO use more specific analyzer
-		OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> analyzer = new OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>(
+		OCLAnalyzerWithHiddenOpposites analyzer = new OCLAnalyzerWithHiddenOpposites(
 		        environment, txt);
 		IPrsStream parser = analyzer.getAbstractParser().getIPrsStream();
 		List<IToken> tokens = tokenize(analyzer);
@@ -1019,7 +1018,7 @@ public class SyntaxHelperWithHiddenOpposites {
 		disposeAll(expression);
 	    } else {
 		// TODO use more specific analyzer
-		OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parser = new OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>(
+		OCLAnalyzerWithHiddenOpposites parser = new OCLAnalyzerWithHiddenOpposites(
 		        environment, txt);
 
 		// see whether we can complete a partial name
@@ -1108,7 +1107,7 @@ public class SyntaxHelperWithHiddenOpposites {
      * @return parsed pathname
      */
     private List<String> parseTokensPathNameCS(
-	    OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> analyzer,
+	    OCLAnalyzerWithHiddenOpposites analyzer,
 	    List<IToken> tokens) {
 	IPrsStream parser = analyzer.getAbstractParser().getIPrsStream();
 	ArrayList<String> path = new ArrayList<String>();
@@ -1144,7 +1143,7 @@ public class SyntaxHelperWithHiddenOpposites {
 
 	String newTxt = txt.substring(start, end);
 	// TODO use more specific analyzer
-	OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> analyzer = new OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>(
+	OCLAnalyzerWithHiddenOpposites analyzer = new OCLAnalyzerWithHiddenOpposites(
 	        env, newTxt);
 
 	PackageDeclarationCS packageContext = null;
@@ -1212,7 +1211,7 @@ public class SyntaxHelperWithHiddenOpposites {
 		    newTxt = preamble + txt.substring(start, end);
 
 		    // TODO create specific analyzer
-		    analyzer = new OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>(
+		    analyzer = new OCLAnalyzerWithHiddenOpposites(
 			    env, newTxt);
 
 		    // offset the parser left by the length of our preamble text
@@ -1353,13 +1352,13 @@ public class SyntaxHelperWithHiddenOpposites {
 	    String variables) throws ParserException {
 	int beginIndex = 0;
 	// TODO use more specific analyzer
-	OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> mainAnalyzer = new OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>(
+	OCLAnalyzerWithHiddenOpposites mainAnalyzer = new OCLAnalyzerWithHiddenOpposites(
 	        env, variables);
 
 	if (!parseVariableDeclaration(env, mainAnalyzer)) {
 	    IPrsStream parser = mainAnalyzer.getAbstractParser().getIPrsStream();
 	    parser.reset();
-	    OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> analyzer;
+	    OCLAnalyzerWithHiddenOpposites analyzer;
 	    String newTxt;
 	    IToken token = parser.getIToken(parser.getToken());
 
@@ -1367,7 +1366,7 @@ public class SyntaxHelperWithHiddenOpposites {
 		if ((token.getKind() == OCLParsersym.TK_COMMA) || (token.getKind() == OCLParsersym.TK_SEMICOLON)) {
 		    newTxt = variables.substring(beginIndex, token.getStartOffset());
 		    // TODO use more specific analyzer
-		    analyzer = new OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>(
+		    analyzer = new OCLAnalyzerWithHiddenOpposites(
 			    env, newTxt);
 		    if (parseVariableDeclaration(env, analyzer)) {
 			beginIndex = token.getEndOffset() + 1;
@@ -1375,7 +1374,7 @@ public class SyntaxHelperWithHiddenOpposites {
 			// try to the end of the expression
 			newTxt = variables.substring(beginIndex);
 			// TODO use more specific analyzer
-			analyzer = new OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>(
+			analyzer = new OCLAnalyzerWithHiddenOpposites(
 			        env, newTxt);
 			if (parseVariableDeclaration(env, analyzer)) {
 			    break;
@@ -1392,7 +1391,7 @@ public class SyntaxHelperWithHiddenOpposites {
 	    String variables) throws ParserException {
 
 	// TODO use more specific analyzer
-	OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> analyzer = new OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>(
+	OCLAnalyzerWithHiddenOpposites analyzer = new OCLAnalyzerWithHiddenOpposites(
 	        env, variables);
 
 	parseVariableDeclaration(env, analyzer);
@@ -1400,7 +1399,7 @@ public class SyntaxHelperWithHiddenOpposites {
 
     private boolean parseVariableDeclaration(
 	    Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
-	    OCLAnalyzer<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> p) {
+	    OCLAnalyzerWithHiddenOpposites p) {
 	try {
 	    ProblemHandler problemHandler = p.getEnvironment().getProblemHandler();
 	    problemHandler.beginParse();

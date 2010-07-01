@@ -68,6 +68,13 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 	}
 
 	/**
+	 * Uses a {@link DefaultOppositeEndFinder}
+	 */
+	public EcoreEnvironmentWithHiddenOppositesImpl(org.eclipse.emf.ecore.EPackage.Registry packageRegistry) {
+	    this(packageRegistry, new DefaultOppositeEndFinder());
+        }
+
+	/**
      * Looks up a non-navigable association end on behalf of
      * the specified <code>owner</code> classifier (which is at that end).
      * 

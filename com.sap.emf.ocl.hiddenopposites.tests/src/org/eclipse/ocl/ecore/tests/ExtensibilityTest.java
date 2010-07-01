@@ -55,7 +55,9 @@ import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.TypedElement;
 import org.eclipse.ocl.utilities.UMLReflection;
 
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 /**
  * Tests the extensibility of the parser API.
@@ -180,7 +182,7 @@ public class ExtensibilityTest
 	
 	@Override
 	protected OCL createOCL() {
-	    return OCL.newInstance(new WrapperEnvironmentFactory());
+	    return OCLWithHiddenOpposites.newInstance(new WrapperEnvironmentFactory());
 	}
 	
 	class WrapperEnvironment implements EcoreEnvironmentWithHiddenOpposites {
@@ -443,7 +445,7 @@ public class ExtensibilityTest
 	    }
 	    
 	    WrapperEnvironmentFactory() {
-	        this(new EcoreEnvironmentFactory());
+	        this(new EcoreEnvironmentFactoryWithHiddenOpposites());
 	    }
 
 	    private Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>

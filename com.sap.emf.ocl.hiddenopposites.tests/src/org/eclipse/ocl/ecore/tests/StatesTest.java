@@ -34,7 +34,6 @@ import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.internal.UMLReflectionImpl;
@@ -42,6 +41,10 @@ import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.utilities.UMLReflection;
+
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 /**
  * Tests for state expressions.
@@ -188,12 +191,12 @@ public class StatesTest
 	
 	@Override
 	protected OCL createOCL() {
-		return OCL.newInstance(new StatefulFruitEnvironmentFactory(this));
+		return OCLWithHiddenOpposites.newInstance(new StatefulFruitEnvironmentFactory(this));
 	}
 	
 	private static final List<String> FRUIT_BAD = Arrays.asList(new String[] {"Bad"});
 	
-	public static class StatefulFruitEnvironmentFactory extends EcoreEnvironmentFactory {
+	public static class StatefulFruitEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
 		protected final AbstractTestSuite suite;
 		
 		public StatefulFruitEnvironmentFactory(AbstractTestSuite suite) {
@@ -212,7 +215,7 @@ public class StatesTest
 		}
 	}
 	
-	private static class StatefulFruitEnvironment extends EcoreEnvironment {
+	private static class StatefulFruitEnvironment extends EcoreEnvironmentWithHiddenOppositesImpl {
 		protected final AbstractTestSuite suite;
 		private EObject fruitRipe;
 		private EObject fruitBad;

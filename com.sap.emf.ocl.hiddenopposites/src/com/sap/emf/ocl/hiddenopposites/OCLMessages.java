@@ -32,73 +32,77 @@ import java.util.ResourceBundle;
  */
 public class OCLMessages {
 
-	static final String BUNDLE_NAME = "com.sap.emf.ocl.hiddenopposites.i10n.OCLMessages"; //$NON-NLS-1$
+    static final String BUNDLE_NAME = "com.sap.emf.ocl.hiddenopposites.OCLMessages"; //$NON-NLS-1$
 
+    public static String NonStaticAttribute_ERROR_;
+    public static String NonStaticOperation_ERROR_;
     public static String Ambig_AssocEnd_;
-	public static String HiddenOppositeOf;
-	
-	private static IMessages messagesImpl;
-	
-	public static String bind(String message, Object arg) {
-		return messagesImpl.bind(message, arg);
-	}
-	
-	public static String bind(String message, Object arg1, Object arg2) {
-		return messagesImpl.bind(message, arg1, arg2);
-	}
-	
-	public static String bind(String message, Object[] args) {
-		return messagesImpl.bind(message, args);
+    public static String HiddenOppositeOf;
+    public static String NullProperty_ERROR_;
+    public static String NullNavigationSource_ERROR_;
+    public static String NullNavigationType_ERROR_;
+    public static String AtPreInPostcondition_ERROR_;
+
+    private static IMessages messagesImpl;
+
+    public static String bind(String message, Object arg) {
+	return messagesImpl.bind(message, arg);
+    }
+
+    public static String bind(String message, Object arg1, Object arg2) {
+	return messagesImpl.bind(message, arg1, arg2);
+    }
+
+    public static String bind(String message, Object[] args) {
+	return messagesImpl.bind(message, args);
+    }
+
+    static {
+	try {
+	    @SuppressWarnings("unchecked")
+	    Class<IMessages> nlsClass = (Class<IMessages>) Class.forName("org.eclipse.ocl.internal.l10n.IMessages$NLS"); //$NON-NLS-1$
+	    messagesImpl = nlsClass.newInstance();
+	} catch (NoClassDefFoundError e) {
+	    // expected in non-Eclipse environment
+	} catch (Exception e) {
+	    // expected in non-Eclipse environment
 	}
 
-	static {
-		try {
-			@SuppressWarnings("unchecked")
-			Class<IMessages> nlsClass = (Class<IMessages>) Class
-				.forName("org.eclipse.ocl.internal.l10n.IMessages$NLS"); //$NON-NLS-1$
-			messagesImpl = nlsClass.newInstance();
-		} catch (NoClassDefFoundError e) {
-			// expected in non-Eclipse environment
-		} catch (Exception e) {
-			// expected in non-Eclipse environment
-		}
-		
-		if (messagesImpl == null) {
-			// could not find the NLS class.  Try initializing the messages,
-			//    ourselves
-			initializeMessages();
-			messagesImpl = new IMessages.Default();
-		}
+	if (messagesImpl == null) {
+	    // could not find the NLS class. Try initializing the messages,
+	    // ourselves
+	    initializeMessages();
+	    messagesImpl = new IMessages.Default();
 	}
-	
-	private static void initializeMessages() {
-		ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
-		int publicStatic = Modifier.PUBLIC | Modifier.STATIC;
-		
-		Class<OCLMessages> clazz = OCLMessages.class;
-		
-		if (bundle != null) {
-			Field[] fields = clazz.getDeclaredFields();
-			
-			for (int i = 0; i < fields.length; i++) {
-				Field next = fields[i];
-				
-				if (((next.getModifiers() & publicStatic) == publicStatic)
-						&& (next.getType() == String.class)) {
-					String name = next.getName();
-					
-					try {
-						try {
-							next.set(null, bundle.getString(name));
-						} catch (MissingResourceException e) {
-							// just use its own name, then
-							next.set(null, "Missing message for key: " + name); //$NON-NLS-1$
-						}
-					} catch (Exception e) {
-						// oh, well.  Can't set a value for this one
-					}
-				}
+    }
+
+    private static void initializeMessages() {
+	ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
+	int publicStatic = Modifier.PUBLIC | Modifier.STATIC;
+
+	Class<OCLMessages> clazz = OCLMessages.class;
+
+	if (bundle != null) {
+	    Field[] fields = clazz.getDeclaredFields();
+
+	    for (int i = 0; i < fields.length; i++) {
+		Field next = fields[i];
+
+		if (((next.getModifiers() & publicStatic) == publicStatic) && (next.getType() == String.class)) {
+		    String name = next.getName();
+
+		    try {
+			try {
+			    next.set(null, bundle.getString(name));
+			} catch (MissingResourceException e) {
+			    // just use its own name, then
+			    next.set(null, "Missing message for key: " + name); //$NON-NLS-1$
 			}
+		    } catch (Exception e) {
+			// oh, well. Can't set a value for this one
+		    }
 		}
+	    }
 	}
+    }
 }

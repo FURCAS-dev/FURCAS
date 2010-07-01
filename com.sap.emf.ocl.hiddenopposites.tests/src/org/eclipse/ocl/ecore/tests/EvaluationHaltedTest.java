@@ -45,6 +45,12 @@ import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.util.OCLUtil;
 
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+
 /**
  * Tests usage of EvaluationHaltedException.
  * 
@@ -62,7 +68,7 @@ public class EvaluationHaltedTest
 
 	@Override
 	public OCL createOCL() {
-		return OCL.newInstance(envFactory);
+		return OCLWithHiddenOpposites.newInstance(envFactory);
 	}
 
 	@Override
@@ -293,7 +299,7 @@ public class EvaluationHaltedTest
 		HALT_KIND_CUSTOM, 0, HALT_KIND_CUSTOM, null);
 
 	class InterruptibleEnv
-			extends EcoreEnvironment {
+			extends EcoreEnvironmentWithHiddenOppositesImpl {
 
 		EOperation haltOperation;
 
@@ -333,12 +339,12 @@ public class EvaluationHaltedTest
 	}
 
 	class InterruptibleEvalEnv
-			extends EcoreEvaluationEnvironment {
+			extends EvaluationEnvironmentWithHiddenOppositesImpl {
 
 		private Set<String> names = new HashSet<String>();
 
 		InterruptibleEvalEnv() {
-			super();
+			super(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE));
 		}
 
 		InterruptibleEvalEnv(
@@ -394,7 +400,7 @@ public class EvaluationHaltedTest
 	}
 
 	class InterruptibleEnvFactory
-			extends EcoreEnvironmentFactory {
+			extends EcoreEnvironmentFactoryWithHiddenOpposites {
 
 		public boolean haltOnContextLessExecution = false;
 

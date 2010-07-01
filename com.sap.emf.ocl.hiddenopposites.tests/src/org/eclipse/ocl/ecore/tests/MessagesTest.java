@@ -43,6 +43,10 @@ import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
 import org.eclipse.ocl.utilities.UMLReflection;
 
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+
 /**
  * Tests for message expressions.
  *
@@ -494,7 +498,7 @@ public class MessagesTest
 	
 	@Override
 	protected OCL createOCL() {
-		return OCL.newInstance(new MessagingFruitEnvironmentFactory(this));
+		return OCLWithHiddenOpposites.newInstance(new MessagingFruitEnvironmentFactory(this));
 	}
 	
 	@Override
@@ -503,7 +507,7 @@ public class MessagesTest
 		expectModified = true;
 	}
 	
-	public static class MessagingFruitEnvironmentFactory extends EcoreEnvironmentFactory {
+	public static class MessagingFruitEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
 
 		protected final AbstractTestSuite suite;
 		
@@ -523,7 +527,7 @@ public class MessagesTest
 		}
 	}
 	
-	private static class MessagingFruitEnvironment extends EcoreEnvironment implements InitEnvironment {
+	private static class MessagingFruitEnvironment extends EcoreEnvironmentWithHiddenOppositesImpl implements InitEnvironment {
 		protected final AbstractTestSuite suite;
 		private EClass dropSignal;
 		

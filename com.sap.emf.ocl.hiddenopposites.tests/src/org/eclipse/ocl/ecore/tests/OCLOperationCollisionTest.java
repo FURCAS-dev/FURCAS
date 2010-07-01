@@ -22,11 +22,14 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
+
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 /**
  * Shows the "operation names collision" bug. When defining a new EOperations
@@ -60,7 +63,7 @@ public class OCLOperationCollisionTest
 
 	@Override
 	protected OCL createOCL() {
-		return OCL.newInstance(new MyEnvironmentFactory());
+		return OCLWithHiddenOpposites.newInstance(new MyEnvironmentFactory());
 	}
 
 	/**
@@ -122,7 +125,7 @@ public class OCLOperationCollisionTest
 	 * environment.
 	 */
 	private class MyEnvironmentFactory
-			extends EcoreEnvironmentFactory {
+			extends EcoreEnvironmentFactoryWithHiddenOpposites {
 
 		@Override
 		public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
@@ -144,13 +147,13 @@ public class OCLOperationCollisionTest
 	 * @author <a href="mailto:laurent.goubet@obeo.fr">Laurent Goubet</a>
 	 */
 	private class MyEvaluationEnvironment
-			extends EcoreEvaluationEnvironment {
+			extends EvaluationEnvironmentWithHiddenOppositesImpl {
 
 		/**
 		 * Default constructor.
 		 */
 		public MyEvaluationEnvironment() {
-			super();
+			super(new DefaultOppositeEndFinder(EPackage.Registry.INSTANCE));
 		}
 
 		/**

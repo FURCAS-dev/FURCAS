@@ -106,7 +106,15 @@ public class EcoreEnvironmentFactoryWithHiddenOpposites extends
 		return result;
 	}
 	
-    // implements the inherited specification
+    @Override
+        public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEnvironment(
+                Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
+	    EcoreEnvironmentWithHiddenOppositesImpl result = new EcoreEnvironmentWithHiddenOppositesImpl(parent);
+	    result.setFactory(this);
+	    return result;
+        }
+
+	// implements the inherited specification
 	@Override
     public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>
 	loadEnvironment(Resource resource) {

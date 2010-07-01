@@ -34,7 +34,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="VisitorWithHiddenOpposite" abstract="true"
         interface="true">
       <eTypeParameters name="T"/>
-      <eOperations name="visitOppositePropertyCallExp" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject">
+      <eOperations name="visitOppositePropertyCallExp">
+        <eGenericType eTypeParameter="#//utilities/VisitorWithHiddenOpposite/T"/>
         <eParameters name="callExp" lowerBound="1" eType="#//expressions/OppositePropertyCallExp"/>
       </eOperations>
       <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.ocl/model/OCL.ecore#//utilities/Visitor">
