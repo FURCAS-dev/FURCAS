@@ -26,6 +26,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Employee;
@@ -530,10 +532,9 @@ public class BaseDepartmentTest extends TestCase {
         OCLInput exp = new OCLInput(expression);
         String nsPrefix = basePackage.getNsPrefix();
         EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
-        ArrayList<String> path = new ArrayList<String>();
-        path.add(nsPrefix);
-        OCL ocl = OCL.newInstance();
-        ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
+        OCL ocl = OCLWithHiddenOpposites.newInstance();
+        ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
+                createPackageContext(ocl.getEnvironment(), basePackage));
         List<Constraint> result = null;
         try {
             result = ocl.parse(exp);

@@ -15,6 +15,7 @@ Require-Bundle: de.hpi.sam.bp2009.benchframework;bundle-version="1.0.0",
  de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.oclToAst,
- de.hpi.sam.bp2009.benchframework.queryEvaluator
+ de.hpi.sam.bp2009.benchframework.queryEvaluator,
+ com.sap.emf.ocl.hiddenopposites
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper

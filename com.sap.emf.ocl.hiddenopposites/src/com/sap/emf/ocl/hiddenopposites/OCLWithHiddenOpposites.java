@@ -129,8 +129,7 @@ public class OCLWithHiddenOpposites extends OCL {
      *            an environment for Ecore
      * @return the new <code>OCL</code>
      */
-    public static OCL newInstance(EcoreEnvironmentWithHiddenOpposites env) {
-
+    public static OCL newInstance(Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
 	return new OCLWithHiddenOpposites(env);
     }
 

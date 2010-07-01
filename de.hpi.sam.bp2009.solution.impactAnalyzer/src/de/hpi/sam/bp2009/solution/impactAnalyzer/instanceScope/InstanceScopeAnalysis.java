@@ -41,7 +41,6 @@ import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.NullLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
-import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
 import org.eclipse.ocl.ecore.PrimitiveType;
 import org.eclipse.ocl.ecore.PropertyCallExp;
@@ -51,6 +50,9 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
+
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 import de.hpi.sam.bp2009.solution.eventManager.util.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
@@ -134,7 +136,7 @@ public class InstanceScopeAnalysis {
             return new LetExpTracer((LetExp) expression, tuplePartNames);
         case EcorePackage.OPERATION_CALL_EXP:
             return new OperationCallExpTracer((OperationCallExp) expression, tuplePartNames);
-        case EcorePackage.OPPOSITE_PROPERTY_CALL_EXP:
+        case ExpressionsPackage.OPPOSITE_PROPERTY_CALL_EXP:
             return new OppositePropertyCallExpTracer((OppositePropertyCallExp) expression, tuplePartNames);
         case EcorePackage.REAL_LITERAL_EXP:
             return new RealLiteralExpTracer((RealLiteralExp) expression, tuplePartNames);

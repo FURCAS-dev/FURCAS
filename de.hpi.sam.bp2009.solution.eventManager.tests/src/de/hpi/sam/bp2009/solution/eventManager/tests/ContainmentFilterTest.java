@@ -79,7 +79,7 @@ public class ContainmentFilterTest extends EventFilterTest {
         notiClass.getEStructuralFeatures().add(cFeature);
         EObject testObject = new DynamicEObjectImpl(notiClass);
         containedObject = new DynamicEObjectImpl(notiClass);
-        ((EList) testObject.eGet(cFeature)).add(containedObject);
+        ((EList<EObject>) testObject.eGet(cFeature)).add(containedObject);
         matchingNotification = new ENotificationImpl((InternalEObject) testObject, Notification.ADD_MANY, cFeature,
                 new BasicEList<EObject>(), testObject.eGet(cFeature));
 

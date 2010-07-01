@@ -33,6 +33,9 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+
 
 import company.CompanyPackage;
 
@@ -180,14 +183,14 @@ public class OclToMqlUtilImpl extends EObjectImpl implements OclToMqlUtil {
         new HashMap<Notification, Set<String>>();
 
         //TODO try to use manuell parsing form gui
-        OCL ocl = OCL.newInstance();
+        OCL ocl = OCLWithHiddenOpposites.newInstance();
         String uri = resourceSet.getResources().get(0).getContents().get(0).eClass().getEPackage().getNsURI();
         EPackage basePackage = resourceSet.getPackageRegistry().getEPackage(uri);
         String nsPrefix = basePackage.getNsPrefix();
         EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
         ArrayList<String> path = new ArrayList<String>();
         path.add(nsPrefix);
-        ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
+        ocl = OCLWithHiddenOpposites.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
        
         //TODO check if all is correctly
         Pattern pattern=Pattern.compile(regex);
@@ -284,7 +287,7 @@ public class OclToMqlUtilImpl extends EObjectImpl implements OclToMqlUtil {
         OCLExpression query1 = null;
 
         // create an OCL instance for Ecore
-        OCL ocl = OCL.newInstance();
+        OCL ocl = OCLWithHiddenOpposites.newInstance();
 
         // create an OCL helper object
         Helper helper = ocl.createOCLHelper();

@@ -10,13 +10,15 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 
-public class PartialEcoreEvaluationEnvironment extends EcoreEvaluationEnvironment {
+import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
+public class PartialEcoreEvaluationEnvironment extends EvaluationEnvironmentWithHiddenOppositesImpl {
     private final Map<String, Object> map = new HashMap<String, Object>();
     
-    public PartialEcoreEvaluationEnvironment() {
-        super();
+    public PartialEcoreEvaluationEnvironment(OppositeEndFinder oppositeEndFinder) {
+        super(oppositeEndFinder);
     }
     
     public PartialEcoreEvaluationEnvironment(

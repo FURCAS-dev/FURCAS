@@ -18,7 +18,8 @@ Require-Bundle: de.hpi.sam.bp2009.benchframework;visibility:=reexport,
  de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer;bundle-version="1.0.0",
  de.hpi.sam.bp2009.solution.scopeProvider;bundle-version="1.0.0",
  de.hpi.sam.bp2009.solution.impactAnalyzer,
- com.sap.ocl.oppositefinder.query2
+ com.sap.ocl.oppositefinder.query2,
+ com.sap.emf.ocl.hiddenopposites
 Bundle-ActivationPolicy: lazy
 Export-Package: de.hpi.sam.bp2009.benchframework.oclOperator,
  de.hpi.sam.bp2009.benchframework.oclOperator.impl

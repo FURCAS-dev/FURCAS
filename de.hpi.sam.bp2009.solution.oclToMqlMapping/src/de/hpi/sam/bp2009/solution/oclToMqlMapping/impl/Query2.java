@@ -11,12 +11,10 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
@@ -26,11 +24,10 @@ import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
 import org.eclipse.ocl.EvaluationHaltedException;
-import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
@@ -49,10 +46,9 @@ public class Query2  {
  * @param mapev is the Mapping Evaluation Visitor, needed to instantiate a second Visitor to map the expression
  * @return result
  */
-    @SuppressWarnings("unchecked")
-    public static Object buildMqlQuery(Set<EObject> allO,  Object ocType, OCLExpression body, IteratorExp ie, MappingEvaluationVisitor<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> mapev){
+    public static Object buildMqlQuery(Set<EObject> allO,  Object ocType, OCLExpression<EClassifier> body, IteratorExp<EClassifier, EParameter> ie, MappingEvaluationVisitor mapev){
         Object result = null;
-        MqlMapperToString<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> mmts ;
+        MqlMapperToString mmts ;
         mmts = new MqlMapperToString(mapev.getEnvironment(), mapev.getEvaluationEnvironment(), mapev.getExtentMap());
         EClassifier eclass1 = (EClassifier) ocType;
         URI uri1 = EcoreUtil.getURI(eclass1);
@@ -103,9 +99,9 @@ public class Query2  {
                 String nav = stringBody.substring(match.start(1), stringBody.indexOf("***"));
                 String cond = stringBody.substring(stringBody.indexOf("***")+3);
                 String ali = stringBody.substring(match3.start(1), stringBody.indexOf("."));
-                if (body instanceof OperationCallExp<?, ?>){
+                if (body instanceof OperationCallExp){
 
-                    Object prop = ((PropertyCallExp) ((PropertyCallExp) ((OperationCallExp<?, ?>) body).getSource()).getSource()).getReferredProperty();
+                    Object prop = ((PropertyCallExp) ((PropertyCallExp) ((OperationCallExp) body).getSource()).getSource()).getReferredProperty();
                     if(prop instanceof EReference){
                         Object propType = ((EReference) prop).getEType();
                         EClassifier eclass2 = (EClassifier) propType;
@@ -152,9 +148,9 @@ public class Query2  {
                 String cond = stringBody.substring(stringBody.indexOf("."),match5.end());
                 String cond2=stringBody.substring(stringBody.indexOf("***")+3);
 
-                if (body instanceof OperationCallExp<?, ?>){
-                    List<OCLExpression> args = ((OperationCallExp) body).getArgument();
-                    OCLExpression arg = args.get(0);
+                if (body instanceof OperationCallExp){
+                    List<OCLExpression<EClassifier>> args = ((OperationCallExp) body).getArgument();
+                    OCLExpression<EClassifier> arg = args.get(0);
                     PropertyCallExp src = (PropertyCallExp) ((PropertyCallExp) arg).getSource();
                     Object prop = src.getReferredProperty();
                     if(prop instanceof EReference){
@@ -221,7 +217,7 @@ public class Query2  {
 
             Matcher match3=pattern3.matcher(stringBody);
             match3.find();
-            if (body instanceof PropertyCallExp<?, ?>){
+            if (body instanceof PropertyCallExp){
 
                 Object prop = ((PropertyCallExp) body).getReferredProperty();
                 if(prop instanceof EReference){

@@ -43,6 +43,7 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
@@ -662,7 +663,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
                         // calculate number of all instances for comparison with IA-Version
                         EList<EObject> allInstances = getAllInstances(context);                       
                         // execution time benchmarking
-                        Query query = OCL.newInstance().createQuery(entry.getValue().expr);
+                        Query query = OCLWithHiddenOpposites.newInstance().createQuery(entry.getValue().expr);
                         //time consumption for Instance Scope and Class Scope evaluation
                         long before = System.nanoTime();
                         qe.evaluateQuery(query, contextIns);
@@ -722,7 +723,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 
         List<EClass> classes = new ArrayList<EClass>(EcoreHelper.getInstance().getAllSubclasses(context));
         classes.add(context);
-        OCL ocl = OCL.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
+        OCL ocl = OCLWithHiddenOpposites.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
         Helper helper= ocl.createOCLHelper();          
         Resource r = res.getResources().get(0);
         EcoreHelper.getInstance().addResourceToDefaultIndex(r);       

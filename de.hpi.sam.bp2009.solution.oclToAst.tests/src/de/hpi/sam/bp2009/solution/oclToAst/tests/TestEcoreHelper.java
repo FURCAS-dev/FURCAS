@@ -20,6 +20,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
@@ -79,7 +80,7 @@ public class TestEcoreHelper extends TestCase {
         Resource e = rs.createResource(URI.createURI("http://my.next.resource/somethingElse"));
         e.getContents().add(place);
         e.getContents().add(transition);
-        OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
+        OCL ocl = OCLWithHiddenOpposites.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
         Helper oclHelper = ocl.createOCLHelper();
         oclHelper.setContext(transition.eClass());
         OCLExpression expr = oclHelper.createQuery("self.hiddenOpposite");

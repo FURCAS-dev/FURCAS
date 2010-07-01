@@ -17,11 +17,14 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 
-public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
+import com.sap.ocl.oppositefinder.query2.QueryContextProvider;
+
+public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
     private Object valueOfSourceExpression;
     private OCLExpression sourceExpression;
     
@@ -38,6 +41,11 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
     private Notification atPre;
 
     public PartialEcoreEnvironmentFactory() {
+        super(new Query2OppositeEndFinder());
+    }
+
+    public PartialEcoreEnvironmentFactory(QueryContextProvider queryContextProvider) {
+        super(new Query2OppositeEndFinder(queryContextProvider));
     }
 
     /**
@@ -54,7 +62,7 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
 
     // implements the inherited specification
     public EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> createEvaluationEnvironment() {
-        return new PartialEcoreEvaluationEnvironment();
+        return new PartialEcoreEvaluationEnvironment(getOppositeEndFinder());
     }
 
     // implements the inherited specification

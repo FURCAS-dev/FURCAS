@@ -7,20 +7,11 @@ import java.util.Set;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.CallOperationAction;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.SendSignalAction;
 import org.junit.Test;
 
 import de.hpi.sam.bp2009.solution.oclToMqlMapping.impl.MappingOCL;
@@ -30,7 +21,7 @@ import de.hpi.sam.petriNet.PetriNetPackage;
 public class MqlMapperToStringTest extends TestCase {
     private String expressionStringComplete;
     private OCLExpression oclexpressionComplete;
-    private de.hpi.sam.bp2009.solution.oclToMqlMapping.impl.MqlMapperToString<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject>  fixture;
+    private de.hpi.sam.bp2009.solution.oclToMqlMapping.impl.MqlMapperToString fixture;
     private String expressionStringBody;
     private OCLExpression oclexpressionBody;
     private String expressionStringCollectNavigation;
@@ -63,9 +54,7 @@ public class MqlMapperToStringTest extends TestCase {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
         }
-        fixture= new MqlMapperToString<EPackage, EClassifier, EOperation, EStructuralFeature,
-        EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> 
-        (ocl.getEnvironment(), ocl.getEvaluationEnvironment(), ocl.getExtentMap());
+        fixture= new MqlMapperToString(ocl.getEnvironment(), ocl.getEvaluationEnvironment(), ocl.getExtentMap());
           }
     @Override
     protected void tearDown() throws Exception {
