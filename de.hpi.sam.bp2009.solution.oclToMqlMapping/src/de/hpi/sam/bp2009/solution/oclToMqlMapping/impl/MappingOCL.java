@@ -53,7 +53,6 @@ public class MappingOCL extends OCL{
         return new MappingOCL(env);
     }
 
-@SuppressWarnings("unchecked")
 public Object evaluate(Object context, OCLExpression expression) {
 
     // can determine a more appropriate context from the context

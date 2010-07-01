@@ -13,5 +13,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  de.hpi.sam.bp2009.solution.impactAnalyzer.tests,
- org.junit4
+ org.junit4,
+ de.hpi.sam.bp2009.company
 Bundle-ActivationPolicy: lazy

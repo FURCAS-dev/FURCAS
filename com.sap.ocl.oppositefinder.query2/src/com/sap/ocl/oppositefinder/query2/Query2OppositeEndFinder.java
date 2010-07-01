@@ -11,8 +11,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.ocl.ecore.DefaultOppositeEndFinder;
 
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.ocl.oppositefinder.query2.internal.DefaultQueryContextProvider;
 
 /**

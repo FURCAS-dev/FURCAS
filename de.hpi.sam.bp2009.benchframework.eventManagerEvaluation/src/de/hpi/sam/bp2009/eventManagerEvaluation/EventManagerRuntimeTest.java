@@ -34,6 +34,9 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+
 import company.CompanyPackage;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
@@ -478,8 +481,8 @@ public class EventManagerRuntimeTest {
        EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
        ArrayList<String> path = new ArrayList<String>();
        path.add(nsPrefix);
-       OCL ocl = OCL.newInstance();
-       ocl = OCL.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
+       OCL ocl = OCLWithHiddenOpposites.newInstance();
+       ocl = OCLWithHiddenOpposites.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
        OCLExpression result = null;
        try {
            ExpressionInOCL<EClassifier, EParameter> specification = ocl.parse(exp).iterator().next().getSpecification();

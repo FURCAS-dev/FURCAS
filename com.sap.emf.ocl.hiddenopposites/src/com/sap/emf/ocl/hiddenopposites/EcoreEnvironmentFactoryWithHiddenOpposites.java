@@ -134,4 +134,14 @@ public class EcoreEnvironmentFactoryWithHiddenOpposites extends
 		return new EvaluationEnvironmentWithHiddenOppositesImpl(parent);
 	}
 
+	protected OppositeEndFinder getOppositeEndFinder() {
+	    return oppositeEndFinder;
+	}
+
+    @Override
+    public Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createPackageContext(
+            Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent,
+            EPackage context) {
+        return super.createPackageContext(parent, context);
+    }
 }

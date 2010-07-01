@@ -29,19 +29,21 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.EvaluationVisitorImpl;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.OCLExpression;
 
+import com.sap.emf.ocl.hiddenopposites.EvaluationVisitorWithHiddenOppositesImpl;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+
 import de.hpi.sam.bp2009.solution.oclToAst.delegate.InvocationBehaviorForAnnotations;
 import de.hpi.sam.bp2009.solution.oclToAst.delegate.SettingBehaviorForAnnotations;
 
 public class OclAstEvaluationVisitor
         extends
-        EvaluationVisitorImpl<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> {
+        EvaluationVisitorWithHiddenOppositesImpl {
     private final OCL ocl;
 
     public OclAstEvaluationVisitor(
@@ -49,7 +51,7 @@ public class OclAstEvaluationVisitor
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> evalEnv,
             Map<? extends EClass, ? extends Set<? extends EObject>> extentMap) {
         super(env, evalEnv, extentMap);
-        ocl = OCL.newInstance(getEnvironment()); // this uses the OppositeEndFinder as defined on the environment's factory
+        ocl = OCLWithHiddenOpposites.newInstance(getEnvironment()); // this uses the OppositeEndFinder as defined on the environment's factory
     }
 
     @Override

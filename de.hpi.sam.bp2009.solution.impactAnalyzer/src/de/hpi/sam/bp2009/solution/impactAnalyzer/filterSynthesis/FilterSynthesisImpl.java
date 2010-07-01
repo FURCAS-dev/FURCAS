@@ -6,15 +6,13 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
@@ -22,21 +20,19 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.emf.query2.EcoreHelper;
-import org.eclipse.ocl.ecore.CallOperationAction;
-import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
-import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.parser.OCLParsersym;
-import org.eclipse.ocl.utilities.AbstractVisitor;
 import org.eclipse.ocl.utilities.PredefinedType;
+
+import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -60,8 +56,7 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  * @author Tobias Hoppe
  * @author Axel Uhl
  */
-public class FilterSynthesisImpl extends AbstractVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
-EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint>
+public class FilterSynthesisImpl extends AbstractVisitorWithHiddenOpposites<EPackage>
 implements OperationBodyToCallMapper {
 
     final private boolean notifyNewContextElements;
@@ -133,8 +128,8 @@ implements OperationBodyToCallMapper {
     }
     
     @Override
-    public EPackage handleOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> callExp,
-            EPackage sourceResult, List<EPackage> qualifierResults) {
+    public EPackage handleOppositePropertyCallExp(OppositePropertyCallExp callExp,
+            EPackage sourceResult) {
         if (callExp.getReferredOppositeProperty() instanceof EReference){
             EClass cls = (EClass) callExp.getReferredOppositeProperty().eContainer();
             filters.add(EventFilterFactory.getInstance().createFilterForEReference(cls, callExp.getReferredOppositeProperty( )));
@@ -144,7 +139,7 @@ implements OperationBodyToCallMapper {
                 set = new HashSet<NavigationCallExp>();
                 associationEndCallExpressions.put(refRef, set);
             }
-            set.add((org.eclipse.ocl.ecore.OppositePropertyCallExp)callExp);
+            set.add((OppositePropertyCallExp)callExp);
         } else {
             System.err.println("Unhandled EStructuralFeature as referredOppositeProperty in FilterSynthesis.");
         }

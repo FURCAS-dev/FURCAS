@@ -34,6 +34,8 @@ import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.ConstraintKind;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator;
@@ -136,7 +138,7 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 		OCLExpression<EClassifier> query1 = null;
 
 		    // create an OCL instance for Ecore
-		    OCL ocl = OCL.newInstance();
+		    OCL ocl = OCLWithHiddenOpposites.newInstance();
 		    
 		    // create an OCL helper object
 		    Helper helper = ocl.createOCLHelper();
@@ -208,7 +210,7 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	 */
 	@SuppressWarnings("unchecked")
 	public boolean validateOclQuery(EClass context, String queryString, ResourceSet resource, QueryEvaluator evaluator) throws ParserException{
-		OCL ocl= OCL.newInstance();
+		OCL ocl= OCLWithHiddenOpposites.newInstance();
 		
 		// build a valid extent map
 		// TODO: build an appropriate scope using the scope provider

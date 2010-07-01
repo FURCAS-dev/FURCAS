@@ -22,12 +22,12 @@ import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
-import org.eclipse.ocl.ecore.OppositePropertyCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Department;

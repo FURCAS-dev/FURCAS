@@ -37,6 +37,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -199,7 +200,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
             if (e == null)
                 return;
             // TODO can the following lines be pulled out of the loop? This may speed things up a little
-            OCL ocl = org.eclipse.ocl.ecore.OCL.newInstance(new OclAstEcoreEnvironmentFactory(this.getRegistry(),
+            OCL ocl = OCLWithHiddenOpposites.newInstance(new OclAstEcoreEnvironmentFactory(this.getRegistry(),
                     new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider())));
             Helper helper = ocl.createOCLHelper();
             /*

@@ -41,7 +41,6 @@ public class EventManagerTests extends TestSuite {
 		suite.addTestSuite(AssociationFilterTest.class);
 		suite.addTestSuite(OldValueClassFilterTest.class);
 		suite.addTestSuite(NewValueClassFilterTest.class);
-		suite.addTestSuite(StructuralFeatureFilterTest.class);
 		suite.addTestSuite(ContainmentFilterTest.class);
 		return suite;
 	}

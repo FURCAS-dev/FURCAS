@@ -32,13 +32,14 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.OppositeEndFinder;
 import org.eclipse.ocl.ecore.SendSignalAction;
+
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.oclToAst.OclAstEvaluationVisitor;
 
-public class OclAstEcoreEnvironmentFactory extends EcoreEnvironmentFactory {
+public class OclAstEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
     public static OclAstEcoreEnvironmentFactory INSTANCE = new OclAstEcoreEnvironmentFactory();
 
     public OclAstEcoreEnvironmentFactory() {

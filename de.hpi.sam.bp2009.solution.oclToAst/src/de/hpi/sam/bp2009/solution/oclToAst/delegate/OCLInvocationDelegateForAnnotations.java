@@ -38,6 +38,7 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateException;
 import org.eclipse.ocl.ecore.delegate.OCLInvocationDelegate;
 import org.eclipse.osgi.util.NLS;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -75,7 +76,7 @@ public class OCLInvocationDelegateForAnnotations extends OCLInvocationDelegate {
             envFactory = new OclAstEcoreEnvironmentFactory(new Query2OppositeEndFinder(
                     new ProjectDependencyQueryContextProvider()));;
         }
-        return OCL.newInstance(envFactory);
+        return OCLWithHiddenOpposites.newInstance(envFactory);
     }
 
     @Override

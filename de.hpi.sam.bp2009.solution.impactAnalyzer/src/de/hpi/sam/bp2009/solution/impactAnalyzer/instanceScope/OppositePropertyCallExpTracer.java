@@ -2,7 +2,8 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.ocl.ecore.OppositePropertyCallExp;
+
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 

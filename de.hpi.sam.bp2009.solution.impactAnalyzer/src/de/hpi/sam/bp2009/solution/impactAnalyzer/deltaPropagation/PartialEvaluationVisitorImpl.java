@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.AbstractEvaluationVisitor;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
-import org.eclipse.ocl.EvaluationEnvironmentWithHiddenOpposites;
 import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CallOperationAction;
@@ -41,7 +40,6 @@ import org.eclipse.ocl.expressions.MessageExp;
 import org.eclipse.ocl.expressions.NullLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.OppositePropertyCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.expressions.RealLiteralExp;
 import org.eclipse.ocl.expressions.StateExp;
@@ -53,6 +51,9 @@ import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
+
+import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOpposites;
+import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin;
 import de.hpi.sam.bp2009.solution.oclToAst.OclAstEvaluationVisitor;
@@ -434,7 +435,7 @@ public class PartialEvaluationVisitorImpl
 
     @SuppressWarnings("unchecked")
     @Override
-    public Object visitOppositePropertyCallExp(OppositePropertyCallExp<EClassifier, EStructuralFeature> pc) {
+    public Object visitOppositePropertyCallExp(OppositePropertyCallExp pc) {
         if (pc == sourceExpression) {
             sourceExpression = null;
             return valueOfSourceExpression;
@@ -462,17 +463,7 @@ public class PartialEvaluationVisitorImpl
                 localResult = navigate(property, derivation, context);
             } else {
             */
-                List<Object> qualifiers;
-                if (pc.getQualifier().isEmpty()) {
-                    qualifiers = Collections.emptyList();
-                } else {
-                    // handle qualified association navigation
-                    qualifiers = new java.util.ArrayList<Object>();
-                    for (OCLExpression<EClassifier> q : pc.getQualifier()) {
-                        qualifiers.add(q.accept(getVisitor()));
-                    }
-                }
-                localResult = ((EvaluationEnvironmentWithHiddenOpposites<EStructuralFeature>) getEvaluationEnvironment()).navigateOppositeProperty(property, qualifiers, context);
+                localResult = ((EvaluationEnvironmentWithHiddenOpposites) getEvaluationEnvironment()).navigateOppositeProperty(property, context);
                 if ((pc.getType() instanceof CollectionType<?, ?>) && !(localResult instanceof Collection<?>)) {
                     // this was an XSD "unspecified multiplicity". Now that we know what
                     // the multiplicity is, we can coerce it to a collection value
