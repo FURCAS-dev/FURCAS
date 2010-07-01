@@ -23,6 +23,12 @@ import org.eclipse.ocl.ecore.SendSignalAction;
 public class EcoreEnvironmentFactoryWithHiddenOpposites extends
 		EcoreEnvironmentFactory {
 
+	/**
+     * A convenient shared instance of the environment factory, that creates
+     * environments using the global package registry.
+	 */
+    public static EcoreEnvironmentFactoryWithHiddenOpposites INSTANCE = new EcoreEnvironmentFactoryWithHiddenOpposites();
+	
 	private OppositeEndFinder oppositeEndFinder;
 
 	@Override

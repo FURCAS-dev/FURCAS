@@ -37,6 +37,66 @@ public class OCLWithHiddenOpposites extends OCL {
 		return new OCLHelperWithOppositesImpl(super.createOCLHelper());
 	}
 	
+	/**
+     * Creates a new <code>OCL</code> using the shared Ecore environment
+     * factory instance.
+     * 
+     * @return the new <code>OCL</code>
+     */
+	public static OCL newInstance() {
+		return new OCLWithHiddenOpposites(EcoreEnvironmentFactoryWithHiddenOpposites.INSTANCE);
+	}
 	
+    /**
+     * Creates a new <code>OCL</code> creating a new Ecore environment
+     * factory instance that uses the <code>oppositeEndFinder</code>
+     * specified.
+     * 
+     * @return the new <code>OCL</code>
+     * @since 3.0
+     */
+	public static OCL newInstance(OppositeEndFinder oppositeEndFinder) {
+		return new OCLWithHiddenOpposites(new EcoreEnvironmentFactoryWithHiddenOpposites(oppositeEndFinder));
+	}
+	
+    /**
+     * Creates a new <code>OCL</code> using the specified Ecore environment
+     * factory.
+     * 
+     * @param envFactory an environment factory for Ecore
+     * @return the new <code>OCL</code>
+     */
+	public static OCL newInstance(EcoreEnvironmentFactoryWithHiddenOpposites envFactory) {
+		
+		return new OCLWithHiddenOpposites(envFactory);
+	}
+	
+    /**
+     * Creates a new <code>OCL</code> using the specified initial Ecore
+     * environment.
+     * 
+     * @param env an environment for Ecore
+     * @return the new <code>OCL</code>
+     */
+	public static OCL newInstance(EcoreEnvironmentWithHiddenOpposites env) {
+		
+		return new OCLWithHiddenOpposites(env);
+	}
+	
+    /**
+     * Creates a new <code>OCL</code> using the specified Ecore environment
+     * factory and a resource from which to load the initial environment.
+     * 
+     * @param envFactory an environment factory for Ecore
+     * @param resource the resource containing a persistent environment
+     *    (which may be empty for an initially empty environment)
+     * @return the new <code>OCL</code>
+     */
+	public static OCL newInstance(EcoreEnvironmentFactoryWithHiddenOpposites envFactory,
+			Resource resource) {
+		
+		return new OCLWithHiddenOpposites(envFactory, resource);
+	}
+    
 
 }
