@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
 import java.util.Collection;
-import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -18,37 +17,54 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnal
  */
 public class ImpactAnalyzerImpl implements ImpactAnalyzer {
 
-    private HashMap<OCLExpression, FilterSynthesisImpl> expToFilterSyn = new HashMap<OCLExpression, FilterSynthesisImpl>();
+    private final OCLExpression expression;
+    private FilterSynthesisImpl filtersyn;
+    private boolean needToInferContextType;
+    private EClass context;
 
     /**
-     * @return the expToFilterSyn
+     * Creates a new impact analyzer for the OCL expression given. For event filter synthesis (see
+     * {@link #createFilterForExpression(boolean)}) no context type is required. Should
+     * {@link #getContextObjects(Notification)} be called later, a context type may be needed. When this constructor is
+     * used, it is inferred on demand using the {@link ContextTypeRetriever}, visiting all subexpressions looking for
+     * <code>self</code> occurrences and picking their type.
+     * <p>
+     * 
+     * Should you conveniently have the context type available, consider using {@link #ImpactAnalyzerImpl(OCLExpression, EClass)}
+     * instead.
      */
-    protected HashMap<OCLExpression, FilterSynthesisImpl> getExpToFilterSyn() {
-        return expToFilterSyn;
+    public ImpactAnalyzerImpl(OCLExpression expression) {
+        this.expression = expression;
+        needToInferContextType = true;
     }
 
-    /**
-     * @param expToFilterSyn
-     *            the expToFilterSyn to set
-     */
-    protected void setExpToFilterSyn(HashMap<OCLExpression, FilterSynthesisImpl> expToFilterSyn) {
-        this.expToFilterSyn = expToFilterSyn;
+    public ImpactAnalyzerImpl(OCLExpression expression, EClass context) {
+        this.expression = expression;
+        needToInferContextType = false;
+        this.context = context;
     }
 
     @Override
-    public EventFilter createFilterForExpression(OCLExpression expression, boolean notifyNewContextElements) {
-        FilterSynthesisImpl filtersyn = new FilterSynthesisImpl(expression, notifyNewContextElements);
-        this.getExpToFilterSyn().put(expression, filtersyn);
+    public EventFilter createFilterForExpression(boolean notifyNewContextElements) {
+        filtersyn = new FilterSynthesisImpl(expression, notifyNewContextElements);
         return filtersyn.getSynthesisedFilter();
     }
 
     @Override
-    public Collection<EObject> getContextObjects(Notification event, OCLExpression expression, EClass context) {
-        if (!(this.getExpToFilterSyn().containsKey(expression))) {
-            createFilterForExpression(expression, true);
+    public Collection<EObject> getContextObjects(Notification event) {
+        if (filtersyn == null) {
+            createFilterForExpression(true);
         }
-        InstanceScopeAnalysis instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, this.getExpToFilterSyn().get(expression));
+        if (needToInferContextType) {
+            context = expression.accept(new ContextTypeRetriever());
+            needToInferContextType = false;
+        }
+        InstanceScopeAnalysis instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn);
         return instanceScopeAnalysis.getContextObjects(event);
+    }
+    
+    protected OCLExpression getExpression() {
+        return expression;
     }
 
 } // ImpactAnalyzerImpl

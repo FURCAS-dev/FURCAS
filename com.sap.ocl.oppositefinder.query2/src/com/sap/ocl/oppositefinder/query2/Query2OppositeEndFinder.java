@@ -1,8 +1,11 @@
 package com.sap.ocl.oppositefinder.query2;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -13,6 +16,7 @@ import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.emf.query2.QueryContext;
 
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.ocl.oppositefinder.query2.internal.DefaultQueryContextProvider;
 
 /**
@@ -27,11 +31,22 @@ import com.sap.ocl.oppositefinder.query2.internal.DefaultQueryContextProvider;
  * @author Axel Uhl (D043530)
  *
  */
-public class Query2OppositeEndFinder extends DefaultOppositeEndFinder {
+public class Query2OppositeEndFinder implements OppositeEndFinder {
     /**
      * Used to obtain a query context for a given {@link EObject}.
      */
     private final QueryContextProvider queryContextProvider;
+    
+    private final OppositeEndFinder delegate;
+    
+    private static Query2OppositeEndFinder instance;
+    
+    public static Query2OppositeEndFinder getInstance() {
+        if (instance == null) {
+            instance = new Query2OppositeEndFinder();
+        }
+        return instance;
+    }
     
     public Query2OppositeEndFinder() {
         this(new DefaultQueryContextProvider());
@@ -39,6 +54,7 @@ public class Query2OppositeEndFinder extends DefaultOppositeEndFinder {
     
     public Query2OppositeEndFinder(QueryContextProvider queryContextProvider) {
         this.queryContextProvider = queryContextProvider;
+        delegate = DefaultOppositeEndFinder.getInstance();
     }
     
     @Override
@@ -58,6 +74,16 @@ public class Query2OppositeEndFinder extends DefaultOppositeEndFinder {
             return result;
         }
         throw new IllegalArgumentException();
+    }
+
+    @Override
+    public void findOppositeEnds(EClassifier classifier, String name, List<EStructuralFeature> ends) {
+        delegate.findOppositeEnds(classifier, name, ends);
+    }
+
+    @Override
+    public Map<String, EStructuralFeature> getAllOppositeEnds(EClassifier classifier) {
+        return delegate.getAllOppositeEnds(classifier);
     }
 
 }

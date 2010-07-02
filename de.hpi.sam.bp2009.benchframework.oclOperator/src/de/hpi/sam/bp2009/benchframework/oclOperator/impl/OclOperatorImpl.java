@@ -43,6 +43,7 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
@@ -628,7 +629,6 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
          * TODO refactor so that no direct dependencies between operators
          */
         //final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
-        final ModifiedImpactAnalyzerImpl ia = new ModifiedImpactAnalyzerImpl();
         //final EventManager em = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
         final EventManager naiveEM = new EventManagerNaive(resourceSet);
         
@@ -639,24 +639,25 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
             throw new IllegalArgumentException("Invalid Testrun, no Query Evaluator defined");
         } else {
             int expCount = 0;
-            ((OclResultImpl)getResult()).setExpToFilterTime(ia.IAResult.getExpToFilterTime());
             notiToAllInstances.clear();
             for (final Entry<String, ExpressionWithContext> entry: allConstraints.entrySet()){
-                final OCLExpression exp = entry.getValue().expr;               
+                final OCLExpression exp = entry.getValue().expr;   
+                final EClass context = entry.getValue().classifier;
+                final ModifiedImpactAnalyzerImpl ia = new ModifiedImpactAnalyzerImpl(exp, context);
+                ((OclResultImpl)getResult()).setExpToFilterTime(new HashMap<String, Long>());
                 ((OclResultImpl)getResult()).addQuery(entry.getValue().toString());
-                EventFilter filter = ia.createFilterForExpression(exp, true);
+                EventFilter filter = ia.createFilterForExpression(true);
+                ((OclResultImpl)getResult()).getExpToFilterTime().put(exp.toString(),
+                        ia.IAResult.getExpToFilterTime().get(exp.toString()));
                 expCount++;
 
                 naiveEM.subscribe(filter, new AdapterImpl() {
                     @Override
                     public void notifyChanged(Notification msg) {
-
-                        
-
                         // analyze reduction of context instances by usage of IA
                         EClass context = entry.getValue().classifier;
                         long beforeIA = System.nanoTime();
-                        Collection<EObject> contextInstances = ia.getContextObjects(msg, exp, context);
+                        Collection<EObject> contextInstances = ia.getContextObjects(msg);
                         long afterIA = System.nanoTime();
                         EList<EObject> contextIns = new BasicEList<EObject>();
                         contextIns.addAll(contextInstances);
@@ -721,7 +722,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         EList<EObject> allInstances = new BasicEList<EObject>();
         allInstances = new BasicEList<EObject>();
 
-        List<EClass> classes = new ArrayList<EClass>(EcoreHelper.getInstance().getAllSubclasses(context));
+        List<EClass> classes = new ArrayList<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(context));
         classes.add(context);
         OCL ocl = OCLWithHiddenOpposites.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
         Helper helper= ocl.createOCLHelper();          

@@ -9,6 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.ocl.oppositefinder.query2.QueryContextProvider;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class AllInstancesNavigationStep extends AbstractNavigationStep {
@@ -48,6 +50,8 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 	@Override
 	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
 	        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+	        // FIXME not only search in one resource but use a QueryScopeProvider
+	        QueryContextProvider queryContextProvider;
 	        for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances(fromObject.eResource(), getTargetType())) {
 	            result.add(annotateEObject(fromObject, roi));
 	        }

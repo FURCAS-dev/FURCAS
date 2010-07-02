@@ -20,6 +20,7 @@ import data.classes.Parameter;
 import data.classes.SapClass;
 import data.classes.TypeAdapter;
 import dataaccess.expressions.ExpressionsFactory;
+import dataaccess.expressions.ExpressionsPackage;
 import dataaccess.expressions.MethodCallExpression;
 import dataaccess.expressions.ObjectCreationExpression;
 import dataaccess.expressions.VariableExpression;
@@ -38,8 +39,6 @@ public class OclIaTest extends BaseDepartmentTest {
 
     private EPackage cp;
 
-    private ImpactAnalyzer ia;
-
     private String testLongRunningNavigationPathExpression = "context data::classes::AssociationEnd inv LongRunningNavigationPath: \n "
             + "'.'.concat(self.oclAsType(data::classes::AssociationEnd).name)";
 
@@ -52,7 +51,6 @@ public class OclIaTest extends BaseDepartmentTest {
     @Override
     public void setUp() {
         this.cp = ClassesPackage.eINSTANCE;
-        this.ia = new ImpactAnalyzerImpl();
         this.rs = new ResourceSetImpl();
         this.rs.getResources().add(this.cp.eResource());
 
@@ -60,11 +58,8 @@ public class OclIaTest extends BaseDepartmentTest {
 
     @Override
     public void tearDown() {
-        this.ia = null;
         this.rs = null;
-
         this.cp = null;
-        this.ia = null;
     }
 
     @Test
@@ -84,10 +79,12 @@ public class OclIaTest extends BaseDepartmentTest {
         ta.setTo(d);
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
-        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
-        assertTrue(impact.size() == 1 && impact.contains(c));
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression, ClassesPackage.eINSTANCE.getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti);
+        assertEquals(1, impact.size());
+        assertTrue(impact.contains(c));
         Notification noti2 = NotificationHelper.createAttributeChangeNotification(d, att, "D", "newD");
-        Collection<EObject> impact2 = this.ia.getContextObjects(noti2, expression, d.eClass());
+        Collection<EObject> impact2 = ia.getContextObjects(noti2);
         assertTrue(impact2.size() == 2 && impact2.contains(c) && impact2.contains(d));
     }
 
@@ -102,8 +99,10 @@ public class OclIaTest extends BaseDepartmentTest {
         c.setName("oldName");
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
-        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
-        assertTrue(impact.size() == 1 && impact.contains(c));
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression, ClassesPackage.eINSTANCE.getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti);
+        assertEquals(1, impact.size());
+        assertTrue(impact.contains(c));
     }
 
     @Test
@@ -118,8 +117,10 @@ public class OclIaTest extends BaseDepartmentTest {
         c.setName("oldName");
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
-        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
-        assertTrue(impact.size() == 1 && impact.contains(c));
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression, ClassesPackage.eINSTANCE.getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti);
+        assertEquals(1, impact.size());
+        assertTrue(impact.contains(c));
     }
 
     @Test
@@ -135,8 +136,10 @@ public class OclIaTest extends BaseDepartmentTest {
         c.setName("oldName");
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
-        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
-        assertTrue(impact.size() == 1 && impact.contains(c));
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression, ClassesPackage.eINSTANCE.getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti);
+        assertEquals(1, impact.size());
+        assertTrue(impact.contains(c));
     }
 
     @Test
@@ -151,8 +154,10 @@ public class OclIaTest extends BaseDepartmentTest {
         c.setName("oldName");
         EAttribute att = (EAttribute) c.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(c, att, "oldName", "newName");
-        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, c.eClass());
-        assertTrue(impact.size() == 1 && impact.contains(c));
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression, ClassesPackage.eINSTANCE.getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti);
+        assertEquals(1, impact.size());
+        assertTrue(impact.contains(c));
     }
 
     @Test
@@ -164,7 +169,8 @@ public class OclIaTest extends BaseDepartmentTest {
         this.cp.eResource().getContents().add(ae);
         EAttribute att = (EAttribute) ae.eClass().getEStructuralFeature(ClassesPackage.ASSOCIATION_END__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(ae, att, "oldName", "newName");
-        Collection<EObject> impact = this.ia.getContextObjects(noti, expression, ae.eClass());
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression, ClassesPackage.eINSTANCE.getAssociationEnd());
+        Collection<EObject> impact = ia.getContextObjects(noti);
         assertTrue(impact.size() == 1 && impact.contains(ae));
     }
 
@@ -220,10 +226,11 @@ public class OclIaTest extends BaseDepartmentTest {
         assertEquals(1, ve.getType().getLowerMultiplicity());
 
         Notification noti = NotificationHelper.createChangeLowerMultiplicityNotification(p.getOwnedTypeDefinition(), 0);
-        Collection<EObject> impact = this.ia.getContextObjects(noti, exp, ctd.eClass());
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(exp, ClassesPackage.eINSTANCE.getClassTypeDefinition());
+        Collection<EObject> impact = ia.getContextObjects(noti);
 
         assertEquals(0, p.getOwnedTypeDefinition().getLowerMultiplicity());
-        assertTrue(impact.size() == 1);
+        assertEquals(1, impact.size());
         assertTrue(impact.contains(ctd));
 
     }
@@ -273,10 +280,11 @@ public class OclIaTest extends BaseDepartmentTest {
         assertEquals(1, sl.getOwnedTypeDefinition().getLowerMultiplicity());
 
         Notification noti = NotificationHelper.createChangeLowerMultiplicityNotification(sl.getOwnedTypeDefinition(), 0);
-        Collection<EObject> impact = this.ia.getContextObjects(noti, exp, ctd1.eClass());
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(exp, ClassesPackage.eINSTANCE.getClassTypeDefinition());
+        Collection<EObject> impact = ia.getContextObjects(noti);
 
         assertEquals(0, sl.getOwnedTypeDefinition().getLowerMultiplicity());
-        assertTrue(impact.size() == 1);
+        assertEquals(1, impact.size());
         assertTrue(impact.contains(ctd1));
 
     }
@@ -313,9 +321,10 @@ public class OclIaTest extends BaseDepartmentTest {
         
 
         Notification noti = NotificationHelper.createChangeClazzNotification(ctd, cl1);
-        Collection<EObject> impact = this.ia.getContextObjects(noti, exp, ctd.eClass());
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(exp, ExpressionsPackage.eINSTANCE.getMethodCallExpression());
+        Collection<EObject> impact = ia.getContextObjects(noti);
 
-        assertTrue(impact.size() == 1);
+        assertEquals(1, impact.size());
         assertTrue(impact.contains(mce) && !impact.contains(ctd));
         
     }

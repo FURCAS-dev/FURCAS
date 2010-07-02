@@ -27,43 +27,42 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl {
     /**
      * Modified version of the {@link ImpactAnalyzerImpl} to benchmark time consumption
      */
-    public ModifiedImpactAnalyzerImpl() {
-        super();      
+    public ModifiedImpactAnalyzerImpl(OCLExpression exp, EClass context) {
+        super(exp, context);
     }
 
     public ModifiedImpactAnalyzerResultImpl IAResult = new ModifiedImpactAnalyzerResultImpl();
     
     @Override
-    public EventFilter createFilterForExpression(OCLExpression expression, boolean notifyNewContextElements) {
+    public EventFilter createFilterForExpression(boolean notifyNewContextElements) {
         long before = System.nanoTime();
-        EventFilter result = super.createFilterForExpression(expression, notifyNewContextElements);
+        EventFilter result = super.createFilterForExpression(notifyNewContextElements);
         long after = System.nanoTime();
-        IAResult.getExpToFilterTime().put(expression.toString(), (after - before));
+        IAResult.getExpToFilterTime().put(getExpression().toString(), (after - before));
         return result;    
     }
 
     @Override
-    public Collection<EObject> getContextObjects(Notification event,
-            OCLExpression expression, EClass context) {
+    public Collection<EObject> getContextObjects(Notification event) {
         long before = System.nanoTime();
-        Collection<EObject> result = super.getContextObjects(event, expression, context);
+        Collection<EObject> result = super.getContextObjects(event);
         long after = System.nanoTime();
-        if (IAResult.getExpToInsScopeTime().containsKey(expression)){
+        if (IAResult.getExpToInsScopeTime().containsKey(getExpression())){
             //check whether there exists an entry for the given notification or not
-            if (IAResult.getExpToInsScopeTime().get(expression).containsKey(event)){
+            if (IAResult.getExpToInsScopeTime().get(getExpression()).containsKey(event)){
                 //override old time benchmarking
-                IAResult.getExpToInsScopeTime().get(expression).remove(event);
-                IAResult.getExpToInsScopeTime().get(expression).put(event, (after - before));
+                IAResult.getExpToInsScopeTime().get(getExpression()).remove(event);
+                IAResult.getExpToInsScopeTime().get(getExpression()).put(event, (after - before));
             }
             else{
-                IAResult.getExpToInsScopeTime().get(expression).put(event, (after - before));
+                IAResult.getExpToInsScopeTime().get(getExpression()).put(event, (after - before));
             }
         }
         else {
             // create new entry for expression
             HashMap<Notification, Long> evToTime = new HashMap<Notification, Long>();
             evToTime.put(event, (after - before));
-            IAResult.getExpToInsScopeTime().put(expression, evToTime);
+            IAResult.getExpToInsScopeTime().put(getExpression(), evToTime);
         }
         return result;  
     }

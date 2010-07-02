@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -18,7 +17,6 @@ import company.CompanyFactory;
 import company.Department;
 import company.impl.DepartmentImpl;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
@@ -65,14 +63,8 @@ public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {
 	
 	stmts.add(this.recursiveBudgetCalculationAST);
 	
-	ImpactAnalyzer ia = new ImpactAnalyzerImpl();
-	
-	createFilters(stmts, ia, false);
-	
-	Notification noti;
-	
-	noti = NotificationHelper.createAttributeChangeNotification(this.dep3, this.departmentBudget, this.dep3.getBudget(), this.dep3.getBudget() + 20);
-	Collection<EObject> instances = computeAffectedInstances(stmts, noti, ia, this.dep1.eClass());
+	Notification noti = NotificationHelper.createAttributeChangeNotification(this.dep3, this.departmentBudget, this.dep3.getBudget(), this.dep3.getBudget() + 20);
+	Collection<EObject> instances = new ImpactAnalyzerImpl(this.recursiveBudgetCalculationAST, this.dep1.eClass()).getContextObjects(noti);
 	
 	compareInstances(instances, new EObject[] { this.dep1, this.dep2, this.dep3 });
     }
@@ -117,39 +109,6 @@ public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {
         
     }
     
-    /**
-     * @param stmts
-     * @param ia
-     * @param notifyNewContectElements
-     */
-    private void createFilters(Set<OCLExpression> stmts, ImpactAnalyzer ia, boolean notifyNewContectElements) {
-        // for caching purpose only
-        for (Iterator<OCLExpression> i = stmts.iterator(); i.hasNext();) {
-            ia.createFilterForExpression(i.next(), notifyNewContectElements);
-        }
-    }
-
-    /**
-     * Computes the set of affected context instances for event <tt>evt</tt>.
-     * 
-     * @param expressions
-     *            list of the effected {@link OCLExpression}s
-     * @param noti
-     *            the event
-     * @param ia
-     *            the instance of ImpactAnalyzer used to filter <tt>evt</tt>.
-     * @param context
-     * @return a Collection of {@link EObject}s representing the affected context instances.
-     */
-    private Collection<EObject> computeAffectedInstances(Set<OCLExpression> expressions, Notification noti, ImpactAnalyzer ia,
-            EClass context) {
-        Collection<EObject> instances = new HashSet<EObject>();
-        for (Iterator<OCLExpression> i = expressions.iterator(); i.hasNext();) {
-            instances.addAll(ia.getContextObjects(noti, i.next(), context));
-        }
-        return instances;
-    }
-
     /**
      * @param instances
      * @param expectedInstances

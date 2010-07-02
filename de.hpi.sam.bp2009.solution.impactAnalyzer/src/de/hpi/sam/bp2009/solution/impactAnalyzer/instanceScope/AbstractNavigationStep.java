@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -14,8 +15,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.OCLExpression;
+
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
@@ -302,12 +304,12 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     protected static boolean haveIntersectingSubclassTree(EClass a, EClass b) {
         boolean result = a==null || b==null || a.equals(b);
         if (!result) {
-            Collection<EClass> targetSubtypesIncludingTargetType = EcoreHelper.getInstance().getAllSubclasses(a);
+            Collection<EClass> targetSubtypesIncludingTargetType = new ArrayList<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(a));
             targetSubtypesIncludingTargetType.add(a);
             if (targetSubtypesIncludingTargetType.contains(b)) {
                 result = true;
             } else {
-                Collection<EClass> sourceSubtypesIncludingSourceType = EcoreHelper.getInstance().getAllSubclasses(b);
+                Collection<EClass> sourceSubtypesIncludingSourceType = new ArrayList<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(b));
                 sourceSubtypesIncludingSourceType.add(b);
                 for (Object sourceSubType : sourceSubtypesIncludingSourceType) {
                     if (targetSubtypesIncludingTargetType.contains((EClassifier)sourceSubType)) {
