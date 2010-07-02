@@ -50,6 +50,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 /**
@@ -513,7 +514,7 @@ public class SerializationTest
     @Override
     protected OCL createOCL() {
 //    	OCL ocl = super.createOCL();
-        EcoreEnvironmentFactory factory = new EcoreEnvironmentFactory(resourceSet.getPackageRegistry());
+        EcoreEnvironmentFactory factory = new EcoreEnvironmentFactoryWithHiddenOpposites(resourceSet.getPackageRegistry());
         EcoreEnvironment environment = (EcoreEnvironment) factory.loadEnvironment(res);
 
 //        EcoreEnvironmentFactory factory = ocl.;

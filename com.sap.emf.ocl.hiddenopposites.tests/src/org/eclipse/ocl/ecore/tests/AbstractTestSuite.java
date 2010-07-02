@@ -137,6 +137,7 @@ public abstract class AbstractTestSuite
 	 * @param result the suite
 	 */
 	public static void suite(CheckedTestSuite result) {
+		result.createTestSuite(AllInstancesTest.class, "AllInstances Tests");
 		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
 		result.createTestSuite(KeywordsTest.class, "OCL Keyword Tests");
 		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests");
