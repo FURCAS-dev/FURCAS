@@ -7,6 +7,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
@@ -19,8 +22,10 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
 
     private final OCLExpression expression;
     private FilterSynthesisImpl filtersyn;
+    private InstanceScopeAnalysis instanceScopeAnalysis;
     private boolean needToInferContextType;
     private EClass context;
+    private final OppositeEndFinder oppositeEndFinder;
 
     /**
      * Creates a new impact analyzer for the OCL expression given. For event filter synthesis (see
@@ -34,14 +39,30 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      * instead.
      */
     public ImpactAnalyzerImpl(OCLExpression expression) {
-        this.expression = expression;
-        needToInferContextType = true;
+        this(expression, DefaultOppositeEndFinder.getInstance());
     }
 
     public ImpactAnalyzerImpl(OCLExpression expression, EClass context) {
+        this(expression, context, DefaultOppositeEndFinder.getInstance());
+    }
+
+    /**
+     * @param oppositeEndFinder used during partial navigation and for metamodel queries
+     */
+    public ImpactAnalyzerImpl(OCLExpression expression, OppositeEndFinder oppositeEndFinder) {
+        this.expression = expression;
+        needToInferContextType = true;
+        this.oppositeEndFinder = oppositeEndFinder;
+    }
+
+    /**
+     * @param oppositeEndFinder used during partial navigation and for metamodel queries
+     */
+    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder) {
         this.expression = expression;
         needToInferContextType = false;
         this.context = context;
+        this.oppositeEndFinder = oppositeEndFinder;
     }
 
     @Override
@@ -52,14 +73,16 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
 
     @Override
     public Collection<EObject> getContextObjects(Notification event) {
-        if (filtersyn == null) {
-            createFilterForExpression(true);
+        if (instanceScopeAnalysis == null) {
+            if (filtersyn == null) {
+                createFilterForExpression(true);
+            }
+            if (needToInferContextType) {
+                context = expression.accept(new ContextTypeRetriever());
+                needToInferContextType = false;
+            }
+            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder);
         }
-        if (needToInferContextType) {
-            context = expression.accept(new ContextTypeRetriever());
-            needToInferContextType = false;
-        }
-        InstanceScopeAnalysis instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn);
         return instanceScopeAnalysis.getContextObjects(event);
     }
     

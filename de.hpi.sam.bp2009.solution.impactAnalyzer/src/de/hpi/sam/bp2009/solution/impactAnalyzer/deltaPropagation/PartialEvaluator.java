@@ -19,7 +19,7 @@ import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-import com.sap.ocl.oppositefinder.query2.QueryContextProvider;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
@@ -36,8 +36,8 @@ public class PartialEvaluator {
     private Helper helper;
     private PartialEcoreEnvironmentFactory factory;
     
-    public PartialEvaluator(QueryContextProvider queryContextProvider) {
-        factory = new PartialEcoreEnvironmentFactory(queryContextProvider);
+    public PartialEvaluator(OppositeEndFinder oppositeEndFinder) {
+        factory = new PartialEcoreEnvironmentFactory(oppositeEndFinder);
         initOcl();
     }
 

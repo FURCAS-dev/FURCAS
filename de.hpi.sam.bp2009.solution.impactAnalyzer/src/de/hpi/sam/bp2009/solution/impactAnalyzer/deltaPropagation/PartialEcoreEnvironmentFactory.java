@@ -20,9 +20,9 @@ import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
-import com.sap.ocl.oppositefinder.query2.QueryContextProvider;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithHiddenOpposites {
     private Object valueOfSourceExpression;
@@ -41,11 +41,11 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithH
     private Notification atPre;
 
     public PartialEcoreEnvironmentFactory() {
-        super(new Query2OppositeEndFinder());
+        super(DefaultOppositeEndFinder.getInstance());
     }
 
-    public PartialEcoreEnvironmentFactory(QueryContextProvider queryContextProvider) {
-        super(new Query2OppositeEndFinder(queryContextProvider));
+    public PartialEcoreEnvironmentFactory(OppositeEndFinder oppositeEndFinder) {
+        super(oppositeEndFinder);
     }
 
     /**
