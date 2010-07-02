@@ -22,6 +22,14 @@ public abstract class AbstractVisitorWithHiddenOpposites<T>
         AbstractVisitor<T, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint>
         implements VisitorWithHiddenOpposite<T> {
 
+    public AbstractVisitorWithHiddenOpposites() {
+        super();
+    }
+
+    public AbstractVisitorWithHiddenOpposites(T initialValue) {
+        super(initialValue);
+    }
+
     /**
      * Visits the property-call source and then its qualifiers (if any). Returns the result of
      * {@link #handlePropertyCallExp(PropertyCallExp, Object, List)}.
