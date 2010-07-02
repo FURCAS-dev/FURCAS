@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.ui.IndexFactory;
-import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
@@ -51,6 +50,7 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
@@ -81,10 +81,15 @@ public class InstanceScopeAnalysis {
             PredefinedType.EQUAL_NAME, PredefinedType.LESS_THAN_NAME, PredefinedType.LESS_THAN_EQUAL_NAME,
             PredefinedType.GREATER_THAN_NAME, PredefinedType.GREATER_THAN_EQUAL_NAME, PredefinedType.NOT_EQUAL_NAME }));
 
+    /**
+     * @param context
+     *            the overall context type for the entire expression; this context type defines the type for <tt>self</tt> if used
+     *            outside of operation bodies.
+     */
     protected static Set<EObject> getAllPossibleContextInstances(Resource container, EClass context) {
         Set<EObject> result = new HashSet<EObject>();
 
-        List<EClass> classes = new ArrayList<EClass>(EcoreHelper.getInstance().getAllSubclasses(context));
+        List<EClass> classes = new ArrayList<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(context));
         classes.add(context);
 
         QueryContext scope = new ProjectBasedScopeProviderImpl(container).getForwardScopeAsQueryContext();
@@ -168,7 +173,10 @@ public class InstanceScopeAnalysis {
      *            as operation bodies called by several expressions.
      */
     public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer) {
-        if (expression == null || exprContext == null || filterSynthesizer == null) {
+        if (exprContext == null) {
+            throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
+        }
+        if (expression == null || filterSynthesizer == null) {
             throw new IllegalArgumentException("Arguments must not be null");
         }
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
@@ -399,6 +407,10 @@ public class InstanceScopeAnalysis {
         return result;
     }
 
+    /**
+     * @return the overall context type for the entire expression; this context type defines
+     *         the type for <tt>self</tt> if used outside of operation bodies.
+     */
     private EClass getContext() {
         return context;
     }
@@ -498,7 +510,9 @@ public class InstanceScopeAnalysis {
      * elements that are not part of the result and for which the source expression evaluates to <tt>sourceElement</tt>. This
      * means, all contexts for which the source expression evaluates to <tt>sourceElement</tt> are guaranteed to be found.
      * 
-     * @param cache
+     * @param context
+     *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
+     *            defines the type for <tt>self</tt> if used outside of operation bodies.
      */
     private Set<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
             EClass context, Map<List<Object>, Set<AnnotatedEObject>> cache) {

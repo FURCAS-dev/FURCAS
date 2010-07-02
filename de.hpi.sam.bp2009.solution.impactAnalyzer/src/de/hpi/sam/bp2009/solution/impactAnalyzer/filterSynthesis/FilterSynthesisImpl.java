@@ -32,6 +32,7 @@ import org.eclipse.ocl.parser.OCLParsersym;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
@@ -216,7 +217,7 @@ implements OperationBodyToCallMapper {
      * Obtains the event filter for the expression passed to the constructor. When an event matches the filter, the
      * value of the expression may have changed for one or more evaluation contexts. To determine a superset of those
      * context elements for which the value may have changed, feed the event into
-     * {@link ImpactAnalyzer#getContextObjects(Notification, OCLExpression, org.eclipse.emf.ecore.EClass)}.
+     * {@link ImpactAnalyzer#getContextObjects(Notification)}.
      * @return the filter matching all relevant events 
      */
     public EventFilter getSynthesisedFilter() {
@@ -293,7 +294,7 @@ implements OperationBodyToCallMapper {
     private Set<EClassifier> getAllSpecializationsIncludingSelf(EClassifier classifier) {
         Set<EClassifier> result = new HashSet<EClassifier>();
         if (classifier instanceof EClass){
-            result.addAll(EcoreHelper.getInstance().getAllSubclasses((EClass)classifier));
+            result.addAll(DefaultOppositeEndFinder.getInstance().getAllSubclasses((EClass)classifier));
             result.add((EClass)classifier);            
         } else {
             //classifier is a datatype

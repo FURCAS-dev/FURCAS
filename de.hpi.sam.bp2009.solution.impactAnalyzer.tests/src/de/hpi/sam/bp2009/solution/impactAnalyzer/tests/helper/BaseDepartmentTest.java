@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,8 +21,8 @@ import org.eclipse.emf.query.index.update.UpdateCommand;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCL;
-import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -105,137 +106,137 @@ public class BaseDepartmentTest extends TestCase {
     /**
      * A boss is not allowed to be a freelance
      */
-    private static final String notBossFreelance = "context Department \n" + "  inv NotBossFreelance: \n"
+    public final String notBossFreelance = "context Department \n" + "  inv NotBossFreelance: \n"
             + "  not self.boss.oclIsTypeOf(Freelance)";
 
     /**
      * there must be at least one employee older than 45 in each department
      */
-    private static final String oldEmployee = "context Department \n" + "  inv OldEmployee: \n"
+    public final String oldEmployee = "context Department \n" + "  inv OldEmployee: \n"
             + "  self.employee->exists(e | e.age > 45)";
 
     /**
      * different employees must have different names
      */
-    private static final String uniqueNames = "context Employee \n" + "inv UniqueNames: \n"
+    public final String uniqueNames = "context Employee \n" + "inv UniqueNames: \n"
             + "  Employee.allInstances()->forAll(e | \n" + "  e <> self implies e.name <> self.name)";
 
     /**
      * the assignment of a freelance must be between 5 and 30
      */
-    private static final String validAssignment = "context Freelance \n" + "  inv ValidAssignment: \n"
+    public final String validAssignment = "context Freelance \n" + "  inv ValidAssignment: \n"
             + "  self.assignment >= 5 and self.assignment <= 30";
 
     /**
      * there are at most maxJuniors allowed per department
      */
-    private static final String maxJuniors = "context Department inv MaxJuniors: \n"
+    public final String maxJuniors = "context Department inv MaxJuniors: \n"
             + "self.employee->select(e|e.age < 25)->size() < self.maxJuniors\n";
 
     /**
      * the boss must be older than his employees
      */
-    private static final String bossIsOldest = "context Employee inv BossIsOldest: \n" + "self.age <= self.employer.boss.age\n";
+    public final String bossIsOldest = "context Employee inv BossIsOldest: \n" + "self.age <= self.employer.boss.age\n";
 
     /**
      * the boss always gets the most money
      */
-    private static final String bossHighestSalary = "context Department inv BossHighestSalary: \n" + "self.employee->select(\n"
+    public final String bossHighestSalary = "context Department inv BossHighestSalary: \n" + "self.employee->select(\n"
             + "	e|e.salary >= self.boss.salary)->size() <= 1\n";
 
     /**
      * this is a nasty constraint with 2 navigation path introduced by collect() stating that the salaries of the employees and
      * the bosses must not exceed the division's budget.
      */
-    private static final String nastyConstraint = "context Division \n" + "inv nasty: \n" + "self.department->collect(d| \n"
+    public final String nastyConstraint = "context Division \n" + "inv nasty: \n" + "self.department->collect(d| \n"
             + "d.employee->including(d.boss)).salary->sum() < budget";
 
     /**
      * Only directors are allowed to have a secretary
      */
-    private static final String divisionBossSecretary = "context Employee \n" + "inv divBossSecretary: \n"
+    public final String divisionBossSecretary = "context Employee \n" + "inv divBossSecretary: \n"
             + "if self.directed->isEmpty() then \n" + "   self.secretary.oclIsUndefined() \n" + "else \n"
             + "   not self.secretary.oclIsUndefined() \n" + "endif";
 
     /**
      * for security reasons, secretaries must be older than their bosses ;-) the secretary is modeled as an attribute
      */
-    private static final String secretaryOlderThanBoss = "context Employee \n" + "inv secretaryOlderThanBoss: \n"
+    public final String secretaryOlderThanBoss = "context Employee \n" + "inv secretaryOlderThanBoss: \n"
             + "if self.directed->notEmpty() and \n" + "  not self.secretary.oclIsUndefined() then \n"
             + "    self.age < self.secretary.age \n" + "else true \n" + "endif";
 
     /**
      * A boss must be at least 10 years older than the youngest employee in the managed department.
      */
-    private static final String boss10YearsOlderThanJunior = "context Department \n" + "inv boss10YearsOlderThanJunior: \n"
+    public final String boss10YearsOlderThanJunior = "context Department \n" + "inv boss10YearsOlderThanJunior: \n"
             + "let t:Tuple(boss:Employee,junior:Employee)="
             + "Tuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in \n" + "t.boss.age > t.junior.age + 10";
 
     /**
      * the expenses per department must not exceed its budget
      */
-    private static final String expensesRestriction = "context Department inv BudgetRestriction: \n"
+    public final String expensesRestriction = "context Department inv BudgetRestriction: \n"
             + "self.calcExpenses() <= self.budget";
 
     // /**
     // * defines how to calculate expenses: The sum of the employee's salary plus
     // * the boss' salary
     // */
-    // private static final String expensesCalculation = "context Department \n" + "def: calcExpenses():Integer = \n" +
+    // public final String expensesCalculation = "context Department \n" + "def: calcExpenses():Integer = \n" +
     // "self.employee->iterate(e: sum=0 | sum + self.salary) + self.boss.salary";
 
     /**
      * each department must be in a division
      */
-    private static final String departmentMustHaveDivision = "context Department inv departmentMustHaveDivision: \n"
+    public final String departmentMustHaveDivision = "context Department inv departmentMustHaveDivision: \n"
             + "self.department2division->notEmpty()";
 
-    private static final String compareBossSalaryToJuniorSalary = "context Department \n"
+    public final String compareBossSalaryToJuniorSalary = "context Department \n"
             + "inv compareBossSalaryToJuniorSalary: \n"
             + "let bt:Tuple(bp:Employee,bs:Integer)=Tuple{bp=self.boss, bs=self.boss.salary} in "
             + "let jt:Tuple(jp:Employee, js:Integer)=Tuple{jp=self.employee->sortedBy(age)->first(), js=self.employee->sortedBy(age)->first().salary} in "
             + "let t:Tuple(b:Tuple(p1:Employee, s1:Integer), j:Tuple(p2:Employee, s2:Integer))=" + "Tuple{b=bt, j=jt} in \n"
             + "t.b.p1 <> t.j.p2 implies t.b.s1 > t.j.s2 + 100";
 
-    private static final String employeeInSameDepartmentAsIntern = "context Employee \n"
+    public final String employeeInSameDepartmentAsIntern = "context Employee \n"
             + "inv employeeInSameDepartmentAsIntern: \n" + "self.employer = self.intern.employer";
 
-    private static final String checkForBob = "context Employee inv checkForBob: Employee.allInstances()->select(e:Employee | e.name = 'Bob')->asOrderedSet()->first().oclAsType(Employee).name = 'Bob'";
+    public final String checkForBob = "context Employee inv checkForBob: Employee.allInstances()->select(e:Employee | e.name = 'Bob')->asOrderedSet()->first().oclAsType(Employee).name = 'Bob'";
 
     /*
      * OCLExpression representing the constrains above
      */
-    protected OCLExpression notBossFreelanceAST = null;
+    public ExpressionInOCL notBossFreelanceAST = null;
 
-    protected OCLExpression oldEmployeeAST = null;
+    public ExpressionInOCL oldEmployeeAST = null;
 
-    protected OCLExpression uniqueNamesAST = null;
+    public ExpressionInOCL uniqueNamesAST = null;
 
-    protected OCLExpression validAssignmentAST = null;
+    public ExpressionInOCL validAssignmentAST = null;
 
-    protected OCLExpression maxJuniorsAST = null;
+    public ExpressionInOCL maxJuniorsAST = null;
 
-    protected OCLExpression bossIsOldestAST = null;
+    public ExpressionInOCL bossIsOldestAST = null;
 
-    protected OCLExpression bossHighestSalaryAST = null;
+    public ExpressionInOCL bossHighestSalaryAST = null;
 
-    protected OCLExpression expensesRestrictionAST = null;
+    public ExpressionInOCL expensesRestrictionAST = null;
 
-    protected OCLExpression nastyConstraintAST = null;
+    public ExpressionInOCL nastyConstraintAST = null;
 
-    protected OCLExpression divisionBossSecretaryAST = null;
+    public ExpressionInOCL divisionBossSecretaryAST = null;
 
-    protected OCLExpression secretaryOlderThanBossAST = null;
+    public ExpressionInOCL secretaryOlderThanBossAST = null;
 
-    protected OCLExpression boss10YearsOlderThanJuniorAST = null;
+    public ExpressionInOCL boss10YearsOlderThanJuniorAST = null;
 
-    protected OCLExpression departmentMustHaveDivisionAST = null;
+    public ExpressionInOCL departmentMustHaveDivisionAST = null;
 
-    protected OCLExpression compareBossSalaryToJuniorSalaryAST = null;
+    public ExpressionInOCL compareBossSalaryToJuniorSalaryAST = null;
 
-    protected OCLExpression employeeInSameDepartmentAsInternAST = null;
+    public ExpressionInOCL employeeInSameDepartmentAsInternAST = null;
 
-    protected OCLExpression checkForBobAST = null;
+    public ExpressionInOCL checkForBobAST = null;
 
     /*
      * for easy access to the model
@@ -282,10 +283,94 @@ public class BaseDepartmentTest extends TestCase {
 
     protected EReference internRef = null;
 
+    /**
+     * Declare a public String field 
+     * @param stringFieldName
+     * @return
+     */
+    protected ExpressionInOCL getAST(String stringFieldName) {
+        try {
+            Field stringField = getClass().getField(stringFieldName);
+            Field astField = getClass().getField(stringFieldName+"AST");
+            ExpressionInOCL result = (ExpressionInOCL) astField.get(this);
+            if (result == null) {
+                result = (ExpressionInOCL) parse((String) stringField.get(this), this.comp).iterator().next().getSpecification();
+                astField.set(this, result);
+            }
+            return result;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected ExpressionInOCL getNotBossFreelanceAST() {
+        return getAST("notBossFreelance");
+    }
+    
+    protected ExpressionInOCL getOldEmployeeAST() {
+        return getAST("oldEmployee");
+    }
+
+    protected ExpressionInOCL getUniqueNamesAST() {
+        return getAST("uniqueNames");
+    }
+
+    protected ExpressionInOCL getValidAssignmentAST() {
+        return getAST("validAssignment");
+    }
+
+    protected ExpressionInOCL getMaxJuniorsAST() {
+        return getAST("maxJuniors");
+    }
+
+    protected ExpressionInOCL getBossIsOldestAST() {
+        return getAST("bossIsOldest");
+    }
+
+    protected ExpressionInOCL getBossHighestSalaryAST() {
+        return getAST("bossHighestSalary");
+    }
+
+    protected ExpressionInOCL getExpensesRestrictionAST() {
+        return getAST("expensesRestriction");
+    }
+
+    protected ExpressionInOCL getNastyConstraintAST() {
+        return getAST("nastyConstraint");
+    }
+
+    protected ExpressionInOCL getDivisionBossSecretaryAST() {
+        return getAST("divisionBossSecretary");
+    }
+
+    protected ExpressionInOCL getSecretaryOlderThanBossAST() {
+        return getAST("secretaryOlderThanBoss");
+    }
+
+    protected ExpressionInOCL getBoss10YearsOlderThanJuniorAST() {
+        return getAST("boss10YearsOlderThanJunior");
+    }
+
+    protected ExpressionInOCL getDepartmentMustHaveDivisionAST() {
+        return getAST("departmentMutsHaveDivision");
+    }
+
+    protected ExpressionInOCL getCompareBossSalaryToJuniorSalaryAST() {
+        return getAST("compareBossSalaryToJuniorSalary");
+    }
+
+    protected ExpressionInOCL getEmployeeInSameDepartmentAsInternAST() {
+        return getAST("employeeInSameDepartmentAsIntern");
+    }
+
+    protected ExpressionInOCL getCheckForBobAST() {
+        return getAST("checkForBob");
+    }
+
     @Override
     @Before
     public void setUp() {
-        beforeTestMethod(true);
+        beforeTestMethod();
         updateIndex();
     }
 
@@ -320,14 +405,9 @@ public class BaseDepartmentTest extends TestCase {
         this.resetInstances();
     }
 
-    protected void beforeTestMethod(boolean withParsing) {
-
+    protected void beforeTestMethod() {
         // build up the test model
         buildModel();
-        if (withParsing) {
-            // parse the constraints
-            parseConstraints();
-        }
     }
 
     /**
@@ -464,66 +544,6 @@ public class BaseDepartmentTest extends TestCase {
     }
 
     /**
-     * parses the constraints
-     */
-    private void parseConstraints() {
-
-        this.oldEmployeeAST = (OCLExpression) parse(oldEmployee, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-        this.notBossFreelanceAST = (OCLExpression) parse(notBossFreelance, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-        this.uniqueNamesAST = (OCLExpression) parse(uniqueNames, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-        this.validAssignmentAST = (OCLExpression) parse(validAssignment, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-        this.maxJuniorsAST = (OCLExpression) parse(maxJuniors, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-        this.bossIsOldestAST = (OCLExpression) parse(bossIsOldest, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-        this.bossHighestSalaryAST = (OCLExpression) parse(bossHighestSalary, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-        this.nastyConstraintAST = (OCLExpression) parse(nastyConstraint, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-        this.divisionBossSecretaryAST = (OCLExpression) parse(divisionBossSecretary, this.comp).iterator().next()
-                .getSpecification().getBodyExpression();
-        this.secretaryOlderThanBossAST = (OCLExpression) parse(secretaryOlderThanBoss, this.comp).iterator().next()
-                .getSpecification().getBodyExpression();
-        this.boss10YearsOlderThanJuniorAST = (OCLExpression) parse(boss10YearsOlderThanJunior, this.comp).iterator().next()
-                .getSpecification().getBodyExpression();
-        this.expensesRestrictionAST = (OCLExpression) parse(expensesRestriction, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-        this.departmentMustHaveDivisionAST = (OCLExpression) parse(departmentMustHaveDivision, this.comp).iterator().next()
-                .getSpecification().getBodyExpression();
-        this.compareBossSalaryToJuniorSalaryAST = (OCLExpression) parse(compareBossSalaryToJuniorSalary, this.comp).iterator()
-                .next().getSpecification().getBodyExpression();
-        this.employeeInSameDepartmentAsInternAST = (OCLExpression) parse(employeeInSameDepartmentAsIntern, this.comp).iterator()
-                .next().getSpecification().getBodyExpression();
-
-        this.checkForBobAST = (OCLExpression) parse(checkForBob, this.comp).iterator().next().getSpecification()
-                .getBodyExpression();
-
-        // if comp has an EResource add each expression to this EResource
-        if (this.comp.eResource() != null) {
-            this.comp.eResource().getContents().add(this.boss10YearsOlderThanJuniorAST);
-            this.comp.eResource().getContents().add(this.bossIsOldestAST);
-            this.comp.eResource().getContents().add(this.maxJuniorsAST);
-            this.comp.eResource().getContents().add(this.notBossFreelanceAST);
-            this.comp.eResource().getContents().add(this.uniqueNamesAST);
-            this.comp.eResource().getContents().add(this.validAssignmentAST);
-            this.comp.eResource().getContents().add(this.oldEmployeeAST);
-            this.comp.eResource().getContents().add(this.secretaryOlderThanBossAST);
-            this.comp.eResource().getContents().add(this.nastyConstraintAST);
-            this.comp.eResource().getContents().add(this.bossHighestSalaryAST);
-            this.comp.eResource().getContents().add(this.divisionBossSecretaryAST);
-            this.comp.eResource().getContents().add(this.expensesRestrictionAST);
-            this.comp.eResource().getContents().add(this.departmentMustHaveDivisionAST);
-            this.comp.eResource().getContents().add(this.compareBossSalaryToJuniorSalaryAST);
-            this.comp.eResource().getContents().add(this.employeeInSameDepartmentAsInternAST);
-            this.comp.eResource().getContents().add(this.checkForBobAST);
-        }
-    }
-
-    /**
      * @param expression
      *            to parse
      * @return a list of {@link Constraint}s parsed from given expression
@@ -557,22 +577,6 @@ public class BaseDepartmentTest extends TestCase {
         this.aDepartment = null;
         this.aDivision = null;
         this.aFreelance = null;
-        this.notBossFreelanceAST = null;
-        this.oldEmployeeAST = null;
-        this.uniqueNamesAST = null;
-        this.validAssignmentAST = null;
-        this.maxJuniorsAST = null;
-        this.bossIsOldestAST = null;
-        this.bossHighestSalaryAST = null;
-        this.expensesRestrictionAST = null;
-        this.nastyConstraintAST = null;
-        this.divisionBossSecretaryAST = null;
-        this.secretaryOlderThanBossAST = null;
-        this.boss10YearsOlderThanJuniorAST = null;
-        this.departmentMustHaveDivisionAST = null;
-        this.compareBossSalaryToJuniorSalaryAST = null;
-        this.employeeInSameDepartmentAsInternAST = null;
-        this.checkForBobAST = null;
         this.division = null;
         this.divisionBudget = null;
         this.department = null;

@@ -71,7 +71,7 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
 	 * Uses a {@link DefaultOppositeEndFinder}
 	 */
 	public EcoreEnvironmentWithHiddenOppositesImpl(org.eclipse.emf.ecore.EPackage.Registry packageRegistry) {
-	    this(packageRegistry, new DefaultOppositeEndFinder());
+	    this(packageRegistry, DefaultOppositeEndFinder.getInstance());
         }
 
 	/**

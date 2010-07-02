@@ -1,6 +1,7 @@
 package com.sap.emf.ocl.hiddenopposites;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.util.CollectionUtil;
 
 /**
@@ -54,11 +56,25 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
      * name, a set is used. This allows the finder to identify ambiguities.
      */
     private Map<EClass, Map<String, Set<EReference>>> oppositeCache;
+    
+    /**
+     * Caches the subclasses of all classes held by the Ecore package registry
+     */
+    private Map<EClass, Set<EClass>> subclasses;
 
     /**
      * remembers which packages from the {@link #registry} have already been cached in {@link #oppositeCache}.
      */
     private Set<EPackage> cachedPackages;
+    
+    private static DefaultOppositeEndFinder instance;
+
+    public static DefaultOppositeEndFinder getInstance() {
+        if (instance == null) {
+            instance = new DefaultOppositeEndFinder();
+        }
+        return instance;
+    }
 
     protected DefaultOppositeEndFinder() {
 	this(EPackage.Registry.INSTANCE);
@@ -67,6 +83,7 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
     public DefaultOppositeEndFinder(EPackage.Registry registry) {
 	this.registry = registry;
 	cachedPackages = new HashSet<EPackage>();
+	subclasses = new HashMap<EClass, Set<EClass>>();
 	oppositeCache = new HashMap<EClass, Map<String, Set<EReference>>>();
     }
 
@@ -133,6 +150,7 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
     private void cachePackage(EPackage ePackage) {
 	for (EClassifier c : ePackage.getEClassifiers()) {
 	    if (c instanceof EClass) {
+	        cacheSubclassRelations((EClass) c);
 		EClass eClass = (EClass) c;
 		for (EReference ref : eClass.getEReferences()) {
 		    EAnnotation ann = ref.getEAnnotation(EMOFExtendedMetaData.EMOF_PACKAGE_NS_URI_2_0);
@@ -146,6 +164,24 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
 		}
 	    }
 	}
+    }
+
+    private void cacheSubclassRelations(EClass c) {
+        for (EClass sup : c.getESuperTypes()) {
+            cacheSubclassForSuperclass(c, sup);
+        }
+    }
+
+    private void cacheSubclassForSuperclass(EClass sub, EClass sup) {
+        Set<EClass> subclassesOfSup = subclasses.get(sup);
+        if (subclassesOfSup == null) {
+            subclassesOfSup = new HashSet<EClass>();
+            subclasses.put(sup, subclassesOfSup);
+        }
+        subclassesOfSup.add(sub);
+        for (EClass supsup : sup.getESuperTypes()) {
+            cacheSubclassForSuperclass(sub, supsup);
+        }
     }
 
     private void cache(EClass c, String oppositeName, EReference ref) {
@@ -198,4 +234,13 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
 	return result;
     }
 
+    public Collection<EClass> getAllSubclasses(EClass c) {
+        Collection<EClass> result = subclasses.get(c);
+        if (result == null) {
+            result = Collections.emptySet();
+        } else {
+            result = Collections.unmodifiableCollection(result);
+        }
+        return result;
+    }
 }

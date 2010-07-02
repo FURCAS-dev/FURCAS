@@ -44,7 +44,6 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.OclTestExpressionContainer.OclExpressionWithPackage;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -144,9 +143,8 @@ public class EventManagerRuntimeTest {
         ArrayList<EventFilter> list = new ArrayList<EventFilter>(filters.values());
         
         ArrayList<OclExpressionWithPackage> adds = de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.OclTestExpressionContainer.getExpressionList();
-        ImpactAnalyzer iA = new ImpactAnalyzerImpl();
         for(OclExpressionWithPackage entry:adds){
-            list.add(iA.createFilterForExpression(parse(entry.getOcl(), entry.getPackage()), true));
+            list.add(new ImpactAnalyzerImpl(parse(entry.getOcl(), entry.getPackage())).createFilterForExpression(true));
             
         }
 //        ArrayList<EventFilter> list2 = new ArrayList<EventFilter>(filters.values());
@@ -337,11 +335,10 @@ public class EventManagerRuntimeTest {
             }
         }
 
-        ImpactAnalyzer iA = new ImpactAnalyzerImpl();
         System.out.println("Number of constraints: " +allConstraints.size());
         Map<String, EventFilter> filters = new HashMap<String, EventFilter>();
         for (Entry<String, ExpressionWithContext> entry : allConstraints.entrySet()) {
-            filters.put(entry.getKey(), iA.createFilterForExpression(entry.getValue().expr, true));
+            filters.put(entry.getKey(), new ImpactAnalyzerImpl(entry.getValue().expr, entry.getValue().classifier).createFilterForExpression(true));
         }
         return filters;
     }

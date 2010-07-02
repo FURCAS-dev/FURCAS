@@ -15,7 +15,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.query2.EcoreHelper;
+
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
@@ -600,7 +601,7 @@ public abstract class RegistrationManager {
      * @return a collection which contains all known subtypes of the passed parameter
      */
     static Collection<EClass> getSubTypes(EClass generalizableElement) {
-        return EcoreHelper.getInstance().getAllSubclasses(generalizableElement);
+        return DefaultOppositeEndFinder.getInstance().getAllSubclasses(generalizableElement);
     }
 
     /**
