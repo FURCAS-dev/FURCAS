@@ -1,9 +1,0 @@
-bin
-bin.tasks
-temp.folder
-ant_tasks
-build.xml
-dev.properties
-*.jar
-*.args
-@dot
