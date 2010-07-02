@@ -235,6 +235,7 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
     }
 
     public Collection<EClass> getAllSubclasses(EClass c) {
+        updateOppositeCache();
         Collection<EClass> result = subclasses.get(c);
         if (result == null) {
             result = Collections.emptySet();
