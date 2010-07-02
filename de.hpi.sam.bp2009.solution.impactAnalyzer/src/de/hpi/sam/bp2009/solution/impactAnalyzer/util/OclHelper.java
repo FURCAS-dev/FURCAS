@@ -7,6 +7,7 @@ import java.util.HashSet;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 public class OclHelper {
@@ -20,7 +21,8 @@ public class OclHelper {
         EObject parent = (EObject) x.eContainer();
         // The root expression could be contained in an Constraint or an EAnnotation. Therefore stop ascending
         // if parent is instance of a container type.
-        while (parent != null && !(parent instanceof Constraint) && !(parent instanceof EAnnotation)) {
+        while (parent != null && !(parent instanceof Constraint) && !(parent instanceof EAnnotation)
+                && !(parent instanceof ExpressionInOCL)) {
             x = parent;
             parent = (EObject) x.eContainer();
         }
