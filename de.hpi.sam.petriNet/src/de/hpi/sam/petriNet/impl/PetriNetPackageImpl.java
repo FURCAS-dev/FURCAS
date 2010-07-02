@@ -391,6 +391,8 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
         createEcoreAnnotations();
         // http://de.hpi.sam.bp2009.OCL
         createDeAnnotations();
+        // http://schema.omg.org/spec/MOF/2.0/emof.xml
+        createEmofAnnotations();
     }
 
 	/**
@@ -442,7 +444,17 @@ public class PetriNetPackageImpl extends EPackageImpl implements PetriNetPackage
            new String[] {
              "numberOfTokens", "self.noTokens > 3",
              "number", "self.noTokens > 34"
-           });		
+           });	
+    }
+
+    /**
+     * Initializes the annotations for <b>http://schema.omg.org/spec/MOF/2.0/emof.xml</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void createEmofAnnotations() {
+        String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";							
         addAnnotation
           (getPlace_TestHiddenOpposite(), 
            source, 
