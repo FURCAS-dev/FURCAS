@@ -112,7 +112,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                 // ensure that the typing of the AllInstancesNavigationStep is correct.
                 EClass classifier = (EClass) ((TypeExp) getExpression().getSource())
                 .getReferredType();
-                result = new AllInstancesNavigationStep(classifier, context, getExpression()); // non-absolute
+                result = new AllInstancesNavigationStep(classifier, context, getExpression(), pathCache.getOppositeEndFinder()); // non-absolute
             } else {
                 result = new EmptyResultNavigationStep(getExpression()); 
                 // hope, we didn't forget stdlib operations that pass on

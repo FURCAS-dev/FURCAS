@@ -51,6 +51,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
@@ -73,9 +74,10 @@ public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
 //    private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
     private final Map<OCLExpression, NavigationStep> expressionToStep;
-    private final PathCache pathCache = new PathCache();
+    private final PathCache pathCache;
     private final FilterSynthesisImpl filterSynthesizer;
     private final EClass context;
+    private final OppositeEndFinder oppositeEndFinder;
 
     private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(new String[] {
             PredefinedType.EQUAL_NAME, PredefinedType.LESS_THAN_NAME, PredefinedType.LESS_THAN_EQUAL_NAME,
@@ -85,8 +87,10 @@ public class InstanceScopeAnalysis {
      * @param context
      *            the overall context type for the entire expression; this context type defines the type for <tt>self</tt> if used
      *            outside of operation bodies.
+     * @param oppositeEndFinder used to determine all instances
      */
-    protected static Set<EObject> getAllPossibleContextInstances(Resource container, EClass context) {
+    protected static Set<EObject> getAllPossibleContextInstances(Resource container, EClass context, OppositeEndFinder oppositeEndFinder) {
+        // FIXME delegate to oppositeEndFinder; move this code to Query2OppositeEndFinder; provide a naive default impl scanning the ResourceSet in DefaultOppositeEndFinder
         Set<EObject> result = new HashSet<EObject>();
 
         List<EClass> classes = new ArrayList<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(context));
@@ -165,14 +169,17 @@ public class InstanceScopeAnalysis {
     /**
      * @param expression
      *            the OCL expression for which to perform instance scope impact analysis
-     * @param exprContext
-     *            TODO
+     * @param oppositeEndFinder
+     *            used during partial evaluation and for metamodel queries, e.g., finding opposite role names, or finding all
+     *            subclasses of a class; as well as for obtaining all instances of a type while performing an
+     *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where
+     *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
      * @param pathCache
      *            caches {@link NavigationPath} traceback navigations to the possible contexts for a given expression that can be
      *            invoked for model elements; using this cache avoids redundant path calculations for common subexpressions, such
      *            as operation bodies called by several expressions.
      */
-    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer) {
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder) {
         if (exprContext == null) {
             throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
         }
@@ -182,6 +189,8 @@ public class InstanceScopeAnalysis {
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
         this.context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
+        this.oppositeEndFinder = oppositeEndFinder;
+        this.pathCache = new PathCache(oppositeEndFinder);
     }
 
     public Collection<EObject> getContextObjects(Notification event) {
@@ -217,7 +226,7 @@ public class InstanceScopeAnalysis {
             AnnotatedEObject sourceElement){
 	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
-	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator();
+	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder);
 	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
     }
@@ -244,7 +253,8 @@ public class InstanceScopeAnalysis {
             for (Object value : featureValue) {
                 if (value instanceof EObject) {
                     if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
-                        result.addAll(getAllPossibleContextInstances(container, getContext()));
+                        // FIXME we need a specific reverse scope here because we're looking for elements from where the notifier can be seen by an allInstances() expression
+                        result.addAll(getAllPossibleContextInstances(container, getContext(), oppositeEndFinder));
                     }
                 }
             }
@@ -257,7 +267,7 @@ public class InstanceScopeAnalysis {
             }
             if (value instanceof EObject) {
                 if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
-                    result.addAll(getAllPossibleContextInstances(container, getContext()));
+                    result.addAll(getAllPossibleContextInstances(container, getContext(), oppositeEndFinder));
                 }
             }
         }

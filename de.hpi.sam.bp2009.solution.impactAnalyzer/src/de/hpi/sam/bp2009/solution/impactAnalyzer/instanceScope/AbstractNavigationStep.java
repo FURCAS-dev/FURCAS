@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -304,15 +303,24 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     protected static boolean haveIntersectingSubclassTree(EClass a, EClass b) {
         boolean result = a==null || b==null || a.equals(b);
         if (!result) {
-            Collection<EClass> targetSubtypesIncludingTargetType = new ArrayList<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(a));
+            Collection<EClass> targetSubtypesIncludingTargetType = new HashSet<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(a));
             targetSubtypesIncludingTargetType.add(a);
             if (targetSubtypesIncludingTargetType.contains(b)) {
                 result = true;
             } else {
-                Collection<EClass> sourceSubtypesIncludingSourceType = new ArrayList<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(b));
+                Collection<EClass> sourceSubtypesIncludingSourceType = new HashSet<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(b));
                 sourceSubtypesIncludingSourceType.add(b);
-                for (Object sourceSubType : sourceSubtypesIncludingSourceType) {
-                    if (targetSubtypesIncludingTargetType.contains((EClassifier)sourceSubType)) {
+                Collection<EClass> smaller;
+                Collection<EClass> larger;
+                if (targetSubtypesIncludingTargetType.size() < sourceSubtypesIncludingSourceType.size()) {
+                    smaller = targetSubtypesIncludingTargetType;
+                    larger = sourceSubtypesIncludingSourceType;
+                } else {
+                    smaller = sourceSubtypesIncludingSourceType;
+                    larger = targetSubtypesIncludingTargetType;
+                }
+                for (Object fromSmaller : smaller) {
+                    if (larger.contains((EClassifier) fromSmaller)) {
                         result = true;
                         break;
                     }

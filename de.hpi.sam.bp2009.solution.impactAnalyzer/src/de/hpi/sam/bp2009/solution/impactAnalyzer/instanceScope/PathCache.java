@@ -7,6 +7,9 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.TupleLiteralExp;
+
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
@@ -58,6 +61,20 @@ public class PathCache {
      * instead of passing an empty list to avoid ambiguities.
      */
     private Map<Pair<OCLExpression, List<String>>, NavigationStep> subexpressionToPath = new HashMap<Pair<OCLExpression, List<String>>, NavigationStep>();
+    
+    /**
+     * Can be used for certain metamodel queries such as finding all subclasses, but as well during an
+     * <code>allInstances</code> query.
+     */
+    private final OppositeEndFinder oppositeEndFinder;
+    
+    public PathCache(OppositeEndFinder oppositeEndFinder) {
+        this.oppositeEndFinder = oppositeEndFinder;
+    }
+    
+    public OppositeEndFinder getOppositeEndFinder() {
+        return oppositeEndFinder;
+    }
 
     public NavigationStep getPathForNode(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor) {
         return subexpressionToPath.get(new Pair<OCLExpression, List<String>>(subexpression,
