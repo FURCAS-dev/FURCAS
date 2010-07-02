@@ -45,4 +45,22 @@ public class AllInstancesTest extends AbstractTestSuite {
 		assertTrue((Boolean) evaluate(e, apple1));
 	}
 	
+	/**
+	 * Tests the parsing of tuple literals with part types.
+	 */
+	public void testAllInstancesWithAddingAnInstanceAfterFirstEvaluation() {
+		// one part
+		OCLExpression<EClassifier> e = parse("package ocltest context Fruit " +
+				"inv: Fruit.allInstances()->size() = 1 endpackage");
+		Resource r = resourceSet.getResources().iterator().next();
+		EObject apple1 = fruitFactory.create(apple);
+		r.getContents().add(apple1);
+		expectModified = true;
+		assertTrue((Boolean) evaluate(e, apple1));
+		EObject apple2 = fruitFactory.create(apple);
+		r.getContents().add(apple2);
+		// should be 2 now
+		assertFalse((Boolean) evaluate(e, apple2));
+	}
+	
 }
