@@ -69,25 +69,29 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         OCLExpression sourceExp = (OCLExpression) getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
         
-        NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer,
-                getTupleLiteralPartNamesToLookFor());
-        EReference forwardRef = (EReference) getExpression().getReferredProperty();
-        NavigationStep reverseTraversal;
-        if (forwardRef.getEOpposite() != null) {
-            reverseTraversal = new AssociationNavigationStep(getInnermostElementType(getExpression().getType()),
-                    getInnermostElementType(sourceType), forwardRef.getEOpposite(), getExpression());
-        } else if (forwardRef.isContainment()) {
-            /*
-             * opposite of an EContainment Reference is the EContainer
-             */
-            reverseTraversal = new RefImmediateCompositeNavigationStep(getInnermostElementType(getExpression().getType()),
-                    getInnermostElementType(sourceType), getExpression());
+        if (sourceType instanceof TupleType) {
+            return getNavigationStepForTuplePartAccess(context, pathCache, filterSynthesizer, sourceExp);
         } else {
-            reverseTraversal = new OppositePropertyNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression()
-                    .getSource().getType(), forwardRef, getExpression());
+            NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer,
+                    getTupleLiteralPartNamesToLookFor());
+            EReference forwardRef = (EReference) getExpression().getReferredProperty();
+            NavigationStep reverseTraversal;
+            if (forwardRef.getEOpposite() != null) {
+                reverseTraversal = new AssociationNavigationStep(getInnermostElementType(getExpression().getType()),
+                        getInnermostElementType(sourceType), forwardRef.getEOpposite(), getExpression());
+            } else if (forwardRef.isContainment()) {
+                /*
+                 * opposite of an EContainment Reference is the EContainer
+                 */
+                reverseTraversal = new RefImmediateCompositeNavigationStep(getInnermostElementType(getExpression().getType()),
+                        getInnermostElementType(sourceType), getExpression());
+            } else {
+                reverseTraversal = new OppositePropertyNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression()
+                        .getSource().getType(), forwardRef, getExpression());
+            }
+            return pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(), reverseTraversal,
+                    sourceStep);
         }
-        return pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(), reverseTraversal,
-                sourceStep);
 
     }
 
