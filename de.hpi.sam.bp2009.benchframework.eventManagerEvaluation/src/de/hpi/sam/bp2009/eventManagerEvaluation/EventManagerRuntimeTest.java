@@ -34,9 +34,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
-import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
-
 import company.CompanyPackage;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
