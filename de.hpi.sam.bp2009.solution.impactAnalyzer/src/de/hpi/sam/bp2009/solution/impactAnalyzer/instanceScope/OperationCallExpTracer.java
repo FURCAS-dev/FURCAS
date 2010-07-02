@@ -87,9 +87,13 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                 NavigationStep sourcePath = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression()
                         .getSource(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
                 if (argumentPassThroughStdLibOpNames.contains(opName)) {
-                    // FIXME "insertAt" takes two arguments, the index and the object to add. 
-                    // The OCL spec says the index comes first, so getting the first argument makes no sense in this case.
-                    OCLExpression argument = (OCLExpression) (getExpression().getArgument()).get(0);
+                    int paramPos = 0;
+                    if (opName.equals(PredefinedType.INSERT_AT_NAME)) {
+                        // "insertAt" takes two arguments, the index and the object to add. 
+                        // The OCL spec says the index comes first, so getting the first argument makes no sense in this case.
+                        paramPos = 1;
+                    }
+                    OCLExpression argument = (OCLExpression) (getExpression().getArgument()).get(paramPos);
                     NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(argument, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
                     result = new BranchingNavigationStep(
                             getInnermostElementType(getExpression().getType()),
