@@ -315,10 +315,7 @@ public class OclIaTest extends BaseDepartmentTest {
         mce.setObject(oce);
         
         r.getContents().add(cl1);
-        r.getContents().add(ms);
         r.getContents().add(mce);
-        r.getContents().add(oce);
-        
 
         Notification noti = NotificationHelper.createChangeClazzNotification(ctd, cl1);
         ImpactAnalyzer ia = new ImpactAnalyzerImpl(exp, ExpressionsPackage.eINSTANCE.getMethodCallExpression());
