@@ -113,9 +113,11 @@ public class PetriNetValidator extends EObjectValidator {
      * @generated
      */
     public boolean validatePetriNet(PetriNet petriNet, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(petriNet, diagnostics, context)) return false;
         boolean result = validate_EveryMultiplicityConforms(petriNet, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryDataValueConforms(petriNet, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(petriNet, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(petriNet, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryProxyResolves(petriNet, diagnostics, context);
         if (result || diagnostics != null) result &= validate_UniqueID(petriNet, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryKeyUnique(petriNet, diagnostics, context);
@@ -125,31 +127,32 @@ public class PetriNetValidator extends EObjectValidator {
     }
 
     /**
+     * The cached validation expression for the modelName constraint of '<em>Petri Net</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String PETRI_NET__MODEL_NAME__EEXPRESSION = "self.elements->notEmpty()";
+
+    /**
      * Validates the modelName constraint of '<em>Petri Net</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public boolean validatePetriNet_modelName(PetriNet petriNet, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "modelName", getObjectLabel(petriNet, context) },
-                         new Object[] { petriNet },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (PetriNetPackage.Literals.PETRI_NET,
+                 petriNet,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "modelName",
+                 PETRI_NET__MODEL_NAME__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
 
     /**
@@ -167,9 +170,11 @@ public class PetriNetValidator extends EObjectValidator {
      * @generated
      */
     public boolean validatePlace(Place place, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(place, diagnostics, context)) return false;
         boolean result = validate_EveryMultiplicityConforms(place, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryDataValueConforms(place, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(place, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(place, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryProxyResolves(place, diagnostics, context);
         if (result || diagnostics != null) result &= validate_UniqueID(place, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryKeyUnique(place, diagnostics, context);
@@ -180,32 +185,41 @@ public class PetriNetValidator extends EObjectValidator {
     }
 
     /**
+     * The cached validation expression for the numberOfTokens constraint of '<em>Place</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String PLACE__NUMBER_OF_TOKENS__EEXPRESSION = "self.noTokens > 3";
+
+    /**
      * Validates the numberOfTokens constraint of '<em>Place</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public boolean validatePlace_numberOfTokens(Place place, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "numberOfTokens", getObjectLabel(place, context) },
-                         new Object[] { place },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (PetriNetPackage.Literals.PLACE,
+                 place,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "numberOfTokens",
+                 PLACE__NUMBER_OF_TOKENS__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the number constraint of '<em>Place</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String PLACE__NUMBER__EEXPRESSION = "self.noTokens > 34";
 
     /**
      * Validates the number constraint of '<em>Place</em>'.
@@ -214,25 +228,18 @@ public class PetriNetValidator extends EObjectValidator {
      * @generated
      */
     public boolean validatePlace_number(Place place, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "number", getObjectLabel(place, context) },
-                         new Object[] { place },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (PetriNetPackage.Literals.PLACE,
+                 place,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "number",
+                 PLACE__NUMBER__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
 
     /**
