@@ -1,4 +1,4 @@
-package com.sap.ocl.oppositefinder.query2;
+package de.hpi.sam.bp2009.solution.scopeProvider;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.query2.QueryContext;

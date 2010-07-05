@@ -40,7 +40,6 @@ public class EvaluationVisitorWithHiddenOppositesImpl extends
 		super(env, evalEnv, extentMap);
 	}
 
-	@Override
 	public Object visitOppositePropertyCallExp(OppositePropertyCallExp opce) {
 		EStructuralFeature property = opce.getReferredOppositeProperty();
 		OCLExpression<EClassifier> source = opce.getSource();

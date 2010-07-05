@@ -34,7 +34,6 @@ public abstract class AbstractVisitorWithHiddenOpposites<T>
      * Visits the property-call source and then its qualifiers (if any). Returns the result of
      * {@link #handlePropertyCallExp(PropertyCallExp, Object, List)}.
      */
-    @Override
     public T visitOppositePropertyCallExp(OppositePropertyCallExp callExp) {
         // source is null when the property call expression is an
         // association class navigation qualifier

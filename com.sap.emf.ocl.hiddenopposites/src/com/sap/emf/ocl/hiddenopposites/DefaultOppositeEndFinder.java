@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -20,7 +21,9 @@ import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.xmi.impl.EMOFExtendedMetaData;
+import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.util.CollectionUtil;
 
 /**
@@ -243,5 +246,33 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
             result = Collections.unmodifiableCollection(result);
         }
         return result;
+    }
+
+    /**
+     * This default implementation uses an OCL environment's extent map to determine all
+     * instances. Note that for larger resource sets with many resources and elements this
+     * won't scale very well as all resources will be scanned for elements conforming to
+     * <code>cls</code>. Also, no scoping based on <code>context</code> is performed, meaning that
+     * <code>context</code> is simply ignored.
+     */
+    @SuppressWarnings("unchecked")
+    public Set<EObject> getAllInstancesSeeing(EClass cls, EObject context) {
+        // TODO using a new OCL here doesn't seem clean
+        OCL ocl = OCL.newInstance();
+        Map<EClass, ? extends Set<? extends EObject>> extents = ocl.getExtentMap();
+        if (extents == null) {
+            EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> localEvalEnv = ocl.getEvaluationEnvironment();
+            // let the evaluation environment create one; we need an EObject now; let's hope the resource is not empty
+            extents = localEvalEnv.createExtentMap(context);
+        }
+        Set<EObject> result = (Set<EObject>) extents.get(cls);;
+        if (result == null) {
+            result = Collections.emptySet();
+        }
+        return result;
+    }
+    
+    public Set<EObject> getAllInstancesSeenBy(EClass cls, EObject context) {
+        return getAllInstancesSeeing(cls, context);
     }
 }

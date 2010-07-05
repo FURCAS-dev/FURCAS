@@ -53,17 +53,14 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	this.delegate = standardOCLHelper;
     }
 
-    @Override
     public OCL getOCL() {
 	return (OCL) delegate.getOCL();
     }
 
-    @Override
     public EcoreEnvironmentWithHiddenOpposites getEnvironment() {
 	return (EcoreEnvironmentWithHiddenOpposites) delegate.getEnvironment();
     }
 
-    @Override
     public Constraint createConstraint(ConstraintKind kind, String expression) throws ParserException {
 	switch (kind) {
 	case PRECONDITION:
@@ -83,7 +80,6 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	}
     }
 
-    @Override
     public Constraint createBodyCondition(String expression) throws ParserException {
 	if (removeOCLComments(expression).length() > 0) {
 	    // be sure to pass the original expression along to get the right
@@ -98,7 +94,6 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	return createNullCondition(getEnvironment().getOCLStandardLibrary().getOclVoid());
     }
 
-    @Override
     public Constraint createDerivedValueExpression(String expression) throws ParserException {
 	if (removeOCLComments(expression).length() > 0) {
 	    // be sure to pass the original expression along to get the right
@@ -113,7 +108,7 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	return createNullCondition(getEnvironment().getOCLStandardLibrary().getOclVoid());
     }
 
-    @Override
+    
     public Constraint createInitialValueExpression(String expression) throws ParserException {
 	if (removeOCLComments(expression).length() > 0) {
 	    // be sure to pass the original expression along to get the right
@@ -128,7 +123,7 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	return createNullCondition(getEnvironment().getOCLStandardLibrary().getOclVoid());
     }
 
-    @Override
+    
     public Constraint createInvariant(String expression) throws ParserException {
 	if (removeOCLComments(expression).length() > 0) {
 	    // be sure to pass the original expression along to get the right
@@ -143,7 +138,7 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	return createNullCondition(getEnvironment().getOCLStandardLibrary().getBoolean());
     }
 
-    @Override
+    
     public Constraint createPostcondition(String expression) throws ParserException {
 	if (removeOCLComments(expression).length() > 0) {
 	    // be sure to pass the original expression along to get the right
@@ -158,7 +153,7 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	return createNullCondition(getEnvironment().getOCLStandardLibrary().getBoolean());
     }
 
-    @Override
+    
     public Constraint createPrecondition(String expression) throws ParserException {
 	if (removeOCLComments(expression).length() > 0) {
 	    // be sure to pass the original expression along to get the right
@@ -173,7 +168,7 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	return createNullCondition(getEnvironment().getOCLStandardLibrary().getBoolean());
     }
 
-    @Override
+    
     public org.eclipse.ocl.ecore.OCLExpression createQuery(String expression) throws ParserException {
 	if (removeOCLComments(expression).length() > 0) {
 	    // be sure to pass the original expression along to get the right
@@ -374,34 +369,34 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	return result;
     }
 
-    @Override
+    
     public EStructuralFeature defineAttribute(String defExpression) throws ParserException {
 	// TODO use own analyzer
 	return delegate.defineAttribute(defExpression);
     }
 
-    @Override
+    
     public EOperation defineOperation(String defExpression) throws ParserException {
 	// TODO use own analyzer
 	return delegate.defineOperation(defExpression);
     }
 
-    @Override
+    
     public EStructuralFeature getContextAttribute() {
 	return delegate.getContextAttribute();
     }
 
-    @Override
+    
     public EClassifier getContextClassifier() {
 	return delegate.getContextClassifier();
     }
 
-    @Override
+    
     public EOperation getContextOperation() {
 	return delegate.getContextOperation();
     }
 
-    @Override
+    
     public List<Choice> getSyntaxHelp(ConstraintKind constraintType, String txt) {
 	return new SyntaxHelperWithHiddenOpposites(getEnvironment()).getSyntaxHelp(constraintType, txt);
     }
@@ -638,7 +633,7 @@ public class OCLHelperWithOppositesImpl implements OCL.Helper {
 	return result;
     }
 
-    @Override
+    
     public Diagnostic getProblems() {
 	return problems;
     }

@@ -128,13 +128,10 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
         return (EReference) matches.get(0);
     }
 
-    @Override
-	public EClassifier getOppositePropertyType(EClassifier owner,
-			EStructuralFeature property) {
-		return getOCLCollectionType(
-				(EClassifier) property.eContainer(),
-				/* ordered */false, /* unique */false);
-	}
+    public EClassifier getOppositePropertyType(EClassifier owner, EStructuralFeature property) {
+        return getOCLCollectionType((EClassifier) property.eContainer(),
+        /* ordered */false, /* unique */false);
+    }
 
     /**
      * Obtains the appropriate OCL collection type for an {@link EClassifier}, 
@@ -239,7 +236,6 @@ public class EcoreEnvironmentWithHiddenOppositesImpl extends EcoreEnvironment
         // All other data types map to themselves
         return dataType;
     }
-	@Override
 	public Map<String, EStructuralFeature> getHiddenOppositeProperties(
 			EClassifier classifier) {
 		Map<String, EStructuralFeature> result;

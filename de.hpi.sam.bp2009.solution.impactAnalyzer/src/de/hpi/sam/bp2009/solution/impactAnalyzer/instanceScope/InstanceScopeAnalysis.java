@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,11 +18,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.ui.IndexFactory;
-import org.eclipse.emf.query2.QueryContext;
-import org.eclipse.emf.query2.QueryProcessorFactory;
-import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
@@ -50,7 +44,6 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
@@ -60,7 +53,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
-import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 /**
  * Supports a lookup from a source model element of either an attribute value change event or a link add/remove event together
@@ -84,34 +76,19 @@ public class InstanceScopeAnalysis {
             PredefinedType.GREATER_THAN_NAME, PredefinedType.GREATER_THAN_EQUAL_NAME, PredefinedType.NOT_EQUAL_NAME }));
 
     /**
-     * @param context
+     * Finds all elements of type <code>cls</code> or conforming to <code>cls</code> such that based on the scope definition
+     * implemented by the <code>oppositeEndFinder</code>'s
+     * {@link OppositeEndFinder#getAllInstancesSeeing(EClass, org.eclipse.emf.common.notify.Notifier)} method, the elements
+     * returned can "see" <code>container</code>.
+     * 
+     * @param cls
      *            the overall context type for the entire expression; this context type defines the type for <tt>self</tt> if used
      *            outside of operation bodies.
-     * @param oppositeEndFinder used to determine all instances
+     * @param oppositeEndFinder
+     *            used to determine all instances
      */
-    protected static Set<EObject> getAllPossibleContextInstances(Resource container, EClass context, OppositeEndFinder oppositeEndFinder) {
-        // FIXME delegate to oppositeEndFinder; move this code to Query2OppositeEndFinder; provide a naive default impl scanning the ResourceSet in DefaultOppositeEndFinder
-        Set<EObject> result = new HashSet<EObject>();
-
-        List<EClass> classes = new ArrayList<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(context));
-        classes.add(context);
-
-        QueryContext scope = new ProjectBasedScopeProviderImpl(container).getForwardScopeAsQueryContext();
-
-        for (EClass c : classes) {
-            String query = "select obj from [" + EcoreUtil.getURI(c) + "] as obj";
-            ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(
-                    query, scope);
-            if (!resultSet.isEmpty()) {
-                for (int i = 0; i < resultSet.getSize(); i++) {
-                    String uri = resultSet.getUri(i, "obj").toString();
-                    String uriFragment = uri.split("#")[1];
-                    EObject obj = container.getEObject(uriFragment);
-                    result.add(obj);
-                }
-            }
-        }
-        return result;
+    protected static Set<EObject> getAllPossibleContextInstances(EObject context, EClass cls, OppositeEndFinder oppositeEndFinder) {
+        return oppositeEndFinder.getAllInstancesSeeing(cls, context);
     }
 
     /**
@@ -234,14 +211,6 @@ public class InstanceScopeAnalysis {
     private Collection<EObject> handleLifeCycleEvent(Notification event) {
         Collection<EObject> result = new HashSet<EObject>();
         Boolean addEvent = NotificationHelper.isAddEvent(event);
-        Resource container;
-        if (event.getNotifier() instanceof EObject) {
-            container = ((EObject) event.getNotifier()).eResource();
-        } else if (event.getNotifier() instanceof Resource) {
-            container = (Resource) event.getNotifier();
-        } else {
-            throw new IllegalArgumentException("Unhandled notifier in Notification: " + event.getNotifier());
-        }
 
         if (NotificationHelper.isManyEvent(event)) {
             List<?> featureValue;
@@ -253,8 +222,7 @@ public class InstanceScopeAnalysis {
             for (Object value : featureValue) {
                 if (value instanceof EObject) {
                     if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
-                        // FIXME we need a specific reverse scope here because we're looking for elements from where the notifier can be seen by an allInstances() expression
-                        result.addAll(getAllPossibleContextInstances(container, getContext(), oppositeEndFinder));
+                        result.addAll(getAllPossibleContextInstances((EObject) event.getNotifier(), getContext(), oppositeEndFinder));
                     }
                 }
             }
@@ -267,7 +235,21 @@ public class InstanceScopeAnalysis {
             }
             if (value instanceof EObject) {
                 if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
-                    result.addAll(getAllPossibleContextInstances(container, getContext(), oppositeEndFinder));
+                    EObject e;
+                    if (event.getNotifier() instanceof Resource) {
+                        if (event.getNewValue() instanceof EObject) {
+                            e = (EObject) event.getNewValue();
+                        } else if (event.getOldValue() instanceof EObject) {
+                            e = (EObject) event.getOldValue();
+                        } else {
+                            throw new RuntimeException("Unable to extract an EObject from Notification "+event);
+                        }
+                    } else if (event.getNotifier() instanceof EObject) {
+                        e = (EObject) event.getNotifier();
+                    } else {
+                        throw new RuntimeException("Unable to extract an EObject from Notification "+event);
+                    }
+                    result.addAll(getAllPossibleContextInstances(e, getContext(), oppositeEndFinder));
                 }
             }
         }

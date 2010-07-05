@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -81,7 +82,19 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         super();
         setupForResourceSets(Arrays.asList(resourceSets));
     }
-
+    
+    public ProjectBasedScopeProviderImpl(Notifier notifier) {
+        if (notifier instanceof EObject) {
+            setupForEObjects(Arrays.asList((EObject) notifier));
+        } else if (notifier instanceof Resource) {
+            setupForResources(Arrays.asList((Resource) notifier));
+        } else if (notifier instanceof ResourceSet) {
+            setupForResourceSets(Arrays.asList((ResourceSet) notifier));
+        } else {
+            throw new RuntimeException("Expected Resource, ResourceSet or Eobject but got "+notifier.getClass().getName());
+        }
+    }
+    
     public Collection<IProject> getInitialProjects() {
 
         return initialProjects;

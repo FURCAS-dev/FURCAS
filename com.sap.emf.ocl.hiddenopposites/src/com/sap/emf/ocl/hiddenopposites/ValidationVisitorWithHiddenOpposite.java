@@ -55,7 +55,6 @@ public class ValidationVisitorWithHiddenOpposite
 	env = environment;
     }
 
-    @Override
     public Boolean visitOppositePropertyCallExp(OppositePropertyCallExp pc) {
 	EReference property = pc.getReferredOppositeProperty();
 	OCLExpression<EClassifier> source = pc.getSource();

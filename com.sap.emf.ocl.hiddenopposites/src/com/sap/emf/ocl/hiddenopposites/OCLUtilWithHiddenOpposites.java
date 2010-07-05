@@ -22,39 +22,32 @@ public class OCLUtilWithHiddenOpposites {
 		final EcoreEnvironmentWithHiddenOpposites _env = (EcoreEnvironmentWithHiddenOpposites) env;
 
 		result = (T) new EcoreEnvironmentWithHiddenOpposites.Lookup() {
-		    @Override
 		    public EPackage tryLookupPackage(List<String> names) throws LookupException {
 			return _env.lookupPackage(names);
 		    }
 
-		    @Override
 		    public EClassifier tryLookupClassifier(List<String> names) throws LookupException {
 			return _env.lookupClassifier(names);
 		    }
 
-		    @Override
 		    public EOperation tryLookupOperation(EClassifier owner, String name,
 			    List<? extends TypedElement<EClassifier>> args) throws LookupException {
 			return _env.lookupOperation(owner, name, args);
 		    }
 
-		    @Override
 		    public EStructuralFeature tryLookupProperty(EClassifier owner, String name) throws LookupException {
 			return _env.lookupProperty(owner, name);
 		    }
 
-		    @Override
 		    public EClassifier tryLookupAssociationClassReference(EClassifier owner, String name) throws LookupException {
 			return _env.lookupAssociationClassReference(owner, name);
 		    }
 
-		    @Override
 		    public EClassifier tryLookupSignal(EClassifier owner, String name, List<? extends TypedElement<EClassifier>> args)
 			    throws LookupException {
 			return _env.lookupSignal(owner, name, args);
 		    }
 
-		    @Override
                     public EReference tryLookupOppositeProperty(EClassifier owner, String name) throws LookupException {
 	                return _env.lookupOppositeProperty(owner, name);
                     }
