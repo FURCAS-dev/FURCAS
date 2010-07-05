@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.TCS;
 
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 
 /**
@@ -35,12 +36,12 @@ public interface OclPArg extends PropertyArg {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Query Expression</em>' reference.
-	 * @see #setQueryExpression(ExpressionInOCL)
+	 * @see #setQueryExpression(OCLExpression)
 	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getOclPArg_QueryExpression()
 	 * @model
 	 * @generated
 	 */
-	ExpressionInOCL getQueryExpression();
+	OCLExpression getQueryExpression();
 
 	/**
 	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.OclPArg#getQueryExpression <em>Query Expression</em>}' reference.
@@ -50,7 +51,7 @@ public interface OclPArg extends PropertyArg {
 	 * @see #getQueryExpression()
 	 * @generated
 	 */
-	void setQueryExpression(ExpressionInOCL value);
+	void setQueryExpression(OCLExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Query</b></em>' attribute.

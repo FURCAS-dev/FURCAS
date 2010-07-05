@@ -22,7 +22,7 @@ Require-Bundle: org.eclipse.jface.text,
  com.sap.mi.textual.tcs.editor;bundle-version="1.0.0",
  com.sap.ide.cts.moin;bundle-version="1.0.0",
  com.sap.ide.treeprovider;bundle-version="1.0.0",
- com.sap.mi.textual.moinlookup;bundle-version="1.0.0",
+ com.sap.mi.textual.ecorelookup;bundle-version="1.0.0",
  com.sap.mi.textual.common;bundle-version="1.0.0",
  bibtex.metamodel;bundle-version="1.0.0"
 Export-Package: furcas.examples.editor,

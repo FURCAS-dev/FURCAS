@@ -368,10 +368,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 				return createQualifiedNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseOCLQueryPArg(OCLQueryPArg object) {
-				return createOCLQueryPArgAdapter();
-			}
-			@Override
 			public Adapter caseForcedUpperPArg(ForcedUpperPArg object) {
 				return createForcedUpperPArgAdapter();
 			}
@@ -410,6 +406,26 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter casePropertyInit(PropertyInit object) {
 				return createPropertyInitAdapter();
+			}
+			@Override
+			public Adapter caseOclPropertyInit(OclPropertyInit object) {
+				return createOclPropertyInitAdapter();
+			}
+			@Override
+			public Adapter caseScopeArg(ScopeArg object) {
+				return createScopeArgAdapter();
+			}
+			@Override
+			public Adapter caseInvertPArg(InvertPArg object) {
+				return createInvertPArgAdapter();
+			}
+			@Override
+			public Adapter caseForeachPredicatePropertyInit(ForeachPredicatePropertyInit object) {
+				return createForeachPredicatePropertyInitAdapter();
+			}
+			@Override
+			public Adapter casePredicateSemantic(PredicateSemantic object) {
+				return createPredicateSemanticAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -778,6 +794,76 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPropertyInitAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.OclPropertyInit <em>Ocl Property Init</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.OclPropertyInit
+	 * @generated
+	 */
+	public Adapter createOclPropertyInitAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.ScopeArg <em>Scope Arg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.ScopeArg
+	 * @generated
+	 */
+	public Adapter createScopeArgAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.InvertPArg <em>Invert PArg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.InvertPArg
+	 * @generated
+	 */
+	public Adapter createInvertPArgAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit <em>Foreach Predicate Property Init</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit
+	 * @generated
+	 */
+	public Adapter createForeachPredicatePropertyInitAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.PredicateSemantic <em>Predicate Semantic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.PredicateSemantic
+	 * @generated
+	 */
+	public Adapter createPredicateSemanticAdapter() {
 		return null;
 	}
 
@@ -1478,20 +1564,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createQualifiedNamedElementAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.OCLQueryPArg <em>OCL Query PArg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see com.sap.furcas.metamodel.TCS.OCLQueryPArg
-	 * @generated
-	 */
-	public Adapter createOCLQueryPArgAdapter() {
 		return null;
 	}
 

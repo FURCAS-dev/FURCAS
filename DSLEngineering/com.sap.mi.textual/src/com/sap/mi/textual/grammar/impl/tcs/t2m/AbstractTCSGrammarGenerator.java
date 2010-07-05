@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import tcs.TcsPackage;
 
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
@@ -24,8 +27,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.ANTLR3GrammarWriter;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.ANTLRGrammarGenerator;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.GenerationReport;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.validation.SyntaxDefinitionValidation;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
 
 
 /**
@@ -72,13 +73,13 @@ public abstract class AbstractTCSGrammarGenerator {
         this.targetPackage = targetPackage; 
     }
 
-    public GenerationReport generateGrammar(Connection connection, Set<PRI> metamodelPRIs, Class<? extends ObservableInjectingParser> paserSuperClass) throws ParserInvokationException, SyntaxParsingException, IOException, ModelAdapterException,  GrammarGenerationException {
-    	return generateGrammar(connection, metamodelPRIs, paserSuperClass, null);
+    public GenerationReport generateGrammar(ResourceSet resourceSet, Set<URI> metamodelURIs, Class<? extends ObservableInjectingParser> paserSuperClass) throws ParserInvokationException, SyntaxParsingException, IOException, ModelAdapterException,  GrammarGenerationException {
+    	return generateGrammar(resourceSet, metamodelURIs, paserSuperClass, null);
     }
     /**
      * validates the syntax, then generates ANTLR3 grammar and writes it to
      * OutputStream.
-     * @param connection a transient MOIN connection having the TCS metamodel registered 
+     * @param resourceSet a transient MOIN connection having the TCS metamodel registered 
      * @param paserSuperClass Superclass of parser, may be null, then default will be used
      * @return 
      * @throws ModelAdapterException 
@@ -87,19 +88,19 @@ public abstract class AbstractTCSGrammarGenerator {
      * @throws ParserInvokationException 
      * @throws GrammarGenerationException 
      */
-    public GenerationReport generateGrammar(Connection connection, Set<PRI> metamodelPRIs, Class<? extends ObservableInjectingParser> paserSuperClass, String languageId) throws ParserInvokationException, SyntaxParsingException, IOException, ModelAdapterException,  GrammarGenerationException {
+    public GenerationReport generateGrammar(ResourceSet resourceSet, Set<URI> metamodelURIs, Class<? extends ObservableInjectingParser> paserSuperClass, String languageId) throws ParserInvokationException, SyntaxParsingException, IOException, ModelAdapterException,  GrammarGenerationException {
         
-        if (connection == null) {
-            throw new IllegalArgumentException("Connection was null");
+        if (resourceSet == null) {
+            throw new IllegalArgumentException("ResurceSet was null");
         } 
-        if (! connection.isAlive()) {
-            throw new IllegalArgumentException("Connection was closed");
-        }
-        if (connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR )== null) {
+//        if (! resourceSet.isAlive()) {
+//            throw new IllegalArgumentException("Connection was closed");
+//        }
+        if (resourceSet.getPackageRegistry().getEFactory(TextB)== null) {
             throw new IllegalArgumentException("TCS Metamodel not registered for connection");
         }
         
-        TCSSyntaxContainerBean bean = doGetSyntaxDef(connection, metamodelPRIs, languageId);
+        TCSSyntaxContainerBean bean = doGetSyntaxDef(resourceSet, metamodelURIs, languageId);
 //        ConcreteSyntax syntax = bean.getSyntax();
 //        Set<Keyword> keywordSet = bean.getKeywords();
 //        Map<Object, TextLocation> locationMap = bean.getElementToLocationMap();
@@ -121,7 +122,7 @@ public abstract class AbstractTCSGrammarGenerator {
 
     /**
      * Do get syntax def.
-     * @param metamodelPRIs 
+     * @param metamodelURIs 
      * 
      * @return the tCS syntax container bean
      * 
@@ -133,12 +134,12 @@ public abstract class AbstractTCSGrammarGenerator {
      *             the model handler exception
      * @throws ParserInvokationException 
      */
-    protected abstract TCSSyntaxContainerBean doGetSyntaxDef(Connection connection, Set<PRI> metamodelPRIs)
+    protected abstract TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet resourceSet, Set<URI> metamodelURIs)
             throws SyntaxParsingException, IOException, ModelAdapterException, ParserInvokationException;
 
     /**
      * Do get syntax def for the given languageid.
-     * @param metamodelPRIs 
+     * @param metamodelURIs 
      * @param languageId
      * 
      * @return the tCS syntax container bean
@@ -151,8 +152,8 @@ public abstract class AbstractTCSGrammarGenerator {
      *             the model handler exception
      * @throws ParserInvokationException 
      */
-	protected abstract TCSSyntaxContainerBean doGetSyntaxDef(Connection connection,
-			Set<PRI> metamodelPRIs, String languageId)
+	protected abstract TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet resourceSet,
+			Set<URI> metamodelURIs, String languageId)
 			throws SyntaxParsingException, IOException, ModelAdapterException,
 			ParserInvokationException;
 

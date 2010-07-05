@@ -10,12 +10,13 @@ package com.sap.mi.textual.grammar.impl;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * a delayed reference is a temporary object created during parsing. It
@@ -115,7 +116,7 @@ public class DelayedReference implements Cloneable {
 
     private Object textBlock;
 
-    private Connection connection;
+    private ResourceSet connection;
 
     /**
      * Used by
@@ -468,11 +469,11 @@ public class DelayedReference implements Cloneable {
         this.modelElement = newObject;
     }
     
-    public RefObject getUnwrappedModelElement() {
+    public EObject getUnwrappedModelElement() {
         if(modelElement instanceof IModelElementProxy) {
-            return (RefObject) ((IModelElementProxy) modelElement).getRealObject();
+            return (EObject) ((IModelElementProxy) modelElement).getRealObject();
         } else {
-            return (RefObject) modelElement;
+            return (EObject) modelElement;
         }
     }
 
@@ -586,15 +587,15 @@ public class DelayedReference implements Cloneable {
         return textBlock;
     }
 
-    public void setConnection(Connection conn) {
+    public void setConnection(ResourceSet conn) {
         this.connection = conn;
     }
     
-    public Connection getConnection() {
+    public ResourceSet getConnection() {
         return connection;
     }
 
-    public void setCurrentForeachElement(RefObject currentForeachElement) {
+    public void setCurrentForeachElement(EObject currentForeachElement) {
         this.currentForeachElement = currentForeachElement;
     }
 }

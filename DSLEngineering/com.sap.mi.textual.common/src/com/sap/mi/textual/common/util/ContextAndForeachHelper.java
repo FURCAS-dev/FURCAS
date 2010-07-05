@@ -7,19 +7,14 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import tcs.ConcreteSyntax;
-import tcs.Template;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.sap.tc.moin.ocl.utils.jmi.OclHelper;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Template;
 
 public class ContextAndForeachHelper {
     public static final String contextPatternAsString = "#context(\\((\\w*)\\))?";
@@ -66,8 +61,8 @@ public class ContextAndForeachHelper {
      *         the tag for the context declaration; <tt>null</tt> if no such template exists; <tt>Reflect::Element</tt> if no
      *         other common generalization exists
      */
-    public static RefObject getCommonBaseClassForContextTag(ConcreteSyntax cs, String contextTag, Classifier elementClass) {
-        MQLProcessor mql = cs.get___Connection().getMQLProcessor();
+    public static EObject getCommonBaseClassForContextTag(ConcreteSyntax cs, String contextTag, EClass elementClass) {
+        MQLProcessor mql = cs.get___ResourceSet().getMQLProcessor();
         MQLResultSet templatesClasses;
         if (contextTag==null || contextTag.length()==0) {
             templatesClasses = mql.execute("select me from Model::Classifier as me,"+
@@ -88,25 +83,25 @@ public class ContextAndForeachHelper {
         		"where ct.isContext=true "+
         		"where tags.tags='"+contextTag+"'");
         }
-        Set<Classifier> metaReferences = new HashSet<Classifier>();
-        for (RefObject ro : templatesClasses.getRefObjects("me")) {
-            metaReferences.add((Classifier) ro);
+        Set<EClass> metaReferences = new HashSet<EClass>();
+        for (EObject ro : templatesClasses.getEObjects("me")) {
+            metaReferences.add((EClass) ro);
         }
         boolean needReflectElement = false;
-        Classifier commonGeneralization = null;
+        EClass commonGeneralization = null;
         while (!needReflectElement && metaReferences.size() > 0) {
-            Classifier candidate = metaReferences.iterator().next();
+            EClass candidate = metaReferences.iterator().next();
             if (commonGeneralization == null) {
         	commonGeneralization = candidate;
         	metaReferences.remove(candidate); // first candidate
-            } else if (candidate.allSupertypes().contains(commonGeneralization)) {
+            } else if (candidate.getEAllSuperTypes().contains(commonGeneralization)) {
         	metaReferences.remove(candidate); // commonGeneralization already covers candidate
             } else {
-        	List<GeneralizableElement> allCommonGeneralizationSupertypes = commonGeneralization.allSupertypes();
+        	List<EClass> allCommonGeneralizationSupertypes = commonGeneralization.getEAllSuperTypes();
         	boolean foundCommonSupertype = false;
-        	for (GeneralizableElement candidateSuperclass : candidate.allSupertypes()) {
+        	for (EClass candidateSuperclass : candidate.getEAllSuperTypes()) {
         	    if (allCommonGeneralizationSupertypes.contains(candidateSuperclass)) {
-        		commonGeneralization = (Classifier) candidateSuperclass;
+        		commonGeneralization = (EClass) candidateSuperclass;
         		metaReferences.remove(candidate); // now commongeneralization also covers candidate
         		foundCommonSupertype = true;
         		break;
@@ -124,9 +119,9 @@ public class ContextAndForeachHelper {
         return commonGeneralization;
     }
 
-    public static RefObject getParsingContext(Connection connection, String oclExpression, Template template,
-            Collection<RefPackage> packagesForLookup, MofClass elementClass) {
-        RefObject parsingContext = null;
+    public static EObject getParsingContext(ResourceSet connection, String oclExpression, Template template,
+            Collection<RefPackage> packagesForLookup, EClass elementClass) {
+        EObject parsingContext = null;
         if (!usesContext(oclExpression)) {
             if (usesForeach(oclExpression)) {
         	parsingContext = getForeachMetaObject(connection, packagesForLookup, oclExpression);
@@ -145,7 +140,7 @@ public class ContextAndForeachHelper {
                         + oclExpression);
             }
         } else {
-            parsingContext = getCommonBaseClassForContextTag(template.getConcretesyntax(), getContextTag(oclExpression),
+            parsingContext = getCommonBaseClassForContextTag(template.getConcreteSyntax(), getContextTag(oclExpression),
                 elementClass);
             if (parsingContext == null) {
                 throw new RuntimeException("Expected to find use of context "
@@ -181,8 +176,8 @@ public class ContextAndForeachHelper {
      * which the context is being cast. If the pattern does not match or the
      * type is not found, <tt>null</tt> is returned.
      */
-    public static RefObject getContextMetaObject(Connection connection, Collection<RefPackage> packagesForLookup, String oclExpression) {
-        RefObject result = null;
+    public static EObject getContextMetaObject(ResourceSet connection, Collection<RefPackage> packagesForLookup, String oclExpression) {
+        EObject result = null;
         Matcher matcher = oclAsTypePattern.matcher(oclExpression);
         if (matcher.find()) {
     	if (matcher.groupCount() >= 3) {
@@ -199,14 +194,15 @@ public class ContextAndForeachHelper {
      * which the context is being cast. If the pattern does not match or the
      * type is not found, <tt>null</tt> is returned.
      */
-    public static RefObject getForeachMetaObject(Connection connection, Collection<RefPackage> packagesForLookup, String oclExpression) {
-        RefObject result = null;
+    public static EObject getForeachMetaObject(ResourceSet resourceSet, Collection<RefPackage> packagesForLookup, String oclExpression) {
+        EObject result = null;
         Matcher matcher = foreachPattern.matcher(oclExpression);
         if (matcher.find()) {
     	if (matcher.groupCount() >= 1) {
     	    String oclTypeName = matcher.group(1);
     	    List<String> path = OclHelper.getPath(oclTypeName);
-    	    result = OclHelper.lookupModelElementByPathName(connection, path, packagesForLookup);
+    	    EcoreUtil.
+    	    result = OclHelper.lookupModelElementByPathName(resourceSet, path, packagesForLookup);
     	}
         }
         return result;

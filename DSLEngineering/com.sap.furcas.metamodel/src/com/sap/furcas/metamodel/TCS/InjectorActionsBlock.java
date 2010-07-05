@@ -27,8 +27,8 @@ import org.eclipse.emf.common.util.EList;
 public interface InjectorActionsBlock extends SequenceElement {
 	/**
 	 * Returns the value of the '<em><b>Property Inits</b></em>' containment reference list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.TCS.PropertyInit}.
-	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.TCS.PropertyInit#getInjectorActionsBlock <em>Injector Actions Block</em>}'.
+	 * The list contents are of type {@link com.sap.furcas.metamodel.TCS.InjectorAction}.
+	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.TCS.InjectorAction#getInjectorActionsBlock <em>Injector Actions Block</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Property Inits</em>' containment reference list isn't clear,
@@ -37,10 +37,10 @@ public interface InjectorActionsBlock extends SequenceElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Property Inits</em>' containment reference list.
 	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getInjectorActionsBlock_PropertyInits()
-	 * @see com.sap.furcas.metamodel.TCS.PropertyInit#getInjectorActionsBlock
+	 * @see com.sap.furcas.metamodel.TCS.InjectorAction#getInjectorActionsBlock
 	 * @model opposite="injectorActionsBlock" containment="true"
 	 * @generated
 	 */
-	EList<PropertyInit> getPropertyInits();
+	EList<InjectorAction> getPropertyInits();
 
 } // InjectorActionsBlock

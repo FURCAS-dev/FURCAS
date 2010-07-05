@@ -354,7 +354,7 @@ public class AbstractMoinLookupTest {
         assertTrue(lookup.isSubTypeOf(subRefBean, superRefBean ));
     }
     
-    private class MoinLookUpSubTypeStub extends AbstractMoinLookup {
+    private class MoinLookUpSubTypeStub extends AbstractEcoreLookup {
 
         public List<Classifier> qualifiedClassifiers = new ArrayList<Classifier>();
         public Classifier classifier;

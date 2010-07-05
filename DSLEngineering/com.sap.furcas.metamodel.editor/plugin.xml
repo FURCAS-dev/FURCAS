@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="TCS.presentation.TCSModelWizardID"
+            name="%_UI_TCSModelWizard_label"
+            class="TCS.presentation.TCSModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TCSModelFile.gif">
+         <description>%_UI_TCSModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="TCS.presentation.TCSEditorID"
+            name="%_UI_TCSEditor_label"
+            icon="icons/full/obj16/TCSModelFile.gif"
+            extensions="tcs"
+            class="TCS.presentation.TCSEditor"
+            contributorClass="TCS.presentation.TCSActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

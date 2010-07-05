@@ -24,7 +24,7 @@ Require-Bundle: org.eclipse.jface.text,
  com.sap.mi.textual.tcs.editor;bundle-version="1.0.0",
  com.sap.tc.moin.globalmodellistener;bundle-version="1.0.0",
  com.sap.mi.textual.common;bundle-version="1.0.0",
- com.sap.mi.textual.moinlookup;bundle-version="1.0.0"
+ com.sap.mi.textual.ecorelookup;bundle-version="1.0.0"
 Export-Package: com.sap.tc.moin.tcs.mof.editor,
  com.sap.tc.moin.tcs.mof.tree,
  generated

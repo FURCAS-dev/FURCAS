@@ -12,12 +12,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
 
 
 /**
@@ -160,6 +161,13 @@ public interface IModelAdapter extends IModelElementInvestigator { // extends In
     Collection<?> getPredicateOclReference(Object modelElement, String propertyName,
             Object keyValue, String oclQuery, Object contextElement) throws ModelAdapterException;
 
-    Collection<PRI> getPRIPartitions(Connection con, String languageId);
+    /**
+     * Used to fetch the search scope where to find the mapping model for the given <tt>languageId</tt>.
+     * 
+     * @param con
+     * @param languageId
+     * @return
+     */
+    Collection<Resource> getPRIPartitions(ResourceSet rs, String languageId);
 
 }

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 
 /**
@@ -41,7 +42,7 @@ public abstract class OclPArgImpl extends PropertyArgImpl implements OclPArg {
 	 * @generated
 	 * @ordered
 	 */
-	protected ExpressionInOCL queryExpression;
+	protected OCLExpression queryExpression;
 
 	/**
 	 * The default value of the '{@link #getQuery() <em>Query</em>}' attribute.
@@ -87,10 +88,10 @@ public abstract class OclPArgImpl extends PropertyArgImpl implements OclPArg {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpressionInOCL getQueryExpression() {
+	public OCLExpression getQueryExpression() {
 		if (queryExpression != null && queryExpression.eIsProxy()) {
 			InternalEObject oldQueryExpression = (InternalEObject)queryExpression;
-			queryExpression = (ExpressionInOCL)eResolveProxy(oldQueryExpression);
+			queryExpression = (OCLExpression)eResolveProxy(oldQueryExpression);
 			if (queryExpression != oldQueryExpression) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.OCL_PARG__QUERY_EXPRESSION, oldQueryExpression, queryExpression));
@@ -104,7 +105,7 @@ public abstract class OclPArgImpl extends PropertyArgImpl implements OclPArg {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpressionInOCL basicGetQueryExpression() {
+	public OCLExpression basicGetQueryExpression() {
 		return queryExpression;
 	}
 
@@ -113,8 +114,8 @@ public abstract class OclPArgImpl extends PropertyArgImpl implements OclPArg {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setQueryExpression(ExpressionInOCL newQueryExpression) {
-		ExpressionInOCL oldQueryExpression = queryExpression;
+	public void setQueryExpression(OCLExpression newQueryExpression) {
+		OCLExpression oldQueryExpression = queryExpression;
 		queryExpression = newQueryExpression;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OCL_PARG__QUERY_EXPRESSION, oldQueryExpression, queryExpression));
@@ -167,7 +168,7 @@ public abstract class OclPArgImpl extends PropertyArgImpl implements OclPArg {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case TCSPackage.OCL_PARG__QUERY_EXPRESSION:
-				setQueryExpression((ExpressionInOCL)newValue);
+				setQueryExpression((OCLExpression)newValue);
 				return;
 			case TCSPackage.OCL_PARG__QUERY:
 				setQuery((String)newValue);
@@ -185,7 +186,7 @@ public abstract class OclPArgImpl extends PropertyArgImpl implements OclPArg {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case TCSPackage.OCL_PARG__QUERY_EXPRESSION:
-				setQueryExpression((ExpressionInOCL)null);
+				setQueryExpression((OCLExpression)null);
 				return;
 			case TCSPackage.OCL_PARG__QUERY:
 				setQuery(QUERY_EDEFAULT);

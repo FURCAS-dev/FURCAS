@@ -34,9 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#getStart <em>Start</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#isDropStart <em>Drop Start</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#getEnd <em>End</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#isDropEnd <em>Drop End</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#getEsc <em>Esc</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#getEscMappings <em>Esc Mappings</em>}</li>
  * </ul>
@@ -56,26 +54,6 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 	protected StringPattern start;
 
 	/**
-	 * The default value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDropStart()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean DROP_START_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDropStart()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean dropStart = DROP_START_EDEFAULT;
-
-	/**
 	 * The cached value of the '{@link #getEnd() <em>End</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -84,26 +62,6 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 	 * @ordered
 	 */
 	protected StringPattern end;
-
-	/**
-	 * The default value of the '{@link #isDropEnd() <em>Drop End</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDropEnd()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean DROP_END_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isDropEnd() <em>Drop End</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isDropEnd()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean dropEnd = DROP_END_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getEsc() <em>Esc</em>}' containment reference.
@@ -192,27 +150,6 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isDropStart() {
-		return dropStart;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDropStart(boolean newDropStart) {
-		boolean oldDropStart = dropStart;
-		dropStart = newDropStart;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__DROP_START, oldDropStart, dropStart));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public StringPattern getEnd() {
 		return end;
 	}
@@ -249,27 +186,6 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__END, newEnd, newEnd));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isDropEnd() {
-		return dropEnd;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDropEnd(boolean newDropEnd) {
-		boolean oldDropEnd = dropEnd;
-		dropEnd = newDropEnd;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__DROP_END, oldDropEnd, dropEnd));
 	}
 
 	/**
@@ -357,12 +273,8 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 		switch (featureID) {
 			case TCSPackage.MULTI_LINE_RULE__START:
 				return getStart();
-			case TCSPackage.MULTI_LINE_RULE__DROP_START:
-				return isDropStart();
 			case TCSPackage.MULTI_LINE_RULE__END:
 				return getEnd();
-			case TCSPackage.MULTI_LINE_RULE__DROP_END:
-				return isDropEnd();
 			case TCSPackage.MULTI_LINE_RULE__ESC:
 				return getEsc();
 			case TCSPackage.MULTI_LINE_RULE__ESC_MAPPINGS:
@@ -383,14 +295,8 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 			case TCSPackage.MULTI_LINE_RULE__START:
 				setStart((StringPattern)newValue);
 				return;
-			case TCSPackage.MULTI_LINE_RULE__DROP_START:
-				setDropStart((Boolean)newValue);
-				return;
 			case TCSPackage.MULTI_LINE_RULE__END:
 				setEnd((StringPattern)newValue);
-				return;
-			case TCSPackage.MULTI_LINE_RULE__DROP_END:
-				setDropEnd((Boolean)newValue);
 				return;
 			case TCSPackage.MULTI_LINE_RULE__ESC:
 				setEsc((StringPattern)newValue);
@@ -414,14 +320,8 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 			case TCSPackage.MULTI_LINE_RULE__START:
 				setStart((StringPattern)null);
 				return;
-			case TCSPackage.MULTI_LINE_RULE__DROP_START:
-				setDropStart(DROP_START_EDEFAULT);
-				return;
 			case TCSPackage.MULTI_LINE_RULE__END:
 				setEnd((StringPattern)null);
-				return;
-			case TCSPackage.MULTI_LINE_RULE__DROP_END:
-				setDropEnd(DROP_END_EDEFAULT);
 				return;
 			case TCSPackage.MULTI_LINE_RULE__ESC:
 				setEsc((StringPattern)null);
@@ -443,36 +343,14 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 		switch (featureID) {
 			case TCSPackage.MULTI_LINE_RULE__START:
 				return start != null;
-			case TCSPackage.MULTI_LINE_RULE__DROP_START:
-				return dropStart != DROP_START_EDEFAULT;
 			case TCSPackage.MULTI_LINE_RULE__END:
 				return end != null;
-			case TCSPackage.MULTI_LINE_RULE__DROP_END:
-				return dropEnd != DROP_END_EDEFAULT;
 			case TCSPackage.MULTI_LINE_RULE__ESC:
 				return esc != null;
 			case TCSPackage.MULTI_LINE_RULE__ESC_MAPPINGS:
 				return escMappings != null && !escMappings.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (dropStart: ");
-		result.append(dropStart);
-		result.append(", dropEnd: ");
-		result.append(dropEnd);
-		result.append(')');
-		return result.toString();
 	}
 
 } //MultiLineRuleImpl

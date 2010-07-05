@@ -14,79 +14,80 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.index.query.IndexQueryFactory;
+import org.eclipse.emf.query.index.query.QueryCommand;
+import org.eclipse.emf.query.index.query.QueryExecutor;
+import org.eclipse.emf.query.index.query.ResourceQuery;
+import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
+import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
+import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.emf.query2.TypeScopeProvider;
 
-import tcs.Alternative;
-import tcs.AsParg;
-import tcs.AssociativityEnum;
-import tcs.Block;
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.ConditionalElement;
-import tcs.CustomSeparator;
-import tcs.EndOfLineRule;
-import tcs.EnumLiteralMapping;
-import tcs.EnumerationTemplate;
-import tcs.FilterParg;
-import tcs.ForcedLowerParg;
-import tcs.ForcedUpperParg;
-import tcs.FunctionCall;
-import tcs.FunctionTemplate;
-import tcs.InjectorAction;
-import tcs.InjectorActionsBlock;
-import tcs.Keyword;
-import tcs.Literal;
-import tcs.LiteralRef;
-import tcs.ModeParg;
-import tcs.Operator;
-import tcs.OperatorList;
-import tcs.OperatorTemplate;
-import tcs.Priority;
-import tcs.Property;
-import tcs.PropertyArg;
-import tcs.PropertyReference;
-import tcs.QueryParg;
-import tcs.RefersToParg;
-import tcs.Rule;
-import tcs.RulePattern;
-import tcs.SeparatorParg;
-import tcs.Sequence;
-import tcs.SequenceElement;
-import tcs.SimplePattern;
-import tcs.StringPattern;
-import tcs.Symbol;
-import tcs.Template;
-import tcs.Token;
-
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.AsPArg;
+import com.sap.furcas.metamodel.TCS.Associativity;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.CustomSeparator;
+import com.sap.furcas.metamodel.TCS.EndOfLineRule;
+import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.TCS.FilterPArg;
+import com.sap.furcas.metamodel.TCS.ForcedLowerPArg;
+import com.sap.furcas.metamodel.TCS.ForcedUpperPArg;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.Literal;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.ModePArg;
+import com.sap.furcas.metamodel.TCS.Operator;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Priority;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.PropertyArg;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
+import com.sap.furcas.metamodel.TCS.QueryPArg;
+import com.sap.furcas.metamodel.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.TCS.Rule;
+import com.sap.furcas.metamodel.TCS.RulePattern;
+import com.sap.furcas.metamodel.TCS.SeparatorPArg;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.SimplePattern;
+import com.sap.furcas.metamodel.TCS.StringPattern;
+import com.sap.furcas.metamodel.TCS.Symbol;
+import com.sap.furcas.metamodel.TCS.TCSFactory;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.TCS.Token;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.Generalizes;
-import com.sap.tc.moin.repository.mmi.model.MultiplicityType;
-import com.sap.tc.moin.repository.mmi.model.Parameter;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.model.StructureType;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
-import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
-import com.sap.tc.moin.repository.mql.MQLPreparedQuery;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
 import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
 import com.sap.tc.moin.textual.moinadapter.adapter.MoinModelAdapterDelegate;
+
 
 /**
  * Utility class for the TcsPackage.
@@ -108,17 +109,17 @@ import com.sap.tc.moin.textual.moinadapter.adapter.MoinModelAdapterDelegate;
  */
 public class TcsUtil {
 
-	private static final String TRANSIENT_PARTITION_NAME = "TcsUtilTransientPartition";
+	private static final URI TRANSIENT_PARTITION_NAME = URI.createURI("TcsUtilTransientPartition");
 
 	/**
 	 * clears the TcsUtil transient partition on this connection
 	 * 
 	 * @param c
 	 */
-	public static void clearTransientPartition(Connection c) {
-		ModelPartition transientPartition = c
-				.getOrCreateTransientPartition(TRANSIENT_PARTITION_NAME);
-		transientPartition.deleteElements();
+	public static void clearTransientPartition(ResourceSet c) {
+		Resource transientPartition = c.
+				getResource(TRANSIENT_PARTITION_NAME, true);
+		transientPartition.getContents().clear();
 
 		// also clear operatorToLiteralRefMap which would otherwise refer to
 		// deleted elements
@@ -177,7 +178,7 @@ public class TcsUtil {
 			if (current instanceof Property) {
 				Property prop = (Property) current;
 
-				SeparatorParg sepArg = TcsUtil.getSeparatorParg(prop);
+				SeparatorPArg sepArg = TcsUtil.getSeparatorPArg(prop);
 				if (sepArg != null) {
 					// add separator sequence proposals as well
 					Sequence sepSeq = sepArg.getSeparatorSequence();
@@ -209,7 +210,7 @@ public class TcsUtil {
 						boolean otWithoutSequenceFound = false;
 
 						for (OperatorTemplate ot : findOperatorTemplatesByOperatorLiteralValue(
-								operatorValue, getType(prop), syntax)) {
+								operatorValue, (EClass) getType(prop), syntax)) {
 							if (ot.getOtSequence() != null) {
 								addAllIfNotNull(
 										results,
@@ -234,8 +235,8 @@ public class TcsUtil {
 						// we are before or past an operator and thus add all
 						// valid operators to the proposals
 						for (ClassTemplate ct : getClassTemplates(
-								getType(prop), getMode(prop), classTemplateMap,
-								getConnectionFromRefObject(prop))) {
+								(EClass) getType(prop), getMode(prop), classTemplateMap,
+								getResourceSetFromEObject(prop))) {
 							addAllIfNotNull(
 									results,
 									getOperatorsAsAtomicSequenceElements(getOperatorList(
@@ -247,7 +248,7 @@ public class TcsUtil {
 
 			if (current instanceof Alternative) {
 				Alternative alt = (Alternative) current;
-				if (alt.isMulti()) {
+				if (alt.isIsMulti()) {
 					addAllIfNotNull(results,
 							getPossibleFirstAtomicSequenceElements(alt,
 									classTemplateMap, new HashSet<Template>(),
@@ -256,7 +257,7 @@ public class TcsUtil {
 			}
 
 			Sequence parentSeq = current.getElementSequence();
-			if (parentSeq.getSeparatorcontainer() != null) {
+			if (parentSeq.getSeparatorContainer() != null) {
 				// we are in a separator sequence, add parent property to
 				// proposals
 
@@ -304,7 +305,7 @@ public class TcsUtil {
 		// don't need to check current == null because current has been used before
 		if (syntax != null) {
 			ClassTemplate main = TcsUtil.getMainClassTemplate(syntax);
-			if (main.isOperatored()) {
+			if (main.isIsOperatored()) {
 
 				if (isOperator && orderOfParent == 1) {
 					// we are at an operator, add first elements of parent
@@ -313,7 +314,7 @@ public class TcsUtil {
 							getPossibleFirstAtomicSequenceElements(main
 									.getMetaReference(), main.getMode(),
 									classTemplateMap, new HashSet<Template>(),
-									syntax, getConnectionFromRefObject(main)));
+									syntax, getResourceSetFromEObject(main)));
 
 					// also add prefix operators
 					addAllIfNotNull(
@@ -337,22 +338,19 @@ public class TcsUtil {
 	}
 
 	private static Collection<OperatorTemplate> findOperatorTemplatesByOperatorLiteralValue(
-			String operatorValue, Classifier type, ConcreteSyntax syntax) {
+			String operatorValue, EClass type, ConcreteSyntax syntax) {
 		List<OperatorTemplate> result = new ArrayList<OperatorTemplate>();
 		
-		Connection connection = getConnectionFromRefObject(syntax);
-		Generalizes generalizes = connection
-		.getAssociation(Generalizes.ASSOCIATION_DESCRIPTOR);
-		Collection<GeneralizableElement> subTypes = getAllSubtypes(generalizes,
-				type);
+		ResourceSet connection = getResourceSetFromEObject(syntax);
+		Collection<EClass> subTypes = getAllSubtypes(type);
 
 		for (Template t : syntax.getTemplates()) {
 			if (t instanceof OperatorTemplate) {
 				OperatorTemplate ot = (OperatorTemplate) t;
-				for (GeneralizableElement subType : subTypes) {
+				for (EClass subType : subTypes) {
 					if (ot.getMetaReference() != null
-							&& ot.getMetaReference().getQualifiedName().equals(
-									subType.getQualifiedName())) {
+							&& ot.getMetaReference().equals(
+									subType)) {
 						if (ot.getOperators() != null) {
 							for (Operator op : ot.getOperators()) {
 								// assumes that not two operators within the
@@ -370,6 +368,20 @@ public class TcsUtil {
 		}
 
 		return result;
+	}
+	
+	public static Collection<EClass> getAllSubtypes(EClass clazz) {
+		//TODO use query for this to have a greater scope
+		Collection<EClass> subTypes = new ArrayList<EClass>();
+		for (Iterator it = clazz.eResource().getAllContents(); it.hasNext();) {
+			EObject	e = (EObject) it.next();
+			if(e instanceof EClass) {
+				if(clazz.isSuperTypeOf((EClass) e)) {
+					subTypes.add((EClass) e);
+				}
+			}
+		}
+		return subTypes;
 	}
 
 	private static OperatorList getOperatorList(ClassTemplate ct,
@@ -420,9 +432,9 @@ public class TcsUtil {
 
 		List<SequenceElement> results = new ArrayList<SequenceElement>();
 		for (Priority prio : operatorList.getPriorities()) {
-			if (prio.getAssociativity() == AssociativityEnum.LEFT) {
+			if (prio.getAssociativity() == Associativity.LEFT) {
 				for (Operator op : prio.getOperators()) {
-					if (op.getArity() == 1 && !op.isPostfix()) {
+					if (op.getArity() == 1 && !op.isIsPostfix()) {
 						if (!operatorToLiteralRefMap.containsKey(op)) {
 							cacheOperatorLiteral(operatorList, op);
 
@@ -438,18 +450,17 @@ public class TcsUtil {
 
 	private static void cacheOperatorLiteral(OperatorList operatorList,
 			Operator op) {
-		Connection c = TcsUtil.getConnectionFromRefObject(operatorList);
-		ModelPartition transientPartition = c
-				.getOrCreateTransientPartition(TRANSIENT_PARTITION_NAME);
-		LiteralRef litRef = (LiteralRef) c.getClass(
-				tcs.LiteralRef.CLASS_DESCRIPTOR).refCreateInstanceInPartition(
-				transientPartition);
+		ResourceSet c = TcsUtil.getResourceSetFromEObject(operatorList);
+		Resource transientPartition = c
+				.getResource(TRANSIENT_PARTITION_NAME, true);
+		LiteralRef litRef = (LiteralRef) TCSFactory.eINSTANCE.createLiteralRef();
+		transientPartition.getContents().add(litRef);
 		litRef.setReferredLiteral(op.getLiteral());
 		operatorToLiteralRefMap.put(op, litRef);
 	}
 
 	private static boolean containsForcedUpperArgOfOne(Property prop) {
-		ForcedUpperParg upperArg = getForcedUpperParg(prop);
+		ForcedUpperPArg upperArg = getForcedUpperPArg(prop);
 		if (upperArg != null && upperArg.getValue() == 1) {
 			return true;
 		}
@@ -458,7 +469,7 @@ public class TcsUtil {
 	}
 
 	private static boolean containsForcedLowerArg(Property prop) {
-		return (getForcedLowerParg(prop) != null);
+		return (getForcedLowerPArg(prop) != null);
 
 	}
 
@@ -467,11 +478,11 @@ public class TcsUtil {
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
 
 		ClassTemplate main = getMainClassTemplate(syntax);
-		if (main.isAbstract()) {
+		if (main.isIsAbstract()) {
 			return getPossibleFirstAtomicSequenceElements(main
 					.getMetaReference(), main.getMode(), classTemplateMap,
 					new HashSet<Template>(), syntax,
-					getConnectionFromRefObject(main));
+					getResourceSetFromEObject(main));
 
 		} else {
 			return getPossibleFirstAtomicSequenceElements(
@@ -534,11 +545,10 @@ public class TcsUtil {
 
 		// TODO is there a constant instead of checking for below 0
 
-		TypedElement feat = getStructuralFeature(p);
-		if (feat instanceof AssociationEnd || feat instanceof Parameter
-				|| feat instanceof StructuralFeature) {
-			int upper = ((MultiplicityType) feat.refGetValue("multiplicity"))
-					.getUpper();
+		ETypedElement feat = getStructuralFeature(p);
+		if (feat instanceof EReference || feat instanceof EParameter
+				|| feat instanceof EStructuralFeature) {
+			int upper = feat.getUpperBound();
 			return (upper < 0 || upper > 1);
 		}
 		return false;
@@ -578,7 +588,7 @@ public class TcsUtil {
 		if (e instanceof Alternative) {
 			Alternative alt = (Alternative) e;
 			
-			if (alt.isMulti()) {
+			if (alt.isIsMulti()) {
 				// isMulti Alternative is optional
 				results.add(null);
 			}
@@ -646,10 +656,10 @@ public class TcsUtil {
 				return results;
 			} else {
 				addAllIfNotNull(results,
-						getPossibleFirstAtomicSequenceElements(getType(prop),
+						getPossibleFirstAtomicSequenceElements((EClass) getType(prop),
 								getMode(prop), classTemplateMap,
 								visitedTemplates, syntax,
-								getConnectionFromRefObject(prop)));
+								getResourceSetFromEObject(prop)));
 				return results;
 			}
 		}
@@ -664,19 +674,19 @@ public class TcsUtil {
 	}
 
 	public static List<SequenceElement> getPossibleFirstAtomicSequenceElements(
-			Classifier type, String mode,
+			EClass type, String mode,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
 			Set<Template> visitedTemplates, ConcreteSyntax syntax,
-			Connection connection) {
+			ResourceSet connection) {
 		List<SequenceElement> results = new ArrayList<SequenceElement>();
 		for (ClassTemplate ct : getClassTemplates(type, mode, classTemplateMap,
 				connection)) {
-			if (!ct.isAbstract()) {
+			if (!ct.isIsAbstract()) {
 				addAllIfNotNull(results,
 						getPossibleFirstAtomicSequenceElements(ct,
 								classTemplateMap, visitedTemplates, syntax));
 			} else {
-				if (ct.isOperatored()) {
+				if (ct.isIsOperatored()) {
 					// add prefix operators
 					addAllIfNotNull(
 							results,
@@ -689,17 +699,17 @@ public class TcsUtil {
 		return results;
 	}
 
-	public static Classifier getType(Property p) {
-		TypedElement e = getStructuralFeature(p);
+	public static EClassifier getType(Property p) {
+		ETypedElement e = getStructuralFeature(p);
 		if (e != null) {
-			return e.getType();
+			return e.getEType();
 		}
 
 		return null;
 	}
 
 	public static String getMode(Property p) {
-		ModeParg modeArg = getModeParg(p);
+		ModePArg modeArg = getModePArg(p);
 		if (modeArg != null) {
 			return modeArg.getMode();
 		}
@@ -709,18 +719,18 @@ public class TcsUtil {
 
 	public static boolean isAtomic(Property p,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
-		TypedElement s = getStructuralFeature(p);
+		ETypedElement s = getStructuralFeature(p);
 		if (s != null) {
-			if (s instanceof Reference || s instanceof AssociationEnd) {
+			if (s instanceof EReference) {
 				if (!containsRefersToArg(p) && !containsAsArg(p)) {
 					return false;
 				}
 
 			}
-			if (s instanceof Attribute && classTemplateMap != null) {
+			if (s instanceof EAttribute && classTemplateMap != null) {
 				// check if we have a non-primitive type attribute by querying
 				// classTemplateMap
-				List<String> typeName = getType(p).getQualifiedName();
+				List<String> typeName = getQualifiedName(getType(p));
 				if (classTemplateMap.containsKey(typeName)) {
 					return false;
 				}
@@ -730,17 +740,39 @@ public class TcsUtil {
 		return true;
 	}
 
+	/**
+	 * Computes the fully qualified name of the given {@link EClassifier}.
+	 * @param type the type to compute its qualified name from.
+	 * @return the Qualified name of the given type as list of strings.
+	 */
+	private static List<String> getQualifiedName(EClassifier type) {
+		List<String> names = new ArrayList<String>(3);
+		names.add(type.getName());
+		EObject parent = type.eContainer();
+		while(parent != null) {
+			if(parent instanceof ENamedElement) {
+				names.add(0, ((ENamedElement) parent).getName());
+				parent = parent.eContainer();
+			} else {
+				//There is an element which is not a ENamedElement 
+				//in the containment hierarchy, break qname building here
+				break;
+			}
+		}
+		return names;
+	}
+
 	public static boolean isOperatored(Property p,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
-		TypedElement s = getStructuralFeature(p);
+		ETypedElement s = getStructuralFeature(p);
 		if (s != null) {
 			if (classTemplateMap != null) {
-				List<String> typeName = getType(p).getQualifiedName();
+				List<String> typeName = getQualifiedName(getType(p));
 				if (classTemplateMap.containsKey(typeName)) {
 					ClassTemplate ct = classTemplateMap.get(typeName).get(
 							getMode(p));
 					if (ct != null) {
-						return ct.isOperatored();
+						return ct.isIsOperatored();
 					}
 				}
 			}
@@ -750,25 +782,25 @@ public class TcsUtil {
 	}
 
 	public static boolean containsRefersToArg(Property p) {
-		return getRefersToParg(p) != null;
+		return getRefersToPArg(p) != null;
 	}
 
 	public static boolean containsAsArg(Property p) {
-		return getAsParg(p) != null;
+		return getAsPArg(p) != null;
 	}
 
 	/**
-	 * returns the first SeparatorParg of Property p. There should only be one.
+	 * returns the first SeparatorPArg of Property p. There should only be one.
 	 * No error is thrown, if more than one exist.
 	 * 
 	 * @param p
 	 *            Property
-	 * @return first SeparatorParg
+	 * @return first SeparatorPArg
 	 */
-	public static SeparatorParg getSeparatorParg(Property p) {
+	public static SeparatorPArg getSeparatorPArg(Property p) {
 		for (PropertyArg arg : p.getPropertyArgs()) {
-			if (arg instanceof SeparatorParg) {
-				return (SeparatorParg) arg;
+			if (arg instanceof SeparatorPArg) {
+				return (SeparatorPArg) arg;
 			}
 		}
 
@@ -776,17 +808,17 @@ public class TcsUtil {
 	}
 
 	/**
-	 * returns the first AsParg of Property p. There should only be one. No
+	 * returns the first AsPArg of Property p. There should only be one. No
 	 * error is thrown, if more than one exist.
 	 * 
 	 * @param p
 	 *            Property
-	 * @return first RefersToParg
+	 * @return first RefersToPArg
 	 */
-	public static AsParg getAsParg(Property p) {
+	public static AsPArg getAsPArg(Property p) {
 		for (PropertyArg arg : p.getPropertyArgs()) {
-			if (arg instanceof AsParg) {
-				return (AsParg) arg;
+			if (arg instanceof AsPArg) {
+				return (AsPArg) arg;
 			}
 		}
 
@@ -794,17 +826,17 @@ public class TcsUtil {
 	}
 
 	/**
-	 * returns the first RefersToParg of Property p. There should only be one.
+	 * returns the first RefersToPArg of Property p. There should only be one.
 	 * No error is thrown, if more than one exist.
 	 * 
 	 * @param p
 	 *            Property
-	 * @return first RefersToParg
+	 * @return first RefersToPArg
 	 */
-	public static RefersToParg getRefersToParg(Property p) {
+	public static RefersToPArg getRefersToPArg(Property p) {
 		for (PropertyArg arg : p.getPropertyArgs()) {
-			if (arg instanceof RefersToParg) {
-				return (RefersToParg) arg;
+			if (arg instanceof RefersToPArg) {
+				return (RefersToPArg) arg;
 			}
 		}
 
@@ -812,63 +844,63 @@ public class TcsUtil {
 	}
 
 	/**
-	 * returns the first {@link QueryParg} of Property p. There should only be
+	 * returns the first {@link QueryPArg} of Property p. There should only be
 	 * one. No error is thrown, if more than one exist.
 	 * 
 	 * @param p
 	 *            Property
-	 * @return first QueryParg
+	 * @return first QueryPArg
 	 */
-	public static QueryParg getQueryParg(Property p) {
+	public static QueryPArg getQueryPArg(Property p) {
 		for (PropertyArg arg : p.getPropertyArgs()) {
-			if (arg instanceof QueryParg) {
-				return (QueryParg) arg;
+			if (arg instanceof QueryPArg) {
+				return (QueryPArg) arg;
 			}
 		}
 		return null;
 	}
 
 	/**
-	 * returns the first {@link FilterParg} of Property p. There should only be
+	 * returns the first {@link FilterPArg} of Property p. There should only be
 	 * one. No error is thrown, if more than one exist.
 	 * 
 	 * @param p
 	 *            Property
-	 * @return first FilterParg
+	 * @return first FilterPArg
 	 */
-	public static FilterParg getFilterParg(Property p) {
+	public static FilterPArg getFilterPArg(Property p) {
 		for (PropertyArg arg : p.getPropertyArgs()) {
-			if (arg instanceof FilterParg) {
-				return (FilterParg) arg;
+			if (arg instanceof FilterPArg) {
+				return (FilterPArg) arg;
 			}
 		}
 		return null;
 	}
 
-	static ForcedUpperParg getForcedUpperParg(Property p) {
+	static ForcedUpperPArg getForcedUpperPArg(Property p) {
 		for (PropertyArg arg : p.getPropertyArgs()) {
-			if (arg instanceof ForcedUpperParg) {
-				return (ForcedUpperParg) arg;
-			}
-		}
-
-		return null;
-	}
-
-	static ForcedLowerParg getForcedLowerParg(Property p) {
-		for (PropertyArg arg : p.getPropertyArgs()) {
-			if (arg instanceof ForcedLowerParg) {
-				return (ForcedLowerParg) arg;
+			if (arg instanceof ForcedUpperPArg) {
+				return (ForcedUpperPArg) arg;
 			}
 		}
 
 		return null;
 	}
 
-	static ModeParg getModeParg(Property p) {
+	static ForcedLowerPArg getForcedLowerPArg(Property p) {
 		for (PropertyArg arg : p.getPropertyArgs()) {
-			if (arg instanceof ModeParg) {
-				return (ModeParg) arg;
+			if (arg instanceof ForcedLowerPArg) {
+				return (ForcedLowerPArg) arg;
+			}
+		}
+
+		return null;
+	}
+
+	static ModePArg getModePArg(Property p) {
+		for (PropertyArg arg : p.getPropertyArgs()) {
+			if (arg instanceof ModePArg) {
+				return (ModePArg) arg;
 			}
 		}
 
@@ -876,25 +908,13 @@ public class TcsUtil {
 	}
 
 	public static boolean containsSeparatorArg(Property p) {
-		return getSeparatorParg(p) != null;
+		return getSeparatorPArg(p) != null;
 	}
 
-	static Collection<GeneralizableElement> getAllSubtypes(
-			Generalizes generalizes, GeneralizableElement type) {
-		List<GeneralizableElement> results = new ArrayList<GeneralizableElement>();
-		Collection<GeneralizableElement> subTypes = generalizes
-				.getSubtype(type);
-		for (GeneralizableElement subType : subTypes) {
-			results.addAll(getAllSubtypes(generalizes, subType));
-		}
-		results.add(type);
-		return results;
-	}
-
-	public static Collection<ClassTemplate> getClassTemplates(Classifier type,
+	public static Collection<ClassTemplate> getClassTemplates(EClass type,
 			String mode,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
-			Connection connection) {
+			ResourceSet connection) {
 		Assert
 				.isLegal(classTemplateMap != null,
 						"could not resolve class template for Reference, classTemplateMap is null");
@@ -904,14 +924,11 @@ public class TcsUtil {
 		// get all matching class templates of this type and any of the
 		// (recursive) subtypes
 
-		Generalizes generalizes = connection
-				.getAssociation(Generalizes.ASSOCIATION_DESCRIPTOR);
-		Collection<GeneralizableElement> subTypes = getAllSubtypes(generalizes,
-				type);
-		for (GeneralizableElement subType : subTypes) {
-			if (classTemplateMap.containsKey((subType.getQualifiedName()))) {
+		Collection<EClass> subTypes = getAllSubtypes(type);
+		for (EClass subType : subTypes) {
+			if (classTemplateMap.containsKey(getQualifiedName(subType))) {
 				for (ClassTemplate ct : classTemplateMap.get(
-						subType.getQualifiedName()).values()) {
+						getQualifiedName(subType)).values()) {
 					if ((mode == null && ct.getMode() == null)
 							|| (mode != null && mode.equals(ct.getMode()))) {
 						results.add(ct);
@@ -923,9 +940,8 @@ public class TcsUtil {
 		return results;
 	}
 
-	public static Connection getConnectionFromRefObject(RefObject ref) {
-		Partitionable p = ref;
-		return p.get___Connection();
+	public static ResourceSet getResourceSetFromEObject(EObject ref) {
+		return ref.eResource().getResourceSet();
 	}
 
 	// TODO still needed?
@@ -1091,7 +1107,7 @@ public class TcsUtil {
 
 		// use refImmediateComposite, as a SequenceElement can be part of
 		// different types of Sequences
-		RefFeatured container = e.refImmediateComposite();
+		EObject container = e.eContainer();
 		if (container instanceof Sequence) {
 
 			Sequence parentSequence = (Sequence) container;
@@ -1135,7 +1151,7 @@ public class TcsUtil {
 		Sequence parentSequence = e.getElementSequence();
 		if (parentSequence != null) {
 			// check if parentSequence is part of a SequenceElement
-			RefFeatured container = parentSequence.refImmediateComposite();
+			EObject container = parentSequence.eContainer();
 			if (container instanceof SequenceElement) {
 				return (SequenceElement) container;
 			}
@@ -1174,11 +1190,11 @@ public class TcsUtil {
 				}
 			}
 
-			if (container instanceof SeparatorParg) {
-				// reached a SeparatorParg, continue at parent Property
-				SeparatorParg parentSepArg = (SeparatorParg) container;
-				RefFeatured containerOfParent = parentSepArg
-						.refImmediateComposite();
+			if (container instanceof SeparatorPArg) {
+				// reached a SeparatorPArg, continue at parent Property
+				SeparatorPArg parentSepArg = (SeparatorPArg) container;
+				EObject containerOfParent = parentSepArg
+						.eContainer();
 				if (containerOfParent instanceof Property) {
 					return (Property) containerOfParent;
 				}
@@ -1211,7 +1227,7 @@ public class TcsUtil {
 			for (Template t : syntax.getTemplates()) {
 				if (t instanceof ClassTemplate) {
 					ClassTemplate c = (ClassTemplate) t;
-					if (c.isMain()) {
+					if (c.isIsMain()) {
 						return c;
 					}
 				}
@@ -1221,43 +1237,81 @@ public class TcsUtil {
 		return null;
 	}
 
-	public static MQLResultSet queryConn(Connection connection, String query) {
-		MQLProcessor mql = connection.getMQLProcessor();
-		MQLPreparedQuery preparedQuery = mql.prepare(query);
-		return mql.execute(preparedQuery);
+	public static ResultSet queryConn(ResourceSet resourceSet, String query) {
+		QueryProcessor queryProcessor = QueryProcessorFactory
+				.getDefault()
+				.createQueryProcessor(getIndex(resourceSet));
+
+		QueryContext context = getQueryContext(resourceSet);
+		return queryProcessor.execute(query, context);
+	}
+	
+	/**
+     * Constructs a query context that contains all of <tt>rs</tt>'s resources and all
+     * metamodel resources
+     */
+    public static QueryContext getQueryContext(final ResourceSet rs) {
+        return new QueryContext() {
+                public URI[] getResourceScope() {
+                        final List<URI> result = new ArrayList<URI>();
+                        IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
+                                public void execute(QueryExecutor queryExecutor) {
+                                        ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
+                                        for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
+                                                result.add(desc.getURI());
+                                        }
+                                        for (Resource r:rs.getResources()) {
+                                            result.add(r.getURI());
+                                        }
+                                }
+                        });
+                        return result.toArray(new URI[0]);
+                }
+
+                public ResourceSet getResourceSet() {
+                        return rs;
+                }
+        };
+    }
+
+	private static org.eclipse.emf.query.index.Index getIndex(ResourceSet resourceSet) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public static MQLResultSet querySameConn(RefObject r, String query) {
-		Connection conn = getConnectionFromRefObject(r);
+	public static ResultSet querySameConn(EObject r, String query) {
+		ResourceSet conn = getResourceSetFromEObject(r);
 		return queryConn(conn, query);
 	}
 
-	public static List<ConcreteSyntax> getSyntaxesInConnection(
-			Connection connection) {
+	public static List<ConcreteSyntax> getSyntaxesInResourceSet(
+			ResourceSet connection) {
 
 		String query = "select cs from TCS::ConcreteSyntax withoutsubtypes as cs";
 
-		MQLResultSet resultSet = queryConn(connection, query);
-		RefObject[] resultElements = resultSet.getRefObjects("cs");
+		ResultSet resultSet = queryConn(connection, query);
+		URI[] resultElements = resultSet.getUris("cs");
 
 		List<ConcreteSyntax> results = new ArrayList<ConcreteSyntax>();
 
-		for (RefObject elem : resultElements) {
-			results.add((ConcreteSyntax) elem);
+		for (URI elem : resultElements) {
+			results.add((ConcreteSyntax) connection.getEObject(elem, false));
 		}
 
 		return results;
 	}
 
-	public static List<ConcreteSyntax> getSyntaxesInConnectionWithName(Connection connection, String syntaxName) {
+	public static List<ConcreteSyntax> getSyntaxesInResourceSetWithName(ResourceSet connection, String syntaxName) {
 	    String query = "select cs from TCS::ConcreteSyntax withoutsubtypes as cs where cs.name = '"+
 	    	syntaxName+"'";
-	    MQLResultSet resultSet = queryConn(connection, query);
-	    RefObject[] resultElements = resultSet.getRefObjects("cs");
-	    List<ConcreteSyntax> results = new ArrayList<ConcreteSyntax>();
-	    for (RefObject elem : resultElements) {
-		results.add((ConcreteSyntax) elem);
-	    }
+	    ResultSet resultSet = queryConn(connection, query);
+		URI[] resultElements = resultSet.getUris("cs");
+
+		List<ConcreteSyntax> results = new ArrayList<ConcreteSyntax>();
+
+		for (URI elem : resultElements) {
+			results.add((ConcreteSyntax) connection.getEObject(elem, false));
+		}
 	    return results;
 	}
 
@@ -1265,16 +1319,16 @@ public class TcsUtil {
 	 * Get the build-in TCS ConcreteSyntax.
 	 * 
 	 * @param connection
-	 *            Connection to look in
+	 *            ResourceSet to look in
 	 * @return build-in TCS ConcreteSyntax
 	 */
-	public static ConcreteSyntax getTcsSyntax(Connection connection) {
+	public static ConcreteSyntax getTcsSyntax(ResourceSet connection) {
 		// TODO implement some real way of identifying the build-in TCS
 		// ConcreteSyntax.
 		// note that the name will not suffice, as a new TCS syntax can be build
 		// using the build-in TCS syntax (after bootstrapping)
 
-		List<ConcreteSyntax> syntaxList = getSyntaxesInConnection(connection);
+		List<ConcreteSyntax> syntaxList = getSyntaxesInResourceSet(connection);
 
 		for (ConcreteSyntax syntax : syntaxList) {
 			if (syntax.getName().equals("TCS")) {
@@ -1288,12 +1342,12 @@ public class TcsUtil {
 	 * Get the first ConcreteSyntax with the given name.
 	 * 
 	 * @param connection
-	 *            Connection to look in
+	 *            ResourceSet to look in
 	 * @return the ConcreteSyntax with the given name.
 	 */
-	public static ConcreteSyntax getSyntaxByName(Connection connection,
+	public static ConcreteSyntax getSyntaxByName(ResourceSet connection,
 			String languageId) {
-		List<ConcreteSyntax> syntaxList = getSyntaxesInConnectionWithName(connection, languageId);
+		List<ConcreteSyntax> syntaxList = getSyntaxesInResourceSetWithName(connection, languageId);
 		if (syntaxList == null || syntaxList.size() == 0) {
 		    return null;
 		} else {
@@ -1332,13 +1386,13 @@ public class TcsUtil {
 
 	public static List<String> getQualifiedName(Template t) {
 		List<String> qualifiedName;
-		Classifier ref = t.getMetaReference();
+		EClass ref = t.getMetaReference();
 		if (ref == null) { // syntaxes may merely define name of
 			// metamodel class rather than have a
 			// reference
 			qualifiedName = t.getNames();
 		} else {
-			qualifiedName = ref.getQualifiedName();
+			qualifiedName = getQualifiedName(ref);
 		}
 
 		if (qualifiedName == null) {
@@ -1398,7 +1452,7 @@ public class TcsUtil {
 			if (propRef.getName() != null) {
 				return propRef.getName();
 			} else {
-				TypedElement strucFeat = propRef.getStrucfeature();
+				ETypedElement strucFeat = propRef.getStrucfeature();
 				if (strucFeat != null) {
 					return strucFeat.getName();
 				}
@@ -1407,48 +1461,48 @@ public class TcsUtil {
 		return null;
 	}
 
-	 /**
-	     * Returns the value of the property identified by propName of the given target RefStruct.
-	     * 
-	     * 
-	     * @param target
-	     *            RefStruct to get the property value of.
-	     * @param propName
-	     *            Name of the property to get the value of.
-	     * @return The value of the given property for the target RefStruct. This can be a collection for multi-valued properties.
-	     */
-	        public static Object getPropertyValue(RefStruct target,
-	                        PropertyReference propRef) {
-	                assert (target != null);
-
-	                if (propRef != null) {
-
-	                        if (propRef.getName() != null) {
-	                                // assume that name can only refer to an attribute or reference,
-	                                // not an association link
-	                                return target.refGetValue(propRef.getName());
-	                        }
-	                        TypedElement elem = propRef.getStrucfeature();
-	                        if (elem != null) {
-	                            return target.refGetValue(elem.getName());
-	                        }
-	                }
-	                return null;
-	        }
+//	 /**
+//	     * Returns the value of the property identified by propName of the given target RefStruct.
+//	     * 
+//	     * 
+//	     * @param target
+//	     *            RefStruct to get the property value of.
+//	     * @param propName
+//	     *            Name of the property to get the value of.
+//	     * @return The value of the given property for the target RefStruct. This can be a collection for multi-valued properties.
+//	     */
+//	        public static Object getPropertyValue(RefStruct target,
+//	                        PropertyReference propRef) {
+//	                assert (target != null);
+//
+//	                if (propRef != null) {
+//
+//	                        if (propRef.getName() != null) {
+//	                                // assume that name can only refer to an attribute or reference,
+//	                                // not an association link
+//	                                return target.refGetValue(propRef.getName());
+//	                        }
+//	                        ETypedElement elem = propRef.getStrucfeature();
+//	                        if (elem != null) {
+//	                            return target.refGetValue(elem.getName());
+//	                        }
+//	                }
+//	                return null;
+//	        }
 	
 	
     /**
-     * Returns the value of the property identified by propName of the given target RefObject.
+     * Returns the value of the property identified by propName of the given target EObject.
      * 
      * Unifies the access of Attributes, References and Association links.
      * 
      * @param target
-     *            RefObject to get the property value of.
+     *            EObject to get the property value of.
      * @param propName
      *            Name of the property to get the value of.
-     * @return The value of the given property for the target RefObject. This can be a collection for multi-valued properties.
+     * @return The value of the given property for the target EObject. This can be a collection for multi-valued properties.
      */
-	public static Object getPropertyValue(RefObject target,
+	public static Object getPropertyValue(EObject target,
 			PropertyReference propRef) {
 		assert (target != null);
 
@@ -1457,36 +1511,36 @@ public class TcsUtil {
 			if (propRef.getName() != null) {
 				// assume that name can only refer to an attribute or reference,
 				// not an association link
-				return target.refGetValue(propRef.getName());
+				return target.eGet(target.eClass().getEStructuralFeature(propRef.getName()));
 			}
 
-			TypedElement elem = propRef.getStrucfeature();
+			EStructuralFeature elem = propRef.getStrucfeature();
 			if (elem != null) {
-				if (elem instanceof AssociationEnd) {
-					AssociationEnd thisEnd = (AssociationEnd) elem;
-					AssociationEnd otherEnd = thisEnd.otherEnd();
-					
-					RefAssociation ass = getConnectionFromRefObject(target)
-							.getJmiHelper().getRefAssociationForAssociation(
-									(Association) elem.refImmediateComposite());
-
-					Collection<RefObject> results = null;
-
-					try {
-						// Warning, the other end must be used for this to work
-						results = ass.refQuery(otherEnd.getName(), target);
-
-					} catch (TypeMismatchException e) {
-						return null;
-					}
-					if (results.size() > 1) {
-						return results;
-					} else if (results.size() == 1) {
-						return results.iterator().next();
-					}
-				} else {
-					return target.refGetValue(elem);
-				}
+//				if (elem instanceof AssociationEnd) {
+//					AssociationEnd thisEnd = (AssociationEnd) elem;
+//					AssociationEnd otherEnd = thisEnd.otherEnd();
+//					
+//					RefAssociation ass = getResourceSetFromEObject(target)
+//							.getJmiHelper().getRefAssociationForAssociation(
+//									(Association) elem.refImmediateComposite());
+//
+//					Collection<EObject> results = null;
+//
+//					try {
+//						// Warning, the other end must be used for this to work
+//						results = ass.refQuery(otherEnd.getName(), target);
+//
+//					} catch (TypeMismatchException e) {
+//						return null;
+//					}
+//					if (results.size() > 1) {
+//						return results;
+//					} else if (results.size() == 1) {
+//						return results.iterator().next();
+//					}
+//				} else {
+					return target.eGet((EStructuralFeature) elem);
+//				}
 			}
 
 		}
@@ -1498,10 +1552,10 @@ public class TcsUtil {
 	 * @param p
 	 * @return
 	 */
-	static public TypedElement getStructuralFeature(Property p) {
+	static public EStructuralFeature getStructuralFeature(Property p) {
 		PropertyReference propRef = p.getPropertyReference();
 		if (propRef != null) {
-			TypedElement feat = propRef.getStrucfeature();
+			EStructuralFeature feat = propRef.getStrucfeature();
 			if (feat != null) {
 				return feat;
 			} else if (propRef.getName() != null) {
@@ -1523,8 +1577,8 @@ public class TcsUtil {
 	}
 
 	public static boolean isEnumeration(Property p) {
-		TypedElement feat = getStructuralFeature(p);
-		return (feat.getType() instanceof EnumerationType);
+		EStructuralFeature feat = getStructuralFeature(p);
+		return (feat.getEType() instanceof EEnum);
 	}
 
 	public static String joinNameList(List<String> names) {
@@ -1540,23 +1594,24 @@ public class TcsUtil {
 		return result;
 	}
 
-	public static List<String> queryPropertyValues(Classifier type,
-			String featureName, Connection conn) {
+	public static List<String> queryPropertyValues(EClassifier type,
+			String featureName, ResourceSet conn) {
 
 		// TODO limit query to a single partition or use model information from
 		// parsing handler instead?
 
 		String query = "select ofClass from "
-				+ joinNameList(type.getQualifiedName()) + " as ofClass";
+				+ joinNameList(getQualifiedName(type)) + " as ofClass";
 
-		MQLResultSet resultSet = queryConn(conn, query);
-		RefObject[] resultElements = resultSet.getRefObjects("ofClass");
+		ResultSet resultSet = queryConn(conn, query);
+		URI[] resultElements = resultSet.getUris("ofClass");
 
 		List<String> results = new ArrayList<String>();
 
-		for (RefObject elem : resultElements) {
+		for (URI elemURI : resultElements) {
 			try {
-				Object featureValue = elem.refGetValue(featureName);
+				EObject element = conn.getEObject(elemURI, false);
+				Object featureValue = element.eGet(element.eClass().getEStructuralFeature(featureName));
 				if (featureValue instanceof Integer) {
 					results.add("" + featureValue);
 				}
@@ -1569,7 +1624,7 @@ public class TcsUtil {
 						.println("TcsUtil.queryPropertyValues encountered the following error: cannot read feature "
 								+ featureName
 								+ " from element "
-								+ elem.toString());
+								+ elemURI.toString());
 			}
 
 			// TODO need to add more type checks?
@@ -1586,7 +1641,7 @@ public class TcsUtil {
 	}
 
 	public static List<EnumLiteralMapping> getEnumTemplateForType(
-			ConcreteSyntax syntax, Classifier type) {
+			ConcreteSyntax syntax, EClassifier type) {
 
 		// TODO if too slow, also build map like for class and operator
 		// templates
@@ -1595,7 +1650,7 @@ public class TcsUtil {
 
 		for (Template t : syntax.getTemplates()) {
 			if (t instanceof EnumerationTemplate) {
-				if (getQualifiedName(t).equals(type.getQualifiedName())) {
+				if (getQualifiedName(t).equals(getQualifiedName(type))) {
 					// match
 					EnumerationTemplate enumTemplate = (EnumerationTemplate) t;
 					results.addAll(enumTemplate.getMappings());
@@ -1607,7 +1662,7 @@ public class TcsUtil {
 		return results;
 	}
 
-	public static Collection<PRI> getSyntaxePartitions(Connection connection,
+	public static Collection<URI> getSyntaxePartitions(ResourceSet connection,
 			String languageId) {
 		ConcreteSyntax cs = getSyntaxByName(connection, languageId);
 		if (cs == null) {
@@ -1616,8 +1671,8 @@ public class TcsUtil {
 		}
 		// TODO for language composition return also all partitions of
 		// dependencies
-		return Collections.singleton(((Partitionable) cs).get___Partition()
-				.getPri());
+		return Collections.singleton(((EObject) cs).eResource()
+				.getURI());
 	}
 
 	public static ClassTemplate resolveClassTemplate(
@@ -1634,9 +1689,9 @@ public class TcsUtil {
 
 	public static boolean isContext(Template template) {
 		if (template instanceof ClassTemplate) {
-			return ((ClassTemplate) template).isContext();
+			return ((ClassTemplate) template).isIsContext();
 		} else if (template instanceof OperatorTemplate) {
-			return ((OperatorTemplate) template).isContext();
+			return ((OperatorTemplate) template).isIsContext();
 		} else {
 			return false;
 		}
@@ -1659,32 +1714,32 @@ public class TcsUtil {
 	}
 
 	public static boolean containsQueryArg(Property p) {
-		return getQueryParg(p) != null;
+		return getQueryPArg(p) != null;
 	}
 
 	public static String getQuery(Property se) {
-		QueryParg arg = getQueryParg(se);
+		QueryPArg arg = getQueryPArg(se);
 		if (arg != null) {
 			StringBuffer query = new StringBuffer(arg.getQuery());
-			FilterParg filterParg = getFilterParg(se);
-			if (filterParg != null) {
-				query.append(filterParg.getFilter());
+			FilterPArg filterPArg = getFilterPArg(se);
+			if (filterPArg != null) {
+				query.append(filterPArg.getQuery());
 			}
 			return query.toString();
 		}
 		return null;
 	}
 
-	public static boolean isStructureTypeTemplate(Template parseRule) {
-		return parseRule.getMetaReference() != null
-				&& parseRule.getMetaReference() instanceof StructureType;
-	}
+//	public static boolean isStructureTypeTemplate(Template parseRule) {
+//		return parseRule.getMetaReference() != null
+//				&& parseRule.getMetaReference() instanceof StructureType;
+//	}
 
 	public static boolean isReferenceOnly(Template template) {
 		if (template instanceof ClassTemplate) {
-			return ((ClassTemplate) template).isReferenceOnly();
+			return ((ClassTemplate) template).isIsReferenceOnly();
 		} else if (template instanceof OperatorTemplate) {
-			return ((OperatorTemplate) template).isReferenceOnly();
+			return ((OperatorTemplate) template).isIsReferenceOnly();
 		}
 		return false;
 	}
@@ -1731,7 +1786,7 @@ public class TcsUtil {
 	}
 
 	public static boolean matchesContext(ClassTemplate ct, String tag) {
-		if (ct.isContext()) {
+		if (ct.isIsContext()) {
 			if (tag != null) {
 				if (ct.getContextTags() != null
 						&& ct.getContextTags().getTags() != null) {
@@ -1742,7 +1797,7 @@ public class TcsUtil {
 					}
 				}
 			} else {
-				// return RefObject that matches this ClassTemplate
+				// return EObject that matches this ClassTemplate
 				return true;
 
 			}
@@ -1752,7 +1807,7 @@ public class TcsUtil {
 	}
 
 	public static boolean matchesContext(OperatorTemplate ot, String tag) {
-		if (ot.isContext()) {
+		if (ot.isIsContext()) {
 			if (tag != null) {
 				if (ot.getContextTags() != null
 						&& ot.getContextTags().getTags() != null) {
@@ -1763,7 +1818,7 @@ public class TcsUtil {
 					}
 				}
 			} else {
-				// return RefObject that matches this ClassTemplate
+				// return EObject that matches this ClassTemplate
 				return true;
 
 			}
@@ -1775,7 +1830,7 @@ public class TcsUtil {
 	public static SequenceElement getContainerSequenceElement(SequenceElement e) {
 		Sequence parentSequence = e.getElementSequence();
 		if (parentSequence != null) {
-			RefFeatured container = parentSequence.refImmediateComposite();
+			EObject container = parentSequence.eContainer();
 			if (container instanceof SequenceElement) {
 				return (SequenceElement) container;
 			}
@@ -1824,14 +1879,14 @@ public class TcsUtil {
 		return null;
 	}
 
-	public static Object executeOclQuery(RefObject element, String oclQuery,
-			RefObject contextObject, RefObject foreachObject, String keyValue)
+	public static Object executeOclQuery(EObject element, String oclQuery,
+			EObject contextObject, EObject foreachObject, String keyValue)
 			throws ModelAdapterException {
 		if (oclQuery != null) {
 
 			Object expectedValue = null;
 
-			Connection con = getConnectionFromRefObject(element);
+			ResourceSet con = getResourceSetFromEObject(element);
 
 			AdapterJMIHelper oclHelper = new AdapterJMIHelper(element
 					.refOutermostPackage(), con, con.getJmiHelper(), null, null);
@@ -1898,11 +1953,11 @@ public class TcsUtil {
      * @param queryElement
      * @return
      */
-    public static Template getParentTemplate(RefObject queryElement) {
+    public static Template getParentTemplate(EObject queryElement) {
         if(queryElement instanceof Property) {
             return ((Property) queryElement).getParentTemplate();
         } else if(queryElement instanceof InjectorAction) {
-            return ((InjectorAction) queryElement).getInjectorActionsBlockReference().getParentTemplate();
+            return ((InjectorAction) queryElement).getInjectorActionsBlock().getParentTemplate();
         } else {
             return null;
         }

@@ -1117,9 +1117,9 @@ public abstract class AbstractGrammarBasedEditor extends
 				.getMessage() == null ? e.getClass().getName() : e.getMessage());
 		getDocumentProvider().getAnnotationModel(getEditorInput())
 				.addAnnotation(annotation, guessPosition(e));
-		this
+		/*this
 				.setStatusLineErrorMessageInUIThread("Entered expression is invalid. Cause given: "
-						+ e.getClass() + " : " + e.getMessage());
+						+ e.getClass() + " : " + e.getMessage());*/
 	}
 
 	/**

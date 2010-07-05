@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import tcs.AsParg;
 import tcs.FilterParg;
 import tcs.LiteralRef;
 import tcs.Property;
 import tcs.RefersToParg;
 import tcs.SequenceElement;
+import tcs.Template;
 import textblocks.AbstractToken;
 import textblocks.LexedToken;
 import textblocks.TextBlock;
@@ -17,6 +19,7 @@ import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
+import com.sap.mi.textual.parsing.textblocks.PrettyPrinterUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
@@ -99,8 +102,10 @@ public class ShortPrettyPrinter {
         			// within the query to do the matching
         			// with the target element we need to invert this
         			// change to get the actual value
-        			return invertOclQuery(referencedObject, token, se,
-        				newvalue);
+        		        AsParg asParg = TcsUtil.getAsParg(se);
+        		        Template template = PrettyPrinterUtil.getAsTemplate(asParg);
+        			return PrettyPrinterUtil.printUsingSerializer(invertOclQuery(referencedObject, token, se,
+        				newvalue), template);
         		    }
         		    Object value = investigator.get(referencedObject,
         			    refersToArg.getPropertyName());
@@ -111,9 +116,9 @@ public class ShortPrettyPrinter {
         			newvalue = value.toString();
         		    }
         		    
-        		    // TODO handle pretty printing and escaping according to
-        		    // syntax
-        		    return newvalue;
+        		    AsParg asParg = TcsUtil.getAsParg(se);
+                            Template template = PrettyPrinterUtil.getAsTemplate(asParg);
+                            return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
         		} catch (ModelAdapterException e) {
         		    // element does not have this property
         		    System.out.println(e);
@@ -153,7 +158,9 @@ public class ShortPrettyPrinter {
                 // continue;
             }
 	}
-	return newvalue;
+	AsParg asParg = TcsUtil.getAsParg(se);
+        Template template = PrettyPrinterUtil.getAsTemplate(asParg);
+        return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
     }
 
     private String invertOclQuery(RefObject self, LexedToken token,

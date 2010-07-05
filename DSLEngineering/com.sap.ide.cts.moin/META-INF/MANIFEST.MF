@@ -11,6 +11,6 @@ Require-Bundle: com.sap.tc.moin.libraries.api,
  com.sap.ide.cts.parser,
  com.sap.mi.textual.tcs.util;bundle-version="1.0.0",
  com.sap.mi.textual.common;bundle-version="1.0.0",
- com.sap.mi.textual.moinlookup;bundle-version="1.0.0"
+ com.sap.mi.textual.ecorelookup;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.ide.cts.moin.parserfactory

@@ -4,25 +4,35 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="textblocks"
     nsURI="http://www.furcas.org/textblocks" nsPrefix="com.sap.furcas.textblocks">
   <eClassifiers xsi:type="ecore:EClass" name="TextBlock" abstract="true" eSuperTypes="#//DocumentNode">
+    <eOperations name="getSubBlocks" upperBound="-1" eType="#//TextBlock">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="body"/>
+      </eAnnotations>
+      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+        <details key="body" value="self.subNodes->select(n | n.oclIsTypeOf(TextBlock)).oclAsType(OrderedSet(TextBlock))"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="getTokens" upperBound="-1" eType="#//AbstractToken">
+      <eAnnotations source="de.hpi.sam.bp2009.OCL">
+        <details key="body" value="self.subNodes->select(n | n.oclIsTypeOf(AbstractToken)).oclAsType(OrderedSet(AbstractToken))"/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+        <details key="constraints" value="body"/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startRow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endRow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="tokens" upperBound="-1"
-        eType="#//AbstractToken" volatile="true" transient="true" derived="true">
-      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
-        <details key="derive" value="self.subNodes->(n | n.oclIsTypeOf(textblocks::TextBlock))"/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subNodes" upperBound="-1"
-        eType="#//DocumentNode" containment="true" eOpposite="#//DocumentNode/parent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass textblockdefinition.ecore#//TextblockDefinition"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subBlocks" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subNodes" upperBound="-1"
         eType="#//TextBlock" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parentAltChoices" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementsInContext" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="forEachContext" upperBound="-1"
+        eType="#//ForEachContext" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractToken" abstract="true" eSuperTypes="#//DocumentNode">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -37,12 +47,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="#//Version"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="childrenChanged" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="relexingNeeded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//TextBlock"
-        eOpposite="#//TextBlock/subNodes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//TextBlock"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="correspondingModelElements"
-        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElements" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceElement" eType="ecore:EClass TCS.ecore#//SequenceElement"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="offset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="length" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -53,5 +62,12 @@
     <eLiterals name="REFERENCE"/>
     <eLiterals name="PREVIOUS" value="1"/>
     <eLiterals name="CURRENT" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ForEachContext">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="foreachPedicatePropertyInit"
+        eType="ecore:EClass TCS.ecore#//ForeachPredicatePropertyInit"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextElement" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultModelElement" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
 </ecore:EPackage>
