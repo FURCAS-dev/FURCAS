@@ -237,7 +237,6 @@ public class TracingEvaluationVisitorWithHiddenOpposites
 		return trace(variableExp, getDelegate().visitVariableExp(variableExp));
 	}
 
-	@Override
 	public Object visitOppositePropertyCallExp(OppositePropertyCallExp callExp) {
 		return trace(callExp, ((EvaluationVisitorWithHiddenOpposites) getDelegate()).visitOppositePropertyCallExp(callExp));
 	}

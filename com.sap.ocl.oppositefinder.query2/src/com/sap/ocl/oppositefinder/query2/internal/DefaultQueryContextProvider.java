@@ -16,7 +16,7 @@ import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.QueryContext;
 
-import com.sap.ocl.oppositefinder.query2.QueryContextProvider;
+import de.hpi.sam.bp2009.solution.scopeProvider.QueryContextProvider;
 
 public class DefaultQueryContextProvider implements QueryContextProvider {
     @Override

@@ -1,5 +1,9 @@
 package com.sap.emf.ocl.hiddenopposites;
 
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -25,7 +29,6 @@ public class EvaluationEnvironmentWithHiddenOppositesImpl extends EcoreEvaluatio
 	oppositeEndFinder = ((EvaluationEnvironmentWithHiddenOppositesImpl) parent).oppositeEndFinder;
     }
 
-    @Override
     public Object navigateOppositeProperty(EStructuralFeature property, Object target) throws IllegalArgumentException {
 	Object result;
 	if (property instanceof EReference && ((EReference) property).isContainment()) {
@@ -38,4 +41,12 @@ public class EvaluationEnvironmentWithHiddenOppositesImpl extends EcoreEvaluatio
 	return result;
     }
 
+    @Override
+    public Map<EClass, Set<EObject>> createExtentMap(Object object) {
+        if (object instanceof EObject) {
+            return new ExtentMap((EObject) object, oppositeEndFinder);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
 }
