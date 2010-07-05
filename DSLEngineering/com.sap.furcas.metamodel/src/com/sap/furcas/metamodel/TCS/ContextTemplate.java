@@ -19,6 +19,7 @@ package com.sap.furcas.metamodel.TCS;
  *   <li>{@link com.sap.furcas.metamodel.TCS.ContextTemplate#isIsAddToContext <em>Is Add To Context</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.ContextTemplate#isIsReferenceOnly <em>Is Reference Only</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.ContextTemplate#getContextTags <em>Context Tags</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.ContextTemplate#getScope <em>Scope</em>}</li>
  * </ul>
  * </p>
  *
@@ -130,5 +131,31 @@ public interface ContextTemplate extends Template {
 	 * @generated
 	 */
 	void setContextTags(ContextTags value);
+
+	/**
+	 * Returns the value of the '<em><b>Scope</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Scope</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Scope</em>' containment reference.
+	 * @see #setScope(ScopeArg)
+	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getContextTemplate_Scope()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ScopeArg getScope();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.ContextTemplate#getScope <em>Scope</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Scope</em>' containment reference.
+	 * @see #getScope()
+	 * @generated
+	 */
+	void setScope(ScopeArg value);
 
 } // ContextTemplate

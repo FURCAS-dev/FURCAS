@@ -17,29 +17,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import tcs.Alternative;
-import tcs.AlternativeSequence;
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.FunctionTemplate;
-import tcs.Keyword;
-import tcs.LocatedElement;
-import tcs.OperatorList;
-import tcs.OperatorTemplate;
-import tcs.PrimitiveTemplate;
-import tcs.QualifiedNamedElement;
-import tcs.SequenceInAlternative;
-import tcs.Symbol;
-import tcs.TcsPackage;
-import tcs.Template;
+import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.LocatedElement;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.Symbol;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 
 /**
@@ -50,7 +46,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 public class SyntaxLookup {
 
 	/** The syntax. */
-	private ConcreteSyntax syntax;
+	private com.sap.furcas.metamodel.TCS.ConcreteSyntax syntax;
 	
 	/** The keyword set. */
 	private Set<Keyword> keywordSet;
@@ -61,7 +57,7 @@ public class SyntaxLookup {
     
     private Map<QualifiedNamedElement, List<String>> qualifiednamesCache = new HashMap<QualifiedNamedElement, List<String>>();
 
-    private AlternativeSequence alternativeSequenceAssoc;
+    //private AlternativeSequence alternativeSequenceAssoc;
 
 	/**
 	 * Instantiates a new syntax lookup.
@@ -80,9 +76,9 @@ public class SyntaxLookup {
 		}
 		if (syntax != null) {
 		    this.keywordSet.addAll(syntax.getKeywords()); // declared vs. used keywords
-		    if(syntax.refImmediatePackage() != null) {
-			this.alternativeSequenceAssoc = ((TcsPackage)syntax.refImmediatePackage()).getAlternativeSequence();
-		    }
+//		    if(syntax.eContainer() != null) {
+//		    	this.alternativeSequenceAssoc = ((TcsPackage)syntax.refImmediatePackage()).getAlternativeSequence();
+//		    }
 		    
 		}
 		this.resolutionHelper = resolutionHelper;
@@ -140,7 +136,7 @@ public class SyntaxLookup {
 	        // TODO compare references instead of names?
 	        if (metaModelTypeOfPropertyReference.getNames().equals(candidateQualifiedName)) {
 	            returnTemplate = candidatePrimTemp;
-	            if (candidatePrimTemp.isDefault()) {
+	            if (candidatePrimTemp.isIsDefault()) {
 	                break;
 	            }
 
@@ -251,7 +247,7 @@ public class SyntaxLookup {
 	            for (Template subtemp : subtemps) {
         	            if (subtemp instanceof ClassTemplate) {
         	                ClassTemplate classSubTemp = (ClassTemplate) subtemp;
-        	                if (classSubTemp.isNonPrimary()) { // Non Primaries not added to primary rule
+        	                if (classSubTemp.isIsNonPrimary()) { // Non Primaries not added to primary rule
         	                    nonPrimaries.add(classSubTemp);
         	                    continue;
         	                }
@@ -275,7 +271,7 @@ public class SyntaxLookup {
         
                             if (subtemp != null && subtemp instanceof ClassTemplate) {
                                 ClassTemplate classSubTemp = (ClassTemplate) subtemp;
-                                if (!classSubTemp.isNonPrimary()) { // Non Primaries not
+                                if (!classSubTemp.isIsNonPrimary()) { // Non Primaries not
                                     // added to primary rule
                                     primaries.add(classSubTemp);
                                     continue;
@@ -378,11 +374,11 @@ public class SyntaxLookup {
      */
     public Template getEnclosingQualifiedElement(LocatedElement syntaxElement) {
         // TODO refactor SyntaxModel to have explicit reference to parent template?
-        RefFeatured parent = syntaxElement.refImmediateComposite();
+        EObject parent = syntaxElement.eContainer();
         while (parent != null && !(parent instanceof Template)) {
-            if (parent instanceof RefObject) {
-                RefObject refParent = (RefObject) parent;
-                parent = refParent.refImmediateComposite();
+            if (parent instanceof EObject) {
+            	EObject refParent = (EObject) parent;
+                parent = refParent.eContainer();
             } else {
                 throw new RuntimeException("Bug: composite parent of Element " + parent + " not instance of RefObject.");
             }
@@ -425,7 +421,7 @@ public class SyntaxLookup {
     public boolean hasPrimitiveRule(String templateName) {
         for (Iterator<PrimitiveTemplate> iterator = primitiveTemplates.iterator(); iterator.hasNext();) {
             PrimitiveTemplate primTemp = iterator.next();
-            if (templateName.equals(primTemp.getTemplateName())) {
+            if (templateName.equals(primTemp.getTem	plateName())) {
                 return true;
             }
         }

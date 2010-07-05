@@ -43,7 +43,7 @@ import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
 /**
  *
  */
-public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLookup {
+public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLookup {
 
     private final Connection connection;
 

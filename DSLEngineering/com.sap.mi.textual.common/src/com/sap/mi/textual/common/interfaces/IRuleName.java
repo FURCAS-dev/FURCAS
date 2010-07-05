@@ -1,6 +1,7 @@
 package com.sap.mi.textual.common.interfaces;
 
-import tcs.Template;
+import com.sap.furcas.metamodel.TCS.Template;
+
 
 public interface IRuleName {
 

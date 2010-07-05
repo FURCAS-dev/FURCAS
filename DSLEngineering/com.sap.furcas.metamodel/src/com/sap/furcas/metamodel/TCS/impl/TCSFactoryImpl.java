@@ -122,7 +122,6 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 			case TCSPackage.STRING_PATTERN: return createStringPattern();
 			case TCSPackage.CLASS_PATTERN: return createClassPattern();
 			case TCSPackage.QUALIFIED_NAMED_ELEMENT: return createQualifiedNamedElement();
-			case TCSPackage.OCL_QUERY_PARG: return createOCLQueryPArg();
 			case TCSPackage.FORCED_UPPER_PARG: return createForcedUpperPArg();
 			case TCSPackage.INJECTOR_ACTIONS_BLOCK: return createInjectorActionsBlock();
 			case TCSPackage.QUERY_PARG: return createQueryPArg();
@@ -130,6 +129,11 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 			case TCSPackage.PROPERTY_REFERENCE: return createPropertyReference();
 			case TCSPackage.CONTEXT_TEMPLATE: return createContextTemplate();
 			case TCSPackage.CONTEXT_TAGS: return createContextTags();
+			case TCSPackage.OCL_PROPERTY_INIT: return createOclPropertyInit();
+			case TCSPackage.SCOPE_ARG: return createScopeArg();
+			case TCSPackage.INVERT_PARG: return createInvertPArg();
+			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT: return createForeachPredicatePropertyInit();
+			case TCSPackage.PREDICATE_SEMANTIC: return createPredicateSemantic();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -151,6 +155,8 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 				return createAssociativityFromString(eDataType, initialValue);
 			case TCSPackage.AUTO_CREATE_KIND:
 				return createAutoCreateKindFromString(eDataType, initialValue);
+			case TCSPackage.SCOPE_KIND:
+				return createScopeKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -172,6 +178,8 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 				return convertAssociativityToString(eDataType, instanceValue);
 			case TCSPackage.AUTO_CREATE_KIND:
 				return convertAutoCreateKindToString(eDataType, instanceValue);
+			case TCSPackage.SCOPE_KIND:
+				return convertScopeKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -792,16 +800,6 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OCLQueryPArg createOCLQueryPArg() {
-		OCLQueryPArgImpl oclQueryPArg = new OCLQueryPArgImpl();
-		return oclQueryPArg;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ForcedUpperPArg createForcedUpperPArg() {
 		ForcedUpperPArgImpl forcedUpperPArg = new ForcedUpperPArgImpl();
 		return forcedUpperPArg;
@@ -865,6 +863,56 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 	public ContextTags createContextTags() {
 		ContextTagsImpl contextTags = new ContextTagsImpl();
 		return contextTags;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OclPropertyInit createOclPropertyInit() {
+		OclPropertyInitImpl oclPropertyInit = new OclPropertyInitImpl();
+		return oclPropertyInit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ScopeArg createScopeArg() {
+		ScopeArgImpl scopeArg = new ScopeArgImpl();
+		return scopeArg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InvertPArg createInvertPArg() {
+		InvertPArgImpl invertPArg = new InvertPArgImpl();
+		return invertPArg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ForeachPredicatePropertyInit createForeachPredicatePropertyInit() {
+		ForeachPredicatePropertyInitImpl foreachPredicatePropertyInit = new ForeachPredicatePropertyInitImpl();
+		return foreachPredicatePropertyInit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PredicateSemantic createPredicateSemantic() {
+		PredicateSemanticImpl predicateSemantic = new PredicateSemanticImpl();
+		return predicateSemantic;
 	}
 
 	/**
@@ -944,6 +992,26 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 	 * @generated
 	 */
 	public String convertAutoCreateKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ScopeKind createScopeKindFromString(EDataType eDataType, String initialValue) {
+		ScopeKind result = ScopeKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertScopeKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

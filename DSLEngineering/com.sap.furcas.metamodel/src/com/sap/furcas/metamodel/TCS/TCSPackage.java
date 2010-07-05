@@ -551,7 +551,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getContextTemplate()
 	 * @generated
 	 */
-	int CONTEXT_TEMPLATE = 81;
+	int CONTEXT_TEMPLATE = 80;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -662,13 +662,22 @@ public interface TCSPackage extends EPackage {
 	int CONTEXT_TEMPLATE__CONTEXT_TAGS = TEMPLATE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Scope</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_TEMPLATE__SCOPE = TEMPLATE_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Context Template</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_TEMPLATE_FEATURE_COUNT = TEMPLATE_FEATURE_COUNT + 4;
+	int CONTEXT_TEMPLATE_FEATURE_COUNT = TEMPLATE_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.ClassTemplateImpl <em>Class Template</em>}' class.
@@ -787,6 +796,15 @@ public interface TCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS_TEMPLATE__CONTEXT_TAGS = CONTEXT_TEMPLATE__CONTEXT_TAGS;
+
+	/**
+	 * The feature id for the '<em><b>Scope</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_TEMPLATE__SCOPE = CONTEXT_TEMPLATE__SCOPE;
 
 	/**
 	 * The feature id for the '<em><b>Template Sequence</b></em>' containment reference.
@@ -1158,6 +1176,15 @@ public interface TCSPackage extends EPackage {
 	 * @ordered
 	 */
 	int OPERATOR_TEMPLATE__CONTEXT_TAGS = CONTEXT_TEMPLATE__CONTEXT_TAGS;
+
+	/**
+	 * The feature id for the '<em><b>Scope</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_TEMPLATE__SCOPE = CONTEXT_TEMPLATE__SCOPE;
 
 	/**
 	 * The feature id for the '<em><b>Operators</b></em>' reference list.
@@ -2496,7 +2523,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getInjectorAction()
 	 * @generated
 	 */
-	int INJECTOR_ACTION = 83;
+	int INJECTOR_ACTION = 82;
 
 	/**
 	 * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
@@ -2524,7 +2551,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getPropertyInit()
 	 * @generated
 	 */
-	int PROPERTY_INIT = 84;
+	int PROPERTY_INIT = 83;
 
 	/**
 	 * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
@@ -2856,22 +2883,13 @@ public interface TCSPackage extends EPackage {
 	int REFERS_TO_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
 	/**
-	 * The feature id for the '<em><b>Property Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERS_TO_PARG__PROPERTY_NAME = PROPERTY_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Refers To PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERS_TO_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+	int REFERS_TO_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.LookInPArgImpl <em>Look In PArg</em>}' class.
@@ -2920,22 +2938,13 @@ public interface TCSPackage extends EPackage {
 	int LOOK_IN_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
 	/**
-	 * The feature id for the '<em><b>Property Name</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOOK_IN_PARG__PROPERTY_NAME = PROPERTY_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Look In PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOOK_IN_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+	int LOOK_IN_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.CreateInPArgImpl <em>Create In PArg</em>}' class.
@@ -2984,22 +2993,13 @@ public interface TCSPackage extends EPackage {
 	int CREATE_IN_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
 	/**
-	 * The feature id for the '<em><b>Property Name</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_IN_PARG__PROPERTY_NAME = PROPERTY_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Create In PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CREATE_IN_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+	int CREATE_IN_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.RefersToKeyPArgImpl <em>Refers To Key PArg</em>}' class.
@@ -3048,22 +3048,13 @@ public interface TCSPackage extends EPackage {
 	int REFERS_TO_KEY_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REFERS_TO_KEY_PARG__VALUE = PROPERTY_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Refers To Key PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERS_TO_KEY_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+	int REFERS_TO_KEY_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.SeparatorPArgImpl <em>Separator PArg</em>}' class.
@@ -3176,22 +3167,13 @@ public interface TCSPackage extends EPackage {
 	int AUTO_CREATE_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTO_CREATE_PARG__VALUE = PROPERTY_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Auto Create PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTO_CREATE_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+	int AUTO_CREATE_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.ImportContextPArgImpl <em>Import Context PArg</em>}' class.
@@ -3295,22 +3277,13 @@ public interface TCSPackage extends EPackage {
 	int FORCED_LOWER_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FORCED_LOWER_PARG__VALUE = PROPERTY_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Forced Lower PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FORCED_LOWER_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+	int FORCED_LOWER_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.CreateAsPArgImpl <em>Create As PArg</em>}' class.
@@ -3359,22 +3332,13 @@ public interface TCSPackage extends EPackage {
 	int CREATE_AS_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CREATE_AS_PARG__NAME = PROPERTY_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Create As PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CREATE_AS_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+	int CREATE_AS_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.AsPArgImpl <em>As PArg</em>}' class.
@@ -3423,22 +3387,13 @@ public interface TCSPackage extends EPackage {
 	int AS_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AS_PARG__VALUE = PROPERTY_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>As PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AS_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+	int AS_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.ModePArgImpl <em>Mode PArg</em>}' class.
@@ -3487,22 +3442,13 @@ public interface TCSPackage extends EPackage {
 	int MODE_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
 
 	/**
-	 * The feature id for the '<em><b>Mode</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODE_PARG__MODE = PROPERTY_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Mode PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODE_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 1;
+	int MODE_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.BlockArgImpl <em>Block Arg</em>}' class.
@@ -3606,22 +3552,13 @@ public interface TCSPackage extends EPackage {
 	int NB_NLB_ARG__BLOCK = BLOCK_ARG__BLOCK;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NB_NLB_ARG__VALUE = BLOCK_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Nb NLB Arg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NB_NLB_ARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 1;
+	int NB_NLB_ARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.IndentIncrBArgImpl <em>Indent Incr BArg</em>}' class.
@@ -3670,22 +3607,13 @@ public interface TCSPackage extends EPackage {
 	int INDENT_INCR_BARG__BLOCK = BLOCK_ARG__BLOCK;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INDENT_INCR_BARG__VALUE = BLOCK_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Indent Incr BArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INDENT_INCR_BARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 1;
+	int INDENT_INCR_BARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.StartNLBArgImpl <em>Start NLB Arg</em>}' class.
@@ -3734,22 +3662,13 @@ public interface TCSPackage extends EPackage {
 	int START_NLB_ARG__BLOCK = BLOCK_ARG__BLOCK;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int START_NLB_ARG__VALUE = BLOCK_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Start NLB Arg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int START_NLB_ARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 1;
+	int START_NLB_ARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.StartNbNLBArgImpl <em>Start Nb NLB Arg</em>}' class.
@@ -3798,22 +3717,13 @@ public interface TCSPackage extends EPackage {
 	int START_NB_NLB_ARG__BLOCK = BLOCK_ARG__BLOCK;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int START_NB_NLB_ARG__VALUE = BLOCK_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Start Nb NLB Arg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int START_NB_NLB_ARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 1;
+	int START_NB_NLB_ARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.EndNLBArgImpl <em>End NLB Arg</em>}' class.
@@ -3862,22 +3772,13 @@ public interface TCSPackage extends EPackage {
 	int END_NLB_ARG__BLOCK = BLOCK_ARG__BLOCK;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_NLB_ARG__VALUE = BLOCK_ARG_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>End NLB Arg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_NLB_ARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 1;
+	int END_NLB_ARG_FEATURE_COUNT = BLOCK_ARG_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -4411,22 +4312,13 @@ public interface TCSPackage extends EPackage {
 	int STRING_VAL__COMMENTS_AFTER = VALUE__COMMENTS_AFTER;
 
 	/**
-	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_VAL__SYMBOL = VALUE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>String Val</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+	int STRING_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.IntegerValImpl <em>Integer Val</em>}' class.
@@ -4466,22 +4358,13 @@ public interface TCSPackage extends EPackage {
 	int INTEGER_VAL__COMMENTS_AFTER = VALUE__COMMENTS_AFTER;
 
 	/**
-	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INTEGER_VAL__SYMBOL = VALUE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Integer Val</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INTEGER_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+	int INTEGER_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.NegativeIntegerValImpl <em>Negative Integer Val</em>}' class.
@@ -4521,22 +4404,13 @@ public interface TCSPackage extends EPackage {
 	int NEGATIVE_INTEGER_VAL__COMMENTS_AFTER = VALUE__COMMENTS_AFTER;
 
 	/**
-	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NEGATIVE_INTEGER_VAL__SYMBOL = VALUE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Negative Integer Val</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NEGATIVE_INTEGER_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+	int NEGATIVE_INTEGER_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.EnumLiteralValImpl <em>Enum Literal Val</em>}' class.
@@ -4576,22 +4450,13 @@ public interface TCSPackage extends EPackage {
 	int ENUM_LITERAL_VAL__COMMENTS_AFTER = VALUE__COMMENTS_AFTER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENUM_LITERAL_VAL__NAME = VALUE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Enum Literal Val</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENUM_LITERAL_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+	int ENUM_LITERAL_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.PropertyValImpl <em>Property Val</em>}' class.
@@ -4631,22 +4496,13 @@ public interface TCSPackage extends EPackage {
 	int PROPERTY_VAL__COMMENTS_AFTER = VALUE__COMMENTS_AFTER;
 
 	/**
-	 * The feature id for the '<em><b>Property Name</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_VAL__PROPERTY_NAME = VALUE_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Property Val</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+	int PROPERTY_VAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.TokenImpl <em>Token</em>}' class.
@@ -5125,22 +4981,13 @@ public interface TCSPackage extends EPackage {
 	int END_OF_LINE_RULE__START = RULE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Drop Start</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_OF_LINE_RULE__DROP_START = RULE_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>End Of Line Rule</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int END_OF_LINE_RULE_FEATURE_COUNT = RULE_FEATURE_COUNT + 2;
+	int END_OF_LINE_RULE_FEATURE_COUNT = RULE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl <em>Multi Line Rule</em>}' class.
@@ -5189,31 +5036,13 @@ public interface TCSPackage extends EPackage {
 	int MULTI_LINE_RULE__START = RULE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Drop Start</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_LINE_RULE__DROP_START = RULE_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>End</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_LINE_RULE__END = RULE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Drop End</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MULTI_LINE_RULE__DROP_END = RULE_FEATURE_COUNT + 3;
+	int MULTI_LINE_RULE__END = RULE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Esc</b></em>' containment reference.
@@ -5222,7 +5051,7 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_LINE_RULE__ESC = RULE_FEATURE_COUNT + 4;
+	int MULTI_LINE_RULE__ESC = RULE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Esc Mappings</b></em>' containment reference list.
@@ -5231,7 +5060,7 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_LINE_RULE__ESC_MAPPINGS = RULE_FEATURE_COUNT + 5;
+	int MULTI_LINE_RULE__ESC_MAPPINGS = RULE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Multi Line Rule</em>' class.
@@ -5240,7 +5069,7 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MULTI_LINE_RULE_FEATURE_COUNT = RULE_FEATURE_COUNT + 6;
+	int MULTI_LINE_RULE_FEATURE_COUNT = RULE_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.MappingImpl <em>Mapping</em>}' class.
@@ -5326,31 +5155,13 @@ public interface TCSPackage extends EPackage {
 	int SIMPLE_MAPPING__COMMENTS_AFTER = MAPPING__COMMENTS_AFTER;
 
 	/**
-	 * The feature id for the '<em><b>Key</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_MAPPING__KEY = MAPPING_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_MAPPING__VALUE = MAPPING_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Simple Mapping</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMPLE_MAPPING_FEATURE_COUNT = MAPPING_FEATURE_COUNT + 2;
+	int SIMPLE_MAPPING_FEATURE_COUNT = MAPPING_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.WildcardMappingImpl <em>Wildcard Mapping</em>}' class.
@@ -5601,34 +5412,6 @@ public interface TCSPackage extends EPackage {
 	int CLASS_PATTERN_FEATURE_COUNT = SIMPLE_PATTERN_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.OCLQueryPArgImpl <em>OCL Query PArg</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see com.sap.furcas.metamodel.TCS.impl.OCLQueryPArgImpl
-	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getOCLQueryPArg()
-	 * @generated
-	 */
-	int OCL_QUERY_PARG = 74;
-
-	/**
-	 * The feature id for the '<em><b>Query</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_QUERY_PARG__QUERY = 0;
-
-	/**
-	 * The number of structural features of the '<em>OCL Query PArg</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_QUERY_PARG_FEATURE_COUNT = 1;
-
-	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.ForcedUpperPArgImpl <em>Forced Upper PArg</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5636,7 +5419,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getForcedUpperPArg()
 	 * @generated
 	 */
-	int FORCED_UPPER_PARG = 75;
+	int FORCED_UPPER_PARG = 74;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -5700,7 +5483,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getInjectorActionsBlock()
 	 * @generated
 	 */
-	int INJECTOR_ACTIONS_BLOCK = 76;
+	int INJECTOR_ACTIONS_BLOCK = 75;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -5773,7 +5556,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getOclPArg()
 	 * @generated
 	 */
-	int OCL_PARG = 79;
+	int OCL_PARG = 78;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -5846,7 +5629,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getQueryPArg()
 	 * @generated
 	 */
-	int QUERY_PARG = 77;
+	int QUERY_PARG = 76;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -5919,7 +5702,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getFilterPArg()
 	 * @generated
 	 */
-	int FILTER_PARG = 78;
+	int FILTER_PARG = 77;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute.
@@ -5992,7 +5775,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getPropertyReference()
 	 * @generated
 	 */
-	int PROPERTY_REFERENCE = 80;
+	int PROPERTY_REFERENCE = 79;
 
 	/**
 	 * The feature id for the '<em><b>Strucfeature</b></em>' reference.
@@ -6029,16 +5812,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getContextTags()
 	 * @generated
 	 */
-	int CONTEXT_TAGS = 82;
-
-	/**
-	 * The feature id for the '<em><b>Tags</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTEXT_TAGS__TAGS = 0;
+	int CONTEXT_TAGS = 81;
 
 	/**
 	 * The number of structural features of the '<em>Context Tags</em>' class.
@@ -6047,7 +5821,237 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_TAGS_FEATURE_COUNT = 1;
+	int CONTEXT_TAGS_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.OclPropertyInitImpl <em>Ocl Property Init</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.impl.OclPropertyInitImpl
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getOclPropertyInit()
+	 * @generated
+	 */
+	int OCL_PROPERTY_INIT = 84;
+
+	/**
+	 * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
+
+	/**
+	 * The feature id for the '<em><b>Property Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_PROPERTY_INIT__PROPERTY_REFERENCE = PROPERTY_INIT__PROPERTY_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Ocl Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_PROPERTY_INIT__OCL_EXPRESSION = PROPERTY_INIT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Ocl Property Init</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_PROPERTY_INIT_FEATURE_COUNT = PROPERTY_INIT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.ScopeArgImpl <em>Scope Arg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.impl.ScopeArgImpl
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getScopeArg()
+	 * @generated
+	 */
+	int SCOPE_ARG = 85;
+
+	/**
+	 * The feature id for the '<em><b>Scope</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCOPE_ARG__SCOPE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Scope Arg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SCOPE_ARG_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.InvertPArgImpl <em>Invert PArg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.impl.InvertPArgImpl
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getInvertPArg()
+	 * @generated
+	 */
+	int INVERT_PARG = 86;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERT_PARG__LOCATION = OCL_PARG__LOCATION;
+
+	/**
+	 * The feature id for the '<em><b>Comments Before</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERT_PARG__COMMENTS_BEFORE = OCL_PARG__COMMENTS_BEFORE;
+
+	/**
+	 * The feature id for the '<em><b>Comments After</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERT_PARG__COMMENTS_AFTER = OCL_PARG__COMMENTS_AFTER;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERT_PARG__PROPERTY = OCL_PARG__PROPERTY;
+
+	/**
+	 * The feature id for the '<em><b>Query Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERT_PARG__QUERY_EXPRESSION = OCL_PARG__QUERY_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Query</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERT_PARG__QUERY = OCL_PARG__QUERY;
+
+	/**
+	 * The number of structural features of the '<em>Invert PArg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVERT_PARG_FEATURE_COUNT = OCL_PARG_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.ForeachPredicatePropertyInitImpl <em>Foreach Predicate Property Init</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.impl.ForeachPredicatePropertyInitImpl
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getForeachPredicatePropertyInit()
+	 * @generated
+	 */
+	int FOREACH_PREDICATE_PROPERTY_INIT = 87;
+
+	/**
+	 * The feature id for the '<em><b>Injector Actions Block</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREACH_PREDICATE_PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK = PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK;
+
+	/**
+	 * The feature id for the '<em><b>Property Reference</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREACH_PREDICATE_PROPERTY_INIT__PROPERTY_REFERENCE = PROPERTY_INIT__PROPERTY_REFERENCE;
+
+	/**
+	 * The feature id for the '<em><b>Predicate Semantic</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC = PROPERTY_INIT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Foreach Predicate Property Init</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOREACH_PREDICATE_PROPERTY_INIT_FEATURE_COUNT = PROPERTY_INIT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.PredicateSemanticImpl <em>Predicate Semantic</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.impl.PredicateSemanticImpl
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getPredicateSemantic()
+	 * @generated
+	 */
+	int PREDICATE_SEMANTIC = 88;
+
+	/**
+	 * The feature id for the '<em><b>As</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_SEMANTIC__AS = 0;
+
+	/**
+	 * The feature id for the '<em><b>When</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_SEMANTIC__WHEN = 1;
+
+	/**
+	 * The number of structural features of the '<em>Predicate Semantic</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PREDICATE_SEMANTIC_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.TemplateModifiers <em>Template Modifiers</em>}' enum.
@@ -6057,7 +6061,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getTemplateModifiers()
 	 * @generated
 	 */
-	int TEMPLATE_MODIFIERS = 85;
+	int TEMPLATE_MODIFIERS = 89;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.SpaceKind <em>Space Kind</em>}' enum.
@@ -6067,7 +6071,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getSpaceKind()
 	 * @generated
 	 */
-	int SPACE_KIND = 86;
+	int SPACE_KIND = 90;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.Associativity <em>Associativity</em>}' enum.
@@ -6077,7 +6081,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getAssociativity()
 	 * @generated
 	 */
-	int ASSOCIATIVITY = 87;
+	int ASSOCIATIVITY = 91;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.AutoCreateKind <em>Auto Create Kind</em>}' enum.
@@ -6087,7 +6091,18 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getAutoCreateKind()
 	 * @generated
 	 */
-	int AUTO_CREATE_KIND = 88;
+	int AUTO_CREATE_KIND = 92;
+
+
+	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.ScopeKind <em>Scope Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.ScopeKind
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getScopeKind()
+	 * @generated
+	 */
+	int SCOPE_KIND = 93;
 
 
 	/**
@@ -7221,6 +7236,111 @@ public interface TCSPackage extends EPackage {
 	EReference getPropertyInit_PropertyReference();
 
 	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.OclPropertyInit <em>Ocl Property Init</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ocl Property Init</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.OclPropertyInit
+	 * @generated
+	 */
+	EClass getOclPropertyInit();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.TCS.OclPropertyInit#getOclExpression <em>Ocl Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Ocl Expression</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.OclPropertyInit#getOclExpression()
+	 * @see #getOclPropertyInit()
+	 * @generated
+	 */
+	EReference getOclPropertyInit_OclExpression();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.ScopeArg <em>Scope Arg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Scope Arg</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.ScopeArg
+	 * @generated
+	 */
+	EClass getScopeArg();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.ScopeArg#getScope <em>Scope</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Scope</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.ScopeArg#getScope()
+	 * @see #getScopeArg()
+	 * @generated
+	 */
+	EAttribute getScopeArg_Scope();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.InvertPArg <em>Invert PArg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Invert PArg</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.InvertPArg
+	 * @generated
+	 */
+	EClass getInvertPArg();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit <em>Foreach Predicate Property Init</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Foreach Predicate Property Init</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit
+	 * @generated
+	 */
+	EClass getForeachPredicatePropertyInit();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit#getPredicateSemantic <em>Predicate Semantic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Predicate Semantic</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit#getPredicateSemantic()
+	 * @see #getForeachPredicatePropertyInit()
+	 * @generated
+	 */
+	EReference getForeachPredicatePropertyInit_PredicateSemantic();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.PredicateSemantic <em>Predicate Semantic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Predicate Semantic</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.PredicateSemantic
+	 * @generated
+	 */
+	EClass getPredicateSemantic();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.TCS.PredicateSemantic#getAs <em>As</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>As</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.PredicateSemantic#getAs()
+	 * @see #getPredicateSemantic()
+	 * @generated
+	 */
+	EReference getPredicateSemantic_As();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.TCS.PredicateSemantic#getWhen <em>When</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>When</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.PredicateSemantic#getWhen()
+	 * @see #getPredicateSemantic()
+	 * @generated
+	 */
+	EReference getPredicateSemantic_When();
+
+	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.Alternative <em>Alternative</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7305,17 +7425,6 @@ public interface TCSPackage extends EPackage {
 	EClass getRefersToPArg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.RefersToPArg#getPropertyName <em>Property Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Property Name</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.RefersToPArg#getPropertyName()
-	 * @see #getRefersToPArg()
-	 * @generated
-	 */
-	EAttribute getRefersToPArg_PropertyName();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.LookInPArg <em>Look In PArg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7324,17 +7433,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLookInPArg();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link com.sap.furcas.metamodel.TCS.LookInPArg#getPropertyName <em>Property Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Property Name</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.LookInPArg#getPropertyName()
-	 * @see #getLookInPArg()
-	 * @generated
-	 */
-	EAttribute getLookInPArg_PropertyName();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.CreateInPArg <em>Create In PArg</em>}'.
@@ -7347,17 +7445,6 @@ public interface TCSPackage extends EPackage {
 	EClass getCreateInPArg();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link com.sap.furcas.metamodel.TCS.CreateInPArg#getPropertyName <em>Property Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Property Name</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.CreateInPArg#getPropertyName()
-	 * @see #getCreateInPArg()
-	 * @generated
-	 */
-	EAttribute getCreateInPArg_PropertyName();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.RefersToKeyPArg <em>Refers To Key PArg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7366,17 +7453,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRefersToKeyPArg();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.RefersToKeyPArg#isValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.RefersToKeyPArg#isValue()
-	 * @see #getRefersToKeyPArg()
-	 * @generated
-	 */
-	EAttribute getRefersToKeyPArg_Value();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.SeparatorPArg <em>Separator PArg</em>}'.
@@ -7410,17 +7486,6 @@ public interface TCSPackage extends EPackage {
 	EClass getAutoCreatePArg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.AutoCreatePArg#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.AutoCreatePArg#getValue()
-	 * @see #getAutoCreatePArg()
-	 * @generated
-	 */
-	EAttribute getAutoCreatePArg_Value();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.ImportContextPArg <em>Import Context PArg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7441,17 +7506,6 @@ public interface TCSPackage extends EPackage {
 	EClass getForcedLowerPArg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.ForcedLowerPArg#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.ForcedLowerPArg#getValue()
-	 * @see #getForcedLowerPArg()
-	 * @generated
-	 */
-	EAttribute getForcedLowerPArg_Value();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.CreateAsPArg <em>Create As PArg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7460,17 +7514,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getCreateAsPArg();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.CreateAsPArg#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.CreateAsPArg#getName()
-	 * @see #getCreateAsPArg()
-	 * @generated
-	 */
-	EAttribute getCreateAsPArg_Name();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.AsPArg <em>As PArg</em>}'.
@@ -7483,17 +7526,6 @@ public interface TCSPackage extends EPackage {
 	EClass getAsPArg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.AsPArg#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.AsPArg#getValue()
-	 * @see #getAsPArg()
-	 * @generated
-	 */
-	EAttribute getAsPArg_Value();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.ModePArg <em>Mode PArg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7502,17 +7534,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getModePArg();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.ModePArg#getMode <em>Mode</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Mode</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.ModePArg#getMode()
-	 * @see #getModePArg()
-	 * @generated
-	 */
-	EAttribute getModePArg_Mode();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.BlockArg <em>Block Arg</em>}'.
@@ -7546,17 +7567,6 @@ public interface TCSPackage extends EPackage {
 	EClass getNbNLBArg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.NbNLBArg#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.NbNLBArg#getValue()
-	 * @see #getNbNLBArg()
-	 * @generated
-	 */
-	EAttribute getNbNLBArg_Value();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.IndentIncrBArg <em>Indent Incr BArg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7565,17 +7575,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIndentIncrBArg();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.IndentIncrBArg#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.IndentIncrBArg#getValue()
-	 * @see #getIndentIncrBArg()
-	 * @generated
-	 */
-	EAttribute getIndentIncrBArg_Value();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.StartNLBArg <em>Start NLB Arg</em>}'.
@@ -7588,17 +7587,6 @@ public interface TCSPackage extends EPackage {
 	EClass getStartNLBArg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.StartNLBArg#isValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.StartNLBArg#isValue()
-	 * @see #getStartNLBArg()
-	 * @generated
-	 */
-	EAttribute getStartNLBArg_Value();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.StartNbNLBArg <em>Start Nb NLB Arg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7609,17 +7597,6 @@ public interface TCSPackage extends EPackage {
 	EClass getStartNbNLBArg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.StartNbNLBArg#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.StartNbNLBArg#getValue()
-	 * @see #getStartNbNLBArg()
-	 * @generated
-	 */
-	EAttribute getStartNbNLBArg_Value();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.EndNLBArg <em>End NLB Arg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7628,17 +7605,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEndNLBArg();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.EndNLBArg#isValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.EndNLBArg#isValue()
-	 * @see #getEndNLBArg()
-	 * @generated
-	 */
-	EAttribute getEndNLBArg_Value();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.Expression <em>Expression</em>}'.
@@ -7786,17 +7752,6 @@ public interface TCSPackage extends EPackage {
 	EClass getStringVal();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.StringVal#getSymbol <em>Symbol</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Symbol</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.StringVal#getSymbol()
-	 * @see #getStringVal()
-	 * @generated
-	 */
-	EAttribute getStringVal_Symbol();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.IntegerVal <em>Integer Val</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7805,17 +7760,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIntegerVal();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.IntegerVal#getSymbol <em>Symbol</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Symbol</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.IntegerVal#getSymbol()
-	 * @see #getIntegerVal()
-	 * @generated
-	 */
-	EAttribute getIntegerVal_Symbol();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.NegativeIntegerVal <em>Negative Integer Val</em>}'.
@@ -7828,17 +7772,6 @@ public interface TCSPackage extends EPackage {
 	EClass getNegativeIntegerVal();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.NegativeIntegerVal#getSymbol <em>Symbol</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Symbol</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.NegativeIntegerVal#getSymbol()
-	 * @see #getNegativeIntegerVal()
-	 * @generated
-	 */
-	EAttribute getNegativeIntegerVal_Symbol();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.EnumLiteralVal <em>Enum Literal Val</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7849,17 +7782,6 @@ public interface TCSPackage extends EPackage {
 	EClass getEnumLiteralVal();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.EnumLiteralVal#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.EnumLiteralVal#getName()
-	 * @see #getEnumLiteralVal()
-	 * @generated
-	 */
-	EAttribute getEnumLiteralVal_Name();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.PropertyVal <em>Property Val</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7868,17 +7790,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPropertyVal();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link com.sap.furcas.metamodel.TCS.PropertyVal#getPropertyName <em>Property Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Property Name</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.PropertyVal#getPropertyName()
-	 * @see #getPropertyVal()
-	 * @generated
-	 */
-	EAttribute getPropertyVal_PropertyName();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.Token <em>Token</em>}'.
@@ -8060,17 +7971,6 @@ public interface TCSPackage extends EPackage {
 	EReference getEndOfLineRule_Start();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.EndOfLineRule#isDropStart <em>Drop Start</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Drop Start</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.EndOfLineRule#isDropStart()
-	 * @see #getEndOfLineRule()
-	 * @generated
-	 */
-	EAttribute getEndOfLineRule_DropStart();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.MultiLineRule <em>Multi Line Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8092,17 +7992,6 @@ public interface TCSPackage extends EPackage {
 	EReference getMultiLineRule_Start();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.MultiLineRule#isDropStart <em>Drop Start</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Drop Start</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.MultiLineRule#isDropStart()
-	 * @see #getMultiLineRule()
-	 * @generated
-	 */
-	EAttribute getMultiLineRule_DropStart();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link com.sap.furcas.metamodel.TCS.MultiLineRule#getEnd <em>End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8112,17 +8001,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getMultiLineRule_End();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.MultiLineRule#isDropEnd <em>Drop End</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Drop End</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.MultiLineRule#isDropEnd()
-	 * @see #getMultiLineRule()
-	 * @generated
-	 */
-	EAttribute getMultiLineRule_DropEnd();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link com.sap.furcas.metamodel.TCS.MultiLineRule#getEsc <em>Esc</em>}'.
@@ -8165,28 +8043,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getSimpleMapping();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.SimpleMapping#getKey <em>Key</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Key</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.SimpleMapping#getKey()
-	 * @see #getSimpleMapping()
-	 * @generated
-	 */
-	EAttribute getSimpleMapping_Key();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.SimpleMapping#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.SimpleMapping#getValue()
-	 * @see #getSimpleMapping()
-	 * @generated
-	 */
-	EAttribute getSimpleMapping_Value();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.WildcardMapping <em>Wildcard Mapping</em>}'.
@@ -8269,27 +8125,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getQualifiedNamedElement_MetaReference();
-
-	/**
-	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.OCLQueryPArg <em>OCL Query PArg</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>OCL Query PArg</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.OCLQueryPArg
-	 * @generated
-	 */
-	EClass getOCLQueryPArg();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.OCLQueryPArg#getQuery <em>Query</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Query</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.OCLQueryPArg#getQuery()
-	 * @see #getOCLQueryPArg()
-	 * @generated
-	 */
-	EAttribute getOCLQueryPArg_Query();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.ForcedUpperPArg <em>Forced Upper PArg</em>}'.
@@ -8472,6 +8307,17 @@ public interface TCSPackage extends EPackage {
 	EReference getContextTemplate_ContextTags();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link com.sap.furcas.metamodel.TCS.ContextTemplate#getScope <em>Scope</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Scope</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.ContextTemplate#getScope()
+	 * @see #getContextTemplate()
+	 * @generated
+	 */
+	EReference getContextTemplate_Scope();
+
+	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.ContextTags <em>Context Tags</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8480,17 +8326,6 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getContextTags();
-
-	/**
-	 * Returns the meta object for the attribute list '{@link com.sap.furcas.metamodel.TCS.ContextTags#getTags <em>Tags</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute list '<em>Tags</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.ContextTags#getTags()
-	 * @see #getContextTags()
-	 * @generated
-	 */
-	EAttribute getContextTags_Tags();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.InjectorAction <em>Injector Action</em>}'.
@@ -8552,6 +8387,16 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getAutoCreateKind();
+
+	/**
+	 * Returns the meta object for enum '{@link com.sap.furcas.metamodel.TCS.ScopeKind <em>Scope Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Scope Kind</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.ScopeKind
+	 * @generated
+	 */
+	EEnum getScopeKind();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -9466,6 +9311,96 @@ public interface TCSPackage extends EPackage {
 		EReference PROPERTY_INIT__PROPERTY_REFERENCE = eINSTANCE.getPropertyInit_PropertyReference();
 
 		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.OclPropertyInitImpl <em>Ocl Property Init</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.impl.OclPropertyInitImpl
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getOclPropertyInit()
+		 * @generated
+		 */
+		EClass OCL_PROPERTY_INIT = eINSTANCE.getOclPropertyInit();
+
+		/**
+		 * The meta object literal for the '<em><b>Ocl Expression</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_PROPERTY_INIT__OCL_EXPRESSION = eINSTANCE.getOclPropertyInit_OclExpression();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.ScopeArgImpl <em>Scope Arg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.impl.ScopeArgImpl
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getScopeArg()
+		 * @generated
+		 */
+		EClass SCOPE_ARG = eINSTANCE.getScopeArg();
+
+		/**
+		 * The meta object literal for the '<em><b>Scope</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SCOPE_ARG__SCOPE = eINSTANCE.getScopeArg_Scope();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.InvertPArgImpl <em>Invert PArg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.impl.InvertPArgImpl
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getInvertPArg()
+		 * @generated
+		 */
+		EClass INVERT_PARG = eINSTANCE.getInvertPArg();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.ForeachPredicatePropertyInitImpl <em>Foreach Predicate Property Init</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.impl.ForeachPredicatePropertyInitImpl
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getForeachPredicatePropertyInit()
+		 * @generated
+		 */
+		EClass FOREACH_PREDICATE_PROPERTY_INIT = eINSTANCE.getForeachPredicatePropertyInit();
+
+		/**
+		 * The meta object literal for the '<em><b>Predicate Semantic</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC = eINSTANCE.getForeachPredicatePropertyInit_PredicateSemantic();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.PredicateSemanticImpl <em>Predicate Semantic</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.impl.PredicateSemanticImpl
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getPredicateSemantic()
+		 * @generated
+		 */
+		EClass PREDICATE_SEMANTIC = eINSTANCE.getPredicateSemantic();
+
+		/**
+		 * The meta object literal for the '<em><b>As</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_SEMANTIC__AS = eINSTANCE.getPredicateSemantic_As();
+
+		/**
+		 * The meta object literal for the '<em><b>When</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PREDICATE_SEMANTIC__WHEN = eINSTANCE.getPredicateSemantic_When();
+
+		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.AlternativeImpl <em>Alternative</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9538,14 +9473,6 @@ public interface TCSPackage extends EPackage {
 		EClass REFERS_TO_PARG = eINSTANCE.getRefersToPArg();
 
 		/**
-		 * The meta object literal for the '<em><b>Property Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERS_TO_PARG__PROPERTY_NAME = eINSTANCE.getRefersToPArg_PropertyName();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.LookInPArgImpl <em>Look In PArg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9554,14 +9481,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LOOK_IN_PARG = eINSTANCE.getLookInPArg();
-
-		/**
-		 * The meta object literal for the '<em><b>Property Name</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LOOK_IN_PARG__PROPERTY_NAME = eINSTANCE.getLookInPArg_PropertyName();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.CreateInPArgImpl <em>Create In PArg</em>}' class.
@@ -9574,14 +9493,6 @@ public interface TCSPackage extends EPackage {
 		EClass CREATE_IN_PARG = eINSTANCE.getCreateInPArg();
 
 		/**
-		 * The meta object literal for the '<em><b>Property Name</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CREATE_IN_PARG__PROPERTY_NAME = eINSTANCE.getCreateInPArg_PropertyName();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.RefersToKeyPArgImpl <em>Refers To Key PArg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9590,14 +9501,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass REFERS_TO_KEY_PARG = eINSTANCE.getRefersToKeyPArg();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute REFERS_TO_KEY_PARG__VALUE = eINSTANCE.getRefersToKeyPArg_Value();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.SeparatorPArgImpl <em>Separator PArg</em>}' class.
@@ -9628,14 +9531,6 @@ public interface TCSPackage extends EPackage {
 		EClass AUTO_CREATE_PARG = eINSTANCE.getAutoCreatePArg();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute AUTO_CREATE_PARG__VALUE = eINSTANCE.getAutoCreatePArg_Value();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.ImportContextPArgImpl <em>Import Context PArg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9656,14 +9551,6 @@ public interface TCSPackage extends EPackage {
 		EClass FORCED_LOWER_PARG = eINSTANCE.getForcedLowerPArg();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FORCED_LOWER_PARG__VALUE = eINSTANCE.getForcedLowerPArg_Value();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.CreateAsPArgImpl <em>Create As PArg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9672,14 +9559,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CREATE_AS_PARG = eINSTANCE.getCreateAsPArg();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CREATE_AS_PARG__NAME = eINSTANCE.getCreateAsPArg_Name();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.AsPArgImpl <em>As PArg</em>}' class.
@@ -9692,14 +9571,6 @@ public interface TCSPackage extends EPackage {
 		EClass AS_PARG = eINSTANCE.getAsPArg();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute AS_PARG__VALUE = eINSTANCE.getAsPArg_Value();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.ModePArgImpl <em>Mode PArg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9708,14 +9579,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MODE_PARG = eINSTANCE.getModePArg();
-
-		/**
-		 * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MODE_PARG__MODE = eINSTANCE.getModePArg_Mode();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.BlockArgImpl <em>Block Arg</em>}' class.
@@ -9746,14 +9609,6 @@ public interface TCSPackage extends EPackage {
 		EClass NB_NLB_ARG = eINSTANCE.getNbNLBArg();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NB_NLB_ARG__VALUE = eINSTANCE.getNbNLBArg_Value();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.IndentIncrBArgImpl <em>Indent Incr BArg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9762,14 +9617,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INDENT_INCR_BARG = eINSTANCE.getIndentIncrBArg();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INDENT_INCR_BARG__VALUE = eINSTANCE.getIndentIncrBArg_Value();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.StartNLBArgImpl <em>Start NLB Arg</em>}' class.
@@ -9782,14 +9629,6 @@ public interface TCSPackage extends EPackage {
 		EClass START_NLB_ARG = eINSTANCE.getStartNLBArg();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute START_NLB_ARG__VALUE = eINSTANCE.getStartNLBArg_Value();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.StartNbNLBArgImpl <em>Start Nb NLB Arg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9800,14 +9639,6 @@ public interface TCSPackage extends EPackage {
 		EClass START_NB_NLB_ARG = eINSTANCE.getStartNbNLBArg();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute START_NB_NLB_ARG__VALUE = eINSTANCE.getStartNbNLBArg_Value();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.EndNLBArgImpl <em>End NLB Arg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9816,14 +9647,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass END_NLB_ARG = eINSTANCE.getEndNLBArg();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute END_NLB_ARG__VALUE = eINSTANCE.getEndNLBArg_Value();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -9956,14 +9779,6 @@ public interface TCSPackage extends EPackage {
 		EClass STRING_VAL = eINSTANCE.getStringVal();
 
 		/**
-		 * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STRING_VAL__SYMBOL = eINSTANCE.getStringVal_Symbol();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.IntegerValImpl <em>Integer Val</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9972,14 +9787,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INTEGER_VAL = eINSTANCE.getIntegerVal();
-
-		/**
-		 * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INTEGER_VAL__SYMBOL = eINSTANCE.getIntegerVal_Symbol();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.NegativeIntegerValImpl <em>Negative Integer Val</em>}' class.
@@ -9992,14 +9799,6 @@ public interface TCSPackage extends EPackage {
 		EClass NEGATIVE_INTEGER_VAL = eINSTANCE.getNegativeIntegerVal();
 
 		/**
-		 * The meta object literal for the '<em><b>Symbol</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NEGATIVE_INTEGER_VAL__SYMBOL = eINSTANCE.getNegativeIntegerVal_Symbol();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.EnumLiteralValImpl <em>Enum Literal Val</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10010,14 +9809,6 @@ public interface TCSPackage extends EPackage {
 		EClass ENUM_LITERAL_VAL = eINSTANCE.getEnumLiteralVal();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ENUM_LITERAL_VAL__NAME = eINSTANCE.getEnumLiteralVal_Name();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.PropertyValImpl <em>Property Val</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10026,14 +9817,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROPERTY_VAL = eINSTANCE.getPropertyVal();
-
-		/**
-		 * The meta object literal for the '<em><b>Property Name</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROPERTY_VAL__PROPERTY_NAME = eINSTANCE.getPropertyVal_PropertyName();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.TokenImpl <em>Token</em>}' class.
@@ -10188,14 +9971,6 @@ public interface TCSPackage extends EPackage {
 		EReference END_OF_LINE_RULE__START = eINSTANCE.getEndOfLineRule_Start();
 
 		/**
-		 * The meta object literal for the '<em><b>Drop Start</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute END_OF_LINE_RULE__DROP_START = eINSTANCE.getEndOfLineRule_DropStart();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl <em>Multi Line Rule</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10214,28 +9989,12 @@ public interface TCSPackage extends EPackage {
 		EReference MULTI_LINE_RULE__START = eINSTANCE.getMultiLineRule_Start();
 
 		/**
-		 * The meta object literal for the '<em><b>Drop Start</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MULTI_LINE_RULE__DROP_START = eINSTANCE.getMultiLineRule_DropStart();
-
-		/**
 		 * The meta object literal for the '<em><b>End</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference MULTI_LINE_RULE__END = eINSTANCE.getMultiLineRule_End();
-
-		/**
-		 * The meta object literal for the '<em><b>Drop End</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute MULTI_LINE_RULE__DROP_END = eINSTANCE.getMultiLineRule_DropEnd();
 
 		/**
 		 * The meta object literal for the '<em><b>Esc</b></em>' containment reference feature.
@@ -10272,22 +10031,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass SIMPLE_MAPPING = eINSTANCE.getSimpleMapping();
-
-		/**
-		 * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIMPLE_MAPPING__KEY = eINSTANCE.getSimpleMapping_Key();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIMPLE_MAPPING__VALUE = eINSTANCE.getSimpleMapping_Value();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.WildcardMappingImpl <em>Wildcard Mapping</em>}' class.
@@ -10364,24 +10107,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EReference QUALIFIED_NAMED_ELEMENT__META_REFERENCE = eINSTANCE.getQualifiedNamedElement_MetaReference();
-
-		/**
-		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.OCLQueryPArgImpl <em>OCL Query PArg</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see com.sap.furcas.metamodel.TCS.impl.OCLQueryPArgImpl
-		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getOCLQueryPArg()
-		 * @generated
-		 */
-		EClass OCL_QUERY_PARG = eINSTANCE.getOCLQueryPArg();
-
-		/**
-		 * The meta object literal for the '<em><b>Query</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OCL_QUERY_PARG__QUERY = eINSTANCE.getOCLQueryPArg_Query();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.ForcedUpperPArgImpl <em>Forced Upper PArg</em>}' class.
@@ -10534,6 +10259,14 @@ public interface TCSPackage extends EPackage {
 		EReference CONTEXT_TEMPLATE__CONTEXT_TAGS = eINSTANCE.getContextTemplate_ContextTags();
 
 		/**
+		 * The meta object literal for the '<em><b>Scope</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTEXT_TEMPLATE__SCOPE = eINSTANCE.getContextTemplate_Scope();
+
+		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.ContextTagsImpl <em>Context Tags</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -10542,14 +10275,6 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONTEXT_TAGS = eINSTANCE.getContextTags();
-
-		/**
-		 * The meta object literal for the '<em><b>Tags</b></em>' attribute list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CONTEXT_TAGS__TAGS = eINSTANCE.getContextTags_Tags();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.InjectorActionImpl <em>Injector Action</em>}' class.
@@ -10608,6 +10333,16 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum AUTO_CREATE_KIND = eINSTANCE.getAutoCreateKind();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.ScopeKind <em>Scope Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.ScopeKind
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getScopeKind()
+		 * @generated
+		 */
+		EEnum SCOPE_KIND = eINSTANCE.getScopeKind();
 
 	}
 

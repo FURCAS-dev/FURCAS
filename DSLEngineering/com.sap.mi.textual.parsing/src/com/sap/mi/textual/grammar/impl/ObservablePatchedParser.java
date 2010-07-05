@@ -13,8 +13,7 @@ import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 
 /**
@@ -41,7 +40,7 @@ extends Parser
      * @param state 
      */
     public ObservablePatchedParser(TokenStream input) {
-        super(input, (RecognizerSharedState)null);
+        super(input);
     }
     
     protected IParsingObserver observer;

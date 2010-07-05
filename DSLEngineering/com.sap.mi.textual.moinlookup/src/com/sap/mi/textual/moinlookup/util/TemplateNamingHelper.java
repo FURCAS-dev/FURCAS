@@ -6,12 +6,11 @@ package com.sap.mi.textual.moinlookup.util;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.ClassTemplate;
-import tcs.FunctionTemplate;
-import tcs.PrimitiveTemplate;
-import tcs.QualifiedNamedElement;
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
@@ -250,7 +249,7 @@ public class TemplateNamingHelper<Type extends Object> {
 
 
 
-    public String getRuleNameForTemplate(Template template) throws SyntaxElementException {
+    public String getRuleNameForTemplate(com.sap.furcas.metamodel.TCS.Template template) throws SyntaxElementException {
 	if(template instanceof ClassTemplate) {
 	    if(((ClassTemplate)template).getMode() != null){
 		return getRuleNameForMode(template, ((ClassTemplate)template).getMode());

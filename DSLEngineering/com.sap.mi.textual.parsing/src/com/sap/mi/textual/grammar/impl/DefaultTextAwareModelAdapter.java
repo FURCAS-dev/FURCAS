@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.IModelAdapter;
@@ -16,8 +19,6 @@ import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
 
 /**
  * simple implementation using a simple resolution strategy and a
@@ -304,7 +305,7 @@ public class DefaultTextAwareModelAdapter implements IModelAdapter {
 	}
 
 	@Override
-	public Collection<PRI> getPRIPartitions(Connection conn, String languageId) {
+	public Collection<Resource> getPRIPartitions(ResourceSet conn, String languageId) {
 		//must be done in a subclass
 		return null;
 	}

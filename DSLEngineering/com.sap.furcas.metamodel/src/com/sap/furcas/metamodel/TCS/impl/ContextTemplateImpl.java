@@ -8,10 +8,12 @@ package com.sap.furcas.metamodel.TCS.impl;
 
 import com.sap.furcas.metamodel.TCS.ContextTags;
 import com.sap.furcas.metamodel.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.TCS.ScopeArg;
 import com.sap.furcas.metamodel.TCS.TCSPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.InternalEObject;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.ContextTemplateImpl#isIsAddToContext <em>Is Add To Context</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.ContextTemplateImpl#isIsReferenceOnly <em>Is Reference Only</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.ContextTemplateImpl#getContextTags <em>Context Tags</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.ContextTemplateImpl#getScope <em>Scope</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,6 +106,16 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
 	 * @ordered
 	 */
 	protected ContextTags contextTags;
+
+	/**
+	 * The cached value of the '{@link #getScope() <em>Scope</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getScope()
+	 * @generated
+	 * @ordered
+	 */
+	protected ScopeArg scope;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -229,6 +242,63 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ScopeArg getScope() {
+		return scope;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetScope(ScopeArg newScope, NotificationChain msgs) {
+		ScopeArg oldScope = scope;
+		scope = newScope;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__SCOPE, oldScope, newScope);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setScope(ScopeArg newScope) {
+		if (newScope != scope) {
+			NotificationChain msgs = null;
+			if (scope != null)
+				msgs = ((InternalEObject)scope).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__SCOPE, null, msgs);
+			if (newScope != null)
+				msgs = ((InternalEObject)newScope).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TCSPackage.CONTEXT_TEMPLATE__SCOPE, null, msgs);
+			msgs = basicSetScope(newScope, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONTEXT_TEMPLATE__SCOPE, newScope, newScope));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
+				return basicSetScope(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -241,6 +311,8 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
 			case TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS:
 				if (resolve) return getContextTags();
 				return basicGetContextTags();
+			case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
+				return getScope();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -264,6 +336,9 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
 				return;
 			case TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS:
 				setContextTags((ContextTags)newValue);
+				return;
+			case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
+				setScope((ScopeArg)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -289,6 +364,9 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
 			case TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS:
 				setContextTags((ContextTags)null);
 				return;
+			case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
+				setScope((ScopeArg)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -309,6 +387,8 @@ public class ContextTemplateImpl extends TemplateImpl implements ContextTemplate
 				return isReferenceOnly != IS_REFERENCE_ONLY_EDEFAULT;
 			case TCSPackage.CONTEXT_TEMPLATE__CONTEXT_TAGS:
 				return contextTags != null;
+			case TCSPackage.CONTEXT_TEMPLATE__SCOPE:
+				return scope != null;
 		}
 		return super.eIsSet(featureID);
 	}

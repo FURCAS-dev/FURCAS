@@ -1,13 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: MoinModelAdaptor
-Bundle-SymbolicName: com.sap.mi.textual.moinlookup
+Bundle-SymbolicName: com.sap.mi.textual.ecorelookup
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: 
  com.sap.mi.textual.common,
- com.sap.tcsmeta.mm.eclipse,
- com.sap.tc.moin.ide.facade,
  com.sap.tc.moin.textual.runtime.moin,
- com.sap.mi.textual.tcs.util
+ com.sap.mi.textual.tcs.util,
+ com.sap.furcas.metamodel;bundle-version="1.0.0"
 Export-Package: com.sap.mi.textual.moinlookup;uses:="com.sap.tc.moin.textual.interfaces",
  com.sap.mi.textual.moinlookup.util

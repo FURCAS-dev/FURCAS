@@ -674,12 +674,6 @@ public class TCSSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TCSPackage.OCL_QUERY_PARG: {
-				OCLQueryPArg oclQueryPArg = (OCLQueryPArg)theEObject;
-				T result = caseOCLQueryPArg(oclQueryPArg);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case TCSPackage.FORCED_UPPER_PARG: {
 				ForcedUpperPArg forcedUpperPArg = (ForcedUpperPArg)theEObject;
 				T result = caseForcedUpperPArg(forcedUpperPArg);
@@ -753,6 +747,43 @@ public class TCSSwitch<T> {
 				PropertyInit propertyInit = (PropertyInit)theEObject;
 				T result = casePropertyInit(propertyInit);
 				if (result == null) result = caseInjectorAction(propertyInit);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.OCL_PROPERTY_INIT: {
+				OclPropertyInit oclPropertyInit = (OclPropertyInit)theEObject;
+				T result = caseOclPropertyInit(oclPropertyInit);
+				if (result == null) result = casePropertyInit(oclPropertyInit);
+				if (result == null) result = caseInjectorAction(oclPropertyInit);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.SCOPE_ARG: {
+				ScopeArg scopeArg = (ScopeArg)theEObject;
+				T result = caseScopeArg(scopeArg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.INVERT_PARG: {
+				InvertPArg invertPArg = (InvertPArg)theEObject;
+				T result = caseInvertPArg(invertPArg);
+				if (result == null) result = caseOclPArg(invertPArg);
+				if (result == null) result = casePropertyArg(invertPArg);
+				if (result == null) result = caseLocatedElement(invertPArg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT: {
+				ForeachPredicatePropertyInit foreachPredicatePropertyInit = (ForeachPredicatePropertyInit)theEObject;
+				T result = caseForeachPredicatePropertyInit(foreachPredicatePropertyInit);
+				if (result == null) result = casePropertyInit(foreachPredicatePropertyInit);
+				if (result == null) result = caseInjectorAction(foreachPredicatePropertyInit);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.PREDICATE_SEMANTIC: {
+				PredicateSemantic predicateSemantic = (PredicateSemantic)theEObject;
+				T result = casePredicateSemantic(predicateSemantic);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1132,6 +1163,81 @@ public class TCSSwitch<T> {
 	 * @generated
 	 */
 	public T casePropertyInit(PropertyInit object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Ocl Property Init</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Ocl Property Init</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOclPropertyInit(OclPropertyInit object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Scope Arg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Scope Arg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseScopeArg(ScopeArg object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Invert PArg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Invert PArg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInvertPArg(InvertPArg object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Foreach Predicate Property Init</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Foreach Predicate Property Init</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseForeachPredicatePropertyInit(ForeachPredicatePropertyInit object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Predicate Semantic</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Predicate Semantic</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePredicateSemantic(PredicateSemantic object) {
 		return null;
 	}
 
@@ -1882,21 +1988,6 @@ public class TCSSwitch<T> {
 	 * @generated
 	 */
 	public T caseQualifiedNamedElement(QualifiedNamedElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>OCL Query PArg</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>OCL Query PArg</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOCLQueryPArg(OCLQueryPArg object) {
 		return null;
 	}
 

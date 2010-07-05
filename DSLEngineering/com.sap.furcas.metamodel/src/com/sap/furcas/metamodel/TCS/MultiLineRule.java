@@ -17,9 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.MultiLineRule#getStart <em>Start</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.TCS.MultiLineRule#isDropStart <em>Drop Start</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.MultiLineRule#getEnd <em>End</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.TCS.MultiLineRule#isDropEnd <em>Drop End</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.MultiLineRule#getEsc <em>Esc</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.MultiLineRule#getEscMappings <em>Esc Mappings</em>}</li>
  * </ul>
@@ -57,32 +55,6 @@ public interface MultiLineRule extends Rule {
 	void setStart(StringPattern value);
 
 	/**
-	 * Returns the value of the '<em><b>Drop Start</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Drop Start</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Drop Start</em>' attribute.
-	 * @see #setDropStart(boolean)
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getMultiLineRule_DropStart()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isDropStart();
-
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.MultiLineRule#isDropStart <em>Drop Start</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Drop Start</em>' attribute.
-	 * @see #isDropStart()
-	 * @generated
-	 */
-	void setDropStart(boolean value);
-
-	/**
 	 * Returns the value of the '<em><b>End</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -107,32 +79,6 @@ public interface MultiLineRule extends Rule {
 	 * @generated
 	 */
 	void setEnd(StringPattern value);
-
-	/**
-	 * Returns the value of the '<em><b>Drop End</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Drop End</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Drop End</em>' attribute.
-	 * @see #setDropEnd(boolean)
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getMultiLineRule_DropEnd()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isDropEnd();
-
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.MultiLineRule#isDropEnd <em>Drop End</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Drop End</em>' attribute.
-	 * @see #isDropEnd()
-	 * @generated
-	 */
-	void setDropEnd(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Esc</b></em>' containment reference.

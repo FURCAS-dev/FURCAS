@@ -575,15 +575,6 @@ public interface TCSFactory extends EFactory {
 	QualifiedNamedElement createQualifiedNamedElement();
 
 	/**
-	 * Returns a new object of class '<em>OCL Query PArg</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>OCL Query PArg</em>'.
-	 * @generated
-	 */
-	OCLQueryPArg createOCLQueryPArg();
-
-	/**
 	 * Returns a new object of class '<em>Forced Upper PArg</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -645,6 +636,51 @@ public interface TCSFactory extends EFactory {
 	 * @generated
 	 */
 	ContextTags createContextTags();
+
+	/**
+	 * Returns a new object of class '<em>Ocl Property Init</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ocl Property Init</em>'.
+	 * @generated
+	 */
+	OclPropertyInit createOclPropertyInit();
+
+	/**
+	 * Returns a new object of class '<em>Scope Arg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Scope Arg</em>'.
+	 * @generated
+	 */
+	ScopeArg createScopeArg();
+
+	/**
+	 * Returns a new object of class '<em>Invert PArg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Invert PArg</em>'.
+	 * @generated
+	 */
+	InvertPArg createInvertPArg();
+
+	/**
+	 * Returns a new object of class '<em>Foreach Predicate Property Init</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Foreach Predicate Property Init</em>'.
+	 * @generated
+	 */
+	ForeachPredicatePropertyInit createForeachPredicatePropertyInit();
+
+	/**
+	 * Returns a new object of class '<em>Predicate Semantic</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Predicate Semantic</em>'.
+	 * @generated
+	 */
+	PredicateSemantic createPredicateSemantic();
 
 	/**
 	 * Returns the package supported by this factory.

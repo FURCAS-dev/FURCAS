@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.TCS.impl;
 
+import com.sap.furcas.metamodel.TCS.InjectorAction;
 import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
 import com.sap.furcas.metamodel.TCS.PropertyInit;
 import com.sap.furcas.metamodel.TCS.TCSPackage;
@@ -44,7 +45,7 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<PropertyInit> propertyInits;
+	protected EList<InjectorAction> propertyInits;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,9 +71,9 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<PropertyInit> getPropertyInits() {
+	public EList<InjectorAction> getPropertyInits() {
 		if (propertyInits == null) {
-			propertyInits = new EObjectContainmentWithInverseEList<PropertyInit>(PropertyInit.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS, TCSPackage.PROPERTY_INIT__INJECTOR_ACTIONS_BLOCK);
+			propertyInits = new EObjectContainmentWithInverseEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
 		}
 		return propertyInits;
 	}
@@ -131,7 +132,7 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
 		switch (featureID) {
 			case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
 				getPropertyInits().clear();
-				getPropertyInits().addAll((Collection<? extends PropertyInit>)newValue);
+				getPropertyInits().addAll((Collection<? extends InjectorAction>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
