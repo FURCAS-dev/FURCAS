@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.query2.QueryContext;
 
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectBasedQueryContextScopeProviderImpl;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 /**
@@ -18,7 +19,7 @@ import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderIm
  * @author Tobias Hoppe
  *
  */
-public class ModifiedProjectBasedScopeProviderImpl extends ProjectBasedScopeProviderImpl {
+public class ModifiedProjectBasedScopeProviderImpl extends ProjectBasedQueryContextScopeProviderImpl {
 
     /**
      * Modified version of the {@link ProjectBasedScopeProviderImpl} to benchmark time consumption

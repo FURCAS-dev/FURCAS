@@ -15,7 +15,7 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
-import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectBasedQueryContextScopeProviderImpl;
 
 public class OppositePropertyNavigationStep extends AbstractNavigationStep {
 
@@ -29,7 +29,7 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep {
 
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
-        QueryContext scope = new ProjectBasedScopeProviderImpl(fromObject).getBackwardScopeAsQueryContext();
+        QueryContext scope = new ProjectBasedQueryContextScopeProviderImpl(fromObject).getBackwardScopeAsQueryContext();
         Collection<EObject> result = new HashSet<EObject>();
         Set<AnnotatedEObject> returnValue = new HashSet<AnnotatedEObject>();
         if (property instanceof EReference) {

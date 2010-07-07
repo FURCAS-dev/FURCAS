@@ -32,8 +32,8 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 import org.eclipse.emf.query2.QueryContext;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.ProjectBasedQueryContextScopeProvider;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectBasedQueryContextScopeProviderImpl;
 import de.hpi.sam.petriNet.PetriNetFactory;
 import de.hpi.sam.petriNet.PetriNetPackage;
 
@@ -98,7 +98,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * 
      * @generated
      */
-    protected ProjectBasedScopeProvider fixture = null;
+    protected ProjectBasedQueryContextScopeProvider fixture = null;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -123,7 +123,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * 
      * @generated
      */
-    protected void setFixture(ProjectBasedScopeProvider fixture) {
+    protected void setFixture(ProjectBasedQueryContextScopeProvider fixture) {
         this.fixture = fixture;
     }
 
@@ -132,7 +132,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * 
      * @generated
      */
-    protected ProjectBasedScopeProvider getFixture() {
+    protected ProjectBasedQueryContextScopeProvider getFixture() {
         return fixture;
     }
 
@@ -266,7 +266,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      */
     public void testSetupForEObjects__Collection() {
         int number = c1.r1.getContents().size();
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1.getContents().get(number - 1)));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1.getContents().get(number - 1)));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -288,7 +288,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         list[0] = (c1.r1.getContents().get(number - 1));
         number = c2.r1.getContents().size();
         list[1] = (c2.r1.getContents().get(number - 1));
-        setFixture(new ProjectBasedScopeProviderImpl(list));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(list));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -311,7 +311,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         list[0] = (c1.r1.getContents().get(number - 1));
         number = c1.r2.getContents().size();
         list[1] = (c1.r2.getContents().get(number - 1));
-        setFixture(new ProjectBasedScopeProviderImpl(list));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(list));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -328,7 +328,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testSetupForResources__Collection() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
         Collection<IProject> initprojects = getFixture().getInitialProjects();
@@ -348,7 +348,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
 
         list[0] = c1.r1;
         list[1] = c2.r1;
-        setFixture(new ProjectBasedScopeProviderImpl(list));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(list));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -369,7 +369,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         Resource[] list = new Resource[2];
         list[0] = (c1.r1);
         list[1] = (c1.r2);
-        setFixture(new ProjectBasedScopeProviderImpl(list));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(list));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -386,7 +386,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testSetupForResourceSets__Collection() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1.getResourceSet()));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1.getResourceSet()));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -406,7 +406,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         Resource[] list = new Resource[2];
         list[0] = (c1.r1);
         list[1] = (c2.r1);
-        setFixture(new ProjectBasedScopeProviderImpl(list));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(list));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -427,7 +427,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         ResourceSet rs = new ResourceSetImpl();
         rs.getResources().add(c1.r1);
         rs.getResources().add(c1.r2);
-        setFixture(new ProjectBasedScopeProviderImpl(rs));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(rs));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -443,7 +443,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetForwardScopeAsEObjects() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
         ArrayList<EObject> result = new ArrayList<EObject>();
         result.addAll(iteratorToCollection(c1.r1.getAllContents()));
         result.addAll(iteratorToCollection(c1.r2.getAllContents()));
@@ -463,7 +463,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      */
     public void testGetForwardScopeAsEObjects2() {
         int number = c2.r2.getContents().size();
-        setFixture(new ProjectBasedScopeProviderImpl(c2.r2.getContents().get(number - 1)));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c2.r2.getContents().get(number - 1)));
 
         ArrayList<EObject> result = new ArrayList<EObject>();
         result.addAll(iteratorToCollection(c2.r1.getAllContents()));
@@ -480,7 +480,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetForwardScopeAsProjects() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
         result.add(c2.p);
@@ -496,7 +496,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @Ignore
      */
     public void testGetForwardScopeAsResources() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
 
         ArrayList<Resource> result = new ArrayList<Resource>();
         result.add(c1.r1);
@@ -517,7 +517,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetForwardScopeAsResources2() {
-        setFixture(new ProjectBasedScopeProviderImpl(c2.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c2.r1));
 
         ArrayList<Resource> result = new ArrayList<Resource>();
         result.add(c2.r1);
@@ -535,7 +535,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetForwardScopeAsURIs() {
-        setFixture(new ProjectBasedScopeProviderImpl(c2.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c2.r1));
 
         ArrayList<URI> result = new ArrayList<URI>();
         result.add(c2.r1.getURI());
@@ -552,7 +552,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetForwardScopeAsURIs2() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
 
         ArrayList<URI> result = new ArrayList<URI>();
         result.add(c1.r1.getURI());
@@ -573,7 +573,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      */
     public void testGetBackwardScopeAsEObjects() {
         int number = c2.r2.getContents().size();
-        setFixture(new ProjectBasedScopeProviderImpl(c2.r2.getContents().get(number - 1)));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c2.r2.getContents().get(number - 1)));
 
         ArrayList<EObject> result = new ArrayList<EObject>();
         result.addAll(iteratorToCollection(c1.r1.getAllContents()));
@@ -593,7 +593,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      */
     public void testGetBackwardScopeAsEObjects2() {
         int number = c1.r1.getContents().size();
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1.getContents().get(number - 1)));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1.getContents().get(number - 1)));
 
         ArrayList<EObject> result = new ArrayList<EObject>();
         result.addAll(iteratorToCollection(c1.r1.getAllContents()));
@@ -610,7 +610,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetBackwardScopeAsProjects() {
-        setFixture(new ProjectBasedScopeProviderImpl(c2.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c2.r1));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -628,7 +628,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetBackwardScopeAsProjects2() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
 
         ArrayList<IProject> result = new ArrayList<IProject>();
         result.add(c1.p);
@@ -645,7 +645,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetBackwardScopeAsResources() {
-        setFixture(new ProjectBasedScopeProviderImpl(c2.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c2.r1));
 
         ArrayList<Resource> result = new ArrayList<Resource>();
         result.add(c1.r1);
@@ -665,7 +665,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetBackwardScopeAsResources2() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
 
         ArrayList<Resource> result = new ArrayList<Resource>();
         result.add(c1.r1);
@@ -683,7 +683,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetBackwardScopeAsURIs() {
-        setFixture(new ProjectBasedScopeProviderImpl(c2.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c2.r1));
 
         ArrayList<URI> result = new ArrayList<URI>();
         result.add(c1.r1.getURI());
@@ -703,7 +703,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetInMemoryResources() {
-        setFixture(new ProjectBasedScopeProviderImpl(new ResourceSetImpl().createResource(URI.createURI("http://something.ru"))));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(new ResourceSetImpl().createResource(URI.createURI("http://something.ru"))));
         assert (getFixture().getInMemoryResources().size() == 0);
     }
 
@@ -718,7 +718,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         //in this test all resources must be located in the same resourceSet, 
         //that is why all resources from c2 are moved to the resourceSet of c1
         c1.r1.getResourceSet().getResources().addAll(c2.r1.getResourceSet().getResources());
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
         QueryContext context = getFixture().getForwardScopeAsQueryContext();
 
         ArrayList<URI> result = new ArrayList<URI>();
@@ -746,7 +746,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetBackwardScopeAsQueryContext() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
         QueryContext context = getFixture().getBackwardScopeAsQueryContext();
 
         ArrayList<URI> result = new ArrayList<URI>();
@@ -770,7 +770,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
      * @generated NOT
      */
     public void testGetBackwardScopeAsURIs2() {
-        setFixture(new ProjectBasedScopeProviderImpl(c1.r1));
+        setFixture(new ProjectBasedQueryContextScopeProviderImpl(c1.r1));
         ArrayList<URI> result = new ArrayList<URI>();
         result.add(c1.r1.getURI());
         result.add(c1.r2.getURI());

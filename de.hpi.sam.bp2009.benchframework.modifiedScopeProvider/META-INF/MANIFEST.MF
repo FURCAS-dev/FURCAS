@@ -9,7 +9,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.ocl.ecore,
  org.eclipse.emf.query2,
- de.hpi.sam.bp2009.solution.scopeProvider;bundle-version="1.0.0",
  org.eclipse.core.runtime,
- org.eclipse.core.resources
+ org.eclipse.core.resources,
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider,
+ de.hpi.sam.bp2009.solution.scopeProvider
 Bundle-ActivationPolicy: lazy

@@ -1,9 +1,3 @@
-/**
- * <copyright>
- * </copyright>
- *
- * $Id$
- */
 package de.hpi.sam.bp2009.solution.scopeProvider.impl;
 
 import java.io.IOException;
@@ -31,7 +25,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.query2.QueryContext;
 
 import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
 
@@ -45,13 +38,11 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
  * 
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsProjects() <em>Forward Scope as Projects</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsResources() <em>Forward Scope as Resources</em>}</li>
- * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsQueryContext() <em>Forward Scope as Query Context</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsURIs() <em>Forward Scope as URIs</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getForwardScopeAsEObjects() <em>Forward Scope as EObjects</em>}</li>
  * 
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsProjects() <em>Backward Scope as Projects</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsResources() <em>Backward Scope as Resources</em>}</li>
- * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsQueryContext() <em>Backward Scope as Query Context</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsURIs() <em>Backward Scope as URIs</em>}</li>
  * <li>{@link ProjectBasedScopeProvider#getBackwardScopeAsEObjects() <em>Backward Scope as EObjects</em>}</li>
  * </ul>
@@ -62,7 +53,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     protected Collection<IProject> initialProjects = new HashSet<IProject>();
     protected List<WeakReference<Resource>> inMemoryResourceList;
-    private ResourceSet rs;
+    protected ResourceSet rs;
 
     protected ProjectBasedScopeProviderImpl() {
         super();
@@ -129,26 +120,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return scopeAsResources(getForwardScopeAsProjects());
     }
 
-    public QueryContext getForwardScopeAsQueryContext() {
-        if (rs == null) {
-            throw new IllegalStateException("No ResourceSet defined!");
-        }
-        return new QueryContext() {
-
-            @Override
-            public ResourceSet getResourceSet() {
-                return rs;
-            }
-
-            @Override
-            public URI[] getResourceScope() {
-                Collection<URI> list = getForwardScopeAsURIs();
-                return (URI[]) list.toArray(new URI[list.size()]);
-
-            }
-        };
-    }
-
     public Collection<URI> getForwardScopeAsURIs() {
         return scopeAsUris(getForwardScopeAsResources());
     }
@@ -164,22 +135,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     public Collection<Resource> getBackwardScopeAsResources() {
         return scopeAsResources(getBackwardScopeAsProjects());
-    }
-
-    public QueryContext getBackwardScopeAsQueryContext() {
-        return new QueryContext() {
-
-            @Override
-            public ResourceSet getResourceSet() {
-                return rs;
-            }
-
-            @Override
-            public URI[] getResourceScope() {
-                Collection<URI> list = getBackwardScopeAsURIs();
-                return (URI[]) list.toArray(new URI[list.size()]);
-            }
-        };
     }
 
     public Collection<URI> getBackwardScopeAsURIs() {

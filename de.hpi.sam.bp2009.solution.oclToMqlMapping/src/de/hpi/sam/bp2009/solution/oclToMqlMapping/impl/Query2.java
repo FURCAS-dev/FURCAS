@@ -30,8 +30,8 @@ import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.ProjectBasedQueryContextScopeProvider;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectBasedQueryContextScopeProviderImpl;
 
 @SuppressWarnings("restriction")
 public class Query2  {
@@ -354,7 +354,7 @@ public class Query2  {
     }
 
     private static QueryContext setQueryContext(Set<EObject> allO){
-        ScopeProvider pro = new ProjectBasedScopeProviderImpl(allO.toArray(new EObject[allO.size()]));
+        ProjectBasedQueryContextScopeProvider pro = new ProjectBasedQueryContextScopeProviderImpl(allO.toArray(new EObject[allO.size()]));
         QueryContext queryContext = pro.getForwardScopeAsQueryContext();
         return queryContext;
     }
