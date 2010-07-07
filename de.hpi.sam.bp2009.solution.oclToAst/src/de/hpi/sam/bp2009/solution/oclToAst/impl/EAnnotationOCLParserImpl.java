@@ -43,7 +43,7 @@ import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.ErrorMessage;
 import de.hpi.sam.bp2009.solution.oclToAst.delegate.OclAstEcoreEnvironmentFactory;
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
 
 /**
@@ -201,7 +201,7 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
                 return;
             // TODO can the following lines be pulled out of the loop? This may speed things up a little
             OCL ocl = OCLWithHiddenOpposites.newInstance(new OclAstEcoreEnvironmentFactory(this.getRegistry(),
-                    new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider())));
+                    new Query2OppositeEndFinder(new de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider())));
             Helper helper = ocl.createOCLHelper();
             /*
              * set correct context

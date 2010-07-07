@@ -65,7 +65,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerNaive;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Ocl Operator</b></em>'.

@@ -13,7 +13,7 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 
 public class OclAstDelegateDomain extends OCLDelegateDomain {
     private final OCL myOCL;

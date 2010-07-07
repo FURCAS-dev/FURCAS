@@ -18,5 +18,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.scopeProvider,
  com.sap.ocl.oppositefinder.query2,
- com.sap.emf.ocl.hiddenopposites
+ com.sap.emf.ocl.hiddenopposites,
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider
 Bundle-ActivationPolicy: lazy

@@ -30,9 +30,8 @@ import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.ocl.oppositefinder.query2.internal.DefaultQueryContextProvider;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.QueryContextProvider;
-import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderImpl;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectBasedQueryContextScopeProviderImpl;
 
 /**
  * Uses EMF query2 to reverse-navigate a reference that has no opposite. The search scope
@@ -113,7 +112,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
      */
     @Override
     public Set<EObject> getAllInstancesSeeing(EClass cls, EObject context) {
-        QueryContext scope = new ProjectBasedScopeProviderImpl(context).getBackwardScopeAsQueryContext();
+        QueryContext scope = new ProjectBasedQueryContextScopeProviderImpl(context).getBackwardScopeAsQueryContext();
         return getAllinstancesWithScope(cls, context, scope);
     }
 
@@ -123,7 +122,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
      */
     @Override
     public Set<EObject> getAllInstancesSeenBy(EClass cls, EObject context) {
-        QueryContext scope = new ProjectBasedScopeProviderImpl(context).getForwardScopeAsQueryContext();
+        QueryContext scope = new ProjectBasedQueryContextScopeProviderImpl(context).getForwardScopeAsQueryContext();
         return getAllinstancesWithScope(cls, context, scope);
     }
 

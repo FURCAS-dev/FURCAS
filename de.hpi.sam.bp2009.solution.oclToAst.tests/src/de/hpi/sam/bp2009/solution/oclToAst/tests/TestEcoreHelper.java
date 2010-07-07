@@ -23,7 +23,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
-import de.hpi.sam.bp2009.solution.scopeProvider.ProjectDependencyQueryContextProvider;
+import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
 import de.hpi.sam.petriNet.PetriNet;
 import de.hpi.sam.petriNet.PetriNetFactory;
 import de.hpi.sam.petriNet.PetriNetPackage;
