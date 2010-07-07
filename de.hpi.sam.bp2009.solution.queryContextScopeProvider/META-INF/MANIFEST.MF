@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: QueryContextScopeProvider
+Bundle-SymbolicName: de.hpi.sam.bp2009.solution.queryContextScopeProvider
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.emf.query2,
+ de.hpi.sam.bp2009.solution.scopeProvider,
+ org.eclipse.core.resources,
+ org.eclipse.core.runtime
+Export-Package: de.hpi.sam.bp2009.solution.queryContextScopeProvider,
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl
