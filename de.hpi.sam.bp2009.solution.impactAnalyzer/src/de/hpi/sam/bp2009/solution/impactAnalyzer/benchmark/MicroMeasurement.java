@@ -1,11 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark;
 
-import java.util.HashMap;
-
-public class MicroMeasurement {
-    private final HashMap<String, MicroMeasurement> subMeasurements = new HashMap<String, MicroMeasurement>();
-    private MicroMeasurement parent = null;
-
+public class MicroMeasurement extends DefaultMeasurement {
     private boolean beforeWasCalled = false;
     private boolean afterWasCalled = false;
     private long timeBefore = -1;
@@ -38,22 +33,5 @@ public class MicroMeasurement {
 
     public boolean isBeforeWasCalled() {
 	return beforeWasCalled;
-    }
-
-    public void addSubMeasurement(String measureSubPointId, MicroMeasurement subMeasurement) {
-	subMeasurement.setParent(this);
-	subMeasurements.put(measureSubPointId, subMeasurement);
-    }
-
-    public HashMap<String, MicroMeasurement> getSubMeasurements() {
-	return subMeasurements;
-    }
-
-    public MicroMeasurement getParent() {
-	return parent;
-    }
-
-    public void setParent(MicroMeasurement parent) {
-	this.parent = parent;
     }
 }
