@@ -16,11 +16,12 @@ public class SimpleBenchmarkExecutor extends DefaultBenchmarkExecutor {
 	SimpleBenchmarkResult result = new SimpleBenchmarkResult();
 
 	try {
-	    for (int i = 0; i < 5; i++) {
-		measureExecutionTime(result);
+	    for (int i = 0; i < 2; i++) {
+	    	measureExecutionTime(result);
+		BenchmarkMeasurements.aggregate();
 	    }
 
-	    result.setMicroMeasurementList(BenchmarkMeasurements.getMeasurementList());
+	    result.setMeasurementList(BenchmarkMeasurements.getMeasurementList());
 	    BenchmarkMeasurements.reset();
 
 	    result.setOclString(task.toString());
