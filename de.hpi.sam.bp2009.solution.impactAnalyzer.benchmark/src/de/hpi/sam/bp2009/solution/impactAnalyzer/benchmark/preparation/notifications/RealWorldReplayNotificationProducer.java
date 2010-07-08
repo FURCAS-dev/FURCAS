@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,8 +23,11 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
 
     @Override
     public Collection<Notification> produce() {
-	XMLResource instanceResource = loadModel("c:\\tmp\\ngpm.xmi");
-	Collection<RawEventInformation> rawEventInformationList = loadTrace("c:\\benchmark\\eventTrace1.txt");
+	URL url = this.getClass().getResource("fixtures/models/NgpmModel.xmi");
+
+
+	XMLResource instanceResource = loadModel(url.toString());
+	Collection<RawEventInformation> rawEventInformationList = loadTrace("/home/manuel/workspace/de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark/fixtures/eventtraces/primitiveEventTrace.trace");
 
 	return convertToNotifications(instanceResource, rawEventInformationList);
     }
@@ -54,23 +58,24 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
 
 	for(RawEventInformation rawInformation : eventInformationList){
 	    if(rawInformation.getEventType().equals("AttributeValueChangeEvent")){
+	    	String mofId = rawInformation.getAttributeMap().get("MRI").split("#")[1];
+			EObject obj = resource.getEObject(mofId);
 
-		String mofId = rawInformation.getAttributeMap().get("MRI").split("#")[1];
-		EObject obj = resource.getEObject(mofId);
+			EAttribute attribute = null;
 
-		EAttribute attribute = null;
+			for(EObject contentObject : obj.eClass().getEAllAttributes()) {
+			    if(contentObject instanceof EAttribute){
+			    	if(((EAttribute) contentObject).getName().equals(rawInformation.getAttributeMap().get("attribute"))){
+			    	    attribute = (EAttribute)contentObject;
+			    	}
+			    }
+			}
 
-		for(EObject contentObject : obj.eClass().getEAllAttributes()) {
-		    if(contentObject instanceof EAttribute){
-		    	if(((EAttribute) contentObject).getName().equals(rawInformation.getAttributeMap().get("attribute"))){
-		    	    attribute = (EAttribute)contentObject;
-		    	}
-		    }
-		}
+			if(obj != null) {
+				obj.eSet(attribute,  rawInformation.getAttributeMap().get("newValue"));
 
-		if(obj != null) {
-		    notificationList.add(NotificationHelper.createAttributeChangeNotification(obj, attribute, rawInformation.getAttributeMap().get("oldValue"), rawInformation.getAttributeMap().get("newValue")));
-		}
+			    notificationList.add(NotificationHelper.createAttributeChangeNotification(obj, attribute, rawInformation.getAttributeMap().get("oldValue"), rawInformation.getAttributeMap().get("newValue")));
+			}
 	    }
 	}
 
@@ -107,7 +112,6 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
 		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		}
-
 	    } catch (FileNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

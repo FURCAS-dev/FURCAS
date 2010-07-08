@@ -44,6 +44,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
@@ -99,7 +100,8 @@ public class EventManagerRuntimeTest {
             expr = e;
         }
 
-        public String toString() {
+        @Override
+	public String toString() {
             return "context " + classifier.getName() + " : " + expr.toString();
         }
     }
@@ -140,11 +142,11 @@ public class EventManagerRuntimeTest {
         // firstTestScenario(set, r, fw);
 
         ArrayList<EventFilter> list = new ArrayList<EventFilter>(filters.values());
-        
-        ArrayList<de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.OclTestExpressionContainer.OclExpressionWithPackage> adds = de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.OclTestExpressionContainer.getExpressionList();
-        for(de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.OclTestExpressionContainer.OclExpressionWithPackage entry:adds){
+
+        ArrayList<OclExpressionWithPackage> adds = de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.getExpressionList();
+        for(OclExpressionWithPackage entry : adds){
             list.add(new ImpactAnalyzerImpl(parse(entry.getOcl(), entry.getPackage())).createFilterForExpression(true));
-            
+
         }
 //        ArrayList<EventFilter> list2 = new ArrayList<EventFilter>(filters.values());
 //        for(int index=0; index<1000; index++){
@@ -175,7 +177,7 @@ public class EventManagerRuntimeTest {
              * number of adapter per manager
              */
             //int limit = 1000;
-            
+
             System.out.print(".");
             fw.flush();
             fw.write("\n");
@@ -193,7 +195,7 @@ public class EventManagerRuntimeTest {
 //            startTIme = System.nanoTime();
 //            table.subscribe(filter, a);
 //            fw.write((System.nanoTime() - startTIme) + ",");
-            
+
             ArrayList<Adapter> adapters = new ArrayList<Adapter>();
             long max = Long.MIN_VALUE;
             long min = Long.MAX_VALUE;
@@ -481,8 +483,8 @@ public class EventManagerRuntimeTest {
        try {
            ExpressionInOCL<EClassifier, EParameter> specification = ocl.parse(exp).iterator().next().getSpecification();
            result = (OCLExpression)specification.getBodyExpression();
-                       
-           
+
+
        } catch (ParserException e) {
            System.err.println("Error while parsing Expression:" + exp);
            e.printStackTrace();
