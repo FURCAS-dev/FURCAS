@@ -2,7 +2,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -60,6 +62,42 @@ public class OclIaTest extends BaseDepartmentTest {
     public void tearDown() {
         this.rs = null;
         this.cp = null;
+    }
+
+    @Test
+    public void testMoveWithoutImpact() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testMoveWithoutImpact:\n"
+                        + "self.ownedSignatures->at(3).name = 'm3'", this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        MethodSignature m1 = ClassesFactory.eINSTANCE.createMethodSignature();
+        m1.setName("m1");
+        c.getOwnedSignatures().add(m1);
+        MethodSignature m2 = ClassesFactory.eINSTANCE.createMethodSignature();
+        m2.setName("m2");
+        c.getOwnedSignatures().add(m2);
+        MethodSignature m3 = ClassesFactory.eINSTANCE.createMethodSignature();
+        m1.setName("m3");
+        c.getOwnedSignatures().add(m3);
+        this.cp.eResource().getContents().add(c);
+        c.setName("C");
+        final Notification[] noti = new Notification[1];
+        Adapter adapter = new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                noti[0] = msg;
+            }
+        };
+        c.eAdapters().add(adapter);
+        c.getOwnedSignatures().move(0, 1); // swap first two signatures
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression, ClassesPackage.eINSTANCE.getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti[0]);
+        assertEquals(0, impact.size());
+        c.getOwnedSignatures().move(1, 2); // not the name of the element at position 3 should have changed
+        Collection<EObject> impact2 = ia.getContextObjects(noti[0]);
+        assertEquals(1, impact2.size());
+        assertTrue(impact2.contains(c));
     }
 
     @Test
