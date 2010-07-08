@@ -1,9 +1,13 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import com.thoughtworks.xstream.XStream;
 
 public class BenchmarkResultContainer {
     private ArrayList<BenchmarkResult> benchmarkResultList = new ArrayList<BenchmarkResult>();
@@ -44,6 +48,26 @@ public class BenchmarkResultContainer {
 	
 	    
     }
+
+	public void printXml(File file) {
+		XStream xstream = new XStream();
+		FileOutputStream fstream;
+		
+		try {	
+			file.createNewFile();
+			fstream = new FileOutputStream(file);
+			xstream.toXML(this, fstream);
+			fstream.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		System.out.println("Results were written to " + file.getAbsolutePath());
+	}
     
     
 }

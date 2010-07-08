@@ -1,7 +1,10 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 import bb.util.Benchmark;
 
+@XStreamAlias("ExtensiveBenchmarkResult")
 public class ExtensiveBenchmarkResult implements BenchmarkResult{
     private Benchmark benchmark;
 
