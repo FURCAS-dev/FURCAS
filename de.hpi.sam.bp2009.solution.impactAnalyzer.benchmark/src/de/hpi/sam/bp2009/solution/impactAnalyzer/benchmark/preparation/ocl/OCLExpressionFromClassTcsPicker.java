@@ -13,15 +13,15 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.OclTestExpressionContainer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.OclTestExpressionContainer.OclExpressionWithPackage;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 
 public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 
+    @Override
     public ArrayList<OCLExpressionWithContext> pickUpExpressions() {
 	ArrayList<OCLExpressionWithContext> result = new ArrayList<OCLExpressionWithContext>();
 
-	for (OclExpressionWithPackage expression : OclTestExpressionContainer.getExpressionList()) {
+	for (OclExpressionWithPackage expression : OCLTestExpressionContainer.getExpressionList()) {
 	    result.add(parse(expression.getOcl(), expression.getPackage()));
 	}
 
@@ -46,9 +46,9 @@ public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 			@SuppressWarnings("rawtypes")
 			ExpressionInOCL specification = ocl.parse(exp).iterator().next().getSpecification();
 		    OCLExpression expr = (OCLExpression) specification.getBodyExpression();
-	
+
 		    result = new OCLExpressionWithContext(expr, (EClass) specification.getContextVariable().getType());
-	
+
 		} catch (ParserException e) {
 		    System.err.println("Error while parsing Expression:" + exp);
 		    e.printStackTrace();
