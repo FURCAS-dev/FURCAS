@@ -39,19 +39,19 @@ public class ProjectBasedQueryContextScopeProviderImpl extends ProjectBasedScope
     }
 
     public ProjectBasedQueryContextScopeProviderImpl(EObject... eObjects) {
-        super();
+        super(eObjects);
     }
 
     public ProjectBasedQueryContextScopeProviderImpl(Resource... resources) {
-        super();      
+        super(resources);      
     }
 
     public ProjectBasedQueryContextScopeProviderImpl(ResourceSet... resourceSets) {
-        super();
+        super(resourceSets);
     }
     
     public ProjectBasedQueryContextScopeProviderImpl(Notifier notifier) {
-        super();
+        super(notifier);
     }
     
     public QueryContext getForwardScopeAsQueryContext() {
