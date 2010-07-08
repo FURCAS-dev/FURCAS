@@ -51,6 +51,8 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
  */
 public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider {
 
+    private static final String WARNING_WORKSPACE_IS_CLOSED = "Attention: Workspace is closed. Only objects in the same resourceSet as the initial object(s) are returned as scope.";
+    private static final String WORKSPACE_IS_CLOSED = "Workspace is closed.";
     protected Collection<IProject> initialProjects = new HashSet<IProject>();
     protected List<WeakReference<Resource>> inMemoryResourceList;
     protected ResourceSet rs;
@@ -82,7 +84,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         } else if (notifier instanceof ResourceSet) {
             setupForResourceSets(Arrays.asList((ResourceSet) notifier));
         } else {
-            throw new RuntimeException("Expected Resource, ResourceSet or Eobject but got "+notifier.getClass().getName());
+            throw new RuntimeException("Expected Resource, ResourceSet or EObject but got "+notifier.getClass().getName());
         }
     }
     
@@ -117,7 +119,8 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     public Collection<Resource> getForwardScopeAsResources() {
-        return scopeAsResources(getForwardScopeAsProjects());
+        Collection<Resource> result = scopeAsResources(getForwardScopeAsProjects());
+        return result;
     }
 
     public Collection<URI> getForwardScopeAsURIs() {
@@ -134,7 +137,8 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     public Collection<Resource> getBackwardScopeAsResources() {
-        return scopeAsResources(getBackwardScopeAsProjects());
+        Collection<Resource> result = scopeAsResources(getBackwardScopeAsProjects());
+        return result;
     }
 
     public Collection<URI> getBackwardScopeAsURIs() {
@@ -233,19 +237,23 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     private IProject getProjectForResource(Resource res, URIConverter converter) throws IllegalArgumentException {
         URI uri = converter.normalize(res.getURI());
         java.net.URI netUri = java.net.URI.create(uri.toString());
-        IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
         IProject project = null;
-        for (IFile file : ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(netUri)) {
-            project = file.getProject();
+        try {
+        IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
+            for (IFile file : ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(netUri)) {
+                project = file.getProject();
+            }
+            for (IContainer c : result)
+                if (c instanceof IProject)
+                    project = (IProject) c;
+            /*
+             * TODO Think about a better way for resource without projects
+             */
+            // if(project==null)
+            // throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
+        } catch (IllegalStateException e) {            
+            workSpaceClosedWarning(e);
         }
-        for (IContainer c : result)
-            if (c instanceof IProject)
-                project = (IProject) c;
-        /*
-         * TODO Think about a better way for resource without projects
-         */
-        // if(project==null)
-        // throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
         return project;
     }
 
@@ -279,7 +287,12 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     private Collection<IProject> scopeAsProjects(Boolean forward) {
         Collection<IProject> result = new BasicEList<IProject>();
-        Collection<IProject> pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
+        Collection<IProject> pool = new ArrayList<IProject>();
+        try {
+            pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
+        } catch (IllegalStateException e) {
+            workSpaceClosedWarning(e);
+        }
 
         for (IProject project : getInitialProjects()) {
             try {
@@ -290,6 +303,14 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             }
         }
         return result;
+    }
+
+    private void workSpaceClosedWarning(IllegalStateException e) {
+        // the scope provider was not started as plugin that is why 
+        // only objects in the same resourceSet as the initial object(s) are returned as scope.
+        if (WORKSPACE_IS_CLOSED.equals(e.getMessage())){
+            System.err.println(WARNING_WORKSPACE_IS_CLOSED);
+        }
     }
 
     private Collection<Resource> scopeAsResources(Collection<IProject> projects) throws IllegalArgumentException {
@@ -408,6 +429,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
                 successful = false;
         } catch (Exception e) {
             // TODO: handle exception
+            e.printStackTrace();
         }
 
 
