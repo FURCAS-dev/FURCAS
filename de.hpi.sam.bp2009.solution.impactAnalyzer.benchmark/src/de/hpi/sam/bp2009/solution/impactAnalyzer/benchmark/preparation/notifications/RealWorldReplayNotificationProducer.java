@@ -1,11 +1,9 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,32 +21,32 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
 
     @Override
     public Collection<Notification> produce() {
-	//FIXME: Does only work if the elements are not produced in an plugin environment
-	URL urlModel = RealWorldReplayNotificationProducer.class.getResource("fixtures/models/NgpmModel.xmi");
-	URL urlTrace = RealWorldReplayNotificationProducer.class.getResource("fixtures/eventtraces/primitiveEventTrace.trace");
-
-	XMLResource instanceResource = loadModel(urlModel.getPath());
-	Collection<RawEventInformation> rawEventInformationList = loadTrace(urlTrace.getPath());
+	XMLResource instanceResource = loadModel("fixtures/models/NgpmModel.xmi");
+	Collection<RawEventInformation> rawEventInformationList = loadTrace("fixtures/eventtraces/primitiveEventTrace.trace");
 
 	return convertToNotifications(instanceResource, rawEventInformationList);
     }
 
     private XMLResource loadModel(String path) {
-	XMLResource instanceResource;
+	InputStream fileStream = RealWorldReplayNotificationProducer.class.getResourceAsStream(path);
+
+	XMLResource instanceResource = null;
 	ResourceSetImpl resultRS;
 
 	resultRS = new ResourceSetImpl();
         resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi",
         	new XMIResourceFactoryImpl());
 
-        instanceResource = (XMLResource)resultRS.createResource(URI.createFileURI(path));
-
-	try {
-	    instanceResource.load(null);
-	} catch (IOException e) {
+        try {
+	    instanceResource = (XMLResource)resultRS.createResource(URI.createURI("http://de.hpi.sam.bp2009.solution.impactAnalyzer.benchmarks/test.xmi"));
+	    instanceResource.load(fileStream, null);
+        } catch (IOException e1) {
 	    // TODO Auto-generated catch block
-	    e.printStackTrace();
+	    e1.printStackTrace();
 	}
+
+        if(instanceResource == null)
+            throw new RuntimeException("Not able to create resource");
 
 	return instanceResource;
     }
@@ -86,44 +84,31 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
     private Collection<RawEventInformation> loadTrace(String path){
 	ArrayList<RawEventInformation> informationList = new ArrayList<RawEventInformation>();
 
-	//InputStream traceInput = this.getClass().getResourceAsStream("fixtures/eventtraces/primitiveEventTrace.trace");
+	InputStream traceInput = this.getClass().getResourceAsStream(path);
+	InputStreamReader ireader = new InputStreamReader(traceInput);
+	BufferedReader reader = new BufferedReader(ireader);
 
+	try {
+	    while (reader.ready()) {
+		String newLine = reader.readLine();
+		String[] splitOnOpenBracket = newLine.split("\\(");
+		String[] splitOnComma = splitOnOpenBracket[1].split("\\)")[0].split(",");
 
+		HashMap<String, String> hashMap = new HashMap<String, String>();
 
-	File traceFile = new File(path);
-	if(traceFile.exists()){
-	    try {
-		FileReader freader = new FileReader(traceFile);
-		BufferedReader reader = new BufferedReader(freader);
+		for (String attributePair : splitOnComma) {
+		    String[] attributePairSplitted = attributePair.split("=");
 
-		try {
-		    while(reader.ready()){
-		        String newLine = reader.readLine();
-		        String[] splitOnOpenBracket = newLine.split("\\(");
-		        String[] splitOnComma = splitOnOpenBracket[1].split("\\)")[0].split(",");
-
-		        HashMap<String, String> hashMap = new HashMap<String, String>();
-
-		        for(String attributePair : splitOnComma){
-		            String[] attributePairSplitted = attributePair.split("=");
-
-		            hashMap.put(attributePairSplitted[0], attributePairSplitted[1]);
-		        }
-
-		        informationList.add(new RawEventInformation(splitOnOpenBracket[0], hashMap));
-		    }
-
-		} catch (IOException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
+		    hashMap.put(attributePairSplitted[0], attributePairSplitted[1]);
 		}
-	    } catch (FileNotFoundException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+
+		informationList.add(new RawEventInformation(splitOnOpenBracket[0], hashMap));
 	    }
 
-	} else
-	    throw new RuntimeException("Cannot find trace file");
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
 
 	return informationList;
     }
