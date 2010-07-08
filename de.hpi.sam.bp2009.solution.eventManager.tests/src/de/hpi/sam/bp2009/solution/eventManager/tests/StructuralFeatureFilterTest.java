@@ -14,7 +14,7 @@ import company.CompanyFactory;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 
 /**
  * <!-- begin-user-doc -->

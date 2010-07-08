@@ -18,8 +18,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
-
 public class RealWorldReplayNotificationProducer implements NotificationProducer {
 
     @Override

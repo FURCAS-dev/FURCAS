@@ -17,9 +17,9 @@ import company.Employee;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.ExampleApp;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
 public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
     private EventManager m;

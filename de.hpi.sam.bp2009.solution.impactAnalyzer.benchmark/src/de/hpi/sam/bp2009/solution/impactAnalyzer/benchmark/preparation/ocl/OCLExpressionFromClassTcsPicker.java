@@ -13,8 +13,8 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.OclTestExpressionContainer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.OclTestExpressionContainer.OclExpressionWithPackage;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.OclTestExpressionContainer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.OclTestExpressionContainer.OclExpressionWithPackage;
 
 public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 

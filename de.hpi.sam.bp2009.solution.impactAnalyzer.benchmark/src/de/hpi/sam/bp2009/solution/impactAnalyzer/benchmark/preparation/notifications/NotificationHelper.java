@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;

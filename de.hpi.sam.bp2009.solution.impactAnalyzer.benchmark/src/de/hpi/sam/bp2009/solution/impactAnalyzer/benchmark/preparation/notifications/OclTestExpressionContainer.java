@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications;
 
 import java.util.ArrayList;
 import org.eclipse.emf.ecore.EPackage;
