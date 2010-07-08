@@ -20,14 +20,14 @@ public class PrimitiveNotificationProducer implements NotificationProducer {
 
     @Override
     public Collection<Notification> produce() {
-	ArrayList<Notification> notificationList = new ArrayList<Notification>();
-
-	EObject obj = data.classes.ClassesFactory.eINSTANCE.createSapClass();
-	EAttribute attribute = (EAttribute) obj.eClass().getEStructuralFeature("valueType");
-
-	notificationList.add(NotificationHelper.createAttributeChangeNotification(obj, attribute, true, false));
-
-	return notificationList;
+		ArrayList<Notification> notificationList = new ArrayList<Notification>();
+	
+		EObject obj = data.classes.ClassesFactory.eINSTANCE.createSapClass();
+		EAttribute attribute = (EAttribute) obj.eClass().getEStructuralFeature("valueType");
+	
+		notificationList.add(NotificationHelper.createAttributeChangeNotification(obj, attribute, true, false));
+	
+		return notificationList;
     }
 
 }
