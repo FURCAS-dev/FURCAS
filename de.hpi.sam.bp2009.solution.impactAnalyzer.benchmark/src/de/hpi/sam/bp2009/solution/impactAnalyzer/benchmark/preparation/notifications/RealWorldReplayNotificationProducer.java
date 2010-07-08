@@ -17,12 +17,51 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+/**
+ * The {@link RealWorldReplayNotificationProducer} produces {@link Notification}s out of
+ * a event trace which was created in MOIN by printing Event.toString(); on several events.
+ *
+ * At the moment, it is not guaranteed that all types of events can be easily replayed.
+ * In fact, the following event types are supported at the moment:
+ * - AttributeValueChangeEvent
+ *
+ * @author Manuel Holzleitner (D049667)
+ */
 public class RealWorldReplayNotificationProducer implements NotificationProducer {
+    private final String MODEL_FIXTURE_LOCATION = "fixtures/models/";
+    private final String EVENTTRACE_FIXTURE_LOCATION = "fixtures/eventtraces/";
 
+    /**
+     * Produces a default list of notifications out of the NGPM model and a
+     * primitive event trace as default
+     */
     @Override
     public Collection<Notification> produce() {
-	XMLResource instanceResource = loadModel("fixtures/models/NgpmModel.xmi");
-	Collection<RawEventInformation> rawEventInformationList = loadTrace("fixtures/eventtraces/primitiveEventTrace.trace");
+	//TODO: Make the primitive event trace less primitive
+	return produce("primitiveEventTrace.trace");
+    }
+
+    /**
+     * Produces a list of notifications out of the NGPM model according to
+     * the name of the event trace fixture
+     *
+     * @param traceFilename
+     */
+    public Collection<Notification> produce(String traceFixtureName){
+	return produce("NgpmModel.xmi", traceFixtureName);
+    }
+
+    /**
+     * Produces a list of notifications out of a trace and model fixture. Therefore this fixtures
+     * must always be added to the fixtures folder in de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications
+     *
+     * @param modelFilename
+     * @param traceFilename
+     * @return Collection of notifications which can be created out of
+     */
+    public Collection<Notification> produce(String modelFilename, String traceFilename){
+	XMLResource instanceResource = loadModel(MODEL_FIXTURE_LOCATION + modelFilename);
+	Collection<RawEventInformation> rawEventInformationList = loadTrace(EVENTTRACE_FIXTURE_LOCATION + traceFilename);
 
 	return convertToNotifications(instanceResource, rawEventInformationList);
     }
@@ -56,6 +95,7 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
 
 
 	for(RawEventInformation rawInformation : eventInformationList){
+	    //FIXME: Conversion only works for AttributeValueChanges at the moment. Add support for all event types
 	    if(rawInformation.getEventType().equals("AttributeValueChangeEvent")){
 	    	String mofId = rawInformation.getAttributeMap().get("MRI").split("#")[1];
 			EObject obj = resource.getEObject(mofId);
