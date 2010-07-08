@@ -17,9 +17,9 @@ import company.CompanyFactory;
 import company.Department;
 import company.impl.DepartmentImpl;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
 public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {
     

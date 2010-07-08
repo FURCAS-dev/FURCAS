@@ -12,9 +12,8 @@ import company.CompanyFactory;
 import company.Division;
 
 import de.hpi.sam.bp2009.solution.eventManager.framework.RecursiveContaimentNotificationCreator;
-
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
 public class RecursiveContaimentNotificationCreatorTest extends BaseDepartmentTest{
 

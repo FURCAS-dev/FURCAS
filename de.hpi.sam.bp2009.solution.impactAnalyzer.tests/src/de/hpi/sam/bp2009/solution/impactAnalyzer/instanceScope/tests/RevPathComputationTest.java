@@ -28,9 +28,9 @@ import company.Employee;
 import company.Freelance;
 import company.Student;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
 
 /**
  * Tests whether the right context instances are computed. This is done as follows: A simple instance of the company model is

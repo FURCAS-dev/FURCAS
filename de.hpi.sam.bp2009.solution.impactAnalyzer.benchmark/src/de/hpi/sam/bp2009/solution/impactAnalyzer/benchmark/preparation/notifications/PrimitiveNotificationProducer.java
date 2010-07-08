@@ -7,8 +7,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.NotificationHelper;
-
 /**
  * The purpose of this notification producer is only to create one notification
  * in order to be able to run the impact analysis at all. This notifications
