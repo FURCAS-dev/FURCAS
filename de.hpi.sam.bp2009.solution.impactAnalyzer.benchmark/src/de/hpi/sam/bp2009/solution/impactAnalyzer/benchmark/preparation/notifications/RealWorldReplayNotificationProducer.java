@@ -67,15 +67,83 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
     }
 
     private XMLResource loadModel(String path) {
-	InputStream fileStream = RealWorldReplayNotificationProducer.class.getResourceAsStream(path);
+        ResourceSetImpl resultRS;
+        resultRS = new ResourceSetImpl();
+        resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+    
+        InputStream fileStream = RealWorldReplayNotificationProducer.class.getResourceAsStream(path);
+        XMLResource instanceResource = readResourceOutOfStream(fileStream, resultRS);
+    
+        return instanceResource;
+    }
 
+    private Collection<RawEventInformation> loadTrace(String path){
+        ArrayList<RawEventInformation> informationList = new ArrayList<RawEventInformation>();
+    
+        InputStream traceInput = this.getClass().getResourceAsStream(path);
+        InputStreamReader ireader = new InputStreamReader(traceInput);
+        BufferedReader reader = new BufferedReader(ireader);
+    
+        try {
+            while (reader.ready()) {
+        	String newLine = reader.readLine();
+        	String[] splitOnOpenBracket = newLine.split("\\(");
+        	String[] splitOnComma = splitOnOpenBracket[1].split("\\)")[0].split(",");
+    
+        	HashMap<String, String> hashMap = new HashMap<String, String>();
+    
+        	for (String attributePair : splitOnComma) {
+        	    String[] attributePairSplitted = attributePair.split("=");
+    
+        	    hashMap.put(attributePairSplitted[0], attributePairSplitted[1]);
+        	}
+    
+        	informationList.add(new RawEventInformation(splitOnOpenBracket[0], hashMap));
+            }
+    
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    
+        return informationList;
+    }
+
+    private Collection<Notification> convertToNotifications(XMLResource resource, Collection<RawEventInformation> eventInformationList){
+        ArrayList<Notification> notificationList = new ArrayList<Notification>();
+    
+    
+        for (RawEventInformation rawInformation : eventInformationList) {
+            // FIXME: Conversion only works for AttributeValueChanges at the moment. Add support for all event types
+            // FIXME: By adding support for more events the following if condition must be refactored
+            if (rawInformation.getEventType().equals("AttributeValueChangeEvent")) {
+        	String mofId = rawInformation.getAttributeMap().get("MRI").split("#")[1];
+        	EObject obj = resource.getEObject(mofId);
+    
+        	EAttribute attribute = null;
+    
+        	for (EObject contentObject : obj.eClass().getEAllAttributes()) {
+        	    if (contentObject instanceof EAttribute) {
+        		if (((EAttribute) contentObject).getName().equals(rawInformation.getAttributeMap().get("attribute"))) {
+        		    attribute = (EAttribute) contentObject;
+        		}
+        	    }
+        	}
+    
+        	if (obj != null) {
+        	    //TODO: Move modifying model to replay notifications into special class
+        	    obj.eSet(attribute, rawInformation.getAttributeMap().get("newValue"));
+        	    notificationList.add(NotificationHelper.createAttributeChangeNotification(obj, attribute, rawInformation
+        		    .getAttributeMap().get("oldValue"), rawInformation.getAttributeMap().get("newValue")));
+        	}
+            }
+        }
+    
+        return notificationList;
+    }
+
+    private XMLResource readResourceOutOfStream(InputStream fileStream, ResourceSetImpl resultRS) {
 	XMLResource instanceResource = null;
-	ResourceSetImpl resultRS;
-
-	resultRS = new ResourceSetImpl();
-        resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi",
-        	new XMIResourceFactoryImpl());
-
         try {
 	    instanceResource = (XMLResource)resultRS.createResource(URI.createURI("http://de.hpi.sam.bp2009.solution.impactAnalyzer.benchmarks/test.xmi"));
 	    instanceResource.load(fileStream, null);
@@ -86,77 +154,10 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
 
         if(instanceResource == null)
             throw new RuntimeException("Not able to create resource");
-
 	return instanceResource;
     }
 
-    private Collection<Notification> convertToNotifications(XMLResource resource, Collection<RawEventInformation> eventInformationList){
-	ArrayList<Notification> notificationList = new ArrayList<Notification>();
-
-
-	for (RawEventInformation rawInformation : eventInformationList) {
-	    // FIXME: Conversion only works for AttributeValueChanges at the moment. Add support for all event types
-	    // FIXME: By adding support for more events the following if condition must be refactored
-	    if (rawInformation.getEventType().equals("AttributeValueChangeEvent")) {
-		String mofId = rawInformation.getAttributeMap().get("MRI").split("#")[1];
-		EObject obj = resource.getEObject(mofId);
-
-		EAttribute attribute = null;
-
-		for (EObject contentObject : obj.eClass().getEAllAttributes()) {
-		    if (contentObject instanceof EAttribute) {
-			if (((EAttribute) contentObject).getName().equals(rawInformation.getAttributeMap().get("attribute"))) {
-			    attribute = (EAttribute) contentObject;
-			}
-		    }
-		}
-
-		if (obj != null) {
-		    //TODO: Move modifying model to replay notifications into special class
-		    obj.eSet(attribute, rawInformation.getAttributeMap().get("newValue"));
-		    notificationList.add(NotificationHelper.createAttributeChangeNotification(obj, attribute, rawInformation
-			    .getAttributeMap().get("oldValue"), rawInformation.getAttributeMap().get("newValue")));
-		}
-	    }
-	}
-
-	return notificationList;
-    }
-
-    private Collection<RawEventInformation> loadTrace(String path){
-	ArrayList<RawEventInformation> informationList = new ArrayList<RawEventInformation>();
-
-	InputStream traceInput = this.getClass().getResourceAsStream(path);
-	InputStreamReader ireader = new InputStreamReader(traceInput);
-	BufferedReader reader = new BufferedReader(ireader);
-
-	try {
-	    while (reader.ready()) {
-		String newLine = reader.readLine();
-		String[] splitOnOpenBracket = newLine.split("\\(");
-		String[] splitOnComma = splitOnOpenBracket[1].split("\\)")[0].split(",");
-
-		HashMap<String, String> hashMap = new HashMap<String, String>();
-
-		for (String attributePair : splitOnComma) {
-		    String[] attributePairSplitted = attributePair.split("=");
-
-		    hashMap.put(attributePairSplitted[0], attributePairSplitted[1]);
-		}
-
-		informationList.add(new RawEventInformation(splitOnOpenBracket[0], hashMap));
-	    }
-
-	} catch (IOException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-
-	return informationList;
-    }
-
     private class RawEventInformation{
-
 	private final String eventType;
 	private final Map<String, String> attributeMap;
 

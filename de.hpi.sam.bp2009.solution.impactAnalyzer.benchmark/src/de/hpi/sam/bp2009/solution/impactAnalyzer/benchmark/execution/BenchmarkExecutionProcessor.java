@@ -6,6 +6,14 @@ import java.util.Collection;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultContainer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
+/**
+ * The {@link BenchmarkExecutionProcessor} processes a list of {@link BenchmarkTasks} subsequently.
+ * Therefore it provides several methods for different kind of benchmarks.
+ *
+ * Each {@link BenchmarkTask} is wrapped in a {@link BenchmarkExecutor} which is then executed.
+ *
+ * @author Manuel Holzleitner (D049667)
+ */
 public class BenchmarkExecutionProcessor {
 
     public static BenchmarkResultContainer processExtensiveBenchmarks(Collection<BenchmarkTask> taskList) {

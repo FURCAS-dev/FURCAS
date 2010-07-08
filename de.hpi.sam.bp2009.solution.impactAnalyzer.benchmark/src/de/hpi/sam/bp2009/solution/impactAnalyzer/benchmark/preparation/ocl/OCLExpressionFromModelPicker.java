@@ -17,6 +17,12 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
+/**
+ * The {@link OCLExpressionFromModelPicker} extracts constraints out of the
+ * NGPM meta model and parses them.
+ *
+ * @author Manuel Holzleitner (D049667)
+ */
 public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
     public Map<String, OCLExpressionWithContext> pickUpExpressions(EPackage... ps) {
 	Map<String, OCLExpressionWithContext> allConstraints = new HashMap<String, OCLExpressionWithContext>();
