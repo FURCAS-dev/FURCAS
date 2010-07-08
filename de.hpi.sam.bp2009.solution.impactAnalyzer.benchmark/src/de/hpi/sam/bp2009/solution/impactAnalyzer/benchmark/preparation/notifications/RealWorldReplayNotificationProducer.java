@@ -23,11 +23,12 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
 
     @Override
     public Collection<Notification> produce() {
-	URL url = this.getClass().getResource("fixtures/models/NgpmModel.xmi");
+	//FIXME: Does only work if the elements are not produced in an plugin environment
+	URL urlModel = RealWorldReplayNotificationProducer.class.getResource("fixtures/models/NgpmModel.xmi");
+	URL urlTrace = RealWorldReplayNotificationProducer.class.getResource("fixtures/eventtraces/primitiveEventTrace.trace");
 
-
-	XMLResource instanceResource = loadModel(url.toString());
-	Collection<RawEventInformation> rawEventInformationList = loadTrace("/home/manuel/workspace/de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark/fixtures/eventtraces/primitiveEventTrace.trace");
+	XMLResource instanceResource = loadModel(urlModel.getPath());
+	Collection<RawEventInformation> rawEventInformationList = loadTrace(urlTrace.getPath());
 
 	return convertToNotifications(instanceResource, rawEventInformationList);
     }
@@ -84,6 +85,10 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
 
     private Collection<RawEventInformation> loadTrace(String path){
 	ArrayList<RawEventInformation> informationList = new ArrayList<RawEventInformation>();
+
+	//InputStream traceInput = this.getClass().getResourceAsStream("fixtures/eventtraces/primitiveEventTrace.trace");
+
+
 
 	File traceFile = new File(path);
 	if(traceFile.exists()){
