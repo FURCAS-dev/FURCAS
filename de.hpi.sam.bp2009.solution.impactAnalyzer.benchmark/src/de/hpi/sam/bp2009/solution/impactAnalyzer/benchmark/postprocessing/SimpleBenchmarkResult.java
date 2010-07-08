@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.MicroMeasurement;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.Measurement;
+
+
+@XStreamAlias("SimpleBenchmarkResult")
 public class SimpleBenchmarkResult implements BenchmarkResult {
     private final ArrayList<Long> executionTimeList = new ArrayList<Long>();
     private String oclString;
 
-    private Map<String, ArrayList<MicroMeasurement>> microMeasurementList = new HashMap<String,  ArrayList<MicroMeasurement>>();
+    private Map<String, ArrayList<Measurement>> microMeasurementList = new HashMap<String,  ArrayList<Measurement>>();
 
     public void addExecutionTime(long executionTime) {
 	executionTimeList.add(executionTime);
@@ -41,10 +45,10 @@ public class SimpleBenchmarkResult implements BenchmarkResult {
 	result.append(";");
 
 
-	for(String point : getMicroMeasurementList().keySet()){
+	for(String point : getMeasurementList().keySet()){
 	    result.append(point + ":");
 	    result.append(";");
-	    for(MicroMeasurement measurement : getMicroMeasurementList().get(point)){
+	    for(Measurement measurement : getMeasurementList().get(point)){
 		    result.append(measurement.getResult());
 		    result.append(";");
 	    }
@@ -53,11 +57,11 @@ public class SimpleBenchmarkResult implements BenchmarkResult {
 	return result.toString();
     }
 
-    public Map<String, ArrayList<MicroMeasurement>> getMicroMeasurementList() {
+    public Map<String, ArrayList<Measurement>> getMeasurementList() {
 	return microMeasurementList;
     }
 
-    public void setMicroMeasurementList(Map<String, ArrayList<MicroMeasurement>> microMeasurementList) {
+    public void setMeasurementList(Map<String, ArrayList<Measurement>> microMeasurementList) {
 	this.microMeasurementList = microMeasurementList;
     }
 
