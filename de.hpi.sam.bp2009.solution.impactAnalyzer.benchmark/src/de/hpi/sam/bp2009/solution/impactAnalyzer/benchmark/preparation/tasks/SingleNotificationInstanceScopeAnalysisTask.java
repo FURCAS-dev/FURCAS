@@ -20,13 +20,11 @@ public class SingleNotificationInstanceScopeAnalysisTask implements BenchmarkTas
             EClass context) {
 	this.expression = expression;
 	this.noti = noti;
-	this.ia = new ImpactAnalyzerImpl(expression, context);
+	ia = new ImpactAnalyzerImpl(expression, context);
     }
 
     @Override
     public Collection<EObject> call() throws Exception {
-    	ia.getContextObjects(noti);
-    	ia.getContextObjects(noti);    	
 	return ia.getContextObjects(noti);
     }
 

@@ -15,6 +15,14 @@ import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 
+/**
+ * The {@link OCLExpressionFromClassTcsPicker} parses the OCL expressions which were extracted
+ * out of the FURCAS/MOIN Class.tcs file. This extracted expressions are retrieved
+ * in a textual representation by using the {@link OCLTestExpressionContainer}
+ * and are then parsed within this class
+ *
+ * @author Manuel Holzleitner (D049667)
+ */
 public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 
     @Override

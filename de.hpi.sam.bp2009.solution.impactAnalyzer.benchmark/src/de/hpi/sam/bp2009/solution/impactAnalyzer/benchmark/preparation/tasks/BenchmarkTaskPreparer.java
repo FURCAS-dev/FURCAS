@@ -9,6 +9,12 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notificat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
+/**
+ * The {@link BenchmarkTaskPreparer} provides methods for creating a collection of
+ * specific {@link BenchmarkTask}s.
+ *
+ * @author Manuel Holzleitner (D049667)
+ */
 public class BenchmarkTaskPreparer {
     public static ArrayList<BenchmarkTask> prepareSingleNotificationBenchmarkTasks() {
 	ArrayList<BenchmarkTask> result = new ArrayList<BenchmarkTask>();
@@ -32,7 +38,7 @@ public class BenchmarkTaskPreparer {
 
 	return result;
     }
-    
+
     public static ArrayList<BenchmarkTask> prepareMultipleNotificationBenchmarkTasks(){
     	ArrayList<BenchmarkTask> result = new ArrayList<BenchmarkTask>();
 
@@ -50,7 +56,7 @@ public class BenchmarkTaskPreparer {
     		 result.add(new MultipleNotificationInstanceScopeAnalysisTask(expression.getExpression(), expression.getContext(), notificationList));
     	}
     	System.out.println("\t\t " + result.size() + " successfully prepared");
-		
+
     	return result;
     }
 }

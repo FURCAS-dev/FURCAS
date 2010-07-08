@@ -5,6 +5,16 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.Benchm
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.SimpleBenchmarkResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
+/**
+ * The {@link SimpleBenchmarkExecutor} benchmarks {@link BenchmarkTasks} by measuring
+ * per System.nanoTime() before and after executing the task.
+ *
+ * It executes a {@link BenchmarkTask} several times in order to see effects of
+ * caching and initalization. However, it does not respect other well-known
+ * rules for micro-benchmarking Java code.
+ *
+ * @author Manuel Holzleitner (D049667)
+ */
 public class SimpleBenchmarkExecutor extends DefaultBenchmarkExecutor {
 
     public SimpleBenchmarkExecutor(BenchmarkTask task) {
@@ -27,6 +37,7 @@ public class SimpleBenchmarkExecutor extends DefaultBenchmarkExecutor {
 	    result.setOclString(task.toString());
 
 	} catch (Exception e) {
+	    System.out.println("Task ended with exception: " + task.toString());
 	    e.printStackTrace();
 	}
 	return result;

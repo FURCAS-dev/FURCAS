@@ -8,9 +8,9 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
 /**
  * The {@link ExtensiveBenchmarkExecutor} utilizes the bb.util.Benchmark library
  * in order to generate reliable benchmark results.
- * 
+ *
  * @see http://ellipticgroup.com/html/benchmarkingArticle.html
- * 
+ *
  * @author Manuel Holzleitner (D049667)
  */
 public class ExtensiveBenchmarkExecutor extends DefaultBenchmarkExecutor {
@@ -35,9 +35,11 @@ public class ExtensiveBenchmarkExecutor extends DefaultBenchmarkExecutor {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-	System.out.println(bench.toString());
 
-	returnValue = bench.getCallResult();
+	if(bench != null){
+    		System.out.println(bench.toString());
+    		returnValue = bench.getCallResult();
+	}
 
 	return new ExtensiveBenchmarkResult(bench);
     }
