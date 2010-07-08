@@ -33,5 +33,8 @@ public class TableForAttributeFilter extends TableForEventFilter {
         return AttributeFilter.class;
     }
 
-    
+    @Override
+    protected String criterionToString(Object criterion) {
+        return ((EAttribute) criterion).getName();
+    }
 }

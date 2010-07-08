@@ -47,6 +47,22 @@ public class TableForNewValueClassFilter extends TableForEventFilter {
         return NewValueClassFilter.class;
     }
     
-    
-
+    @Override
+    protected String criterionToString(Object criterion) {
+        StringBuilder result = new StringBuilder();
+        if (criterion instanceof EClass) {
+            result.append(((EClass) criterion).getName());
+        } else {
+            Set<?> eClassSet = (Set<?>) criterion;
+            boolean first = true;
+            for (Object eClass : eClassSet) {
+                if (!first) {
+                    result.append(", ");
+                } else {
+                    result.append(((EClass) eClass).getName());
+                }
+            }
+        }
+        return result.toString();
+    }
 }

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EPackage;
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -273,6 +274,7 @@ public abstract class RegistrationManager {
     // private long time=0;
     @SuppressWarnings("unchecked")
     protected Collection<Registration> getRegistrationsFor(Notification event) {
+        Statistics.getInstance().begin("getRegistrationsFor", event);
         // TODO Performance optimizations can probably be done here - VERY CENTRAL METHOD
         // caching is done in the subclass SessionRegistrationManager
    
@@ -296,7 +298,9 @@ public abstract class RegistrationManager {
                 /*
                  * collect registrations for that event from each EventFilterTable
                  */
+                Statistics.getInstance().begin("getYesRegistrationsForTable_"+table.getClass().getSimpleName(), event);
                 regIt = table.getRegistrationsFor(event, false);
+                Statistics.getInstance().end("getYesRegistrationsForTable_"+table.getClass().getSimpleName(), event);
                 if (regIt != null) {
                     yesSetIterators[ysi_count++] = regIt;
                     estimatedYesSetSize += regIt.getSize();
@@ -305,7 +309,9 @@ public abstract class RegistrationManager {
                 /*
                  * collect registrations that do NOT want to get notified about the current event
                  */
+                Statistics.getInstance().begin("getNoRegistrationsForTable_"+table.getClass().getSimpleName(), event);
                 regIt = table.getRegistrationsFor(event, true);
+                Statistics.getInstance().end("getNoRegistrationsForTable_"+table.getClass().getSimpleName(), event);
                 if (regIt != null) {
                     noSetIterators[nsi_count++] = regIt;
                     // estimatedNoSetSize += regIt.getSize();
@@ -321,7 +327,9 @@ public abstract class RegistrationManager {
          */
         for (TableForEventFilter table : tablesWithNegatedRegistrations) {
 
+            Statistics.getInstance().begin("getNegatedRegistrationsForTable_"+table.getClass().getSimpleName(), event);
             regIt = table.getRegistrationsFor(event, false);
+            Statistics.getInstance().end("getNegatedRegistrationsForTable_"+table.getClass().getSimpleName(), event);
             if (regIt != null) {
                 yesSetIterators[ysi_count++] = regIt;
                 estimatedYesSetSize += regIt.getSize();
@@ -341,6 +349,7 @@ public abstract class RegistrationManager {
 
         // Collection<Registration> yesSet = new ArrayList<Registration>(estimatedYesSetSize);
         short tableCountWithCurrentRegistration = 0;
+        Statistics.getInstance().begin("yesSetIterators", event);
         for (int i = 0; i < ysi_count; i++)
             for (Iterator<Registration> yesSetRegistrationIterator = yesSetIterators[i]; yesSetRegistrationIterator.hasNext();) {
                 Registration nextReg = yesSetRegistrationIterator.next();
@@ -356,10 +365,12 @@ public abstract class RegistrationManager {
                     possibleYesSetEntries.add(nextReg);
 
             }
+        Statistics.getInstance().end("yesSetIterators", event);
 
         /*
          * remove all registrations from the yesSet that were collected in the so called noSet
          */
+        Statistics.getInstance().begin("tableMagic", event);
         if (!possibleYesSetEntries.isEmpty()) {
             for (int i = 0; i < nsi_count; i++) {
                 for (Iterator<Registration> noSetRegistrationIterator = noSetIterators[i]; noSetRegistrationIterator.hasNext();) {
@@ -380,6 +391,7 @@ public abstract class RegistrationManager {
                 yesSet.addAll(possibleYesSetEntries);
             }
         }
+        Statistics.getInstance().end("tableMagic", event);
 
         // for (int i = 0; i < nsi_count; i++)
         // for (Iterator noSetRegistrationIterator = noSetIterators[i]; noSetRegistrationIterator.hasNext();) {
@@ -388,6 +400,7 @@ public abstract class RegistrationManager {
         // }
         // time+=(System.currentTimeMillis()-mtime);
         
+        Statistics.getInstance().end("getRegistrationsFor", event);
         return yesSet;
     }
 
@@ -993,4 +1006,19 @@ public abstract class RegistrationManager {
         return true;
     }
 
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("RegistrationManager: (\n");
+        boolean first = true;
+        for (TableForEventFilter table : allTables) {
+            if (!first) {
+                result.append(",\n");
+            } else {
+                first = false;
+            }
+            result.append(table);
+        }
+        result.append(')');
+        return result.toString();
+    }
 }

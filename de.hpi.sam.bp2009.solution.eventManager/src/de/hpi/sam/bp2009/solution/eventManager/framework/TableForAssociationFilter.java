@@ -32,6 +32,9 @@ public class TableForAssociationFilter extends TableForEventFilter {
         return AssociationFilter.class;
     }
     
-    
+    @Override
+    protected String criterionToString(Object criterion) {
+        return ((EReference) criterion).getName();
+    }
 
 }

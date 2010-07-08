@@ -461,4 +461,8 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
      * EventDeferring on listener that is not registered yet."); notifier.setEventDeferment(deferEvents);
      * notifier.setNotificationTrigger(notificationTrigger); }
      */
+    
+    public String toString() {
+        return registrationManager.toString();
+    }
 }

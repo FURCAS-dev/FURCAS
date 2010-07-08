@@ -38,5 +38,4 @@ public class TableForEventTypeFilter extends TableForEventFilter {
         return de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter.class;
     }
 
-    
 }

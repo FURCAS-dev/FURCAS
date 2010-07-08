@@ -51,4 +51,13 @@ public class FilterTableEntry<Type> {
     boolean isEmpty() {
         return registrations.isEmpty() && negatedRegistrations.isEmpty();
     }
+    
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("yesSetSize: ");
+        result.append(getRegistrations().size());
+        result.append(", noSetSize: ");
+        result.append(getNegatedRegistrations().size());
+        return result.toString();
+    }
 }
