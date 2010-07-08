@@ -43,7 +43,8 @@ public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 		ocl = OCLWithHiddenOpposites.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
 		OCLExpressionWithContext result = null;
 		try {
-		    ExpressionInOCL specification = ocl.parse(exp).iterator().next().getSpecification();
+			@SuppressWarnings("rawtypes")
+			ExpressionInOCL specification = ocl.parse(exp).iterator().next().getSpecification();
 		    OCLExpression expr = (OCLExpression) specification.getBodyExpression();
 	
 		    result = new OCLExpressionWithContext(expr, (EClass) specification.getContextVariable().getType());
