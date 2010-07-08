@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -30,5 +31,8 @@ public class TableForClassFilter extends TableForEventFilter {
         return de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter.class;
     }
 
-    
+    @Override
+    protected String criterionToString(Object criterion) {
+        return ((EClass) criterion).getName();
+    }
 }

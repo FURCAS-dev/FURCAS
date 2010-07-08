@@ -1,0 +1,21 @@
+package de.hpi.sam.bp2009.solution.eventManager;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
+
+public class StatisticsStub extends Statistics {
+    @Override
+    public void begin(String groupId, Object key) {}
+    @Override
+    public void end(String groupId, Object key) {}
+    @Override
+    public List<Record> getRecords(String groupId) {
+        return Collections.emptyList();
+    }
+    @Override
+    public Set<String> getGroupIds() {
+        return Collections.emptySet();
+    }
+}

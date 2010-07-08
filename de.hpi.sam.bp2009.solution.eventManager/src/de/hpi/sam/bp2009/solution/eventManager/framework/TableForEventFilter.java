@@ -54,6 +54,10 @@ public abstract class TableForEventFilter {
      * the context of the current EventFilterTable.
      */
     public abstract Object getAffectedObject(Notification event);
+    
+    protected String criterionToString(Object criterion) {
+        return criterion.toString();
+    }
 
     /**
      * stores the passed {@link com.sap.tc.moin.repository.events.framework.Registration}. The Registration will stored as
@@ -239,4 +243,28 @@ public abstract class TableForEventFilter {
      */
     public abstract Object getIdentifier();
 
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(getClass().getSimpleName());
+        result.append(": ");
+        result.append("completeYesSet.size()=");
+        result.append(completeYesSet.size());
+        result.append(", completeNoSet.size()=");
+        result.append(completeNoSet.size());
+        result.append(", FilterTableByCriterion=(\n");
+        boolean first = true;
+        for (Object criterion : tableEntryByFilterCriterion.keySet()) {
+            if (!first) {
+                result.append(",\n");
+            } else {
+                first = false;
+            }
+            result.append("  ");
+            result.append(criterionToString(criterion));
+            result.append(": ");
+            result.append(tableEntryByFilterCriterion.get(criterion));
+        }
+        result.append(")");
+        return result.toString();
+    }
 }

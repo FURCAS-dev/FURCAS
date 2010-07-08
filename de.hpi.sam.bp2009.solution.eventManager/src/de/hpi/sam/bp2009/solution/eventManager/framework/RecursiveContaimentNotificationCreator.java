@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.util.NotificationHelper;
 
 class MyNotification extends NotificationImpl {
@@ -45,6 +46,7 @@ class MyNotification extends NotificationImpl {
 public class RecursiveContaimentNotificationCreator {
 
     public static Collection<Notification> createNotificationForComposites(Notification event) {
+        Statistics.getInstance().begin("createNotificationForComposites", event);
         Set<Notification> result = new HashSet<Notification>();
         Object f = event.getFeature();
         if (f != null && f instanceof EReference && ((EReference) f).isContainment()) {
@@ -53,6 +55,7 @@ public class RecursiveContaimentNotificationCreator {
             handleValues(event, result);
         }
         result.add(event);
+        Statistics.getInstance().end("createNotificationForComposites", event);
 
         return result;
 
