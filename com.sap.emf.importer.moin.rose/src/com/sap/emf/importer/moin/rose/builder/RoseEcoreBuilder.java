@@ -6,8 +6,8 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *   IBM - Initial API and implementation
  *
  * </copyright>
@@ -116,15 +116,15 @@ public class RoseEcoreBuilder implements RoseVisitor
   protected RoseNode role2 = null;
   protected EGenericType eGenericType1;
   protected EGenericType eGenericType2;
-  
+
   protected Set<EAttribute> attributesToConvert = new HashSet<EAttribute>();
 
   // This could potentially map every created model element to its corresponding Rose node.
   // However, for now we're only using it as needed.
   //
   protected Map<EModelElement, RoseNode> eModelElementToRoseNodeMap = new HashMap<EModelElement, RoseNode>();
-  private List<DeferredConstraintAnnotation> deferredConstraints = new ArrayList<RoseEcoreBuilder.DeferredConstraintAnnotation>();
-  private List<EClassifier> allClasses = new ArrayList<EClassifier>();
+  private final List<DeferredConstraintAnnotation> deferredConstraints = new ArrayList<RoseEcoreBuilder.DeferredConstraintAnnotation>();
+  private final List<EClassifier> allClasses = new ArrayList<EClassifier>();
 
 
   public RoseEcoreBuilder(RoseUtil roseUtil)
@@ -133,12 +133,14 @@ public class RoseEcoreBuilder implements RoseVisitor
     this.roseUtil = roseUtil;
   }
 
-  public void visitList(RoseNode roseNode)
+  @Override
+public void visitList(RoseNode roseNode)
   {
     // Nothing to do
   }
 
-  public void visitObject(RoseNode roseNode)
+  @Override
+public void visitObject(RoseNode roseNode)
   {
     String roseNodeValue = roseNode.getValue();
     String objectKey = roseNode.getKey();
@@ -244,17 +246,18 @@ protected void visitClassCategory(RoseNode roseNode, String roseNodeValue, Strin
 private void addPackagesFromClusteredImports(RoseNode roseNode, EPackage ePackage, String property) {
     for(RoseNode n: roseNode.getNodes()){
           if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
-              
+
               for(RoseNode attr: n.getNodes()){
                   if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){
                       String[] pkgNames = parseAttributesFromNode(attr, property);
-                      if(pkgNames == null)
-                          continue;
-                      for(String pkgName: pkgNames){ 
+                      if(pkgNames == null) {
+			continue;
+		    }
+                      for(String pkgName: pkgNames){
                           EPackage pkg = EcoreFactory.eINSTANCE.createEPackage();
                           ePackage.getESubpackages().add(pkg);
                           setEPackageProperties(roseNode, pkg, pkgName);
-                      }                             
+                      }
                   }
               }
           }
@@ -275,9 +278,10 @@ protected void visitConstraintClass(RoseNode constraintClassRoseNode, String ros
                     if(invStart!=-1){
                         int colonStart=fullOCLStatement.indexOf(COLON);
                         String newConstraintName=fullOCLStatement.substring(invStart+INV.length(),colonStart).trim();
-                        if(!newConstraintName.isEmpty())
-                            constraintName=newConstraintName;
-                            
+                        if(!newConstraintName.isEmpty()) {
+			    constraintName=newConstraintName;
+			}
+
                         constraintExpr= fullOCLStatement.substring(colonStart+1).trim();
                     }else{
                         constraintExpr= fullOCLStatement;
@@ -285,22 +289,23 @@ protected void visitConstraintClass(RoseNode constraintClassRoseNode, String ros
                 }
             }
         }
-       
+
     }
     if(!(parent instanceof EClassifier)){
         if(parent instanceof EPackage){
-          
+
             for(RoseNode n: constraintClassRoseNode.getNodes()){
                 if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
-                    
+
                     for(RoseNode attr: n.getNodes()){
-                        if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){                         
+                        if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){
                             String[] clsNames = parseAttributesFromNode(attr, ROSE2MOF_CONSTRAINED_ELEMENTS);
-                            if(clsNames == null)
-                                continue;
-                            for(String clsName: clsNames){                               
-                                this.deferredConstraints.add(new DeferredConstraintAnnotation(constraintName, constraintExpr, clsName));
-                            }                             
+                            if(clsNames == null) {
+				continue;
+			    }
+                            for(String clsName: clsNames){
+                                deferredConstraints.add(new DeferredConstraintAnnotation(constraintName, constraintExpr, clsName));
+                            }
                         }
                     }
                 }
@@ -310,7 +315,7 @@ protected void visitConstraintClass(RoseNode constraintClassRoseNode, String ros
     }
     EClassifier clazz = (EClassifier) parent;
     addConstraintToNamedElement(constraintName, constraintExpr, clazz);
-    
+
 }
 private String[] parseAttributesFromNode(RoseNode node, String property){
     // there should be exactly 3 columns
@@ -318,7 +323,7 @@ private String[] parseAttributesFromNode(RoseNode node, String property){
         return null;
     // first column MOF
     String firstAttrValue= node.getNodes().get(0).getValue();
-    
+
     if(!MOF.equals(firstAttrValue))
         return null;
     //second column should define the given property"
@@ -326,29 +331,29 @@ private String[] parseAttributesFromNode(RoseNode node, String property){
     if(!property.equals(secondAttrValue))
         return null;
     String thirdAttrValue= Util.getName(node.getNodes().get(2).getNodes().get(0).getValue());
-     
+
     // we have found a constraint
     if(thirdAttrValue == null && SAP2MOF_OPERATION_CODE_OCL.equals(property)){
         List<RoseNode> nodes = node.getNodes().get(2).getNodes().get(0).getNodes();
         String[] forthAttrValue = new String[nodes.size()];
-        
+
         int i = 0;
         for(RoseNode n: nodes){
             forthAttrValue[i] = n.getValue();
             i++;
-        }  
+        }
         return forthAttrValue;
     }
     return thirdAttrValue.split(",");
 }
-public void processDefferendConstraints(){   
-    for(EClassifier cls: this.allClasses){
+public void processDefferendConstraints(){
+    for(EClassifier cls: allClasses){
         for(DeferredConstraintAnnotation anno: deferredConstraints){
             if(cls.getName().equals(anno.clsName)){
                 addConstraintToNamedElement(anno.name, anno.expr, cls);
             }
         }
-        
+
     }
 }
 /**
@@ -359,10 +364,11 @@ public void processDefferendConstraints(){
 private void addConstraintToNamedElement(String constraintName, String constraintExpr, ENamedElement element) {
     EcoreUtil.setAnnotation(element, DELEGATE_URI, constraintName, constraintExpr);
     String csString=EcoreUtil.getAnnotation(element, ECORE_NS_URI, CONSTRAINTS);
-    if(csString==null)
-        EcoreUtil.setAnnotation(element, ECORE_NS_URI, CONSTRAINTS, constraintName);
-    else
-        EcoreUtil.setAnnotation(element, ECORE_NS_URI, CONSTRAINTS, csString+" "+constraintName);
+    if(csString==null) {
+	EcoreUtil.setAnnotation(element, ECORE_NS_URI, CONSTRAINTS, constraintName);
+    } else {
+	EcoreUtil.setAnnotation(element, ECORE_NS_URI, CONSTRAINTS, csString+" "+constraintName);
+    }
 }
 
   protected void visitClass(RoseNode roseNode, String roseNodeValue, String objectKey, String objectName, Object parent)
@@ -392,7 +398,7 @@ private void addConstraintToNamedElement(String constraintName, String constrain
         // Map to an EClass.
         //
         EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-        this.allClasses.add(eClass);
+        allClasses.add(eClass);
         String classifierName = roseNode.getClassifierName();
         if (classifierName == null || classifierName.length() == 0)
         {
@@ -479,7 +485,7 @@ private void addConstraintToNamedElement(String constraintName, String constrain
         // Map to an EClass.
         //
         EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-        this.allClasses.add(eClass);
+        allClasses.add(eClass);
         String classifierName = roseNode.getClassifierName();
         if (classifierName == null || classifierName.length() == 0)
         {
@@ -495,7 +501,7 @@ private void addConstraintToNamedElement(String constraintName, String constrain
         // Map to an EClass.
         //
         EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-        this.allClasses.add(eClass);
+        allClasses.add(eClass);
         String classifierName = roseNode.getClassifierName();
         if (classifierName == null || classifierName.length() == 0)
         {
@@ -521,7 +527,7 @@ private void addConstraintToNamedElement(String constraintName, String constrain
         // Map to an eClass.
         //
         EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-        this.allClasses.add(eClass);
+        allClasses.add(eClass);
         String classifierName = roseNode.getClassifierName();
         if (classifierName == null || classifierName.length() == 0)
         {
@@ -538,7 +544,7 @@ private void addConstraintToNamedElement(String constraintName, String constrain
       // Map to an eClass.
       //
       EClass eClass = EcoreFactory.eINSTANCE.createEClass();
-      this.allClasses.add(eClass);
+      allClasses.add(eClass);
       String classifierName = roseNode.getClassifierName();
       if (classifierName == null || classifierName.length() == 0)
       {
@@ -558,9 +564,9 @@ private void addConstraintToNamedElement(String constraintName, String constrain
             return;
     EOperation eOperation = EcoreFactory.eINSTANCE.createEOperation();
     String operationName = roseNode.getOperationName();
-    
+
     addConstraintsForOperation(roseNode, eOperation);
-       
+
     String rawName = operationName;
     if (operationName == null || operationName.length() == 0)
     {
@@ -602,17 +608,18 @@ private void addConstraintToNamedElement(String constraintName, String constrain
 private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation) {
     for(RoseNode n: roseNode.getNodes()){
         if(RoseStrings.ATTRIBUTE_SET.equals(Util.getType(n.getValue()))){
-           
+
             for(RoseNode attr: n.getNodes()){
-                if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){                         
+                if(RoseStrings.ATTRIBUTE.equals(Util.getType(attr.getValue()))){
                     String[] constraints = parseAttributesFromNode(attr, SAP2MOF_OPERATION_CODE_OCL);
-                    if(constraints == null)
-                        continue;
+                    if(constraints == null) {
+			continue;
+		    }
                     StringBuilder result = new StringBuilder();
                     for(String clsName: constraints){
                         result.append(clsName);
                         result.append('\n');
-                    } 
+                    }
                     result.delete(result.length()-1, result.length()); // delete last \n again
                     String expr = result.substring(result.indexOf("body:") + 5).trim();
                     //TODO ensure that the constrained name is always body and not pre/post/...
@@ -726,7 +733,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
         {
           attributeName = validName(objectName);
         }
-  
+
         eAttribute.setName(attributeName);
         roseNode.setNode(eAttribute);
         ((EClass)parent).getEStructuralFeatures().add(eAttribute);
@@ -736,7 +743,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
           eAttribute.setUpperBound(1);
         }
 
-        // We will need to check the containment if we have to convert the EAttribute to an EReference later. 
+        // We will need to check the containment if we have to convert the EAttribute to an EReference later.
         //
         if (roseNode.getContainment() != null)
         {
@@ -1079,10 +1086,12 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     }
     ePackage.setNsURI(nsURI);
 
-    if (prefix != null && prefix.length() == 0)
-      prefix = null;
-    if (basePackage != null && basePackage.length() == 0)
-      basePackage = null;
+    if (prefix != null && prefix.length() == 0) {
+	prefix = null;
+    }
+    if (basePackage != null && basePackage.length() == 0) {
+	basePackage = null;
+    }
 
     if (prefix != null || basePackage != null)
     {
@@ -1184,7 +1193,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     setETypedElementProperties(roseNode, eOperation);
     eOperation.setOrdered(roseNode.isOrdered(true));
     eOperation.setUnique(roseNode.isUnique(true));
-    
+
     String semantics = roseNode.getSemantics();
     if (semantics != null && activateSemanticsTab)
     {
@@ -1211,7 +1220,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
         {
           exception = exception.substring(0, exception.indexOf("["));
         }
-          
+
         if (exception != null && !exception.equals(""))
         {
           EGenericType eGenericType = parseTemplateArgument(exception);
@@ -1408,7 +1417,12 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       if (multiplicity == null) {
         multiplicity = roseNode.getStereotype(); // default
       }
-    } else {
+    } else if (eTypedElement instanceof EAttribute ){
+      multiplicity = roseNode.getAttributeValue("MOF", "rose2mof.multiplicity");
+      if (multiplicity == null) {
+	  multiplicity = roseNode.getStereotype(); // default
+      }
+    }else {
         multiplicity = roseNode.getStereotype();
     }
     if (multiplicity != null)
@@ -1416,9 +1430,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       bounded.add(eTypedElement);
 
       if (multiplicity.length() > 0 && Character.isLetter(multiplicity.charAt(0)) && !"n".equalsIgnoreCase(multiplicity))
-      {
-        return;
-      }
+	return;
 
       StringTokenizer stringTokenizer = new StringTokenizer(multiplicity, ". \n\r\t");
       switch (stringTokenizer.countTokens())
@@ -1616,11 +1628,8 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     {
       eEnumLiteral.setValue(Integer.parseInt(value));
       return true;
-    }
-    else
-    {
-      return false;
-    }
+    } else
+	return false;
   }
 
   protected void setEParameterProperties(RoseNode roseNode, EParameter eParameter)
@@ -1699,7 +1708,8 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
 
   protected static Comparator<Object> eClassComparator = new Comparator<Object>()
     {
-      public int compare(Object o1, Object o2)
+      @Override
+    public int compare(Object o1, Object o2)
       {
         // Order first by number of features (descending) and then alphabetically (ascending)
         //
@@ -1835,7 +1845,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       }
     }
   }
-  
+
   protected List<ETypeParameter> parseTemplateParameters(String templateParameters)
   {
     List<ETypeParameter> result = new ArrayList<ETypeParameter>();
@@ -1942,7 +1952,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
     result.add(parseTemplateArgument(templateArguments.substring(start).trim()));
     return result;
   }
-  
+
   EGenericType parseTemplateArgument(String templateArgument)
   {
     EGenericType eGenericType = EcoreFactory.eINSTANCE.createEGenericType();
@@ -1960,7 +1970,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
         if (templateArgument.indexOf("extends ") == index)
         {
           eGenericType.setEUpperBound(parseTemplateArgument(templateArgument.substring(index + 8).trim()));
-          
+
         }
         else if (templateArgument.indexOf("super ") == index)
         {
@@ -2147,7 +2157,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
             break;
           }
           else if (!eAttribute.getEAttributeType().isSerializable() &&
-                     !eAttribute.isTransient() && 
+                     !eAttribute.isTransient() &&
                      !"org.eclipse.emf.ecore.util.FeatureMap$Entry".equals(eAttribute.getEAttributeType().getInstanceClassName()))
           {
             error(RoseImporterPlugin.INSTANCE.getString("_UI_TheAttributeShouldBeTransient_message", new Object []{
@@ -2323,7 +2333,8 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
 
   protected Comparator<EStructuralFeature> eStructuralFeatureComparator = new Comparator<EStructuralFeature>()
     {
-      public int compare(EStructuralFeature o1, EStructuralFeature o2)
+      @Override
+    public int compare(EStructuralFeature o1, EStructuralFeature o2)
       {
         return eStructuralFeatures.indexOf(o1) - eStructuralFeatures.indexOf(o2);
       }
@@ -2388,7 +2399,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
         {
           if (parent instanceof EClass || parent instanceof EOperation)
           {
-            for (ETypeParameter eTypeParameter : 
+            for (ETypeParameter eTypeParameter :
                    parent instanceof EClass ? ((EClass)parent).getETypeParameters() : ((EOperation)parent).getETypeParameters())
             {
               if (type.equals(eTypeParameter.getName()))
@@ -2493,7 +2504,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       }
       else if (element instanceof EReference)
       {
-        // Convert reference to attribute if its type is an EDataType... 
+        // Convert reference to attribute if its type is an EDataType...
         //
         EReference eReference = (EReference)element;
         boolean convert = eType instanceof EDataType;
@@ -2588,106 +2599,58 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
   protected EClassifier getBasicType(String value)
   {
     if (value.equals("boolean") || value.equalsIgnoreCase("eboolean"))
-    {
-      return EcorePackage.Literals.EBOOLEAN;
-    }
+	return EcorePackage.Literals.EBOOLEAN;
     else if (value.equalsIgnoreCase("boolean") || value.equalsIgnoreCase("ebooleanobject"))
-    {
-      return EcorePackage.Literals.EBOOLEAN_OBJECT;
-    }
+	return EcorePackage.Literals.EBOOLEAN_OBJECT;
     else if (value.equalsIgnoreCase("string") || value.equalsIgnoreCase("estring"))
-    {
-      return EcorePackage.Literals.ESTRING;
-    }
+	return EcorePackage.Literals.ESTRING;
     else if (value.equalsIgnoreCase("char") || value.equalsIgnoreCase("echar"))
-    {
-      return EcorePackage.Literals.ECHAR;
-    }
+	return EcorePackage.Literals.ECHAR;
     else if (value.equalsIgnoreCase("character") || value.equalsIgnoreCase("echaracterobject"))
-    {
-      return EcorePackage.Literals.ECHARACTER_OBJECT;
-    }
+	return EcorePackage.Literals.ECHARACTER_OBJECT;
     else if (value.equals("double") || value.equalsIgnoreCase("edouble") || value.equalsIgnoreCase("currency"))
-    {
-      return EcorePackage.Literals.EDOUBLE;
-    }
+	return EcorePackage.Literals.EDOUBLE;
     else if (value.equalsIgnoreCase("double") || value.equalsIgnoreCase("edoubleobject"))
-    {
-      return EcorePackage.Literals.EDOUBLE_OBJECT;
-    }
+	return EcorePackage.Literals.EDOUBLE_OBJECT;
     else if (value.equalsIgnoreCase("int") || value.equalsIgnoreCase("eint"))
-    {
-      return EcorePackage.Literals.EINT;
-    }
+	return EcorePackage.Literals.EINT;
     else if (value.equalsIgnoreCase("integer") || value.equalsIgnoreCase("eintegerobject"))
-    {
-      return EcorePackage.Literals.EINTEGER_OBJECT;
-    }
+	return EcorePackage.Literals.EINTEGER_OBJECT;
     else if (value.equals("long long") || value.equals("long") || value.equalsIgnoreCase("elong"))
-    {
-      return EcorePackage.Literals.ELONG;
-    }
+	return EcorePackage.Literals.ELONG;
     else if (value.equalsIgnoreCase("long") || value.equalsIgnoreCase("elongobject"))
-    {
-      return EcorePackage.Literals.ELONG_OBJECT;
-    }
+	return EcorePackage.Literals.ELONG_OBJECT;
     else if (value.equals("float") || value.equalsIgnoreCase("efloat") || value.equalsIgnoreCase("single"))
-    {
-      return EcorePackage.Literals.EFLOAT;
-    }
+	return EcorePackage.Literals.EFLOAT;
     else if (value.equalsIgnoreCase("float") || value.equalsIgnoreCase("efloatobject"))
-    {
-      return EcorePackage.Literals.EFLOAT_OBJECT;
-    }
+	return EcorePackage.Literals.EFLOAT_OBJECT;
     else if (value.equals("short") || value.equalsIgnoreCase("eshort"))
-    {
-      return EcorePackage.Literals.ESHORT;
-    }
+	return EcorePackage.Literals.ESHORT;
     else if (value.equalsIgnoreCase("short") || value.equalsIgnoreCase("eshortobject"))
-    {
-      return EcorePackage.Literals.ESHORT_OBJECT;
-    }
+	return EcorePackage.Literals.ESHORT_OBJECT;
     else if (value.equals("byte") || value.equalsIgnoreCase("ebyte"))
-    {
-      return EcorePackage.Literals.EBYTE;
-    }
+	return EcorePackage.Literals.EBYTE;
     else if (value.equals("byte[]") || value.equalsIgnoreCase("ebytearray") || value.equalsIgnoreCase("ebyte[]"))
-    {
-      return EcorePackage.Literals.EBYTE_ARRAY;
-    }
+	return EcorePackage.Literals.EBYTE_ARRAY;
     else if (value.equalsIgnoreCase("byte") || value.equalsIgnoreCase("ebyteObject"))
-    {
-      return EcorePackage.Literals.EBYTE_OBJECT;
-    }
+	return EcorePackage.Literals.EBYTE_OBJECT;
     else if (value.equalsIgnoreCase("ebigdecimal"))
-    {
-      return EcorePackage.Literals.EBIG_DECIMAL;
-    }
+	return EcorePackage.Literals.EBIG_DECIMAL;
     else if (value.equalsIgnoreCase("ebiginteger"))
-    {
-      return EcorePackage.Literals.EBIG_INTEGER;
-    }
+	return EcorePackage.Literals.EBIG_INTEGER;
     else if (value.equalsIgnoreCase("edate"))
-    {
-      return EcorePackage.Literals.EDATE;
-    }
+	return EcorePackage.Literals.EDATE;
     else if (value.equalsIgnoreCase("eobject"))
-    {
-      return EcorePackage.Literals.EOBJECT;
-    }
+	return EcorePackage.Literals.EOBJECT;
     else if (value.equalsIgnoreCase("efeaturemapentry"))
-    {
-      return EcorePackage.Literals.EFEATURE_MAP_ENTRY;
-    }
+	return EcorePackage.Literals.EFEATURE_MAP_ENTRY;
     else
-    {
-      return null;
-    }
+	return null;
   }
 
   public void createEPackageForRootClasses(EList<EObject> extent, RoseNode roseNode, String packageName)
   {
-      
+
     ArrayList<EObject> list = new ArrayList<EObject>();
     for (EObject eObject : extent)
     {
@@ -2774,9 +2737,7 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
   {
     // try to retrieve the fully qualified name of the specified type...
     if (null == type || type.length() == 0 || "void".equals(type))
-    {
-      return type;
-    }
+	return type;
 
     String qualifiedType = type;
     // convert to dot-separated format if necessary...
