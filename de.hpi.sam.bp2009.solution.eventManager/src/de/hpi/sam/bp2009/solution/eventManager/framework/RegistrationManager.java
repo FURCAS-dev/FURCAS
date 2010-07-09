@@ -115,15 +115,13 @@ public abstract class RegistrationManager {
          * the order of the following 2 calls is important! adjustFilter might change the structure of the filter tree
          */
         filterTree = adjustFilter(filterTree);
-
-        LogicalOperationFilter filterInNormalForm = (LogicalOperationFilter) getDisjunctiveNormalForm((LogicalOperationFilter) filterTree);
-
+        OrFilter filterInNormalForm = getDisjunctiveNormalForm((LogicalOperationFilter) filterTree);
         /*
          * visit the whole filter tree and add each atomic filter to its corresponding filterTable.
          */
         RegistrationSet result = new RegistrationSet(listener, listenerType);
-
         for (EventFilter andFilter : filterInNormalForm.getOperands()) {
+            // TODO re-use Registrations for equal andFilter, just add another listener; this will reduce #Registrations in tables
             // create registration
             Registration reg = new Registration(listener, listenerType);
             reg.setContainer(result);
@@ -132,14 +130,13 @@ public abstract class RegistrationManager {
             /*
              * registrationsByListener is a WeakHashMap, so direct references to listeners can be stored
              */
-            if (registrationsByListener.get(listener.get()) == null)
+            if (registrationsByListener.get(listener.get()) == null) {
                 registrationsByListener.put(listener.get(), new ArrayList<AbstractRegistration>());
-
+            }
             registrationsByListener.get(listener.get()).add(reg);
 
             AndFilter level1OfTree = (AndFilter) andFilter;
             for (EventFilter leafOfTree : level1OfTree.getOperands()) {
-
                 TableForEventFilter filterTable = getFilterTable(leafOfTree);
                 if(filterTable == null){
                     throw new IllegalArgumentException("no table for type "+ leafOfTree.getClass() +" in RegistryManager defined");
@@ -271,7 +268,9 @@ public abstract class RegistrationManager {
         return result;
     }
 
-    // private long time=0;
+    /**
+     * Finds matching {@link Registration}s for <code>event</code>. 
+     */
     @SuppressWarnings("unchecked")
     protected Collection<Registration> getRegistrationsFor(Notification event) {
         Statistics.getInstance().begin("getRegistrationsFor", event);
@@ -624,11 +623,11 @@ public abstract class RegistrationManager {
      * 
      * @return a filter tree in disjunctive normal form which has exactly the same semantics like the original tree
      */
-    public static LogicalOperationFilter getDisjunctiveNormalForm(LogicalOperationFilter filter) {
+    public static OrFilter getDisjunctiveNormalForm(LogicalOperationFilter filter) {
 
         // perhaps the tree is in DNF yet?
         if (isInDisjunctiveNormalForm(filter))
-            return (LogicalOperationFilter) filter;
+            return (OrFilter) filter;
 
         LogicalOperationFilter result = filter;
 
@@ -642,14 +641,14 @@ public abstract class RegistrationManager {
         if (!isInDisjunctiveNormalForm(result))
             result = (LogicalOperationFilter) getExpandedSubTree(null, result);
         else
-            return (LogicalOperationFilter) result;
+            return (OrFilter) result;
 
         if (getDepth(result) < 2) {
 
             // bring simple filters to disjunctive normalform
             if (result instanceof OrFilter) {
                 /*
-                 * This is currently an OrFilter which connects the leafs of the tree => between the OrFilter and each leaf, an
+                 * This is currently an OrFilter which connects the leaves of the tree => between the OrFilter and each leaf, an
                  * AndFilter is inserted.
                  */
                 LogicalOperationFilter orfilter = new OrFilter();
@@ -679,7 +678,7 @@ public abstract class RegistrationManager {
             throw new IllegalStateException();
         }
 
-        return (LogicalOperationFilter) result;
+        return (OrFilter) result;
     }
 
     /**

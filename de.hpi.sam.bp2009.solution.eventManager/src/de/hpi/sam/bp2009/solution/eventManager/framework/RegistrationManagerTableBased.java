@@ -1,11 +1,8 @@
 package de.hpi.sam.bp2009.solution.eventManager.framework;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -20,83 +17,6 @@ class RegistrationManagerTableBased extends RegistrationManager {
 
     public RegistrationManagerTableBased() {
         super();
-    }
-
-    /**
-     * this method adds caching functionality and the filtering by the listener type to the super class' functionality
-     * 
-     * @see com.sap.tc.moin.repository.events.framework.RegistrationManager#getRegistrationsFor(com.sap.tc.moin.repository.events.type.ChangeEvent)
-     */
-    public Collection<Registration> getRegistrationsFor(Notification event) {
-
-        Collection<Registration> result = getCachedRegistrationsFromEvent(event);
-
-        if (result == null) {
-            result = super.getRegistrationsFor(event);
-            cacheRegistrationsForEvent(result, event);
-        } else {
-            // this is the post change phase - the entry in the HashMap will not
-            // be needed any more
-            // ((ChangeEventImpl) event).registrations = null;
-//            FIXME change the caching to support equal notifications
-//            setRegistrationsForEvent(event,null);
-            // it might happen, that a listener deregistered between the pre and
-            // the post event
-            result.retainAll(allRegistrations);
-        }
-
-        // return reduceCollectionToMatchingListenerType(result, ((ChangeEventImpl)event).getDedicatedListenerType());
-        //TODO when additional ListenerTypes supported, add handling here
-        return result;
-    }
-
-    /**
-     * puts the registrations into WeakReferences which will be cached in the event itself
-     * 
-     * @param registrations
-     * @param event
-     */
-    private void cacheRegistrationsForEvent(Collection<Registration> registrations, Notification event) {
-        Collection<WeakReference<Registration>> result = new LinkedList<WeakReference<Registration>>();
-        for (Registration reg : registrations) {
-            result.add(new WeakReference<Registration>(reg));
-        }
-        setRegistrationsForEvent(event, result);
-        // ((ChangeEventImpl) event).registrations = result;
-    }
-
-    /**
-     * converts the cached WeakReferences(which are stored in the event instance) to Java References
-     * 
-     * @param event
-     * @return
-     */
-    private Collection<Registration> getCachedRegistrationsFromEvent(Notification event) {
-        // Collection<WeakReference> cachedWeakReferences = ((ChangeEventImpl) event).registrations;
-        Collection<WeakReference<Registration>> cachedWeakReferences = getRegistrationsFromEvent(event);
-        if (cachedWeakReferences == null)
-            return null;
-
-        Collection<Registration> result = new ArrayList<Registration>(cachedWeakReferences.size());
-
-        for (WeakReference<Registration> wref : cachedWeakReferences) {
-            Registration registration = wref.get();
-            if (registration != null)
-                result.add(registration);
-        }
-        return result;
-    }
-
-    HashMap<Notification, Collection<WeakReference<Registration>>> regCache = new HashMap<Notification, Collection<WeakReference<Registration>>>();
-
-    private Collection<WeakReference<Registration>> getRegistrationsFromEvent(Notification event) {
-        return regCache.get(event);
-
-    }
-
-    private void setRegistrationsForEvent(Notification event, Collection<WeakReference<Registration>> result) {
-        regCache.put(event, result);
-
     }
 
     /**
@@ -134,9 +54,6 @@ class RegistrationManagerTableBased extends RegistrationManager {
         tableByFilterType.put(table.getIdentifier(), table);
 
         table = new TableForAttributeFilter();
-        // addTableForEventType(table, AttributeValueAddEventImpl.class);
-        // addTableForEventType(table, AttributeValueRemoveEventImpl.class);
-        // addTableForEventType(table, AttributeValueChangeEventImpl.class);
         setUsualEvents(table);
         allTables.add(table);
         tableByFilterType.put(table.getIdentifier(), table);
@@ -160,20 +77,6 @@ class RegistrationManagerTableBased extends RegistrationManager {
 //        affectedTablesOnElementRepartitioning.add(table);
 
         table = new TableForEventTypeFilter();
-        // addTableForEventType(table, ElementCreateEventImpl.class);
-        // addTableForEventType(table, PreElementCreateEventImpl.class);
-        // addTableForEventType(table, ElementDeleteEventImpl.class);
-        // addTableForEventType(table, AttributeValueAddEventImpl.class);
-        // addTableForEventType(table, AttributeValueRemoveEventImpl.class);
-        // addTableForEventType(table, AttributeValueChangeEventImpl.class);
-        // addTableForEventType(table, LinkAddEventImpl.class);
-        // addTableForEventType(table, LinkRemoveEventImpl.class);
-        // addTableForEventType(table, SaveEventImpl.class);
-        // addTableForEventType(table, PartitionContentChangeEventImpl.class);
-        // addTableForEventType(table, PartitionCreateEventImpl.class);
-        // addTableForEventType(table, PartitionRemoveEventImpl.class);
-        // addTableForEventType(table, PartitionPropertyChangeEventImpl.class);
-        // addTableForEventType(table, PartitionMembershipChangeEventImpl.class);
         setUsualEvents(table);
         allTables.add(table);
         tableByFilterType.put(table.getIdentifier(), table);
@@ -189,14 +92,6 @@ class RegistrationManagerTableBased extends RegistrationManager {
         // ================================================================================================
 
         table = new TableForPackageFilter();
-        // addTableForEventType(table, ElementCreateEventImpl.class);
-        // addTableForEventType(table, PreElementCreateEventImpl.class);
-        // addTableForEventType(table, ElementDeleteEventImpl.class);
-        // addTableForEventType(table, AttributeValueAddEventImpl.class);
-        // addTableForEventType(table, AttributeValueRemoveEventImpl.class);
-        // addTableForEventType(table, AttributeValueChangeEventImpl.class);
-        // addTableForEventType(table, LinkAddEventImpl.class);
-        // addTableForEventType(table, LinkRemoveEventImpl.class);
         setUsualEvents(table);
         allTables.add(table);
         tableByFilterType.put(table.getIdentifier(), table);
