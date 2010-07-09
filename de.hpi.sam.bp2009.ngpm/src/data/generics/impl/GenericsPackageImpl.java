@@ -712,14 +712,14 @@ public class GenericsPackageImpl extends EPackageImpl implements GenericsPackage
 		  (formalTypeParameterEClass, 
 		   source, 
 		   new String[] {
-			 "UseInSignaturesOfOwningParamerizedClassOnly", "self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(data::classes::Parameter) implies \n   (s.oclAsType(data::classes::Parameter).ownerSignature.oclIsKindOf(data::classes::MethodSignature) and\n    s.oclAsType(data::classes::Parameter).ownerSignature.oclAsType(data::classes::MethodSignature).owner=self.parameterOf .owningClassDefinition)) and\n  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(data::classes::MethodSignature) and \n    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and\n    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition) and\n  self.signaturesWithFault->forAll(s| s.oclIsKindOf(data::classes::MethodSignature)  and \n    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and\n    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition)",
-			 "UseInAssociationsOfOwningParameterizedClassOnly", "self.elementsOfType.associationEnd->\n    forAll(ae | ae.otherEnd().type.clazz = self.parameterOf.owningClassDefinition)"
+			 "UseInSignaturesOfOwningParamerizedClassOnly", "self.elementsOfType.getTypeUsage()->forAll(s | s.oclIsKindOf(data::classes::Parameter) implies \r\n   (s.oclAsType(data::classes::Parameter).ownerSignature.oclIsKindOf(data::classes::MethodSignature) and\r\n    s.oclAsType(data::classes::Parameter).ownerSignature.oclAsType(data::classes::MethodSignature).owner=self.parameterOf .owningClassDefinition)) and\r\n  self.elementsOfType.signaturesWithOutput->forAll(s| s.oclIsKindOf(data::classes::MethodSignature) and \r\n    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and\r\n    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition) and\r\n  self.signaturesWithFault->forAll(s| s.oclIsKindOf(data::classes::MethodSignature)  and \r\n    s.oclAsType(data::classes::MethodSignature).owner->notEmpty() and\r\n    s.oclAsType(data::classes::MethodSignature).owner=self.parameterOf.owningClassDefinition)",
+			 "UseInAssociationsOfOwningParameterizedClassOnly", "self.elementsOfType.associationEnd->\r\n    forAll(ae | ae.otherEnd().type.clazz = self.parameterOf.owningClassDefinition)"
 		   });				
 		addAnnotation
 		  (parameterizedClassInstantiationEClass, 
 		   source, 
 		   new String[] {
-			 "ActualTypeParametersMatchSignature", "self.actualTypeParametersForInstantiation->size() = self.parameterizedClass.parameterization.formalTypeParameters->size() and\n  Sequence{1..self.actualTypeParametersForInstantiation->size()}->forAll(i:Integer|\n    self.actualTypeParametersForInstantiation->at(i).formalTypeParameter =\n    self.parameterizedClass.parameterization.formalTypeParameters->at(i))",
+			 "ActualTypeParametersMatchSignature", "self.actualTypeParametersForInstantiation->size() = self.parameterizedClass.parameterization.formalTypeParameters->size() and\r\n  Sequence{1..self.actualTypeParametersForInstantiation->size()}->forAll(i:Integer|\r\n    self.actualTypeParametersForInstantiation->at(i).formalTypeParameter =\r\n    self.parameterizedClass.parameterization.formalTypeParameters->at(i))",
 			 "ClassMustBeParameterized", "self.parameterizedClass.parameterization->notEmpty()"
 		   });			
 		addAnnotation
@@ -744,7 +744,7 @@ public class GenericsPackageImpl extends EPackageImpl implements GenericsPackage
 		  (actualTypeParameterEClass, 
 		   source, 
 		   new String[] {
-			 "TypeConformsWithFormalParametersTypeConstraint", "self.formalTypeParameter.typeConstraint->notEmpty() implies\n    self.type.conformsTo(self.formalTypeParameter.typeConstraint)"
+			 "TypeConformsWithFormalParametersTypeConstraint", "self.formalTypeParameter.typeConstraint->notEmpty() implies\r\n    self.type.conformsTo(self.formalTypeParameter.typeConstraint)"
 		   });		
 	}
 

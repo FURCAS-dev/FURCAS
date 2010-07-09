@@ -846,7 +846,7 @@ public class AbapdictionaryPackageImpl extends EPackageImpl implements Abapdicti
 		  (codeEClass, 
 		   source, 
 		   new String[] {
-			 "TypeOfValuesEqualsAbapType", "self.values->forAll(cv:CodeValue |\n      cv.type = self.abapType)"
+			 "TypeOfValuesEqualsAbapType", "self.values->forAll(cv:CodeValue |\r\n      cv.type = self.abapType)"
 		   });	
 	}
 

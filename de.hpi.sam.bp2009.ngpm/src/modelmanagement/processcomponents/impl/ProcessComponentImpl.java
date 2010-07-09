@@ -12,6 +12,7 @@ import data.classes.SapClass;
 
 import integration.processintegration.ProcessComponentInteraction;
 
+import integration.processintegration.ProcessintegrationPackage;
 import java.util.Collection;
 import modelmanagement.impl.PackageOwnerImpl;
 
@@ -25,6 +26,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -38,8 +41,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link modelmanagement.processcomponents.impl.ProcessComponentImpl#getProvidedInterfaces <em>Provided Interfaces</em>}</li>
  *   <li>{@link modelmanagement.processcomponents.impl.ProcessComponentImpl#getEventProducers <em>Event Producers</em>}</li>
- *   <li>{@link modelmanagement.processcomponents.impl.ProcessComponentImpl#getInteractions <em>Interactions</em>}</li>
  *   <li>{@link modelmanagement.processcomponents.impl.ProcessComponentImpl#getInitiatedInteractions <em>Initiated Interactions</em>}</li>
+ *   <li>{@link modelmanagement.processcomponents.impl.ProcessComponentImpl#getInteractions <em>Interactions</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,7 +50,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class ProcessComponentImpl extends PackageOwnerImpl implements ProcessComponent {
 	/**
-	 * The cached value of the '{@link #getProvidedInterfaces() <em>Provided Interfaces</em>}' containment reference list.
+	 * The cached value of the '{@link #getProvidedInterfaces() <em>Provided Interfaces</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getProvidedInterfaces()
@@ -57,7 +60,7 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	protected EList<SapClass> providedInterfaces;
 
 	/**
-	 * The cached value of the '{@link #getEventProducers() <em>Event Producers</em>}' containment reference list.
+	 * The cached value of the '{@link #getEventProducers() <em>Event Producers</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEventProducers()
@@ -67,17 +70,7 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	protected EList<EventProducer> eventProducers;
 
 	/**
-	 * The cached value of the '{@link #getInteractions() <em>Interactions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInteractions()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ProcessComponentInteraction> interactions;
-
-	/**
-	 * The cached value of the '{@link #getInitiatedInteractions() <em>Initiated Interactions</em>}' containment reference list.
+	 * The cached value of the '{@link #getInitiatedInteractions() <em>Initiated Interactions</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInitiatedInteractions()
@@ -85,6 +78,16 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 * @ordered
 	 */
 	protected EList<ProcessComponentInteraction> initiatedInteractions;
+
+	/**
+	 * The cached value of the '{@link #getInteractions() <em>Interactions</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInteractions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ProcessComponentInteraction> interactions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -112,7 +115,7 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 */
 	public EList<SapClass> getProvidedInterfaces() {
 		if (providedInterfaces == null) {
-			providedInterfaces = new EObjectContainmentEList<SapClass>(SapClass.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES);
+			providedInterfaces = new EObjectResolvingEList<SapClass>(SapClass.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES);
 		}
 		return providedInterfaces;
 	}
@@ -124,7 +127,7 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 */
 	public EList<EventProducer> getEventProducers() {
 		if (eventProducers == null) {
-			eventProducers = new EObjectContainmentEList<EventProducer>(EventProducer.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS);
+			eventProducers = new EObjectResolvingEList<EventProducer>(EventProducer.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS);
 		}
 		return eventProducers;
 	}
@@ -136,7 +139,7 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 */
 	public EList<ProcessComponentInteraction> getInteractions() {
 		if (interactions == null) {
-			interactions = new EObjectContainmentEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS);
+			interactions = new EObjectWithInverseResolvingEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT);
 		}
 		return interactions;
 	}
@@ -146,9 +149,26 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInitiatedInteractions()).basicAdd(otherEnd, msgs);
+			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInteractions()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<ProcessComponentInteraction> getInitiatedInteractions() {
 		if (initiatedInteractions == null) {
-			initiatedInteractions = new EObjectContainmentEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS);
+			initiatedInteractions = new EObjectWithInverseResolvingEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT);
 		}
 		return initiatedInteractions;
 	}
@@ -161,14 +181,10 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
-				return ((InternalEList<?>)getProvidedInterfaces()).basicRemove(otherEnd, msgs);
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
-				return ((InternalEList<?>)getEventProducers()).basicRemove(otherEnd, msgs);
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				return ((InternalEList<?>)getInteractions()).basicRemove(otherEnd, msgs);
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
 				return ((InternalEList<?>)getInitiatedInteractions()).basicRemove(otherEnd, msgs);
+			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+				return ((InternalEList<?>)getInteractions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -185,10 +201,10 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 				return getProvidedInterfaces();
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
 				return getEventProducers();
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				return getInteractions();
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
 				return getInitiatedInteractions();
+			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+				return getInteractions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -210,13 +226,13 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 				getEventProducers().clear();
 				getEventProducers().addAll((Collection<? extends EventProducer>)newValue);
 				return;
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				getInteractions().clear();
-				getInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
-				return;
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
 				getInitiatedInteractions().clear();
 				getInitiatedInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
+				return;
+			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+				getInteractions().clear();
+				getInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -236,11 +252,11 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
 				getEventProducers().clear();
 				return;
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				getInteractions().clear();
-				return;
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
 				getInitiatedInteractions().clear();
+				return;
+			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+				getInteractions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -258,10 +274,10 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 				return providedInterfaces != null && !providedInterfaces.isEmpty();
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
 				return eventProducers != null && !eventProducers.isEmpty();
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				return interactions != null && !interactions.isEmpty();
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
 				return initiatedInteractions != null && !initiatedInteractions.isEmpty();
+			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+				return interactions != null && !interactions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

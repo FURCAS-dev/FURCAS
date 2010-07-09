@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getTypeAdapter()
- * @model annotation="http://de.hpi.sam.bp2009.OCL AllSignatureConforms='self.ownedSignatures->forAll(selfSig:MethodSignature |\n    self.to.signaturesWithDelegation()->exists(toSig:MethodSignature |\n       selfSig.conformsTo(toSig)))' SignaturesCannotBeAbstract='self.ownedSignatures->forAll(selfSig:MethodSignature | not selfSig.isAbstract())' IsFullAdaptationToTo='self.to.signaturesWithDelegation()->forAll(toSig|\n    self.adapted.signaturesWithDelegation()->exists(adaptedSig|\n      adaptedSig.conformsTo(toSig))\n    or self.ownedSignatures->exists(ownedSig|\n      ownedSig.conformsTo(toSig)))' ValuesToValues_EntitiesToEntities='self.adapted.valueType = self.to.valueType'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL AllSignatureConforms='self.ownedSignatures->forAll(selfSig:MethodSignature |\r\n    self.to.signaturesWithDelegation()->exists(toSig:MethodSignature |\r\n       selfSig.conformsTo(toSig)))' SignaturesCannotBeAbstract='self.ownedSignatures->forAll(selfSig:MethodSignature | not selfSig.isAbstract())' IsFullAdaptationToTo='self.to.signaturesWithDelegation()->forAll(toSig|\r\n    self.adapted.signaturesWithDelegation()->exists(adaptedSig|\r\n      adaptedSig.conformsTo(toSig))\r\n    or self.ownedSignatures->exists(ownedSig|\r\n      ownedSig.conformsTo(toSig)))' ValuesToValues_EntitiesToEntities='self.adapted.valueType = self.to.valueType'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='AllSignatureConforms SignaturesCannotBeAbstract IsFullAdaptationToTo ValuesToValues_EntitiesToEntities'"
  * @generated
  */

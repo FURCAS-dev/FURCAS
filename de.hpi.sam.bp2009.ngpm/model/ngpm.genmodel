@@ -4,7 +4,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.ngpm/src"
     modelPluginID="de.hpi.sam.bp2009.ngpm" modelName="Ngpm" importerID="org.eclipse.emf.importer.moin.rose"
     complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
-  <foreignModel>../rose-model/NGPM.mdl</foreignModel>
+  <foreignModel>..\rose-model\NGPM.mdl</foreignModel>
   <foreignModel>CURDIR</foreignModel>
   <foreignModel>.</foreignModel>
   <genPackages prefix="Behavioral" disposableProviderFactory="true" ecorePackage="behavioral.ecore#/">
@@ -898,8 +898,8 @@
       <genClasses image="false" ecoreClass="modelmanagement.ecore#//processcomponents/ProcessComponent">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference modelmanagement.ecore#//processcomponents/ProcessComponent/providedInterfaces"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference modelmanagement.ecore#//processcomponents/ProcessComponent/eventProducers"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference modelmanagement.ecore#//processcomponents/ProcessComponent/interactions"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference modelmanagement.ecore#//processcomponents/ProcessComponent/initiatedInteractions"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference modelmanagement.ecore#//processcomponents/ProcessComponent/interactions"/>
       </genClasses>
       <genClasses ecoreClass="modelmanagement.ecore#//processcomponents/ProcessComponentInsideCompany"/>
       <genClasses ecoreClass="modelmanagement.ecore#//processcomponents/ProcessComponentOutsideCompany"/>
@@ -1027,6 +1027,10 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference integration.ecore#//processintegration/IntegrationScenario/interactions"/>
       </genClasses>
       <genClasses ecoreClass="integration.ecore#//processintegration/ProcessComponentInteraction">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference integration.ecore#//processintegration/ProcessComponentInteraction/initiatorProcessComponent"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference integration.ecore#//processintegration/ProcessComponentInteraction/processComponent"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference integration.ecore#//processintegration/ProcessComponentInteraction/uses"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference integration.ecore#//processintegration/ProcessComponentInteraction/methodCalls"/>

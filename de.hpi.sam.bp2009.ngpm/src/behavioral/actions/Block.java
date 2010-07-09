@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see behavioral.actions.ActionsPackage#getBlock()
- * @model annotation="http://de.hpi.sam.bp2009.OCL DoesNotOwnIterators='self.variables->select(i|i.oclIsKindOf(Iterator))->isEmpty()' IsSideEffectFreeIfImplementsSideEffectFreeSignature='self.implements_->notEmpty() implies\n    (self.implements_.sideEffectFree implies self.isSideEffectFree())' DistinctNamedValueNames='self.variables->forAll( i, j | i <> j implies i.name <> j.name )'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL DoesNotOwnIterators='self.variables->select(i|i.oclIsKindOf(Iterator))->isEmpty()' IsSideEffectFreeIfImplementsSideEffectFreeSignature='self.implements_->notEmpty() implies\r\n    (self.implements_.sideEffectFree implies self.isSideEffectFree())' DistinctNamedValueNames='self.variables->forAll( i, j | i <> j implies i.name <> j.name )'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='DoesNotOwnIterators IsSideEffectFreeIfImplementsSideEffectFreeSignature DistinctNamedValueNames'"
  * @generated
  */

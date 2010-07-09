@@ -293,7 +293,7 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String BLOCK__IS_SIDE_EFFECT_FREE_IF_IMPLEMENTS_SIDE_EFFECT_FREE_SIGNATURE__EEXPRESSION = "self.implements_->notEmpty() implies\n" +
+	protected static final String BLOCK__IS_SIDE_EFFECT_FREE_IF_IMPLEMENTS_SIDE_EFFECT_FREE_SIGNATURE__EEXPRESSION = "self.implements_->notEmpty() implies\r\n" +
 		"    (self.implements_.sideEffectFree implies self.isSideEffectFree())";
 
 	/**
@@ -581,7 +581,7 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_MANIPULATION_STATEMENT__OBJECTS_MUST_CONFORM_TO_END_TYPES__EEXPRESSION = "Sequence{1..self.objects->size()}->forAll(i:Integer |\n" +
+	protected static final String LINK_MANIPULATION_STATEMENT__OBJECTS_MUST_CONFORM_TO_END_TYPES__EEXPRESSION = "Sequence{1..self.objects->size()}->forAll(i:Integer |\r\n" +
 		"    objects->at(i).getType().conformsTo(association.ends->at(i).type))";
 
 	/**
@@ -611,7 +611,7 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_MANIPULATION_STATEMENT__BLOCK_MUST_NOT_IMPLEMENT_SIDE_EFFECT_FREE_SIGNATURE__EEXPRESSION = "self.block.getImplementedSignature()->notEmpty() implies\n" +
+	protected static final String LINK_MANIPULATION_STATEMENT__BLOCK_MUST_NOT_IMPLEMENT_SIDE_EFFECT_FREE_SIGNATURE__EEXPRESSION = "self.block.getImplementedSignature()->notEmpty() implies\r\n" +
 		"  not self.block.getImplementedSignature().sideEffectFree";
 
 	/**
@@ -641,7 +641,7 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_MANIPULATION_STATEMENT__NO_VALUE_MUST_BE_MODIFIED__EEXPRESSION = "self.association.ends->forAll(ae:data::classes::AssociationEnd |\n" +
+	protected static final String LINK_MANIPULATION_STATEMENT__NO_VALUE_MUST_BE_MODIFIED__EEXPRESSION = "self.association.ends->forAll(ae:data::classes::AssociationEnd |\r\n" +
 		"    ae.type.clazz.valueType implies not ae.contributesToEquality)";
 
 	/**

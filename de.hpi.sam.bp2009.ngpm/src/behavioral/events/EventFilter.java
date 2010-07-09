@@ -24,13 +24,13 @@ import org.eclipse.emf.ecore.EObject;
  * It is similar to mathematical language for logical expressions
  * The main features of an event pattern language are (in order of complexity):
  * Basic event patterns to express patterns that match single event types
- * Content-based event matching in terms of the event typeï¿½s attributes
+ * Content-based event matching in terms of the event type’s attributes
  * Pattern operators for expressing relationships between events
  * Like logical operators, set operators, structural operators (causes, is independent of, before)
  * Context that restricts matches of patterns to specific contexts in which events are observed
  * Context refers to information outside the events
  * Temporal operators to specify the timing of events that match a pattern, or when a pattern should or should not match
- * Like ï¿½atï¿½, ï¿½afterï¿½, ï¿½duringï¿½
+ * Like “at”, “after”, “during”
  * 
  * <!-- end-model-doc -->
  *
@@ -43,7 +43,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see behavioral.events.EventsPackage#getEventFilter()
- * @model annotation="http://de.hpi.sam.bp2009.OCL FilterBlockSignatureMatchNotificationSignature='self.subscription.producer.notificationSignatures->exists(ms:data::classes::MethodSignature |\n    ms.conformsTo(self.test.getImplementedSignature()))'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL FilterBlockSignatureMatchNotificationSignature='self.subscription.producer.notificationSignatures->exists(ms:data::classes::MethodSignature |\r\n    ms.conformsTo(self.test.getImplementedSignature()))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='FilterBlockSignatureMatchNotificationSignature'"
  * @generated
  */

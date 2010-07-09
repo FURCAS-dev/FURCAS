@@ -56,7 +56,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getSapClass()
- * @model annotation="http://de.hpi.sam.bp2009.OCL OnlyValueClassesCanHaveObjectParameters='self.formalObjectParameters->notEmpty() implies self.valueType' OnlyObjectParameterizedClassesCanHaveConverter='self.converterBetweenParametrizations->notEmpty() implies self.formalObjectParameters->notEmpty()' OnlyTrailingOptionalParameters='self.formalObjectParameters->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.formalObjectParameters->indexOf(p)+1)..self.formalObjectParameters->size()}->forAll(\n    i | self.formalObjectParameters->at(i).defaultValue->notEmpty()))' NoRecursionForObjectParameters='true  --  TODO implement this'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL OnlyValueClassesCanHaveObjectParameters='self.formalObjectParameters->notEmpty() implies self.valueType' OnlyObjectParameterizedClassesCanHaveConverter='self.converterBetweenParametrizations->notEmpty() implies self.formalObjectParameters->notEmpty()' OnlyTrailingOptionalParameters='self.formalObjectParameters->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.formalObjectParameters->indexOf(p)+1)..self.formalObjectParameters->size()}->forAll(\r\n    i | self.formalObjectParameters->at(i).defaultValue->notEmpty()))' NoRecursionForObjectParameters='true  --  TODO implement this'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OnlyValueClassesCanHaveObjectParameters OnlyObjectParameterizedClassesCanHaveConverter OnlyTrailingOptionalParameters NoRecursionForObjectParameters'"
  * @generated
  */

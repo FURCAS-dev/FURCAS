@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see data.classes.ClassesPackage#getSignature()
  * @model abstract="true"
- *        annotation="http://de.hpi.sam.bp2009.OCL OnlyTrailingOptionalParameters='self.input->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.input->indexOf(p)+1)..self.input->size()}->forAll(\n    i | self.input->at(i).defaultValue->notEmpty()))'"
+ *        annotation="http://de.hpi.sam.bp2009.OCL OnlyTrailingOptionalParameters='self.input->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.input->indexOf(p)+1)..self.input->size()}->forAll(\r\n    i | self.input->at(i).defaultValue->notEmpty()))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OnlyTrailingOptionalParameters'"
  * @generated
  */

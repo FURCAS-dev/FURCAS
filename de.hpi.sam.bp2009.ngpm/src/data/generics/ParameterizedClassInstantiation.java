@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.generics.GenericsPackage#getParameterizedClassInstantiation()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ActualTypeParametersMatchSignature='self.actualTypeParametersForInstantiation->size() = self.parameterizedClass.parameterization.formalTypeParameters->size() and\n  Sequence{1..self.actualTypeParametersForInstantiation->size()}->forAll(i:Integer|\n    self.actualTypeParametersForInstantiation->at(i).formalTypeParameter =\n    self.parameterizedClass.parameterization.formalTypeParameters->at(i))' ClassMustBeParameterized='self.parameterizedClass.parameterization->notEmpty()'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL ActualTypeParametersMatchSignature='self.actualTypeParametersForInstantiation->size() = self.parameterizedClass.parameterization.formalTypeParameters->size() and\r\n  Sequence{1..self.actualTypeParametersForInstantiation->size()}->forAll(i:Integer|\r\n    self.actualTypeParametersForInstantiation->at(i).formalTypeParameter =\r\n    self.parameterizedClass.parameterization.formalTypeParameters->at(i))' ClassMustBeParameterized='self.parameterizedClass.parameterization->notEmpty()'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ActualTypeParametersMatchSignature ClassMustBeParameterized'"
  * @generated
  */

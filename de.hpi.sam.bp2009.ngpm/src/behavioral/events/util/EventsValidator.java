@@ -126,7 +126,7 @@ public class EventsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SUBSCRIPTION__SUBSCRIBING_CLASS_MATCH_PRODUCER__EEXPRESSION = "self.producer.notificationSignatures->forAll(ms:data::classes::MethodSignature |\n" +
+	protected static final String SUBSCRIPTION__SUBSCRIBING_CLASS_MATCH_PRODUCER__EEXPRESSION = "self.producer.notificationSignatures->forAll(ms:data::classes::MethodSignature |\r\n" +
 		"    self.subscribingClass.allSignatures()->exists(s:data::classes::MethodSignature|s.conformsTo(ms)))";
 
 	/**
@@ -184,7 +184,7 @@ public class EventsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EVENT_FILTER__FILTER_BLOCK_SIGNATURE_MATCH_NOTIFICATION_SIGNATURE__EEXPRESSION = "self.subscription.producer.notificationSignatures->exists(ms:data::classes::MethodSignature |\n" +
+	protected static final String EVENT_FILTER__FILTER_BLOCK_SIGNATURE_MATCH_NOTIFICATION_SIGNATURE__EEXPRESSION = "self.subscription.producer.notificationSignatures->exists(ms:data::classes::MethodSignature |\r\n" +
 		"    ms.conformsTo(self.test.getImplementedSignature()))";
 
 	/**

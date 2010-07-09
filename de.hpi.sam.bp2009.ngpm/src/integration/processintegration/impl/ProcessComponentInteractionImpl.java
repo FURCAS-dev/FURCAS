@@ -16,6 +16,8 @@ import integration.processintegration.ProcessintegrationPackage;
 
 import java.util.Collection;
 
+import modelmanagement.processcomponents.ProcessComponent;
+import modelmanagement.processcomponents.ProcesscomponentsPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -37,6 +39,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link integration.processintegration.impl.ProcessComponentInteractionImpl#getInitiatorProcessComponent <em>Initiator Process Component</em>}</li>
+ *   <li>{@link integration.processintegration.impl.ProcessComponentInteractionImpl#getProcessComponent <em>Process Component</em>}</li>
  *   <li>{@link integration.processintegration.impl.ProcessComponentInteractionImpl#getUses <em>Uses</em>}</li>
  *   <li>{@link integration.processintegration.impl.ProcessComponentInteractionImpl#getMethodCalls <em>Method Calls</em>}</li>
  *   <li>{@link integration.processintegration.impl.ProcessComponentInteractionImpl#getSubscriptions <em>Subscriptions</em>}</li>
@@ -46,6 +50,26 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public class ProcessComponentInteractionImpl extends EObjectImpl implements ProcessComponentInteraction {
+	/**
+	 * The cached value of the '{@link #getInitiatorProcessComponent() <em>Initiator Process Component</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInitiatorProcessComponent()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProcessComponent initiatorProcessComponent;
+
+	/**
+	 * The cached value of the '{@link #getProcessComponent() <em>Process Component</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getProcessComponent()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProcessComponent processComponent;
+
 	/**
 	 * The cached value of the '{@link #getMethodCalls() <em>Method Calls</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -83,6 +107,126 @@ public class ProcessComponentInteractionImpl extends EObjectImpl implements Proc
 	@Override
 	protected EClass eStaticClass() {
 		return ProcessintegrationPackage.Literals.PROCESS_COMPONENT_INTERACTION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProcessComponent getInitiatorProcessComponent() {
+		if (initiatorProcessComponent != null && initiatorProcessComponent.eIsProxy()) {
+			InternalEObject oldInitiatorProcessComponent = (InternalEObject)initiatorProcessComponent;
+			initiatorProcessComponent = (ProcessComponent)eResolveProxy(oldInitiatorProcessComponent);
+			if (initiatorProcessComponent != oldInitiatorProcessComponent) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT, oldInitiatorProcessComponent, initiatorProcessComponent));
+			}
+		}
+		return initiatorProcessComponent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProcessComponent basicGetInitiatorProcessComponent() {
+		return initiatorProcessComponent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetInitiatorProcessComponent(ProcessComponent newInitiatorProcessComponent, NotificationChain msgs) {
+		ProcessComponent oldInitiatorProcessComponent = initiatorProcessComponent;
+		initiatorProcessComponent = newInitiatorProcessComponent;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT, oldInitiatorProcessComponent, newInitiatorProcessComponent);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInitiatorProcessComponent(ProcessComponent newInitiatorProcessComponent) {
+		if (newInitiatorProcessComponent != initiatorProcessComponent) {
+			NotificationChain msgs = null;
+			if (initiatorProcessComponent != null)
+				msgs = ((InternalEObject)initiatorProcessComponent).eInverseRemove(this, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, ProcessComponent.class, msgs);
+			if (newInitiatorProcessComponent != null)
+				msgs = ((InternalEObject)newInitiatorProcessComponent).eInverseAdd(this, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, ProcessComponent.class, msgs);
+			msgs = basicSetInitiatorProcessComponent(newInitiatorProcessComponent, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT, newInitiatorProcessComponent, newInitiatorProcessComponent));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProcessComponent getProcessComponent() {
+		if (processComponent != null && processComponent.eIsProxy()) {
+			InternalEObject oldProcessComponent = (InternalEObject)processComponent;
+			processComponent = (ProcessComponent)eResolveProxy(oldProcessComponent);
+			if (processComponent != oldProcessComponent) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT, oldProcessComponent, processComponent));
+			}
+		}
+		return processComponent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ProcessComponent basicGetProcessComponent() {
+		return processComponent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetProcessComponent(ProcessComponent newProcessComponent, NotificationChain msgs) {
+		ProcessComponent oldProcessComponent = processComponent;
+		processComponent = newProcessComponent;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT, oldProcessComponent, newProcessComponent);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setProcessComponent(ProcessComponent newProcessComponent) {
+		if (newProcessComponent != processComponent) {
+			NotificationChain msgs = null;
+			if (processComponent != null)
+				msgs = ((InternalEObject)processComponent).eInverseRemove(this, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, ProcessComponent.class, msgs);
+			if (newProcessComponent != null)
+				msgs = ((InternalEObject)newProcessComponent).eInverseAdd(this, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, ProcessComponent.class, msgs);
+			msgs = basicSetProcessComponent(newProcessComponent, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT, newProcessComponent, newProcessComponent));
 	}
 
 	/**
@@ -158,6 +302,14 @@ public class ProcessComponentInteractionImpl extends EObjectImpl implements Proc
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT:
+				if (initiatorProcessComponent != null)
+					msgs = ((InternalEObject)initiatorProcessComponent).eInverseRemove(this, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, ProcessComponent.class, msgs);
+				return basicSetInitiatorProcessComponent((ProcessComponent)otherEnd, msgs);
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT:
+				if (processComponent != null)
+					msgs = ((InternalEObject)processComponent).eInverseRemove(this, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, ProcessComponent.class, msgs);
+				return basicSetProcessComponent((ProcessComponent)otherEnd, msgs);
 			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__USES:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -174,6 +326,10 @@ public class ProcessComponentInteractionImpl extends EObjectImpl implements Proc
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT:
+				return basicSetInitiatorProcessComponent(null, msgs);
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT:
+				return basicSetProcessComponent(null, msgs);
 			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__USES:
 				return basicSetUses(null, msgs);
 		}
@@ -202,6 +358,12 @@ public class ProcessComponentInteractionImpl extends EObjectImpl implements Proc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT:
+				if (resolve) return getInitiatorProcessComponent();
+				return basicGetInitiatorProcessComponent();
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT:
+				if (resolve) return getProcessComponent();
+				return basicGetProcessComponent();
 			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__USES:
 				return getUses();
 			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__METHOD_CALLS:
@@ -221,6 +383,12 @@ public class ProcessComponentInteractionImpl extends EObjectImpl implements Proc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT:
+				setInitiatorProcessComponent((ProcessComponent)newValue);
+				return;
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT:
+				setProcessComponent((ProcessComponent)newValue);
+				return;
 			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__USES:
 				setUses((IntegrationScenario)newValue);
 				return;
@@ -244,6 +412,12 @@ public class ProcessComponentInteractionImpl extends EObjectImpl implements Proc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT:
+				setInitiatorProcessComponent((ProcessComponent)null);
+				return;
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT:
+				setProcessComponent((ProcessComponent)null);
+				return;
 			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__USES:
 				setUses((IntegrationScenario)null);
 				return;
@@ -265,6 +439,10 @@ public class ProcessComponentInteractionImpl extends EObjectImpl implements Proc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT:
+				return initiatorProcessComponent != null;
+			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT:
+				return processComponent != null;
 			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__USES:
 				return getUses() != null;
 			case ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__METHOD_CALLS:

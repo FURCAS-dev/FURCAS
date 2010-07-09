@@ -716,7 +716,7 @@ public class LiteralsPackageImpl extends EPackageImpl implements LiteralsPackage
 		   new String[] {
 			 "ObjectLiteralsForValueClassesOnly", "self.valueClass.valueType",
 			 "ObjectLiteralPropertiesOnRightClass", "self.propertyValues->forAll(vi|vi.forEnd.otherEnd().type.clazz = self.valueClass)",
-			 "ValuesMustBeProvidedForAllMandatoryProperties", "self.valueClass.getEqualityRelevantAssociationEnds()->select(ae | ae.otherEnd().type.lowerMultiplicity > 0)->forAll(ae |\n      self.propertyValues->exists(pv | pv.forEnd.otherEnd() = ae))"
+			 "ValuesMustBeProvidedForAllMandatoryProperties", "self.valueClass.getEqualityRelevantAssociationEnds()->select(ae | ae.otherEnd().type.lowerMultiplicity > 0)->forAll(ae |\r\n      self.propertyValues->exists(pv | pv.forEnd.otherEnd() = ae))"
 		   });			
 		addAnnotation
 		  (objectLiteralEClass.getEOperations().get(0), 

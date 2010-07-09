@@ -2686,7 +2686,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		  (associationEClass, 
 		   source, 
 		   new String[] {
-			 "UniquenessOnBothEndsMustBeTheSame", "self.ends->forAll( e1, e2 : AssociationEnd |\n              e1 <> e2 implies e1.type.unique = e2.type.unique)",
+			 "UniquenessOnBothEndsMustBeTheSame", "self.ends->forAll( e1, e2 : AssociationEnd |\r\n              e1 <> e2 implies e1.type.unique = e2.type.unique)",
 			 "AtMostOneCompositeEnd", "self.ends->select(composite)->size() < 2",
 			 "AtLeastOneNavigableEnd", "self.ends->select(ae:AssociationEnd | ae.navigable)->notEmpty()",
 			 "AtMostOneEqualityContributionForTwoValueClasses", "self.ends->select(contributesToEquality and type.clazz.valueType)->size() < 2",
@@ -2696,7 +2696,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		  (signatureEClass, 
 		   source, 
 		   new String[] {
-			 "OnlyTrailingOptionalParameters", "self.input->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.input->indexOf(p)+1)..self.input->size()}->forAll(\n    i | self.input->at(i).defaultValue->notEmpty()))"
+			 "OnlyTrailingOptionalParameters", "self.input->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.input->indexOf(p)+1)..self.input->size()}->forAll(\r\n    i | self.input->at(i).defaultValue->notEmpty()))"
 		   });			
 		addAnnotation
 		  (signatureEClass.getEOperations().get(0), 
@@ -2729,7 +2729,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			 "ExposingClassesEqualOppositeEndsType", "self.signatureImplementations.implements_.owner->forAll(c:SignatureOwner | c = self.otherEnd().type.clazz)",
 			 "NoCompositionWithValueClass", "self.composite implies self.association.ends.type->forAll(ctd:ClassTypeDefinition | not ctd.clazz.valueType)",
 			 "EqualityContributionsMustBeExposedAndNavigable", "self.contributesToEquality implies (self.otherEnd().signatureImplementations->notEmpty() and self.otherEnd().navigable)",
-			 "EqualityContributingEndOnValueMustHaveUnlimitedUpperBounds", "(self.type.clazz.valueType and self.contributesToEquality and\n   self.type.clazz.getAssociationEnds()->exists(ae |\n     ae <> self and ae.contributesToEquality)) implies\n  self.type.isMany()"
+			 "EqualityContributingEndOnValueMustHaveUnlimitedUpperBounds", "(self.type.clazz.valueType and self.contributesToEquality and\r\n   self.type.clazz.getAssociationEnds()->exists(ae |\r\n     ae <> self and ae.contributesToEquality)) implies\r\n  self.type.isMany()"
 		   });			
 		addAnnotation
 		  (associationEndEClass.getEOperations().get(0), 
@@ -2743,7 +2743,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   new String[] {
 			 "OnlyValueClassesCanHaveObjectParameters", "self.formalObjectParameters->notEmpty() implies self.valueType",
 			 "OnlyObjectParameterizedClassesCanHaveConverter", "self.converterBetweenParametrizations->notEmpty() implies self.formalObjectParameters->notEmpty()",
-			 "OnlyTrailingOptionalParameters", "self.formalObjectParameters->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.formalObjectParameters->indexOf(p)+1)..self.formalObjectParameters->size()}->forAll(\n    i | self.formalObjectParameters->at(i).defaultValue->notEmpty()))",
+			 "OnlyTrailingOptionalParameters", "self.formalObjectParameters->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.formalObjectParameters->indexOf(p)+1)..self.formalObjectParameters->size()}->forAll(\r\n    i | self.formalObjectParameters->at(i).defaultValue->notEmpty()))",
 			 "NoRecursionForObjectParameters", "true  --  TODO implement this"
 		   });			
 		addAnnotation
@@ -2870,7 +2870,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		  (delegationEClass, 
 		   source, 
 		   new String[] {
-			 "ToEndMustHaveMultiplicityOfOne", "self.from.otherEnd().type.lowerMultiplicity = 1 and\n  self.from.otherEnd().type.upperMultiplicity = 1"
+			 "ToEndMustHaveMultiplicityOfOne", "self.from.otherEnd().type.lowerMultiplicity = 1 and\r\n  self.from.otherEnd().type.upperMultiplicity = 1"
 		   });			
 		addAnnotation
 		  (typedElementEClass.getEOperations().get(0), 
@@ -2888,7 +2888,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		  (contextEClass, 
 		   source, 
 		   new String[] {
-			 "ConditionMustBeBoolean", "self.condition.getType().upperMultiplicity = 1 and\n  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\n  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'",
+			 "ConditionMustBeBoolean", "self.condition.getType().upperMultiplicity = 1 and\r\n  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\r\n  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = \'Boolean\'",
 			 "ConstraintForRightClass", "self.constraints->forAll(c | c.constrainedType = self.for_)"
 		   });			
 		addAnnotation
@@ -2907,32 +2907,32 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		  (linkTraversalEClass, 
 		   source, 
 		   new String[] {
-			 "OutputTypeMatchEndType", "self.implements_.input->isEmpty() and\n  self.implements_.output.oclIsKindOf(ClassTypeDefinition) and \n  self.implements_.output.oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz",
+			 "OutputTypeMatchEndType", "self.implements_.input->isEmpty() and\r\n  self.implements_.output.oclIsKindOf(ClassTypeDefinition) and \r\n  self.implements_.output.oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz",
 			 "MustBeNavigable", "self.end.navigable"
 		   });				
 		addAnnotation
 		  (linkAdditionEClass, 
 		   source, 
 		   new String[] {
-			 "AdditionInputTypeMatchEndType", "self.implements_.output->isEmpty() and\n  self.implements_.input->size() = 1 and \n  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \n  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"
+			 "AdditionInputTypeMatchEndType", "self.implements_.output->isEmpty() and\r\n  self.implements_.input->size() = 1 and \r\n  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \r\n  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"
 		   });				
 		addAnnotation
 		  (linkRemovalEClass, 
 		   source, 
 		   new String[] {
-			 "RemovalTypeMatchEndType", "self.implements_.output->isEmpty() and\n  self.implements_.input->size() = 1 and \n  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \n  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"
+			 "RemovalTypeMatchEndType", "self.implements_.output->isEmpty() and\r\n  self.implements_.input->size() = 1 and \r\n  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \r\n  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"
 		   });			
 		addAnnotation
 		  (associationEndSignatureImplementationEClass, 
 		   source, 
 		   new String[] {
-			 "OnlyOnOtherEndsClassOrClassConformingToItOrAdapterAdaptingToIt", "(self.implements_.owner.oclIsKindOf(SapClass) and\n    self.implements_.owner.oclAsType(SapClass).conformsTo(self.end.otherEnd().type.clazz))\n  or   (self.implements_.owner.oclIsKindOf(TypeAdapter) and\n    self.implements_.owner.oclAsType(TypeAdapter).adapted.conformsTo(self.end.otherEnd().type.clazz))"
+			 "OnlyOnOtherEndsClassOrClassConformingToItOrAdapterAdaptingToIt", "(self.implements_.owner.oclIsKindOf(SapClass) and\r\n    self.implements_.owner.oclAsType(SapClass).conformsTo(self.end.otherEnd().type.clazz))\r\n  or   (self.implements_.owner.oclIsKindOf(TypeAdapter) and\r\n    self.implements_.owner.oclAsType(TypeAdapter).adapted.conformsTo(self.end.otherEnd().type.clazz))"
 		   });			
 		addAnnotation
 		  (classTypeDefinitionEClass, 
 		   source, 
 		   new String[] {
-			 "ActualObjectsParametersMatchSignature", "let numberOfMandatoryParameters:Integer =\n    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()\n  in\n  self.objectParameters->size() >= numberOfMandatoryParameters and\n  self.objectParameters->size() <= self.clazz.formalObjectParameters->size() and\n  Sequence{1..self.objectParameters->size()}->forAll(i:Integer|\n    self.objectParameters->at(i).formalObjectParameter =\n    self.clazz.formalObjectParameters->at(i))"
+			 "ActualObjectsParametersMatchSignature", "let numberOfMandatoryParameters:Integer =\r\n    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()\r\n  in\r\n  self.objectParameters->size() >= numberOfMandatoryParameters and\r\n  self.objectParameters->size() <= self.clazz.formalObjectParameters->size() and\r\n  Sequence{1..self.objectParameters->size()}->forAll(i:Integer|\r\n    self.objectParameters->at(i).formalObjectParameter =\r\n    self.clazz.formalObjectParameters->at(i))"
 		   });			
 		addAnnotation
 		  (classTypeDefinitionEClass.getEOperations().get(0), 
@@ -3028,15 +3028,15 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		  (linkSettingEClass, 
 		   source, 
 		   new String[] {
-			 "InputTypeMatchEndType", "self.implements_.output->isEmpty() and\n  self.implements_.input->size() = 1 and \n  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \n  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"
+			 "InputTypeMatchEndType", "self.implements_.output->isEmpty() and\r\n  self.implements_.input->size() = 1 and \r\n  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \r\n  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz"
 		   });			
 		addAnnotation
 		  (typeAdapterEClass, 
 		   source, 
 		   new String[] {
-			 "AllSignatureConforms", "self.ownedSignatures->forAll(selfSig:MethodSignature |\n    self.to.signaturesWithDelegation()->exists(toSig:MethodSignature |\n       selfSig.conformsTo(toSig)))",
+			 "AllSignatureConforms", "self.ownedSignatures->forAll(selfSig:MethodSignature |\r\n    self.to.signaturesWithDelegation()->exists(toSig:MethodSignature |\r\n       selfSig.conformsTo(toSig)))",
 			 "SignaturesCannotBeAbstract", "self.ownedSignatures->forAll(selfSig:MethodSignature | not selfSig.isAbstract())",
-			 "IsFullAdaptationToTo", "self.to.signaturesWithDelegation()->forAll(toSig|\n    self.adapted.signaturesWithDelegation()->exists(adaptedSig|\n      adaptedSig.conformsTo(toSig))\n    or self.ownedSignatures->exists(ownedSig|\n      ownedSig.conformsTo(toSig)))",
+			 "IsFullAdaptationToTo", "self.to.signaturesWithDelegation()->forAll(toSig|\r\n    self.adapted.signaturesWithDelegation()->exists(adaptedSig|\r\n      adaptedSig.conformsTo(toSig))\r\n    or self.ownedSignatures->exists(ownedSig|\r\n      ownedSig.conformsTo(toSig)))",
 			 "ValuesToValues_EntitiesToEntities", "self.adapted.valueType = self.to.valueType"
 		   });			
 		addAnnotation
@@ -3079,7 +3079,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		  (extentModifyingAssociationEndSignatureImplementationEClass, 
 		   source, 
 		   new String[] {
-			 "MustNotModifyExtentIfEqualityRelevantForValueClass", "end.association.ends->forAll(ae:AssociationEnd |\n    ae.contributesToEquality implies not ae.type.clazz.valueType)",
+			 "MustNotModifyExtentIfEqualityRelevantForValueClass", "end.association.ends->forAll(ae:AssociationEnd |\r\n    ae.contributesToEquality implies not ae.type.clazz.valueType)",
 			 "MustNotImplementSideEffectFreeOperation", "not self.implements_.sideEffectFree"
 		   });			
 		addAnnotation
@@ -3093,7 +3093,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		   source, 
 		   new String[] {
 			 "MustHaveConcreteMethod", "not self.conversionMethod.isAbstract()",
-			 "FormalObjectParametersConformToMethodParameters", "self.conversionMethod.input->size() = self.clazz.formalObjectParameters->size() and\n  Sequence{1..self.conversionMethod.input->size()}->forAll(i |\n    self.clazz.formalObjectParameters->at(i).conformsTo(self.conversionMethod.input->at(i)))"
+			 "FormalObjectParametersConformToMethodParameters", "self.conversionMethod.input->size() = self.clazz.formalObjectParameters->size() and\r\n  Sequence{1..self.conversionMethod.input->size()}->forAll(i |\r\n    self.clazz.formalObjectParameters->at(i).conformsTo(self.conversionMethod.input->at(i)))"
 		   });				
 		addAnnotation
 		  (inScopeEClass.getEOperations().get(0), 

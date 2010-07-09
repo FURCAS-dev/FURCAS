@@ -635,13 +635,13 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage {
 		   source, 
 		   new String[] {
 			 "ConditionMustBeSideEffectFree", "self.selectionExpr.isSideEffectFree()",
-			 "ConditionMustBeBooleanOrNumeric", "self.selectionExpr.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n (\n    (\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\' and\n      self.selectionExpr.getType().upperMultiplicity = 1\n    )\n    or\n    (\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\' \n      and \n      self.object.getType().ordered\n    )\n  )"
+			 "ConditionMustBeBooleanOrNumeric", "self.selectionExpr.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n (\r\n    (\r\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\' and\r\n      self.selectionExpr.getType().upperMultiplicity = 1\r\n    )\r\n    or\r\n    (\r\n      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\' \r\n      and \r\n      self.object.getType().ordered\r\n    )\r\n  )"
 		   });				
 		addAnnotation
 		  (oqlQueryEClass, 
 		   source, 
 		   new String[] {
-			 "ConditionMustBeBoolean", "self.condition->notEmpty() implies\n    (self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n     self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name=\'Boolean\')",
+			 "ConditionMustBeBoolean", "self.condition->notEmpty() implies\r\n    (self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n     self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name=\'Boolean\')",
 			 "WhereClauseMustBeSideEffectFree", "self.condition->forAll(c | c.isSideEffectFree())",
 			 "HasValueType", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType",
 			 "SelectedIteratorsMustHaveClassTypeDefinitionAsType", "self.selected->forAll(i | i.getType().oclIsKindOf(data::classes::ClassTypeDefinition))"

@@ -395,7 +395,7 @@ public class ProcessintegrationPackageImpl extends EPackageImpl implements Proce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcessComponentInteraction_Uses() {
+	public EReference getProcessComponentInteraction_InitiatorProcessComponent() {
 		return (EReference)processComponentInteractionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -404,7 +404,7 @@ public class ProcessintegrationPackageImpl extends EPackageImpl implements Proce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcessComponentInteraction_MethodCalls() {
+	public EReference getProcessComponentInteraction_ProcessComponent() {
 		return (EReference)processComponentInteractionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -413,8 +413,26 @@ public class ProcessintegrationPackageImpl extends EPackageImpl implements Proce
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getProcessComponentInteraction_Subscriptions() {
+	public EReference getProcessComponentInteraction_Uses() {
 		return (EReference)processComponentInteractionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcessComponentInteraction_MethodCalls() {
+		return (EReference)processComponentInteractionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProcessComponentInteraction_Subscriptions() {
+		return (EReference)processComponentInteractionEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -449,6 +467,8 @@ public class ProcessintegrationPackageImpl extends EPackageImpl implements Proce
 		createEReference(integrationScenarioEClass, INTEGRATION_SCENARIO__INTERACTIONS);
 
 		processComponentInteractionEClass = createEClass(PROCESS_COMPONENT_INTERACTION);
+		createEReference(processComponentInteractionEClass, PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT);
+		createEReference(processComponentInteractionEClass, PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT);
 		createEReference(processComponentInteractionEClass, PROCESS_COMPONENT_INTERACTION__USES);
 		createEReference(processComponentInteractionEClass, PROCESS_COMPONENT_INTERACTION__METHOD_CALLS);
 		createEReference(processComponentInteractionEClass, PROCESS_COMPONENT_INTERACTION__SUBSCRIPTIONS);
@@ -479,6 +499,7 @@ public class ProcessintegrationPackageImpl extends EPackageImpl implements Proce
 
 		// Obtain other dependent packages
 		ModelmanagementPackage theModelmanagementPackage = (ModelmanagementPackage)EPackage.Registry.INSTANCE.getEPackage(ModelmanagementPackage.eNS_URI);
+		ProcesscomponentsPackage theProcesscomponentsPackage = (ProcesscomponentsPackage)EPackage.Registry.INSTANCE.getEPackage(ProcesscomponentsPackage.eNS_URI);
 		ExpressionsPackage theExpressionsPackage = (ExpressionsPackage)EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI);
 		EventsPackage theEventsPackage = (EventsPackage)EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI);
 
@@ -494,6 +515,8 @@ public class ProcessintegrationPackageImpl extends EPackageImpl implements Proce
 		initEReference(getIntegrationScenario_Interactions(), this.getProcessComponentInteraction(), this.getProcessComponentInteraction_Uses(), "interactions", null, 1, -1, IntegrationScenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(processComponentInteractionEClass, ProcessComponentInteraction.class, "ProcessComponentInteraction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProcessComponentInteraction_InitiatorProcessComponent(), theProcesscomponentsPackage.getProcessComponent(), theProcesscomponentsPackage.getProcessComponent_InitiatedInteractions(), "initiatorProcessComponent", null, 1, 1, ProcessComponentInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessComponentInteraction_ProcessComponent(), theProcesscomponentsPackage.getProcessComponent(), theProcesscomponentsPackage.getProcessComponent_Interactions(), "processComponent", null, 1, 1, ProcessComponentInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcessComponentInteraction_Uses(), this.getIntegrationScenario(), this.getIntegrationScenario_Interactions(), "uses", null, 0, 1, ProcessComponentInteraction.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcessComponentInteraction_MethodCalls(), theExpressionsPackage.getMethodCallExpression(), null, "methodCalls", null, 0, -1, ProcessComponentInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProcessComponentInteraction_Subscriptions(), theEventsPackage.getSubscription(), null, "subscriptions", null, 0, -1, ProcessComponentInteraction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

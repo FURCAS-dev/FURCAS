@@ -102,7 +102,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 	int PROCESS_COMPONENT__OWNED_PACKAGES = ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Provided Interfaces</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Provided Interfaces</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -111,7 +111,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 	int PROCESS_COMPONENT__PROVIDED_INTERFACES = ModelmanagementPackage.PACKAGE_OWNER_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Event Producers</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Event Producers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -120,22 +120,22 @@ public interface ProcesscomponentsPackage extends EPackage {
 	int PROCESS_COMPONENT__EVENT_PRODUCERS = ModelmanagementPackage.PACKAGE_OWNER_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Interactions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Initiated Interactions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_COMPONENT__INTERACTIONS = ModelmanagementPackage.PACKAGE_OWNER_FEATURE_COUNT + 2;
+	int PROCESS_COMPONENT__INITIATED_INTERACTIONS = ModelmanagementPackage.PACKAGE_OWNER_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Initiated Interactions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Interactions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_COMPONENT__INITIATED_INTERACTIONS = ModelmanagementPackage.PACKAGE_OWNER_FEATURE_COUNT + 3;
+	int PROCESS_COMPONENT__INTERACTIONS = ModelmanagementPackage.PACKAGE_OWNER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Process Component</em>' class.
@@ -184,7 +184,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 	int PROCESS_COMPONENT_INSIDE_COMPANY__OWNED_PACKAGES = PROCESS_COMPONENT__OWNED_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Provided Interfaces</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Provided Interfaces</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -193,7 +193,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 	int PROCESS_COMPONENT_INSIDE_COMPANY__PROVIDED_INTERFACES = PROCESS_COMPONENT__PROVIDED_INTERFACES;
 
 	/**
-	 * The feature id for the '<em><b>Event Producers</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Event Producers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -202,22 +202,22 @@ public interface ProcesscomponentsPackage extends EPackage {
 	int PROCESS_COMPONENT_INSIDE_COMPANY__EVENT_PRODUCERS = PROCESS_COMPONENT__EVENT_PRODUCERS;
 
 	/**
-	 * The feature id for the '<em><b>Interactions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS_COMPONENT_INSIDE_COMPANY__INTERACTIONS = PROCESS_COMPONENT__INTERACTIONS;
-
-	/**
-	 * The feature id for the '<em><b>Initiated Interactions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Initiated Interactions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROCESS_COMPONENT_INSIDE_COMPANY__INITIATED_INTERACTIONS = PROCESS_COMPONENT__INITIATED_INTERACTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interactions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_COMPONENT_INSIDE_COMPANY__INTERACTIONS = PROCESS_COMPONENT__INTERACTIONS;
 
 	/**
 	 * The number of structural features of the '<em>Process Component Inside Company</em>' class.
@@ -266,7 +266,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 	int PROCESS_COMPONENT_OUTSIDE_COMPANY__OWNED_PACKAGES = PROCESS_COMPONENT__OWNED_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Provided Interfaces</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Provided Interfaces</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -275,7 +275,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 	int PROCESS_COMPONENT_OUTSIDE_COMPANY__PROVIDED_INTERFACES = PROCESS_COMPONENT__PROVIDED_INTERFACES;
 
 	/**
-	 * The feature id for the '<em><b>Event Producers</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Event Producers</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -284,22 +284,22 @@ public interface ProcesscomponentsPackage extends EPackage {
 	int PROCESS_COMPONENT_OUTSIDE_COMPANY__EVENT_PRODUCERS = PROCESS_COMPONENT__EVENT_PRODUCERS;
 
 	/**
-	 * The feature id for the '<em><b>Interactions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROCESS_COMPONENT_OUTSIDE_COMPANY__INTERACTIONS = PROCESS_COMPONENT__INTERACTIONS;
-
-	/**
-	 * The feature id for the '<em><b>Initiated Interactions</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Initiated Interactions</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROCESS_COMPONENT_OUTSIDE_COMPANY__INITIATED_INTERACTIONS = PROCESS_COMPONENT__INITIATED_INTERACTIONS;
+
+	/**
+	 * The feature id for the '<em><b>Interactions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_COMPONENT_OUTSIDE_COMPANY__INTERACTIONS = PROCESS_COMPONENT__INTERACTIONS;
 
 	/**
 	 * The number of structural features of the '<em>Process Component Outside Company</em>' class.
@@ -322,10 +322,10 @@ public interface ProcesscomponentsPackage extends EPackage {
 	EClass getProcessComponent();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link modelmanagement.processcomponents.ProcessComponent#getProvidedInterfaces <em>Provided Interfaces</em>}'.
+	 * Returns the meta object for the reference list '{@link modelmanagement.processcomponents.ProcessComponent#getProvidedInterfaces <em>Provided Interfaces</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Provided Interfaces</em>'.
+	 * @return the meta object for the reference list '<em>Provided Interfaces</em>'.
 	 * @see modelmanagement.processcomponents.ProcessComponent#getProvidedInterfaces()
 	 * @see #getProcessComponent()
 	 * @generated
@@ -333,10 +333,10 @@ public interface ProcesscomponentsPackage extends EPackage {
 	EReference getProcessComponent_ProvidedInterfaces();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link modelmanagement.processcomponents.ProcessComponent#getEventProducers <em>Event Producers</em>}'.
+	 * Returns the meta object for the reference list '{@link modelmanagement.processcomponents.ProcessComponent#getEventProducers <em>Event Producers</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Event Producers</em>'.
+	 * @return the meta object for the reference list '<em>Event Producers</em>'.
 	 * @see modelmanagement.processcomponents.ProcessComponent#getEventProducers()
 	 * @see #getProcessComponent()
 	 * @generated
@@ -344,10 +344,10 @@ public interface ProcesscomponentsPackage extends EPackage {
 	EReference getProcessComponent_EventProducers();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link modelmanagement.processcomponents.ProcessComponent#getInteractions <em>Interactions</em>}'.
+	 * Returns the meta object for the reference list '{@link modelmanagement.processcomponents.ProcessComponent#getInteractions <em>Interactions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Interactions</em>'.
+	 * @return the meta object for the reference list '<em>Interactions</em>'.
 	 * @see modelmanagement.processcomponents.ProcessComponent#getInteractions()
 	 * @see #getProcessComponent()
 	 * @generated
@@ -355,10 +355,10 @@ public interface ProcesscomponentsPackage extends EPackage {
 	EReference getProcessComponent_Interactions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link modelmanagement.processcomponents.ProcessComponent#getInitiatedInteractions <em>Initiated Interactions</em>}'.
+	 * Returns the meta object for the reference list '{@link modelmanagement.processcomponents.ProcessComponent#getInitiatedInteractions <em>Initiated Interactions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Initiated Interactions</em>'.
+	 * @return the meta object for the reference list '<em>Initiated Interactions</em>'.
 	 * @see modelmanagement.processcomponents.ProcessComponent#getInitiatedInteractions()
 	 * @see #getProcessComponent()
 	 * @generated
@@ -418,7 +418,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 		EClass PROCESS_COMPONENT = eINSTANCE.getProcessComponent();
 
 		/**
-		 * The meta object literal for the '<em><b>Provided Interfaces</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Provided Interfaces</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -426,7 +426,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 		EReference PROCESS_COMPONENT__PROVIDED_INTERFACES = eINSTANCE.getProcessComponent_ProvidedInterfaces();
 
 		/**
-		 * The meta object literal for the '<em><b>Event Producers</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Event Producers</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -434,7 +434,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 		EReference PROCESS_COMPONENT__EVENT_PRODUCERS = eINSTANCE.getProcessComponent_EventProducers();
 
 		/**
-		 * The meta object literal for the '<em><b>Interactions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Interactions</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -442,7 +442,7 @@ public interface ProcesscomponentsPackage extends EPackage {
 		EReference PROCESS_COMPONENT__INTERACTIONS = eINSTANCE.getProcessComponent_Interactions();
 
 		/**
-		 * The meta object literal for the '<em><b>Initiated Interactions</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Initiated Interactions</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

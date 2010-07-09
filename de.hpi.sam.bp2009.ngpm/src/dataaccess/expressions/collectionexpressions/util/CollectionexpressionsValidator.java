@@ -194,8 +194,8 @@ public class CollectionexpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ITERATE__ACCUMULATOR_TYPE_EQUALS_EXPRESSION_TYPE__EEXPRESSION = "self.accumulator->notEmpty() implies\n" +
-		"  (self.accumulator.ownedTypeDefinition->notEmpty() implies\n" +
+	protected static final String ITERATE__ACCUMULATOR_TYPE_EQUALS_EXPRESSION_TYPE__EEXPRESSION = "self.accumulator->notEmpty() implies\r\n" +
+		"  (self.accumulator.ownedTypeDefinition->notEmpty() implies\r\n" +
 		"     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))";
 
 	/**
@@ -321,19 +321,19 @@ public class CollectionexpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String COLLECTION_EXPRESSION_WITH_ARGUMENT__ARGUMENT_TYPE_MUST_CONFORM_TO_COLLECTION_EXPRESSION_TYPE__EEXPRESSION = "let snl : Integer = source.getType().getNestingLevel() in let anl : Integer = argument.getType().getNestingLevel() in\n" +
-		"    if snl = anl then\n" +
-		"      source.getType().conformsToIgnoringMultiplicity(argument.getType())\n" +
-		"    else\n" +
-		"      if snl = (anl + 1) then\n" +
-		"        source.getType().oclAsType(data::classes::NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())\n" +
-		"      else\n" +
-		"        if (snl + 1) = anl then\n" +
-		"          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(data::classes::NestedTypeDefinition).type)\n" +
-		"        else\n" +
-		"          false\n" +
-		"        endif\n" +
-		"      endif\n" +
+	protected static final String COLLECTION_EXPRESSION_WITH_ARGUMENT__ARGUMENT_TYPE_MUST_CONFORM_TO_COLLECTION_EXPRESSION_TYPE__EEXPRESSION = "let snl : Integer = source.getType().getNestingLevel() in let anl : Integer = argument.getType().getNestingLevel() in\r\n" +
+		"    if snl = anl then\r\n" +
+		"      source.getType().conformsToIgnoringMultiplicity(argument.getType())\r\n" +
+		"    else\r\n" +
+		"      if snl = (anl + 1) then\r\n" +
+		"        source.getType().oclAsType(data::classes::NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())\r\n" +
+		"      else\r\n" +
+		"        if (snl + 1) = anl then\r\n" +
+		"          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(data::classes::NestedTypeDefinition).type)\r\n" +
+		"        else\r\n" +
+		"          false\r\n" +
+		"        endif\r\n" +
+		"      endif\r\n" +
 		"    endif";
 
 	/**

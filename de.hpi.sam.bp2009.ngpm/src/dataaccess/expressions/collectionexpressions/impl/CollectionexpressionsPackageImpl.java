@@ -712,7 +712,7 @@ public class CollectionexpressionsPackageImpl extends EPackageImpl implements Co
 		  (iterateEClass, 
 		   source, 
 		   new String[] {
-			 "AccumulatorTypeEqualsExpressionType", "self.accumulator->notEmpty() implies\n  (self.accumulator.ownedTypeDefinition->notEmpty() implies\n     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))"
+			 "AccumulatorTypeEqualsExpressionType", "self.accumulator->notEmpty() implies\r\n  (self.accumulator.ownedTypeDefinition->notEmpty() implies\r\n     self.accumulator.ownedTypeDefinition.conformsTo(self.iteratorExpression.getType()))"
 		   });				
 		addAnnotation
 		  (withPositionEClass, 
@@ -724,7 +724,7 @@ public class CollectionexpressionsPackageImpl extends EPackageImpl implements Co
 		  (collectionExpressionWithArgumentEClass, 
 		   source, 
 		   new String[] {
-			 "ArgumentTypeMustConformToCollectionExpressionType", "let snl : Integer = source.getType().getNestingLevel() in let anl : Integer = argument.getType().getNestingLevel() in\n    if snl = anl then\n      source.getType().conformsToIgnoringMultiplicity(argument.getType())\n    else\n      if snl = (anl + 1) then\n        source.getType().oclAsType(data::classes::NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())\n      else\n        if (snl + 1) = anl then\n          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(data::classes::NestedTypeDefinition).type)\n        else\n          false\n        endif\n      endif\n    endif"
+			 "ArgumentTypeMustConformToCollectionExpressionType", "let snl : Integer = source.getType().getNestingLevel() in let anl : Integer = argument.getType().getNestingLevel() in\r\n    if snl = anl then\r\n      source.getType().conformsToIgnoringMultiplicity(argument.getType())\r\n    else\r\n      if snl = (anl + 1) then\r\n        source.getType().oclAsType(data::classes::NestedTypeDefinition).type.conformsToIgnoringMultiplicity(argument.getType())\r\n      else\r\n        if (snl + 1) = anl then\r\n          source.getType().conformsToIgnoringMultiplicity(argument.getType().oclAsType(data::classes::NestedTypeDefinition).type)\r\n        else\r\n          false\r\n        endif\r\n      endif\r\n    endif"
 		   });	
 	}
 
