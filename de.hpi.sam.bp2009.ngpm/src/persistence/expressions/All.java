@@ -42,7 +42,7 @@ public interface All extends Expression {
 	 * @see persistence.expressions.SnapshotSelection
 	 * @see #setSnapshot(SnapshotSelection)
 	 * @see persistence.expressions.ExpressionsPackage#getAll_Snapshot()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	SnapshotSelection getSnapshot();

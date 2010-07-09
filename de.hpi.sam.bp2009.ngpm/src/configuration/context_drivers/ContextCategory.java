@@ -40,7 +40,7 @@ public interface ContextCategory extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see configuration.context_drivers.Context_driversPackage#getContextCategory_Name()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getName();

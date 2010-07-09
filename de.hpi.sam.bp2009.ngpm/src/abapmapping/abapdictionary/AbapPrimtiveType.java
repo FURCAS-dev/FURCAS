@@ -35,7 +35,7 @@ public interface AbapPrimtiveType extends UnstructuredAbapType {
 	 * @return the value of the '<em>Length</em>' attribute.
 	 * @see #setLength(int)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapPrimtiveType_Length()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	int getLength();

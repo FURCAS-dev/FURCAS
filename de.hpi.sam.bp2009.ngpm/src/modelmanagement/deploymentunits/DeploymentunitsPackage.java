@@ -95,7 +95,7 @@ public interface DeploymentunitsPackage extends EPackage {
 	int DEPLOYMENT_UNIT__DESCRIPTION = ModelmanagementPackage.PACKAGE_OWNER__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -104,7 +104,7 @@ public interface DeploymentunitsPackage extends EPackage {
 	int DEPLOYMENT_UNIT__OWNED_PACKAGES = ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES;
 
 	/**
-	 * The feature id for the '<em><b>Pcs Inside Company</b></em>' containment reference.
+	 * The feature id for the '<em><b>Pcs Inside Company</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -133,10 +133,10 @@ public interface DeploymentunitsPackage extends EPackage {
 	EClass getDeploymentUnit();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link modelmanagement.deploymentunits.DeploymentUnit#getPcsInsideCompany <em>Pcs Inside Company</em>}'.
+	 * Returns the meta object for the containment reference list '{@link modelmanagement.deploymentunits.DeploymentUnit#getPcsInsideCompany <em>Pcs Inside Company</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Pcs Inside Company</em>'.
+	 * @return the meta object for the containment reference list '<em>Pcs Inside Company</em>'.
 	 * @see modelmanagement.deploymentunits.DeploymentUnit#getPcsInsideCompany()
 	 * @see #getDeploymentUnit()
 	 * @generated
@@ -176,7 +176,7 @@ public interface DeploymentunitsPackage extends EPackage {
 		EClass DEPLOYMENT_UNIT = eINSTANCE.getDeploymentUnit();
 
 		/**
-		 * The meta object literal for the '<em><b>Pcs Inside Company</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Pcs Inside Company</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -36,7 +36,7 @@ public interface Containable extends Root {
 	 * @return the value of the '<em>Min Occurs</em>' attribute.
 	 * @see #setMinOccurs(int)
 	 * @see integration.xsd.XsdPackage#getContainable_MinOccurs()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	int getMinOccurs();
@@ -62,7 +62,7 @@ public interface Containable extends Root {
 	 * @return the value of the '<em>Max Occurs</em>' attribute.
 	 * @see #setMaxOccurs(int)
 	 * @see integration.xsd.XsdPackage#getContainable_MaxOccurs()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	int getMaxOccurs();

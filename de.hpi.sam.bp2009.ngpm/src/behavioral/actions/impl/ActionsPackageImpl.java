@@ -1163,7 +1163,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		addEOperation(whileLoopEClass, this.getBlock(), "getLoopBody", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(foreachEClass, Foreach.class, "Foreach", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getForeach_Parallel(), theEcorePackage.getEBoolean(), "parallel", null, 0, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getForeach_Parallel(), theEcorePackage.getEBoolean(), "parallel", null, 1, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getForeach_Collection(), theExpressionsPackage.getExpression(), null, "collection", null, 1, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForeach_ForVariable(), this.getIterator(), this.getIterator_BoundToFor(), "forVariable", null, 1, 1, Foreach.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

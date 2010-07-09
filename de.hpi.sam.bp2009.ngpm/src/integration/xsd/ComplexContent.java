@@ -36,7 +36,7 @@ public interface ComplexContent extends AbstractContent {
 	 * @return the value of the '<em>Mixed</em>' attribute.
 	 * @see #setMixed(boolean)
 	 * @see integration.xsd.XsdPackage#getComplexContent_Mixed()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isMixed();

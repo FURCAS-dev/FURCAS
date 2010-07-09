@@ -12,6 +12,7 @@ import data.classes.SapClass;
 
 import integration.processintegration.ProcessComponentInteraction;
 
+import java.util.Collection;
 import modelmanagement.impl.PackageOwnerImpl;
 
 import modelmanagement.processcomponents.ProcessComponent;
@@ -20,9 +21,12 @@ import modelmanagement.processcomponents.ProcesscomponentsPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -43,44 +47,44 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class ProcessComponentImpl extends PackageOwnerImpl implements ProcessComponent {
 	/**
-	 * The cached value of the '{@link #getProvidedInterfaces() <em>Provided Interfaces</em>}' containment reference.
+	 * The cached value of the '{@link #getProvidedInterfaces() <em>Provided Interfaces</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getProvidedInterfaces()
 	 * @generated
 	 * @ordered
 	 */
-	protected SapClass providedInterfaces;
+	protected EList<SapClass> providedInterfaces;
 
 	/**
-	 * The cached value of the '{@link #getEventProducers() <em>Event Producers</em>}' containment reference.
+	 * The cached value of the '{@link #getEventProducers() <em>Event Producers</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEventProducers()
 	 * @generated
 	 * @ordered
 	 */
-	protected EventProducer eventProducers;
+	protected EList<EventProducer> eventProducers;
 
 	/**
-	 * The cached value of the '{@link #getInteractions() <em>Interactions</em>}' containment reference.
+	 * The cached value of the '{@link #getInteractions() <em>Interactions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInteractions()
 	 * @generated
 	 * @ordered
 	 */
-	protected ProcessComponentInteraction interactions;
+	protected EList<ProcessComponentInteraction> interactions;
 
 	/**
-	 * The cached value of the '{@link #getInitiatedInteractions() <em>Initiated Interactions</em>}' containment reference.
+	 * The cached value of the '{@link #getInitiatedInteractions() <em>Initiated Interactions</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInitiatedInteractions()
 	 * @generated
 	 * @ordered
 	 */
-	protected ProcessComponentInteraction initiatedInteractions;
+	protected EList<ProcessComponentInteraction> initiatedInteractions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,7 +110,10 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SapClass getProvidedInterfaces() {
+	public EList<SapClass> getProvidedInterfaces() {
+		if (providedInterfaces == null) {
+			providedInterfaces = new EObjectContainmentEList<SapClass>(SapClass.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES);
+		}
 		return providedInterfaces;
 	}
 
@@ -115,41 +122,10 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetProvidedInterfaces(SapClass newProvidedInterfaces, NotificationChain msgs) {
-		SapClass oldProvidedInterfaces = providedInterfaces;
-		providedInterfaces = newProvidedInterfaces;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES, oldProvidedInterfaces, newProvidedInterfaces);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<EventProducer> getEventProducers() {
+		if (eventProducers == null) {
+			eventProducers = new EObjectContainmentEList<EventProducer>(EventProducer.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setProvidedInterfaces(SapClass newProvidedInterfaces) {
-		if (newProvidedInterfaces != providedInterfaces) {
-			NotificationChain msgs = null;
-			if (providedInterfaces != null)
-				msgs = ((InternalEObject)providedInterfaces).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES, null, msgs);
-			if (newProvidedInterfaces != null)
-				msgs = ((InternalEObject)newProvidedInterfaces).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES, null, msgs);
-			msgs = basicSetProvidedInterfaces(newProvidedInterfaces, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES, newProvidedInterfaces, newProvidedInterfaces));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EventProducer getEventProducers() {
 		return eventProducers;
 	}
 
@@ -158,41 +134,10 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetEventProducers(EventProducer newEventProducers, NotificationChain msgs) {
-		EventProducer oldEventProducers = eventProducers;
-		eventProducers = newEventProducers;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS, oldEventProducers, newEventProducers);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<ProcessComponentInteraction> getInteractions() {
+		if (interactions == null) {
+			interactions = new EObjectContainmentEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEventProducers(EventProducer newEventProducers) {
-		if (newEventProducers != eventProducers) {
-			NotificationChain msgs = null;
-			if (eventProducers != null)
-				msgs = ((InternalEObject)eventProducers).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS, null, msgs);
-			if (newEventProducers != null)
-				msgs = ((InternalEObject)newEventProducers).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS, null, msgs);
-			msgs = basicSetEventProducers(newEventProducers, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS, newEventProducers, newEventProducers));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ProcessComponentInteraction getInteractions() {
 		return interactions;
 	}
 
@@ -201,76 +146,11 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInteractions(ProcessComponentInteraction newInteractions, NotificationChain msgs) {
-		ProcessComponentInteraction oldInteractions = interactions;
-		interactions = newInteractions;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, oldInteractions, newInteractions);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<ProcessComponentInteraction> getInitiatedInteractions() {
+		if (initiatedInteractions == null) {
+			initiatedInteractions = new EObjectContainmentEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInteractions(ProcessComponentInteraction newInteractions) {
-		if (newInteractions != interactions) {
-			NotificationChain msgs = null;
-			if (interactions != null)
-				msgs = ((InternalEObject)interactions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, null, msgs);
-			if (newInteractions != null)
-				msgs = ((InternalEObject)newInteractions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, null, msgs);
-			msgs = basicSetInteractions(newInteractions, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, newInteractions, newInteractions));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ProcessComponentInteraction getInitiatedInteractions() {
 		return initiatedInteractions;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetInitiatedInteractions(ProcessComponentInteraction newInitiatedInteractions, NotificationChain msgs) {
-		ProcessComponentInteraction oldInitiatedInteractions = initiatedInteractions;
-		initiatedInteractions = newInitiatedInteractions;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, oldInitiatedInteractions, newInitiatedInteractions);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInitiatedInteractions(ProcessComponentInteraction newInitiatedInteractions) {
-		if (newInitiatedInteractions != initiatedInteractions) {
-			NotificationChain msgs = null;
-			if (initiatedInteractions != null)
-				msgs = ((InternalEObject)initiatedInteractions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, null, msgs);
-			if (newInitiatedInteractions != null)
-				msgs = ((InternalEObject)newInitiatedInteractions).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, null, msgs);
-			msgs = basicSetInitiatedInteractions(newInitiatedInteractions, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, newInitiatedInteractions, newInitiatedInteractions));
 	}
 
 	/**
@@ -282,13 +162,13 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
-				return basicSetProvidedInterfaces(null, msgs);
+				return ((InternalEList<?>)getProvidedInterfaces()).basicRemove(otherEnd, msgs);
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
-				return basicSetEventProducers(null, msgs);
+				return ((InternalEList<?>)getEventProducers()).basicRemove(otherEnd, msgs);
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				return basicSetInteractions(null, msgs);
+				return ((InternalEList<?>)getInteractions()).basicRemove(otherEnd, msgs);
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				return basicSetInitiatedInteractions(null, msgs);
+				return ((InternalEList<?>)getInitiatedInteractions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -318,20 +198,25 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
-				setProvidedInterfaces((SapClass)newValue);
+				getProvidedInterfaces().clear();
+				getProvidedInterfaces().addAll((Collection<? extends SapClass>)newValue);
 				return;
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
-				setEventProducers((EventProducer)newValue);
+				getEventProducers().clear();
+				getEventProducers().addAll((Collection<? extends EventProducer>)newValue);
 				return;
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				setInteractions((ProcessComponentInteraction)newValue);
+				getInteractions().clear();
+				getInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
 				return;
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				setInitiatedInteractions((ProcessComponentInteraction)newValue);
+				getInitiatedInteractions().clear();
+				getInitiatedInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -346,16 +231,16 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
-				setProvidedInterfaces((SapClass)null);
+				getProvidedInterfaces().clear();
 				return;
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
-				setEventProducers((EventProducer)null);
+				getEventProducers().clear();
 				return;
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				setInteractions((ProcessComponentInteraction)null);
+				getInteractions().clear();
 				return;
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				setInitiatedInteractions((ProcessComponentInteraction)null);
+				getInitiatedInteractions().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -370,13 +255,13 @@ public abstract class ProcessComponentImpl extends PackageOwnerImpl implements P
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
-				return providedInterfaces != null;
+				return providedInterfaces != null && !providedInterfaces.isEmpty();
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
-				return eventProducers != null;
+				return eventProducers != null && !eventProducers.isEmpty();
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				return interactions != null;
+				return interactions != null && !interactions.isEmpty();
 			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				return initiatedInteractions != null;
+				return initiatedInteractions != null && !initiatedInteractions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

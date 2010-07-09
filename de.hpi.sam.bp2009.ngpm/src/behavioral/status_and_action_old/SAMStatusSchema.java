@@ -45,7 +45,7 @@ public interface SAMStatusSchema extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMStatusSchema_Name()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getName();

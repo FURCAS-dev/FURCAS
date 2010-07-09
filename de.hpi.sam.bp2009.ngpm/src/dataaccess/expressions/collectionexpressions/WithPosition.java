@@ -37,7 +37,7 @@ public interface WithPosition extends ExpressionWithArgument {
 	 * @return the value of the '<em>At</em>' attribute.
 	 * @see #setAt(int)
 	 * @see dataaccess.expressions.collectionexpressions.CollectionexpressionsPackage#getWithPosition_At()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	int getAt();

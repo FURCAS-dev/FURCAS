@@ -61,7 +61,7 @@ public interface Signature extends EObject {
 	 * @return the value of the '<em>Side Effect Free</em>' attribute.
 	 * @see #setSideEffectFree(boolean)
 	 * @see data.classes.ClassesPackage#getSignature_SideEffectFree()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isSideEffectFree();

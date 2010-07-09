@@ -694,18 +694,18 @@ public class DesignPackageImpl extends EPackageImpl implements DesignPackage {
 		initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(abstractStatusVariableEClass, AbstractStatusVariable.class, "AbstractStatusVariable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractStatusVariable_IsAgent(), theEcorePackage.getEBoolean(), "isAgent", null, 0, 1, AbstractStatusVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getAbstractStatusVariable_IsStateGuarded(), theEcorePackage.getEBoolean(), "isStateGuarded", null, 0, 1, AbstractStatusVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbstractStatusVariable_IsAgent(), theEcorePackage.getEBoolean(), "isAgent", null, 1, 1, AbstractStatusVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbstractStatusVariable_IsStateGuarded(), theEcorePackage.getEBoolean(), "isStateGuarded", null, 1, 1, AbstractStatusVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAbstractStatusVariable_Values(), this.getAbstractStatusValue(), null, "values", null, 0, -1, AbstractStatusVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abstractStatusValueEClass, AbstractStatusValue.class, "AbstractStatusValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractStatusValue_IsInitial(), theEcorePackage.getEBoolean(), "isInitial", null, 0, 1, AbstractStatusValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getAbstractStatusValue_IsInhibiting(), theEcorePackage.getEBoolean(), "isInhibiting", null, 0, 1, AbstractStatusValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getAbstractStatusValue_IsStateGuarded(), theEcorePackage.getEBoolean(), "isStateGuarded", null, 0, 1, AbstractStatusValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbstractStatusValue_IsInitial(), theEcorePackage.getEBoolean(), "isInitial", null, 1, 1, AbstractStatusValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbstractStatusValue_IsInhibiting(), theEcorePackage.getEBoolean(), "isInhibiting", null, 1, 1, AbstractStatusValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbstractStatusValue_IsStateGuarded(), theEcorePackage.getEBoolean(), "isStateGuarded", null, 1, 1, AbstractStatusValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(abstractActionEClass, AbstractAction.class, "AbstractAction", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractAction_IsAgent(), theEcorePackage.getEBoolean(), "isAgent", null, 0, 1, AbstractAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getAbstractAction_IsPreconditionFixed(), theEcorePackage.getEBoolean(), "isPreconditionFixed", null, 0, 1, AbstractAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbstractAction_IsAgent(), theEcorePackage.getEBoolean(), "isAgent", null, 1, 1, AbstractAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbstractAction_IsPreconditionFixed(), theEcorePackage.getEBoolean(), "isPreconditionFixed", null, 1, 1, AbstractAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

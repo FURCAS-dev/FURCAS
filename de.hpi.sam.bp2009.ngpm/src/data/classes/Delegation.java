@@ -44,7 +44,7 @@ public interface Delegation extends EObject {
 	 * @return the value of the '<em>All Features</em>' attribute.
 	 * @see #setAllFeatures(boolean)
 	 * @see data.classes.ClassesPackage#getDelegation_AllFeatures()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isAllFeatures();

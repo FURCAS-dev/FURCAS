@@ -10,6 +10,7 @@ import modelmanagement.NamedElement;
 import modelmanagement.PackageOwner;
 
 import modelmanagement.processcomponents.ProcessComponent;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,29 +30,19 @@ import modelmanagement.processcomponents.ProcessComponent;
  */
 public interface DeploymentUnit extends PackageOwner, NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Pcs Inside Company</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Pcs Inside Company</b></em>' containment reference list.
+	 * The list contents are of type {@link modelmanagement.processcomponents.ProcessComponent}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Pcs Inside Company</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Pcs Inside Company</em>' containment reference.
-	 * @see #setPcsInsideCompany(ProcessComponent)
+	 * @return the value of the '<em>Pcs Inside Company</em>' containment reference list.
 	 * @see modelmanagement.deploymentunits.DeploymentunitsPackage#getDeploymentUnit_PcsInsideCompany()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	ProcessComponent getPcsInsideCompany();
-
-	/**
-	 * Sets the value of the '{@link modelmanagement.deploymentunits.DeploymentUnit#getPcsInsideCompany <em>Pcs Inside Company</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pcs Inside Company</em>' containment reference.
-	 * @see #getPcsInsideCompany()
-	 * @generated
-	 */
-	void setPcsInsideCompany(ProcessComponent value);
+	EList<ProcessComponent> getPcsInsideCompany();
 
 } // DeploymentUnit

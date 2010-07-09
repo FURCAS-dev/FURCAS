@@ -9,11 +9,14 @@ package integration.xsd.impl;
 import integration.xsd.SimpleContent;
 import integration.xsd.XsdPackage;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,24 +54,14 @@ public class SimpleContentImpl extends AbstractContentImpl implements SimpleCont
 	protected String base = BASE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getEnumVals() <em>Enum Vals</em>}' attribute.
+	 * The cached value of the '{@link #getEnumVals() <em>Enum Vals</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getEnumVals()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String ENUM_VALS_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getEnumVals() <em>Enum Vals</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEnumVals()
-	 * @generated
-	 * @ordered
-	 */
-	protected String enumVals = ENUM_VALS_EDEFAULT;
+	protected EList<String> enumVals;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -115,20 +108,11 @@ public class SimpleContentImpl extends AbstractContentImpl implements SimpleCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getEnumVals() {
+	public EList<String> getEnumVals() {
+		if (enumVals == null) {
+			enumVals = new EDataTypeEList<String>(String.class, this, XsdPackage.SIMPLE_CONTENT__ENUM_VALS);
+		}
 		return enumVals;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEnumVals(String newEnumVals) {
-		String oldEnumVals = enumVals;
-		enumVals = newEnumVals;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.SIMPLE_CONTENT__ENUM_VALS, oldEnumVals, enumVals));
 	}
 
 	/**
@@ -152,6 +136,7 @@ public class SimpleContentImpl extends AbstractContentImpl implements SimpleCont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -159,7 +144,8 @@ public class SimpleContentImpl extends AbstractContentImpl implements SimpleCont
 				setBase((String)newValue);
 				return;
 			case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
-				setEnumVals((String)newValue);
+				getEnumVals().clear();
+				getEnumVals().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -177,7 +163,7 @@ public class SimpleContentImpl extends AbstractContentImpl implements SimpleCont
 				setBase(BASE_EDEFAULT);
 				return;
 			case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
-				setEnumVals(ENUM_VALS_EDEFAULT);
+				getEnumVals().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -194,7 +180,7 @@ public class SimpleContentImpl extends AbstractContentImpl implements SimpleCont
 			case XsdPackage.SIMPLE_CONTENT__BASE:
 				return BASE_EDEFAULT == null ? base != null : !BASE_EDEFAULT.equals(base);
 			case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
-				return ENUM_VALS_EDEFAULT == null ? enumVals != null : !ENUM_VALS_EDEFAULT.equals(enumVals);
+				return enumVals != null && !enumVals.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

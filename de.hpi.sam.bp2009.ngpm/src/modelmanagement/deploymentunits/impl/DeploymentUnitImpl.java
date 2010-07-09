@@ -6,6 +6,7 @@
  */
 package modelmanagement.deploymentunits.impl;
 
+import java.util.Collection;
 import modelmanagement.deploymentunits.DeploymentUnit;
 import modelmanagement.deploymentunits.DeploymentunitsPackage;
 
@@ -16,9 +17,12 @@ import modelmanagement.processcomponents.ProcessComponent;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -36,14 +40,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class DeploymentUnitImpl extends PackageOwnerImpl implements DeploymentUnit {
 	/**
-	 * The cached value of the '{@link #getPcsInsideCompany() <em>Pcs Inside Company</em>}' containment reference.
+	 * The cached value of the '{@link #getPcsInsideCompany() <em>Pcs Inside Company</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getPcsInsideCompany()
 	 * @generated
 	 * @ordered
 	 */
-	protected ProcessComponent pcsInsideCompany;
+	protected EList<ProcessComponent> pcsInsideCompany;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -69,42 +73,11 @@ public class DeploymentUnitImpl extends PackageOwnerImpl implements DeploymentUn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ProcessComponent getPcsInsideCompany() {
+	public EList<ProcessComponent> getPcsInsideCompany() {
+		if (pcsInsideCompany == null) {
+			pcsInsideCompany = new EObjectContainmentEList<ProcessComponent>(ProcessComponent.class, this, DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY);
+		}
 		return pcsInsideCompany;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetPcsInsideCompany(ProcessComponent newPcsInsideCompany, NotificationChain msgs) {
-		ProcessComponent oldPcsInsideCompany = pcsInsideCompany;
-		pcsInsideCompany = newPcsInsideCompany;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY, oldPcsInsideCompany, newPcsInsideCompany);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setPcsInsideCompany(ProcessComponent newPcsInsideCompany) {
-		if (newPcsInsideCompany != pcsInsideCompany) {
-			NotificationChain msgs = null;
-			if (pcsInsideCompany != null)
-				msgs = ((InternalEObject)pcsInsideCompany).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY, null, msgs);
-			if (newPcsInsideCompany != null)
-				msgs = ((InternalEObject)newPcsInsideCompany).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY, null, msgs);
-			msgs = basicSetPcsInsideCompany(newPcsInsideCompany, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY, newPcsInsideCompany, newPcsInsideCompany));
 	}
 
 	/**
@@ -116,7 +89,7 @@ public class DeploymentUnitImpl extends PackageOwnerImpl implements DeploymentUn
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
-				return basicSetPcsInsideCompany(null, msgs);
+				return ((InternalEList<?>)getPcsInsideCompany()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -140,11 +113,13 @@ public class DeploymentUnitImpl extends PackageOwnerImpl implements DeploymentUn
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
-				setPcsInsideCompany((ProcessComponent)newValue);
+				getPcsInsideCompany().clear();
+				getPcsInsideCompany().addAll((Collection<? extends ProcessComponent>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -159,7 +134,7 @@ public class DeploymentUnitImpl extends PackageOwnerImpl implements DeploymentUn
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
-				setPcsInsideCompany((ProcessComponent)null);
+				getPcsInsideCompany().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -174,7 +149,7 @@ public class DeploymentUnitImpl extends PackageOwnerImpl implements DeploymentUn
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
-				return pcsInsideCompany != null;
+				return pcsInsideCompany != null && !pcsInsideCompany.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

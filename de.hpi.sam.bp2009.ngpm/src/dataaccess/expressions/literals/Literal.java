@@ -41,7 +41,7 @@ public interface Literal extends Expression {
 	 * @return the value of the '<em>Literal</em>' attribute.
 	 * @see #setLiteral(String)
 	 * @see dataaccess.expressions.literals.LiteralsPackage#getLiteral_Literal()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getLiteral();

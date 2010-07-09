@@ -44,7 +44,7 @@ public interface MethodCallExpression extends ObjectBasedExpression, SignatureCa
 	 * @return the value of the '<em>Asynchronous</em>' attribute.
 	 * @see #setAsynchronous(boolean)
 	 * @see dataaccess.expressions.ExpressionsPackage#getMethodCallExpression_Asynchronous()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isAsynchronous();

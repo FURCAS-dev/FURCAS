@@ -606,7 +606,7 @@ public class BindingPackageImpl extends EPackageImpl implements BindingPackage {
 		initEClass(urlPatternEClass, UrlPattern.class, "UrlPattern", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(simpleUrlPatternEClass, SimpleUrlPattern.class, "SimpleUrlPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSimpleUrlPattern_BaseUrl(), theEcorePackage.getEString(), "baseUrl", null, 0, 1, SimpleUrlPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSimpleUrlPattern_BaseUrl(), theEcorePackage.getEString(), "baseUrl", null, 1, 1, SimpleUrlPattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(restUrlPatternEClass, RestUrlPattern.class, "RestUrlPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

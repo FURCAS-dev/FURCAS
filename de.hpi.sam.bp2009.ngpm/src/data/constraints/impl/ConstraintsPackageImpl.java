@@ -569,8 +569,8 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		initEReference(getConstraint_ConstraintExpression(), theExpressionsPackage.getExpression(), null, "constraintExpression", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(severityInStateEClass, SeverityInState.class, "SeverityInState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSeverityInState_State(), this.getObjectState(), "state", null, 0, 1, SeverityInState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getSeverityInState_Severity(), this.getSeverity(), "severity", null, 0, 1, SeverityInState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSeverityInState_State(), this.getObjectState(), "state", null, 1, 1, SeverityInState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSeverityInState_Severity(), this.getSeverity(), "severity", null, 1, 1, SeverityInState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(objectStateEEnum, ObjectState.class, "ObjectState");

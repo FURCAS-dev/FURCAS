@@ -6,6 +6,8 @@
  */
 package modelmanagement;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -25,29 +27,19 @@ package modelmanagement;
  */
 public interface PackageOwner extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.
+	 * The list contents are of type {@link modelmanagement.Package}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Packages</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Packages</em>' containment reference.
-	 * @see #setOwnedPackages(modelmanagement.Package)
+	 * @return the value of the '<em>Owned Packages</em>' containment reference list.
 	 * @see modelmanagement.ModelmanagementPackage#getPackageOwner_OwnedPackages()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	modelmanagement.Package getOwnedPackages();
-
-	/**
-	 * Sets the value of the '{@link modelmanagement.PackageOwner#getOwnedPackages <em>Owned Packages</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owned Packages</em>' containment reference.
-	 * @see #getOwnedPackages()
-	 * @generated
-	 */
-	void setOwnedPackages(modelmanagement.Package value);
+	EList<modelmanagement.Package> getOwnedPackages();
 
 } // PackageOwner

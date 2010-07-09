@@ -44,7 +44,7 @@ public interface CodeValue extends EObject {
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getCodeValue_Value()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getValue();
@@ -70,7 +70,7 @@ public interface CodeValue extends EObject {
 	 * @return the value of the '<em>Description</em>' containment reference.
 	 * @see #setDescription(TranslatableText)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getCodeValue_Description()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
 	TranslatableText getDescription();
