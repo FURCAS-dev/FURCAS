@@ -8,7 +8,7 @@ import org.eclipse.emf.common.notify.Adapter;
 
 /**
  * A RegistrationSet is used to pool multiple {@link Registration Registrations} that were created by one call to a register...()
- * method on the EventRegistry interface. This may happen when a client registeres with multiple OR-connected filters. They are
+ * method on the EventRegistry interface. This may happen when a client registers with multiple OR-connected filters. They are
  * mapped to multiple registrations internally. In order to distinguish between one registration using OR-connected filters and
  * several registrations, the resulting Registration objects are being pooled in the first case.
  * 

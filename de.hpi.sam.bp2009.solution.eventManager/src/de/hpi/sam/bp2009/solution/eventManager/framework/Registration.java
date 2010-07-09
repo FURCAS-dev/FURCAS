@@ -7,7 +7,7 @@ import org.eclipse.emf.common.notify.Adapter;
 /**
  * A Registration represents a set of events that a listener wants to receive. Due to the fact that one call to
  * register..() on the EventRegistry interface can result in multiple registrations (due to the internal design),
- * registrations can be pooled into a set. (the {@link com.sap.tc.moin.repository.events.framework.RegistrationSet})
+ * registrations can be pooled into a set (the {@link RegistrationSet}).
  * 
  * @author Daniel Vocke (D044825)
  */
