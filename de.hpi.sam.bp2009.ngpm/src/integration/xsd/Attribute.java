@@ -39,7 +39,7 @@ public interface Attribute extends NamedElement {
 	 * @see integration.xsd.AttUseType
 	 * @see #setUse(AttUseType)
 	 * @see integration.xsd.XsdPackage#getAttribute_Use()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	AttUseType getUse();
@@ -66,7 +66,7 @@ public interface Attribute extends NamedElement {
 	 * @return the value of the '<em>Val</em>' attribute.
 	 * @see #setVal(String)
 	 * @see integration.xsd.XsdPackage#getAttribute_Val()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getVal();

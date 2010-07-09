@@ -129,7 +129,7 @@ public interface ModelmanagementPackage extends EPackage {
 	int PACKAGE_OWNER__DESCRIPTION = NAMED_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -175,7 +175,7 @@ public interface ModelmanagementPackage extends EPackage {
 	int PACKAGE__DESCRIPTION = PACKAGE_OWNER__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owned Packages</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -275,7 +275,7 @@ public interface ModelmanagementPackage extends EPackage {
 	int APPLICATION__DESCRIPTION = NAMED_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Deployment Units</b></em>' containment reference.
+	 * The feature id for the '<em><b>Deployment Units</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -440,10 +440,10 @@ public interface ModelmanagementPackage extends EPackage {
 	EClass getApplication();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link modelmanagement.Application#getDeploymentUnits <em>Deployment Units</em>}'.
+	 * Returns the meta object for the containment reference list '{@link modelmanagement.Application#getDeploymentUnits <em>Deployment Units</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Deployment Units</em>'.
+	 * @return the meta object for the containment reference list '<em>Deployment Units</em>'.
 	 * @see modelmanagement.Application#getDeploymentUnits()
 	 * @see #getApplication()
 	 * @generated
@@ -472,10 +472,10 @@ public interface ModelmanagementPackage extends EPackage {
 	EClass getPackageOwner();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link modelmanagement.PackageOwner#getOwnedPackages <em>Owned Packages</em>}'.
+	 * Returns the meta object for the containment reference list '{@link modelmanagement.PackageOwner#getOwnedPackages <em>Owned Packages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Packages</em>'.
+	 * @return the meta object for the containment reference list '<em>Owned Packages</em>'.
 	 * @see modelmanagement.PackageOwner#getOwnedPackages()
 	 * @see #getPackageOwner()
 	 * @generated
@@ -609,7 +609,7 @@ public interface ModelmanagementPackage extends EPackage {
 		EClass APPLICATION = eINSTANCE.getApplication();
 
 		/**
-		 * The meta object literal for the '<em><b>Deployment Units</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Deployment Units</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -635,7 +635,7 @@ public interface ModelmanagementPackage extends EPackage {
 		EClass PACKAGE_OWNER = eINSTANCE.getPackageOwner();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Packages</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owned Packages</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

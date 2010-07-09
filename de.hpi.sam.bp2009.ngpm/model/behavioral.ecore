@@ -206,7 +206,7 @@
         <details key="constraints" value="VariableOwnedByRightBlock"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="parallel" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="collection" lowerBound="1"
           eType="ecore:EClass dataaccess.ecore#//expressions/Expression"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="forVariable" lowerBound="1"
@@ -432,9 +432,9 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="SAMAction">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgentAction" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="businessObjectNode" lowerBound="1"
           eType="ecore:EClass data.ecore#//classes/SapClass" transient="true" eOpposite="data.ecore#//classes/SapClass/samActions"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSchemaActions" upperBound="-1"
@@ -442,9 +442,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMStatusVariable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgentVariable" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="businessObjectNode" lowerBound="1"
           eType="ecore:EClass data.ecore#//classes/SapClass" transient="true" eOpposite="data.ecore#//classes/SapClass/samStatusVariables"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samStatusValues" upperBound="-1"
@@ -454,7 +454,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMDerivator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false"
-          unique="false" eType="#//status_and_action_old/SAMDerivatorKindEnum"/>
+          unique="false" lowerBound="1" eType="#//status_and_action_old/SAMDerivatorKindEnum"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="businessObject" lowerBound="1"
           eType="ecore:EClass data.ecore#//classes/SapClass" transient="true" eOpposite="data.ecore#//classes/SapClass/samDerivators"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSchemaDerivators"
@@ -462,13 +462,13 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMStatusValue">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samStatusVariable" lowerBound="1"
           eType="#//status_and_action_old/SAMStatusVariable" transient="true" eOpposite="#//status_and_action_old/SAMStatusVariable/samStatusValues"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMStatusSchema">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="businessObjectNode" lowerBound="1"
           eType="ecore:EClass data.ecore#//classes/SapClass" transient="true" eOpposite="data.ecore#//classes/SapClass/samStatusSchema"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samOperators" upperBound="-1"
@@ -483,7 +483,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMOperator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false"
-          unique="false" eType="#//status_and_action_old/SAMOperatorKindEnum"/>
+          unique="false" lowerBound="1" eType="#//status_and_action_old/SAMOperatorKindEnum"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samStatusSchema" lowerBound="1"
           eType="#//status_and_action_old/SAMStatusSchema" transient="true" eOpposite="#//status_and_action_old/SAMStatusSchema/samOperators"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSchemaValues" upperBound="-1"
@@ -497,7 +497,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMSchemaVariable">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasStateGuard" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samStatusSchema" lowerBound="1"
           eType="#//status_and_action_old/SAMStatusSchema" transient="true" eOpposite="#//status_and_action_old/SAMStatusSchema/samSchemaVariables"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSchemaValues" upperBound="-1"
@@ -511,9 +511,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SAMSchemaValue">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInitial" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInhibiting" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSchemaVariable" lowerBound="1"
           eType="#//status_and_action_old/SAMSchemaVariable" transient="true" eOpposite="#//status_and_action_old/SAMSchemaVariable/samSchemaValues"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="samSourceSchemaActions"
@@ -608,9 +608,9 @@
       <eClassifiers xsi:type="ecore:EClass" name="AbstractStatusVariable" abstract="true"
           eSuperTypes="modelmanagement.ecore#//NamedElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgent" ordered="false"
-            unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStateGuarded" ordered="false"
-            unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
             eType="#//status_and_action/design/AbstractStatusValue" containment="true">
           <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
@@ -621,18 +621,18 @@
       <eClassifiers xsi:type="ecore:EClass" name="AbstractStatusValue" abstract="true"
           eSuperTypes="modelmanagement.ecore#//NamedElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInitial" ordered="false"
-            unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInhibiting" ordered="false"
-            unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStateGuarded" ordered="false"
-            unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="AbstractAction" abstract="true"
           eSuperTypes="modelmanagement.ecore#//NamedElement">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAgent" ordered="false"
-            unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPreconditionFixed"
-            ordered="false" unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+            ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="assembly" nsURI="http:///behavioral/status_and_action/assembly.ecore"

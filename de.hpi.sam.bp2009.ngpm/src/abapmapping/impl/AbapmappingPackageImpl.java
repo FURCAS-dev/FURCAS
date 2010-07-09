@@ -571,7 +571,7 @@ public class AbapmappingPackageImpl extends EPackageImpl implements AbapmappingP
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abapClassImplementationAnnotationEClass, AbapClassImplementationAnnotation.class, "AbapClassImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbapClassImplementationAnnotation_Kind(), this.getAbapClassKind(), "kind", null, 0, 1, AbapClassImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbapClassImplementationAnnotation_Kind(), this.getAbapClassKind(), "kind", null, 1, 1, AbapClassImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAbapClassImplementationAnnotation_AbapType(), theAbapdictionaryPackage.getAbapType(), null, "abapType", null, 1, 1, AbapClassImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(abapAssociationImplementationAnnotationEClass, AbapAssociationImplementationAnnotation.class, "AbapAssociationImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -579,7 +579,7 @@ public class AbapmappingPackageImpl extends EPackageImpl implements AbapmappingP
 		initEClass(abapAssociationEndImplementationAnnotationEClass, AbapAssociationEndImplementationAnnotation.class, "AbapAssociationEndImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(abapSignatureImplementationAnnotationEClass, AbapSignatureImplementationAnnotation.class, "AbapSignatureImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbapSignatureImplementationAnnotation_Kind(), this.getAbapSignatureKind(), "kind", null, 0, 1, AbapSignatureImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAbapSignatureImplementationAnnotation_Kind(), this.getAbapSignatureKind(), "kind", null, 1, 1, AbapSignatureImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(abapClassKindEEnum, AbapClassKind.class, "AbapClassKind");

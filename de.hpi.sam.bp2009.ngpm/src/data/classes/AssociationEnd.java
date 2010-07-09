@@ -47,7 +47,7 @@ public interface AssociationEnd extends NamedElement {
 	 * @return the value of the '<em>Navigable</em>' attribute.
 	 * @see #setNavigable(boolean)
 	 * @see data.classes.ClassesPackage#getAssociationEnd_Navigable()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isNavigable();
@@ -74,7 +74,7 @@ public interface AssociationEnd extends NamedElement {
 	 * @return the value of the '<em>Composite</em>' attribute.
 	 * @see #setComposite(boolean)
 	 * @see data.classes.ClassesPackage#getAssociationEnd_Composite()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isComposite();
@@ -101,7 +101,7 @@ public interface AssociationEnd extends NamedElement {
 	 * @return the value of the '<em>Contributes To Equality</em>' attribute.
 	 * @see #setContributesToEquality(boolean)
 	 * @see data.classes.ClassesPackage#getAssociationEnd_ContributesToEquality()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isContributesToEquality();

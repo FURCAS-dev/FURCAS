@@ -226,7 +226,7 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String METHOD_CALL_EXPRESSION__OBJECT_MUST_SUPPORT_OPERATION__EEXPRESSION = "self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
+	protected static final String METHOD_CALL_EXPRESSION__OBJECT_MUST_SUPPORT_OPERATION__EEXPRESSION = "self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n" +
 		"  self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(data::classes::SapClass))";
 
 	/**
@@ -256,7 +256,7 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String METHOD_CALL_EXPRESSION__OUTPUT_MULTIPLICITIES__EEXPRESSION = "(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and" +
+	protected static final String METHOD_CALL_EXPRESSION__OUTPUT_MULTIPLICITIES__EEXPRESSION = "(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and\n" +
 		"  (self.object.getType().lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))";
 
 	/**
@@ -347,9 +347,9 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String OBJECT_CREATION_EXPRESSION__EXPRESSION_TYPE__EEXPRESSION = "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
-		"  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz = self.classToInstantiate and" +
-		"  self.getType().lowerMultiplicity = 1 and" +
+	protected static final String OBJECT_CREATION_EXPRESSION__EXPRESSION_TYPE__EEXPRESSION = "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n" +
+		"  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz = self.classToInstantiate and\n" +
+		"  self.getType().lowerMultiplicity = 1 and\n" +
 		"  self.getType().upperMultiplicity = 1";
 
 	/**
@@ -488,17 +488,17 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String FUNCTION_CALL_EXPRESSION__RESULT_TYPE__EEXPRESSION = "let fstd:data::classes::FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in" +
-		"" +
-		"  if fstd.isMany() then" +
-		"    -- calling multiple functions; test is somewhat fuzzy because it doesn\'t test condormance of nesting structure exactly" +
-		"    self.getType().isMany() and not self.getType().unique and" +
-		"    fstd.signature.output.getInnermost().conformsTo(self.getType().getInnermost()) and" +
-		"    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))" +
-		"  else" +
-		"    -- calling a single function" +
-		"    fstd.signature.output.conformsTo(self.getType()) and " +
-		"    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))" +
+	protected static final String FUNCTION_CALL_EXPRESSION__RESULT_TYPE__EEXPRESSION = "let fstd:data::classes::FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in\n" +
+		"\n" +
+		"  if fstd.isMany() then\n" +
+		"    -- calling multiple functions; test is somewhat fuzzy because it doesn't test condormance of nesting structure exactly\n" +
+		"    self.getType().isMany() and not self.getType().unique and\n" +
+		"    fstd.signature.output.getInnermost().conformsTo(self.getType().getInnermost()) and\n" +
+		"    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n" +
+		"  else\n" +
+		"    -- calling a single function\n" +
+		"    fstd.signature.output.conformsTo(self.getType()) and \n" +
+		"    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n" +
 		"  endif";
 
 	/**
@@ -594,7 +594,7 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EQUALS__CONFORMACE_ONE_WAY_OR_ANOTHER__EEXPRESSION = "self.left.getType().conformsTo(self.right.getType()) or" +
+	protected static final String EQUALS__CONFORMACE_ONE_WAY_OR_ANOTHER__EEXPRESSION = "self.left.getType().conformsTo(self.right.getType()) or\n" +
 		"  self.right.getType().conformsTo(self.left.getType())";
 
 	/**
@@ -752,12 +752,12 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SIGNATURE_CALL_EXPRESSION__PARAMETERS_TYPES_MUST_MATCH_SIGNATURE_PARAMETERS_TYPES__EEXPRESSION = "let numberOfMandatoryParameters:Integer =" +
-		"    self.getSignature().input->select(p|p.defaultValue->isEmpty())->size()" +
-		"  in" +
-		"  self.parameters->size() >= numberOfMandatoryParameters and" +
-		"  self.parameters->size() <= self.getSignature().input->size() and" +
-		"  self.parameters->forAll(parameter |" +
+	protected static final String SIGNATURE_CALL_EXPRESSION__PARAMETERS_TYPES_MUST_MATCH_SIGNATURE_PARAMETERS_TYPES__EEXPRESSION = "let numberOfMandatoryParameters:Integer =\n" +
+		"    self.getSignature().input->select(p|p.defaultValue->isEmpty())->size()\n" +
+		"  in\n" +
+		"  self.parameters->size() >= numberOfMandatoryParameters and\n" +
+		"  self.parameters->size() <= self.getSignature().input->size() and\n" +
+		"  self.parameters->forAll(parameter |\n" +
 		"    parameter.getType().conformsTo(self.getSignature().input->at(self.parameters->indexOf(parameter)).getType()) )";
 
 	/**
@@ -787,30 +787,30 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SIGNATURE_CALL_EXPRESSION__CALL_TYPE_MUST_MATCH_SIGNATURE_OUTPUT__EEXPRESSION = "if self.getSignature().output.oclIsUndefined() then" +
-		"        self.getType().oclIsUndefined()" +
-		"    else " +
-		"        if self.getMultiplicityOfCallTarget().isMany() and self.getSignature().output.isMany() then" +
-		"            let ntd:data::classes::NestedTypeDefinition = self.getType().oclAsType(data::classes::NestedTypeDefinition) in" +
-		"                self.getType().oclIsKindOf(data::classes::NestedTypeDefinition) and " +
-		"                ntd.unique = false and" +
-		"                ntd.ordered = self.getMultiplicityOfCallTarget().ordered and" +
-		"                ntd.lowerMultiplicity = self.getMultiplicityOfCallTarget().lowerMultiplicity and" +
-		"                ntd.upperMultiplicity = self.getMultiplicityOfCallTarget().upperMultiplicity and" +
-		"                self.getSignature().output.conformsTo(ntd.type)" +
-		"        else" +
-		"            let target:data::classes::Multiplicity = self.getMultiplicityOfCallTarget() in" +
-		"            let output:data::classes::TypeDefinition = self.getSignature().output in " +
-		"                ( output.isMany() implies self.getType().unique = output.unique ) and" +
-		"                ( ( output.isMany() or target.isMany() ) implies ( self.getType().ordered = (output.ordered or target.ordered) ) ) and" +
-		"                ( self.getType().lowerMultiplicity = (output.lowerMultiplicity * target.lowerMultiplicity)) and" +
-		"                ( self.getType().upperMultiplicity = (if output.isMany() or target.isMany() then " +
-		"                                                        -1 " +
-		"                                                    else " +
-		"                                                        output.upperMultiplicity * target.upperMultiplicity " +
-		"                                                    endif)) and" +
-		"                self.getType().conformsToIgnoringMultiplicity(output)" +
-		"        endif" +
+	protected static final String SIGNATURE_CALL_EXPRESSION__CALL_TYPE_MUST_MATCH_SIGNATURE_OUTPUT__EEXPRESSION = "if self.getSignature().output.oclIsUndefined() then\n" +
+		"        self.getType().oclIsUndefined()\n" +
+		"    else \n" +
+		"        if self.getMultiplicityOfCallTarget().isMany() and self.getSignature().output.isMany() then\n" +
+		"            let ntd:data::classes::NestedTypeDefinition = self.getType().oclAsType(data::classes::NestedTypeDefinition) in\n" +
+		"                self.getType().oclIsKindOf(data::classes::NestedTypeDefinition) and \n" +
+		"                ntd.unique = false and\n" +
+		"                ntd.ordered = self.getMultiplicityOfCallTarget().ordered and\n" +
+		"                ntd.lowerMultiplicity = self.getMultiplicityOfCallTarget().lowerMultiplicity and\n" +
+		"                ntd.upperMultiplicity = self.getMultiplicityOfCallTarget().upperMultiplicity and\n" +
+		"                self.getSignature().output.conformsTo(ntd.type)\n" +
+		"        else\n" +
+		"            let target:data::classes::Multiplicity = self.getMultiplicityOfCallTarget() in\n" +
+		"            let output:data::classes::TypeDefinition = self.getSignature().output in \n" +
+		"                ( output.isMany() implies self.getType().unique = output.unique ) and\n" +
+		"                ( ( output.isMany() or target.isMany() ) implies ( self.getType().ordered = (output.ordered or target.ordered) ) ) and\n" +
+		"                ( self.getType().lowerMultiplicity = (output.lowerMultiplicity * target.lowerMultiplicity)) and\n" +
+		"                ( self.getType().upperMultiplicity = (if output.isMany() or target.isMany() then \n" +
+		"                                                        -1 \n" +
+		"                                                    else \n" +
+		"                                                        output.upperMultiplicity * target.upperMultiplicity \n" +
+		"                                                    endif)) and\n" +
+		"                self.getType().conformsToIgnoringMultiplicity(output)\n" +
+		"        endif\n" +
 		"    endif";
 
 	/**
@@ -860,8 +860,8 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String OBJECT_COUNT__TYPE_IS_NUMBER__EEXPRESSION = "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
-		"  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\'";
+	protected static final String OBJECT_COUNT__TYPE_IS_NUMBER__EEXPRESSION = "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n" +
+		"  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Number'";
 
 	/**
 	 * Validates the TypeIsNumber constraint of '<em>Object Count</em>'.
@@ -890,7 +890,7 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String OBJECT_COUNT__MULTIPLICITY_IS_ONE__EEXPRESSION = "self.getType().upperMultiplicity = 1 and" +
+	protected static final String OBJECT_COUNT__MULTIPLICITY_IS_ONE__EEXPRESSION = "self.getType().upperMultiplicity = 1 and\n" +
 		"  self.getType().lowerMultiplicity = 1";
 
 	/**
@@ -940,7 +940,7 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String REPLACE__SOURCE_OBJECT_IS_OF_VALUE_TYPE__EEXPRESSION = "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
+	protected static final String REPLACE__SOURCE_OBJECT_IS_OF_VALUE_TYPE__EEXPRESSION = "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n" +
 		"  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType";
 
 	/**
@@ -1020,14 +1020,14 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String NAVIGATION_STEP__FROM_END_ATTACHES_TO_OUTPUT_OF_PREVIOUS_STEP__EEXPRESSION = "let i:Integer = self.replace.steps->indexOf(self) in" +
-		"  let t:data::classes::ClassTypeDefinition = if i=1 then" +
-		"      self.replace.object.getType().oclAsType(data::classes::ClassTypeDefinition)" +
-		"    else" +
-		"      self.replace.steps->at(-1 + i).to.type" +
-		"    endif" +
-		"  in" +
-		"" +
+	protected static final String NAVIGATION_STEP__FROM_END_ATTACHES_TO_OUTPUT_OF_PREVIOUS_STEP__EEXPRESSION = "let i:Integer = self.replace.steps->indexOf(self) in\n" +
+		"  let t:data::classes::ClassTypeDefinition = if i=1 then\n" +
+		"      self.replace.object.getType().oclAsType(data::classes::ClassTypeDefinition)\n" +
+		"    else\n" +
+		"      self.replace.steps->at(-1 + i).to.type\n" +
+		"    endif\n" +
+		"  in\n" +
+		"\n" +
 		"  self.to.otherEnd().type.clazz.conformsTo(t.clazz)";
 
 	/**
@@ -1239,9 +1239,9 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CONDITIONAL__CONDITION_MUST_BE_BOOLEAN__EEXPRESSION = "self.condition.getType().upperMultiplicity = 1 and" +
-		"  self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
-		"  self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'";
+	protected static final String CONDITIONAL__CONDITION_MUST_BE_BOOLEAN__EEXPRESSION = "self.condition.getType().upperMultiplicity = 1 and\n" +
+		"  self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n" +
+		"  self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Boolean'";
 
 	/**
 	 * Validates the ConditionMustBeBoolean constraint of '<em>Conditional</em>'.
@@ -1290,7 +1290,7 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String TERNARY__TRUE_AND_FALSE_EXPRS_CONFORM_TO_RESULT_TYPE__EEXPRESSION = "self.trueExpr.getType().conformsTo(self.getType()) or" +
+	protected static final String TERNARY__TRUE_AND_FALSE_EXPRS_CONFORM_TO_RESULT_TYPE__EEXPRESSION = "self.trueExpr.getType().conformsTo(self.getType()) or\n" +
 		"  self.falseExpr.getType().conformsTo(self.getType())";
 
 	/**
@@ -1340,9 +1340,9 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CONTENT_EQUALS__CONTENT_EQUALS_ONLY_FOR_ENTITIES__EEXPRESSION = "self.left.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
-		"  self.right.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and" +
-		"  not self.left.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType and" +
+	protected static final String CONTENT_EQUALS__CONTENT_EQUALS_ONLY_FOR_ENTITIES__EEXPRESSION = "self.left.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n" +
+		"  self.right.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n" +
+		"  not self.left.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType and\n" +
 		"  not self.right.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType";
 
 	/**
@@ -1421,14 +1421,14 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String MAP__OBJECT_TYPE_MUST_CONFORM_TO_FUNCTION_ARGUMENT__EEXPRESSION = "let fstd:data::classes::TypeDefinition = self.argument.getType() in" +
-		"  let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in" +
-		"  let t:data::classes::TypeDefinition = self.object.getType() in" +
-		"  let argT:data::classes::TypeDefinition = sig.input->at(1).getType() in" +
-		"  -- if multiplicities match including multiplicities, that\'s ok" +
-		"  t.conformsTo(argT) or" +
-		"  -- otherwise, pick single multiplicity from object and try again" +
-		"  t.conformsToIgnoringMultiplicity(argT) or" +
+	protected static final String MAP__OBJECT_TYPE_MUST_CONFORM_TO_FUNCTION_ARGUMENT__EEXPRESSION = "let fstd:data::classes::TypeDefinition = self.argument.getType() in\n" +
+		"  let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\n" +
+		"  let t:data::classes::TypeDefinition = self.object.getType() in\n" +
+		"  let argT:data::classes::TypeDefinition = sig.input->at(1).getType() in\n" +
+		"  -- if multiplicities match including multiplicities, that's ok\n" +
+		"  t.conformsTo(argT) or\n" +
+		"  -- otherwise, pick single multiplicity from object and try again\n" +
+		"  t.conformsToIgnoringMultiplicity(argT) or\n" +
 		"  (t.oclIsKindOf(data::classes::NestedTypeDefinition) and t.oclAsType(data::classes::NestedTypeDefinition).type.conformsTo(argT))";
 
 	/**
@@ -1458,10 +1458,10 @@ public class ExpressionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String MAP__ARGUMENT_MUST_BE_SINGLE_ARGUMENT_FUNCTION_WITH_NON_VOID_OUTPUT__EEXPRESSION = "let fstd:data::classes::TypeDefinition = self.argument.getType() in" +
-		"  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and" +
-		"  (let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in" +
-		"  (sig.output->notEmpty() and" +
+	protected static final String MAP__ARGUMENT_MUST_BE_SINGLE_ARGUMENT_FUNCTION_WITH_NON_VOID_OUTPUT__EEXPRESSION = "let fstd:data::classes::TypeDefinition = self.argument.getType() in\n" +
+		"  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n" +
+		"  (let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\n" +
+		"  (sig.output->notEmpty() and\n" +
 		"  sig.input->size() = 1))";
 
 	/**

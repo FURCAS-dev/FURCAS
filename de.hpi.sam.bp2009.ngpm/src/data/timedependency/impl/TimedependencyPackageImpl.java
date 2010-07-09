@@ -493,9 +493,9 @@ public class TimedependencyPackageImpl extends EPackageImpl implements Timedepen
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(timeDependencyEClass, TimeDependency.class, "TimeDependency", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getTimeDependency_RecordCutoffInMilliseconds(), theEcorePackage.getEInt(), "recordCutoffInMilliseconds", null, 0, 1, TimeDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getTimeDependency_CanChangePast(), theEcorePackage.getEBoolean(), "canChangePast", null, 0, 1, TimeDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getTimeDependency_Timespan(), theEcorePackage.getEBoolean(), "timespan", null, 0, 1, TimeDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getTimeDependency_RecordCutoffInMilliseconds(), theEcorePackage.getEInt(), "recordCutoffInMilliseconds", null, 1, 1, TimeDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getTimeDependency_CanChangePast(), theEcorePackage.getEBoolean(), "canChangePast", null, 1, 1, TimeDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getTimeDependency_Timespan(), theEcorePackage.getEBoolean(), "timespan", null, 1, 1, TimeDependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getTimeDependency_TheClass(), theClassesPackage.getSapClass(), theClassesPackage.getSapClass_TimeDependency(), "theClass", null, 0, 1, TimeDependency.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTimeDependency_Association(), theClassesPackage.getAssociation(), theClassesPackage.getAssociation_TimeDependency(), "association", null, 0, 1, TimeDependency.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

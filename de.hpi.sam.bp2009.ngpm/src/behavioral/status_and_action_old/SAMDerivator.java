@@ -44,7 +44,7 @@ public interface SAMDerivator extends EObject {
 	 * @see behavioral.status_and_action_old.SAMDerivatorKindEnum
 	 * @see #setKind(SAMDerivatorKindEnum)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMDerivator_Kind()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	SAMDerivatorKindEnum getKind();

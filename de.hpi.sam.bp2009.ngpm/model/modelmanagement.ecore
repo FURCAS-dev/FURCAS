@@ -56,7 +56,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="description" ordered="false"
         unique="false" eType="ecore:EClass localization.ecore#//TranslatableText"
         containment="true" resolveProxies="false"/>
@@ -66,14 +66,15 @@
       <details key="documentation" value="An application, such as &quot;Business ByDesign&quot;"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentUnits" ordered="false"
-        eType="#//deploymentunits/DeploymentUnit" containment="true" resolveProxies="false"/>
+        upperBound="-1" eType="#//deploymentunits/DeploymentUnit" containment="true"
+        resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="integrationScenarios" upperBound="-1"
         eType="ecore:EClass integration.ecore#//processintegration/IntegrationScenario"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageOwner" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" ordered="false"
-        eType="#//Package" containment="true" resolveProxies="false"/>
+        upperBound="-1" eType="#//Package" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Module"/>
   <eSubpackages name="processcomponents" nsURI="http:///modelmanagement/processcomponents.ecore"
@@ -88,15 +89,16 @@
     <eClassifiers xsi:type="ecore:EClass" name="ProcessComponent" abstract="true"
         eSuperTypes="#//PackageOwner">
       <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterfaces" ordered="false"
-          eType="ecore:EClass data.ecore#//classes/SapClass" containment="true" resolveProxies="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="eventProducers" ordered="false"
-          eType="ecore:EClass behavioral.ecore#//events/EventProducer" containment="true"
+          upperBound="-1" eType="ecore:EClass data.ecore#//classes/SapClass" containment="true"
           resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="eventProducers" ordered="false"
+          upperBound="-1" eType="ecore:EClass behavioral.ecore#//events/EventProducer"
+          containment="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="interactions" ordered="false"
-          eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
+          lowerBound="1" upperBound="-1" eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
           containment="true" resolveProxies="false"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedInteractions"
-          ordered="false" eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
+          ordered="false" lowerBound="1" upperBound="-1" eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
           containment="true" resolveProxies="false"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ProcessComponentInsideCompany" eSuperTypes="#//processcomponents/ProcessComponent">
@@ -117,7 +119,8 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="DeploymentUnit" eSuperTypes="#//PackageOwner #//NamedElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="pcsInsideCompany" ordered="false"
-          eType="#//processcomponents/ProcessComponent" containment="true" resolveProxies="false"/>
+          upperBound="-1" eType="#//processcomponents/ProcessComponent" containment="true"
+          resolveProxies="false"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

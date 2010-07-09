@@ -13,6 +13,7 @@ import data.classes.SapClass;
 import integration.processintegration.ProcessComponentInteraction;
 
 import modelmanagement.PackageOwner;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,107 +36,67 @@ import modelmanagement.PackageOwner;
  */
 public interface ProcessComponent extends PackageOwner {
 	/**
-	 * Returns the value of the '<em><b>Provided Interfaces</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Provided Interfaces</b></em>' containment reference list.
+	 * The list contents are of type {@link data.classes.SapClass}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Provided Interfaces</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Provided Interfaces</em>' containment reference.
-	 * @see #setProvidedInterfaces(SapClass)
+	 * @return the value of the '<em>Provided Interfaces</em>' containment reference list.
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_ProvidedInterfaces()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	SapClass getProvidedInterfaces();
+	EList<SapClass> getProvidedInterfaces();
 
 	/**
-	 * Sets the value of the '{@link modelmanagement.processcomponents.ProcessComponent#getProvidedInterfaces <em>Provided Interfaces</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Provided Interfaces</em>' containment reference.
-	 * @see #getProvidedInterfaces()
-	 * @generated
-	 */
-	void setProvidedInterfaces(SapClass value);
-
-	/**
-	 * Returns the value of the '<em><b>Event Producers</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Event Producers</b></em>' containment reference list.
+	 * The list contents are of type {@link behavioral.events.EventProducer}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Event Producers</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Event Producers</em>' containment reference.
-	 * @see #setEventProducers(EventProducer)
+	 * @return the value of the '<em>Event Producers</em>' containment reference list.
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_EventProducers()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EventProducer getEventProducers();
+	EList<EventProducer> getEventProducers();
 
 	/**
-	 * Sets the value of the '{@link modelmanagement.processcomponents.ProcessComponent#getEventProducers <em>Event Producers</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Event Producers</em>' containment reference.
-	 * @see #getEventProducers()
-	 * @generated
-	 */
-	void setEventProducers(EventProducer value);
-
-	/**
-	 * Returns the value of the '<em><b>Interactions</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Interactions</b></em>' containment reference list.
+	 * The list contents are of type {@link integration.processintegration.ProcessComponentInteraction}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Interactions</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Interactions</em>' containment reference.
-	 * @see #setInteractions(ProcessComponentInteraction)
+	 * @return the value of the '<em>Interactions</em>' containment reference list.
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_Interactions()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
-	ProcessComponentInteraction getInteractions();
+	EList<ProcessComponentInteraction> getInteractions();
 
 	/**
-	 * Sets the value of the '{@link modelmanagement.processcomponents.ProcessComponent#getInteractions <em>Interactions</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Interactions</em>' containment reference.
-	 * @see #getInteractions()
-	 * @generated
-	 */
-	void setInteractions(ProcessComponentInteraction value);
-
-	/**
-	 * Returns the value of the '<em><b>Initiated Interactions</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Initiated Interactions</b></em>' containment reference list.
+	 * The list contents are of type {@link integration.processintegration.ProcessComponentInteraction}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Initiated Interactions</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Initiated Interactions</em>' containment reference.
-	 * @see #setInitiatedInteractions(ProcessComponentInteraction)
+	 * @return the value of the '<em>Initiated Interactions</em>' containment reference list.
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_InitiatedInteractions()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true" required="true" ordered="false"
 	 * @generated
 	 */
-	ProcessComponentInteraction getInitiatedInteractions();
-
-	/**
-	 * Sets the value of the '{@link modelmanagement.processcomponents.ProcessComponent#getInitiatedInteractions <em>Initiated Interactions</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Initiated Interactions</em>' containment reference.
-	 * @see #getInitiatedInteractions()
-	 * @generated
-	 */
-	void setInitiatedInteractions(ProcessComponentInteraction value);
+	EList<ProcessComponentInteraction> getInitiatedInteractions();
 
 } // ProcessComponent

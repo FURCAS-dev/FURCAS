@@ -38,7 +38,7 @@ public interface AbapSignatureImplementationAnnotation extends EObject {
 	 * @see abapmapping.AbapSignatureKind
 	 * @see #setKind(AbapSignatureKind)
 	 * @see abapmapping.AbapmappingPackage#getAbapSignatureImplementationAnnotation_Kind()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	AbapSignatureKind getKind();

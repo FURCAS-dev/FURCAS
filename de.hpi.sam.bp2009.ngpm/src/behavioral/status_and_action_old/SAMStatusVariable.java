@@ -44,7 +44,7 @@ public interface SAMStatusVariable extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMStatusVariable_Name()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getName();
@@ -70,7 +70,7 @@ public interface SAMStatusVariable extends EObject {
 	 * @return the value of the '<em>Is Agent Variable</em>' attribute.
 	 * @see #setIsAgentVariable(boolean)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMStatusVariable_IsAgentVariable()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isIsAgentVariable();

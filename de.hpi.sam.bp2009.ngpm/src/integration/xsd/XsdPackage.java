@@ -943,7 +943,7 @@ public interface XsdPackage extends EPackage {
 	int SIMPLE_CONTENT__BASE = ABSTRACT_CONTENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Enum Vals</b></em>' attribute.
+	 * The feature id for the '<em><b>Enum Vals</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1388,10 +1388,10 @@ public interface XsdPackage extends EPackage {
 	EAttribute getSimpleContent_Base();
 
 	/**
-	 * Returns the meta object for the attribute '{@link integration.xsd.SimpleContent#getEnumVals <em>Enum Vals</em>}'.
+	 * Returns the meta object for the attribute list '{@link integration.xsd.SimpleContent#getEnumVals <em>Enum Vals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Enum Vals</em>'.
+	 * @return the meta object for the attribute list '<em>Enum Vals</em>'.
 	 * @see integration.xsd.SimpleContent#getEnumVals()
 	 * @see #getSimpleContent()
 	 * @generated
@@ -1785,7 +1785,7 @@ public interface XsdPackage extends EPackage {
 		EAttribute SIMPLE_CONTENT__BASE = eINSTANCE.getSimpleContent_Base();
 
 		/**
-		 * The meta object literal for the '<em><b>Enum Vals</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Enum Vals</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -1967,7 +1967,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getAssociation_AbapAnnotation(), theAbapmappingPackage.getAbapAssociationImplementationAnnotation(), null, "abapAnnotation", null, 0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(signatureEClass, Signature.class, "Signature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getSignature_SideEffectFree(), theEcorePackage.getEBoolean(), "sideEffectFree", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSignature_SideEffectFree(), theEcorePackage.getEBoolean(), "sideEffectFree", null, 1, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSignature_Faults(), this.getSapClass(), this.getSapClass_SignaturesWithFault(), "faults", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_Output(), this.getTypeDefinition(), this.getTypeDefinition_SignaturesWithOutput(), "output", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSignature_OwnedTypeDefinitions(), this.getTypeDefinition(), this.getTypeDefinition_OwnerSignature(), "ownedTypeDefinitions", null, 0, 1, Signature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1990,9 +1990,9 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addEOperation(signatureEClass, this.getSapClass(), "getOwningClass", 0, 1, !IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(associationEndEClass, AssociationEnd.class, "AssociationEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAssociationEnd_Navigable(), theEcorePackage.getEBoolean(), "navigable", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getAssociationEnd_Composite(), theEcorePackage.getEBoolean(), "composite", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getAssociationEnd_ContributesToEquality(), theEcorePackage.getEBoolean(), "contributesToEquality", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAssociationEnd_Navigable(), theEcorePackage.getEBoolean(), "navigable", null, 1, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAssociationEnd_Composite(), theEcorePackage.getEBoolean(), "composite", null, 1, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getAssociationEnd_ContributesToEquality(), theEcorePackage.getEBoolean(), "contributesToEquality", null, 1, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getAssociationEnd_Association(), this.getAssociation(), this.getAssociation_Ends(), "association", null, 1, 1, AssociationEnd.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociationEnd_Delegation(), this.getDelegation(), this.getDelegation_From(), "delegation", null, 0, 1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssociationEnd_SignatureImplementations(), this.getAssociationEndSignatureImplementation(), this.getAssociationEndSignatureImplementation_End(), "signatureImplementations", null, 0, -1, AssociationEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2008,7 +2008,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getSapClass_SamDerivators(), theStatus_and_action_oldPackage.getSAMDerivator(), theStatus_and_action_oldPackage.getSAMDerivator_BusinessObject(), "samDerivators", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_SamStatusSchema(), theStatus_and_action_oldPackage.getSAMStatusSchema(), theStatus_and_action_oldPackage.getSAMStatusSchema_BusinessObjectNode(), "samStatusSchema", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_BehaviouralModel(), theAssemblyPackage.getStatusSchema(), theAssemblyPackage.getStatusSchema_Node(), "behaviouralModel", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSapClass_ValueType(), theEcorePackage.getEBoolean(), "valueType", null, 0, 1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSapClass_ValueType(), theEcorePackage.getEBoolean(), "valueType", null, 1, 1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSapClass_SignaturesWithFault(), this.getSignature(), this.getSignature_Faults(), "signaturesWithFault", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_ElementsOfType(), this.getClassTypeDefinition(), this.getClassTypeDefinition_Clazz(), "elementsOfType", null, 0, -1, SapClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSapClass_Package_(), theModelmanagementPackage.getPackage(), theModelmanagementPackage.getPackage_Classes(), "package_", null, 0, 1, SapClass.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2070,7 +2070,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addEOperation(sapClassEClass, this.getAssociationEnd(), "getConformsToCompositeChildAssociationEnds", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(delegationEClass, Delegation.class, "Delegation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDelegation_AllFeatures(), theEcorePackage.getEBoolean(), "allFeatures", null, 0, 1, Delegation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDelegation_AllFeatures(), theEcorePackage.getEBoolean(), "allFeatures", null, 1, 1, Delegation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDelegation_From(), this.getAssociationEnd(), this.getAssociationEnd_Delegation(), "from", null, 1, 1, Delegation.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typedElementEClass, TypedElement.class, "TypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2087,10 +2087,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getContext_Condition(), theExpressionsPackage.getExpression(), null, "condition", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiplicityEClass, Multiplicity.class, "Multiplicity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getMultiplicity_LowerMultiplicity(), theEcorePackage.getEInt(), "lowerMultiplicity", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getMultiplicity_UpperMultiplicity(), theEcorePackage.getEInt(), "upperMultiplicity", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getMultiplicity_Ordered(), theEcorePackage.getEBoolean(), "ordered", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getMultiplicity_Unique(), theEcorePackage.getEBoolean(), "unique", null, 0, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMultiplicity_LowerMultiplicity(), theEcorePackage.getEInt(), "lowerMultiplicity", null, 1, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMultiplicity_UpperMultiplicity(), theEcorePackage.getEInt(), "upperMultiplicity", null, 1, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMultiplicity_Ordered(), theEcorePackage.getEBoolean(), "ordered", null, 1, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getMultiplicity_Unique(), theEcorePackage.getEBoolean(), "unique", null, 1, 1, Multiplicity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		addEOperation(multiplicityEClass, theEcorePackage.getEBoolean(), "isMany", 1, 1, !IS_UNIQUE, !IS_ORDERED);
 
@@ -2208,8 +2208,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addEOperation(namedValueEClass, this.getNamedValue(), "getNamedValuesInScope", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(platformSpecificImplementationEClass, PlatformSpecificImplementation.class, "PlatformSpecificImplementation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPlatformSpecificImplementation_TargetPlatform(), theEcorePackage.getEString(), "targetPlatform", null, 0, 1, PlatformSpecificImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getPlatformSpecificImplementation_Implementation(), theEcorePackage.getEString(), "implementation", null, 0, 1, PlatformSpecificImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPlatformSpecificImplementation_TargetPlatform(), theEcorePackage.getEString(), "targetPlatform", null, 1, 1, PlatformSpecificImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getPlatformSpecificImplementation_Implementation(), theEcorePackage.getEString(), "implementation", null, 1, 1, PlatformSpecificImplementation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(nativeImplEClass, NativeImpl.class, "NativeImpl", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNativeImpl_PlatformSpecificImplementaiton(), this.getPlatformSpecificImplementation(), null, "platformSpecificImplementaiton", null, 0, -1, NativeImpl.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

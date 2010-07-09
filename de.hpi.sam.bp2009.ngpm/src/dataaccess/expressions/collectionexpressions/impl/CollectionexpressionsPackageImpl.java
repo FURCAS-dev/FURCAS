@@ -654,7 +654,7 @@ public class CollectionexpressionsPackageImpl extends EPackageImpl implements Co
 		initEClass(excludingAtEClass, ExcludingAt.class, "ExcludingAt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(withPositionEClass, WithPosition.class, "WithPosition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getWithPosition_At(), theEcorePackage.getEInt(), "at", null, 0, 1, WithPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getWithPosition_At(), theEcorePackage.getEInt(), "at", null, 1, 1, WithPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(collectionExpressionWithArgumentEClass, CollectionExpressionWithArgument.class, "CollectionExpressionWithArgument", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

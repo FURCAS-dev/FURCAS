@@ -45,7 +45,7 @@ public interface SAMOperator extends EObject {
 	 * @see behavioral.status_and_action_old.SAMOperatorKindEnum
 	 * @see #setKind(SAMOperatorKindEnum)
 	 * @see behavioral.status_and_action_old.Status_and_action_oldPackage#getSAMOperator_Kind()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	SAMOperatorKindEnum getKind();

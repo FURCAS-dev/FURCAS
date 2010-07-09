@@ -35,30 +35,20 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Application extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Deployment Units</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Deployment Units</b></em>' containment reference list.
+	 * The list contents are of type {@link modelmanagement.deploymentunits.DeploymentUnit}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Deployment Units</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Deployment Units</em>' containment reference.
-	 * @see #setDeploymentUnits(DeploymentUnit)
+	 * @return the value of the '<em>Deployment Units</em>' containment reference list.
 	 * @see modelmanagement.ModelmanagementPackage#getApplication_DeploymentUnits()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	DeploymentUnit getDeploymentUnits();
-
-	/**
-	 * Sets the value of the '{@link modelmanagement.Application#getDeploymentUnits <em>Deployment Units</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Deployment Units</em>' containment reference.
-	 * @see #getDeploymentUnits()
-	 * @generated
-	 */
-	void setDeploymentUnits(DeploymentUnit value);
+	EList<DeploymentUnit> getDeploymentUnits();
 
 	/**
 	 * Returns the value of the '<em><b>Integration Scenarios</b></em>' containment reference list.

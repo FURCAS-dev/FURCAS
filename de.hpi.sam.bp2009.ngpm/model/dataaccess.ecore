@@ -151,7 +151,7 @@
         <details key="constraints" value="ObjectMustSupportOperation OutputMultiplicities"/>
       </eAnnotations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="asynchronous" ordered="false"
-          unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+          unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="An operation may be invoked asynchronously. If the operation returns a value, it is ignored, as are any exceptions raised by the operation. An OperationExpression with this attribute set to true has itself no type and therefore cannot reasonably be used in a side effect-free expression but only as a statement."/>
         </eAnnotations>
@@ -413,7 +413,7 @@
           <details key="documentation" value="A literal of any primitive type, such as &quot;This is a string&quot; or 123 or an enumeration literal or a literal denoting a value of an implicit anonymous class, or a block, or a literal that denotes a (potentially anonymous) class.&#xA;&#xA;The exact type of a literal may not always be possible to decide completely, particularly when it comes to constrained types over primitive types. This can only come in through &quot;post types&quot; and type inference, e.g., in an assignment statement where the type of the lvalue is known."/>
         </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="literal" ordered="false"
-            unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+            unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="documentation" value="Represents the value of this literal as a string. Final interpretation has to happen by the type of the literal expression. For string literals this is particularly straightforward. For numbers and dates, specific formats as defined by the respective types may apply."/>
           </eAnnotations>
@@ -537,7 +537,7 @@
           <details key="constraints" value="SourceMustBeOrdered"/>
         </eAnnotations>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="at" ordered="false"
-            unique="false" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
+            unique="false" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt">
           <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
             <details key="documentation" value="a position in an object with upper multiplicity >1 and ordered=true."/>
           </eAnnotations>

@@ -40,7 +40,7 @@ public interface AbstractStatusVariable extends NamedElement {
 	 * @return the value of the '<em>Is Agent</em>' attribute.
 	 * @see #setIsAgent(boolean)
 	 * @see behavioral.status_and_action.design.DesignPackage#getAbstractStatusVariable_IsAgent()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isIsAgent();
@@ -66,7 +66,7 @@ public interface AbstractStatusVariable extends NamedElement {
 	 * @return the value of the '<em>Is State Guarded</em>' attribute.
 	 * @see #setIsStateGuarded(boolean)
 	 * @see behavioral.status_and_action.design.DesignPackage#getAbstractStatusVariable_IsStateGuarded()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isIsStateGuarded();

@@ -6,15 +6,19 @@
  */
 package modelmanagement.impl;
 
+import java.util.Collection;
 import modelmanagement.ModelmanagementPackage;
 import modelmanagement.PackageOwner;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -32,14 +36,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class PackageOwnerImpl extends NamedElementImpl implements PackageOwner {
 	/**
-	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference.
+	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOwnedPackages()
 	 * @generated
 	 * @ordered
 	 */
-	protected modelmanagement.Package ownedPackages;
+	protected EList<modelmanagement.Package> ownedPackages;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,42 +69,11 @@ public class PackageOwnerImpl extends NamedElementImpl implements PackageOwner {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public modelmanagement.Package getOwnedPackages() {
+	public EList<modelmanagement.Package> getOwnedPackages() {
+		if (ownedPackages == null) {
+			ownedPackages = new EObjectContainmentEList<modelmanagement.Package>(modelmanagement.Package.class, this, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES);
+		}
 		return ownedPackages;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOwnedPackages(modelmanagement.Package newOwnedPackages, NotificationChain msgs) {
-		modelmanagement.Package oldOwnedPackages = ownedPackages;
-		ownedPackages = newOwnedPackages;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, oldOwnedPackages, newOwnedPackages);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOwnedPackages(modelmanagement.Package newOwnedPackages) {
-		if (newOwnedPackages != ownedPackages) {
-			NotificationChain msgs = null;
-			if (ownedPackages != null)
-				msgs = ((InternalEObject)ownedPackages).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, null, msgs);
-			if (newOwnedPackages != null)
-				msgs = ((InternalEObject)newOwnedPackages).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, null, msgs);
-			msgs = basicSetOwnedPackages(newOwnedPackages, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, newOwnedPackages, newOwnedPackages));
 	}
 
 	/**
@@ -112,7 +85,7 @@ public class PackageOwnerImpl extends NamedElementImpl implements PackageOwner {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				return basicSetOwnedPackages(null, msgs);
+				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -136,11 +109,13 @@ public class PackageOwnerImpl extends NamedElementImpl implements PackageOwner {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				setOwnedPackages((modelmanagement.Package)newValue);
+				getOwnedPackages().clear();
+				getOwnedPackages().addAll((Collection<? extends modelmanagement.Package>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -155,7 +130,7 @@ public class PackageOwnerImpl extends NamedElementImpl implements PackageOwner {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				setOwnedPackages((modelmanagement.Package)null);
+				getOwnedPackages().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -170,7 +145,7 @@ public class PackageOwnerImpl extends NamedElementImpl implements PackageOwner {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				return ownedPackages != null;
+				return ownedPackages != null && !ownedPackages.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

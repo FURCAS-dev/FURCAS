@@ -181,7 +181,7 @@ public interface SapClass extends SignatureOwner, EventProducer {
 	 * @return the value of the '<em>Value Type</em>' attribute.
 	 * @see #setValueType(boolean)
 	 * @see data.classes.ClassesPackage#getSapClass_ValueType()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isValueType();

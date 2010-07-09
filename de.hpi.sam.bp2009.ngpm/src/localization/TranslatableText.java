@@ -37,7 +37,7 @@ public interface TranslatableText extends EObject {
 	 * @return the value of the '<em>Text</em>' attribute.
 	 * @see #setText(String)
 	 * @see localization.LocalizationPackage#getTranslatableText_Text()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getText();
@@ -63,7 +63,7 @@ public interface TranslatableText extends EObject {
 	 * @return the value of the '<em>Hint For Translator</em>' attribute.
 	 * @see #setHintForTranslator(String)
 	 * @see localization.LocalizationPackage#getTranslatableText_HintForTranslator()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getHintForTranslator();

@@ -44,14 +44,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ApplicationImpl extends NamedElementImpl implements Application {
 	/**
-	 * The cached value of the '{@link #getDeploymentUnits() <em>Deployment Units</em>}' containment reference.
+	 * The cached value of the '{@link #getDeploymentUnits() <em>Deployment Units</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getDeploymentUnits()
 	 * @generated
 	 * @ordered
 	 */
-	protected DeploymentUnit deploymentUnits;
+	protected EList<DeploymentUnit> deploymentUnits;
 
 	/**
 	 * The cached value of the '{@link #getIntegrationScenarios() <em>Integration Scenarios</em>}' containment reference list.
@@ -87,42 +87,11 @@ public class ApplicationImpl extends NamedElementImpl implements Application {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeploymentUnit getDeploymentUnits() {
+	public EList<DeploymentUnit> getDeploymentUnits() {
+		if (deploymentUnits == null) {
+			deploymentUnits = new EObjectContainmentEList<DeploymentUnit>(DeploymentUnit.class, this, ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS);
+		}
 		return deploymentUnits;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetDeploymentUnits(DeploymentUnit newDeploymentUnits, NotificationChain msgs) {
-		DeploymentUnit oldDeploymentUnits = deploymentUnits;
-		deploymentUnits = newDeploymentUnits;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS, oldDeploymentUnits, newDeploymentUnits);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDeploymentUnits(DeploymentUnit newDeploymentUnits) {
-		if (newDeploymentUnits != deploymentUnits) {
-			NotificationChain msgs = null;
-			if (deploymentUnits != null)
-				msgs = ((InternalEObject)deploymentUnits).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS, null, msgs);
-			if (newDeploymentUnits != null)
-				msgs = ((InternalEObject)newDeploymentUnits).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS, null, msgs);
-			msgs = basicSetDeploymentUnits(newDeploymentUnits, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS, newDeploymentUnits, newDeploymentUnits));
 	}
 
 	/**
@@ -146,7 +115,7 @@ public class ApplicationImpl extends NamedElementImpl implements Application {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
-				return basicSetDeploymentUnits(null, msgs);
+				return ((InternalEList<?>)getDeploymentUnits()).basicRemove(otherEnd, msgs);
 			case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
 				return ((InternalEList<?>)getIntegrationScenarios()).basicRemove(otherEnd, msgs);
 		}
@@ -179,7 +148,8 @@ public class ApplicationImpl extends NamedElementImpl implements Application {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
-				setDeploymentUnits((DeploymentUnit)newValue);
+				getDeploymentUnits().clear();
+				getDeploymentUnits().addAll((Collection<? extends DeploymentUnit>)newValue);
 				return;
 			case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
 				getIntegrationScenarios().clear();
@@ -198,7 +168,7 @@ public class ApplicationImpl extends NamedElementImpl implements Application {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
-				setDeploymentUnits((DeploymentUnit)null);
+				getDeploymentUnits().clear();
 				return;
 			case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
 				getIntegrationScenarios().clear();
@@ -216,7 +186,7 @@ public class ApplicationImpl extends NamedElementImpl implements Application {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
-				return deploymentUnits != null;
+				return deploymentUnits != null && !deploymentUnits.isEmpty();
 			case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
 				return integrationScenarios != null && !integrationScenarios.isEmpty();
 		}

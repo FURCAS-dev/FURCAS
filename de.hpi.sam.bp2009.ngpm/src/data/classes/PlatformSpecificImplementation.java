@@ -37,7 +37,7 @@ public interface PlatformSpecificImplementation extends EObject {
 	 * @return the value of the '<em>Target Platform</em>' attribute.
 	 * @see #setTargetPlatform(String)
 	 * @see data.classes.ClassesPackage#getPlatformSpecificImplementation_TargetPlatform()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getTargetPlatform();
@@ -63,7 +63,7 @@ public interface PlatformSpecificImplementation extends EObject {
 	 * @return the value of the '<em>Implementation</em>' attribute.
 	 * @see #setImplementation(String)
 	 * @see data.classes.ClassesPackage#getPlatformSpecificImplementation_Implementation()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getImplementation();

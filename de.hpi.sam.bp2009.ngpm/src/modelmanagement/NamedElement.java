@@ -39,7 +39,7 @@ public interface NamedElement extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see modelmanagement.ModelmanagementPackage#getNamedElement_Name()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getName();

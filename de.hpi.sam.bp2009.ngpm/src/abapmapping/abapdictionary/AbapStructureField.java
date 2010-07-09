@@ -37,7 +37,7 @@ public interface AbapStructureField extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureField_Name()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	String getName();

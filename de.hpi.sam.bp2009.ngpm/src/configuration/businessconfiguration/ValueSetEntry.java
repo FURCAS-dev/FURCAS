@@ -40,7 +40,7 @@ public interface ValueSetEntry extends NamedElement {
 	 * @return the value of the '<em>Can Be Changed</em>' attribute.
 	 * @see #setCanBeChanged(boolean)
 	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSetEntry_CanBeChanged()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isCanBeChanged();
@@ -66,7 +66,7 @@ public interface ValueSetEntry extends NamedElement {
 	 * @return the value of the '<em>Can Be Deleted</em>' attribute.
 	 * @see #setCanBeDeleted(boolean)
 	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSetEntry_CanBeDeleted()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isCanBeDeleted();
