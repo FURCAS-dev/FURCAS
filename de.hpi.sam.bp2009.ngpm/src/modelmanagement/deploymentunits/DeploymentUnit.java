@@ -40,7 +40,7 @@ public interface DeploymentUnit extends PackageOwner, NamedElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Pcs Inside Company</em>' containment reference list.
 	 * @see modelmanagement.deploymentunits.DeploymentunitsPackage#getDeploymentUnit_PcsInsideCompany()
-	 * @model containment="true" ordered="false"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ProcessComponent> getPcsInsideCompany();

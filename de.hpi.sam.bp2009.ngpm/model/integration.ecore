@@ -28,6 +28,12 @@
           containment="true" eOpposite="#//processintegration/ProcessComponentInteraction/uses"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ProcessComponentInteraction">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="initiatorProcessComponent"
+          lowerBound="1" eType="ecore:EClass modelmanagement.ecore#//processcomponents/ProcessComponent"
+          eOpposite="modelmanagement.ecore#//processcomponents/ProcessComponent/initiatedInteractions"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="processComponent" lowerBound="1"
+          eType="ecore:EClass modelmanagement.ecore#//processcomponents/ProcessComponent"
+          eOpposite="modelmanagement.ecore#//processcomponents/ProcessComponent/interactions"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="uses" eType="#//processintegration/IntegrationScenario"
           transient="true" eOpposite="#//processintegration/IntegrationScenario/interactions"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="methodCalls" upperBound="-1"

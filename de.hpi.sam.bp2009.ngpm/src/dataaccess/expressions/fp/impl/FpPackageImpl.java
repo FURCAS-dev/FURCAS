@@ -533,7 +533,7 @@ public class FpPackageImpl extends EPackageImpl implements FpPackage {
 		  (anonymousFunctionExprEClass, 
 		   source, 
 		   new String[] {
-			 "TypeMustBeSignatureTypeDefinitionWithImplementation", "self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n  self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation->notEmpty()",
+			 "TypeMustBeSignatureTypeDefinitionWithImplementation", "self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation->notEmpty()",
 			 "HasToOwnSignatureTypeDefinition", "self.ownedTypeDefinition->notEmpty()",
 			 "SignatureMustBeFunctionSignature", "self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclIsKindOf(data::classes::FunctionSignature)"
 		   });			
@@ -547,8 +547,8 @@ public class FpPackageImpl extends EPackageImpl implements FpPackage {
 		  (functionFromMethodExprEClass, 
 		   source, 
 		   new String[] {
-			 "SignatureAvailableOnObjectsClass", "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(data::classes::SapClass))",
-			 "MethodSignatureConformsToFunctionSignature", "self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n    self.method.conformsTo(self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)"
+			 "SignatureAvailableOnObjectsClass", "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.method.owner.oclAsType(data::classes::SapClass))",
+			 "MethodSignatureConformsToFunctionSignature", "self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\r\n    self.method.conformsTo(self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature)"
 		   });	
 	}
 

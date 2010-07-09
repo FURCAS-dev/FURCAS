@@ -156,18 +156,18 @@ public class QueryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SELECTION__CONDITION_MUST_BE_BOOLEAN_OR_NUMERIC__EEXPRESSION = "self.selectionExpr.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n" +
-		" (\n" +
-		"    (\n" +
-		"      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Boolean' and\n" +
-		"      self.selectionExpr.getType().upperMultiplicity = 1\n" +
-		"    )\n" +
-		"    or\n" +
-		"    (\n" +
-		"      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Number' \n" +
-		"      and \n" +
-		"      self.object.getType().ordered\n" +
-		"    )\n" +
+	protected static final String SELECTION__CONDITION_MUST_BE_BOOLEAN_OR_NUMERIC__EEXPRESSION = "self.selectionExpr.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n" +
+		" (\r\n" +
+		"    (\r\n" +
+		"      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Boolean' and\r\n" +
+		"      self.selectionExpr.getType().upperMultiplicity = 1\r\n" +
+		"    )\r\n" +
+		"    or\r\n" +
+		"    (\r\n" +
+		"      self.selectionExpr.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = 'Number' \r\n" +
+		"      and \r\n" +
+		"      self.object.getType().ordered\r\n" +
+		"    )\r\n" +
 		"  )";
 
 	/**
@@ -219,8 +219,8 @@ public class QueryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String OQL_QUERY__CONDITION_MUST_BE_BOOLEAN__EEXPRESSION = "self.condition->notEmpty() implies\n" +
-		"    (self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n" +
+	protected static final String OQL_QUERY__CONDITION_MUST_BE_BOOLEAN__EEXPRESSION = "self.condition->notEmpty() implies\r\n" +
+		"    (self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n" +
 		"     self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name='Boolean')";
 
 	/**

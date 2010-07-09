@@ -118,13 +118,31 @@ public interface ProcessintegrationPackage extends EPackage {
 	int PROCESS_COMPONENT_INTERACTION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Initiator Process Component</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Process Component</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT = 1;
+
+	/**
 	 * The feature id for the '<em><b>Uses</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_COMPONENT_INTERACTION__USES = 0;
+	int PROCESS_COMPONENT_INTERACTION__USES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Method Calls</b></em>' reference list.
@@ -133,7 +151,7 @@ public interface ProcessintegrationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_COMPONENT_INTERACTION__METHOD_CALLS = 1;
+	int PROCESS_COMPONENT_INTERACTION__METHOD_CALLS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Subscriptions</b></em>' reference list.
@@ -142,7 +160,7 @@ public interface ProcessintegrationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_COMPONENT_INTERACTION__SUBSCRIPTIONS = 2;
+	int PROCESS_COMPONENT_INTERACTION__SUBSCRIPTIONS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Process Component Interaction</em>' class.
@@ -151,7 +169,7 @@ public interface ProcessintegrationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROCESS_COMPONENT_INTERACTION_FEATURE_COUNT = 3;
+	int PROCESS_COMPONENT_INTERACTION_FEATURE_COUNT = 5;
 
 
 	/**
@@ -184,6 +202,28 @@ public interface ProcessintegrationPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getProcessComponentInteraction();
+
+	/**
+	 * Returns the meta object for the reference '{@link integration.processintegration.ProcessComponentInteraction#getInitiatorProcessComponent <em>Initiator Process Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Initiator Process Component</em>'.
+	 * @see integration.processintegration.ProcessComponentInteraction#getInitiatorProcessComponent()
+	 * @see #getProcessComponentInteraction()
+	 * @generated
+	 */
+	EReference getProcessComponentInteraction_InitiatorProcessComponent();
+
+	/**
+	 * Returns the meta object for the reference '{@link integration.processintegration.ProcessComponentInteraction#getProcessComponent <em>Process Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Process Component</em>'.
+	 * @see integration.processintegration.ProcessComponentInteraction#getProcessComponent()
+	 * @see #getProcessComponentInteraction()
+	 * @generated
+	 */
+	EReference getProcessComponentInteraction_ProcessComponent();
 
 	/**
 	 * Returns the meta object for the container reference '{@link integration.processintegration.ProcessComponentInteraction#getUses <em>Uses</em>}'.
@@ -267,6 +307,22 @@ public interface ProcessintegrationPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROCESS_COMPONENT_INTERACTION = eINSTANCE.getProcessComponentInteraction();
+
+		/**
+		 * The meta object literal for the '<em><b>Initiator Process Component</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT = eINSTANCE.getProcessComponentInteraction_InitiatorProcessComponent();
+
+		/**
+		 * The meta object literal for the '<em><b>Process Component</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT = eINSTANCE.getProcessComponentInteraction_ProcessComponent();
 
 		/**
 		 * The meta object literal for the '<em><b>Uses</b></em>' container reference feature.

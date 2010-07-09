@@ -166,10 +166,10 @@ public class ActionsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String STATEMENT_WITH_ENTITY_ARGUMENT__CAN_STORE_ONLY_ENTITIES__EEXPRESSION = "if self.argument.getType().oclIsKindOf(data::classes::ClassTypeDefinition) then\n" +
-		"    not self.argument.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType\n" +
-		"  else\n" +
-		"    false\n" +
+	protected static final String STATEMENT_WITH_ENTITY_ARGUMENT__CAN_STORE_ONLY_ENTITIES__EEXPRESSION = "if self.argument.getType().oclIsKindOf(data::classes::ClassTypeDefinition) then\r\n" +
+		"    not self.argument.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType\r\n" +
+		"  else\r\n" +
+		"    false\r\n" +
 		"  endif";
 
 	/**

@@ -131,9 +131,9 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String DIMENSION__BLOCK_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.characteristicFunction.input->size() = 1 and \n" +
-		"  self.cellSet.factsType.conformsToIgnoringMultiplicity(self.characteristicFunction.input->at(1).getType())\n" +
-		"    -- Add the following again once we have NestedTypeDefinitions under control...\n" +
+	protected static final String DIMENSION__BLOCK_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.characteristicFunction.input->size() = 1 and \r\n" +
+		"  self.cellSet.factsType.conformsToIgnoringMultiplicity(self.characteristicFunction.input->at(1).getType())\r\n" +
+		"    -- Add the following again once we have NestedTypeDefinitions under control...\r\n" +
 		"    -- and  self.characteristicFunction.input->at(1).getType().upperMultiplicity = 1";
 
 	/**
@@ -214,11 +214,11 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CELL_SET__VALUE_FUNCTION_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.valueFunction->notEmpty() implies\n" +
-		"    (self.valueFunction.input->size() = 1 and\n" +
-		"     self.factsType.conformsToIgnoringMultiplicity(self.valueFunction.input->at(1).getType())\n" +
-		"    -- Add the following again once we have NestedTypeDefinitions under control...\n" +
-		"    -- and  self.valueFunction.input->at(1).getType().upperMultiplicity = 1\n" +
+	protected static final String CELL_SET__VALUE_FUNCTION_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.valueFunction->notEmpty() implies\r\n" +
+		"    (self.valueFunction.input->size() = 1 and\r\n" +
+		"     self.factsType.conformsToIgnoringMultiplicity(self.valueFunction.input->at(1).getType())\r\n" +
+		"    -- Add the following again once we have NestedTypeDefinitions under control...\r\n" +
+		"    -- and  self.valueFunction.input->at(1).getType().upperMultiplicity = 1\r\n" +
 		"    )";
 
 	/**
@@ -248,7 +248,7 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CELL_SET__AGGREGATION_FUNCTION_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.aggregationFunction.input->size() = 1 and \n" +
+	protected static final String CELL_SET__AGGREGATION_FUNCTION_SIGNATURE_MUST_MATCH__EEXPRESSION = "self.aggregationFunction.input->size() = 1 and \r\n" +
 		"  self.keyFigureType().conformsTo(self.aggregationFunction.input->at(1).getType())";
 
 	/**
@@ -494,10 +494,10 @@ public class AnalyticsValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String GROUP_BY__MAP_EXPRESSION_MUST_BE_SIDE_EFFECT_FREE__EEXPRESSION = "if self.mapExpression->notEmpty() then\n" +
-		"    self.mapExpression.isSideEffectFree()\n" +
-		"  else\n" +
-		"    true\n" +
+	protected static final String GROUP_BY__MAP_EXPRESSION_MUST_BE_SIDE_EFFECT_FREE__EEXPRESSION = "if self.mapExpression->notEmpty() then\r\n" +
+		"    self.mapExpression.isSideEffectFree()\r\n" +
+		"  else\r\n" +
+		"    true\r\n" +
 		"  endif";
 
 	/**

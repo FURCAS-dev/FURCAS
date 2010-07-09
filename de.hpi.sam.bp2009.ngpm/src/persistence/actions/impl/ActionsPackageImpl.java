@@ -553,7 +553,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		  (statementWithEntityArgumentEClass, 
 		   source, 
 		   new String[] {
-			 "CanStoreOnlyEntities", "if self.argument.getType().oclIsKindOf(data::classes::ClassTypeDefinition) then\n    not self.argument.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType\n  else\n    false\n  endif"
+			 "CanStoreOnlyEntities", "if self.argument.getType().oclIsKindOf(data::classes::ClassTypeDefinition) then\r\n    not self.argument.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType\r\n  else\r\n    false\r\n  endif"
 		   });	
 	}
 

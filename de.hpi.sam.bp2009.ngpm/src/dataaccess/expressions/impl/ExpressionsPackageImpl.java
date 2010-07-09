@@ -1650,15 +1650,15 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (methodCallExpressionEClass, 
 		   source, 
 		   new String[] {
-			 "ObjectMustSupportOperation", "self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(data::classes::SapClass))",
-			 "OutputMultiplicities", "(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and\n  (self.object.getType().lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))"
+			 "ObjectMustSupportOperation", "self.object.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.conformsTo(self.methodSignature.owner.oclAsType(data::classes::SapClass))",
+			 "OutputMultiplicities", "(self.object.getType().isMany() implies (self.getType().isMany() and not self.getType().unique)) and\r\n  (self.object.getType().lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))"
 		   });					
 		addAnnotation
 		  (objectCreationExpressionEClass, 
 		   source, 
 		   new String[] {
 			 "CannotInstantiateAbstractClass", "not self.classToInstantiate.isAbstract()",
-			 "ExpressionType", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz = self.classToInstantiate and\n  self.getType().lowerMultiplicity = 1 and\n  self.getType().upperMultiplicity = 1",
+			 "ExpressionType", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz = self.classToInstantiate and\r\n  self.getType().lowerMultiplicity = 1 and\r\n  self.getType().upperMultiplicity = 1",
 			 "HasToOwnTypeDefinition", "self.ownedTypeDefinition->notEmpty()",
 			 "CannotInstantiateValueClass", "not self.classToInstantiate.valueType",
 			 "NoDuplicateInitializers", "self.initializers->forAll( a, b | a <> b implies a.methodSignature <> b.methodSignature )"
@@ -1667,14 +1667,14 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (functionCallExpressionEClass, 
 		   source, 
 		   new String[] {
-			 "ResultType", "let fstd:data::classes::FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in\n\n  if fstd.isMany() then\n    -- calling multiple functions; test is somewhat fuzzy because it doesn\'t test condormance of nesting structure exactly\n    self.getType().isMany() and not self.getType().unique and\n    fstd.signature.output.getInnermost().conformsTo(self.getType().getInnermost()) and\n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n  else\n    -- calling a single function\n    fstd.signature.output.conformsTo(self.getType()) and \n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\n  endif",
+			 "ResultType", "let fstd:data::classes::FunctionSignatureTypeDefinition = self.calledBlock.getType().getInnermost().oclAsType(data::classes::FunctionSignatureTypeDefinition) in\r\n\r\n  if fstd.isMany() then\r\n    -- calling multiple functions; test is somewhat fuzzy because it doesn\'t test condormance of nesting structure exactly\r\n    self.getType().isMany() and not self.getType().unique and\r\n    fstd.signature.output.getInnermost().conformsTo(self.getType().getInnermost()) and\r\n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\r\n  else\r\n    -- calling a single function\r\n    fstd.signature.output.conformsTo(self.getType()) and \r\n    (fstd.lowerMultiplicity = 0 implies (self.getType()->isEmpty() or self.getType().lowerMultiplicity = 0))\r\n  endif",
 			 "CalledBlockMustBeFunction", "self.calledBlock.getType().getInnermost().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)"
 		   });					
 		addAnnotation
 		  (equalsEClass, 
 		   source, 
 		   new String[] {
-			 "ConformaceOneWayOrAnother", "self.left.getType().conformsTo(self.right.getType()) or\n  self.right.getType().conformsTo(self.left.getType())"
+			 "ConformaceOneWayOrAnother", "self.left.getType().conformsTo(self.right.getType()) or\r\n  self.right.getType().conformsTo(self.left.getType())"
 		   });				
 		addAnnotation
 		  (associationEndNavigationExpressionEClass, 
@@ -1688,8 +1688,8 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (signatureCallExpressionEClass, 
 		   source, 
 		   new String[] {
-			 "ParametersTypesMustMatchSignatureParametersTypes", "let numberOfMandatoryParameters:Integer =\n    self.getSignature().input->select(p|p.defaultValue->isEmpty())->size()\n  in\n  self.parameters->size() >= numberOfMandatoryParameters and\n  self.parameters->size() <= self.getSignature().input->size() and\n  self.parameters->forAll(parameter |\n    parameter.getType().conformsTo(self.getSignature().input->at(self.parameters->indexOf(parameter)).getType()) )",
-			 "CallTypeMustMatchSignatureOutput", "if self.getSignature().output.oclIsUndefined() then\n        self.getType().oclIsUndefined()\n    else \n        if self.getMultiplicityOfCallTarget().isMany() and self.getSignature().output.isMany() then\n            let ntd:data::classes::NestedTypeDefinition = self.getType().oclAsType(data::classes::NestedTypeDefinition) in\n                self.getType().oclIsKindOf(data::classes::NestedTypeDefinition) and \n                ntd.unique = false and\n                ntd.ordered = self.getMultiplicityOfCallTarget().ordered and\n                ntd.lowerMultiplicity = self.getMultiplicityOfCallTarget().lowerMultiplicity and\n                ntd.upperMultiplicity = self.getMultiplicityOfCallTarget().upperMultiplicity and\n                self.getSignature().output.conformsTo(ntd.type)\n        else\n            let target:data::classes::Multiplicity = self.getMultiplicityOfCallTarget() in\n            let output:data::classes::TypeDefinition = self.getSignature().output in \n                ( output.isMany() implies self.getType().unique = output.unique ) and\n                ( ( output.isMany() or target.isMany() ) implies ( self.getType().ordered = (output.ordered or target.ordered) ) ) and\n                ( self.getType().lowerMultiplicity = (output.lowerMultiplicity * target.lowerMultiplicity)) and\n                ( self.getType().upperMultiplicity = (if output.isMany() or target.isMany() then \n                                                        -1 \n                                                    else \n                                                        output.upperMultiplicity * target.upperMultiplicity \n                                                    endif)) and\n                self.getType().conformsToIgnoringMultiplicity(output)\n        endif\n    endif"
+			 "ParametersTypesMustMatchSignatureParametersTypes", "let numberOfMandatoryParameters:Integer =\r\n    self.getSignature().input->select(p|p.defaultValue->isEmpty())->size()\r\n  in\r\n  self.parameters->size() >= numberOfMandatoryParameters and\r\n  self.parameters->size() <= self.getSignature().input->size() and\r\n  self.parameters->forAll(parameter |\r\n    parameter.getType().conformsTo(self.getSignature().input->at(self.parameters->indexOf(parameter)).getType()) )",
+			 "CallTypeMustMatchSignatureOutput", "if self.getSignature().output.oclIsUndefined() then\r\n        self.getType().oclIsUndefined()\r\n    else \r\n        if self.getMultiplicityOfCallTarget().isMany() and self.getSignature().output.isMany() then\r\n            let ntd:data::classes::NestedTypeDefinition = self.getType().oclAsType(data::classes::NestedTypeDefinition) in\r\n                self.getType().oclIsKindOf(data::classes::NestedTypeDefinition) and \r\n                ntd.unique = false and\r\n                ntd.ordered = self.getMultiplicityOfCallTarget().ordered and\r\n                ntd.lowerMultiplicity = self.getMultiplicityOfCallTarget().lowerMultiplicity and\r\n                ntd.upperMultiplicity = self.getMultiplicityOfCallTarget().upperMultiplicity and\r\n                self.getSignature().output.conformsTo(ntd.type)\r\n        else\r\n            let target:data::classes::Multiplicity = self.getMultiplicityOfCallTarget() in\r\n            let output:data::classes::TypeDefinition = self.getSignature().output in \r\n                ( output.isMany() implies self.getType().unique = output.unique ) and\r\n                ( ( output.isMany() or target.isMany() ) implies ( self.getType().ordered = (output.ordered or target.ordered) ) ) and\r\n                ( self.getType().lowerMultiplicity = (output.lowerMultiplicity * target.lowerMultiplicity)) and\r\n                ( self.getType().upperMultiplicity = (if output.isMany() or target.isMany() then \r\n                                                        -1 \r\n                                                    else \r\n                                                        output.upperMultiplicity * target.upperMultiplicity \r\n                                                    endif)) and\r\n                self.getType().conformsToIgnoringMultiplicity(output)\r\n        endif\r\n    endif"
 		   });			
 		addAnnotation
 		  (signatureCallExpressionEClass.getEOperations().get(0), 
@@ -1707,21 +1707,21 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (objectCountEClass, 
 		   source, 
 		   new String[] {
-			 "TypeIsNumber", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\'",
-			 "MultiplicityIsOne", "self.getType().upperMultiplicity = 1 and\n  self.getType().lowerMultiplicity = 1"
+			 "TypeIsNumber", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Number\'",
+			 "MultiplicityIsOne", "self.getType().upperMultiplicity = 1 and\r\n  self.getType().lowerMultiplicity = 1"
 		   });				
 		addAnnotation
 		  (replaceEClass, 
 		   source, 
 		   new String[] {
-			 "SourceObjectIsOfValueType", "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType",
+			 "SourceObjectIsOfValueType", "self.object.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType",
 			 "WithTypeConformsToLastStepsType", "self.with.getType().conformsTo(self.steps->at(self.steps->size()).to.type)"
 		   });				
 		addAnnotation
 		  (navigationStepEClass, 
 		   source, 
 		   new String[] {
-			 "FromEndAttachesToOutputOfPreviousStep", "let i:Integer = self.replace.steps->indexOf(self) in\n  let t:data::classes::ClassTypeDefinition = if i=1 then\n      self.replace.object.getType().oclAsType(data::classes::ClassTypeDefinition)\n    else\n      self.replace.steps->at(-1 + i).to.type\n    endif\n  in\n\n  self.to.otherEnd().type.clazz.conformsTo(t.clazz)",
+			 "FromEndAttachesToOutputOfPreviousStep", "let i:Integer = self.replace.steps->indexOf(self) in\r\n  let t:data::classes::ClassTypeDefinition = if i=1 then\r\n      self.replace.object.getType().oclAsType(data::classes::ClassTypeDefinition)\r\n    else\r\n      self.replace.steps->at(-1 + i).to.type\r\n    endif\r\n  in\r\n\r\n  self.to.otherEnd().type.clazz.conformsTo(t.clazz)",
 			 "FilterFunctionExpressionHasFunctionType", "self.filterFunction->notEmpty() implies self.filterFunction.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition)",
 			 "FromEndMustBeEqualityRelevant", "to.otherEnd().contributesToEquality"
 		   });				
@@ -1741,26 +1741,26 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		  (conditionalEClass, 
 		   source, 
 		   new String[] {
-			 "ConditionMustBeBoolean", "self.condition.getType().upperMultiplicity = 1 and\n  self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'"
+			 "ConditionMustBeBoolean", "self.condition.getType().upperMultiplicity = 1 and\r\n  self.condition.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.condition.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'"
 		   });			
 		addAnnotation
 		  (ternaryEClass, 
 		   source, 
 		   new String[] {
-			 "TrueAndFalseExprsConformToResultType", "self.trueExpr.getType().conformsTo(self.getType()) or\n  self.falseExpr.getType().conformsTo(self.getType())"
+			 "TrueAndFalseExprsConformToResultType", "self.trueExpr.getType().conformsTo(self.getType()) or\r\n  self.falseExpr.getType().conformsTo(self.getType())"
 		   });						
 		addAnnotation
 		  (contentEqualsEClass, 
 		   source, 
 		   new String[] {
-			 "ContentEqualsOnlyForEntities", "self.left.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.right.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  not self.left.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType and\n  not self.right.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType"
+			 "ContentEqualsOnlyForEntities", "self.left.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.right.getType().getInnermost().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  not self.left.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType and\r\n  not self.right.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.valueType"
 		   });				
 		addAnnotation
 		  (mapEClass, 
 		   source, 
 		   new String[] {
-			 "ObjectTypeMustConformToFunctionArgument", "let fstd:data::classes::TypeDefinition = self.argument.getType() in\n  let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\n  let t:data::classes::TypeDefinition = self.object.getType() in\n  let argT:data::classes::TypeDefinition = sig.input->at(1).getType() in\n  -- if multiplicities match including multiplicities, that\'s ok\n  t.conformsTo(argT) or\n  -- otherwise, pick single multiplicity from object and try again\n  t.conformsToIgnoringMultiplicity(argT) or\n  (t.oclIsKindOf(data::classes::NestedTypeDefinition) and t.oclAsType(data::classes::NestedTypeDefinition).type.conformsTo(argT))",
-			 "ArgumentMustBeSingleArgumentFunctionWithNonVoidOutput", "let fstd:data::classes::TypeDefinition = self.argument.getType() in\n  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n  (let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\n  (sig.output->notEmpty() and\n  sig.input->size() = 1))",
+			 "ObjectTypeMustConformToFunctionArgument", "let fstd:data::classes::TypeDefinition = self.argument.getType() in\r\n  let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\r\n  let t:data::classes::TypeDefinition = self.object.getType() in\r\n  let argT:data::classes::TypeDefinition = sig.input->at(1).getType() in\r\n  -- if multiplicities match including multiplicities, that\'s ok\r\n  t.conformsTo(argT) or\r\n  -- otherwise, pick single multiplicity from object and try again\r\n  t.conformsToIgnoringMultiplicity(argT) or\r\n  (t.oclIsKindOf(data::classes::NestedTypeDefinition) and t.oclAsType(data::classes::NestedTypeDefinition).type.conformsTo(argT))",
+			 "ArgumentMustBeSingleArgumentFunctionWithNonVoidOutput", "let fstd:data::classes::TypeDefinition = self.argument.getType() in\r\n  fstd.oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\r\n  (let sig:data::classes::Signature = fstd.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature in\r\n  (sig.output->notEmpty() and\r\n  sig.input->size() = 1))",
 			 "MapFunctionMustBeSideEffectFree", "self.argument.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.sideEffectFree"
 		   });	
 	}

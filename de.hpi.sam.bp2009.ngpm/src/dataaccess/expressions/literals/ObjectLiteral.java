@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see dataaccess.expressions.literals.LiteralsPackage#getObjectLiteral()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ObjectLiteralsForValueClassesOnly='self.valueClass.valueType' ObjectLiteralPropertiesOnRightClass='self.propertyValues->forAll(vi|vi.forEnd.otherEnd().type.clazz = self.valueClass)' ValuesMustBeProvidedForAllMandatoryProperties='self.valueClass.getEqualityRelevantAssociationEnds()->select(ae | ae.otherEnd().type.lowerMultiplicity > 0)->forAll(ae |\n      self.propertyValues->exists(pv | pv.forEnd.otherEnd() = ae))'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL ObjectLiteralsForValueClassesOnly='self.valueClass.valueType' ObjectLiteralPropertiesOnRightClass='self.propertyValues->forAll(vi|vi.forEnd.otherEnd().type.clazz = self.valueClass)' ValuesMustBeProvidedForAllMandatoryProperties='self.valueClass.getEqualityRelevantAssociationEnds()->select(ae | ae.otherEnd().type.lowerMultiplicity > 0)->forAll(ae |\r\n      self.propertyValues->exists(pv | pv.forEnd.otherEnd() = ae))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ObjectLiteralsForValueClassesOnly ObjectLiteralPropertiesOnRightClass ValuesMustBeProvidedForAllMandatoryProperties'"
  * @generated
  */

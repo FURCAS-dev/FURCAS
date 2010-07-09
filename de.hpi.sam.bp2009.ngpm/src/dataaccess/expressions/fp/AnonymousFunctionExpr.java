@@ -25,7 +25,7 @@ import dataaccess.expressions.Expression;
  *
  *
  * @see dataaccess.expressions.fp.FpPackage#getAnonymousFunctionExpr()
- * @model annotation="http://de.hpi.sam.bp2009.OCL TypeMustBeSignatureTypeDefinitionWithImplementation='self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\n  self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation->notEmpty()' HasToOwnSignatureTypeDefinition='self.ownedTypeDefinition->notEmpty()' SignatureMustBeFunctionSignature='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclIsKindOf(data::classes::FunctionSignature)'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL TypeMustBeSignatureTypeDefinitionWithImplementation='self.getType().oclIsKindOf(data::classes::FunctionSignatureTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation->notEmpty()' HasToOwnSignatureTypeDefinition='self.ownedTypeDefinition->notEmpty()' SignatureMustBeFunctionSignature='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclIsKindOf(data::classes::FunctionSignature)'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='TypeMustBeSignatureTypeDefinitionWithImplementation HasToOwnSignatureTypeDefinition SignatureMustBeFunctionSignature'"
  * @generated
  */

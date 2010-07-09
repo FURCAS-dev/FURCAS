@@ -165,7 +165,7 @@ public class AbapdictionaryValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CODE__TYPE_OF_VALUES_EQUALS_ABAP_TYPE__EEXPRESSION = "self.values->forAll(cv:CodeValue |\n" +
+	protected static final String CODE__TYPE_OF_VALUES_EQUALS_ABAP_TYPE__EEXPRESSION = "self.values->forAll(cv:CodeValue |\r\n" +
 		"      cv.type = self.abapType)";
 
 	/**

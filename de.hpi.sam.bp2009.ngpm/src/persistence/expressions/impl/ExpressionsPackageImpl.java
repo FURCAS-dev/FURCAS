@@ -608,13 +608,13 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 		   source, 
 		   new String[] {
 			 "MustBeEntityClass", "not self.ofClass.valueType",
-			 "ExpressionMustBeSnapshotOrTimePoint", "if self.snapshot = SnapshotSelection::SPECIFIED then\n    self.snapshotIdentifier.getType().upperMultiplicity = 1 and\n    self.snapshotIdentifier.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n   Set{\'Snapshot\', \'TimePoint\'}->includes(self.snapshotIdentifier.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name)\n  else\n    true\n  endif"
+			 "ExpressionMustBeSnapshotOrTimePoint", "if self.snapshot = SnapshotSelection::SPECIFIED then\r\n    self.snapshotIdentifier.getType().upperMultiplicity = 1 and\r\n    self.snapshotIdentifier.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n   Set{\'Snapshot\', \'TimePoint\'}->includes(self.snapshotIdentifier.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name)\r\n  else\r\n    true\r\n  endif"
 		   });					
 		addAnnotation
 		  (commitEClass, 
 		   source, 
 		   new String[] {
-			 "ReturnsSnapshot", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Snapshot\'"
+			 "ReturnsSnapshot", "self.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Snapshot\'"
 		   });			
 		addAnnotation
 		  (snapshotEClass, 

@@ -617,13 +617,13 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		  (subscriptionEClass, 
 		   source, 
 		   new String[] {
-			 "SubscribingClassMatchProducer", "self.producer.notificationSignatures->forAll(ms:data::classes::MethodSignature |\n    self.subscribingClass.allSignatures()->exists(s:data::classes::MethodSignature|s.conformsTo(ms)))"
+			 "SubscribingClassMatchProducer", "self.producer.notificationSignatures->forAll(ms:data::classes::MethodSignature |\r\n    self.subscribingClass.allSignatures()->exists(s:data::classes::MethodSignature|s.conformsTo(ms)))"
 		   });				
 		addAnnotation
 		  (eventFilterEClass, 
 		   source, 
 		   new String[] {
-			 "FilterBlockSignatureMatchNotificationSignature", "self.subscription.producer.notificationSignatures->exists(ms:data::classes::MethodSignature |\n    ms.conformsTo(self.test.getImplementedSignature()))"
+			 "FilterBlockSignatureMatchNotificationSignature", "self.subscription.producer.notificationSignatures->exists(ms:data::classes::MethodSignature |\r\n    ms.conformsTo(self.test.getImplementedSignature()))"
 		   });		
 	}
 

@@ -25,8 +25,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link modelmanagement.processcomponents.ProcessComponent#getProvidedInterfaces <em>Provided Interfaces</em>}</li>
  *   <li>{@link modelmanagement.processcomponents.ProcessComponent#getEventProducers <em>Event Producers</em>}</li>
- *   <li>{@link modelmanagement.processcomponents.ProcessComponent#getInteractions <em>Interactions</em>}</li>
  *   <li>{@link modelmanagement.processcomponents.ProcessComponent#getInitiatedInteractions <em>Initiated Interactions</em>}</li>
+ *   <li>{@link modelmanagement.processcomponents.ProcessComponent#getInteractions <em>Interactions</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,7 +36,7 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ProcessComponent extends PackageOwner {
 	/**
-	 * Returns the value of the '<em><b>Provided Interfaces</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Provided Interfaces</b></em>' reference list.
 	 * The list contents are of type {@link data.classes.SapClass}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -44,15 +44,15 @@ public interface ProcessComponent extends PackageOwner {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Provided Interfaces</em>' containment reference list.
+	 * @return the value of the '<em>Provided Interfaces</em>' reference list.
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_ProvidedInterfaces()
-	 * @model containment="true" ordered="false"
+	 * @model
 	 * @generated
 	 */
 	EList<SapClass> getProvidedInterfaces();
 
 	/**
-	 * Returns the value of the '<em><b>Event Producers</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Event Producers</b></em>' reference list.
 	 * The list contents are of type {@link behavioral.events.EventProducer}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -60,41 +60,45 @@ public interface ProcessComponent extends PackageOwner {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Event Producers</em>' containment reference list.
+	 * @return the value of the '<em>Event Producers</em>' reference list.
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_EventProducers()
-	 * @model containment="true" ordered="false"
+	 * @model
 	 * @generated
 	 */
 	EList<EventProducer> getEventProducers();
 
 	/**
-	 * Returns the value of the '<em><b>Interactions</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Interactions</b></em>' reference list.
 	 * The list contents are of type {@link integration.processintegration.ProcessComponentInteraction}.
+	 * It is bidirectional and its opposite is '{@link integration.processintegration.ProcessComponentInteraction#getProcessComponent <em>Process Component</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Interactions</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Interactions</em>' containment reference list.
+	 * @return the value of the '<em>Interactions</em>' reference list.
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_Interactions()
-	 * @model containment="true" required="true" ordered="false"
+	 * @see integration.processintegration.ProcessComponentInteraction#getProcessComponent
+	 * @model opposite="processComponent"
 	 * @generated
 	 */
 	EList<ProcessComponentInteraction> getInteractions();
 
 	/**
-	 * Returns the value of the '<em><b>Initiated Interactions</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Initiated Interactions</b></em>' reference list.
 	 * The list contents are of type {@link integration.processintegration.ProcessComponentInteraction}.
+	 * It is bidirectional and its opposite is '{@link integration.processintegration.ProcessComponentInteraction#getInitiatorProcessComponent <em>Initiator Process Component</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Initiated Interactions</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Initiated Interactions</em>' containment reference list.
+	 * @return the value of the '<em>Initiated Interactions</em>' reference list.
 	 * @see modelmanagement.processcomponents.ProcesscomponentsPackage#getProcessComponent_InitiatedInteractions()
-	 * @model containment="true" required="true" ordered="false"
+	 * @see integration.processintegration.ProcessComponentInteraction#getInitiatorProcessComponent
+	 * @model opposite="initiatorProcessComponent"
 	 * @generated
 	 */
 	EList<ProcessComponentInteraction> getInitiatedInteractions();

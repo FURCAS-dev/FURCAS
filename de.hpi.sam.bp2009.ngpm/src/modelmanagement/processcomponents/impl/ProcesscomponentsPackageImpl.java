@@ -404,7 +404,7 @@ public class ProcesscomponentsPackageImpl extends EPackageImpl implements Proces
 	 * @generated
 	 */
 	public EReference getProcessComponent_Interactions() {
-		return (EReference)processComponentEClass.getEStructuralFeatures().get(2);
+		return (EReference)processComponentEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -413,7 +413,7 @@ public class ProcesscomponentsPackageImpl extends EPackageImpl implements Proces
 	 * @generated
 	 */
 	public EReference getProcessComponent_InitiatedInteractions() {
-		return (EReference)processComponentEClass.getEStructuralFeatures().get(3);
+		return (EReference)processComponentEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -465,8 +465,8 @@ public class ProcesscomponentsPackageImpl extends EPackageImpl implements Proces
 		processComponentEClass = createEClass(PROCESS_COMPONENT);
 		createEReference(processComponentEClass, PROCESS_COMPONENT__PROVIDED_INTERFACES);
 		createEReference(processComponentEClass, PROCESS_COMPONENT__EVENT_PRODUCERS);
-		createEReference(processComponentEClass, PROCESS_COMPONENT__INTERACTIONS);
 		createEReference(processComponentEClass, PROCESS_COMPONENT__INITIATED_INTERACTIONS);
+		createEReference(processComponentEClass, PROCESS_COMPONENT__INTERACTIONS);
 
 		processComponentInsideCompanyEClass = createEClass(PROCESS_COMPONENT_INSIDE_COMPANY);
 
@@ -513,10 +513,10 @@ public class ProcesscomponentsPackageImpl extends EPackageImpl implements Proces
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(processComponentEClass, ProcessComponent.class, "ProcessComponent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProcessComponent_ProvidedInterfaces(), theClassesPackage.getSapClass(), null, "providedInterfaces", null, 0, -1, ProcessComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getProcessComponent_EventProducers(), theEventsPackage.getEventProducer(), null, "eventProducers", null, 0, -1, ProcessComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getProcessComponent_Interactions(), theProcessintegrationPackage.getProcessComponentInteraction(), null, "interactions", null, 1, -1, ProcessComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getProcessComponent_InitiatedInteractions(), theProcessintegrationPackage.getProcessComponentInteraction(), null, "initiatedInteractions", null, 1, -1, ProcessComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getProcessComponent_ProvidedInterfaces(), theClassesPackage.getSapClass(), null, "providedInterfaces", null, 0, -1, ProcessComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessComponent_EventProducers(), theEventsPackage.getEventProducer(), null, "eventProducers", null, 0, -1, ProcessComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessComponent_InitiatedInteractions(), theProcessintegrationPackage.getProcessComponentInteraction(), theProcessintegrationPackage.getProcessComponentInteraction_InitiatorProcessComponent(), "initiatedInteractions", null, 0, -1, ProcessComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProcessComponent_Interactions(), theProcessintegrationPackage.getProcessComponentInteraction(), theProcessintegrationPackage.getProcessComponentInteraction_ProcessComponent(), "interactions", null, 0, -1, ProcessComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(processComponentInsideCompanyEClass, ProcessComponentInsideCompany.class, "ProcessComponentInsideCompany", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

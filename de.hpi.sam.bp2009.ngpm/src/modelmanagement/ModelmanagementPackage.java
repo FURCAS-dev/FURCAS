@@ -211,7 +211,7 @@ public interface ModelmanagementPackage extends EPackage {
 	int PACKAGE__PARAMETERIZED_CLASSES = PACKAGE_OWNER_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Owner</b></em>' containment reference.
+	 * The feature id for the '<em><b>Owner</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -365,10 +365,10 @@ public interface ModelmanagementPackage extends EPackage {
 	EReference getPackage_ParameterizedClasses();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link modelmanagement.Package#getOwner <em>Owner</em>}'.
+	 * Returns the meta object for the container reference '{@link modelmanagement.Package#getOwner <em>Owner</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owner</em>'.
+	 * @return the meta object for the container reference '<em>Owner</em>'.
 	 * @see modelmanagement.Package#getOwner()
 	 * @see #getPackage()
 	 * @generated
@@ -549,7 +549,7 @@ public interface ModelmanagementPackage extends EPackage {
 		EReference PACKAGE__PARAMETERIZED_CLASSES = eINSTANCE.getPackage_ParameterizedClasses();
 
 		/**
-		 * The meta object literal for the '<em><b>Owner</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Owner</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

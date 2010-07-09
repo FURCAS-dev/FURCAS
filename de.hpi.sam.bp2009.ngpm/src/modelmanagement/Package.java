@@ -99,26 +99,28 @@ public interface Package extends PackageOwner {
 	EList<ClassParameterization> getParameterizedClasses();
 
 	/**
-	 * Returns the value of the '<em><b>Owner</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Owner</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link modelmanagement.PackageOwner#getOwnedPackages <em>Owned Packages</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owner</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owner</em>' containment reference.
+	 * @return the value of the '<em>Owner</em>' container reference.
 	 * @see #setOwner(PackageOwner)
 	 * @see modelmanagement.ModelmanagementPackage#getPackage_Owner()
-	 * @model containment="true" ordered="false"
+	 * @see modelmanagement.PackageOwner#getOwnedPackages
+	 * @model opposite="ownedPackages"
 	 * @generated
 	 */
 	PackageOwner getOwner();
 
 	/**
-	 * Sets the value of the '{@link modelmanagement.Package#getOwner <em>Owner</em>}' containment reference.
+	 * Sets the value of the '{@link modelmanagement.Package#getOwner <em>Owner</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Owner</em>' containment reference.
+	 * @param value the new value of the '<em>Owner</em>' container reference.
 	 * @see #getOwner()
 	 * @generated
 	 */

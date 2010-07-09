@@ -1421,7 +1421,7 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		   source, 
 		   new String[] {
 			 "DoesNotOwnIterators", "self.variables->select(i|i.oclIsKindOf(Iterator))->isEmpty()",
-			 "IsSideEffectFreeIfImplementsSideEffectFreeSignature", "self.implements_->notEmpty() implies\n    (self.implements_.sideEffectFree implies self.isSideEffectFree())",
+			 "IsSideEffectFreeIfImplementsSideEffectFreeSignature", "self.implements_->notEmpty() implies\r\n    (self.implements_.sideEffectFree implies self.isSideEffectFree())",
 			 "DistinctNamedValueNames", "self.variables->forAll( i, j | i <> j implies i.name <> j.name )"
 		   });			
 		addAnnotation
@@ -1483,9 +1483,9 @@ public class ActionsPackageImpl extends EPackageImpl implements ActionsPackage {
 		  (linkManipulationStatementEClass, 
 		   source, 
 		   new String[] {
-			 "ObjectsMustConformToEndTypes", "Sequence{1..self.objects->size()}->forAll(i:Integer |\n    objects->at(i).getType().conformsTo(association.ends->at(i).type))",
-			 "BlockMustNotImplementSideEffectFreeSignature", "self.block.getImplementedSignature()->notEmpty() implies\n  not self.block.getImplementedSignature().sideEffectFree",
-			 "NoValueMustBeModified", "self.association.ends->forAll(ae:data::classes::AssociationEnd |\n    ae.type.clazz.valueType implies not ae.contributesToEquality)"
+			 "ObjectsMustConformToEndTypes", "Sequence{1..self.objects->size()}->forAll(i:Integer |\r\n    objects->at(i).getType().conformsTo(association.ends->at(i).type))",
+			 "BlockMustNotImplementSideEffectFreeSignature", "self.block.getImplementedSignature()->notEmpty() implies\r\n  not self.block.getImplementedSignature().sideEffectFree",
+			 "NoValueMustBeModified", "self.association.ends->forAll(ae:data::classes::AssociationEnd |\r\n    ae.type.clazz.valueType implies not ae.contributesToEquality)"
 		   });					
 		addAnnotation
 		  (constantEClass, 

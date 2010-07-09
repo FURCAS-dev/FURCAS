@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -88,16 +89,6 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 	 * @ordered
 	 */
 	protected EList<ClassParameterization> parameterizedClasses;
-
-	/**
-	 * The cached value of the '{@link #getOwner() <em>Owner</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOwner()
-	 * @generated
-	 * @ordered
-	 */
-	protected PackageOwner owner;
 
 	/**
 	 * The cached value of the '{@link #getConfigurability() <em>Configurability</em>}' containment reference list.
@@ -180,7 +171,8 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 	 * @generated
 	 */
 	public PackageOwner getOwner() {
-		return owner;
+		if (eContainerFeatureID() != ModelmanagementPackage.PACKAGE__OWNER) return null;
+		return (PackageOwner)eContainer();
 	}
 
 	/**
@@ -189,12 +181,7 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 	 * @generated
 	 */
 	public NotificationChain basicSetOwner(PackageOwner newOwner, NotificationChain msgs) {
-		PackageOwner oldOwner = owner;
-		owner = newOwner;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelmanagementPackage.PACKAGE__OWNER, oldOwner, newOwner);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
+		msgs = eBasicSetContainer((InternalEObject)newOwner, ModelmanagementPackage.PACKAGE__OWNER, msgs);
 		return msgs;
 	}
 
@@ -204,12 +191,14 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 	 * @generated
 	 */
 	public void setOwner(PackageOwner newOwner) {
-		if (newOwner != owner) {
+		if (newOwner != eInternalContainer() || (eContainerFeatureID() != ModelmanagementPackage.PACKAGE__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if (owner != null)
-				msgs = ((InternalEObject)owner).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelmanagementPackage.PACKAGE__OWNER, null, msgs);
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
 			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelmanagementPackage.PACKAGE__OWNER, null, msgs);
+				msgs = ((InternalEObject)newOwner).eInverseAdd(this, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, PackageOwner.class, msgs);
 			msgs = basicSetOwner(newOwner, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -281,6 +270,10 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getClasses()).basicAdd(otherEnd, msgs);
 			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameterizedClasses()).basicAdd(otherEnd, msgs);
+			case ModelmanagementPackage.PACKAGE__OWNER:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetOwner((PackageOwner)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -307,6 +300,20 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 				return ((InternalEList<?>)getBindings()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ModelmanagementPackage.PACKAGE__OWNER:
+				return eInternalContainer().eInverseRemove(this, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, PackageOwner.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -414,7 +421,7 @@ public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Pac
 			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
 				return parameterizedClasses != null && !parameterizedClasses.isEmpty();
 			case ModelmanagementPackage.PACKAGE__OWNER:
-				return owner != null;
+				return getOwner() != null;
 			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
 				return configurability != null && !configurability.isEmpty();
 			case ModelmanagementPackage.PACKAGE__BINDINGS:

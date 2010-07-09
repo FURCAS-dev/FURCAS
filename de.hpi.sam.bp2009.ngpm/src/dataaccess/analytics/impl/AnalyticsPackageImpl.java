@@ -813,15 +813,15 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		  (dimensionEClass, 
 		   source, 
 		   new String[] {
-			 "BlockSignatureMustMatch", "self.characteristicFunction.input->size() = 1 and \n  self.cellSet.factsType.conformsToIgnoringMultiplicity(self.characteristicFunction.input->at(1).getType())\n    -- Add the following again once we have NestedTypeDefinitions under control...\n    -- and  self.characteristicFunction.input->at(1).getType().upperMultiplicity = 1",
+			 "BlockSignatureMustMatch", "self.characteristicFunction.input->size() = 1 and \r\n  self.cellSet.factsType.conformsToIgnoringMultiplicity(self.characteristicFunction.input->at(1).getType())\r\n    -- Add the following again once we have NestedTypeDefinitions under control...\r\n    -- and  self.characteristicFunction.input->at(1).getType().upperMultiplicity = 1",
 			 "CharacteristicFunctionMustNotBeAbstract", "not self.characteristicFunction.isAbstract()"
 		   });				
 		addAnnotation
 		  (cellSetEClass, 
 		   source, 
 		   new String[] {
-			 "ValueFunctionSignatureMustMatch", "self.valueFunction->notEmpty() implies\n    (self.valueFunction.input->size() = 1 and\n     self.factsType.conformsToIgnoringMultiplicity(self.valueFunction.input->at(1).getType())\n    -- Add the following again once we have NestedTypeDefinitions under control...\n    -- and  self.valueFunction.input->at(1).getType().upperMultiplicity = 1\n    )",
-			 "AggregationFunctionSignatureMustMatch", "self.aggregationFunction.input->size() = 1 and \n  self.keyFigureType().conformsTo(self.aggregationFunction.input->at(1).getType())",
+			 "ValueFunctionSignatureMustMatch", "self.valueFunction->notEmpty() implies\r\n    (self.valueFunction.input->size() = 1 and\r\n     self.factsType.conformsToIgnoringMultiplicity(self.valueFunction.input->at(1).getType())\r\n    -- Add the following again once we have NestedTypeDefinitions under control...\r\n    -- and  self.valueFunction.input->at(1).getType().upperMultiplicity = 1\r\n    )",
+			 "AggregationFunctionSignatureMustMatch", "self.aggregationFunction.input->size() = 1 and \r\n  self.keyFigureType().conformsTo(self.aggregationFunction.input->at(1).getType())",
 			 "AggregationFunctionMustNotBeAbstract", "not self.aggregationFunction.isAbstract()",
 			 "ValueFunctionMustNotBeAbstract", "self.valueFunction->forAll(vf | not vf.isAbstract())"
 		   });			
@@ -856,7 +856,7 @@ public class AnalyticsPackageImpl extends EPackageImpl implements AnalyticsPacka
 		   source, 
 		   new String[] {
 			 "GroupedFactsIteratorMustExistIfMapExpressionExists", "self.mapExpression->notEmpty() implies self.groupedFacts->notEmpty()",
-			 "MapExpressionMustBeSideEffectFree", "if self.mapExpression->notEmpty() then\n    self.mapExpression.isSideEffectFree()\n  else\n    true\n  endif",
+			 "MapExpressionMustBeSideEffectFree", "if self.mapExpression->notEmpty() then\r\n    self.mapExpression.isSideEffectFree()\r\n  else\r\n    true\r\n  endif",
 			 "GroupByIteratorsMustHaveDistinctNames", "self.dimensions.iterator->asSet()->union(self.groupedFacts->asSet())->union(self.fact->asSet())->forAll(i, j | i<>j implies i.name<>j.name)"
 		   });				
 		addAnnotation

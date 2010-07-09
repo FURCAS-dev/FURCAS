@@ -38,8 +38,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterizedClasses" upperBound="-1"
         eType="ecore:EClass data.ecore#//generics/ClassParameterization" containment="true"
         eOpposite="data.ecore#//generics/ClassParameterization/package_"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
-        unique="false" eType="#//PackageOwner" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//PackageOwner"
+        transient="true" eOpposite="#//PackageOwner/ownedPackages"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="configurability" upperBound="-1"
         eType="ecore:EClass configuration.ecore#//businessconfiguration/experimental/ConfigurationEntity"
         containment="true">
@@ -65,16 +65,15 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="An application, such as &quot;Business ByDesign&quot;"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentUnits" ordered="false"
-        upperBound="-1" eType="#//deploymentunits/DeploymentUnit" containment="true"
-        resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deploymentUnits" upperBound="-1"
+        eType="#//deploymentunits/DeploymentUnit" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="integrationScenarios" upperBound="-1"
         eType="ecore:EClass integration.ecore#//processintegration/IntegrationScenario"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageOwner" eSuperTypes="#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" ordered="false"
-        upperBound="-1" eType="#//Package" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedPackages" upperBound="-1"
+        eType="#//Package" containment="true" eOpposite="#//Package/owner"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Module"/>
   <eSubpackages name="processcomponents" nsURI="http:///modelmanagement/processcomponents.ecore"
@@ -88,18 +87,16 @@
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="ProcessComponent" abstract="true"
         eSuperTypes="#//PackageOwner">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterfaces" ordered="false"
-          upperBound="-1" eType="ecore:EClass data.ecore#//classes/SapClass" containment="true"
-          resolveProxies="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="eventProducers" ordered="false"
-          upperBound="-1" eType="ecore:EClass behavioral.ecore#//events/EventProducer"
-          containment="true" resolveProxies="false"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="interactions" ordered="false"
-          lowerBound="1" upperBound="-1" eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
-          containment="true" resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterfaces" upperBound="-1"
+          eType="ecore:EClass data.ecore#//classes/SapClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="eventProducers" upperBound="-1"
+          eType="ecore:EClass behavioral.ecore#//events/EventProducer"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedInteractions"
-          ordered="false" lowerBound="1" upperBound="-1" eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
-          containment="true" resolveProxies="false"/>
+          upperBound="-1" eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
+          eOpposite="integration.ecore#//processintegration/ProcessComponentInteraction/initiatorProcessComponent"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="interactions" upperBound="-1"
+          eType="ecore:EClass integration.ecore#//processintegration/ProcessComponentInteraction"
+          eOpposite="integration.ecore#//processintegration/ProcessComponentInteraction/processComponent"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ProcessComponentInsideCompany" eSuperTypes="#//processcomponents/ProcessComponent">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -115,12 +112,11 @@
       <details key="validationDelegates" value="http://de.hpi.sam.bp2009.OCL"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Specifies constraints regarding the deployability of a solution. Which parts need to be codeployed, what can be distributed.&#xA;&#xA;Align with PPMS &quot;Deployment Package&quot;"/>
+      <details key="documentation" value="Specifies constraints regarding the deployability of a solution. Which parts need to be codeployed, what can be distributed.&#xD;&#xA;&#xD;&#xA;Align with PPMS &quot;Deployment Package&quot;"/>
     </eAnnotations>
     <eClassifiers xsi:type="ecore:EClass" name="DeploymentUnit" eSuperTypes="#//PackageOwner #//NamedElement">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="pcsInsideCompany" ordered="false"
-          upperBound="-1" eType="#//processcomponents/ProcessComponent" containment="true"
-          resolveProxies="false"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pcsInsideCompany" upperBound="-1"
+          eType="#//processcomponents/ProcessComponent" containment="true"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

@@ -632,8 +632,8 @@ public class ConstraintsPackageImpl extends EPackageImpl implements ConstraintsP
 		  (constraintEClass, 
 		   source, 
 		   new String[] {
-			 "ExpressionTypeMustBeBoolean", "self.constraintExpression.getType().upperMultiplicity = 1 and\n  self.constraintExpression.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\n  self.constraintExpression.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'",
-			 "MustBeOwned", "self.constrainedType->notEmpty() or\n  self.theContext->notEmpty() or\n  self.preconditionForSignature->notEmpty() or\n  self.postconditionForSignature->notEmpty()"
+			 "ExpressionTypeMustBeBoolean", "self.constraintExpression.getType().upperMultiplicity = 1 and\r\n  self.constraintExpression.getType().oclIsKindOf(data::classes::ClassTypeDefinition) and\r\n  self.constraintExpression.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.name = \'Boolean\'",
+			 "MustBeOwned", "self.constrainedType->notEmpty() or\r\n  self.theContext->notEmpty() or\r\n  self.preconditionForSignature->notEmpty() or\r\n  self.postconditionForSignature->notEmpty()"
 		   });		
 	}
 

@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see data.classes.ClassesPackage#getClassTypeDefinition()
- * @model annotation="http://de.hpi.sam.bp2009.OCL ActualObjectsParametersMatchSignature='let numberOfMandatoryParameters:Integer =\n    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()\n  in\n  self.objectParameters->size() >= numberOfMandatoryParameters and\n  self.objectParameters->size() <= self.clazz.formalObjectParameters->size() and\n  Sequence{1..self.objectParameters->size()}->forAll(i:Integer|\n    self.objectParameters->at(i).formalObjectParameter =\n    self.clazz.formalObjectParameters->at(i))'"
+ * @model annotation="http://de.hpi.sam.bp2009.OCL ActualObjectsParametersMatchSignature='let numberOfMandatoryParameters:Integer =\r\n    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()\r\n  in\r\n  self.objectParameters->size() >= numberOfMandatoryParameters and\r\n  self.objectParameters->size() <= self.clazz.formalObjectParameters->size() and\r\n  Sequence{1..self.objectParameters->size()}->forAll(i:Integer|\r\n    self.objectParameters->at(i).formalObjectParameter =\r\n    self.clazz.formalObjectParameters->at(i))'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ActualObjectsParametersMatchSignature'"
  * @generated
  */

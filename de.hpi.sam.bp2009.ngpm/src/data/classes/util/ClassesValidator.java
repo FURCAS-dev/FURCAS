@@ -188,7 +188,7 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ASSOCIATION__UNIQUENESS_ON_BOTH_ENDS_MUST_BE_THE_SAME__EEXPRESSION = "self.ends->forAll( e1, e2 : AssociationEnd |\n" +
+	protected static final String ASSOCIATION__UNIQUENESS_ON_BOTH_ENDS_MUST_BE_THE_SAME__EEXPRESSION = "self.ends->forAll( e1, e2 : AssociationEnd |\r\n" +
 		"              e1 <> e2 implies e1.type.unique = e2.type.unique)";
 
 	/**
@@ -353,7 +353,7 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SIGNATURE__ONLY_TRAILING_OPTIONAL_PARAMETERS__EEXPRESSION = "self.input->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.input->indexOf(p)+1)..self.input->size()}->forAll(\n" +
+	protected static final String SIGNATURE__ONLY_TRAILING_OPTIONAL_PARAMETERS__EEXPRESSION = "self.input->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.input->indexOf(p)+1)..self.input->size()}->forAll(\r\n" +
 		"    i | self.input->at(i).defaultValue->notEmpty()))";
 
 	/**
@@ -492,9 +492,9 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ASSOCIATION_END__EQUALITY_CONTRIBUTING_END_ON_VALUE_MUST_HAVE_UNLIMITED_UPPER_BOUNDS__EEXPRESSION = "(self.type.clazz.valueType and self.contributesToEquality and\n" +
-		"   self.type.clazz.getAssociationEnds()->exists(ae |\n" +
-		"     ae <> self and ae.contributesToEquality)) implies\n" +
+	protected static final String ASSOCIATION_END__EQUALITY_CONTRIBUTING_END_ON_VALUE_MUST_HAVE_UNLIMITED_UPPER_BOUNDS__EEXPRESSION = "(self.type.clazz.valueType and self.contributesToEquality and\r\n" +
+		"   self.type.clazz.getAssociationEnds()->exists(ae |\r\n" +
+		"     ae <> self and ae.contributesToEquality)) implies\r\n" +
 		"  self.type.isMany()";
 
 	/**
@@ -604,7 +604,7 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String SAP_CLASS__ONLY_TRAILING_OPTIONAL_PARAMETERS__EEXPRESSION = "self.formalObjectParameters->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.formalObjectParameters->indexOf(p)+1)..self.formalObjectParameters->size()}->forAll(\n" +
+	protected static final String SAP_CLASS__ONLY_TRAILING_OPTIONAL_PARAMETERS__EEXPRESSION = "self.formalObjectParameters->forAll(p | p.defaultValue->notEmpty() implies Sequence{(self.formalObjectParameters->indexOf(p)+1)..self.formalObjectParameters->size()}->forAll(\r\n" +
 		"    i | self.formalObjectParameters->at(i).defaultValue->notEmpty()))";
 
 	/**
@@ -682,7 +682,7 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String DELEGATION__TO_END_MUST_HAVE_MULTIPLICITY_OF_ONE__EEXPRESSION = "self.from.otherEnd().type.lowerMultiplicity = 1 and\n" +
+	protected static final String DELEGATION__TO_END_MUST_HAVE_MULTIPLICITY_OF_ONE__EEXPRESSION = "self.from.otherEnd().type.lowerMultiplicity = 1 and\r\n" +
 		"  self.from.otherEnd().type.upperMultiplicity = 1";
 
 	/**
@@ -741,8 +741,8 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CONTEXT__CONDITION_MUST_BE_BOOLEAN__EEXPRESSION = "self.condition.getType().upperMultiplicity = 1 and\n" +
-		"  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\n" +
+	protected static final String CONTEXT__CONDITION_MUST_BE_BOOLEAN__EEXPRESSION = "self.condition.getType().upperMultiplicity = 1 and\r\n" +
+		"  self.condition.getType().oclIsKindOf(ClassTypeDefinition) and\r\n" +
 		"  self.condition.getType().oclAsType(ClassTypeDefinition).clazz.name = 'Boolean'";
 
 	/**
@@ -840,8 +840,8 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_TRAVERSAL__OUTPUT_TYPE_MATCH_END_TYPE__EEXPRESSION = "self.implements_.input->isEmpty() and\n" +
-		"  self.implements_.output.oclIsKindOf(ClassTypeDefinition) and \n" +
+	protected static final String LINK_TRAVERSAL__OUTPUT_TYPE_MATCH_END_TYPE__EEXPRESSION = "self.implements_.input->isEmpty() and\r\n" +
+		"  self.implements_.output.oclIsKindOf(ClassTypeDefinition) and \r\n" +
 		"  self.implements_.output.oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz";
 
 	/**
@@ -922,9 +922,9 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_ADDITION__ADDITION_INPUT_TYPE_MATCH_END_TYPE__EEXPRESSION = "self.implements_.output->isEmpty() and\n" +
-		"  self.implements_.input->size() = 1 and \n" +
-		"  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \n" +
+	protected static final String LINK_ADDITION__ADDITION_INPUT_TYPE_MATCH_END_TYPE__EEXPRESSION = "self.implements_.output->isEmpty() and\r\n" +
+		"  self.implements_.input->size() = 1 and \r\n" +
+		"  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \r\n" +
 		"  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz";
 
 	/**
@@ -976,9 +976,9 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_REMOVAL__REMOVAL_TYPE_MATCH_END_TYPE__EEXPRESSION = "self.implements_.output->isEmpty() and\n" +
-		"  self.implements_.input->size() = 1 and \n" +
-		"  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \n" +
+	protected static final String LINK_REMOVAL__REMOVAL_TYPE_MATCH_END_TYPE__EEXPRESSION = "self.implements_.output->isEmpty() and\r\n" +
+		"  self.implements_.input->size() = 1 and \r\n" +
+		"  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \r\n" +
 		"  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz";
 
 	/**
@@ -1027,9 +1027,9 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__ONLY_ON_OTHER_ENDS_CLASS_OR_CLASS_CONFORMING_TO_IT_OR_ADAPTER_ADAPTING_TO_IT__EEXPRESSION = "(self.implements_.owner.oclIsKindOf(SapClass) and\n" +
-		"    self.implements_.owner.oclAsType(SapClass).conformsTo(self.end.otherEnd().type.clazz))\n" +
-		"  or   (self.implements_.owner.oclIsKindOf(TypeAdapter) and\n" +
+	protected static final String ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__ONLY_ON_OTHER_ENDS_CLASS_OR_CLASS_CONFORMING_TO_IT_OR_ADAPTER_ADAPTING_TO_IT__EEXPRESSION = "(self.implements_.owner.oclIsKindOf(SapClass) and\r\n" +
+		"    self.implements_.owner.oclAsType(SapClass).conformsTo(self.end.otherEnd().type.clazz))\r\n" +
+		"  or   (self.implements_.owner.oclIsKindOf(TypeAdapter) and\r\n" +
 		"    self.implements_.owner.oclAsType(TypeAdapter).adapted.conformsTo(self.end.otherEnd().type.clazz))";
 
 	/**
@@ -1078,13 +1078,13 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CLASS_TYPE_DEFINITION__ACTUAL_OBJECTS_PARAMETERS_MATCH_SIGNATURE__EEXPRESSION = "let numberOfMandatoryParameters:Integer =\n" +
-		"    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()\n" +
-		"  in\n" +
-		"  self.objectParameters->size() >= numberOfMandatoryParameters and\n" +
-		"  self.objectParameters->size() <= self.clazz.formalObjectParameters->size() and\n" +
-		"  Sequence{1..self.objectParameters->size()}->forAll(i:Integer|\n" +
-		"    self.objectParameters->at(i).formalObjectParameter =\n" +
+	protected static final String CLASS_TYPE_DEFINITION__ACTUAL_OBJECTS_PARAMETERS_MATCH_SIGNATURE__EEXPRESSION = "let numberOfMandatoryParameters:Integer =\r\n" +
+		"    self.clazz.formalObjectParameters->select(p|p.defaultValue->isEmpty())->size()\r\n" +
+		"  in\r\n" +
+		"  self.objectParameters->size() >= numberOfMandatoryParameters and\r\n" +
+		"  self.objectParameters->size() <= self.clazz.formalObjectParameters->size() and\r\n" +
+		"  Sequence{1..self.objectParameters->size()}->forAll(i:Integer|\r\n" +
+		"    self.objectParameters->at(i).formalObjectParameter =\r\n" +
 		"    self.clazz.formalObjectParameters->at(i))";
 
 	/**
@@ -1240,9 +1240,9 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String LINK_SETTING__INPUT_TYPE_MATCH_END_TYPE__EEXPRESSION = "self.implements_.output->isEmpty() and\n" +
-		"  self.implements_.input->size() = 1 and \n" +
-		"  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \n" +
+	protected static final String LINK_SETTING__INPUT_TYPE_MATCH_END_TYPE__EEXPRESSION = "self.implements_.output->isEmpty() and\r\n" +
+		"  self.implements_.input->size() = 1 and \r\n" +
+		"  self.implements_.input->at(1).getType().oclIsKindOf(ClassTypeDefinition) and \r\n" +
 		"  self.implements_.input->at(1).getType().oclAsType(ClassTypeDefinition).clazz = self.end.type.clazz";
 
 	/**
@@ -1294,8 +1294,8 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String TYPE_ADAPTER__ALL_SIGNATURE_CONFORMS__EEXPRESSION = "self.ownedSignatures->forAll(selfSig:MethodSignature |\n" +
-		"    self.to.signaturesWithDelegation()->exists(toSig:MethodSignature |\n" +
+	protected static final String TYPE_ADAPTER__ALL_SIGNATURE_CONFORMS__EEXPRESSION = "self.ownedSignatures->forAll(selfSig:MethodSignature |\r\n" +
+		"    self.to.signaturesWithDelegation()->exists(toSig:MethodSignature |\r\n" +
 		"       selfSig.conformsTo(toSig)))";
 
 	/**
@@ -1354,10 +1354,10 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String TYPE_ADAPTER__IS_FULL_ADAPTATION_TO_TO__EEXPRESSION = "self.to.signaturesWithDelegation()->forAll(toSig|\n" +
-		"    self.adapted.signaturesWithDelegation()->exists(adaptedSig|\n" +
-		"      adaptedSig.conformsTo(toSig))\n" +
-		"    or self.ownedSignatures->exists(ownedSig|\n" +
+	protected static final String TYPE_ADAPTER__IS_FULL_ADAPTATION_TO_TO__EEXPRESSION = "self.to.signaturesWithDelegation()->forAll(toSig|\r\n" +
+		"    self.adapted.signaturesWithDelegation()->exists(adaptedSig|\r\n" +
+		"      adaptedSig.conformsTo(toSig))\r\n" +
+		"    or self.ownedSignatures->exists(ownedSig|\r\n" +
 		"      ownedSig.conformsTo(toSig)))";
 
 	/**
@@ -1521,7 +1521,7 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String EXTENT_MODIFYING_ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__MUST_NOT_MODIFY_EXTENT_IF_EQUALITY_RELEVANT_FOR_VALUE_CLASS__EEXPRESSION = "end.association.ends->forAll(ae:AssociationEnd |\n" +
+	protected static final String EXTENT_MODIFYING_ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__MUST_NOT_MODIFY_EXTENT_IF_EQUALITY_RELEVANT_FOR_VALUE_CLASS__EEXPRESSION = "end.association.ends->forAll(ae:AssociationEnd |\r\n" +
 		"    ae.contributesToEquality implies not ae.type.clazz.valueType)";
 
 	/**
@@ -1647,8 +1647,8 @@ public class ClassesValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static final String CONVERTER_BETWEEN_PARAMETRIZATIONS__FORMAL_OBJECT_PARAMETERS_CONFORM_TO_METHOD_PARAMETERS__EEXPRESSION = "self.conversionMethod.input->size() = self.clazz.formalObjectParameters->size() and\n" +
-		"  Sequence{1..self.conversionMethod.input->size()}->forAll(i |\n" +
+	protected static final String CONVERTER_BETWEEN_PARAMETRIZATIONS__FORMAL_OBJECT_PARAMETERS_CONFORM_TO_METHOD_PARAMETERS__EEXPRESSION = "self.conversionMethod.input->size() = self.clazz.formalObjectParameters->size() and\r\n" +
+		"  Sequence{1..self.conversionMethod.input->size()}->forAll(i |\r\n" +
 		"    self.clazz.formalObjectParameters->at(i).conformsTo(self.conversionMethod.input->at(i)))";
 
 	/**
