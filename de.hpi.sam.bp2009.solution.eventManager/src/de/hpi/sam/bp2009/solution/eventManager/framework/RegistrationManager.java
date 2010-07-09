@@ -142,7 +142,6 @@ public abstract class RegistrationManager {
                     throw new IllegalArgumentException("no table for type "+ leafOfTree.getClass() +" in RegistryManager defined");
                 }
                 filterTable.register(leafOfTree, reg);
-
                 if (leafOfTree.isNegated())
                     tablesWithNegatedRegistrations.add(filterTable);
             }
@@ -235,21 +234,15 @@ public abstract class RegistrationManager {
      * @return a Collection of listeners that are registered for the passed event
      */
     public Collection<WeakReference<? extends Adapter>> getListenersFor(Notification event) {
-
-        /*
-         * this method does the main work, it computes the registrations from all EventFilterTables
-         */
+        // this method does the main work, it computes the registrations from all EventFilterTables
         Collection<Registration> registrations = getRegistrationsFor(event);
-
         Collection<WeakReference<? extends Adapter>> result = new LinkedList<WeakReference<? extends Adapter>>();
-
         /*
          * this collection is needed in order to remove doubles. (it is possible, that 2 OR connected filter criterions matched.
          * In this case, 2 different registrations will be returned (which are both contained in the same RegistrationSet), but
          * the listener will expect to get notified only once.
          */
         Collection<RegistrationSet> registrationSetsAddedSoFar = new LinkedList<RegistrationSet>();
-
         for (Registration reg : registrations) {
             /*
              * several registrations that are contained in the same registrationSet mean that more than one criterion of
@@ -262,8 +255,9 @@ public abstract class RegistrationManager {
                     registrationSetsAddedSoFar.add(rs);
                     result.add(rs.getListener());
                 }
-            } else
+            } else {
                 result.add(reg.getListener());
+            }
         }
         return result;
     }
@@ -275,28 +269,22 @@ public abstract class RegistrationManager {
     protected Collection<Registration> getRegistrationsFor(Notification event) {
         Statistics.getInstance().begin("getRegistrationsFor", event);
         // TODO Performance optimizations can probably be done here - VERY CENTRAL METHOD
-        // caching is done in the subclass SessionRegistrationManager
    
-        // In Docu: Green cells
+        // In documentation: Green cells
         Iterator<Registration>[] yesSetIterators = new Iterator[allTables.size()];
-        // In Docu: Red cells
+        // In documentation: Red cells
         Iterator<Registration>[] noSetIterators = new Iterator[allTables.size()];
         int ysi_count = 0, nsi_count = 0;
 
         int estimatedYesSetSize = 0;
         RegistrationIterator<Registration> regIt;
 
-        /*
-         * for each type of event, there is a specific set of EventFilterTables which might contribute registrations to the event.
-         * These tables are stored in "tablesByEventType".
-         */
+        // for each type of event, there is a specific set of EventFilterTables which might contribute registrations to the event.
+        // These tables are stored in "tablesByEventType".
         Set<TableForEventFilter> tableSet = tablesByEventType.get(event.getEventType());
-
         if (tableSet != null) {
             for (TableForEventFilter table : tableSet) {
-                /*
-                 * collect registrations for that event from each EventFilterTable
-                 */
+                // collect registrations for that event from each EventFilterTable
                 Statistics.getInstance().begin("getYesRegistrationsForTable_"+table.getClass().getSimpleName(), event);
                 regIt = table.getRegistrationsFor(event, false);
                 Statistics.getInstance().end("getYesRegistrationsForTable_"+table.getClass().getSimpleName(), event);
@@ -304,10 +292,7 @@ public abstract class RegistrationManager {
                     yesSetIterators[ysi_count++] = regIt;
                     estimatedYesSetSize += regIt.getSize();
                 }
-
-                /*
-                 * collect registrations that do NOT want to get notified about the current event
-                 */
+                // collect registrations that do NOT want to get notified about the current event
                 Statistics.getInstance().begin("getNoRegistrationsForTable_"+table.getClass().getSimpleName(), event);
                 regIt = table.getRegistrationsFor(event, true);
                 Statistics.getInstance().end("getNoRegistrationsForTable_"+table.getClass().getSimpleName(), event);
@@ -320,12 +305,9 @@ public abstract class RegistrationManager {
             // TODO Log warning! (throw exception?)
         }
 
-        /*
-         * tables that normally would not be affected could contribute if they have negated registrations. (a registration to
-         * "Not X" implies a registration to "Y")
-         */
+        // tables that normally would not be affected could contribute if they have negated registrations. (a registration to
+        // "Not X" implies a registration to "Y")
         for (TableForEventFilter table : tablesWithNegatedRegistrations) {
-
             Statistics.getInstance().begin("getNegatedRegistrationsForTable_"+table.getClass().getSimpleName(), event);
             regIt = table.getRegistrationsFor(event, false);
             Statistics.getInstance().end("getNegatedRegistrationsForTable_"+table.getClass().getSimpleName(), event);
@@ -366,9 +348,7 @@ public abstract class RegistrationManager {
             }
         Statistics.getInstance().end("yesSetIterators", event);
 
-        /*
-         * remove all registrations from the yesSet that were collected in the so called noSet
-         */
+        // remove all registrations from the yesSet that were collected in the so called noSet
         Statistics.getInstance().begin("tableMagic", event);
         if (!possibleYesSetEntries.isEmpty()) {
             for (int i = 0; i < nsi_count; i++) {
@@ -376,16 +356,13 @@ public abstract class RegistrationManager {
                     possibleYesSetEntries.remove(noSetRegistrationIterator.next());
                 }
             }
-
             // Take also into account registrations that are not in the tableSet, but combined with an AND
             Set<TableForEventFilter> tablesNotAffectedByEvent = new HashSet<TableForEventFilter>(allTables);
             tablesNotAffectedByEvent.removeAll(tableSet);
-
             // Remove from yesSet registrations in tablesNotAffectedByEvent
             for (TableForEventFilter table : tablesNotAffectedByEvent) {
                 possibleYesSetEntries.removeAll(table.completeYesSet);
             }
-
             if (!possibleYesSetEntries.isEmpty()) {
                 yesSet.addAll(possibleYesSetEntries);
             }
@@ -419,6 +396,7 @@ public abstract class RegistrationManager {
      */
     private void deregister(Registration registration) {
         for (TableForEventFilter table : allTables) {
+            // TODO if registrations for equal AndFilters are bundled and may refer to multiple listeners, just remove the listener from the Registration; remove the Registration only if that was its last listener
             table.deregister(registration);
             if (table.getCompleteNoSet().isEmpty() && tablesWithNegatedRegistrations.contains(table))
                 tablesWithNegatedRegistrations.remove(table);

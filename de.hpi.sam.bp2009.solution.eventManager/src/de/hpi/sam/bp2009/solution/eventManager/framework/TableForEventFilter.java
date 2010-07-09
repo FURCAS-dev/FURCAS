@@ -149,63 +149,46 @@ public abstract class TableForEventFilter {
     }
 
     /**
-     * returns a {@link com.sap.tc.moin.repository.events.framework.RegistrationIterator} that iterates over all Registrations that
-     * are either directly registered for the passed event or Registrations that are registrated for "NOT anotherEvent".
-     * These Registrations form the base for all possible affected Registrations in the context of an event.
+     * returns a {@link RegistrationIterator} that iterates over all Registrations that are either directly registered for the
+     * passed event or Registrations that are registered for "NOT anotherEvent". These Registrations form the base for all
+     * possible affected Registrations in the context of an event.
      * 
      * @param event
      * @return an object of type RegistrationIterator
      */
-    @SuppressWarnings("unchecked")  //unchecked conversion needed because of Object-return value which can be of type Collection
     RegistrationIterator<Registration> getRegistrationsFor(Notification event, boolean negated) {
-
-        /*
-         * returns the filter criterion which is of interest in context of the current EventFilterTable
-         */
+        // returns the filter criterion which is of interest in context of the current EventFilterTable
         Object affectedFilterTableEntryKeys = getAffectedObject(event);
-
         // will contain all affected FilterTableEntries that have a registration
-        Collection<FilterTableEntry> filterTableEntries = new ArrayList<FilterTableEntry>();
-
+        Collection<FilterTableEntry<Registration>> filterTableEntries = new ArrayList<FilterTableEntry<Registration>>();
         if (affectedFilterTableEntryKeys instanceof Collection<?>) {
-            /*
-             * Some EventFilterTables return multiple matching criterions. For example the ClassFilterTable (including
-             * Subclasses) returns more than one matching row if there were registrations for a class and its superclass
-             * when the subclass was changed.
-             */
-            // TODO: Possible not necessary / possible performance optimization
-            Collection affectedFilterTableEntryKeySet = new ArrayList<Object>((Collection) affectedFilterTableEntryKeys);
-            /*
-             * if the table is empty, don't do the following expensive poerations..
-             */
+            // Some EventFilterTables return multiple matching criteria. For example the ClassFilterTable (including
+            // Subclasses) returns more than one matching row if there were registrations for a class and its superclass
+            // when the subclass was changed.
+            // TODO: Possibly not necessary / possible performance optimization
+            Collection<?> affectedFilterTableEntryKeySet = new ArrayList<Object>((Collection<?>) affectedFilterTableEntryKeys);
+            // if the table is empty, don't do the following expensive operations:
             if (!tableEntryByFilterCriterion.isEmpty()) {
                 // remove contained items that have no registrations
                 affectedFilterTableEntryKeySet.retainAll(tableEntryByFilterCriterion.keySet());
-
                 for (Object criterion : affectedFilterTableEntryKeySet) {
                     filterTableEntries.add(tableEntryByFilterCriterion.get(criterion));
                 }
             }
 
         } else if (affectedFilterTableEntryKeys != null && tableEntryByFilterCriterion.keySet().contains(
-                /*
-                 * Perhaps there is no registration for the affected object?
-                 */
+                // Perhaps there is no registration for the affected object?
                 affectedFilterTableEntryKeys)) {
-
             filterTableEntries.add(tableEntryByFilterCriterion.get(affectedFilterTableEntryKeys));
-
         } else if (negated && !completeNoSet.isEmpty()) {
-            /*
-             * there is no registration for the affected object, BUT there is a registration for "NOT something else"
-             * which implies the a registration for affected object
-             */
+            // there is no registration for the affected object, BUT there is a registration for "NOT something else"
+            // which implies the a registration for affected object
             filterTableEntries.add(tableEntryByFilterCriterion.get(affectedFilterTableEntryKeys));
         }
 
         RegistrationIterator<Registration> result = null;
-        if (filterTableEntries.size() > 0 || negated){
-            result = new RegistrationIterator(this, filterTableEntries, negated);
+        if (filterTableEntries.size() > 0 || negated) {
+            result = new RegistrationIterator<Registration>(this, filterTableEntries, negated);
         }
         return result;
     }
