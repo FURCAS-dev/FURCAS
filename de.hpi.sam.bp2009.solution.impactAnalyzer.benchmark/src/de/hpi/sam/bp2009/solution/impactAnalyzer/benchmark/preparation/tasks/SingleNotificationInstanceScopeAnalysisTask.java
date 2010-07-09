@@ -11,7 +11,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 public class SingleNotificationInstanceScopeAnalysisTask implements BenchmarkTask{
-
     private final OCLExpression expression;
     private final Notification noti;
     private final ImpactAnalyzer ia;
@@ -32,5 +31,4 @@ public class SingleNotificationInstanceScopeAnalysisTask implements BenchmarkTas
     public String toString(){
 	return expression.toString();
     }
-
 }

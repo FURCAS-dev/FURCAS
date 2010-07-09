@@ -24,7 +24,34 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
  * @author Manuel Holzleitner (D049667)
  */
 public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
-    public Map<String, OCLExpressionWithContext> pickUpExpressions(EPackage... ps) {
+
+    @Override
+    public Collection<OCLExpressionWithContext> pickUpExpressions() {
+        return pickUpExpressions(data.classes.ClassesPackage.eINSTANCE,
+        	data.constraints.ConstraintsPackage.eINSTANCE, data.documents.DocumentsPackage.eINSTANCE,
+        	data.generics.GenericsPackage.eINSTANCE, data.quantitystructure.QuantitystructurePackage.eINSTANCE,
+        	data.timedependency.TimedependencyPackage.eINSTANCE, data.tuples.TuplesPackage.eINSTANCE,
+
+        	dataaccess.analytics.AnalyticsPackage.eINSTANCE, dataaccess.expressions.ExpressionsPackage.eINSTANCE,
+        	dataaccess.expressions.fp.FpPackage.eINSTANCE, dataaccess.expressions.literals.LiteralsPackage.eINSTANCE,
+        	dataaccess.query.QueryPackage.eINSTANCE,
+
+        	behavioral.actions.ActionsPackage.eINSTANCE, behavioral.bpdm.BpdmPackage.eINSTANCE,
+        	behavioral.businesstasks.BusinesstasksPackage.eINSTANCE, behavioral.events.EventsPackage.eINSTANCE,
+        	behavioral.rules.RulesPackage.eINSTANCE,
+
+        	persistence.actions.ActionsPackage.eINSTANCE, persistence.expressions.ExpressionsPackage.eINSTANCE);
+    }
+
+    public Collection<OCLExpressionWithContext> pickUpExpressions(EPackage... packages){
+	Collection<OCLExpressionWithContext> expressionSet = searchAndParseExpressions(packages).values();
+
+        Collection<OCLExpressionWithContext> result = new ArrayList<OCLExpressionWithContext>();
+        result.addAll(expressionSet);
+        return result;
+    }
+
+    private Map<String, OCLExpressionWithContext> searchAndParseExpressions(EPackage... ps) {
 	Map<String, OCLExpressionWithContext> allConstraints = new HashMap<String, OCLExpressionWithContext>();
 	EAnnotationOCLParser oclParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
 	for (EPackage pkg : ps) {
@@ -66,27 +93,4 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 
 	return allConstraints;
     }
-
-    @Override
-    public ArrayList<OCLExpressionWithContext> pickUpExpressions() {
-	Collection<OCLExpressionWithContext> expressionSet = pickUpExpressions(data.classes.ClassesPackage.eINSTANCE,
-		data.constraints.ConstraintsPackage.eINSTANCE, data.documents.DocumentsPackage.eINSTANCE,
-		data.generics.GenericsPackage.eINSTANCE, data.quantitystructure.QuantitystructurePackage.eINSTANCE,
-		data.timedependency.TimedependencyPackage.eINSTANCE, data.tuples.TuplesPackage.eINSTANCE,
-
-		dataaccess.analytics.AnalyticsPackage.eINSTANCE, dataaccess.expressions.ExpressionsPackage.eINSTANCE,
-		dataaccess.expressions.fp.FpPackage.eINSTANCE, dataaccess.expressions.literals.LiteralsPackage.eINSTANCE,
-		dataaccess.query.QueryPackage.eINSTANCE,
-
-		behavioral.actions.ActionsPackage.eINSTANCE, behavioral.bpdm.BpdmPackage.eINSTANCE,
-		behavioral.businesstasks.BusinesstasksPackage.eINSTANCE, behavioral.events.EventsPackage.eINSTANCE,
-		behavioral.rules.RulesPackage.eINSTANCE,
-
-		persistence.actions.ActionsPackage.eINSTANCE, persistence.expressions.ExpressionsPackage.eINSTANCE).values();
-
-	ArrayList<OCLExpressionWithContext> result = new ArrayList<OCLExpressionWithContext>();
-	result.addAll(expressionSet);
-	return result;
-    }
-
 }
