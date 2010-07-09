@@ -1,6 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests;
 
-import java.util.ArrayList;
+import java.util.Collection;
 
 import junit.framework.TestCase;
 import modelmanagement.ModelmanagementPackage;
@@ -31,11 +31,12 @@ public class PerformanceStressTestForEventManager extends TestCase implements Ad
     private ResourceSet rs;
     private Notifier target;
     private int notificationCount;
-    
+
+    @Override
     @Before
     public void setUp() {
         rs = new ResourceSetImpl();
-        ArrayList<OCLExpressionWithContext> expressions = BenchmarkOCLPreparer.prepareAll();
+        Collection<OCLExpressionWithContext> expressions = BenchmarkOCLPreparer.prepareAll();
         eventManager = new EventManagerTableBased(rs);
         for (OCLExpressionWithContext expression : expressions) {
             OCLExpression e = expression.getExpression();
@@ -47,7 +48,7 @@ public class PerformanceStressTestForEventManager extends TestCase implements Ad
             Statistics.getInstance().end("filtersubscription", e);
         }
     }
-    
+
     @Test
     public void testSingleAttributeValueChange() {
         for (int i = 0; i < 10000; i++) {
