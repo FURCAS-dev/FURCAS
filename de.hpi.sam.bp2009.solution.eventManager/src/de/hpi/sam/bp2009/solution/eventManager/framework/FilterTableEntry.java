@@ -18,8 +18,10 @@ import java.util.List;
  */
 public class FilterTableEntry<Type> {
 
+    // TODO why are these lists? Would have expected that fast set operations are required as these collections may grow large
     private List<Type> registrations = new ArrayList<Type>();
 
+    // TODO why are these lists? Would have expected that fast set operations are required as these collections may grow large
     private List<Type> negatedRegistrations = new ArrayList<Type>();
     
     FilterTableEntry() {
