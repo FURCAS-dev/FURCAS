@@ -277,7 +277,7 @@ public abstract class RegistrationManager {
         int ysi_count = 0, nsi_count = 0;
 
         int estimatedYesSetSize = 0;
-        RegistrationIterator<Registration> regIt;
+        RegistrationIterator regIt;
 
         // for each type of event, there is a specific set of EventFilterTables which might contribute registrations to the event.
         // These tables are stored in "tablesByEventType".
@@ -361,7 +361,7 @@ public abstract class RegistrationManager {
             tablesNotAffectedByEvent.removeAll(tableSet);
             // Remove from yesSet registrations in tablesNotAffectedByEvent
             for (TableForEventFilter table : tablesNotAffectedByEvent) {
-                possibleYesSetEntries.removeAll(table.completeYesSet);
+                possibleYesSetEntries.removeAll(table.getCompleteYesSet());
             }
             if (!possibleYesSetEntries.isEmpty()) {
                 yesSet.addAll(possibleYesSetEntries);

@@ -3,7 +3,9 @@ package de.hpi.sam.bp2009.solution.eventManager.framework;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.event.ChangeEvent;
 
@@ -28,12 +30,12 @@ public abstract class TableForEventFilter {
     /**
      * list of all (normal) registrations that are stored in this instance.
      */
-    protected List<Registration> completeYesSet = new ArrayList<Registration>();
+    private Set<Registration> completeYesSet = new HashSet<Registration>();
 
     /**
      * list of all (negated) registration that are stored in this instance.
      */
-    protected List<Registration> completeNoSet = new ArrayList<Registration>();
+    private Set<Registration> completeNoSet = new HashSet<Registration>();
 
     /**
      * index which is needed for deregistration purposes
@@ -156,10 +158,19 @@ public abstract class TableForEventFilter {
      * @param event
      * @return an object of type RegistrationIterator
      */
-    RegistrationIterator<Registration> getRegistrationsFor(Notification event, boolean negated) {
+    RegistrationIterator getRegistrationsFor(Notification event, boolean negated) {
         // returns the filter criterion which is of interest in context of the current EventFilterTable
         Object affectedFilterTableEntryKeys = getAffectedObject(event);
         // will contain all affected FilterTableEntries that have a registration
+        Collection<FilterTableEntry<Registration>> filterTableEntries = getFilterTableEntries(affectedFilterTableEntryKeys, negated);
+        RegistrationIterator result = null;
+        if (filterTableEntries.size() > 0 || negated) {
+            result = new RegistrationIterator(this, filterTableEntries, negated);
+        }
+        return result;
+    }
+
+    private Collection<FilterTableEntry<Registration>> getFilterTableEntries(Object affectedFilterTableEntryKeys, boolean negated) {
         Collection<FilterTableEntry<Registration>> filterTableEntries = new ArrayList<FilterTableEntry<Registration>>();
         if (affectedFilterTableEntryKeys instanceof Collection<?>) {
             // Some EventFilterTables return multiple matching criteria. For example the ClassFilterTable (including
@@ -175,33 +186,23 @@ public abstract class TableForEventFilter {
                     filterTableEntries.add(tableEntryByFilterCriterion.get(criterion));
                 }
             }
-
         } else if (affectedFilterTableEntryKeys != null && tableEntryByFilterCriterion.keySet().contains(
                 // Perhaps there is no registration for the affected object?
                 affectedFilterTableEntryKeys)) {
             filterTableEntries.add(tableEntryByFilterCriterion.get(affectedFilterTableEntryKeys));
-        } else if (negated && !completeNoSet.isEmpty()) {
-            // there is no registration for the affected object, BUT there is a registration for "NOT something else"
-            // which implies the a registration for affected object
-            filterTableEntries.add(tableEntryByFilterCriterion.get(affectedFilterTableEntryKeys));
         }
-
-        RegistrationIterator<Registration> result = null;
-        if (filterTableEntries.size() > 0 || negated) {
-            result = new RegistrationIterator<Registration>(this, filterTableEntries, negated);
-        }
-        return result;
+        return filterTableEntries;
     }
 
     /*
      * getters for the members completeYesSet and completeNoSet they are needed by the implementation of
      * RegistrationIterator (Docu: RegistrationSet)
      */
-    List<Registration> getCompleteYesSet() {
+    Set<Registration> getCompleteYesSet() {
         return completeYesSet;
     }
     // (Docu: NegatedRegistrationSet)
-    List<Registration> getCompleteNoSet() {
+    Set<Registration> getCompleteNoSet() {
         return completeNoSet;
     }
 
