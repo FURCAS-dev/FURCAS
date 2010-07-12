@@ -16,7 +16,11 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Before;
 import org.junit.Test;
 
+import persistence.expressions.ExpressionsFactory;
+import persistence.expressions.ExpressionsPackage;
+
 import data.classes.ClassesFactory;
+import data.classes.ClassesPackage;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -51,11 +55,34 @@ public class PerformanceStressTestForEventManager extends TestCase implements Ad
 
     @Test
     public void testSingleAttributeValueChange() {
+        // name has 290 entries in TableForAttributeFilter
+        InternalEObject notifier = (InternalEObject) ClassesFactory.eINSTANCE.createSapClass();
         for (int i = 0; i < 10000; i++) {
-            Notification n = new ENotificationImpl((InternalEObject) ClassesFactory.eINSTANCE.createSapClass(), Notification.SET,
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ModelmanagementPackage.eINSTANCE.getNamedElement_Name(), "humba", "trala");
+            Statistics.getInstance().begin("Notify_Attribute_Name_290", ""+i);
             eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Attribute_Name_290", ""+i);
         }
+        // upperMultiplicity has 487 entries in TableForAttributeFilter
+        notifier = (InternalEObject) ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        for (int i = 0; i < 10000; i++) {
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
+                    ClassesPackage.eINSTANCE.getMultiplicity_UpperMultiplicity(), 1, -1);
+            Statistics.getInstance().begin("Notify_Attribute_UpperMultiplicity_487", ""+i);
+            eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Attribute_UpperMultiplicity_487", ""+i);
+        }
+        // snapshot has 1 entry in TableForAttributeFilter
+        notifier = (InternalEObject) ExpressionsFactory.eINSTANCE.createAll();
+        for (int i = 0; i < 10000; i++) {
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
+                    ExpressionsPackage.eINSTANCE.getAll_Snapshot(), 1, -1);
+            Statistics.getInstance().begin("Notify_Attribute_Snapshot_1", ""+i);
+            eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Attribute_Snapshot_1", ""+i);
+        }
+
         System.out.println("Notification count: "+notificationCount);
         System.out.println(Statistics.getInstance().averageTimeAsSV("\t"));
     }
