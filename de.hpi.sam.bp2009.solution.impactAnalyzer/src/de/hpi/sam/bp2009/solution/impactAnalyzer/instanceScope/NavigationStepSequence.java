@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 
@@ -162,7 +163,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
 	Set<AnnotatedEObject> result = Collections.singleton(fromObject);
 	if (isAlwaysEmpty()) {
 	    result = Collections.emptySet();
@@ -170,7 +171,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	    // If the navigation along the sequence produces an empty set, we can abort
 	    // the navigation.
 	    for (int i=0; !result.isEmpty() && i<getSteps().length; i++) {
-		result = getSteps()[i].navigate(result, cache);
+		result = getSteps()[i].navigate(result, cache, changeEvent);
 	    }
 	}
 	return result;

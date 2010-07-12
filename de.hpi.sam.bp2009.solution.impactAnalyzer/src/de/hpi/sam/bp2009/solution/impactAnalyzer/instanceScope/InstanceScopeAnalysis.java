@@ -187,7 +187,7 @@ public class InstanceScopeAnalysis {
                         Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
                         // the source element may have been deleted already by subsequent events; at this point,
                         // this makes it impossible to trace the change event back to a context; all we have is
-                        result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), cache));
+                        result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), cache, event));
                     }
                 }
             }
@@ -501,17 +501,17 @@ public class InstanceScopeAnalysis {
      * the source expression may not necessarily evaluate to <tt>sourceElement</tt>. However, there are no other {@link RefObject}
      * elements that are not part of the result and for which the source expression evaluates to <tt>sourceElement</tt>. This
      * means, all contexts for which the source expression evaluates to <tt>sourceElement</tt> are guaranteed to be found.
-     * 
      * @param context
      *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
+     * @param changeEvent TODO
      */
     private Set<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
-            EClass context, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+            EClass context, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
         NavigationStep step = getNavigationStepsToSelfForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(),
                 context);
         Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
-        Set<AnnotatedEObject> result = step.navigate(sourceElementAsSet, cache);
+        Set<AnnotatedEObject> result = step.navigate(sourceElementAsSet, cache, changeEvent);
         return result;
     }
 }

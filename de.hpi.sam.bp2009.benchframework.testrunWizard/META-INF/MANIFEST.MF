@@ -12,6 +12,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.core,
  org.eclipse.jdt.ui,
  de.hpi.sam.bp2009.benchframework,
- org.eclipse.jface;bundle-version="3.5.1"
+ org.eclipse.jface
 Bundle-ActivationPolicy: lazy
 Export-Package: de.hpi.sam.bp2009.benchframework.testrunWizard

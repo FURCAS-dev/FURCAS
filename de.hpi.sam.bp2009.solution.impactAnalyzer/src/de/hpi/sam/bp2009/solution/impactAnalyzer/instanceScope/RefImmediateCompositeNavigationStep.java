@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 
@@ -17,7 +18,7 @@ public class RefImmediateCompositeNavigationStep extends AbstractNavigationStep 
 	}
 
 	@Override
-	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
 		Set<AnnotatedEObject> result = Collections.singleton(annotateEObject(fromObject, 
 		        fromObject.eContainer()));
 		return result;

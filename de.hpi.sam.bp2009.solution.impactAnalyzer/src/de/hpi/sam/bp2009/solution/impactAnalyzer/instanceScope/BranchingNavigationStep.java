@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 
@@ -103,11 +105,11 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         for (NavigationStep singleStep : getSteps()) {
             Set<AnnotatedEObject> fromSet = Collections.singleton(fromObject);
-            result.addAll(singleStep.navigate(fromSet, cache));
+            result.addAll(singleStep.navigate(fromSet, cache, changeEvent));
         }
         return result;
     }
