@@ -578,4 +578,55 @@ public class OclIaTest extends BaseDepartmentTest {
     // connection.getEventRegistry().deregister(listener);
     // }
     // }
+    
+    @Test
+    public void testPredicateEvaluation(){
+        OCLExpression exp = (OCLExpression) parse(
+                "context data::classes::SapClass inv testPredicateEvaluation:\n" +
+                "self.ownedSignatures->select(s|s.sideEffectFree)->size() > 1",
+                this.cp ).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(exp);
+        SapClass c1 = ClassesFactory.eINSTANCE.createSapClass();
+        c1.setName("c1");
+        SapClass c2 = ClassesFactory.eINSTANCE.createSapClass();
+        c2.setName("c2");
+        SapClass c3 = ClassesFactory.eINSTANCE.createSapClass();
+        c3.setName("c3");
+        MethodSignature m1 = ClassesFactory.eINSTANCE.createMethodSignature();
+        m1.setName("Signature 1");
+        m1.setSideEffectFree(true);
+        MethodSignature m2 = ClassesFactory.eINSTANCE.createMethodSignature();
+        m2.setName("Signature 2");
+        m2.setSideEffectFree(false);
+        MethodSignature m3 = ClassesFactory.eINSTANCE.createMethodSignature();
+        m3.setName("Signature 3");
+        m3.setSideEffectFree(true);
+        
+        c1.getOwnedSignatures().add(m1);
+        c2.getOwnedSignatures().add(m2);
+        c3.getOwnedSignatures().add(m3);
+
+        EAttribute att = (EAttribute)
+                m3.eClass().getEStructuralFeature(ClassesPackage.METHOD_SIGNATURE__SIDE_EFFECT_FREE);
+        Notification noti =
+            NotificationHelper.createAttributeChangeNotification(m3, att, true, false);
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(exp);
+        Collection<EObject> impact = ia.getContextObjects(noti);
+        assertTrue(impact.size() == 1 && impact.contains(c3));
+
+        noti = NotificationHelper.createAttributeChangeNotification(m3,
+                att, false, true);
+        impact = ia.getContextObjects(noti);
+        assertTrue(impact.size() == 1 && impact.contains(c3));
+        
+        noti = NotificationHelper.createAttributeChangeNotification(m3,
+                att, false, false);
+        impact = ia.getContextObjects(noti);
+        assertTrue(impact.size() == 0);
+        
+        noti = NotificationHelper.createAttributeChangeNotification(m3,
+                att, true, true);
+        impact = ia.getContextObjects(noti);
+        assertTrue(impact.size() == 0);
+    }
 }
