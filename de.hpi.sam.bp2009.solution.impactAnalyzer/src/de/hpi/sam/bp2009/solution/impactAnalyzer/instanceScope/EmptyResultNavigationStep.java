@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
@@ -22,7 +23,7 @@ public class EmptyResultNavigationStep extends AbsoluteNavigationStep {
 
 	@Override
 	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject,
-			Map<List<Object>, Set<AnnotatedEObject>> cache) {
+			Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
 		return Collections.emptySet();
 	}
 }

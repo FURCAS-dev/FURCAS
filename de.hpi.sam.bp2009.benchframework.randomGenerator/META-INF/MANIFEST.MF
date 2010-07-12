@@ -10,7 +10,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.hpi.sam.bp2009.benchframework.randomGenerator,
  de.hpi.sam.bp2009.benchframework.randomGenerator.impl,
  de.hpi.sam.bp2009.benchframework.randomGenerator.util
-Require-Bundle: de.hpi.sam.bp2009.benchframework;bundle-version="1.0.0",
- org.eclipse.jface;bundle-version="3.5.1",
- org.modelversioning.ecoremutator;bundle-version="0.1.0"
+Require-Bundle: de.hpi.sam.bp2009.benchframework,
+ org.eclipse.jface,
+ org.modelversioning.ecoremutator
 Bundle-ActivationPolicy: lazy

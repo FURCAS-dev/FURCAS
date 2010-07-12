@@ -4,13 +4,15 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 /**
  * Performs a trivial "identity" navigation, returning the <tt>fromObject</tt> again. This is useful when only the type
- * checking that is performed by {@link AbstractNavigationStep#navigate(Set, Map)} shall be
+ * checking that is performed by {@link AbstractNavigationStep#navigate(Set, Map, Notification)} shall be
  * employed, such as for an <tt>oclAsType</tt> method call.<p>
  * 
  * When the source and target type have no common elements in the reflexive subclass inheritance trees,
@@ -28,7 +30,7 @@ public class IdentityNavigationStep extends AbstractNavigationStep {
 	}
 
 	@Override
-	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
 		Set<AnnotatedEObject> result = new LinkedHashSet<AnnotatedEObject>(1);
 		result.add(fromObject);
 		return result;

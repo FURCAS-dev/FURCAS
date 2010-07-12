@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -28,7 +29,7 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
         QueryContext scope = new ProjectBasedQueryContextScopeProviderImpl(fromObject).getBackwardScopeAsQueryContext();
         Collection<EObject> result = new HashSet<EObject>();
         Set<AnnotatedEObject> returnValue = new HashSet<AnnotatedEObject>();

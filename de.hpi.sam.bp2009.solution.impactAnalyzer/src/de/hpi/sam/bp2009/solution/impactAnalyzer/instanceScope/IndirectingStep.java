@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
@@ -23,7 +24,7 @@ public class IndirectingStep extends AbstractNavigationStep {
     private boolean equalsOrHashCodeCalledBeforeActualStepSet = false;
 
     /**
-     * The set of objects for which {@link #navigate(Set, Map)} is currently being evaluated on
+     * The set of objects for which {@link #navigate(Set, Map, Notification)} is currently being evaluated on
      * this step instance, keyed by the current thread by means of using a {@link ThreadLocal}. This is used to avoid
      * endless recursions. Navigating the same thing again starting from the same object wouldn't contribute new things.
      * So in that case, an empty set will be returned.
@@ -90,14 +91,14 @@ public class IndirectingStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
 	Set<AnnotatedEObject> result;
 	if (currentlyEvaluatingNavigateFor.get().contains(fromObject) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
 	    currentlyEvaluatingNavigateFor.get().add(fromObject);
 	    Set<AnnotatedEObject> set = Collections.singleton(fromObject);
-	    result = actualStep.navigate(set, cache);
+	    result = actualStep.navigate(set, cache, changeEvent);
 	    currentlyEvaluatingNavigateFor.get().remove(fromObject);
 	}
 	return result;

@@ -3,9 +3,13 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import javax.swing.event.ChangeListener;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 /**
@@ -28,11 +32,11 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * 
  */
 public interface NavigationStep {
-	public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache);
+	public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent);
 
 	/**
 	 * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is
-	 * passed to {@link #navigate(Set, Map)}. Those must return <tt>true</tt> here.
+	 * passed to {@link #navigate(Set, Map, Notification)}. Those must return <tt>true</tt> here.
 	 * Examples are navigation steps returning all instances of a given type and the step always
 	 * returning the empty set.
 	 */

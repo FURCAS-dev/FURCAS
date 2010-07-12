@@ -345,7 +345,7 @@ public class OclIaTest extends BaseDepartmentTest {
         final ClassTypeDefinition ctd = ClassesFactory.eINSTANCE.createClassTypeDefinition();
         ctd.setLowerMultiplicity(1);
         ctd.setUpperMultiplicity(1);
-        ctd.setClazz(null); // do that again later to cause the appropriate event
+        ctd.setClazz(null);
         final MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
         final ObjectCreationExpression oce = ExpressionsFactory.eINSTANCE.createObjectCreationExpression();
         oce.setClassToInstantiate(cl1);

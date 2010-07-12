@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
@@ -200,7 +201,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * manages the type checks.
      */
     @Override
-    public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+    public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
         incrementNavigateCounter(from);
 
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
@@ -211,7 +212,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
             for (AnnotatedEObject fromObject : from) {
                 // for absolute steps, don't do the source type check and invoke just once, passing null for "from"
                 if (isAbsolute() || AbstractTracer.doesTypeMatch(getSourceType(), fromObject)) {
-                    for (AnnotatedEObject singleResult : getFromCacheOrNavigate(fromObject, cache)) {
+                    for (AnnotatedEObject singleResult : getFromCacheOrNavigate(fromObject, cache, changeEvent)) {
                         if (AbstractTracer.doesTypeMatch(getTargetType(), singleResult)) {
                             result.add(singleResult);
                         }
@@ -223,7 +224,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         return result;
     }
 
-    private Collection<AnnotatedEObject> getFromCacheOrNavigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache) {
+    private Collection<AnnotatedEObject> getFromCacheOrNavigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
         Set<AnnotatedEObject> result;
         List<Object> cacheKey = new BasicEList<Object>();
         cacheKey.add(this);
@@ -232,7 +233,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         result = cache.get(cacheKey);
         if (result == null) {
             cacheMisses++;
-            result = navigate(fromObject , cache); 
+            result = navigate(fromObject , cache, changeEvent); 
             cache.put(cacheKey, result);
         }
         return result;
@@ -269,7 +270,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     }
 
     protected abstract Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject,
-            Map<List<Object>, Set<AnnotatedEObject>> cache);
+            Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent);
 
     public String toString() {
         Map<NavigationStep, Integer> visited = new HashMap<NavigationStep, Integer>();
