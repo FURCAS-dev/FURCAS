@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
+
 /**
  * The EventTypeFilterTable manages all Registrations containing {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.EventTypeFilter}.
  * 
@@ -14,7 +16,8 @@ import org.eclipse.emf.common.notify.Notification;
  */
 public class TableForEventTypeFilter extends TableForEventFilter {
 
-    public TableForEventTypeFilter() {
+    public TableForEventTypeFilter(int numberOfFilterTables) {
+        super(numberOfFilterTables);
     }
     /**
      * @param event the affected event
@@ -34,8 +37,8 @@ public class TableForEventTypeFilter extends TableForEventFilter {
     }
 
     @Override
-    public Object getIdentifier() {
-        return de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter.class;
+    public Class<EventTypeFilter> getIdentifier() {
+        return EventTypeFilter.class;
     }
 
 }

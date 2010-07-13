@@ -18,7 +18,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilter;
  */
 public class TableForOldValueClassFilter extends TableForEventFilter {
 
-    public TableForOldValueClassFilter() {
+    public TableForOldValueClassFilter(int numberOfFilterTables) {
+        super(numberOfFilterTables);
     }
 
     /**
@@ -43,7 +44,7 @@ public class TableForOldValueClassFilter extends TableForEventFilter {
     }
 
     @Override
-    public Object getIdentifier() {
+    public Class<OldValueClassFilter> getIdentifier() {
         return OldValueClassFilter.class;
     }
     

@@ -1,10 +1,8 @@
 package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -57,7 +55,7 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
     /**
      * The RegistrationManager does the main work when finding out which listeners are affected by an event.
      */
-    private RegistrationManagerTableBased registrationManager = null;
+    private RegistrationManager registrationManager = null;
 
     private WeakReference<ResourceSet> resourceSet;
 
@@ -263,86 +261,6 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
             }
         }
     }
-
-    public void registerCustomEventType(List<Integer> eventTypes, TableForEventFilter eventFilterTableInstance) {
-        registrationManager.registerCustomEventType(eventTypes, eventFilterTableInstance);
-    }
-
-    public void registerCustomEventType(Integer eventType) {
-        List<Integer> eventTypes = new ArrayList<Integer>(1);
-        eventTypes.add(eventType);
-        registrationManager.registerCustomEventType(eventTypes, null);
-    }
-
-    // /**
-    // * Due to the fact that object valued attributes are handled like Links in
-    // * the repository, changes to those attributes will be reported as
-    // * LinkChangedEvents. This method identifies those events and replaces
-    // them
-    // * by <code>AttributeValueChangedEvents</code>.
-    // *
-    // * @param event the event to adjust/preplace
-    // */
-    // private ChangeEvent adjustEvent(ChnageEvent event) {
-    // //TODO CACHE RESULT! (NOT ONLY FOR PERFORMANCE IMPROVEMENT)
-    // //if the result is not cached, the listener caching in the registration
-    // manager will fail
-    // //this method only deals with LinkChangedEvents
-    // if (!(event instanceof LinkChangeEvent))
-    // return event;
-    // //and only LinkChangedEvents that describe Attributes
-    // if (!(((LinkChangeEvent) event).getAffectedMetaObject() instanceof
-    // Attribute))
-    // return event;
-    //
-    // LinkChangeEvent linkEvent = (LinkChangeEvent) event;
-    // AttributeValueEvent result = null;
-    //
-    // Attribute attributeMetaObject = (Attribute) (linkEvent
-    // .getAffectedMetaObject());
-    // RefFeatured attributeOwner = ((OrderedElement) linkEvent
-    // .getOrderedElements().get(0)).getAffectedElement();
-    //
-    // if (attributeMetaObject.getMultiplicity().getUpper() == 1) {
-    // // normal Attribute with cardinality 1 or 0..1
-    //
-    // RefFeatured oldValue = null;
-    // RefFeatured newValue = null;
-    //
-    // if (linkEvent instanceof LinkRemoveEvent){
-    // oldValue = ((OrderedElement) linkEvent.getOrderedElements()
-    // .get(1)).getAffectedElement();
-    // }else{
-    // newValue=((OrderedElement) linkEvent
-    // .getOrderedElements().get(1)).getAffectedElement();
-    // }
-    // int position = ((OrderedElement) linkEvent.getOrderedElements()
-    // .get(1)).getPosition();
-    //
-    // result = new AttributeValueChangeEventImpl(attributeOwner,
-    // attributeMetaObject, oldValue, newValue, position);
-    // } else if (attributeMetaObject.getMultiplicity().getUpper() > 1) {
-    // /*
-    // * Attribute with a cardinality >1
-    // * either a value was added or removed from the list.
-    // * if a member of the list was replaced, two events (add/remove)
-    // * will be fired in the LinkContainer.
-    // */
-    // RefFeatured value = ((OrderedElement) linkEvent
-    // .getOrderedElements().get(1)).getAffectedElement();
-    // int position = ((OrderedElement) linkEvent.getOrderedElements()
-    // .get(1)).getPosition();
-    //
-    // if (event instanceof LinkRemoveEvent){
-    // result = new AttributeValueRemoveEventImpl(attributeOwner,
-    // attributeMetaObject, value, position);
-    // } else {
-    // result = new AttributeValueAddEventImpl(attributeOwner,
-    // attributeMetaObject, value, position);
-    // }
-    // }
-    // return result;
-    // }
 
     /*
      * ************************************************************************* The following 3 methods

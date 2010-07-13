@@ -39,6 +39,9 @@ public class PackageFilter extends EventFilter {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((ePackage == null) ? 0 : ePackage.hashCode());
+        if (isNegated()) {
+            result = prime * result;
+        }
         return result;
     }
 
@@ -61,7 +64,7 @@ public class PackageFilter extends EventFilter {
                 return false;
         } else if (!ePackage.equals(other.ePackage))
             return false;
-        return true;
+        return isNegated() == ((EventFilter) other).isNegated();
     }
 
     public EPackage getEPackage() {

@@ -18,7 +18,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
  */
 public class TableForNewValueClassFilter extends TableForEventFilter {
 
-    public TableForNewValueClassFilter() {
+    public TableForNewValueClassFilter(int numberOfFilterTables) {
+        super(numberOfFilterTables);
     }
 
     /**
@@ -43,7 +44,7 @@ public class TableForNewValueClassFilter extends TableForEventFilter {
     }
 
     @Override
-    public Object getIdentifier() {
+    public Class<NewValueClassFilter> getIdentifier() {
         return NewValueClassFilter.class;
     }
     

@@ -46,7 +46,7 @@ public class EventTypeFilter extends EventFilter {
                 return false;
         } else if (!eventType.equals(other.eventType))
             return false;
-        return true;
+        return isNegated() == ((EventFilter) other).isNegated();
     }
 
     public Integer getEventType() {
@@ -67,6 +67,9 @@ public class EventTypeFilter extends EventFilter {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((eventType == null) ? 0 : eventType.hashCode());
+        if (isNegated()) {
+            result = prime * result;
+        }
         return result;
     }
 

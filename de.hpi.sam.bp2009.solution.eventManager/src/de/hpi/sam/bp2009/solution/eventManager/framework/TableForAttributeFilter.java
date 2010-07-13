@@ -14,7 +14,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter;
  */
 public class TableForAttributeFilter extends TableForEventFilter {
 
-    public TableForAttributeFilter() {
+    public TableForAttributeFilter(int numberOfFilterTables) {
+        super(numberOfFilterTables);
     }
 
     /**
@@ -29,7 +30,7 @@ public class TableForAttributeFilter extends TableForEventFilter {
     }
 
     @Override
-    public Object getIdentifier() {
+    public Class<AttributeFilter> getIdentifier() {
         return AttributeFilter.class;
     }
 

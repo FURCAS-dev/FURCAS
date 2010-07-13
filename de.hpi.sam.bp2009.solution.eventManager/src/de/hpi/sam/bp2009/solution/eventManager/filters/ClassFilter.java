@@ -46,6 +46,9 @@ public class ClassFilter extends EventFilter {
         int result = 1;
         result = prime * result + (includeSubClasses ? 1231 : 1237);
         result = prime * result + ((wantedClass == null) ? 0 : wantedClass.hashCode());
+        if (isNegated()) {
+            result = prime * result;
+        }
         return result;
     }
 
@@ -70,7 +73,7 @@ public class ClassFilter extends EventFilter {
                 return false;
         } else if (!wantedClass.equals(other.wantedClass))
             return false;
-        return true;
+        return isNegated() == ((EventFilter) other).isNegated();
     }
 
     public boolean matchesFor(Notification event) {

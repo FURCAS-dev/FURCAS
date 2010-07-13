@@ -18,21 +18,29 @@ class Registration extends AbstractRegistration {
      * RegistrationSet
      */
     private RegistrationSet _container = null;
+    
+    /**
+     * A bit field where each bit is taken from the {@link RegistrationManager#filterTypeToBitMask} values,
+     * representing a table with which this registration is registered. This number can be used as index into
+     * the registration sets stored in the filter tables.
+     */
+    private final int bitSetForTablesRegisteredWith;
 
     /**
      * @param listener the listener that registered for events
+     * @param bitSetForTablesRegisteredWith TODO
      */
-    Registration(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType) {
+    Registration(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType, int bitSetForTablesRegisteredWith) {
         super(listener, listenerType);
+        this.bitSetForTablesRegisteredWith = bitSetForTablesRegisteredWith;
     }
 
     /**
-     * @param listener the listener that registered for events
-     * @param container the RegistrationSet in which this registration will be pooled with other registrations
+     * Can be used as index into registration arrays, such as those managed by
+     * {@link FilterTableEntry}.
      */
-    Registration(WeakReference<? extends Adapter> listener, RegistrationSet container, ListenerTypeEnum listenerType) {
-        super(listener, listenerType);
-        _container = container;
+    public int getBitSetForTablesRegisteredWith() {
+        return bitSetForTablesRegisteredWith;
     }
 
     /**

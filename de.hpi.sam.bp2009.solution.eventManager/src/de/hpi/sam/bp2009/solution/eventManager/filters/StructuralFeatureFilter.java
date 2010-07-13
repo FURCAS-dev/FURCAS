@@ -45,7 +45,7 @@ public abstract class StructuralFeatureFilter extends EventFilter {
                 return false;
         } else if (!feature.equals(other.feature))
             return false;
-        return true;
+        return isNegated() == ((EventFilter) other).isNegated();
     }
 
     /*
@@ -58,6 +58,9 @@ public abstract class StructuralFeatureFilter extends EventFilter {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((feature == null) ? 0 : feature.hashCode());
+        if (isNegated()) {
+            result = prime * result;
+        }
         return result;
     }
 

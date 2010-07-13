@@ -31,7 +31,7 @@ public class ContainmentFilter extends EventFilter {
 
     @Override
     public int hashCode() {
-        return "ContainmentFilterImpl".hashCode();
+        return "ContainmentFilterImpl".hashCode() + 31*(isNegated() ? 43 : 0);
 
     }
 
@@ -43,7 +43,7 @@ public class ContainmentFilter extends EventFilter {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        return true;
+        return isNegated() == ((EventFilter) obj).isNegated();
     }
 
     @Override

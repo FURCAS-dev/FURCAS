@@ -31,6 +31,9 @@ final class MatchFilter extends EventFilter {
         int result = 1;
         result = prime * result + ((eventManagerTest == null) ? 0 : eventManagerTest.hashCode());
         result = prime * result + hash;
+        if (isNegated()) {
+            result = prime * result;
+        }
         return result;
     }
 
@@ -55,7 +58,7 @@ final class MatchFilter extends EventFilter {
             return false;
         if (hash != other.hash)
             return false;
-        return true;
+        return isNegated() == ((EventFilter) other).isNegated();
     }
 
     @Override
