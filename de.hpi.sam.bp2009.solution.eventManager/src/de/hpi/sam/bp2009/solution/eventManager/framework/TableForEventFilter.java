@@ -2,9 +2,11 @@ package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.event.ChangeEvent;
@@ -24,31 +26,35 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
  * 
  * @author Daniel Vocke (D044825)
  */
-
+// TODO add type parameter for criterion
 public abstract class TableForEventFilter {
 
     /**
-     * list of all (normal) registrations that are stored in this instance.
+     * list of all (negated) registration that are stored in this table, keyed by the bit set identifying the
+     * tables in which the registrations in the value set are stored. This means in particular that the array only
+     * contains values at bit set indexes that have the bit for this table set.
      */
-    private Set<Registration> completeYesSet = new HashSet<Registration>();
+    private final Set<Registration>[] completeNoSet;
 
-    /**
-     * list of all (negated) registration that are stored in this instance.
-     */
-    private Set<Registration> completeNoSet = new HashSet<Registration>();
+    private final int numberOfFilterTables;
+    
+    private enum SetSelection { YES, NO  };
 
     /**
      * index which is needed for deregistration purposes
      */
-    protected HashMap<AbstractRegistration, Object> filterCriterionsByRegistration = new HashMap<AbstractRegistration, Object>();
+    protected final HashMap<AbstractRegistration, Object> filterCriteriaByRegistration = new HashMap<AbstractRegistration, Object>();
 
     /**
      * registrations are contained in a FilterTableEntry. This structure is needed to find the registrations for a
      * filter criterion which is being retrieved by an event.
      */
-    protected HashMap<Object, FilterTableEntry<Registration>> tableEntryByFilterCriterion = new HashMap<Object, FilterTableEntry<Registration>>();
+    protected final Map<Object, FilterTableEntry> tableEntryByFilterCriterion = new HashMap<Object, FilterTableEntry>();
 
-    protected TableForEventFilter() {
+    @SuppressWarnings("unchecked")
+    protected TableForEventFilter(int numberOfFilterTables) {
+        this.numberOfFilterTables = numberOfFilterTables;
+        completeNoSet = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
     }
 
     /**
@@ -65,46 +71,42 @@ public abstract class TableForEventFilter {
      * stores the passed {@link com.sap.tc.moin.repository.events.framework.Registration}. The Registration will stored as
      * "interested in events meeting the filterCriterion of the passed event in the context of the appropriate
      * EventFitlerTable subclass"
-     * 
-     * @param filter
-     * @param registration
      */
-
     @SuppressWarnings("unchecked") 
     void register(EventFilter filter, Registration registration) {
-
-        FilterTableEntry<Registration> entry = tableEntryByFilterCriterion.get(filter.getFilterCriterion());
-
+        FilterTableEntry entry = tableEntryByFilterCriterion.get(filter.getFilterCriterion());
         if (entry == null) {
-            entry = new FilterTableEntry<Registration>();
+            entry = new FilterTableEntry(numberOfFilterTables);
             tableEntryByFilterCriterion.put(filter.getFilterCriterion(), entry);
         }
 
         if (filter.isNegated()) {
-            entry.getNegatedRegistrations().add(registration);
-            completeNoSet.add(registration);
+            entry.addNegatedRegistrations(registration);
+            int tableBitSet = registration.getBitSetForTablesRegisteredWith();
+            Set<Registration> registrationSetForTableCombination = completeNoSet[tableBitSet];
+            if (registrationSetForTableCombination == null) {
+                registrationSetForTableCombination = new HashSet<Registration>();
+                completeNoSet[tableBitSet] = registrationSetForTableCombination;
+            }
+            registrationSetForTableCombination.add(registration);
         } else {
-            entry.getRegistrations().add(registration);
-            completeYesSet.add(registration);
+            entry.addRegistrations(registration);
         }
 
         // Maintain inverse Map for better performance when deregistering
-        Object criterion = filterCriterionsByRegistration.get(registration);
+        Object criterion = filterCriteriaByRegistration.get(registration);
         if (criterion == null) {
-            filterCriterionsByRegistration.put(registration, filter.getFilterCriterion());
-        }else{
-            /*
-             * Registration used for other criterion yet, store in a list (happens rarely)
-             */
-            if (criterion instanceof List<?>){
+            filterCriteriaByRegistration.put(registration, filter.getFilterCriterion());
+        } else {
+            // Registration used for other criterion already, store in a list (happens rarely)
+            if (criterion instanceof List<?>) {
                 ((List<Object>)criterion).add(filter.getFilterCriterion());
-            }else{
+            } else {
                 List<Object> criterions = new ArrayList<Object>(2);
                 criterions.add(criterion);
                 criterions.add(filter.getFilterCriterion());
-                filterCriterionsByRegistration.put(registration, criterions);
+                filterCriteriaByRegistration.put(registration, criterions);
             }
-
         }
     }
 
@@ -116,7 +118,7 @@ public abstract class TableForEventFilter {
     @SuppressWarnings("unchecked") 
     void deregister(Registration registration) {
 
-        Object criterion = filterCriterionsByRegistration.get(registration);
+        Object criterion = filterCriteriaByRegistration.get(registration);
         if (criterion == null)
             return; // registration not stored in this table
 
@@ -128,7 +130,7 @@ public abstract class TableForEventFilter {
         }else{
             _deregister(registration,criterion);
         }
-        filterCriterionsByRegistration.remove(registration);
+        filterCriteriaByRegistration.remove(registration);
     }
 
     /**
@@ -137,86 +139,125 @@ public abstract class TableForEventFilter {
      * @param criterion
      */
     private void _deregister(Registration registration, Object criterion){
-        FilterTableEntry<Registration> entry = tableEntryByFilterCriterion.get(criterion);
-
-        entry.getRegistrations().remove(registration);
-        entry.getNegatedRegistrations().remove(registration);
-
-        completeYesSet.remove(registration);
-        completeNoSet.remove(registration);
-
-        if (entry.getRegistrations().size() == 0 && entry.getNegatedRegistrations().size() == 0) {
-            tableEntryByFilterCriterion.remove(criterion);
-        }        
+        FilterTableEntry entry = tableEntryByFilterCriterion.get(criterion);
+        if (entry != null) {
+            entry.remove(registration);
+            if (entry.isEmpty()) {
+                tableEntryByFilterCriterion.remove(criterion);
+            }
+        }
+        Set<Registration> completeNoSetEntry = completeNoSet[registration.getBitSetForTablesRegisteredWith()];
+        if (completeNoSetEntry != null) { // could be that there were no negated registrations in this table combination
+            if (completeNoSetEntry.remove(registration)) {
+                if (completeNoSetEntry.isEmpty()) {
+                    completeNoSet[registration.getBitSetForTablesRegisteredWith()] = null;
+                }
+            }
+        }
     }
 
     /**
-     * returns a {@link RegistrationIterator} that iterates over all Registrations that are either directly registered for the
-     * passed event or Registrations that are registered for "NOT anotherEvent". These Registrations form the base for all
-     * possible affected Registrations in the context of an event.
-     * 
-     * @param event
-     * @return an object of type RegistrationIterator
+     * Fetches the "Yes" entries for the criterion specific to this table, extracted from <code>event</code>.
+     * See also {@link FilterTableEntry#getYesSets()} and {@link #getAffectedObject(Notification)}.
      */
-    RegistrationIterator getRegistrationsFor(Notification event, boolean negated) {
+    Set<Registration>[] getYesSetsFor(Notification event) {
+        return getSetsFor(event, SetSelection.YES);
+    }
+    
+    /**
+     * Fetches the "No" entries for the criterion specific to this table, extracted from <code>event</code>.
+     * See also {@link FilterTableEntry#getNoSets()} and {@link #getAffectedObject(Notification)}.
+     */
+    Set<Registration>[] getNoSetsFor(Notification event) {
+        return getSetsFor(event, SetSelection.NO);
+    }
+    
+    @SuppressWarnings("unchecked")
+    private Set<Registration>[] getSetsFor(Notification event, SetSelection yesNoSelection) {
         // returns the filter criterion which is of interest in context of the current EventFilterTable
         Object affectedFilterTableEntryKeys = getAffectedObject(event);
+        Set<Registration>[] resultSetArray;
         // will contain all affected FilterTableEntries that have a registration
-        Collection<FilterTableEntry<Registration>> filterTableEntries = getFilterTableEntries(affectedFilterTableEntryKeys, negated);
-        RegistrationIterator result = null;
-        if (filterTableEntries.size() > 0 || negated) {
-            result = new RegistrationIterator(this, filterTableEntries, negated);
+        List<FilterTableEntry> filterTableEntries = getFilterTableEntries(affectedFilterTableEntryKeys);
+        switch (filterTableEntries.size()) {
+        case 0:
+            resultSetArray = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
+            break;
+        case 1:
+            if (yesNoSelection == SetSelection.YES) {
+                resultSetArray = filterTableEntries.get(0).getYesSets();
+            } else {
+                resultSetArray = filterTableEntries.get(0).getNoSets();
+            }
+            break;
+        default:
+            resultSetArray = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
+            for (int i = 0; i < resultSetArray.length; i++) {
+                List<Set<Registration>> setList = new ArrayList<Set<Registration>>();
+                for (FilterTableEntry filterTableEntry : filterTableEntries) {
+                    Set<Registration> yesSetForTableEntryAtBitSet;
+                    if (yesNoSelection == SetSelection.YES) {
+                        yesSetForTableEntryAtBitSet = filterTableEntry.getYesSet(i);
+                    } else {
+                        yesSetForTableEntryAtBitSet = filterTableEntry.getNoSet(i);
+                    }
+                    if (yesSetForTableEntryAtBitSet != null) {
+                        setList.add(yesSetForTableEntryAtBitSet);
+                    }
+                }
+                CompositeSet<Registration> compositeSetAtBitSet = new CompositeSet<Registration>(
+                        (Set<Registration>[]) setList.toArray(new Set<?>[0]));
+                resultSetArray[i] = compositeSetAtBitSet;
+            }
         }
-        return result;
+        return resultSetArray;
     }
 
-    private Collection<FilterTableEntry<Registration>> getFilterTableEntries(Object affectedFilterTableEntryKeys, boolean negated) {
-        Collection<FilterTableEntry<Registration>> filterTableEntries = new ArrayList<FilterTableEntry<Registration>>();
+    private List<FilterTableEntry> getFilterTableEntries(Object affectedFilterTableEntryKeys) {
+        List<FilterTableEntry> filterTableEntries = Collections.emptyList();
         if (affectedFilterTableEntryKeys instanceof Collection<?>) {
             // Some EventFilterTables return multiple matching criteria. For example the ClassFilterTable (including
             // Subclasses) returns more than one matching row if there were registrations for a class and its superclass
             // when the subclass was changed.
             // TODO: Possibly not necessary / possible performance optimization
-            Collection<?> affectedFilterTableEntryKeySet = new ArrayList<Object>((Collection<?>) affectedFilterTableEntryKeys);
             // if the table is empty, don't do the following expensive operations:
             if (!tableEntryByFilterCriterion.isEmpty()) {
-                // remove contained items that have no registrations
-                affectedFilterTableEntryKeySet.retainAll(tableEntryByFilterCriterion.keySet());
-                for (Object criterion : affectedFilterTableEntryKeySet) {
-                    filterTableEntries.add(tableEntryByFilterCriterion.get(criterion));
+                filterTableEntries = new ArrayList<FilterTableEntry>();
+                for (Object criterion : (Collection<?>) affectedFilterTableEntryKeys) {
+                    FilterTableEntry fte = tableEntryByFilterCriterion.get(criterion);
+                    if (fte != null) {
+                        filterTableEntries.add(fte);
+                    }
                 }
             }
-        } else if (affectedFilterTableEntryKeys != null && tableEntryByFilterCriterion.keySet().contains(
-                // Perhaps there is no registration for the affected object?
-                affectedFilterTableEntryKeys)) {
-            filterTableEntries.add(tableEntryByFilterCriterion.get(affectedFilterTableEntryKeys));
+        } else if (affectedFilterTableEntryKeys != null) {
+            FilterTableEntry tableEntry = tableEntryByFilterCriterion.get(affectedFilterTableEntryKeys);
+            if (tableEntry != null) {     // Perhaps there is no registration for the affected object?
+                filterTableEntries = Collections.singletonList(tableEntry);
+            }
         }
         return filterTableEntries;
     }
 
-    /*
-     * getters for the members completeYesSet and completeNoSet they are needed by the implementation of
-     * RegistrationIterator (Docu: RegistrationSet)
-     */
-    Set<Registration> getCompleteYesSet() {
-        return completeYesSet;
-    }
-    // (Docu: NegatedRegistrationSet)
-    Set<Registration> getCompleteNoSet() {
-        return completeNoSet;
-    }
-
     protected boolean isEmpty() {
-        return completeNoSet.isEmpty() && completeYesSet.isEmpty();
+        if (!tableEntryByFilterCriterion.isEmpty()) {
+            return false;
+        }
+        for (Set<Registration> completeNoSetEntry : completeNoSet) {
+            if (completeNoSetEntry != null) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
     boolean isRegistered(Registration reg){
-        return filterCriterionsByRegistration.containsKey(reg);
+        return filterCriteriaByRegistration.containsKey(reg);
     }
 
     /**
-     * Each type of <code>EventFilterTable</code> is directly associated to a filter type, but some <code>MoinEventFilters</code> support
+     * Each type of {@link TableForEventFilter} is directly associated to a filter type, but some <code>MoinEventFilters</code> support
      * additional modifiers that affect the filtering ( for example the <code>includeCompositions</code> flag on <code>InstanceFilterTable</code>
      * or the <code>includeSubclasses</code> flag on <code>ClassFilter</code>). In those cases, there will be more than one instance of the
      * EventFilterTable and in order to be able to determine the right instance for a given <code>MoinEventFilter</code>, both, the <code>MoinEventFilter</code>
@@ -225,17 +266,24 @@ public abstract class TableForEventFilter {
      *  
      * @return an Identifier that allows associating the instance to a filter type.
      */
-    public abstract Object getIdentifier();
+    public abstract Class<? extends EventFilter> getIdentifier();
 
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append(getClass().getSimpleName());
         result.append(": ");
-        result.append("completeYesSet.size()=");
-        result.append(completeYesSet.size());
-        result.append(", completeNoSet.size()=");
-        result.append(completeNoSet.size());
-        result.append(", FilterTableByCriterion=(\n");
+        boolean appendedSomeNoSetStuff = false;
+        for (int i = 0; i < completeNoSet.length; i++) {
+            if (completeNoSet[i] != null) {
+                appendedSomeNoSetStuff = true;
+                result.append(", completeNoSet[" + i + "].size()=");
+                result.append(completeNoSet[i].size());
+            }
+        }
+        if (appendedSomeNoSetStuff) {
+            result.append(", ");
+        }
+        result.append("FilterTableByCriterion=(\n");
         boolean first = true;
         for (Object criterion : tableEntryByFilterCriterion.keySet()) {
             if (!first) {
@@ -243,12 +291,20 @@ public abstract class TableForEventFilter {
             } else {
                 first = false;
             }
-            result.append("  ");
+            result.append(" ");
             result.append(criterionToString(criterion));
-            result.append(": ");
+            result.append(":\n");
             result.append(tableEntryByFilterCriterion.get(criterion));
         }
         result.append(")");
         return result.toString();
+    }
+
+    /**
+     * The registrations registered negatedly, grouped by the bit sets representing the set of tables
+     * in which the registrations from the set are registered
+     */
+    public Set<Registration>[] getCompleteNoSet() {
+        return completeNoSet;
     }
 }

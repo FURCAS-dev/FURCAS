@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.WeakHashMap;
 
@@ -70,7 +72,19 @@ public abstract class RegistrationManager {
     // This set is needed to maintain caches
     protected Set<AbstractRegistration> allRegistrations = new HashSet<AbstractRegistration>();
 
-    protected Set<TableForEventFilter> allTables = null;
+    /**
+     * Invariants:
+     * <p>
+     * <code>filterTypeToBitMask.get(allTables[i].getIdentifier()) = 2&lt;&lt;i</code>
+     * <p>
+     * <code>filterTypeToBitMask.keySet().equals(allTables.getIdentifier())</code>
+     * 
+     * In other words: the identifying classes of all tables stored in this list occur as keys in {@link #filterTypeToBitMask},
+     * and the order in which the tables occur in this list matches with the bit number of the bit mask returned by
+     * {@link #filterTypeToBitMask} as value for the key being the respective table's {@link TableForEventFilter#getIdentifier()
+     * identifier}
+     */
+    private List<TableForEventFilter> allTables = null;
 
     // The EventTypeFilterTable will also be used with custom events
     protected TableForEventFilter eventTypeFilterTable = null;
@@ -79,6 +93,12 @@ public abstract class RegistrationManager {
     // (except the negated registration covers exactly the current event)
     protected Set<TableForEventFilter> tablesWithNegatedRegistrations = new HashSet<TableForEventFilter>();
 
+    /**
+     * Maps the class of a filter to the bit mask it has in finding the correct array position
+     * in an array of registration sets
+     */
+    private Map<Class<? extends EventFilter>, Integer> filterTypeToBitMask;
+    
     protected RegistrationManager() {
         init();
     }
@@ -86,7 +106,10 @@ public abstract class RegistrationManager {
     /**
      * The implementation of the <code>init()</code> method initialises the members above.
      */
-    protected abstract void init();
+    protected void init() {
+        allTables = new ArrayList<TableForEventFilter>();
+        filterTypeToBitMask = new HashMap<Class<? extends EventFilter>, Integer>();
+    }
 
     /**
      * registers a listener with the passed filter expression. The returned object of type <code>RegistrationHandle</code> is
@@ -100,55 +123,40 @@ public abstract class RegistrationManager {
      */
     public synchronized RegistrationHandle register(EventFilter filterTree, WeakReference<? extends Adapter> listener,
             ListenerTypeEnum listenerType) {
-
-        /*
-         * adjustFilter() has to be called before the dnf is formed, but there has to be at least one logicaloperationfilter at
-         * the top
-         */
+        // adjustFilter() has to be called before the dnf is formed, but there has to be at least one logicaloperationfilter at
+        // the top
         if (!(filterTree instanceof OrFilter || filterTree instanceof AndFilter)) {
             AndFilter topOfTree = EventManagerFactory.eINSTANCE.createAndFilter();
             topOfTree.getOperands().add(filterTree);
             filterTree = topOfTree;
         }
-
-        /*
-         * the order of the following 2 calls is important! adjustFilter might change the structure of the filter tree
-         */
+        // the order of the following 2 calls is important! adjustFilter might change the structure of the filter tree
         filterTree = adjustFilter(filterTree);
         OrFilter filterInNormalForm = getDisjunctiveNormalForm((LogicalOperationFilter) filterTree);
-        /*
-         * visit the whole filter tree and add each atomic filter to its corresponding filterTable.
-         */
+        // visit the whole filter tree and add each atomic filter to its corresponding filterTable.
         RegistrationSet result = new RegistrationSet(listener, listenerType);
         for (EventFilter andFilter : filterInNormalForm.getOperands()) {
-            // TODO re-use Registrations for equal andFilter, just add another listener; this will reduce #Registrations in tables
-            // create registration
-            Registration reg = new Registration(listener, listenerType);
-            reg.setContainer(result);
-            result.getRegistrations().add(reg);
-
-            /*
-             * registrationsByListener is a WeakHashMap, so direct references to listeners can be stored
-             */
-            if (registrationsByListener.get(listener.get()) == null) {
-                registrationsByListener.put(listener.get(), new ArrayList<AbstractRegistration>());
-            }
-            registrationsByListener.get(listener.get()).add(reg);
-
+            // determine tables to register with; needed already for construction of Registration
+            Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = new HashMap<EventFilter, TableForEventFilter>();
             AndFilter level1OfTree = (AndFilter) andFilter;
             for (EventFilter leafOfTree : level1OfTree.getOperands()) {
                 TableForEventFilter filterTable = getFilterTable(leafOfTree);
                 if(filterTable == null){
                     throw new IllegalArgumentException("no table for type "+ leafOfTree.getClass() +" in RegistryManager defined");
                 }
-                filterTable.register(leafOfTree, reg);
-                if (leafOfTree.isNegated())
-                    tablesWithNegatedRegistrations.add(filterTable);
+                filterTablesToRegisterWith.put(leafOfTree, filterTable);
+            }
+            // TODO re-use Registrations for equal set of elementary filters, just add another listener; this will reduce #Registrations in tables
+            // create registration:
+            Registration reg = new Registration(listener, listenerType, getBitSet(filterTablesToRegisterWith.values()));
+            reg.setContainer(result);
+            result.getRegistrations().add(reg);
+            addRegistrationForListener(reg, listener);
+            for (Entry<EventFilter, TableForEventFilter> filterTableEntry : filterTablesToRegisterWith.entrySet()) {
+                filterTableEntry.getValue().register(filterTableEntry.getKey(), reg);
             }
         }
-        /*
-         * if only 1 registration was needed, the RegistrationSet (=the registration's container) can be removed
-         */
+        // if only 1 registration was needed, the RegistrationSet (=the registration's container) can be removed
         if (result.getRegistrations().size() == 1) {
             Registration reg = (Registration) result.getRegistrations().iterator().next();
             reg.setContainer(null);
@@ -159,6 +167,27 @@ public abstract class RegistrationManager {
             return result;
         }
 
+    }
+
+    private void addRegistrationForListener(Registration registration, WeakReference<? extends Adapter> listener) {
+        // registrationsByListener is a WeakHashMap, so direct references to listeners can be stored
+        if (registrationsByListener.get(listener.get()) == null) {
+            registrationsByListener.put(listener.get(), new ArrayList<AbstractRegistration>());
+        }
+        registrationsByListener.get(listener.get()).add(registration);
+    }
+
+    /**
+     * From a collection of filter tables, computes the bit set representing this table combination.
+     * 
+     * @see RegistrationManagerTableBased#filterTypeToBitMask
+     */
+    private int getBitSet(Collection<TableForEventFilter> tables) {
+        int result = 0;
+        for (TableForEventFilter table : tables) {
+            result |= filterTypeToBitMask.get(table.getIdentifier());
+        }
+        return result;
     }
 
     /**
@@ -237,17 +266,13 @@ public abstract class RegistrationManager {
         // this method does the main work, it computes the registrations from all EventFilterTables
         Collection<Registration> registrations = getRegistrationsFor(event);
         Collection<WeakReference<? extends Adapter>> result = new LinkedList<WeakReference<? extends Adapter>>();
-        /*
-         * this collection is needed in order to remove doubles. (it is possible, that 2 OR connected filter criterions matched.
-         * In this case, 2 different registrations will be returned (which are both contained in the same RegistrationSet), but
-         * the listener will expect to get notified only once.
-         */
-        Collection<RegistrationSet> registrationSetsAddedSoFar = new LinkedList<RegistrationSet>();
+        // this collection is needed in order to remove doubles. (it is possible, that 2 OR connected filter criterions matched.
+        // In this case, 2 different registrations will be returned (which are both contained in the same RegistrationSet), but
+        // the listener will expect to get notified only once.
+        Set<RegistrationSet> registrationSetsAddedSoFar = new HashSet<RegistrationSet>();
         for (Registration reg : registrations) {
-            /*
-             * several registrations that are contained in the same registrationSet mean that more than one criterion of
-             * OR-connected filters matched. in this case, the client shall be notified only once.
-             */
+            // several registrations that are contained in the same registrationSet mean that more than one criterion of
+            // OR-connected filters matched. in this case, the client shall be notified only once.
             if (reg.getContainer() != null) {
                 RegistrationSet rs = reg.getContainer();
                 if (!registrationSetsAddedSoFar.contains(rs)) {
@@ -265,119 +290,107 @@ public abstract class RegistrationManager {
     /**
      * Finds matching {@link Registration}s for <code>event</code>. 
      */
-    @SuppressWarnings("unchecked")
-    protected Collection<Registration> getRegistrationsFor(Notification event) {
+    private Set<Registration> getRegistrationsFor(Notification event) {
         Statistics.getInstance().begin("getRegistrationsFor", event);
-        // TODO Performance optimizations can probably be done here - VERY CENTRAL METHOD
-   
-        // In documentation: Green cells
-        Iterator<Registration>[] yesSetIterators = new Iterator[allTables.size()];
-        // In documentation: Red cells
-        Iterator<Registration>[] noSetIterators = new Iterator[allTables.size()];
-        int ysi_count = 0, nsi_count = 0;
-
-        int estimatedYesSetSize = 0;
-        RegistrationIterator regIt;
-
-        // for each type of event, there is a specific set of EventFilterTables which might contribute registrations to the event.
-        // These tables are stored in "tablesByEventType".
-        Set<TableForEventFilter> tableSet = tablesByEventType.get(event.getEventType());
-        if (tableSet != null) {
-            for (TableForEventFilter table : tableSet) {
-                // collect registrations for that event from each EventFilterTable
-                Statistics.getInstance().begin("getYesRegistrationsForTable_"+table.getClass().getSimpleName(), event);
-                regIt = table.getRegistrationsFor(event, false);
-                Statistics.getInstance().end("getYesRegistrationsForTable_"+table.getClass().getSimpleName(), event);
-                if (regIt != null) {
-                    yesSetIterators[ysi_count++] = regIt;
-                    estimatedYesSetSize += regIt.getSize();
-                }
-                // collect registrations that do NOT want to get notified about the current event
-                Statistics.getInstance().begin("getNoRegistrationsForTable_"+table.getClass().getSimpleName(), event);
-                regIt = table.getRegistrationsFor(event, true);
-                Statistics.getInstance().end("getNoRegistrationsForTable_"+table.getClass().getSimpleName(), event);
-                if (regIt != null) {
-                    noSetIterators[nsi_count++] = regIt;
-                    // estimatedNoSetSize += regIt.getSize();
-                }
-            }
-        } else {
-            // TODO Log warning! (throw exception?)
+        // insert is O(1) for linked list; no cloning / copying required as it grows
+        Set<Registration> result = new HashSet<Registration>();
+        // for the following two lists, the index corresponds to the table index in allTables
+        List<Set<Registration>[]> yesSetsForTables = new ArrayList<Set<Registration>[]>(allTables.size());
+        List<Set<Registration>[]> noSetsForTables = new ArrayList<Set<Registration>[]>(allTables.size());
+        for (TableForEventFilter table : allTables) {
+            Set<Registration>[] yesSetsForTable = table.getYesSetsFor(event);
+            yesSetsForTables.add(yesSetsForTable);
+            Set<Registration>[] noSetsForTable = table.getNoSetsFor(event);
+            noSetsForTables.add(noSetsForTable);
         }
-
-        // tables that normally would not be affected could contribute if they have negated registrations. (a registration to
-        // "Not X" implies a registration to "Y")
-        for (TableForEventFilter table : tablesWithNegatedRegistrations) {
-            Statistics.getInstance().begin("getNegatedRegistrationsForTable_"+table.getClass().getSimpleName(), event);
-            regIt = table.getRegistrationsFor(event, false);
-            Statistics.getInstance().end("getNegatedRegistrationsForTable_"+table.getClass().getSimpleName(), event);
-            if (regIt != null) {
-                yesSetIterators[ysi_count++] = regIt;
-                estimatedYesSetSize += regIt.getSize();
-            }
+        // loop over all table combinations (as bit set counter); for each combination 
+        // end with 1 because registrations in no table can't occur
+        for (int bitSetForTableCombination=(1<<allTables.size())-1; bitSetForTableCombination>0; bitSetForTableCombination--) {
+            addIntersectionOverTablesInBitset_Of_YesSetUnitedWithAllNoSetMinusNoSet(bitSetForTableCombination,
+                    yesSetsForTables, noSetsForTables, result);
         }
-        /*
-         * collect all registrations for the event. The collected registrations are stored in a set, because a multiple appearance
-         * means that someone registered for (X and Y) and both conditions were fulfilled. In this case, a cient would probably
-         * expect to be notified only once. ( if Y did not match, it will be contained in the NoSet)
-         */
-
-        // First contains positive registrations that are only in one table (no AND used)... at the end, contains ALL positive
-        // registrations
-        Set<Registration> yesSet = new HashSet<Registration>(estimatedYesSetSize);
-        // Contains all positive registrations that were registered in more than one table
-        Set<Registration> possibleYesSetEntries = new HashSet<Registration>();
-
-        // Collection<Registration> yesSet = new ArrayList<Registration>(estimatedYesSetSize);
-        short tableCountWithCurrentRegistration = 0;
-        Statistics.getInstance().begin("yesSetIterators", event);
-        for (int i = 0; i < ysi_count; i++)
-            for (Iterator<Registration> yesSetRegistrationIterator = yesSetIterators[i]; yesSetRegistrationIterator.hasNext();) {
-                Registration nextReg = yesSetRegistrationIterator.next();
-
-                tableCountWithCurrentRegistration = 0;
-                for (TableForEventFilter table : allTables)
-                    if (table.isRegistered(nextReg))
-                        tableCountWithCurrentRegistration++;
-
-                if (tableCountWithCurrentRegistration < 2)
-                    yesSet.add(nextReg);
-                else
-                    possibleYesSetEntries.add(nextReg);
-
-            }
-        Statistics.getInstance().end("yesSetIterators", event);
-
-        // remove all registrations from the yesSet that were collected in the so called noSet
-        Statistics.getInstance().begin("tableMagic", event);
-        if (!possibleYesSetEntries.isEmpty()) {
-            for (int i = 0; i < nsi_count; i++) {
-                for (Iterator<Registration> noSetRegistrationIterator = noSetIterators[i]; noSetRegistrationIterator.hasNext();) {
-                    possibleYesSetEntries.remove(noSetRegistrationIterator.next());
-                }
-            }
-            // Take also into account registrations that are not in the tableSet, but combined with an AND
-            Set<TableForEventFilter> tablesNotAffectedByEvent = new HashSet<TableForEventFilter>(allTables);
-            tablesNotAffectedByEvent.removeAll(tableSet);
-            // Remove from yesSet registrations in tablesNotAffectedByEvent
-            for (TableForEventFilter table : tablesNotAffectedByEvent) {
-                possibleYesSetEntries.removeAll(table.getCompleteYesSet());
-            }
-            if (!possibleYesSetEntries.isEmpty()) {
-                yesSet.addAll(possibleYesSetEntries);
-            }
-        }
-        Statistics.getInstance().end("tableMagic", event);
-
-        // for (int i = 0; i < nsi_count; i++)
-        // for (Iterator noSetRegistrationIterator = noSetIterators[i]; noSetRegistrationIterator.hasNext();) {
-        //
-        // yesSet.remove((Registration) noSetRegistrationIterator.next());
-        // }
-        // time+=(System.currentTimeMillis()-mtime);
-        
         Statistics.getInstance().end("getRegistrationsFor", event);
-        return yesSet;
+        return result;  
+    }
+
+    private void addIntersectionOverTablesInBitset_Of_YesSetUnitedWithAllNoSetMinusNoSet(int bitSetForTableCombination,
+            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables, Set<Registration> result) {
+        // first, determine maximum size of (yesSet "union" allNo \ no) for each table in the bit set;
+        // if the maximum size of one of them is 0, we're done; otherwise, start with the table promising the
+        // smallest size
+        int tableWithMinSize = getTableWithMinSizeForIntersection(bitSetForTableCombination, yesSetsForTables);
+        // construct the set to start with:
+        Collection<Registration> resultForTablesInBitSet = getStartCollectionFromMinSizeTable(bitSetForTableCombination,
+                yesSetsForTables, noSetsForTables, tableWithMinSize);
+        
+        if (!resultForTablesInBitSet.isEmpty()) {
+            // now retain only those that are also in the (yesSet "union" allNo \ no) for all other tables in the bit set
+            for (int i = allTables.size() - 1; i >= 0; i--) {
+                if (i != tableWithMinSize // don't intersect with start set again; wouldn't hurt except for performance
+                        && (bitSetForTableCombination & (1 << i)) != 0) { // loop over tables in bit set only
+                    Iterator<Registration> resultIter = resultForTablesInBitSet.iterator();
+                    while (resultIter.hasNext()) {
+                        Registration next = resultIter.next();
+                        if (!is_InYesOrCompleteNo_And_NotInNo_OfTable(next, i, bitSetForTableCombination, yesSetsForTables,
+                                noSetsForTables)) {
+                            resultIter.remove();
+                        }
+                    }
+                }
+            }
+        }
+        result.addAll(resultForTablesInBitSet);
+    }
+
+    // TODO only pass elements of lists neeeded here; save tableWithMinSize argument
+    private Collection<Registration> getStartCollectionFromMinSizeTable(int bitSetForTableCombination,
+            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables, int tableWithMinSize) {
+        Collection<Registration> resultForTablesInBitSet = new HashSet<Registration>();
+        Set<Registration> yesSetForMinSizeTable = yesSetsForTables.get(tableWithMinSize)[bitSetForTableCombination];
+        if (yesSetForMinSizeTable != null) {
+            resultForTablesInBitSet.addAll(yesSetForMinSizeTable);
+        }
+        Set<Registration> allNoForMinSizeTable = allTables.get(tableWithMinSize).getCompleteNoSet()[bitSetForTableCombination];
+        if (allNoForMinSizeTable != null) {
+            resultForTablesInBitSet.addAll(allNoForMinSizeTable);
+        }
+        Set<Registration> noSetForMinSizeTable = noSetsForTables.get(tableWithMinSize)[bitSetForTableCombination];
+        if (noSetForMinSizeTable != null) {
+            resultForTablesInBitSet.removeAll(noSetForMinSizeTable);
+        }
+        return resultForTablesInBitSet;
+    }
+
+    private int getTableWithMinSizeForIntersection(int bitSetForTableCombination, List<Set<Registration>[]> yesSetsForTables) {
+        int[] maxSizes = new int[allTables.size()]; // only those elements from the bit set will be populated
+        int minSize = Integer.MAX_VALUE; // minimum value that got explicitly set in sizes[]
+        int tableWithMinSize = -1;       // position of minimum value in sizes[]; that's the table to start with for intersection
+        int tableBit = 1<<(allTables.size()-1);
+        for (int i=allTables.size()-1; i>=0; i--) {
+            if ((bitSetForTableCombination & tableBit) != 0) {
+                // table identified by tableBit occurs in the combination represented by bitSetForTableCombination
+                Set<Registration> yesSet = yesSetsForTables.get(i)[bitSetForTableCombination];
+                Set<Registration> allNo = allTables.get(i).getCompleteNoSet()[bitSetForTableCombination];
+                maxSizes[i] = (yesSet == null ? 0 : yesSet.size()) + (allNo == null ? 0 : allNo.size());
+                if (maxSizes[i] < minSize) {
+                    // will be executed at least once because we start with minSize=Integer.MAX_VALUE and
+                    // there has to be at least one non-zero bit in the bit set
+                    minSize = maxSizes[i];
+                    tableWithMinSize = i;
+                }
+            }
+            tableBit >>= 1;
+        }
+        return tableWithMinSize;
+    }
+
+    private boolean is_InYesOrCompleteNo_And_NotInNo_OfTable(Registration registration, int table, int bitSetForTableCombination,
+            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables) {
+        Set<Registration> yesSet = yesSetsForTables.get(table)[bitSetForTableCombination];
+        Set<Registration> allNo = allTables.get(table).getCompleteNoSet()[bitSetForTableCombination];
+        Set<Registration> noSet = noSetsForTables.get(table)[bitSetForTableCombination];
+        return ((yesSet != null && yesSet.contains(registration)) || (allNo != null && allNo.contains(registration)))
+           && (noSet == null || !noSet.contains(registration));
     }
 
     /**
@@ -398,8 +411,9 @@ public abstract class RegistrationManager {
         for (TableForEventFilter table : allTables) {
             // TODO if registrations for equal AndFilters are bundled and may refer to multiple listeners, just remove the listener from the Registration; remove the Registration only if that was its last listener
             table.deregister(registration);
-            if (table.getCompleteNoSet().isEmpty() && tablesWithNegatedRegistrations.contains(table))
+            if (table.isEmpty()) {
                 tablesWithNegatedRegistrations.remove(table);
+            }
         }
         allRegistrations.remove(registration);
     }
@@ -482,23 +496,6 @@ public abstract class RegistrationManager {
             tablesByEventType.put(eventType, tables);
         }
         tables.add(table);
-    }
-
-    public void registerCustomEventType(List<Integer> eventTypes, TableForEventFilter eventFilterTableInstance) {
-        if (eventFilterTableInstance != null) {
-            for (Integer eventType : eventTypes) {
-                addTableForEventType(eventFilterTableInstance, eventType);
-                // EventTypeFilterTable also provides filtering for (unknown) custom events
-                addTableForEventType(eventTypeFilterTable, eventType);
-            }
-            allTables.add(eventFilterTableInstance);
-            tableByFilterType.put(eventFilterTableInstance.getIdentifier(), eventFilterTableInstance);
-        } else {
-            for (Integer eventType : eventTypes)
-                addTableForEventType(eventTypeFilterTable, eventType);
-
-        }
-
     }
 
     /**
@@ -997,5 +994,36 @@ public abstract class RegistrationManager {
         }
         result.append(')');
         return result.toString();
+    }
+
+    /**
+     * Creates an array that has length <code>2^{@link #filterTypeToBitMask}.size()</code> so that any combination of
+     * bit mask used as value in {@link #filterTypeToBitMask} can be used as index into such an array.
+     */
+    @SuppressWarnings("unchecked")
+    protected Set<Registration>[] createRegistrationSetArray() {
+        return (Set<Registration>[]) new Set<?>[1<<filterTypeToBitMask.size()];
+    }
+
+    protected void registerTable(TableForEventFilter table) {
+        allTables.add(table);
+        tableByFilterType.put(table.getIdentifier(), table);
+        filterTypeToBitMask.put(table.getIdentifier(), 1<<filterTypeToBitMask.size());
+    }
+    
+    /**
+     * When passing a bit set as returned by {@link #getBitSet(Collection)}, returns the collection
+     * of filter tables identified by this bit set.
+     */
+    protected Collection<TableForEventFilter> getTablesForBitSet(int bitSet) {
+        Collection<TableForEventFilter> result = new ArrayList<TableForEventFilter>(allTables.size());
+        int i=1;
+        for (TableForEventFilter table : allTables) {
+            if ((bitSet & i) != 0) {
+                result.add(table);
+            }
+            i <<= 1;
+        }
+        return result;
     }
 }

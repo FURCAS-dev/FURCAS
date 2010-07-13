@@ -29,6 +29,9 @@ public class NotFilter extends LogicalOperationFilter {
         final int prime = 47;
         int result = 1;
         result = prime * result + ((filters == null) ? 0 : filters.hashCode());
+        if (isNegated()) {
+            result = prime * result;
+        }
         return result;
     }
 
@@ -51,7 +54,7 @@ public class NotFilter extends LogicalOperationFilter {
                 return false;
         } else if (!filters.equals(other.filters))
             return false;
-        return true;
+        return isNegated() == ((EventFilter) other).isNegated();
     }
 
     @Override

@@ -49,6 +49,7 @@ public class PerformanceStressTestForEventManager extends TestCase implements Ad
         rs = new ResourceSetImpl();
         Collection<OCLExpressionWithContext> expressions = BenchmarkOCLPreparer.prepareAll();
         eventManager = new EventManagerTableBased(rs);
+//        eventManager = new EventManagerNaive(rs);
         for (OCLExpressionWithContext expression : expressions) {
             OCLExpression e = expression.getExpression();
             Statistics.getInstance().begin("filtercreation", e);
@@ -62,7 +63,6 @@ public class PerformanceStressTestForEventManager extends TestCase implements Ad
 
     @Test
     public void testSingleAttributeValueChange() {
-        
         // first some attributes:
         
         // name has 290 entries in TableForAttributeFilter

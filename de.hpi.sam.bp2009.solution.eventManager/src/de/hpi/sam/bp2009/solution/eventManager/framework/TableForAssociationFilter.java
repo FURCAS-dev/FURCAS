@@ -13,7 +13,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
  */
 public class TableForAssociationFilter extends TableForEventFilter {
 
-    public TableForAssociationFilter() {
+    public TableForAssociationFilter(int numberOfFilterTables) {
+        super(numberOfFilterTables);
     }
 
     /**
@@ -28,7 +29,7 @@ public class TableForAssociationFilter extends TableForEventFilter {
     }
 
     @Override
-    public Object getIdentifier() {
+    public Class<AssociationFilter> getIdentifier() {
         return AssociationFilter.class;
     }
     

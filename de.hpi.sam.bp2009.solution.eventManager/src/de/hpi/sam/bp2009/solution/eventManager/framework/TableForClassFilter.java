@@ -4,6 +4,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
+
 /**
  * The ClassFilterTable manages all Registrations containing {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.ClassFilter}.
  * 
@@ -12,7 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class TableForClassFilter extends TableForEventFilter {
 
-    public TableForClassFilter() {
+    public TableForClassFilter(int numberOfFilterTables) {
+        super(numberOfFilterTables);
     }
 
     /**
@@ -27,8 +30,8 @@ public class TableForClassFilter extends TableForEventFilter {
     }
 
     @Override
-    public Object getIdentifier() {
-        return de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter.class;
+    public Class<ClassFilter> getIdentifier() {
+        return ClassFilter.class;
     }
 
     @Override

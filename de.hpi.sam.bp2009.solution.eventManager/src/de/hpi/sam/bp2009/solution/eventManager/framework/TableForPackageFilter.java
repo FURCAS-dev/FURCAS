@@ -14,7 +14,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.PackageFilter;
  */
 public class TableForPackageFilter extends TableForEventFilter {
 
-    public TableForPackageFilter() {
+    public TableForPackageFilter(int numberOfFilterTables) {
+        super(numberOfFilterTables);
     }
 
     /**
@@ -29,7 +30,7 @@ public class TableForPackageFilter extends TableForEventFilter {
     }
 
     @Override
-    public Object getIdentifier() {
+    public Class<PackageFilter> getIdentifier() {
         return PackageFilter.class;
     }
 

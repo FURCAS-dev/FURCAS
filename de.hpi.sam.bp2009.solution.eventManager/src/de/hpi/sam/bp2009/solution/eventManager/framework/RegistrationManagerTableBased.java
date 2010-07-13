@@ -1,10 +1,11 @@
 package de.hpi.sam.bp2009.solution.eventManager.framework;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 
 import org.eclipse.emf.common.notify.Notification;
+
 
 
 /**
@@ -14,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
  * @author Daniel Vocke (D044825)
  */
 class RegistrationManagerTableBased extends RegistrationManager {
-
     public RegistrationManagerTableBased() {
         super();
     }
@@ -46,73 +46,25 @@ class RegistrationManagerTableBased extends RegistrationManager {
      * this method encapsulates the "configuration" of the RegistrationManager.
      */
     protected void init() {
-        TableForEventFilter table = null;
-        allTables = new HashSet<TableForEventFilter>();
-        table = new TableForAssociationFilter();
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-
-        table = new TableForAttributeFilter();
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-
-        table = new TableForClassFilter();
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-
-//        TODO check if instance filter used
-//        table = new TableInstanceFilter(false);
-//        setUsualEvents(table);
-//        allTables.add(table);
-//        tableByFilterType.put(table.getIdentifier(), table);
-//        affectedTablesOnElementRepartitioning.add(table);
-//
-//        table = new TableInstanceFilter(true);
-//        setUsualEvents(table);
-//        allTables.add(table);
-//        tableByFilterType.put(table.getIdentifier(), table);
-//        affectedTablesOnElementRepartitioning.add(table);
-
-        table = new TableForEventTypeFilter();
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-        eventTypeFilterTable = table;
-
-        /*
-         * ================================================================================================ For Testing Purposes
-         * only(will be removed as soon as custom event types are supported):
-         */
-        // Set<EventFilterTable> tables = new HashSet<EventFilterTable>();
-        // tables.add(table);
-        // tablesByEventType.put("class com.sap.tc.moin.repository.test.core.EventFrameworkTest$DummyEventImpl", tables);
-        // ================================================================================================
-
-        table = new TableForPackageFilter();
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-        
-        table = new TableForContainmentFilter();
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-        
-        table = new TableForNewValueClassFilter();
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-        
-        table = new TableForOldValueClassFilter();
-        setUsualEvents(table);
-        allTables.add(table);
-        tableByFilterType.put(table.getIdentifier(), table);
-
+        super.init();
+        @SuppressWarnings("unchecked")
+        Class<? extends TableForEventFilter>[] tableTypes = (Class<? extends TableForEventFilter>[]) new Class<?>[] {
+                TableForAssociationFilter.class, TableForAttributeFilter.class, TableForClassFilter.class,
+                TableForEventTypeFilter.class, TableForPackageFilter.class, TableForContainmentFilter.class,
+                TableForNewValueClassFilter.class, TableForOldValueClassFilter.class };
+        for (Class<? extends TableForEventFilter> tableType : tableTypes) {
+            TableForEventFilter table;
+            try {
+                Constructor<? extends TableForEventFilter> constructor = tableType.getConstructor(Integer.TYPE);
+                table = constructor.newInstance(tableTypes.length);
+            } catch (Exception e) {
+                throw new RuntimeException("Didn't find constructor(int) on table type "+tableType.getSimpleName(), e);
+            }
+            setUsualEvents(table);
+            registerTable(table);
+        }
     }
-
+    
     private void setUsualEvents(TableForEventFilter table) {
         addTableForEventType(table, Notification.SET);
         addTableForEventType(table, Notification.UNSET);

@@ -15,7 +15,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.ContainmentFilter;
  */
 public class TableForContainmentFilter extends TableForEventFilter {
 
-    public TableForContainmentFilter() {
+    public TableForContainmentFilter(int numberOfFilterTables) {
+        super(numberOfFilterTables);
     }
 
     /**
@@ -32,7 +33,7 @@ public class TableForContainmentFilter extends TableForEventFilter {
     }
 
     @Override
-    public Object getIdentifier() {
+    public Class<ContainmentFilter> getIdentifier() {
         return ContainmentFilter.class;
     }
 
