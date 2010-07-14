@@ -52,6 +52,8 @@ class RegistrationManagerTableBased extends RegistrationManager {
                 TableForAssociationFilter.class, TableForAttributeFilter.class, TableForClassFilter.class,
                 TableForEventTypeFilter.class, TableForPackageFilter.class, TableForContainmentFilter.class,
                 TableForNewValueClassFilter.class, TableForOldValueClassFilter.class };
+        createAllTables(tableTypes.length);
+        int i=0;
         for (Class<? extends TableForEventFilter> tableType : tableTypes) {
             TableForEventFilter table;
             try {
@@ -61,7 +63,7 @@ class RegistrationManagerTableBased extends RegistrationManager {
                 throw new RuntimeException("Didn't find constructor(int) on table type "+tableType.getSimpleName(), e);
             }
             setUsualEvents(table);
-            registerTable(table);
+            registerTable(table, i++);
         }
     }
     

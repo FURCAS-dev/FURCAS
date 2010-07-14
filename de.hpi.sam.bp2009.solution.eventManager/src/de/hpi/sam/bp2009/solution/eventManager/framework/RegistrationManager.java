@@ -298,14 +298,17 @@ public abstract class RegistrationManager {
         // insert is O(1) for linked list; no cloning / copying required as it grows
         Set<Registration> result = new HashSet<Registration>();
         // for the following two lists, the index corresponds to the table index in allTables
-        // TODO use arrays instead of ArrayList here to avoid RangeCheck in ArrayList.get(int)
-        List<Set<Registration>[]> yesSetsForTables = new ArrayList<Set<Registration>[]>(allTables.length);
-        List<Set<Registration>[]> noSetsForTables = new ArrayList<Set<Registration>[]>(allTables.length);
+        @SuppressWarnings("unchecked")
+        Set<Registration>[][] yesSetsForTables = (Set<Registration>[][]) new Set<?>[allTables.length][];
+        @SuppressWarnings("unchecked")
+        Set<Registration>[][] noSetsForTables = (Set<Registration>[][]) new Set<?>[allTables.length][];
+        int i=0;
         for (TableForEventFilter table : allTables) {
             Set<Registration>[] yesSetsForTable = table.getYesSetsFor(event);
-            yesSetsForTables.add(yesSetsForTable);
+            yesSetsForTables[i] = yesSetsForTable;
             Set<Registration>[] noSetsForTable = table.getNoSetsFor(event);
-            noSetsForTables.add(noSetsForTable);
+            noSetsForTables[i] = noSetsForTable;
+            i++;
         }
         // loop over all table combinations (as bit set counter); for each combination 
         // end with 1 because registrations in no table can't occur
@@ -319,7 +322,7 @@ public abstract class RegistrationManager {
     }
 
     private void addIntersectionOverTablesInBitset_Of_YesSetUnitedWithAllNoSetMinusNoSet(int bitSetForTableCombination,
-            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables, Set<Registration> result, HashSet<Registration> startSetToReuseToAvoidHashSetCreation) {
+            Set<Registration>[][] yesSetsForTables, Set<Registration>[][] noSetsForTables, Set<Registration> result, HashSet<Registration> startSetToReuseToAvoidHashSetCreation) {
         // first, determine maximum size of (yesSet "union" allNo \ no) for each table in the bit set;
         // if the maximum size of one of them is 0, we're done; otherwise, start with the table promising the
         // smallest size
@@ -349,9 +352,9 @@ public abstract class RegistrationManager {
 
     // TODO only pass elements of lists neeeded here; save tableWithMinSize argument
     private Collection<Registration> getStartCollectionFromMinSizeTable(int bitSetForTableCombination,
-            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables, int tableWithMinSize, HashSet<Registration> resultForTablesInBitSet) {
+            Set<Registration>[][] yesSetsForTables, Set<Registration>[][] noSetsForTables, int tableWithMinSize, HashSet<Registration> resultForTablesInBitSet) {
         resultForTablesInBitSet.clear();
-        Set<Registration> yesSetForMinSizeTable = yesSetsForTables.get(tableWithMinSize)[bitSetForTableCombination];
+        Set<Registration> yesSetForMinSizeTable = yesSetsForTables[tableWithMinSize][bitSetForTableCombination];
         if (yesSetForMinSizeTable != null) {
             resultForTablesInBitSet.addAll(yesSetForMinSizeTable);
         }
@@ -359,14 +362,14 @@ public abstract class RegistrationManager {
         if (allNoForMinSizeTable != null) {
             resultForTablesInBitSet.addAll(allNoForMinSizeTable);
         }
-        Set<Registration> noSetForMinSizeTable = noSetsForTables.get(tableWithMinSize)[bitSetForTableCombination];
+        Set<Registration> noSetForMinSizeTable = noSetsForTables[tableWithMinSize][bitSetForTableCombination];
         if (noSetForMinSizeTable != null) {
             resultForTablesInBitSet.removeAll(noSetForMinSizeTable);
         }
         return resultForTablesInBitSet;
     }
 
-    private int getTableWithMinSizeForIntersection(int bitSetForTableCombination, List<Set<Registration>[]> yesSetsForTables) {
+    private int getTableWithMinSizeForIntersection(int bitSetForTableCombination, Set<Registration>[][] yesSetsForTables) {
         int[] maxSizes = new int[allTables.length]; // only those elements from the bit set will be populated
         int minSize = Integer.MAX_VALUE; // minimum value that got explicitly set in sizes[]
         int tableWithMinSize = -1;       // position of minimum value in sizes[]; that's the table to start with for intersection
@@ -374,7 +377,7 @@ public abstract class RegistrationManager {
         for (int i=allTables.length-1; i>=0; i--) {
             if ((bitSetForTableCombination & tableBit) != 0) {
                 // table identified by tableBit occurs in the combination represented by bitSetForTableCombination
-                Set<Registration> yesSet = yesSetsForTables.get(i)[bitSetForTableCombination];
+                Set<Registration> yesSet = yesSetsForTables[i][bitSetForTableCombination];
                 Set<Registration> allNo = allTables[i].getCompleteNoSet()[bitSetForTableCombination];
                 maxSizes[i] = (yesSet == null ? 0 : yesSet.size()) + (allNo == null ? 0 : allNo.size());
                 if (maxSizes[i] < minSize) {
@@ -390,10 +393,10 @@ public abstract class RegistrationManager {
     }
 
     private boolean is_InYesOrCompleteNo_And_NotInNo_OfTable(Registration registration, int table, int bitSetForTableCombination,
-            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables) {
-        Set<Registration> yesSet = yesSetsForTables.get(table)[bitSetForTableCombination];
+            Set<Registration>[][] yesSetsForTable, Set<Registration>[][] noSetsForTables) {
+        Set<Registration> yesSet = yesSetsForTable[table][bitSetForTableCombination];
         Set<Registration> allNo = allTables[table].getCompleteNoSet()[bitSetForTableCombination];
-        Set<Registration> noSet = noSetsForTables.get(table)[bitSetForTableCombination];
+        Set<Registration> noSet = noSetsForTables[table][bitSetForTableCombination];
         return ((yesSet != null && yesSet.contains(registration)) || (allNo != null && allNo.contains(registration)))
            && (noSet == null || !noSet.contains(registration));
     }
