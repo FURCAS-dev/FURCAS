@@ -27,20 +27,19 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  */
 
 public class BenchmarkProcessor {
-	
+
     public static void main(String[] args) {
     	start();
     }
 
 	public static void start() {
 		// Preparing
-		Collection<BenchmarkTask> taskList = BenchmarkTaskPreparer.prepareSingleNotificationBenchmarkTasks();
+		Collection<BenchmarkTask> taskList = BenchmarkTaskPreparer.prepareModelSizeVariationBenchmarkTasks();
 
 		// Processing
-		BenchmarkResultContainer result = BenchmarkExecutionProcessor.processSimpleBenchmarks(taskList);
+		BenchmarkResultContainer result = BenchmarkExecutionProcessor.processModelSizeVariationBenchmarks(taskList);
 
 		// Post-processing
 		result.printCsv(new File("/home/manuel/workspace/de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark/results/result.csv"));
-		result.printXml(new File("/home/manuel/workspace/de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark/results/result.xml"));
 	}
 }

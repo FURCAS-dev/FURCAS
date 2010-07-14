@@ -9,17 +9,20 @@ import java.util.ArrayList;
 
 import com.thoughtworks.xstream.XStream;
 
-public class BenchmarkResultContainer {
+public class BenchmarkResultContainer implements ResultContainer{
     private final ArrayList<BenchmarkResult> benchmarkResultList = new ArrayList<BenchmarkResult>();
 
+    @Override
     public void addResult(BenchmarkResult benchResult){
 	benchmarkResultList.add(benchResult);
     }
 
+    @Override
     public int size(){
 	return benchmarkResultList.size();
     }
 
+    @Override
     public void printCsv(File f){
 	if(!f.exists()){
 	    try {
@@ -35,6 +38,7 @@ public class BenchmarkResultContainer {
 	    FileWriter fw = new FileWriter(f);
 	    for(BenchmarkResult result : benchmarkResultList){
 		fw.append(result.toCsvString() + "; \n");
+
 		fw.flush();
 	    }
 	    fw.close();
@@ -44,8 +48,6 @@ public class BenchmarkResultContainer {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
-
-
     }
 
 	public void printXml(File file) {

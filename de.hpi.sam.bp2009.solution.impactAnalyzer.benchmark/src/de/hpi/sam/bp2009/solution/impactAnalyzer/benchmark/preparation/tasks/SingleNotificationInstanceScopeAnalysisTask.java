@@ -12,23 +12,31 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 public class SingleNotificationInstanceScopeAnalysisTask implements BenchmarkTask{
     private final OCLExpression expression;
-    private final Notification noti;
+    private Notification noti;
     private final ImpactAnalyzer ia;
 
     public SingleNotificationInstanceScopeAnalysisTask(OCLExpression expression, Notification noti,
             EClass context) {
 	this.expression = expression;
-	this.noti = noti;
+	setNotification(noti);
 	ia = new ImpactAnalyzerImpl(expression, context);
     }
 
     @Override
     public Collection<EObject> call() throws Exception {
-	return ia.getContextObjects(noti);
+	return ia.getContextObjects(getNotification());
     }
 
     @Override
     public String toString(){
 	return expression.toString();
+    }
+
+    public void setNotification(Notification noti) {
+	this.noti = noti;
+    }
+
+    public Notification getNotification() {
+	return noti;
     }
 }
