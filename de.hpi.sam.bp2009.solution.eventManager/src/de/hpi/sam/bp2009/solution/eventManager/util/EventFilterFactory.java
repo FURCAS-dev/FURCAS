@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
@@ -44,7 +43,7 @@ public class EventFilterFactory {
 	 * @return
 	 */
 	public EventFilter getAndFilterFor(EventFilter...eventFilters){
-		AndFilter and = EventManagerFactory.eINSTANCE.createAndFilter();
+		LogicalOperationFilter and = EventManagerFactory.eINSTANCE.createAndFilter();
 		and.getOperands().addAll(Arrays.asList(eventFilters));
 		return and;
 	}

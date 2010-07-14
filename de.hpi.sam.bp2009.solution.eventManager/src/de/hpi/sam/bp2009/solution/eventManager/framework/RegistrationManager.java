@@ -129,7 +129,7 @@ public abstract class RegistrationManager {
         // adjustFilter() has to be called before the dnf is formed, but there has to be at least one logicaloperationfilter at
         // the top
         if (!(filterTree instanceof OrFilter || filterTree instanceof AndFilter)) {
-            AndFilter topOfTree = EventManagerFactory.eINSTANCE.createAndFilter();
+            LogicalOperationFilter topOfTree = EventManagerFactory.eINSTANCE.createAndFilter();
             topOfTree.getOperands().add(filterTree);
             filterTree = topOfTree;
         }
@@ -141,7 +141,7 @@ public abstract class RegistrationManager {
         for (EventFilter andFilter : filterInNormalForm.getOperands()) {
             // determine tables to register with; needed already for construction of Registration
             Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = new HashMap<EventFilter, TableForEventFilter>();
-            AndFilter level1OfTree = (AndFilter) andFilter;
+            LogicalOperationFilter level1OfTree = (LogicalOperationFilter) andFilter;
             for (EventFilter leafOfTree : level1OfTree.getOperands()) {
                 TableForEventFilter filterTable = getFilterTable(leafOfTree);
                 if(filterTable == null){
@@ -636,7 +636,7 @@ public abstract class RegistrationManager {
                  */
                 LogicalOperationFilter orfilter = new OrFilter();
                 for (EventFilter operand : result.getOperands()) {
-                    AndFilter tmp = new AndFilter(operand);
+                    LogicalOperationFilter tmp = new AndFilter(operand);
                     orfilter.getOperands().add(tmp);
                 }
                 result = orfilter;
@@ -650,7 +650,7 @@ public abstract class RegistrationManager {
 
             } else if (result instanceof NotFilter) {
                 // TODO log an error, this may not happen (or does it? => test it!!)
-                AndFilter afilter = new AndFilter(result);
+                LogicalOperationFilter afilter = new AndFilter(result);
                 LogicalOperationFilter tmp = new OrFilter(afilter);
                 result = tmp;
 
@@ -678,7 +678,7 @@ public abstract class RegistrationManager {
         for (EventFilter operand : ((LogicalOperationFilter) filter).getOperands()) {
             if (!(operand instanceof AndFilter))
                 return false;
-            for (EventFilter operandsOperand : ((AndFilter) operand).getOperands()) {
+            for (EventFilter operandsOperand : ((LogicalOperationFilter) operand).getOperands()) {
                 if (operandsOperand instanceof OrFilter || operandsOperand instanceof AndFilter)
                     return false;
             }

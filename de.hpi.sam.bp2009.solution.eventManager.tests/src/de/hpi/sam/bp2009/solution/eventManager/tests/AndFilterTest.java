@@ -8,8 +8,8 @@ package de.hpi.sam.bp2009.solution.eventManager.tests;
 
 import junit.textui.TestRunner;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>And Filter</b></em>'. <!-- end-user-doc -->
@@ -41,8 +41,8 @@ public class AndFilterTest extends EventFilterTest {
      * 
      */
     @Override
-    protected AndFilter getFixture() {
-        return (AndFilter) fixture;
+    protected LogicalOperationFilter getFixture() {
+        return (LogicalOperationFilter) fixture;
     }
 
     /**

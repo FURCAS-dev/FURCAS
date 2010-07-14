@@ -32,4 +32,32 @@ abstract public class LogicalOperationFilter extends EventFilter {
         return result;
         
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AndFilter other = (AndFilter) obj;
+        if (filters == null) {
+            if (other.filters != null)
+                return false;
+        } else if (!filters.equals(other.filters))
+            return false;
+        return isNegated() == ((EventFilter) other).isNegated();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((filters == null) ? 0 : filters.hashCode());
+        if (isNegated()) {
+            result = prime * result;
+        }
+        return result;
+    }
 }
