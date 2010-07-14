@@ -83,6 +83,15 @@ public class PerformanceStressTestForEventManager extends TestCase {
     @Test
     public void testIndividualNotificationsWithGrowingFilterSet() {
         for (Runnable handleRoutine : new Runnable[] {
+           new Runnable() { public void run() { handle_Attribute_Snapshot_1(); } },
+           new Runnable() { public void run() { handle_Attribute_Name_290(); } },
+           new Runnable() { public void run() { handle_Attribute_UpperMultiplicity_487(); } },
+           new Runnable() { public void run() { handle_Reference_Facts_1(); } },
+           new Runnable() { public void run() { handle_Reference_OwnedSignatures_41(); } },
+           new Runnable() { public void run() { handle_Reference_Clazz_264(); } },
+           new Runnable() { public void run() { handle_Reference_InitExpression_478(); } },
+           
+           
            new Runnable() { public void run() { handle_Attribute_Snapshot_1(); printStats("Notify_Attribute_Snapshot_1"); } },
            new Runnable() { public void run() { handle_Attribute_Name_290(); printStats("Notify_Attribute_Name_290"); } },
            new Runnable() { public void run() { handle_Attribute_UpperMultiplicity_487(); printStats("Notify_Attribute_UpperMultiplicity_487"); } },
