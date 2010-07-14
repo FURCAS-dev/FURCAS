@@ -12,7 +12,7 @@ import org.eclipse.emf.common.notify.Notification;
  * The SessionRegistrationManager encapsulates the configuration that is needed for the SessionEventManager.
  * 
  * @see RegistrationManager
- * @author Daniel Vocke (D044825)
+ * @author Daniel Vocke (D044825), Axel Uhl (D043530)
  */
 class RegistrationManagerTableBased extends RegistrationManager {
     public RegistrationManagerTableBased() {

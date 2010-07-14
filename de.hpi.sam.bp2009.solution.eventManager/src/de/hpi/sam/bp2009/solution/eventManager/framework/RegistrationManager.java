@@ -52,7 +52,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.PackageFilter;
  * has the overview and can merge these candidates into a consolidated set of registrations. Afterwards these Registrations are
  * converted into listeners that will have to be notified.
  * 
- * @author Daniel Vocke (D044825)
+ * @author Daniel Vocke (D044825), Axel Uhl (D043530)
  */
 public abstract class RegistrationManager {
 

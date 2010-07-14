@@ -9,7 +9,7 @@ import org.eclipse.emf.common.notify.Adapter;
  * register..() on the EventRegistry interface can result in multiple registrations (due to the internal design),
  * registrations can be pooled into a set (the {@link RegistrationSet}).
  * 
- * @author Daniel Vocke (D044825)
+ * @author Daniel Vocke (D044825), Axel Uhl (D043530)
  */
 class Registration extends AbstractRegistration {
 
@@ -17,7 +17,7 @@ class Registration extends AbstractRegistration {
      * if the registration as listener results in multiple registration instances, those instances will be pooled in the
      * RegistrationSet
      */
-    private RegistrationSet _container = null;
+    private RegistrationSet _container;
     
     /**
      * A bit field where each bit is taken from the {@link RegistrationManager#filterTypeToBitMask} values,
