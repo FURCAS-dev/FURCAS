@@ -53,6 +53,7 @@ public abstract class Statistics {
     public abstract void end(String groupId, Object key);
     public abstract List<Record> getRecords(String groupId);
     public abstract Set<String> getGroupIds();
+    public abstract void clear();
     
     public double getAverageTime(String groupId) {
         int count = 0;

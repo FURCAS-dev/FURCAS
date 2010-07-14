@@ -82,6 +82,29 @@ public class PerformanceStressTestForEventManager extends TestCase {
     @Test
     public void testSingleAttributeValueChange() {
         registerFiltersForAllExpressions(expressions.size()); // register all
+        handleAllTestEvents();
+        printStats();
+    }
+
+    private void printStats() {
+        System.out.println("Subscription count\t"+subscriptions);
+        System.out.println("Notification count\t"+notificationCount);
+        Statistics s = Statistics.getInstance();
+        System.out.println(s.averageTimeAsSV("\t"));
+    }
+    
+    @Test
+    public void testWithGrowingFilterSet() {
+        final int howManyMeasurements = 10;
+        for (int i=0; i<howManyMeasurements; i++) {
+            registerFiltersForAllExpressions(expressions.size()/howManyMeasurements+1);
+            handleAllTestEvents();
+            printStats();
+            Statistics.getInstance().clear();
+        }
+    }
+
+    private void handleAllTestEvents() {
         // first some attributes:
         handle_Attribute_Name_290();
         handle_Attribute_UpperMultiplicity_487();
@@ -91,10 +114,6 @@ public class PerformanceStressTestForEventManager extends TestCase {
         handle_Reference_Facts_1();
         handle_Reference_InitExpression_478();
         handle_Reference_OwnedSignatures_41();
-        
-        System.out.println("Subscription count: "+subscriptions);
-        System.out.println("Notification count: "+notificationCount);
-        System.out.println(Statistics.getInstance().averageTimeAsSV("\t"));
     }
 
     private void handle_Attribute_Name_290() {

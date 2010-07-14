@@ -47,4 +47,10 @@ public class StatisticsImpl extends Statistics {
         return records.keySet();
     }
     
+    @Override
+    public void clear() {
+        records.clear();
+        running.clear();
+    }
+    
 }
