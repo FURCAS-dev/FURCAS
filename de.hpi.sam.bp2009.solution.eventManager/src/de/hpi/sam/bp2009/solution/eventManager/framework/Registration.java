@@ -20,7 +20,7 @@ class Registration extends AbstractRegistration {
     private RegistrationSet _container;
     
     /**
-     * A bit field where each bit is taken from the {@link RegistrationManager#filterTypeToBitMask} values,
+     * A bit field where each bit is taken from the {@link RegistrationManagerTableBased#filterTypeToBitMask} values,
      * representing a table with which this registration is registered. This number can be used as index into
      * the registration sets stored in the filter tables.
      */

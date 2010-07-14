@@ -55,7 +55,7 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
     /**
      * The RegistrationManager does the main work when finding out which listeners are affected by an event.
      */
-    private RegistrationManager registrationManager = null;
+    private RegistrationManagerTableBased registrationManager = null;
 
     private WeakReference<ResourceSet> resourceSet;
 
