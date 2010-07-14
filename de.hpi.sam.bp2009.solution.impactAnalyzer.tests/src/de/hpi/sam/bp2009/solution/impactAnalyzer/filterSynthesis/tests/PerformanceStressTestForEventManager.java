@@ -42,7 +42,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 public class PerformanceStressTestForEventManager extends TestCase {
     private EventManager eventManager;
     private ResourceSet rs;
-    private Notifier target;
     private int notificationCount;
     private int subscriptions;
     private Set<NotificationReceiverWithFilter> listeners = new HashSet<NotificationReceiverWithFilter>();
@@ -55,6 +54,8 @@ public class PerformanceStressTestForEventManager extends TestCase {
         rs = new ResourceSetImpl();
         expressions = BenchmarkOCLPreparer.prepareAll();
         eventManager = new EventManagerTableBased(rs);
+        notificationCount = 0;
+        subscriptions = 0;
         // uncomment the following line in case you want to compare with the performance of the naive
         // event manager:
         // eventManager = new EventManagerNaive(rs);
@@ -96,6 +97,17 @@ public class PerformanceStressTestForEventManager extends TestCase {
     @Test
     public void testWithGrowingFilterSet() {
         final int howManyMeasurements = 10;
+        // let the system warm up:
+        for (int i=0; i<howManyMeasurements; i++) {
+            registerFiltersForAllExpressions(expressions.size()/howManyMeasurements+1);
+            handleAllTestEvents();
+            Statistics.getInstance().clear();
+        }
+        // now for the real benchmark:
+        eventManager = new EventManagerTableBased(rs);
+        notificationCount = 0;
+        subscriptions = 0;
+        numberOfAlreadyRegisteredExpressions = 0;
         for (int i=0; i<howManyMeasurements; i++) {
             registerFiltersForAllExpressions(expressions.size()/howManyMeasurements+1);
             handleAllTestEvents();
@@ -213,6 +225,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
     private class NotificationReceiverWithFilter implements Adapter {
         private final Set<Notification> received = new HashSet<Notification>();
         private final EventFilter filter;
+        private Notifier target;
 
         public NotificationReceiverWithFilter(EventFilter filter) {
             this.filter = filter;
