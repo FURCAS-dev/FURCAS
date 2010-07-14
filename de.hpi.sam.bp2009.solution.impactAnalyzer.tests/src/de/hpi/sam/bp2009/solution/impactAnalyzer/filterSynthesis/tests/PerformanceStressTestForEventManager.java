@@ -1,6 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import junit.framework.TestCase;
 import modelmanagement.ModelmanagementPackage;
@@ -37,11 +39,52 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLEx
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 
-public class PerformanceStressTestForEventManager extends TestCase implements Adapter {
+public class PerformanceStressTestForEventManager extends TestCase {
     private EventManager eventManager;
     private ResourceSet rs;
     private Notifier target;
     private int notificationCount;
+    private int subscriptions;
+    private Set<NotificationReceiverWithFilter> listeners = new HashSet<NotificationReceiverWithFilter>();
+    
+    private class NotificationReceiverWithFilter implements Adapter {
+        private final Set<Notification> received = new HashSet<Notification>();
+        private final EventFilter filter;
+
+        public NotificationReceiverWithFilter(EventFilter filter) {
+            this.filter = filter;
+        }
+        
+        @Override
+        public void notifyChanged(Notification notification) {
+            notificationCount++;
+            if (received.contains(notification)) {
+                fail("Received same notification twice with filter "+filter);
+            } else {
+                received.add(notification);
+                // uncomment the following line in case you want to ensure that
+                // all notifications are actually matched by the filter; such a test would
+                // mostly be relevant for the table-based event manager to detect false positives
+                // assertTrue("Filter "+filter+" doesn't match notification "+notification, filter.matchesFor(notification));
+            }
+        }
+
+        @Override
+        public Notifier getTarget() {
+            return target;
+        }
+
+        @Override
+        public void setTarget(Notifier newTarget) {
+            target = newTarget;
+        }
+
+        @Override
+        public boolean isAdapterForType(Object type) {
+            return false;
+        }
+        
+    }
 
     @Override
     @Before
@@ -49,14 +92,19 @@ public class PerformanceStressTestForEventManager extends TestCase implements Ad
         rs = new ResourceSetImpl();
         Collection<OCLExpressionWithContext> expressions = BenchmarkOCLPreparer.prepareAll();
         eventManager = new EventManagerTableBased(rs);
-//        eventManager = new EventManagerNaive(rs);
+        // uncomment the following line in case you want to compare with the performance of the naive
+        // event manager:
+        // eventManager = new EventManagerNaive(rs);
         for (OCLExpressionWithContext expression : expressions) {
             OCLExpression e = expression.getExpression();
             Statistics.getInstance().begin("filtercreation", e);
             EventFilter filter = new ImpactAnalyzerImpl(e, expression.getContext()).createFilterForExpression(/* notifyNewContextElements */ false);
             Statistics.getInstance().end("filtercreation", e);
             Statistics.getInstance().begin("filtersubscription", e);
-            eventManager.subscribe(filter, this);
+            NotificationReceiverWithFilter listener = new NotificationReceiverWithFilter(filter);
+            listeners.add(listener); // hold on to the instance, otherwise it'll be collected due to weak reference usage
+            eventManager.subscribe(filter, listener);
+            subscriptions++;
             Statistics.getInstance().end("filtersubscription", e);
         }
     }
@@ -138,28 +186,9 @@ public class PerformanceStressTestForEventManager extends TestCase implements Ad
             Statistics.getInstance().end("Notify_Reference_ownedSignatures_41", ""+i);
         }
         
-
+        System.out.println("Subscription count: "+subscriptions);
         System.out.println("Notification count: "+notificationCount);
         System.out.println(Statistics.getInstance().averageTimeAsSV("\t"));
     }
 
-    @Override
-    public void notifyChanged(Notification notification) {
-        notificationCount++;
-    }
-
-    @Override
-    public Notifier getTarget() {
-        return target;
-    }
-
-    @Override
-    public void setTarget(Notifier newTarget) {
-        target = newTarget;
-    }
-
-    @Override
-    public boolean isAdapterForType(Object type) {
-        return false;
-    }
 }
