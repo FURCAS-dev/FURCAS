@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Test;
@@ -46,6 +47,7 @@ public class MqlMapperTest extends TestCase {
     protected Employee boss1;
     protected Employee boss2;
     protected Employee director;
+    protected Employee d2;
     protected Employee secretary;
     protected Student stud1;
     protected Student stud2;
@@ -63,7 +65,7 @@ public class MqlMapperTest extends TestCase {
     private static String expressionStringCollectAttribute;
     private static String expressionStringCollectNavigation;
     private static String expressionStringSelect1;
-    //    private String expressionStringSelect2;
+  
     private static String expressionStringSelect3;
     private static String expressionStringSelect4;
     private static String expressionStringSelect5;
@@ -71,13 +73,15 @@ public class MqlMapperTest extends TestCase {
     protected OCLExpression oclexpressionCompleteNav;
     protected OCLExpression oclexpressionCompleteAtt;
     protected OCLExpression oclexpressionCompleteSel1;
-    //    private OCLExpression oclexpressionCompleteSel2;
+  
     protected OCLExpression oclexpressionCompleteSel3;
     protected OCLExpression oclexpressionCompleteSel4;
     protected OCLExpression oclexpressionCompleteSel5;
     protected Object statementAtt;
     protected Object statementNav;
     protected Object statementSel;
+    private Division div2;
+    
 
 
 
@@ -90,7 +94,7 @@ public class MqlMapperTest extends TestCase {
         createInstances();
         createInstances(1, 1, 1);    
         expressionStringSelect1 = "Employee.allInstances()->select(e:Employee|e.age = 55)";
-        //        expressionStringSelect2 = "Employee->select(e1,e2:Employee|e1.age = e2.age)";
+      
         expressionStringSelect3 = "Employee.allInstances()->select(e:Employee|e.secretary.age = 55)";//navigation
 
         expressionStringSelect4 = "Employee.allInstances()->select(e:Employee|e.name = e.secretary.name)";//comparison with navigation
@@ -101,24 +105,15 @@ public class MqlMapperTest extends TestCase {
         expressionStringCollectNavigation ="Employee.allInstances()->collect(p:Employee|p.directed)";
 
         ocl =MappingOCL.newInstance();
-        Helper oclhelper=(Helper) ocl.createOCLHelper();
+        Helper oclhelper= ocl.createOCLHelper();
 
-        //        String uri = "file://c:/thea/workspace/de.hpi.sam.bp2009.company/model/company.ecore";
-        //        URI fileUri = URI.createURI(uri);
+        
         ResourceSetImpl resourceset = new ResourceSetImpl();
         Resource r = this.comp.eResource();
         resourceset.getResources().add(r);
-        //        try {
-        //        	
-        //        	r = resourceset.getResource(fileUri, true);
-        //        	
+      
 
         EcoreHelper.getInstance().addResourceToDefaultIndex(r);
-        //
-        //            r.load(null);
-        //        } catch (Exception e) {
-        //            e.printStackTrace();
-        //        }
         TreeIterator<EObject> it = r.getAllContents();  
         Map<EClass, Set<EObject>> map = new HashMap<EClass, Set<EObject>>();
 
@@ -148,9 +143,7 @@ public class MqlMapperTest extends TestCase {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        //        fixture= new MappingEvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature,
-        //        EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> 
-        //        (ocl.getEnvironment(), ocl.getEvaluationEnvironment(), ocl.getExtentMap());
+     
     }
 
 
@@ -229,9 +222,14 @@ public class MqlMapperTest extends TestCase {
         this.div = CompanyFactory.eINSTANCE.createDivision();
         this.div.setBudget(1234567);
         this.div.setName("Div1");
+        
+        this.div2 = CompanyFactory.eINSTANCE.createDivision();
+        this.div2.setBudget(12345678);
+        this.div2.setName("Div2");
 
         this.comp = company.CompanyPackage.eINSTANCE;
         this.comp.eResource().getContents().add(this.div);
+        this.comp.eResource().getContents().add(this.div2);
 
         this.director = CompanyFactory.eINSTANCE.createEmployee();
         this.director.setAge(42);
@@ -239,6 +237,13 @@ public class MqlMapperTest extends TestCase {
         this.director.setDirected(this.div);
         this.director.setSalary(1234);
         this.div.setDirector(this.director);
+        
+        this.d2 = CompanyFactory.eINSTANCE.createEmployee();
+        this.d2.setAge(100);
+        this.d2.setName("Director2");
+        this.d2.setDirected(this.div2);
+        this.d2.setSalary(1000);
+        this.div2.setDirector(this.d2);
 
         this.secretary = CompanyFactory.eINSTANCE.createEmployee();
         this.secretary.setAge(55);
@@ -319,6 +324,8 @@ public class MqlMapperTest extends TestCase {
 
         this.div.getDepartment().add(this.dep1);
         this.div.getDepartment().add(this.dep2);
+        this.div2.getDepartment().add(this.dep1);
+        this.div2.getDepartment().add(this.dep2);
 
     }
     @Override
@@ -333,25 +340,16 @@ public class MqlMapperTest extends TestCase {
         this.boss1=null;
         this.boss2=null;
         this.director=null;
+        this.d2=null;
         this.secretary=null;
         this.stud1=null;
         this.stud2=null;
+        this.comp.eResource().getContents().remove(2);
         this.comp.eResource().getContents().remove(1);
-        
-//        Iterator<EObject> test = this.comp.eResource().getAllContents();
-//        while(test.hasNext()){
-//           if(test.next()instanceof Division){
-//               EObject divi = test.next();
-//               TreeIterator<EObject> it = divi.eAllContents();
-//               while(it.hasNext()){
-//                   EObject element = test.next();
-//                   this.comp.eResource().getContents().remove(element);
-//               }
-//               this.comp.eResource().getContents().remove(divi);
-//              
-//           }
-//        }
+     
+     
         this.div=null;
+        this.div2=null;
         this.aDivision= null;
         this.aDepartment=null;
         this.allDepartments = new HashSet<DepartmentImpl>();
@@ -382,21 +380,27 @@ public class MqlMapperTest extends TestCase {
         this.statementSel=null;
 
     }
-        @Test
-        public void testVisitExpressionCompleteAtt() {
-            String att= "{55=1, 42=3, 43=2}";
-            statementAtt = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteAtt);
+  
+    @Test
+    public void testVisitExpressionCompleteAtt() {
+        String att= "{100=1, 55=1, 42=3, 43=2}";
+        statementAtt = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteAtt);
+
+        assertEquals(att, statementAtt.toString());
+    }
     
-            assertEquals(att, statementAtt.toString());
-        }
     @Test
     public void testVisitExpressionCompleteNav() {
-        //        String regex="\\{null=10, company\\.impl\\.DivisionImpl@([0-9A-Za-z]+) \\(name: Div1, budget: 1234567\\)=1, company\\.impl\\.DivisionImpl@([0-9A-Za-z]+) \\(name: Div1, budget: 1234567\\)=1\\}";
-        String regex = "null=5";
+        String regex="company\\.impl\\.DivisionImpl@([0-9A-Za-z]+) \\(name: Div1, budget: 1234567\\)=1";
+        String regex2="company\\.impl\\.DivisionImpl@([0-9A-Za-z]+) \\(name: Div2, budget: 12345678\\)=1";
         Pattern pattern=Pattern.compile(regex);
+        Pattern pattern2=Pattern.compile(regex2);
         statementNav = ocl.evaluate(CompanyPackage.eINSTANCE.getEmployee(), oclexpressionCompleteNav);
         Matcher match=pattern.matcher(statementNav.toString());
-        boolean matches= match.find();
+        Matcher match2=pattern2.matcher(statementNav.toString());
+        boolean matches1= match.find();
+        boolean matches2=match2.find();
+        boolean matches= matches1 && matches2;
         assertTrue(matches);
     }
     @Test
@@ -442,6 +446,6 @@ public class MqlMapperTest extends TestCase {
         boolean matches= match.find();
         assertTrue(matches);
     }
-
+   
 }
 
