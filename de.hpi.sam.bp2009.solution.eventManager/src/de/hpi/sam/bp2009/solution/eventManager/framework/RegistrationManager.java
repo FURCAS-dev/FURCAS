@@ -305,23 +305,24 @@ public abstract class RegistrationManager {
         }
         // loop over all table combinations (as bit set counter); for each combination 
         // end with 1 because registrations in no table can't occur
+        HashSet<Registration> startSetToReuseToAvoidHashSetCreation = new HashSet<Registration>();
         for (int bitSetForTableCombination=(1<<allTables.size())-1; bitSetForTableCombination>0; bitSetForTableCombination--) {
             addIntersectionOverTablesInBitset_Of_YesSetUnitedWithAllNoSetMinusNoSet(bitSetForTableCombination,
-                    yesSetsForTables, noSetsForTables, result);
+                    yesSetsForTables, noSetsForTables, result, startSetToReuseToAvoidHashSetCreation);
         }
         Statistics.getInstance().end("getRegistrationsFor", event);
         return result;  
     }
 
     private void addIntersectionOverTablesInBitset_Of_YesSetUnitedWithAllNoSetMinusNoSet(int bitSetForTableCombination,
-            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables, Set<Registration> result) {
+            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables, Set<Registration> result, HashSet<Registration> startSetToReuseToAvoidHashSetCreation) {
         // first, determine maximum size of (yesSet "union" allNo \ no) for each table in the bit set;
         // if the maximum size of one of them is 0, we're done; otherwise, start with the table promising the
         // smallest size
         int tableWithMinSize = getTableWithMinSizeForIntersection(bitSetForTableCombination, yesSetsForTables);
         // construct the set to start with:
         Collection<Registration> resultForTablesInBitSet = getStartCollectionFromMinSizeTable(bitSetForTableCombination,
-                yesSetsForTables, noSetsForTables, tableWithMinSize);
+                yesSetsForTables, noSetsForTables, tableWithMinSize, startSetToReuseToAvoidHashSetCreation);
         
         if (!resultForTablesInBitSet.isEmpty()) {
             // now retain only those that are also in the (yesSet "union" allNo \ no) for all other tables in the bit set
@@ -344,8 +345,8 @@ public abstract class RegistrationManager {
 
     // TODO only pass elements of lists neeeded here; save tableWithMinSize argument
     private Collection<Registration> getStartCollectionFromMinSizeTable(int bitSetForTableCombination,
-            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables, int tableWithMinSize) {
-        Collection<Registration> resultForTablesInBitSet = new HashSet<Registration>();
+            List<Set<Registration>[]> yesSetsForTables, List<Set<Registration>[]> noSetsForTables, int tableWithMinSize, HashSet<Registration> resultForTablesInBitSet) {
+        resultForTablesInBitSet.clear();
         Set<Registration> yesSetForMinSizeTable = yesSetsForTables.get(tableWithMinSize)[bitSetForTableCombination];
         if (yesSetForMinSizeTable != null) {
             resultForTablesInBitSet.addAll(yesSetForMinSizeTable);
