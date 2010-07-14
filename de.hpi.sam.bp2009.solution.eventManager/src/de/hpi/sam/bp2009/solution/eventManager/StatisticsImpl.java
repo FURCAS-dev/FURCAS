@@ -28,15 +28,21 @@ public class StatisticsImpl extends Statistics {
         if (startTime == null) {
             throw new RuntimeException("ending a measurement that hasn't been started: "+groupIdAndKey);
         }
+        long value = endTime-startTime;
+        record(groupId, key, value);
+        running.remove(groupIdAndKey);
+    }
+
+    @Override
+    public void record(String groupId, Object key, long value) {
         List<Record> recordsForGroupId = records.get(groupId);
         if (recordsForGroupId == null) {
             recordsForGroupId = new LinkedList<Record>();
             records.put(groupId, recordsForGroupId);
         }
-        recordsForGroupId.add(new Record(key, endTime-startTime));
-        running.remove(groupIdAndKey);
+        recordsForGroupId.add(new Record(key, value));
     }
-
+    
     @Override
     public List<Record> getRecords(String groupId) {
         return records.get(groupId);

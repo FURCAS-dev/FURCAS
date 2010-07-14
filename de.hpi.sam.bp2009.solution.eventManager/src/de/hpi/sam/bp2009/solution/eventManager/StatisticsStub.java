@@ -11,6 +11,8 @@ public class StatisticsStub extends Statistics {
     @Override
     public void end(String groupId, Object key) {}
     @Override
+    public void record(String groupId, Object key, long value) {}
+    @Override
     public void clear() {}
     @Override
     public List<Record> getRecords(String groupId) {

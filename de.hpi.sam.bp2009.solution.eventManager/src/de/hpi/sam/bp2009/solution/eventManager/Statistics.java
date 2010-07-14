@@ -18,20 +18,20 @@ public abstract class Statistics {
     
     public static class Record {
         private Object key;
-        private long timeInNanoSeconds;
+        private long value;
 
         public Record(Object key, long timeInNanoSeconds) {
             super();
             this.key = key;
-            this.timeInNanoSeconds = timeInNanoSeconds;
+            this.value = timeInNanoSeconds;
         }
 
         public Object getKey() {
             return key;
         }
 
-        public long getTimeInNanoSeconds() {
-            return timeInNanoSeconds;
+        public long getValue() {
+            return value;
         }
 
     }
@@ -49,35 +49,51 @@ public abstract class Statistics {
 	return instance;
     }
 
+    /**
+     * Starts measuring a time span until {@link #end(String, Object)} is called with equal <code>groupId</code>
+     * and <code>key</code>. Averages can be computed later for different keys with equal <code>groupId</code>.
+     */
     public abstract void begin(String groupId, Object key);
     public abstract void end(String groupId, Object key);
+    
+    /**
+     * Records a single value (could be a time measured other than with {@link #begin(String, Object)} and
+     * {@link #end(String, Object)}, but could also be any other quantity over which later aggregation may
+     * be performed.
+     */
+    public abstract void record(String groupId, Object key, long value);
+    
     public abstract List<Record> getRecords(String groupId);
     public abstract Set<String> getGroupIds();
     public abstract void clear();
     
-    public double getAverageTime(String groupId) {
+    public double getAverage(String groupId) {
         int count = 0;
         long sum = 0;
-        for (Record r : getRecords(groupId)) {
-            sum += r.getTimeInNanoSeconds();
-            count++;
+        if (getRecords(groupId) != null) {
+            for (Record r : getRecords(groupId)) {
+                sum += r.getValue();
+                count++;
+            }
+            return ((double) sum) / (double) count;
+        } else {
+            return 0;
         }
-        return ((double) sum) / (double) count;
     }
     
-    public String averageTimeAsSV(String columnSeparator) {
+    public String averageAsSV(String columnSeparator) {
         StringBuilder result = new StringBuilder();
         for (String groupId : getGroupIds()) {
             result.append(groupId);
             result.append(columnSeparator);
-            result.append(getAverageTime(groupId));
+            result.append(getAverage(groupId));
             result.append('\n');
         }
         return result.toString();
     }
     
-    public String averageTimeAsCVS() {
-        return averageTimeAsSV(", ");
+    public String averageAsCVS() {
+        return averageAsSV(", ");
     }
     
     /**
@@ -94,7 +110,7 @@ public abstract class Statistics {
             for (Record r : getRecords(groupId)) {
                 sb.append(r.getKey());
                 sb.append(columnSeparator);
-                sb.append(r.getTimeInNanoSeconds());
+                sb.append(r.getValue());
                 sb.append('\n');
             }
             result.put(groupId, sb.toString());

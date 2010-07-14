@@ -56,6 +56,10 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.PackageFilter;
  * @author Daniel Vocke (D044825), Axel Uhl (D043530)
  */
 public class RegistrationManagerTableBased {
+    /**
+     * group ID for {@link Statistics} capturing the minimum table sizes during event handling
+     */
+    public static final String GROUP_ID_MINIMUM_TABLE_SIZE = "minimumTableSize*1000000";
 
     // needed to compute the affected registrations for an event
     protected HashMap<Integer, Set<TableForEventFilter>> tablesByEventType = new HashMap<Integer, Set<TableForEventFilter>>();
@@ -204,7 +208,7 @@ public class RegistrationManagerTableBased {
             }
             // TODO re-use Registrations for equal set of elementary filters, just add another listener; this will reduce #Registrations in tables
             // create registration:
-            Registration reg = new Registration(listener, listenerType, getBitSet(filterTablesToRegisterWith.values()));
+            Registration reg = new Registration(listener, listenerType, getBitSet(filterTablesToRegisterWith.values()), (AndFilter) andFilter);
             reg.setContainer(result);
             result.getRegistrations().add(reg);
             addRegistrationForListener(reg, listener);
@@ -222,7 +226,6 @@ public class RegistrationManagerTableBased {
             allRegistrations.addAll(result.getRegistrations());
             return result;
         }
-
     }
 
     private void addRegistrationForListener(Registration registration, WeakReference<? extends Adapter> listener) {
@@ -257,10 +260,9 @@ public class RegistrationManagerTableBased {
         if (registration instanceof RegistrationSet) {
             for (Registration reg : ((RegistrationSet) registration).getRegistrations())
                 deregister(reg);
-        } else
+        } else {
             deregister((Registration) registration);
-
-        // AbstractRegistration is the only implementing class of RegistrationHandle
+        }
         // TODO uncomment if the deregister(RegistrationHandle) method is reintroduced on the EventRegistry-interface
         /*
          * MoinChangeListener listener = ((AbstractRegistration) registration).getListener().get(); if
@@ -442,6 +444,7 @@ public class RegistrationManagerTableBased {
             }
             tableBit >>= 1;
         }
+        Statistics.getInstance().record(GROUP_ID_MINIMUM_TABLE_SIZE, bitSetForTableCombination, 1000000*minSize);
         return tableWithMinSize;
     }
 
@@ -1045,12 +1048,16 @@ public class RegistrationManagerTableBased {
         StringBuilder result = new StringBuilder();
         result.append("RegistrationManager: (\n");
         boolean first = true;
+        int i=0;
         for (TableForEventFilter table : allTables) {
             if (!first) {
                 result.append(",\n");
             } else {
                 first = false;
             }
+            result.append("(");
+            result.append(i++);
+            result.append(") ");
             result.append(table);
         }
         result.append(')');
