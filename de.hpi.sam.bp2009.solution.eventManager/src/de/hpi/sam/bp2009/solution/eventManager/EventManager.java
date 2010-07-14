@@ -25,6 +25,8 @@ public interface EventManager {
      * Register an {@link Adapter} on the {@link EventManager} which will be notified for any {@link Notification} which matches the given filter
      * @param filter the {@link EventFilter} which is used to filter events for the given {@link Adapter}
      * @param caller the adapter which should receive event which matches the filter
+     * 
+     * TODO specify what happens if the same caller calls this operation multiple times using equal filters; will multiple calls to {@link Adapter#notifyChanged(Notification)} occur?
      */
     void subscribe(EventFilter filter, Adapter caller);   
     
