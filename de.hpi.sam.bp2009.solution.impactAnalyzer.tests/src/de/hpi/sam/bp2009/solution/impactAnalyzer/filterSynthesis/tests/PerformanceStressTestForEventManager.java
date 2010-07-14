@@ -1,7 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import junit.framework.TestCase;
@@ -46,7 +46,151 @@ public class PerformanceStressTestForEventManager extends TestCase {
     private int notificationCount;
     private int subscriptions;
     private Set<NotificationReceiverWithFilter> listeners = new HashSet<NotificationReceiverWithFilter>();
+    private List<OCLExpressionWithContext> expressions;
+    private int numberOfAlreadyRegisteredExpressions;
     
+    @Override
+    @Before
+    public void setUp() {
+        rs = new ResourceSetImpl();
+        expressions = BenchmarkOCLPreparer.prepareAll();
+        eventManager = new EventManagerTableBased(rs);
+        // uncomment the following line in case you want to compare with the performance of the naive
+        // event manager:
+        // eventManager = new EventManagerNaive(rs);
+    }
+
+    private void registerFiltersForAllExpressions(int howManyMore) {
+        for (int i=0; i<howManyMore && numberOfAlreadyRegisteredExpressions < expressions.size(); i++) {
+            registerFilterForExpressionWithEventManager(expressions.get(numberOfAlreadyRegisteredExpressions++));
+        }
+    }
+
+    private void registerFilterForExpressionWithEventManager(OCLExpressionWithContext expression) {
+        OCLExpression e = expression.getExpression();
+        Statistics.getInstance().begin("filtercreation", e);
+        EventFilter filter = new ImpactAnalyzerImpl(e, expression.getContext()).createFilterForExpression(/* notifyNewContextElements */ false);
+        Statistics.getInstance().end("filtercreation", e);
+        Statistics.getInstance().begin("filtersubscription", e);
+        NotificationReceiverWithFilter listener = new NotificationReceiverWithFilter(filter);
+        listeners.add(listener); // hold on to the instance, otherwise it'll be collected due to weak reference usage
+        eventManager.subscribe(filter, listener);
+        subscriptions++;
+        Statistics.getInstance().end("filtersubscription", e);
+    }
+
+    @Test
+    public void testSingleAttributeValueChange() {
+        registerFiltersForAllExpressions(expressions.size()); // register all
+        // first some attributes:
+        handle_Attribute_Name_290();
+        handle_Attribute_UpperMultiplicity_487();
+        handle_Attribute_Snapshot_1();
+        // now some references:
+        handle_Reference_Clazz_264();
+        handle_Reference_Facts_1();
+        handle_Reference_InitExpression_478();
+        handle_Reference_OwnedSignatures_41();
+        
+        System.out.println("Subscription count: "+subscriptions);
+        System.out.println("Notification count: "+notificationCount);
+        System.out.println(Statistics.getInstance().averageTimeAsSV("\t"));
+    }
+
+    private void handle_Attribute_Name_290() {
+        // name has 290 entries in TableForAttributeFilter
+        InternalEObject notifier = (InternalEObject) ClassesFactory.eINSTANCE.createSapClass();
+        for (int i = 0; i < 1000; i++) {
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
+                    ModelmanagementPackage.eINSTANCE.getNamedElement_Name(), "humba", "trala");
+            Statistics.getInstance().begin("Notify_Attribute_Name_290", ""+i);
+            eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Attribute_Name_290", ""+i);
+        }
+    }
+
+    private void handle_Attribute_UpperMultiplicity_487() {
+        InternalEObject notifier;
+        // upperMultiplicity has 487 entries in TableForAttributeFilter
+        notifier = (InternalEObject) ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        for (int i = 0; i < 1000; i++) {
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
+                    ClassesPackage.eINSTANCE.getMultiplicity_UpperMultiplicity(), 1, -1);
+            Statistics.getInstance().begin("Notify_Attribute_UpperMultiplicity_487", ""+i);
+            eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Attribute_UpperMultiplicity_487", ""+i);
+        }
+    }
+
+    private void handle_Attribute_Snapshot_1() {
+        InternalEObject notifier;
+        // snapshot has 1 entry in TableForAttributeFilter
+        notifier = (InternalEObject) ExpressionsFactory.eINSTANCE.createAll();
+        for (int i = 0; i < 1000; i++) {
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
+                    ExpressionsPackage.eINSTANCE.getAll_Snapshot(), 1, -1);
+            Statistics.getInstance().begin("Notify_Attribute_Snapshot_1", ""+i);
+            eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Attribute_Snapshot_1", ""+i);
+        }
+    }
+
+    private void handle_Reference_Clazz_264() {
+        InternalEObject notifier;
+        // clazz has 264 entries in TableForAssociationFilter
+        notifier = (InternalEObject) ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        SapClass c = ClassesFactory.eINSTANCE.createSapClass();
+        for (int i = 0; i < 1000; i++) {
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
+                    ClassesPackage.eINSTANCE.getClassTypeDefinition_Clazz(), null, c);
+            Statistics.getInstance().begin("Notify_Reference_Clazz_264", ""+i);
+            eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Reference_Clazz_264", ""+i);
+        }
+    }
+
+    private void handle_Reference_Facts_1() {
+        InternalEObject notifier;
+        // facts has 1 entry in TableForAssociationFilter
+        notifier = (InternalEObject) AnalyticsFactory.eINSTANCE.createDimensionExpression();
+        StringLiteral s = LiteralsFactory.eINSTANCE.createStringLiteral();
+        for (int i = 0; i < 1000; i++) {
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
+                    AnalyticsPackage.eINSTANCE.getDimensionExpression_Facts(), null, s);
+            Statistics.getInstance().begin("Notify_Reference_Facts_1", ""+i);
+            eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Reference_Facts_1", ""+i);
+        }
+    }
+
+    private void handle_Reference_InitExpression_478() {
+        StringLiteral s = LiteralsFactory.eINSTANCE.createStringLiteral();
+        InternalEObject notifier;
+        // initExpression has 478 entries in TableForAssociationFilter
+        notifier = (InternalEObject) ActionsFactory.eINSTANCE.createNamedValueDeclaration();
+        for (int i = 0; i < 1000; i++) {
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
+                    ActionsPackage.eINSTANCE.getNamedValueWithOptionalInitExpression_InitExpression(), null, s);
+            Statistics.getInstance().begin("Notify_Reference_InitExpression_478", ""+i);
+            eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Reference_InitExpression_478", ""+i);
+        }
+    }
+
+    private void handle_Reference_OwnedSignatures_41() {
+        InternalEObject notifier;
+        // ownerSignatures has 41 entries in TableForAssociationFilter and is composite
+        notifier = (InternalEObject) ClassesFactory.eINSTANCE.createSapClass();
+        MethodSignature m = ClassesFactory.eINSTANCE.createMethodSignature();
+        for (int i = 0; i < 1000; i++) {
+            Notification n = new ENotificationImpl(notifier, Notification.SET,
+                    ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures(), null, m);
+            Statistics.getInstance().begin("Notify_Reference_ownedSignatures_41", ""+i);
+            eventManager.handleEMFEvent(n);
+            Statistics.getInstance().end("Notify_Reference_ownedSignatures_41", ""+i);
+        }
+    }
+
     private class NotificationReceiverWithFilter implements Adapter {
         private final Set<Notification> received = new HashSet<Notification>();
         private final EventFilter filter;
@@ -84,111 +228,6 @@ public class PerformanceStressTestForEventManager extends TestCase {
             return false;
         }
         
-    }
-
-    @Override
-    @Before
-    public void setUp() {
-        rs = new ResourceSetImpl();
-        Collection<OCLExpressionWithContext> expressions = BenchmarkOCLPreparer.prepareAll();
-        eventManager = new EventManagerTableBased(rs);
-        // uncomment the following line in case you want to compare with the performance of the naive
-        // event manager:
-        // eventManager = new EventManagerNaive(rs);
-        for (OCLExpressionWithContext expression : expressions) {
-            OCLExpression e = expression.getExpression();
-            Statistics.getInstance().begin("filtercreation", e);
-            EventFilter filter = new ImpactAnalyzerImpl(e, expression.getContext()).createFilterForExpression(/* notifyNewContextElements */ false);
-            Statistics.getInstance().end("filtercreation", e);
-            Statistics.getInstance().begin("filtersubscription", e);
-            NotificationReceiverWithFilter listener = new NotificationReceiverWithFilter(filter);
-            listeners.add(listener); // hold on to the instance, otherwise it'll be collected due to weak reference usage
-            eventManager.subscribe(filter, listener);
-            subscriptions++;
-            Statistics.getInstance().end("filtersubscription", e);
-        }
-    }
-
-    @Test
-    public void testSingleAttributeValueChange() {
-        // first some attributes:
-        
-        // name has 290 entries in TableForAttributeFilter
-        InternalEObject notifier = (InternalEObject) ClassesFactory.eINSTANCE.createSapClass();
-        for (int i = 0; i < 1000; i++) {
-            Notification n = new ENotificationImpl(notifier, Notification.SET,
-                    ModelmanagementPackage.eINSTANCE.getNamedElement_Name(), "humba", "trala");
-            Statistics.getInstance().begin("Notify_Attribute_Name_290", ""+i);
-            eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Attribute_Name_290", ""+i);
-        }
-        // upperMultiplicity has 487 entries in TableForAttributeFilter
-        notifier = (InternalEObject) ClassesFactory.eINSTANCE.createClassTypeDefinition();
-        for (int i = 0; i < 1000; i++) {
-            Notification n = new ENotificationImpl(notifier, Notification.SET,
-                    ClassesPackage.eINSTANCE.getMultiplicity_UpperMultiplicity(), 1, -1);
-            Statistics.getInstance().begin("Notify_Attribute_UpperMultiplicity_487", ""+i);
-            eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Attribute_UpperMultiplicity_487", ""+i);
-        }
-        // snapshot has 1 entry in TableForAttributeFilter
-        notifier = (InternalEObject) ExpressionsFactory.eINSTANCE.createAll();
-        for (int i = 0; i < 1000; i++) {
-            Notification n = new ENotificationImpl(notifier, Notification.SET,
-                    ExpressionsPackage.eINSTANCE.getAll_Snapshot(), 1, -1);
-            Statistics.getInstance().begin("Notify_Attribute_Snapshot_1", ""+i);
-            eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Attribute_Snapshot_1", ""+i);
-        }
-        
-        // now some references:
-        
-        // clazz has 264 entries in TableForAssociationFilter
-        notifier = (InternalEObject) ClassesFactory.eINSTANCE.createClassTypeDefinition();
-        SapClass c = ClassesFactory.eINSTANCE.createSapClass();
-        for (int i = 0; i < 1000; i++) {
-            Notification n = new ENotificationImpl(notifier, Notification.SET,
-                    ClassesPackage.eINSTANCE.getClassTypeDefinition_Clazz(), null, c);
-            Statistics.getInstance().begin("Notify_Reference_Clazz_264", ""+i);
-            eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Reference_Clazz_264", ""+i);
-        }
-        
-        // facts has 1 entry in TableForAssociationFilter
-        notifier = (InternalEObject) AnalyticsFactory.eINSTANCE.createDimensionExpression();
-        StringLiteral s = LiteralsFactory.eINSTANCE.createStringLiteral();
-        for (int i = 0; i < 1000; i++) {
-            Notification n = new ENotificationImpl(notifier, Notification.SET,
-                    AnalyticsPackage.eINSTANCE.getDimensionExpression_Facts(), null, s);
-            Statistics.getInstance().begin("Notify_Reference_Facts_1", ""+i);
-            eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Reference_Facts_1", ""+i);
-        }
-        
-        // initExpression has 478 entries in TableForAssociationFilter
-        notifier = (InternalEObject) ActionsFactory.eINSTANCE.createNamedValueDeclaration();
-        for (int i = 0; i < 1000; i++) {
-            Notification n = new ENotificationImpl(notifier, Notification.SET,
-                    ActionsPackage.eINSTANCE.getNamedValueWithOptionalInitExpression_InitExpression(), null, s);
-            Statistics.getInstance().begin("Notify_Reference_InitExpression_478", ""+i);
-            eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Reference_InitExpression_478", ""+i);
-        }
-        
-        // ownerSignatures has 41 entries in TableForAssociationFilter and is composite
-        notifier = (InternalEObject) ClassesFactory.eINSTANCE.createSapClass();
-        MethodSignature m = ClassesFactory.eINSTANCE.createMethodSignature();
-        for (int i = 0; i < 1000; i++) {
-            Notification n = new ENotificationImpl(notifier, Notification.SET,
-                    ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures(), null, m);
-            Statistics.getInstance().begin("Notify_Reference_ownedSignatures_41", ""+i);
-            eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Reference_ownedSignatures_41", ""+i);
-        }
-        
-        System.out.println("Subscription count: "+subscriptions);
-        System.out.println("Notification count: "+notificationCount);
-        System.out.println(Statistics.getInstance().averageTimeAsSV("\t"));
     }
 
 }

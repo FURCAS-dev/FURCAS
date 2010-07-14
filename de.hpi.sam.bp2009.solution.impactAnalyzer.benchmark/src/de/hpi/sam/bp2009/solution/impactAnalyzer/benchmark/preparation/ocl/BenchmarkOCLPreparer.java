@@ -1,10 +1,10 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 public class BenchmarkOCLPreparer {
-    public static Collection<OCLExpressionWithContext> prepareAll() {
+    public static List<OCLExpressionWithContext> prepareAll() {
 	ArrayList<OCLExpressionWithContext> result = new ArrayList<OCLExpressionWithContext>();
 
 	result.addAll(new OCLExpressionFromClassTcsPicker().pickUpExpressions());

@@ -11,6 +11,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ContainmentFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NotFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilter;
@@ -40,8 +41,8 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return eventTypeFilter;
     }
 
-    public AndFilter createAndFilter() {
-        AndFilter andFilter = new AndFilter();
+    public LogicalOperationFilter createAndFilter() {
+        LogicalOperationFilter andFilter = new AndFilter();
         return andFilter;
     }
 
