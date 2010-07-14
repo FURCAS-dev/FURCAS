@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
@@ -53,7 +54,29 @@ public class BenchmarkTaskPreparer {
 
     	System.out.println("\t Prepare Benchmark Tasks:");
     	for (OCLExpressionWithContext expression : expressionList) {
-    		 result.add(new MultipleNotificationInstanceScopeAnalysisTask(expression.getExpression(), expression.getContext(), notificationList));
+    		 //result.add(new MultipleNotificationInstanceScopeAnalysisTask(expression.getExpression(), expression.getContext(), notificationList));
+    	}
+    	System.out.println("\t\t " + result.size() + " successfully prepared");
+
+    	return result;
+    }
+
+    public static ArrayList<BenchmarkTask> prepareModelSizeVariationBenchmarkTasks(){
+    	ArrayList<BenchmarkTask> result = new ArrayList<BenchmarkTask>();
+
+    	System.out.println("Start Preparation");
+    	System.out.println("\t Prepare OCL Expressions");
+    	Collection<OCLExpressionWithContext> expressionList = BenchmarkOCLPreparer.prepareAll();
+    	System.out.println("\t\t " + expressionList.size() + " successfully prepared");
+
+    	System.out.println("\t Prepare Notifications");
+    	Collection<NotificationForModelList> notificationForModelList = BenchmarkNotificationPreparer.prepareModelSizeVariationNotification();
+    	System.out.println("\t\t " + notificationForModelList.size() + " successfully prepared");
+
+    	System.out.println("\t Prepare Benchmark Tasks:");
+
+    	for (OCLExpressionWithContext expression : expressionList) {
+    	    result.add(new MultipleNotificationInstanceScopeAnalysisTask(expression.getExpression(), expression.getContext(), notificationForModelList));
     	}
     	System.out.println("\t\t " + result.size() + " successfully prepared");
 

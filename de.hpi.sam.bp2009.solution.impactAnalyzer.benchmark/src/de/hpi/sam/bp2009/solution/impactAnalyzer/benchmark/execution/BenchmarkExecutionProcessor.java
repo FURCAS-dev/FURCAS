@@ -36,6 +36,16 @@ public class BenchmarkExecutionProcessor {
 	return BenchmarkExecutionProcessor.processAll(executorList);
     }
 
+    public static BenchmarkResultContainer processModelSizeVariationBenchmarks(Collection<BenchmarkTask> taskList){
+	ArrayList<BenchmarkExecutor> executorList = new ArrayList<BenchmarkExecutor>();
+
+	for (BenchmarkTask task : taskList) {
+	    executorList.add(new ModelSizeVariationBenchmarkExecutor(task));
+	}
+
+	return BenchmarkExecutionProcessor.processAll(executorList);
+    }
+
     public static BenchmarkResultContainer processAll(Collection<BenchmarkExecutor> executorList) {
 	System.out.println("Start Processing");
 	BenchmarkResultContainer result = new BenchmarkResultContainer();
