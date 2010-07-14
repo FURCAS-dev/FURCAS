@@ -28,6 +28,15 @@ public class IncrementalResourceShrinker {
     private Map<Package, Collection<EObject>> aggregatedElements;
     private Map<Package, List<Package>> dependencies;
 
+    private ArrayList getListWithoutDuplicates(List arlList)
+    {
+	ArrayList result = new ArrayList(arlList.size());
+	java.util.HashSet h = new java.util.HashSet(arlList);
+	result.addAll(h);
+	return result;
+
+    }
+
     private void aggregateElementsInPackages(Resource resourceToShrink) {
 	dependencies = new HashMap<Package, List<Package>>();
 	modelElementList = ResourceTraversalHelper.getModelElementsInResource(resourceToShrink);
@@ -35,18 +44,16 @@ public class IncrementalResourceShrinker {
     }
 
     private Package deleteNextPackage() {
-	int smallestAmountOfReferences = Integer.MAX_VALUE;
-	for (Package pack : dependencies.keySet()) {
-	    if (dependencies.get(pack).size() < smallestAmountOfReferences) {
-		smallestAmountOfReferences = dependencies.get(pack).size();
-	    }
-	}
+	ArrayList<Package> packagesToDeleteList = calculatePossiblePackagesToDelete();
 	Package packageToDelete = null;
-	for (Package pack : dependencies.keySet()) {
-	    if (dependencies.get(pack).size() == smallestAmountOfReferences) {
-		packageToDelete = pack;
-	    }
+	if(packagesToDeleteList.size() == 1){
+	    System.out.println("match");
+	    packageToDelete = packagesToDeleteList.get(0);
+	}else if(packagesToDeleteList.size() > 1){
+	    System.out.println("choose");
+	    packageToDelete = chooseBestPackageToDelete(packagesToDeleteList);
 	}
+
 
 	Package deletedPackage = null;
 	boolean packageWasDeleted = false;
@@ -79,6 +86,36 @@ public class IncrementalResourceShrinker {
 	return deletedPackage;
     }
 
+    private Package chooseBestPackageToDelete(ArrayList<Package> packagesToDeleteList) {
+
+	Package packageToDelete = packagesToDeleteList.get(0);
+	for(Package deletionCandidate : packagesToDeleteList){
+	    if(dependencies.get(deletionCandidate).size() < dependencies.get(packageToDelete).size()){
+		packageToDelete = deletionCandidate;
+	    }
+	}
+
+	System.out.println(dependencies.get(packageToDelete).size());
+
+	return packageToDelete;
+    }
+
+    private ArrayList<Package> calculatePossiblePackagesToDelete() {
+	int smallestAmountOfReferences = Integer.MAX_VALUE;
+	for (Package pack : dependencies.keySet()) {
+	    if (getListWithoutDuplicates(dependencies.get(pack)).size() < smallestAmountOfReferences) {
+		smallestAmountOfReferences = getListWithoutDuplicates(dependencies.get(pack)).size();
+	    }
+	}
+	ArrayList<Package> packagesToDeleteList = new ArrayList<Package>();
+	for (Package pack : dependencies.keySet()) {
+	    if (getListWithoutDuplicates(dependencies.get(pack)).size() == smallestAmountOfReferences) {
+		packagesToDeleteList.add(pack);
+	    }
+	}
+	return packagesToDeleteList;
+    }
+
     private void buildDependencyGraph() {
 	System.out.println("\t\t\tBuild Dependency Graph");
 
@@ -100,7 +137,7 @@ public class IncrementalResourceShrinker {
 			    contents = new ArrayList<Package>();
 			}
 
-			if (!contents.contains(key) && (referencedPackage == null || !referencedPackage.equals(key))) {
+			if ((referencedPackage == null || !referencedPackage.equals(key))) {
 			    contents.add(key);
 			}
 
