@@ -34,12 +34,14 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
+import de.hpi.sam.bp2009.solution.eventManager.framework.RegistrationManagerTableBased;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 
 public class PerformanceStressTestForEventManager extends TestCase {
+    private final int howManyMeasurements = 10;
     private EventManager eventManager;
     private ResourceSet rs;
     private int notificationCount;
@@ -61,6 +63,55 @@ public class PerformanceStressTestForEventManager extends TestCase {
         // eventManager = new EventManagerNaive(rs);
     }
 
+    @Test
+    public void testSingleAttributeValueChange() {
+        registerFiltersForAllExpressions(expressions.size()); // register all
+        handleAllTestEvents();
+        printStats();
+    }
+
+    @Test
+    public void testWithGrowingFilterSet() {
+        for (int i=0; i<howManyMeasurements; i++) {
+            registerFiltersForAllExpressions(expressions.size()/howManyMeasurements+1);
+            handleAllTestEvents();
+            printStats();
+            Statistics.getInstance().clear();
+        }
+    }
+    
+    @Test
+    public void testIndividualNotificationsWithGrowingFilterSet() {
+        for (Runnable handleRoutine : new Runnable[] {
+           new Runnable() { public void run() { handle_Attribute_Snapshot_1(); printStats("Notify_Attribute_Snapshot_1"); } },
+           new Runnable() { public void run() { handle_Attribute_Name_290(); printStats("Notify_Attribute_Name_290"); } },
+           new Runnable() { public void run() { handle_Attribute_UpperMultiplicity_487(); printStats("Notify_Attribute_UpperMultiplicity_487"); } },
+           new Runnable() { public void run() { handle_Reference_Facts_1(); printStats("Notify_Reference_Facts_1"); } },
+           new Runnable() { public void run() { handle_Reference_OwnedSignatures_41(); printStats("Notify_Reference_OwnedSignatures_41"); } },
+           new Runnable() { public void run() { handle_Reference_Clazz_264(); printStats("Notify_Reference_Clazz_264"); } },
+           new Runnable() { public void run() { handle_Reference_InitExpression_478(); printStats("Notify_Reference_InitExpression_478"); } }
+        }) {
+            eventManager = new EventManagerTableBased(rs);
+            listeners.clear();
+            notificationCount = 0;
+            numberOfAlreadyRegisteredExpressions = 0;
+            subscriptions = 0;
+            for (int i = 0; i <= howManyMeasurements; i++) {
+                // start first run with empty event manager
+                handleRoutine.run();
+                Statistics.getInstance().clear();
+                registerFiltersForAllExpressions(expressions.size() / howManyMeasurements + 1);
+            }
+        }
+    }
+
+    private void printStats(String groupId) {
+        System.out.println(groupId + "\t" + subscriptions + "\t" + notificationCount + "\t" +
+                Statistics.getInstance().getAverage(RegistrationManagerTableBased.GROUP_ID_MINIMUM_TABLE_SIZE) + "\t" +
+                Statistics.getInstance().getAverage(groupId));
+        
+    } 
+    
     private void registerFiltersForAllExpressions(int howManyMore) {
         for (int i=0; i<howManyMore && numberOfAlreadyRegisteredExpressions < expressions.size(); i++) {
             registerFilterForExpressionWithEventManager(expressions.get(numberOfAlreadyRegisteredExpressions++));
@@ -80,42 +131,13 @@ public class PerformanceStressTestForEventManager extends TestCase {
         Statistics.getInstance().end("filtersubscription", e);
     }
 
-    @Test
-    public void testSingleAttributeValueChange() {
-        registerFiltersForAllExpressions(expressions.size()); // register all
-        handleAllTestEvents();
-        printStats();
-    }
-
     private void printStats() {
         System.out.println("Subscription count\t"+subscriptions);
         System.out.println("Notification count\t"+notificationCount);
         Statistics s = Statistics.getInstance();
-        System.out.println(s.averageTimeAsSV("\t"));
+        System.out.println(s.averageAsSV("\t"));
     }
     
-    @Test
-    public void testWithGrowingFilterSet() {
-        final int howManyMeasurements = 10;
-        // let the system warm up:
-        for (int i=0; i<howManyMeasurements; i++) {
-            registerFiltersForAllExpressions(expressions.size()/howManyMeasurements+1);
-            handleAllTestEvents();
-            Statistics.getInstance().clear();
-        }
-        // now for the real benchmark:
-        eventManager = new EventManagerTableBased(rs);
-        notificationCount = 0;
-        subscriptions = 0;
-        numberOfAlreadyRegisteredExpressions = 0;
-        for (int i=0; i<howManyMeasurements; i++) {
-            registerFiltersForAllExpressions(expressions.size()/howManyMeasurements+1);
-            handleAllTestEvents();
-            printStats();
-            Statistics.getInstance().clear();
-        }
-    }
-
     private void handleAllTestEvents() {
         // first some attributes:
         handle_Attribute_Name_290();
@@ -216,9 +238,9 @@ public class PerformanceStressTestForEventManager extends TestCase {
         for (int i = 0; i < 1000; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures(), null, m);
-            Statistics.getInstance().begin("Notify_Reference_ownedSignatures_41", ""+i);
+            Statistics.getInstance().begin("Notify_Reference_OwnedSignatures_41", ""+i);
             eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Reference_ownedSignatures_41", ""+i);
+            Statistics.getInstance().end("Notify_Reference_OwnedSignatures_41", ""+i);
         }
     }
 

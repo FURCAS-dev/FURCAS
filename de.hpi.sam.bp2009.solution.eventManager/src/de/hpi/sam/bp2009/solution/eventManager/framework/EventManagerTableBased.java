@@ -316,14 +316,11 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
 
     @Override
     public void handleEMFEvent(Notification notification) {
-        if(notifierByListener.isEmpty()){
-            System.err.println("Warning! EventManager get notified although no listener is subscribed");
-            return;
+        if (!notifierByListener.isEmpty()) {
+            for (Notification n : RecursiveContaimentNotificationCreator.createNotificationForComposites(notification)) {
+                fireChangeEvent(n);
+            }
         }
-        for (Notification n : RecursiveContaimentNotificationCreator.createNotificationForComposites(notification)) {
-            fireChangeEvent(n);
-        }
-
     }
 
     @Override
