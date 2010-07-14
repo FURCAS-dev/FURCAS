@@ -51,7 +51,7 @@ public class ModelSizeVariationBenchmarkResult implements BenchmarkResult {
 
 	int columnNumber = 0;
 
-	result.append(oclString);
+	result.append(oclString.replace(";", ",."));
 	result.append(";"); columnNumber++;
 
 	result.append("||;"); columnNumber++;
@@ -66,9 +66,7 @@ public class ModelSizeVariationBenchmarkResult implements BenchmarkResult {
 		result.append(";"); columnNumber++;
 	    }
 
-	    result.append("|;");columnNumber++;
-
-
+	    result.append("|||;");columnNumber++;
 
 	    long sumOfTimesExceptFirst = 0;
 	    int i = 0;
@@ -81,7 +79,7 @@ public class ModelSizeVariationBenchmarkResult implements BenchmarkResult {
 	    result.append((new Double(sumOfTimesExceptFirst) / new Double(executionTimeList.get(key).size() - 1)) + ";");
 	    sumPointList.add(columnNumber);
 
-	    result.append("|;");columnNumber++;
+	    result.append("|||;");columnNumber++;
 
 	    for (String point : getMeasurementList().get(key).keySet()) {
 		result.append(point + ":");
