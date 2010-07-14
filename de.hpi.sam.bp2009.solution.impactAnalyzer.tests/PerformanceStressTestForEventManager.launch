@@ -10,7 +10,6 @@
 <booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
-<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/SAP JVM 6 (cons i486 opt)"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.PerformanceStressTestForEventManager"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="de.hpi.sam.bp2009.solution.impactAnalyzer.tests"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-server -XX:+UseParallelGC -Dde.hpi.sam.bp2009.statistics=true"/>
