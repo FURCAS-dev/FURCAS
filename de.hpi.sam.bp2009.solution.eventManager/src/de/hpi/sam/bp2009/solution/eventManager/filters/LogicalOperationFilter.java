@@ -41,7 +41,7 @@ abstract public class LogicalOperationFilter extends EventFilter {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        AndFilter other = (AndFilter) obj;
+        LogicalOperationFilter other = (LogicalOperationFilter) obj;
         if (filters == null) {
             if (other.filters != null)
                 return false;
