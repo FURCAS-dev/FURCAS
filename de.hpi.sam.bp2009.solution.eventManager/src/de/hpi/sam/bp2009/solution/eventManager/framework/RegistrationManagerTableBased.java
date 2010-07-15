@@ -398,7 +398,7 @@ public class RegistrationManagerTableBased {
             }
             tableBit >>= 1;
         }
-        Statistics.getInstance().record(GROUP_ID_MINIMUM_TABLE_SIZE, bitSetForTableCombination, 1000000*minSize);
+        // Statistics.getInstance().record(GROUP_ID_MINIMUM_TABLE_SIZE, bitSetForTableCombination, 1000000*minSize);
         return tableWithMinSize;
     }
 
