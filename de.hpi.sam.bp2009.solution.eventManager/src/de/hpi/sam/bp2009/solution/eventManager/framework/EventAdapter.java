@@ -1,9 +1,11 @@
-package de.hpi.sam.bp2009.solution.eventManager;
+package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import java.lang.ref.WeakReference;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
 /**
  * This special {@link EContentAdapter} is used to notify a given {@link EventManager} if any notification is raised

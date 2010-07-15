@@ -43,15 +43,11 @@ public class DeferringNotifier extends AdapterCapsule {
     public void deliverDeferredEvents() {
         if (getListenerType().matches(ListenerTypeEnum.preCommit)){
             for(Notification n:deferredEvents){
-                _manager.notifyApplication(_listener.get(), n, null);
-
-//                _listener.get().notifyChanged(n);
+                _listener.get().notifyChanged(n);
             }
         }else if (getListenerType().matches(ListenerTypeEnum.postCommit)){
             for(Notification n:deferredEvents){
-                _manager.notifyApplication(_listener.get(), n, null);
-
-//                _listener.get().notifyChanged(n);
+                _listener.get().notifyChanged(n);
             }           
         }else{
             //may not happen

@@ -108,8 +108,7 @@ public class AdapterCapsule {
         
         if (dedicatedListenerType.matches(ListenerTypeEnum.preChange)) {
             try {
-                _manager.notifyApplication(_listener.get(), event, null);
-//                 _listener.get().notifyChanged(event);
+                _listener.get().notifyChanged(event);
             } catch (VetoException e) {
                 // VetoExceptions are OK, so pass them on to the next exception block
                 throw e;
@@ -119,9 +118,7 @@ public class AdapterCapsule {
             }
         } else if (dedicatedListenerType.matches(ListenerTypeEnum.postChange)) {
             try {
-                _manager.notifyApplication(_listener.get(), event, null);
-
-//                (_listener.get()).notifyChanged(event);
+                _listener.get().notifyChanged(event);
             } catch (VetoException e) {
                 // VetoExceptions are OK, so pass them on to the next exception block
                 throw e;

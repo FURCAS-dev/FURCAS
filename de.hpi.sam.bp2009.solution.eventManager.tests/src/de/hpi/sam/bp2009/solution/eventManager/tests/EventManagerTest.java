@@ -68,7 +68,7 @@ public class EventManagerTest extends BaseDepartmentTest {
     public void setUp() {
         super.setUp();
         this.createInstances(1, 3, 4);
-        setFixture(EventManagerFactory.eINSTANCE.getEventManagerFor(this.comp.eResource().getResourceSet()));
+        setFixture((EventManager) EventManagerFactory.eINSTANCE.getEventManagerFor(this.comp.eResource().getResourceSet()));
         matchingNotification = NotificationHelper.createAttributeChangeNotification(this.aFreelance, this.employeeAge,
                 new Integer(23), new Integer(42));
 
@@ -104,7 +104,7 @@ public class EventManagerTest extends BaseDepartmentTest {
     }
 
     public void testNotifyApplication__Adapter_Notification_EventFilter() {
-        getFixture().notifyApplication(adapter, matchingNotification, filter);
+        adapter.notifyChanged(matchingNotification);
         assertTrue("Application gets notified", matchingNotification.equals(lastMsg));
     }
 

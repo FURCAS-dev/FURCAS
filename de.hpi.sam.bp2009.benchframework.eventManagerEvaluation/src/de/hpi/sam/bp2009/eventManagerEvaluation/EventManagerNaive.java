@@ -18,10 +18,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventAdapter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.framework.EventAdapter;
 
 public class EventManagerNaive implements EventManager {
     private EventAdapter adapter = new EventAdapter(this);
@@ -45,15 +45,11 @@ public class EventManagerNaive implements EventManager {
             for (EventFilter filter : this.filterToListener.keySet()) {
                 if (filter.matchesFor(noti)) {
                     for (Adapter a : this.filterToListener.get(filter)) {
-                        this.notifyApplication(a, noti, filter);
+                        a.notifyChanged(noti);
                     }
                 }
             }
         }
-    }
-
-    public void notifyApplication(Adapter application, Notification event, EventFilter matchingFilter) {
-        application.notifyChanged(event);
     }
 
     public void subscribe(Collection<? extends Notifier> root, EventFilter filter, Adapter caller) {

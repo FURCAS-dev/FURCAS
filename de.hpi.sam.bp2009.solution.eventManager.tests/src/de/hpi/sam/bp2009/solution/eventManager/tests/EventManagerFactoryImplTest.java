@@ -36,7 +36,7 @@ public class EventManagerFactoryImplTest {
     }
 
     /**
-     * Test method for {@link de.hpi.sam.bp2009.solution.eventManager.EventManagerFactoryImpl#getEventManagerFor(org.eclipse.emf.ecore.resource.ResourceSet)}.
+     * Test method for {@link EventManagerFactory#getEventManagerFor(org.eclipse.emf.ecore.resource.ResourceSet)}.
      */
     @Test
     public void testGetEventManagerFor() {
@@ -61,7 +61,7 @@ public class EventManagerFactoryImplTest {
     }
 
     /**
-     * Test method for {@link de.hpi.sam.bp2009.solution.eventManager.EventManagerFactoryImpl#createContainmentFilter()}.
+     * Test method for {@link EventManagerFactory#createContainmentFilter()}.
      */
     @Test
     public void testCreateContainmentFilter() {

@@ -6,7 +6,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 
 public class ModifiedNaiveEM extends EventManagerNaive {
@@ -37,16 +36,6 @@ public class ModifiedNaiveEM extends EventManagerNaive {
         // TODO Auto-generated constructor stub
     }
 
-
-    /* (non-Javadoc)
-     * @see de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased#notifyApplication(org.eclipse.emf.common.notify.Adapter, org.eclipse.emf.common.notify.Notification, de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter)
-     */
-    @Override
-    public void notifyApplication(Adapter application, Notification msg, EventFilter matchingFilter) {
-//        System.out.println("Event to Notification, " + (System.nanoTime()-startHandleEvent));
-        super.notifyApplication(application, msg, matchingFilter);
-        
-    }
 
     /* (non-Javadoc)
      * @see de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased#handleEMFEvent(org.eclipse.emf.common.notify.Notification)

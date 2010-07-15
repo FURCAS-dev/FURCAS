@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.eventManager;
+package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
@@ -18,6 +18,10 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
+import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter;

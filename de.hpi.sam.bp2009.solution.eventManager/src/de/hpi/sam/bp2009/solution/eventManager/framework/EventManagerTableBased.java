@@ -9,7 +9,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventAdapter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -24,7 +23,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
  * @author Daniel Vocke (D044825)
  */
 
-public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventManager.EventManager {
+public class EventManagerTableBased implements EventManager {
 
     /**
      * the EventAdapter instance for the EventManager
@@ -301,13 +300,6 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
         }
         // TODO log (and throw exception?)
         return null;
-    }
-
-
-    @Override
-    public void notifyApplication(Adapter application, Notification msg, EventFilter matchingFilter) {
-        application.notifyChanged(msg);
-
     }
 
     @Override

@@ -6,12 +6,20 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import de.hpi.sam.bp2009.solution.eventManager.util.StatisticsImpl;
+import de.hpi.sam.bp2009.solution.eventManager.util.StatisticsStub;
+
 
 
 /**
- * To gather statistics about the OCL Impact Analysis, set the system property
- * <tt>com.sap.tc.moin.ocl.ia.statistics</tt> to <tt>true</tt>.
- *
+ * To gather statistics about the OCL Impact Analysis and EMF Event Manager, set the system property
+ * <tt>com.sap.tc.moin.ocl.ia.statistics</tt> to <tt>true</tt>. Otherwise, calls to {@link #getInstance()}
+ * will return a mock object whose methods don't do anything and therefore should not contribute
+ * significantly to overall performance characteristics. If the system property is set, however,
+ * statistics will be gathered and can obtained at the end of a test / measurement run by using
+ * methods on the result of {@link Statistics#getInstance()} such as {@link #getAverage(String)}
+ * passing in any of the <code>groupId</code>s returned by {@link #getGroupIds()}. All individual
+ * records of a group can be obtained by {@link #getRecords(String)}.
  */
 public abstract class Statistics {
     private static Statistics instance;
