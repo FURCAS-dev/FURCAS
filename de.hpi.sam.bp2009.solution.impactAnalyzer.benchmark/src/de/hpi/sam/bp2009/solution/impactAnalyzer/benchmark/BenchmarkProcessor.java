@@ -2,6 +2,13 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark;
 
 import java.util.Queue;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.PosixParser;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.BenchmarkExecutionProcessor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskPreparer;
@@ -27,10 +34,35 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
 public class BenchmarkProcessor {
     //FIXME: Implement code for starting benchmark program
     public static void main(String[] args) {
-    	start(args[args.length - 1]);
+	try {
+	    Options options = new Options();
+
+	    options.addOption("wu", "warmups", true, "Number of warm ups before measuring task (required)");
+	    options.addOption("m", "measures", true, "Number of measurements per benchmark task (required)");
+	    options.addOption("o", "output", true, "Output file destination (required)");
+	    options.addOption("h", "help", false, "Show this help");
+
+	    CommandLineParser parser = new PosixParser();
+	    CommandLine cmd = parser.parse(options, args);
+
+	    if(cmd.hasOption("h") || !cmd.hasOption("wu") || !cmd.hasOption("m")||  !cmd.hasOption("o") ){
+		HelpFormatter formatter = new HelpFormatter();
+		formatter.printHelp( "Impact Analysis Benchmark Environment", options );
+	    }else{
+		start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"));
+	    }
+
+	} catch (ParseException e) {
+	    System.err.println( "Parsing failed.  Reason: " + e.getMessage() );
+	}
     }
 
-	public static void start(String resultFile) {
+    	public static void start(int warmUps, int measures, String outputPath) {
+    	    	System.out.println("Impact Analysis Benchmark started with " + warmUps + " warm-ups and " + measures + " measures per benchmark task");
+    	    	ProcessingOptions.setNumberOfWarmUps(warmUps);
+    	    	ProcessingOptions.setNumberOfMeasures(measures);
+    	    	OutputOptions.setOutputPath(outputPath);
+
 		// Preparing
 		Queue<BenchmarkTask> taskQueue = BenchmarkTaskPreparer.prepareModelSizeVariationBenchmarkTasks();
 

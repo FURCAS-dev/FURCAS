@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.BenchmarkMeasurements;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.ProcessingOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
@@ -21,17 +22,17 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
 public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
 	HashMap<String, Exception> notExecutedDueToException = new LinkedHashMap<String, Exception>();
-	
+
     @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
 	try {
 	    //Warmup
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i <= ProcessingOptions.getNumberOfWarmUps(); i++) {
 		task.call();
 	    }
 
 	    ArrayList<Long> executionTimeList = new ArrayList<Long>();
-	    for (int i = 0; i < 101; i++) {
+	    for (int i = 0; i <= ProcessingOptions.getNumberOfMeasures(); i++) {
 		measureExecutionTime(task, executionTimeList);
 		BenchmarkMeasurements.aggregate();
 	    }
@@ -47,12 +48,12 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
     private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList) throws Exception {
     //Quick-Pre-WarmUp
     task.call();
-    
+
     //Perform measurement
     long timeBefore = System.nanoTime();
 	task.call();
 	long timeAfter = System.nanoTime();
-	
+
 	executionTimeList.add(new Long(timeAfter - timeBefore));
     }
 }
