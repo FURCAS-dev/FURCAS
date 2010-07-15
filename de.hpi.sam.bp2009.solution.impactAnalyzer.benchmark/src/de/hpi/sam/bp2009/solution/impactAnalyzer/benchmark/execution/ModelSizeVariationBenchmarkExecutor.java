@@ -29,12 +29,16 @@ public class ModelSizeVariationBenchmarkExecutor extends DefaultBenchmarkExecuto
 	try {
 	    result.setOclString(task.toString());
 
-
 	    int notificationCounter = 0;
 	    while(((MultipleNotificationInstanceScopeAnalysisTask)task).hasNextNotification()){
 		    ((MultipleNotificationInstanceScopeAnalysisTask)task).nextNotification();
 
-        	    for (int i = 0; i < 11; i++) {
+		    //Warmup
+		    for (int i = 0; i < 2; i++) {
+			task.call();
+		    }
+
+        	    for (int i = 0; i < 5; i++) {
         	    	measureExecutionTime(notificationCounter, result);
         		BenchmarkMeasurements.aggregate();
         	    }
