@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark/src/de/hpi/sam/bp2009/solution/impactAnalyzer/benchmark/BenchmarkProcessor.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.BenchmarkProcessor"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--warmups 100 --measures 300 --output /tmp/result.data"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx4096m -Xms4096m"/>
+</launchConfiguration>
