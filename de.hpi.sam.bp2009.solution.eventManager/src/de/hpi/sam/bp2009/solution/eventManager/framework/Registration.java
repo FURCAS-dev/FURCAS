@@ -60,11 +60,12 @@ class Registration {
     }
 
     /**
-     * When a call to register...() on the EventRegistry interface results in multiple Registrations, those
-     * Registrations will be pooled in a RegistrationSet. This can happen due to the internal design where "OR
-     * connected" filters are splitted into multiple Registrations.
+     * When a call to register...() on the EventRegistry interface results in multiple Registrations, those Registrations will be
+     * pooled in a RegistrationSet. This can happen due to the internal design where "OR connected" filters are splitted into
+     * multiple Registrations.
      * 
-     * @return the RegistrationSet that pools all Registrations that were created during one registration call
+     * @return an unmodifiable collection of the RegistrationSets that pool all Registrations that were created during one
+     *         registration call
      */
     Set<RegistrationSet> getRegistrationSets() {
         return Collections.unmodifiableSet(registrationSets);
@@ -76,6 +77,19 @@ class Registration {
      */
     void addRegistrationSet(RegistrationSet registrationSet) {
         registrationSets.add(registrationSet);
+    }
+
+    /**
+     * Removes <code>registationSet</code> from {@link #registrationSets} and returns <code>true</code> if that removed the last
+     * {@link RegistrationSet} of which this {@link Registration} was a part. Note, that <code>false</code> will be returned
+     * if {@link #registrationSets} was already empty when calling this method. 
+     */
+    boolean removeRegistrationSet(RegistrationSet registrationSet) {
+        boolean result = false;
+        if (registrationSets.remove(registrationSet)) {
+            result = registrationSets.size() == 0;
+        }
+        return result;
     }
     
     public String toString() {

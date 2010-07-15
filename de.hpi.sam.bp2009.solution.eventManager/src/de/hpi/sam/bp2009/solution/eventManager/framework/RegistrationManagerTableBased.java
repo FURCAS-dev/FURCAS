@@ -81,6 +81,17 @@ public class RegistrationManagerTableBased {
     private Map<AndFilter, Registration> allRegistrations = new HashMap<AndFilter, Registration>();
 
     /**
+     * The elements 0..{@link #numberOfBitSetsWithAtLeastOneRegistration-1} store those bit set values for which
+     * {@link #allRegistrations} has at least one registration with that {@link Registration#getBitSetForTablesRegisteredWith()
+     * bit set}. The array may need to be reorganized when registrations come and go. Registrations for so far unused
+     * bit sets are added at index {@link #numberOfBitSetsWithAtLeastOneRegistration} and the attribute
+     * {@link #numberOfBitSetsWithAtLeastOneRegistration} is incremented by one. When deregistering, the array is
+     * reconstructed from {@link #allRegistrations}.
+     */
+    private int[] bitSetsWithAtLeastOneRegistration;
+    private int numberOfBitSetsWithAtLeastOneRegistration;
+    
+    /**
      * Invariants:
      * <p>
      * <code>filterTypeToBitMask.get(allTables[i].getIdentifier()) = 2&lt;&lt;i</code>
@@ -106,7 +117,7 @@ public class RegistrationManagerTableBased {
      * in an array of registration sets
      */
     private Map<Class<? extends EventFilter>, Integer> filterTypeToBitMask;
-    
+
     public RegistrationManagerTableBased() {
         init();
     }
@@ -139,6 +150,8 @@ public class RegistrationManagerTableBased {
     
     protected void createAllTables(int size) {
         allTables = new TableForEventFilter[size];
+        bitSetsWithAtLeastOneRegistration = new int[1<<size];
+        numberOfBitSetsWithAtLeastOneRegistration = 0;
     }
 
     private void setUsualEvents(TableForEventFilter table) {
@@ -174,16 +187,16 @@ public class RegistrationManagerTableBased {
         filterTree = adjustFilter(filterTree);
         OrFilter filterInNormalForm = getDisjunctiveNormalForm((LogicalOperationFilter) filterTree);
         // visit the whole filter tree and add each atomic filter to its corresponding filterTable.
-        RegistrationSet result = new RegistrationSet(listener, listenerType);
+        List<Registration> registrations = new LinkedList<Registration>();
         for (EventFilter filter : filterInNormalForm.getOperands()) {
             AndFilter andFilter = (AndFilter) filter;
             Registration reg = allRegistrations.get(andFilter);
             if (reg == null) {
                 reg = createRegistration(andFilter);
             }
-            reg.addRegistrationSet(result);
-            result.addRegistration(reg);
+            registrations.add(reg);
         }
+        RegistrationSet result = new RegistrationSet(listener, listenerType, registrations);
         addRegistrationForListener(result, listener);
         return new RegistrationHandle(listener.get(), result);
     }
@@ -195,10 +208,27 @@ public class RegistrationManagerTableBased {
         Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = getFilterTablesToRegisterWith(andFilter);
         Registration result = new Registration(getBitSet(filterTablesToRegisterWith.values()), andFilter);
         allRegistrations.put(andFilter, result);
+        updateBitSetsWithAtLeastOneRegistration(result);
         for (Entry<EventFilter, TableForEventFilter> filterTableEntry : filterTablesToRegisterWith.entrySet()) {
             filterTableEntry.getValue().register(filterTableEntry.getKey(), result);
         }
         return result;
+    }
+
+    /**
+     * Ensures that {@link #bitSetsWithAtLeastOneRegistration} contains <code>registration</code>.
+     * {@link Registration#getBitSetForTablesRegisteredWith()} in elements 0..{@link #numberOfBitSetsWithAtLeastOneRegistration}
+     * -1. It may have to append the bit set value to the end. In this case, {@link #numberOfBitSetsWithAtLeastOneRegistration}
+     * will be incremented by one.
+     */
+    private void updateBitSetsWithAtLeastOneRegistration(Registration registration) {
+        int bitset = registration.getBitSetForTablesRegisteredWith();
+        for (int i=0; i<numberOfBitSetsWithAtLeastOneRegistration; i++) {
+            if (bitSetsWithAtLeastOneRegistration[i] == bitset) {
+                return;
+            }
+        }
+        bitSetsWithAtLeastOneRegistration[numberOfBitSetsWithAtLeastOneRegistration++] = bitset;
     }
 
     private Map<EventFilter, TableForEventFilter> getFilterTablesToRegisterWith(AndFilter andFilter) {
@@ -251,7 +281,10 @@ public class RegistrationManagerTableBased {
 
     private void deregister(RegistrationSet rs) {
         for (Registration reg : ((RegistrationSet) rs).getRegistrations()) {
-            deregister(reg);
+            if (reg.removeRegistrationSet(rs)) {
+                // the registration lost its last registration set; remove from all tables
+                deregister(reg);
+            }
         }
     }
 
@@ -319,11 +352,10 @@ public class RegistrationManagerTableBased {
             noSetsForTables[i] = noSetsForTable;
             i++;
         }
-        // loop over all table combinations (as bit set counter); for each combination 
-        // end with 1 because registrations in no table can't occur
+        // loop over all table combinations (as bit set counter) for which registrations exist
         HashSet<Registration> startSetToReuseToAvoidHashSetCreation = new HashSet<Registration>();
-        for (int bitSetForTableCombination=(1<<allTables.length)-1; bitSetForTableCombination>0; bitSetForTableCombination--) {
-            addIntersectionOverTablesInBitset_Of_YesSetUnitedWithAllNoSetMinusNoSet(bitSetForTableCombination,
+        for (int bitSetIndex=0; bitSetIndex<numberOfBitSetsWithAtLeastOneRegistration; bitSetIndex++) {
+            addIntersectionOverTablesInBitset_Of_YesSetUnitedWithAllNoSetMinusNoSet(bitSetsWithAtLeastOneRegistration[bitSetIndex],
                     yesSetsForTables, noSetsForTables, result, startSetToReuseToAvoidHashSetCreation);
         }
         Statistics.getInstance().end("getRegistrationsFor", event);
@@ -427,13 +459,25 @@ public class RegistrationManagerTableBased {
      */
     private void deregister(Registration registration) {
         for (TableForEventFilter table : allTables) {
-            // TODO if registrations for equal AndFilters are bundled and may refer to multiple listeners, just remove the listener from the Registration; remove the Registration only if that was its last listener
             table.deregister(registration);
             if (table.isEmpty()) {
                 tablesWithNegatedRegistrations.remove(table);
             }
         }
         allRegistrations.remove(registration);
+        rebuildBitSetsWithAtLeastOneRegistration();
+    }
+
+    private void rebuildBitSetsWithAtLeastOneRegistration() {
+        Set<Integer> bitSetsInUse = new HashSet<Integer>();
+        for (Registration r : allRegistrations.values()) {
+            bitSetsInUse.add(r.getBitSetForTablesRegisteredWith());
+        }
+        numberOfBitSetsWithAtLeastOneRegistration = bitSetsInUse.size();
+        int i=0;
+        for (int bitSetInUse : bitSetsInUse) {
+            bitSetsWithAtLeastOneRegistration[i++] = bitSetInUse;
+        }
     }
 
     /**
