@@ -7,7 +7,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  * A {@link BenchmarkExecutor} contains the logic for executing a single {@link BenchmarkTask}.
  * After executing the task a {@link BenchmarkResult} is returned by this class.
  *
- * For create a new {@link BenchmarkExecutor} it is recommended to extend from {@link DefaultBenchmarkExecutor}
+ * For create a new {@link BenchmarkExecutor} it is recommended to extend from {@link AbstractBenchmarkExecutor}
  *
  * @author Manuel Holzleitner (D049667)
  */

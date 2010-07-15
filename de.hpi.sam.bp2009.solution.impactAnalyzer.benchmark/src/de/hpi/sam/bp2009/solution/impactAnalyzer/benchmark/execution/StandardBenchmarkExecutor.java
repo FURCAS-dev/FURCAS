@@ -1,12 +1,14 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution;
 
+import java.util.ArrayList;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.BenchmarkMeasurements;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResult;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.SimpleBenchmarkResult;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.DefaultBenchmarkResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
 /**
- * The {@link SimpleBenchmarkExecutor} benchmarks {@link BenchmarkTasks} by measuring
+ * The {@link StandardBenchmarkExecutor} benchmarks {@link BenchmarkTasks} by measuring
  * per System.nanoTime() before and after executing the task.
  *
  * It executes a {@link BenchmarkTask} several times in order to see effects of
@@ -15,38 +17,41 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  *
  * @author Manuel Holzleitner (D049667)
  */
-public class SimpleBenchmarkExecutor extends DefaultBenchmarkExecutor {
+public class StandardBenchmarkExecutor extends AbstractBenchmarkExecutor {
 
-    public SimpleBenchmarkExecutor(BenchmarkTask task) {
+    public StandardBenchmarkExecutor(BenchmarkTask task) {
 	this.task = task;
     }
 
     @Override
     protected BenchmarkResult performBenchmark() {
-	SimpleBenchmarkResult result = new SimpleBenchmarkResult();
-
+	BenchmarkResult result = null;
 	try {
 	    for (int i = 0; i < 2; i++) {
-	    	measureExecutionTime(result);
+		task.call();
+	    }
+
+	    ArrayList<Long> executionTimeList = new ArrayList<Long>();
+	    for (int i = 0; i < 1; i++) {
+		measureExecutionTime(executionTimeList);
 		BenchmarkMeasurements.aggregate();
 	    }
 
-	    result.setMeasurementList(BenchmarkMeasurements.getMeasurementList());
+	    result = new DefaultBenchmarkResult(task, executionTimeList, BenchmarkMeasurements.getMeasurementList());
+
 	    BenchmarkMeasurements.reset();
-
-	    result.setOclString(task.toString());
-
 	} catch (Exception e) {
 	    System.out.println("Task ended with exception: " + task.toString());
 	    e.printStackTrace();
 	}
+
 	return result;
     }
 
-    private void measureExecutionTime(SimpleBenchmarkResult result) throws Exception {
+    private void measureExecutionTime(ArrayList<Long> executionTimeList) throws Exception {
 	long timeBefore = System.nanoTime();
 	returnValue = task.call();
 	long timeAfter = System.nanoTime();
-	result.addExecutionTime((timeAfter - timeBefore));
+	executionTimeList.add(new Long(timeAfter - timeBefore));
     }
 }

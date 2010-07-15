@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.resource.Resource;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
@@ -61,7 +62,7 @@ public class BenchmarkTaskPreparer {
     	return result;
     }
 
-    public static ArrayList<BenchmarkTask> prepareModelSizeVariationBenchmarkTasks(){
+     public static ArrayList<BenchmarkTask> prepareModelSizeVariationBenchmarkTasks(){
     	ArrayList<BenchmarkTask> result = new ArrayList<BenchmarkTask>();
 
     	System.out.println("Start Preparation");
@@ -76,7 +77,13 @@ public class BenchmarkTaskPreparer {
     	System.out.println("\t Prepare Benchmark Tasks:");
 
     	for (OCLExpressionWithContext expression : expressionList) {
-    	    result.add(new MultipleNotificationInstanceScopeAnalysisTask(expression.getExpression(), expression.getContext(), notificationForModelList));
+    	    for(NotificationForModelList notificationList : notificationForModelList){
+    		Resource model = notificationList.getModel();
+
+    		for(Notification notification : notificationList.getNotificationList()){
+    		    result.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), model, notification));
+    		}
+    	    }
     	}
     	System.out.println("\t\t " + result.size() + " successfully prepared");
 

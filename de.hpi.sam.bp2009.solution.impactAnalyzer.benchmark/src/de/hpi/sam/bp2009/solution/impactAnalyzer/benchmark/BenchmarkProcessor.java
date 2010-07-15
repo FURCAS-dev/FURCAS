@@ -27,10 +27,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  */
 
 public class BenchmarkProcessor {
-    private final String RESULT_FILE_OPTION = "-m";
-    private final String RESULT_FILE_OPTION_CSV = "csv";
-    private final String RESULT_FILE_OPTION_DATA_SET = "dataset";
-
     //FIXME: Implement code for starting benchmark program
     public static void main(String[] args) {
     	start(args[args.length - 1]);
@@ -41,10 +37,9 @@ public class BenchmarkProcessor {
 		Collection<BenchmarkTask> taskList = BenchmarkTaskPreparer.prepareModelSizeVariationBenchmarkTasks();
 
 		// Processing
-		BenchmarkResultContainer result = BenchmarkExecutionProcessor.processModelSizeVariationBenchmarks(taskList);
+		BenchmarkResultContainer result = BenchmarkExecutionProcessor.processBenchmarks(taskList);
 
 		// Post-processing
-		result.printCsv(new File(resultFile));
-		result.printDataSet(new File("/tmp/result.data"));
+		result.printDataSet(new File(resultFile));
 	}
 }

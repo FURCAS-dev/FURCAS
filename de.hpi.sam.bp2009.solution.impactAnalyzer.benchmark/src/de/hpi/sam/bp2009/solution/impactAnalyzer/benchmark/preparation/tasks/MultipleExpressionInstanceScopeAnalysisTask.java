@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -16,19 +17,25 @@ public class MultipleExpressionInstanceScopeAnalysisTask implements BenchmarkTas
 	this.analyzerList = analyzerList;
 	this.notification = notification;
     }
-    
+
     @Override
     public Collection<EObject> call() throws Exception {
 	for(ImpactAnalyzer analyzer : analyzerList){
 		analyzer.getContextObjects(notification);
 	}
-	 
+
 	return null;
     }
 
     @Override
     public String toString(){
     	return notification.toString();
+    }
+
+    @Override
+    public Map<String, String> getAdditionalInformation() {
+	// TODO Auto-generated method stub
+	return null;
     }
 
 }
