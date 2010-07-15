@@ -63,7 +63,7 @@ public class BenchmarkResultWriter {
 	    withHeadline = false;
 	}
 
-        int executionIndex = 1;
+    int executionIndex = 1;
 	for(Long executionTime : executionTimeList){
 
 		StringBuffer row = new StringBuffer();
@@ -77,6 +77,8 @@ public class BenchmarkResultWriter {
 		row.append(TAB + executionTime);
 		row.append(BREAK);
 		writer.write(row.toString());
+		
+		executionIndex++;
 	}
 
 	writer.flush();
