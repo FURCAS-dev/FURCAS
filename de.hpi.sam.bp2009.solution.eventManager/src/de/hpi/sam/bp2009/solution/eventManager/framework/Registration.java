@@ -1,11 +1,12 @@
 package de.hpi.sam.bp2009.solution.eventManager.framework;
 
-import java.lang.ref.WeakReference;
 
-import org.eclipse.emf.common.notify.Adapter;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
-import de.hpi.sam.bp2009.solution.eventManager.StatisticsImpl;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 
 /**
@@ -15,13 +16,14 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
  * 
  * @author Daniel Vocke (D044825), Axel Uhl (D043530)
  */
-class Registration extends AbstractRegistration {
+class Registration {
 
     /**
-     * if the registration as listener results in multiple registration instances, those instances will be pooled in the
-     * RegistrationSet
+     * Registration objects are re-used to keep the tables in the event manager as small as possible and
+     * free of redundancy. Therefore, a registration can belong to multiple {@link RegistrationSet}s, each
+     * representing a listener.
      */
-    private RegistrationSet _container;
+    private Set<RegistrationSet> registrationSets;
     
     /**
      * A bit field where each bit is taken from the {@link RegistrationManagerTableBased#filterTypeToBitMask} values,
@@ -31,14 +33,11 @@ class Registration extends AbstractRegistration {
     private final int bitSetForTablesRegisteredWith;
     
     /**
-     * Optionally stores the <code>AndFilter</code> for which this registration was created.
-     * 
-     * TODO when one registration covers multiple AndFilters, this needs to change
+     * Stores the <code>AndFilter</code> for which this registration was created.
      */
     private final AndFilter andFilter;
 
     /**
-     * @param listener the listener that registered for events
      * @param bitSetForTablesRegisteredWith a bit set indicating for which tables this listener is registered.
      * This bit set corresponds with what {@link RegistrationManagerTableBased#getTablesForBitSet(int)} takes as
      * an argument.
@@ -46,14 +45,10 @@ class Registration extends AbstractRegistration {
      * <code>andFilter</code> will be remembered (otherwise, a {@link Registration} doesn't know its filter, hence
      * the filter can eventually get garbage-collected) and will be shown in the {@link #toString()} output.
      */
-    Registration(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType, int bitSetForTablesRegisteredWith, AndFilter andFilter) {
-        super(listener, listenerType);
+    Registration(int bitSetForTablesRegisteredWith, AndFilter andFilter) {
         this.bitSetForTablesRegisteredWith = bitSetForTablesRegisteredWith;
-        if (Statistics.getInstance() instanceof StatisticsImpl) {
-            this.andFilter = andFilter;
-        } else {
-            this.andFilter = null;
-        }
+        this.andFilter = andFilter;
+        registrationSets = new HashSet<RegistrationSet>();
     }
 
     /**
@@ -71,12 +66,16 @@ class Registration extends AbstractRegistration {
      * 
      * @return the RegistrationSet that pools all Registrations that were created during one registration call
      */
-    RegistrationSet getContainer() {
-        return _container;
+    Set<RegistrationSet> getRegistrationSets() {
+        return Collections.unmodifiableSet(registrationSets);
     }
 
-    void setContainer(RegistrationSet container) {
-        _container = container;
+    /**
+     * Adds the registration to the {@link #registrationSets} collection. Note that this operation
+     * does not maintain any opposite reference in {@link RegistrationSet}.
+     */
+    void addRegistrationSet(RegistrationSet registrationSet) {
+        registrationSets.add(registrationSet);
     }
     
     public String toString() {

@@ -71,11 +71,14 @@ public class RegistrationManagerTableBased {
     protected HashMap<Object, TableForEventFilter> tableByFilterType = new HashMap<Object, TableForEventFilter>();
 
     // This hashmap is for deregistration purposes only
-    protected WeakHashMap<Adapter, List<AbstractRegistration>> registrationsByListener = new WeakHashMap<Adapter, List<AbstractRegistration>>();
+    protected WeakHashMap<Adapter, List<RegistrationSet>> registrationSetByListener = new WeakHashMap<Adapter, List<RegistrationSet>>();
 
-    // TODO are the sets really needed? wouldn't a list be better (better performance)
-    // This set is needed to maintain caches
-    protected Set<AbstractRegistration> allRegistrations = new HashSet<AbstractRegistration>();
+    /**
+     * Maintains the registrations keyed by their {@link AndFilter}. It is used to find existing registrations
+     * matching an {@link AndFilter} occurring in a filter tree for which a new {@link RegistrationSet} is to
+     * be assembled and added to the event manager's tables. This enables efficient re-use of registrations.
+     */
+    private Map<AndFilter, Registration> allRegistrations = new HashMap<AndFilter, Registration>();
 
     /**
      * Invariants:
@@ -138,29 +141,6 @@ public class RegistrationManagerTableBased {
         allTables = new TableForEventFilter[size];
     }
 
-    /**
-     * All registrations for a certain type of event have been computed an cached so far. For the current event delivery, only
-     * PreChangeListeners are needed in case of a preChangeEvent and only ChangeListeners are needed in case of a postChangeEvent
-     * 
-     * @param registrations
-     *            all registrations that matched for the current event
-     * @param reduceToPostListener
-     *            flag which determines whether (Post-)ChangeListeners or PreChangeListeners are returned
-     * @return all registrations that were registered either by a Post- or a PreChangeListener
-     */
-    @SuppressWarnings("unused")
-    private Collection<Registration> reduceCollectionToMatchingListenerType(Collection<Registration> registrations,
-            ListenerTypeEnum listenerType) {
-
-        Collection<Registration> result = new ArrayList<Registration>(registrations.size());
-
-        for (Registration registration : registrations)
-            if (listenerType.matches(registration.getListenerType()))
-                result.add(registration);
-
-        return result;
-    }
-
     private void setUsualEvents(TableForEventFilter table) {
         addTableForEventType(table, Notification.SET);
         addTableForEventType(table, Notification.UNSET);
@@ -195,45 +175,53 @@ public class RegistrationManagerTableBased {
         OrFilter filterInNormalForm = getDisjunctiveNormalForm((LogicalOperationFilter) filterTree);
         // visit the whole filter tree and add each atomic filter to its corresponding filterTable.
         RegistrationSet result = new RegistrationSet(listener, listenerType);
-        for (EventFilter andFilter : filterInNormalForm.getOperands()) {
-            // determine tables to register with; needed already for construction of Registration
-            Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = new HashMap<EventFilter, TableForEventFilter>();
-            LogicalOperationFilter level1OfTree = (LogicalOperationFilter) andFilter;
-            for (EventFilter leafOfTree : level1OfTree.getOperands()) {
-                TableForEventFilter filterTable = getFilterTable(leafOfTree);
-                if(filterTable == null){
-                    throw new IllegalArgumentException("no table for type "+ leafOfTree.getClass() +" in RegistryManager defined");
-                }
-                filterTablesToRegisterWith.put(leafOfTree, filterTable);
+        for (EventFilter filter : filterInNormalForm.getOperands()) {
+            AndFilter andFilter = (AndFilter) filter;
+            Registration reg = allRegistrations.get(andFilter);
+            if (reg == null) {
+                reg = createRegistration(andFilter);
             }
-            // TODO re-use Registrations for equal set of elementary filters, just add another listener; this will reduce #Registrations in tables
-            // create registration:
-            Registration reg = new Registration(listener, listenerType, getBitSet(filterTablesToRegisterWith.values()), (AndFilter) andFilter);
-            reg.setContainer(result);
-            result.getRegistrations().add(reg);
-            addRegistrationForListener(reg, listener);
-            for (Entry<EventFilter, TableForEventFilter> filterTableEntry : filterTablesToRegisterWith.entrySet()) {
-                filterTableEntry.getValue().register(filterTableEntry.getKey(), reg);
-            }
+            reg.addRegistrationSet(result);
+            result.addRegistration(reg);
         }
-        // if only 1 registration was needed, the RegistrationSet (=the registration's container) can be removed
-        if (result.getRegistrations().size() == 1) {
-            Registration reg = (Registration) result.getRegistrations().iterator().next();
-            reg.setContainer(null);
-            allRegistrations.add(reg);
-            return reg;
-        } else {
-            allRegistrations.addAll(result.getRegistrations());
-            return result;
-        }
+        addRegistrationForListener(result, listener);
+        return new RegistrationHandle(listener.get(), result);
     }
 
-    private void addRegistrationForListener(Registration registration, WeakReference<? extends Adapter> listener) {
-        // registrationsByListener is a WeakHashMap, so direct references to listeners can be stored
-        if (registrationsByListener.get(listener.get()) == null) {
-            registrationsByListener.put(listener.get(), new ArrayList<AbstractRegistration>());
+    /**
+     * Creates the registration and adds it to {@link #allRegistrations}
+     */
+    private Registration createRegistration(AndFilter andFilter) {
+        Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = getFilterTablesToRegisterWith(andFilter);
+        Registration result = new Registration(getBitSet(filterTablesToRegisterWith.values()), andFilter);
+        allRegistrations.put(andFilter, result);
+        for (Entry<EventFilter, TableForEventFilter> filterTableEntry : filterTablesToRegisterWith.entrySet()) {
+            filterTableEntry.getValue().register(filterTableEntry.getKey(), result);
         }
-        registrationsByListener.get(listener.get()).add(registration);
+        return result;
+    }
+
+    private Map<EventFilter, TableForEventFilter> getFilterTablesToRegisterWith(AndFilter andFilter) {
+        // determine tables to register with; needed already for construction of Registration
+        Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = new HashMap<EventFilter, TableForEventFilter>();
+        LogicalOperationFilter level1OfTree = andFilter;
+        for (EventFilter leafOfTree : level1OfTree.getOperands()) {
+            TableForEventFilter filterTable = getFilterTable(leafOfTree);
+            if (filterTable == null) {
+                throw new IllegalArgumentException("no table for type " + leafOfTree.getClass()
+                        + " in RegistryManager defined");
+            }
+            filterTablesToRegisterWith.put(leafOfTree, filterTable);
+        }
+        return filterTablesToRegisterWith;
+    }
+
+    private void addRegistrationForListener(RegistrationSet registrationSet, WeakReference<? extends Adapter> listener) {
+        // registrationsByListener is a WeakHashMap, so direct references to listeners can be stored
+        if (registrationSetByListener.get(listener.get()) == null) {
+            registrationSetByListener.put(listener.get(), new ArrayList<RegistrationSet>());
+        }
+        registrationSetByListener.get(listener.get()).add(registrationSet);
     }
 
     /**
@@ -256,18 +244,15 @@ public class RegistrationManagerTableBased {
      * @param the
      *            registration to remove
      */
-    public synchronized void deregister(RegistrationHandle registration) {
-        if (registration instanceof RegistrationSet) {
-            for (Registration reg : ((RegistrationSet) registration).getRegistrations())
-                deregister(reg);
-        } else {
-            deregister((Registration) registration);
+    public synchronized void deregister(RegistrationHandle registrationHandle) {
+        RegistrationSet rs = registrationHandle.getRegistrationSet();
+        deregister(rs);
+    }
+
+    private void deregister(RegistrationSet rs) {
+        for (Registration reg : ((RegistrationSet) rs).getRegistrations()) {
+            deregister(reg);
         }
-        // TODO uncomment if the deregister(RegistrationHandle) method is reintroduced on the EventRegistry-interface
-        /*
-         * MoinChangeListener listener = ((AbstractRegistration) registration).getListener().get(); if
-         * ((registrationsByListener.get(listener)).isEmpty()) registrationsByListener.remove(listener);
-         */
     }
 
     /**
@@ -280,38 +265,13 @@ public class RegistrationManagerTableBased {
      */
 
     public synchronized void deregister(Adapter listener) {
-
-        if (!registrationsByListener.containsKey(listener))
-            return; // listener is not registered
-
-        for (RegistrationHandle regHandle : registrationsByListener.get(listener)) {
-            deregister(regHandle);
+        List<RegistrationSet> registrationSets = registrationSetByListener.get(listener);
+        if (registrationSets != null) {
+            for (RegistrationSet registrationSet : registrationSets) {
+                deregister(registrationSet);
+            }
+            registrationSetByListener.remove(listener);
         }
-
-        // should already be done by deregister(RegistrationHandle)
-        registrationsByListener.remove(listener);
-    }
-
-    /**
-     * Removes all registrations that belong to the passed listener from all <code>EventFilterTables</code>. The listener will not
-     * receive any events any more. This method is synchronized because there must be no changes to the FilterTables while they
-     * are working.
-     * 
-     * @param listener
-     *            the listener to deregister
-     */
-
-    public synchronized void deregister(WeakReference<? extends Adapter> listener) {
-
-        if (!registrationsByListener.containsKey(listener))
-            return; // listener is not registered
-
-        for (RegistrationHandle regHandle : registrationsByListener.get(listener)) {
-            deregister(regHandle);
-        }
-
-        // should already be done by deregister(RegistrationHandle)
-        registrationsByListener.remove(listener);
     }
 
     /**
@@ -324,22 +284,16 @@ public class RegistrationManagerTableBased {
         // this method does the main work, it computes the registrations from all EventFilterTables
         Collection<Registration> registrations = getRegistrationsFor(event);
         Collection<WeakReference<? extends Adapter>> result = new LinkedList<WeakReference<? extends Adapter>>();
-        // this collection is needed in order to remove doubles. (it is possible, that 2 OR connected filter criterions matched.
-        // In this case, 2 different registrations will be returned (which are both contained in the same RegistrationSet), but
+        // this collection is needed in order to remove duplicates. (it is possible, that two OR connected filter criteria matched.
+        // In this case, two different registrations will be returned (which both point to the same RegistrationSet), but
         // the listener will expect to get notified only once.
         Set<RegistrationSet> registrationSetsAddedSoFar = new HashSet<RegistrationSet>();
         for (Registration reg : registrations) {
-            // several registrations that are contained in the same registrationSet mean that more than one criterion of
-            // OR-connected filters matched. in this case, the client shall be notified only once.
-            if (reg.getContainer() != null) {
-                RegistrationSet rs = reg.getContainer();
-                if (!registrationSetsAddedSoFar.contains(rs)) {
-                    // the client(listener) is added the first time
-                    registrationSetsAddedSoFar.add(rs);
-                    result.add(rs.getListener());
+            for (RegistrationSet registrationSet : reg.getRegistrationSets()) {
+                if (!registrationSetsAddedSoFar.contains(registrationSet)) {
+                    registrationSetsAddedSoFar.add(registrationSet);
+                    result.add(registrationSet.getListener());
                 }
-            } else {
-                result.add(reg.getListener());
             }
         }
         return result;
@@ -462,7 +416,7 @@ public class RegistrationManagerTableBased {
      * @return whether the listener is registered
      */
     public boolean isListenerRegistered(Adapter listener) {
-        return registrationsByListener.containsKey(listener);
+        return registrationSetByListener.containsKey(listener);
     }
 
     /**
@@ -1104,17 +1058,9 @@ public class RegistrationManagerTableBased {
     public int redundantFilters() {
         Map<AndFilter, Registration> distinctAndFilters = new HashMap<AndFilter, Registration>();
         int result = 0;
-        for (AbstractRegistration ar : allRegistrations) {
-            if (ar instanceof RegistrationSet) {
-                for (Registration r : ((RegistrationSet) ar).getRegistrations()) {
-                    if (checkForRedundantFilterAndUpdateMapCorrespondingly(r, distinctAndFilters)) {
-                        result++;
-                    }
-                }
-            } else {
-                if (checkForRedundantFilterAndUpdateMapCorrespondingly((Registration) ar, distinctAndFilters)) {
-                    result++;
-                }
+        for (Registration ar : allRegistrations.values()) {
+            if (checkForRedundantFilterAndUpdateMapCorrespondingly((Registration) ar, distinctAndFilters)) {
+                result++;
             }
         }
         return result;

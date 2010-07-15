@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests;
 import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import junit.framework.TestCase;
@@ -73,7 +74,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
         int rf = registrationManager.redundantFilters();
         Field allRegistrationsField = registrationManager.getClass().getDeclaredField("allRegistrations");
         allRegistrationsField.setAccessible(true);
-        Set<?> allRegistrations = (Set<?>) allRegistrationsField.get(registrationManager);
+        Map<?, ?> allRegistrations = (Map<?, ?>) allRegistrationsField.get(registrationManager);
         int totalRegistrationCount = allRegistrations.size();
         System.out.println("Total registrations: "+totalRegistrationCount+", redundant: "+rf+", distinct: "+(totalRegistrationCount-rf));
         assertEquals("Hoping to have no redundant registrations", 0, rf);
