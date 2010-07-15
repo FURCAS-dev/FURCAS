@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.eventManager.framework;
 
 import java.lang.ref.WeakReference;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -28,11 +29,20 @@ public class RegistrationSet {
      */
     private ListenerTypeEnum listenerType;
 
-    private Set<Registration> registrations = new HashSet<Registration>();
+    private final Set<Registration> registrations;
 
-    public RegistrationSet(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType) {
+    /**
+     * Adds this {@link RegistrationSet} to all <code>registrations</code>' using
+     * {@link Registration#addRegistrationSet(RegistrationSet)}
+     */
+    public RegistrationSet(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType, Collection<Registration> registrations) {
         _listener = listener;
         this.listenerType = listenerType;
+        this.registrations = new HashSet<Registration>();
+        for (Registration r : registrations) {
+            this.registrations.add(r);
+            r.addRegistrationSet(this);
+        }
     }
 
     /**
@@ -52,15 +62,6 @@ public class RegistrationSet {
      */
     public ListenerTypeEnum getListenerType() {
         return listenerType;
-    }
-
-    void addRegistration(Registration registration) {
-        registrations.add(registration);
-    }
-
-    /* needed at all? */
-    void removeRegistration(Registration registration) {
-        registrations.remove(registration);
     }
 
     /**
