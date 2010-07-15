@@ -43,7 +43,7 @@ public abstract class TableForEventFilter {
     /**
      * index which is needed for deregistration purposes
      */
-    protected final HashMap<AbstractRegistration, Object> filterCriteriaByRegistration = new HashMap<AbstractRegistration, Object>();
+    protected final HashMap<Registration, Object> filterCriteriaByRegistration = new HashMap<Registration, Object>();
 
     /**
      * registrations are contained in a FilterTableEntry. This structure is needed to find the registrations for a
@@ -117,20 +117,18 @@ public abstract class TableForEventFilter {
      */
     @SuppressWarnings("unchecked") 
     void deregister(Registration registration) {
-
         Object criterion = filterCriteriaByRegistration.get(registration);
-        if (criterion == null)
-            return; // registration not stored in this table
-
-        if (criterion instanceof List<?>){
-            for (Object filterCriterion : (List<Object>)criterion) {
-                _deregister(registration,filterCriterion);
+        if (criterion != null) {
+            // registration is stored in this table
+            if (criterion instanceof List<?>) {
+                for (Object filterCriterion : (List<Object>) criterion) {
+                    _deregister(registration, filterCriterion);
+                }
+            } else {
+                _deregister(registration, criterion);
             }
-
-        }else{
-            _deregister(registration,criterion);
+            filterCriteriaByRegistration.remove(registration);
         }
-        filterCriteriaByRegistration.remove(registration);
     }
 
     /**
