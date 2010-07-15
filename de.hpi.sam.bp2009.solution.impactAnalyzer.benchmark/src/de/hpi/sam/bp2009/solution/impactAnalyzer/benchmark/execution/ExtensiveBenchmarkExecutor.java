@@ -13,7 +13,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  *
  * @author Manuel Holzleitner (D049667)
  */
-public class ExtensiveBenchmarkExecutor extends DefaultBenchmarkExecutor {
+public class ExtensiveBenchmarkExecutor extends AbstractBenchmarkExecutor {
 
     public ExtensiveBenchmarkExecutor(BenchmarkTask task) {
 	this.task = task;

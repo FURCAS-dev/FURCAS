@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultContainer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
@@ -26,21 +27,11 @@ public class BenchmarkExecutionProcessor {
 	return BenchmarkExecutionProcessor.processAll(executorList);
     }
 
-    public static BenchmarkResultContainer processSimpleBenchmarks(Collection<BenchmarkTask> taskList) {
+    public static BenchmarkResultContainer processBenchmarks(Collection<BenchmarkTask> taskList){
 	ArrayList<BenchmarkExecutor> executorList = new ArrayList<BenchmarkExecutor>();
 
 	for (BenchmarkTask task : taskList) {
-	    executorList.add(new SimpleBenchmarkExecutor(task));
-	}
-
-	return BenchmarkExecutionProcessor.processAll(executorList);
-    }
-
-    public static BenchmarkResultContainer processModelSizeVariationBenchmarks(Collection<BenchmarkTask> taskList){
-	ArrayList<BenchmarkExecutor> executorList = new ArrayList<BenchmarkExecutor>();
-
-	for (BenchmarkTask task : taskList) {
-	    executorList.add(new ModelSizeVariationBenchmarkExecutor(task));
+	    executorList.add(new StandardBenchmarkExecutor(task));
 	}
 
 	return BenchmarkExecutionProcessor.processAll(executorList);
@@ -48,16 +39,19 @@ public class BenchmarkExecutionProcessor {
 
     public static BenchmarkResultContainer processAll(Collection<BenchmarkExecutor> executorList) {
 	System.out.println("Start Processing");
-	BenchmarkResultContainer result = new BenchmarkResultContainer();
+	BenchmarkResultContainer resultContainer = new BenchmarkResultContainer();
 
 	System.out.println("");
 	for (BenchmarkExecutor executor : executorList) {
-	    result.addResult(executor.execute());
+	    BenchmarkResult result = executor.execute();
+	    if(resultContainer != null) {
+		resultContainer.addResult(result);
+	    }
 	    System.out.print("|");
 	}
 
-	System.out.println("Processing finished with " + result.size() + " results");
+	System.out.println("Processing finished with " + resultContainer.size() + " results");
 
-	return result;
+	return resultContainer;
     }
 }

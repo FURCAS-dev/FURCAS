@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
 import junit.framework.TestCase;
 
@@ -43,7 +44,7 @@ public class BenchmarkEnvironmentTest extends TestCase {
 	    mockList.add(new BenchmarkTaskMock());
 	}
 
-	BenchmarkExecutionProcessor.processSimpleBenchmarks(mockList);
+	BenchmarkExecutionProcessor.processBenchmarks(mockList);
 
 	for(int i = 0; i < 10; i++){
 	    assertTrue(((BenchmarkTaskMock)mockList.get(i)).getCallCounter() > 0);
@@ -76,6 +77,12 @@ public class BenchmarkEnvironmentTest extends TestCase {
 
 	public int getCallCounter(){
 	    return callCounter;
+	}
+
+	@Override
+	public Map<String, String> getAdditionalInformation() {
+	    // TODO Auto-generated method stub
+	    return null;
 	}
     }
 }

@@ -29,11 +29,6 @@ public class ExtensiveBenchmarkResult implements BenchmarkResult{
     }
 
     @Override
-    public String toCsvString() {
-	return benchmark.toString();
-    }
-
-    @Override
     public int writeDataSet(OutputStream os, boolean withHeadline, int lineOffset) throws IOException {
 	// TODO Auto-generated method stub
 	throw new RuntimeException("Method not implemented");

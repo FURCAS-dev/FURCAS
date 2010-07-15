@@ -4,14 +4,14 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.Benchm
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
 /**
- * The {@link DefaultBenchmarkExecutor} provides the basic functionality which is needed for
+ * The {@link AbstractBenchmarkExecutor} provides the basic functionality which is needed for
  * creating a new {@link BenchmarkExecutor}.
  *
  * For creating a new {@link BenchmarkExecutor} it is recommended to extend from this class.
  *
  * @author Manuel Holzleitner (D049667)
  */
-public abstract class DefaultBenchmarkExecutor implements BenchmarkExecutor {
+public abstract class AbstractBenchmarkExecutor implements BenchmarkExecutor {
 
     protected BenchmarkTask task;
     protected Object returnValue;

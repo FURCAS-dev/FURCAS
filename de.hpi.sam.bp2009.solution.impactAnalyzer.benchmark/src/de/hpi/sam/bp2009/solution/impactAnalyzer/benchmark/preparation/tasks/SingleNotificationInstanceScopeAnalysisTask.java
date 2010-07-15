@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -38,5 +39,11 @@ public class SingleNotificationInstanceScopeAnalysisTask implements BenchmarkTas
 
     public Notification getNotification() {
 	return noti;
+    }
+
+    @Override
+    public Map<String, String> getAdditionalInformation() {
+	// TODO Auto-generated method stub
+	return null;
     }
 }
