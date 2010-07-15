@@ -28,6 +28,7 @@ public class BenchmarkExecutionProcessor {
 	
 	System.out.println("");
 	int i=0;
+	int all = taskList.size();
 	
 	System.out.println("Start Processing");
 	
@@ -36,10 +37,11 @@ public class BenchmarkExecutionProcessor {
 		
 	    executor.execute(task, writer);
 	    
-	    if(i++ % 500 == 0){
-	      System.out.print("\r" + i);
+	    if(i % 500 == 0){
+	      System.out.print("\r" + i + "/" + all);
 	    }
-	}
+	    i++;
+	}System.out.print("\n");
 
 	writer.close();
 		System.out.println("Processing finished");
