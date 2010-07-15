@@ -19,13 +19,15 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     
     LinkedHashMap<String, String> additionalInformation = new LinkedHashMap<String, String>();
     
-    public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, Resource model, Notification notification, ImpactAnalyzer imp, String oclId) {
+    public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, Resource model, Notification notification, ImpactAnalyzer imp, String oclId, String notificationId) {
 	this.notification = notification;
 	ia = imp;
 		additionalInformation.put("notification", String.valueOf(notification.hashCode()));
+		additionalInformation.put("notificiationId", notificationId);
 		additionalInformation.put("oclId", oclId);
 		additionalInformation.put("modelSize", String.valueOf(getModelSize(model)));
 		additionalInformation.put("resourceUri", String.valueOf(model.getURI().toString().replaceAll("\t", "")));
+	
     }
 
     @Override
