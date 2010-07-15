@@ -126,7 +126,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
      */
     @Override
     public EventFilter getAndFilterFor(EventFilter... eventFilters) {
-        LogicalOperationFilter and = EventManagerFactory.eINSTANCE.createAndFilter();
+        LogicalOperationFilter and = createAndFilter();
         and.getOperands().addAll(Arrays.asList(eventFilters));
         return and;
     }
@@ -139,42 +139,35 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
      */
     @Override
     public EventFilter getOrFilterFor(EventFilter... eventFilters) {
-        LogicalOperationFilter or = EventManagerFactory.eINSTANCE.createOrFilter();
+        LogicalOperationFilter or = createOrFilter();
         or.getOperands().addAll(Arrays.asList(eventFilters));
         return or;
     }
 
     @Override
     public EventFilter createFilterForElementInsertionOrDeletion(EClass cls) {
-        EventManagerFactory i = EventManagerFactory.eINSTANCE;
-
-        NewValueClassFilter nv = i.createNewValueClassFilter();
+        NewValueClassFilter nv = createNewValueClassFilter();
         nv.setWantedClass(cls);
 
-        OldValueClassFilter ov = i.createOldValueClassFilter();
+        OldValueClassFilter ov = createOldValueClassFilter();
         ov.setWantedClass(cls);
 
-        return getAndFilterFor(getOrFilterFor(nv, ov), i.createContainmentFilter());
+        return getAndFilterFor(getOrFilterFor(nv, ov), createContainmentFilter());
     }
 
     @Override
     public EventFilter createFilterForElementInsertion(EClass cls) {
-        EventManagerFactory i = EventManagerFactory.eINSTANCE;
-
-        NewValueClassFilter nv = i.createNewValueClassFilter();
+        NewValueClassFilter nv = createNewValueClassFilter();
         nv.setWantedClass(cls);
-        /*
-         * Figure out what the containing Reference is
-         */
+        // Figure out what the containing Reference is
         return getAndFilterFor(createOrFilterForEventTypes(Notification.ADD, Notification.SET, Notification.ADD_MANY), nv,
-                i.createContainmentFilter());
-
+                createContainmentFilter());
     }
 
     private LogicalOperationFilter createOrFilterForEventTypes(int... types) {
-        LogicalOperationFilter or = EventManagerFactory.eINSTANCE.createOrFilter();
+        LogicalOperationFilter or = createOrFilter();
         for (int t : types) {
-            EventTypeFilter e1 = EventManagerFactory.eINSTANCE.createEventTypeFilter();
+            EventTypeFilter e1 = createEventTypeFilter();
             e1.setEventType(t);
             or.getOperands().add(e1);
         }
@@ -184,24 +177,22 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
 
     @Override
     public EventFilter createFilterForEAttribute(EClass eClass, EStructuralFeature referredProperty) {
-        EventManagerFactory i = EventManagerFactory.eINSTANCE;
         StructuralFeatureFilter sf = null;
-        sf = i.createAttributeFilter();
+        sf = createAttributeFilter();
         sf.setFeature(referredProperty);
 
-        ClassFilter cf = i.createClassFilter();
+        ClassFilter cf = createClassFilter();
         cf.setWantedClass(eClass);
         return getAndFilterFor(sf, cf);
     }
 
     @Override
     public EventFilter createFilterForEReference(EClass eClass, EStructuralFeature referredProperty) {
-        EventManagerFactory i = EventManagerFactory.eINSTANCE;
         StructuralFeatureFilter sf = null;
-        sf = i.createAssociationFilter();
+        sf = createAssociationFilter();
         sf.setFeature(referredProperty);
 
-        ClassFilter cf = i.createClassFilter();
+        ClassFilter cf = createClassFilter();
         cf.setWantedClass(eClass);
         return getAndFilterFor(sf, cf);
     }
@@ -231,7 +222,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
                     addNotification((EObject) o, NotificationHelper.isAddEvent(event), event, result);
                 }
             }
-        }else{
+        } else {
             if (value instanceof EObject) {
                 addNotification((EObject) value, NotificationHelper.isAddEvent(event), event, result);
             }
@@ -242,9 +233,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         for (EStructuralFeature ref : o.eClass().getEAllStructuralFeatures()) {
             //init new Notification
             Notification notification=null;
-            
             Object valueOfRef = o.eGet(ref);
-            
             if(valueOfRef==null){
                 //no value so nothing to do here
                 continue;
@@ -253,27 +242,20 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
                 //can cast value to list
                 EList<?> values = (EList<?>) valueOfRef;
                 switch (values.size()) {
-                case 0: {
+                case 0:
                     // no content
                     break;
-                }
-                case 1: {
+                case 1:
                     //create single add notification
                     notification= new MyNotification(add ? Notification.ADD : Notification.REMOVE, add ? null : values
                             .get(0), !add ? null : values.get(0), o, ref);
-                    
                     break;
-                }
-
-                default:{
+                default:
                     //create many add notification
                     notification= new MyNotification(add ? Notification.ADD_MANY : Notification.REMOVE_MANY, add ? null : values
                             , !add ? null : values,  o, ref);
-                    
                     break;
                 }
-                }
-
             }else{
                 //simple set notification
                     notification= new MyNotification(Notification.SET, add ? null : valueOfRef

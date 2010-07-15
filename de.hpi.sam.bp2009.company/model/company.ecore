@@ -73,7 +73,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="boss" eType="#//Employee"
         resolveProxies="false" eOpposite="#//Employee/managed"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subDepartment" upperBound="-1"
-        eType="#//Department" resolveProxies="false" eOpposite="#//Department/parentDepartment"/>
+        eType="#//Department" containment="true" resolveProxies="false" eOpposite="#//Department/parentDepartment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentDepartment" eType="#//Department"
         resolveProxies="false" eOpposite="#//Department/subDepartment"/>
   </eClassifiers>

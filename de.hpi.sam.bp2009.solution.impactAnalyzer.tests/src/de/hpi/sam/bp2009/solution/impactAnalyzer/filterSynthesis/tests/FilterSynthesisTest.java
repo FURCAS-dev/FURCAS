@@ -1,10 +1,14 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -12,9 +16,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import company.CompanyFactory;
 import company.CompanyPackage;
+import company.Department;
 import company.Employee;
+import company.Student;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -405,6 +414,41 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         }
     }
     
+    @Test
+    public void testInsertEventForSubtreeInsertion() {
+        rs.getResources().iterator().next().getContents().add(aDivision);
+        final List<Notification> notifications = new ArrayList<Notification>();
+        Adapter listener = new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification notification) {
+                notifications.add(notification);
+            }
+        };
+        EventManager eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
+        EventFilter filter = new ImpactAnalyzerImpl((OCLExpression) getSimpleAllInstancesAST().getBodyExpression())
+                .createFilterForExpression(/* notifyNewContextElements */ false);
+        eventManager.subscribe(filter, listener);
+        
+        // now construct subtree that contains an Employee subclass's instance:
+        Department parentDepartment = CompanyFactory.eINSTANCE.createDepartment();
+        parentDepartment.setName("Parent department");
+        Department subDepartment = CompanyFactory.eINSTANCE.createDepartment();
+        subDepartment.setName("Subdepartment");
+        parentDepartment.getSubDepartment().add(subDepartment);
+        
+        Student student = CompanyFactory.eINSTANCE.createStudent();
+        student.setName("The New Student");
+        subDepartment.getEmployee().add(student); // this shouldn't trigger the listener because container is not yet in ResourceSet
+        // not add department to a container object which is contained in the ResourceSet
+        this.aDivision.getDepartment().add(parentDepartment);
+        assertEquals(1, notifications.size());
+        assertEquals(Notification.ADD, notifications.get(0).getEventType());
+        assertEquals(subDepartment, notifications.get(0).getNotifier());
+        assertEquals(student, notifications.get(0).getNewValue());
+        assertNotNull(eventManager); // ensure it's not garbage-collected
+        assertNotNull(listener); // ensure it's not garbage-collected
+    }
+    
 
 
     private void assertAllClassesOfClassFiltersInPackage(EventFilter f, CompanyPackage comp) {
@@ -441,9 +485,13 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      * @return the {@link OCLExpression}s which are affected by the given {@link Notification}
      */
     private HashSet<ExpressionInOCL> filterStatementsForNotification(Notification noti) {
-        HashSet<ExpressionInOCL> affectedStmts = new HashSet<ExpressionInOCL>();
+        Set<ExpressionInOCL> statements = this.stmts;
+        return filterStatementsForNotification(noti, statements);
+    }
 
-        for (Iterator<ExpressionInOCL> i = this.stmts.iterator(); i.hasNext();) {
+    private HashSet<ExpressionInOCL> filterStatementsForNotification(Notification noti, Set<ExpressionInOCL> statements) {
+        HashSet<ExpressionInOCL> affectedStmts = new HashSet<ExpressionInOCL>();
+        for (Iterator<ExpressionInOCL> i = statements.iterator(); i.hasNext();) {
             ExpressionInOCL exp = i.next();
             EventFilter filter = new ImpactAnalyzerImpl((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType()).createFilterForExpression(true);
             if (filter.matchesFor(noti)) {

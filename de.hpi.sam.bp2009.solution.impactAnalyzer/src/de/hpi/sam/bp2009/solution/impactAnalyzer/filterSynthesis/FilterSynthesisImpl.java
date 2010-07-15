@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.EClassifierImpl;
-import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
@@ -192,8 +191,7 @@ implements OperationBodyToCallMapper {
 
     @Override
     public EPackage visitVariableExp(VariableExp<EClassifier, EParameter> var) {
-        if ( var.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])
-                && notifyNewContextElements) {
+        if (notifyNewContextElements && var.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])) {
             EClass cls = (EClass) var.getType();
             filters.add(createFilterForElementInsertionOrDeletion(cls));
         }
@@ -283,7 +281,7 @@ implements OperationBodyToCallMapper {
      */
     private EventFilter createFilterForElementInsertionOrDeletion(EClass clazz) {
         OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
-        for(EClass cls: EcoreHelper.getInstance().getAllSubclasses(clazz)){
+        for(EClass cls : DefaultOppositeEndFinder.getInstance().getAllSubclasses(clazz)){
             orFilter.getOperands().add(EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(cls));           
         }
         orFilter.getOperands().add(EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(clazz));           

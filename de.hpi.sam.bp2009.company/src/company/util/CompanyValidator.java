@@ -111,9 +111,11 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateEmployee(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(employee, diagnostics, context)) return false;
         boolean result = validate_EveryMultiplicityConforms(employee, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryDataValueConforms(employee, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(employee, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(employee, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryProxyResolves(employee, diagnostics, context);
         if (result || diagnostics != null) result &= validate_UniqueID(employee, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryKeyUnique(employee, diagnostics, context);
@@ -128,32 +130,41 @@ public class CompanyValidator extends EObjectValidator {
     }
 
     /**
+     * The cached validation expression for the UniqueNames constraint of '<em>Employee</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String EMPLOYEE__UNIQUE_NAMES__EEXPRESSION = "Employee.allInstances()->forAll(e | e <> self implies e.name <> self.name)";
+
+    /**
      * Validates the UniqueNames constraint of '<em>Employee</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public boolean validateEmployee_UniqueNames(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "UniqueNames", getObjectLabel(employee, context) },
-                         new Object[] { employee },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.EMPLOYEE,
+                 employee,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "UniqueNames",
+                 EMPLOYEE__UNIQUE_NAMES__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the BossIsOldest constraint of '<em>Employee</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String EMPLOYEE__BOSS_IS_OLDEST__EEXPRESSION = "self.age <= self.employer.boss.age";
 
     /**
      * Validates the BossIsOldest constraint of '<em>Employee</em>'.
@@ -162,26 +173,31 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateEmployee_BossIsOldest(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "BossIsOldest", getObjectLabel(employee, context) },
-                         new Object[] { employee },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.EMPLOYEE,
+                 employee,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "BossIsOldest",
+                 EMPLOYEE__BOSS_IS_OLDEST__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the divBossSecretary constraint of '<em>Employee</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String EMPLOYEE__DIV_BOSS_SECRETARY__EEXPRESSION = "if self.directed->isEmpty() then\r\n" +
+        "self.secretary.oclIsUndefined()\r\n" +
+        "else\r\n" +
+        "not self.secretary.oclIsUndefined()\r\n" +
+        "endif";
 
     /**
      * Validates the divBossSecretary constraint of '<em>Employee</em>'.
@@ -190,26 +206,31 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateEmployee_divBossSecretary(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "divBossSecretary", getObjectLabel(employee, context) },
-                         new Object[] { employee },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.EMPLOYEE,
+                 employee,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "divBossSecretary",
+                 EMPLOYEE__DIV_BOSS_SECRETARY__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the secretaryOlderThanBoss constraint of '<em>Employee</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String EMPLOYEE__SECRETARY_OLDER_THAN_BOSS__EEXPRESSION = "if self.directed->notEmpty() and\r\n" +
+        "not self.secretary.oclIsUndefined() then\r\n" +
+        "self.age < self.secretary.age \r\n" +
+        "else true\r\n" +
+        "endif";
 
     /**
      * Validates the secretaryOlderThanBoss constraint of '<em>Employee</em>'.
@@ -218,26 +239,27 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateEmployee_secretaryOlderThanBoss(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "secretaryOlderThanBoss", getObjectLabel(employee, context) },
-                         new Object[] { employee },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.EMPLOYEE,
+                 employee,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "secretaryOlderThanBoss",
+                 EMPLOYEE__SECRETARY_OLDER_THAN_BOSS__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the Boss10YearsOlderThanEmployee constraint of '<em>Employee</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String EMPLOYEE__BOSS10_YEARS_OLDER_THAN_EMPLOYEE__EEXPRESSION = "self.age + 10 <= self.employer.boss.age";
 
     /**
      * Validates the Boss10YearsOlderThanEmployee constraint of '<em>Employee</em>'.
@@ -246,26 +268,31 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateEmployee_Boss10YearsOlderThanEmployee(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "Boss10YearsOlderThanEmployee", getObjectLabel(employee, context) },
-                         new Object[] { employee },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.EMPLOYEE,
+                 employee,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "Boss10YearsOlderThanEmployee",
+                 EMPLOYEE__BOSS10_YEARS_OLDER_THAN_EMPLOYEE__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the Secretary10YearsOlderThanBoss constraint of '<em>Employee</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String EMPLOYEE__SECRETARY10_YEARS_OLDER_THAN_BOSS__EEXPRESSION = "if self.directed->notEmpty() and\r\n" +
+        "not self.secretary.oclIsUndefined() then\r\n" +
+        "self.age + 10 < self.secretary.age \r\n" +
+        "else true\r\n" +
+        "endif";
 
     /**
      * Validates the Secretary10YearsOlderThanBoss constraint of '<em>Employee</em>'.
@@ -274,25 +301,18 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateEmployee_Secretary10YearsOlderThanBoss(Employee employee, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "Secretary10YearsOlderThanBoss", getObjectLabel(employee, context) },
-                         new Object[] { employee },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.EMPLOYEE,
+                 employee,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "Secretary10YearsOlderThanBoss",
+                 EMPLOYEE__SECRETARY10_YEARS_OLDER_THAN_BOSS__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
 
     /**
@@ -301,9 +321,11 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateDepartment(Department department, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(department, diagnostics, context)) return false;
         boolean result = validate_EveryMultiplicityConforms(department, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryDataValueConforms(department, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(department, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(department, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryProxyResolves(department, diagnostics, context);
         if (result || diagnostics != null) result &= validate_UniqueID(department, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryKeyUnique(department, diagnostics, context);
@@ -320,32 +342,41 @@ public class CompanyValidator extends EObjectValidator {
     }
 
     /**
+     * The cached validation expression for the NotBossFreelance constraint of '<em>Department</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DEPARTMENT__NOT_BOSS_FREELANCE__EEXPRESSION = "not (self.boss.oclIsTypeOf(Freelance))";
+
+    /**
      * Validates the NotBossFreelance constraint of '<em>Department</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public boolean validateDepartment_NotBossFreelance(Department department, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "NotBossFreelance", getObjectLabel(department, context) },
-                         new Object[] { department },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.DEPARTMENT,
+                 department,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "NotBossFreelance",
+                 DEPARTMENT__NOT_BOSS_FREELANCE__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the OldEmployee constraint of '<em>Department</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DEPARTMENT__OLD_EMPLOYEE__EEXPRESSION = "self.employee->exists(e | e.age > 45)";
 
     /**
      * Validates the OldEmployee constraint of '<em>Department</em>'.
@@ -354,26 +385,28 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateDepartment_OldEmployee(Department department, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "OldEmployee", getObjectLabel(department, context) },
-                         new Object[] { department },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.DEPARTMENT,
+                 department,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "OldEmployee",
+                 DEPARTMENT__OLD_EMPLOYEE__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the MaxJuniors constraint of '<em>Department</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DEPARTMENT__MAX_JUNIORS__EEXPRESSION = "self.employee->select(e|e.age < 25)->size()\r\n" +
+        "<self.maxJuniors";
 
     /**
      * Validates the MaxJuniors constraint of '<em>Department</em>'.
@@ -382,26 +415,27 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateDepartment_MaxJuniors(Department department, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "MaxJuniors", getObjectLabel(department, context) },
-                         new Object[] { department },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.DEPARTMENT,
+                 department,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "MaxJuniors",
+                 DEPARTMENT__MAX_JUNIORS__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the BossHighestSalary constraint of '<em>Department</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DEPARTMENT__BOSS_HIGHEST_SALARY__EEXPRESSION = "self.employee->select(e|e.salary >= self.boss.salary)->size() <= 1";
 
     /**
      * Validates the BossHighestSalary constraint of '<em>Department</em>'.
@@ -410,26 +444,29 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateDepartment_BossHighestSalary(Department department, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "BossHighestSalary", getObjectLabel(department, context) },
-                         new Object[] { department },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.DEPARTMENT,
+                 department,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "BossHighestSalary",
+                 DEPARTMENT__BOSS_HIGHEST_SALARY__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the boss10YearsOlderThanJunior constraint of '<em>Department</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DEPARTMENT__BOSS10_YEARS_OLDER_THAN_JUNIOR__EEXPRESSION = "let t:Tuple(boss:Employee,junior:Employee)=\r\n" +
+        "Tuple{boss=self.boss, junior=self.employee->sortedBy(age)->first()} in\r\n" +
+        "t.boss.age > t.junior.age + 10";
 
     /**
      * Validates the boss10YearsOlderThanJunior constraint of '<em>Department</em>'.
@@ -438,26 +475,27 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateDepartment_boss10YearsOlderThanJunior(Department department, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "boss10YearsOlderThanJunior", getObjectLabel(department, context) },
-                         new Object[] { department },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.DEPARTMENT,
+                 department,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "boss10YearsOlderThanJunior",
+                 DEPARTMENT__BOSS10_YEARS_OLDER_THAN_JUNIOR__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the BudgetRestriction constraint of '<em>Department</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DEPARTMENT__BUDGET_RESTRICTION__EEXPRESSION = "self.calcExpenses() <= self.budget";
 
     /**
      * Validates the BudgetRestriction constraint of '<em>Department</em>'.
@@ -466,26 +504,33 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateDepartment_BudgetRestriction(Department department, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "BudgetRestriction", getObjectLabel(department, context) },
-                         new Object[] { department },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.DEPARTMENT,
+                 department,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "BudgetRestriction",
+                 DEPARTMENT__BUDGET_RESTRICTION__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the MaxJuniorsWarning constraint of '<em>Department</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DEPARTMENT__MAX_JUNIORS_WARNING__EEXPRESSION = "if self.maxJuniors > 1\r\n" +
+        "then\r\n" +
+        "self.employee->select(e|e.age < 25)->size()\r\n" +
+        "<self.maxJuniors - 1\r\n" +
+        "else\r\n" +
+        "true\r\n" +
+        "endif";
 
     /**
      * Validates the MaxJuniorsWarning constraint of '<em>Department</em>'.
@@ -494,26 +539,27 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateDepartment_MaxJuniorsWarning(Department department, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "MaxJuniorsWarning", getObjectLabel(department, context) },
-                         new Object[] { department },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.DEPARTMENT,
+                 department,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "MaxJuniorsWarning",
+                 DEPARTMENT__MAX_JUNIORS_WARNING__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the departmentMustHaveDivision constraint of '<em>Department</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DEPARTMENT__DEPARTMENT_MUST_HAVE_DIVISION__EEXPRESSION = "self.department2division->notEmpty()";
 
     /**
      * Validates the departmentMustHaveDivision constraint of '<em>Department</em>'.
@@ -522,25 +568,18 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateDepartment_departmentMustHaveDivision(Department department, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "departmentMustHaveDivision", getObjectLabel(department, context) },
-                         new Object[] { department },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.DEPARTMENT,
+                 department,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "departmentMustHaveDivision",
+                 DEPARTMENT__DEPARTMENT_MUST_HAVE_DIVISION__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
 
     /**
@@ -549,9 +588,11 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateFreelance(Freelance freelance, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(freelance, diagnostics, context)) return false;
         boolean result = validate_EveryMultiplicityConforms(freelance, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryDataValueConforms(freelance, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(freelance, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(freelance, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryProxyResolves(freelance, diagnostics, context);
         if (result || diagnostics != null) result &= validate_UniqueID(freelance, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryKeyUnique(freelance, diagnostics, context);
@@ -569,32 +610,41 @@ public class CompanyValidator extends EObjectValidator {
     }
 
     /**
+     * The cached validation expression for the ValidAssignment constraint of '<em>Freelance</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String FREELANCE__VALID_ASSIGNMENT__EEXPRESSION = "self.assignment >= 5 and self.assignment <= 30";
+
+    /**
      * Validates the ValidAssignment constraint of '<em>Freelance</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public boolean validateFreelance_ValidAssignment(Freelance freelance, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "ValidAssignment", getObjectLabel(freelance, context) },
-                         new Object[] { freelance },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.FREELANCE,
+                 freelance,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "ValidAssignment",
+                 FREELANCE__VALID_ASSIGNMENT__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the ValidAssignmentWarning constraint of '<em>Freelance</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String FREELANCE__VALID_ASSIGNMENT_WARNING__EEXPRESSION = "self.assignment >= 5 and self.assignment <= 40";
 
     /**
      * Validates the ValidAssignmentWarning constraint of '<em>Freelance</em>'.
@@ -603,26 +653,27 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateFreelance_ValidAssignmentWarning(Freelance freelance, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "ValidAssignmentWarning", getObjectLabel(freelance, context) },
-                         new Object[] { freelance },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.FREELANCE,
+                 freelance,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "ValidAssignmentWarning",
+                 FREELANCE__VALID_ASSIGNMENT_WARNING__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
+
+    /**
+     * The cached validation expression for the StudentAndFreelancesAge constraint of '<em>Freelance</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String FREELANCE__STUDENT_AND_FREELANCES_AGE__EEXPRESSION = "self.age < 40";
 
     /**
      * Validates the StudentAndFreelancesAge constraint of '<em>Freelance</em>'.
@@ -631,25 +682,18 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateFreelance_StudentAndFreelancesAge(Freelance freelance, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "StudentAndFreelancesAge", getObjectLabel(freelance, context) },
-                         new Object[] { freelance },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.FREELANCE,
+                 freelance,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "StudentAndFreelancesAge",
+                 FREELANCE__STUDENT_AND_FREELANCES_AGE__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
 
     /**
@@ -658,9 +702,11 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateDivision(Division division, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(division, diagnostics, context)) return false;
         boolean result = validate_EveryMultiplicityConforms(division, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryDataValueConforms(division, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(division, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(division, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryProxyResolves(division, diagnostics, context);
         if (result || diagnostics != null) result &= validate_UniqueID(division, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryKeyUnique(division, diagnostics, context);
@@ -670,31 +716,33 @@ public class CompanyValidator extends EObjectValidator {
     }
 
     /**
+     * The cached validation expression for the nasty constraint of '<em>Division</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DIVISION__NASTY__EEXPRESSION = "self.department->collect(d| \r\n" +
+        "d.employee->including(d.boss)).salary->sum() < budget";
+
+    /**
      * Validates the nasty constraint of '<em>Division</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public boolean validateDivision_nasty(Division division, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "nasty", getObjectLabel(division, context) },
-                         new Object[] { division },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.DIVISION,
+                 division,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "nasty",
+                 DIVISION__NASTY__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
 
     /**
@@ -703,9 +751,11 @@ public class CompanyValidator extends EObjectValidator {
      * @generated
      */
     public boolean validateStudent(Student student, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        if (!validate_NoCircularContainment(student, diagnostics, context)) return false;
         boolean result = validate_EveryMultiplicityConforms(student, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryDataValueConforms(student, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(student, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(student, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryProxyResolves(student, diagnostics, context);
         if (result || diagnostics != null) result &= validate_UniqueID(student, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryKeyUnique(student, diagnostics, context);
@@ -721,31 +771,32 @@ public class CompanyValidator extends EObjectValidator {
     }
 
     /**
+     * The cached validation expression for the StudentAndFreelancesAge constraint of '<em>Student</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String STUDENT__STUDENT_AND_FREELANCES_AGE__EEXPRESSION = "self.age < 40";
+
+    /**
      * Validates the StudentAndFreelancesAge constraint of '<em>Student</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public boolean validateStudent_StudentAndFreelancesAge(Student student, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        // TODO implement the constraint
-        // -> specify the condition that violates the constraint
-        // -> verify the diagnostic details, including severity, code, and message
-        // Ensure that you remove @generated or mark it @generated NOT
-        if (false) {
-            if (diagnostics != null) {
-                diagnostics.add
-                    (createDiagnostic
-                        (Diagnostic.ERROR,
-                         DIAGNOSTIC_SOURCE,
-                         0,
-                         "_UI_GenericConstraint_diagnostic",
-                         new Object[] { "StudentAndFreelancesAge", getObjectLabel(student, context) },
-                         new Object[] { student },
-                         context));
-            }
-            return false;
-        }
-        return true;
+        return
+            validate
+                (CompanyPackage.Literals.STUDENT,
+                 student,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "StudentAndFreelancesAge",
+                 STUDENT__STUDENT_AND_FREELANCES_AGE__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
     }
 
     /**
