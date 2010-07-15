@@ -96,17 +96,6 @@ public class NavigationStepDebugGraphTest extends BaseDepartmentTest  {
         if (this.comp.eResource() != null) {
             this.comp.eResource().getContents().add(dep1);
         }
-        
-        this.allDepartments.add((DepartmentImpl)dep2);
-        if (this.comp.eResource() != null) {
-            this.comp.eResource().getContents().add(dep2);
-        }
-        
-        this.allDepartments.add((DepartmentImpl)dep3);
-        if (this.comp.eResource() != null) {
-            this.comp.eResource().getContents().add(dep3);
-        }
-        
     }
     
     /**

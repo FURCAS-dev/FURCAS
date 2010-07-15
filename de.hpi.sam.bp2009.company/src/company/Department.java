@@ -158,7 +158,7 @@ public interface Department extends EObject {
     void setBoss(Employee value);
 
     /**
-     * Returns the value of the '<em><b>Sub Department</b></em>' reference list.
+     * Returns the value of the '<em><b>Sub Department</b></em>' containment reference list.
      * The list contents are of type {@link company.Department}.
      * It is bidirectional and its opposite is '{@link company.Department#getParentDepartment <em>Parent Department</em>}'.
      * <!-- begin-user-doc -->
@@ -167,16 +167,16 @@ public interface Department extends EObject {
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>Sub Department</em>' reference list.
+     * @return the value of the '<em>Sub Department</em>' containment reference list.
      * @see company.CompanyPackage#getDepartment_SubDepartment()
      * @see company.Department#getParentDepartment
-     * @model opposite="parentDepartment" resolveProxies="false"
+     * @model opposite="parentDepartment" containment="true"
      * @generated
      */
         EList<Department> getSubDepartment();
 
 /**
-     * Returns the value of the '<em><b>Parent Department</b></em>' reference.
+     * Returns the value of the '<em><b>Parent Department</b></em>' container reference.
      * It is bidirectional and its opposite is '{@link company.Department#getSubDepartment <em>Sub Department</em>}'.
      * <!-- begin-user-doc -->
          * <p>
@@ -184,20 +184,20 @@ public interface Department extends EObject {
          * there really should be more of a description here...
          * </p>
          * <!-- end-user-doc -->
-     * @return the value of the '<em>Parent Department</em>' reference.
+     * @return the value of the '<em>Parent Department</em>' container reference.
      * @see #setParentDepartment(Department)
      * @see company.CompanyPackage#getDepartment_ParentDepartment()
      * @see company.Department#getSubDepartment
-     * @model opposite="subDepartment" resolveProxies="false"
+     * @model opposite="subDepartment" resolveProxies="false" transient="false"
      * @generated
      */
         Department getParentDepartment();
 
 /**
-     * Sets the value of the '{@link company.Department#getParentDepartment <em>Parent Department</em>}' reference.
+     * Sets the value of the '{@link company.Department#getParentDepartment <em>Parent Department</em>}' container reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Parent Department</em>' reference.
+     * @param value the new value of the '<em>Parent Department</em>' container reference.
      * @see #getParentDepartment()
      * @generated
      */

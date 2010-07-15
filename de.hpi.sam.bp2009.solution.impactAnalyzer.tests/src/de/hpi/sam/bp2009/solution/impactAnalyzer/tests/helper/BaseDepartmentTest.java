@@ -100,9 +100,7 @@ public class BaseDepartmentTest extends TestCase {
      */
     protected FreelanceImpl aFreelance = null;
 
-    /*
-     * constaints
-     */
+    // constaints
     /**
      * A boss is not allowed to be a freelance
      */
@@ -177,6 +175,12 @@ public class BaseDepartmentTest extends TestCase {
      */
     public final String expensesRestriction = "context Department inv BudgetRestriction: \n"
             + "self.calcExpenses() <= self.budget";
+    
+    /**
+     * A simple allInstances() expression to test instance creation/deletion filters
+     */
+    public final String simpleAllInstances = "context Employee inv InstanceCount: \n"
+            + "Employee.allInstances()->size() = 17";
 
     // /**
     // * defines how to calculate expenses: The sum of the employee's salary plus
@@ -238,6 +242,8 @@ public class BaseDepartmentTest extends TestCase {
 
     public ExpressionInOCL checkForBobAST = null;
 
+    public ExpressionInOCL simpleAllInstancesAST = null;
+    
     /*
      * for easy access to the model
      */
@@ -365,6 +371,10 @@ public class BaseDepartmentTest extends TestCase {
 
     protected ExpressionInOCL getCheckForBobAST() {
         return getAST("checkForBob");
+    }
+
+    protected ExpressionInOCL getSimpleAllInstancesAST() {
+        return getAST("simpleAllInstances");
     }
 
     @Override

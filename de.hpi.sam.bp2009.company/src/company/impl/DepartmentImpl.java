@@ -6,17 +6,20 @@
  */
 package company.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import company.CompanyPackage;
@@ -124,7 +127,7 @@ public class DepartmentImpl extends EObjectImpl implements Department {
     protected Employee boss;
 
     /**
-     * The cached value of the '{@link #getSubDepartment() <em>Sub Department</em>}' reference list.
+     * The cached value of the '{@link #getSubDepartment() <em>Sub Department</em>}' containment reference list.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @see #getSubDepartment()
@@ -134,16 +137,6 @@ public class DepartmentImpl extends EObjectImpl implements Department {
         protected EList<Department> subDepartment;
 
                                 /**
-     * The cached value of the '{@link #getParentDepartment() <em>Parent Department</em>}' reference.
-     * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-     * @see #getParentDepartment()
-     * @generated
-     * @ordered
-     */
-        protected Department parentDepartment;
-
-/**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -287,7 +280,7 @@ public class DepartmentImpl extends EObjectImpl implements Department {
      */
         public EList<Department> getSubDepartment() {
         if (subDepartment == null) {
-            subDepartment = new EObjectWithInverseEList<Department>(Department.class, this, CompanyPackage.DEPARTMENT__SUB_DEPARTMENT, CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT);
+            subDepartment = new EObjectContainmentWithInverseEList<Department>(Department.class, this, CompanyPackage.DEPARTMENT__SUB_DEPARTMENT, CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT);
         }
         return subDepartment;
     }
@@ -298,7 +291,8 @@ public class DepartmentImpl extends EObjectImpl implements Department {
      * @generated
      */
         public Department getParentDepartment() {
-        return parentDepartment;
+        if (eContainerFeatureID() != CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT) return null;
+        return (Department)eContainer();
     }
 
 /**
@@ -307,12 +301,7 @@ public class DepartmentImpl extends EObjectImpl implements Department {
      * @generated
      */
         public NotificationChain basicSetParentDepartment(Department newParentDepartment, NotificationChain msgs) {
-        Department oldParentDepartment = parentDepartment;
-        parentDepartment = newParentDepartment;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT, oldParentDepartment, newParentDepartment);
-            if (msgs == null) msgs = notification; else msgs.add(notification);
-        }
+        msgs = eBasicSetContainer((InternalEObject)newParentDepartment, CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT, msgs);
         return msgs;
     }
 
@@ -322,10 +311,12 @@ public class DepartmentImpl extends EObjectImpl implements Department {
      * @generated
      */
         public void setParentDepartment(Department newParentDepartment) {
-        if (newParentDepartment != parentDepartment) {
+        if (newParentDepartment != eInternalContainer() || (eContainerFeatureID() != CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT && newParentDepartment != null)) {
+            if (EcoreUtil.isAncestor(this, newParentDepartment))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
             NotificationChain msgs = null;
-            if (parentDepartment != null)
-                msgs = ((InternalEObject)parentDepartment).eInverseRemove(this, CompanyPackage.DEPARTMENT__SUB_DEPARTMENT, Department.class, msgs);
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
             if (newParentDepartment != null)
                 msgs = ((InternalEObject)newParentDepartment).eInverseAdd(this, CompanyPackage.DEPARTMENT__SUB_DEPARTMENT, Department.class, msgs);
             msgs = basicSetParentDepartment(newParentDepartment, msgs);
@@ -336,15 +327,38 @@ public class DepartmentImpl extends EObjectImpl implements Department {
     }
 
 /**
+     * The cached invocation delegate for the '{@link #calcExpenses() <em>Calc Expenses</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #calcExpenses()
+     * @generated
+     * @ordered
+     */
+    protected static final EOperation.Internal.InvocationDelegate CALC_EXPENSES__EINVOCATION_DELEGATE = ((EOperation.Internal)CompanyPackage.Literals.DEPARTMENT.getEOperations().get(0)).getInvocationDelegate();
+
+/**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     public int calcExpenses() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+        try {
+            return (Integer)CALC_EXPENSES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
     }
+
+    /**
+     * The cached invocation delegate for the '{@link #sumBudget() <em>Sum Budget</em>}' operation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #sumBudget()
+     * @generated
+     * @ordered
+     */
+    protected static final EOperation.Internal.InvocationDelegate SUM_BUDGET__EINVOCATION_DELEGATE = ((EOperation.Internal)CompanyPackage.Literals.DEPARTMENT.getEOperations().get(1)).getInvocationDelegate();
 
     /**
      * <!-- begin-user-doc -->
@@ -352,9 +366,12 @@ public class DepartmentImpl extends EObjectImpl implements Department {
      * @generated
      */
         public int sumBudget() {
-        // TODO: implement this method
-        // Ensure that you remove @generated or mark it @generated NOT
-        throw new UnsupportedOperationException();
+        try {
+            return (Integer)SUM_BUDGET__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
     }
 
 /**
@@ -375,8 +392,8 @@ public class DepartmentImpl extends EObjectImpl implements Department {
             case CompanyPackage.DEPARTMENT__SUB_DEPARTMENT:
                 return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubDepartment()).basicAdd(otherEnd, msgs);
             case CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT:
-                if (parentDepartment != null)
-                    msgs = ((InternalEObject)parentDepartment).eInverseRemove(this, CompanyPackage.DEPARTMENT__SUB_DEPARTMENT, Department.class, msgs);
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
                 return basicSetParentDepartment((Department)otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -400,6 +417,20 @@ public class DepartmentImpl extends EObjectImpl implements Department {
                 return basicSetParentDepartment(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+        switch (eContainerFeatureID()) {
+            case CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT:
+                return eInternalContainer().eInverseRemove(this, CompanyPackage.DEPARTMENT__SUB_DEPARTMENT, Department.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
     }
 
     /**
@@ -518,7 +549,7 @@ public class DepartmentImpl extends EObjectImpl implements Department {
             case CompanyPackage.DEPARTMENT__SUB_DEPARTMENT:
                 return subDepartment != null && !subDepartment.isEmpty();
             case CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT:
-                return parentDepartment != null;
+                return getParentDepartment() != null;
         }
         return super.eIsSet(featureID);
     }

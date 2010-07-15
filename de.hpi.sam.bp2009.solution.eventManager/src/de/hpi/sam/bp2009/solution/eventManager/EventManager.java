@@ -29,10 +29,10 @@ public interface EventManager {
      * 
      * @param filter
      *            the {@link EventFilter} which is used to filter events for the given {@link Adapter}
-     * @param caller
+     * @param listener
      *            the adapter which should receive event which matches the filter
      */
-    void subscribe(EventFilter filter, Adapter caller);
+    void subscribe(EventFilter filter, Adapter listener);
 
     /**
      * Removes the given {@link Adapter} from the {@link EventManager} and the linked {@link EventFilter}, so that the given

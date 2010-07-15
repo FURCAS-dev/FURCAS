@@ -62,6 +62,7 @@ public class EventManagerTableBased implements EventManager {
     public EventManagerTableBased(ResourceSet set) {
         registrationManager = new RegistrationManagerTableBased();
         set.eAdapters().add(adapter);
+        // FIXME also add to all elements already contained in this resource set
         this.resourceSet= new WeakReference<ResourceSet>(set);
     }
     @Override
@@ -121,15 +122,12 @@ public class EventManagerTableBased implements EventManager {
         if (eventFilterTree == null) {
             throw new IllegalArgumentException("Event filter must not be null");
         }
-
         // Use WeakReference to avoid dangling registrations
         WeakReference<Adapter> listenerRef = new WeakReference<Adapter>(listener);
-
         // delegate registration to RegistrationManager
         // The event filter is cloned, because the calculation of the DNF will modify the filter tree
         registrationManager.register(eventFilterTree.clone(), listenerRef, listenerType);
-
-        /* instantiate and associate notifier */
+        // instantiate and associate notifier
         AdapterCapsule notifier = null;
         if (listenerType.matches(listenersForNotifier)) {
             notifier = new AdapterCapsule(listenerRef, listenerType, this);
@@ -245,12 +243,9 @@ public class EventManagerTableBased implements EventManager {
      *            the event that will be delivered to clients
      */
     private void fireEvent(Notification event) {
-        // event = adjustEvent(event);
         Collection<WeakReference<? extends Adapter>> listeners = registrationManager.getListenersFor(event);
         for (WeakReference<? extends Adapter> listenerRef : listeners) {
-            // Notifier notifier = getNotifierForListener(listenerRef, (event).getDedicatedListenerType());
             AdapterCapsule notifier = getNotifierForListener(listenerRef, ListenerTypeEnum.postChange);
-
             if (notifier != null) {
                 notifier.fireEvent(event);
             }

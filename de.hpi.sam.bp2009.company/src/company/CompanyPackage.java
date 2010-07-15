@@ -207,7 +207,7 @@ public interface CompanyPackage extends EPackage {
     int DEPARTMENT__BOSS = 4;
 
     /**
-     * The feature id for the '<em><b>Sub Department</b></em>' reference list.
+     * The feature id for the '<em><b>Sub Department</b></em>' containment reference list.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -216,7 +216,7 @@ public interface CompanyPackage extends EPackage {
         int DEPARTMENT__SUB_DEPARTMENT = 5;
 
 /**
-     * The feature id for the '<em><b>Parent Department</b></em>' reference.
+     * The feature id for the '<em><b>Parent Department</b></em>' container reference.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
      * @generated
@@ -644,10 +644,10 @@ public interface CompanyPackage extends EPackage {
     EReference getDepartment_Boss();
 
     /**
-     * Returns the meta object for the reference list '{@link company.Department#getSubDepartment <em>Sub Department</em>}'.
+     * Returns the meta object for the containment reference list '{@link company.Department#getSubDepartment <em>Sub Department</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Sub Department</em>'.
+     * @return the meta object for the containment reference list '<em>Sub Department</em>'.
      * @see company.Department#getSubDepartment()
      * @see #getDepartment()
      * @generated
@@ -655,10 +655,10 @@ public interface CompanyPackage extends EPackage {
         EReference getDepartment_SubDepartment();
 
 /**
-     * Returns the meta object for the reference '{@link company.Department#getParentDepartment <em>Parent Department</em>}'.
+     * Returns the meta object for the container reference '{@link company.Department#getParentDepartment <em>Parent Department</em>}'.
      * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Parent Department</em>'.
+     * @return the meta object for the container reference '<em>Parent Department</em>'.
      * @see company.Department#getParentDepartment()
      * @see #getDepartment()
      * @generated
@@ -897,7 +897,7 @@ public interface CompanyPackage extends EPackage {
         EReference DEPARTMENT__BOSS = eINSTANCE.getDepartment_Boss();
 
         /**
-         * The meta object literal for the '<em><b>Sub Department</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Sub Department</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
          * @generated
@@ -905,7 +905,7 @@ public interface CompanyPackage extends EPackage {
                 EReference DEPARTMENT__SUB_DEPARTMENT = eINSTANCE.getDepartment_SubDepartment();
 
         /**
-         * The meta object literal for the '<em><b>Parent Department</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Parent Department</b></em>' container reference feature.
          * <!-- begin-user-doc -->
                  * <!-- end-user-doc -->
          * @generated

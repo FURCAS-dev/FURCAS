@@ -101,5 +101,4 @@ public class ContainmentFilterTest extends EventFilterTest {
     public void testMatchesFor__Notification() {
         assertTrue(getFixture().matchesFor(matchingNotification));
     }
-
 } // ContainmentFilterTest
