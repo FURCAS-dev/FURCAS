@@ -15,8 +15,8 @@ import company.Department;
 import company.Employee;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.ExampleApp;
@@ -29,7 +29,7 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
         super.setUp();
         this.eS = new HashSet<ExampleApp>();
         // m = new EventManagerNaive(comp.eResource().getResourceSet());
-        m = new EventManagerTableBased(comp.eResource().getResourceSet());
+        m = EventManagerFactory.eINSTANCE.getEventManagerFor(comp.eResource().getResourceSet());
     }
     @Override
     public void tearDown() {

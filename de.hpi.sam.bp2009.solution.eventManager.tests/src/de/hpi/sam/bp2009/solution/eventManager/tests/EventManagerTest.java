@@ -26,7 +26,6 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ContainmentFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
-import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 
@@ -123,7 +122,7 @@ public class EventManagerTest extends BaseDepartmentTest {
 
     @Test
     public void testSimpleElementInsertFilter() {
-        EventFilter f = EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
+        EventFilter f = EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(this.department);
         comp.eResource().getContents().add(aDivision);
         Bool newBool = new Bool();
         filterStatementsWithEM(f, newBool);
@@ -135,8 +134,8 @@ public class EventManagerTest extends BaseDepartmentTest {
 
     @Test
     public void testDoubleElementInsertFilter() {
-        EventFilter f1 = EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
-        EventFilter f2 = EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(this.department);
+        EventFilter f1 = EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(this.department);
+        EventFilter f2 = EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(this.department);
         EventFilter f = new OrFilter(f1, f2);
         comp.eResource().getContents().add(aDivision);
         Bool newBool = new Bool();

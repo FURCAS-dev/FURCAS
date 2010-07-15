@@ -12,24 +12,21 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
  *
  */
 public class EventAdapter extends EContentAdapter {
-    /**
-     * 
-     */
     private final WeakReference<EventManager> eventManager;
 
     /**
      * Constructs a new Adapter with the given {@link EventManager} as instance to notify
-     * NOTE: the EventManager is hold as {@link WeakReference}
-     * @param eventManagerImpl
+     * NOTE: the EventManager is held as {@link WeakReference}
      */
     public EventAdapter(EventManager eventManager) {
         this.eventManager = new WeakReference<EventManager>(eventManager);
     }
+    
     @Override
     public void notifyChanged(Notification notification) {
         super.notifyChanged(notification);
         EventManager m = this.eventManager.get();
-        if(m!=null){
+        if(m!=null) {
             m.handleEMFEvent(notification);
         }
     }

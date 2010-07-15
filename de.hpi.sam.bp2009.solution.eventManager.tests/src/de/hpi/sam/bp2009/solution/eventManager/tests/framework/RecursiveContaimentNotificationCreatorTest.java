@@ -11,7 +11,7 @@ import org.junit.Test;
 import company.CompanyFactory;
 import company.Division;
 
-import de.hpi.sam.bp2009.solution.eventManager.framework.RecursiveContaimentNotificationCreator;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 
@@ -34,7 +34,7 @@ public class RecursiveContaimentNotificationCreatorTest extends BaseDepartmentTe
         div.setDirector(aEmployee);
         aEmployee.setSecretary(CompanyFactory.eINSTANCE.createEmployee());
         Notification event = NotificationHelper.createElementAddNotification(div, departmentRef, aDepartment);
-        Collection<Notification> list = RecursiveContaimentNotificationCreator.createNotificationForComposites(event);
+        Collection<Notification> list = EventManagerFactory.eINSTANCE.createNotificationForComposites(event);
         assertTrue(list.size()==2);
     }
     @Test
@@ -42,7 +42,7 @@ public class RecursiveContaimentNotificationCreatorTest extends BaseDepartmentTe
         Division div = CompanyFactory.eINSTANCE.createDivision();
 //        div.setDirector(aEmployee);
         Notification event = NotificationHelper.createElementAddNotification(div, directedRef.getEOpposite(), aEmployee);
-        Collection<Notification> list = RecursiveContaimentNotificationCreator.createNotificationForComposites(event);
+        Collection<Notification> list = EventManagerFactory.eINSTANCE.createNotificationForComposites(event);
         assertTrue(list.size()==2);
     }
 

@@ -48,7 +48,7 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
-import de.hpi.sam.bp2009.solution.eventManager.util.NotificationHelper;
+import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;

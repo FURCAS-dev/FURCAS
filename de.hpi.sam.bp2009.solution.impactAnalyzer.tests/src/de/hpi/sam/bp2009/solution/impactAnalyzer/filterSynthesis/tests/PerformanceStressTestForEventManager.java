@@ -1,6 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -33,10 +35,9 @@ import dataaccess.analytics.AnalyticsPackage;
 import dataaccess.expressions.literals.LiteralsFactory;
 import dataaccess.expressions.literals.StringLiteral;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
-import de.hpi.sam.bp2009.solution.eventManager.framework.RegistrationManagerTableBased;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
@@ -57,7 +58,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
     public void setUp() {
         rs = new ResourceSetImpl();
         expressions = BenchmarkOCLPreparer.prepareAll();
-        eventManager = new EventManagerTableBased(rs);
+        eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
         notificationCount = 0;
         subscriptions = 0;
         // uncomment the following line in case you want to compare with the performance of the naive
@@ -66,12 +67,12 @@ public class PerformanceStressTestForEventManager extends TestCase {
     }
     
     @Test
-    public void testCountRedundantFilters() throws IllegalArgumentException, SecurityException, IllegalAccessException, NoSuchFieldException {
-        registerFiltersForAllExpressions();
-        Field registrationManagerField = eventManager.getClass().getDeclaredField("registrationManager");
-        registrationManagerField.setAccessible(true);
-        RegistrationManagerTableBased registrationManager = (RegistrationManagerTableBased) registrationManagerField.get(eventManager);
-        int rf = registrationManager.redundantFilters();
+    public void testCountRedundantFilters() throws IllegalArgumentException, SecurityException, IllegalAccessException,
+            NoSuchFieldException, InvocationTargetException, NoSuchMethodException {
+    registerFiltersForAllExpressions();
+        Object registrationManager = getRegistrationManager();
+        Method redundantFiltersMethod = registrationManager.getClass().getDeclaredMethod("redundantFilters");
+        int rf = (Integer) redundantFiltersMethod.invoke(registrationManager);
         Field allRegistrationsField = registrationManager.getClass().getDeclaredField("allRegistrations");
         allRegistrationsField.setAccessible(true);
         Map<?, ?> allRegistrations = (Map<?, ?>) allRegistrationsField.get(registrationManager);
@@ -117,7 +118,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
            new Runnable() { public void run() { handle_Reference_Clazz_264(); printStats("Notify_Reference_Clazz_264"); } },
            new Runnable() { public void run() { handle_Reference_InitExpression_478(); printStats("Notify_Reference_InitExpression_478"); } }
         }) {
-            eventManager = new EventManagerTableBased(rs);
+            eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
             listeners.clear();
             notificationCount = 0;
             numberOfAlreadyRegisteredExpressions = 0;
@@ -132,9 +133,16 @@ public class PerformanceStressTestForEventManager extends TestCase {
     }
 
     private void printStats(String groupId) {
-        System.out.println(groupId + "\t" + subscriptions + "\t" + notificationCount + "\t" +
-                Statistics.getInstance().getAverage(RegistrationManagerTableBased.GROUP_ID_MINIMUM_TABLE_SIZE) + "\t" +
-                Statistics.getInstance().getAverage(groupId));
+        try {
+            Field gidmts = getRegistrationManager().getClass().getDeclaredField("GROUP_ID_MINIMUM_TABLE_SIZE");
+            gidmts.setAccessible(true);
+            String minTableSizeGroupId = (String) gidmts.get(null);
+            System.out.println(groupId + "\t" + subscriptions + "\t" + notificationCount + "\t"
+                    + Statistics.getInstance().getAverage(minTableSizeGroupId) + "\t"
+                    + Statistics.getInstance().getAverage(groupId));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     
     private void registerFiltersForAllExpressions() {
@@ -311,6 +319,13 @@ public class PerformanceStressTestForEventManager extends TestCase {
             return false;
         }
         
+    }
+
+    private Object getRegistrationManager() throws NoSuchFieldException, IllegalAccessException {
+        Field registrationManagerField = eventManager.getClass().getDeclaredField("registrationManager");
+        registrationManagerField.setAccessible(true);
+        Object registrationManager = registrationManagerField.get(eventManager);
+        return registrationManager;
     }
 
 }

@@ -8,7 +8,7 @@
  $Id$
 -->
 
-<plugin>
+<fragment>
    <extension
          point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
       <operator
@@ -16,4 +16,4 @@
       </operator>
    </extension>
 
-</plugin>
+</fragment>

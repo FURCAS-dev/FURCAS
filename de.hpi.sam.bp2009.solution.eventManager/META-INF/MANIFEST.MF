@@ -16,14 +16,7 @@ Export-Package: de.hpi.sam.bp2009.solution.eventManager;
   uses:="org.eclipse.emf.ecore,
    org.eclipse.emf.common.util,
    de.hpi.sam.bp2009.solution.eventManager,
-   org.eclipse.emf.common.notify",
- de.hpi.sam.bp2009.solution.eventManager.framework;
-  uses:="org.eclipse.emf.ecore.resource,
-   org.eclipse.emf.ecore,
-   de.hpi.sam.bp2009.solution.eventManager,
-   org.eclipse.emf.common.notify,
-   de.hpi.sam.bp2009.solution.eventManager.filters",
- de.hpi.sam.bp2009.solution.eventManager.util;uses:="org.eclipse.emf.ecore,org.eclipse.emf.common.notify,de.hpi.sam.bp2009.solution.eventManager.filters"
+   org.eclipse.emf.common.notify"
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.query2,

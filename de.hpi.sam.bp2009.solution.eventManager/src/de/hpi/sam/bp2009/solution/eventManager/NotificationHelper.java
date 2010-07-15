@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.eventManager.util;
+package de.hpi.sam.bp2009.solution.eventManager;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;

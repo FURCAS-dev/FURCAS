@@ -38,7 +38,6 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
-import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -104,7 +103,7 @@ implements OperationBodyToCallMapper {
             return result;
         }
         if (property instanceof EAttribute){
-            filters.add(EventFilterFactory.getInstance().createFilterForEAttribute( cls, property));
+            filters.add(EventManagerFactory.eINSTANCE.createFilterForEAttribute( cls, property));
             EAttribute refAttr = (EAttribute)property;
             Set<PropertyCallExp> set = attributeCallExpressions.get(refAttr);
             if (set==null) {
@@ -114,7 +113,7 @@ implements OperationBodyToCallMapper {
             set.add((PropertyCallExp) propCallExp);
             
         } else if (propCallExp.getReferredProperty() instanceof EReference){
-            filters.add(EventFilterFactory.getInstance().createFilterForEReference( cls, property));
+            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference( cls, property));
             EReference refRef = (EReference) property;
             Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
             if (set==null) {
@@ -133,7 +132,7 @@ implements OperationBodyToCallMapper {
             EPackage sourceResult) {
         if (callExp.getReferredOppositeProperty() instanceof EReference){
             EClass cls = (EClass) callExp.getReferredOppositeProperty().eContainer();
-            filters.add(EventFilterFactory.getInstance().createFilterForEReference(cls, callExp.getReferredOppositeProperty( )));
+            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference(cls, callExp.getReferredOppositeProperty( )));
             EReference refRef = (EReference)callExp.getReferredOppositeProperty();
             Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
             if (set == null){
@@ -221,7 +220,7 @@ implements OperationBodyToCallMapper {
      * @return the filter matching all relevant events 
      */
     public EventFilter getSynthesisedFilter() {
-        return EventFilterFactory.getInstance().getOrFilterFor(filters.toArray(new EventFilter[filters.size()]));
+        return EventManagerFactory.eINSTANCE.getOrFilterFor(filters.toArray(new EventFilter[filters.size()]));
     }
 
     /**
@@ -285,9 +284,9 @@ implements OperationBodyToCallMapper {
     private EventFilter createFilterForElementInsertionOrDeletion(EClass clazz) {
         OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
         for(EClass cls: EcoreHelper.getInstance().getAllSubclasses(clazz)){
-            orFilter.getOperands().add(EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(cls));           
+            orFilter.getOperands().add(EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(cls));           
         }
-        orFilter.getOperands().add(EventFilterFactory.getInstance().createFilterForElementInsertionOrDeletion(clazz));           
+        orFilter.getOperands().add(EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(clazz));           
         return orFilter;
     }
     
