@@ -1094,4 +1094,46 @@ public class RegistrationManagerTableBased {
         }
         return result;
     }
+    
+    /**
+     * Mostly for debugging and analysis. Expects the {@link AndFilter}s to be stored in the {@link Registration}s.
+     * Scans through all {@link Registration} objects known by this event manager and determines how many overlapping
+     * distinct registrations with equal {@link AndFilter} there are. This is a prerequisite to judging how much
+     * of a performance improvement we may gain if we try to collate registrations with equal filters.
+     */
+    public int redundantFilters() {
+        Map<AndFilter, Registration> distinctAndFilters = new HashMap<AndFilter, Registration>();
+        int result = 0;
+        for (AbstractRegistration ar : allRegistrations) {
+            if (ar instanceof RegistrationSet) {
+                for (Registration r : ((RegistrationSet) ar).getRegistrations()) {
+                    if (checkForRedundantFilterAndUpdateMapCorrespondingly(r, distinctAndFilters)) {
+                        result++;
+                    }
+                }
+            } else {
+                if (checkForRedundantFilterAndUpdateMapCorrespondingly((Registration) ar, distinctAndFilters)) {
+                    result++;
+                }
+            }
+        }
+        return result;
+    }
+
+    private boolean checkForRedundantFilterAndUpdateMapCorrespondingly(Registration r,
+            Map<AndFilter, Registration> distinctAndFilters) {
+        AndFilter andFilter = r.getAndFilter();
+        boolean result;
+        Registration knownRegistrationWithEqualAndFilter = distinctAndFilters.get(andFilter);
+        if (knownRegistrationWithEqualAndFilter == null) {
+            distinctAndFilters.put(andFilter, r);
+            result = false;
+        } else {
+            result = knownRegistrationWithEqualAndFilter != r;
+            if (result && knownRegistrationWithEqualAndFilter.getBitSetForTablesRegisteredWith() != r.getBitSetForTablesRegisteredWith()) {
+                throw new RuntimeException("Error: registrations with equal AndFilter have different bit set, saying they would end up in different tables");
+            }
+        }
+        return result;
+    }
 }

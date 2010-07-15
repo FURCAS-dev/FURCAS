@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests;
 
+import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,10 +63,25 @@ public class PerformanceStressTestForEventManager extends TestCase {
         // event manager:
         // eventManager = new EventManagerNaive(rs);
     }
+    
+    @Test
+    public void testCountRedundantFilters() throws IllegalArgumentException, SecurityException, IllegalAccessException, NoSuchFieldException {
+        registerFiltersForAllExpressions();
+        Field registrationManagerField = eventManager.getClass().getDeclaredField("registrationManager");
+        registrationManagerField.setAccessible(true);
+        RegistrationManagerTableBased registrationManager = (RegistrationManagerTableBased) registrationManagerField.get(eventManager);
+        int rf = registrationManager.redundantFilters();
+        Field allRegistrationsField = registrationManager.getClass().getDeclaredField("allRegistrations");
+        allRegistrationsField.setAccessible(true);
+        Set<?> allRegistrations = (Set<?>) allRegistrationsField.get(registrationManager);
+        int totalRegistrationCount = allRegistrations.size();
+        System.out.println("Total registrations: "+totalRegistrationCount+", redundant: "+rf+", distinct: "+(totalRegistrationCount-rf));
+        assertEquals("Hoping to have no redundant registrations", 0, rf);
+    }
 
     @Test
     public void testSingleAttributeValueChange() {
-        registerFiltersForAllExpressions(expressions.size()); // register all
+        registerFiltersForAllExpressions();
         handleAllTestEvents();
         printStats();
     }
@@ -73,7 +89,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
     @Test
     public void testWithGrowingFilterSet() {
         for (int i=0; i<howManyMeasurements; i++) {
-            registerFiltersForAllExpressions(expressions.size()/howManyMeasurements+1);
+            registerFiltersForANumberOfExpressions(expressions.size()/howManyMeasurements+1);
             handleAllTestEvents();
             printStats();
             Statistics.getInstance().clear();
@@ -109,7 +125,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
                 // start first run with empty event manager
                 handleRoutine.run();
                 Statistics.getInstance().clear();
-                registerFiltersForAllExpressions(expressions.size() / howManyMeasurements + 1);
+                registerFiltersForANumberOfExpressions(expressions.size() / howManyMeasurements + 1);
             }
         }
     }
@@ -118,10 +134,13 @@ public class PerformanceStressTestForEventManager extends TestCase {
         System.out.println(groupId + "\t" + subscriptions + "\t" + notificationCount + "\t" +
                 Statistics.getInstance().getAverage(RegistrationManagerTableBased.GROUP_ID_MINIMUM_TABLE_SIZE) + "\t" +
                 Statistics.getInstance().getAverage(groupId));
-        
-    } 
+    }
     
-    private void registerFiltersForAllExpressions(int howManyMore) {
+    private void registerFiltersForAllExpressions() {
+        registerFiltersForANumberOfExpressions(expressions.size());
+    }
+    
+    private void registerFiltersForANumberOfExpressions(int howManyMore) {
         for (int i=0; i<howManyMore && numberOfAlreadyRegisteredExpressions < expressions.size(); i++) {
             registerFilterForExpressionWithEventManager(expressions.get(numberOfAlreadyRegisteredExpressions++));
         }
