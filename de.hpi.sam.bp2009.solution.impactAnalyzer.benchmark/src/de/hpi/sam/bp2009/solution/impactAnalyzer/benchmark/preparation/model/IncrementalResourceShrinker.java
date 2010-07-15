@@ -28,7 +28,8 @@ public class IncrementalResourceShrinker {
     private Map<Package, Collection<EObject>> aggregatedElements;
     private Map<Package, List<Package>> dependencies;
 
-    private ArrayList getListWithoutDuplicates(List arlList)
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	private ArrayList getListWithoutDuplicates(List arlList)
     {
 	ArrayList result = new ArrayList(arlList.size());
 	java.util.HashSet h = new java.util.HashSet(arlList);

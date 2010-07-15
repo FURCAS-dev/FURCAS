@@ -53,6 +53,7 @@ public class ResourceTraversalHelper {
 	 * @param fromObject
 	 * @param reference
 	 */
+	@SuppressWarnings("rawtypes")
 	private static void addNewModelReference(ArrayList<ModelReference> modelReferenceList, EObject fromObject, EReference reference) {
 		if(fromObject.eGet(reference) instanceof EList){
 			for(Object referencedObject : (EList)fromObject.eGet(reference)){
