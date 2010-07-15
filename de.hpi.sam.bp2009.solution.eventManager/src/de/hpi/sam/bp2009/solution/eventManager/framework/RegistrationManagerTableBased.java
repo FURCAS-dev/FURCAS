@@ -430,6 +430,9 @@ public class RegistrationManagerTableBased {
             }
             tableBit >>= 1;
         }
+        // uncomment the following line in case you want to record statistics about the minimum table size;
+        // but pay attention: this method runs in the innermost loop of the event manager, and even a method
+        // call to an empty method may consume some time
         // Statistics.getInstance().record(GROUP_ID_MINIMUM_TABLE_SIZE, bitSetForTableCombination, 1000000*minSize);
         return tableWithMinSize;
     }
