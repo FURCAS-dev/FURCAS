@@ -26,12 +26,13 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
     @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
 	try {
-	    for (int i = 0; i < 10; i++) {
+	    //Warmup
+		for (int i = 0; i < 100; i++) {
 		task.call();
 	    }
 
 	    ArrayList<Long> executionTimeList = new ArrayList<Long>();
-	    for (int i = 0; i < 11; i++) {
+	    for (int i = 0; i < 101; i++) {
 		measureExecutionTime(task, executionTimeList);
 		BenchmarkMeasurements.aggregate();
 	    }
@@ -45,9 +46,14 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
     }
 
     private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList) throws Exception {
-	long timeBefore = System.nanoTime();
+    //Quick-Pre-WarmUp
+    task.call();
+    
+    //Perform measurement
+    long timeBefore = System.nanoTime();
 	task.call();
 	long timeAfter = System.nanoTime();
+	
 	executionTimeList.add(new Long(timeAfter - timeBefore));
     }
 }
