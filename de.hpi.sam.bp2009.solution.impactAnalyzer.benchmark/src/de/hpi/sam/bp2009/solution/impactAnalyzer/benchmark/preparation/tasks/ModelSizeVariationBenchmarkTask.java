@@ -12,8 +12,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
-
 
 public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private final ImpactAnalyzer ia;
@@ -21,8 +19,6 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     
     LinkedHashMap<String, String> additionalInformation = new LinkedHashMap<String, String>();
     
-   
-
     public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, Resource model, Notification notification, ImpactAnalyzer imp, String oclId) {
 	this.notification = notification;
 	ia = imp;

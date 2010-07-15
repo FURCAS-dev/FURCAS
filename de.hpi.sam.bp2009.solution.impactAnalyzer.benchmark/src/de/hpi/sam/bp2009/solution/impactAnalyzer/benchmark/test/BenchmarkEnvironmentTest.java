@@ -1,6 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.test;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.Map;
 
@@ -9,7 +9,6 @@ import junit.framework.TestCase;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.BenchmarkExecutionProcessor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromModelPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer;
@@ -38,7 +37,8 @@ public class BenchmarkEnvironmentTest extends TestCase {
 
 
 
-    private class BenchmarkTaskMock implements BenchmarkTask{
+    @SuppressWarnings("unused")
+	private class BenchmarkTaskMock implements BenchmarkTask{
 	private int callCounter = 0;
 
 	@Override
