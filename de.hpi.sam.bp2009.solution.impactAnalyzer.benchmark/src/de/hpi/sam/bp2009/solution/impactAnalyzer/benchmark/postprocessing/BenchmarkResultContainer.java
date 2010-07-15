@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 import com.thoughtworks.xstream.XStream;
@@ -26,15 +27,7 @@ public class BenchmarkResultContainer implements ResultContainer{
 
     @Override
     public void printCsv(File f){
-	if(!f.exists()){
-	    try {
-		f.getParentFile().mkdirs();
-	    	f.createNewFile();
-	    } catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	}
+	createFileIfNeeded(f);
 
 	try {
 	    FileWriter fw = new FileWriter(f);
@@ -54,12 +47,45 @@ public class BenchmarkResultContainer implements ResultContainer{
 
 	     fw.close();
 
-	    System.out.println("Results were written to " + f.getAbsolutePath());
+	    System.out.println("CSV result was written to " + f.getAbsolutePath());
 	} catch (IOException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
+
+    public void printDataSet(File f){
+	createFileIfNeeded(f);
+
+	try{
+	    OutputStream os = new FileOutputStream(f);
+
+	    boolean firstResult = true;
+	    int lineOffset = 1;
+	    for(BenchmarkResult result : benchmarkResultList){
+		lineOffset = result.writeDataSet(os, firstResult, lineOffset);
+		firstResult = false;
+		os.flush();
+	    }
+	    os.close();
+
+	}catch(IOException e){
+	    System.out.println("Can't write Data Set");
+	    e.printStackTrace();
+	}
+    }
+
+    private void createFileIfNeeded(File f) {
+	if(!f.exists()){
+	    try {
+		f.getParentFile().mkdirs();
+	    	f.createNewFile();
+	    } catch (IOException e) {
+		e.printStackTrace();
+	    }
+	}
+    }
+
 
     private double[] addValuesToSum(double[] sumList, String csvString) {
 	String[] fieldList = csvString.split(";");

@@ -1,5 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing;
 
+import java.io.IOException;
+import java.io.OutputStream;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
 /**
@@ -11,5 +14,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
 public interface BenchmarkResult {
 
     public String toCsvString();
+    public int writeDataSet(OutputStream os, boolean withHeadline, int lineOffset) throws IOException;
 
 }

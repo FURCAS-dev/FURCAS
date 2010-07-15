@@ -1,10 +1,16 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
@@ -19,8 +25,6 @@ public class ModelSizeVariationBenchmarkResult implements BenchmarkResult {
 
     private final LinkedHashMap<String, Map<String, ArrayList<Measurement>>> microMeasurementList = new LinkedHashMap<String, Map<String, ArrayList<Measurement>>>();
     private final LinkedHashMap<String, Resource> modelResource = new LinkedHashMap<String, Resource>();
-
-    private final ArrayList<Integer> sumPointList = new ArrayList<Integer>();
 
     public void addExecutionTime(String modelKey, long executionTime){
 	ArrayList<Long> targetList = executionTimeList.get(modelKey);
@@ -77,7 +81,6 @@ public class ModelSizeVariationBenchmarkResult implements BenchmarkResult {
 		i++;
 	    }
 	    result.append((new Double(sumOfTimesExceptFirst) / new Double(executionTimeList.get(key).size() - 1)) + ";");
-	    sumPointList.add(columnNumber);
 
 	    result.append("|||;");columnNumber++;
 
@@ -96,10 +99,6 @@ public class ModelSizeVariationBenchmarkResult implements BenchmarkResult {
 	return result.toString();
     }
 
-    public ArrayList<Integer> sumPoints(){
-	return sumPointList;
-    }
-
     public Map<String, Map<String, ArrayList<Measurement>>> getMeasurementList() {
 	return microMeasurementList;
     }
@@ -112,4 +111,45 @@ public class ModelSizeVariationBenchmarkResult implements BenchmarkResult {
 	modelResource.put(modelKey, resource);
     }
 
+    @Override
+    public int writeDataSet(OutputStream os, boolean withHeadline, int lineOffset) throws IOException{
+	BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
+
+	final String TAB = "\t";
+	final String BREAK = "\n";
+
+	if(withHeadline){
+	    writer.write(" " + TAB + "oclString" + TAB + "resourceUri" + TAB + "modelKey" + TAB + "modelSize" + TAB + "executionIndex" + TAB + "executionTime" + BREAK);
+	}
+
+	for(String modelKey : executionTimeList.keySet()){
+	    int executionIndex = 1;
+	    for(Long executionTime : executionTimeList.get(modelKey)){
+		StringBuffer row = new StringBuffer();
+		row.append(lineOffset++);
+		row.append(TAB + oclString.hashCode());
+
+		row.append(TAB + modelResource.get(modelKey).getURI().toString());
+		row.append(TAB + modelKey);
+		row.append(TAB + getModelSize(modelResource.get(modelKey)));
+
+		row.append(TAB + executionIndex);
+		row.append(TAB + executionTime);
+		row.append(BREAK);
+		writer.write(row.toString());
+	    }
+	}
+
+	return lineOffset;
+    }
+
+    private int getModelSize(Resource resource){
+	int resourceSize = 0;
+	TreeIterator<EObject> iterator = resource.getAllContents();
+	while(iterator.hasNext()){
+	    iterator.next();
+	    resourceSize++;
+	}
+	return resourceSize;
+    }
 }

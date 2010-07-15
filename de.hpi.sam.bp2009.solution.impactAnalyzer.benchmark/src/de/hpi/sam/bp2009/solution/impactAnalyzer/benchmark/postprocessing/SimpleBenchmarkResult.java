@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,6 +64,12 @@ public class SimpleBenchmarkResult implements BenchmarkResult {
 
     public void setMeasurementList(Map<String, ArrayList<Measurement>> microMeasurementList) {
 	this.microMeasurementList = microMeasurementList;
+    }
+
+    @Override
+    public int writeDataSet(OutputStream os, boolean withHeadline, int lineOffset) {
+	// TODO Auto-generated method stub
+	throw new RuntimeException("Not implemented");
     }
 
 }
