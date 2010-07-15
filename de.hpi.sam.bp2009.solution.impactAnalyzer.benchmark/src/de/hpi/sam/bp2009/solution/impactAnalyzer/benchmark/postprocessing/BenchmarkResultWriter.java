@@ -12,25 +12,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.Measurement;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.OutputOptions;
 
 public class BenchmarkResultWriter {
-	
+
 	private OutputStream os;
 	private boolean withHeadline = true;
 	private int lineOffset = 1;
-	
+
 	public BenchmarkResultWriter() {
-		File f = new File("/tmp/result.data");
+		File f = new File(OutputOptions.getOutputPath());
 		createFileIfNeeded(f);
-		
+
 		try {
-			this.os = new FileOutputStream(f);
+			os = new FileOutputStream(f);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void close(){
 		try {
 			os.flush();
@@ -40,17 +41,17 @@ public class BenchmarkResultWriter {
 			e.printStackTrace();
 		}
 	}
-	
+
     public void writeDataSet(Map<String, String> additionalInformation, ArrayList<Long> executionTimeList, HashMap<String, ArrayList<Measurement>>microMeasurementList){
     	 try {
-    	
+
     	BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
 
 	final String TAB = "\t";
 	final String BREAK = "\n";
 
 	if(withHeadline){
-	   
+
 			writer.write(" ");
 
 
@@ -84,9 +85,9 @@ public class BenchmarkResultWriter {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
     }
-    
+
     private void createFileIfNeeded(File f) {
     	if(!f.exists()){
     	    try {

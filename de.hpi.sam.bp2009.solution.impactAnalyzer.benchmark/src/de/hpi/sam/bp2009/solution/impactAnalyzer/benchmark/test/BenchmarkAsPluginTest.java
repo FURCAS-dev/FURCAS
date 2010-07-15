@@ -10,6 +10,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.BenchmarkProcessor;
 public class BenchmarkAsPluginTest extends TestCase{
 	@Test
 	public void testStartBenchmarks(){
-		BenchmarkProcessor.start("/home/manuel/workspace/de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark/results/result.csv");
+		BenchmarkProcessor.start(100, 200, "/tmp/result.data");
 	}
 }
