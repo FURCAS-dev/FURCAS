@@ -1,8 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution;
 
 import bb.util.Benchmark;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResult;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.ExtensiveBenchmarkResult;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
 /**
@@ -13,15 +12,12 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  *
  * @author Manuel Holzleitner (D049667)
  */
-public class ExtensiveBenchmarkExecutor extends AbstractBenchmarkExecutor {
-
-    public ExtensiveBenchmarkExecutor(BenchmarkTask task) {
-	this.task = task;
-    }
+public class ExtensiveBenchmarkExecutor implements BenchmarkExecutor{
 
     @Override
-    protected BenchmarkResult performBenchmark() {
-	Benchmark bench = null;
+    public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
+	
+    Benchmark bench = null;
 
 	try {
 	    bench = new Benchmark(task, true, 10);
@@ -38,10 +34,7 @@ public class ExtensiveBenchmarkExecutor extends AbstractBenchmarkExecutor {
 
 	if(bench != null){
     		System.out.println(bench.toString());
-    		returnValue = bench.getCallResult();
 	}
-
-	return new ExtensiveBenchmarkResult(bench);
     }
 
 }

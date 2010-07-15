@@ -1,10 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark;
 
-import java.io.File;
-import java.util.Collection;
+import java.util.Queue;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.BenchmarkExecutionProcessor;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultContainer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskPreparer;
 
@@ -34,12 +32,9 @@ public class BenchmarkProcessor {
 
 	public static void start(String resultFile) {
 		// Preparing
-		Collection<BenchmarkTask> taskList = BenchmarkTaskPreparer.prepareModelSizeVariationBenchmarkTasks();
+		Queue<BenchmarkTask> taskQueue = BenchmarkTaskPreparer.prepareModelSizeVariationBenchmarkTasks();
 
 		// Processing
-		BenchmarkResultContainer result = BenchmarkExecutionProcessor.processBenchmarks(taskList);
-
-		// Post-processing
-		result.printDataSet(new File(resultFile));
+		BenchmarkExecutionProcessor.processBenchmarks(taskQueue);
 	}
 }

@@ -2,14 +2,18 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 /**
  * The {@link BenchmarkTaskPreparer} provides methods for creating a collection of
@@ -62,8 +66,8 @@ public class BenchmarkTaskPreparer {
     	return result;
     }
 
-     public static ArrayList<BenchmarkTask> prepareModelSizeVariationBenchmarkTasks(){
-    	ArrayList<BenchmarkTask> result = new ArrayList<BenchmarkTask>();
+     public static Queue<BenchmarkTask> prepareModelSizeVariationBenchmarkTasks(){
+    	Queue<BenchmarkTask> result = new LinkedList<BenchmarkTask>();
 
     	System.out.println("Start Preparation");
     	System.out.println("\t Prepare OCL Expressions");
@@ -76,12 +80,17 @@ public class BenchmarkTaskPreparer {
 
     	System.out.println("\t Prepare Benchmark Tasks:");
 
+       	
+    	int oclId = 0;
     	for (OCLExpressionWithContext expression : expressionList) {
+    		oclId++;
+    		ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression.getExpression(), expression.getContext());
+    		
     	    for(NotificationForModelList notificationList : notificationForModelList){
     		Resource model = notificationList.getModel();
-
+    		
     		for(Notification notification : notificationList.getNotificationList()){
-    		    result.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), model, notification));
+    		    result.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), model, notification, ia, String.valueOf(oclId)));
     		}
     	    }
     	}

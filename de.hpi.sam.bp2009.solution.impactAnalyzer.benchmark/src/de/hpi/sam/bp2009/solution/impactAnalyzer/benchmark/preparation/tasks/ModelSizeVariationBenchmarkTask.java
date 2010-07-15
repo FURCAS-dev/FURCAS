@@ -16,16 +16,20 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 
 public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
-    private final OCLExpression expression;
     private final ImpactAnalyzer ia;
-    private final Resource model;
     private final Notification notification;
+    
+    LinkedHashMap<String, String> additionalInformation = new LinkedHashMap<String, String>();
+    
+   
 
-    public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, Resource model, Notification notification) {
-	this.expression = expression;
-	this.model = model;
+    public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, Resource model, Notification notification, ImpactAnalyzer imp, String oclId) {
 	this.notification = notification;
-	ia = new ImpactAnalyzerImpl(expression, context);
+	ia = imp;
+		additionalInformation.put("notification", String.valueOf(notification.hashCode()));
+		additionalInformation.put("oclId", oclId);
+		additionalInformation.put("modelSize", String.valueOf(getModelSize(model)));
+		additionalInformation.put("resourceUri", String.valueOf(model.getURI().toString().replaceAll("\t", "")));
     }
 
     @Override
@@ -35,9 +39,6 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	return null;
     }
 
-    public Resource getModel(){
-	return model;
-    }
 
     public Notification getNotification(){
 	return notification;
@@ -55,12 +56,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     @Override
     public Map<String, String> getAdditionalInformation() {
-	LinkedHashMap<String, String> additionalInformation = new LinkedHashMap<String, String>();
-	additionalInformation.put("oclString", expression.toString().replaceAll("\t", "").replaceAll("\n", "").replaceAll(" ", ""));
-	additionalInformation.put("modelSize", String.valueOf(getModelSize(model)));
-	additionalInformation.put("resourceUri", String.valueOf(getModelSize(model)));
-
-	return additionalInformation;
+    	return additionalInformation;
     }
 
     private int getModelSize(Resource resource){
