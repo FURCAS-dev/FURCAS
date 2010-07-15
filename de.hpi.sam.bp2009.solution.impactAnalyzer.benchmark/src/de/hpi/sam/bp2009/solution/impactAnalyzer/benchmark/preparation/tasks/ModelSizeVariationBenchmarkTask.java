@@ -23,7 +23,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	this.notification = notification;
 	ia = imp;
 		additionalInformation.put("notification", String.valueOf(notification.hashCode()));
-		additionalInformation.put("notificiationId", notificationId);
+		additionalInformation.put("notificationId", notificationId);
 		additionalInformation.put("oclId", oclId);
 		additionalInformation.put("modelSize", String.valueOf(getModelSize(model)));
 		additionalInformation.put("resourceUri", String.valueOf(model.getURI().toString().replaceAll("\t", "")));
