@@ -38,12 +38,12 @@ import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import company.CompanyPackage;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
-import de.hpi.sam.bp2009.solution.eventManager.util.EventFilterFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -397,74 +397,74 @@ public class EventManagerRuntimeTest {
         OrFilter level9 = new OrFilter();
 
         level9.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
         level9.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
         level8.getOperands().add(level9);
         level8.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
         level8.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
         level7.getOperands().add(level8);
         level7.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
         level7.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
         level6.getOperands().add(level7);
         level6.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
         level6.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
         level5.getOperands().add(level6);
         level5.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
         level5.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
         level4.getOperands().add(level5);
         level4.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
         level4.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
         level3.getOperands().add(level4);
         level3.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
         level3.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
         level2.getOperands().add(level3);
         level2.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
         level2.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
         level1.getOperands().add(level2);
         level1.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
         level1.getOperands().add(
-                EventFilterFactory.getInstance()
+                EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
         result.getOperands().add(level1);

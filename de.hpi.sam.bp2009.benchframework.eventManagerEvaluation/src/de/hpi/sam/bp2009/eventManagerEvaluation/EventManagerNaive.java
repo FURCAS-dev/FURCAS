@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.solution.eventManager;
+package de.hpi.sam.bp2009.eventManagerEvaluation;
 
 import java.lang.ref.WeakReference;
 import java.util.Collection;
@@ -18,8 +18,10 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventAdapter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.framework.RecursiveContaimentNotificationCreator;
 
 public class EventManagerNaive implements EventManager {
     private EventAdapter adapter = new EventAdapter(this);
@@ -38,18 +40,16 @@ public class EventManagerNaive implements EventManager {
     }
 
     public void handleEMFEvent(Notification notification) {
-        Collection<Notification> notis = RecursiveContaimentNotificationCreator.createNotificationForComposites(notification);
+        Collection<Notification> notis = EventManagerFactory.eINSTANCE.createNotificationForComposites(notification);
         for (Notification noti : notis) {
             for (EventFilter filter : this.filterToListener.keySet()) {
                 if (filter.matchesFor(noti)) {
                     for (Adapter a : this.filterToListener.get(filter)) {
                         this.notifyApplication(a, noti, filter);
-
                     }
                 }
             }
         }
-
     }
 
     public void notifyApplication(Adapter application, Notification event, EventFilter matchingFilter) {
@@ -93,11 +93,6 @@ public class EventManagerNaive implements EventManager {
     public void subscribe(EventFilter filter, Adapter caller) {
         subscribe((Notifier) null, filter, caller);
 
-    }
-
-    @Override
-    public void subscribeTransactional(EventFilter filter, Adapter caller) {
-        throw new UnsupportedOperationException();
     }
 
     @Override

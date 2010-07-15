@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventAdapter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 /**
@@ -132,16 +133,12 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
         /* instantiate and associate notifier */
         AdapterCapsule notifier = null;
         if (listenerType.matches(listenersForNotifier)) {
-
             notifier = new AdapterCapsule(listenerRef, listenerType, this);
-
         } else if (listenerType.matches(listenersForDeferringNotifier)) {
-
             notifier = new DeferringNotifier(listenerRef, listenerType, this);
         } else {
             // TODO log (and throw exception?)
         }
-
         addNotifierForListener(notifier);
     }
 
@@ -153,7 +150,6 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
          * @ TODO what if a listener is being removed that has pending events?? -> EventDeferring
          */
         registrationManager.deregister(listener);
-
         // remove Notifier(s) for listener
         removeListener(listener);
     }
@@ -317,7 +313,7 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
     @Override
     public void handleEMFEvent(Notification notification) {
         if (!notifierByListener.isEmpty()) {
-            for (Notification n : RecursiveContaimentNotificationCreator.createNotificationForComposites(notification)) {
+            for (Notification n : EventManagerFactory.eINSTANCE.createNotificationForComposites(notification)) {
                 fireChangeEvent(n);
             }
         }
@@ -330,10 +326,6 @@ public class EventManagerTableBased implements de.hpi.sam.bp2009.solution.eventM
 
     }
 
-    @Override
-    public void subscribeTransactional(EventFilter filter, Adapter caller) {
-        throw new UnsupportedOperationException();
-    }
     @Override
     protected void finalize() throws Throwable {
         if(this.getResourceSet()!=null && adapter!=null){

@@ -61,8 +61,8 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclResult;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectDependencyQueryContextProvider;
@@ -630,7 +630,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
          */
         //final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
         //final EventManager em = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
-        final EventManager naiveEM = new EventManagerTableBased(resourceSet);
+        final EventManager naiveEM = EventManagerFactory.eINSTANCE.getEventManagerFor(resourceSet);
         
        
         final QueryEvaluator qe = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluator.class);        
