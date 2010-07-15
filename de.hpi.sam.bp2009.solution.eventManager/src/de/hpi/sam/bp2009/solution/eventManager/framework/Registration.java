@@ -35,7 +35,6 @@ class Registration extends AbstractRegistration {
      * 
      * TODO when one registration covers multiple AndFilters, this needs to change
      */
-    @SuppressWarnings("unused") // used for introspection during debugging only
     private final AndFilter andFilter;
 
     /**
@@ -82,5 +81,9 @@ class Registration extends AbstractRegistration {
     
     public String toString() {
         return super.toString()+" bitSet "+bitSetForTablesRegisteredWith;
+    }
+
+    public AndFilter getAndFilter() {
+        return andFilter;
     }
 }
