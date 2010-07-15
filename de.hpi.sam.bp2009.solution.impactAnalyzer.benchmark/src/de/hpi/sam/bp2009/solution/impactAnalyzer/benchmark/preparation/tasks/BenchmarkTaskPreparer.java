@@ -61,15 +61,17 @@ public class BenchmarkTaskPreparer {
 
        	
     	int oclId = 0;
-    	for (OCLExpressionWithContext expression : expressionList) {
+      	for (OCLExpressionWithContext expression : expressionList) {
     		oclId++;
     		ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression.getExpression(), expression.getContext());
     		
     	    for(NotificationForModelList notificationList : notificationForModelList){
     		Resource model = notificationList.getModel();
     		
+    		int notificationId = 0;
     		for(Notification notification : notificationList.getNotificationList()){
-    		    result.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), model, notification, ia, String.valueOf(oclId)));
+    			notificationId++;
+    			result.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), model, notification, ia, String.valueOf(oclId), String.valueOf(notificationId)));
     		}
     	    }
     	}
