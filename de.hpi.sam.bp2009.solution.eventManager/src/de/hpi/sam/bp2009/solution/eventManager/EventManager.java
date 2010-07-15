@@ -52,25 +52,16 @@ public interface EventManager {
      */
     ResourceSet getResourceSet();
 
-    /*
-     * INTERNAL METHODS should only be used by the EventManager
-     */
-    /**
-     * Notify a given {@link Adapter} with the given {@link Notification} and the matching {@link EventFilter}
-     * 
-     * @param application
-     * @param msg
-     * @param matchingFilter
-     */
-    void notifyApplication(Adapter application, Notification msg, EventFilter matchingFilter);
-
     /**
      * Initialize the filtering process for a given {@link Notification}, all {@link Adapter} registered with a matching filter
-     * will be notified
+     * will be notified. Normally, clients don't have to call this method explicitly. It will be called by the
+     * event manager automatically when an event has been received from any elements in the {@link ResourceSet}
+     * for which the event manager has been obtained (see {@link EventManagerFactory#getEventManagerFor(ResourceSet)}).
+     * However, for testing purposes and in case clients want to explicitly send events that have not emerged
+     * from the {@link ResourceSet} to registered clients, they may use this method.
      * 
      * @param notification
-     *            {@link Notification} to handle
+     *            {@link Notification} to send to clients whose event filter matches the notification
      */
     void handleEMFEvent(Notification notification);
-
 } // EventManager

@@ -21,7 +21,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 
 public interface EventManagerFactory {
 
-    EventManagerFactory eINSTANCE = de.hpi.sam.bp2009.solution.eventManager.EventManagerFactoryImpl.init();
+    EventManagerFactory eINSTANCE = de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerFactoryImpl.init();
 
     EventManager getEventManagerFor(ResourceSet set);
 

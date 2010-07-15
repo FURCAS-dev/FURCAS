@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.eventManager;
+package de.hpi.sam.bp2009.solution.eventManager.util;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 
 public class StatisticsImpl extends Statistics {
     private Map<String, List<Record>> records = new HashMap<String, List<Record>>();

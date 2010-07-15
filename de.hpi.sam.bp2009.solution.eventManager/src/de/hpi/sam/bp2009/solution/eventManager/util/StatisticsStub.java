@@ -1,8 +1,10 @@
-package de.hpi.sam.bp2009.solution.eventManager;
+package de.hpi.sam.bp2009.solution.eventManager.util;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+
+import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 
 
 public class StatisticsStub extends Statistics {
