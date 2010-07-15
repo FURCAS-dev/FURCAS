@@ -36,35 +36,7 @@ public class BenchmarkEnvironmentTest extends TestCase {
 	//FIXME: Implement test
     }
 
-    @Test
-    public void testProcessingSimpleBenchmarks(){
-	ArrayList<BenchmarkTask> mockList = new ArrayList<BenchmarkTask>();
 
-	for(int i = 0; i < 10; i++){
-	    mockList.add(new BenchmarkTaskMock());
-	}
-
-	BenchmarkExecutionProcessor.processBenchmarks(mockList);
-
-	for(int i = 0; i < 10; i++){
-	    assertTrue(((BenchmarkTaskMock)mockList.get(i)).getCallCounter() > 0);
-	}
-    }
-
-    @Test
-    public void testProcessingExtensiveBenchmarks(){
-	ArrayList<BenchmarkTask> mockList = new ArrayList<BenchmarkTask>();
-
-	for(int i = 0; i < 3; i++){
-	    mockList.add(new BenchmarkTaskMock());
-	}
-
-	BenchmarkExecutionProcessor.processExtensiveBenchmarks(mockList);
-
-	for(int i = 0; i < 3; i++){
-	    assertTrue(((BenchmarkTaskMock)mockList.get(i)).getCallCounter() > 0);
-	}
-    }
 
     private class BenchmarkTaskMock implements BenchmarkTask{
 	private int callCounter = 0;

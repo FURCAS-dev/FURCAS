@@ -1,11 +1,13 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.BenchmarkMeasurements;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResult;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.DefaultBenchmarkResult;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 /**
  * The {@link StandardBenchmarkExecutor} benchmarks {@link BenchmarkTasks} by measuring
@@ -17,40 +19,34 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  *
  * @author Manuel Holzleitner (D049667)
  */
-public class StandardBenchmarkExecutor extends AbstractBenchmarkExecutor {
+public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
-    public StandardBenchmarkExecutor(BenchmarkTask task) {
-	this.task = task;
-    }
-
+	HashMap<String, Exception> notExecutedDueToException = new LinkedHashMap<String, Exception>();
+	
     @Override
-    protected BenchmarkResult performBenchmark() {
-	BenchmarkResult result = null;
+    public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
 	try {
-	    for (int i = 0; i < 2; i++) {
+	    for (int i = 0; i < 10; i++) {
 		task.call();
 	    }
 
 	    ArrayList<Long> executionTimeList = new ArrayList<Long>();
-	    for (int i = 0; i < 1; i++) {
-		measureExecutionTime(executionTimeList);
+	    for (int i = 0; i < 11; i++) {
+		measureExecutionTime(task, executionTimeList);
 		BenchmarkMeasurements.aggregate();
 	    }
 
-	    result = new DefaultBenchmarkResult(task, executionTimeList, BenchmarkMeasurements.getMeasurementList());
+	    writer.writeDataSet(task.getAdditionalInformation(), executionTimeList, BenchmarkMeasurements.getMeasurementList());
 
 	    BenchmarkMeasurements.reset();
 	} catch (Exception e) {
-	    System.out.println("Task ended with exception: " + task.toString());
-	    e.printStackTrace();
+		notExecutedDueToException.put(task.toString(), e);
 	}
-
-	return result;
     }
 
-    private void measureExecutionTime(ArrayList<Long> executionTimeList) throws Exception {
+    private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList) throws Exception {
 	long timeBefore = System.nanoTime();
-	returnValue = task.call();
+	task.call();
 	long timeAfter = System.nanoTime();
 	executionTimeList.add(new Long(timeAfter - timeBefore));
     }

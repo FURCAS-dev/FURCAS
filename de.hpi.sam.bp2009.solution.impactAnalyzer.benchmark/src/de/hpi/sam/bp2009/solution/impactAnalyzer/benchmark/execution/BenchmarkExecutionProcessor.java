@@ -1,10 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Queue;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResult;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultContainer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
 /**
@@ -17,41 +15,33 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  */
 public class BenchmarkExecutionProcessor {
 
-    public static BenchmarkResultContainer processExtensiveBenchmarks(Collection<BenchmarkTask> taskList) {
-	ArrayList<BenchmarkExecutor> executorList = new ArrayList<BenchmarkExecutor>();
-
-	for (BenchmarkTask task : taskList) {
-	    executorList.add(new ExtensiveBenchmarkExecutor(task));
-	}
-
-	return BenchmarkExecutionProcessor.processAll(executorList);
+    public static void processExtensiveBenchmarks(Queue<BenchmarkTask> taskList) {
+    	BenchmarkExecutionProcessor.processAll(new ExtensiveBenchmarkExecutor(), taskList);
     }
 
-    public static BenchmarkResultContainer processBenchmarks(Collection<BenchmarkTask> taskList){
-	ArrayList<BenchmarkExecutor> executorList = new ArrayList<BenchmarkExecutor>();
-
-	for (BenchmarkTask task : taskList) {
-	    executorList.add(new StandardBenchmarkExecutor(task));
-	}
-
-	return BenchmarkExecutionProcessor.processAll(executorList);
+    public static void  processBenchmarks(Queue<BenchmarkTask> taskList){
+    	BenchmarkExecutionProcessor.processAll(new StandardBenchmarkExecutor(), taskList);
     }
 
-    public static BenchmarkResultContainer processAll(Collection<BenchmarkExecutor> executorList) {
-	System.out.println("Start Processing");
-	BenchmarkResultContainer resultContainer = new BenchmarkResultContainer();
-
+    public static void processAll(BenchmarkExecutor executor, Queue<BenchmarkTask> taskList) {
+	BenchmarkResultWriter writer = new BenchmarkResultWriter();	
+	
 	System.out.println("");
-	for (BenchmarkExecutor executor : executorList) {
-	    BenchmarkResult result = executor.execute();
-	    if(resultContainer != null) {
-		resultContainer.addResult(result);
+	int i=0;
+	
+	System.out.println("Start Processing");
+	
+	while(!taskList.isEmpty()){
+		BenchmarkTask task = taskList.remove();
+		
+	    executor.execute(task, writer);
+	    
+	    if(i++ % 500 == 0){
+	      System.out.print("\r" + i);
 	    }
-	    System.out.print("|");
 	}
 
-	System.out.println("Processing finished with " + resultContainer.size() + " results");
-
-	return resultContainer;
+	writer.close();
+		System.out.println("Processing finished");
     }
 }
