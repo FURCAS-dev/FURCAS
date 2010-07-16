@@ -13,15 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 
 public class NewValueClassFilter extends ClassFilter {
 
-    public NewValueClassFilter() {
-        super();
-    }
-
-    public NewValueClassFilter(EClass affectedClass2) {
-        super();
-        setWantedClass(affectedClass2);
-    }
-
     public NewValueClassFilter(EClass subClass, boolean includeSubclasses, boolean negated) {
         super(subClass, includeSubclasses, negated);
     }
@@ -77,7 +68,14 @@ public class NewValueClassFilter extends ClassFilter {
 
     @Override
     public NewValueClassFilter clone() {
-        return new NewValueClassFilter(getWantedClass());
+        return new NewValueClassFilter(getWantedClass(), getIncludeSubClasses(), isNegated());
+    }
 
+    /**
+     * This method avoids an "instanceof" construct when a filter of the same type as an instance
+     * of this class or any of its subclasses shall be created.
+     */
+    public NewValueClassFilter clone(EClass wantedClass, boolean includeSubclasses, boolean negated) {
+        return new NewValueClassFilter(wantedClass, includeSubclasses, negated);
     }
 } // NewValueClassFilterImpl

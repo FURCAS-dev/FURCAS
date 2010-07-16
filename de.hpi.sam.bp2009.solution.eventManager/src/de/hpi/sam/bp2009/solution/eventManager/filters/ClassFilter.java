@@ -15,19 +15,14 @@ public class ClassFilter extends EventFilter {
     protected EClass wantedClass;
     protected boolean includeSubClasses = false;
 
-    public ClassFilter() {
-        super();
-    }
-
     public ClassFilter(EClass subClass, boolean includeSubclasses, boolean negated) {
         super();
         setWantedClass(subClass);
         setNegated(negated);
         setIncludeSubClasses(includeSubclasses);
-
     }
 
-    public void setIncludeSubClasses(boolean includeSubClasses) {
+    private void setIncludeSubClasses(boolean includeSubClasses) {
         this.includeSubClasses = includeSubClasses;
     }
 
@@ -93,7 +88,7 @@ public class ClassFilter extends EventFilter {
         }
     }
 
-    public void setWantedClass(EClass newWantedClass) {
+    private void setWantedClass(EClass newWantedClass) {
         wantedClass = newWantedClass;
     }
 
@@ -112,9 +107,16 @@ public class ClassFilter extends EventFilter {
     @Override
     public ClassFilter clone() {
         return new ClassFilter(getWantedClass(), getIncludeSubClasses(), isNegated());
-
     }
-
+    
+    /**
+     * This method avoids an "instanceof" construct when a filter of the same type as an instance
+     * of this class or any of its subclasses shall be created.
+     */
+    public ClassFilter clone(EClass wantedClass, boolean includeSubclasses, boolean negated) {
+        return new ClassFilter(wantedClass, includeSubclasses, negated);
+    }
+    
     @Override
     public Object getFilterCriterion() {
         return getWantedClass();

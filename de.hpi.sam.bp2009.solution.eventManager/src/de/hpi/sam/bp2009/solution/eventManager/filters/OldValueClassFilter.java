@@ -13,15 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 
 public class OldValueClassFilter extends ClassFilter {
 
-    public OldValueClassFilter() {
-        super();
-    }
-
-    public OldValueClassFilter(EClass affectedClass2) {
-        super();
-        setWantedClass(affectedClass2);
-    }
-
     public OldValueClassFilter(EClass clazz, boolean includeSubclasses, boolean isNegated) {
         super(clazz, includeSubclasses, isNegated);
     }
@@ -81,8 +72,14 @@ public class OldValueClassFilter extends ClassFilter {
 
     @Override
     public OldValueClassFilter clone() {
-        return new OldValueClassFilter(getWantedClass());
-
+        return new OldValueClassFilter(getWantedClass(), getIncludeSubClasses(), isNegated());
     }
 
+    /**
+     * This method avoids an "instanceof" construct when a filter of the same type as an instance
+     * of this class or any of its subclasses shall be created.
+     */
+    public OldValueClassFilter clone(EClass wantedClass, boolean includeSubclasses, boolean negated) {
+        return new OldValueClassFilter(wantedClass, includeSubclasses, negated);
+    }
 } // OldValueClassFilterImpl

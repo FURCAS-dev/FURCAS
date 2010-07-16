@@ -10,7 +10,8 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 /**
  * This special {@link EContentAdapter} is used to notify a given {@link EventManager} if any notification is raised
  * ATTENTION: for the right registration at a target one have to use <code>target.eAdapters().add(myAdapter);</code>
- * @author Philipp
+ * 
+ * @author Philipp Berger
  *
  */
 public class EventAdapter extends EContentAdapter {

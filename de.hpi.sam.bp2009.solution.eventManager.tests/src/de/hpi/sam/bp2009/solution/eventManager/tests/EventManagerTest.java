@@ -109,13 +109,9 @@ public class EventManagerTest extends BaseDepartmentTest {
     }
 
     public void testHandleEMFEvent__Notification() {
-        /*
-         * register Application
-         */
+        // register Application
         getFixture().subscribe(filter, adapter);
-
         getFixture().handleEMFEvent(matchingNotification);
-
         assertEquals(matchingNotification, lastMsg);
 
     }
@@ -127,9 +123,7 @@ public class EventManagerTest extends BaseDepartmentTest {
         Bool newBool = new Bool();
         filterStatementsWithEM(f, newBool);
         NotificationHelper.createElementAddNotification(aDivision, departmentRef, CompanyFactory.eINSTANCE.createDepartment());
-
         assertTrue(newBool.is);
-
     }
 
     @Test
@@ -141,13 +135,10 @@ public class EventManagerTest extends BaseDepartmentTest {
         Bool newBool = new Bool();
         filterStatementsWithEM(f, newBool);
         NotificationHelper.createElementAddNotification(aDivision, departmentRef, CompanyFactory.eINSTANCE.createDepartment());
-
         assertTrue(newBool.is);
-
     }
 
     private void filterStatementsWithEM(EventFilter filter, Bool b) {
-
         MyApp app = new MyApp(b);
         EventManager m = EventManagerFactory.eINSTANCE.getEventManagerFor(this.comp.eResource().getResourceSet());
         m.subscribe(filter, app);
@@ -196,13 +187,6 @@ public class EventManagerTest extends BaseDepartmentTest {
         dep.getEmployee().add(empl);
         assertTrue(my.b.is);
         
-//        Employee sec = CompanyFactory.eINSTANCE.createEmployee();
-//        b1 = new Bool();
-//        my = new MyApp(b1);
-//        sec.eAdapters().add(my);
-//        empl.setSecretary(sec);
-//        assertTrue(my.b.is);
-        
         Division div = CompanyFactory.eINSTANCE.createDivision();
         
         b1 = new Bool();
@@ -210,9 +194,6 @@ public class EventManagerTest extends BaseDepartmentTest {
         div.eAdapters().add(my);
         div.getDepartment().add(dep);
         assertTrue(my.b.is);
-        
-        
-        
     }    
 
 } // EventManagerTest
