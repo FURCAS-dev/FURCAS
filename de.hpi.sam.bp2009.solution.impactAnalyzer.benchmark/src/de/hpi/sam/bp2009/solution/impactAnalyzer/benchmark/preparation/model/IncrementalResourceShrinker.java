@@ -28,78 +28,61 @@ public class IncrementalResourceShrinker {
     private Map<Package, Collection<EObject>> aggregatedElements;
     private Map<Package, List<Package>> dependencies;
 
-    private <T> ArrayList<T> getListWithoutDuplicates(List<T> arlList) {
-	ArrayList<T> result = new ArrayList<T>(arlList.size());
-	java.util.HashSet<T> h = new java.util.HashSet<T>(arlList);
-	result.addAll(h);
-	return result;
-    }
 
-    private void aggregateElementsInPackages(Resource resourceToShrink) {
-	dependencies = new HashMap<Package, List<Package>>();
-	modelElementList = ResourceTraversalHelper.getModelElementsInResource(resourceToShrink);
-	aggregatedElements = aggregateElementsInPackages(modelElementList);
-    }
+    public Collection<Resource> shrinkIncrementally(Resource fullSizeResource){
+		ArrayList<Resource> result = new ArrayList<Resource>();
+		
+		int cloneId = 0;
+		Resource nextResourceToShrink = ModelCloner.cloneResource(fullSizeResource, String.valueOf(cloneId));
+		while(deletePackageWithFewestDependencies(nextResourceToShrink) > 1){
+			cloneId++;
+			
+		    result.add(nextResourceToShrink);
+		    nextResourceToShrink = ModelCloner.cloneResource(nextResourceToShrink, String.valueOf(cloneId));
 
-    private Package deleteNextPackage() {
-	ArrayList<Package> packagesToDeleteList = calculatePossiblePackagesToDelete();
-	
-	Package packageToDelete = null;
-	if(packagesToDeleteList.size() == 1){
-	    System.out.println("match");
-	    packageToDelete = packagesToDeleteList.get(0);
-	}else if(packagesToDeleteList.size() > 1){
-	    System.out.println("choose");
-	    packageToDelete = chooseBestPackageToDelete(packagesToDeleteList);
-	}
-
-
-	Package deletedPackage = null;
-	boolean packageWasDeleted = false;
-
-	//EcoreUtil.delete(packageToDelete, true);
-	//packageWasDeleted = true;
-	//deletedPackage = packageToDelete;
-
-	for (Package key : dependencies.keySet()) {
-	    if (key != null && key.equals(packageToDelete)) {
-		System.out.println("Elements: " + aggregatedElements.get(key).size());
-		for (EObject elementToDelete : aggregatedElements.get(key)) {
-		    if(!(elementToDelete instanceof Package)) {
-			EcoreUtil.delete(elementToDelete);
-		    }
-		   // System.out.println("\t\t\t\t\tdeleted:" + elementToDelete);
 		}
-		deletedPackage = key;
-		packageWasDeleted = true;
-	    }
-
-	    aggregatedElements.remove(key);
+		
+		return result;    	
 	}
-
-	if (packageWasDeleted) {
-	    System.out.println("\t\t\tdelete: " + deletedPackage);
-	    dependencies.remove(deletedPackage);
-	}
-
-	return deletedPackage;
+    
+    //FIXME: Needs refactoring. Extract combinational shrinking
+    public Collection<Resource> shrinkCombinational(Resource parent){
+    	ArrayList<Resource> result = new ArrayList<Resource>();
+		buildDependencyGraph(parent);
+		
+    	List<Package> packageToDeleteList = calculatePossiblePackagesToDelete();
+    	List<Resource> cloneList = ModelCloner.createResourceClones(parent, packageToDeleteList.size());
+    	
+    	int i = 0;
+    	for(Resource clone : cloneList){
+    		//TODO: Actually, rebuilding the dependency graph should not be required for deleting the next package. Therefore, ensure
+    		// that after deleting a package the dependency graph is updated accordingly.
+    		buildDependencyGraph(clone);
+    		
+    		if(dependencies.size() > 1){
+    		packageToDeleteList = calculatePossiblePackagesToDelete();
+    		
+    		deletePackage(packageToDeleteList.get(i));
+    		result.addAll(shrinkCombinational(clone));
+    		i++;
+    		}
+    	}
+    	
+    	return result;
     }
-
-    private Package chooseBestPackageToDelete(ArrayList<Package> packagesToDeleteList) {
-
-	Package packageToDelete = packagesToDeleteList.get(0);
-	for(Package deletionCandidate : packagesToDeleteList){
-	    if(dependencies.get(deletionCandidate).size() < dependencies.get(packageToDelete).size()){
-		packageToDelete = deletionCandidate;
-	    }
+        
+	private int deletePackageWithFewestDependencies(Resource resourceToShrink){
+		//TODO: Actually, rebuilding the dependency graph should not be required for deleting the next package. Therefore, ensure
+		// that after deleting a package the dependency graph is updated accordingly.
+		buildDependencyGraph(resourceToShrink);
+		
+		ArrayList<Package> packagesToDeleteList = calculatePossiblePackagesToDelete();  	
+		deletePackage(getPackageWithFewestDependencies(packagesToDeleteList));
+	
+		return dependencies.size();
 	}
 
-	System.out.println(dependencies.get(packageToDelete).size());
-
-	return packageToDelete;
-    }
-
-    private ArrayList<Package> calculatePossiblePackagesToDelete() {
+	private ArrayList<Package> calculatePossiblePackagesToDelete() {
 	int smallestAmountOfReferences = Integer.MAX_VALUE;
 	for (Package pack : dependencies.keySet()) {
 	    if (getListWithoutDuplicates(dependencies.get(pack)).size() < smallestAmountOfReferences) {
@@ -113,41 +96,108 @@ public class IncrementalResourceShrinker {
 	    }
 	}
 	return packagesToDeleteList;
+	}
+
+	private Package getPackageWithFewestDependencies(ArrayList<Package> packagesToDeleteList){
+		Package packageToDelete = null;
+		if(packagesToDeleteList.size() == 1){
+		    System.out.println("match");
+		    packageToDelete = packagesToDeleteList.get(0);
+		}else if(packagesToDeleteList.size() > 1){
+		    System.out.println("choose");
+		    packageToDelete = chooseBestPackageToDelete(packagesToDeleteList);
+		}
+		return packageToDelete;
+	}
+
+	private Package chooseBestPackageToDelete(ArrayList<Package> packagesToDeleteList) {
+	
+	Package packageToDelete = packagesToDeleteList.get(0);
+	for(Package deletionCandidate : packagesToDeleteList){
+	    if(dependencies.get(deletionCandidate).size() < dependencies.get(packageToDelete).size()){
+		packageToDelete = deletionCandidate;
+	    }
+	}
+	
+	System.out.println(dependencies.get(packageToDelete).size());
+	
+	return packageToDelete;
+	}
+
+	private Package deletePackage(Package packageToDelete) {
+	
+	Package deletedPackage = null;
+	boolean packageWasDeleted = false;
+	
+	//EcoreUtil.delete(packageToDelete, true);
+	//packageWasDeleted = true;
+	//deletedPackage = packageToDelete;
+	
+	for (Package key : dependencies.keySet()) {
+	    if (key != null && key.equals(packageToDelete)) {
+		System.out.println("Elements: " + aggregatedElements.get(key).size());
+		for (EObject elementToDelete : aggregatedElements.get(key)) {
+		    if(!(elementToDelete instanceof Package)) {
+			EcoreUtil.delete(elementToDelete);
+		    }
+		   // System.out.println("\t\t\t\t\tdeleted:" + elementToDelete);
+		}
+		deletedPackage = key;
+		packageWasDeleted = true;
+	    }
+	
+	    aggregatedElements.remove(key);
+	}
+	
+	if (packageWasDeleted) {
+	    System.out.println("\t\t\tdelete: " + deletedPackage);
+	    dependencies.remove(deletedPackage);
+	}
+	
+	return deletedPackage;
+	}
+
+	private void aggregateElementsInPackages(Resource resourceToShrink) {
+	dependencies = new HashMap<Package, List<Package>>();
+	modelElementList = ResourceTraversalHelper.getModelElementsInResource(resourceToShrink);
+	aggregatedElements = aggregateElementsInPackages(modelElementList);
     }
 
-    private void buildDependencyGraph() {
+    private void buildDependencyGraph(Resource resourceToShrink) {
+    aggregateElementsInPackages(resourceToShrink);
+    	
 	System.out.println("\t\t\tBuild Dependency Graph");
-
+	
 	Collection<ModelReference> modelReferenceList = ResourceTraversalHelper
 		.getModelReferencesForModelElements(modelElementList);
-
+	
 	// FIXME: The following code is obviously not optimized for performance
 	for (Package key : aggregatedElements.keySet()) {
 	    Collection<EObject> elementInPackageList = aggregatedElements.get(key);
-
+	
 	    for (EObject elementInPackage : elementInPackageList) {
 		for (ModelReference modelReference : modelReferenceList) {
-
+	
 		    if (elementInPackage.equals(modelReference.getFrom())) {
 			Package referencedPackage = navigateToPackage(modelReference.getTo());
-
+	
 			List<Package> contents = dependencies.get(referencedPackage);
 			if (contents == null) {
 			    contents = new ArrayList<Package>();
 			}
-
+	
 			if ((referencedPackage == null || !referencedPackage.equals(key))) {
 			    contents.add(key);
 			}
-
+	
 			dependencies.put(referencedPackage, contents);
 		    }
 		}
 	    }
 	}
-
+	
 	/* TODO: Delete this commented debug code in final implementation
-
+	
 	for (Package key : dependencies.keySet()) {
 	    System.out.println("P: " + key + " Number:" + dependencies.get(key).size() + " Elements:"
 		    + aggregatedElements.get(key).size());
@@ -155,12 +205,12 @@ public class IncrementalResourceShrinker {
 		System.out.println("\t\t" + subPackage);
 	    }
 	}
-
+	
 	System.out.println(aggregatedElements.size() + "/" + modelElementList.size() + "/" + dependencies.size());
 	*/
-    }
+	}
 
-    private Package navigateToPackage(EObject containedElement) {
+	private Package navigateToPackage(EObject containedElement) {
 	EObject container = containedElement;
 
 	while (container.eContainer() != null && !(container instanceof Package)) {
@@ -199,14 +249,10 @@ public class IncrementalResourceShrinker {
 	return result;
     }
 
-    public int shrink(Resource resourceToShrink) {
-	aggregateElementsInPackages(resourceToShrink);
-
-	//TODO: Actually, rebuilding the dependency graph should not be required for deleting the next package. Therefore, ensure
-	// that after deleting a package the dependency graph is updated accordingly.
-	buildDependencyGraph();
-	deleteNextPackage();
-
-	return dependencies.size();
-    }
+    private <T> ArrayList<T> getListWithoutDuplicates(List<T> arlList) {
+		ArrayList<T> result = new ArrayList<T>(arlList.size());
+		java.util.HashSet<T> h = new java.util.HashSet<T>(arlList);
+		result.addAll(h);
+		return result;
+	}
 }
