@@ -12,12 +12,12 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
@@ -87,7 +87,7 @@ public class InstanceScopeAnalysis {
      * @param oppositeEndFinder
      *            used to determine all instances
      */
-    protected static Set<EObject> getAllPossibleContextInstances(EObject context, EClass cls, OppositeEndFinder oppositeEndFinder) {
+    protected static Set<EObject> getAllPossibleContextInstances(Notifier context, EClass cls, OppositeEndFinder oppositeEndFinder) {
         return oppositeEndFinder.getAllInstancesSeeing(cls, context);
     }
 
@@ -244,26 +244,12 @@ public class InstanceScopeAnalysis {
             }
             if (value instanceof EObject) {
                 for (OperationCallExp allInstances : filterSynthesizer.getAllInstancesCallsFor(((EObject) value).eClass())) {
-                    EObject e;
-                    if (event.getNotifier() instanceof Resource) {
-                        if (event.getNewValue() instanceof EObject) {
-                            e = (EObject) event.getNewValue();
-                        } else if (event.getOldValue() instanceof EObject) {
-                            e = (EObject) event.getOldValue();
-                        } else {
-                            throw new RuntimeException("Unable to extract an EObject from Notification "+event);
-                        }
-                    } else if (event.getNotifier() instanceof EObject) {
-                        e = (EObject) event.getNotifier();
-                    } else {
-                        throw new RuntimeException("Unable to extract an EObject from Notification "+event);
-                    }
                     // if we can prove that the delta of allInstances() propagates to an empty set,
                     // the overall expression remains unchanged by the original change:
-                    Collection<Object> featureValueAsObjectCollection = Collections.singleton((Object) e);
+                    Collection<Object> featureValueAsObjectCollection = Collections.singleton((Object) value);
                     if (!partialEvaluatorForAllInstancesDeltaPropagation.transitivelyPropagateDelta(allInstances,
                             featureValueAsObjectCollection, filterSynthesizer).isEmpty()) {
-                        result.addAll(getAllPossibleContextInstances(e, getContext(), oppositeEndFinder));
+                        result.addAll(getAllPossibleContextInstances((Notifier) event.getNotifier(), getContext(), oppositeEndFinder));
                     }
                 }
             }

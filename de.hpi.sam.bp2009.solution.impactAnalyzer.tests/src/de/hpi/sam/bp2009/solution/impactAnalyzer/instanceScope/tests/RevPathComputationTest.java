@@ -335,7 +335,6 @@ public class RevPathComputationTest extends BaseDepartmentTest {
     
     @Test
     public void testUniqueNamesEmployeeRemove() {
-
         // context Employee
         // inv UniqueNames:
         // Employee.allInstances()->forAll(e |
@@ -1027,12 +1026,10 @@ public class RevPathComputationTest extends BaseDepartmentTest {
      * @param expectedInstances
      */
     private void compareInstances(Collection<EObject> instances, EObject[] expectedInstances) {
-
         Set<EObject> expected = new HashSet<EObject>();
         for (int i = 0; i < expectedInstances.length; i++) {
             expected.add(expectedInstances[i]);
         }
-
         if (instances.containsAll(expected) && instances.size() == expected.size()) {
             System.out.println(">> SUCCESS exact match\n");
         } else if (instances.containsAll(expected) && instances.size() != expected.size()) {
