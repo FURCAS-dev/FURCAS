@@ -319,7 +319,7 @@ public class PartialEvaluator {
      *         of the pair contained in the collection returned. If the collection returned is empty this means that
      *         the <tt>delta</tt> of <tt>e</tt>'s value has no effect on the overall expression in which <tt>e</tt> appears.
      */
-    private Collection<Pair<OCLExpression, Collection<Object>>> transitivelyPropagateDelta(OCLExpression e, Collection<Object> deltaForEValue,
+    public Collection<Pair<OCLExpression, Collection<Object>>> transitivelyPropagateDelta(OCLExpression e, Collection<Object> deltaForEValue,
             OperationBodyToCallMapper mapper) {
         DeltaPropagationStrategy propagationStrategy = getDeltaPropagationStrategy(e, mapper);
         Collection<Pair<OCLExpression, Collection<Object>>> result;
