@@ -42,19 +42,14 @@ public class NotificationHelper {
      * @return true if n was caused by an element creation/deletion, false otherwise
      */
     public static boolean isElementLifeCycleEvent(Notification n) {
-        /*
-         * if there was an containment reference changed
-         */
+        // if there was an containment reference changed
         if(n.getFeature()!=null && n.getFeature() instanceof EReference){
             return ((EReference)n.getFeature()).isContainment();
-            }
-        /*
-         * or an element was added / removed from a resource
-         */
+        }
+        // or an element was added / removed from a resource
         else if(n.getFeature() == null && (n.getNotifier() instanceof Resource)){
             return true;
         }
-        
         return false;
     }
     
@@ -65,13 +60,6 @@ public class NotificationHelper {
      */
     public static EStructuralFeature getNotificationFeature(Notification n){
         return n.getFeature()==null?null:(EStructuralFeature)n.getFeature();
-//        Object notifier = n.getNotifier();
-//        if (notifier instanceof EObject){
-//            EClass cls = ((EObject) notifier).eClass();
-//            EStructuralFeature feature = cls.getEStructuralFeature(n.getFeatureID(notifier.getClass()));
-//            return feature;
-//        }
-//        return null;
     }
 
     /**

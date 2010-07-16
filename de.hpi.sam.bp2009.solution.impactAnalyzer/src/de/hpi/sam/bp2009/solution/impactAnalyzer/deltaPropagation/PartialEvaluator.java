@@ -18,6 +18,7 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
@@ -25,41 +26,64 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 /**
- * Can evaluate a {@link CallExp} expression, given the evaluation result of its {@link CallExp#getSource() source}
+ * Can evaluate an OCL expression when the model is in some state which just got modified by a change indicated by an event
+ * {@link Notification} such that the evaluation result is based on the state that the model was in <em>before</em> the
+ * modification occurred. This is similar to the <code>@pre</code> operator in OCL.
+ * <p>
+ * 
+ * Additionally, if the expression to evaluate is a {@link CallExp} expression, the evaluation result of its
+ * {@link CallExp#getSource() source} expression can be provided, cutting short the evaluation of this source
  * expression. For this, it uses an adapted OCL evaluation environment.
  * 
  * @author Axel Uhl
- *
+ * 
  */
 public class PartialEvaluator {
     private OCL ocl;
     private Helper helper;
     private PartialEcoreEnvironmentFactory factory;
     
-    public PartialEvaluator(OppositeEndFinder oppositeEndFinder) {
-        factory = new PartialEcoreEnvironmentFactory(oppositeEndFinder);
-        initOcl();
-    }
-
+    /**
+     * Uses a {@link DefaultOppositeEndFinder} to navigate hidden opposite properties and evaluates
+     * the model based on its current state.
+     */
     public PartialEvaluator() {
         factory = new PartialEcoreEnvironmentFactory();
         initOcl();
     }
 
-    private void initOcl() {
-        ocl = OCLWithHiddenOpposites.newInstance(factory);
-        helper = ocl.createOCLHelper();
+    public PartialEvaluator(OppositeEndFinder oppositeEndFinder) {
+        factory = new PartialEcoreEnvironmentFactory(oppositeEndFinder);
+        initOcl();
+    }
+
+    /**
+     * Taking a {@link Notification} object such that an evaluation will be based on the state *before* the notification.
+     * For example, if the notification indicates the removal of a reference from an element <tt>e1</tt> to an element <tt>e2</tt>
+     * across reference <tt>r</tt> then when during partial evaluation <tt>r</tt> is traversed starting from <tt>e1</tt>
+     * then <tt>e2</tt> will show in the results although in the current version of the model it would not.<p>
+     * 
+     * A {@link DefaultOppositeEndFinder} is used for hidden opposite navigation.
+     */
+    public PartialEvaluator(Notification atPre) {
+        factory = new PartialEcoreEnvironmentFactory(atPre);
+        initOcl();
     }
     
     /**
      * Taking a {@link Notification} object such that an evaluation will be based on the state *before* the notification.
      * For example, if the notification indicates the removal of a reference from an element <tt>e1</tt> to an element <tt>e2</tt>
      * across reference <tt>r</tt> then when during partial evaluation <tt>r</tt> is traversed starting from <tt>e1</tt>
-     * then <tt>e2</tt> will show in the results although in the current version of the model it would not.
+     * then <tt>e2</tt> will show in the results although in the current version of the model it would not.<p>
      */
-    public PartialEvaluator(Notification atPre) {
-        factory = new PartialEcoreEnvironmentFactory(atPre);
+    public PartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder) {
+        factory = new PartialEcoreEnvironmentFactory(atPre, oppositeEndFinder);
         initOcl();
+    }
+    
+    private void initOcl() {
+        ocl = OCLWithHiddenOpposites.newInstance(factory);
+        helper = ocl.createOCLHelper();
     }
     
     public OCL getOcl() {

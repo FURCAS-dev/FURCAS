@@ -448,8 +448,6 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         assertNotNull(eventManager); // ensure it's not garbage-collected
         assertNotNull(listener); // ensure it's not garbage-collected
     }
-    
-
 
     private void assertAllClassesOfClassFiltersInPackage(EventFilter f, CompanyPackage comp) {
         if(f instanceof LogicalOperationFilter){

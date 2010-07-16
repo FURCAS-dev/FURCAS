@@ -201,7 +201,7 @@ public class InstanceScopeAnalysis {
 
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
             AnnotatedEObject sourceElement){
-	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event);
+	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder);
 	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
