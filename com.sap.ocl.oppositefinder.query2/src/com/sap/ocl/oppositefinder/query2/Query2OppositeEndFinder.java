@@ -113,7 +113,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     @Override
     public Set<EObject> getAllInstancesSeeing(EClass cls, EObject context) {
         QueryContext scope = new ProjectBasedQueryContextScopeProviderImpl(context).getBackwardScopeAsQueryContext();
-        return getAllinstancesWithScope(cls, context, scope);
+        return getAllInstancesWithScope(cls, context, scope);
     }
 
     /**
@@ -123,10 +123,10 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     @Override
     public Set<EObject> getAllInstancesSeenBy(EClass cls, EObject context) {
         QueryContext scope = new ProjectBasedQueryContextScopeProviderImpl(context).getForwardScopeAsQueryContext();
-        return getAllinstancesWithScope(cls, context, scope);
+        return getAllInstancesWithScope(cls, context, scope);
     }
 
-    private Set<EObject> getAllinstancesWithScope(EClass cls, Notifier context, QueryContext scope) {
+    private Set<EObject> getAllInstancesWithScope(EClass cls, Notifier context, QueryContext scope) {
         Set<EObject> result = new HashSet<EObject>();
 
         List<EClass> classes = new ArrayList<EClass>(delegate.getAllSubclasses(cls));
