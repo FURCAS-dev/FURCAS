@@ -111,7 +111,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
      * <code>context</code> are in scope) to find all elements of a type equal or conforming to <code>cls</code>.
      */
     @Override
-    public Set<EObject> getAllInstancesSeeing(EClass cls, EObject context) {
+    public Set<EObject> getAllInstancesSeeing(EClass cls, Notifier context) {
         QueryContext scope = new ProjectBasedQueryContextScopeProviderImpl(context).getBackwardScopeAsQueryContext();
         return getAllInstancesWithScope(cls, context, scope);
     }
@@ -121,7 +121,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
      * <code>context</code> are in scope) to find all elements of a type equal or conforming to <code>cls</code>.
      */
     @Override
-    public Set<EObject> getAllInstancesSeenBy(EClass cls, EObject context) {
+    public Set<EObject> getAllInstancesSeenBy(EClass cls, Notifier context) {
         QueryContext scope = new ProjectBasedQueryContextScopeProviderImpl(context).getForwardScopeAsQueryContext();
         return getAllInstancesWithScope(cls, context, scope);
     }

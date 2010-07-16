@@ -184,18 +184,14 @@ public class NotificationHelper {
     public static Notification createElementDeleteNotification(EObject target) {
         TestAdapter myTestA = new TestAdapter();
         target.eContainer().eAdapters().add(myTestA);
-
         EcoreUtil.delete(target);
-
         return getNotificationfrom(myTestA);
     }
 
     public static Notification createChangeLowerMultiplicityNotification(TypeDefinition notifier, int value) {
         TestAdapter myTestA = new TestAdapter();
         notifier.eAdapters().add(myTestA);
-
         notifier.setLowerMultiplicity(value);
-
         return getNotificationfrom(myTestA);
     }
 
@@ -209,9 +205,7 @@ public class NotificationHelper {
     public static Notification createChangeClazzNotification(ClassTypeDefinition notifier, SapClass value) {
         TestAdapter myTestA = new TestAdapter();
         notifier.eAdapters().add(myTestA);
-
         notifier.setClazz(value);
-
         return getNotificationfrom(myTestA);
     }
 }

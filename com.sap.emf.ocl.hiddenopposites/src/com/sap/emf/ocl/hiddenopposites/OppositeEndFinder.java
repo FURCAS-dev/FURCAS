@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -61,12 +62,12 @@ public interface OppositeEndFinder {
      * 
      * @return a non-<code>null</code> set
      */
-    Set<EObject> getAllInstancesSeeing(EClass cls, EObject context);
+    Set<EObject> getAllInstancesSeeing(EClass cls, Notifier context);
 
     /**
      * Finds all instances of class <code>cls</code> and all its subclasses that are visible from <code>context</code>.
      * 
      * @return a non-<code>null</code> set
      */
-    Set<EObject> getAllInstancesSeenBy(EClass cls, EObject context);
+    Set<EObject> getAllInstancesSeenBy(EClass cls, Notifier context);
 }

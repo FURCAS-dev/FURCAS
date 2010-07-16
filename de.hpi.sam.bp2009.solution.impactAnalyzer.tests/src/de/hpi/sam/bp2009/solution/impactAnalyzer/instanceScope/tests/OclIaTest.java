@@ -2,6 +2,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests;
 
 import java.util.Collection;
 
+import modelmanagement.ModelmanagementFactory;
+import modelmanagement.ModelmanagementPackage;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -628,5 +631,31 @@ public class OclIaTest extends BaseDepartmentTest {
                 att, true, true);
         impact = ia.getContextObjects(noti);
         assertTrue(impact.size() == 0);
+    }
+    
+    @Test
+    public void testDeltaPropagationForAllInstances(){
+        OCLExpression exp = (OCLExpression) parse(
+                "context data::classes::SapClass inv testDeltaPropagationForAllInstances:\n" +
+                "data::classes::SapClass.allInstances()->select(name='Humba')->size() = 0",
+                this.cp ).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(exp);
+        SapClass c1 = ClassesFactory.eINSTANCE.createSapClass();
+        c1.setName("Trala");
+        SapClass c2 = ClassesFactory.eINSTANCE.createSapClass();
+        c2.setName("Humba");
+        modelmanagement.Package pkg = ModelmanagementFactory.eINSTANCE.createPackage();
+        pkg.setName("Pkg");
+        this.cp.eResource().getContents().add(pkg);
+        Notification noti =
+            NotificationHelper.createReferenceAddNotification(pkg, ModelmanagementPackage.eINSTANCE.getPackage_Classes(), c1);
+        ImpactAnalyzer ia = new ImpactAnalyzerImpl(exp, ClassesPackage.eINSTANCE.getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti);
+        assertEquals(0, impact.size());
+
+        noti = NotificationHelper.createReferenceAddNotification(pkg, ModelmanagementPackage.eINSTANCE.getPackage_Classes(), c2);
+        impact = ia.getContextObjects(noti);
+        assertTrue(impact.size() >= 2); // we don't know the exact size because of all the other test elements created for fixture
+        assertTrue(impact.contains(c1) && impact.contains(c2));
     }
 }
