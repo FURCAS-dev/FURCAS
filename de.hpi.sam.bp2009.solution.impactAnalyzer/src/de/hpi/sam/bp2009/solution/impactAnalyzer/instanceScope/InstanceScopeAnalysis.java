@@ -208,6 +208,7 @@ public class InstanceScopeAnalysis {
 	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
     }
 
+    private final PartialEvaluator partialEvaluatorForAllInstancesDeltaPropagation = new PartialEvaluator();
     private Collection<EObject> handleLifeCycleEvent(Notification event) {
         Collection<EObject> result = new HashSet<EObject>();
         Boolean addEvent = NotificationHelper.isAddEvent(event);
@@ -221,9 +222,16 @@ public class InstanceScopeAnalysis {
             }
             for (Object value : featureValue) {
                 if (value instanceof EObject) {
-                    if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
-                        // TODO what about delta propagation if the allInstances() call is source of another expression?
-                        result.addAll(getAllPossibleContextInstances((EObject) event.getNotifier(), getContext(), oppositeEndFinder));
+                    for (OperationCallExp allInstances : filterSynthesizer.getAllInstancesCallsFor(((EObject) value).eClass())) {
+                        // if we can prove that the delta of allInstances() propagates to an empty set,
+                        // the overall expression remains unchanged by the original change:
+                        @SuppressWarnings("unchecked")
+                        Collection<Object> featureValueAsObjectCollection = (Collection<Object>) featureValue;
+                        if (!partialEvaluatorForAllInstancesDeltaPropagation.transitivelyPropagateDelta(allInstances,
+                                featureValueAsObjectCollection, filterSynthesizer).isEmpty()) {
+                            result.addAll(getAllPossibleContextInstances((EObject) event.getNotifier(), getContext(),
+                                    oppositeEndFinder));
+                        }
                     }
                 }
             }
@@ -235,7 +243,7 @@ public class InstanceScopeAnalysis {
                 value = event.getOldValue();
             }
             if (value instanceof EObject) {
-                if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
+                for (OperationCallExp allInstances : filterSynthesizer.getAllInstancesCallsFor(((EObject) value).eClass())) {
                     EObject e;
                     if (event.getNotifier() instanceof Resource) {
                         if (event.getNewValue() instanceof EObject) {
@@ -250,8 +258,13 @@ public class InstanceScopeAnalysis {
                     } else {
                         throw new RuntimeException("Unable to extract an EObject from Notification "+event);
                     }
-                    // TODO what about delta propagation if the allInstances() call is source of another expression?
-                    result.addAll(getAllPossibleContextInstances(e, getContext(), oppositeEndFinder));
+                    // if we can prove that the delta of allInstances() propagates to an empty set,
+                    // the overall expression remains unchanged by the original change:
+                    Collection<Object> featureValueAsObjectCollection = Collections.singleton((Object) e);
+                    if (!partialEvaluatorForAllInstancesDeltaPropagation.transitivelyPropagateDelta(allInstances,
+                            featureValueAsObjectCollection, filterSynthesizer).isEmpty()) {
+                        result.addAll(getAllPossibleContextInstances(e, getContext(), oppositeEndFinder));
+                    }
                 }
             }
         }
@@ -374,10 +387,6 @@ public class InstanceScopeAnalysis {
             }
         }
         return result;
-    }
-
-    private boolean expressionContainsAllInstancesCallForType(EClassifier classifier) {
-        return !filterSynthesizer.getAllInstancesCallsFor(classifier).isEmpty();
     }
 
     /**
