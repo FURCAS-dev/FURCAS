@@ -18,5 +18,4 @@ Export-Package: de.hpi.sam.bp2009.solution.eventManager;
    de.hpi.sam.bp2009.solution.eventManager,
    org.eclipse.emf.common.notify"
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.emf.ecore,
- com.sap.emf.ocl.hiddenopposites
+Require-Bundle: org.eclipse.emf.ecore

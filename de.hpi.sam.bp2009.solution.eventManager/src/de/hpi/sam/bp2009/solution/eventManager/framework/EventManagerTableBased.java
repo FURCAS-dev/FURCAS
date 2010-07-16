@@ -62,7 +62,6 @@ public class EventManagerTableBased implements EventManager {
     public EventManagerTableBased(ResourceSet set) {
         registrationManager = new RegistrationManagerTableBased();
         set.eAdapters().add(adapter);
-        // FIXME also add to all elements already contained in this resource set
         this.resourceSet= new WeakReference<ResourceSet>(set);
     }
     @Override

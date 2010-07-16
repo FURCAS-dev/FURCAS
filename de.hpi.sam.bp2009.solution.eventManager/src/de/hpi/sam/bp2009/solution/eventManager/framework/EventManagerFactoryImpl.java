@@ -83,8 +83,14 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     @Override
-    public ClassFilter createClassFilter() {
-        ClassFilter classFilter = new ClassFilter();
+    public ClassFilter createClassFilter(EClass clazz) {
+        ClassFilter classFilter = new ClassFilter(clazz, /* includeSubclasses */ false, /* negated */ false);
+        return classFilter;
+    }
+
+    @Override
+    public ClassFilter createClassFilter(EClass clazz, boolean includeSubclasses) {
+        ClassFilter classFilter = new ClassFilter(clazz, includeSubclasses, /* negated */ false);
         return classFilter;
     }
 
@@ -101,14 +107,14 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     @Override
-    public OldValueClassFilter createOldValueClassFilter() {
-        OldValueClassFilter oldValueClassFilter = new OldValueClassFilter();
+    public OldValueClassFilter createOldValueClassFilter(EClass cls, boolean includeSubclasses) {
+        OldValueClassFilter oldValueClassFilter = new OldValueClassFilter(cls, includeSubclasses, /* negated */ false);
         return oldValueClassFilter;
     }
 
     @Override
-    public NewValueClassFilter createNewValueClassFilter() {
-        NewValueClassFilter newValueClassFilter = new NewValueClassFilter();
+    public NewValueClassFilter createNewValueClassFilter(EClass cls, boolean includeSubclasses) {
+        NewValueClassFilter newValueClassFilter = new NewValueClassFilter(cls, includeSubclasses, /* negated */ false);
         return newValueClassFilter;
     }
 
@@ -146,19 +152,14 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
 
     @Override
     public EventFilter createFilterForElementInsertionOrDeletion(EClass cls) {
-        NewValueClassFilter nv = createNewValueClassFilter();
-        nv.setWantedClass(cls);
-
-        OldValueClassFilter ov = createOldValueClassFilter();
-        ov.setWantedClass(cls);
-
+        NewValueClassFilter nv = createNewValueClassFilter(cls, /* includeSubclasses */ true);
+        OldValueClassFilter ov = createOldValueClassFilter(cls, /* includeSubclasses */ true);
         return getAndFilterFor(getOrFilterFor(nv, ov), createContainmentFilter());
     }
 
     @Override
     public EventFilter createFilterForElementInsertion(EClass cls) {
-        NewValueClassFilter nv = createNewValueClassFilter();
-        nv.setWantedClass(cls);
+        NewValueClassFilter nv = createNewValueClassFilter(cls, /* includeSubclasses */ true);
         // Figure out what the containing Reference is
         return getAndFilterFor(createOrFilterForEventTypes(Notification.ADD, Notification.SET, Notification.ADD_MANY), nv,
                 createContainmentFilter());
@@ -181,8 +182,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         sf = createAttributeFilter();
         sf.setFeature(referredProperty);
 
-        ClassFilter cf = createClassFilter();
-        cf.setWantedClass(eClass);
+        ClassFilter cf = createClassFilter(eClass, /* includeSubclasses */ true);
         return getAndFilterFor(sf, cf);
     }
 
@@ -191,9 +191,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         StructuralFeatureFilter sf = null;
         sf = createAssociationFilter();
         sf.setFeature(referredProperty);
-
-        ClassFilter cf = createClassFilter();
-        cf.setWantedClass(eClass);
+        ClassFilter cf = createClassFilter(eClass, /* includeSubclasses */ true);
         return getAndFilterFor(sf, cf);
     }
 

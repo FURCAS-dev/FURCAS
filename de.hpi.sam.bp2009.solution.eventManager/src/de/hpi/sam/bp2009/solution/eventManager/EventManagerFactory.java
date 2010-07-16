@@ -46,11 +46,22 @@ public interface EventManagerFactory {
     LogicalOperationFilter createAndFilter();
     OrFilter createOrFilter();
     NotFilter createNotFilter();
-    ClassFilter createClassFilter();
+    
+    /**
+     * The class filter created does not by default include subclass matches. Use
+     * {@link #createClassFilter(boolean) to set this property.
+     */
+    ClassFilter createClassFilter(EClass clazz);
+    
+    /**
+     * Creates a class filter that includes matches of subclasses if <code>includeSubclasses</code> is <code>true</code>.
+     */
+    ClassFilter createClassFilter(EClass clazz, boolean includeSubclasses);
+    
     AttributeFilter createAttributeFilter();
     AssociationFilter createAssociationFilter();
-    OldValueClassFilter createOldValueClassFilter();
-    NewValueClassFilter createNewValueClassFilter();
+    OldValueClassFilter createOldValueClassFilter(EClass clazz, boolean includeSubclasses);
+    NewValueClassFilter createNewValueClassFilter(EClass clazz, boolean includeSubclasses);
     ContainmentFilter createContainmentFilter();
 
     /**

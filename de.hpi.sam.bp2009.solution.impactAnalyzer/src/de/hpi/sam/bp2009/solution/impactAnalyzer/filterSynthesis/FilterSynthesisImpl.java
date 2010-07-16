@@ -112,7 +112,7 @@ implements OperationBodyToCallMapper {
             set.add((PropertyCallExp) propCallExp);
             
         } else if (propCallExp.getReferredProperty() instanceof EReference){
-            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference( cls, property));
+            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference(cls, property));
             EReference refRef = (EReference) property;
             Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
             if (set==null) {
@@ -299,6 +299,7 @@ implements OperationBodyToCallMapper {
         }
         return result;
     }
+    
     private void walk(OCLExpression expression) {
         if (!visitedExpressions.contains(expression)) {
             visitedExpressions.add(expression);

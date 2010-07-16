@@ -19,8 +19,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
-
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
@@ -490,7 +488,6 @@ public class RegistrationManagerTableBased {
      * @param parent
      */
     private static EventFilter adjustFilter(EventFilter source) {
-
         // traverse tree recursively
         if (source instanceof LogicalOperationFilter) {
             Set<EventFilter> sourceOperands = ((LogicalOperationFilter) source).getOperands();
@@ -499,7 +496,6 @@ public class RegistrationManagerTableBased {
             for (EventFilter operand : sourceOperands) {
                 targetOperands[index++] = adjustFilter(operand);
             }
-
             if (source instanceof AndFilter) {
                 return new AndFilter(targetOperands);
             }
@@ -510,27 +506,21 @@ public class RegistrationManagerTableBased {
             // return new NotFilter(targetOperands[0]);
             // }
         }
-
         if (source instanceof ClassFilter && ((ClassFilter) source).getIncludeSubClasses()) {
-            /**
-             * This method replaces ClassFilters that have a true <code>
-             * includeSubClasses</code> flag with a collection of OR-Connected ClassFilters that represent all subclasses.
-             */
+            // This method replaces ClassFilters that have a true <code>
+            // includeSubClasses</code> flag with a collection of OR-Connected ClassFilters that represent all subclasses.
             ClassFilter classFilter = (ClassFilter) source;
-
             return getSubTypeFilterTree(classFilter);
-             }else if (source instanceof PackageFilter) {
-             /**
-             * This method replaces ExtentFilters that have a filterCriterion of type <code>
-             * EPackage</code> with a
-             * collection of OR-Connected ExtentFilterFilters that represent all transitively contained
-             * <code>RefClasses</code>
-             */
+        } else if (source instanceof PackageFilter) {
+             // This method replaces ExtentFilters that have a filterCriterion of type <code>
+             // EPackage</code> with a
+             // collection of OR-Connected ExtentFilterFilters that represent all transitively contained
+             // <code>RefClasses</code>
              PackageFilter extentFilter = (PackageFilter) source;
-            
              return getExpandedExtentFilterTree(extentFilter);
-        } else
+        } else {
             return source;
+        }
     }
 
     /**
@@ -623,28 +613,21 @@ public class RegistrationManagerTableBased {
         EventFilter subTypeFilterTree = null;
         EClass clazz = filter.getWantedClass();
         Collection<EClass> subClasses = getSubTypes(clazz);
-
         if (subClasses.size() == 0) {
             return filter;
         }
-
         EventFilter[] orFilterOperands = new EventFilter[subClasses.size() + 1];
         int index = 0;
         orFilterOperands[index++] = filter;
         for (EClass subClass : subClasses) {
-                ClassFilter copy = filter.clone();
-                copy.setWantedClass(subClass);
-                copy.setNegated(false);
-                copy.setIncludeSubClasses(false);
+                ClassFilter copy = filter.clone(subClass, /* includeSubclasses */ false, /* negated */ false);
                 orFilterOperands[index++] =copy;
         }
         subTypeFilterTree = new OrFilter(orFilterOperands);
-
         if (filter.isNegated()) {
             NotFilter notFilter = new NotFilter(subTypeFilterTree);
             subTypeFilterTree = notFilter;
         }
-
         return subTypeFilterTree;
     }
 
@@ -653,7 +636,7 @@ public class RegistrationManagerTableBased {
      * @return a collection which contains all known subtypes of the passed parameter
      */
     static Collection<EClass> getSubTypes(EClass generalizableElement) {
-        return DefaultOppositeEndFinder.getInstance().getAllSubclasses(generalizableElement);
+        return AllEClassSubclassesFinder.getInstance().getAllSubclasses(generalizableElement);
     }
 
     /**
