@@ -40,8 +40,11 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithH
      */
     private Notification atPre;
 
+    /**
+     * Uses a {@link DefaultOppositeEndFinder} for querying hidden opposites
+     */
     public PartialEcoreEnvironmentFactory() {
-        super(DefaultOppositeEndFinder.getInstance());
+        super();
     }
 
     public PartialEcoreEnvironmentFactory(OppositeEndFinder oppositeEndFinder) {
@@ -51,12 +54,19 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithH
     /**
      * Taking a {@link Notification} object such that an evaluation performed with the {@link EvaluationVisitor} returned by this
      * factory's {@link #createEvaluationVisitor(Environment, EvaluationEnvironment, Map)} operation will be based on the state
-     * *before* the notification. For example, if the notification indicates the removal of a reference from an element
+     * <em>before</em> the notification. For example, if the notification indicates the removal of a reference from an element
      * <tt>e1</tt> to an element <tt>e2</tt> across reference <tt>r</tt> then when during partial evaluation <tt>r</tt> is
      * traversed starting from <tt>e1</tt> then <tt>e2</tt> will show in the results although in the current version of the model
-     * it would not.
+     * it would not.<p>
+     * 
+     * Uses a {@link DefaultOppositeEndFinder} for navigating hidden opposites.
      */
     public PartialEcoreEnvironmentFactory(Notification atPre) {
+        this.atPre = atPre;
+    }
+    
+    public PartialEcoreEnvironmentFactory(Notification atPre, OppositeEndFinder oppositeEndFinder) {
+        this(oppositeEndFinder);
         this.atPre = atPre;
     }
 

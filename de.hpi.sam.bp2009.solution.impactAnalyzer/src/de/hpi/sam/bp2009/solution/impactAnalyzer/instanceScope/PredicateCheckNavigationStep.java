@@ -15,6 +15,8 @@ import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.utilities.PredefinedType;
 
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
@@ -40,6 +42,12 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
      * <tt>false</tt>.
      */
     private final boolean positive;
+    
+    /**
+     * The opposite end finder is required for partial evaluation which shall use this finder to navigate
+     * hidden opposites.
+     */
+    private final OppositeEndFinder oppositeEndFinder;
 
     public PredicateCheckNavigationStep(EClass sourceType, EClass targetType, IteratorExp iteratorExp, PathCache pathCache) {
         super(sourceType, targetType, (OCLExpression) iteratorExp);
@@ -51,6 +59,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
         } else {
             positive = false;
         }
+        this.oppositeEndFinder = pathCache.getOppositeEndFinder();
         // TODO check if this is expressive enough
         contentAsString = "checkPredicate[" + iteratorExp.getBody().toString() + "]";
     }
@@ -77,7 +86,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
 
         Boolean resultPre = positive;
         if (!(atPre == null)) {
-            PartialEvaluator evalPre = new PartialEvaluator(atPre);
+            PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder);
             try {
                 Object result = evalPre.evaluate(null, (CallExp) exp, sourceObjects);
                 resultPre = sourceObjects.contains(result);
