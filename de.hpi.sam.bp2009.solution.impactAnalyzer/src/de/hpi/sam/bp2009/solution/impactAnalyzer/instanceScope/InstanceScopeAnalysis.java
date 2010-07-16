@@ -222,6 +222,7 @@ public class InstanceScopeAnalysis {
             for (Object value : featureValue) {
                 if (value instanceof EObject) {
                     if (expressionContainsAllInstancesCallForType(((EObject) value).eClass())) {
+                        // TODO what about delta propagation if the allInstances() call is source of another expression?
                         result.addAll(getAllPossibleContextInstances((EObject) event.getNotifier(), getContext(), oppositeEndFinder));
                     }
                 }
@@ -249,6 +250,7 @@ public class InstanceScopeAnalysis {
                     } else {
                         throw new RuntimeException("Unable to extract an EObject from Notification "+event);
                     }
+                    // TODO what about delta propagation if the allInstances() call is source of another expression?
                     result.addAll(getAllPossibleContextInstances(e, getContext(), oppositeEndFinder));
                 }
             }
