@@ -5,12 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
-import org.eclipse.emf.ecore.xmi.XMLResource;
+
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 
@@ -46,17 +42,8 @@ public class ShrinkedResourceProvider {
 	System.out.println("\t\t\tResource Shrinking Process started...");
 
 	IncrementalResourceShrinker resourceShrinker = new IncrementalResourceShrinker();
-
-	int cloneId = 0;
-	Resource nextResourceToShrink = ModelCloner.cloneResource(fullSizeResource, String.valueOf(cloneId));
-	while(resourceShrinker.shrink(nextResourceToShrink) > 1){
-		cloneId++;
-		
-	    shrinkedResourceList.add(nextResourceToShrink);
-	    nextResourceToShrink = ModelCloner.cloneResource(nextResourceToShrink, String.valueOf(cloneId));
-	    //persistShrinkedResource();
-	}
-
+	shrinkedResourceList.addAll(resourceShrinker.shrinkCombinational(fullSizeResource));
+	
 	resourcesWereShrinked = true;
 
 	System.out.println("\t\t\tResource Shrinking Process finished with " + shrinkedResourceList.size() + " resources");

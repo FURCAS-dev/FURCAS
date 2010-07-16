@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -16,11 +17,11 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  */
 public class ModelCloner {
 	
-	public static Collection<Resource> createResourceClones(Resource resourceToClone, int amountOfClones){
-		ArrayList<Resource> cloneList = new ArrayList<Resource>(amountOfClones);
+	public static List<Resource> createResourceClones(Resource resourceToClone, int amountOfClones){
+		List<Resource> cloneList = new ArrayList<Resource>(amountOfClones);
 		
 		for(int i=0; i < amountOfClones; i++){
-			cloneList.add(cloneResource(resourceToClone, String.valueOf(i)));
+			cloneList.add(cloneResource(resourceToClone, String.valueOf(i), false));
 		}
 		
 		assert(cloneList.size() == amountOfClones);
@@ -29,6 +30,10 @@ public class ModelCloner {
 	}
 	
 	public static Resource cloneResource(Resource resourceToClone, String cloneId){
+		return cloneResource(resourceToClone, cloneId, true);
+	}
+	
+	public static Resource cloneResource(Resource resourceToClone, String cloneId, boolean overwriteFirstId){
 		int resourceSize = 0;
 		TreeIterator<EObject> iterator = resourceToClone.getAllContents();
 		while (iterator.hasNext()) {
@@ -42,7 +47,11 @@ public class ModelCloner {
 		URI uri = resourceToClone.getURI();
 		String ext = uri.fileExtension();
 
-		String name = uri.trimFileExtension().lastSegment()	+ "." + cloneId;
+		String name = "";
+
+		name = uri.trimFileExtension().lastSegment() + "." + cloneId;
+
+		
 		uri = URI.createURI(name).resolve(uri).appendFileExtension(ext);
 		
 		Resource clone = resourceToClone.getResourceSet().createResource(uri);
