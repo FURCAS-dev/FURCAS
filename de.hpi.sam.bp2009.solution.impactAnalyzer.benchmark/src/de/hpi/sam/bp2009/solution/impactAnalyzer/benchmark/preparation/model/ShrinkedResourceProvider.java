@@ -47,10 +47,13 @@ public class ShrinkedResourceProvider {
 
 	IncrementalResourceShrinker resourceShrinker = new IncrementalResourceShrinker();
 
-	Resource nextResourceToShrink = cloneResource(fullSizeResource);
+	int cloneId = 0;
+	Resource nextResourceToShrink = ModelCloner.cloneResource(fullSizeResource, String.valueOf(cloneId));
 	while(resourceShrinker.shrink(nextResourceToShrink) > 1){
+		cloneId++;
+		
 	    shrinkedResourceList.add(nextResourceToShrink);
-	    nextResourceToShrink = cloneResource(nextResourceToShrink);
+	    nextResourceToShrink = ModelCloner.cloneResource(nextResourceToShrink, String.valueOf(cloneId));
 	    //persistShrinkedResource();
 	}
 
@@ -84,57 +87,5 @@ public class ShrinkedResourceProvider {
 	throw new RuntimeException("Not implemented at the moment");
     }
 
-    private Resource cloneResource(Resource resourceToClone){
-	int resourceSize = 0;
-	TreeIterator<EObject> iterator = resourceToClone.getAllContents();
-	while(iterator.hasNext()){
-	    iterator.next();
-	    resourceSize++;
-	}
-
-	System.out.println("\t\t\tClone Resource: " + resourceToClone.getURI() + " Elements:" + resourceSize);
-	// Compute new URI by inserting "2" before the file extension
-	 URI uri = resourceToClone.getURI();
-	 String ext = uri.fileExtension();
-
-	 String name = uri.trimFileExtension().lastSegment().split("Clone")[0] + getNextCloneExtension(uri.trimFileExtension().lastSegment());
-	 uri = URI.createURI(name).resolve(uri).appendFileExtension(ext);
-
-	 Resource clone = resourceToClone.getResourceSet().createResource(uri);
-
-	 Copier copier = new Copier();
-	 clone.getContents().addAll(copier.copyAll(resourceToClone.getContents()));
-	 copier.copyReferences();
-
-	 clone = cloneXMLResourceIDs(resourceToClone, clone);
-
-	return clone;
-    }
-
-    private Resource cloneXMLResourceIDs(Resource resourceToClone, Resource clone) {
-	if(resourceToClone instanceof XMLResource){
-	     TreeIterator<EObject> iterator = resourceToClone.getAllContents();
-	     TreeIterator<EObject> cloneIterator = clone.getAllContents();
-	     while(iterator.hasNext()){
-		 EObject next = iterator.next();
-		 EObject nextClone = cloneIterator.next();
-		 ((XMLResource)clone).setID(nextClone, ((XMLResource)resourceToClone).getID(next));
-	     }
-	 }else{
-	     System.out.println("Not XML Resource");
-	 }
-	return clone;
-    }
-
-    private String getNextCloneExtension(String lastSegment) {
-	int cloneNumber = 0;
-
-	String splitted[] = lastSegment.split("Clone");
-	if(splitted.length > 1){
-	    cloneNumber = Integer.parseInt(splitted[1]);
-	    cloneNumber++;
-	}
-
-	return "Clone" + cloneNumber;
-    }
+   
 }

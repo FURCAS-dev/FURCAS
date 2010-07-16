@@ -33,7 +33,6 @@ public class IncrementalResourceShrinker {
 	java.util.HashSet<T> h = new java.util.HashSet<T>(arlList);
 	result.addAll(h);
 	return result;
-
     }
 
     private void aggregateElementsInPackages(Resource resourceToShrink) {
@@ -44,6 +43,7 @@ public class IncrementalResourceShrinker {
 
     private Package deleteNextPackage() {
 	ArrayList<Package> packagesToDeleteList = calculatePossiblePackagesToDelete();
+	
 	Package packageToDelete = null;
 	if(packagesToDeleteList.size() == 1){
 	    System.out.println("match");
