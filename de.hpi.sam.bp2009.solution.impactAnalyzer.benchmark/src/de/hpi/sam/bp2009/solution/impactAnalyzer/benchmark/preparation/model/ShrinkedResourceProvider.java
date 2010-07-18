@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 
 /**
- *
+ * TODO: Write documentation for this class
  *
  * @author Manuel Holzleitner (D049667)
  */
@@ -42,7 +42,7 @@ public class ShrinkedResourceProvider {
 	System.out.println("\t\t\tResource Shrinking Process started...");
 
 	IncrementalResourceShrinker resourceShrinker = new IncrementalResourceShrinker();
-	shrinkedResourceList.addAll(resourceShrinker.shrinkCombinational(fullSizeResource));
+	resourceShrinker.shrinkCombinational(fullSizeResource, shrinkedResourceList, new ArrayList<Integer>());
 	
 	resourcesWereShrinked = true;
 
