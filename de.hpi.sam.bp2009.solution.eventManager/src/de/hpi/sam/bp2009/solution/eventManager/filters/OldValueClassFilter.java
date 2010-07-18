@@ -49,11 +49,11 @@ public class OldValueClassFilter extends ClassFilter {
             return false;
         }
         if (event.getOldValue() instanceof EObject) {
-            return ((EObject) event.getOldValue()).eClass().equals(getWantedClass());
+            return matches(((EObject) event.getOldValue()).eClass());
         }
         if (event.getOldValue() instanceof EList<?>) {
             for (Object o : (EList<?>) event.getOldValue()) {
-                if (o instanceof EObject && ((EObject) o).eClass().equals(getWantedClass())) {
+                if (o instanceof EObject && matches(((EObject) o).eClass())) {
                     return true;
                 }
             }
@@ -66,8 +66,8 @@ public class OldValueClassFilter extends ClassFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "filter for old " + getWantedClass().toString();
-        return "filter for undefined old";
+            return "old value filter for old " + getWantedClass().toString();
+        return "old value filter for undefined old";
     }
 
     @Override

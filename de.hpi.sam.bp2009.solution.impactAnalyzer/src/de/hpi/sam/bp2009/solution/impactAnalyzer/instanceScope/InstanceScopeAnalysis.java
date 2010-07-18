@@ -222,17 +222,8 @@ public class InstanceScopeAnalysis {
             }
             for (Object value : featureValue) {
                 if (value instanceof EObject) {
-                    for (OperationCallExp allInstances : filterSynthesizer.getAllInstancesCallsFor(((EObject) value).eClass())) {
-                        // if we can prove that the delta of allInstances() propagates to an empty set,
-                        // the overall expression remains unchanged by the original change:
-                        @SuppressWarnings("unchecked")
-                        Collection<Object> featureValueAsObjectCollection = (Collection<Object>) featureValue;
-                        if (!partialEvaluatorForAllInstancesDeltaPropagation.transitivelyPropagateDelta(allInstances,
-                                featureValueAsObjectCollection, filterSynthesizer).isEmpty()) {
-                            result.addAll(getAllPossibleContextInstances((EObject) event.getNotifier(), getContext(),
-                                    oppositeEndFinder));
-                        }
-                    }
+                    EClass valuesClass = ((EObject) value).eClass();
+                    addAllPossibleContextsIfNonEmptyDelta(featureValue, result, event, valuesClass);
                 }
             }
         } else {
@@ -243,18 +234,34 @@ public class InstanceScopeAnalysis {
                 value = event.getOldValue();
             }
             if (value instanceof EObject) {
-                for (OperationCallExp allInstances : filterSynthesizer.getAllInstancesCallsFor(((EObject) value).eClass())) {
-                    // if we can prove that the delta of allInstances() propagates to an empty set,
-                    // the overall expression remains unchanged by the original change:
-                    Collection<Object> featureValueAsObjectCollection = Collections.singleton((Object) value);
-                    if (!partialEvaluatorForAllInstancesDeltaPropagation.transitivelyPropagateDelta(allInstances,
-                            featureValueAsObjectCollection, filterSynthesizer).isEmpty()) {
-                        result.addAll(getAllPossibleContextInstances((Notifier) event.getNotifier(), getContext(), oppositeEndFinder));
-                    }
-                }
+                Collection<Object> featureValueAsObjectCollection = Collections.singletonList((Object) value);
+                EClass valuesClass = ((EObject) value).eClass();
+                addAllPossibleContextsIfNonEmptyDelta(featureValueAsObjectCollection, result, event, valuesClass);
             }
         }
         return result;
+    }
+
+    private void addAllPossibleContextsIfNonEmptyDelta(Collection<?> featureValue, Collection<EObject> result,
+            Notification event, EClass eClass) {
+        addAllPossibleContextsIfNotEmptyDeltaForSingleClass(featureValue, result, event, eClass);
+        for (EClass superClass : eClass.getEAllSuperTypes()) {
+            addAllPossibleContextsIfNotEmptyDeltaForSingleClass(featureValue, result, event, superClass);
+        }
+    }
+
+    private void addAllPossibleContextsIfNotEmptyDeltaForSingleClass(Collection<?> featureValue, Collection<EObject> result,
+            Notification event, EClass eClass) {
+        for (OperationCallExp allInstancesCall : filterSynthesizer.getAllInstancesCallsFor(eClass)) {
+            // if we can prove that the delta of allInstances() propagates to an empty set,
+            // the overall expression remains unchanged by the original change:
+            @SuppressWarnings("unchecked")
+            Collection<Object> featureValueAsObjectCollection = (Collection<Object>) featureValue;
+            if (!partialEvaluatorForAllInstancesDeltaPropagation.transitivelyPropagateDelta(allInstancesCall,
+                    featureValueAsObjectCollection, filterSynthesizer).isEmpty()) {
+                result.addAll(getAllPossibleContextInstances((Notifier) event.getNotifier(), getContext(), oppositeEndFinder));
+            }
+        }
     }
 
     /**
@@ -501,7 +508,6 @@ public class InstanceScopeAnalysis {
      * @param context
      *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
-     * @param changeEvent TODO
      */
     private Set<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
             EClass context, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {

@@ -7,9 +7,9 @@ import org.eclipse.emf.ecore.EObject;
 import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 
 /**
- * The ClassFilterTable manages all Registrations containing {@link de.hpi.sam.bp2009.solution.eventManager.filters.sap.tc.moin.repository.events.filter.ClassFilter}.
+ * The ClassFilterTable manages all Registrations containing {@link ClassFilter}.
  * 
- * @see de.hpi.sam.bp2009.solution.eventManager.framework.TableForEventFilter.tc.moin.repository.events.framework.EventFilterTable
+ * @see TableForEventFilter
  * @author Daniel Vocke (D044825)
  */
 public class TableForClassFilter extends TableForEventFilter {

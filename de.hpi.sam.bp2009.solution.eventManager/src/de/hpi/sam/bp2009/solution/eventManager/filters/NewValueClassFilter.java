@@ -46,11 +46,11 @@ public class NewValueClassFilter extends ClassFilter {
 
     public boolean matchesFor(Notification event) {
         if (event.getNewValue() instanceof EObject) {
-            return ((EObject) event.getNewValue()).eClass().equals(getWantedClass());
+            return matches(((EObject) event.getNewValue()).eClass());
         }
         if (event.getNewValue() instanceof EList<?>) {
             for (Object o : (EList<?>) event.getNewValue()) {
-                if (o instanceof EObject && ((EObject) o).eClass().equals(getWantedClass())) {
+                if (o instanceof EObject && matches(((EObject) o).eClass())) {
                     return true;
                 }
             }
@@ -62,8 +62,8 @@ public class NewValueClassFilter extends ClassFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "filter for new " + getWantedClass().toString();
-        return "filter for undefined new";
+            return "new value filter for new " + getWantedClass().toString();
+        return "new value filter for undefined new";
     }
 
     @Override

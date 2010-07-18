@@ -234,7 +234,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         expectedStmts.add(this.getDivisionBossSecretaryAST());
         expectedStmts.add(this.getSecretaryOlderThanBossAST());
         expectedStmts.add(this.getExpensesRestrictionAST());
-
+        Set<ExpressionInOCL> missing = new HashSet<ExpressionInOCL>(expectedStmts);
+        missing.removeAll(affectedStmts);
         assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
     }
 
