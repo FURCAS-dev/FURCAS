@@ -30,7 +30,8 @@ import com.sap.emf.importer.moin.rose.builder.RoseStrings;
  */
 public class RoseNode
 {
-  public final static int STRING = 0;
+	private static final String ROLE_STORE_KIND_YES = "(\"RoleStoreKindSet\" 202)";
+	public final static int STRING = 0;
   public final static int STRING_SEQ = 1;
   public final static int OBJECT = 2;
   public final static int LIST = 3;
@@ -914,4 +915,8 @@ public class RoseNode
     }
     return s;
   }
+  public boolean getSap2MofStore() {
+		String attributeValue = getAttributeValue("MOF", "sap2mof.store");
+		return ROLE_STORE_KIND_YES.equalsIgnoreCase(attributeValue);
+	}
 }
