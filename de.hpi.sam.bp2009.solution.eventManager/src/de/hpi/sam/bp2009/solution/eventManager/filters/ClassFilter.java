@@ -10,6 +10,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
+/**
+ * Matches an event's {@link Notification#getNotifier() notifier}'s {@link EObject#eClass() class}
+ * 
+ * @author Daniel Vocke, Philipp Berger, Axel Uhl
+ *
+ */
 public class ClassFilter extends EventFilter {
 
     protected EClass wantedClass;
@@ -76,16 +82,15 @@ public class ClassFilter extends EventFilter {
         Object notifier = event.getNotifier();
         if (notifier == null || !(notifier instanceof EObject))
             return false;
-        if (((EObject) notifier).eClass().equals(getWantedClass()))
-            return true;
-        if (((EObject) notifier).eClass().equals(getWantedClass())) {
+        EClass cls = ((EObject) notifier).eClass();
+        return matches(cls);
+    }
+
+    protected boolean matches(EClass cls) {
+        if (cls.equals(getWantedClass())) {
             return true;
         }
-        if (getIncludeSubClasses()) {
-            return ((EObject) notifier).eClass().getEAllSuperTypes().contains(getWantedClass());
-        } else {
-            return ((EObject) notifier).eClass().equals(getWantedClass());
-        }
+        return getIncludeSubClasses() && cls.getEAllSuperTypes().contains(getWantedClass());
     }
 
     private void setWantedClass(EClass newWantedClass) {

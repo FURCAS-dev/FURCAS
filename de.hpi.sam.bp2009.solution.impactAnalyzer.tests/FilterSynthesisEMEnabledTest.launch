@@ -16,4 +16,5 @@
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.FilterSynthesisEMEnabledTest"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="de.hpi.sam.bp2009.solution.impactAnalyzer.tests"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XX:+UseParallelGC"/>
 </launchConfiguration>

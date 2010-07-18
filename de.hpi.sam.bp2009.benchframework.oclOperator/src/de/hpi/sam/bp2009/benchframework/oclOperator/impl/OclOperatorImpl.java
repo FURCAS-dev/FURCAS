@@ -6,7 +6,6 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,7 +42,6 @@ import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 
@@ -722,8 +720,6 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         EList<EObject> allInstances = new BasicEList<EObject>();
         allInstances = new BasicEList<EObject>();
 
-        List<EClass> classes = new ArrayList<EClass>(DefaultOppositeEndFinder.getInstance().getAllSubclasses(context));
-        classes.add(context);
         OCL ocl = OCLWithHiddenOpposites.newInstance(new Query2OppositeEndFinder(new ProjectDependencyQueryContextProvider()));
         Helper helper= ocl.createOCLHelper();          
         Resource r = res.getResources().get(0);
@@ -741,22 +737,20 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
         }
         ocl.setExtentMap(map);
 
-        for (EClass c : classes) {
-            helper.setContext(c);
-            try {
-                OCLExpression query = helper.createQuery(c.getName() + ".allInstances()");
-                Object objResult = ocl.evaluate(c, query);                
-                if (objResult instanceof Collection<?>){
-                    for (Object o : (Collection<?>)objResult){
-                        if (o instanceof EObject){
-                            allInstances.add((EObject) o);
-                        }
+        helper.setContext(context);
+        try {
+            OCLExpression query = helper.createQuery(context.getName() + ".allInstances()");
+            Object objResult = ocl.evaluate(context, query);
+            if (objResult instanceof Collection<?>) {
+                for (Object o : (Collection<?>) objResult) {
+                    if (o instanceof EObject) {
+                        allInstances.add((EObject) o);
                     }
                 }
-            } catch (ParserException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
             }
+        } catch (ParserException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
         return allInstances;
     }

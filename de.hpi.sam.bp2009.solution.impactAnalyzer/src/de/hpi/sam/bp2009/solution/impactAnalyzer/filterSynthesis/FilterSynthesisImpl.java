@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EClassifierImpl;
 import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
@@ -31,12 +30,10 @@ import org.eclipse.ocl.parser.OCLParsersym;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
-import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -157,16 +154,13 @@ implements OperationBodyToCallMapper {
                 cls = (EClass) source.getType();
             }
             filters.add(createFilterForElementInsertionOrDeletion(cls));
-            
-            EClassifier classifier = ((TypeExp)opCallExp.getSource()).getReferredType();
-            for (EClassifier specialization : getAllSpecializationsIncludingSelf(classifier)) {
-                Set<OperationCallExp> set = allInstancesCalls.get(specialization);
-                if (set == null) {
-                    set = new HashSet<OperationCallExp>();
-                    allInstancesCalls.put(specialization, set);
-                }
-                set.add((OperationCallExp) opCallExp);
+            EClassifier classifier = ((TypeExp) opCallExp.getSource()).getReferredType();
+            Set<OperationCallExp> set = allInstancesCalls.get(classifier);
+            if (set == null) {
+                set = new HashSet<OperationCallExp>();
+                allInstancesCalls.put(classifier, set);
             }
+            set.add((OperationCallExp) opCallExp);
         } else {
             if (opCallExp.getOperationCode() > 0){
                 //std. library operation nothing to do
@@ -264,8 +258,8 @@ implements OperationBodyToCallMapper {
     }
 
     /**
-     * Always returns a non-<tt>null</tt> set. Finds all occurrences of an <tt>allInstances</tt> call on a type
-     * expression for the classifier <tt>c</tt> or its generalizations in the expression analyzed by this visitor.
+     * Always returns a non-<tt>null</tt> set. Finds all occurrences of an <tt>allInstances</tt> call on a type expression for the
+     * classifier <tt>c</tt> (but not for its generalizations) in the expression analyzed by this visitor.
      */
     public Set<OperationCallExp> getAllInstancesCallsFor(EClassifier c) {
         Set<OperationCallExp> result = allInstancesCalls.get(c);
@@ -280,24 +274,7 @@ implements OperationBodyToCallMapper {
      * @return a filter containing a element creation or deletion filter for all sub types of the given class
      */
     private EventFilter createFilterForElementInsertionOrDeletion(EClass clazz) {
-        OrFilter orFilter = EventManagerFactory.eINSTANCE.createOrFilter();
-        for(EClass cls : DefaultOppositeEndFinder.getInstance().getAllSubclasses(clazz)){
-            orFilter.getOperands().add(EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(cls));           
-        }
-        orFilter.getOperands().add(EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(clazz));           
-        return orFilter;
-    }
-    
-    private Set<EClassifier> getAllSpecializationsIncludingSelf(EClassifier classifier) {
-        Set<EClassifier> result = new HashSet<EClassifier>();
-        if (classifier instanceof EClass){
-            result.addAll(DefaultOppositeEndFinder.getInstance().getAllSubclasses((EClass)classifier));
-            result.add((EClass)classifier);            
-        } else {
-            //classifier is a datatype
-            result.add((EClassifierImpl)classifier);
-        }
-        return result;
+        return EventManagerFactory.eINSTANCE.createFilterForElementInsertionOrDeletion(clazz);
     }
     
     private void walk(OCLExpression expression) {
