@@ -299,7 +299,7 @@ public class PartialEvaluationVisitorImpl
                 }
             }
         } else {
-            into.add((T) atPre.getOldValue());
+            into.addAll((Collection<T>) atPre.getOldValue());
             result = into;
         }
         return result;
