@@ -833,8 +833,14 @@ private void addConstraintsForOperation(RoseNode roseNode, EOperation eOperation
       {
         ref2Quidu = ref2Quidu.substring(1, ref2Quidu.length() - 1);
       }
-      boolean ref1Navigable = role1.isNavigable();
-      boolean ref2Navigable = role2.isNavigable();
+      //boolean ref1Navigable = role1.isNavigable();
+      //boolean ref2Navigable = role2.isNavigable();
+      
+      boolean ref1Navigable;
+      boolean ref2Navigable;
+      
+      ref2Navigable = role1.getSap2MofStore();
+      ref1Navigable = role2.getSap2MofStore();
       if (ref1Navigable)
       {
         ref2.setEOpposite(ref1);
