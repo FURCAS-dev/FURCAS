@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 /**
  * The {@link ModelCloner} is able to clone resources and its elements in a new resource set
  * and also clones XML ids which are setted on a {@link XMLResource}
+ * 
+ * @author Manuel Holzleiter (D049667)
  */
 public class ModelCloner {
 	
