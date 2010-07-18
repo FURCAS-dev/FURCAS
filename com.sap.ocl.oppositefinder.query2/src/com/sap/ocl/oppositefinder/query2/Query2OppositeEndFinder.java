@@ -1,6 +1,5 @@
 package com.sap.ocl.oppositefinder.query2;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -129,19 +128,15 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     private Set<EObject> getAllInstancesWithScope(EClass cls, Notifier context, QueryContext scope) {
         Set<EObject> result = new HashSet<EObject>();
 
-        List<EClass> classes = new ArrayList<EClass>(delegate.getAllSubclasses(cls));
-        classes.add(cls);
-
         QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-        for (EClass c : classes) {
-            String query = "select obj from [" + EcoreUtil.getURI(c) + "] as obj";
-            ResultSet resultSet = queryProcessor.execute(query, scope);
-            if (!resultSet.isEmpty()) {
-                for (int i = 0; i < resultSet.getSize(); i++) {
-                    String uri = resultSet.getUri(i, "obj").toString();
-                    EObject obj = getEObject(context, uri);
-                    result.add(obj);
-                }
+        // by default, a from-clause includes all subtypes unless the "withoutsubtypes" option is used
+        String query = "select obj from [" + EcoreUtil.getURI(cls) + "] as obj";
+        ResultSet resultSet = queryProcessor.execute(query, scope);
+        if (!resultSet.isEmpty()) {
+            for (int i = 0; i < resultSet.getSize(); i++) {
+                String uri = resultSet.getUri(i, "obj").toString();
+                EObject obj = getEObject(context, uri);
+                result.add(obj);
             }
         }
         return result;
