@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 
 /**
@@ -42,8 +41,8 @@ public class ShrinkedResourceProvider {
 	System.out.println("\t\t\tResource Shrinking Process started...");
 
 	IncrementalResourceShrinker resourceShrinker = new IncrementalResourceShrinker();
-	resourceShrinker.shrinkCombinational(fullSizeResource, shrinkedResourceList, new ArrayList<Integer>());
-	
+	shrinkedResourceList.addAll(resourceShrinker.shrinkIncrementally(fullSizeResource));
+
 	resourcesWereShrinked = true;
 
 	System.out.println("\t\t\tResource Shrinking Process finished with " + shrinkedResourceList.size() + " resources");
@@ -74,5 +73,5 @@ public class ShrinkedResourceProvider {
 	throw new RuntimeException("Not implemented at the moment");
     }
 
-   
+
 }

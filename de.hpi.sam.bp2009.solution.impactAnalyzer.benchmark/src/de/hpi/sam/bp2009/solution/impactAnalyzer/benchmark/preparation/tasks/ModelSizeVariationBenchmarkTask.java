@@ -16,9 +16,12 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private final ImpactAnalyzer ia;
     private final Notification notification;
-    
-    LinkedHashMap<String, String> additionalInformation = new LinkedHashMap<String, String>();
-    
+
+    private final LinkedHashMap<String, String> additionalInformation = new LinkedHashMap<String, String>();
+    private final LinkedHashMap<String, String> additionalMeasurementInformation = new LinkedHashMap<String, String>();
+
+    private Collection<EObject> result = null;
+
     public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, Resource model, Notification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId) {
 	this.notification = notification;
 	ia = imp;
@@ -31,12 +34,27 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     }
 
     @Override
+    public void beforeCall() {
+	assert additionalMeasurementInformation.size() == 0;
+	assert result == null;
+    }
+
+    @Override
     public Collection<EObject> call() throws Exception {
-	ia.getContextObjects(notification);
+	result = ia.getContextObjects(notification);
 
 	return null;
     }
 
+
+    @Override
+    public void afterCall() {
+	assert result != null;
+
+	additionalMeasurementInformation.put("noContextObjects", String.valueOf(result.size()));
+
+	result = null;
+    }
 
     public Notification getNotification(){
 	return notification;
@@ -65,6 +83,14 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	    resourceSize++;
 	}
 	return resourceSize;
+    }
+
+    @Override
+    public Map<String, String> getAdditionalMeasurementInformation() {
+	LinkedHashMap<String, String> result = new LinkedHashMap<String,String>();
+	result.putAll(additionalMeasurementInformation);
+	additionalMeasurementInformation.clear();
+	return result;
     }
 
 }
