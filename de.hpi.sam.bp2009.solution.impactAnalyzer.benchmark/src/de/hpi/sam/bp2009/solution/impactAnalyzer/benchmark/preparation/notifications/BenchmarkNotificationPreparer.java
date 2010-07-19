@@ -29,7 +29,7 @@ public class BenchmarkNotificationPreparer {
 	for(Resource model : resourceProvider.getAllResourcesFromLargeToSmall()){
 	    System.out.println("\t\t\tCreate notifications for resource: " + model.getURI().toString());
 
-	    Collection<Notification> notiList = new RealWorldReplayNotificationProducer().produce(model, "primitiveEventTrace.trace");
+	    Collection<Notification> notiList = new RealWorldReplayNotificationProducer().produce(model, "shortEventTrace.trace");
 	    System.out.println("\t\t\t\t " + notiList.size() + " created");
 
 	    result.add(new NotificationForModelList(model, (List<Notification>)notiList));

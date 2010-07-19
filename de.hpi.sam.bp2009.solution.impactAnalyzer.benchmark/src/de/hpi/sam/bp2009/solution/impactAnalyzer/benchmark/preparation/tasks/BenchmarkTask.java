@@ -15,5 +15,9 @@ import org.eclipse.emf.ecore.EObject;
  * @author Manuel Holzleitner (D049667)
  */
 public interface BenchmarkTask extends Callable<Collection<EObject>> {
+    public void beforeCall();
+    public void afterCall();
+
+    public Map<String, String> getAdditionalMeasurementInformation();
     public Map<String, String> getAdditionalInformation();
 }

@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -45,5 +46,22 @@ public class SingleNotificationInstanceScopeAnalysisTask implements BenchmarkTas
     public Map<String, String> getAdditionalInformation() {
 	// TODO Auto-generated method stub
 	return null;
+    }
+
+    @Override
+    public void beforeCall() {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void afterCall() {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public Map<String, String> getAdditionalMeasurementInformation() {
+	return new LinkedHashMap<String, String>();
     }
 }
