@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.tests;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -41,20 +42,26 @@ import data.classes.ClassesPackage;
 import data.classes.MethodSignature;
 import data.classes.Parameter;
 import data.classes.SapClass;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
 public class PartialEvaluatorTest extends TestCase {
     private PartialEvaluator evaluator;
 
+    @Override
     @Before
     public void setUp() {
         evaluator = new PartialEvaluator();
     }
 
+    @Override
     @After
     public void tearDown() {
     }
@@ -341,7 +348,7 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(c.getOwnedSignatures().contains(signature2));
         assertEquals("sig2", c.getOwnedSignatures().iterator().next().getName());
     }
-    
+
     @Test
     public void testAtPreEvaluationWithMove() throws ParserException {
         final MethodSignature signature1 = ClassesFactory.eINSTANCE.createMethodSignature();
@@ -380,7 +387,7 @@ public class PartialEvaluatorTest extends TestCase {
         assertEquals(0, c.getOwnedSignatures().indexOf(signature2));
         assertEquals(1, c.getOwnedSignatures().indexOf(signature1));
     }
-    
+
     @Test
     public void testAtPreEvaluationWithSetName() throws ParserException {
         final SapClass c = ClassesFactory.eINSTANCE.createSapClass();
@@ -407,7 +414,7 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(testResult[0]);
         c.getName().equals("MyClass");
     }
-    
+
     @Test
     public void testAtPreEvaluationWithUnsetName() throws ParserException {
         final SapClass c = ClassesFactory.eINSTANCE.createSapClass();
@@ -435,7 +442,7 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(testResult[0]);
         assertNull(c.getName());
     }
-    
+
     @Test
     public void testPartialEvaluationWithOppositeProperty() throws ParserException {
         final ResourceSet rs = new ResourceSetImpl();
@@ -454,7 +461,7 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(result instanceof Collection<?>);
         assertTrue(((Collection<?>) result).contains(division));
     }
-    
+
     @Test
     public void testAtPreEvaluationWithSettingOppositeProperty() throws ParserException {
         final ResourceSet rs = new ResourceSetImpl();
@@ -486,7 +493,7 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(testResult[0]);
         assertTrue(division.getDepartment().contains(department));
     }
-    
+
     @Test
     public void testAtPreEvaluationWithUnsettingOppositeProperty() throws ParserException {
         final ResourceSet rs = new ResourceSetImpl();
@@ -518,7 +525,7 @@ public class PartialEvaluatorTest extends TestCase {
         assertTrue(testResult[0]);
         assertFalse(division.getDepartment().contains(department));
     }
-    
+
     /**
      * Partially evaluate a recursive operation such that during partial evaluation a recursive call happens.
      * The source expression for which the value is provided is an operation parameter on which the recursive call
@@ -548,7 +555,7 @@ public class PartialEvaluatorTest extends TestCase {
               self.subDepartment->iterate(department; return : Integer = 0 | return + department.sumBudget()) + self.budget
            else
               self.budget
-           endif 
+           endif
          */
         assertTrue(sumBudgetBody instanceof IfExp);
         IfExp ifExp = (IfExp) sumBudgetBody;
@@ -557,6 +564,17 @@ public class PartialEvaluatorTest extends TestCase {
             .getSource();   // self.subDepartment->iterate(...)
         Object result = evaluator.evaluate(null, selfSubDepartment_Iterate, Collections.singletonList(department));
         assertEquals(600, result);
+    }
+
+    // TODO Test case needs a meaningful name
+    @Test
+    public void testDeltaPropagationEndsInEndlessRecursion() throws ParserException{
+	OCLExpressionWithContext ocl = new OCLExpressionFromClassTcsPicker().pickUpExpression(5);
+	System.out.println(ocl.getExpression());
+	Notification notification =((ArrayList<Notification>)BenchmarkNotificationPreparer.prepareRealWorldReplayNotification()).get(2);
+	System.out.println(notification);
+
+	new ImpactAnalyzerImpl(ocl.getExpression(), ocl.getContext()).getContextObjects(notification);
     }
 
     // TODO add a test case that computes delegatesTo() and pass old and new value for self.elementsOfType
