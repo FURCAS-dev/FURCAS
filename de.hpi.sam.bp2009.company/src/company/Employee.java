@@ -207,6 +207,7 @@ public interface Employee extends EObject {
      * @see #setSecretary(Employee)
      * @see company.CompanyPackage#getEmployee_Secretary()
      * @model containment="true"
+     *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='secretary2boss'"
      * @generated
      */
     Employee getSecretary();
