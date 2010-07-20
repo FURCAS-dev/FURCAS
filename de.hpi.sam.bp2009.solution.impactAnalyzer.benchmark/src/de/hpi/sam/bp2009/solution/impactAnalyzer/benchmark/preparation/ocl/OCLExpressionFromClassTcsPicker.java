@@ -37,6 +37,10 @@ public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 	return result;
     }
 
+    public OCLExpressionWithContext pickUpExpression(int index){
+	return parse(OCLTestExpressionContainer.getExpressionList().get(index).getOcl(), OCLTestExpressionContainer.getExpressionList().get(index).getPackage());
+    }
+
     /**
      * @param expression
      *            to parse
