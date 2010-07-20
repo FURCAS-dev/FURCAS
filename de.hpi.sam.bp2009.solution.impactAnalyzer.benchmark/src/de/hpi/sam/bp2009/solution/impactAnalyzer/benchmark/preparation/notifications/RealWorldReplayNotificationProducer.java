@@ -121,11 +121,12 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
         	if(obj1 != null && obj2 != null){
         	    System.out.println("Both not null");
 
-
         	    for(EStructuralFeature reference : obj1.eClass().getEAllStructuralFeatures()){
         		if(obj1.eGet(reference) != null){
         		    if(obj1.eGet(reference) instanceof EList){
-        			for(EObject referencedObj : ((EList<EObject>)obj1.eGet(reference))){
+        		        @SuppressWarnings("unchecked")
+                                EList<EObject> eObjectList = (EList<EObject>)obj1.eGet(reference);
+        			for(EObject referencedObj : eObjectList){
         			    if(referencedObj.equals(obj2)){
         				System.out.println("Reference 1 found 1");
         			    }
@@ -161,7 +162,7 @@ public class RealWorldReplayNotificationProducer implements NotificationProducer
         	    try {
         		String clazz = "NativeImpl";
 
-        	        Class aClass = classLoader.loadClass("data.classes.ClassesPackage");
+        	        Class<?> aClass = classLoader.loadClass("data.classes.ClassesPackage");
         	        Field instance = aClass.getField("eINSTANCE");
         	        EPackage pack= (EPackage)instance.get(null);
 

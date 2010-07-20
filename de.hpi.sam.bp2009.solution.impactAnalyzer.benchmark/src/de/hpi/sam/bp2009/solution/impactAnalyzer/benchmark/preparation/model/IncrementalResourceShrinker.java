@@ -2,9 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import modelmanagement.Package;
 
