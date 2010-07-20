@@ -9,6 +9,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.tests.FilterSyn
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.NavigationStepDebugGraphTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.OclIaTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.QuickOclParseAndEvalTest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.RealWorldFailingTest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests.RevPathComputationTest;
 
 
@@ -27,6 +28,7 @@ public class ImpactAnalyzerAllTests extends TestSuite{
         suite.addTestSuite(QuickOclParseAndEvalTest.class);
         suite.addTestSuite(FilterSynthesisTest.class);
         suite.addTestSuite(FilterSynthesisEMEnabledTest.class);
+        suite.addTestSuite(RealWorldFailingTest.class);
         return suite;
     }
 

@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.tests;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -42,13 +41,9 @@ import data.classes.ClassesPackage;
 import data.classes.MethodSignature;
 import data.classes.Parameter;
 import data.classes.SapClass;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -565,18 +560,6 @@ public class PartialEvaluatorTest extends TestCase {
         Object result = evaluator.evaluate(null, selfSubDepartment_Iterate, Collections.singletonList(department));
         assertEquals(600, result);
     }
-
-    // TODO Test case needs a meaningful name
-    @Test
-    public void testDeltaPropagationEndsInEndlessRecursion() throws ParserException{
-	OCLExpressionWithContext ocl = new OCLExpressionFromClassTcsPicker().pickUpExpression(5);
-	System.out.println(ocl.getExpression());
-	Notification notification =((ArrayList<Notification>)BenchmarkNotificationPreparer.prepareRealWorldReplayNotification()).get(2);
-	System.out.println(notification);
-
-	new ImpactAnalyzerImpl(ocl.getExpression(), ocl.getContext()).getContextObjects(notification);
-    }
-
     // TODO add a test case that computes delegatesTo() and pass old and new value for self.elementsOfType
     // (getAssociationEnds()) and for association.ends (otherEnd()) with a suitable test model that does
     // not use delegation on either association end
