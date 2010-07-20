@@ -31,7 +31,7 @@
         resolveProxies="false" eOpposite="#//Division/director"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="secretary" eType="#//Employee"
         containment="true" resolveProxies="false">
-      <eAnnotations>
+      <eAnnotations source="http://schema.omg.org/spec/MOF/2.0/emof.xml">
         <details key="Property.oppositeRoleName" value="secretary2boss"/>
       </eAnnotations>
     </eStructuralFeatures>

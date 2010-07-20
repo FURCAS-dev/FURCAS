@@ -503,10 +503,10 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         createEcoreAnnotations();
         // http://de.hpi.sam.bp2009.OCL
         createDeAnnotations();
-        // null
-        createNullAnnotations();
         // http://schema.omg.org/spec/MOF/2.0/emof.xml
         createEmofAnnotations();
+        // null
+        createNullAnnotations();
     }
 
     /**
@@ -630,13 +630,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
      * @generated
      */
     protected void createNullAnnotations() {
-        String source = null;					
-        addAnnotation
-          (getEmployee_Secretary(), 
-           source, 
-           new String[] {
-             "Property.oppositeRoleName", "secretary2boss"
-           });		
+        String source = null;						
         addAnnotation
           (getEmployee_Intern(), 
            source, 
@@ -652,7 +646,13 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
      * @generated
      */
     protected void createEmofAnnotations() {
-        String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";															
+        String source = "http://schema.omg.org/spec/MOF/2.0/emof.xml";					
+        addAnnotation
+          (getEmployee_Secretary(), 
+           source, 
+           new String[] {
+             "Property.oppositeRoleName", "secretary2boss"
+           });											
         addAnnotation
           (getDivision_Department(), 
            source, 
