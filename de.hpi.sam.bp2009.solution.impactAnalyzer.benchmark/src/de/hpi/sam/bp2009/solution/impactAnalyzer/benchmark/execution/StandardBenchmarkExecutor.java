@@ -22,7 +22,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  */
 public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
-    HashMap<String, Exception> notExecutedDueToException = new LinkedHashMap<String, Exception>();
+    HashMap<String, Throwable> notExecutedDueToException = new LinkedHashMap<String, Throwable>();
 
     @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
@@ -46,6 +46,8 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
 	    BenchmarkMeasurements.reset();
 	} catch (Exception e) {
+	    notExecutedDueToException.put(task.toString(), e);
+	} catch (StackOverflowError e){
 	    notExecutedDueToException.put(task.toString(), e);
 	}
     }

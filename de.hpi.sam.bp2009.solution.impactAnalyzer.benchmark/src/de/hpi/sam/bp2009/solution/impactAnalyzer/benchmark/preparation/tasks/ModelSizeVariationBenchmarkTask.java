@@ -14,6 +14,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
+
     private final ImpactAnalyzer ia;
     private final Notification notification;
 

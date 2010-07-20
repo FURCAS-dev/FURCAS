@@ -16,7 +16,7 @@ public class BenchmarkNotificationPreparer {
     }
 
     public static Collection<Notification> prepareRealWorldReplayNotification(){
-	return new RealWorldReplayNotificationProducer().produce();
+	return new RealWorldReplayNotificationProducer().produce("shortEventTrace.trace");
     }
 
     public static Collection<NotificationForModelList> prepareModelSizeVariationNotification(){
@@ -37,4 +37,5 @@ public class BenchmarkNotificationPreparer {
 
 	return result;
     }
+
 }
