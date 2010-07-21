@@ -135,6 +135,9 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT: return createForeachPredicatePropertyInit();
 			case TCSPackage.PREDICATE_SEMANTIC: return createPredicateSemantic();
 			case TCSPackage.SEQUENCE_IN_ALTERNATIVE: return createSequenceInAlternative();
+			case TCSPackage.ECLASS0: return createEClass0();
+			case TCSPackage.PARTIAL_PARG: return createPartialPArg();
+			case TCSPackage.DISAMBIGUATE_PARG: return createDisambiguatePArg();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -924,6 +927,36 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 	public SequenceInAlternative createSequenceInAlternative() {
 		SequenceInAlternativeImpl sequenceInAlternative = new SequenceInAlternativeImpl();
 		return sequenceInAlternative;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass0 createEClass0() {
+		EClass0Impl eClass0 = new EClass0Impl();
+		return eClass0;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PartialPArg createPartialPArg() {
+		PartialPArgImpl partialPArg = new PartialPArgImpl();
+		return partialPArg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DisambiguatePArg createDisambiguatePArg() {
+		DisambiguatePArgImpl disambiguatePArg = new DisambiguatePArgImpl();
+		return disambiguatePArg;
 	}
 
 	/**

@@ -795,6 +795,28 @@ public class TCSSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TCSPackage.ECLASS0: {
+				EClass0 eClass0 = (EClass0)theEObject;
+				T result = caseEClass0(eClass0);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.PARTIAL_PARG: {
+				PartialPArg partialPArg = (PartialPArg)theEObject;
+				T result = casePartialPArg(partialPArg);
+				if (result == null) result = casePropertyArg(partialPArg);
+				if (result == null) result = caseLocatedElement(partialPArg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.DISAMBIGUATE_PARG: {
+				DisambiguatePArg disambiguatePArg = (DisambiguatePArg)theEObject;
+				T result = caseDisambiguatePArg(disambiguatePArg);
+				if (result == null) result = casePropertyArg(disambiguatePArg);
+				if (result == null) result = caseLocatedElement(disambiguatePArg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1261,6 +1283,51 @@ public class TCSSwitch<T> {
 	 * @generated
 	 */
 	public T caseSequenceInAlternative(SequenceInAlternative object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EClass0</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EClass0</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEClass0(EClass0 object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Partial PArg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Partial PArg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePartialPArg(PartialPArg object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Disambiguate PArg</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Disambiguate PArg</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDisambiguatePArg(DisambiguatePArg object) {
 		return null;
 	}
 

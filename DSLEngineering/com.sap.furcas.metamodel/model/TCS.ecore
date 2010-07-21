@@ -412,4 +412,7 @@
         eType="#//Alternative" eOpposite="#//Alternative/sequences"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="disambiguate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EClass0"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PartialPArg" eSuperTypes="#//PropertyArg"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DisambiguatePArg" eSuperTypes="#//PropertyArg"/>
 </ecore:EPackage>

@@ -6199,6 +6199,135 @@ public interface TCSPackage extends EPackage {
 	int SEQUENCE_IN_ALTERNATIVE_FEATURE_COUNT = SEQUENCE_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.EClass0Impl <em>EClass0</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.impl.EClass0Impl
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getEClass0()
+	 * @generated
+	 */
+	int ECLASS0 = 90;
+
+	/**
+	 * The number of structural features of the '<em>EClass0</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ECLASS0_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.PartialPArgImpl <em>Partial PArg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.impl.PartialPArgImpl
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getPartialPArg()
+	 * @generated
+	 */
+	int PARTIAL_PARG = 91;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_PARG__LOCATION = PROPERTY_ARG__LOCATION;
+
+	/**
+	 * The feature id for the '<em><b>Comments Before</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_PARG__COMMENTS_BEFORE = PROPERTY_ARG__COMMENTS_BEFORE;
+
+	/**
+	 * The feature id for the '<em><b>Comments After</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_PARG__COMMENTS_AFTER = PROPERTY_ARG__COMMENTS_AFTER;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
+
+	/**
+	 * The number of structural features of the '<em>Partial PArg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARTIAL_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.DisambiguatePArgImpl <em>Disambiguate PArg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.impl.DisambiguatePArgImpl
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getDisambiguatePArg()
+	 * @generated
+	 */
+	int DISAMBIGUATE_PARG = 92;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISAMBIGUATE_PARG__LOCATION = PROPERTY_ARG__LOCATION;
+
+	/**
+	 * The feature id for the '<em><b>Comments Before</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISAMBIGUATE_PARG__COMMENTS_BEFORE = PROPERTY_ARG__COMMENTS_BEFORE;
+
+	/**
+	 * The feature id for the '<em><b>Comments After</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISAMBIGUATE_PARG__COMMENTS_AFTER = PROPERTY_ARG__COMMENTS_AFTER;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISAMBIGUATE_PARG__PROPERTY = PROPERTY_ARG__PROPERTY;
+
+	/**
+	 * The number of structural features of the '<em>Disambiguate PArg</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DISAMBIGUATE_PARG_FEATURE_COUNT = PROPERTY_ARG_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.TemplateModifiers <em>Template Modifiers</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6206,7 +6335,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getTemplateModifiers()
 	 * @generated
 	 */
-	int TEMPLATE_MODIFIERS = 90;
+	int TEMPLATE_MODIFIERS = 93;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.SpaceKind <em>Space Kind</em>}' enum.
@@ -6216,7 +6345,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getSpaceKind()
 	 * @generated
 	 */
-	int SPACE_KIND = 91;
+	int SPACE_KIND = 94;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.Associativity <em>Associativity</em>}' enum.
@@ -6226,7 +6355,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getAssociativity()
 	 * @generated
 	 */
-	int ASSOCIATIVITY = 92;
+	int ASSOCIATIVITY = 95;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.AutoCreateKind <em>Auto Create Kind</em>}' enum.
@@ -6236,7 +6365,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getAutoCreateKind()
 	 * @generated
 	 */
-	int AUTO_CREATE_KIND = 93;
+	int AUTO_CREATE_KIND = 96;
 
 
 	/**
@@ -6247,7 +6376,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getScopeKind()
 	 * @generated
 	 */
-	int SCOPE_KIND = 94;
+	int SCOPE_KIND = 97;
 
 
 	/**
@@ -7505,6 +7634,36 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSequenceInAlternative_Disambiguate();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.EClass0 <em>EClass0</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EClass0</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.EClass0
+	 * @generated
+	 */
+	EClass getEClass0();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.PartialPArg <em>Partial PArg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Partial PArg</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.PartialPArg
+	 * @generated
+	 */
+	EClass getPartialPArg();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.DisambiguatePArg <em>Disambiguate PArg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Disambiguate PArg</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.DisambiguatePArg
+	 * @generated
+	 */
+	EClass getDisambiguatePArg();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.Alternative <em>Alternative</em>}'.
@@ -9594,6 +9753,36 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE = eINSTANCE.getSequenceInAlternative_Disambiguate();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.EClass0Impl <em>EClass0</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.impl.EClass0Impl
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getEClass0()
+		 * @generated
+		 */
+		EClass ECLASS0 = eINSTANCE.getEClass0();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.PartialPArgImpl <em>Partial PArg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.impl.PartialPArgImpl
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getPartialPArg()
+		 * @generated
+		 */
+		EClass PARTIAL_PARG = eINSTANCE.getPartialPArg();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.DisambiguatePArgImpl <em>Disambiguate PArg</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.impl.DisambiguatePArgImpl
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getDisambiguatePArg()
+		 * @generated
+		 */
+		EClass DISAMBIGUATE_PARG = eINSTANCE.getDisambiguatePArg();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.AlternativeImpl <em>Alternative</em>}' class.

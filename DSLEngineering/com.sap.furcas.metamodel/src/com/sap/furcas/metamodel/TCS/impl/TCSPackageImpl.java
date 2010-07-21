@@ -25,6 +25,8 @@ import com.sap.furcas.metamodel.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.TCS.CreateAsPArg;
 import com.sap.furcas.metamodel.TCS.CreateInPArg;
 import com.sap.furcas.metamodel.TCS.CustomSeparator;
+import com.sap.furcas.metamodel.TCS.DisambiguatePArg;
+import com.sap.furcas.metamodel.TCS.EClass0;
 import com.sap.furcas.metamodel.TCS.EndNLBArg;
 import com.sap.furcas.metamodel.TCS.EndOfLineRule;
 import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
@@ -66,6 +68,7 @@ import com.sap.furcas.metamodel.TCS.Operator;
 import com.sap.furcas.metamodel.TCS.OperatorList;
 import com.sap.furcas.metamodel.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.TCS.OrPattern;
+import com.sap.furcas.metamodel.TCS.PartialPArg;
 import com.sap.furcas.metamodel.TCS.PredicateSemantic;
 import com.sap.furcas.metamodel.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
@@ -338,6 +341,27 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	 * @generated
 	 */
 	private EClass sequenceInAlternativeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eClass0EClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass partialPArgEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass disambiguatePArgEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1909,6 +1933,33 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEClass0() {
+		return eClass0EClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPartialPArg() {
+		return partialPArgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDisambiguatePArg() {
+		return disambiguatePArgEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAlternative() {
 		return alternativeEClass;
 	}
@@ -3164,6 +3215,12 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		createEReference(sequenceInAlternativeEClass, SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER);
 		createEAttribute(sequenceInAlternativeEClass, SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE);
 
+		eClass0EClass = createEClass(ECLASS0);
+
+		partialPArgEClass = createEClass(PARTIAL_PARG);
+
+		disambiguatePArgEClass = createEClass(DISAMBIGUATE_PARG);
+
 		// Create enums
 		templateModifiersEEnum = createEEnum(TEMPLATE_MODIFIERS);
 		spaceKindEEnum = createEEnum(SPACE_KIND);
@@ -3288,6 +3345,8 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		invertPArgEClass.getESuperTypes().add(this.getOclPArg());
 		foreachPredicatePropertyInitEClass.getESuperTypes().add(this.getPropertyInit());
 		sequenceInAlternativeEClass.getESuperTypes().add(this.getSequence());
+		partialPArgEClass.getESuperTypes().add(this.getPropertyArg());
+		disambiguatePArgEClass.getESuperTypes().add(this.getPropertyArg());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(locatedElementEClass, LocatedElement.class, "LocatedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3594,6 +3653,12 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		initEClass(sequenceInAlternativeEClass, SequenceInAlternative.class, "SequenceInAlternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSequenceInAlternative_AlternativeContainer(), this.getAlternative(), this.getAlternative_Sequences(), "alternativeContainer", null, 0, 1, SequenceInAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getSequenceInAlternative_Disambiguate(), ecorePackage.getEString(), "disambiguate", null, 0, 1, SequenceInAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eClass0EClass, EClass0.class, "EClass0", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(partialPArgEClass, PartialPArg.class, "PartialPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(disambiguatePArgEClass, DisambiguatePArg.class, "DisambiguatePArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(templateModifiersEEnum, TemplateModifiers.class, "TemplateModifiers");
