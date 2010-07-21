@@ -40,6 +40,7 @@ public class BenchmarkProcessor {
 	    options.addOption("wu", "warmups", true, "Number of warm ups before measuring task (required)");
 	    options.addOption("m", "measures", true, "Number of measurements per benchmark task (required)");
 	    options.addOption("o", "output", true, "Output file destination (required)");
+	    options.addOption("j", "jobs", true, "Number of parallel jobs for benchmarking. Default is 1");
 	    options.addOption("h", "help", false, "Show this help");
 
 	    CommandLineParser parser = new PosixParser();
@@ -49,7 +50,8 @@ public class BenchmarkProcessor {
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.printHelp( "Impact Analysis Benchmark Environment", options );
 	    }else{
-		start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"));
+	    int numberOfJobs = cmd.hasOption("j") ? Integer.parseInt(cmd.getOptionValue("j")) : 1;
+		start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"),  numberOfJobs);
 	    }
 
 	} catch (ParseException e) {
@@ -57,16 +59,26 @@ public class BenchmarkProcessor {
 	}
     }
 
-    	public static void start(int warmUps, int measures, String outputPath) {
+    	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs) {
     	    	System.out.println("Impact Analysis Benchmark started with " + warmUps + " warm-ups and " + measures + " measures per benchmark task");
+    	    	
     	    	ProcessingOptions.setNumberOfWarmUps(warmUps);
     	    	ProcessingOptions.setNumberOfMeasures(measures);
+    	    	if(numberOfJobs > 1){
+    	    		System.out.println("Started in parallel mode with " + numberOfJobs + " jobs");
+    	    		ProcessingOptions.setNumberOfJobs(numberOfJobs);
+    	    	}
+    	    	
     	    	OutputOptions.setOutputPath(outputPath);
 
 		// Preparing
 		Queue<BenchmarkTask> taskQueue = BenchmarkTaskPreparer.prepareModelSizeVariationBenchmarkTasks();
 
 		// Processing
-		BenchmarkExecutionProcessor.processBenchmarks(taskQueue);
+		if(numberOfJobs > 1){
+			BenchmarkExecutionProcessor.processBenchmarksInParallel(taskQueue, numberOfJobs);
+		}else{
+			BenchmarkExecutionProcessor.processBenchmarks(taskQueue);
+		}
 	}
 }

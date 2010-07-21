@@ -32,7 +32,7 @@ public class BenchmarkResultWriter {
 		}
 	}
 
-	public void close(){
+	public synchronized void close(){
 		try {
 			os.flush();
 			os.close();
@@ -42,7 +42,7 @@ public class BenchmarkResultWriter {
 		}
 	}
 
-    public void writeDataSet(Map<String, String> additionalInformation, ArrayList<Long> executionTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList, HashMap<String, ArrayList<Measurement>>microMeasurementList){
+    public synchronized void writeDataSet(Map<String, String> additionalInformation, ArrayList<Long> executionTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList, HashMap<String, ArrayList<Measurement>>microMeasurementList){
     	 try {
 
     	BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));

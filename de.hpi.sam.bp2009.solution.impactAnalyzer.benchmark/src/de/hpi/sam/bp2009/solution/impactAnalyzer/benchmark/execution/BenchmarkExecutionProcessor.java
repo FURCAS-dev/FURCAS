@@ -1,6 +1,10 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution;
 
+import java.util.ArrayList;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
+import org.eclipse.core.runtime.jobs.Job;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
@@ -45,5 +49,37 @@ public class BenchmarkExecutionProcessor {
 
 	writer.close();
 		System.out.println("Processing finished");
+    }
+    
+    public static void  processBenchmarksInParallel(Queue<BenchmarkTask> taskList, int numberOfParallelJobs){
+    	BenchmarkExecutionProcessor.processAllInParallel(new StandardBenchmarkExecutor(), taskList, numberOfParallelJobs);
+    }
+    
+    public static void processAllInParallel(BenchmarkExecutor executor, Queue<BenchmarkTask> taskList, int numberOfParallelJobs){
+    	BenchmarkResultWriter writer = new BenchmarkResultWriter();	
+    	  	
+    	ArrayList<Job> jobList = new ArrayList<Job>();
+    	
+    	ConcurrentLinkedQueue<BenchmarkTask> concurrentTaskList = new ConcurrentLinkedQueue<BenchmarkTask>();
+    	concurrentTaskList.addAll(taskList);
+    	
+    	for(int i = 0; i < numberOfParallelJobs; i++){     		
+    		jobList.add(new BenchmarkExecutionJob("BenchmarkJobNo" + i, executor, concurrentTaskList, writer));
+    	}
+    	
+    	for(Job jobToSchedule : jobList){
+    		jobToSchedule.schedule();
+    	}
+    	
+    	for(Job jobToJoin : jobList){
+    		try {
+				jobToJoin.join();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+    	writer.close();
     }
 }

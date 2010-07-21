@@ -62,18 +62,28 @@ public class BenchmarkTaskPreparer {
        	
     	int oclId = 0;
     	int benchmarkTaskId = 0;
+    	int max = expressionList.size();
+    	
       	for (OCLExpressionWithContext expression : expressionList) {
     		oclId++;
-    		ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression.getExpression(), expression.getContext());
+    		System.out.println(oclId + "/" + max);
     		
+    		ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression.getExpression(), expression.getContext());
+    		//EventFilter filter = ia.createFilterForExpression(true);
+
     	    for(NotificationForModelList notificationList : notificationForModelList){
     		Resource model = notificationList.getModel();
+    		
+    		//EventManager eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(model.getResourceSet());
     		
     		int notificationId = 0;
     		for(Notification notification : notificationList.getNotificationList()){
     			notificationId++;
     			benchmarkTaskId++;
-    			result.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), model, notification, ia, String.valueOf(oclId), String.valueOf(notificationId), String.valueOf(benchmarkTaskId)));
+    			
+    			//if(NotificationEventFilterSimulator.isNotFilteredThroughEventFilter(notification, filter, eventManager)){
+    				result.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), model, notification, ia, String.valueOf(oclId), String.valueOf(notificationId), String.valueOf(benchmarkTaskId)));
+    			//}
     		}
     	    }
     	}
