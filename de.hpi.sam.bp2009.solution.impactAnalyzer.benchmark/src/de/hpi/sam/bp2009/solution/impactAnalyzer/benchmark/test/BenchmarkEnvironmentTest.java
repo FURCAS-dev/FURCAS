@@ -2,7 +2,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.test;
 
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import junit.framework.TestCase;
@@ -10,6 +12,9 @@ import junit.framework.TestCase;
 import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.OutputOptions;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.ProcessingOptions;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.BenchmarkExecutionProcessor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromModelPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer;
@@ -17,6 +22,22 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
 
 public class BenchmarkEnvironmentTest extends TestCase {
 
+    @Test
+	public void testWithEmptyTask(){
+		LinkedList<BenchmarkTask> benchmarkTasks = new LinkedList<BenchmarkTask>();
+		OutputOptions.setOutputPath("/tmp/testWithEmptyTask.data");
+		ProcessingOptions.setNumberOfJobs(6);
+		ProcessingOptions.setNumberOfMeasures(100);
+		ProcessingOptions.setNumberOfWarmUps(1000);
+		
+		for(int i = 0; i < 10000; i++){
+			benchmarkTasks.add(new BenchmarkTaskMock());
+		}
+		
+		BenchmarkExecutionProcessor.processBenchmarks(benchmarkTasks);
+	}
+
+	
     @Test
     public void testOCLExpressionFromClassTcsPicker(){
 	int numberOfUnparsedExpressions = OCLTestExpressionContainer.getExpressionList().size();
@@ -27,25 +48,24 @@ public class BenchmarkEnvironmentTest extends TestCase {
 
     @Test
     public void testOCLExpressionFromModelPicker(){
-	//TODO: Change static number of Expressions to something dynamic
 	assertTrue(new OCLExpressionFromModelPicker().pickUpExpressions(company.CompanyPackage.eINSTANCE).size() >= 20);
     }
 
     @Test
     public void testRealWorldReplayNotificationProducer(){
-	//FIXME: Implement test
+	//
     }
+    
 
-
-
-    @SuppressWarnings("unused")
+	@SuppressWarnings("unused")
 	private class BenchmarkTaskMock implements BenchmarkTask{
 	private int callCounter = 0;
 
 	@Override
 	public Collection<EObject> call() throws Exception {
-	    callCounter++;
-	    return null;
+		//Thread.sleep(0, 10);
+		
+		return null;
 	}
 
 	public int getCallCounter(){
@@ -54,8 +74,7 @@ public class BenchmarkEnvironmentTest extends TestCase {
 
 	@Override
 	public Map<String, String> getAdditionalInformation() {
-	    // TODO Auto-generated method stub
-	    return null;
+	    return Collections.emptyMap();
 	}
 
 	@Override
