@@ -26,6 +26,18 @@ public class AnnotatedEObject implements EObject{
     private final String annotation;
     private final EObject eObject;
     
+    public boolean equals(Object o) {
+        if (o instanceof AnnotatedEObject) {
+            return eObject.equals(((AnnotatedEObject) o).eObject);
+        } else {
+            return super.equals(o);
+        }
+    }
+    
+    public int hashCode() {
+        return eObject.hashCode();
+    }
+    
     /**
      * Constructor of the {@link AnnotatedEObject}.
      * 
