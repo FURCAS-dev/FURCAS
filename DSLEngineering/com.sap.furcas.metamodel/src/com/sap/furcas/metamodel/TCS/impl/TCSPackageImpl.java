@@ -86,6 +86,7 @@ import com.sap.furcas.metamodel.TCS.ScopeKind;
 import com.sap.furcas.metamodel.TCS.SeparatorPArg;
 import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.TCS.SimpleMapping;
 import com.sap.furcas.metamodel.TCS.SimplePattern;
 import com.sap.furcas.metamodel.TCS.SpaceKind;
@@ -330,6 +331,13 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	 * @generated
 	 */
 	private EClass predicateSemanticEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sequenceInAlternativeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1595,15 +1603,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSequence_AlternativeContainer() {
-		return (EReference)sequenceEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSequenceElement() {
 		return sequenceElementEClass;
 	}
@@ -1876,6 +1875,33 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	 */
 	public EReference getPredicateSemantic_When() {
 		return (EReference)predicateSemanticEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSequenceInAlternative() {
+		return sequenceInAlternativeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSequenceInAlternative_AlternativeContainer() {
+		return (EReference)sequenceInAlternativeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSequenceInAlternative_Disambiguate() {
+		return (EAttribute)sequenceInAlternativeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2738,6 +2764,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getContextTags_Tags() {
+		return (EAttribute)contextTagsEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInjectorAction() {
 		return injectorActionEClass;
 	}
@@ -2923,7 +2958,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		createEReference(sequenceEClass, SEQUENCE__ELSE_CONTAINER);
 		createEReference(sequenceEClass, SEQUENCE__SEPARATOR_CONTAINER);
 		createEReference(sequenceEClass, SEQUENCE__OT_CONTAINER);
-		createEReference(sequenceEClass, SEQUENCE__ALTERNATIVE_CONTAINER);
 
 		sequenceElementEClass = createEClass(SEQUENCE_ELEMENT);
 		createEReference(sequenceElementEClass, SEQUENCE_ELEMENT__ELEMENT_SEQUENCE);
@@ -3103,6 +3137,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		createEReference(contextTemplateEClass, CONTEXT_TEMPLATE__SCOPE);
 
 		contextTagsEClass = createEClass(CONTEXT_TAGS);
+		createEAttribute(contextTagsEClass, CONTEXT_TAGS__TAGS);
 
 		injectorActionEClass = createEClass(INJECTOR_ACTION);
 		createEReference(injectorActionEClass, INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
@@ -3124,6 +3159,10 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		predicateSemanticEClass = createEClass(PREDICATE_SEMANTIC);
 		createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__AS);
 		createEReference(predicateSemanticEClass, PREDICATE_SEMANTIC__WHEN);
+
+		sequenceInAlternativeEClass = createEClass(SEQUENCE_IN_ALTERNATIVE);
+		createEReference(sequenceInAlternativeEClass, SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER);
+		createEAttribute(sequenceInAlternativeEClass, SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE);
 
 		// Create enums
 		templateModifiersEEnum = createEEnum(TEMPLATE_MODIFIERS);
@@ -3248,6 +3287,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		oclPropertyInitEClass.getESuperTypes().add(this.getPropertyInit());
 		invertPArgEClass.getESuperTypes().add(this.getOclPArg());
 		foreachPredicatePropertyInitEClass.getESuperTypes().add(this.getPropertyInit());
+		sequenceInAlternativeEClass.getESuperTypes().add(this.getSequence());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(locatedElementEClass, LocatedElement.class, "LocatedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3349,7 +3389,6 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		initEReference(getSequence_ElseContainer(), this.getConditionalElement(), this.getConditionalElement_ElseSequence(), "elseContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSequence_SeparatorContainer(), this.getSeparatorPArg(), this.getSeparatorPArg_SeparatorSequence(), "separatorContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getSequence_OtContainer(), this.getOperatorTemplate(), this.getOperatorTemplate_OtSequence(), "otContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSequence_AlternativeContainer(), this.getAlternative(), this.getAlternative_Sequences(), "alternativeContainer", null, 0, 1, Sequence.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(sequenceElementEClass, SequenceElement.class, "SequenceElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSequenceElement_ElementSequence(), this.getSequence(), this.getSequence_Elements(), "elementSequence", null, 0, 1, SequenceElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3378,7 +3417,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		initEReference(getPrimitivePropertyInit_Value(), this.getValue(), null, "value", null, 1, 1, PrimitivePropertyInit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(alternativeEClass, Alternative.class, "Alternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAlternative_Sequences(), this.getSequence(), this.getSequence_AlternativeContainer(), "sequences", null, 2, -1, Alternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAlternative_Sequences(), this.getSequenceInAlternative(), this.getSequenceInAlternative_AlternativeContainer(), "sequences", null, 2, -1, Alternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAlternative_IsMulti(), ecorePackage.getEBoolean(), "isMulti", null, 1, 1, Alternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(functionCallEClass, FunctionCall.class, "FunctionCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3529,6 +3568,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		initEReference(getContextTemplate_Scope(), this.getScopeArg(), null, "scope", null, 0, 1, ContextTemplate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(contextTagsEClass, ContextTags.class, "ContextTags", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getContextTags_Tags(), ecorePackage.getEString(), "tags", null, 0, -1, ContextTags.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(injectorActionEClass, InjectorAction.class, "InjectorAction", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInjectorAction_InjectorActionsBlock(), this.getInjectorActionsBlock(), this.getInjectorActionsBlock_PropertyInits(), "injectorActionsBlock", null, 0, 1, InjectorAction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3550,6 +3590,10 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 		initEClass(predicateSemanticEClass, PredicateSemantic.class, "PredicateSemantic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPredicateSemantic_As(), this.getTemplate(), null, "as", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getPredicateSemantic_When(), theEcorePackage.getOCLExpression(), null, "when", null, 0, 1, PredicateSemantic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(sequenceInAlternativeEClass, SequenceInAlternative.class, "SequenceInAlternative", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSequenceInAlternative_AlternativeContainer(), this.getAlternative(), this.getAlternative_Sequences(), "alternativeContainer", null, 0, 1, SequenceInAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSequenceInAlternative_Disambiguate(), ecorePackage.getEString(), "disambiguate", null, 0, 1, SequenceInAlternative.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(templateModifiersEEnum, TemplateModifiers.class, "TemplateModifiers");

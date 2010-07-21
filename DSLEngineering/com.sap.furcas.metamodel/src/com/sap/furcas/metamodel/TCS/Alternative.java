@@ -28,8 +28,8 @@ import org.eclipse.emf.common.util.EList;
 public interface Alternative extends SequenceElement {
 	/**
 	 * Returns the value of the '<em><b>Sequences</b></em>' containment reference list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.TCS.Sequence}.
-	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.TCS.Sequence#getAlternativeContainer <em>Alternative Container</em>}'.
+	 * The list contents are of type {@link com.sap.furcas.metamodel.TCS.SequenceInAlternative}.
+	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.TCS.SequenceInAlternative#getAlternativeContainer <em>Alternative Container</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sequences</em>' containment reference list isn't clear,
@@ -38,11 +38,11 @@ public interface Alternative extends SequenceElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sequences</em>' containment reference list.
 	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getAlternative_Sequences()
-	 * @see com.sap.furcas.metamodel.TCS.Sequence#getAlternativeContainer
+	 * @see com.sap.furcas.metamodel.TCS.SequenceInAlternative#getAlternativeContainer
 	 * @model opposite="alternativeContainer" containment="true" lower="2"
 	 * @generated
 	 */
-	EList<Sequence> getSequences();
+	EList<SequenceInAlternative> getSequences();
 
 	/**
 	 * Returns the value of the '<em><b>Is Multi</b></em>' attribute.

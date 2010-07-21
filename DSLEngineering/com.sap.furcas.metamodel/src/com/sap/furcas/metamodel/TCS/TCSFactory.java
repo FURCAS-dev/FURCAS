@@ -683,6 +683,15 @@ public interface TCSFactory extends EFactory {
 	PredicateSemantic createPredicateSemantic();
 
 	/**
+	 * Returns a new object of class '<em>Sequence In Alternative</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Sequence In Alternative</em>'.
+	 * @generated
+	 */
+	SequenceInAlternative createSequenceInAlternative();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

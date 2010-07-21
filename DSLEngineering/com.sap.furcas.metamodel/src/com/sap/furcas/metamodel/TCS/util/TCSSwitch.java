@@ -787,6 +787,14 @@ public class TCSSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE: {
+				SequenceInAlternative sequenceInAlternative = (SequenceInAlternative)theEObject;
+				T result = caseSequenceInAlternative(sequenceInAlternative);
+				if (result == null) result = caseSequence(sequenceInAlternative);
+				if (result == null) result = caseLocatedElement(sequenceInAlternative);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -1238,6 +1246,21 @@ public class TCSSwitch<T> {
 	 * @generated
 	 */
 	public T casePredicateSemantic(PredicateSemantic object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sequence In Alternative</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sequence In Alternative</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSequenceInAlternative(SequenceInAlternative object) {
 		return null;
 	}
 

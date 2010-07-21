@@ -184,8 +184,6 @@
         eType="#//SeparatorPArg" eOpposite="#//SeparatorPArg/separatorSequence"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="otContainer" ordered="false"
         eType="#//OperatorTemplate" eOpposite="#//OperatorTemplate/otSequence"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="alternativeContainer" ordered="false"
-        eType="#//Alternative" eOpposite="#//Alternative/sequences"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceElement" abstract="true" eSuperTypes="#//LocatedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementSequence" ordered="false"
@@ -226,7 +224,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Alternative" eSuperTypes="#//SequenceElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequences" lowerBound="2"
-        upperBound="-1" eType="#//Sequence" containment="true" eOpposite="#//Sequence/alternativeContainer"/>
+        upperBound="-1" eType="#//SequenceInAlternative" containment="true" eOpposite="#//SequenceInAlternative/alternativeContainer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMulti" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
@@ -377,7 +375,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="scope" eType="#//ScopeArg"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContextTags"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextTags">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tags" upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InjectorAction" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="injectorActionsBlock" eType="#//InjectorActionsBlock"
         eOpposite="#//InjectorActionsBlock/propertyInits"/>
@@ -406,5 +406,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="PredicateSemantic">
     <eStructuralFeatures xsi:type="ecore:EReference" name="as" eType="#//Template"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceInAlternative" eSuperTypes="#//Sequence">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="alternativeContainer" ordered="false"
+        eType="#//Alternative" eOpposite="#//Alternative/sequences"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="disambiguate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

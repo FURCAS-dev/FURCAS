@@ -7,6 +7,7 @@
 package com.sap.furcas.metamodel.TCS.impl;
 
 import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.furcas.metamodel.TCS.TCSPackage;
 
@@ -48,7 +49,7 @@ public class AlternativeImpl extends SequenceElementImpl implements Alternative 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Sequence> sequences;
+	protected EList<SequenceInAlternative> sequences;
 
 	/**
 	 * The default value of the '{@link #isIsMulti() <em>Is Multi</em>}' attribute.
@@ -94,9 +95,9 @@ public class AlternativeImpl extends SequenceElementImpl implements Alternative 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Sequence> getSequences() {
+	public EList<SequenceInAlternative> getSequences() {
 		if (sequences == null) {
-			sequences = new EObjectContainmentWithInverseEList<Sequence>(Sequence.class, this, TCSPackage.ALTERNATIVE__SEQUENCES, TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER);
+			sequences = new EObjectContainmentWithInverseEList<SequenceInAlternative>(SequenceInAlternative.class, this, TCSPackage.ALTERNATIVE__SEQUENCES, TCSPackage.SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER);
 		}
 		return sequences;
 	}
@@ -178,7 +179,7 @@ public class AlternativeImpl extends SequenceElementImpl implements Alternative 
 		switch (featureID) {
 			case TCSPackage.ALTERNATIVE__SEQUENCES:
 				getSequences().clear();
-				getSequences().addAll((Collection<? extends Sequence>)newValue);
+				getSequences().addAll((Collection<? extends SequenceInAlternative>)newValue);
 				return;
 			case TCSPackage.ALTERNATIVE__IS_MULTI:
 				setIsMulti((Boolean)newValue);
