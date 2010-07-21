@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 
 public class SingleNotificationInstanceScopeAnalysisTask implements BenchmarkTask{
     private final OCLExpression expression;
@@ -21,7 +21,7 @@ public class SingleNotificationInstanceScopeAnalysisTask implements BenchmarkTas
             EClass context) {
 	this.expression = expression;
 	setNotification(noti);
-	ia = new ImpactAnalyzerImpl(expression, context);
+	ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, context);
     }
 
     @Override

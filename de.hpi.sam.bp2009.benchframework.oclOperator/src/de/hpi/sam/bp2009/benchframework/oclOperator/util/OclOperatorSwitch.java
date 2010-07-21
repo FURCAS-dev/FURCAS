@@ -10,6 +10,8 @@ import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.*;
 
 import java.util.List;

@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Label;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
-import de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator;
 
 /**
  * @author Philipp
@@ -76,8 +76,8 @@ public class SimpleResultPage extends WizardPage {
 
         for(Operator o:ops){
             ResultObject r = o.getResult();
-            if (o instanceof OclOperatorImpl){
-                HashMap<Notification, LinkedList<String>> affectedExprs = ((OclOperatorImpl)o).getAffectedExprs();
+            if (o instanceof OclOperator){
+                HashMap<Notification, LinkedList<String>> affectedExprs = ((OclOperator)o).getAffectedExprs();
                 for (Notification noti: affectedExprs.keySet()){
                     r.setMessage(r.getMessage()
                             + "\n" + affectedExprs.get(noti).size() 

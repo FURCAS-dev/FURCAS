@@ -18,10 +18,10 @@ import org.eclipse.ocl.types.TypesPackage;
 import org.eclipse.ocl.utilities.UtilitiesPackage;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclResult;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 import de.hpi.sam.bp2009.benchframework.queryEvaluator.QueryEvaluatorPackage;

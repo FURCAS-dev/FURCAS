@@ -8,7 +8,7 @@
  $Id$
 -->
 
-<plugin>
+<fragment>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
@@ -23,4 +23,4 @@
       </operator>
    </extension>
 
-</plugin>
+</fragment>

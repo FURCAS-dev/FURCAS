@@ -4,8 +4,12 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.benchframework.oclOperator;
+package de.hpi.sam.bp2009.benchframework.csvResultProcessor;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
@@ -36,5 +40,7 @@ public interface OclOperator extends Operator {
 	 * @generated
 	 */
 	void registerQueriesIA(ResourceSet resource, OclOptionObject option);
+
+	HashMap<Notification, LinkedList<String>> getAffectedExprs();
 
 } // OclOperator

@@ -12,6 +12,6 @@ Export-Package: de.hpi.sam.bp2009.benchframework.simpleResultProcessor,
  de.hpi.sam.bp2009.benchframework.simpleResultProcessor.util
 Require-Bundle: de.hpi.sam.bp2009.benchframework;visibility:=reexport,
  org.eclipse.jface,
- de.hpi.sam.bp2009.benchframework.oclOperator
+ de.hpi.sam.bp2009.benchframework.csvResultProcessor
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.ocl.ecore

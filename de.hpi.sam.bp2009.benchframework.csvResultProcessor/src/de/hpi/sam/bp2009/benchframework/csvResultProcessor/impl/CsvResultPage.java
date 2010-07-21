@@ -23,8 +23,8 @@ import org.eclipse.swt.widgets.Text;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator;
 import de.hpi.sam.bp2009.benchframework.loopOperator2.impl.EndLoopImpl;
-import de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl;
 
 /**
  * @author tobias.hoppe
@@ -126,8 +126,8 @@ public class CsvResultPage extends WizardPage {
                     if (result.exists()){
                         for (Operator op : ops) {
                             ResultObject r = op.getResult();
-                            if (op instanceof OclOperatorImpl){
-                                HashMap<Notification, LinkedList<String>> affectedExprs = ((OclOperatorImpl)op).getAffectedExprs();
+                            if (op instanceof OclOperator){
+                                HashMap<Notification, LinkedList<String>> affectedExprs = ((OclOperator)op).getAffectedExprs();
                                 for (Notification noti: affectedExprs.keySet()){
                                     String no = noti.toString();
                                     no = no.replace("eventType", " , eventType");

@@ -15,9 +15,9 @@ import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.hpi.sam.bp2009.benchframework.OptionObject;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 import java.util.Collection;
 
 /**
