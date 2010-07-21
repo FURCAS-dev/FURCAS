@@ -692,6 +692,33 @@ public interface TCSFactory extends EFactory {
 	SequenceInAlternative createSequenceInAlternative();
 
 	/**
+	 * Returns a new object of class '<em>EClass0</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EClass0</em>'.
+	 * @generated
+	 */
+	EClass0 createEClass0();
+
+	/**
+	 * Returns a new object of class '<em>Partial PArg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Partial PArg</em>'.
+	 * @generated
+	 */
+	PartialPArg createPartialPArg();
+
+	/**
+	 * Returns a new object of class '<em>Disambiguate PArg</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Disambiguate PArg</em>'.
+	 * @generated
+	 */
+	DisambiguatePArg createDisambiguatePArg();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

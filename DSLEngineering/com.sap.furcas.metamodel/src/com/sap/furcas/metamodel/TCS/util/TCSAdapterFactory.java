@@ -432,6 +432,18 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 				return createSequenceInAlternativeAdapter();
 			}
 			@Override
+			public Adapter caseEClass0(EClass0 object) {
+				return createEClass0Adapter();
+			}
+			@Override
+			public Adapter casePartialPArg(PartialPArg object) {
+				return createPartialPArgAdapter();
+			}
+			@Override
+			public Adapter caseDisambiguatePArg(DisambiguatePArg object) {
+				return createDisambiguatePArgAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -882,6 +894,48 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSequenceInAlternativeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.EClass0 <em>EClass0</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.EClass0
+	 * @generated
+	 */
+	public Adapter createEClass0Adapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.PartialPArg <em>Partial PArg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.PartialPArg
+	 * @generated
+	 */
+	public Adapter createPartialPArgAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.DisambiguatePArg <em>Disambiguate PArg</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.DisambiguatePArg
+	 * @generated
+	 */
+	public Adapter createDisambiguatePArgAdapter() {
 		return null;
 	}
 
