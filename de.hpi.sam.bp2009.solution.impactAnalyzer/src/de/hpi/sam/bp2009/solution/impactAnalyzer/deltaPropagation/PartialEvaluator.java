@@ -2,7 +2,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -321,20 +323,37 @@ public class PartialEvaluator {
      */
     public Collection<Pair<OCLExpression, Collection<Object>>> transitivelyPropagateDelta(OCLExpression e, Collection<Object> deltaForEValue,
             OperationBodyToCallMapper mapper) {
-        DeltaPropagationStrategy propagationStrategy = getDeltaPropagationStrategy(e, mapper);
+        return transitivelyPropagateDelta(e, deltaForEValue, mapper, new HashMap<OCLExpression, Set<Collection<Object>>>());
+    }
+    
+    private Collection<Pair<OCLExpression, Collection<Object>>> transitivelyPropagateDelta(OCLExpression e, Collection<Object> deltaForEValue,
+            OperationBodyToCallMapper mapper, Map<OCLExpression, Set<Collection<Object>>> cache) {
         Collection<Pair<OCLExpression, Collection<Object>>> result;
-        if (propagationStrategy == null) {
+        Set<Collection<Object>> cacheEntry = cache.get(e);
+        if (cacheEntry != null && cacheEntry.contains(deltaForEValue)) {
+            // we visited the same expression for an equal delta already; the only thing we can do to
+            // avoid an endless recursion is stop here, give up and return the current delta for e
             result = getResultCollectionFromSingleDelta(e, deltaForEValue);
         } else {
-            Collection<Pair<OCLExpression, Collection<Object>>> propagated = propagationStrategy.mapDelta(e, deltaForEValue);
-            if (propagated == null) {
+            if (cacheEntry == null) {
+                cacheEntry = new HashSet<Collection<Object>>();
+                cache.put(e, cacheEntry);
+            }
+            cacheEntry.add(deltaForEValue);
+            DeltaPropagationStrategy propagationStrategy = getDeltaPropagationStrategy(e, mapper);
+            if (propagationStrategy == null) {
                 result = getResultCollectionFromSingleDelta(e, deltaForEValue);
             } else {
-                result = new HashSet<Pair<OCLExpression, Collection<Object>>>();
-                for (Pair<OCLExpression, Collection<Object>> singlePropagationResult : propagated) {
-                    Collection<Pair<OCLExpression, Collection<Object>>> singleResult = transitivelyPropagateDelta(
-                            singlePropagationResult.getA(), singlePropagationResult.getB(), mapper);
-                    result.addAll(singleResult);
+                Collection<Pair<OCLExpression, Collection<Object>>> propagated = propagationStrategy.mapDelta(e, deltaForEValue);
+                if (propagated == null) {
+                    result = getResultCollectionFromSingleDelta(e, deltaForEValue);
+                } else {
+                    result = new HashSet<Pair<OCLExpression, Collection<Object>>>();
+                    for (Pair<OCLExpression, Collection<Object>> singlePropagationResult : propagated) {
+                        Collection<Pair<OCLExpression, Collection<Object>>> singleResult = transitivelyPropagateDelta(
+                                singlePropagationResult.getA(), singlePropagationResult.getB(), mapper, cache);
+                        result.addAll(singleResult);
+                    }
                 }
             }
         }
