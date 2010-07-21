@@ -7,10 +7,10 @@ import junit.framework.TestCase;
 import org.eclipse.emf.common.notify.Notification;
 import org.junit.Test;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 public class RealWorldFailingTest extends TestCase {
 
@@ -22,7 +22,8 @@ public class RealWorldFailingTest extends TestCase {
 	Notification notification =((ArrayList<Notification>)BenchmarkNotificationPreparer.prepareRealWorldReplayNotification()).get(2);
 	System.out.println(notification);
 
-	new ImpactAnalyzerImpl(ocl.getExpression(), ocl.getContext()).getContextObjects(notification);
+        ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(ocl.getExpression(), ocl.getContext())
+                .getContextObjects(notification);
     }
 
     // TODO Test case needs a meaningful name
@@ -33,6 +34,7 @@ public class RealWorldFailingTest extends TestCase {
 	Notification notification =((ArrayList<Notification>)BenchmarkNotificationPreparer.prepareRealWorldReplayNotification()).get(1);
 	System.out.println(notification);
 
-	new ImpactAnalyzerImpl(ocl.getExpression(), ocl.getContext()).getContextObjects(notification);
+        ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(ocl.getExpression(), ocl.getContext())
+                .getContextObjects(notification);
     }
 }
