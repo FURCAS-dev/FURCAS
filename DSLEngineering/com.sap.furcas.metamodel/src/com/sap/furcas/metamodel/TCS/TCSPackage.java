@@ -2033,22 +2033,13 @@ public interface TCSPackage extends EPackage {
 	int SEQUENCE__OT_CONTAINER = LOCATED_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
-	 * The feature id for the '<em><b>Alternative Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEQUENCE__ALTERNATIVE_CONTAINER = LOCATED_ELEMENT_FEATURE_COUNT + 9;
-
-	/**
 	 * The number of structural features of the '<em>Sequence</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_FEATURE_COUNT = LOCATED_ELEMENT_FEATURE_COUNT + 10;
+	int SEQUENCE_FEATURE_COUNT = LOCATED_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.SequenceElementImpl <em>Sequence Element</em>}' class.
@@ -5815,13 +5806,22 @@ public interface TCSPackage extends EPackage {
 	int CONTEXT_TAGS = 81;
 
 	/**
+	 * The feature id for the '<em><b>Tags</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT_TAGS__TAGS = 0;
+
+	/**
 	 * The number of structural features of the '<em>Context Tags</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_TAGS_FEATURE_COUNT = 0;
+	int CONTEXT_TAGS_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.OclPropertyInitImpl <em>Ocl Property Init</em>}' class.
@@ -6054,6 +6054,151 @@ public interface TCSPackage extends EPackage {
 	int PREDICATE_SEMANTIC_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.SequenceInAlternativeImpl <em>Sequence In Alternative</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.TCS.impl.SequenceInAlternativeImpl
+	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getSequenceInAlternative()
+	 * @generated
+	 */
+	int SEQUENCE_IN_ALTERNATIVE = 89;
+
+	/**
+	 * The feature id for the '<em><b>Location</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__LOCATION = SEQUENCE__LOCATION;
+
+	/**
+	 * The feature id for the '<em><b>Comments Before</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__COMMENTS_BEFORE = SEQUENCE__COMMENTS_BEFORE;
+
+	/**
+	 * The feature id for the '<em><b>Comments After</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__COMMENTS_AFTER = SEQUENCE__COMMENTS_AFTER;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__ELEMENTS = SEQUENCE__ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Template Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__TEMPLATE_CONTAINER = SEQUENCE__TEMPLATE_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Prefix Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__PREFIX_CONTAINER = SEQUENCE__PREFIX_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Function Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__FUNCTION_CONTAINER = SEQUENCE__FUNCTION_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Block Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__BLOCK_CONTAINER = SEQUENCE__BLOCK_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Then Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__THEN_CONTAINER = SEQUENCE__THEN_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Else Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__ELSE_CONTAINER = SEQUENCE__ELSE_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Separator Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__SEPARATOR_CONTAINER = SEQUENCE__SEPARATOR_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Ot Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__OT_CONTAINER = SEQUENCE__OT_CONTAINER;
+
+	/**
+	 * The feature id for the '<em><b>Alternative Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER = SEQUENCE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Disambiguate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE = SEQUENCE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Sequence In Alternative</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_IN_ALTERNATIVE_FEATURE_COUNT = SEQUENCE_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.TemplateModifiers <em>Template Modifiers</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6061,7 +6206,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getTemplateModifiers()
 	 * @generated
 	 */
-	int TEMPLATE_MODIFIERS = 89;
+	int TEMPLATE_MODIFIERS = 90;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.SpaceKind <em>Space Kind</em>}' enum.
@@ -6071,7 +6216,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getSpaceKind()
 	 * @generated
 	 */
-	int SPACE_KIND = 90;
+	int SPACE_KIND = 91;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.Associativity <em>Associativity</em>}' enum.
@@ -6081,7 +6226,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getAssociativity()
 	 * @generated
 	 */
-	int ASSOCIATIVITY = 91;
+	int ASSOCIATIVITY = 92;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.AutoCreateKind <em>Auto Create Kind</em>}' enum.
@@ -6091,7 +6236,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getAutoCreateKind()
 	 * @generated
 	 */
-	int AUTO_CREATE_KIND = 92;
+	int AUTO_CREATE_KIND = 93;
 
 
 	/**
@@ -6102,7 +6247,7 @@ public interface TCSPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getScopeKind()
 	 * @generated
 	 */
-	int SCOPE_KIND = 93;
+	int SCOPE_KIND = 94;
 
 
 	/**
@@ -7002,17 +7147,6 @@ public interface TCSPackage extends EPackage {
 	EReference getSequence_OtContainer();
 
 	/**
-	 * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.TCS.Sequence#getAlternativeContainer <em>Alternative Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Alternative Container</em>'.
-	 * @see com.sap.furcas.metamodel.TCS.Sequence#getAlternativeContainer()
-	 * @see #getSequence()
-	 * @generated
-	 */
-	EReference getSequence_AlternativeContainer();
-
-	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.SequenceElement <em>Sequence Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7339,6 +7473,38 @@ public interface TCSPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPredicateSemantic_When();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.SequenceInAlternative <em>Sequence In Alternative</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Sequence In Alternative</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.SequenceInAlternative
+	 * @generated
+	 */
+	EClass getSequenceInAlternative();
+
+	/**
+	 * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.TCS.SequenceInAlternative#getAlternativeContainer <em>Alternative Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Alternative Container</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.SequenceInAlternative#getAlternativeContainer()
+	 * @see #getSequenceInAlternative()
+	 * @generated
+	 */
+	EReference getSequenceInAlternative_AlternativeContainer();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.SequenceInAlternative#getDisambiguate <em>Disambiguate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Disambiguate</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.SequenceInAlternative#getDisambiguate()
+	 * @see #getSequenceInAlternative()
+	 * @generated
+	 */
+	EAttribute getSequenceInAlternative_Disambiguate();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.Alternative <em>Alternative</em>}'.
@@ -8328,6 +8494,17 @@ public interface TCSPackage extends EPackage {
 	EClass getContextTags();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link com.sap.furcas.metamodel.TCS.ContextTags#getTags <em>Tags</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Tags</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.ContextTags#getTags()
+	 * @see #getContextTags()
+	 * @generated
+	 */
+	EAttribute getContextTags_Tags();
+
+	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.InjectorAction <em>Injector Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -9119,14 +9296,6 @@ public interface TCSPackage extends EPackage {
 		EReference SEQUENCE__OT_CONTAINER = eINSTANCE.getSequence_OtContainer();
 
 		/**
-		 * The meta object literal for the '<em><b>Alternative Container</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SEQUENCE__ALTERNATIVE_CONTAINER = eINSTANCE.getSequence_AlternativeContainer();
-
-		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.SequenceElementImpl <em>Sequence Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -9399,6 +9568,32 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PREDICATE_SEMANTIC__WHEN = eINSTANCE.getPredicateSemantic_When();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.SequenceInAlternativeImpl <em>Sequence In Alternative</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.TCS.impl.SequenceInAlternativeImpl
+		 * @see com.sap.furcas.metamodel.TCS.impl.TCSPackageImpl#getSequenceInAlternative()
+		 * @generated
+		 */
+		EClass SEQUENCE_IN_ALTERNATIVE = eINSTANCE.getSequenceInAlternative();
+
+		/**
+		 * The meta object literal for the '<em><b>Alternative Container</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SEQUENCE_IN_ALTERNATIVE__ALTERNATIVE_CONTAINER = eINSTANCE.getSequenceInAlternative_AlternativeContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Disambiguate</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SEQUENCE_IN_ALTERNATIVE__DISAMBIGUATE = eINSTANCE.getSequenceInAlternative_Disambiguate();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.AlternativeImpl <em>Alternative</em>}' class.
@@ -10275,6 +10470,14 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONTEXT_TAGS = eINSTANCE.getContextTags();
+
+		/**
+		 * The meta object literal for the '<em><b>Tags</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONTEXT_TAGS__TAGS = eINSTANCE.getContextTags_Tags();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.InjectorActionImpl <em>Injector Action</em>}' class.

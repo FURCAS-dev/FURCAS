@@ -134,6 +134,7 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 			case TCSPackage.INVERT_PARG: return createInvertPArg();
 			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT: return createForeachPredicatePropertyInit();
 			case TCSPackage.PREDICATE_SEMANTIC: return createPredicateSemantic();
+			case TCSPackage.SEQUENCE_IN_ALTERNATIVE: return createSequenceInAlternative();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -913,6 +914,16 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 	public PredicateSemantic createPredicateSemantic() {
 		PredicateSemanticImpl predicateSemantic = new PredicateSemanticImpl();
 		return predicateSemantic;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SequenceInAlternative createSequenceInAlternative() {
+		SequenceInAlternativeImpl sequenceInAlternative = new SequenceInAlternativeImpl();
+		return sequenceInAlternative;
 	}
 
 	/**

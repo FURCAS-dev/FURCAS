@@ -428,6 +428,10 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 				return createPredicateSemanticAdapter();
 			}
 			@Override
+			public Adapter caseSequenceInAlternative(SequenceInAlternative object) {
+				return createSequenceInAlternativeAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -864,6 +868,20 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPredicateSemanticAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.SequenceInAlternative <em>Sequence In Alternative</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.SequenceInAlternative
+	 * @generated
+	 */
+	public Adapter createSequenceInAlternativeAdapter() {
 		return null;
 	}
 
