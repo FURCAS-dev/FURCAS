@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject;
 
 public class OclOperatorWizardPage extends WizardPage {
 	private static final String WARNING	=	"Check if the Random Model Instantiator is in List before the OCL Operator!";

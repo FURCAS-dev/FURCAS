@@ -28,6 +28,5 @@ Require-Bundle: de.hpi.sam.bp2009.benchframework;visibility:=reexport,
  org.eclipse.jface,
  de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.impactAnalyzer,
- de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer,
  de.hpi.sam.bp2009.benchframework.queryEvaluator
 Bundle-ActivationPolicy: lazy

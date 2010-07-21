@@ -10,6 +10,8 @@ import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -124,13 +126,13 @@ public class OclOperatorAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator <em>Ocl Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator <em>Ocl Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator
+	 * @see de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator
 	 * @generated
 	 */
 	public Adapter createOclOperatorAdapter() {
@@ -138,13 +140,13 @@ public class OclOperatorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject <em>Ocl Option Object</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject <em>Ocl Option Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject
+	 * @see de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject
 	 * @generated
 	 */
 	public Adapter createOclOptionObjectAdapter() {

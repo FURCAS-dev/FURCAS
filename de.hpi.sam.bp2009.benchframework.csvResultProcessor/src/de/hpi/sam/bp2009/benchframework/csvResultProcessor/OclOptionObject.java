@@ -4,10 +4,11 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.benchframework.oclOperator;
+package de.hpi.sam.bp2009.benchframework.csvResultProcessor;
+
+import org.eclipse.emf.common.util.EList;
 
 import de.hpi.sam.bp2009.benchframework.OptionObject;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,8 +18,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,7 +62,7 @@ public interface OclOptionObject extends OptionObject {
 	boolean isUseImpactAnalyzer();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Use Impact Analyzer</em>' attribute.

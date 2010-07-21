@@ -12,7 +12,6 @@ Export-Package: de.hpi.sam.bp2009.solution.eventManager.tests
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- de.hpi.sam.bp2009.solution.impactAnalyzer.tests,
  org.junit4,
  de.hpi.sam.bp2009.company,
  de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark

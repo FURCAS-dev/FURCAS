@@ -9,7 +9,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.ocl.ecore,
  de.hpi.sam.bp2009.solution.oclToMqlMapping,
  de.hpi.sam.bp2009.ngpm,
- de.hpi.sam.bp2009.solution.impactAnalyzer.tests,
  de.hpi.sam.bp2009.company,
  org.junit4,
  com.sap.emf.ocl.hiddenopposites

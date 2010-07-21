@@ -11,7 +11,6 @@ Require-Bundle: de.hpi.sam.bp2009.benchframework;visibility:=reexport,
  org.eclipse.ocl.ecore;bundle-version="3.0.0",
  org.eclipse.emf.query;bundle-version="1.2.100",
  de.hpi.sam.bp2009.solution.eventManager,
- de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer;bundle-version="1.0.0",
  de.hpi.sam.bp2009.solution.scopeProvider;bundle-version="1.0.0",
  de.hpi.sam.bp2009.solution.oclToMqlMapping,
  com.sap.emf.ocl.hiddenopposites

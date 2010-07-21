@@ -9,11 +9,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 /**
  * The {@link BenchmarkTaskPreparer} provides methods for creating a collection of
@@ -64,7 +64,7 @@ public class BenchmarkTaskPreparer {
     	int benchmarkTaskId = 0;
       	for (OCLExpressionWithContext expression : expressionList) {
     		oclId++;
-    		ImpactAnalyzer ia = new ImpactAnalyzerImpl(expression.getExpression(), expression.getContext());
+    		ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression.getExpression(), expression.getContext());
     		
     	    for(NotificationForModelList notificationList : notificationForModelList){
     		Resource model = notificationList.getModel();

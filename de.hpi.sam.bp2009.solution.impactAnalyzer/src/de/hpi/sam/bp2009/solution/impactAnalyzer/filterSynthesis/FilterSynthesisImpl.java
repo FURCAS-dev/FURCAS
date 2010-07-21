@@ -35,7 +35,7 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 

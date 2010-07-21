@@ -44,8 +44,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -145,7 +145,7 @@ public class EventManagerRuntimeTest {
 
         ArrayList<OclExpressionWithPackage> adds = de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.getExpressionList();
         for(OclExpressionWithPackage entry : adds){
-            list.add(new ImpactAnalyzerImpl(parse(entry.getOcl(), entry.getPackage())).createFilterForExpression(true));
+            list.add(ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(parse(entry.getOcl(), entry.getPackage())).createFilterForExpression(true));
 
         }
 //        ArrayList<EventFilter> list2 = new ArrayList<EventFilter>(filters.values());
@@ -339,7 +339,7 @@ public class EventManagerRuntimeTest {
         System.out.println("Number of constraints: " +allConstraints.size());
         Map<String, EventFilter> filters = new HashMap<String, EventFilter>();
         for (Entry<String, ExpressionWithContext> entry : allConstraints.entrySet()) {
-            filters.put(entry.getKey(), new ImpactAnalyzerImpl(entry.getValue().expr, entry.getValue().classifier).createFilterForExpression(true));
+            filters.put(entry.getKey(), ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(entry.getValue().expr, entry.getValue().classifier).createFilterForExpression(true));
         }
         return filters;
     }

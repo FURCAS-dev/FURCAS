@@ -6,7 +6,7 @@ import java.util.HashSet;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.OperationBodyToCallMapper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 public class OperationBodyPropagationStrategy implements DeltaPropagationStrategy {

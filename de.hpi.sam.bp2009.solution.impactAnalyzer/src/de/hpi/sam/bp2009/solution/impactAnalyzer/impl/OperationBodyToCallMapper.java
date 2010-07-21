@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
 import java.util.Set;
 

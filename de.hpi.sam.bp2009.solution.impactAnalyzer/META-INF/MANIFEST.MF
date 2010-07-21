@@ -19,12 +19,5 @@ Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.oclToAst
-Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
- de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark,
- de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation,
- de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
- de.hpi.sam.bp2009.solution.impactAnalyzer.impl,
- de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer",
- de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.debug,
- de.hpi.sam.bp2009.solution.impactAnalyzer.util;x-friends:="de.hpi.sam.bp2009.solution.impactAnalyzer.tests,de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer"
+Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer
 Bundle-Activator: de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin

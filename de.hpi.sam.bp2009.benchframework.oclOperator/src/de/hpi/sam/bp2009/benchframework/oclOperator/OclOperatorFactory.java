@@ -8,6 +8,9 @@ package de.hpi.sam.bp2009.benchframework.oclOperator;
 
 import org.eclipse.emf.ecore.EFactory;
 
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator;
+import de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Factory</b> for the model.

@@ -236,42 +236,42 @@ public interface OclOperatorPackage extends EPackage {
 	int OCL_RESULT_FEATURE_COUNT = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator <em>Ocl Operator</em>}'.
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator <em>Ocl Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Ocl Operator</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator
+	 * @see de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOperator
 	 * @generated
 	 */
 	EClass getOclOperator();
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject <em>Ocl Option Object</em>}'.
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject <em>Ocl Option Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Ocl Option Object</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject
+	 * @see de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject
 	 * @generated
 	 */
 	EClass getOclOptionObject();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#getConstraints <em>Constraints</em>}'.
+	 * Returns the meta object for the attribute list '{@link de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute list '<em>Constraints</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#getConstraints()
+	 * @see de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject#getConstraints()
 	 * @see #getOclOptionObject()
 	 * @generated
 	 */
 	EAttribute getOclOptionObject_Constraints();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}'.
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Use Impact Analyzer</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#isUseImpactAnalyzer()
+	 * @see de.hpi.sam.bp2009.benchframework.csvResultProcessor.OclOptionObject#isUseImpactAnalyzer()
 	 * @see #getOclOptionObject()
 	 * @generated
 	 */
