@@ -55,9 +55,11 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
     private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList) throws Exception {
 	// Perform measurement
+    task.beforeCall();
 	long timeBefore = System.nanoTime();
 	task.call();
 	long timeAfter = System.nanoTime();
+	task.afterCall();
 
 	executionTimeList.add(new Long(timeAfter - timeBefore));
 	additionalMeasurementInformationList.add(task.getAdditionalMeasurementInformation());
