@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ModelChangeSimulator;
 
 public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
@@ -38,6 +39,9 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     public void beforeCall() {
 	assert additionalMeasurementInformation.size() == 0;
 	assert result == null;
+	
+	ModelChangeSimulator.changeModel(notification);
+	
     }
 
     @Override

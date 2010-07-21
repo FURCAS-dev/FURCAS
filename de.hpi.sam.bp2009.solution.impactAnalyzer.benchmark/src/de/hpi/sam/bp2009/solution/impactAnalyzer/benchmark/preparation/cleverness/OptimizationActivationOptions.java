@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.measurements;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.cleverness;
 
 public class OptimizationActivationOptions {
 

@@ -24,6 +24,7 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
     HashMap<String, Throwable> notExecutedDueToException = new LinkedHashMap<String, Throwable>();
 
+    
     @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
 	try {
@@ -53,11 +54,6 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
     }
 
     private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList) throws Exception {
-	// Quick-Pre-WarmUp
-	task.beforeCall();
-	task.call();
-	task.afterCall();
-
 	// Perform measurement
 	long timeBefore = System.nanoTime();
 	task.call();

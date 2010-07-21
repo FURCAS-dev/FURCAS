@@ -4,6 +4,7 @@ public class ProcessingOptions {
 
     private static int warmUps;
     private static int measures;
+    private static int numberOfJobs = 1;
 
     public static void setNumberOfWarmUps(int warmUps) {
 	ProcessingOptions.warmUps = warmUps;
@@ -20,5 +21,15 @@ public class ProcessingOptions {
     public static int getNumberOfMeasures(){
 	return measures;
     }
+
+	public static void setNumberOfJobs(int numberOfJobs) {
+		ProcessingOptions.numberOfJobs = numberOfJobs;
+	}
+
+	public static int getNumberOfJobs() {
+		return numberOfJobs;
+	}
+    
+    
 
 }
