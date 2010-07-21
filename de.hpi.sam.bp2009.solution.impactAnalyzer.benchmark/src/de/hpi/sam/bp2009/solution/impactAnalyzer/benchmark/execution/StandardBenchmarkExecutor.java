@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.BenchmarkMeasurements;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.ProcessingOptions;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.measurements.BenchmarkMeasurements;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 

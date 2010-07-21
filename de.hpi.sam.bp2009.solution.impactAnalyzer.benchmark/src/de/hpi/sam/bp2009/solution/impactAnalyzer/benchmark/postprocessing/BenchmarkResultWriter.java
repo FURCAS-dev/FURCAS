@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.Measurement;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.OutputOptions;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.measurements.Measurement;
 
 public class BenchmarkResultWriter {
 
