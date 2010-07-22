@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * @author Manuel Holzleitner (D049667)
  */
 public interface BenchmarkTask extends Callable<Collection<EObject>> {
+	public boolean activate();
     public void beforeCall();
     public void afterCall();
 

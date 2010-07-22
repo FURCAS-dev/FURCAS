@@ -8,36 +8,39 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskContainer;
 
 public class BenchmarkExecutionJob extends Job{
 
 	private final BenchmarkExecutor executor;
 	private final BenchmarkResultWriter writer;
-	private final Queue<BenchmarkTask> taskList;
+	private final Queue<BenchmarkTaskContainer> containerList;
 
-	public BenchmarkExecutionJob(String name, BenchmarkExecutor executor, Queue<BenchmarkTask> taskList, BenchmarkResultWriter writer) {
+	public BenchmarkExecutionJob(String name, BenchmarkExecutor executor, Queue<BenchmarkTaskContainer> containerList, BenchmarkResultWriter writer) {
 		super(name);
 		// TODO Auto-generated constructor stub
 
 		this.executor = executor;
-		this.taskList = taskList;
+		this.containerList = containerList;
 		this.writer = writer;
 	}
 
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
-		int all = taskList.size();
-		
-		while(!taskList.isEmpty()){
-			BenchmarkTask task = taskList.remove();
+		int i = 0;		
+		while(!containerList.isEmpty()){
+			BenchmarkTaskContainer container = containerList.remove();
 			
-		    executor.execute(task, writer);
-		    
-		    if(taskList.size() % 500 == 0){
-			      System.out.print("\r Job["+ this.getName() +"]:" + taskList.size() + "/" + all);
+			container.beforeBenchmark();
+			while(!container.isEmpty()){
+				executor.execute(container.remove(), writer);
 			}
-		    
+		    container.afterBenchmark();
+		        
+		    if(i++ > 200){
+			      System.out.print("\r Job["+ this.getName() +"]:" + containerList.size());
+			      i = 0;
+			}
 		} 
 		
 		

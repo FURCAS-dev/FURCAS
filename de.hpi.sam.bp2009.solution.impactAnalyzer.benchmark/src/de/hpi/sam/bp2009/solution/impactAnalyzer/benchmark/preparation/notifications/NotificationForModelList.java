@@ -2,7 +2,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifica
 
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.Resource;
 
 /**
@@ -12,9 +11,9 @@ import org.eclipse.emf.ecore.resource.Resource;
  */
 public class NotificationForModelList {
     private final Resource model;
-    private final List<Notification> notificationList;
+    private final List<RawNotification> notificationList;
 
-    public NotificationForModelList(Resource model, List<Notification> notificationList){
+    public NotificationForModelList(Resource model, List<RawNotification> notificationList){
 	this.model = model;
 	this.notificationList = notificationList;
     }
@@ -23,7 +22,7 @@ public class NotificationForModelList {
 	return model;
     }
 
-    public List<Notification> getNotificationList() {
+    public List<RawNotification> getNotificationList() {
 	return notificationList;
     }
 
