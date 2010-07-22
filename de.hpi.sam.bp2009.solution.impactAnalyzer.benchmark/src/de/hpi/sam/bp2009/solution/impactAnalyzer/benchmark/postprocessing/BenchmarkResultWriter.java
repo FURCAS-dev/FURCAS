@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,16 +17,18 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.measurement
 
 public class BenchmarkResultWriter {
 
-	private OutputStream os;
+	private Writer writer;
 	private boolean withHeadline = true;
 	private int lineOffset = 1;
 
 	public BenchmarkResultWriter() {
 		File f = new File(OutputOptions.getOutputPath());
 		createFileIfNeeded(f);
-
+		OutputStream os = null;
+		
 		try {
 			os = new FileOutputStream(f);
+			writer = new BufferedWriter(new OutputStreamWriter(os), 81920);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,8 +37,7 @@ public class BenchmarkResultWriter {
 
 	public synchronized void close(){
 		try {
-			os.flush();
-			os.close();
+			writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,9 +45,7 @@ public class BenchmarkResultWriter {
 	}
 
     public synchronized void writeDataSet(Map<String, String> additionalInformation, ArrayList<Long> executionTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList, HashMap<String, ArrayList<Measurement>>microMeasurementList){
-    	 try {
-
-    	BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
+   	 try {
 
 	final String TAB = "\t";
 	final String BREAK = "\n";
@@ -86,14 +86,10 @@ public class BenchmarkResultWriter {
 
 		executionIndex++;
 	}
-
-	writer.flush();
-	os.flush();
  		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
     }
 
     private void createFileIfNeeded(File f) {

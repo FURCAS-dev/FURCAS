@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -31,10 +30,10 @@ public class NotificationResourceLoader {
         return instanceResource;
     }
 
-    public static Collection<RawEventInformation> loadTrace(String path){
+    public static Collection<RawNotification> loadTrace(String path){
 	String resourcePath = NotificationResourceLoader.EVENTTRACE_FIXTURE_LOCATION + path;
 
-        ArrayList<RawEventInformation> informationList = new ArrayList<RawEventInformation>();
+        ArrayList<RawNotification> informationList = new ArrayList<RawNotification>();
 
         InputStream traceInput = NotificationResourceLoader.class.getResourceAsStream(resourcePath);
         InputStreamReader ireader = new InputStreamReader(traceInput);
@@ -54,7 +53,7 @@ public class NotificationResourceLoader {
         	    hashMap.put(attributePairSplitted[0], attributePairSplitted[1]);
         	}
 
-        	informationList.add(new RawEventInformation(splitOnOpenBracket[0], hashMap));
+        	informationList.add(new RawNotification(splitOnOpenBracket[0], hashMap));
             }
 
         } catch (IOException e) {
@@ -80,22 +79,4 @@ public class NotificationResourceLoader {
 	return instanceResource;
     }
 
-    public static class RawEventInformation{
-	private final String eventType;
-	private final Map<String, String> attributeMap;
-
-	public RawEventInformation(String eventType, Map<String, String> attributeMap){
-	    this.eventType = eventType;
-	    this.attributeMap = attributeMap;
-	    // TODO Auto-generated constructor stub
-	}
-
-	public String getEventType() {
-	    return eventType;
-	}
-
-	public Map<String, String> getAttributeMap() {
-	    return attributeMap;
-	}
-    }
 }

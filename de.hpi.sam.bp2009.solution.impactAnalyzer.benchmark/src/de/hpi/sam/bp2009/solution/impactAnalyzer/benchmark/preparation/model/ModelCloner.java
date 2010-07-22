@@ -7,8 +7,10 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 /**
  * The {@link ModelCloner} is able to clone resources and its elements in a new resource set
@@ -42,8 +44,9 @@ public class ModelCloner {
 			resourceSize++;
 		}
 
-		System.out.println("\t\t\tClone Resource: " + resourceToClone.getURI()
-				+ " Elements:" + resourceSize);
+		//System.out.println("\t\t\tClone Resource: " + resourceToClone.getURI()
+		//		+ " Elements:" + resourceSize);
+		
 		// Compute new URI by inserting "2" before the file extension
 		URI uri = resourceToClone.getURI();
 		String ext = uri.fileExtension();
@@ -52,10 +55,13 @@ public class ModelCloner {
 
 		name = uri.trimFileExtension().lastSegment() + "." + cloneId;
 
-		
 		uri = URI.createURI(name).resolve(uri).appendFileExtension(ext);
 		
-		Resource clone = resourceToClone.getResourceSet().createResource(uri);
+		ResourceSetImpl resultRS;
+	    resultRS = new ResourceSetImpl();
+	    resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+   
+		Resource clone = resultRS.createResource(uri);
 
 		Copier copier = new Copier();
 		clone.getContents().addAll(

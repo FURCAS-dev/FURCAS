@@ -4,19 +4,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ShrinkedResourceProvider;
 
 
 public class BenchmarkNotificationPreparer {
-    public static Collection<Notification> preparePrimitveNotification() {
-	return new PrimitiveNotificationProducer().produce();
-    }
 
-    public static Collection<Notification> prepareRealWorldReplayNotification(){
-	return new RealWorldReplayNotificationProducer().produce("shortEventTrace.trace");
+    public static Collection<RawNotification> prepareRealWorldReplayNotification(){
+    	return new RealWorldReplayNotificationProducer().produce();
     }
 
     public static Collection<NotificationForModelList> prepareModelSizeVariationNotification(){
@@ -29,10 +25,10 @@ public class BenchmarkNotificationPreparer {
 	for(Resource model : resourceProvider.getAllResourcesFromLargeToSmall()){
 	    System.out.println("\t\t\tCreate notifications for resource: " + model.getURI().toString());
 
-	    Collection<Notification> notiList = new RealWorldReplayNotificationProducer().produce(model, "shortEventTrace.trace");
+	    Collection<RawNotification> notiList = new RealWorldReplayNotificationProducer().produce("shortEventTrace.trace");
 	    System.out.println("\t\t\t\t " + notiList.size() + " created");
 
-	    result.add(new NotificationForModelList(model, (List<Notification>)notiList));
+	    result.add(new NotificationForModelList(model, (List<RawNotification>)notiList));
 	}
 
 	return result;

@@ -11,6 +11,7 @@ import org.apache.commons.cli.PosixParser;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.BenchmarkExecutionProcessor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskContainer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskPreparer;
 
 /**
@@ -72,13 +73,13 @@ public class BenchmarkProcessor {
     	    	OutputOptions.setOutputPath(outputPath);
 
 		// Preparing
-		Queue<BenchmarkTask> taskQueue = BenchmarkTaskPreparer.prepareModelSizeVariationBenchmarkTasks();
+		Queue<BenchmarkTaskContainer> containerQueue = BenchmarkTaskPreparer.prepareModelSizeVariationBenchmarkTasks();
 
 		// Processing
 		if(numberOfJobs > 1){
-			BenchmarkExecutionProcessor.processBenchmarksInParallel(taskQueue, numberOfJobs);
+			BenchmarkExecutionProcessor.processBenchmarksInParallel(containerQueue, numberOfJobs);
 		}else{
-			BenchmarkExecutionProcessor.processBenchmarks(taskQueue);
+			BenchmarkExecutionProcessor.processBenchmarks(containerQueue);
 		}
 	}
 }

@@ -14,7 +14,6 @@ import org.junit.Test;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.OutputOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.ProcessingOptions;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.BenchmarkExecutionProcessor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromModelPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer;
@@ -34,7 +33,7 @@ public class BenchmarkEnvironmentTest extends TestCase {
 			benchmarkTasks.add(new BenchmarkTaskMock());
 		}
 		
-		BenchmarkExecutionProcessor.processBenchmarks(benchmarkTasks);
+		//BenchmarkExecutionProcessor.processBenchmarks(benchmarkTasks);
 	}
 
 	
@@ -92,6 +91,12 @@ public class BenchmarkEnvironmentTest extends TestCase {
 	@Override
 	public Map<String, String> getAdditionalMeasurementInformation() {
 	    return new LinkedHashMap<String, String>();
+	}
+
+	@Override
+	public boolean activate() {
+		// TODO Auto-generated method stub
+		return false;
 	}
     }
 }

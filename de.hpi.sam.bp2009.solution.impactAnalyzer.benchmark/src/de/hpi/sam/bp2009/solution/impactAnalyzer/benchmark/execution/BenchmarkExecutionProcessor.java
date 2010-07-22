@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.jobs.Job;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskContainer;
 
 /**
  * The {@link BenchmarkExecutionProcessor} processes a list of {@link BenchmarkTasks} subsequently.
@@ -19,29 +20,33 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  */
 public class BenchmarkExecutionProcessor {
 
-    public static void processExtensiveBenchmarks(Queue<BenchmarkTask> taskList) {
-    	BenchmarkExecutionProcessor.processAll(new ExtensiveBenchmarkExecutor(), taskList);
+    public static void processExtensiveBenchmarks(Queue<BenchmarkTaskContainer> containerList) {
+    	BenchmarkExecutionProcessor.processAll(new ExtensiveBenchmarkExecutor(), containerList);
     }
 
-    public static void  processBenchmarks(Queue<BenchmarkTask> taskList){
-    	BenchmarkExecutionProcessor.processAll(new StandardBenchmarkExecutor(), taskList);
+    public static void  processBenchmarks(Queue<BenchmarkTaskContainer> containerList){
+    	BenchmarkExecutionProcessor.processAll(new StandardBenchmarkExecutor(), containerList);
     }
 
-    public static void processAll(BenchmarkExecutor executor, Queue<BenchmarkTask> taskList) {
+    public static void processAll(BenchmarkExecutor executor, Queue<BenchmarkTaskContainer> containerList) {
 	BenchmarkResultWriter writer = new BenchmarkResultWriter();	
 	
 	System.out.println("");
 	int i=0;
-	int all = taskList.size();
+	int all = containerList.size();
 	
 	System.out.println("Start Processing");
 	
-	while(!taskList.isEmpty()){
-		BenchmarkTask task = taskList.remove();
+	while(!containerList.isEmpty()){
+		BenchmarkTaskContainer container = containerList.remove();
 		
-	    executor.execute(task, writer);
+		container.beforeBenchmark();
+		while(!container.isEmpty()){
+			executor.execute(container.remove(), writer);
+		}
+	    container.afterBenchmark();
 	    
-	    if(i % 500 == 0){
+	    if(i % 50 == 0){
 	      System.out.print("\r" + i + "/" + all);
 	    }
 	    i++;
@@ -49,28 +54,32 @@ public class BenchmarkExecutionProcessor {
 
 	writer.close();
 		System.out.println("Processing finished");
+		
+    	System.out.println(((StandardBenchmarkExecutor)executor).getNotExecutedDueToException().size() + " tasks ended with exceptions");
     }
     
-    public static void  processBenchmarksInParallel(Queue<BenchmarkTask> taskList, int numberOfParallelJobs){
-    	BenchmarkExecutionProcessor.processAllInParallel(new StandardBenchmarkExecutor(), taskList, numberOfParallelJobs);
+    public static void  processBenchmarksInParallel(Queue<BenchmarkTaskContainer> containerList, int numberOfParallelJobs){
+    	BenchmarkExecutionProcessor.processAllInParallel(new StandardBenchmarkExecutor(), containerList, numberOfParallelJobs);
     }
     
-    public static void processAllInParallel(BenchmarkExecutor executor, Queue<BenchmarkTask> taskList, int numberOfParallelJobs){
+    public static void processAllInParallel(BenchmarkExecutor executor, Queue<BenchmarkTaskContainer> containerList, int numberOfParallelJobs){
     	BenchmarkResultWriter writer = new BenchmarkResultWriter();	
     	  	
     	ArrayList<Job> jobList = new ArrayList<Job>();
     	
-    	ConcurrentLinkedQueue<BenchmarkTask> concurrentTaskList = new ConcurrentLinkedQueue<BenchmarkTask>();
-    	concurrentTaskList.addAll(taskList);
+    	ConcurrentLinkedQueue<BenchmarkTaskContainer> concurrentContainerList = new ConcurrentLinkedQueue<BenchmarkTaskContainer>();
+    	concurrentContainerList.addAll(containerList);
     	
+    	System.out.println("Start Processing");
+    	System.out.println("Create and schedule jobs");
     	for(int i = 0; i < numberOfParallelJobs; i++){     		
-    		jobList.add(new BenchmarkExecutionJob("BenchmarkJobNo" + i, executor, concurrentTaskList, writer));
+    		jobList.add(new BenchmarkExecutionJob("BenchmarkJobNo" + i, executor, concurrentContainerList, writer));
     	}
     	
     	for(Job jobToSchedule : jobList){
     		jobToSchedule.schedule();
     	}
-    	
+    	System.out.println("Wait for jobs");
     	for(Job jobToJoin : jobList){
     		try {
 				jobToJoin.join();
@@ -81,5 +90,8 @@ public class BenchmarkExecutionProcessor {
     	}
     	
     	writer.close();
+    	System.out.println("Processing finished");
+    	
+    	System.out.println(((StandardBenchmarkExecutor)executor).getNotExecutedDueToException().size() + " tasks ended with exceptions");
     }
 }
