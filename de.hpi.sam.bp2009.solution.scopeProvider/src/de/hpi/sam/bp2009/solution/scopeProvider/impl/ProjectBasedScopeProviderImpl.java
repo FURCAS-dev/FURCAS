@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.URI;
@@ -52,7 +53,6 @@ import de.hpi.sam.bp2009.solution.scopeProvider.ProjectBasedScopeProvider;
 public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider {
 
     private static final String WARNING_WORKSPACE_IS_CLOSED = "Attention: Workspace is closed. Only objects in the same resourceSet as the initial object(s) are returned as scope.";
-    private static final String WORKSPACE_IS_CLOSED = "Workspace is closed.";
     protected Collection<IProject> initialProjects = new HashSet<IProject>();
     protected List<WeakReference<Resource>> inMemoryResourceList;
     protected ResourceSet rs;
@@ -238,7 +238,8 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         URI uri = converter.normalize(res.getURI());
         java.net.URI netUri = java.net.URI.create(uri.toString());
         IProject project = null;
-        try {
+        
+        if(Platform.isRunning()){
         IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
             for (IFile file : ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(netUri)) {
                 project = file.getProject();
@@ -251,8 +252,8 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
              */
             // if(project==null)
             // throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
-        } catch (IllegalStateException e) {            
-            workSpaceClosedWarning(e);
+        }else{
+        	workSpaceClosedWarning();
         }
         return project;
     }
@@ -286,31 +287,31 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     private Collection<IProject> scopeAsProjects(Boolean forward) {
-        Collection<IProject> result = new BasicEList<IProject>();
-        Collection<IProject> pool = new ArrayList<IProject>();
-        try {
-            pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
-        } catch (IllegalStateException e) {
-            workSpaceClosedWarning(e);
-        }
+		Collection<IProject> result = new BasicEList<IProject>();
+		Collection<IProject> pool = new ArrayList<IProject>();
 
-        for (IProject project : getInitialProjects()) {
-            try {
-                result = recursiveGetReferenceProjectsForProjects(project, result, pool, forward);
-            } catch (CoreException e) {
-                // TODO Add Exception to an intern array of errors
-                e.printStackTrace();
-            }
-        }
+		if (Platform.isRunning()) {
+			pool = Arrays.asList(ResourcesPlugin.getWorkspace().getRoot().getProjects());
+		} else {
+			workSpaceClosedWarning();
+		}
+
+		for (IProject project : getInitialProjects()) {
+			try {
+				result = recursiveGetReferenceProjectsForProjects(project,
+						result, pool, forward);
+			} catch (CoreException e) {
+				// TODO Add Exception to an intern array of errors
+				e.printStackTrace();
+			}
+		}
         return result;
     }
 
-    private void workSpaceClosedWarning(IllegalStateException e) {
+    private void workSpaceClosedWarning() {
         // the scope provider was not started as plugin that is why 
         // only objects in the same resourceSet as the initial object(s) are returned as scope.
-        if (WORKSPACE_IS_CLOSED.equals(e.getMessage())){
-            System.err.println(WARNING_WORKSPACE_IS_CLOSED);
-        }
+    	System.err.println(WARNING_WORKSPACE_IS_CLOSED);
     }
 
     private Collection<Resource> scopeAsResources(Collection<IProject> projects) throws IllegalArgumentException {
