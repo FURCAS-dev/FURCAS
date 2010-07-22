@@ -19,5 +19,6 @@ Require-Bundle: org.eclipse.emf.ecore,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
  de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.oclToAst
-Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer
+Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
+ de.hpi.sam.bp2009.solution.impactAnalyzer.configuration
 Bundle-Activator: de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin
