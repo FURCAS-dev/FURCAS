@@ -27,6 +27,7 @@ import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 
 public class EcoreHelper {
     private static EcoreHelper instance;
+    private QueryProcessor queryProcessor;
     
     public static EcoreHelper getInstance() {
         if (instance == null) {
@@ -128,8 +129,7 @@ public class EcoreHelper {
             }
         } else {
             EClass owningType = getOwningType(forwardReference);
-            final ResultSet resultSet = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance())
-                    .execute(
+            final ResultSet resultSet = getQueryProcessor().execute(
                             "select target from [" + EcoreUtil.getURI(from.eClass()) + "] as source in elements {[" + //$NON-NLS-1$
                                     EcoreUtil.getURI(from) + "]}, [" + EcoreUtil.getURI(owningType) + "] as target "
                                     + "where target.\"" + forwardReference.getName() + "\" = source ", scope); //$NON-NLS-1$
@@ -137,6 +137,13 @@ public class EcoreHelper {
                 result.add(rs.getEObject(resultSet.getUri(i, "target"), /* loadOnDemand */true)); //$NON-NLS-1$
             }
         }
+    }
+
+    private QueryProcessor getQueryProcessor() {
+        if (queryProcessor == null) {
+            queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        }
+        return queryProcessor;
     }
 
     /**
