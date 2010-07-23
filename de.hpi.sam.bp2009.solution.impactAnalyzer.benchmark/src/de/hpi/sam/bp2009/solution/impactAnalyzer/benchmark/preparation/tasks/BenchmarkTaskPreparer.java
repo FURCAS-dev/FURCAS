@@ -37,35 +37,44 @@ public class BenchmarkTaskPreparer {
 
     	System.out.println("\t Prepare Benchmark Tasks:");
 
-    	
+
     	int containerId = 0;
     	int benchmarkTaskId = 0;
     	int max = expressionList.size();
-    	
+
     	int optionId = 0;
     	ActivationOption[] options = { new ActivationOption(true, true), new ActivationOption(true, false) };
-    	for(ActivationOption option : options){	
+    	for(ActivationOption option : options){
     		int oclId = 0;
 	      	for (OCLExpressionWithContext expression : expressionList) {
 	    		oclId++;
 	    		System.out.println(oclId + "/" + max);
-	    		
+
 	    		ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression.getExpression(), expression.getContext());
-	
-	    		
+
+
 	    	    for(NotificationForModelList notificationList : notificationForModelList){
 	    	    	Resource model = notificationList.getModel();
-		    	    BenchmarkTaskContainer container = new ModelSizeVariationBenchmarkTaskContainer(model, option, String.valueOf(containerId));    		
+		    	    BenchmarkTaskContainer container = new ModelSizeVariationBenchmarkTaskContainer(model, option, String.valueOf(containerId));
 		    	    containerId++;
-		    	    		    	    
+
 				    int notificationId = 0;
 				    for(RawNotification notification : notificationList.getNotificationList()){
-				    	notificationId++;
-				    	benchmarkTaskId++;
-				    	
-				  	    container.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), notification, ia, String.valueOf(oclId), String.valueOf(notificationId), String.valueOf(benchmarkTaskId), String.valueOf(optionId)));
-				    }
-				    
+				    	// Must check if notification has to be spitted e.g. because MOINs bidirectional link change events
+				    	// may produce two events in EMF for each unidirectional reference
+				    	if(notification.isSplitCandidate()){
+				    	    for(RawNotification split : notification.split()){
+				    		benchmarkTaskId++;
+					    	notificationId++;
+					  	container.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), split, ia, String.valueOf(oclId), String.valueOf(notificationId), String.valueOf(benchmarkTaskId), String.valueOf(optionId)));
+				    	    }
+				    	}else{
+				    	    benchmarkTaskId++;
+				    	    notificationId++;
+				    	    container.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), notification, ia, String.valueOf(oclId), String.valueOf(notificationId), String.valueOf(benchmarkTaskId), String.valueOf(optionId)));
+				    	}
+				   }
+
 				    result.add(container);
 		    	}
 	    	}

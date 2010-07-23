@@ -52,6 +52,7 @@ public class NotificationHelper {
     public static Notification createAttributeChangeNotification(EObject notifier, EAttribute feature, Object oldValue,
             Object newValue) {
         EDataType dataType = feature.getEAttributeType();
+
         boolean validOldValue = oldValue == null || dataType.isInstance(oldValue)
                 || (feature.isMany() && oldValue instanceof EList<?> && dataType.isInstance(((EList<?>) oldValue).get(0)));
         boolean validNewValue = dataType.isInstance(newValue)
@@ -66,6 +67,7 @@ public class NotificationHelper {
             notifier.eSet(feature, newValue);
             return getNotificationfrom(myTestA);
         }
+
         System.err.println("Warning! Invalid parameters for NotificationHelper#createAttributeChangeNotification");
         return null;
     }
@@ -174,9 +176,8 @@ public class NotificationHelper {
             // container is a Resource or ResourceSet
             if (container instanceof Resource){
                 ((Resource)container).getContents().add(target);
-            }else{
-                throw new IllegalArgumentException("Events for adding Resources to ResourceSets should not reach the ImpactAnalyzer.");
-            }
+            } else
+		throw new IllegalArgumentException("Events for adding Resources to ResourceSets should not reach the ImpactAnalyzer.");
         }
         return getNotificationfrom(myTestA);
     }
