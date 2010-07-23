@@ -38,6 +38,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private boolean alwaysEmpty;
     private String annotation;
     
+    private final static String NOT_IN_DEBUG_MODE_MESSAGE = "To enable annotations, set the system property de.hpi.sam.bp2009.solution.impactAnalyzer.debug to true, "
+        + "e.g., by using the VM argument -Dde.hpi.sam.bp2009.solution.impactAnalyzer.debug=true";
+    private final static boolean IS_IN_DEBUG_MODE = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug");
+    
     /**
      * The navigateCounter counts how many times the navigate method of this NavigationStep is called
      */
@@ -126,16 +130,14 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 
     protected AnnotatedEObject annotateEObject(AnnotatedEObject fromObject,
             EObject next) {
-        final String notInDebugMode = "To enable annotations, set the system property de.hpi.sam.bp2009.solution.impactAnalyzer.debug to true, "
-                + "e.g., by using the VM argument -Dde.hpi.sam.bp2009.solution.impactAnalyzer.debug=true";
-        final boolean debugMode = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug");
-        if (debugMode) {
+
+        if (IS_IN_DEBUG_MODE) {
             return new AnnotatedEObject(next, fromObject.getAnnotation()+
                 "\n------------- tracing back through ---------------\n"+
                 getAnnotation()+
                 "\narriving at object: "+next);
         } else {
-            return new AnnotatedEObject(next, notInDebugMode);
+            return new AnnotatedEObject(next, NOT_IN_DEBUG_MODE_MESSAGE);
         }
     }
 
@@ -152,11 +154,8 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * expression is embedded.
      */
     private String getVerboseDebugInfo() {
-        final String notInDebugMode = "To enable annotations, set the system property de.hpi.sam.bp2009.solution.impactAnalyzer.debug to true, "
-                + "e.g., by using the VM argument -Dde.hpi.sam.bp2009.solution.impactAnalyzer.debug=true";
-        final boolean debugMode = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug");
         try {
-            if (debugMode) {
+            if (IS_IN_DEBUG_MODE) {
                 return "Step's expression: "
                         + getDebugInfo()
                         + "\n ===== in expression =====\n"
@@ -167,7 +166,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
                                         OclHelper.getRootExpression(getDebugInfo()))
                                         .getName() + " =====" : "");
             } else {
-                return notInDebugMode;
+                return NOT_IN_DEBUG_MODE_MESSAGE;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
