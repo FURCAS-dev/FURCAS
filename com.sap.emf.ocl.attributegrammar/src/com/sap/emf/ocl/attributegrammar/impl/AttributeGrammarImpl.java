@@ -17,17 +17,36 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 public class AttributeGrammarImpl implements AttributeGrammar {
     private final Map<EStructuralFeature, OCLExpression> rules;
     private final OppositeEndFinder oppositeEndFinder;
+    private final boolean notifyOnNewContextElements;
     private final Map<OCLExpression, ImpactAnalyzer> impactAnalyzers = new HashMap<OCLExpression, ImpactAnalyzer>();
     
+    /**
+     * Defaults: no notifications upon appearence of new context eleements; impact analyzers will use
+     * a default {@link OppositeEndFinder} to navigate references in reverse direction.
+     */
     public AttributeGrammarImpl(Map<EStructuralFeature, OCLExpression> rules) {
         oppositeEndFinder = null;
         this.rules = rules;
+        notifyOnNewContextElements = false;
         initImpactAnalyzers();
     }
 
+    /**
+     * Defaults: no notifications upon appearence of new context eleements
+     */
     public AttributeGrammarImpl(Map<EStructuralFeature, OCLExpression> rules, OppositeEndFinder oppositeEndFinder) {
         this.oppositeEndFinder = oppositeEndFinder;
         this.rules = rules;
+        notifyOnNewContextElements = false;
+        initImpactAnalyzers();
+    }
+
+    public AttributeGrammarImpl(Map<EStructuralFeature, OCLExpression> rules, OppositeEndFinder oppositeEndFinder,
+            boolean notifyOnNewContextElements) {
+        this.oppositeEndFinder = oppositeEndFinder;
+        this.rules = rules;
+        this.notifyOnNewContextElements = notifyOnNewContextElements;
+        notifyOnNewContextElements = false;
         initImpactAnalyzers();
     }
 
@@ -46,8 +65,11 @@ public class AttributeGrammarImpl implements AttributeGrammar {
 
     @Override
     public void activate(EventManager eventManager) {
-        // TODO Auto-generated method stub
-
+        for (Map.Entry<EStructuralFeature, OCLExpression> rule : rules.entrySet()) {
+            ImpactAnalyzer ia = impactAnalyzers.get(rule.getValue());
+            eventManager.subscribe(ia.createFilterForExpression(notifyOnNewContextElements),
+                    new UpdateListener(rule.getKey(), rule.getValue(), ia, oppositeEndFinder));
+        }
     }
 
     @Override
