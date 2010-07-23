@@ -27,26 +27,31 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private Collection<EObject> result = null;
 
     public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId) {
-    	this.rawNotification = notification;
+    	rawNotification = notification;
 		ia = imp;
-		
+
 		additionalInformation.put("optionId", optionId);
 		additionalInformation.put("benchmarkTaskId", benchmarkTaskId);
 		additionalInformation.put("notificationId", notificationId);
 		additionalInformation.put("oclId", oclId);
     }
-    
+
     @Override
     public boolean activate(){
     	// For creating the notification the model is changed. Therefore the
     	// creation of notifications shall be happen just before the benchmark task
     	// is executed.
     	assert getModel() != null;
-    	
-		additionalInformation.put("resourceUri", String.valueOf(getModel().getURI().toString().replaceAll("\t", "")));
+
+	additionalInformation.put("resourceUri", String.valueOf(getModel().getURI().toString().replaceAll("\t", "")));
     	additionalInformation.put("modelSize", String.valueOf(getModelSize(getModel())));
-    	    	
+
     	notification = rawNotification.convertToNotification(getModel());
+
+    	if(rawNotification == null) {
+	    System.out.println("activated: " + rawNotification != null);
+	}
+
     	return rawNotification != null;
     }
 
@@ -54,10 +59,9 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     public void beforeCall() {
     	assert additionalMeasurementInformation.size() == 0;
     	assert result == null;
-    	
-    	if(notification == null){
-    		throw new RuntimeException("notification cannot be created");
-    	}
+
+    	if(notification == null)
+	    throw new RuntimeException("notification cannot be created");
     }
 
     @Override

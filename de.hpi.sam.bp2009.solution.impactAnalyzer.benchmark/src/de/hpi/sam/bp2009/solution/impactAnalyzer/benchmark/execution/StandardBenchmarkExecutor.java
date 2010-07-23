@@ -24,7 +24,7 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
     private HashMap<String, Throwable> notExecutedDueToException = new LinkedHashMap<String, Throwable>();
 
-    
+
     @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
     if(task.activate()){
@@ -36,17 +36,17 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 			task.afterCall();
 			task.getAdditionalMeasurementInformation();
 		    }
-	
+
 		    ArrayList<Long> executionTimeList = new ArrayList<Long>();
 		    ArrayList<Map<String, String>> additionalMeasurementInformationList = new ArrayList<Map<String, String>>();
-	
+
 		    for (int i = 0; i < ProcessingOptions.getNumberOfMeasures(); i++) {
 			measureExecutionTime(task, executionTimeList, additionalMeasurementInformationList);
 			BenchmarkMeasurements.aggregate();
 		    }
-	
+
 		    writer.writeDataSet(task.getAdditionalInformation(), executionTimeList, additionalMeasurementInformationList, BenchmarkMeasurements.getMeasurementList());
-	
+
 		    BenchmarkMeasurements.reset();
 		} catch (Exception e) {
 		    getNotExecutedDueToException().put(task.toString(), e);
@@ -58,7 +58,7 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
     private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList) throws Exception {
 	// Perform measurement
-    task.beforeCall();
+	task.beforeCall();
 	long timeBefore = System.nanoTime();
 	task.call();
 	long timeAfter = System.nanoTime();
