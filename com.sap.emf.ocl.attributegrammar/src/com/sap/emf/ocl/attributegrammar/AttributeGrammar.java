@@ -1,6 +1,11 @@
 package com.sap.emf.ocl.attributegrammar;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
  * A set of OCL expressions defining how to compute and update structural features of
@@ -8,8 +13,10 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
  * stored in the {@link EObject} instances, an attribute grammar updates non-derived
  * features. An attribute grammar can be activated and deactivated for an {@link EventManager}
  * from where it receives events that may affect the OCL expressions defining the attribute
- * grammar.
- *  
+ * grammar. It uses the OCL Impact Analysis component (see {@link ImpactAnalyzer}) to determine
+ * those {@link EObject}s on which the structural features need to be updated base on the
+ * change events received from the {@link EventManager}.
+ *
  * @author Axel Uhl
  */
 public interface AttributeGrammar {
@@ -25,6 +32,12 @@ public interface AttributeGrammar {
     void activate(EventManager eventManager);
     
     /**
+     * Same as {@link #activate(EventManager)}, only that the {@link EventManagerFactory} is used
+     * to obtain an event manager for the resource set specified.
+     */
+    void activate(ResourceSet resourceSet);
+    
+    /**
      * When called for an <code>eventManager</code> for which this attribute grammar was not
      * previously {@link #activate(EventManager) activated}, this operation has no effect. Otherwise,
      * this grammar will deregister all its listeners from <code>eventManager</code> so that
@@ -32,4 +45,12 @@ public interface AttributeGrammar {
      * grammar.
      */
     void deactivate(EventManager eventManager);
+    
+    /**
+     * Same as {@link #deactivate(EventManager)} but uses an internal mapping that maintains
+     * information about the resource sets for which this attribute grammar has been activated and
+     * the corresponding {@link EventManager} objects used for this.
+     * @param resourceSet
+     */
+    void deactivate(ResourceSet resourceSet);
 }
