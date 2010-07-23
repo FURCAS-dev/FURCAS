@@ -21,11 +21,13 @@ public class BenchmarkResultWriter {
 	private boolean withHeadline = true;
 	private int lineOffset = 1;
 
+	private static final String BREAK = System.getProperty("line.separator");
+
 	public BenchmarkResultWriter() {
 		File f = new File(OutputOptions.getOutputPath());
 		createFileIfNeeded(f);
 		OutputStream os = null;
-		
+
 		try {
 			os = new FileOutputStream(f);
 			writer = new BufferedWriter(new OutputStreamWriter(os), 81920);
@@ -48,7 +50,6 @@ public class BenchmarkResultWriter {
    	 try {
 
 	final String TAB = "\t";
-	final String BREAK = "\n";
 
 	if(withHeadline){
 
