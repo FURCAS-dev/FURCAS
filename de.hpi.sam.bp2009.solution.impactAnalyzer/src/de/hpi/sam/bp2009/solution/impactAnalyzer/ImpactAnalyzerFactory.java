@@ -12,6 +12,6 @@ public interface ImpactAnalyzerFactory {
 
     ImpactAnalyzer createImpactAnalyzer(OCLExpression expression);
     ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context);
-    ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder);
-    ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, OppositeEndFinder oppositeEndFinder,  OppositeEndFinder reverseOppositeEndFinder);
+    ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder);
+    ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, OppositeEndFinder oppositeEndFinder);
 }

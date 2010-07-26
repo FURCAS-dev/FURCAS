@@ -36,7 +36,7 @@ public class EvaluationEnvironmentWithHiddenOppositesImpl extends EcoreEvaluatio
 	} else if (oppositeEndFinder == null) {
 	    result = null;
 	} else {
-	    result = oppositeEndFinder.navigateOppositeProperty(property, target);
+	    result = oppositeEndFinder.navigateOppositePropertyWithForwardScope(property, (EObject) target);
 	}
 	return result;
     }

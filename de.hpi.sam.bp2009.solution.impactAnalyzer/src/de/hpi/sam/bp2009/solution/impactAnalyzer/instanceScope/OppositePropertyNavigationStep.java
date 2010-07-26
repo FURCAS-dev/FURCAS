@@ -11,13 +11,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectBasedQueryContextScopeProviderImpl;
 
 public class OppositePropertyNavigationStep extends AbstractNavigationStep {
 
@@ -33,12 +31,20 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep {
 
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
-        QueryContext scope = new ProjectBasedQueryContextScopeProviderImpl(fromObject).getBackwardScopeAsQueryContext();
         Collection<EObject> result = new HashSet<EObject>();
         Set<AnnotatedEObject> returnValue = new HashSet<AnnotatedEObject>();
         if (property instanceof EReference) {
             //EcoreHelper.getInstance().reverseNavigate(fromObject.getAnnotatedObject(), (EReference) property, scope, result);
-            oppositeEndFinder.navigateOppositeProperty(property, fromObject.getAnnotatedObject());
+            Object navigationResult = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(property, fromObject.getAnnotatedObject());
+            if (navigationResult instanceof Collection<?>) {
+                @SuppressWarnings("unchecked")
+                Collection<? extends EObject> eObjectCollectionNavigationResult = (Collection<? extends EObject>) navigationResult;
+                result.addAll(eObjectCollectionNavigationResult);
+            } else {
+                if (navigationResult != null) {
+                    result.add((EObject) navigationResult);
+                }
+            }
         }
         for (EObject o : result) {
             returnValue.add(annotateEObject(fromObject, o));

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -44,7 +45,7 @@ import org.eclipse.ocl.util.CollectionUtil;
  * 
  */
 public class DefaultOppositeEndFinder implements OppositeEndFinder {
-
+    Logger logger = Logger.getLogger(DefaultOppositeEndFinder.class.getName());
     private final EPackage.Registry registry;
 
     /**
@@ -201,27 +202,38 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
 
     /**
      * If on the <code>target</code> or any of its containers up to the {@link ResourceSet} there is a
-     * {@link ECrossReferenceAdapter} registered, uses it for navigating <code>property</code> in reverse. In this case,
-     * a non-<code>null</code> collection is returned which contains those {@link EObject}s on which navigating
-     * <code>property</code> leads to <code>target</code>.
+     * {@link ECrossReferenceAdapter} registered, uses it for navigating <code>property</code> in reverse. In this case, a non-
+     * <code>null</code> collection is returned which contains those {@link EObject}s on which navigating <code>property</code>
+     * leads to <code>target</code>. The "forward" scope is just whatever the {@link ECrossReferenceAdapter} sees
+     * that is expected to be registered on <code>target</code> 
      * 
      * @param target
      *            must be a non-<code>null</code> {@link EObject}
      */
-    public Object navigateOppositeProperty(EStructuralFeature property, Object target) {
-	Collection<Object> result = null;
-	EObject eTarget = (EObject) target;
-	ECrossReferenceAdapter crossReferenceAdapter = getCrossReferenceAdapter(eTarget);
-	if (crossReferenceAdapter != null) {
-	    result = CollectionUtil.createNewBag();
-	    Collection<Setting> settings = crossReferenceAdapter.getInverseReferences(eTarget);
-	    for (Setting setting : settings) {
-		if (setting.getEStructuralFeature() == property) {
-		    result.add(setting.getEObject());
-		}
-	    }
-	}
-	return result;
+    public Object navigateOppositePropertyWithForwardScope(EStructuralFeature property, EObject target) {
+	return navigateOppositePropertyWithSymmetricScope(property, target);
+    }
+
+    public Object navigateOppositePropertyWithBackwardScope(EStructuralFeature property, EObject target) {
+        return navigateOppositePropertyWithSymmetricScope(property, target);
+    }
+
+    private Object navigateOppositePropertyWithSymmetricScope(EStructuralFeature property, Object target) {
+        Collection<Object> result = null;
+        EObject eTarget = (EObject) target;
+        ECrossReferenceAdapter crossReferenceAdapter = getCrossReferenceAdapter(eTarget);
+        if (crossReferenceAdapter != null) {
+            result = CollectionUtil.createNewBag();
+            Collection<Setting> settings = crossReferenceAdapter.getInverseReferences(eTarget);
+            for (Setting setting : settings) {
+        	if (setting.getEStructuralFeature() == property) {
+        	    result.add(setting.getEObject());
+        	}
+            }
+        } else {
+            logger.warning("Trying to reverse-navigate reference of "+target+" without ECrossReferenceAdapter attached");
+        }
+        return result;
     }
 
     /**
@@ -265,4 +277,5 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
     public Set<EObject> getAllInstancesSeenBy(EClass cls, Notifier context) {
         return getAllInstancesSeeing(cls, context);
     }
+
 }

@@ -17,8 +17,8 @@ import company.Employee;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.ExampleApp;
 
 public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
@@ -434,7 +434,7 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
         HashSet<ExpressionInOCL> affectedStmts = new HashSet<ExpressionInOCL>();
         for (Iterator<ExpressionInOCL> i = this.stmts.iterator(); i.hasNext();) {
             ExpressionInOCL exp = i.next();
-            EventFilter filter = new ImpactAnalyzerImpl((OCLExpression) exp.getBodyExpression(), (EClass) exp
+            EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp
                     .getContextVariable().getType()).createFilterForExpression(true);
             ExampleApp app = new ExampleApp(exp, affectedStmts);
             m.subscribe(filter, app);

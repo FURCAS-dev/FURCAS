@@ -3,6 +3,7 @@ package com.sap.ocl.oppositefinder.query2.internal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -20,21 +21,40 @@ import de.hpi.sam.bp2009.solution.queryContextScopeProvider.QueryContextProvider
 
 public class DefaultQueryContextProvider implements QueryContextProvider {
     @Override
-    public QueryContext getQueryContext(EObject etarget) {
+    public QueryContext getForwardScopeQueryContext(Notifier context) {
+        return getWorkspaceQueryContext(context);
+    }
+
+    private QueryContext getWorkspaceQueryContext(Notifier context) {
         ResourceSet rs = null;
-        if (etarget.eResource() != null) {
-                rs = etarget.eResource().getResourceSet();
+        Resource singleResource = null;
+        if (context instanceof EObject) {
+            singleResource = ((EObject) context).eResource();
+            if (singleResource != null) {
+                rs = singleResource.getResourceSet();
+            }
+        } else if (context instanceof Resource) {
+            singleResource = (Resource) context;
+            rs = singleResource.getResourceSet();
+        } else if (context instanceof ResourceSet) {
+            rs = (ResourceSet) context;
         }
         if (rs == null) {
-                rs = new ResourceSetImpl();
+            rs = new ResourceSetImpl();
         }
-        return getWorkspaceQueryContext(rs);
+        return getWorkspaceQueryContext(rs, singleResource);
+    }
+    
+    @Override
+    public QueryContext getBackwardScopeQueryContext(Notifier context) {
+        return getWorkspaceQueryContext(context);
     }
 
     /**
      * Provides a query context that contains all resources known to the current query2 index
+     * @param singleResource TODO
      */
-    private static QueryContext getWorkspaceQueryContext(final ResourceSet rs) {
+    private static QueryContext getWorkspaceQueryContext(final ResourceSet rs, final Resource singleResource) {
         return new QueryContext() {
             public URI[] getResourceScope() {
                 final List<URI> result = new ArrayList<URI>();
@@ -46,6 +66,9 @@ public class DefaultQueryContextProvider implements QueryContextProvider {
                         }
                         for (Resource r : rs.getResources()) {
                             result.add(r.getURI());
+                        }
+                        if (singleResource != null) {
+                            result.add(singleResource.getURI());
                         }
                     }
                 });

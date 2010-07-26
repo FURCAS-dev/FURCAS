@@ -53,10 +53,19 @@ public interface OppositeEndFinder {
     /**
      * Reverse-navigates the <code>property</code> starting at <code>target</code>. As a result, one or more objects may result
      * such that when navigating <code>property</code> from any of those, then <code>target</code> will be among the results. If
-     * no such objects are found, it is permissible for an implementation to return <code>null</code>.
+     * no such objects are found, it is permissible for an implementation to return <code>null</code>. As scope used
+     * for this query one should be used by implementers that contains everything that can be seen from <code>target</code>.
      */
-    Object navigateOppositeProperty(EStructuralFeature property, Object target);
+    Object navigateOppositePropertyWithForwardScope(EStructuralFeature property, EObject target);
 
+    /**
+     * Reverse-navigates the <code>property</code> starting at <code>target</code>. As a result, one or more objects may result
+     * such that when navigating <code>property</code> from any of those, then <code>target</code> will be among the results. If
+     * no such objects are found, it is permissible for an implementation to return <code>null</code>. As scope used
+     * for this query one should be used by implementers that contains everything that can see <code>target</code>.
+     */
+    Object navigateOppositePropertyWithBackwardScope(EStructuralFeature property, EObject target);
+    
     /**
      * Finds all instances of class <code>cls</code> and all its subclasses that can "see" <code>context</code>.
      * 
@@ -70,4 +79,5 @@ public interface OppositeEndFinder {
      * @return a non-<code>null</code> set
      */
     Set<EObject> getAllInstancesSeenBy(EClass cls, Notifier context);
+
 }
