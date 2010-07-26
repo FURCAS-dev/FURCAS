@@ -43,16 +43,17 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     	// is executed.
     	assert getModel() != null;
 
-	additionalInformation.put("resourceUri", String.valueOf(getModel().getURI().toString().replaceAll("\t", "")));
+    	additionalInformation.put("resourceUri", String.valueOf(getModel().getURI().toString().replaceAll("\t", "")));
     	additionalInformation.put("modelSize", String.valueOf(getModelSize(getModel())));
 
     	notification = rawNotification.convertToNotification(getModel());
 
-    	if(rawNotification == null) {
-	    System.out.println("activated: " + rawNotification != null);
-	}
+    	if(notification == null) {
+    		//System.out.println("activated: " + (notification != null));
+    		//System.out.println(rawNotification.getEventType());
+    	}
 
-    	return rawNotification != null;
+    	return notification != null;
     }
 
     @Override

@@ -62,6 +62,7 @@ public class BenchmarkResultWriter {
 	    for(String label : additionalMeasurementInformationList.get(0).keySet()){
 		writer.write(TAB + label);
 	    }
+	    
 
 	    writer.write(TAB + "executionIndex" + TAB + "executionTime" + BREAK);
 	    withHeadline = false;

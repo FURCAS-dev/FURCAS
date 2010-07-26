@@ -12,5 +12,5 @@ import org.eclipse.emf.common.notify.Notification;
  * @author Manuel Holzleitner (D049667)
  */
 public interface NotificationProducer {
-    public Collection<RawNotification> produce();
+    public Collection<RawNotification> produce(String file);
 }

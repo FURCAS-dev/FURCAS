@@ -38,7 +38,7 @@ public class BenchmarkExecutionJob extends Job{
 		    container.afterBenchmark();
 		        
 		    if(i++ > 200){
-			      System.out.print("\r Job["+ this.getName() +"]:" + containerList.size());
+			      System.out.println("Job["+ this.getName() +"]:" + containerList.size());
 			      i = 0;
 			}
 		} 

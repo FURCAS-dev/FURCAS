@@ -184,7 +184,13 @@ public class NotificationHelper {
 
     public static Notification createElementDeleteNotification(EObject target) {
         TestAdapter myTestA = new TestAdapter();
-        target.eContainer().eAdapters().add(myTestA);
+        if(target.eContainer() != null){
+        	target.eContainer().eAdapters().add(myTestA);
+        }else{
+        	//System.out.println("Resource delete");
+        	target.eResource().eAdapters().add(myTestA);
+        }
+        
         EcoreUtil.delete(target);
         return getNotificationfrom(myTestA);
     }

@@ -1,7 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark;
 
-import java.util.Queue;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -11,7 +9,6 @@ import org.apache.commons.cli.PosixParser;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.BenchmarkExecutionProcessor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskContainer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskPreparer;
 
 /**
@@ -42,6 +39,7 @@ public class BenchmarkProcessor {
 	    options.addOption("m", "measures", true, "Number of measurements per benchmark task (required)");
 	    options.addOption("o", "output", true, "Output file destination (required)");
 	    options.addOption("j", "jobs", true, "Number of parallel jobs for benchmarking. Default is 1");
+	    options.addOption("d", "delayprep",true, "Delay preparation of benchmark task (true/false)");
 	    options.addOption("h", "help", false, "Show this help");
 
 	    CommandLineParser parser = new PosixParser();
@@ -52,7 +50,9 @@ public class BenchmarkProcessor {
 		formatter.printHelp( "Impact Analysis Benchmark Environment", options );
 	    }else{
 	    int numberOfJobs = cmd.hasOption("j") ? Integer.parseInt(cmd.getOptionValue("j")) : 1;
-		start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"),  numberOfJobs);
+	    boolean delayPreparation = cmd.hasOption("d") ? Boolean.parseBoolean(cmd.getOptionValue("d")) : false;
+		
+	    start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"),  numberOfJobs, delayPreparation);
 	    }
 
 	} catch (ParseException e) {
@@ -60,7 +60,7 @@ public class BenchmarkProcessor {
 	}
     }
 
-    	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs) {
+    	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs, boolean delayPreparation) {
     	    	System.out.println("Impact Analysis Benchmark started with " + warmUps + " warm-ups and " + measures + " measures per benchmark task");
     	    	
     	    	ProcessingOptions.setNumberOfWarmUps(warmUps);
@@ -72,14 +72,14 @@ public class BenchmarkProcessor {
     	    	
     	    	OutputOptions.setOutputPath(outputPath);
 
-		// Preparing
-		Queue<BenchmarkTaskContainer> containerQueue = BenchmarkTaskPreparer.prepareModelSizeVariationBenchmarkTasks();
 
-		// Processing
-		if(numberOfJobs > 1){
-			BenchmarkExecutionProcessor.processBenchmarksInParallel(containerQueue, numberOfJobs);
-		}else{
-			BenchmarkExecutionProcessor.processBenchmarks(containerQueue);
-		}
+			// Preparing
+			// Processing
+			if (numberOfJobs > 1) {
+				BenchmarkExecutionProcessor.processBenchmarksInParallel(BenchmarkTaskPreparer.createBenchmarkBuilder(), delayPreparation, numberOfJobs);
+			} else {
+				BenchmarkExecutionProcessor.processBenchmarks(BenchmarkTaskPreparer.createBenchmarkBuilder(), delayPreparation);
+			}
+
 	}
 }

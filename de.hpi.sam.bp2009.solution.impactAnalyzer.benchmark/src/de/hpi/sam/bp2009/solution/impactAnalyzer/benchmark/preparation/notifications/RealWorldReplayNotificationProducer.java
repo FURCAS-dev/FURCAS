@@ -16,13 +16,6 @@ import org.eclipse.emf.common.notify.Notification;
  * @author Manuel Holzleitner (D049667)
  */
 public class RealWorldReplayNotificationProducer implements NotificationProducer {
-    /**
-     * Produces a default list of notifications out of the NGPM model and a
-     * primitive event trace as default
-     */
-    public Collection<RawNotification> produce() {
-    	return produce("shortEventTrace.trace");
-    }
 
     /**
      * Produces a list of notifications out of a trace and model fixture. Therefore this fixtures
