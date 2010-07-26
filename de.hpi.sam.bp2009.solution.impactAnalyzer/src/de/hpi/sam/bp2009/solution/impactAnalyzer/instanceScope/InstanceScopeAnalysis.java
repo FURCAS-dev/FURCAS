@@ -60,7 +60,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
  * from the one it returned before the change event occurred. An instance of this class manages the analysis for all expression
  * occuring within one root OCL expression, including the expressions reachable in operation body expressions where the operation
  * may be called directly of indirectly by the root expression.
- * 
+ *
  */
 public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
@@ -80,7 +80,7 @@ public class InstanceScopeAnalysis {
      * implemented by the <code>oppositeEndFinder</code>'s
      * {@link OppositeEndFinder#getAllInstancesSeeing(EClass, org.eclipse.emf.common.notify.Notifier)} method, the elements
      * returned can "see" <code>container</code>.
-     * 
+     *
      * @param cls
      *            the overall context type for the entire expression; this context type defines the type for <tt>self</tt> if used
      *            outside of operation bodies.
@@ -156,18 +156,16 @@ public class InstanceScopeAnalysis {
      *            invoked for model elements; using this cache avoids redundant path calculations for common subexpressions, such
      *            as operation bodies called by several expressions.
      */
-    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder) {
-        if (exprContext == null) {
-            throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
-        }
-        if (expression == null || filterSynthesizer == null) {
-            throw new IllegalArgumentException("Arguments must not be null");
-        }
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder) {
+        if (exprContext == null)
+	    throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
+        if (expression == null || filterSynthesizer == null)
+	    throw new IllegalArgumentException("Arguments must not be null");
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
-        this.context = exprContext;
+        context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
         this.oppositeEndFinder = oppositeEndFinder;
-        this.pathCache = new PathCache(oppositeEndFinder);
+        pathCache = new PathCache(oppositeEndFinder, reverseOppositeEndFinder);
     }
 
     public Collection<EObject> getContextObjects(Notification event) {
@@ -234,7 +232,7 @@ public class InstanceScopeAnalysis {
                 value = event.getOldValue();
             }
             if (value instanceof EObject) {
-                Collection<Object> featureValueAsObjectCollection = Collections.singletonList((Object) value);
+                Collection<Object> featureValueAsObjectCollection = Collections.singletonList(value);
                 EClass valuesClass = ((EObject) value).eClass();
                 addAllPossibleContextsIfNonEmptyDelta(featureValueAsObjectCollection, result, event, valuesClass);
             }
@@ -272,10 +270,10 @@ public class InstanceScopeAnalysis {
      * the expression value didn't change based on the change event. If any of the events is an event of different type or the
      * attribute is not of primitive type or its value is not compared to a constant, <tt>false</tt> is returned.
      * <p>
-     * 
+     *
      * Note that further performance improvements are conceivable but not yet implemented. For example, the attribute call
      * expression may be used in a <tt>let</tt>-expression and then the variable may be compared to a primitive literal.
-     * 
+     *
      * @param replacementFor__TEMP__
      *            as a special case, expressions can contain the special string literal "__TEMP__" (see
      *            GlobalDelayedReferenceResolver.TEMPORARY_QUERY_PARAM_REPLACEMENT). Those will be replaced by the value of a
@@ -285,9 +283,8 @@ public class InstanceScopeAnalysis {
      */
     public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(Notification changeEvent,
             String replacementFor__TEMP__) {
-        if (!NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
-            return false;
-        }
+        if (!NotificationHelper.isAttributeValueChangeEvent(changeEvent))
+	    return false;
         Set<? extends NavigationCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
         if (calls.size() == 0) {
             // this is likely to be dead code because if the filter synthesis works correctly,
@@ -319,13 +316,11 @@ public class InstanceScopeAnalysis {
                     }
                     if (otherArgument != null && otherArgument instanceof PrimitiveLiteralExp) {
                         if (doesComparisonResultChange(changeEvent, (PrimitiveLiteralExp) otherArgument, replacementFor__TEMP__,
-                                op.getReferredOperation().getName(), attributeIsParameter)) {
-                            return false;
-                        }
-                    } else {
-                        // attribute not used in comparison operation; we assume a change
+                                op.getReferredOperation().getName(), attributeIsParameter))
+			    return false;
+                    } else
+			// attribute not used in comparison operation; we assume a change
                         return false;
-                    }
                 }
             }
 
@@ -354,9 +349,8 @@ public class InstanceScopeAnalysis {
                 value = ((IntegerLiteralExp) otherArgument).getIntegerSymbol();
             } else if (otherArgument instanceof RealLiteralExp) {
                 value = ((RealLiteralExp) otherArgument).getRealSymbol();
-            } else {
-                throw new RuntimeException("Internal error. Unknown OCL primitive literal expression " + otherArgument);
-            }
+            } else
+		throw new RuntimeException("Internal error. Unknown OCL primitive literal expression " + otherArgument);
             int oldComparison = (attributeIsParameter ? ((Comparable<Object>) value).compareTo(avce.getOldValue())
                     : ((Comparable<Object>) avce.getOldValue()).compareTo(value));
             int newComparison = (attributeIsParameter ? ((Comparable<Object>) value).compareTo(avce.getNewValue())
@@ -414,7 +408,7 @@ public class InstanceScopeAnalysis {
     /**
      * Looks up <tt>exp</tt> in {@link #expressionToStep}. If not found, the respective {@link Tracer} is created and used to
      * compute and then cache the required {@link NavigationStep}.
-     * 
+     *
      * @param context
      *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
@@ -463,10 +457,9 @@ public class InstanceScopeAnalysis {
                             + o));
                 }
             }
-        } else {
-            throw new RuntimeException("Can only handle PropertyCallExp and OppositePropertyCallExp expression types, not "+
+        } else
+	    throw new RuntimeException("Can only handle PropertyCallExp and OppositePropertyCallExp expression types, not "+
                     attributeOrAssociationEndCall.getClass().getName());
-        }
         return result;
     }
 
