@@ -27,7 +27,7 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
     @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
-    if(task.activate()){
+    	if(task.activate()){
 		try {
 		    // Warmup
 		    for (int i = 0; i < ProcessingOptions.getNumberOfWarmUps(); i++) {

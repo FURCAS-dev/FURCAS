@@ -12,7 +12,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.Shr
 public class BenchmarkNotificationPreparer {
 
     public static Collection<RawNotification> prepareRealWorldReplayNotification(){
-    	return new RealWorldReplayNotificationProducer().produce();
+    	return new RealWorldReplayNotificationProducer().produce("modifyElementaryTypesEventTrace.trace");
     }
 
     public static Collection<NotificationForModelList> prepareModelSizeVariationNotification(){
@@ -25,7 +25,7 @@ public class BenchmarkNotificationPreparer {
 	for(Resource model : resourceProvider.getAllResourcesFromLargeToSmall()){
 	    System.out.println("\t\t\tCreate notifications for resource: " + model.getURI().toString());
 
-	    Collection<RawNotification> notiList = new RealWorldReplayNotificationProducer().produce("shortEventTrace.trace");
+	    Collection<RawNotification> notiList = new RealWorldReplayNotificationProducer().produce("modifyElementaryTypesEventTrace.trace");
 	    System.out.println("\t\t\t\t " + notiList.size() + " created");
 
 	    result.add(new NotificationForModelList(model, (List<RawNotification>)notiList));

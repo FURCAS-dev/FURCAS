@@ -44,7 +44,7 @@ public class RawNotification {
 
 
 	public boolean isSplitCandidate(){
-	    return getEventType().equals(LINK_ADD_EVENT) || getEventType().equals(LINK_ADD_EVENT);
+	    return getEventType().equals(LINK_ADD_EVENT) || getEventType().equals(LINK_REMOVE_EVENT);
 	}
 
 	public boolean wasSplitted(){
@@ -143,10 +143,17 @@ public class RawNotification {
         	EObject obj2 = resource.getEObject(mofId2);
 
         	if(obj1 != null && obj2 != null){
-        	    if(wasSplitted() && getSplitNumber() == 0)
-			return createLinkRemoveNotification(obj1, obj2);
-		    else if(wasSplitted() && getSplitNumber() == 1)
-			return createLinkRemoveNotification(obj2, obj1);
+        	//	System.out.println("Both not null");
+        		
+        	    if(wasSplitted() && getSplitNumber() == 0){
+        	 //   	System.out.println("Split" + 0);
+        	    	return createLinkRemoveNotification(obj1, obj2);
+        	    }
+        	   else if(wasSplitted() && getSplitNumber() == 1){
+        	//	   System.out.println("Split" + 1);
+        		   return createLinkRemoveNotification(obj2, obj1);
+        	   }
+        		   
 		    else
 			return null;
         	}
@@ -158,14 +165,23 @@ public class RawNotification {
 
         	String mofId2 = getAttributeMap().get("MRI2").split("#")[1];
         	EObject obj2 = resource.getEObject(mofId2);
+        	
+        	String rolename1 = getAttributeMap().get("AE2");
+        	String rolename2 = getAttributeMap().get("AE3");
 
         	if(obj1 != null && obj2 != null){
-        	    if(wasSplitted() && getSplitNumber() == 0)
-			return createLinkAddNotification(obj1, obj2);
-		    else if(wasSplitted() && getSplitNumber() == 1)
-			return createLinkAddNotification(obj2, obj1);
-		    else
-			return null;
+        	//	System.out.println("Both not null");
+        		
+        	    if(wasSplitted() && getSplitNumber() == 0){
+        	 //   	System.out.println("Split" + 0);
+        	    	return createLinkAddNotification(obj1, obj2, rolename1, rolename2);
+        	    }        	    	
+        	    else if(wasSplitted() && getSplitNumber() == 1){
+        	 //   	System.out.println("Split" + 1);
+        	    	return createLinkAddNotification(obj2, obj1, rolename2, rolename1);
+        	    }
+        	    else
+        	    	return null;
         	}
             }else if(getEventType().equals(ELEMENT_DELETE_EVENT)){
         	//System.out.println("ElementDeleteEvent");
@@ -246,28 +262,25 @@ public class RawNotification {
 			return NotificationHelper.createReferenceRemoveNotification(obj1, reference, obj2);
 		}
 	    }else if(obj1.eGet(reference).equals(obj2))
-		return NotificationHelper.createReferenceRemoveNotification(obj1, reference, obj2);
+	    	return NotificationHelper.createReferenceRemoveNotification(obj1, reference, obj2);
 	}
 	}
 
 	return null;
     }
 
-    private Notification createLinkAddNotification(EObject obj1, EObject obj2) {
+    private Notification createLinkAddNotification(EObject obj1, EObject obj2, String rolename1, String rolename2) {
+    	Notification result = null;
 	for(EReference reference : obj1.eClass().getEAllReferences()){
-	if(obj1.eGet(reference) != null){
-	    if(obj1.eGet(reference) instanceof EList){
-	        @SuppressWarnings("unchecked")
-	            EList<EObject> eObjectList = (EList<EObject>)obj1.eGet(reference);
-		for(EObject referencedObj : eObjectList){
-		    if(referencedObj.equals(obj2))
-			return NotificationHelper.createReferenceAddNotification(obj1, reference, obj2);
+		if(reference.getEType().isInstance(obj2)){
+			//System.out.println("Match1");
+			if(reference.getName().equals(rolename1) || reference.getName().equals(rolename2)){
+				//System.out.println("Match2");
+				result = NotificationHelper.createReferenceAddNotification(obj1, reference, obj2);
+			}
 		}
-	    }else if(obj1.eGet(reference).equals(obj2))
-		return NotificationHelper.createReferenceAddNotification(obj1, reference, obj2);
-	}
 	}
 
-	return null;
+	return result;
     }
 }
