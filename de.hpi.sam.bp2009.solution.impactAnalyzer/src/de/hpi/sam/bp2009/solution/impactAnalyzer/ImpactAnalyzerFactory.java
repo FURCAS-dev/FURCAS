@@ -9,9 +9,9 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerFactoryImpl;
 
 public interface ImpactAnalyzerFactory {
     static final ImpactAnalyzerFactory INSTANCE = new ImpactAnalyzerFactoryImpl();
-    
+
     ImpactAnalyzer createImpactAnalyzer(OCLExpression expression);
     ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context);
-    ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder);
-    ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, OppositeEndFinder oppositeEndFinder);
+    ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder);
+    ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, OppositeEndFinder oppositeEndFinder,  OppositeEndFinder reverseOppositeEndFinder);
 }

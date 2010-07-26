@@ -21,13 +21,13 @@ public class ImpactAnalyzerFactoryImpl implements ImpactAnalyzerFactory {
     }
 
     @Override
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder) {
-        return new ImpactAnalyzerImpl(expression, context, oppositeEndFinder);
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder) {
+        return new ImpactAnalyzerImpl(expression, context, oppositeEndFinder, reverseOppositeEndFinder);
     }
 
     @Override
-    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, OppositeEndFinder oppositeEndFinder) {
-        return new ImpactAnalyzerImpl(expression, oppositeEndFinder);
+    public ImpactAnalyzer createImpactAnalyzer(OCLExpression expression, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder) {
+        return new ImpactAnalyzerImpl(expression, oppositeEndFinder, reverseOppositeEndFinder);
     }
 
 }

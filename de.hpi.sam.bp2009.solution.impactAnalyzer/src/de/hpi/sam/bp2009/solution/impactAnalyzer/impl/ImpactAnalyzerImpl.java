@@ -26,6 +26,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     private boolean needToInferContextType;
     private EClass context;
     private final OppositeEndFinder oppositeEndFinder;
+    private final OppositeEndFinder reverseOppositeEndFinder;
 
     /**
      * Creates a new impact analyzer for the OCL expression given. For event filter synthesis (see
@@ -34,23 +35,24 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      * used, it is inferred on demand using the {@link ContextTypeRetriever}, visiting all subexpressions looking for
      * <code>self</code> occurrences and picking their type.
      * <p>
-     * 
+     *
      * Should you conveniently have the context type available, consider using {@link #ImpactAnalyzerImpl(OCLExpression, EClass)}
      * instead.
      */
     public ImpactAnalyzerImpl(OCLExpression expression) {
-        this(expression, DefaultOppositeEndFinder.getInstance());
+        this(expression, DefaultOppositeEndFinder.getInstance(), DefaultOppositeEndFinder.getInstance());
     }
 
     public ImpactAnalyzerImpl(OCLExpression expression, EClass context) {
-        this(expression, context, DefaultOppositeEndFinder.getInstance());
+        this(expression, context, DefaultOppositeEndFinder.getInstance(), DefaultOppositeEndFinder.getInstance());
     }
 
     /**
      * @param oppositeEndFinder used during partial navigation and for metamodel queries
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, OppositeEndFinder oppositeEndFinder) {
+    public ImpactAnalyzerImpl(OCLExpression expression, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder) {
         this.expression = expression;
+	this.reverseOppositeEndFinder = reverseOppositeEndFinder;
         needToInferContextType = true;
         this.oppositeEndFinder = oppositeEndFinder;
     }
@@ -58,8 +60,9 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     /**
      * @param oppositeEndFinder used during partial navigation and for metamodel queries
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder) {
+    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder) {
         this.expression = expression;
+	this.reverseOppositeEndFinder = reverseOppositeEndFinder;
         needToInferContextType = false;
         this.context = context;
         this.oppositeEndFinder = oppositeEndFinder;
@@ -81,11 +84,11 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
                 context = expression.accept(new ContextTypeRetriever());
                 needToInferContextType = false;
             }
-            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder);
+            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, reverseOppositeEndFinder);
         }
         return instanceScopeAnalysis.getContextObjects(event);
     }
-    
+
     protected OCLExpression getExpression() {
         return expression;
     }
