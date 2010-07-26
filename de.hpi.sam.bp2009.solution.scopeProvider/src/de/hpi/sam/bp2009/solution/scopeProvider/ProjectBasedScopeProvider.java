@@ -12,7 +12,9 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.resource.Resource;
 
 /**
- * Implementation of the ScopeProvider, identifies Forward and BackwardScope via EclipseProject references
+ * Extends {@link ScopeProvider} by operations that define visible scope and scope from where the
+ * "point" repsetented by the scope provider can be seen, as {@link IProject}s. This is a particularly nice
+ * match in case Eclipse project references are used to encode a simple set of visibility rules.
  */
 public interface ProjectBasedScopeProvider extends ScopeProvider {
     /**

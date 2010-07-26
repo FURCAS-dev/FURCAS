@@ -68,26 +68,12 @@ public class PathCache {
      */
     private final OppositeEndFinder oppositeEndFinder;
 
-    /**
-     * A reverse opposite end finder may be used for reverse reference traversal with "backward scope",
-     * meaning against the usual direction of visibility / modularization relationships.
-     * This is in particular required for the traceback of a notifier to the "self" context
-     * of an OCL expression.
-     */
-    private final OppositeEndFinder reverseOppositeEndFinder;
-
-
-    public PathCache(OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder) {
+    public PathCache(OppositeEndFinder oppositeEndFinder) {
         this.oppositeEndFinder = oppositeEndFinder;
-	this.reverseOppositeEndFinder = reverseOppositeEndFinder;
     }
 
     public OppositeEndFinder getOppositeEndFinder() {
         return oppositeEndFinder;
-    }
-
-    public OppositeEndFinder getReverseOppositeEndFinder() {
-	return reverseOppositeEndFinder;
     }
 
     public NavigationStep getPathForNode(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor) {

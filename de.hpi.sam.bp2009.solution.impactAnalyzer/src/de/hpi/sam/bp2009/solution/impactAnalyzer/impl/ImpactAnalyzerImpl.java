@@ -26,7 +26,6 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     private boolean needToInferContextType;
     private EClass context;
     private final OppositeEndFinder oppositeEndFinder;
-    private final OppositeEndFinder reverseOppositeEndFinder;
 
     /**
      * Creates a new impact analyzer for the OCL expression given. For event filter synthesis (see
@@ -40,19 +39,18 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      * instead.
      */
     public ImpactAnalyzerImpl(OCLExpression expression) {
-        this(expression, DefaultOppositeEndFinder.getInstance(), DefaultOppositeEndFinder.getInstance());
+        this(expression, DefaultOppositeEndFinder.getInstance());
     }
 
     public ImpactAnalyzerImpl(OCLExpression expression, EClass context) {
-        this(expression, context, DefaultOppositeEndFinder.getInstance(), DefaultOppositeEndFinder.getInstance());
+        this(expression, context, DefaultOppositeEndFinder.getInstance());
     }
 
     /**
      * @param oppositeEndFinder used during partial navigation and for metamodel queries
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder) {
+    public ImpactAnalyzerImpl(OCLExpression expression, OppositeEndFinder oppositeEndFinder) {
         this.expression = expression;
-	this.reverseOppositeEndFinder = reverseOppositeEndFinder;
         needToInferContextType = true;
         this.oppositeEndFinder = oppositeEndFinder;
     }
@@ -60,9 +58,8 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     /**
      * @param oppositeEndFinder used during partial navigation and for metamodel queries
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder) {
+    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder) {
         this.expression = expression;
-	this.reverseOppositeEndFinder = reverseOppositeEndFinder;
         needToInferContextType = false;
         this.context = context;
         this.oppositeEndFinder = oppositeEndFinder;
@@ -84,7 +81,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
                 context = expression.accept(new ContextTypeRetriever());
                 needToInferContextType = false;
             }
-            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, reverseOppositeEndFinder);
+            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder);
         }
         return instanceScopeAnalysis.getContextObjects(event);
     }

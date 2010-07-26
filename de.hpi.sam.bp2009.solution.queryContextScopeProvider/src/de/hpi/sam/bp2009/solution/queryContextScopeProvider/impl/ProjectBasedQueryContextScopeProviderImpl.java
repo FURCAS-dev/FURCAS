@@ -32,7 +32,8 @@ import de.hpi.sam.bp2009.solution.scopeProvider.impl.ProjectBasedScopeProviderIm
  * </ul>
  * </p>
  */
-public class ProjectBasedQueryContextScopeProviderImpl extends ProjectBasedScopeProviderImpl implements ProjectBasedQueryContextScopeProvider {
+public class ProjectBasedQueryContextScopeProviderImpl extends ProjectBasedScopeProviderImpl
+implements ProjectBasedQueryContextScopeProvider {
  
     protected ProjectBasedQueryContextScopeProviderImpl() {
         super();

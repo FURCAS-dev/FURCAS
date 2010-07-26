@@ -89,7 +89,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
     
     public Collection<IProject> getInitialProjects() {
-
         return initialProjects;
     }
 
@@ -173,9 +172,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             if (converter == null) {
                 converter = URIConverter.INSTANCE;
             }
-            /*
-             * update inMemory Resources
-             */
+            // update inMemory Resources
             Collection<Resource> inmem = getInMemoryResources();
             inmem.add(res);
             setInMemoryResources(inmem);
@@ -185,7 +182,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
                 initialProjects.add(project);
             }
         }
-
     }
 
     private void setupForResourceSets(List<ResourceSet> list) {

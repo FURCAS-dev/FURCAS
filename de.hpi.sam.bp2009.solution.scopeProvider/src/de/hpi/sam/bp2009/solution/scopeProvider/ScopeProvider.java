@@ -10,13 +10,21 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
+ * Defines the basics of a component model for EMF models, defining visibility rules. An instance of a class
+ * implementing this interface represents a view from some specific "point" in the EMF universe. This "point"
+ * could be an {@link EObject} or a {@link Resource}, for example. The scope provider can then tell which other
+ * model areas are visible from this "point," either as an explicit list of individual {@link EObject}s or
+ * more coarse-grained, as a set of resource {@link URI}s (see {@link #getForwardScopeAsEObjects()} and
+ * {@link #getForwardScopeAsURIs()}, respectively).<p>
  * 
- * ScopeProvider tries to load all resources from the referenced projects with an XMIResourceImpl. Attention: No instance equality
- * provided, when resources are not in the inMemory list.
+ * Similarly, the scope provider that defines the view from a specific "point" can also be asked for the
+ * reverse visibility relationship: "From where is the point represented by the scope provider visible?".
+ * This is possible with the {@link #getBackwardScopeAsEObjects()} and {@link #getBackwardScopeAsURIs()}.
  * 
- * @author tobias.hoppe
+ * @author Tobias Hoppe, Axel Uhl
  * 
  */
 public interface ScopeProvider {

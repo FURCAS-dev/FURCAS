@@ -156,7 +156,7 @@ public class InstanceScopeAnalysis {
      *            invoked for model elements; using this cache avoids redundant path calculations for common subexpressions, such
      *            as operation bodies called by several expressions.
      */
-    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, OppositeEndFinder reverseOppositeEndFinder) {
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder) {
         if (exprContext == null)
 	    throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
         if (expression == null || filterSynthesizer == null)
@@ -165,7 +165,7 @@ public class InstanceScopeAnalysis {
         context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
         this.oppositeEndFinder = oppositeEndFinder;
-        pathCache = new PathCache(oppositeEndFinder, reverseOppositeEndFinder);
+        pathCache = new PathCache(oppositeEndFinder);
     }
 
     public Collection<EObject> getContextObjects(Notification event) {

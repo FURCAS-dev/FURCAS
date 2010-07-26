@@ -29,8 +29,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 
 /**
@@ -409,7 +409,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
     @Test
     public void testFilterConsistencyClassBased() {
         for(ExpressionInOCL exp : this.stmts){
-            EventFilter f = new ImpactAnalyzerImpl((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType()).createFilterForExpression(true);
+            EventFilter f = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType()).createFilterForExpression(true);
             assertAllReferencesInPackage(f, this.comp);
             assertAllClassesOfClassFiltersInPackage(f, this.comp);
         }
@@ -426,7 +426,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
             }
         };
         EventManager eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
-        EventFilter filter = new ImpactAnalyzerImpl((OCLExpression) getSimpleAllInstancesAST().getBodyExpression())
+        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) getSimpleAllInstancesAST().getBodyExpression())
                 .createFilterForExpression(/* notifyNewContextElements */ false);
         eventManager.subscribe(filter, listener);
         
@@ -492,7 +492,7 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
         HashSet<ExpressionInOCL> affectedStmts = new HashSet<ExpressionInOCL>();
         for (Iterator<ExpressionInOCL> i = statements.iterator(); i.hasNext();) {
             ExpressionInOCL exp = i.next();
-            EventFilter filter = new ImpactAnalyzerImpl((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType()).createFilterForExpression(true);
+            EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) exp.getBodyExpression(), (EClass) exp.getContextVariable().getType()).createFilterForExpression(true);
             if (filter.matchesFor(noti)) {
                 affectedStmts.add(exp);
             }

@@ -86,7 +86,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
                         getInnermostElementType(sourceType), getExpression());
             } else {
                 reverseTraversal = new OppositePropertyNavigationStep(forwardRef.getEReferenceType(), (EClass) getExpression()
-                        .getSource().getType(), forwardRef, getExpression(), pathCache.getReverseOppositeEndFinder());
+                        .getSource().getType(), forwardRef, getExpression(), pathCache.getOppositeEndFinder());
             }
             return pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(), reverseTraversal,
                     sourceStep);

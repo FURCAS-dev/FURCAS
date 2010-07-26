@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.ExpressionInOCL;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -28,8 +29,8 @@ import company.Employee;
 import company.Freelance;
 import company.Student;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 
 /**
@@ -923,6 +924,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         this.div.setName("Div1");
         this.rs = new ResourceSetImpl();
         Resource r = this.rs.createResource(URI.createURI("http://rev/path/computation/test"));
+        r.eAdapters().add(new ECrossReferenceAdapter());
         this.rs.getResources().add(r);
         r.getContents().add(this.div);
 
@@ -1017,7 +1019,7 @@ public class RevPathComputationTest extends BaseDepartmentTest {
      * @return a Collection of {@link EObject}s representing the affected context instances.
      */
     private Collection<EObject> computeAffectedInstances(ExpressionInOCL eiocl, Notification noti) {
-        return new ImpactAnalyzerImpl((OCLExpression) eiocl.getBodyExpression(), (EClass) eiocl.getContextVariable().getType())
+        return ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) eiocl.getBodyExpression(), (EClass) eiocl.getContextVariable().getType())
                 .getContextObjects(noti);
     }
 
