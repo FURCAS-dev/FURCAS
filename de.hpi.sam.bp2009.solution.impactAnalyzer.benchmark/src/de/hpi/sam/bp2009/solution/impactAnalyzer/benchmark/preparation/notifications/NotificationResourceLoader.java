@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
@@ -23,10 +24,12 @@ public class NotificationResourceLoader {
         ResourceSetImpl resultRS;
         resultRS = new ResourceSetImpl();
         resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-
+        ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
+        resultRS.eAdapters().add(adapter);
+        
         InputStream fileStream = RealWorldReplayNotificationProducer.class.getResourceAsStream(resourcePath);
         XMLResource instanceResource = readResourceOutOfStream(fileStream, resultRS);
-
+        
         return instanceResource;
     }
 
