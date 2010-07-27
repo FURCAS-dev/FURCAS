@@ -53,9 +53,9 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     	if(notification != null) {
     		EventFilter filter = ia.createFilterForExpression(false);
     		if(filter.matchesFor(notification)){
-    			additionalInformation.put("filtered", String.valueOf(1));
+    			additionalInformation.put("filtered", "TRUE");
     		}else{
-    			additionalInformation.put("filtered", String.valueOf(0));
+    			additionalInformation.put("filtered", "FALSE");
     		}
     	}    	
 
