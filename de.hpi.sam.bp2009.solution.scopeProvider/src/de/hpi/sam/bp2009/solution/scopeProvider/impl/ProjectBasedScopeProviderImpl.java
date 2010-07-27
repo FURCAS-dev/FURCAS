@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicEList;
@@ -106,6 +107,20 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return result;
     }
 
+    public Collection<URI> getInMemoryResourceURIs() {
+        Collection<URI> result = new BasicEList<URI>();
+        if (inMemoryResourceList == null) {
+            return result;
+        }
+        for (WeakReference<Resource> ref : inMemoryResourceList) {
+            Resource r = ref.get();
+            if (r != null) {
+                result.add(r.getURI());
+            }
+        }
+        return result;
+    }
+
     public void setInMemoryResources(Collection<Resource> resources) {
         inMemoryResourceList = new ArrayList<WeakReference<Resource>>();
         for (Resource r : resources) {
@@ -123,7 +138,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     public Collection<URI> getForwardScopeAsURIs() {
-        return scopeAsUris(getForwardScopeAsResources());
+        return scopeAsUris(getForwardScopeAsProjects());
     }
 
     public Collection<EObject> getForwardScopeAsEObjects() {
@@ -141,7 +156,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     public Collection<URI> getBackwardScopeAsURIs() {
-        return scopeAsUris(getBackwardScopeAsResources());
+        return scopeAsUris(getBackwardScopeAsProjects());
     }
 
     public Collection<EObject> getBackwardScopeAsEObjects() {
@@ -207,7 +222,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             e.printStackTrace();
         }
         IResource member = project.findMember("model", true);
-        project.getLocation().toFile().listFiles();
         if (member == null || !(member instanceof IFolder)){
             System.err.println("WARNING!!"+ project.getName() + " does not contain a model folder. It is invalid.");
 //            throw new IllegalArgumentException(project.getName() + " does not contain a model folder. It is invalid.");
@@ -218,36 +232,45 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     private Set<Resource> getAllResourcesFromDirectory(IFolder modelDirectory) throws CoreException {
         final Set<Resource> resources = new HashSet<Resource>();
+        // FIXME this is probably too expensive to do upon each query / scope determination
         for (IResource f : modelDirectory.members()) {
-            boolean successful = checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI.createURI(f.getLocationURI()
-                        .toString()));
-
-            if (successful)
-                addNewOrInMemoryResource(resources, URI.createURI(f.getLocationURI().toString()),f.getFileExtension());
-
+//            boolean successful = checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI.createURI(f.getLocationURI()
+//                        .toString()));
+//
+//            if (successful)
+            IProject project = f.getProject();
+            IPath projectRelativePath = f.getProjectRelativePath();
+            URI uri = URI.createURI("platform:/resource/"+project.getName()+"/"+projectRelativePath.toString());
+            addNewOrInMemoryResource(resources, uri, f.getFileExtension());
         }
-
         return resources;
     }
 
     private IProject getProjectForResource(Resource res, URIConverter converter) throws IllegalArgumentException {
+        final String platformResourceURIPrefix = "platform:/resource/";
         URI uri = converter.normalize(res.getURI());
-        java.net.URI netUri = java.net.URI.create(uri.toString());
         IProject project = null;
         
-        if(Platform.isRunning()){
-        IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
-            for (IFile file : ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(netUri)) {
-                project = file.getProject();
+        if (Platform.isRunning()) {
+            if (uri.isPlatformResource()) {
+                String uriAsString = uri.toString();
+                String projectName = uriAsString.substring(
+                        platformResourceURIPrefix.length(), uriAsString.indexOf('/', platformResourceURIPrefix.length()+1));
+                project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
             }
-            for (IContainer c : result)
-                if (c instanceof IProject)
-                    project = (IProject) c;
-            /*
-             * TODO Think about a better way for resource without projects
-             */
-            // if(project==null)
-            // throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
+            if (project == null) {
+                java.net.URI netUri = java.net.URI.create(uri.toString());
+                IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
+                for (IFile file : ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(netUri)) {
+                    project = file.getProject();
+                }
+                for (IContainer c : result)
+                    if (c instanceof IProject)
+                        project = (IProject) c;
+                // TODO Think about a better way for resource without projects
+                // if(project==null)
+                // throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
+            }
         }else{
         	workSpaceClosedWarning();
         }
@@ -267,6 +290,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
      */
     private void addNewOrInMemoryResource(final Set<Resource> resources, URI uri, String extension) {
         Resource inMemory = null;
+        // FIXME this comparison doesn't work for a file: URI compared to a platform: URI pointing to the same file
         for (Resource r : getInMemoryResources())
             if (uri.equals(r.getURI()))
                 inMemory = r;
@@ -275,14 +299,14 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
                     System.err.println("WARNING!! New ResourceSet created for \""+uri+"\". This is usually unexpected");
                     resources.add(new ResourceSetImpl().getResource(uri, true));
                 }else{
-                    resources.add(rs.getResource(uri, true));
+                    resources.add(rs.getResource(uri, /* loadOnDemand */ true));
                 }
         }else{
             resources.add(inMemory);
         }
     }
 
-    private Collection<IProject> scopeAsProjects(Boolean forward) {
+    private Collection<IProject> scopeAsProjects(boolean forward) {
 		Collection<IProject> result = new BasicEList<IProject>();
 		Collection<IProject> pool = new ArrayList<IProject>();
 
@@ -329,13 +353,34 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         return result;
     }
 
-    private Collection<URI> scopeAsUris(Collection<Resource> resources) {
-        Collection<URI> result = new BasicEList<URI>();
-        for (Resource res : resources) {
-            if (res.getURI() != null)
-                result.add(res.getURI());
+    private Collection<URI> scopeAsUris(Collection<IProject> projects) throws IllegalArgumentException {
+        Collection<URI> result = new HashSet<URI>();
+        for (IProject project : projects) {
+            IFolder modelDir = getModelDirectoryFromProject(project);
+            if(modelDir==null){
+                continue;
+            }
+            try {
+                result.addAll(getAllResourceURIsFromDirectory(modelDir));
+            } catch (CoreException e) {
+                // TODO Add Exception to an intern array of errors
+                e.printStackTrace();
+            }
         }
+        result.addAll(getInMemoryResourceURIs());
+
         return result;
+    }
+
+    private Collection<URI> getAllResourceURIsFromDirectory(IFolder modelDir) throws CoreException {
+        final Set<URI> uris = new HashSet<URI>();
+        for (IResource f : modelDir.members()) {
+            IProject project = f.getProject();
+            IPath projectRelativePath = f.getProjectRelativePath();
+            URI uri = URI.createURI("platform:/resource/"+project.getName()+"/"+projectRelativePath.toString());
+            uris.add(uri);
+        }
+        return uris;
     }
 
     private Collection<EObject> scopeAsEObjects(Collection<Resource> resources) {
@@ -371,7 +416,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
      * @throws CoreException
      */
     private Collection<IProject> recursiveGetReferenceProjectsForProjects(IProject project,
-            Collection<IProject> referencedProjects, Collection<IProject> pool, Boolean forward) throws CoreException {
+            Collection<IProject> referencedProjects, Collection<IProject> pool, boolean forward) throws CoreException {
         /*
          * referencing in both directions is reflexive
          */
@@ -393,44 +438,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             recursiveGetReferenceProjectsForProjects(referenced, referencedProjects, pool, forward);
         }
         return referencedProjects;
-    }
-
-    /**
-     * @param resource
-     * @param successful
-     * @return
-     */
-    private boolean checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI uri) {
-        Boolean successful = false;
-
-        ResourceSet load_resourceSet = new ResourceSetImpl();
-
-        /*
-         * Register XML Factory implementation using DEFAULT_EXTENSION
-         */
-        //Resource.Factory.Registry.INSTANCE.getFactory(uri);
-        //load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
-        /*
-         * Load the resource using the URI
-         */
-        try {
-            Resource r = load_resourceSet.getResource(uri, true);
-
-        /*
-         * FIXME, it is not clear if the LocationURI is the best one to give here, consider using an inputstream
-         */
-        
-            r.load(null);
-            successful = true;
-            if (r.getErrors().size() > 0)
-                successful = false;
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-
-
-        return successful;
     }
 
     private Collection<EObject> iteratorToCollection(Iterator<?> treeIterator) {

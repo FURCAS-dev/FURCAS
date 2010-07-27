@@ -206,7 +206,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         ResourceSet resourceSet = new ResourceSetImpl();
         resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
         resourceSet.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
-        Resource resource = resourceSet.createResource(URI.createURI(folder3.getRawLocationURI().toString() + "/test1.xmi"));
+        Resource resource = resourceSet.createResource(URI.createURI(getFolderAsPlatformURI(folder3) + "/test1.xmi"));
 
         resource.getContents().add(PetriNetFactory.eINSTANCE.createPlace());
 
@@ -220,7 +220,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Resource resource1 = resourceSet.createResource(URI.createURI(folder3.getRawLocationURI().toString() + "/test2.xmi"));
+        Resource resource1 = resourceSet.createResource(URI.createURI(getFolderAsPlatformURI(folder3) + "/test2.xmi"));
 
         // RandomGeneratorFactory.eINSTANCE.createRandomGenerator().generateRandomModel(1, resource1,metaModel);
         resource1.getContents().add(PetriNetFactory.eINSTANCE.createPlace());
@@ -241,6 +241,10 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         c.r2 = resource1;
         return c;
 
+    }
+
+    private String getFolderAsPlatformURI(IFolder folder) {
+        return "platform:/resource/"+folder.getProject().getName()+"/"+folder.getProjectRelativePath().toString();
     }
 
     /**
@@ -451,7 +455,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.addAll(iteratorToCollection(c2.r2.getAllContents()));
 
         Collection<EObject> scope = getFixture().getForwardScopeAsEObjects();
-        assertTrue(result.size() == scope.size());
+        assertEquals(result.size(), scope.size());
     }
 
     /**
@@ -469,7 +473,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.addAll(iteratorToCollection(c2.r1.getAllContents()));
         result.addAll(iteratorToCollection(c2.r2.getAllContents()));
         Collection<EObject> scope = getFixture().getForwardScopeAsEObjects();
-        assertTrue(result.size() == scope.size());
+        assertEquals(result.size(), scope.size());
     }
 
     /**
@@ -506,7 +510,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         // FIXME
         // getFixture().setInMemoryResources(result);
         Collection<Resource> scope = getFixture().getForwardScopeAsResources();
-        assertTrue(scope.size() == result.size());
+        assertEquals(scope.size(), result.size());
     }
 
     /**
@@ -524,7 +528,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.add(c2.r2);
         // FIXME getFixture().setInMemoryResources(result);
         Collection<Resource> scope = getFixture().getForwardScopeAsResources();
-        assertTrue(scope.size() == result.size());
+        assertEquals(scope.size(), result.size());
     }
 
     /**
@@ -581,7 +585,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.addAll(iteratorToCollection(c2.r1.getAllContents()));
         result.addAll(iteratorToCollection(c2.r2.getAllContents()));
         Collection<EObject> scope = getFixture().getBackwardScopeAsEObjects();
-        assertTrue(result.size() == scope.size());
+        assertEquals(result.size(), scope.size());
     }
 
     /**
@@ -599,7 +603,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.addAll(iteratorToCollection(c1.r1.getAllContents()));
         result.addAll(iteratorToCollection(c1.r2.getAllContents()));
         Collection<EObject> scope = getFixture().getBackwardScopeAsEObjects();
-        assertTrue(result.size() == scope.size());
+        assertEquals(result.size(), scope.size());
     }
 
     /**
@@ -654,7 +658,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.add(c2.r2);
         // FIXME getFixture().setInMemoryResources(result);
         Collection<Resource> scope = getFixture().getBackwardScopeAsResources();
-        assertTrue(scope.size() == result.size());
+        assertEquals(scope.size(), result.size());
     }
 
     /**
@@ -672,7 +676,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         result.add(c1.r2);
         // FIXME getFixture().setInMemoryResources(result);
         Collection<Resource> scope = getFixture().getBackwardScopeAsResources();
-        assertTrue(scope.size() == result.size());
+        assertEquals(scope.size(), result.size());
     }
 
     /**
