@@ -8,6 +8,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -60,7 +61,10 @@ public class ModelCloner {
 		ResourceSetImpl resultRS;
 	    resultRS = new ResourceSetImpl();
 	    resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
-   
+        
+	    ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
+        resultRS.eAdapters().add(adapter);
+	   
 		Resource clone = resultRS.createResource(uri);
 
 		Copier copier = new Copier();
