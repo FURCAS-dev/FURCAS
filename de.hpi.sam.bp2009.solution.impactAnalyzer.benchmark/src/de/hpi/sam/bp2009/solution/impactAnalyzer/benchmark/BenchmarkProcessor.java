@@ -40,6 +40,7 @@ public class BenchmarkProcessor {
 	    options.addOption("o", "output", true, "Output file destination (required)");
 	    options.addOption("j", "jobs", true, "Number of parallel jobs for benchmarking. Default is 1");
 	    options.addOption("d", "delayprep",true, "Delay preparation of benchmark task (true/false)");
+	    options.addOption("e", "excdump", true, "An exception dump file will be written to the specified path");
 	    options.addOption("h", "help", false, "Show this help");
 
 	    CommandLineParser parser = new PosixParser();
@@ -51,8 +52,8 @@ public class BenchmarkProcessor {
 	    }else{
 	    int numberOfJobs = cmd.hasOption("j") ? Integer.parseInt(cmd.getOptionValue("j")) : 1;
 	    boolean delayPreparation = cmd.hasOption("d") ? Boolean.parseBoolean(cmd.getOptionValue("d")) : false;
-		
-	    start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"),  numberOfJobs, delayPreparation);
+
+	    start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"),  numberOfJobs, delayPreparation, cmd.getOptionValue("e"));
 	    }
 
 	} catch (ParseException e) {
@@ -60,18 +61,18 @@ public class BenchmarkProcessor {
 	}
     }
 
-    	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs, boolean delayPreparation) {
+    	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs, boolean delayPreparation, String dumpFilePath) {
     	    	System.out.println("Impact Analysis Benchmark started with " + warmUps + " warm-ups and " + measures + " measures per benchmark task");
-    	    	
+
     	    	ProcessingOptions.setNumberOfWarmUps(warmUps);
     	    	ProcessingOptions.setNumberOfMeasures(measures);
     	    	if(numberOfJobs > 1){
     	    		System.out.println("Started in parallel mode with " + numberOfJobs + " jobs");
     	    		ProcessingOptions.setNumberOfJobs(numberOfJobs);
     	    	}
-    	    	
-    	    	OutputOptions.setOutputPath(outputPath);
 
+    	    	OutputOptions.setOutputPath(outputPath);
+    	    	OutputOptions.setExceptionDumpFilePath(dumpFilePath);
 
 			// Preparing
 			// Processing
