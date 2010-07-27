@@ -33,8 +33,7 @@ public class BenchmarkExecutionProcessor {
 	
 	if(stepwise){
 		while(builder.hasNext()){
-			Queue<BenchmarkTaskContainer> containerList = builder.next();
-			performBenchmarks(executor, writer, containerList);
+			performBenchmarks(executor, writer, builder);
 		}
 	}else{
 		Queue<BenchmarkTaskContainer> containerList = builder.buildAll();
@@ -78,12 +77,8 @@ public class BenchmarkExecutionProcessor {
     	BenchmarkResultWriter writer = new BenchmarkResultWriter();	
     
     	if(stepwise){
-	    	while(builder.hasNext()){
-	    		ConcurrentLinkedQueue<BenchmarkTaskContainer> concurrentContainerList = new ConcurrentLinkedQueue<BenchmarkTaskContainer>();
-	    		concurrentContainerList.addAll(builder.next());
-	    	
-	    		performParallelBenchmarks(executor, numberOfParallelJobs, concurrentContainerList, writer);    	
-	    	}
+	    	performParallelBenchmarks(executor, numberOfParallelJobs, builder, writer);    	
+
     	}else{
     		ConcurrentLinkedQueue<BenchmarkTaskContainer> concurrentContainerList = new ConcurrentLinkedQueue<BenchmarkTaskContainer>();
     		concurrentContainerList.addAll(builder.buildAll());
@@ -101,12 +96,13 @@ public class BenchmarkExecutionProcessor {
 	private static void performParallelBenchmarks(
 			BenchmarkExecutor executor,
 			int numberOfParallelJobs,
-			ConcurrentLinkedQueue<BenchmarkTaskContainer> concurrentContainerList,
+			Queue<BenchmarkTaskContainer> containerList,
 			BenchmarkResultWriter writer) {
+		
 		ArrayList<Job> jobList = new ArrayList<Job>();
     	
     	for(int i = 0; i < numberOfParallelJobs; i++){     		
-    		jobList.add(new BenchmarkExecutionJob("BenchmarkJobNo" + i, executor, concurrentContainerList, writer));
+    		jobList.add(new BenchmarkExecutionJob("BenchmarkJobNo" + i, executor, containerList, writer));
     	}
     	for(Job jobToSchedule : jobList){
     		jobToSchedule.schedule();
