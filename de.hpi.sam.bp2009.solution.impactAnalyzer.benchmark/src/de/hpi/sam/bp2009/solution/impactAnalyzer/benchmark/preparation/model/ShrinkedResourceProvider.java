@@ -38,14 +38,14 @@ public class ShrinkedResourceProvider {
     }
 
     public void runShrinkingProcess(){
-	System.out.println("\t\t\tResource Shrinking Process started...");
+	System.out.println("\t\tResource Shrinking Process started...");
 
 	IncrementalResourceShrinker resourceShrinker = new IncrementalResourceShrinker();
 	shrinkedResourceList.addAll(resourceShrinker.shrinkIncrementally(fullSizeResource));
 
 	resourcesWereShrinked = true;
 
-	System.out.println("\t\t\tResource Shrinking Process finished with " + shrinkedResourceList.size() + " resources");
+	System.out.println("\t\tResource Shrinking Process finished with " + shrinkedResourceList.size() + " resources");
     }
 
     public void persistShrinkedResource(){

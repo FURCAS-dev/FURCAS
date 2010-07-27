@@ -51,7 +51,7 @@ public class PackageDependencyGraph {
     private void buildDependencyGraph(Resource resourceToShrink) {
         aggregateElementsInPackages(resourceToShrink);
         	
-    	System.out.println("\t\t\tBuild Dependency Graph");
+    	//System.out.println("\t\t\tBuild Dependency Graph");
     	
     	Collection<ModelReference> modelReferenceList = ResourceTraversalHelper
     		.getModelReferencesForModelElements(modelElementList);

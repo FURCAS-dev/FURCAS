@@ -118,10 +118,10 @@ public class IncrementalResourceShrinker {
 	private Package getPackageWithFewestDependencies(ArrayList<Package> packagesToDeleteList, PackageDependencyGraph dependencyGraph){
 		Package packageToDelete = null;
 		if(packagesToDeleteList.size() == 1){
-		    System.out.println("match");
+		    //System.out.println("match");
 		    packageToDelete = packagesToDeleteList.get(0);
 		}else if(packagesToDeleteList.size() > 1){
-		    System.out.println("choose");
+		    //System.out.println("choose");
 		    packageToDelete = chooseBestPackageToDelete(packagesToDeleteList, dependencyGraph);
 		}
 		return packageToDelete;
@@ -136,7 +136,7 @@ public class IncrementalResourceShrinker {
 	    }
 	}
 	
-	System.out.println(dependencyGraph.getDependencies().get(packageToDelete).size());
+	//System.out.println(dependencyGraph.getDependencies().get(packageToDelete).size());
 	
 	return packageToDelete;
 	}

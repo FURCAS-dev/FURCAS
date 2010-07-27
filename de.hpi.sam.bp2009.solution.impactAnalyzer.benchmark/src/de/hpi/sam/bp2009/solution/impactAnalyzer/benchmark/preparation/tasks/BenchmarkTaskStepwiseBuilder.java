@@ -20,18 +20,20 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
  * 
  * @author Manuel Holzleitner (D049667)
  */
-public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTaskContainer>>{
+public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContainer>{
 	private final Collection<OCLExpressionWithContext> expressionList;
 	private final Collection<NotificationForModelList> notificationForModelList;
 	private final Collection<ActivationOption> activiationOptionList;
 	
 	private Iterator<OCLExpressionWithContext> expressionIterator;
 	private Iterator<ActivationOption> activationOptionIterator;
+	private Iterator<NotificationForModelList> notificationIterator;
 	
 	private final BuilderIdentifiers ids = new BuilderIdentifiers();
 	
 	private ActivationOption currentActivationOption;
 	private OCLExpressionWithContext currentExpression;
+	private NotificationForModelList currentNotification;
 
 		
 	public BenchmarkTaskStepwiseBuilder(Collection<OCLExpressionWithContext> expressionList, Collection<NotificationForModelList> notificationForModelList, Collection<ActivationOption> activiationOptionList){
@@ -40,9 +42,10 @@ public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTas
 		this.activiationOptionList = activiationOptionList;
 		
 		expressionIterator = this.expressionList.iterator();
-
 		activationOptionIterator = this.activiationOptionList.iterator();
-		
+		notificationIterator = this.notificationForModelList.iterator();
+
+		currentExpression = expressionIterator.next();
 		currentActivationOption = activationOptionIterator.next();
 		
 		ids.resetContainer();
@@ -51,15 +54,26 @@ public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTas
 	}	
 	
 	synchronized public boolean hasNext(){
-		return expressionIterator.hasNext() || activationOptionIterator.hasNext();
+		return notificationIterator.hasNext() || expressionIterator.hasNext() || activationOptionIterator.hasNext();
 	}
 	
-	synchronized private void iterate(){		
+	synchronized private void iterate(){	
+		if(notificationIterator.hasNext()){
+			currentNotification = notificationIterator.next();
+			ids.incrementModel();
+			return;
+		}
+		
+		notificationIterator = notificationForModelList.iterator();
+		ids.resetModel();
+		currentNotification = notificationIterator.next();
+		ids.incrementModel();		
+		
 		if(expressionIterator.hasNext()){
 			currentExpression = expressionIterator.next();
 			ids.incrementOcl();
 			return;
-		}
+		}		
 		
 		expressionIterator = expressionList.iterator();
 		ids.resetOcl();
@@ -68,25 +82,13 @@ public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTas
 		
 		// Do not reset outer iterator
 		currentActivationOption = activationOptionIterator.next();
-		ids.incrementOption();
+		ids.incrementOption();	
 	}
 	
-	synchronized public Queue<BenchmarkTaskContainer> next(){
-		Queue<BenchmarkTaskContainer> result = new LinkedList<BenchmarkTaskContainer>();
-		
+	synchronized public BenchmarkTaskContainer next(){
 		iterate();
 		
-		ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(currentExpression.getExpression(), currentExpression.getContext());
-
-	    for(NotificationForModelList notificationList : notificationForModelList){
-	    	
-	    
-	    	BenchmarkTaskContainer container = buildBenchmarkContainer(currentActivationOption, currentExpression, ia, notificationList);
-
-	    	result.add(container);
-    	}
-		
-		return result;
+	    return buildBenchmarkContainer(currentActivationOption, currentExpression, currentNotification);
 	}
 
 	synchronized public Queue<BenchmarkTaskContainer> buildAll(){
@@ -107,10 +109,8 @@ public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTas
 	    		//if((oclId % 100) == 0)
 	    		//	System.out.println(oclId + "/" + max);
 
-	    		ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression.getExpression(), expression.getContext());
-
 	    	    for(NotificationForModelList notificationList : notificationForModelList){
-	    	    	BenchmarkTaskContainer container = buildBenchmarkContainer(option, expression, ia, notificationList);
+	    	    	BenchmarkTaskContainer container = buildBenchmarkContainer(option, expression, notificationList);
 
 	    	    	result.add(container);
 		    	}
@@ -124,8 +124,10 @@ public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTas
 	
 	synchronized private BenchmarkTaskContainer buildBenchmarkContainer(
 			ActivationOption option, OCLExpressionWithContext expression,
-			ImpactAnalyzer ia, NotificationForModelList notificationList) {
+			NotificationForModelList notificationList) {
 		
+		ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(currentExpression.getExpression(), currentExpression.getContext());
+
 		Resource model = notificationList.getModel();
 		BenchmarkTaskContainer container = new ModelSizeVariationBenchmarkTaskContainer(model, option, String.valueOf(ids.getContainerId()));
 		ids.incrementContainer();
@@ -139,13 +141,13 @@ public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTas
 				ids.incrementBenchmarkTask();
 				ids.incrementNotification();
 				
-		    	container.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), split, ia, String.valueOf(ids.getOclId()), String.valueOf(ids.getNotificationId()), String.valueOf(ids.getBenchmarkTaskId()), String.valueOf(ids.getOptionId())));
+		    	container.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), split, ia, String.valueOf(ids.getOclId()), String.valueOf(ids.getNotificationId()), String.valueOf(ids.getBenchmarkTaskId()), String.valueOf(ids.getOptionId()), String.valueOf(ids.getModelId())));
 			    }
 			}else{
 			    ids.incrementBenchmarkTask();
 			    ids.incrementNotification();
 			    
-			    container.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), notification, ia, String.valueOf(ids.getOclId()), String.valueOf(ids.getNotificationId()), String.valueOf(ids.getBenchmarkTaskId()), String.valueOf(ids.getOptionId())));
+			    container.add(new ModelSizeVariationBenchmarkTask(expression.getExpression(), expression.getContext(), notification, ia, String.valueOf(ids.getOclId()), String.valueOf(ids.getNotificationId()), String.valueOf(ids.getBenchmarkTaskId()), String.valueOf(ids.getOptionId()),  String.valueOf(ids.getModelId())));
 			}
 		}
 		return container;
@@ -158,6 +160,11 @@ public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTas
 		private int oclId = 0;
 		private int notificationId = 0;
 		private int optionId = 0;
+		private int modelId = 0;
+		
+		public void incrementModel(){
+			modelId++;
+		}
 		
 		public void incrementOption(){
 			optionId++;
@@ -199,6 +206,14 @@ public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTas
 			notificationId = 0;
 		}
 		
+		public void resetModel(){
+			modelId = 0;
+		}
+		
+		public int getModelId(){
+			return modelId;
+		}
+		
 		public int getContainerId() {
 			return containerId;
 		}
@@ -222,8 +237,108 @@ public class BenchmarkTaskStepwiseBuilder implements Iterator<Queue<BenchmarkTas
 
 
 	@Override
-	public void remove() {
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public synchronized boolean isEmpty() {	
+		return !hasNext();
+	}
+
+	@Override
+	public boolean contains(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Iterator<BenchmarkTaskContainer> iterator() {
+		return null;
+	}
+
+	@Override
+	public Object[] toArray() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> T[] toArray(T[] a) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean remove(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean containsAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addAll(Collection<? extends BenchmarkTaskContainer> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean retainAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void clear() {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean add(BenchmarkTaskContainer e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean offer(BenchmarkTaskContainer e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public synchronized BenchmarkTaskContainer remove() {
+		return next();
+	}
+
+	@Override
+	public BenchmarkTaskContainer poll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BenchmarkTaskContainer element() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BenchmarkTaskContainer peek() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

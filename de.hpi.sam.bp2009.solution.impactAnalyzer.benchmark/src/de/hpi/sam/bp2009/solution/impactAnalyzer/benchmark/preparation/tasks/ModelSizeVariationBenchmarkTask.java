@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
 
@@ -26,7 +27,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     private Collection<EObject> result = null;
 
-    public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId) {
+    public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId) {
     	rawNotification = notification;
 		ia = imp;
 
@@ -34,6 +35,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 		additionalInformation.put("benchmarkTaskId", benchmarkTaskId);
 		additionalInformation.put("notificationId", notificationId);
 		additionalInformation.put("oclId", oclId);
+		additionalInformation.put("modelId", modelId);
     }
 
     @Override
@@ -43,15 +45,19 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     	// is executed.
     	assert getModel() != null;
 
-    	additionalInformation.put("resourceUri", String.valueOf(getModel().getURI().toString().replaceAll("\t", "")));
+    	//additionalInformation.put("resourceUri", String.valueOf(getModel().getURI().toString().replaceAll("\t", "")));
     	additionalInformation.put("modelSize", String.valueOf(getModelSize(getModel())));
 
     	notification = rawNotification.convertToNotification(getModel());
 
-    	if(notification == null) {
-    		//System.out.println("activated: " + (notification != null));
-    		//System.out.println(rawNotification.getEventType());
-    	}
+    	if(notification != null) {
+    		EventFilter filter = ia.createFilterForExpression(false);
+    		if(filter.matchesFor(notification)){
+    			additionalInformation.put("filtered", String.valueOf(1));
+    		}else{
+    			additionalInformation.put("filtered", String.valueOf(0));
+    		}
+    	}    	
 
     	return notification != null;
     }
@@ -77,7 +83,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	assert result != null;
 
 	additionalMeasurementInformation.put("noContextObjects", String.valueOf(result.size()));
-
+	
 	result = null;
     }
 
