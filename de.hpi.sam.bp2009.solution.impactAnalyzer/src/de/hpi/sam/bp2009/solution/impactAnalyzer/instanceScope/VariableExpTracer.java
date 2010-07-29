@@ -2,7 +2,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -33,7 +32,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 
     private boolean isLetVariable() {
         // let variables are contained in the letExp
-        Variable exp = getVariableDeclaration();  
+        Variable exp = getVariableDeclaration();
         return exp.eContainer() instanceof LetExp && ((LetExp)exp.eContainer()).getVariable() == exp;
     }
 
@@ -43,12 +42,12 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 
     private boolean isIterateResultVariable() {
         //result variables are contained in iterateExp
-        Variable exp = getVariableDeclaration();     
+        Variable exp = getVariableDeclaration();
 	return (exp.eContainer() instanceof IterateExp && ((IterateExp) exp.eContainer()).getResult() == exp);
     }
 
     private boolean isIteratorVariable() {
-        Variable exp = getVariableDeclaration();  
+        Variable exp = getVariableDeclaration();
 	return (exp.eContainer() instanceof LoopExp && ((LoopExp)exp.eContainer()).getIterator().contains(exp));
     }
 
@@ -69,22 +68,21 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	    result = tracebackLetVariable(context, pathCache, filterSynthesizer);
 	} else if (isOperationParameter()) {
 	    result = tracebackOperationParameter(context, pathCache, filterSynthesizer);
-	} else {
+	} else
 	    throw new RuntimeException("Unknown variable expression that is neither an iterator variable "
 		    + "nor an iterate result variable nor an operation parameter nor a let variable nor self: "
 		    + getExpression().getReferredVariable().getName());
-	}
 	return result;
     }
 
     private NavigationStep tracebackOperationParameter(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	OCLExpression rootExpression = getRootExpression();
-	
+
 	// all operation bodies must have been reached through at least one call; all calls are
 	// recorded in the filter synthesizer's cache. Therefore, we can determine the relationship
 	// between body and EOperation.
 	EOperation op = filterSynthesizer.getCallsOf(rootExpression).iterator().next().getReferredOperation();
-	
+
 	int pos = getParameterPosition(op);
 	List<NavigationStep> stepsPerCall = new ArrayList<NavigationStep>();
 	IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression(), getTupleLiteralPartNamesToLookFor());
@@ -97,8 +95,9 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	    OCLExpression argumentExpression = (OCLExpression) call.getArgument().get(pos);
 	    stepsPerCall.add(pathCache.getOrCreateNavigationPath(argumentExpression, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
 	}
+
 	indirectingStep.setActualStep(new BranchingNavigationStep(
-	        (EClass) getExpression().getType(),
+		getInnermostElementType(getExpression().getType()),
 	        context,
 	        getExpression(),
 	        stepsPerCall.toArray(new NavigationStep[0])));
@@ -107,15 +106,14 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 
     /**
      * Determines the position of the parameter of operation <tt>op</tt> that is named like
-     * the variable referred to by this tracer's {@link #getExpression() variable expression). 
+     * the variable referred to by this tracer's {@link #getExpression() variable expression).
      */
     private int getParameterPosition(EOperation op) {
 	String variableName = getVariableDeclaration().getName();
 	// determine position of formal IN_DIR parameter named variableName
 	int pos = 0;
 	EList<EObject> pList = op.eContents();
-	for (Iterator<EObject> i=pList.iterator(); i.hasNext(); ) {
-	    EObject p = i.next();
+	for (EObject p : pList) {
 	    if (p instanceof EParameter) {
 		if (variableName.equals(((EParameter) p).getName())) {
 		    break;
@@ -128,19 +126,19 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     }
 
     private NavigationStep tracebackLetVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-	return pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration().getInitExpression(), 
-	        context, 
+	return pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration().getInitExpression(),
+	        context,
 	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
     }
 
     private NavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath(
 	        (OCLExpression) getVariableDeclaration().getInitExpression(),
-	        context, 
+	        context,
 	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
 	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
 	        (OCLExpression) ((IterateExp) getVariableDeclaration().eContainer()).getBody(),
-	        context, 
+	        context,
 	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
 	return new BranchingNavigationStep(
 	        (EClass) getExpression().getType(),
@@ -153,23 +151,23 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	return pathCache.getOrCreateNavigationPath(
 	        (OCLExpression) ((LoopExp) getVariableDeclaration().eContainer()).getSource(),
-	        context, 
+	        context,
 	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
     }
 
     private NavigationStep tracebackSelf(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	NavigationStep result;
-	
+
 	// all operation bodies must have been reached through at least one call; all calls are
 	// recorded in the filter synthesizer's cache. Therefore, we can determine the relationship
 	// between body and EOperation.
 	Set<OperationCallExp> filterSynthesizerCallCache = filterSynthesizer.getCallsOf(getRootExpression());
 	EOperation op = null;
-	
+
 	if(!filterSynthesizerCallCache.isEmpty()){
 	    op = filterSynthesizerCallCache.iterator().next().getReferredOperation();
 	}
-	
+
 	if (op != null) {
 	    // in an operation, self needs to be traced back to all source expressions of
 	    // calls to that operation
