@@ -134,7 +134,6 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/elseContainer"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/separatorContainer"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/otContainer"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//Sequence/alternativeContainer"/>
     </genClasses>
     <genClasses image="false" ecoreClass="TCS.ecore#//SequenceElement">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//SequenceElement/elementSequence"/>
@@ -183,7 +182,9 @@
     <genClasses ecoreClass="TCS.ecore#//ImportContextPArg"/>
     <genClasses ecoreClass="TCS.ecore#//ForcedLowerPArg"/>
     <genClasses ecoreClass="TCS.ecore#//CreateAsPArg"/>
-    <genClasses ecoreClass="TCS.ecore#//AsPArg"/>
+    <genClasses ecoreClass="TCS.ecore#//AsPArg">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TCS.ecore#//AsPArg/template"/>
+    </genClasses>
     <genClasses ecoreClass="TCS.ecore#//ModePArg"/>
     <genClasses image="false" ecoreClass="TCS.ecore#//BlockArg">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//BlockArg/block"/>
@@ -202,6 +203,7 @@
     <genClasses image="false" ecoreClass="TCS.ecore#//AtomExp">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//AtomExp/andExp"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//AtomExp/propertyName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TCS.ecore#//AtomExp/propertyReference"/>
     </genClasses>
     <genClasses ecoreClass="TCS.ecore#//EqualsExp">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//EqualsExp/value"/>
@@ -213,7 +215,6 @@
     <genClasses ecoreClass="TCS.ecore#//StringVal"/>
     <genClasses ecoreClass="TCS.ecore#//IntegerVal"/>
     <genClasses ecoreClass="TCS.ecore#//NegativeIntegerVal"/>
-    <genClasses ecoreClass="TCS.ecore#//EnumLiteralVal"/>
     <genClasses ecoreClass="TCS.ecore#//PropertyVal"/>
     <genClasses ecoreClass="TCS.ecore#//Token">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//Token/pattern"/>
@@ -278,7 +279,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TCS.ecore#//ContextTemplate/contextTags"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TCS.ecore#//ContextTemplate/scope"/>
     </genClasses>
-    <genClasses ecoreClass="TCS.ecore#//ContextTags"/>
+    <genClasses ecoreClass="TCS.ecore#//ContextTags">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//ContextTags/tags"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="TCS.ecore#//InjectorAction">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//InjectorAction/injectorActionsBlock"/>
     </genClasses>
@@ -299,5 +302,16 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TCS.ecore#//PredicateSemantic/as"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TCS.ecore#//PredicateSemantic/when"/>
     </genClasses>
+    <genClasses ecoreClass="TCS.ecore#//SequenceInAlternative">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference TCS.ecore#//SequenceInAlternative/alternativeContainer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TCS.ecore#//SequenceInAlternative/disambiguate"/>
+    </genClasses>
+    <genClasses ecoreClass="TCS.ecore#//EClass0"/>
+    <genClasses ecoreClass="TCS.ecore#//PartialPArg"/>
+    <genClasses ecoreClass="TCS.ecore#//DisambiguatePArg">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TCS.ecore#//DisambiguatePArg/EReference0"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TCS.ecore#//DisambiguatePArg/EReference1"/>
+    </genClasses>
+    <genClasses ecoreClass="TCS.ecore#//InstanceOfExp"/>
   </genPackages>
 </genmodel:GenModel>
