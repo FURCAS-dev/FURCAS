@@ -13,15 +13,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.AssociativityEnum;
-import tcs.Keyword;
-import tcs.Literal;
-import tcs.Operator;
-import tcs.OperatorList;
-import tcs.OperatorTemplate;
-import tcs.Priority;
-import tcs.PropertyReference;
-
+import com.sap.furcas.metamodel.TCS.Associativity;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.Literal;
+import com.sap.furcas.metamodel.TCS.Operator;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Priority;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.ClassProductionRule;
@@ -134,7 +133,7 @@ public class OperatorHandler {
 
             String associatedCallRule;
             boolean isLeftAssociative;
-            if (priority.getAssociativity() == null || priority.getAssociativity() == AssociativityEnum.LEFT) {
+            if (priority.getAssociativity() == null || priority.getAssociativity() == Associativity.LEFT) {
                 isLeftAssociative = true;
                 associatedCallRule = calledRule;
             } else {
@@ -204,7 +203,7 @@ public class OperatorHandler {
             if (unaryOperators.size() > 0) {
             	List<Operator> nonPostFixUnaryOperators = new ArrayList<Operator>(operators.size());
             	for (Operator operator : unaryOperators) {
-					if(!operator.isPostfix()) {
+					if(!operator.isIsPostfix()) {
 						nonPostFixUnaryOperators.add(operator);
 					}
 				}
@@ -223,7 +222,7 @@ public class OperatorHandler {
             if (unaryOperators.size() > 0) {
             	List<Operator> postFixUnaryOperators = new ArrayList<Operator>(operators.size());
             	for (Operator operator : unaryOperators) {
-					if(operator.isPostfix()) {
+					if(operator.isIsPostfix()) {
 						postFixUnaryOperators.add(operator);
 					}
 				}
@@ -267,7 +266,7 @@ public class OperatorHandler {
                         + operator.getName() + " has arity "
                         + operator.getArity(), operator);
             }
-            if (operator.isPostfix() && operator.getArity() > 1) {
+            if (operator.isIsPostfix() && operator.getArity() > 1) {
                 errorBucket.addError("Postfix notation for arity > 1 not implemented yet.", operator);
             }
         }
@@ -304,7 +303,7 @@ public class OperatorHandler {
                 }
                 hasAddedOperator = true;
 
-                tcs.Literal literal = operator.getLiteral();
+                Literal literal = operator.getLiteral();
                 if (literal == null) { 
                     throw new SyntaxElementException("Operator does not have a literal " + operator, operator);
 //                  literal = syntaxLookup.getLiteralForOperator(operator);
@@ -340,7 +339,7 @@ public class OperatorHandler {
                 }
                 
                 rulebody.append('('); // b2  required to separate operators, if many
-                rulebody.append(ObservationDirectivesHelper.getEnterOperatorSequenceNotification(operator.getLiteral().getValue(), arity, operator.isPostfix()));
+                rulebody.append(ObservationDirectivesHelper.getEnterOperatorSequenceNotification(operator.getLiteral().getValue(), arity, operator.isIsPostfix()));
                 
                 if (arity == 2 || isLeftAssociative) { // don't add here if unary and right associative
                 	//FIXME: have a seperate notification for operators? Or is OperatorSequence enough?
@@ -384,7 +383,7 @@ public class OperatorHandler {
                          	// add disambiguation rule
                          	rulebody.append("(" + opTemplate.getDisambiguateV3() + ")=>");
                          }
-                    	 if(operator.isPostfix()) {
+                    	 if(operator.isIsPostfix()) {
                     		 rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, ret, firstToken]");
                     	 } else {
                     		 rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, null, firstToken]");
@@ -394,7 +393,7 @@ public class OperatorHandler {
                             appendOperatorLiteralBit(rulebody, literal);
                             rulebody.append(ObservationDirectivesHelper.getExitSequenceElementNotification());
                         }
-                        if ( ! operator.isPostfix()) {
+                        if ( ! operator.isIsPostfix()) {
                             rulebody.append("right=", associativityCalledRule);				    
                             rulebody.append(" {setProperty(ret, \"", getSourceStorageName(opTemplate), "\", right);\n");
                         } else {

@@ -15,14 +15,13 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.ClassTemplate;
-import tcs.ContextTags;
-import tcs.OperatorList;
-import tcs.OperatorTemplate;
-import tcs.Priority;
-import tcs.Sequence;
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ContextTags;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Priority;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
@@ -35,7 +34,6 @@ import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
 /**
@@ -122,17 +120,17 @@ public class ClassTemplateHandler<Type extends Object> {
         if (template.getPrefixSequence() != null) {
             errorBucket.addError("ClassTemplate prefixSequence not implemented yet.", template);
         }
-        if (template.isMulti() && ! template.isMain()) {
+        if (template.isIsMulti() && ! template.isIsMain()) {
             errorBucket.addWarning("Multi keyword can only be applied to main template, else it will be ignored.", template);
         }
-        if (template.isAbstract() && template.isContext() && template.getTemplateSequence() == null) {
+        if (template.isIsAbstract() && template.isIsContext() && template.getTemplateSequence() == null) {
             errorBucket.addWarning("Context keyword can only be applied to non-abstract or non-empty template, else it will be ignored.", template);
         }
-        if (! template.isAbstract() && template.isOperatored()) {
+        if (! template.isIsAbstract() && template.isIsOperatored()) {
             errorBucket.addError("Only abstract templates can be made operatored.", template);
         }
 
-        if (template.isDeep() ) {
+        if (template.isIsDeep() ) {
             throw new RuntimeException("Deep not implemented yet");
         }
 
@@ -147,7 +145,7 @@ public class ClassTemplateHandler<Type extends Object> {
         }
         if (templateRulename != null) {
 
-            if (template.isMain() ) {
+            if (template.isIsMain() ) {
                 // adds the ANTLR rule main : ... ;
                 addMainRule(template, templateRulename);
             }
@@ -157,7 +155,7 @@ public class ClassTemplateHandler<Type extends Object> {
             
             boolean isAbstractRule = false;
             
-            if (template.isAbstract()) {
+            if (template.isIsAbstract()) {
                 initString = getInitString(template, false, false, false);
                 addAbstractRuleBody(template, templateRulename, rulebody, ruleBodyBufferFactory);
                 isAbstractRule = true;
@@ -169,7 +167,7 @@ public class ClassTemplateHandler<Type extends Object> {
                     ResolvedNameAndReferenceBean<Type> resolvedBean = resolutionHelper.resolve(template);
                     subtypes = metaLookup.getDirectSubTypes(resolvedBean);
                     if(TcsUtil.areSubTypesWithTemplates(subtypes, template.getMode(), syntaxLookup) &&
-                	    !template.isReferenceOnly()) {
+                	    !template.isIsReferenceOnly()) {
                 	//We have a concrete class with additional subclasses
                 	//first we need to create a rule for the concrete classes case
                 	initString = getInitString(template, false, false, false);
@@ -214,7 +212,7 @@ public class ClassTemplateHandler<Type extends Object> {
     private void addMainRule(ClassTemplate template, String templateRulename) {
         String rulebody = "((ret=" + templateRulename
         + ")";
-        if (template.isMulti()) {
+        if (template.isIsMulti()) {
             rulebody += '+'; // add '+' to indicate that this main element may repeat in the syntax    
         }
         rulebody += " EOF)" + " \n  {\n" + "ret2=ret;\n" + "}";
@@ -234,7 +232,7 @@ public class ClassTemplateHandler<Type extends Object> {
         rulebody.append("\n  {\n"); // code action here
 
         // set location command
-        rulebody.append("ret2 = commitCreation(ret, firstToken, "+template.isContext()+");\n");
+        rulebody.append("ret2 = commitCreation(ret, firstToken, "+template.isIsContext()+");\n");
         
         rulebody.append("\n }");
     }
@@ -259,12 +257,12 @@ public class ClassTemplateHandler<Type extends Object> {
             }
             
             if (addObjectCreation) {
-                if (template.isReferenceOnly()) { // determine the type of proxy to create
+                if (template.isIsReferenceOnly()) { // determine the type of proxy to create
                     initString.append("IModelElementProxy ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaType) : null;\n");
                 } else {
                     initString.append("IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, ");
-                    initString.append(template.isContext()).append(", ").append(
-                            ( template.isAddToContext() && (! forceAddToContextFalse)));
+                    initString.append(template.isIsContext()).append(", ").append(
+                            ( template.isIsAddToContext() && (! forceAddToContextFalse)));
                     ContextTags tags = template.getContextTags();
                     if (tags != null && tags.getTags() != null && tags.getTags().size() > 0) {
                         initString.append(", new String[]{");
@@ -301,7 +299,7 @@ public class ClassTemplateHandler<Type extends Object> {
         boolean hasAddedSubTemplates = false; // drives writing "ret2=ret;"
         String templateMode = template.getMode();
         
-        if (template.isOperatored()) {
+        if (template.isIsOperatored()) {
             if (templateMode != null) {
                 // TODO implement this by adding mode wherever subtemplates are being invoked
                 throw new RuntimeException("Operatored classtemplates with mode not implemented yet");
@@ -352,8 +350,8 @@ public class ClassTemplateHandler<Type extends Object> {
 						if(o1.equals(o2)) {
 						    return 0;
 						} else {
-							return o1.getConcretesyntax().getTemplates().indexOf(o1) -
-							o2.getConcretesyntax().getTemplates().indexOf(o2);
+							return o1.getConcreteSyntax().getTemplates().indexOf(o1) -
+							o2.getConcreteSyntax().getTemplates().indexOf(o2);
 						}
 					}
                 	
@@ -390,7 +388,7 @@ public class ClassTemplateHandler<Type extends Object> {
 
             // call abstractContentsrule if sequence is not empty
             Sequence sequence = template.getTemplateSequence();
-            if (template.isAbstract() && sequence != null ) {
+            if (template.isIsAbstract() && sequence != null ) {
                 if (! isFirstAlternative) {
                     rulebody.append("\n  | ");
                 }
@@ -404,7 +402,7 @@ public class ClassTemplateHandler<Type extends Object> {
         }
         rulebody.append("\n  {\n");
         // don't need to add To context, as this will be done in 
-        if (template.isAddToContext()) {
+        if (template.isIsAddToContext()) {
             rulebody.append("addToCurrentContext(ret);\n"); 
         }
         if (hasAddedSubTemplates) {
@@ -564,7 +562,7 @@ public class ClassTemplateHandler<Type extends Object> {
                     }
                     if (subtemp instanceof ClassTemplate) {
                         ClassTemplate classSubTemp = (ClassTemplate) subtemp;
-                        if (classSubTemp.isNonPrimary()) { // Non Primaries not added to primary rule
+                        if (classSubTemp.isIsNonPrimary()) { // Non Primaries not added to primary rule
                             nonPrimaries.add(classSubTemp);
                             continue;
                         }

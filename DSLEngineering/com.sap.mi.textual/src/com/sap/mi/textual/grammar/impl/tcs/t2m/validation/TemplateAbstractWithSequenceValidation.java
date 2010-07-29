@@ -11,12 +11,9 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.validation;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
@@ -55,10 +52,7 @@ public class TemplateAbstractWithSequenceValidation implements ISyntaxValidation
                       // ignore
                     } catch (MetaModelLookupException e) {
                      // ignore
-                    } catch (JmiException e) {
-                     // ignore
-                    }
-                }
+                    }                }
             }
         }
     }

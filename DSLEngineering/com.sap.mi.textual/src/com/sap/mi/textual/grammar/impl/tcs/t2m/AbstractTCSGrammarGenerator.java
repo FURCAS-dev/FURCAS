@@ -15,8 +15,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import tcs.TcsPackage;
-
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.exceptions.ParserInvokationException;
@@ -96,7 +95,7 @@ public abstract class AbstractTCSGrammarGenerator {
 //        if (! resourceSet.isAlive()) {
 //            throw new IllegalArgumentException("Connection was closed");
 //        }
-        if (resourceSet.getPackageRegistry().getEFactory(TextB)== null) {
+        if (resourceSet.getPackageRegistry().getEFactory(TextblocksPackage.eNS_URI)== null) {
             throw new IllegalArgumentException("TCS Metamodel not registered for connection");
         }
         

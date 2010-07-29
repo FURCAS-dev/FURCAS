@@ -12,17 +12,20 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.ClassTemplate;
-import tcs.ForeachPredicatePropertyInit;
-import tcs.InjectorAction;
-import tcs.InjectorActionsBlock;
-import tcs.LookupPropertyInit;
-import tcs.PredicateSemantic;
-import tcs.PrimitivePropertyInit;
-import tcs.PropertyInit;
-import tcs.PropertyReference;
-import tcs.QualifiedNamedElement;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.ecore.OCLExpression;
 
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.TCS.PrimitivePropertyInit;
+import com.sap.furcas.metamodel.TCS.PropertyInit;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
@@ -38,7 +41,7 @@ import com.sap.mi.textual.tcs.util.MessageHelper;
 import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.util.TcsUtil;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
+
 
 /**
  * handles separate Injector Actions which have no syntactic representation
@@ -208,7 +211,7 @@ public class InjectorActionsHandler<Type> {
 					.append("List<PredicateSemantic> list = new ArrayList<PredicateSemantic>();\n");
 			buffer.append("RuleNameFinder finder = new RuleNameFinder();\n");
 			Iterator<PredicateSemantic> semIt = ((ForeachPredicatePropertyInit) propInit)
-					.getPredicatesemantic().iterator();
+			.getPredicateSemantic().iterator();
 			RuleNameFinder finder = new RuleNameFinder();
 
 			while (semIt.hasNext()) {
@@ -218,7 +221,7 @@ public class InjectorActionsHandler<Type> {
 					localMode = next.getMode();
 				}
 				if (next.getWhen() != null) {
-					String javaQueryWhen = next.getWhen().replaceAll("\\\"", "\\\\\"");
+					String javaQueryWhen = toString(next.getWhen()).replaceAll("\\\"", "\\\\\"");
 					javaQueryWhen = javaQueryWhen.replaceAll("\r\n", "\"+\"");
 					javaQueryWhen = javaQueryWhen.replaceAll("\n", "\"+\"");
 					buffer.append("list.add(new PredicateSemantic(\""
@@ -226,7 +229,7 @@ public class InjectorActionsHandler<Type> {
 							+ finder.getRuleName(next.getAs(), localMode)
 							+ "\"));\n");
 					oclErrors = metaLookup.validateOclQuery(block
-							.getParentTemplate(), next.getWhen().replaceFirst("OCL:", ""), block
+							.getParentTemplate(), toString(next.getWhen()).replaceFirst("OCL:", ""), block
 							.getParentTemplate().getMetaReference());
 					for (String error : oclErrors) {
 						errorBucket.addError(error, propInit);
@@ -240,7 +243,7 @@ public class InjectorActionsHandler<Type> {
 			boolean hasContext = false;
 			if (block.getParentTemplate() instanceof ClassTemplate) {
 				hasContext = ((ClassTemplate) block.getParentTemplate())
-						.isContext();
+						.isIsContext();
 			}
 			if (mode == null) {
 				buffer.append("setPredicateRef(ret,\"" + propName
@@ -257,6 +260,11 @@ public class InjectorActionsHandler<Type> {
 				.getExitInjectorActionNotification());
 	}
 
+	private String toString(OCLExpression when) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	 * @param propInit
 	 * @return
@@ -267,7 +275,7 @@ public class InjectorActionsHandler<Type> {
 			if (propRef.getName() != null) {
 				return propRef.getName();
 			} else {
-				TypedElement strucFeat = propRef.getStrucfeature();
+				EStructuralFeature strucFeat = propRef.getStrucfeature();
 				if (strucFeat != null) {
 					return strucFeat.getName();
 				}

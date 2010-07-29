@@ -11,10 +11,9 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.validation;
 import java.util.Collection;
 import java.util.Iterator;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.SemanticErrorBucket;
 
@@ -35,7 +34,7 @@ public class MainTemplateValidation implements ISyntaxValidationRule {
             Template template = iterator.next();
             if (template instanceof ClassTemplate) {
                 ClassTemplate ct = (ClassTemplate) template;
-                if (ct.isMain()) {
+                if (ct.isIsMain()) {
                     if (!mainfound) {
                         mainfound = true;
                     } else {

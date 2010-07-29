@@ -11,9 +11,8 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 import java.util.Collection;
 import java.util.Iterator;
 
-import tcs.Alternative;
-import tcs.SequenceInAlternative;
-
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 
@@ -63,7 +62,7 @@ public class AlternativeHandler {
 			alternative++;
 		}		
 		buffer.append(')');
-		if (alternativeSeqEl.isMulti()) {
+		if (alternativeSeqEl.isIsMulti()) {
 		    buffer.append('*');
 		}
 	}

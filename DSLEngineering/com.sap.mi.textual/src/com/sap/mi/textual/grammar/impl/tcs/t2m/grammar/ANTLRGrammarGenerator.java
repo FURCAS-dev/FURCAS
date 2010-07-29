@@ -13,16 +13,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.EnumerationTemplate;
-import tcs.FunctionTemplate;
-import tcs.OperatorTemplate;
-import tcs.PrimitiveTemplate;
-import tcs.Symbol;
-import tcs.Template;
-import tcs.Token;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.Symbol;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.TCS.Token;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
@@ -179,7 +180,7 @@ public class ANTLRGrammarGenerator {
         // TODO: Do not generate on validation errors?
 
         writer.setGrammarName(syntax.getName());
-        writer.setSyntaxUUID(syntax.refMofId());
+        writer.setSyntaxUUID(EcoreUtil.getID(syntax));
 
         String lexerString = syntax.getLexer();
         if (lexerString == null) {

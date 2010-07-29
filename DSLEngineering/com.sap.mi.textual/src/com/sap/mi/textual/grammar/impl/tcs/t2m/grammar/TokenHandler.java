@@ -11,17 +11,16 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 import java.util.Collection;
 import java.util.Iterator;
 
-import tcs.ClassPattern;
-import tcs.EndOfLineRule;
-import tcs.MultiLineRule;
-import tcs.OrPattern;
-import tcs.Rule;
-import tcs.RulePattern;
-import tcs.SimplePattern;
-import tcs.StringPattern;
-import tcs.Token;
-import tcs.WordRule;
-
+import com.sap.furcas.metamodel.TCS.ClassPattern;
+import com.sap.furcas.metamodel.TCS.EndOfLineRule;
+import com.sap.furcas.metamodel.TCS.MultiLineRule;
+import com.sap.furcas.metamodel.TCS.OrPattern;
+import com.sap.furcas.metamodel.TCS.Rule;
+import com.sap.furcas.metamodel.TCS.RulePattern;
+import com.sap.furcas.metamodel.TCS.SimplePattern;
+import com.sap.furcas.metamodel.TCS.StringPattern;
+import com.sap.furcas.metamodel.TCS.Token;
+import com.sap.furcas.metamodel.TCS.WordRule;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.SimpleProductionRule;
 
 

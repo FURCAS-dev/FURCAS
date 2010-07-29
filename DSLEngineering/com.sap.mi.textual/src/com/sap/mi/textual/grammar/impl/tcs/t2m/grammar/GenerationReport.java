@@ -7,8 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.grammar.impl.TextLocation;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.SemanticErrorBucket.SemanticErrorWrapper;

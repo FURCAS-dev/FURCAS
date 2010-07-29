@@ -15,14 +15,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.FunctionTemplate;
-import tcs.Operator;
-import tcs.OperatorTemplate;
-import tcs.PrimitiveTemplate;
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.Operator;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;

@@ -13,12 +13,11 @@ import static com.sap.mi.textual.util.StringConcatUtil.concat;
 import java.util.Collection;
 import java.util.Iterator;
 
-import tcs.ContextTags;
-import tcs.Operator;
-import tcs.OperatorTemplate;
-import tcs.PropertyReference;
-import tcs.Sequence;
-
+import com.sap.furcas.metamodel.TCS.ContextTags;
+import com.sap.furcas.metamodel.TCS.Operator;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
+import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
@@ -88,7 +87,7 @@ public class OperatorTemplateHandler<Type extends Object> {
 		boolean allOperatorsPostFix = true;
 		for (Iterator<Operator> iterator = ops.iterator(); iterator.hasNext();) {
 			Operator operator = iterator.next();
-            if (!operator.isPostfix()) {
+            if (!operator.isIsPostfix()) {
                 allOperatorsPostFix = false;
             }
 		}
@@ -104,7 +103,7 @@ public class OperatorTemplateHandler<Type extends Object> {
 
 		String metaObjectListParam = namingHelper.getMetaTypeListParameter(refbean);
 		StringBuilder initString = new StringBuilder(); // TODO cleanup string construction
-		if (template.isReferenceOnly()) {
+		if (template.isIsReferenceOnly()) {
 		    initString.append(concat(
 		            "List<String> metaType=", metaObjectListParam, ";\n",
 		            ObservationDirectivesHelper.getEnterTemplateNotification(),
@@ -114,7 +113,7 @@ public class OperatorTemplateHandler<Type extends Object> {
 		            "List<String> metaType=", metaObjectListParam, ";\n",
 		            ObservationDirectivesHelper.getEnterTemplateNotification(),
 		            "IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, ",
-		            template.isContext(),
+		            template.isIsContext(),
 		    ", false"));
 		    ContextTags tags = template.getContextTags();
             if (tags != null && tags.getTags() != null && tags.getTags().size() > 0) {
@@ -149,7 +148,7 @@ public class OperatorTemplateHandler<Type extends Object> {
 		rulebody.append("setProperty(ret,\"", getSourceStorageName(template), "\" , left);\n");
 		rulebody.append("ret2 = createOrResolve(ret, firstToken);\n");
 		rulebody.append("onRuleElementCreationCommited(ret2);\n");
-		if (template.isContext()) {
+		if (template.isIsContext()) {
 			rulebody.append("leaveContext();\n"); 
 			// leave context after sub-elements are done with add to context
 		}
