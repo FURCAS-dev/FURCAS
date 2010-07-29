@@ -14,24 +14,26 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.AndExp;
-import tcs.AtomExp;
-import tcs.BooleanPropertyExp;
-import tcs.ConditionalElement;
-import tcs.EnumLiteralVal;
-import tcs.EqualsExp;
-import tcs.InstanceOfExp;
-import tcs.IntegerVal;
-import tcs.IsDefinedExp;
-import tcs.NegativeIntegerVal;
-import tcs.OneExp;
-import tcs.PropertyReference;
-import tcs.QualifiedNamedElement;
-import tcs.Sequence;
-import tcs.StringVal;
-import tcs.Template;
-import tcs.Value;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
+import com.sap.furcas.metamodel.TCS.AndExp;
+import com.sap.furcas.metamodel.TCS.AtomExp;
+import com.sap.furcas.metamodel.TCS.BooleanPropertyExp;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.EnumLiteralVal;
+import com.sap.furcas.metamodel.TCS.EqualsExp;
+import com.sap.furcas.metamodel.TCS.InstanceOfExp;
+import com.sap.furcas.metamodel.TCS.IntegerVal;
+import com.sap.furcas.metamodel.TCS.IsDefinedExp;
+import com.sap.furcas.metamodel.TCS.NegativeIntegerVal;
+import com.sap.furcas.metamodel.TCS.OneExp;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.StringVal;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.TCS.Value;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
@@ -44,7 +46,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.RuleBodyPrope
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.tcs.util.SyntaxLookup;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
 
 /**
  * The Class ConditionalElementHandler.
@@ -170,7 +171,7 @@ public class ConditionalElementHandler<Type extends Object> {
 		myAddedThenConstraints.add(constraint);
 	    } else if (atomExp instanceof InstanceOfExp) {
 		InstanceOfExp instExp = (InstanceOfExp) atomExp;
-		PropertyInstanceOfConstraint constraint = new PropertyInstanceOfConstraint(propName, instExp.getSupertype());
+		PropertyInstanceOfConstraint constraint = new PropertyInstanceOfConstraint( propName, instExp.getSupertype());
 		buffer.setPropertyConstraint(constraint);
 		myAddedThenConstraints.add(constraint);
 	    }
@@ -411,6 +412,7 @@ public class ConditionalElementHandler<Type extends Object> {
 		    EnumLiteralVal val = (EnumLiteralVal) value;
 
 		    Template owningTemplate = syntaxLookup.getEnclosingQualifiedElement(eqE);
+		    
 		    // need to find property, then PropertyType, as this would
 		    // be the enum
 		    try {
@@ -472,7 +474,7 @@ public class ConditionalElementHandler<Type extends Object> {
 	    if (propRef.getName() != null) {
 		return propRef.getName();
 	    } else {
-		TypedElement strucFeat = propRef.getStrucfeature();
+		EStructuralFeature strucFeat = propRef.getStrucfeature();
 		if (strucFeat != null) {
 		    return strucFeat.getName();
 		}

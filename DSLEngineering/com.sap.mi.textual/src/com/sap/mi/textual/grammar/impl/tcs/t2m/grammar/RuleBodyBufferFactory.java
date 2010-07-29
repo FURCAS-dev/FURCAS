@@ -3,9 +3,8 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 
-import tcs.Sequence;
-import tcs.SequenceElement;
-
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;

@@ -12,9 +12,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.EnumLiteralMapping;
-import tcs.EnumerationTemplate;
-
+import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;

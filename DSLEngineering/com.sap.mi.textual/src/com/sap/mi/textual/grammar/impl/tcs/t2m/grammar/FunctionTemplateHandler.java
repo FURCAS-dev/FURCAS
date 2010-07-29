@@ -9,9 +9,8 @@
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 
 
-import tcs.FunctionTemplate;
-import tcs.Sequence;
-
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;

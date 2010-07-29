@@ -3,10 +3,11 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 
-import tcs.ClassTemplate;
-import tcs.SequenceElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
-import com.sap.tc.moin.repository.Partitionable;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
 
 /**
  * inserts calls into Parser that call methods on the parser which allow observation of the parsing process.
@@ -78,7 +79,7 @@ public class ObservationDirectivesHelper {
     public static String getEnterSequenceElementNotification(SequenceElement se) {
         if (doAddObserverParts >= ALL) {
         	if(doAddObserverParts >= ALL_WITH_MOFIDS && se != null) {
-        		 return "{_beforeSeqEl(\"" + ((Partitionable)se).get___Mri().getMofId() + "\");}";
+        		 return "{_beforeSeqEl(\"" + EcoreUtil.getURI((EObject)se) + "\");}";
         	} else {
         		return "{_beforeSeqEl();}";
         	}

@@ -11,9 +11,8 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m;
 import java.util.Map;
 import java.util.Set;
 
-import tcs.ConcreteSyntax;
-import tcs.Keyword;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Keyword;
 import com.sap.mi.textual.grammar.impl.TextLocation;
 
 

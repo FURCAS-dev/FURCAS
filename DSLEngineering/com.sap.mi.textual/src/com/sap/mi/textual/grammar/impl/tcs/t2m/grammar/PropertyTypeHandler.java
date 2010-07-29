@@ -14,33 +14,36 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.AsParg;
-import tcs.AutoCreateKind;
-import tcs.AutoCreateParg;
-import tcs.ClassTemplate;
-import tcs.CreateAsParg;
-import tcs.CreateInParg;
-import tcs.DisambiguateParg;
-import tcs.EnumerationTemplate;
-import tcs.FilterParg;
-import tcs.ForcedLowerParg;
-import tcs.ForcedUpperParg;
-import tcs.ImportContextParg;
-import tcs.LookInParg;
-import tcs.ModeParg;
-import tcs.PartialParg;
-import tcs.PrimitiveTemplate;
-import tcs.Property;
-import tcs.PropertyArg;
-import tcs.PropertyReference;
-import tcs.QualifiedNamedElement;
-import tcs.QueryParg;
-import tcs.RefersToParg;
-import tcs.SeparatorParg;
-import tcs.Sequence;
-import tcs.SequenceInAlternative;
-import tcs.Template;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ocl.utilities.TypedElement;
 
+import com.sap.furcas.metamodel.TCS.AsPArg;
+import com.sap.furcas.metamodel.TCS.AutoCreateKind;
+import com.sap.furcas.metamodel.TCS.AutoCreatePArg;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.CreateAsPArg;
+import com.sap.furcas.metamodel.TCS.CreateInPArg;
+import com.sap.furcas.metamodel.TCS.DisambiguatePArg;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.TCS.FilterPArg;
+import com.sap.furcas.metamodel.TCS.ForcedLowerPArg;
+import com.sap.furcas.metamodel.TCS.ForcedUpperPArg;
+import com.sap.furcas.metamodel.TCS.ImportContextPArg;
+import com.sap.furcas.metamodel.TCS.LookInPArg;
+import com.sap.furcas.metamodel.TCS.ModePArg;
+import com.sap.furcas.metamodel.TCS.PartialPArg;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.PropertyArg;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.QueryPArg;
+import com.sap.furcas.metamodel.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.TCS.SeparatorPArg;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
@@ -56,8 +59,6 @@ import com.sap.mi.textual.tcs.util.MessageHelper;
 import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.util.TcsUtil;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
 
 /**
  * The Class PropertyTypeHandler.
@@ -338,7 +339,7 @@ public class PropertyTypeHandler<Type extends Object> {
 			if (propRef.getName() != null) {
 				return propRef.getName();
 			} else {
-				TypedElement strucFeat = propRef.getStrucfeature();
+				EStructuralFeature strucFeat = propRef.getStrucfeature();
 				if (strucFeat != null) {
 					return strucFeat.getName();
 				}
@@ -425,7 +426,7 @@ public class PropertyTypeHandler<Type extends Object> {
 			String propertyName, PropertyArgs args)
 			throws MetaModelLookupException, MetamodelNameResolvingException,
 			SyntaxElementException {
-		RefersToParg refersTo = args.refersTo;
+		RefersToPArg refersTo = args.refersTo;
 
 		// appends the temp = ... part
 		appendRefersToTempPart(prop, ruleBodyPart, metaModelTypeOfProperty,
@@ -485,7 +486,7 @@ public class PropertyTypeHandler<Type extends Object> {
 			Property prop,
 			StringBuilder ruleBodyPart,
 			ResolvedNameAndReferenceBean<Type> metaModelTypeOfPropertyReference,
-			AsParg asPArg, RefersToParg refersTo, boolean primitivesOnly)
+			AsPArg asPArg, RefersToPArg refersTo, boolean primitivesOnly)
 			throws SyntaxElementException, MetaModelLookupException {
 		// example:
 		// temp=identifier {setRef(ret, "author", "Author", "name", temp, null,
@@ -612,8 +613,8 @@ public class PropertyTypeHandler<Type extends Object> {
 				&& prop.getElementSequence() instanceof SequenceInAlternative
 				&& syntaxLookup.getAlternative(
 						((SequenceInAlternative) prop.getElementSequence()))
-						.isMulti()) {
-			if (multiplicity.getUpperBound() != JmiHelper.MULTIPLICITY_BOUND_INFINITE) {
+						.isIsMulti()) {
+			if (multiplicity.getUpperBound() != -1) {
 				errorBucket
 						.addError(
 								"Alternative isMulti is only allows if all directly contained properties have an upper multiplicity of UNBOUNDED!",
@@ -804,7 +805,7 @@ public class PropertyTypeHandler<Type extends Object> {
 	 * @throws MetamodelNameResolvingException
 	 */
 	protected static void appendBitWithSeparator(RuleBodyStringBuffer buffer,
-			StringBuilder repeatablePart, SeparatorParg separatorArg,
+			StringBuilder repeatablePart, SeparatorPArg separatorArg,
 			String disambiguate) throws MetaModelLookupException {
 		buffer.append('('); // close with )*
 
@@ -841,39 +842,39 @@ public class PropertyTypeHandler<Type extends Object> {
 	protected static final class PropertyArgs {
 
 		/** The separator. */
-		public SeparatorParg separator;
+		public SeparatorPArg separator;
 
 		/** The refers to. */
-		public RefersToParg refersTo;
+		public RefersToPArg refersTo;
 
 		/** The forced lower. */
-		public ForcedLowerParg forcedLower;
+		public ForcedLowerPArg forcedLower;
 
 		/** The forced upper. */
-		public ForcedUpperParg forcedUpper;
+		public ForcedUpperPArg forcedUpper;
 
 		/** The as p arg. */
-		public AsParg asPArg;
+		public AsPArg asPArg;
 
-		public LookInParg lookInPArg;
+		public LookInPArg lookInPArg;
 
-		public AutoCreateParg autoCreatePArg;
+		public AutoCreatePArg autoCreatePArg;
 
-		public CreateAsParg createAsPArg;
+		public CreateAsPArg createAsPArg;
 
-		public CreateInParg createInPArg;
+		public CreateInPArg createInPArg;
 
-		public ImportContextParg importContextPArg;
+		public ImportContextPArg importContextPArg;
 
-		public ModeParg modePArg;
+		public ModePArg modePArg;
 
-		public PartialParg partialPArg;
+		public PartialPArg partialPArg;
 
-		private QueryParg oclQueryPArg;
+		private QueryPArg oclQueryPArg;
 
-		private FilterParg oclFilterPArg;
+		private FilterPArg oclFilterPArg;
 
-		private DisambiguateParg disambiguatePArg;
+		private DisambiguatePArg disambiguatePArg;
 
 		/**
 		 * Instantiates a new property args.
@@ -891,109 +892,109 @@ public class PropertyTypeHandler<Type extends Object> {
 			for (Iterator<PropertyArg> iterator = args.iterator(); iterator
 					.hasNext();) {
 				PropertyArg propertyArg = iterator.next();
-				if (propertyArg instanceof SeparatorParg) {
+				if (propertyArg instanceof SeparatorPArg) {
 					if (separator != null) {
 						throw new SyntaxElementException(
 								"Double definition of separator", propertyArg);
 					}
-					separator = (SeparatorParg) propertyArg;
+					separator = (SeparatorPArg) propertyArg;
 					// TODO validate contents here and below, add to error
 					// bucket else
-				} else if (propertyArg instanceof RefersToParg) {
+				} else if (propertyArg instanceof RefersToPArg) {
 					if (refersTo != null) {
 						throw new SyntaxElementException(
 								"Double definition of RefersToPArg",
 								propertyArg);
 					}
-					refersTo = (RefersToParg) propertyArg;
-				} else if (propertyArg instanceof ForcedLowerParg) {
+					refersTo = (RefersToPArg) propertyArg;
+				} else if (propertyArg instanceof ForcedLowerPArg) {
 					if (forcedLower != null) {
 						throw new SyntaxElementException(
 								"Double definition of ForcedLowerPArg",
 								propertyArg);
 					}
-					forcedLower = (ForcedLowerParg) propertyArg;
-				} else if (propertyArg instanceof ForcedUpperParg) {
+					forcedLower = (ForcedLowerPArg) propertyArg;
+				} else if (propertyArg instanceof ForcedUpperPArg) {
 					if (forcedUpper != null) {
 						throw new SyntaxElementException(
 								"Double definition of ForcedLowerPArg",
 								propertyArg);
 					}
-					forcedUpper = (ForcedUpperParg) propertyArg;
+					forcedUpper = (ForcedUpperPArg) propertyArg;
 
-				} else if (propertyArg instanceof AsParg) {
+				} else if (propertyArg instanceof AsPArg) {
 					if (asPArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of AsPArg", propertyArg);
 					}
-					asPArg = (AsParg) propertyArg;
-				} else if (propertyArg instanceof LookInParg) {
+					asPArg = (AsPArg) propertyArg;
+				} else if (propertyArg instanceof LookInPArg) {
 					if (lookInPArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of LookInPArg", propertyArg);
 					}
-					lookInPArg = (LookInParg) propertyArg;
-				} else if (propertyArg instanceof AutoCreateParg) {
+					lookInPArg = (LookInPArg) propertyArg;
+				} else if (propertyArg instanceof AutoCreatePArg) {
 					if (autoCreatePArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of AutoCreatePArg",
 								propertyArg);
 					}
-					autoCreatePArg = (AutoCreateParg) propertyArg;
-				} else if (propertyArg instanceof CreateAsParg) {
+					autoCreatePArg = (AutoCreatePArg) propertyArg;
+				} else if (propertyArg instanceof CreateAsPArg) {
 					if (createAsPArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of CreateAsPArg",
 								propertyArg);
 					}
-					createAsPArg = (CreateAsParg) propertyArg;
-				} else if (propertyArg instanceof CreateInParg) {
+					createAsPArg = (CreateAsPArg) propertyArg;
+				} else if (propertyArg instanceof CreateInPArg) {
 					if (createInPArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of CreateInPArg",
 								propertyArg);
 					}
-					createInPArg = (CreateInParg) propertyArg;
-				} else if (propertyArg instanceof ImportContextParg) {
+					createInPArg = (CreateInPArg) propertyArg;
+				} else if (propertyArg instanceof ImportContextPArg) {
 					if (importContextPArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of ImportContextPArg",
 								propertyArg);
 					}
-					importContextPArg = (ImportContextParg) propertyArg;
-				} else if (propertyArg instanceof ModeParg) {
+					importContextPArg = (ImportContextPArg) propertyArg;
+				} else if (propertyArg instanceof ModePArg) {
 					if (modePArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of ImportContextPArg",
 								propertyArg);
 					}
-					modePArg = (ModeParg) propertyArg;
-				} else if (propertyArg instanceof QueryParg) {
+					modePArg = (ModePArg) propertyArg;
+				} else if (propertyArg instanceof QueryPArg) {
 					if (oclQueryPArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of queryParg", oclQueryPArg);
 					}
-					oclQueryPArg = (QueryParg) propertyArg;
-				} else if (propertyArg instanceof FilterParg) {
+					oclQueryPArg = (QueryPArg) propertyArg;
+				} else if (propertyArg instanceof FilterPArg) {
 					if (oclFilterPArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of filterParg",
 								oclFilterPArg);
 					}
-					oclFilterPArg = (FilterParg) propertyArg;
-				} else if (propertyArg instanceof DisambiguateParg) {
+					oclFilterPArg = (FilterPArg) propertyArg;
+				} else if (propertyArg instanceof DisambiguatePArg) {
 					if (disambiguatePArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of disambiguateParg",
 								oclQueryPArg);
 					}
-					disambiguatePArg = (DisambiguateParg) propertyArg;
-				} else if (propertyArg instanceof PartialParg) {
+					disambiguatePArg = (DisambiguatePArg) propertyArg;
+				} else if (propertyArg instanceof PartialPArg) {
 					if (partialPArg != null) {
 						throw new SyntaxElementException(
 								"Double definition of partialPArg", partialPArg);
 					}
-					partialPArg = (PartialParg) propertyArg;
+					partialPArg = (PartialPArg) propertyArg;
 				} else {
 					throw new RuntimeException(
 							"PropertyArg type not supported yet:"

@@ -11,11 +11,10 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 import java.util.Collection;
 import java.util.Iterator;
 
-import tcs.Block;
-import tcs.LocatedElement;
-import tcs.Sequence;
-import tcs.SequenceElement;
-
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.LocatedElement;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 

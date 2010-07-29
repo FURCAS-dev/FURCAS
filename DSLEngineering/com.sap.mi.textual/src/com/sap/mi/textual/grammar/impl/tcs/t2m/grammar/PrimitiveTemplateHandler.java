@@ -11,9 +11,8 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 
 import java.util.Set;
 
-import tcs.Keyword;
-import tcs.PrimitiveTemplate;
-
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;

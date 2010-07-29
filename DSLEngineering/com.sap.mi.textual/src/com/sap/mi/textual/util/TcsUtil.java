@@ -3,9 +3,10 @@ package com.sap.mi.textual.util;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.QualifiedNamedElement;
-import tcs.SequenceElement;
+import org.eclipse.emf.common.util.EList;
 
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
@@ -58,7 +59,7 @@ public class TcsUtil {
      * of the current template sequence.
      * @param prop
      * @param buffer
-     * @param name
+     * @param propertyName
      * @param propertyOwnerTypeTemplate
 	 * @param resolutionHelper 
 	 * @param metaLookup 
@@ -67,7 +68,7 @@ public class TcsUtil {
      * @throws SyntaxElementException
      */
     public static <Type> ResolvedNameAndReferenceBean<Type> getReferencedType(SequenceElement prop,
-            RuleBodyStringBuffer buffer, String name,
+            RuleBodyStringBuffer buffer, String propertyName,
             QualifiedNamedElement propertyOwnerTypeTemplate, MetaModelElementResolutionHelper<Type> resolutionHelper, IMetaModelLookup<Type> metaLookup)
             throws MetaModelLookupException, SyntaxElementException {
         
@@ -80,7 +81,7 @@ public class TcsUtil {
 	            RuleBodyPropertyConstraint ruleBodyPropertyConstraint = iterator.next();
 	            if (ruleBodyPropertyConstraint instanceof PropertyInstanceOfConstraint) {
 	                PropertyInstanceOfConstraint instOfConst = (PropertyInstanceOfConstraint) ruleBodyPropertyConstraint;
-	                if (instOfConst.getPropertyName().equals(name)) {
+	                if (instOfConst.getPropertyName().equals(propertyName)) {
 	                    List<String> substitutePropertyTypeName = instOfConst.getTypename();
 	                    substitutePropertyType = resolutionHelper.resolve(substitutePropertyTypeName);
 	                    // the last in the list wins, that's fine, since they can overrule each other.
@@ -95,13 +96,13 @@ public class TcsUtil {
         } catch (NameResolutionFailedException e) {
             throw new SyntaxElementException(e.getMessage(), prop, e);
         }
-        ResolvedNameAndReferenceBean<Type> realMetaModelTypeOfPropertyTemplate = metaLookup.getFeatureClassReference(metaElementRef , name);
+        ResolvedNameAndReferenceBean<Type> realMetaModelTypeOfPropertyTemplate = metaLookup.getFeatureClassReference(metaElementRef , propertyName);
 
         //          realMetaModelTypeOfPropertyTemplate = syntaxLookup.getTCSTemplate(propertyTypeName);
 
         if (realMetaModelTypeOfPropertyTemplate == null) {
             throw new SyntaxElementException("Type " + MessageHelper.getTemplateName(propertyOwnerTypeTemplate)
-                    + " has no feature " + name, prop);
+                    + " has no feature " + propertyName, prop);
         } 
         
         ResolvedNameAndReferenceBean<Type> metaModelTypeOfProperty;
@@ -111,7 +112,7 @@ public class TcsUtil {
                 metaModelTypeOfProperty = substitutePropertyType;
             } else {
                 throw new SyntaxElementException("Conditional subtype " + substitutePropertyType
-                        + " of feature " + name + " is not a subtype of expected type " + realMetaModelTypeOfPropertyTemplate, prop);
+                        + " of feature " + propertyName + " is not a subtype of expected type " + realMetaModelTypeOfPropertyTemplate, prop);
             }
             
         } else {

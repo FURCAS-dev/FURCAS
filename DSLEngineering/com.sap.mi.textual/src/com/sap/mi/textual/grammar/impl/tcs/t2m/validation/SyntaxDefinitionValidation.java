@@ -12,8 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.SemanticErrorBucket;
 
