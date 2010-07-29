@@ -17,7 +17,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConcreteSyntax" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="k" ordered="false" unique="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"
+        unsettable="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="templates" upperBound="-1"
         eType="#//Template" containment="true" eOpposite="#//Template/concreteSyntax"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="keywords" upperBound="-1"
@@ -101,6 +102,9 @@
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="otSequence" ordered="false"
         eType="#//Sequence" containment="true" eOpposite="#//Sequence/otContainer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeOperatorTo" eType="#//PropertyReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeLeftSideTo" eType="#//PropertyReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storeRightSideTo" eType="#//PropertyReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnumerationTemplate" eSuperTypes="#//Template">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="automatic" ordered="false"
@@ -218,10 +222,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elseSequence" ordered="false"
         lowerBound="1" eType="#//Sequence" containment="true" eOpposite="#//Sequence/elseContainer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PrimitivePropertyInit" eSuperTypes="#//PropertyInit">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
-        lowerBound="1" eType="#//Value" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitivePropertyInit" eSuperTypes="#//PropertyInit"/>
   <eClassifiers xsi:type="ecore:EClass" name="Alternative" eSuperTypes="#//SequenceElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="sequences" lowerBound="2"
         upperBound="-1" eType="#//SequenceInAlternative" containment="true" eOpposite="#//SequenceInAlternative/alternativeContainer"/>
@@ -236,25 +237,44 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" ordered="false"
         lowerBound="1" eType="#//Property" eOpposite="#//Property/propertyArgs"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RefersToPArg" eSuperTypes="#//PropertyArg"/>
-  <eClassifiers xsi:type="ecore:EClass" name="LookInPArg" eSuperTypes="#//PropertyArg"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CreateInPArg" eSuperTypes="#//PropertyArg"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RefersToPArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LookInPArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" upperBound="-1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CreateInPArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" upperBound="-1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RefersToKeyPArg" eSuperTypes="#//PropertyArg"/>
   <eClassifiers xsi:type="ecore:EClass" name="SeparatorPArg" eSuperTypes="#//PropertyArg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="separatorSequence" ordered="false"
         lowerBound="1" eType="#//Sequence" containment="true" eOpposite="#//Sequence/separatorContainer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AutoCreatePArg" eSuperTypes="#//PropertyArg"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AutoCreatePArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//AutoCreateKind"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImportContextPArg" eSuperTypes="#//PropertyArg"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ForcedLowerPArg" eSuperTypes="#//PropertyArg"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ForcedLowerPArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="AutoCreateKind">
     <eLiterals name="always" value="1" literal="always"/>
     <eLiterals name="ifmissing" value="2" literal="ifmissing"/>
     <eLiterals name="never" value="3" literal="never"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CreateAsPArg" eSuperTypes="#//PropertyArg"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AsPArg" eSuperTypes="#//PropertyArg"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ModePArg" eSuperTypes="#//PropertyArg"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CreateAsPArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsPArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="template" eType="#//Template"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModePArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BlockArg" abstract="true" eSuperTypes="#//LocatedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="block" ordered="false"
         lowerBound="1" eType="#//Block" eOpposite="#//Block/blockArgs"/>
@@ -277,6 +297,7 @@
         lowerBound="1" eType="#//AndExp" eOpposite="#//AndExp/expressions"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="propertyName" ordered="false"
         unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReference" eType="#//PropertyReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EqualsExp" eSuperTypes="#//AtomExp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" ordered="false"
@@ -285,15 +306,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="BooleanPropertyExp" eSuperTypes="#//AtomExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="IsDefinedExp" eSuperTypes="#//AtomExp"/>
   <eClassifiers xsi:type="ecore:EClass" name="OneExp" eSuperTypes="#//AtomExp"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Value" abstract="true" eSuperTypes="#//LocatedElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StringVal" eSuperTypes="#//Value"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IntegerVal" eSuperTypes="#//Value"/>
-  <eClassifiers xsi:type="ecore:EClass" name="NegativeIntegerVal" eSuperTypes="#//Value"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralVal" eSuperTypes="#//Value"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Value" abstract="true" eSuperTypes="#//LocatedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyVal" eSuperTypes="#//Value"/>
   <eClassifiers xsi:type="ecore:EClass" name="Token" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" ordered="false"
         lowerBound="1" eType="#//OrPattern" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="omitted" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrPattern" eSuperTypes="#//LocatedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="simplePatterns" lowerBound="1"
@@ -322,6 +342,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="EndOfLineRule" eSuperTypes="#//Rule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="start" ordered="false"
         lowerBound="1" eType="#//StringPattern" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dropStart" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MultiLineRule" eSuperTypes="#//Rule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="start" ordered="false"
@@ -332,6 +353,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="escMappings" ordered="false"
         upperBound="-1" eType="#//Mapping" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dropStart" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dropEnd" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mapping" abstract="true" eSuperTypes="#//LocatedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleMapping" eSuperTypes="#//Mapping"/>
@@ -352,9 +375,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="InjectorActionsBlock" eSuperTypes="#//SequenceElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyInits" upperBound="-1"
         eType="#//InjectorAction" containment="true" eOpposite="#//InjectorAction/injectorActionsBlock"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="injectorActions" upperBound="-1"
+        eType="#//InjectorAction"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QueryPArg" eSuperTypes="#//OclPArg"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FilterPArg" eSuperTypes="#//OclPArg"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterPArg" eSuperTypes="#//OclPArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filter" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclPArg" abstract="true" eSuperTypes="#//PropertyArg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="queryExpression" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="query" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -384,6 +411,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyInit" abstract="true" eSuperTypes="#//InjectorAction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="propertyReference" eType="#//PropertyReference"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclPropertyInit" eSuperTypes="#//PropertyInit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="oclExpression" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
@@ -402,10 +430,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="ForeachPredicatePropertyInit" eSuperTypes="#//PropertyInit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="predicateSemantic" upperBound="-1"
         eType="#//PredicateSemantic" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredicateSemantic">
     <eStructuralFeatures xsi:type="ecore:EReference" name="as" eType="#//Template"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="when" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SequenceInAlternative" eSuperTypes="#//Sequence">
     <eStructuralFeatures xsi:type="ecore:EReference" name="alternativeContainer" ordered="false"
@@ -414,5 +444,22 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EClass0"/>
   <eClassifiers xsi:type="ecore:EClass" name="PartialPArg" eSuperTypes="#//PropertyArg"/>
-  <eClassifiers xsi:type="ecore:EClass" name="DisambiguatePArg" eSuperTypes="#//PropertyArg"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DisambiguatePArg" eSuperTypes="#//PropertyArg">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="disambiguation" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceOfExp" eSuperTypes="#//AtomExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="supertype" upperBound="-1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralVal" eSuperTypes="#//Value"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringVal" eSuperTypes="#//Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerVal" eSuperTypes="#//Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NegativeIntegerVal" eSuperTypes="#//Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LookupPropertyInit" eSuperTypes="#//PropertyInit"/>
 </ecore:EPackage>
