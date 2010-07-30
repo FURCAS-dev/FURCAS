@@ -51,4 +51,9 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep {
         }
         return returnValue;
     }
+
+    @Override
+    public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
+        return "opposite of "+property.getName();
+    }
 }
