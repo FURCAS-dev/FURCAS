@@ -12,6 +12,7 @@ import junit.framework.TestCase;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.junit.Test;
 
@@ -92,13 +93,12 @@ public class NavigationPathCreationTest extends TestCase{
 
 	for (Set<PropertyCallExp> callExpressionSet : attributeCallExpressions.values()) {
 	    for (PropertyCallExp callExpression : callExpressionSet) {
-
 		try {
 		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
-		    assertNotNull(cache.getOrCreateNavigationPath(callExpression, expression.getContext(), filterSynthesizer,
+		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
 			    null));
 		} catch (RuntimeException e) {
-		    System.out.println(callExpression);
+		    System.out.println(callExpression.getSource());
 		    e.printStackTrace();
 		    excList.add(new ExceptionWithExpression(e, expression));
 		}
@@ -110,10 +110,10 @@ public class NavigationPathCreationTest extends TestCase{
 	    for (NavigationCallExp callExpression : callExpressionSet) {
 		try {
 		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
-		    assertNotNull(cache.getOrCreateNavigationPath(callExpression, expression.getContext(), filterSynthesizer,
+		    assertNotNull(cache.getOrCreateNavigationPath((OCLExpression)callExpression.getSource(), expression.getContext(), filterSynthesizer,
 			    null));
 		} catch (RuntimeException e) {
-		    System.out.println(callExpression);
+		    System.out.println(callExpression.getSource());
 		    e.printStackTrace();
 		    excList.add(new ExceptionWithExpression(e, expression));
 		}
