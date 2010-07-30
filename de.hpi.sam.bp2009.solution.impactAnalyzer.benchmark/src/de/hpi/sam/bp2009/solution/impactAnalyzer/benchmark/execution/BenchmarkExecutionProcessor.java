@@ -45,7 +45,6 @@ public class BenchmarkExecutionProcessor {
 
 	writer.close();
 	System.out.println("Processing finished");
-
 	dumpExceptions(executor);
     }
 
@@ -63,7 +62,7 @@ public class BenchmarkExecutionProcessor {
 
 	    if (i % 50 == 0) {
 		if (ProcessingOptions.isVerbose()) {
-		    System.out.print("\r" + i + "/" + all);
+		    System.out.println("\r" + i + "/" + all);
 		}
 	    }
 	    i++;
@@ -91,8 +90,8 @@ public class BenchmarkExecutionProcessor {
 	}
 
 	writer.close();
-
 	System.out.println("Processing finished");
+	dumpExceptions(executor);
     }
 
     private static void performParallelBenchmarks(BenchmarkExecutor executor, int numberOfParallelJobs,
@@ -122,8 +121,7 @@ public class BenchmarkExecutionProcessor {
 		+ " tasks ended with exceptions");
 
 	if (OutputOptions.getExceptionDumpFilePath() != null && !OutputOptions.getExceptionDumpFilePath().equals("")) {
-	    if (((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().size() > 200) {
-
+	    if (((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().size() < 200) {
 		ExceptionDumpWriter writer = new ExceptionDumpWriter();
 		writer.writeDump(((StandardBenchmarkExecutor) executor).getNotExecutedDueToException());
 		((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().clear();

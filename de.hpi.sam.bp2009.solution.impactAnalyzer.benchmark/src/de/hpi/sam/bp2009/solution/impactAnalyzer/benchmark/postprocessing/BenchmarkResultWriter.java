@@ -16,7 +16,7 @@ public class BenchmarkResultWriter extends Writer {
 		super(OutputOptions.getOutputPath(), false);
 	}
 
-    public synchronized void writeDataSet(Map<String, String> additionalInformation, ArrayList<Long> executionTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList, HashMap<String, ArrayList<Measurement>>microMeasurementList){
+    public synchronized void writeDataSet(Map<String, String> additionalInformation, ArrayList<Long> executionTimeList,  ArrayList<Long> evaluationTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList, HashMap<String, ArrayList<Measurement>>microMeasurementList){
    	 try {
 
 	final String TAB = "\t";
@@ -34,11 +34,11 @@ public class BenchmarkResultWriter extends Writer {
 	    }
 
 
-	    writer.write(TAB + "executionIndex" + TAB + "executionTime" + BREAK);
+	    writer.write(TAB + "executionIndex" + TAB + "executionTime" + TAB + "evaluationTime" + BREAK);
 	    withHeadline = false;
 	}
 
-    int executionIndex = 1;
+	int executionIndex = 1;
 	for(Long executionTime : executionTimeList){
 
 		StringBuffer row = new StringBuffer();
@@ -53,6 +53,7 @@ public class BenchmarkResultWriter extends Writer {
 
 		row.append(TAB + executionIndex);
 		row.append(TAB + executionTime);
+		row.append(TAB + evaluationTimeList.get(executionIndex - 1));
 		row.append(BREAK);
 		writer.write(row.toString());
 

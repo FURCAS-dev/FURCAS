@@ -26,28 +26,31 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
     @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
-	if (task.activate()) {
 	    try {
+		if (task.activate()) {
 		// Warmup
 		for (int i = 0; i < ProcessingOptions.getNumberOfWarmUps(); i++) {
 		    task.beforeCall();
 		    task.call();
+		    task.callEvaluation();
 		    task.afterCall();
 		    task.getAdditionalMeasurementInformation();
 		}
 
 		ArrayList<Long> executionTimeList = new ArrayList<Long>();
+		ArrayList<Long> evaluationTimeList = new ArrayList<Long>();
 		ArrayList<Map<String, String>> additionalMeasurementInformationList = new ArrayList<Map<String, String>>();
 
 		for (int i = 0; i < ProcessingOptions.getNumberOfMeasures(); i++) {
-		    measureExecutionTime(task, executionTimeList, additionalMeasurementInformationList);
+		    measureExecutionTime(task, executionTimeList, evaluationTimeList, additionalMeasurementInformationList);
 		    BenchmarkMeasurements.aggregate();
 		}
 
-		writer.writeDataSet(task.getAdditionalInformation(), executionTimeList, additionalMeasurementInformationList,
+		writer.writeDataSet(task.getAdditionalInformation(), executionTimeList, evaluationTimeList, additionalMeasurementInformationList,
 			BenchmarkMeasurements.getMeasurementList());
 
 		BenchmarkMeasurements.reset();
+		}
 	    } catch (Exception e) {
 		getNotExecutedDueToException().put(task.toString(), e);
 		if (ProcessingOptions.isVerbose()) {
@@ -56,19 +59,23 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 	    } catch (StackOverflowError e) {
 		getNotExecutedDueToException().put(task.toString(), e);
 	    }
-	}
     }
 
-    private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList,
+    private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList, ArrayList<Long> evaluationTimeList,
 	    ArrayList<Map<String, String>> additionalMeasurementInformationList) throws Exception {
 	// Perform measurement
 	task.beforeCall();
 	long timeBefore = System.nanoTime();
 	task.call();
 	long timeAfter = System.nanoTime();
+	long timeBeforeEvaluation = System.nanoTime();
+	task.callEvaluation();
+	long timeAfterEvaluation = System.nanoTime();
 	task.afterCall();
 
 	executionTimeList.add(new Long(timeAfter - timeBefore));
+	evaluationTimeList.add(new Long(timeAfterEvaluation - timeBeforeEvaluation));
+
 	additionalMeasurementInformationList.add(task.getAdditionalMeasurementInformation());
     }
 

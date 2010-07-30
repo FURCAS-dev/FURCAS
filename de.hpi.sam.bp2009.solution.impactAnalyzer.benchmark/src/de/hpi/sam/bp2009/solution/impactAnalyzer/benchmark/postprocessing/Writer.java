@@ -21,7 +21,7 @@ public abstract class Writer {
 
     	try {
     		os = new FileOutputStream(f, append);
-    		writer = new BufferedWriter(new OutputStreamWriter(os), 81920);
+    		writer = new BufferedWriter(new OutputStreamWriter(os), 1000000);
     	} catch (FileNotFoundException e) {
     		// TODO Auto-generated catch block
     		e.printStackTrace();

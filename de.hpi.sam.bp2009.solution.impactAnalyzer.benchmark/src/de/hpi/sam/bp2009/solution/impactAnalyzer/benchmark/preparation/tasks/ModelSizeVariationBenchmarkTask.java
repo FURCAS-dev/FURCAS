@@ -1,25 +1,37 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
+
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
+@SuppressWarnings("restriction")
 public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     private final ImpactAnalyzer ia;
     private final RawNotification rawNotification;
     private Notification notification;
     private Resource model;
+    private OCL ocl;
 
     /**
      * Also store original model in order to evaluate expression on model state before the value changed
@@ -30,8 +42,9 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private final LinkedHashMap<String, String> additionalMeasurementInformation = new LinkedHashMap<String, String>();
 
     private Collection<EObject> result = null;
+    private Collection<Object> evaluationResult = null;
+    private Collection<EObject> allInstances = null;
 
-    @SuppressWarnings("unused") //TODO: See if unused field can be removed
     private final OCLExpressionWithContext expression;
 
     public ModelSizeVariationBenchmarkTask(OCLExpressionWithContext expression, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId) {
@@ -68,13 +81,49 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     		}
     	}
 
+    	ocl = OCLWithHiddenOpposites.newInstance();
+
+	if(expression.getOclWithPackage() != null){
+	    ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
+		    createPackageContext(ocl.getEnvironment(), expression.getOclWithPackage().getPackage()));
+	}
+
+	allInstances = getAllInstancesForContext(expression.getContext());
+	additionalInformation.put("noAllInstances", String.valueOf(allInstances.size()));
+
+	//Only do this when activating. More runs are far too expensive.
+	Collection<Object> allInstancesEvaluationResult = new LinkedList<Object>();
+	long before = System.nanoTime();
+	for(EObject affectedElement : allInstances){
+	    allInstancesEvaluationResult.add(ocl.evaluate(affectedElement, expression.getExpression()));
+	}
+	long after = System.nanoTime();
+	additionalInformation.put("allInstanceEvalTime", String.valueOf(new Long(after - before)));
+
     	return notification != null && filter != null && filter.matchesFor(notification);
+    }
+
+    private Collection<EObject> getAllInstancesForContext(EClass context) {
+	Iterator<EObject> allObjectIterator = model.getAllContents();
+	List<EObject> resultSet = new LinkedList<EObject>();
+
+	while(allObjectIterator.hasNext()){
+	    EObject next = allObjectIterator.next();
+	    if(context.isInstance(next)){
+		resultSet.add(next);
+	    }
+	}
+
+	return resultSet;
     }
 
     @Override
     public void beforeCall() {
     	assert additionalMeasurementInformation.size() == 0;
     	assert result == null;
+    	assert evaluationResult == null;
+
+    	evaluationResult = new ArrayList<Object>();
 
     	if(notification == null)
 	    throw new RuntimeException("notification cannot be created");
@@ -83,31 +132,34 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     @Override
     public Collection<EObject> call() throws Exception {
 	result = ia.getContextObjects(notification);
+	return result;
+    }
 
-	return null;
+    @Override
+    public void callEvaluation() {
+	for(EObject affectedElement : result){
+	    evaluationResult.add(ocl.evaluate(affectedElement, expression.getExpression()));
+	}
     }
 
     @Override
     public void afterCall() {
 	assert result != null;
+	assert evaluationResult != null;
 
 	additionalMeasurementInformation.put("noContextObjects", String.valueOf(result.size()));
 
-	/*//model.getResourceSet().getResources().add(expression.getExpression().eResource());
+	/*//model.getResourceSet().getResources().add(expression.getExpression().eResource());*/
+	int invalidEvaluationCounter = 0;
+	for(Object result : evaluationResult){
+	    if(result != null && result.equals(OCLStandardLibraryImpl.INSTANCE.getInvalid())){
+		invalidEvaluationCounter++;
+	    }
+	}
 
-		OCL ocl = OCLWithHiddenOpposites.newInstance();
+	additionalMeasurementInformation.put("noInvalidEvals", String.valueOf(invalidEvaluationCounter));
 
-		if(expression.getOclWithPackage() != null){
-	        ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
-	                createPackageContext(ocl.getEnvironment(), expression.getOclWithPackage().getPackage()));
-		}
-
-		for(EObject affectedElement : result){
-    		   // System.out.println(affectedElement);
-		   //System.out.println(expression + ":" + ocl.evaluate(affectedElement, expression.getExpression()));
-		}*/
-
-
+	evaluationResult = null;
 	result = null;
     }
 
