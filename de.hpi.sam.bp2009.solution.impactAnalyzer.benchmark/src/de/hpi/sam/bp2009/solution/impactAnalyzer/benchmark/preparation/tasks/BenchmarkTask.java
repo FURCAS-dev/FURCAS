@@ -19,6 +19,8 @@ public interface BenchmarkTask extends Callable<Collection<EObject>> {
     public void beforeCall();
     public void afterCall();
 
+    public void callEvaluation();
+
     public Map<String, String> getAdditionalMeasurementInformation();
     public Map<String, String> getAdditionalInformation();
     public Object getResult();

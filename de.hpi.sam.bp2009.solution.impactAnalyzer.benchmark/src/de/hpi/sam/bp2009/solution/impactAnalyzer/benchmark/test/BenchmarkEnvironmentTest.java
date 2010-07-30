@@ -157,5 +157,11 @@ public class BenchmarkEnvironmentTest extends TestCase {
 	    // TODO Auto-generated method stub
 	    return null;
 	}
+
+	@Override
+	public void callEvaluation() {
+	    // TODO Auto-generated method stub
+
+	}
     }
 }
