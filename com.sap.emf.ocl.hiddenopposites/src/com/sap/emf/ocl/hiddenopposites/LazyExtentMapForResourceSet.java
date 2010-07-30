@@ -28,7 +28,18 @@ public class LazyExtentMapForResourceSet implements Map<EClass, Set<EObject>> {
                 rootContext = context;
             }
         } else if (context instanceof EObject) {
-            rootContext = EcoreUtil.getRootContainer((EObject) context);
+            EObject rootEObject = EcoreUtil.getRootContainer((EObject) context);
+            Resource rootResource = rootEObject.eResource();
+            if (rootResource != null) {
+                ResourceSet rootResourceSet = rootResource.getResourceSet();
+                if (rootResourceSet != null) { 
+                    rootContext = rootResourceSet;
+                } else {
+                    rootContext = rootResource;
+                }
+            } else {
+                rootContext = rootEObject;
+            }
         } else {
             throw new RuntimeException("What type of Notifier is this? " + context.getClass().getName());
         }
