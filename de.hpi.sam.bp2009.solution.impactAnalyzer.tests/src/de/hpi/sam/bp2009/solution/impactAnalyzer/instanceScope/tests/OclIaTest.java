@@ -86,6 +86,7 @@ public class OclIaTest extends BaseDepartmentTest {
     public void setUp() {
         this.cp = ClassesPackage.eINSTANCE;
         this.rs = new ResourceSetImpl();
+        this.rs.eAdapters().add(new ECrossReferenceAdapter());
         this.rs.getResources().add(this.cp.eResource());
     }
 
@@ -420,31 +421,24 @@ public class OclIaTest extends BaseDepartmentTest {
     @Test
     public void testAllInstancesSelectClassName() {
         Resource r = this.cp.eResource();
-
         OCLExpression exp = (OCLExpression) parse(testAllInstancesSelectClassName, this.cp).iterator().next().getSpecification()
                 .getBodyExpression();
         r.getContents().add(exp);
-
         final SapClass cl1 = ClassesFactory.eINSTANCE.createSapClass();
         cl1.setName("Alice");
         r.getContents().add(cl1);
-
         final ClassTypeDefinition ctd = ClassesFactory.eINSTANCE.createClassTypeDefinition();
         ctd.setClazz(cl1);
         r.getContents().add(ctd);
 
         EAttribute att = (EAttribute) cl1.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__NAME);
         Notification noti = NotificationHelper.createAttributeChangeNotification(cl1, att, "Alice", "Bob");
-        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass());
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getClassTypeDefinition());
         Collection<EObject> impact = ia.getContextObjects(noti);
-
-        // FIXME the original code doesn't make sense to me
-        // The constraint itself is weird. How could a change of an SapClass' name have an impact on the associated
-        // ClassTypeDefinition?
-        // And asserting that the impact does not contain the SapClass seems straightforward, since the context of the expression is
-        // ClassTypeDefinition.
-        // The original Code is commented out below.
-        //assertTrue(impact.size() > 0 && impact.contains(ctd) && !impact.contains(cl1));
+        // The expression has as its context ClassTypeDefinition. Therefore, the SapClass must not be returned
+        // as impacted object. However, the change affects the ->select clause after allInstances(), so
+        // all context objects of type ClassTypeDefinition are affected. That's what we want to assert now:
+        assertTrue(impact.size() > 0 && impact.contains(ctd) && !impact.contains(cl1));
     }
 
     // /**
@@ -651,8 +645,8 @@ public class OclIaTest extends BaseDepartmentTest {
         // FIXME the name change definitely changes the evaluation result of the expression and should therefore have an impact
         // Apparently there is some type mismatch in the navigation steps, but I have no idea where it comes from.
         // The interesting action happens right after the IA tries to resolve the oppositeProperty for valueClass on
-        // "Bob" which leads to an empty set that seems to propagate too far.
-        // assertTrue(impact.size() == 1 && impact.contains(ol1));
+        // "Bob" which leads to an empty set that seems to propagate too far.x`
+        assertTrue(impact.size() == 1 && impact.contains(ol1));
     }
 
     @Test
