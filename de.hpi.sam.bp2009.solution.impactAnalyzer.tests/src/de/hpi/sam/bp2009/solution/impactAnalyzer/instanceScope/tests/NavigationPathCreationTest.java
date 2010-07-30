@@ -36,14 +36,12 @@ public class NavigationPathCreationTest extends TestCase{
     @Test
     public void testProducingNavigationStepsForTcsExpressions(){
 	List<ExceptionWithExpression> excList = tryCreationAndCatchAllRuntimeExceptions(classTcsExpressionList);
-	printExceptions(excList);
 	assertEquals(0, excList.size());
     }
 
     @Test
     public void testProducingNavigationStepsForMetamodelExpressions(){
 	List<ExceptionWithExpression> excList = tryCreationAndCatchAllRuntimeExceptions(metamodelExpressionList);
-	printExceptions(excList);
 	assertEquals(0, excList.size());
     }
 
@@ -100,7 +98,8 @@ public class NavigationPathCreationTest extends TestCase{
 		    assertNotNull(cache.getOrCreateNavigationPath(callExpression, expression.getContext(), filterSynthesizer,
 			    null));
 		} catch (RuntimeException e) {
-		    System.out.println(e.getMessage());
+		    System.out.println(callExpression);
+		    e.printStackTrace();
 		    excList.add(new ExceptionWithExpression(e, expression));
 		}
 
@@ -114,8 +113,8 @@ public class NavigationPathCreationTest extends TestCase{
 		    assertNotNull(cache.getOrCreateNavigationPath(callExpression, expression.getContext(), filterSynthesizer,
 			    null));
 		} catch (RuntimeException e) {
-		    System.out.println(e.getMessage());
-
+		    System.out.println(callExpression);
+		    e.printStackTrace();
 		    excList.add(new ExceptionWithExpression(e, expression));
 		}
 
