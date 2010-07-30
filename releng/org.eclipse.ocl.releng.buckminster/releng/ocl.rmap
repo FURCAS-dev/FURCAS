@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
+  <rm:property key="cvs.modeling.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling"/>
+  <rm:property key="cvs.eclipse.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse"/>
+  <rm:locator pattern="^lpg\.runtime\.java$" searchPathRef="p2_orbit" failOnError="false"/>
+  <rm:locator pattern="^org\.eclipse\.ocl.*$" searchPathRef="cvs_ocl"/>
+  <rm:locator pattern="^org\.eclipse\.test$" searchPathRef="cvs_eclipse"/>
+  <rm:locator pattern="^org\.eclipse\.ant\.optional\.junit$" searchPathRef="cvs_eclipse"/>
+  <rm:searchPath name="cvs_ocl">
+    <rm:provider componentTypes="buckminster" readerType="cvs" mutable="false">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/releng/{1}">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature" readerType="cvs" mutable="false">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/coordinated/{1}-feature">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false" resolutionFilter="">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/plugins/{1}">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature" readerType="cvs" mutable="false" resolutionFilter="">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/plugins/{1}-feature">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false" resolutionFilter="">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/doc/{1}">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature" readerType="cvs" mutable="false" resolutionFilter="">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/doc/{1}-feature">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false" resolutionFilter="">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/tests/{1}">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature" readerType="cvs" mutable="false" resolutionFilter="">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/tests/{1}-feature">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="cvs_eclipse">
+    <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false">
+      <rm:uri format="{0},{1}">
+        <bc:propertyRef key="cvs.eclipse.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="cvs">
+      <rm:uri format="{0},{1}-feature">
+        <bc:propertyRef key="cvs.eclipse.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="p2_orbit">
+    <rm:provider componentTypes="osgi.bundle" readerType="p2">
+      <rm:uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/repository"/>
+    </rm:provider>
+  </rm:searchPath>
+</rm:rmap>
