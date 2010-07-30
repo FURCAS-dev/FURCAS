@@ -8,23 +8,23 @@ import javax.swing.event.ChangeListener;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 /**
- * During instance scope analysis, starting from an event's source element, by navigation the analyzer is trying to find
- * a small superset of those context elements for which re-evaluating the OCL expression may yield a different value
- * after the event compared to the value the OCL expression would have returned before the event. This navigation is
- * performed by following a set of pre-computed paths. The paths are precomputed because many subexpressions in an OCL
- * expression do not reasonably contribute to the finding of those contexts and should therefore be pruned during an
- * analysis that is performend only once per expression.
+ * During instance scope analysis, starting from an event's source element, by navigation the analyzer is trying to find a small
+ * superset of those context elements for which re-evaluating the OCL expression may yield a different value after the event
+ * compared to the value the OCL expression would have returned before the event. This navigation is performed by following a set
+ * of pre-computed paths. The paths are precomputed because many subexpressions in an OCL expression do not reasonably contribute
+ * to the finding of those contexts and should therefore be pruned during an analysis that is performend only once per expression.
  * <p>
  * 
- * Navigation steps are generally able to navigate from one or more {@link RefObject}s to zero or more {@link RefObject}
- * s. Each navigation step knows its static start and end type. If the source element's type doesn't conform to the
- * step's start type, the navigation is not performed and an empty set is returned immediately. If the target type is
- * not matched, an empty set is returned, too.
+ * Navigation steps are generally able to navigate from one or more {@link EObject}s to zero or more {@link EObject}s. Each
+ * navigation step knows its static start and end type. If the source element's type doesn't conform to the step's start type, the
+ * navigation is not performed and an empty set is returned immediately. If the target type is not matched, an empty set is
+ * returned, too.
  * <p>
  * 
  * Navigation steps may form a possibly cyclic (in case of recursive operations) graph. Steps may navigate, e.g., along
