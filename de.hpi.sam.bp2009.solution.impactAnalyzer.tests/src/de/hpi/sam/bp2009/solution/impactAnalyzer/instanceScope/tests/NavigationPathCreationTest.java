@@ -49,13 +49,15 @@ public class NavigationPathCreationTest extends TestCase{
 
     public List<ExceptionWithExpression> tryCreationAndCatchAllRuntimeExceptions(Collection<OCLExpressionWithContext> expressionList){
 	List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
+
 	for (OCLExpressionWithContext expression : expressionList) {
 	    try {
-		tryToCreateNavigationPaths(expression);
+		excList.addAll(tryToCreateNavigationPaths(expression));
 	    } catch (RuntimeException e) {
 		excList.add(new ExceptionWithExpression(e, expression));
 	    }
 	}
+
 	return excList;
     }
 
@@ -81,27 +83,46 @@ public class NavigationPathCreationTest extends TestCase{
     }
 
     @SuppressWarnings("unchecked")
-    private void tryToCreateNavigationPaths(OCLExpressionWithContext expression) {
+    private List<ExceptionWithExpression> tryToCreateNavigationPaths(OCLExpressionWithContext expression) {
+	List<ExceptionWithExpression> excList = new ArrayList<ExceptionWithExpression>();
+
 	FilterSynthesisImpl filterSynthesizer = new FilterSynthesisImpl(expression.getExpression(), false);
 	filterSynthesizer.getSynthesisedFilter();
 
 	Map<EAttribute, Set<PropertyCallExp>> attributeCallExpressions = (Map<EAttribute, Set<PropertyCallExp>>)dirtyReflectionAttributeReader("attributeCallExpressions", filterSynthesizer);
 	Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = (Map<EReference, Set<NavigationCallExp>>)dirtyReflectionAttributeReader("associationEndCallExpressions", filterSynthesizer);
 
-	for(Set<PropertyCallExp> callExpressionSet : attributeCallExpressions.values()){
-	    for(PropertyCallExp callExpression : callExpressionSet){
-		PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
-		assertNotNull(cache.getOrCreateNavigationPath(callExpression, expression.getContext(), filterSynthesizer, null));
+	for (Set<PropertyCallExp> callExpressionSet : attributeCallExpressions.values()) {
+	    for (PropertyCallExp callExpression : callExpressionSet) {
+
+		try {
+		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
+		    assertNotNull(cache.getOrCreateNavigationPath(callExpression, expression.getContext(), filterSynthesizer,
+			    null));
+		} catch (RuntimeException e) {
+		    System.out.println(e.getMessage());
+		    excList.add(new ExceptionWithExpression(e, expression));
+		}
+
 	    }
 	}
 
-	for(Set<NavigationCallExp> callExpressionSet : associationEndCallExpressions.values()){
-	    for(NavigationCallExp callExpression : callExpressionSet){
-		PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
-		assertNotNull(cache.getOrCreateNavigationPath(callExpression, expression.getContext(), filterSynthesizer, null));
+	for (Set<NavigationCallExp> callExpressionSet : associationEndCallExpressions.values()) {
+	    for (NavigationCallExp callExpression : callExpressionSet) {
+		try {
+		    PathCache cache = new PathCache(DefaultOppositeEndFinder.getInstance());
+		    assertNotNull(cache.getOrCreateNavigationPath(callExpression, expression.getContext(), filterSynthesizer,
+			    null));
+		} catch (RuntimeException e) {
+		    System.out.println(e.getMessage());
+
+		    excList.add(new ExceptionWithExpression(e, expression));
+		}
+
 	    }
 	}
 
+	return excList;
     }
 
 
