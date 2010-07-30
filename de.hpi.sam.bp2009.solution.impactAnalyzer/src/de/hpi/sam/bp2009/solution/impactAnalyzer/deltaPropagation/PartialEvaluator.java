@@ -344,7 +344,12 @@ public class PartialEvaluator {
             if (propagationStrategy == null) {
                 result = getResultCollectionFromSingleDelta(e, deltaForEValue);
             } else {
-                Collection<Pair<OCLExpression, Collection<Object>>> propagated = propagationStrategy.mapDelta(e, deltaForEValue);
+                Collection<Pair<OCLExpression, Collection<Object>>> propagated = null;
+                try {
+                    propagated = propagationStrategy.mapDelta(e, deltaForEValue);
+                } catch (ValueNotFoundException vnfe) {
+                    // that's ok; probably an access to "self" or another variable that isn't known at this time
+                }
                 if (propagated == null) {
                     result = getResultCollectionFromSingleDelta(e, deltaForEValue);
                 } else {
