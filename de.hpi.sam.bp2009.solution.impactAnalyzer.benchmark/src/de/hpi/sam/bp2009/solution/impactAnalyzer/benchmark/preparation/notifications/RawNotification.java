@@ -17,11 +17,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 public class RawNotification {
-    	private final static String LINK_ADD_EVENT = "LinkAddEvent";
-    	private final static String LINK_REMOVE_EVENT = "LinkRemoveEvent";
-    	private final static String ATTRIBUTE_VALUE_CHANGE_EVENT = "AttributeValueChangeEvent";
-    	private final static String ELEMENT_DELETE_EVENT = "ElementDeleteEvent";
-    	private final static String ELEMENT_CREATE_EVENT ="ElementCreateEvent";
+    	public final static String LINK_ADD_EVENT = "LinkAddEvent";
+    	public final static String LINK_REMOVE_EVENT = "LinkRemoveEvent";
+    	public final static String ATTRIBUTE_VALUE_CHANGE_EVENT = "AttributeValueChangeEvent";
+    	public final static String ELEMENT_DELETE_EVENT = "ElementDeleteEvent";
+    	public final static String ELEMENT_CREATE_EVENT ="ElementCreateEvent";
 
 	private final String eventType;
 	private final Map<String, String> attributeMap;
@@ -144,17 +144,14 @@ public class RawNotification {
 
         	if(obj1 != null && obj2 != null){
         	//	System.out.println("Both not null");
-        		
-        	    if(wasSplitted() && getSplitNumber() == 0){
-        	 //   	System.out.println("Split" + 0);
+
+        	    if(wasSplitted() && getSplitNumber() == 0)
+			//   	System.out.println("Split" + 0);
         	    	return createLinkRemoveNotification(obj1, obj2);
-        	    }
-        	   else if(wasSplitted() && getSplitNumber() == 1){
-        	//	   System.out.println("Split" + 1);
-        		   return createLinkRemoveNotification(obj2, obj1);
-        	   }
-        		   
-		    else
+		    else if(wasSplitted() && getSplitNumber() == 1)
+		    //	   System.out.println("Split" + 1);
+		       return createLinkRemoveNotification(obj2, obj1);
+		else
 			return null;
         	}
             }else if(getEventType().equals(LINK_ADD_EVENT)){
@@ -165,22 +162,20 @@ public class RawNotification {
 
         	String mofId2 = getAttributeMap().get("MRI2").split("#")[1];
         	EObject obj2 = resource.getEObject(mofId2);
-        	
+
         	String rolename1 = getAttributeMap().get("AE2");
         	String rolename2 = getAttributeMap().get("AE3");
 
         	if(obj1 != null && obj2 != null){
         	//	System.out.println("Both not null");
-        		
-        	    if(wasSplitted() && getSplitNumber() == 0){
-        	 //   	System.out.println("Split" + 0);
+
+        	    if(wasSplitted() && getSplitNumber() == 0)
+			//   	System.out.println("Split" + 0);
         	    	return createLinkAddNotification(obj1, obj2, rolename1, rolename2);
-        	    }        	    	
-        	    else if(wasSplitted() && getSplitNumber() == 1){
-        	 //   	System.out.println("Split" + 1);
+		    else if(wasSplitted() && getSplitNumber() == 1)
+			//   	System.out.println("Split" + 1);
         	    	return createLinkAddNotification(obj2, obj1, rolename2, rolename1);
-        	    }
-        	    else
+		    else
         	    	return null;
         	}
             }else if(getEventType().equals(ELEMENT_DELETE_EVENT)){

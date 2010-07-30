@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -26,14 +26,14 @@ public class NotificationResourceLoader {
         resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
         ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
         resultRS.eAdapters().add(adapter);
-        
+
         InputStream fileStream = RealWorldReplayNotificationProducer.class.getResourceAsStream(resourcePath);
         XMLResource instanceResource = readResourceOutOfStream(fileStream, resultRS);
-        
+
         return instanceResource;
     }
 
-    public static Collection<RawNotification> loadTrace(String path){
+    public static List<RawNotification> loadTrace(String path){
 	String resourcePath = NotificationResourceLoader.EVENTTRACE_FIXTURE_LOCATION + path;
 
         ArrayList<RawNotification> informationList = new ArrayList<RawNotification>();
