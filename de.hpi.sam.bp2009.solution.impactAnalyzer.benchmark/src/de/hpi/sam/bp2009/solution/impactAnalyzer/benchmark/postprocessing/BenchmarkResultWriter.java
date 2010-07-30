@@ -13,7 +13,7 @@ public class BenchmarkResultWriter extends Writer {
 	private int lineOffset = 1;
 
 	public BenchmarkResultWriter() {
-		super(OutputOptions.getOutputPath());
+		super(OutputOptions.getOutputPath(), false);
 	}
 
     public synchronized void writeDataSet(Map<String, String> additionalInformation, ArrayList<Long> executionTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList, HashMap<String, ArrayList<Measurement>>microMeasurementList){

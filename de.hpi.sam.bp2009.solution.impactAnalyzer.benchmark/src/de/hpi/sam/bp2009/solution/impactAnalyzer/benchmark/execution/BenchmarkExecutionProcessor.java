@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import org.eclipse.core.runtime.jobs.Job;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.OutputOptions;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.ProcessingOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.ExceptionDumpWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
@@ -61,7 +62,9 @@ public class BenchmarkExecutionProcessor {
 	    container.afterBenchmark();
 
 	    if (i % 50 == 0) {
-		System.out.print("\r" + i + "/" + all);
+		if (ProcessingOptions.isVerbose()) {
+		    System.out.print("\r" + i + "/" + all);
+		}
 	    }
 	    i++;
 	}
@@ -90,8 +93,6 @@ public class BenchmarkExecutionProcessor {
 	writer.close();
 
 	System.out.println("Processing finished");
-
-	dumpExceptions(executor);
     }
 
     private static void performParallelBenchmarks(BenchmarkExecutor executor, int numberOfParallelJobs,
@@ -120,11 +121,17 @@ public class BenchmarkExecutionProcessor {
 	System.out.println(((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().size()
 		+ " tasks ended with exceptions");
 
-	if(OutputOptions.getExceptionDumpFilePath() != null && !OutputOptions.getExceptionDumpFilePath().equals("")){
-	    ExceptionDumpWriter writer = new ExceptionDumpWriter();
-	    writer.writeDump(((StandardBenchmarkExecutor)executor).getNotExecutedDueToException());
-	    writer.close();
-	    System.out.println("Exception dump file was written to " + OutputOptions.getExceptionDumpFilePath());
+	if (OutputOptions.getExceptionDumpFilePath() != null && !OutputOptions.getExceptionDumpFilePath().equals("")) {
+	    if (((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().size() > 200) {
+
+		ExceptionDumpWriter writer = new ExceptionDumpWriter();
+		writer.writeDump(((StandardBenchmarkExecutor) executor).getNotExecutedDueToException());
+		((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().clear();
+		writer.close();
+		System.out.println("Exception dump file was written to " + OutputOptions.getExceptionDumpFilePath());
+	    } else {
+		System.out.println("Prohibited to write exception dump file because there are to many exceptions");
+	    }
 	}
 
     }

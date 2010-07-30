@@ -12,6 +12,7 @@ import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
@@ -31,14 +32,14 @@ public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
 	ArrayList<OCLExpressionWithContext> result = new ArrayList<OCLExpressionWithContext>();
 
 	for (OclExpressionWithPackage expression : OCLTestExpressionContainer.getExpressionList()) {
-	    result.add(parse(expression.getOcl(), expression.getPackage()));
+	    result.add(parse(expression.getOcl(), expression.getPackage(), expression));
 	}
 
 	return result;
     }
 
     public OCLExpressionWithContext pickUpExpression(int index){
-	return parse(OCLTestExpressionContainer.getExpressionList().get(index).getOcl(), OCLTestExpressionContainer.getExpressionList().get(index).getPackage());
+	return parse(OCLTestExpressionContainer.getExpressionList().get(index).getOcl(), OCLTestExpressionContainer.getExpressionList().get(index).getPackage(), OCLTestExpressionContainer.getExpressionList().get(index));
     }
 
     /**
@@ -46,21 +47,22 @@ public class OCLExpressionFromClassTcsPicker implements OCLExpressionPicker {
      *            to parse
      * @return a list of {@link Constraint}s parsed from given expression
      */
-    protected OCLExpressionWithContext parse(String expression, EPackage basePackage) {
+    protected OCLExpressionWithContext parse(String expression, EPackage basePackage, OclExpressionWithPackage oclWithPackage) {
 		OCLInput exp = new OCLInput(expression);
 		String nsPrefix = basePackage.getNsPrefix();
 		EPackage.Registry.INSTANCE.put(nsPrefix, basePackage);
 		ArrayList<String> path = new ArrayList<String>();
 		path.add(nsPrefix);
 		OCL ocl = OCLWithHiddenOpposites.newInstance();
-		ocl = OCLWithHiddenOpposites.newInstance(ocl.getEnvironment().getFactory().createPackageContext(ocl.getEnvironment(), path));
+	        ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
+	                createPackageContext(ocl.getEnvironment(), basePackage));
 		OCLExpressionWithContext result = null;
 		try {
-			@SuppressWarnings("rawtypes")
-			ExpressionInOCL specification = ocl.parse(exp).iterator().next().getSpecification();
+		    @SuppressWarnings("rawtypes")
+		    ExpressionInOCL specification = ocl.parse(exp).iterator().next().getSpecification();
 		    OCLExpression expr = (OCLExpression) specification.getBodyExpression();
 
-		    result = new OCLExpressionWithContext(expr, (EClass) specification.getContextVariable().getType());
+		    result = new OCLExpressionWithContext(expr, (EClass) specification.getContextVariable().getType(), oclWithPackage);
 
 		} catch (ParserException e) {
 		    System.err.println("Error while parsing Expression:" + exp);

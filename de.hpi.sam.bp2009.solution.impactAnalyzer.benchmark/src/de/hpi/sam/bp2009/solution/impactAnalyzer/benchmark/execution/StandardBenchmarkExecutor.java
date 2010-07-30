@@ -24,39 +24,43 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
     private HashMap<String, Throwable> notExecutedDueToException = new LinkedHashMap<String, Throwable>();
 
-
     @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
-    	if(task.activate()){
-		try {
-		    // Warmup
-		    for (int i = 0; i < ProcessingOptions.getNumberOfWarmUps(); i++) {
-			task.beforeCall();
-			task.call();
-			task.afterCall();
-			task.getAdditionalMeasurementInformation();
-		    }
-
-		    ArrayList<Long> executionTimeList = new ArrayList<Long>();
-		    ArrayList<Map<String, String>> additionalMeasurementInformationList = new ArrayList<Map<String, String>>();
-
-		    for (int i = 0; i < ProcessingOptions.getNumberOfMeasures(); i++) {
-			measureExecutionTime(task, executionTimeList, additionalMeasurementInformationList);
-			BenchmarkMeasurements.aggregate();
-		    }
-
-		    writer.writeDataSet(task.getAdditionalInformation(), executionTimeList, additionalMeasurementInformationList, BenchmarkMeasurements.getMeasurementList());
-
-		    BenchmarkMeasurements.reset();
-		} catch (Exception e) {
-		    getNotExecutedDueToException().put(task.toString(), e);
-		} catch (StackOverflowError e){
-		    getNotExecutedDueToException().put(task.toString(), e);
+	if (task.activate()) {
+	    try {
+		// Warmup
+		for (int i = 0; i < ProcessingOptions.getNumberOfWarmUps(); i++) {
+		    task.beforeCall();
+		    task.call();
+		    task.afterCall();
+		    task.getAdditionalMeasurementInformation();
 		}
+
+		ArrayList<Long> executionTimeList = new ArrayList<Long>();
+		ArrayList<Map<String, String>> additionalMeasurementInformationList = new ArrayList<Map<String, String>>();
+
+		for (int i = 0; i < ProcessingOptions.getNumberOfMeasures(); i++) {
+		    measureExecutionTime(task, executionTimeList, additionalMeasurementInformationList);
+		    BenchmarkMeasurements.aggregate();
+		}
+
+		writer.writeDataSet(task.getAdditionalInformation(), executionTimeList, additionalMeasurementInformationList,
+			BenchmarkMeasurements.getMeasurementList());
+
+		BenchmarkMeasurements.reset();
+	    } catch (Exception e) {
+		getNotExecutedDueToException().put(task.toString(), e);
+		if (ProcessingOptions.isVerbose()) {
+		    e.printStackTrace();
+		}
+	    } catch (StackOverflowError e) {
+		getNotExecutedDueToException().put(task.toString(), e);
 	    }
+	}
     }
 
-    private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList) throws Exception {
+    private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList,
+	    ArrayList<Map<String, String>> additionalMeasurementInformationList) throws Exception {
 	// Perform measurement
 	task.beforeCall();
 	long timeBefore = System.nanoTime();
@@ -68,12 +72,11 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 	additionalMeasurementInformationList.add(task.getAdditionalMeasurementInformation());
     }
 
-	public void setNotExecutedDueToException(
-			HashMap<String, Throwable> notExecutedDueToException) {
-		this.notExecutedDueToException = notExecutedDueToException;
-	}
+    public void setNotExecutedDueToException(HashMap<String, Throwable> notExecutedDueToException) {
+	this.notExecutedDueToException = notExecutedDueToException;
+    }
 
-	public HashMap<String, Throwable> getNotExecutedDueToException() {
-		return notExecutedDueToException;
-	}
+    public HashMap<String, Throwable> getNotExecutedDueToException() {
+	return notExecutedDueToException;
+    }
 }

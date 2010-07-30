@@ -7,44 +7,46 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.ProcessingOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.postprocessing.BenchmarkResultWriter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskContainer;
 
-public class BenchmarkExecutionJob extends Job{
+public class BenchmarkExecutionJob extends Job {
 
-	private final BenchmarkExecutor executor;
-	private final BenchmarkResultWriter writer;
-	private final Queue<BenchmarkTaskContainer> containerList;
+    private final BenchmarkExecutor executor;
+    private final BenchmarkResultWriter writer;
+    private final Queue<BenchmarkTaskContainer> containerList;
 
-	public BenchmarkExecutionJob(String name, BenchmarkExecutor executor, Queue<BenchmarkTaskContainer> containerList, BenchmarkResultWriter writer) {
-		super(name);
-		// TODO Auto-generated constructor stub
+    public BenchmarkExecutionJob(String name, BenchmarkExecutor executor, Queue<BenchmarkTaskContainer> containerList,
+	    BenchmarkResultWriter writer) {
+	super(name);
 
-		this.executor = executor;
-		this.containerList = containerList;
-		this.writer = writer;
+	this.executor = executor;
+	this.containerList = containerList;
+	this.writer = writer;
+    }
+
+    @Override
+    protected IStatus run(IProgressMonitor monitor) {
+	int i = 0;
+	while (!containerList.isEmpty()) {
+	    BenchmarkTaskContainer container = containerList.remove();
+
+	    container.beforeBenchmark();
+	    while (!container.isEmpty()) {
+		executor.execute(container.remove(), writer);
+	    }
+	    container.afterBenchmark();
+
+	    if (i++ > 200) {
+		if (ProcessingOptions.isVerbose()) {
+		    System.out.println("Job[" + this.getName() + "]:" + containerList.size());
+		}
+		i = 0;
+	    }
 	}
 
-	@Override
-	protected IStatus run(IProgressMonitor monitor) {
-		int i = 0;		
-		while(!containerList.isEmpty()){
-			BenchmarkTaskContainer container = containerList.remove();
-			
-			container.beforeBenchmark();
-			while(!container.isEmpty()){
-				executor.execute(container.remove(), writer);
-			}
-		    container.afterBenchmark();
-		        
-		    if(i++ > 200){
-			      System.out.println("Job["+ this.getName() +"]:" + containerList.size());
-			      i = 0;
-			}
-		} 
-		
-		
-		return Status.OK_STATUS;
-	}
+	return Status.OK_STATUS;
+    }
 
 }

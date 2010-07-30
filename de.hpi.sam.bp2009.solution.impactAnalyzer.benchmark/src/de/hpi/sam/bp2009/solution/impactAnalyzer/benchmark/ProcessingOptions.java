@@ -5,6 +5,7 @@ public class ProcessingOptions {
     private static int warmUps;
     private static int measures;
     private static int numberOfJobs = 1;
+    private static boolean verbose;
 
     public static void setNumberOfWarmUps(int warmUps) {
 	ProcessingOptions.warmUps = warmUps;
@@ -29,7 +30,15 @@ public class ProcessingOptions {
 	public static int getNumberOfJobs() {
 		return numberOfJobs;
 	}
-    
-    
+
+	public static void setVerbose(boolean verbose) {
+	    ProcessingOptions.verbose = verbose;
+	}
+
+	public static boolean isVerbose() {
+	    return verbose;
+	}
+
+
 
 }

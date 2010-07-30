@@ -6,14 +6,13 @@ import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 
 public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
@@ -22,13 +21,22 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private Notification notification;
     private Resource model;
 
+    /**
+     * Also store original model in order to evaluate expression on model state before the value changed
+     */
+    private Resource originalModel;
+
     private final LinkedHashMap<String, String> additionalInformation = new LinkedHashMap<String, String>();
     private final LinkedHashMap<String, String> additionalMeasurementInformation = new LinkedHashMap<String, String>();
 
     private Collection<EObject> result = null;
 
-    public ModelSizeVariationBenchmarkTask(OCLExpression expression, EClass context, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId) {
-    	rawNotification = notification;
+    @SuppressWarnings("unused") //TODO: See if unused field can be removed
+    private final OCLExpressionWithContext expression;
+
+    public ModelSizeVariationBenchmarkTask(OCLExpressionWithContext expression, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId) {
+    	this.expression = expression;
+	rawNotification = notification;
 		ia = imp;
 
 		additionalInformation.put("optionId", optionId);
@@ -50,16 +58,17 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     	notification = rawNotification.convertToNotification(getModel());
 
+    	EventFilter filter = null;
     	if(notification != null) {
-    		EventFilter filter = ia.createFilterForExpression(false);
+    	    	filter = ia.createFilterForExpression(false);
     		if(filter.matchesFor(notification)){
     			additionalInformation.put("filtered", "TRUE");
     		}else{
     			additionalInformation.put("filtered", "FALSE");
     		}
-    	}    	
+    	}
 
-    	return notification != null;
+    	return notification != null && filter != null && filter.matchesFor(notification);
     }
 
     @Override
@@ -83,7 +92,22 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	assert result != null;
 
 	additionalMeasurementInformation.put("noContextObjects", String.valueOf(result.size()));
-	
+
+	/*//model.getResourceSet().getResources().add(expression.getExpression().eResource());
+
+		OCL ocl = OCLWithHiddenOpposites.newInstance();
+
+		if(expression.getOclWithPackage() != null){
+	        ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
+	                createPackageContext(ocl.getEnvironment(), expression.getOclWithPackage().getPackage()));
+		}
+
+		for(EObject affectedElement : result){
+    		   // System.out.println(affectedElement);
+		   //System.out.println(expression + ":" + ocl.evaluate(affectedElement, expression.getExpression()));
+		}*/
+
+
 	result = null;
     }
 
@@ -129,6 +153,19 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
 	public Resource getModel() {
 		return model;
+	}
+
+	public void setOriginalModel(Resource originalModel) {
+	    this.originalModel = originalModel;
+	}
+
+	public Resource getOriginalModel() {
+	    return originalModel;
+	}
+
+	@Override
+	public Object getResult() {
+	    return result;
 	}
 
 }
