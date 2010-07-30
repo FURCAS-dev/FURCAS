@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.test;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -9,14 +10,24 @@ import java.util.Map;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.ocl.ecore.OCL;
 import org.junit.Test;
+
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.OutputOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.ProcessingOptions;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromModelPicker;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RealWorldReplayNotificationProducer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 
 public class BenchmarkEnvironmentTest extends TestCase {
@@ -28,42 +39,84 @@ public class BenchmarkEnvironmentTest extends TestCase {
 		ProcessingOptions.setNumberOfJobs(6);
 		ProcessingOptions.setNumberOfMeasures(100);
 		ProcessingOptions.setNumberOfWarmUps(1000);
-		
+
 		for(int i = 0; i < 10000; i++){
 			benchmarkTasks.add(new BenchmarkTaskMock());
 		}
-		
+
 		//BenchmarkExecutionProcessor.processBenchmarks(benchmarkTasks);
 	}
 
-	
-    @Test
-    public void testOCLExpressionFromClassTcsPicker(){
-	int numberOfUnparsedExpressions = OCLTestExpressionContainer.getExpressionList().size();
-	int numberOfParsedExpressions = new OCLExpressionFromClassTcsPicker().pickUpExpressions().size();
 
-	assertTrue(numberOfUnparsedExpressions == numberOfParsedExpressions);
-    }
 
-    @Test
-    public void testOCLExpressionFromModelPicker(){
-	assertTrue(new OCLExpressionFromModelPicker().pickUpExpressions(company.CompanyPackage.eINSTANCE).size() >= 20);
-    }
 
     @Test
     public void testRealWorldReplayNotificationProducer(){
-	//
+	Collection<OCLExpressionWithContext> expressionList = BenchmarkOCLPreparer.prepareAll();
+
+	Resource fullSizeModel = NotificationResourceLoader.loadModel("NgpmModel.xmi");
+
+
+	EPackage pkgList[] = {data.classes.ClassesPackage.eINSTANCE,
+	data.constraints.ConstraintsPackage.eINSTANCE, data.documents.DocumentsPackage.eINSTANCE,
+	data.generics.GenericsPackage.eINSTANCE, data.quantitystructure.QuantitystructurePackage.eINSTANCE,
+	data.timedependency.TimedependencyPackage.eINSTANCE, data.tuples.TuplesPackage.eINSTANCE,
+
+	dataaccess.analytics.AnalyticsPackage.eINSTANCE, dataaccess.expressions.ExpressionsPackage.eINSTANCE,
+	dataaccess.expressions.fp.FpPackage.eINSTANCE, dataaccess.expressions.literals.LiteralsPackage.eINSTANCE,
+	dataaccess.query.QueryPackage.eINSTANCE,
+
+	behavioral.actions.ActionsPackage.eINSTANCE, behavioral.bpdm.BpdmPackage.eINSTANCE,
+	behavioral.businesstasks.BusinesstasksPackage.eINSTANCE, behavioral.events.EventsPackage.eINSTANCE,
+	behavioral.rules.RulesPackage.eINSTANCE,
+
+	persistence.actions.ActionsPackage.eINSTANCE, persistence.expressions.ExpressionsPackage.eINSTANCE};
+
+	for(EPackage pkg : pkgList){
+	    fullSizeModel.getResourceSet().getResources().add(pkg.eResource());
+	}
+
+	ArrayList<RawNotification> notiList = (ArrayList<RawNotification>)new RealWorldReplayNotificationProducer().produce("modifyElementaryTypesEventTrace.trace");
+
+	for (OCLExpressionWithContext expression : expressionList) {
+	    fullSizeModel.getResourceSet().getResources().add(expression.getExpression().eResource());
+
+	    for (RawNotification rawNoti : notiList) {
+		if(rawNoti.isSplitCandidate()){
+		    evaluate(fullSizeModel, expression, rawNoti.split().get(0));
+		    evaluate(fullSizeModel, expression, rawNoti.split().get(1));
+		}else{
+		    evaluate(fullSizeModel, expression, rawNoti);
+		}
+	    }
+	}
     }
-    
+
+    private void evaluate(Resource fullSizeModel, OCLExpressionWithContext expression, RawNotification rawNoti) {
+	OCL ocl = OCLWithHiddenOpposites.newInstance();
+	ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
+	        createPackageContext(ocl.getEnvironment(), expression.getOclWithPackage().getPackage()));
+
+	EClass context = expression.getContext();
+	TreeIterator<EObject> iterator = fullSizeModel.getAllContents();
+
+	while(iterator.hasNext()){
+	    EObject obj = iterator.next();
+	    if(context.isInstance(obj)){System.out.println(expression.getExpression());
+		System.out.println(ocl.evaluate(obj, expression.getExpression()));
+	    }
+	}
+    }
+
 
 	@SuppressWarnings("unused")
 	private class BenchmarkTaskMock implements BenchmarkTask{
-	private int callCounter = 0;
+	private final int callCounter = 0;
 
 	@Override
 	public Collection<EObject> call() throws Exception {
 		//Thread.sleep(0, 10);
-		
+
 		return null;
 	}
 
@@ -97,6 +150,12 @@ public class BenchmarkEnvironmentTest extends TestCase {
 	public boolean activate() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Object getResult() {
+	    // TODO Auto-generated method stub
+	    return null;
 	}
     }
 }

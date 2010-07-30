@@ -14,13 +14,13 @@ public abstract class Writer {
     protected static final String BREAK = System.getProperty("line.separator");
 
 
-    public Writer(String path) {
+    public Writer(String path, boolean append) {
     	File f = new File(path);
     	createFileIfNeeded(f);
     	OutputStream os = null;
 
     	try {
-    		os = new FileOutputStream(f);
+    		os = new FileOutputStream(f, append);
     		writer = new BufferedWriter(new OutputStreamWriter(os), 81920);
     	} catch (FileNotFoundException e) {
     		// TODO Auto-generated catch block
