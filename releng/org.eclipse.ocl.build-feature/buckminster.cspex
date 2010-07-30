@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cs:cspecExtension
+	xmlns:com="http://www.eclipse.org/buckminster/Common-1.0"
+	xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
+
+	<cs:dependencies>
+		<cs:dependency name="org.eclipse.ocl.releng.buckminster" componentType="buckminster" />
+		<cs:dependency name="org.eclipse.ocl.tests" componentType="eclipse.feature" />
+	</cs:dependencies>
+
+	<cs:actions>
+		<cs:private name="site.tp" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="create.target.platform.metadata" />
+			</cs:actorProperties>
+			<cs:products alias="output" base="${buckminster.output}/site.tp/" />
+		</cs:private>
+
+		<cs:public name="package.mdt-ocl-Update" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.site" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="package.name" value="mdt-ocl-Update" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.mdt-ocl-SDK" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.ocl.all.sdk.feature.group" />
+				<cs:property key="package.name" value="mdt-ocl-SDK" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+		
+		<cs:public name="package.mdt-ocl-CoreSDK" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.ocl.core.sdk.feature.group" />
+				<cs:property key="package.name" value="mdt-ocl-CoreSDK" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.mdt-ocl-Examples" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.ocl.examples.feature.group" />
+				<cs:property key="package.name" value="mdt-ocl-Examples" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.mdt-ocl-Runtime" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.ocl.feature.group, org.eclipse.ocl.uml.feature.group" />				
+				<cs:property key="package.name" value="mdt-ocl-Runtime" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="tag" actor="buckminster.tag">
+			<cs:actorProperties>
+				<cs:property key="tag" value="build_${build.id}" />
+				<cs:property key="exclude.0" value="^org\.eclipse\.test$" />
+				<cs:property key="exclude.1" value="^org\.eclipse\.ant\.optional\.junit$" />
+			</cs:actorProperties>
+		</cs:public>
+	</cs:actions>
+
+	<cs:groups>
+		<cs:public name="build">
+			<cs:attribute name="package.mdt-ocl-Update" />
+			<cs:attribute name="package.mdt-ocl-SDK" />
+			<cs:attribute name="package.mdt-ocl-CoreSDK" />
+			<cs:attribute name="package.mdt-ocl-Examples" />
+			<cs:attribute name="package.mdt-ocl-Runtime" />			
+		</cs:public>
+	</cs:groups>
+</cs:cspecExtension>

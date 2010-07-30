@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="org.eclipse.ocl.all.sdk" version="0.0.0">
+      <category name="mdt.ocl"/>
+   </feature>  
+   <feature id="org.eclipse.ocl.examples" version="0.0.0">
+      <category name="mdt.ocl"/>
+   </feature>  
+   <category-def name="mdt.ocl" label="MDT/OCL">
+      <description>
+         MDT/OCL features.
+      </description>
+   </category-def>
+</site>
