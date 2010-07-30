@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ecore.OCLExpression;
 
@@ -62,10 +61,6 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 		EAnnotation a = c.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
 		allConstraints = addConstraintToConstraintList(a, allConstraints, c);
 		if (c instanceof EClass) {
-		    for (EOperation op : ((EClass) c).getEOperations()) {
-			a = op.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
-			allConstraints = addConstraintToConstraintList(a, allConstraints, c);
-		    }
 		    for (EAttribute at : ((EClass) c).getEAttributes()) {
 			a = at.getEAnnotation("http://de.hpi.sam.bp2009.OCL");
 			allConstraints = addConstraintToConstraintList(a, allConstraints, c);
