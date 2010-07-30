@@ -96,7 +96,7 @@ public class PathCache {
         return tupleLiteralPartNamesToLookForAsList;
     }
 
-    NavigationStep getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context,
+    public NavigationStep getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context,
             FilterSynthesisImpl filterSynthesizer, String[] tupleLiteralNamesToLookFor) {
         NavigationStep result = getPathForNode(sourceExpression, tupleLiteralNamesToLookFor);
         if (result == null) {
