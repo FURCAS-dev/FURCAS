@@ -42,6 +42,7 @@ import dataaccess.expressions.literals.StringLiteral;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 
 public class OclIaTest extends BaseDepartmentTest {
@@ -725,5 +726,30 @@ public class OclIaTest extends BaseDepartmentTest {
         impact = ia.getContextObjects(noti);
         assertTrue(impact.size() >= 2); // we don't know the exact size because of all the other test elements created for fixture
         assertTrue(impact.contains(c1) && impact.contains(c2));
+    }
+
+    @Test
+    public void testVariableExpressionWithCollectionType() {
+	OCLExpression exp = (OCLExpression) parse("context NestedTypeDefinition inv: self.getNamedValuesInScope()", this.cp).iterator().next().getSpecification().getBodyExpression();
+	Resource ngpmModel = NotificationResourceLoader.loadModel("NgpmModel.xmi");
+
+	EObject notifier2 = ngpmModel.getEObject("E01F04667A84B3105D0911DF8BB0FF380A1CE22F");
+	EAttribute attribute2 = getAttributeForName(notifier2, "name");
+	Notification notification2 = NotificationHelper.createAttributeChangeNotification(notifier2, attribute2, "strings", "strings2");
+
+	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getNestedTypeDefinition());
+	Collection<EObject> impact = ia.getContextObjects(notification2);
+	assertEquals(impact.size(), 0);
+    }
+
+    private EAttribute getAttributeForName(EObject notifier1, String attributeName) {
+	for (EObject contentObject : notifier1.eClass().getEAllAttributes()) {
+	    if (contentObject instanceof EAttribute) {
+		if (((EAttribute) contentObject).getName().equals(attributeName))
+		    return (EAttribute) contentObject;
+	    }
+	}
+
+	throw new RuntimeException("Cannot find attribute " + attributeName + " on " + notifier1.eClass());
     }
 }
