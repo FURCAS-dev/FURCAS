@@ -20,10 +20,15 @@ import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.EcoreHelper;
+import org.eclipse.emf.query2.FromEntry;
+import org.eclipse.emf.query2.FromType;
+import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.emf.query2.SelectAlias;
+import org.eclipse.emf.query2.SelectEntry;
 
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
@@ -63,7 +68,7 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
     /**
      * Uses a {@link DefaultQueryContextProvider} to determine the context for queries
      */
-    public Query2OppositeEndFinder() {
+    protected Query2OppositeEndFinder() {
         this(new DefaultQueryContextProvider());
     }
     
@@ -146,8 +151,10 @@ public class Query2OppositeEndFinder implements OppositeEndFinder {
         Set<EObject> result = new HashSet<EObject>();
 
         QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        SelectEntry select = new SelectAlias("obj");
+        FromType from = new FromType(/* aliasName */ "obj", /* type URI */ EcoreUtil.getURI(cls), /* withoutsubtypes */ false);
+        Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from });
         // by default, a from-clause includes all subtypes unless the "withoutsubtypes" option is used
-        String query = "select obj from [" + EcoreUtil.getURI(cls) + "] as obj";
         ResultSet resultSet = queryProcessor.execute(query, scope);
         if (!resultSet.isEmpty()) {
             for (int i = 0; i < resultSet.getSize(); i++) {
