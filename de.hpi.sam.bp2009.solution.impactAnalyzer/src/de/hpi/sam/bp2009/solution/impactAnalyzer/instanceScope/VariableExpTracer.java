@@ -141,7 +141,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	        context,
 	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
 	return new BranchingNavigationStep(
-	        (EClass) getExpression().getType(),
+		getInnermostElementType(getExpression().getType()),
 	        context,
 	        getExpression(),
 	        stepForInitExpression,
@@ -179,7 +179,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 		stepsForCalls.add(pathCache.getOrCreateNavigationPath(callSource, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
 	    }
 	    indirectingStep.setActualStep(new BranchingNavigationStep(
-		    (EClass) getExpression().getType(),
+		    getInnermostElementType(getExpression().getType()),
 		    context,
 		    getExpression(),
 		    stepsForCalls.toArray(new NavigationStep[0])));
