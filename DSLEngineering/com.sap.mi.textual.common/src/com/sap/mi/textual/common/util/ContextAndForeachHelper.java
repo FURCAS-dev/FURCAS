@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -62,12 +63,12 @@ public class ContextAndForeachHelper {
      *         other common generalization exists
      */
     public static EObject getCommonBaseClassForContextTag(ConcreteSyntax cs, String contextTag, EClass elementClass) {
-        MQLProcessor mql = cs.get___ResourceSet().getMQLProcessor();
+        MQLProcessor mql = cs.eResource().getResourceSet().getMQLProcessor();
         MQLResultSet templatesClasses;
         if (contextTag==null || contextTag.length()==0) {
             templatesClasses = mql.execute("select me from Model::Classifier as me,"+
         	    	"TCS::ContextTemplate as ct,"+
-        	    	"\"" + ((Partitionable) cs).get___Mri() + "\" as cs "+
+        	    	"\"" + ((EObject) cs).get___Mri() + "\" as cs "+
         	    	"where ct.concreteSyntax=cs "+
         	    	"where ct.metaReference=me "+
         	    	"where ct.contextTags=null "+
@@ -76,7 +77,7 @@ public class ContextAndForeachHelper {
             templatesClasses = mql.execute("select me from Model::Classifier as me,"+
         		"TCS::ContextTemplate as ct,"+
         		"TCS::ContextTags as tags,"+
-        		"\"" + ((Partitionable) cs).get___Mri() + "\" as cs "+
+        		"\"" + ((EObject) cs).get___Mri() + "\" as cs "+
         		"where ct.concreteSyntax=cs "+
         		"where ct.metaReference=me "+
         		"where ct.contextTags=tags "+
@@ -120,7 +121,7 @@ public class ContextAndForeachHelper {
     }
 
     public static EObject getParsingContext(ResourceSet connection, String oclExpression, Template template,
-            Collection<RefPackage> packagesForLookup, EClass elementClass) {
+            Collection<EPackage> packagesForLookup, EClass elementClass) {
         EObject parsingContext = null;
         if (!usesContext(oclExpression)) {
             if (usesForeach(oclExpression)) {
@@ -176,7 +177,7 @@ public class ContextAndForeachHelper {
      * which the context is being cast. If the pattern does not match or the
      * type is not found, <tt>null</tt> is returned.
      */
-    public static EObject getContextMetaObject(ResourceSet connection, Collection<RefPackage> packagesForLookup, String oclExpression) {
+    public static EObject getContextMetaObject(ResourceSet connection, Collection<EPackage> packagesForLookup, String oclExpression) {
         EObject result = null;
         Matcher matcher = oclAsTypePattern.matcher(oclExpression);
         if (matcher.find()) {
@@ -194,14 +195,14 @@ public class ContextAndForeachHelper {
      * which the context is being cast. If the pattern does not match or the
      * type is not found, <tt>null</tt> is returned.
      */
-    public static EObject getForeachMetaObject(ResourceSet resourceSet, Collection<RefPackage> packagesForLookup, String oclExpression) {
+    public static EObject getForeachMetaObject(ResourceSet resourceSet, Collection<EPackage> packagesForLookup, String oclExpression) {
         EObject result = null;
         Matcher matcher = foreachPattern.matcher(oclExpression);
         if (matcher.find()) {
     	if (matcher.groupCount() >= 1) {
     	    String oclTypeName = matcher.group(1);
     	    List<String> path = OclHelper.getPath(oclTypeName);
-    	    EcoreUtil.
+    	    
     	    result = OclHelper.lookupModelElementByPathName(resourceSet, path, packagesForLookup);
     	}
         }
