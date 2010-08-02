@@ -51,8 +51,8 @@ public class DefaultQueryContextProvider implements QueryContextProvider {
     }
 
     /**
-     * Provides a query context that contains all resources known to the current query2 index
-     * @param singleResource TODO
+     * Provides a query context that contains all resources known to the current query2 index plus all resources
+     * contained in the <code>rs</code> resource set
      */
     private static QueryContext getWorkspaceQueryContext(final ResourceSet rs, final Resource singleResource) {
         return new QueryContext() {
