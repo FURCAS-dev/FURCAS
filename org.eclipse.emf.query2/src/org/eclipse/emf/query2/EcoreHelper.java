@@ -129,10 +129,14 @@ public class EcoreHelper {
             }
         } else {
             EClass owningType = getOwningType(forwardReference);
-            final ResultSet resultSet = getQueryProcessor().execute(
-                            "select target from [" + EcoreUtil.getURI(from.eClass()) + "] as source in elements {[" + //$NON-NLS-1$
-                                    EcoreUtil.getURI(from) + "]}, [" + EcoreUtil.getURI(owningType) + "] as target "
-                                    + "where target.\"" + forwardReference.getName() + "\" = source ", scope); //$NON-NLS-1$
+            SelectEntry select = new SelectAlias("target");
+            FromFixedSet fromFromElement = new FromFixedSet("source", EcoreUtil.getURI(from.eClass()), new URI[] { EcoreUtil.getURI(from) });
+            FromType fromTarget = new FromType("target", EcoreUtil.getURI(owningType), /* _withoutSubtypes */ false);
+            WhereEntry where = new WhereRelationReference(/* _leftAlias */ "target", /* _featureName */ forwardReference.getName(),
+                    /* _rightAlias */ "source");
+            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { fromFromElement, fromTarget },
+                    new WhereEntry[] { where });
+            final ResultSet resultSet = getQueryProcessor().execute(query, scope);
             for (int i = 0; i < resultSet.getSize(); i++) {
                 result.add(rs.getEObject(resultSet.getUri(i, "target"), /* loadOnDemand */true)); //$NON-NLS-1$
             }
