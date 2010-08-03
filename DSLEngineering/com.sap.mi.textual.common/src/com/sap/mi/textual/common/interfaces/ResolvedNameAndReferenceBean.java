@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * wraps an entity consisting of a reference to a metamodel element and its qualified name.
  */
-public class ResolvedNameAndReferenceBean<Type> {
+public class ResolvedNameAndReferenceBean<EType> {
 
     private List<String> names;
-    private Type reference;
+    private EType reference;
     private List<String> operators;
     
     
@@ -19,7 +19,7 @@ public class ResolvedNameAndReferenceBean<Type> {
      * @param name
      * @param reference
      */
-    public ResolvedNameAndReferenceBean(List<String> name, Type reference) {
+    public ResolvedNameAndReferenceBean(List<String> name, EType reference) {
         super();
         if (name == null && reference == null) {
             throw new IllegalArgumentException("both arguments null not allowed");
@@ -28,7 +28,7 @@ public class ResolvedNameAndReferenceBean<Type> {
         this.reference = reference;
     }
 
-    public ResolvedNameAndReferenceBean(List<String> names, Type reference,
+    public ResolvedNameAndReferenceBean(List<String> names, EType reference,
             List<String> ops) {
         this(names, reference);
         this.operators = ops;
@@ -51,7 +51,7 @@ public class ResolvedNameAndReferenceBean<Type> {
         }
     }
     
-    public Type getReference() {
+    public EType getReference() {
         return reference;
     }
 
