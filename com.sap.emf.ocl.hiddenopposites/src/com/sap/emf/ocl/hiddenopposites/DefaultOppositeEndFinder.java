@@ -259,19 +259,14 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
     }
 
     /**
-     * This default implementation uses an OCL environment's extent map to determine all
-     * instances. Note that for larger resource sets with many resources and elements this
-     * won't scale very well as all resources will be scanned for elements conforming to
-     * <code>cls</code>. Also, no scoping based on <code>context</code> is performed, meaning that
-     * <code>context</code> is simply ignored.
+     * This default implementation uses an {@link AllInstancesContentAdapter} on <code>context</code>'s root context (see
+     * {@link AllInstancesContentAdapter#getInstanceForRootContextOf(Notifier)}) which is created lazily if it isn't set yet. Note
+     * that for larger resource sets with many resources and elements this won't scale very well as all resources will be scanned
+     * for elements conforming to <code>cls</code>. Also, no scoping other than tracing to the root context based on
+     * <code>context</code> is performed.
      */
     public Set<EObject> getAllInstancesSeeing(EClass cls, Notifier context) {
-        Map<EClass, Set<EObject>> extents = new LazyExtentMapForResourceSet(context);
-        Set<EObject> result = extents.get(cls);;
-        if (result == null) {
-            result = Collections.emptySet();
-        }
-        return result;
+        return AllInstancesContentAdapter.getInstanceForRootContextOf(context).allInstances(cls);
     }
     
     public Set<EObject> getAllInstancesSeenBy(EClass cls, Notifier context) {
