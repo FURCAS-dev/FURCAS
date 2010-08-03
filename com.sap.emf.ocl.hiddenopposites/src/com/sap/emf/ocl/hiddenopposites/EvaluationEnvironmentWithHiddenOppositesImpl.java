@@ -1,6 +1,5 @@
 package com.sap.emf.ocl.hiddenopposites;
 
-import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,12 +40,17 @@ public class EvaluationEnvironmentWithHiddenOppositesImpl extends EcoreEvaluatio
 	return result;
     }
 
+    /**
+     * In the case of the "hidden opposites" OCL environment, an instance of the {@link ExtentMap} class is used. Is bases its
+     * <code>allInstances</code> computations on the {@link OppositeEndFinder} passed to the constructor of this object. See
+     * {@link OppositeEndFinder#getAllInstancesSeenBy(EClass, org.eclipse.emf.common.notify.Notifier)}.
+     */
     @Override
     public Map<EClass, Set<EObject>> createExtentMap(Object object) {
+        EObject context = null;
         if (object instanceof EObject) {
-            return new ExtentMap((EObject) object, oppositeEndFinder);
-        } else {
-            return Collections.emptyMap();
+            context = (EObject) object;
         }
+        return new ExtentMap(context, oppositeEndFinder);
     }
 }
