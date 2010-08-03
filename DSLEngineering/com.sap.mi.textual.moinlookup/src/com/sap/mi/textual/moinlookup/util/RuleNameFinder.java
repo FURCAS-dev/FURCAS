@@ -1,5 +1,7 @@
 package com.sap.mi.textual.moinlookup.util;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.IRuleName;

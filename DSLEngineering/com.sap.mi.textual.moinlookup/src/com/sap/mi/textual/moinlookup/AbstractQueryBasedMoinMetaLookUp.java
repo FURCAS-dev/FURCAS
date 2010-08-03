@@ -11,34 +11,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.omg.ocl.expressions.OclExpression;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-import com.sap.tc.moin.repository.mql.QueryScopeProvider;
-import com.sap.tc.moin.repository.ocl.exceptions.ParsingException;
-import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
-import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
-import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
-import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
+
+
 
 /**
  *
@@ -106,8 +91,8 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
      * @see com.sap.mi.textual.moinlookup.AbstractMoinLookup#getClassifier(java.util.List)
      */
     @Override
-    protected Classifier getClassifierByName(List<String> qualifiedNameOfType) throws MetaModelLookupException {
-        List<Classifier> list = getClassifiers(qualifiedNameOfType);
+    protected EClassifier getClassifierByName(List<String> qualifiedNameOfType) throws MetaModelLookupException {
+        List<EClassifier> list = getClassifiers(qualifiedNameOfType);
         
         if (list == null || list.size() == 0) {
             return null;
@@ -119,7 +104,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
         }
     }
     
-    protected List<Classifier> getClassifiers(List<String> qualifiedNameOfType) throws MetaModelLookupException { 
+    protected List<EClassifier> getClassifiers(List<String> qualifiedNameOfType) throws MetaModelLookupException { 
         if (qualifiedNameOfType == null || qualifiedNameOfType.size() == 0) {
 	    throw new IllegalArgumentException("qualifiedNameOfType must not be empty: " + qualifiedNameOfType);
 	}
@@ -128,7 +113,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
 //        filter out wrong results
         
         String name = qualifiedNameOfType.get(qualifiedNameOfType.size()-1);
-        List<Classifier> classifiers = getClassifiers(name);
+        List<EClassifier> classifiers = getClassifiers(name);
 
         if (qualifiedNameOfType.size() > 1) {
 
@@ -144,14 +129,14 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
      * @param qualifiedNameOfType
      * @param classifiers
      */
-    protected static List<Classifier> filterClassifiers(List<String> qualifiedNameOfType,
-            List<Classifier> classifiers) {
+    protected static List<EClassifier> filterClassifiers(List<String> qualifiedNameOfType,
+            List<EClassifier> classifiers) {
         if (classifiers == null || classifiers.size() == 0 || qualifiedNameOfType == null ) {
             return Collections.emptyList();
         }
-        List<Classifier> resultList = new ArrayList<Classifier>();
-        for (Iterator<Classifier> iterator = classifiers.iterator(); iterator.hasNext();) {
-            Classifier classifier = iterator.next();
+        List<EClassifier> resultList = new ArrayList<EClassifier>();
+        for (Iterator<EClassifier> iterator = classifiers.iterator(); iterator.hasNext();) {
+            EClassifier classifier = iterator.next();
             List<String> otherQualifiedName = classifier.getQualifiedName();
             if (otherQualifiedName.equals(qualifiedNameOfType)) {
                 resultList.add(classifier);
@@ -162,23 +147,23 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
 
     
     @Override
-    protected List<Classifier> getClassifiers(String name) throws MetaModelLookupException { 
+    protected List<EClassifier> getClassifiers(String name) throws MetaModelLookupException { 
 
         String query ="select instance \n" + 
         		"from \"" + MOF14_CONTAINER_NAME + "\"#" + "Model::Classifier as instance \n"
         		+ "where instance.name = '" + name + "'";
   
-        List<Classifier> result = null;
+        List<EClassifier> result = null;
 
         MQLResultSet resultSet = executeQuery(query);
 
-        result = new ArrayList<Classifier>(resultSet.getSize());
+        result = new ArrayList<EClassifier>(resultSet.getSize());
 
         for (int i = 0; i < resultSet.getSize(); i++) {
             MRI mri = resultSet.getMri(i, "instance");
-            RefBaseObject object = connection.getElement(mri);
+            EObject object = connection.getElement(mri);
             if (object != null) {
-                Classifier classifier = (Classifier) object;
+                EClassifier classifier = (EClassifier) object;
                 result.add(classifier );
             }
         }
@@ -192,11 +177,11 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
      * 
      */
     @Override
-	protected AssociationEnd getAssociationEnd(ResolvedNameAndReferenceBean<RefObject> reference,
+	protected EReference getAssociationEnd(ResolvedNameAndReferenceBean<EObject> reference,
 			String otherEndName) throws MetaModelLookupException {
 
         		 
-    	 Classifier type = getClassifier(reference);
+    	 EClassifier type = getClassifier(reference);
     	 if(type == null) {
     		 //TODO: Or throw Excption here?
     		 return null;
@@ -204,7 +189,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
     	 String query = "select aeReturn from \"" + MOF14_CONTAINER_NAME + "\"#" + "Model::AssociationEnd as aeReturn, " +
     	 "\"" + MOF14_CONTAINER_NAME + "\"#" + "Model::AssociationEnd as ae, " +
     	 "\"" + MOF14_CONTAINER_NAME + "\"#" + "Model::Association as assoc, " +
-         "\"" + ( (Partitionable) type ).get___Mri( ) + "\" as t " +
+         "\"" + ( (EObject) type ).get___Mri( ) + "\" as t " +
          " where ae.\"type\" = t" +
          " where aeReturn.name = '" + otherEndName + "'" +
          " where aeReturn.container = assoc" +
@@ -213,11 +198,11 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
 
     	 MQLResultSet resultSet = executeQuery(query);             
 
-    	 AssociationEnd result = null;
+    	 EReference result = null;
     	 if (resultSet.getSize() == 1) {
-    	     RefObject object = resultSet.getRefObject(0, "aeReturn");
+    	     EObject object = resultSet.getRefObject(0, "aeReturn");
     	     if (object != null) {
-    	         result = ((AssociationEnd) object);
+    	         result = ((EReference) object);
     	     }
     	 }
 
@@ -250,7 +235,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
     /* (non-Javadoc)
 	 * @see com.sap.mi.textual.interfaces.IMetaModelLookup#getDirectSubTypes(java.util.List)
 	 */
-	public List<ResolvedNameAndReferenceBean<RefObject>> getDirectSubTypes(ResolvedNameAndReferenceBean<RefObject> reference)
+	public List<ResolvedNameAndReferenceBean<EObject>> getDirectSubTypes(ResolvedNameAndReferenceBean<EObject> reference)
 	throws MetaModelLookupException {
 
  
@@ -261,15 +246,15 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
                 "\"" + MOF14_CONTAINER_NAME + "\"#" + "Model::Classifier as supertype \n" +
                 "where supertype.name = '" + name + "' where instance.supertypes = supertype";
   
-        List<ResolvedNameAndReferenceBean<RefObject>> result = null;
+        List<ResolvedNameAndReferenceBean<EObject>> result = null;
 
         MQLResultSet resultSet = executeQuery(query);
-        result = new ArrayList<ResolvedNameAndReferenceBean<RefObject>>(resultSet.getSize());
+        result = new ArrayList<ResolvedNameAndReferenceBean<EObject>>(resultSet.getSize());
 
         for (int i = 0; i < resultSet.getSize(); i++) {
-            RefObject object = resultSet.getRefObject(i, "instance");
+            EObject object = resultSet.getRefObject(i, "instance");
             if (object != null) {
-                Classifier classifier = (Classifier) object;
+                EClassifier classifier = (EClassifier) object;
                 result.add(getBean(classifier));
             }
         }
@@ -281,17 +266,17 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
 	 
     @Override
     public List<String> validateOclQuery(Object template1, String query, Object context) {
-	if (context instanceof RefObject && template1 instanceof Template) {
-	    MofClass contextClass = (MofClass) context;
+	if (context instanceof EObject && template1 instanceof Template) {
+	    EClass contextClass = (EClass) context;
 	    Template template = (Template)template1;
-	    MofClass elementClass = MoinHelper.getReflectElement(connection);
+	    EClass elementClass = MoinHelper.getReflectElement(connection);
 	    try {
-		RefPackage outermost = MoinHelper.getOutermostPackageThroughClusteredImportsFromMofClass(((RefObject) context)
+		EPackage outermost = MoinHelper.getOutermostPackageThroughClusteredImportsFromMofClass(((RefObject) context)
 			.get___Connection(), contextClass);
-		Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
+		Collection<EPackage> packagesForLookup = new ArrayList<EPackage>();
 		packagesForLookup.addAll(MoinHelper.getImportedRefPackages(outermost));
 		packagesForLookup.add(outermost);
-		RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template,
+		EObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template,
 			packagesForLookup, elementClass);
 		query = MoinHelper.prepareOclQuery(
 				query, "__TEMP__");
@@ -308,9 +293,9 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
 		    }
 		    
 		    if( connection.getJmiHelper().
-	                        getRefClassForMofClass((MofClass) context) != null) {
-		        RefPackage outermostPackageOfMetamodel = connection.getJmiHelper().
-                            getRefClassForMofClass((MofClass) context).refOutermostPackage();
+	                        getRefClassForMofClass((EClass) context) != null) {
+		        EPackage outermostPackageOfMetamodel = connection.getJmiHelper().
+                            getRefClassForMofClass((EClass) context).refOutermostPackage();
                         packagesForLookup.addAll(MoinHelper
                                 .getImportedRefPackages(outermostPackageOfMetamodel));
                         packagesForLookup.add(outermostPackageOfMetamodel);
@@ -324,11 +309,11 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
                                     new String[] { "TCS Syntax Check" },
                                     parsingContext,
                                     packagesForLookup
-                                            .toArray(new RefPackage[] {}));
+                                            .toArray(new EPackage[] {}));
 		    } else {
-		        ArrayList<MofPackage> packages = new ArrayList<MofPackage>(MoinHelper
-                            .getImportedMofPackages((MofPackage) ((MofClass) context).refOutermostComposite()));
-		        packages.add((MofPackage) ((MofClass) context).refOutermostComposite());
+		        ArrayList<EPackage> packages = new ArrayList<EPackage>(MoinHelper
+                            .getImportedMofPackages((EPackage) ((EClass) context).refOutermostComposite()));
+		        packages.add((EPackage) ((EClass) context).refOutermostComposite());
 		        
 		        registration = connection
                             .getOclRegistryService()
@@ -339,7 +324,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
                                     OclRegistrationSeverity.Info,
                                     new String[] { "TCS Syntax Check" },
                                     parsingContext,
-                                    packages.toArray(new MofPackage[] {}));
+                                    packages.toArray(new EPackage[] {}));
 		    }
 		    
 		    
