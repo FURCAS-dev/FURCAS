@@ -24,12 +24,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getStartColumn <em>Start Column</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getEndRow <em>End Row</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getEndColumn <em>End Column</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getTokens <em>Tokens</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getType <em>Type</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubBlocks <em>Sub Blocks</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getParentAltChoices <em>Parent Alt Choices</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getElementsInContext <em>Elements In Context</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getForEachContext <em>For Each Context</em>}</li>
  * </ul>
  * </p>
  *
@@ -143,39 +142,34 @@ public interface TextBlock extends DocumentNode {
 	void setEndColumn(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Tokens</b></em>' reference list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.textblocks.AbstractToken}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Tokens</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tokens</em>' reference list.
-	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getTextBlock_Tokens()
-	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/ocl/examples/OCL derive='self.subNodes->(n | n.oclIsTypeOf(textblocks::TextBlock))'"
+	 * @model kind="operation"
+	 *        annotation="de.hpi.sam.bp2009.OCL body='self.subNodes->select(n | n.oclIsTypeOf(AbstractToken)).oclAsType(OrderedSet(AbstractToken))'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
 	 * @generated
 	 */
 	EList<AbstractToken> getTokens();
 
 	/**
-	 * Returns the value of the '<em><b>Sub Nodes</b></em>' containment reference list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.textblocks.DocumentNode}.
-	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}'.
+	 * Returns the value of the '<em><b>Sub Nodes</b></em>' reference list.
+	 * The list contents are of type {@link com.sap.furcas.metamodel.textblocks.TextBlock}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Nodes</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Nodes</em>' containment reference list.
+	 * @return the value of the '<em>Sub Nodes</em>' reference list.
 	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getTextBlock_SubNodes()
-	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#getParent
-	 * @model opposite="parent" containment="true"
+	 * @model transient="true" derived="true"
 	 * @generated
 	 */
-	EList<DocumentNode> getSubNodes();
+	EList<TextBlock> getSubNodes();
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
@@ -204,17 +198,15 @@ public interface TextBlock extends DocumentNode {
 	void setType(TextblockDefinition value);
 
 	/**
-	 * Returns the value of the '<em><b>Sub Blocks</b></em>' reference list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.textblocks.TextBlock}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Blocks</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Blocks</em>' reference list.
-	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getTextBlock_SubBlocks()
-	 * @model transient="true" derived="true"
+	 * @model kind="operation"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.subNodes->select(n | n.oclIsTypeOf(TextBlock)).oclAsType(OrderedSet(TextBlock))'"
 	 * @generated
 	 */
 	EList<TextBlock> getSubBlocks();
@@ -250,5 +242,21 @@ public interface TextBlock extends DocumentNode {
 	 * @generated
 	 */
 	EList<EObject> getElementsInContext();
+
+	/**
+	 * Returns the value of the '<em><b>For Each Context</b></em>' containment reference list.
+	 * The list contents are of type {@link com.sap.furcas.metamodel.textblocks.ForEachContext}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>For Each Context</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>For Each Context</em>' containment reference list.
+	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getTextBlock_ForEachContext()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ForEachContext> getForEachContext();
 
 } // TextBlock

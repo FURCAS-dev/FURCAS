@@ -53,6 +53,15 @@ public interface TextblocksFactory extends EFactory {
 	UnlexedToken createUnlexedToken();
 
 	/**
+	 * Returns a new object of class '<em>For Each Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>For Each Context</em>'.
+	 * @generated
+	 */
+	ForEachContext createForEachContext();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

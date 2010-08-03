@@ -98,6 +98,10 @@ public class TextblocksAdapterFactory extends AdapterFactoryImpl {
 				return createDocumentNodeAdapter();
 			}
 			@Override
+			public Adapter caseForEachContext(ForEachContext object) {
+				return createForEachContextAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -198,6 +202,20 @@ public class TextblocksAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDocumentNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.textblocks.ForEachContext <em>For Each Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.textblocks.ForEachContext
+	 * @generated
+	 */
+	public Adapter createForEachContextAdapter() {
 		return null;
 	}
 

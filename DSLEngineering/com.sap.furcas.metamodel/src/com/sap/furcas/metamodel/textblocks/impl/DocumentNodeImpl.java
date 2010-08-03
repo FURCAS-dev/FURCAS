@@ -117,6 +117,16 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	protected boolean relexingNeeded = RELEXING_NEEDED_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParent()
+	 * @generated
+	 * @ordered
+	 */
+	protected TextBlock parent;
+
+	/**
 	 * The cached value of the '{@link #getCorrespondingModelElements() <em>Corresponding Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -296,8 +306,15 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	 * @generated
 	 */
 	public TextBlock getParent() {
-		if (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT) return null;
-		return (TextBlock)eContainer();
+		if (parent != null && parent.eIsProxy()) {
+			InternalEObject oldParent = (InternalEObject)parent;
+			parent = (TextBlock)eResolveProxy(oldParent);
+			if (parent != oldParent) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.DOCUMENT_NODE__PARENT, oldParent, parent));
+			}
+		}
+		return parent;
 	}
 
 	/**
@@ -305,9 +322,8 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetParent(TextBlock newParent, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newParent, TextblocksPackage.DOCUMENT_NODE__PARENT, msgs);
-		return msgs;
+	public TextBlock basicGetParent() {
+		return parent;
 	}
 
 	/**
@@ -316,19 +332,10 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	 * @generated
 	 */
 	public void setParent(TextBlock newParent) {
-		if (newParent != eInternalContainer() || (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT && newParent != null)) {
-			if (EcoreUtil.isAncestor(this, newParent))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newParent != null)
-				msgs = ((InternalEObject)newParent).eInverseAdd(this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextBlock.class, msgs);
-			msgs = basicSetParent(newParent, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__PARENT, newParent, newParent));
+		TextBlock oldParent = parent;
+		parent = newParent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__PARENT, oldParent, parent));
 	}
 
 	/**
@@ -441,50 +448,6 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextblocksPackage.DOCUMENT_NODE__PARENT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetParent((TextBlock)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextblocksPackage.DOCUMENT_NODE__PARENT:
-				return basicSetParent(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case TextblocksPackage.DOCUMENT_NODE__PARENT:
-				return eInternalContainer().eInverseRemove(this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextBlock.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TextblocksPackage.DOCUMENT_NODE__VERSION:
@@ -494,7 +457,8 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 			case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
 				return isRelexingNeeded();
 			case TextblocksPackage.DOCUMENT_NODE__PARENT:
-				return getParent();
+				if (resolve) return getParent();
+				return basicGetParent();
 			case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
 				return getCorrespondingModelElements();
 			case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
@@ -615,7 +579,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 			case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
 				return relexingNeeded != RELEXING_NEEDED_EDEFAULT;
 			case TextblocksPackage.DOCUMENT_NODE__PARENT:
-				return getParent() != null;
+				return parent != null;
 			case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
 				return correspondingModelElements != null && !correspondingModelElements.isEmpty();
 			case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:

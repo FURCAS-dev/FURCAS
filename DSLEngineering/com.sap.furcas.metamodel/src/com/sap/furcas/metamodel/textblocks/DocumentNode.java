@@ -138,28 +138,26 @@ public interface DocumentNode extends EObject {
 	void setRelexingNeeded(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Parent</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}'.
+	 * Returns the value of the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parent</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parent</em>' container reference.
+	 * @return the value of the '<em>Parent</em>' reference.
 	 * @see #setParent(TextBlock)
 	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getDocumentNode_Parent()
-	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes
-	 * @model opposite="subNodes" transient="false"
+	 * @model
 	 * @generated
 	 */
 	TextBlock getParent();
 
 	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}' container reference.
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parent</em>' container reference.
+	 * @param value the new value of the '<em>Parent</em>' reference.
 	 * @see #getParent()
 	 * @generated
 	 */

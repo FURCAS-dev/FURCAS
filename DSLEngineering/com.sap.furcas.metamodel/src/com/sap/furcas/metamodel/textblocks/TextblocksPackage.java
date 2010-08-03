@@ -98,7 +98,7 @@ public interface TextblocksPackage extends EPackage {
 	int DOCUMENT_NODE__RELEXING_NEEDED = 2;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' container reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -207,7 +207,7 @@ public interface TextblocksPackage extends EPackage {
 	int TEXT_BLOCK__RELEXING_NEEDED = DOCUMENT_NODE__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' container reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -306,16 +306,16 @@ public interface TextblocksPackage extends EPackage {
 	int TEXT_BLOCK__END_COLUMN = DOCUMENT_NODE_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Tokens</b></em>' reference list.
+	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__TOKENS = DOCUMENT_NODE_FEATURE_COUNT + 4;
+	int TEXT_BLOCK__TYPE = DOCUMENT_NODE_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Sub Nodes</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Sub Nodes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -324,31 +324,13 @@ public interface TextblocksPackage extends EPackage {
 	int TEXT_BLOCK__SUB_NODES = DOCUMENT_NODE_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BLOCK__TYPE = DOCUMENT_NODE_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Sub Blocks</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BLOCK__SUB_BLOCKS = DOCUMENT_NODE_FEATURE_COUNT + 7;
-
-	/**
 	 * The feature id for the '<em><b>Parent Alt Choices</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__PARENT_ALT_CHOICES = DOCUMENT_NODE_FEATURE_COUNT + 8;
+	int TEXT_BLOCK__PARENT_ALT_CHOICES = DOCUMENT_NODE_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Elements In Context</b></em>' reference list.
@@ -357,7 +339,16 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__ELEMENTS_IN_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 9;
+	int TEXT_BLOCK__ELEMENTS_IN_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 7;
+
+	/**
+	 * The feature id for the '<em><b>For Each Context</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BLOCK__FOR_EACH_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Text Block</em>' class.
@@ -366,7 +357,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 10;
+	int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.AbstractTokenImpl <em>Abstract Token</em>}' class.
@@ -406,7 +397,7 @@ public interface TextblocksPackage extends EPackage {
 	int ABSTRACT_TOKEN__RELEXING_NEEDED = DOCUMENT_NODE__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' container reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -551,7 +542,7 @@ public interface TextblocksPackage extends EPackage {
 	int OMITTED_TOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' container reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -696,7 +687,7 @@ public interface TextblocksPackage extends EPackage {
 	int LEXED_TOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' container reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -841,7 +832,7 @@ public interface TextblocksPackage extends EPackage {
 	int UNLEXED_TOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' container reference.
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -949,6 +940,61 @@ public interface TextblocksPackage extends EPackage {
 	int UNLEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.ForEachContextImpl <em>For Each Context</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.textblocks.impl.ForEachContextImpl
+	 * @see com.sap.furcas.metamodel.textblocks.impl.TextblocksPackageImpl#getForEachContext()
+	 * @generated
+	 */
+	int FOR_EACH_CONTEXT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Foreach Pedicate Property Init</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Context Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOR_EACH_CONTEXT__CONTEXT_ELEMENT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Result Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Source Model Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT = 3;
+
+	/**
+	 * The number of structural features of the '<em>For Each Context</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOR_EACH_CONTEXT_FEATURE_COUNT = 4;
+
+	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.Version <em>Version</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -956,7 +1002,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.textblocks.impl.TextblocksPackageImpl#getVersion()
 	 * @generated
 	 */
-	int VERSION = 6;
+	int VERSION = 7;
 
 
 	/**
@@ -1014,21 +1060,10 @@ public interface TextblocksPackage extends EPackage {
 	EAttribute getTextBlock_EndColumn();
 
 	/**
-	 * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getTokens <em>Tokens</em>}'.
+	 * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Tokens</em>'.
-	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getTokens()
-	 * @see #getTextBlock()
-	 * @generated
-	 */
-	EReference getTextBlock_Tokens();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sub Nodes</em>'.
+	 * @return the meta object for the reference list '<em>Sub Nodes</em>'.
 	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes()
 	 * @see #getTextBlock()
 	 * @generated
@@ -1045,17 +1080,6 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTextBlock_Type();
-
-	/**
-	 * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubBlocks <em>Sub Blocks</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Sub Blocks</em>'.
-	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getSubBlocks()
-	 * @see #getTextBlock()
-	 * @generated
-	 */
-	EReference getTextBlock_SubBlocks();
 
 	/**
 	 * Returns the meta object for the attribute list '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getParentAltChoices <em>Parent Alt Choices</em>}'.
@@ -1078,6 +1102,17 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTextBlock_ElementsInContext();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getForEachContext <em>For Each Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>For Each Context</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getForEachContext()
+	 * @see #getTextBlock()
+	 * @generated
+	 */
+	EReference getTextBlock_ForEachContext();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.textblocks.AbstractToken <em>Abstract Token</em>}'.
@@ -1196,6 +1231,60 @@ public interface TextblocksPackage extends EPackage {
 	EReference getDocumentNode_OtherVersions();
 
 	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.textblocks.ForEachContext <em>For Each Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>For Each Context</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.ForEachContext
+	 * @generated
+	 */
+	EClass getForEachContext();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getForeachPedicatePropertyInit <em>Foreach Pedicate Property Init</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Foreach Pedicate Property Init</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.ForEachContext#getForeachPedicatePropertyInit()
+	 * @see #getForEachContext()
+	 * @generated
+	 */
+	EReference getForEachContext_ForeachPedicatePropertyInit();
+
+	/**
+	 * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getContextElement <em>Context Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Context Element</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.ForEachContext#getContextElement()
+	 * @see #getForEachContext()
+	 * @generated
+	 */
+	EReference getForEachContext_ContextElement();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getResultModelElement <em>Result Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Result Model Element</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.ForEachContext#getResultModelElement()
+	 * @see #getForEachContext()
+	 * @generated
+	 */
+	EReference getForEachContext_ResultModelElement();
+
+	/**
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.textblocks.ForEachContext#getSourceModelElement <em>Source Model Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source Model Element</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.ForEachContext#getSourceModelElement()
+	 * @see #getForEachContext()
+	 * @generated
+	 */
+	EReference getForEachContext_SourceModelElement();
+
+	/**
 	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#isChildrenChanged <em>Children Changed</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1218,10 +1307,10 @@ public interface TextblocksPackage extends EPackage {
 	EAttribute getDocumentNode_RelexingNeeded();
 
 	/**
-	 * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}'.
+	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Parent</em>'.
+	 * @return the meta object for the reference '<em>Parent</em>'.
 	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#getParent()
 	 * @see #getDocumentNode()
 	 * @generated
@@ -1358,15 +1447,7 @@ public interface TextblocksPackage extends EPackage {
 		EAttribute TEXT_BLOCK__END_COLUMN = eINSTANCE.getTextBlock_EndColumn();
 
 		/**
-		 * The meta object literal for the '<em><b>Tokens</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEXT_BLOCK__TOKENS = eINSTANCE.getTextBlock_Tokens();
-
-		/**
-		 * The meta object literal for the '<em><b>Sub Nodes</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Sub Nodes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1380,14 +1461,6 @@ public interface TextblocksPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEXT_BLOCK__TYPE = eINSTANCE.getTextBlock_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Sub Blocks</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEXT_BLOCK__SUB_BLOCKS = eINSTANCE.getTextBlock_SubBlocks();
 
 		/**
 		 * The meta object literal for the '<em><b>Parent Alt Choices</b></em>' attribute list feature.
@@ -1404,6 +1477,14 @@ public interface TextblocksPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEXT_BLOCK__ELEMENTS_IN_CONTEXT = eINSTANCE.getTextBlock_ElementsInContext();
+
+		/**
+		 * The meta object literal for the '<em><b>For Each Context</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEXT_BLOCK__FOR_EACH_CONTEXT = eINSTANCE.getTextBlock_ForEachContext();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.textblocks.impl.AbstractTokenImpl <em>Abstract Token</em>}' class.
@@ -1504,6 +1585,48 @@ public interface TextblocksPackage extends EPackage {
 		EReference DOCUMENT_NODE__OTHER_VERSIONS = eINSTANCE.getDocumentNode_OtherVersions();
 
 		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.textblocks.impl.ForEachContextImpl <em>For Each Context</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.textblocks.impl.ForEachContextImpl
+		 * @see com.sap.furcas.metamodel.textblocks.impl.TextblocksPackageImpl#getForEachContext()
+		 * @generated
+		 */
+		EClass FOR_EACH_CONTEXT = eINSTANCE.getForEachContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Foreach Pedicate Property Init</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT = eINSTANCE.getForEachContext_ForeachPedicatePropertyInit();
+
+		/**
+		 * The meta object literal for the '<em><b>Context Element</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOR_EACH_CONTEXT__CONTEXT_ELEMENT = eINSTANCE.getForEachContext_ContextElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Model Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOR_EACH_CONTEXT__RESULT_MODEL_ELEMENT = eINSTANCE.getForEachContext_ResultModelElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Model Element</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT = eINSTANCE.getForEachContext_SourceModelElement();
+
+		/**
 		 * The meta object literal for the '<em><b>Children Changed</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1520,7 +1643,7 @@ public interface TextblocksPackage extends EPackage {
 		EAttribute DOCUMENT_NODE__RELEXING_NEEDED = eINSTANCE.getDocumentNode_RelexingNeeded();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
