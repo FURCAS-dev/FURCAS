@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.TokenImpl#getPattern <em>Pattern</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.TokenImpl#isOmitted <em>Omitted</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,6 +42,25 @@ public class TokenImpl extends NamedElementImpl implements Token {
 	 * @ordered
 	 */
 	protected OrPattern pattern;
+
+	/**
+	 * The default value of the '{@link #isOmitted() <em>Omitted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOmitted()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OMITTED_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isOmitted() <em>Omitted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOmitted()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean omitted = OMITTED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,6 +129,27 @@ public class TokenImpl extends NamedElementImpl implements Token {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isOmitted() {
+		return omitted;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOmitted(boolean newOmitted) {
+		boolean oldOmitted = omitted;
+		omitted = newOmitted;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.TOKEN__OMITTED, oldOmitted, omitted));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -128,6 +169,8 @@ public class TokenImpl extends NamedElementImpl implements Token {
 		switch (featureID) {
 			case TCSPackage.TOKEN__PATTERN:
 				return getPattern();
+			case TCSPackage.TOKEN__OMITTED:
+				return isOmitted();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -142,6 +185,9 @@ public class TokenImpl extends NamedElementImpl implements Token {
 		switch (featureID) {
 			case TCSPackage.TOKEN__PATTERN:
 				setPattern((OrPattern)newValue);
+				return;
+			case TCSPackage.TOKEN__OMITTED:
+				setOmitted((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,6 +204,9 @@ public class TokenImpl extends NamedElementImpl implements Token {
 			case TCSPackage.TOKEN__PATTERN:
 				setPattern((OrPattern)null);
 				return;
+			case TCSPackage.TOKEN__OMITTED:
+				setOmitted(OMITTED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -172,8 +221,26 @@ public class TokenImpl extends NamedElementImpl implements Token {
 		switch (featureID) {
 			case TCSPackage.TOKEN__PATTERN:
 				return pattern != null;
+			case TCSPackage.TOKEN__OMITTED:
+				return omitted != OMITTED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (omitted: ");
+		result.append(omitted);
+		result.append(')');
+		return result.toString();
 	}
 
 } //TokenImpl

@@ -103,10 +103,6 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 			case TCSPackage.BOOLEAN_PROPERTY_EXP: return createBooleanPropertyExp();
 			case TCSPackage.IS_DEFINED_EXP: return createIsDefinedExp();
 			case TCSPackage.ONE_EXP: return createOneExp();
-			case TCSPackage.STRING_VAL: return createStringVal();
-			case TCSPackage.INTEGER_VAL: return createIntegerVal();
-			case TCSPackage.NEGATIVE_INTEGER_VAL: return createNegativeIntegerVal();
-			case TCSPackage.ENUM_LITERAL_VAL: return createEnumLiteralVal();
 			case TCSPackage.PROPERTY_VAL: return createPropertyVal();
 			case TCSPackage.TOKEN: return createToken();
 			case TCSPackage.OR_PATTERN: return createOrPattern();
@@ -138,6 +134,12 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 			case TCSPackage.ECLASS0: return createEClass0();
 			case TCSPackage.PARTIAL_PARG: return createPartialPArg();
 			case TCSPackage.DISAMBIGUATE_PARG: return createDisambiguatePArg();
+			case TCSPackage.INSTANCE_OF_EXP: return createInstanceOfExp();
+			case TCSPackage.ENUM_LITERAL_VAL: return createEnumLiteralVal();
+			case TCSPackage.STRING_VAL: return createStringVal();
+			case TCSPackage.INTEGER_VAL: return createIntegerVal();
+			case TCSPackage.NEGATIVE_INTEGER_VAL: return createNegativeIntegerVal();
+			case TCSPackage.LOOKUP_PROPERTY_INIT: return createLookupPropertyInit();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -644,6 +646,16 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LookupPropertyInit createLookupPropertyInit() {
+		LookupPropertyInitImpl lookupPropertyInit = new LookupPropertyInitImpl();
+		return lookupPropertyInit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EnumLiteralVal createEnumLiteralVal() {
 		EnumLiteralValImpl enumLiteralVal = new EnumLiteralValImpl();
 		return enumLiteralVal;
@@ -957,6 +969,16 @@ public class TCSFactoryImpl extends EFactoryImpl implements TCSFactory {
 	public DisambiguatePArg createDisambiguatePArg() {
 		DisambiguatePArgImpl disambiguatePArg = new DisambiguatePArgImpl();
 		return disambiguatePArg;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public InstanceOfExp createInstanceOfExp() {
+		InstanceOfExpImpl instanceOfExp = new InstanceOfExpImpl();
+		return instanceOfExp;
 	}
 
 	/**

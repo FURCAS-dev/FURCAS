@@ -16,6 +16,7 @@ package com.sap.furcas.metamodel.TCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.Token#getPattern <em>Pattern</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.Token#isOmitted <em>Omitted</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,5 +50,31 @@ public interface Token extends NamedElement {
 	 * @generated
 	 */
 	void setPattern(OrPattern value);
+
+	/**
+	 * Returns the value of the '<em><b>Omitted</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Omitted</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Omitted</em>' attribute.
+	 * @see #setOmitted(boolean)
+	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getToken_Omitted()
+	 * @model
+	 * @generated
+	 */
+	boolean isOmitted();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.Token#isOmitted <em>Omitted</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Omitted</em>' attribute.
+	 * @see #isOmitted()
+	 * @generated
+	 */
+	void setOmitted(boolean value);
 
 } // Token

@@ -431,6 +431,15 @@ public interface TCSFactory extends EFactory {
 	NegativeIntegerVal createNegativeIntegerVal();
 
 	/**
+	 * Returns a new object of class '<em>Lookup Property Init</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lookup Property Init</em>'.
+	 * @generated
+	 */
+	LookupPropertyInit createLookupPropertyInit();
+
+	/**
 	 * Returns a new object of class '<em>Enum Literal Val</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -717,6 +726,15 @@ public interface TCSFactory extends EFactory {
 	 * @generated
 	 */
 	DisambiguatePArg createDisambiguatePArg();
+
+	/**
+	 * Returns a new object of class '<em>Instance Of Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Of Exp</em>'.
+	 * @generated
+	 */
+	InstanceOfExp createInstanceOfExp();
 
 	/**
 	 * Returns the package supported by this factory.

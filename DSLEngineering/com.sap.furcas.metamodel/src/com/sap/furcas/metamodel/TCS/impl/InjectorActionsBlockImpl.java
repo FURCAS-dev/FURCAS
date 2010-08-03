@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -31,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.InjectorActionsBlockImpl#getPropertyInits <em>Property Inits</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.InjectorActionsBlockImpl#getInjectorActions <em>Injector Actions</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,6 +48,16 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
 	 * @ordered
 	 */
 	protected EList<InjectorAction> propertyInits;
+
+	/**
+	 * The cached value of the '{@link #getInjectorActions() <em>Injector Actions</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInjectorActions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<InjectorAction> injectorActions;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -76,6 +88,18 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
 			propertyInits = new EObjectContainmentWithInverseEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS, TCSPackage.INJECTOR_ACTION__INJECTOR_ACTIONS_BLOCK);
 		}
 		return propertyInits;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<InjectorAction> getInjectorActions() {
+		if (injectorActions == null) {
+			injectorActions = new EObjectResolvingEList<InjectorAction>(InjectorAction.class, this, TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS);
+		}
+		return injectorActions;
 	}
 
 	/**
@@ -117,6 +141,8 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
 		switch (featureID) {
 			case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
 				return getPropertyInits();
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				return getInjectorActions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,6 +160,10 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
 				getPropertyInits().clear();
 				getPropertyInits().addAll((Collection<? extends InjectorAction>)newValue);
 				return;
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				getInjectorActions().clear();
+				getInjectorActions().addAll((Collection<? extends InjectorAction>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -149,6 +179,9 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
 			case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
 				getPropertyInits().clear();
 				return;
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				getInjectorActions().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -163,6 +196,8 @@ public class InjectorActionsBlockImpl extends SequenceElementImpl implements Inj
 		switch (featureID) {
 			case TCSPackage.INJECTOR_ACTIONS_BLOCK__PROPERTY_INITS:
 				return propertyInits != null && !propertyInits.isEmpty();
+			case TCSPackage.INJECTOR_ACTIONS_BLOCK__INJECTOR_ACTIONS:
+				return injectorActions != null && !injectorActions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

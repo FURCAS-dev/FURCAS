@@ -12,6 +12,7 @@ import com.sap.furcas.metamodel.TCS.TCSPackage;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -19,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -30,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.ForeachPredicatePropertyInitImpl#getPredicateSemantic <em>Predicate Semantic</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.ForeachPredicatePropertyInitImpl#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,6 +48,25 @@ public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implement
 	 * @ordered
 	 */
 	protected EList<PredicateSemantic> predicateSemantic;
+
+	/**
+	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MODE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mode = MODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -82,6 +104,27 @@ public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getMode() {
+		return mode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMode(String newMode) {
+		String oldMode = mode;
+		mode = newMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE, oldMode, mode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -101,6 +144,8 @@ public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implement
 		switch (featureID) {
 			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
 				return getPredicateSemantic();
+			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
+				return getMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -118,6 +163,9 @@ public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implement
 				getPredicateSemantic().clear();
 				getPredicateSemantic().addAll((Collection<? extends PredicateSemantic>)newValue);
 				return;
+			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
+				setMode((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -133,6 +181,9 @@ public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implement
 			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
 				getPredicateSemantic().clear();
 				return;
+			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
+				setMode(MODE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -147,8 +198,26 @@ public class ForeachPredicatePropertyInitImpl extends PropertyInitImpl implement
 		switch (featureID) {
 			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__PREDICATE_SEMANTIC:
 				return predicateSemantic != null && !predicateSemantic.isEmpty();
+			case TCSPackage.FOREACH_PREDICATE_PROPERTY_INIT__MODE:
+				return MODE_EDEFAULT == null ? mode != null : !MODE_EDEFAULT.equals(mode);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (mode: ");
+		result.append(mode);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ForeachPredicatePropertyInitImpl

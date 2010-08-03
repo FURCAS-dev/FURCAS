@@ -49,7 +49,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.SequenceImpl#getElseContainer <em>Else Container</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.SequenceImpl#getSeparatorContainer <em>Separator Container</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.SequenceImpl#getOtContainer <em>Ot Container</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.TCS.impl.SequenceImpl#getAlternativeContainer <em>Alternative Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -430,47 +429,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Alternative getAlternativeContainer() {
-		if (eContainerFeatureID() != TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER) return null;
-		return (Alternative)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAlternativeContainer(Alternative newAlternativeContainer, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newAlternativeContainer, TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAlternativeContainer(Alternative newAlternativeContainer) {
-		if (newAlternativeContainer != eInternalContainer() || (eContainerFeatureID() != TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER && newAlternativeContainer != null)) {
-			if (EcoreUtil.isAncestor(this, newAlternativeContainer))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newAlternativeContainer != null)
-				msgs = ((InternalEObject)newAlternativeContainer).eInverseAdd(this, TCSPackage.ALTERNATIVE__SEQUENCES, Alternative.class, msgs);
-			msgs = basicSetAlternativeContainer(newAlternativeContainer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER, newAlternativeContainer, newAlternativeContainer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -509,10 +467,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetOtContainer((OperatorTemplate)otherEnd, msgs);
-			case TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetAlternativeContainer((Alternative)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -543,8 +497,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 				return basicSetSeparatorContainer(null, msgs);
 			case TCSPackage.SEQUENCE__OT_CONTAINER:
 				return basicSetOtContainer(null, msgs);
-			case TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER:
-				return basicSetAlternativeContainer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -573,8 +525,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 				return eInternalContainer().eInverseRemove(this, TCSPackage.SEPARATOR_PARG__SEPARATOR_SEQUENCE, SeparatorPArg.class, msgs);
 			case TCSPackage.SEQUENCE__OT_CONTAINER:
 				return eInternalContainer().eInverseRemove(this, TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE, OperatorTemplate.class, msgs);
-			case TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER:
-				return eInternalContainer().eInverseRemove(this, TCSPackage.ALTERNATIVE__SEQUENCES, Alternative.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -605,8 +555,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 				return getSeparatorContainer();
 			case TCSPackage.SEQUENCE__OT_CONTAINER:
 				return getOtContainer();
-			case TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER:
-				return getAlternativeContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -648,9 +596,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 			case TCSPackage.SEQUENCE__OT_CONTAINER:
 				setOtContainer((OperatorTemplate)newValue);
 				return;
-			case TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER:
-				setAlternativeContainer((Alternative)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -690,9 +635,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 			case TCSPackage.SEQUENCE__OT_CONTAINER:
 				setOtContainer((OperatorTemplate)null);
 				return;
-			case TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER:
-				setAlternativeContainer((Alternative)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -723,8 +665,6 @@ public class SequenceImpl extends LocatedElementImpl implements Sequence {
 				return getSeparatorContainer() != null;
 			case TCSPackage.SEQUENCE__OT_CONTAINER:
 				return getOtContainer() != null;
-			case TCSPackage.SEQUENCE__ALTERNATIVE_CONTAINER:
-				return getAlternativeContainer() != null;
 		}
 		return super.eIsSet(featureID);
 	}
