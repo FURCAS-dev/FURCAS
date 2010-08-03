@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.solution.oclToMqlMapping.impl;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,6 +17,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.AssociationClassCallExp;
 import org.eclipse.ocl.expressions.BooleanLiteralExp;
@@ -98,14 +98,11 @@ extends EvaluationVisitorWithHiddenOppositesImpl {
             int opCode = oc.getOperationCode();
             if(opCode==PredefinedType.ALL_INSTANCES){
                 Set<EObject> allO = new HashSet<EObject>();
-
-                if(!getExtentMap().values().isEmpty()){
-                    /*
-                     * TODO  why only take the first EClassifier as COntext
-                     */
-                    Iterator<? extends EObject> list = getExtentMap().values().iterator().next().iterator();
-                    while(list.hasNext())
-                        allO.add((EObject)list.next());
+                Object self = getEvaluationEnvironment().getValueOf(EcoreEnvironment.SELF_VARIABLE_NAME);
+                if (self != null && self instanceof EObject) {
+                    allO.add((EObject) self);
+                } else {
+                    throw new RuntimeException("Need a valid context element even for allInstances() because we need to derive a query scope");
                 }
                 OCLExpression<?> ocSource = oc.getSource();
 

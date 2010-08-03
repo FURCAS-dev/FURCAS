@@ -17,102 +17,82 @@ import org.eclipse.ocl.EvaluationHaltedException;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
-import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.SendSignalAction;
 import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
 
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
-public class MappingOCL extends OCL{
+public class MappingOCL extends OCLWithHiddenOpposites {
+
+    protected MappingOCL(MappingOCLEnvironmentFactory INSTANCE) {
+        super(INSTANCE);
+    }
 
     protected MappingOCL(
-            EcoreEnvironmentFactory INSTANCE) {
-        super(INSTANCE);
-        // TODO Auto-generated constructor stub
-    }
-    protected MappingOCL(Environment<
-            EPackage, EClassifier, EOperation, EStructuralFeature,
-            EEnumLiteral, EParameter, EObject,
-            CallOperationAction, SendSignalAction, Constraint,
-            EClass, EObject> env) {
+            Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
         super(env);
     }
 
     public static MappingOCL newInstance() {
-        return new MappingOCL(EcoreEnvironmentFactory.INSTANCE);
+        return new MappingOCL(MappingOCLEnvironmentFactory.INSTANCE);
     }
 
-    public static MappingOCL newInstance(Environment<
-            EPackage, EClassifier, EOperation, EStructuralFeature,
-            EEnumLiteral, EParameter, EObject,
-            CallOperationAction, SendSignalAction, Constraint,
-            EClass, EObject> env) {
-
+    public static MappingOCL newInstance(
+            Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env) {
         return new MappingOCL(env);
     }
 
-public Object evaluate(Object context, OCLExpression expression) {
+    public Object evaluate(Object context, OCLExpression expression) {
+        // can determine a more appropriate context from the context
+        // variable of the expression, to account for stereotype constraints
+        context = getConstraintContext(getEnvironment(), context, expression);
+        EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> localEvalEnv = getEvaluationEnvironment();
+        localEvalEnv.add(Environment.SELF_VARIABLE_NAME, context);
+        Map<EClass, ? extends Set<? extends EObject>> extents = getExtentMap();
+        if (extents == null) {
+            // let the evaluation environment create one
+            extents = localEvalEnv.createExtentMap(context);
+        }
 
-    // can determine a more appropriate context from the context
-    // variable of the expression, to account for stereotype constraints
-    context = getConstraintContext(getEnvironment(), context,
-            expression);
+        EvaluationVisitor<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ev;
+        ev = new MappingEvaluationVisitor(getEnvironment(), localEvalEnv, extents);
 
-    EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> localEvalEnv = getEvaluationEnvironment();
-    localEvalEnv.add(Environment.SELF_VARIABLE_NAME, context);
+        Object result;
+        try {
+            result = ev.visitExpression((org.eclipse.ocl.expressions.OCLExpression<EClassifier>) expression);
+        } catch (EvaluationHaltedException e) {
+            result = getEnvironment().getOCLStandardLibrary().getInvalid();
+        } finally {
+            localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
+        }
 
-    Map<EClass, ? extends Set<? extends EObject>> extents = getExtentMap();
-    if (extents == null) {
-        // let the evaluation environment create one
-        extents = localEvalEnv.createExtentMap(context);
+        return result;
     }
 
-    EvaluationVisitor<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ev ;
-    ev = new MappingEvaluationVisitor(getEnvironment(), localEvalEnv, extents);
+    private Object getConstraintContext(
+            Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
+            Object element, OCLExpression expr) {
 
+        Object result = element;
 
-    Object result;
+        if (expr.eContainer() instanceof ExpressionInOCL<?, ?>) {
+            @SuppressWarnings("unchecked")
+            ExpressionInOCL<EClassifier, EParameter> specification = (ExpressionInOCL<EClassifier, EParameter>) expr.eContainer();
 
-    try {
-        result = ev.visitExpression((org.eclipse.ocl.expressions.OCLExpression<EClassifier>) expression);
-    } catch (EvaluationHaltedException e) {
-        result = getEnvironment().getOCLStandardLibrary().getInvalid();
-    } finally {
-        localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
-    }
-
-    return result;
-}
-private Object getConstraintContext(
-        Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
-        Object element, OCLExpression expr) {
-
-    Object result = element;
-
-    if (expr.eContainer() instanceof ExpressionInOCL<?, ?>) {
-        @SuppressWarnings("unchecked")
-        ExpressionInOCL<EClassifier, EParameter> specification =
-            (ExpressionInOCL<EClassifier, EParameter>) expr.eContainer();
-
-        Variable<EClassifier, EParameter> contextVariable = specification.getContextVariable();
-        if (contextVariable != null) {
-            EClassifier contextClassifier = contextVariable.getType();
-
-            if ((contextClassifier != null) && env.getUMLReflection().isStereotype(
-                    contextClassifier)) {
-
-                Object application = env.getUMLReflection().getStereotypeApplication(
-                        element, contextClassifier);
-
-                if (application != null) {
-                    result = application;
+            Variable<EClassifier, EParameter> contextVariable = specification.getContextVariable();
+            if (contextVariable != null) {
+                EClassifier contextClassifier = contextVariable.getType();
+                if ((contextClassifier != null) && env.getUMLReflection().isStereotype(contextClassifier)) {
+                    Object application = env.getUMLReflection().getStereotypeApplication(element, contextClassifier);
+                    if (application != null) {
+                        result = application;
+                    }
                 }
             }
         }
-    }
 
-    return result;
-}   
+        return result;
+    }
 }
