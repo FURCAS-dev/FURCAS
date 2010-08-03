@@ -21,6 +21,9 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.sap.furcas.metamodel.TCS.OperatorTemplate#getStoreOpTo <em>Store Op To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.OperatorTemplate#getStoreRightTo <em>Store Right To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.OperatorTemplate#getOtSequence <em>Ot Sequence</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.OperatorTemplate#getStoreOperatorTo <em>Store Operator To</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.OperatorTemplate#getStoreLeftSideTo <em>Store Left Side To</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.OperatorTemplate#getStoreRightSideTo <em>Store Right Side To</em>}</li>
  * </ul>
  * </p>
  *
@@ -152,5 +155,83 @@ public interface OperatorTemplate extends ContextTemplate {
 	 * @generated
 	 */
 	void setOtSequence(Sequence value);
+
+	/**
+	 * Returns the value of the '<em><b>Store Operator To</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Store Operator To</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Store Operator To</em>' reference.
+	 * @see #setStoreOperatorTo(PropertyReference)
+	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getOperatorTemplate_StoreOperatorTo()
+	 * @model
+	 * @generated
+	 */
+	PropertyReference getStoreOperatorTo();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.OperatorTemplate#getStoreOperatorTo <em>Store Operator To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Store Operator To</em>' reference.
+	 * @see #getStoreOperatorTo()
+	 * @generated
+	 */
+	void setStoreOperatorTo(PropertyReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Store Left Side To</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Store Left Side To</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Store Left Side To</em>' reference.
+	 * @see #setStoreLeftSideTo(PropertyReference)
+	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getOperatorTemplate_StoreLeftSideTo()
+	 * @model
+	 * @generated
+	 */
+	PropertyReference getStoreLeftSideTo();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.OperatorTemplate#getStoreLeftSideTo <em>Store Left Side To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Store Left Side To</em>' reference.
+	 * @see #getStoreLeftSideTo()
+	 * @generated
+	 */
+	void setStoreLeftSideTo(PropertyReference value);
+
+	/**
+	 * Returns the value of the '<em><b>Store Right Side To</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Store Right Side To</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Store Right Side To</em>' reference.
+	 * @see #setStoreRightSideTo(PropertyReference)
+	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getOperatorTemplate_StoreRightSideTo()
+	 * @model
+	 * @generated
+	 */
+	PropertyReference getStoreRightSideTo();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.OperatorTemplate#getStoreRightSideTo <em>Store Right Side To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Store Right Side To</em>' reference.
+	 * @see #getStoreRightSideTo()
+	 * @generated
+	 */
+	void setStoreRightSideTo(PropertyReference value);
 
 } // OperatorTemplate

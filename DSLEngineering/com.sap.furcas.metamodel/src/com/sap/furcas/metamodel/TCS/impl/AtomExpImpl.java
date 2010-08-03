@@ -8,6 +8,7 @@ package com.sap.furcas.metamodel.TCS.impl;
 
 import com.sap.furcas.metamodel.TCS.AndExp;
 import com.sap.furcas.metamodel.TCS.AtomExp;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
 import com.sap.furcas.metamodel.TCS.TCSPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.AtomExpImpl#getAndExp <em>And Exp</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.AtomExpImpl#getPropertyName <em>Property Name</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.AtomExpImpl#getPropertyReference <em>Property Reference</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,6 +56,16 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
 	 * @ordered
 	 */
 	protected String propertyName = PROPERTY_NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getPropertyReference() <em>Property Reference</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPropertyReference()
+	 * @generated
+	 * @ordered
+	 */
+	protected PropertyReference propertyReference;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,6 +153,44 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PropertyReference getPropertyReference() {
+		if (propertyReference != null && propertyReference.eIsProxy()) {
+			InternalEObject oldPropertyReference = (InternalEObject)propertyReference;
+			propertyReference = (PropertyReference)eResolveProxy(oldPropertyReference);
+			if (propertyReference != oldPropertyReference) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.ATOM_EXP__PROPERTY_REFERENCE, oldPropertyReference, propertyReference));
+			}
+		}
+		return propertyReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyReference basicGetPropertyReference() {
+		return propertyReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPropertyReference(PropertyReference newPropertyReference) {
+		PropertyReference oldPropertyReference = propertyReference;
+		propertyReference = newPropertyReference;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.ATOM_EXP__PROPERTY_REFERENCE, oldPropertyReference, propertyReference));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -192,6 +242,9 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
 				return getAndExp();
 			case TCSPackage.ATOM_EXP__PROPERTY_NAME:
 				return getPropertyName();
+			case TCSPackage.ATOM_EXP__PROPERTY_REFERENCE:
+				if (resolve) return getPropertyReference();
+				return basicGetPropertyReference();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -209,6 +262,9 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
 				return;
 			case TCSPackage.ATOM_EXP__PROPERTY_NAME:
 				setPropertyName((String)newValue);
+				return;
+			case TCSPackage.ATOM_EXP__PROPERTY_REFERENCE:
+				setPropertyReference((PropertyReference)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,6 +284,9 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
 			case TCSPackage.ATOM_EXP__PROPERTY_NAME:
 				setPropertyName(PROPERTY_NAME_EDEFAULT);
 				return;
+			case TCSPackage.ATOM_EXP__PROPERTY_REFERENCE:
+				setPropertyReference((PropertyReference)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -244,6 +303,8 @@ public abstract class AtomExpImpl extends LocatedElementImpl implements AtomExp 
 				return getAndExp() != null;
 			case TCSPackage.ATOM_EXP__PROPERTY_NAME:
 				return PROPERTY_NAME_EDEFAULT == null ? propertyName != null : !PROPERTY_NAME_EDEFAULT.equals(propertyName);
+			case TCSPackage.ATOM_EXP__PROPERTY_REFERENCE:
+				return propertyReference != null;
 		}
 		return super.eIsSet(featureID);
 	}

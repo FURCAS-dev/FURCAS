@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.PropertyInitImpl#getPropertyReference <em>Property Reference</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.PropertyInitImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,6 +43,25 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
 	 * @ordered
 	 */
 	protected PropertyReference propertyReference;
+
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VALUE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,12 +125,35 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getValue() {
+		return value;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setValue(String newValue) {
+		String oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PROPERTY_INIT__VALUE, oldValue, value));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE:
 				if (resolve) return getPropertyReference();
 				return basicGetPropertyReference();
+			case TCSPackage.PROPERTY_INIT__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -125,6 +168,9 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
 		switch (featureID) {
 			case TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE:
 				setPropertyReference((PropertyReference)newValue);
+				return;
+			case TCSPackage.PROPERTY_INIT__VALUE:
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -141,6 +187,9 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
 			case TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE:
 				setPropertyReference((PropertyReference)null);
 				return;
+			case TCSPackage.PROPERTY_INIT__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -155,8 +204,26 @@ public abstract class PropertyInitImpl extends InjectorActionImpl implements Pro
 		switch (featureID) {
 			case TCSPackage.PROPERTY_INIT__PROPERTY_REFERENCE:
 				return propertyReference != null;
+			case TCSPackage.PROPERTY_INIT__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (value: ");
+		result.append(value);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PropertyInitImpl

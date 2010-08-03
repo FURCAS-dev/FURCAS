@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.sap.furcas.metamodel.TCS.Sequence#getElseContainer <em>Else Container</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.Sequence#getSeparatorContainer <em>Separator Container</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.Sequence#getOtContainer <em>Ot Container</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.TCS.Sequence#getAlternativeContainer <em>Alternative Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -275,33 +274,5 @@ public interface Sequence extends LocatedElement {
 	 * @generated
 	 */
 	void setOtContainer(OperatorTemplate value);
-
-	/**
-	 * Returns the value of the '<em><b>Alternative Container</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.TCS.Alternative#getSequences <em>Sequences</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Alternative Container</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Alternative Container</em>' container reference.
-	 * @see #setAlternativeContainer(Alternative)
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getSequence_AlternativeContainer()
-	 * @see com.sap.furcas.metamodel.TCS.Alternative#getSequences
-	 * @model opposite="sequences" transient="false" ordered="false"
-	 * @generated
-	 */
-	Alternative getAlternativeContainer();
-
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.Sequence#getAlternativeContainer <em>Alternative Container</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Alternative Container</em>' container reference.
-	 * @see #getAlternativeContainer()
-	 * @generated
-	 */
-	void setAlternativeContainer(Alternative value);
 
 } // Sequence

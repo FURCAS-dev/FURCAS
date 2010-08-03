@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.InjectorActionsBlock#getPropertyInits <em>Property Inits</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.InjectorActionsBlock#getInjectorActions <em>Injector Actions</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,5 +43,21 @@ public interface InjectorActionsBlock extends SequenceElement {
 	 * @generated
 	 */
 	EList<InjectorAction> getPropertyInits();
+
+	/**
+	 * Returns the value of the '<em><b>Injector Actions</b></em>' reference list.
+	 * The list contents are of type {@link com.sap.furcas.metamodel.TCS.InjectorAction}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Injector Actions</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Injector Actions</em>' reference list.
+	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getInjectorActionsBlock_InjectorActions()
+	 * @model
+	 * @generated
+	 */
+	EList<InjectorAction> getInjectorActions();
 
 } // InjectorActionsBlock

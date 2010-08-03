@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit#getPredicateSemantic <em>Predicate Semantic</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,5 +41,31 @@ public interface ForeachPredicatePropertyInit extends PropertyInit {
 	 * @generated
 	 */
 	EList<PredicateSemantic> getPredicateSemantic();
+
+	/**
+	 * Returns the value of the '<em><b>Mode</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mode</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mode</em>' attribute.
+	 * @see #setMode(String)
+	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getForeachPredicatePropertyInit_Mode()
+	 * @model
+	 * @generated
+	 */
+	String getMode();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit#getMode <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mode</em>' attribute.
+	 * @see #getMode()
+	 * @generated
+	 */
+	void setMode(String value);
 
 } // ForeachPredicatePropertyInit

@@ -58,7 +58,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int K_EDEFAULT = 0;
+	protected static final Integer K_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getK() <em>K</em>}' attribute.
@@ -68,7 +68,16 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 	 * @generated
 	 * @ordered
 	 */
-	protected int k = K_EDEFAULT;
+	protected Integer k = K_EDEFAULT;
+
+	/**
+	 * This is true if the K attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean kESet;
 
 	/**
 	 * The cached value of the '{@link #getTemplates() <em>Templates</em>}' containment reference list.
@@ -164,7 +173,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getK() {
+	public Integer getK() {
 		return k;
 	}
 
@@ -173,11 +182,36 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setK(int newK) {
-		int oldK = k;
+	public void setK(Integer newK) {
+		Integer oldK = k;
 		k = newK;
+		boolean oldKESet = kESet;
+		kESet = true;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONCRETE_SYNTAX__K, oldK, k));
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.CONCRETE_SYNTAX__K, oldK, k, !oldKESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetK() {
+		Integer oldK = k;
+		boolean oldKESet = kESet;
+		k = K_EDEFAULT;
+		kESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, TCSPackage.CONCRETE_SYNTAX__K, oldK, K_EDEFAULT, oldKESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetK() {
+		return kESet;
 	}
 
 	/**
@@ -372,7 +406,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case TCSPackage.CONCRETE_SYNTAX__K:
-				setK(K_EDEFAULT);
+				unsetK();
 				return;
 			case TCSPackage.CONCRETE_SYNTAX__TEMPLATES:
 				getTemplates().clear();
@@ -405,7 +439,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case TCSPackage.CONCRETE_SYNTAX__K:
-				return k != K_EDEFAULT;
+				return isSetK();
 			case TCSPackage.CONCRETE_SYNTAX__TEMPLATES:
 				return templates != null && !templates.isEmpty();
 			case TCSPackage.CONCRETE_SYNTAX__KEYWORDS:
@@ -433,7 +467,7 @@ public class ConcreteSyntaxImpl extends NamedElementImpl implements ConcreteSynt
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (k: ");
-		result.append(k);
+		if (kESet) result.append(k); else result.append("<unset>");
 		result.append(", lexer: ");
 		result.append(lexer);
 		result.append(')');

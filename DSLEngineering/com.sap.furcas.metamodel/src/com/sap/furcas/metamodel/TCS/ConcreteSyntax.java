@@ -40,22 +40,49 @@ public interface ConcreteSyntax extends NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>K</em>' attribute.
-	 * @see #setK(int)
+	 * @see #isSetK()
+	 * @see #unsetK()
+	 * @see #setK(Integer)
 	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getConcreteSyntax_K()
-	 * @model unique="false" ordered="false"
+	 * @model unique="false" unsettable="true" ordered="false"
 	 * @generated
 	 */
-	int getK();
+	Integer getK();
 
 	/**
 	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.ConcreteSyntax#getK <em>K</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>K</em>' attribute.
+	 * @see #isSetK()
+	 * @see #unsetK()
 	 * @see #getK()
 	 * @generated
 	 */
-	void setK(int value);
+	void setK(Integer value);
+
+	/**
+	 * Unsets the value of the '{@link com.sap.furcas.metamodel.TCS.ConcreteSyntax#getK <em>K</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetK()
+	 * @see #getK()
+	 * @see #setK(Integer)
+	 * @generated
+	 */
+	void unsetK();
+
+	/**
+	 * Returns whether the value of the '{@link com.sap.furcas.metamodel.TCS.ConcreteSyntax#getK <em>K</em>}' attribute is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>K</em>' attribute is set.
+	 * @see #unsetK()
+	 * @see #getK()
+	 * @see #setK(Integer)
+	 * @generated
+	 */
+	boolean isSetK();
 
 	/**
 	 * Returns the value of the '<em><b>Templates</b></em>' containment reference list.

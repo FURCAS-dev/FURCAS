@@ -499,38 +499,6 @@ public class TCSSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TCSPackage.STRING_VAL: {
-				StringVal stringVal = (StringVal)theEObject;
-				T result = caseStringVal(stringVal);
-				if (result == null) result = caseValue(stringVal);
-				if (result == null) result = caseLocatedElement(stringVal);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TCSPackage.INTEGER_VAL: {
-				IntegerVal integerVal = (IntegerVal)theEObject;
-				T result = caseIntegerVal(integerVal);
-				if (result == null) result = caseValue(integerVal);
-				if (result == null) result = caseLocatedElement(integerVal);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TCSPackage.NEGATIVE_INTEGER_VAL: {
-				NegativeIntegerVal negativeIntegerVal = (NegativeIntegerVal)theEObject;
-				T result = caseNegativeIntegerVal(negativeIntegerVal);
-				if (result == null) result = caseValue(negativeIntegerVal);
-				if (result == null) result = caseLocatedElement(negativeIntegerVal);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case TCSPackage.ENUM_LITERAL_VAL: {
-				EnumLiteralVal enumLiteralVal = (EnumLiteralVal)theEObject;
-				T result = caseEnumLiteralVal(enumLiteralVal);
-				if (result == null) result = caseValue(enumLiteralVal);
-				if (result == null) result = caseLocatedElement(enumLiteralVal);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case TCSPackage.PROPERTY_VAL: {
 				PropertyVal propertyVal = (PropertyVal)theEObject;
 				T result = casePropertyVal(propertyVal);
@@ -814,6 +782,54 @@ public class TCSSwitch<T> {
 				T result = caseDisambiguatePArg(disambiguatePArg);
 				if (result == null) result = casePropertyArg(disambiguatePArg);
 				if (result == null) result = caseLocatedElement(disambiguatePArg);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.INSTANCE_OF_EXP: {
+				InstanceOfExp instanceOfExp = (InstanceOfExp)theEObject;
+				T result = caseInstanceOfExp(instanceOfExp);
+				if (result == null) result = caseAtomExp(instanceOfExp);
+				if (result == null) result = caseLocatedElement(instanceOfExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.ENUM_LITERAL_VAL: {
+				EnumLiteralVal enumLiteralVal = (EnumLiteralVal)theEObject;
+				T result = caseEnumLiteralVal(enumLiteralVal);
+				if (result == null) result = caseValue(enumLiteralVal);
+				if (result == null) result = caseLocatedElement(enumLiteralVal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.STRING_VAL: {
+				StringVal stringVal = (StringVal)theEObject;
+				T result = caseStringVal(stringVal);
+				if (result == null) result = caseValue(stringVal);
+				if (result == null) result = caseLocatedElement(stringVal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.INTEGER_VAL: {
+				IntegerVal integerVal = (IntegerVal)theEObject;
+				T result = caseIntegerVal(integerVal);
+				if (result == null) result = caseValue(integerVal);
+				if (result == null) result = caseLocatedElement(integerVal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.NEGATIVE_INTEGER_VAL: {
+				NegativeIntegerVal negativeIntegerVal = (NegativeIntegerVal)theEObject;
+				T result = caseNegativeIntegerVal(negativeIntegerVal);
+				if (result == null) result = caseValue(negativeIntegerVal);
+				if (result == null) result = caseLocatedElement(negativeIntegerVal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TCSPackage.LOOKUP_PROPERTY_INIT: {
+				LookupPropertyInit lookupPropertyInit = (LookupPropertyInit)theEObject;
+				T result = caseLookupPropertyInit(lookupPropertyInit);
+				if (result == null) result = casePropertyInit(lookupPropertyInit);
+				if (result == null) result = caseInjectorAction(lookupPropertyInit);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1332,6 +1348,21 @@ public class TCSSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Instance Of Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Instance Of Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInstanceOfExp(InstanceOfExp object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Alternative</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1793,6 +1824,21 @@ public class TCSSwitch<T> {
 	 * @generated
 	 */
 	public T caseNegativeIntegerVal(NegativeIntegerVal object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lookup Property Init</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lookup Property Init</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLookupPropertyInit(LookupPropertyInit object) {
 		return null;
 	}
 

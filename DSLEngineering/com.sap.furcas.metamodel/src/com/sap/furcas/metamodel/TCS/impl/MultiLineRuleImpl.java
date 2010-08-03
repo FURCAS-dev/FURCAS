@@ -37,6 +37,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#getEnd <em>End</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#getEsc <em>Esc</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#getEscMappings <em>Esc Mappings</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#isDropStart <em>Drop Start</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.MultiLineRuleImpl#isDropEnd <em>Drop End</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,6 +84,46 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 	 * @ordered
 	 */
 	protected EList<Mapping> escMappings;
+
+	/**
+	 * The default value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDropStart()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DROP_START_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDropStart()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean dropStart = DROP_START_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDropEnd() <em>Drop End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDropEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DROP_END_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDropEnd() <em>Drop End</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDropEnd()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean dropEnd = DROP_END_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -248,6 +290,48 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDropStart() {
+		return dropStart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDropStart(boolean newDropStart) {
+		boolean oldDropStart = dropStart;
+		dropStart = newDropStart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__DROP_START, oldDropStart, dropStart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isDropEnd() {
+		return dropEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDropEnd(boolean newDropEnd) {
+		boolean oldDropEnd = dropEnd;
+		dropEnd = newDropEnd;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.MULTI_LINE_RULE__DROP_END, oldDropEnd, dropEnd));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -279,6 +363,10 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 				return getEsc();
 			case TCSPackage.MULTI_LINE_RULE__ESC_MAPPINGS:
 				return getEscMappings();
+			case TCSPackage.MULTI_LINE_RULE__DROP_START:
+				return isDropStart();
+			case TCSPackage.MULTI_LINE_RULE__DROP_END:
+				return isDropEnd();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -305,6 +393,12 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 				getEscMappings().clear();
 				getEscMappings().addAll((Collection<? extends Mapping>)newValue);
 				return;
+			case TCSPackage.MULTI_LINE_RULE__DROP_START:
+				setDropStart((Boolean)newValue);
+				return;
+			case TCSPackage.MULTI_LINE_RULE__DROP_END:
+				setDropEnd((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -329,6 +423,12 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 			case TCSPackage.MULTI_LINE_RULE__ESC_MAPPINGS:
 				getEscMappings().clear();
 				return;
+			case TCSPackage.MULTI_LINE_RULE__DROP_START:
+				setDropStart(DROP_START_EDEFAULT);
+				return;
+			case TCSPackage.MULTI_LINE_RULE__DROP_END:
+				setDropEnd(DROP_END_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -349,8 +449,30 @@ public class MultiLineRuleImpl extends RuleImpl implements MultiLineRule {
 				return esc != null;
 			case TCSPackage.MULTI_LINE_RULE__ESC_MAPPINGS:
 				return escMappings != null && !escMappings.isEmpty();
+			case TCSPackage.MULTI_LINE_RULE__DROP_START:
+				return dropStart != DROP_START_EDEFAULT;
+			case TCSPackage.MULTI_LINE_RULE__DROP_END:
+				return dropEnd != DROP_END_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (dropStart: ");
+		result.append(dropStart);
+		result.append(", dropEnd: ");
+		result.append(dropEnd);
+		result.append(')');
+		return result.toString();
 	}
 
 } //MultiLineRuleImpl

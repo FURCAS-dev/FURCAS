@@ -8,6 +8,7 @@ package com.sap.furcas.metamodel.TCS.impl;
 
 import com.sap.furcas.metamodel.TCS.Operator;
 import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
 import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.furcas.metamodel.TCS.TCSPackage;
 
@@ -38,6 +39,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.OperatorTemplateImpl#getStoreOpTo <em>Store Op To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.OperatorTemplateImpl#getStoreRightTo <em>Store Right To</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.OperatorTemplateImpl#getOtSequence <em>Ot Sequence</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.OperatorTemplateImpl#getStoreOperatorTo <em>Store Operator To</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.OperatorTemplateImpl#getStoreLeftSideTo <em>Store Left Side To</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.OperatorTemplateImpl#getStoreRightSideTo <em>Store Right Side To</em>}</li>
  * </ul>
  * </p>
  *
@@ -123,6 +127,36 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
 	 * @ordered
 	 */
 	protected Sequence otSequence;
+
+	/**
+	 * The cached value of the '{@link #getStoreOperatorTo() <em>Store Operator To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStoreOperatorTo()
+	 * @generated
+	 * @ordered
+	 */
+	protected PropertyReference storeOperatorTo;
+
+	/**
+	 * The cached value of the '{@link #getStoreLeftSideTo() <em>Store Left Side To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStoreLeftSideTo()
+	 * @generated
+	 * @ordered
+	 */
+	protected PropertyReference storeLeftSideTo;
+
+	/**
+	 * The cached value of the '{@link #getStoreRightSideTo() <em>Store Right Side To</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStoreRightSideTo()
+	 * @generated
+	 * @ordered
+	 */
+	protected PropertyReference storeRightSideTo;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -266,6 +300,120 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public PropertyReference getStoreOperatorTo() {
+		if (storeOperatorTo != null && storeOperatorTo.eIsProxy()) {
+			InternalEObject oldStoreOperatorTo = (InternalEObject)storeOperatorTo;
+			storeOperatorTo = (PropertyReference)eResolveProxy(oldStoreOperatorTo);
+			if (storeOperatorTo != oldStoreOperatorTo) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO, oldStoreOperatorTo, storeOperatorTo));
+			}
+		}
+		return storeOperatorTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyReference basicGetStoreOperatorTo() {
+		return storeOperatorTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStoreOperatorTo(PropertyReference newStoreOperatorTo) {
+		PropertyReference oldStoreOperatorTo = storeOperatorTo;
+		storeOperatorTo = newStoreOperatorTo;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO, oldStoreOperatorTo, storeOperatorTo));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyReference getStoreLeftSideTo() {
+		if (storeLeftSideTo != null && storeLeftSideTo.eIsProxy()) {
+			InternalEObject oldStoreLeftSideTo = (InternalEObject)storeLeftSideTo;
+			storeLeftSideTo = (PropertyReference)eResolveProxy(oldStoreLeftSideTo);
+			if (storeLeftSideTo != oldStoreLeftSideTo) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO, oldStoreLeftSideTo, storeLeftSideTo));
+			}
+		}
+		return storeLeftSideTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyReference basicGetStoreLeftSideTo() {
+		return storeLeftSideTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStoreLeftSideTo(PropertyReference newStoreLeftSideTo) {
+		PropertyReference oldStoreLeftSideTo = storeLeftSideTo;
+		storeLeftSideTo = newStoreLeftSideTo;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO, oldStoreLeftSideTo, storeLeftSideTo));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyReference getStoreRightSideTo() {
+		if (storeRightSideTo != null && storeRightSideTo.eIsProxy()) {
+			InternalEObject oldStoreRightSideTo = (InternalEObject)storeRightSideTo;
+			storeRightSideTo = (PropertyReference)eResolveProxy(oldStoreRightSideTo);
+			if (storeRightSideTo != oldStoreRightSideTo) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO, oldStoreRightSideTo, storeRightSideTo));
+			}
+		}
+		return storeRightSideTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyReference basicGetStoreRightSideTo() {
+		return storeRightSideTo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStoreRightSideTo(PropertyReference newStoreRightSideTo) {
+		PropertyReference oldStoreRightSideTo = storeRightSideTo;
+		storeRightSideTo = newStoreRightSideTo;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO, oldStoreRightSideTo, storeRightSideTo));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -314,6 +462,15 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
 				return getStoreRightTo();
 			case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
 				return getOtSequence();
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
+				if (resolve) return getStoreOperatorTo();
+				return basicGetStoreOperatorTo();
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:
+				if (resolve) return getStoreLeftSideTo();
+				return basicGetStoreLeftSideTo();
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO:
+				if (resolve) return getStoreRightSideTo();
+				return basicGetStoreRightSideTo();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -343,6 +500,15 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
 			case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
 				setOtSequence((Sequence)newValue);
 				return;
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
+				setStoreOperatorTo((PropertyReference)newValue);
+				return;
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:
+				setStoreLeftSideTo((PropertyReference)newValue);
+				return;
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO:
+				setStoreRightSideTo((PropertyReference)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -370,6 +536,15 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
 			case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
 				setOtSequence((Sequence)null);
 				return;
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
+				setStoreOperatorTo((PropertyReference)null);
+				return;
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:
+				setStoreLeftSideTo((PropertyReference)null);
+				return;
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO:
+				setStoreRightSideTo((PropertyReference)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -392,6 +567,12 @@ public class OperatorTemplateImpl extends ContextTemplateImpl implements Operato
 				return STORE_RIGHT_TO_EDEFAULT == null ? storeRightTo != null : !STORE_RIGHT_TO_EDEFAULT.equals(storeRightTo);
 			case TCSPackage.OPERATOR_TEMPLATE__OT_SEQUENCE:
 				return otSequence != null;
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_OPERATOR_TO:
+				return storeOperatorTo != null;
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_LEFT_SIDE_TO:
+				return storeLeftSideTo != null;
+			case TCSPackage.OPERATOR_TEMPLATE__STORE_RIGHT_SIDE_TO:
+				return storeRightSideTo != null;
 		}
 		return super.eIsSet(featureID);
 	}

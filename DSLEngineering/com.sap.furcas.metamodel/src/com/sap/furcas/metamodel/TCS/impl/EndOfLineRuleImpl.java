@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.EndOfLineRuleImpl#getStart <em>Start</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.EndOfLineRuleImpl#isDropStart <em>Drop Start</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,6 +42,25 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
 	 * @ordered
 	 */
 	protected StringPattern start;
+
+	/**
+	 * The default value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDropStart()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DROP_START_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isDropStart() <em>Drop Start</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDropStart()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean dropStart = DROP_START_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -109,6 +129,27 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDropStart() {
+		return dropStart;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDropStart(boolean newDropStart) {
+		boolean oldDropStart = dropStart;
+		dropStart = newDropStart;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.END_OF_LINE_RULE__DROP_START, oldDropStart, dropStart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -128,6 +169,8 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
 		switch (featureID) {
 			case TCSPackage.END_OF_LINE_RULE__START:
 				return getStart();
+			case TCSPackage.END_OF_LINE_RULE__DROP_START:
+				return isDropStart();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -142,6 +185,9 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
 		switch (featureID) {
 			case TCSPackage.END_OF_LINE_RULE__START:
 				setStart((StringPattern)newValue);
+				return;
+			case TCSPackage.END_OF_LINE_RULE__DROP_START:
+				setDropStart((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,6 +204,9 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
 			case TCSPackage.END_OF_LINE_RULE__START:
 				setStart((StringPattern)null);
 				return;
+			case TCSPackage.END_OF_LINE_RULE__DROP_START:
+				setDropStart(DROP_START_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -172,8 +221,26 @@ public class EndOfLineRuleImpl extends RuleImpl implements EndOfLineRule {
 		switch (featureID) {
 			case TCSPackage.END_OF_LINE_RULE__START:
 				return start != null;
+			case TCSPackage.END_OF_LINE_RULE__DROP_START:
+				return dropStart != DROP_START_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (dropStart: ");
+		result.append(dropStart);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EndOfLineRuleImpl

@@ -29,6 +29,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.PredicateSemanticImpl#getAs <em>As</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.PredicateSemanticImpl#getWhen <em>When</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.PredicateSemanticImpl#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,6 +55,26 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
 	 * @ordered
 	 */
 	protected OCLExpression when;
+
+	/**
+	 * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String MODE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getMode() <em>Mode</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMode()
+	 * @generated
+	 * @ordered
+	 */
+	protected String mode = MODE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -155,6 +176,27 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getMode() {
+		return mode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMode(String newMode) {
+		String oldMode = mode;
+		mode = newMode;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.PREDICATE_SEMANTIC__MODE, oldMode, mode));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -164,6 +206,8 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
 			case TCSPackage.PREDICATE_SEMANTIC__WHEN:
 				if (resolve) return getWhen();
 				return basicGetWhen();
+			case TCSPackage.PREDICATE_SEMANTIC__MODE:
+				return getMode();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -181,6 +225,9 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
 				return;
 			case TCSPackage.PREDICATE_SEMANTIC__WHEN:
 				setWhen((OCLExpression)newValue);
+				return;
+			case TCSPackage.PREDICATE_SEMANTIC__MODE:
+				setMode((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -200,6 +247,9 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
 			case TCSPackage.PREDICATE_SEMANTIC__WHEN:
 				setWhen((OCLExpression)null);
 				return;
+			case TCSPackage.PREDICATE_SEMANTIC__MODE:
+				setMode(MODE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -216,8 +266,26 @@ public class PredicateSemanticImpl extends EObjectImpl implements PredicateSeman
 				return as != null;
 			case TCSPackage.PREDICATE_SEMANTIC__WHEN:
 				return when != null;
+			case TCSPackage.PREDICATE_SEMANTIC__MODE:
+				return MODE_EDEFAULT == null ? mode != null : !MODE_EDEFAULT.equals(mode);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (mode: ");
+		result.append(mode);
+		result.append(')');
+		return result.toString();
 	}
 
 } //PredicateSemanticImpl

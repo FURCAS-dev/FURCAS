@@ -280,22 +280,6 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 				return createValueAdapter();
 			}
 			@Override
-			public Adapter caseStringVal(StringVal object) {
-				return createStringValAdapter();
-			}
-			@Override
-			public Adapter caseIntegerVal(IntegerVal object) {
-				return createIntegerValAdapter();
-			}
-			@Override
-			public Adapter caseNegativeIntegerVal(NegativeIntegerVal object) {
-				return createNegativeIntegerValAdapter();
-			}
-			@Override
-			public Adapter caseEnumLiteralVal(EnumLiteralVal object) {
-				return createEnumLiteralValAdapter();
-			}
-			@Override
 			public Adapter casePropertyVal(PropertyVal object) {
 				return createPropertyValAdapter();
 			}
@@ -442,6 +426,30 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDisambiguatePArg(DisambiguatePArg object) {
 				return createDisambiguatePArgAdapter();
+			}
+			@Override
+			public Adapter caseInstanceOfExp(InstanceOfExp object) {
+				return createInstanceOfExpAdapter();
+			}
+			@Override
+			public Adapter caseEnumLiteralVal(EnumLiteralVal object) {
+				return createEnumLiteralValAdapter();
+			}
+			@Override
+			public Adapter caseStringVal(StringVal object) {
+				return createStringValAdapter();
+			}
+			@Override
+			public Adapter caseIntegerVal(IntegerVal object) {
+				return createIntegerValAdapter();
+			}
+			@Override
+			public Adapter caseNegativeIntegerVal(NegativeIntegerVal object) {
+				return createNegativeIntegerValAdapter();
+			}
+			@Override
+			public Adapter caseLookupPropertyInit(LookupPropertyInit object) {
+				return createLookupPropertyInitAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -940,6 +948,20 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.InstanceOfExp <em>Instance Of Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.InstanceOfExp
+	 * @generated
+	 */
+	public Adapter createInstanceOfExpAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.Alternative <em>Alternative</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1370,6 +1392,20 @@ public class TCSAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNegativeIntegerValAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.TCS.LookupPropertyInit <em>Lookup Property Init</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.TCS.LookupPropertyInit
+	 * @generated
+	 */
+	public Adapter createLookupPropertyInitAdapter() {
 		return null;
 	}
 
