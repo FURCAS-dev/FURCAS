@@ -141,8 +141,8 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
 		result.createTestSuite(KeywordsTest.class, "OCL Keyword Tests");
 		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests");
-        result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests");
-        result.createTestSuite(PredefinedSuperTypeInheritedOperationTest.class,
+        	result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests");
+        	result.createTestSuite(PredefinedSuperTypeInheritedOperationTest.class,
         	"Inheritance of additional operations");
 		result.createTestSuite(CollectionsTest.class, "Collection Type Tests");
 		result.createTestSuite(IteratorsTest.class, "Iterator Tests");
@@ -164,7 +164,7 @@ public abstract class AbstractTestSuite
 		result.addTestSuite(org.eclipse.ocl.ecore.helper.tests.AbstractTestSuite.suite());
 		result.createTestSuite(RegressionTest.class, "Regression Tests");
 		result.createTestSuite(EcoreEnvironmentTest.class, "Ecore Environment Tests");
-        result.createTestSuite(ExtensibilityTest.class, "Extensibility Tests");
+        	result.createTestSuite(ExtensibilityTest.class, "Extensibility Tests");
 		result.createTestSuite(ValidationTest.class, "Expression Validation Tests");
 		result.createTestSuite(ProblemOptionTest.class, "Problem Option Tests");
 		result.createTestSuite(ParsingOptionsTest.class, "Parsing Options Tests");
@@ -174,6 +174,7 @@ public abstract class AbstractTestSuite
 		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests");
 		result.createTestSuite(DelegatesTest.class, "Delegate Tests");
 		result.createTestSuite(OppositePropertyCallExpTest.class, "Opposite Property Call Expression Tests");
+		result.createTestSuite(AllInstancesContentAdapterTest.class, "allInstances Content Adapter Tests");
 	}
 	
 	/**
