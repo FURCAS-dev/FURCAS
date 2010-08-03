@@ -441,37 +441,6 @@ public class OclIaTest extends BaseDepartmentTest {
         assertTrue(impact.size() > 0 && impact.contains(ctd) && !impact.contains(cl1));
     }
 
-    // /**
-    // * data::classes::SapClass.allInstances()->select(c | c.name = 'something'
-    // */
-    // @Test
-    // public void testAllInstancesSelectClassName() throws OclManagerException {
-    // final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
-    // "testAllInstancesSelectClassName", "data::classes::SapClass.allInstances()->select(c | c.name = 'HumbaClass2')",
-    // ClassTypeDefinition.CLASS_DESCRIPTOR);
-    //
-    // final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
-    // cl1.setName("HumbaClass1");
-    // final ClassTypeDefinition ctd = connection.createElement(ClassTypeDefinition.CLASS_DESCRIPTOR);
-    // EventFilter eventFilter = registration.getEventFilter(/* notifyNewContextElement */false);
-    // final boolean[] ok = new boolean[1];
-    // ChangeListener listener = new ChangeListener() {
-    // @Override
-    // public void notify(ChangeEvent event) {
-    // Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
-    // ok[0] = affectedElements.size() > 0 && affectedElements.contains(ctd.get___Mri())
-    // && !affectedElements.contains(cl1.get___Mri());
-    // }
-    // };
-    // connection.getEventRegistry().registerListener(listener, eventFilter);
-    // try {
-    // cl1.setName("HumbaClass2");
-    // assertTrue(ok[0]);
-    // } finally {
-    // connection.getEventRegistry().deregister(listener);
-    // }
-    // }
-
     @Test
     public void testVerySimpleTracerBasedInstanceScopeAnalysisWithNewClassScopeAnalysis() {
         Resource r = this.cp.eResource();
@@ -557,35 +526,6 @@ public class OclIaTest extends BaseDepartmentTest {
         assertTrue(impact.size() == 1 && impact.contains(cl1));
     }
 
-    // this test is actually identical to "testVerySimpleTracerBasedInstanceScopeAnalysisWithNewClassScopeAnalysis"
-    // @Test
-    // public void testVerySimpleTracerBasedInstanceScopeAnalysis() throws OclManagerException {
-    // final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
-    // "testVerySimpleTracerBasedInstanceScopeAnalysis",
-    // "self.oclAsType(data::classes::SapClass).name", SapClass.CLASS_DESCRIPTOR);
-    //
-    // final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
-    // cl1.setName("HumbaClass1");
-    // EventFilter eventFilter = registration.getEventFilter(false);
-    // final boolean[] ok = new boolean[1];
-    // ChangeListener listener = new ChangeListener() {
-    // @Override
-    // public void notify(ChangeEvent event) {
-    // Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
-    // ok[0] = affectedElements.size() == 1
-    // && affectedElements.iterator().next().getMofId().equals(cl1.refMofId());
-    // }
-    // };
-    // connection.getEventRegistry().registerListener(listener, eventFilter);
-    // try {
-    // cl1.setName("ChangedHumba1");
-    // assertTrue(ok[0]);
-    // } finally {
-    // connection.getEventRegistry().deregister(listener);
-    // }
-    // }
-    //
-
     @Test
     public void testGetFloorTokenNull() {
         Resource r = this.cp.eResource();
@@ -642,10 +582,6 @@ public class OclIaTest extends BaseDepartmentTest {
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE
                 .createImpactAnalyzer(exp, LiteralsPackage.eINSTANCE.getObjectLiteral());
         Collection<EObject> impact = ia.getContextObjects(noti);
-        // FIXME the name change definitely changes the evaluation result of the expression and should therefore have an impact
-        // Apparently there is some type mismatch in the navigation steps, but I have no idea where it comes from.
-        // The interesting action happens right after the IA tries to resolve the oppositeProperty for valueClass on
-        // "Bob" which leads to an empty set that seems to propagate too far.x`
         assertTrue(impact.size() == 1 && impact.contains(ol1));
     }
 
