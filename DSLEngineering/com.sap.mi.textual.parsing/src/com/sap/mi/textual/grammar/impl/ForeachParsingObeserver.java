@@ -5,7 +5,7 @@ import java.util.List;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class ForeachParsingObeserver implements IParsingObserver {
 
