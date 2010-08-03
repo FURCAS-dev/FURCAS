@@ -132,6 +132,12 @@ public class TextblocksSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TextblocksPackage.FOR_EACH_CONTEXT: {
+				ForEachContext forEachContext = (ForEachContext)theEObject;
+				T result = caseForEachContext(forEachContext);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -223,6 +229,21 @@ public class TextblocksSwitch<T> {
 	 * @generated
 	 */
 	public T caseDocumentNode(DocumentNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>For Each Context</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>For Each Context</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseForEachContext(ForEachContext object) {
 		return null;
 	}
 

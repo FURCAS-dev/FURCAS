@@ -9,6 +9,7 @@ package com.sap.furcas.metamodel.textblocks.impl;
 import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
@@ -27,6 +28,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -42,12 +44,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getStartColumn <em>Start Column</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getEndRow <em>End Row</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getEndColumn <em>End Column</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getTokens <em>Tokens</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getSubNodes <em>Sub Nodes</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getType <em>Type</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getSubBlocks <em>Sub Blocks</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getSubNodes <em>Sub Nodes</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getParentAltChoices <em>Parent Alt Choices</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getElementsInContext <em>Elements In Context</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getForEachContext <em>For Each Context</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,16 +136,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	protected int endColumn = END_COLUMN_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSubNodes() <em>Sub Nodes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSubNodes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<DocumentNode> subNodes;
-
-	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,14 +146,14 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	protected TextblockDefinition type;
 
 	/**
-	 * The cached value of the '{@link #getSubBlocks() <em>Sub Blocks</em>}' reference list.
+	 * The cached value of the '{@link #getSubNodes() <em>Sub Nodes</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSubBlocks()
+	 * @see #getSubNodes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TextBlock> subBlocks;
+	protected EList<TextBlock> subNodes;
 
 	/**
 	 * The cached value of the '{@link #getParentAltChoices() <em>Parent Alt Choices</em>}' attribute list.
@@ -183,6 +174,16 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * @ordered
 	 */
 	protected EList<EObject> elementsInContext;
+
+	/**
+	 * The cached value of the '{@link #getForEachContext() <em>For Each Context</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getForEachContext()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ForEachContext> forEachContext;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -293,10 +294,8 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * @generated
 	 */
 	public EList<AbstractToken> getTokens() {
-		// TODO: implement this method to return the 'Tokens' reference list
+		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
-		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
-		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
 		throw new UnsupportedOperationException();
 	}
 
@@ -305,9 +304,9 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<DocumentNode> getSubNodes() {
+	public EList<TextBlock> getSubNodes() {
 		if (subNodes == null) {
-			subNodes = new EObjectContainmentWithInverseEList<DocumentNode>(DocumentNode.class, this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextblocksPackage.DOCUMENT_NODE__PARENT);
+			subNodes = new EObjectResolvingEList<TextBlock>(TextBlock.class, this, TextblocksPackage.TEXT_BLOCK__SUB_NODES);
 		}
 		return subNodes;
 	}
@@ -356,10 +355,9 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * @generated
 	 */
 	public EList<TextBlock> getSubBlocks() {
-		if (subBlocks == null) {
-			subBlocks = new EObjectResolvingEList<TextBlock>(TextBlock.class, this, TextblocksPackage.TEXT_BLOCK__SUB_BLOCKS);
-		}
-		return subBlocks;
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -391,14 +389,11 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubNodes()).basicAdd(otherEnd, msgs);
+	public EList<ForEachContext> getForEachContext() {
+		if (forEachContext == null) {
+			forEachContext = new EObjectContainmentEList<ForEachContext>(ForEachContext.class, this, TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT);
 		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+		return forEachContext;
 	}
 
 	/**
@@ -409,8 +404,8 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
-				return ((InternalEList<?>)getSubNodes()).basicRemove(otherEnd, msgs);
+			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
+				return ((InternalEList<?>)getForEachContext()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -431,19 +426,17 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 				return getEndRow();
 			case TextblocksPackage.TEXT_BLOCK__END_COLUMN:
 				return getEndColumn();
-			case TextblocksPackage.TEXT_BLOCK__TOKENS:
-				return getTokens();
-			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
-				return getSubNodes();
 			case TextblocksPackage.TEXT_BLOCK__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
-			case TextblocksPackage.TEXT_BLOCK__SUB_BLOCKS:
-				return getSubBlocks();
+			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
+				return getSubNodes();
 			case TextblocksPackage.TEXT_BLOCK__PARENT_ALT_CHOICES:
 				return getParentAltChoices();
 			case TextblocksPackage.TEXT_BLOCK__ELEMENTS_IN_CONTEXT:
 				return getElementsInContext();
+			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
+				return getForEachContext();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -469,20 +462,12 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 			case TextblocksPackage.TEXT_BLOCK__END_COLUMN:
 				setEndColumn((Integer)newValue);
 				return;
-			case TextblocksPackage.TEXT_BLOCK__TOKENS:
-				getTokens().clear();
-				getTokens().addAll((Collection<? extends AbstractToken>)newValue);
-				return;
-			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
-				getSubNodes().clear();
-				getSubNodes().addAll((Collection<? extends DocumentNode>)newValue);
-				return;
 			case TextblocksPackage.TEXT_BLOCK__TYPE:
 				setType((TextblockDefinition)newValue);
 				return;
-			case TextblocksPackage.TEXT_BLOCK__SUB_BLOCKS:
-				getSubBlocks().clear();
-				getSubBlocks().addAll((Collection<? extends TextBlock>)newValue);
+			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
+				getSubNodes().clear();
+				getSubNodes().addAll((Collection<? extends TextBlock>)newValue);
 				return;
 			case TextblocksPackage.TEXT_BLOCK__PARENT_ALT_CHOICES:
 				getParentAltChoices().clear();
@@ -491,6 +476,10 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 			case TextblocksPackage.TEXT_BLOCK__ELEMENTS_IN_CONTEXT:
 				getElementsInContext().clear();
 				getElementsInContext().addAll((Collection<? extends EObject>)newValue);
+				return;
+			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
+				getForEachContext().clear();
+				getForEachContext().addAll((Collection<? extends ForEachContext>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -516,23 +505,20 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 			case TextblocksPackage.TEXT_BLOCK__END_COLUMN:
 				setEndColumn(END_COLUMN_EDEFAULT);
 				return;
-			case TextblocksPackage.TEXT_BLOCK__TOKENS:
-				getTokens().clear();
-				return;
-			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
-				getSubNodes().clear();
-				return;
 			case TextblocksPackage.TEXT_BLOCK__TYPE:
 				setType((TextblockDefinition)null);
 				return;
-			case TextblocksPackage.TEXT_BLOCK__SUB_BLOCKS:
-				getSubBlocks().clear();
+			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
+				getSubNodes().clear();
 				return;
 			case TextblocksPackage.TEXT_BLOCK__PARENT_ALT_CHOICES:
 				getParentAltChoices().clear();
 				return;
 			case TextblocksPackage.TEXT_BLOCK__ELEMENTS_IN_CONTEXT:
 				getElementsInContext().clear();
+				return;
+			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
+				getForEachContext().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -554,18 +540,16 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 				return endRow != END_ROW_EDEFAULT;
 			case TextblocksPackage.TEXT_BLOCK__END_COLUMN:
 				return endColumn != END_COLUMN_EDEFAULT;
-			case TextblocksPackage.TEXT_BLOCK__TOKENS:
-				return !getTokens().isEmpty();
-			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
-				return subNodes != null && !subNodes.isEmpty();
 			case TextblocksPackage.TEXT_BLOCK__TYPE:
 				return type != null;
-			case TextblocksPackage.TEXT_BLOCK__SUB_BLOCKS:
-				return subBlocks != null && !subBlocks.isEmpty();
+			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
+				return subNodes != null && !subNodes.isEmpty();
 			case TextblocksPackage.TEXT_BLOCK__PARENT_ALT_CHOICES:
 				return parentAltChoices != null && !parentAltChoices.isEmpty();
 			case TextblocksPackage.TEXT_BLOCK__ELEMENTS_IN_CONTEXT:
 				return elementsInContext != null && !elementsInContext.isEmpty();
+			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
+				return forEachContext != null && !forEachContext.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
