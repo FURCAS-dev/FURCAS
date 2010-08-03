@@ -34,8 +34,11 @@ import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.TypeScopeProvider;
 
+import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.ForEachContext;
+
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
@@ -134,14 +137,14 @@ public class DelayedReferencesHelper {
 			if (result == null) {
 				// we need to delete all elements created for this foreach
 				if (reference.getTextBlock() != null) {
-					for (ForeachContext fec : new ArrayList<ForeachContext>(
+					for (ForEachContext fec : new ArrayList<ForEachContext>(
 							((TextBlock) reference.getTextBlock())
-									.getForeachContext())) {
-						if (fec.getForeachPredicatePropertyInit() != null
-								&& fec.getForeachPredicatePropertyInit()
+									.getForEachContext())) {
+						if (fec.getForeachPedicatePropertyInit() != null
+								&& fec.getForeachPedicatePropertyInit()
 										.equals(reference.getQueryElement())
 								&& reference.getModelElement().equals(
-										fec.getSourceModelelement())) {
+										fec.getSourceModelElement())) {
 							// delete element and fec
 							fec.getResultModelElement().refDelete();
 							fec.refDelete();
@@ -206,13 +209,13 @@ public class DelayedReferencesHelper {
 							return false;
 						}
 						if (reference.getTextBlock() != null) {
-							for (ForeachContext fec : new ArrayList<ForeachContext>(
+							for (ForEachContext fec : new ArrayList<ForEachContext>(
 									((TextBlock) reference.getTextBlock())
-											.getForeachContext())) {
-								if (fec.getForeachPredicatePropertyInit()
+											.getForEachContext())) {
+								if (fec.getForeachPedicatePropertyInit()
 										.equals(reference.getQueryElement())
 										&& reference.getModelElement().equals(
-												fec.getSourceModelelement())) {
+												fec.getSourceModelElement())) {
 									if (!fec.getContextElement().contains(next)) {
 										// element was responsible for creating
 										// this result but
@@ -315,8 +318,9 @@ public class DelayedReferencesHelper {
 		if (index >= 0
 				&& ((ForeachPredicatePropertyInit) ref.getQueryElement()) != null) {
 			int i = 0;
+		
 			for (tcs.PredicateSemantic predSem : ((ForeachPredicatePropertyInit) ref
-					.getQueryElement()).getPredicatesemantic()) {
+					.getQueryElement()).getPredicateSemantic()) {
 				if (i++ == index) {
 					return predSem.getAs();
 				}
@@ -498,10 +502,10 @@ public class DelayedReferencesHelper {
 		// then the textblock is never set. Find out when and where this could
 		// be done
 
-		for (ForeachContext forEachContext : contextBlock.getForeachContext()) {
-			if (forEachContext.getForeachPredicatePropertyInit().equals(
+		for (ForEachContext forEachContext : contextBlock.getForEachContext()) {
+			if (forEachContext.getForeachPedicatePropertyInit().equals(
 					sequenceElement)) {
-				if (forEachContext.getSourceModelelement().equals(
+				if (forEachContext.getSourceModelElement().equals(
 						sourceModelElement)) {
 					if (!forEachContext.getContextElement().contains(
 							currentForEachElement)) {
@@ -514,13 +518,13 @@ public class DelayedReferencesHelper {
 			}
 		}
 		if (!forEachContextExists) {
-			ForeachContext newContext = (ForeachContext) rs.getClass(
-					ForeachContext.CLASS_DESCRIPTOR).refCreateInstance();
-			newContext.setForeachPredicatePropertyInit(sequenceElement);
-			newContext.setSourceModelelement(sourceModelElement);
+			ForEachContext newContext = (ForEachContext) rs.getClass(
+					ForEachContext.CLASS_DESCRIPTOR).refCreateInstance();
+			newContext.setForeachPedicatePropertyInit(sequenceElement);
+			newContext.setSourceModelElement(sourceModelElement);
 			newContext.getContextElement().add(currentForEachElement);
 			newContext.setResultModelElement(resultElement);
-			contextBlock.getForeachContext().add(newContext);
+			contextBlock.getForEachContext().add(newContext);
 		}
 
 	}
