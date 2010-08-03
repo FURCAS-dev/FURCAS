@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
@@ -30,7 +31,7 @@ import com.sap.mi.textual.common.util.ContextAndForeachHelper;
  */
 public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLookup {
 
-    private final Connection connection;
+    private final ResourceSet connection;
 
     private static final String MOF14_CONTAINER_NAME = "sap.com/tc/moin/mof_1.4";
 
@@ -44,7 +45,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
      * @param connection
      * @param MOF14_CONTAINER_NAME name of MetaMetaModel, i.e. MOF1.4
      */
-    public AbstractQueryBasedMoinMetaLookUp(Connection connection) {
+    public AbstractQueryBasedMoinMetaLookUp(ResourceSet connection) {
         this.connection = connection;
     }
     

@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 
 
 
@@ -24,7 +26,7 @@ public class MoinMetaLookup extends AbstractQueryBasedMoinMetaLookUp {
      * @param priList 
      * @throws IOException 
      */
-    public MoinMetaLookup(Connection connection, Collection<PRI> priList) {
+    public MoinMetaLookup(ResourceSet connection, Collection<PRI> priList) {
         super(connection);
         if (priList != null) {
             newPRIs = new HashSet<PRI>(priList);
