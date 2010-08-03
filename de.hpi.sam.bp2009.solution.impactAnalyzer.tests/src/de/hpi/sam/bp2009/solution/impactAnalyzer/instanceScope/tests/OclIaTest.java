@@ -441,6 +441,44 @@ public class OclIaTest extends BaseDepartmentTest {
         assertTrue(impact.size() > 0 && impact.contains(ctd) && !impact.contains(cl1));
     }
 
+    /**
+     * data::classes::SapClass.allInstances()->select(c | c.name = 'something'
+     */
+    @Test
+    public void testTriggeringAllInstancesByDirectResourceContainment() {
+        Resource r = this.cp.eResource();
+        OCLExpression exp = (OCLExpression) parse(testAllInstancesSelectClassName, this.cp).iterator().next().getSpecification()
+                .getBodyExpression();
+        r.getContents().add(exp);
+        final ClassTypeDefinition ctd = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        r.getContents().add(ctd);
+        final SapClass cl1 = ClassesFactory.eINSTANCE.createSapClass();
+        cl1.setName("Bob");
+        final Notification[] notifications = new Notification[1];
+        Adapter a = new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification n) {
+                if (n.getEventType() != Notification.REMOVING_ADAPTER) {
+                    if (notifications[0] != null) {
+                        fail("didn't expect to receive two notifications");
+                    }
+                    notifications[0] = n;
+                }
+            }
+        };
+        r.eAdapters().add(a);
+        cl1.eAdapters().add(a);
+        r.getContents().add(cl1);
+        assertNotNull("Expected to receive one notification", notifications[0]);
+        r.eAdapters().remove(a);
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getClassTypeDefinition());
+        Collection<EObject> impact = ia.getContextObjects(notifications[0]);
+        // The expression has as its context ClassTypeDefinition. Therefore, the SapClass must not be returned
+        // as impacted object. However, the change affects the ->select clause after allInstances(), so
+        // all context objects of type ClassTypeDefinition are affected. That's what we want to assert now:
+        assertTrue(impact.size() > 0 && impact.contains(ctd) && !impact.contains(cl1));
+    }
+
     @Test
     public void testVerySimpleTracerBasedInstanceScopeAnalysisWithNewClassScopeAnalysis() {
         Resource r = this.cp.eResource();
