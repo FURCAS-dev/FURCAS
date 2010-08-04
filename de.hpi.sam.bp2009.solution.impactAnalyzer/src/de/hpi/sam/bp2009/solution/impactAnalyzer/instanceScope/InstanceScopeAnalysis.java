@@ -416,7 +416,7 @@ public class InstanceScopeAnalysis {
     private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
         NavigationStep result = expressionToStep.get(exp);
         if (result == null) {
-            result = createTracer(exp, /* calling tracer */ null).traceback(context, pathCache, filterSynthesizer);
+            result = pathCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null);
             expressionToStep.put(exp, result);
         }
         return result;

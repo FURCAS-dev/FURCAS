@@ -44,7 +44,7 @@ public class IndirectingStep extends AbstractNavigationStep {
 	boolean result;
 	if (actualStep == null || equalsOrHashCodeCalledBeforeActualStepSet) {
 	    equalsOrHashCodeCalledBeforeActualStepSet = true;
-	    result = this.equals(o);
+	    result = super.equals(o);
 	} else {
 	    Object toCompareWith = o;
 	    if (o instanceof IndirectingStep) {
@@ -59,7 +59,7 @@ public class IndirectingStep extends AbstractNavigationStep {
 	int result;
 	if (actualStep == null || equalsOrHashCodeCalledBeforeActualStepSet) {
 	    equalsOrHashCodeCalledBeforeActualStepSet = true;
-	    result = this.hashCode();
+	    result = super.hashCode();
 	} else {
 	    result = actualStep.hashCode();
 	}
@@ -71,8 +71,26 @@ public class IndirectingStep extends AbstractNavigationStep {
 	   throw new RuntimeException("Internal error: can't set an IndirectingStep's actual step twice");
 	}
 	this.actualStep = actualStep;
-	setSourceType(actualStep.getSourceType());
-	setTargetType(actualStep.getTargetType());
+        if (actualStep.getSourceType() == null) {
+            actualStep.addSourceTypeChangeListener(new SourceTypeChangeListener() {
+                @Override
+                public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
+                    setSourceType(stepForWhichSourceTypeChanged.getSourceType());
+                }
+            });
+        } else {
+            setSourceType(actualStep.getSourceType());
+        }
+        if (actualStep.getTargetType() == null) {
+            actualStep.addTargetTypeChangeListener(new TargetTypeChangeListener() {
+                @Override
+                public void targetTypeChanged(NavigationStep stepForWhichTargetTypeChanged) {
+                    setTargetType(stepForWhichTargetTypeChanged.getTargetType());
+                }
+            });
+        } else {
+            setTargetType(actualStep.getTargetType());
+        }
 	if (this.actualStep.isAlwaysEmpty()) {
 	    setAlwaysEmpty();
 	} else {

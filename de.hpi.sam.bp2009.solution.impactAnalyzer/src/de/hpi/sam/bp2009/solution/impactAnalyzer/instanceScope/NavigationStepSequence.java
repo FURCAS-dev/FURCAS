@@ -36,7 +36,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
     public NavigationStepSequence(OCLExpression debugInfo, NavigationStep... steps) {
 	super(/* sourceType */ null, /* targetType */ null, debugInfo, compactSteps(steps, debugInfo));
 	setSourceType(getSteps()[0].getSourceType());
-	getSteps()[0].addASourceTypeChangeListener(new SourceTypeChangeListener() {
+	getSteps()[0].addSourceTypeChangeListener(new SourceTypeChangeListener() {
 	    @Override
 	    public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
 		assert stepForWhichSourceTypeChanged == getSteps()[0];
@@ -66,7 +66,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	    }
 	    if (step.getSourceType() == null && i>0) {
 		final int pos = i;
-		step.addASourceTypeChangeListener(new SourceTypeChangeListener() {
+		step.addSourceTypeChangeListener(new SourceTypeChangeListener() {
 		    @Override
 		    public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
 			assert stepForWhichSourceTypeChanged == step;

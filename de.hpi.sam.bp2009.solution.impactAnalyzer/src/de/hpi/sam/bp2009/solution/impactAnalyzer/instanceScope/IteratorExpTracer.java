@@ -29,8 +29,9 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
                 // evaluate predicate before checking how it goes on
                 Variable<EClassifier, EParameter> varDecl = getExpression().getIterator().get(0);
                 EClass iteratorType = getInnermostElementType(varDecl.getType());
-                result = new NavigationStepSequence(getExpression(), new PredicateCheckNavigationStep(
-                        getInnermostElementType(getExpression().getType()), iteratorType, getExpression(), pathCache), result);
+                result = pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(),
+                        new PredicateCheckNavigationStep(getInnermostElementType(getExpression().getType()), iteratorType,
+                                getExpression(), pathCache), result);
             }
         } else if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED) {
             result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getBody(), context, filterSynthesizer,

@@ -45,7 +45,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
                         }
                     });
                     if (step.getSourceType() == null) {
-                        step.addASourceTypeChangeListener(new SourceTypeChangeListener() {
+                        step.addSourceTypeChangeListener(new SourceTypeChangeListener() {
                             @Override
                             public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
                                 // if source type is set where it was previously not set, check if that step
@@ -101,6 +101,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
      */
     @Override
     public boolean isAbsolute() {
+        // TODO also return true if all branches have isAbsolute()==true
         return isAlwaysEmpty();
     }
 

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -14,10 +15,8 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
-public class AllInstancesNavigationStep extends AbstractNavigationStep {
+public class AllInstancesNavigationStep extends AbsoluteNavigationStep {
     private final OppositeEndFinder oppositeEndFinder;
-
-    private final boolean absolute;
 
     /**
      * Constructs a non-{@link NavigationStep#isAbsolute() absolute} navigation step that computes all instances of
@@ -34,20 +33,14 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
      */
     public AllInstancesNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo,
             OppositeEndFinder oppositeEndFinder) {
-        super(sourceType, targetType, debugInfo);
-        absolute = false;
+        super(targetType, debugInfo);
         this.oppositeEndFinder = oppositeEndFinder;
-    }
-
-    @Override
-    public boolean isAbsolute() {
-        return absolute;
     }
 
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
-        for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances(fromObject, getTargetType(),
+        for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances((Notifier) changeEvent.getNotifier(), getTargetType(),
                 oppositeEndFinder)) {
             result.add(annotateEObject(fromObject, roi));
         }
