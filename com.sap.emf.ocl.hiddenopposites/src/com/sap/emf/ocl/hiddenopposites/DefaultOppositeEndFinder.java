@@ -141,10 +141,17 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
     private void updateOppositeCache() {
 	Set<String> registryKeys = new HashSet<String>(registry.keySet()); // avoid concurrent modifications
 	for (String packageUri : registryKeys) {
-	    EPackage ePackage = registry.getEPackage(packageUri);
-	    if (!cachedPackages.contains(ePackage)) {
-		cachedPackages.add(ePackage);
-		cachePackage(ePackage);
+            try {
+                EPackage ePackage = registry.getEPackage(packageUri);
+                if (!cachedPackages.contains(ePackage)) {
+                    cachedPackages.add(ePackage);
+                    cachePackage(ePackage);
+                }
+            } catch (Exception e) {
+	        // problem resolving the packageUri into an EPackage; could be that the package class
+                // doesn't exist in generated form; ignore those for now (although it should somehow
+                // be possible to instantiate this package dynamically TODO
+                logger.warning("couldn't resolve Ecore package with URI "+packageUri+": "+e.getMessage());
 	    }
 	}
     }
