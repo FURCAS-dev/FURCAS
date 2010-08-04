@@ -73,7 +73,7 @@ public interface NavigationStep {
 	 * informed by calling their {@link SourceTypeChangeListener#sourceTypeChanged(NavigationStep)}
 	 * method with this step as parameter.
 	 */
-	void addASourceTypeChangeListener(SourceTypeChangeListener listener);
+	void addSourceTypeChangeListener(SourceTypeChangeListener listener);
 
 	/**
 	 * Whenever the result of {@link #getTargetType()} changes, registered listeners will be

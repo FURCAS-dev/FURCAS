@@ -32,7 +32,8 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
         }
         if (getExpression().getPart().size() > 0){
             EClass innermostType = getInnermostElementType(getExpression().getType());
-            return new BranchingNavigationStep(innermostType, context, getExpression(), steps.toArray(new NavigationStep[0]));
+            return pathCache.navigationStepForBranch(innermostType, context, getExpression(),
+                    getTupleLiteralPartNamesToLookFor(), steps.toArray(new NavigationStep[0]));
         } else {
             //the collection was empty, like "Set{}"
             return new EmptyResultNavigationStep(getExpression());

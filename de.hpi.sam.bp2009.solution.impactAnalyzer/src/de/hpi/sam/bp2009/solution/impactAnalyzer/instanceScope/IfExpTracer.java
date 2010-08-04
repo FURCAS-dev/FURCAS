@@ -15,7 +15,8 @@ public class IfExpTracer extends AbstractTracer<IfExp> {
 	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 		NavigationStep thenPath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getThenExpression(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
 		NavigationStep elsePath = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getElseExpression(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
-		return new BranchingNavigationStep(getInnermostElementType(getExpression().getType()), context, getExpression(), thenPath, elsePath);
+		return pathCache.navigationStepForBranch(getInnermostElementType(getExpression().getType()), context, getExpression(),
+		        getTupleLiteralPartNamesToLookFor(), thenPath, elsePath);
 	}
 
 }

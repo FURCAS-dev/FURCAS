@@ -109,7 +109,7 @@ public class PathCache {
     /**
      * A factory method for {@link NavigationStep}s that combines a sequence of navigation steps into a single new one. In doing
      * so, shortcuts may be taken. For example, if the last step is an absolute step, it is returned as the result because all
-     * prior navigations are irrelevant.
+     * prior navigations are irrelevant. Also, if there is only one step in <code>steps</code>, that step is simply used.
      *
      * @param expression
      *            Additionally, this is used to tell a debugging user to which OCL (sub-)expression the navigation step to create
@@ -117,17 +117,45 @@ public class PathCache {
      *            resulting navigation step for <tt>expression</tt>. Callers therefore should ensure that in case this operation
      *            is called multiple times on the same object for the same expression, then the steps have to have equal semantics
      *            because subsequent calls will pull the result from the cache if available instead of creating a new one.
-     * @param tupleLiteralPartNamesToLookFor TODO
      */
     protected NavigationStep navigationStepFromSequence(OCLExpression expression, String[] tupleLiteralPartNamesToLookFor, NavigationStep... steps) {
-        NavigationStep result = getPathForNode(expression, tupleLiteralPartNamesToLookFor);
-        if (result == null) {
-            if (steps[steps.length - 1].isAbsolute()) {
+        NavigationStep result;
+        if (steps.length == 1) {
+            // only one step; don't bother to wrap a sequence around it
+            result = steps[0];
+        } else {
+            // find first absolute step; can skip all prior steps as their results don't matter for the absolute step
+            int firstAbsoluteStep = 0;
+            for (int i = 0; i < steps.length; i++) {
+                if (steps[i].isAbsolute()) {
+                    firstAbsoluteStep = i;
+                    break;
+                }
+            }
+            if (firstAbsoluteStep == steps.length - 1) {
+                // only one step remains; return it and don't construct a NavigationStepSequence:
                 result = steps[steps.length - 1];
             } else {
-                result = new NavigationStepSequence(expression, steps);
+                NavigationStep[] tail;
+                if (firstAbsoluteStep > 0) {
+                    tail = new NavigationStep[steps.length - firstAbsoluteStep];
+                    System.arraycopy(steps, firstAbsoluteStep, tail, 0, steps.length - firstAbsoluteStep);
+                } else {
+                    tail = steps;
+                }
+                result = new NavigationStepSequence(expression, tail);
             }
-            put(expression, tupleLiteralPartNamesToLookFor, result);
+        }
+        return result;
+    }
+    
+    protected NavigationStep navigationStepForBranch(EClass sourceType, EClass targetType,
+            OCLExpression expression, String[] tupleLiteralPartNamesToLookFor, NavigationStep... steps) {
+        NavigationStep result;
+        if (steps.length == 1) {
+            result = steps[0];
+        } else {
+            result = new BranchingNavigationStep(sourceType, targetType, expression, steps);
         }
         return result;
     }
@@ -144,7 +172,4 @@ public class PathCache {
         put(expr, tupleLiteralPartNamesToLookFor, result);
         return result;
     }
-
-
-
 }

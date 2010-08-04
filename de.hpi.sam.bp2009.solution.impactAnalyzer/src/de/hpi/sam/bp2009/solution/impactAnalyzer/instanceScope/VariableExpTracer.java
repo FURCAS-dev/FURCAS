@@ -96,10 +96,11 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	    stepsPerCall.add(pathCache.getOrCreateNavigationPath(argumentExpression, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
 	}
 
-	indirectingStep.setActualStep(new BranchingNavigationStep(
+	indirectingStep.setActualStep(pathCache.navigationStepForBranch(
 		getInnermostElementType(getExpression().getType()),
 	        context,
 	        getExpression(),
+	        getTupleLiteralPartNamesToLookFor(),
 	        stepsPerCall.toArray(new NavigationStep[0])));
 	return indirectingStep;
     }
@@ -140,10 +141,11 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	        (OCLExpression) ((IterateExp) getVariableDeclaration().eContainer()).getBody(),
 	        context,
 	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
-	return new BranchingNavigationStep(
+	return pathCache.navigationStepForBranch(
 		getInnermostElementType(getExpression().getType()),
 	        context,
 	        getExpression(),
+	        getTupleLiteralPartNamesToLookFor(),
 	        stepForInitExpression,
 	        stepForBodyExpression);
     }
@@ -178,10 +180,11 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 		OCLExpression callSource = (OCLExpression) call.getSource();
 		stepsForCalls.add(pathCache.getOrCreateNavigationPath(callSource, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
 	    }
-	    indirectingStep.setActualStep(new BranchingNavigationStep(
+	    indirectingStep.setActualStep(pathCache.navigationStepForBranch(
 		    getInnermostElementType(getExpression().getType()),
 		    context,
 		    getExpression(),
+		    getTupleLiteralPartNamesToLookFor(),
 		    stepsForCalls.toArray(new NavigationStep[0])));
 	    result = indirectingStep;
 	} else {

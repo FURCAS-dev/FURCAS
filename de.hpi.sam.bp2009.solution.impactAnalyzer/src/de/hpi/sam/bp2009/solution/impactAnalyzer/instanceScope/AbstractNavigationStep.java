@@ -72,7 +72,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     }
 
     @Override
-    public void addASourceTypeChangeListener(SourceTypeChangeListener listener) {
+    public void addSourceTypeChangeListener(SourceTypeChangeListener listener) {
 	if(this.sourceTypeChangeListeners == null){
 	    this.sourceTypeChangeListeners = new HashSet<SourceTypeChangeListener>(1);
 	}

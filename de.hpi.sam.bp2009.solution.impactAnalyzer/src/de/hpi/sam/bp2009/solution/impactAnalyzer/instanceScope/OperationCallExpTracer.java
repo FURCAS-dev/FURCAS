@@ -61,6 +61,9 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
             // an OCL-specified operation; trace back using the body expression
             result = pathCache.getPathForNode(body, getTupleLiteralPartNamesToLookFor());
             if (result == null) {
+                // the operation body may lead to a recursion; to avoid a recursion we first create an
+                // indirecting step here and insert it into the path cache so it will be found instead
+                // of recurring
                 IndirectingStep bodyStep = pathCache.createIndirectingStepFor(body, getTupleLiteralPartNamesToLookFor());
                 Tracer bodyTracer = InstanceScopeAnalysis.createTracer(body, getTupleLiteralPartNamesToLookFor());
                 NavigationStep actualStep = bodyTracer.traceback(context, pathCache, filterSynthesizer);
@@ -95,10 +98,11 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                     }
                     OCLExpression argument = (OCLExpression) (getExpression().getArgument()).get(paramPos);
                     NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(argument, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
-                    result = new BranchingNavigationStep(
+                    result = pathCache.navigationStepForBranch(
                             getInnermostElementType(getExpression().getType()),
                             context,
                             getExpression(),
+                            getTupleLiteralPartNamesToLookFor(),
                             sourcePath,
                             argumentPath);
                 } else {
