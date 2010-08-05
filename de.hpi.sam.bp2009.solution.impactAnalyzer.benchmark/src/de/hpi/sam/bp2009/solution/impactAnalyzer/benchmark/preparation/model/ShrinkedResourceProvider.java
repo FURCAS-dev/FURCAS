@@ -34,6 +34,11 @@ public class ShrinkedResourceProvider {
 	result.add(fullSizeResource);
 	result.addAll(shrinkedResourceList);
 
+	/*for(Resource toVisualize : result){
+		EmfModelVisualizer visualizer = new EmfModelVisualizer(toVisualize);
+		visualizer.visualize("C:\\tmp\\"+ toVisualize.getURI().lastSegment() + ".graphml");
+	}*/
+
 	return result;
     }
 
@@ -64,7 +69,6 @@ public class ShrinkedResourceProvider {
         	// TODO Auto-generated catch block
         	e.printStackTrace();
             }
-
     }
 
     public void loadPersistetShrinkedResources(){

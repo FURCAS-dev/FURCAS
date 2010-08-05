@@ -136,7 +136,7 @@ public class OCLTestExpressionContainer {
 
                 //template ClassTypeDefinition #objectCount
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: data::classes::SapClass.allInstances()->select(c | c.name = 'Number')", data.classes.ClassesPackage.eINSTANCE));
+       EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: data::classes::SapClass.allInstances()->select(c | c.name = 'Number')", data.classes.ClassesPackage.eINSTANCE));
 
         // Begin of OBJECT BASED EXPRESSIONS
                 //operatorTemplate MethodCallExpression(operators = dotOp, source='object',

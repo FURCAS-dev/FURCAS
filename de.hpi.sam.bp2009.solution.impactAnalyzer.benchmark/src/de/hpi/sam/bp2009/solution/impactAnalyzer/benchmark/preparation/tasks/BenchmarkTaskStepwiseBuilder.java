@@ -7,6 +7,8 @@ import java.util.Queue;
 
 import org.eclipse.emf.ecore.resource.Resource;
 
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
@@ -126,7 +128,8 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 			ActivationOption option, OCLExpressionWithContext expression,
 			NotificationForModelList notificationList) {
 
-		ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(currentExpression.getExpression(), currentExpression.getContext());
+	    	OppositeEndFinder oppositeEndFinder = new AllInstanceCallCountingOppositeEndFinder();
+	    	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(currentExpression.getExpression(), currentExpression.getContext(), oppositeEndFinder);
 
 		Resource model = notificationList.getModel();
 		BenchmarkTaskContainer container = new ModelSizeVariationBenchmarkTaskContainer(model, option, String.valueOf(ids.getContainerId()));
@@ -141,13 +144,13 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 				ids.incrementBenchmarkTask();
 				ids.incrementNotification();
 
-		    	container.add(new ModelSizeVariationBenchmarkTask(expression, split, ia, String.valueOf(ids.getOclId()), String.valueOf(ids.getNotificationId()), String.valueOf(ids.getBenchmarkTaskId()), String.valueOf(ids.getOptionId()), String.valueOf(ids.getModelId())));
+		    	container.add(new ModelSizeVariationBenchmarkTask(expression, split, ia, String.valueOf(ids.getOclId()), String.valueOf(ids.getNotificationId()), String.valueOf(ids.getBenchmarkTaskId()), String.valueOf(ids.getOptionId()), String.valueOf(ids.getModelId()), oppositeEndFinder));
 			    }
 			}else{
 			    ids.incrementBenchmarkTask();
 			    ids.incrementNotification();
 
-			    container.add(new ModelSizeVariationBenchmarkTask(expression, notification, ia, String.valueOf(ids.getOclId()), String.valueOf(ids.getNotificationId()), String.valueOf(ids.getBenchmarkTaskId()), String.valueOf(ids.getOptionId()),  String.valueOf(ids.getModelId())));
+			    container.add(new ModelSizeVariationBenchmarkTask(expression, notification, ia, String.valueOf(ids.getOclId()), String.valueOf(ids.getNotificationId()), String.valueOf(ids.getBenchmarkTaskId()), String.valueOf(ids.getOptionId()),  String.valueOf(ids.getModelId()), oppositeEndFinder));
 			}
 		}
 		return container;
