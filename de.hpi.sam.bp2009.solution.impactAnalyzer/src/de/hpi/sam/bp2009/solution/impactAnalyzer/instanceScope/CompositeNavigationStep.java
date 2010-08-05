@@ -29,6 +29,7 @@ public abstract class CompositeNavigationStep extends AbstractNavigationStep {
 	int result = 0;
 	if (!visited.contains(this)) {
 	    visited.add(this);
+	    result++;
 	    for (NavigationStep step : steps) {
 		result += ((AbstractNavigationStep) step).size(visited);
 	    }
