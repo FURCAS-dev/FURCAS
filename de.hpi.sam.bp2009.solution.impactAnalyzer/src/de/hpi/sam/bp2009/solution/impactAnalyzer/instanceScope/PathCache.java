@@ -119,32 +119,35 @@ public class PathCache {
      *            because subsequent calls will pull the result from the cache if available instead of creating a new one.
      */
     protected NavigationStep navigationStepFromSequence(OCLExpression expression, String[] tupleLiteralPartNamesToLookFor, NavigationStep... steps) {
-        NavigationStep result;
-        if (steps.length == 1) {
-            // only one step; don't bother to wrap a sequence around it
-            result = steps[0];
-        } else {
-            // find first absolute step; can skip all prior steps as their results don't matter for the absolute step
-            int firstAbsoluteStep = 0;
-            for (int i = 0; i < steps.length; i++) {
-                if (steps[i].isAbsolute()) {
-                    firstAbsoluteStep = i;
-                    break;
-                }
-            }
-            if (firstAbsoluteStep == steps.length - 1) {
-                // only one step remains; return it and don't construct a NavigationStepSequence:
-                result = steps[steps.length - 1];
+        NavigationStep result = getPathForNode(expression, tupleLiteralPartNamesToLookFor);
+        if (result == null) {
+            if (steps.length == 1) {
+                // only one step; don't bother to wrap a sequence around it
+                result = steps[0];
             } else {
-                NavigationStep[] tail;
-                if (firstAbsoluteStep > 0) {
-                    tail = new NavigationStep[steps.length - firstAbsoluteStep];
-                    System.arraycopy(steps, firstAbsoluteStep, tail, 0, steps.length - firstAbsoluteStep);
-                } else {
-                    tail = steps;
+                // find first absolute step; can skip all prior steps as their results don't matter for the absolute step
+                int firstAbsoluteStep = 0;
+                for (int i = 0; i < steps.length; i++) {
+                    if (steps[i].isAbsolute()) {
+                        firstAbsoluteStep = i;
+                        break;
+                    }
                 }
-                result = new NavigationStepSequence(expression, tail);
+                if (firstAbsoluteStep == steps.length - 1) {
+                    // only one step remains; return it and don't construct a NavigationStepSequence:
+                    result = steps[steps.length - 1];
+                } else {
+                    NavigationStep[] tail;
+                    if (firstAbsoluteStep > 0) {
+                        tail = new NavigationStep[steps.length - firstAbsoluteStep];
+                        System.arraycopy(steps, firstAbsoluteStep, tail, 0, steps.length - firstAbsoluteStep);
+                    } else {
+                        tail = steps;
+                    }
+                    result = new NavigationStepSequence(expression, tail);
+                }
             }
+            put(expression, tupleLiteralPartNamesToLookFor, result);
         }
         return result;
     }
