@@ -41,10 +41,8 @@ public class NgpmModelBasedOclIaTest extends TestCase {
 	assertEquals(impact.size(), 0);
     }
 
-    public void testSlowExpressions(){
+    public void testExpressionWithLargeNavigationStepGraph(){
 	OCLExpressionWithContext expr = new OCLExpressionFromClassTcsPicker().pickUpExpression(44);
-
-	System.out.println(expr);
 
 	Notification notification = getNotification(10, ngpmModel);
 
