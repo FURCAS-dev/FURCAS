@@ -58,18 +58,14 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
 
         OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
         if (body != null) {
+            // the operation body may lead to a recursion; to avoid a recursion we first create an
+            // indirecting step here and insert it into the path cache so it will be found instead
+            // of recurring
+            IndirectingStep bodyStep = pathCache.createIndirectingStepFor(getExpression(), getTupleLiteralPartNamesToLookFor());
             // an OCL-specified operation; trace back using the body expression
-            result = pathCache.getPathForNode(body, getTupleLiteralPartNamesToLookFor());
-            if (result == null) {
-                // the operation body may lead to a recursion; to avoid a recursion we first create an
-                // indirecting step here and insert it into the path cache so it will be found instead
-                // of recurring
-                IndirectingStep bodyStep = pathCache.createIndirectingStepFor(body, getTupleLiteralPartNamesToLookFor());
-                Tracer bodyTracer = InstanceScopeAnalysis.createTracer(body, getTupleLiteralPartNamesToLookFor());
-                NavigationStep actualStep = bodyTracer.traceback(context, pathCache, filterSynthesizer);
-                bodyStep.setActualStep(actualStep);
-                result = bodyStep;
-            }
+            NavigationStep actualStep = pathCache.getOrCreateNavigationPath(body, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+            bodyStep.setActualStep(actualStep);
+            result = bodyStep;
         } else {
             String opName = getExpression().getReferredOperation().getName();
             if (opName.equals(PredefinedType.OCL_AS_TYPE_NAME)) {
