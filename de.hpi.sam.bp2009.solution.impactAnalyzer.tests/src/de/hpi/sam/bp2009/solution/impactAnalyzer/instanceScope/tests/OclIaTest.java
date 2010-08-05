@@ -620,7 +620,8 @@ public class OclIaTest extends BaseDepartmentTest {
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE
                 .createImpactAnalyzer(exp, LiteralsPackage.eINSTANCE.getObjectLiteral());
         Collection<EObject> impact = ia.getContextObjects(noti);
-        assertTrue(impact.size() == 1 && impact.contains(ol1));
+        assertEquals(1, impact.size());
+        assertTrue(impact.contains(ol1));
     }
 
     @Test
