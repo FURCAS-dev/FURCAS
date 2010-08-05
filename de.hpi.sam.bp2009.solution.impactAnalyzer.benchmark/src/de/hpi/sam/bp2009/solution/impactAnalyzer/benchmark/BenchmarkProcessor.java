@@ -41,6 +41,7 @@ public class BenchmarkProcessor {
 	    options.addOption("j", "jobs", true, "Number of parallel jobs for benchmarking. Default is 1");
 	    options.addOption("d", "delayprep",true, "Delay preparation of benchmark task (true/false)");
 	    options.addOption("e", "excdump", true, "An exception dump file will be written to the specified path");
+	    options.addOption("ob", "outbuffer", true, "Buffer size of output stream");
 
 	    options.addOption("v", "verbose", false, "Run in verbose mode");
 	    options.addOption("h", "help", false, "Show this help");

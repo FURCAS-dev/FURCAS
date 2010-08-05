@@ -18,6 +18,7 @@ import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
@@ -46,17 +47,19 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private Collection<EObject> allInstances = null;
 
     private final OCLExpressionWithContext expression;
+    private final OppositeEndFinder oppositeEndFinder;
 
-    public ModelSizeVariationBenchmarkTask(OCLExpressionWithContext expression, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId) {
+    public ModelSizeVariationBenchmarkTask(OCLExpressionWithContext expression, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId, OppositeEndFinder oppositeEndFinder) {
     	this.expression = expression;
 	rawNotification = notification;
-		ia = imp;
+	ia = imp;
+	this.oppositeEndFinder = oppositeEndFinder;
 
-		additionalInformation.put("optionId", optionId);
-		additionalInformation.put("benchmarkTaskId", benchmarkTaskId);
-		additionalInformation.put("notificationId", notificationId);
-		additionalInformation.put("oclId", oclId);
-		additionalInformation.put("modelId", modelId);
+	additionalInformation.put("optionId", optionId);
+	additionalInformation.put("benchmarkTaskId", benchmarkTaskId);
+	additionalInformation.put("notificationId", notificationId);
+	additionalInformation.put("oclId", oclId);
+	additionalInformation.put("modelId", modelId);
     }
 
     @Override
@@ -69,7 +72,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     	//additionalInformation.put("resourceUri", String.valueOf(getModel().getURI().toString().replaceAll("\t", "")));
     	additionalInformation.put("modelSize", String.valueOf(getModelSize(getModel())));
 
-    	notification = rawNotification.convertToNotification(getModel());
+    	notification = getRawNotification().convertToNotification(getModel());
 
     	EventFilter filter = null;
     	if(notification != null) {
@@ -81,28 +84,63 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     		}
     	}
 
-    	ocl = OCLWithHiddenOpposites.newInstance();
+    	setOcl(OCLWithHiddenOpposites.newInstance(oppositeEndFinder));
 
 	if(expression.getOclWithPackage() != null){
-	    ocl = OCLWithHiddenOpposites.newInstance(((EcoreEnvironmentFactoryWithHiddenOpposites) ocl.getEnvironment().getFactory()).
-		    createPackageContext(ocl.getEnvironment(), expression.getOclWithPackage().getPackage()));
+	    setOcl(OCLWithHiddenOpposites.newInstance( ((EcoreEnvironmentFactoryWithHiddenOpposites) getOcl().getEnvironment().getFactory()).
+		    createPackageContext(getOcl().getEnvironment(), expression.getOclWithPackage().getPackage())));
 	}
 
-	allInstances = getAllInstancesForContext(expression.getContext());
+	//Prerun to be sure that index is initialized
+	oppositeEndFinder.getAllInstancesSeenBy(expression.getContext(), model);
+
+	long beforeAllInstances = System.nanoTime();
+	allInstances = oppositeEndFinder.getAllInstancesSeenBy(expression.getContext(), model);
+	long afterAllInstances = System.nanoTime();
+
+	additionalInformation.put("allInstanceExecTime", String.valueOf(afterAllInstances - beforeAllInstances));
 	additionalInformation.put("noAllInstances", String.valueOf(allInstances.size()));
 
 	//Only do this when activating. More runs are far too expensive.
 	Collection<Object> allInstancesEvaluationResult = new LinkedList<Object>();
-	long before = System.nanoTime();
+
+
+	((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).resetAll();
+	long timeToEvaluate = 0;
+	long timeToEvaluateWithoutInvalidResults = 0;
 	for(EObject affectedElement : allInstances){
-	    allInstancesEvaluationResult.add(ocl.evaluate(affectedElement, expression.getExpression()));
+	    //Prerun in order to eliminate caching effects
+	    getOcl().evaluate(affectedElement, expression.getExpression());
+
+	    long before = System.nanoTime();
+	    Object result = getOcl().evaluate(affectedElement, expression.getExpression());
+	    long after = System.nanoTime();
+	    allInstancesEvaluationResult.add(result);
+	    timeToEvaluate = timeToEvaluate + (after - before);
+	    if(result == null || !result.equals(OCLStandardLibraryImpl.INSTANCE.getInvalid())){
+		timeToEvaluateWithoutInvalidResults = timeToEvaluateWithoutInvalidResults + (after - before);
+	    }
 	}
-	long after = System.nanoTime();
-	additionalInformation.put("allInstanceEvalTime", String.valueOf(new Long(after - before)));
+	int allInstancesCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getAllInstancesCalled();
+	additionalInformation.put("noAllInstanceEvalAllInstanceCalls", String.valueOf(allInstancesCalls));
+
+	int findOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getFindOppositeEndsCalled();
+	additionalInformation.put("noAllInstanceFindOppositeEndsCalls", String.valueOf(findOppositeEndsCalls));
+
+	int getAllOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getGetAllOppositeEndsCalled();
+	additionalInformation.put("noAllInstanceGetAllOppositeEndsCalls", String.valueOf(getAllOppositeEndsCalls));
+	((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).resetAll();
+
+
+	additionalInformation.put("allInstanceEvalTime", String.valueOf(new Long(timeToEvaluate)));
+	additionalInformation.put("allInstanceEvalTimeWoInvalid", String.valueOf(new Long(timeToEvaluateWithoutInvalidResults)));
+
+	additionalInformation.put("allInstanceNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(allInstancesEvaluationResult)));
 
     	return notification != null && filter != null && filter.matchesFor(notification);
     }
 
+    @SuppressWarnings("unused")
     private Collection<EObject> getAllInstancesForContext(EClass context) {
 	Iterator<EObject> allObjectIterator = model.getAllContents();
 	List<EObject> resultSet = new LinkedList<EObject>();
@@ -127,6 +165,8 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     	if(notification == null)
 	    throw new RuntimeException("notification cannot be created");
+
+    	((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).resetAll();
     }
 
     @Override
@@ -137,9 +177,9 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     @Override
     public void callEvaluation() {
-	for(EObject affectedElement : result){
-	    evaluationResult.add(ocl.evaluate(affectedElement, expression.getExpression()));
-	}
+	/*for(EObject affectedElement : result){
+	    evaluationResult.add(getOcl().evaluate(affectedElement, expression.getExpression()));
+	}*/
     }
 
     @Override
@@ -147,20 +187,49 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	assert result != null;
 	assert evaluationResult != null;
 
+	int allInstancesCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getAllInstancesCalled();
+	additionalMeasurementInformation.put("noIaAllInstanceCalls", String.valueOf(allInstancesCalls));
+
+	int findOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getFindOppositeEndsCalled();
+	additionalMeasurementInformation.put("noIaFindOppositeEndsCalls", String.valueOf(findOppositeEndsCalls));
+
+	int getAllOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getGetAllOppositeEndsCalled();
+	additionalMeasurementInformation.put("noIaGetAllOppositeEndsCalls", String.valueOf(getAllOppositeEndsCalls));
+
+	((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).resetAll();
+
 	additionalMeasurementInformation.put("noContextObjects", String.valueOf(result.size()));
 
-	/*//model.getResourceSet().getResources().add(expression.getExpression().eResource());*/
+	int noOfInvalidEvaluations = getNoOfInvalidEvaluations(evaluationResult);
+	additionalMeasurementInformation.put("noInvalidEvals", String.valueOf(noOfInvalidEvaluations));
+
+	long timeToEvaluate = 0;
+	long timeToEvaluateWithoutInvalidResults = 0;
+	for(EObject affectedElement : result){
+	    long before = System.nanoTime();
+	    Object result = getOcl().evaluate(affectedElement, expression.getExpression());
+	    long after = System.nanoTime();
+	    evaluationResult.add(result);
+	    timeToEvaluate = timeToEvaluate + (after - before);
+	    if(result == null || !result.equals(OCLStandardLibraryImpl.INSTANCE.getInvalid())){
+		timeToEvaluateWithoutInvalidResults = timeToEvaluateWithoutInvalidResults + (after - before);
+	    }
+	}
+	additionalInformation.put("evaluationTimeAfter", String.valueOf(new Long(timeToEvaluate)));
+	additionalInformation.put("evaluationTimeWoInvalid", String.valueOf(new Long(timeToEvaluateWithoutInvalidResults)));
+
+	evaluationResult = null;
+	result = null;
+    }
+
+    public int getNoOfInvalidEvaluations(Collection<Object> evaluationResult) {
 	int invalidEvaluationCounter = 0;
 	for(Object result : evaluationResult){
 	    if(result != null && result.equals(OCLStandardLibraryImpl.INSTANCE.getInvalid())){
 		invalidEvaluationCounter++;
 	    }
 	}
-
-	additionalMeasurementInformation.put("noInvalidEvals", String.valueOf(invalidEvaluationCounter));
-
-	evaluationResult = null;
-	result = null;
+	return invalidEvaluationCounter;
     }
 
     public Notification getNotification(){
@@ -218,6 +287,34 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	@Override
 	public Object getResult() {
 	    return result;
+	}
+
+	public void setOcl(OCL ocl) {
+	    this.ocl = ocl;
+	}
+
+	public OCL getOcl() {
+	    return ocl;
+	}
+
+	public void setEvaluationResult(Collection<Object> evaluationResult) {
+	    this.evaluationResult = evaluationResult;
+	}
+
+	public Collection<Object> getEvaluationResult() {
+	    return evaluationResult;
+	}
+
+	public void setResult(Collection<EObject> result) {
+	    this.result = result;
+	}
+
+	public RawNotification getRawNotification() {
+	    return rawNotification;
+	}
+
+	public OCLExpressionWithContext getExpression() {
+	    return expression;
 	}
 
 }
