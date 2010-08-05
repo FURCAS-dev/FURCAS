@@ -109,7 +109,13 @@ public class PathCache {
     /**
      * A factory method for {@link NavigationStep}s that combines a sequence of navigation steps into a single new one. In doing
      * so, shortcuts may be taken. For example, if the last step is an absolute step, it is returned as the result because all
-     * prior navigations are irrelevant. Also, if there is only one step in <code>steps</code>, that step is simply used.
+     * prior navigations are irrelevant. Also, if there is only one step in <code>steps</code>, that step is simply used.<p>
+     * 
+     * The method first performs a cache lookup. Callers must make sure that the expression returned by this method
+     * will be used as the resulting step for <code>expression</code>. In particular, they must not create an
+     * {@link IndirectingStep} as the resulting step for <code>expression</code> in which the step produced by this
+     * method is only plugged in as an actual step. This would lead to the {@link IndirectingStep} being found in the
+     * cache instead of a {@link NavigationStepSequence} being constructed.
      *
      * @param expression
      *            Additionally, this is used to tell a debugging user to which OCL (sub-)expression the navigation step to create
@@ -119,6 +125,8 @@ public class PathCache {
      *            because subsequent calls will pull the result from the cache if available instead of creating a new one.
      */
     protected NavigationStep navigationStepFromSequence(OCLExpression expression, String[] tupleLiteralPartNamesToLookFor, NavigationStep... steps) {
+        // caching here is not harmful because all known usages so far don't create an IndirectingStep for the same expression
+        // but immediately return the NavigationStepSequence step returned by this operation
         NavigationStep result = getPathForNode(expression, tupleLiteralPartNamesToLookFor);
         if (result == null) {
             if (steps.length == 1) {
@@ -151,7 +159,11 @@ public class PathCache {
         }
         return result;
     }
-    
+
+    /**
+     * A non-caching, no-cache-lookup factory operation for a branching step for <code>steps</code>. If <code>steps</code>
+     * contains only one step, that step is returned without constructing a {@link BranchingNavigationStep} around it.
+     */
     protected NavigationStep navigationStepForBranch(EClass sourceType, EClass targetType,
             OCLExpression expression, String[] tupleLiteralPartNamesToLookFor, NavigationStep... steps) {
         NavigationStep result;
