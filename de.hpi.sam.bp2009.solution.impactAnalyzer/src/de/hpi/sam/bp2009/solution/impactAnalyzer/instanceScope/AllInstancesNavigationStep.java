@@ -15,7 +15,7 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
-public class AllInstancesNavigationStep extends AbsoluteNavigationStep {
+public class AllInstancesNavigationStep extends AbstractNavigationStep {
     private final OppositeEndFinder oppositeEndFinder;
 
     /**
@@ -33,10 +33,11 @@ public class AllInstancesNavigationStep extends AbsoluteNavigationStep {
      */
     public AllInstancesNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo,
             OppositeEndFinder oppositeEndFinder) {
-        super(targetType, debugInfo);
+        super(sourceType, targetType, debugInfo);
         this.oppositeEndFinder = oppositeEndFinder;
     }
 
+    
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
@@ -50,5 +51,14 @@ public class AllInstancesNavigationStep extends AbsoluteNavigationStep {
     @Override
     public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
         return "allInstances(" + getTargetType().getName() + ")";
+    }
+
+    /**
+     * Always returns <code>false</code>. See
+     * {@link #AllInstancesNavigationStep(EClass, EClass, OCLExpression, OppositeEndFinder)}
+     */
+    @Override
+    public boolean isAbsolute() {
+        return false;
     }
 }
