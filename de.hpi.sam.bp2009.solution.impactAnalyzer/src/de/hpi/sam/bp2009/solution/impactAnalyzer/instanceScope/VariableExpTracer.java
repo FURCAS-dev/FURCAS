@@ -180,6 +180,9 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 		OCLExpression callSource = (OCLExpression) call.getSource();
 		stepsForCalls.add(pathCache.getOrCreateNavigationPath(callSource, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
 	    }
+	    // the branching navigation step must not be cached or looked up in a cache because its
+	    // associated expression is the same as the one used for the IndirectingStep created and cached
+	    // above.
 	    indirectingStep.setActualStep(pathCache.navigationStepForBranch(
 		    getInnermostElementType(getExpression().getType()),
 		    context,
