@@ -43,6 +43,8 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
      */
     private final boolean positive;
     
+    private final IteratorExp iteratorExp;
+    
     /**
      * The opposite end finder is required for partial evaluation which shall use this finder to navigate
      * hidden opposites.
@@ -51,6 +53,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
 
     public PredicateCheckNavigationStep(EClass sourceType, EClass targetType, IteratorExp iteratorExp, PathCache pathCache) {
         super(sourceType, targetType, (OCLExpression) iteratorExp);
+        this.iteratorExp = iteratorExp;
         if (!haveIntersectingSubclassTree(sourceType, targetType)) {
             setAlwaysEmpty();
         }
@@ -65,7 +68,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
     }
 
     private IteratorExp getIteratorExp() {
-        return (IteratorExp) getDebugInfo();
+        return iteratorExp;
     }
 
     @Override

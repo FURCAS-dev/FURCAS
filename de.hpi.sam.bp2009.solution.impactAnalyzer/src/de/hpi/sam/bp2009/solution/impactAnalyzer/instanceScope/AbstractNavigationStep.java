@@ -29,7 +29,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private final int id;
     private EClass sourceType;
     private EClass targetType;
-    private OCLExpression debugInfo;
+    private final Set<OCLExpression> debugInfo;
     private int cacheMisses;
     private int resultObjectsCounter;
     private Set<AlwaysEmptyChangeListener> alwaysEmptyChangeListeners = null;
@@ -50,7 +50,8 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
         this.sourceType = sourceType;
         this.targetType = targetType;
-        this.debugInfo = debugInfo;
+        this.debugInfo = new HashSet<OCLExpression>();
+        this.debugInfo.add(debugInfo);
         this.id = idCounter++;
     }
 
@@ -114,6 +115,11 @@ public abstract class AbstractNavigationStep implements NavigationStep {
             }
         }
     }
+    
+    @Override
+    public void addExpressionForWhichThisIsNavigationStep(OCLExpression oclExpression) {
+        debugInfo.add(oclExpression);
+    }
 
     public int getNavigateCounter() {
         return navigateCounter;
@@ -124,7 +130,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     }
 
     @Override
-    public OCLExpression getDebugInfo() {
+    public Set<OCLExpression> getDebugInfo() {
         return debugInfo;
     }
 
@@ -156,15 +162,19 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private String getVerboseDebugInfo() {
         try {
             if (IS_IN_DEBUG_MODE) {
-                return "Step's expression: "
-                        + getDebugInfo()
-                        + "\n ===== in expression =====\n"
-                        // TODO highlight getDebugInfo() expression in root expression
-                        + OclHelper.getRootExpression(getDebugInfo()) +
-                        ((getDefines(OclHelper.getRootExpression(getDebugInfo())) != null) ? "\n ===== which is the body of operation "
-                                + getDefines(
-                                        OclHelper.getRootExpression(getDebugInfo()))
-                                        .getName() + " =====" : "");
+                StringBuilder result = new StringBuilder();
+                result.append("Step's expressions: ");
+                for (OCLExpression debugInfo : getDebugInfo()) {
+                    result.append(debugInfo);
+                    result.append("\n ===== in expression =====\n");
+                    // TODO highlight getDebugInfo() expression in root expression
+                    result.append(OclHelper.getRootExpression(debugInfo));
+                    result.append(((getDefines(OclHelper.getRootExpression(debugInfo)) != null) ? "\n ===== which is the body of operation "
+                            + getDefines(OclHelper.getRootExpression(debugInfo)).getName() + " ====="
+                            : ""));
+                    result.append("\n");
+                }
+                return result.toString();
             } else {
                 return NOT_IN_DEBUG_MODE_MESSAGE;
             }

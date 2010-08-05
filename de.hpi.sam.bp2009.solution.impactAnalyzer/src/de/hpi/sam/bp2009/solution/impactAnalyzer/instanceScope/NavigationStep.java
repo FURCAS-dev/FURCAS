@@ -29,61 +29,70 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * 
  * Navigation steps may form a possibly cyclic (in case of recursive operations) graph. Steps may navigate, e.g., along
  * associations or ascend the composition hierarchy, using {@link RefObject#refImmediateComposite()}.
+ * <p>
+ * 
+ * TODO define hashCode and equals on NavigationStep so as to be able to cache them by content; perform content-based caching in PathCache
  * 
  */
 public interface NavigationStep {
-	public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent);
+    public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache,
+            Notification changeEvent);
 
-	/**
-	 * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is
-	 * passed to {@link #navigate(Set, Map, Notification)}. Those must return <tt>true</tt> here.
-	 * Examples are navigation steps returning all instances of a given type and the step always
-	 * returning the empty set.
-	 */
-	boolean isAbsolute();
+    /**
+     * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is passed to
+     * {@link #navigate(Set, Map, Notification)}. Those must return <tt>true</tt> here. Examples are navigation steps returning
+     * all instances of a given type and the step always returning the empty set.
+     */
+    boolean isAbsolute();
 
-	/**
-	 * Tells if this step in all cases returns an empty set. Specific shortcuts may be taken
-	 * for such steps when combining them with other steps.<p>
-	 * 
-	 * {@link #isAlwaysEmpty()} implies {@link #isAbsolute()}
-	 */
-	boolean isAlwaysEmpty();
+    /**
+     * Tells if this step in all cases returns an empty set. Specific shortcuts may be taken for such steps when combining them
+     * with other steps.
+     * <p>
+     * 
+     * {@link #isAlwaysEmpty()} implies {@link #isAbsolute()}
+     */
+    boolean isAlwaysEmpty();
 
-	EClass getSourceType();
+    EClass getSourceType();
 
-	EClass getTargetType();
+    EClass getTargetType();
 
-	/**
-	 * Optionally, a navigation step may tell for which OCL expression it was mainly
-	 * created. This can aid the impact analysis debugging process. May return <tt>null</tt>.
-	 * @return
-	 */
-	OCLExpression getDebugInfo();
+    /**
+     * Optionally, a navigation step may tell for which OCL expression it was mainly created. This can aid the impact analysis
+     * debugging process. May return <tt>null</tt>.
+     * 
+     * @return
+     */
+    Set<OCLExpression> getDebugInfo();
 
-	/**
-	 * Whenever the result of {@link #isAlwaysEmpty()} changes, registered listeners will be
-	 * informed by calling their {@link ChangeListener#alwaysEmptyChanged(NavigationStep)}
-	 * method with this step as parameter.
-	 */
-	void addAlwaysEmptyChangeListener(AlwaysEmptyChangeListener listener);
+    /**
+     * Whenever the result of {@link #isAlwaysEmpty()} changes, registered listeners will be informed by calling their
+     * {@link ChangeListener#alwaysEmptyChanged(NavigationStep)} method with this step as parameter.
+     */
+    void addAlwaysEmptyChangeListener(AlwaysEmptyChangeListener listener);
 
-	/**
-	 * Whenever the result of {@link #getSourceType()} changes, registered listeners will be
-	 * informed by calling their {@link SourceTypeChangeListener#sourceTypeChanged(NavigationStep)}
-	 * method with this step as parameter.
-	 */
-	void addSourceTypeChangeListener(SourceTypeChangeListener listener);
+    /**
+     * Whenever the result of {@link #getSourceType()} changes, registered listeners will be informed by calling their
+     * {@link SourceTypeChangeListener#sourceTypeChanged(NavigationStep)} method with this step as parameter.
+     */
+    void addSourceTypeChangeListener(SourceTypeChangeListener listener);
 
-	/**
-	 * Whenever the result of {@link #getTargetType()} changes, registered listeners will be
-	 * informed by calling their {@link TargetTypeChangeListener#targetTypeChanged(NavigationStep)}
-	 * method with this step as parameter.
-	 */
-	void addTargetTypeChangeListener(TargetTypeChangeListener listener);
+    /**
+     * Whenever the result of {@link #getTargetType()} changes, registered listeners will be informed by calling their
+     * {@link TargetTypeChangeListener#targetTypeChanged(NavigationStep)} method with this step as parameter.
+     */
+    void addTargetTypeChangeListener(TargetTypeChangeListener listener);
 
-	/**
-	 * Counts the number of steps in the navigation step tree of which this is the root
-	 */
-	int size();
+    /**
+     * Counts the number of steps in the navigation step tree of which this is the root
+     */
+    int size();
+
+    /**
+     * Adds <code>oclExpression</code> as an expression for which this is the computed
+     * navigation step. Multiple expressions may share the same navigation step. An expression
+     * added here will be returned in the set resulting from {@link #getDebugInfo()}.
+     */
+    void addExpressionForWhichThisIsNavigationStep(OCLExpression oclExpression);
 }
