@@ -167,7 +167,7 @@ public class IndirectingStep extends AbstractNavigationStep {
 	if (visited.contains(this)) {
 	    return 0;
 	} else {
-	    return ((AbstractNavigationStep) actualStep).size(visited);
+	    return 1+((AbstractNavigationStep) actualStep).size(visited);
 	}
     }
 }
