@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EEnumImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
@@ -64,8 +65,9 @@ public class RawNotification {
 	}
 
 	public ArrayList<RawNotification> split(){
-	    if(!isSplitCandidate())
+	    if(!isSplitCandidate()) {
 		throw new RuntimeException("This notification cannot be splitted");
+	    }
 
 	    ArrayList<RawNotification> result = new ArrayList<RawNotification>();
 
@@ -128,6 +130,26 @@ public class RawNotification {
 			newValueParsed = newValue;
 		    }
 
+		    if(attribute.getEAttributeType() instanceof EEnumImpl){
+			EEnumImpl enumType = (EEnumImpl)attribute.getEAttributeType();
+			Class<?> enumClass = enumType.getInstanceClass();
+			for(Object constant : enumClass.getEnumConstants()){
+			    if(constant.toString().equals(oldValue)){
+				oldValueParsed = constant;
+			    }
+			    if(constant.toString().equals(newValue)){
+				newValueParsed = constant;
+			    }
+			}
+
+			if(oldValue.equals("null")){
+			    oldValueParsed = null;
+			}
+			if(newValue.equals("null")){
+			    newValueParsed = null;
+			}
+		    }
+
 			return NotificationHelper.createAttributeChangeNotification(obj, attribute, oldValueParsed, newValueParsed);
         	    }
         	}else{
@@ -145,14 +167,15 @@ public class RawNotification {
         	if(obj1 != null && obj2 != null){
         	//	System.out.println("Both not null");
 
-        	    if(wasSplitted() && getSplitNumber() == 0)
+        	    if(wasSplitted() && getSplitNumber() == 0) {
 			//   	System.out.println("Split" + 0);
         	    	return createLinkRemoveNotification(obj1, obj2);
-		    else if(wasSplitted() && getSplitNumber() == 1)
-		    //	   System.out.println("Split" + 1);
-		       return createLinkRemoveNotification(obj2, obj1);
-		else
+		    } else if(wasSplitted() && getSplitNumber() == 1) {
+			//	   System.out.println("Split" + 1);
+			   return createLinkRemoveNotification(obj2, obj1);
+		    } else {
 			return null;
+		    }
         	}
             }else if(getEventType().equals(LINK_ADD_EVENT)){
         	//System.out.println("LinkAddEvent");
@@ -169,22 +192,24 @@ public class RawNotification {
         	if(obj1 != null && obj2 != null){
         	//	System.out.println("Both not null");
 
-        	    if(wasSplitted() && getSplitNumber() == 0)
+        	    if(wasSplitted() && getSplitNumber() == 0) {
 			//   	System.out.println("Split" + 0);
         	    	return createLinkAddNotification(obj1, obj2, rolename1, rolename2);
-		    else if(wasSplitted() && getSplitNumber() == 1)
+		    } else if(wasSplitted() && getSplitNumber() == 1) {
 			//   	System.out.println("Split" + 1);
         	    	return createLinkAddNotification(obj2, obj1, rolename2, rolename1);
-		    else
-        	    	return null;
+		    } else {
+			return null;
+		    }
         	}
             }else if(getEventType().equals(ELEMENT_DELETE_EVENT)){
         	//System.out.println("ElementDeleteEvent");
         	String mofId = getAttributeMap().get("MRI").split("#")[1];
         	EObject obj = resource.getEObject(mofId);
 
-        	if (obj != null)
+        	if (obj != null) {
 		    return NotificationHelper.createElementDeleteNotification(obj);
+		}
             }else if(getEventType().equals(ELEMENT_CREATE_EVENT)){
         	//System.out.println("ElementCreateEvent");
 
@@ -200,12 +225,11 @@ public class RawNotification {
 
         		String packagePath = type.split(clazz)[0];
 
-        		String fullPackagePath = packagePath + splittedType[splittedType.length - 2].substring(0,1).toUpperCase() + splittedType[splittedType.length - 2].substring(1) + "Package";
+        		String fullPackagePath = packagePath.toLowerCase() + splittedType[splittedType.length - 2].substring(0,1).toUpperCase() + splittedType[splittedType.length - 2].substring(1).toLowerCase() + "Package";
 
         	        Class<?> aClass = classLoader.loadClass(fullPackagePath);
         	        Field instance = aClass.getField("eINSTANCE");
         	        EPackage pack= (EPackage)instance.get(null);
-
 
         	        Method thisMethod = pack.getClass().getDeclaredMethod("get" + clazz);
         	        // call the method
@@ -253,11 +277,13 @@ public class RawNotification {
 	        @SuppressWarnings("unchecked")
 	            EList<EObject> eObjectList = (EList<EObject>)obj1.eGet(reference);
 		for(EObject referencedObj : eObjectList){
-		    if(referencedObj.equals(obj2))
+		    if(referencedObj.equals(obj2)) {
 			return NotificationHelper.createReferenceRemoveNotification(obj1, reference, obj2);
+		    }
 		}
-	    }else if(obj1.eGet(reference).equals(obj2))
-	    	return NotificationHelper.createReferenceRemoveNotification(obj1, reference, obj2);
+	    }else if(obj1.eGet(reference).equals(obj2)) {
+		return NotificationHelper.createReferenceRemoveNotification(obj1, reference, obj2);
+	    }
 	}
 	}
 

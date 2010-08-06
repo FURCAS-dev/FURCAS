@@ -8,6 +8,8 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EEnumImpl;
+import org.eclipse.emf.ecore.impl.EEnumLiteralImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -54,9 +56,11 @@ public class NotificationHelper {
         EDataType dataType = feature.getEAttributeType();
 
         boolean validOldValue = oldValue == null || dataType.isInstance(oldValue)
-                || (feature.isMany() && oldValue instanceof EList<?> && dataType.isInstance(((EList<?>) oldValue).get(0)));
+                || (feature.isMany() && oldValue instanceof EList<?> && dataType.isInstance(((EList<?>) oldValue).get(0))
+                || dataType instanceof EEnumImpl && oldValue instanceof EEnumLiteralImpl && ((EEnumLiteralImpl)oldValue).getEEnum().equals(dataType));
         boolean validNewValue = dataType.isInstance(newValue)
-                || (feature.isMany() && newValue instanceof EList<?> && dataType.isInstance(((EList<?>) newValue).get(0)));
+                || (feature.isMany() && newValue instanceof EList<?> && dataType.isInstance(((EList<?>) newValue).get(0))
+                || dataType instanceof EEnumImpl && newValue instanceof EEnumLiteralImpl && ((EEnumLiteralImpl)newValue).getEEnum().equals(dataType));
 
         if (feature.isChangeable() && validOldValue && validNewValue) {
             if (oldValue != null) {
@@ -176,8 +180,9 @@ public class NotificationHelper {
             // container is a Resource or ResourceSet
             if (container instanceof Resource){
                 ((Resource)container).getContents().add(target);
-            } else
+            } else {
 		throw new IllegalArgumentException("Events for adding Resources to ResourceSets should not reach the ImpactAnalyzer.");
+	    }
         }
         return getNotificationfrom(myTestA);
     }
@@ -190,7 +195,7 @@ public class NotificationHelper {
         	//System.out.println("Resource delete");
         	target.eResource().eAdapters().add(myTestA);
         }
-        
+
         EcoreUtil.delete(target);
         return getNotificationfrom(myTestA);
     }
