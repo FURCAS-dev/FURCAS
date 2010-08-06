@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -22,7 +23,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
      * branching step. This step tracks initially unknown source/target types so that additional steps may be marked as
      * empty in this step's context.
      */
-    private Set<NavigationStep> stepsAlwaysEmptyInThisStepsContext;
+    private List<NavigationStep> stepsAlwaysEmptyInThisStepsContext;
 
     public BranchingNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo, NavigationStep... parallelSteps) {
         // TODO be smart about allInstances steps that subsume other steps with same or specialized targetType
@@ -30,7 +31,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
         // TODO be smart and combine steps where one is just an indirection for another
         // TODO if parallelSteps contains a BranchingNavigationStep, pull its branches up into this step
         super(sourceType, targetType, debugInfo, parallelSteps);
-        stepsAlwaysEmptyInThisStepsContext = new HashSet<NavigationStep>();
+        stepsAlwaysEmptyInThisStepsContext = new ArrayList<NavigationStep>();
         if (areAllStepsAlwaysEmpty()) {
             setAlwaysEmpty();
         } else {
@@ -85,6 +86,35 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
                 }
             }
         }
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || hashCode() != o.hashCode()) {
+            return false;
+        }
+        if (!abstractNavigationStepEquals(o)) {
+            return false;
+        }
+        BranchingNavigationStep branchingO = (BranchingNavigationStep) o;
+        if (getSteps().length != branchingO.getSteps().length) {
+            return false;
+        }
+        for (NavigationStep step : getSteps()) {
+            boolean found = false;
+            for (NavigationStep oStep : branchingO.getSteps()) {
+                if (step.equals(oStep)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private boolean areAllStepsAlwaysEmpty() {

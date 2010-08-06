@@ -66,6 +66,21 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
         // TODO check if this is expressive enough
         contentAsString = "checkPredicate[" + iteratorExp.getBody().toString() + "]";
     }
+    
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || hashCode() != o.hashCode()) {
+            return false;
+        }
+        return super.equals(o) && this.positive == ((PredicateCheckNavigationStep) o).positive &&
+                        this.iteratorExp == ((PredicateCheckNavigationStep) o).iteratorExp;
+    }
+    
+    public int hashCode() {
+        return super.hashCode() ^ (positive ? 123 : 0) ^ iteratorExp.hashCode();
+    }
 
     private IteratorExp getIteratorExp() {
         return iteratorExp;

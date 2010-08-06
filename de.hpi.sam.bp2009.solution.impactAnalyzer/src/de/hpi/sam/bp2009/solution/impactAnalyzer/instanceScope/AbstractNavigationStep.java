@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,7 +24,31 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
-
+/**
+ * Abstract implementation of the {@link NavigationStep} interface. Provides fields for source and target type and performs the
+ * necessary type checks in {@link #navigate(Set, Map, Notification)}. Furthermore, does the unfolding of the <code>from</code>
+ * argument to {@link #navigate(Set, Map, Notification)} and dispatches for individual objects to the
+ * {@link #navigate(AnnotatedEObject, Map, Notification)} operation to be implemented by all subclasses. Furthermore, generaly
+ * bookkeeping facilities are implemented here, such as counting cache misses, managing an {@link #id ID} and maintaining for
+ * which {@link OCLExpression}s this is the corresponding navigation step (see {@link #debugInfo}).
+ * <p>
+ * 
+ * This class implements the observer pattern specified by the {@link NavigationStep} interface for setting the source and target
+ * type and for defining this step as always empty.
+ * <p>
+ * 
+ * A default {@link #hashCode} and {@link #equals} implementation is provided based on the <em>behavior</em> of this step.
+ * Navigation steps are only allowed to call themselves equal to another step if for all <code>from</code> objects their
+ * {@link #navigate(AnnotatedEObject, Map, Notification)} operation returns equal results for an equal model state and the same
+ * original change {@link Notification notification}.<p>
+ * 
+ * Subclasses have to make sure that any modification to equals/hashCode-related parts of the object's state
+ * are announced by firing {@link HashCodeChangeListener#beforeHashCodeChange(NavigationStep, int)} before
+ * and {@link HashCodeChangeListener#afterHashCodeChange(NavigationStep, int)} after the change. This class
+ * manages this for those state changes affecting this class's implementation of equals/hashCode.
+ * 
+ * @author Axel Uhl
+ */
 public abstract class AbstractNavigationStep implements NavigationStep {
     private static int idCounter;
     private final int id;
@@ -32,9 +57,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private final Set<OCLExpression> debugInfo;
     private int cacheMisses;
     private int resultObjectsCounter;
-    private Set<AlwaysEmptyChangeListener> alwaysEmptyChangeListeners = null;
-    private Set<SourceTypeChangeListener> sourceTypeChangeListeners = null;
-    private Set<TargetTypeChangeListener> targetTypeChangeListeners = null;
+    private List<AlwaysEmptyChangeListener> alwaysEmptyChangeListeners = null;
+    private List<SourceTypeChangeListener> sourceTypeChangeListeners = null;
+    private List<TargetTypeChangeListener> targetTypeChangeListeners = null;
+    private List<HashCodeChangeListener> hashCodeChangeListeners = null;
     private boolean alwaysEmpty;
     private String annotation;
     
@@ -46,6 +72,11 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * The navigateCounter counts how many times the navigate method of this NavigationStep is called
      */
     private int navigateCounter;
+    /**
+     * Used for calls to {@link AbstractNavigationStep#fireAfterHashCodeChange(int)} and
+     * {@link AbstractNavigationStep#fireBeforeHashCodeChange(int)} to generate a new token.
+     */
+    private static int maxToken = 0;
     
     public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
         this.sourceType = sourceType;
@@ -54,7 +85,48 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         this.debugInfo.add(debugInfo);
         this.id = idCounter++;
     }
+    
+    protected static int newTokenForFiringHashCodeChangeEvent() {
+        return maxToken++;
+    }
+    
+    /**
+     * For source and target type, special rules apply. Normally, if either of them is <code>null</code>, this
+     * means that it hasn't been initialized yet, e.g., because it depends on some {@link IndirectingStep} getting
+     * its source or target type set later. This will then propagate through the observer pattern (see
+     * {@link #addSourceTypeChangeListener(SourceTypeChangeListener)} and {@link #addTargetTypeChangeListener(TargetTypeChangeListener)}
+     * to the using step(s). However, until this propagation has taken place, we don't know yet what the source
+     * or target type, respectively, will be. Therefore, we have to be conservative and assume that they eventually
+     * will be set to different values, so <code>false</code> will be returned for <code>null</code> values of
+     * either source or target type.<p>
+     * 
+     * There is one exception, though: if a step {@link #isAbsolute() is absolute}, then its source type may be
+     * ignored and will be ignored for this equality comparison.
+     */
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        boolean result = false;
+        if (o instanceof AbstractNavigationStep) {
+            AbstractNavigationStep otherStep = (AbstractNavigationStep) o;
+            result = this.getClass() == otherStep.getClass() &&
+                     this.alwaysEmpty == otherStep.alwaysEmpty &&
+                     ((isAbsolute() && otherStep.isAbsolute()) ||
+                             (this.sourceType != null && otherStep.sourceType != null &&
+                                     this.sourceType.equals(otherStep.sourceType))) &&
+                     this.targetType != null && otherStep.targetType != null && this.targetType.equals(otherStep.targetType);
+        }
+        return result;
+    }
 
+    public int hashCode() {
+        return 4711 ^ getClass().hashCode() ^
+                      (alwaysEmpty ? 31 : 0) ^
+                      (sourceType == null ? 0 : sourceType.hashCode()) ^
+                      (targetType == null ? 0 : targetType.hashCode());
+    }
+    
     public EClass getTargetType() {
         return this.targetType;
     }
@@ -66,35 +138,42 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     @Override
     public void addAlwaysEmptyChangeListener(AlwaysEmptyChangeListener listener) {
 	if(this.alwaysEmptyChangeListeners == null){
-	    this.alwaysEmptyChangeListeners = new HashSet<AlwaysEmptyChangeListener>(1);
+	    this.alwaysEmptyChangeListeners = new ArrayList<AlwaysEmptyChangeListener>(1);
 	}
-	
         alwaysEmptyChangeListeners.add(listener);
     }
 
     @Override
     public void addSourceTypeChangeListener(SourceTypeChangeListener listener) {
 	if(this.sourceTypeChangeListeners == null){
-	    this.sourceTypeChangeListeners = new HashSet<SourceTypeChangeListener>(1);
+	    this.sourceTypeChangeListeners = new ArrayList<SourceTypeChangeListener>(1);
 	}
-	
         sourceTypeChangeListeners.add(listener);
     }
 
     @Override
     public void addTargetTypeChangeListener(TargetTypeChangeListener listener) {
 	if(this.targetTypeChangeListeners == null){
-	    this.targetTypeChangeListeners = new HashSet<TargetTypeChangeListener>(1);
+	    this.targetTypeChangeListeners = new ArrayList<TargetTypeChangeListener>(1);
 	}
-	
 	targetTypeChangeListeners.add(listener);
+    }
+    
+    @Override
+    public void addHashCodeChangeListener(HashCodeChangeListener listener) {
+        if (this.hashCodeChangeListeners == null) {
+            this.hashCodeChangeListeners = new ArrayList<HashCodeChangeListener>(1);
+        }
+        hashCodeChangeListeners.add(listener);
     }
 
     void setSourceType(EClass sourceType) {
         boolean changed = (this.sourceType == null && sourceType != null)
         || (this.sourceType != null && !this.sourceType.equals(sourceType));
         if (changed) {
+            fireBeforeHashCodeChange(newTokenForFiringHashCodeChangeEvent());
             this.sourceType = sourceType;
+            fireAfterHashCodeChange(newTokenForFiringHashCodeChangeEvent());
             if(sourceTypeChangeListeners != null){
                 for (SourceTypeChangeListener listener : sourceTypeChangeListeners) {
                     listener.sourceTypeChanged(this);
@@ -103,11 +182,29 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         }
     }
 
+    protected void fireAfterHashCodeChange(int token) {
+        if (hashCodeChangeListeners != null) {
+            for (HashCodeChangeListener listener : hashCodeChangeListeners) {
+                listener.afterHashCodeChange(this, token);
+            }
+        }
+    }
+
+    protected void fireBeforeHashCodeChange(int token) {
+        if (hashCodeChangeListeners != null) {
+            for (HashCodeChangeListener listener : hashCodeChangeListeners) {
+                listener.beforeHashCodeChange(this, token);
+            }
+        }
+    }
+
     void setTargetType(EClass targetType) {
         boolean changed = (this.targetType == null && targetType != null)
         || (this.targetType != null && !this.targetType.equals(targetType));
         if (changed) {
+            fireBeforeHashCodeChange(newTokenForFiringHashCodeChangeEvent());
             this.targetType = targetType;
+            fireAfterHashCodeChange(newTokenForFiringHashCodeChangeEvent());
             if(targetTypeChangeListeners != null){
                 for (TargetTypeChangeListener listener : targetTypeChangeListeners) {
                     listener.targetTypeChanged(this);
@@ -136,7 +233,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 
     protected AnnotatedEObject annotateEObject(AnnotatedEObject fromObject,
             EObject next) {
-
         if (IS_IN_DEBUG_MODE) {
             return new AnnotatedEObject(next, fromObject.getAnnotation()+
                 "\n------------- tracing back through ---------------\n"+
@@ -269,7 +365,9 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 
     protected void setAlwaysEmpty() {
         if (!this.alwaysEmpty) {
+            fireBeforeHashCodeChange(newTokenForFiringHashCodeChangeEvent());
             this.alwaysEmpty = true;
+            fireAfterHashCodeChange(newTokenForFiringHashCodeChangeEvent());
             if(alwaysEmptyChangeListeners != null){
                 for (AlwaysEmptyChangeListener listener : alwaysEmptyChangeListeners) {
                     listener.alwaysEmptyChanged(this);
@@ -358,5 +456,4 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     public int getId(){
 	return id;
     }
-    
 }

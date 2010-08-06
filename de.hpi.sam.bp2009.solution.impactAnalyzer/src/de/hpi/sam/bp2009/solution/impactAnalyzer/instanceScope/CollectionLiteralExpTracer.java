@@ -1,8 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Set;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -22,7 +22,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
     @Override
     public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
         EList<CollectionLiteralPart<EClassifier>> parts = (EList<CollectionLiteralPart<EClassifier>>) getExpression().getPart();
-        Set<NavigationStep> steps = new HashSet<NavigationStep>();
+        List<NavigationStep> steps = new ArrayList<NavigationStep>();
         for (Iterator<CollectionLiteralPart<EClassifier>> i = parts.iterator(); i.hasNext();) {
             CollectionLiteralPart<EClassifier> part = i.next();
             if (part instanceof CollectionItem) {

@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -18,10 +19,16 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * initialized with <tt>null</tt> by the constructor. Clients have to ensure that
  * a valid state is achieved before leaving the analysis phase and using this step.<p>
  *
+ * An indirecting step listens for changes of its actual step's hash code. See
+ * {@link HashCodeChangeListener}. Changes to the actual step's hash code are forwarded to this
+ * step's hash code change listeners.
  */
-public class IndirectingStep extends AbstractNavigationStep {
+public class IndirectingStep extends AbstractNavigationStep implements HashCodeChangeListener {
     private NavigationStep actualStep;
-    private boolean equalsOrHashCodeCalledBeforeActualStepSet = false;
+    private int hashCode;
+    private boolean currentlyEvaluatingHashCode = false;
+    private int maxTokenSeen = -1;
+    private final List<Object> currentlyEvaluatingEqualsForParameters = new ArrayList<Object>();
 
     /**
      * The set of objects for which {@link #navigate(Set, Map, Notification)} is currently being evaluated on
@@ -40,29 +47,46 @@ public class IndirectingStep extends AbstractNavigationStep {
 	super(null, null, expr);
     }
     
-    public boolean equals(Object o) {
-	boolean result;
-	if (actualStep == null || equalsOrHashCodeCalledBeforeActualStepSet) {
-	    equalsOrHashCodeCalledBeforeActualStepSet = true;
-	    result = super.equals(o);
-	} else {
-	    Object toCompareWith = o;
-	    if (o instanceof IndirectingStep) {
-		toCompareWith = ((IndirectingStep) o).getActualStep();
+    public synchronized boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || hashCode() != o.hashCode()) {
+            return false;
+        }
+	for (int i=currentlyEvaluatingEqualsForParameters.size()-1; i>=0; i--) {
+	    if (currentlyEvaluatingEqualsForParameters.get(i) == o) {
+                return true;
 	    }
-	    result = actualStep.equals(toCompareWith);
-	}
+        }
+        boolean result;
+        currentlyEvaluatingEqualsForParameters.add(o);
+        if (actualStep == null) {
+            result = super.equals(o);
+        } else {
+            if (o instanceof IndirectingStep) {
+                result = actualStep.equals(((IndirectingStep) o).getActualStep());
+            } else {
+                result = false;
+            }
+        }
+        currentlyEvaluatingEqualsForParameters.remove(currentlyEvaluatingEqualsForParameters.size()-1);
 	return result;
     }
     
-    public int hashCode() {
+    public synchronized int hashCode() {
 	int result;
-	if (actualStep == null || equalsOrHashCodeCalledBeforeActualStepSet) {
-	    equalsOrHashCodeCalledBeforeActualStepSet = true;
-	    result = super.hashCode();
-	} else {
-	    result = actualStep.hashCode();
-	}
+	if (currentlyEvaluatingHashCode) {
+	    result = 0;
+        } else {
+            currentlyEvaluatingHashCode = true;
+            if (actualStep == null) {
+                result = super.hashCode();
+            } else {
+                result = hashCode;
+            }
+            currentlyEvaluatingHashCode = false;
+        }
 	return result;
     }
     
@@ -70,7 +94,11 @@ public class IndirectingStep extends AbstractNavigationStep {
 	if (this.actualStep != null) {
 	   throw new RuntimeException("Internal error: can't set an IndirectingStep's actual step twice");
 	}
+	fireBeforeHashCodeChange(newTokenForFiringHashCodeChangeEvent());
 	this.actualStep = actualStep;
+	hashCode = actualStep.hashCode();
+	fireAfterHashCodeChange(newTokenForFiringHashCodeChangeEvent());
+	actualStep.addHashCodeChangeListener(this);
         if (actualStep.getSourceType() == null) {
             actualStep.addSourceTypeChangeListener(new SourceTypeChangeListener() {
                 @Override
@@ -169,5 +197,22 @@ public class IndirectingStep extends AbstractNavigationStep {
 	} else {
 	    return 1+((AbstractNavigationStep) actualStep).size(visited);
 	}
+    }
+
+    @Override
+    public synchronized void beforeHashCodeChange(NavigationStep step, int token) {
+        if (token > maxTokenSeen) {
+            maxTokenSeen = token;
+            fireBeforeHashCodeChange(token);
+        }
+    }
+
+    @Override
+    public synchronized void afterHashCodeChange(NavigationStep step, int token) {
+        if (token > maxTokenSeen) {
+            maxTokenSeen = token;
+            hashCode = step.hashCode();
+            fireAfterHashCodeChange(token);
+        }
     }
 }
