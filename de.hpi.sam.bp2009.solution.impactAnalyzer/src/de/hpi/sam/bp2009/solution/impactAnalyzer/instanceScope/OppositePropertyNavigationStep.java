@@ -28,6 +28,20 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep {
         this.property = property;
 	this.oppositeEndFinder = oppositeEndFinder;
     }
+    
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || hashCode() != o.hashCode()) {
+            return false;
+        }
+        return super.equals(o) && property == ((OppositePropertyNavigationStep) o).property;
+    }
+    
+    public int hashCode() {
+        return super.hashCode() ^ property.hashCode();
+    }
 
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {

@@ -33,7 +33,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
  * only has to happen once per life-time of an {@link OCLExpression<EClassifier>} during a session.
  *
  */
-public class PathCache {
+public class PathCache implements HashCodeChangeListener {
     /**
      * Keys are OCL expressions for which a navigation path is cached, together with a list of tuple part names to be collected
      * during construction of that step. Only if this list is equal during construction then the step can be re-used. Example:
@@ -61,6 +61,12 @@ public class PathCache {
      * instead of passing an empty list to avoid ambiguities.
      */
     private final Map<Pair<OCLExpression, List<String>>, NavigationStep> subexpressionToPath = new HashMap<Pair<OCLExpression, List<String>>, NavigationStep>();
+    
+    /**
+     * Contains all distinct steps contained in {@link #subexpressionToPath}. Can be used to look up
+     * semantically equal steps in order not to create redundant steps. Values are identical to keys per entry.
+     */
+    private final Map<NavigationStep, NavigationStep> allNavigationSteps = new HashMap<NavigationStep, NavigationStep>();
 
     /**
      * Can be used for certain metamodel queries such as finding all subclasses, but as well during an
@@ -75,15 +81,29 @@ public class PathCache {
     public OppositeEndFinder getOppositeEndFinder() {
         return oppositeEndFinder;
     }
-
+    
     public NavigationStep getPathForNode(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor) {
         return subexpressionToPath.get(new Pair<OCLExpression, List<String>>(subexpression,
                 getTupleLiteralPartNamesToLookForAsList(tupleLiteralPartNamesToLookFor)));
     }
 
+    /**
+     * Also adds <code>path</code> to {@link #allNavigationSteps}. If the source type is <code>null</code>
+     * and the step is not absolute, this path cache registers as a listener on the step (see
+     * {@link NavigationStep#addSourceTypeChangeListener(SourceTypeChangeListener)}. If the target
+     * type is <code>null</code>, this path cache registers as target type listener on the step
+     * (see {@link NavigationStep#addTargetTypeChangeListener(TargetTypeChangeListener)}. If the
+     * step is not marked as always empty, this path cache registers as listener for a change in
+     * the step's always-empty setting. If any of these change events are received, the respective step
+     * is re-hashed into {@link #allNavigationSteps}.
+     */
     private void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, NavigationStep path) {
         List<String> tupleLiteralPartNamesToLookForAsList = getTupleLiteralPartNamesToLookForAsList(tupleLiteralPartNamesToLookFor);
         subexpressionToPath.put(new Pair<OCLExpression, List<String>>(subexpression, tupleLiteralPartNamesToLookForAsList), path);
+        if (!allNavigationSteps.containsKey(path)) {
+            allNavigationSteps.put(path, path);
+            path.addHashCodeChangeListener(this);
+        }
     }
 
     private static List<String> getTupleLiteralPartNamesToLookForAsList(String[] tupleLiteralPartNamesToLookFor) {
@@ -101,6 +121,11 @@ public class PathCache {
         NavigationStep result = getPathForNode(sourceExpression, tupleLiteralNamesToLookFor);
         if (result == null) {
             result = InstanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor).traceback(context, this, filterSynthesizer);
+            NavigationStep existingEqualStep = allNavigationSteps.get(result);
+            if (existingEqualStep != null) {
+                result = existingEqualStep;
+                result.addExpressionForWhichThisIsNavigationStep(sourceExpression);
+            }
             put(sourceExpression, tupleLiteralNamesToLookFor, result);
         }
         return result;
@@ -187,4 +212,15 @@ public class PathCache {
         put(expr, tupleLiteralPartNamesToLookFor, result);
         return result;
     }
+
+    @Override
+    public void beforeHashCodeChange(NavigationStep step, int token) {
+        allNavigationSteps.remove(step);
+    }
+
+    @Override
+    public void afterHashCodeChange(NavigationStep step, int token) {
+        allNavigationSteps.put(step, step);
+    }
+
 }

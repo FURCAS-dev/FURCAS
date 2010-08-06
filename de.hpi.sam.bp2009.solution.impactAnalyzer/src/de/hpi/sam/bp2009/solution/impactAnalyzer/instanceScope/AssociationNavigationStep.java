@@ -23,6 +23,20 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
         super(sourceType, targetType, debugInfo);
         this.toEnd = toEnd;
     }
+    
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || hashCode() != o.hashCode()) {
+            return false;
+        }
+        return super.equals(o) && toEnd == ((AssociationNavigationStep) o).toEnd;
+    }
+    
+    public int hashCode() {
+        return super.hashCode() ^ toEnd.hashCode();
+    }
 
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {

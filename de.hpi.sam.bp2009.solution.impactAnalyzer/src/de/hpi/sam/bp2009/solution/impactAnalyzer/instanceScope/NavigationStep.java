@@ -31,8 +31,14 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * associations or ascend the composition hierarchy, using {@link RefObject#refImmediateComposite()}.
  * <p>
  * 
- * TODO define hashCode and equals on NavigationStep so as to be able to cache them by content; perform content-based caching in PathCache
- * 
+ * A navigation step object may change its {@link #hashCode()} over its life time. This particularly has to do with
+ * the propagation of information taking place after an {@link IndirectingStep} has its actual step set. This can lead
+ * to a ripple effect regarding source and target type settings as well as {@link #isAlwaysEmpty()} changes, all
+ * affecting a step's hash code and equality definition. Whenever you insert a navigation step into a hashing
+ * structure such as a {@link HashMap} or a {@link HashSet}, ensure that you use {@link #addHashCodeChangeListener(HashCodeChangeListener)}
+ * to register yourself as a listener for hash code changes. Whenever such a change is signalled, take this as an
+ * opportunity to first remove (before the change) the navigation step object from the hashing structure and then
+ * insert it again with the new hash code after the change. See also {@link HashCodeChangeListener}. 
  */
 public interface NavigationStep {
     public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache,
@@ -83,6 +89,8 @@ public interface NavigationStep {
      * {@link TargetTypeChangeListener#targetTypeChanged(NavigationStep)} method with this step as parameter.
      */
     void addTargetTypeChangeListener(TargetTypeChangeListener listener);
+    
+    void addHashCodeChangeListener(HashCodeChangeListener listener);
 
     /**
      * Counts the number of steps in the navigation step tree of which this is the root
@@ -95,4 +103,5 @@ public interface NavigationStep {
      * added here will be returned in the set resulting from {@link #getDebugInfo()}.
      */
     void addExpressionForWhichThisIsNavigationStep(OCLExpression oclExpression);
+
 }
