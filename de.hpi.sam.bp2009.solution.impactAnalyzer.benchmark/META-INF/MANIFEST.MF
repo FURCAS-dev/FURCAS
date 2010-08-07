@@ -29,7 +29,6 @@ Bundle-ClassPath: lib/bb.jar,
  lib/jsci-core.jar,
  lib/mt-13.jar,
  lib/commons-cli-1.2.jar,
- lib/y.jar,
  .
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model,
  de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications,
