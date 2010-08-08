@@ -1,9 +1,11 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +33,27 @@ public class NotificationResourceLoader {
         XMLResource instanceResource = readResourceOutOfStream(fileStream, resultRS);
 
         return instanceResource;
+    }
+    
+    
+    public static List<String> getFilenamesOfEventFixtures(){
+    	return getFileListOfDirectory(EVENTTRACE_FIXTURE_LOCATION);
+    }
+    
+    public static List<String> getFilenamesOfModelFixture(){
+    	return getFileListOfDirectory(MODEL_FIXTURE_LOCATION);
+    }
+        
+    private static List<String> getFileListOfDirectory(String directory){
+    	ArrayList<String> result = new ArrayList<String>();
+    	
+    	URL url = NotificationResourceLoader.class.getResource(directory);
+    	File folder = new File(url.getPath());
+    	for(File file : folder.listFiles()){
+    		result.add(file.getName());
+    	}
+    	
+    	return result;
     }
 
     public static List<RawNotification> loadTrace(String path){

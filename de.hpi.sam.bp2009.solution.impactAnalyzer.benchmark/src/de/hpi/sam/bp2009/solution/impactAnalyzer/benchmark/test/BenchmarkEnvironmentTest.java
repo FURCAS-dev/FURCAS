@@ -21,7 +21,7 @@ import org.junit.Test;
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.OutputOptions;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.PathOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.ProcessingOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
@@ -35,7 +35,7 @@ public class BenchmarkEnvironmentTest extends TestCase {
     @Test
 	public void testWithEmptyTask(){
 		LinkedList<BenchmarkTask> benchmarkTasks = new LinkedList<BenchmarkTask>();
-		OutputOptions.setOutputPath("/tmp/testWithEmptyTask.data");
+		PathOptions.setOutputPath("/tmp/testWithEmptyTask.data");
 		ProcessingOptions.setNumberOfJobs(6);
 		ProcessingOptions.setNumberOfMeasures(100);
 		ProcessingOptions.setNumberOfWarmUps(1000);

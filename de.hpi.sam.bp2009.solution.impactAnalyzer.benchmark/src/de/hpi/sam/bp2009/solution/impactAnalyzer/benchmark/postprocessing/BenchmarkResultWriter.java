@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.OutputOptions;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.PathOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.measurements.Measurement;
 
 public class BenchmarkResultWriter extends Writer {
@@ -13,7 +13,7 @@ public class BenchmarkResultWriter extends Writer {
 	private int lineOffset = 1;
 
 	public BenchmarkResultWriter() {
-		super(OutputOptions.getOutputPath(), false);
+		super(PathOptions.getOutputPath(), false);
 	}
 
     public synchronized void writeDataSet(Map<String, String> additionalInformation, ArrayList<Long> executionTimeList,  ArrayList<Long> evaluationTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList, HashMap<String, ArrayList<Measurement>>microMeasurementList){
