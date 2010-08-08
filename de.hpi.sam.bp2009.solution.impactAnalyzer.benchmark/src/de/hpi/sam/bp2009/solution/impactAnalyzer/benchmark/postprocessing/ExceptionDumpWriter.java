@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.OutputOptions;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.PathOptions;
 
 public class ExceptionDumpWriter extends Writer {
 
     public ExceptionDumpWriter() {
-    	super(OutputOptions.getExceptionDumpFilePath(), false);
+    	super(PathOptions.getExceptionDumpFilePath(), false);
     }
 
     public void writeDump(HashMap<String, Throwable> dumpList){
