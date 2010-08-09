@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 
 public class OldValueClassFilter extends ClassFilter {
 
-    public OldValueClassFilter(EClass clazz, boolean includeSubclasses, boolean isNegated) {
+    public OldValueClassFilter(EClass clazz, boolean isNegated) {
         super(clazz, isNegated);
     }
 
@@ -72,6 +72,6 @@ public class OldValueClassFilter extends ClassFilter {
 
     @Override
     public OldValueClassFilter clone() {
-        return new OldValueClassFilter(getWantedClass(), false, isNegated());
+        return new OldValueClassFilter(getWantedClass(), isNegated());
     }
 } // OldValueClassFilterImpl

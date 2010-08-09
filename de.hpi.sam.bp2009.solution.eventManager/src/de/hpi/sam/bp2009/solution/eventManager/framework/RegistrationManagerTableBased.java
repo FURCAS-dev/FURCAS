@@ -16,7 +16,6 @@ import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
@@ -605,43 +604,7 @@ public class RegistrationManagerTableBased {
         return result;
     }
 
-    /**
-     * computes an OR-connected filter tree which represents an explicit registration to all subtypes of the parameter
-     * 
-     * @param filter {@link ClassFilter} which should {@link ClassFilter#getIncludeSubClasses()}
-     * @return or filter, which contains the filter itself and new filter for all subtypes
-     */
-//    static EventFilter getSubTypeFilterTree(ClassFilter filter) {
-//        EventFilter subTypeFilterTree = null;
-//        EClass clazz = filter.getWantedClass();
-//        Collection<EClass> subClasses = getSubTypes(clazz);
-//        if (subClasses.size() == 0) {
-//            return filter;
-//        }
-//        EventFilter[] orFilterOperands = new EventFilter[subClasses.size() + 1];
-//        int index = 0;
-//        orFilterOperands[index++] = filter;
-//        for (EClass subClass : subClasses) {
-//                ClassFilter copy = filter.clone(subClass, /* includeSubclasses */ false, /* negated */ false);
-//                orFilterOperands[index++] =copy;
-//        }
-//        subTypeFilterTree = new OrFilter(orFilterOperands);
-//        if (filter.isNegated()) {
-//            NotFilter notFilter = new NotFilter(subTypeFilterTree);
-//            subTypeFilterTree = notFilter;
-//        }
-//        return subTypeFilterTree;
-//    }
-
-    /**
-     * @param generalizableElement
-     * @return a collection which contains all known subtypes of the passed parameter
-     */
-    static Collection<EClass> getSubTypes(EClass generalizableElement) {
-        return AllEClassSubclassesFinder.getInstance().getAllSubclasses(generalizableElement);
-    }
-
-    /**
+      /**
      * Transforms the (sub-)tree into disjunctive normal form. This special form is needed internally for the following
      * processing. The tree is not cloned before processing, so the clients that plan to reuse their FilterTrees will have to
      * clone them using {@link #clone()} before registering to the EventFramework or invoking this method.

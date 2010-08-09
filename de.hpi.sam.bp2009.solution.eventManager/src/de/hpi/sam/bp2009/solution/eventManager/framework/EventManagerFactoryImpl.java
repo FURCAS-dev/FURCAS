@@ -39,17 +39,21 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilterInclud
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
 
+/**
+ * The default implementation for the {@link EventManagerFactory} interface
+ * Provides a {@link ResourceSet} based cache for {@link EventManager} instances and uses as implementation the {@link EventManagerTableBased}
+ * @author Philipp Berger
+ *
+ */
 public class EventManagerFactoryImpl implements EventManagerFactory {
     WeakHashMap<ResourceSet,WeakReference<EventManager>> setToManager= new WeakHashMap<ResourceSet, WeakReference<EventManager>>();
 
+    /**
+     * @return a new {@link EventManagerFactoryImpl}
+     */
     public static EventManagerFactory init() {
         return new EventManagerFactoryImpl();
     }
-
-    public EventManagerFactoryImpl() {
-        super();
-    }
-
     @Override
     public EventManager getEventManagerFor(ResourceSet set) {
         EventManager cached = setToManager.get(set)==null?null:setToManager.get(set).get();
@@ -115,8 +119,8 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return oldValueClassFilter;
     }
     @Override
-    public OldValueClassFilter createOldValueClassFilter(EClass cls, boolean includeSubclasses) {
-        OldValueClassFilter oldValueClassFilter = new OldValueClassFilter(cls, includeSubclasses, /* negated */ false);
+    public OldValueClassFilter createOldValueClassFilter(EClass cls) {
+        OldValueClassFilter oldValueClassFilter = new OldValueClassFilter(cls, /* negated */ false);
         return oldValueClassFilter;
     }
 
@@ -137,12 +141,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return containmentFilter;
     }
    
-    /**
-     * Handle creation of an And-filter for multiple given filters
-     * 
-     * @param eventFilters
-     * @return
-     */
     @Override
     public EventFilter getAndFilterFor(EventFilter... eventFilters) {
         LogicalOperationFilter and = createAndFilter();
@@ -150,12 +148,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return and;
     }
 
-    /**
-     * Creates an And-Filter for all given filters
-     * 
-     * @param eventFilters
-     * @return
-     */
     @Override
     public EventFilter getOrFilterFor(EventFilter... eventFilters) {
         LogicalOperationFilter or = createOrFilter();
@@ -223,6 +215,11 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return result;
     }
 
+    /**
+     * Calls for each value of the given {@link Notification} {@link #addNotification(EObject, boolean, Notification, Set)}
+     * @param event the {@link Notification} to handle
+     * @param result the output {@link Set} of {@link Notification}s
+     */
     private void handleValues(Notification event, Set<Notification> result) {
         Object value = NotificationHelper.isAddEvent(event) ? event.getNewValue() : event.getOldValue();
         if (NotificationHelper.isManyEvent(event)) {
@@ -240,11 +237,18 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         }
     }
 
-    private void addNotification(EObject o, boolean add, Notification event, Set<Notification> result) {
-        for (EStructuralFeature ref : o.eClass().getEAllStructuralFeatures()) {
+    /**
+     * Creates a new {@link Notification} for the given parameters and adds it to the result set
+     * @param value the {@link Notifier} for the new {@link Notification}
+     * @param add is it a add or remove {@link Notification}
+     * @param event the parent {@link Notification}
+     * @param result the ouput set
+     */
+    private void addNotification(EObject value, boolean add, Notification event, Set<Notification> result) {
+        for (EStructuralFeature ref : value.eClass().getEAllStructuralFeatures()) {
             //init new Notification
             Notification notification=null;
-            Object valueOfRef = o.eGet(ref);
+            Object valueOfRef = value.eGet(ref);
             if(valueOfRef==null){
                 //no value so nothing to do here
                 continue;
@@ -258,19 +262,19 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
                     break;
                 case 1:
                     //create single add notification
-                    notification= new MyNotification(add ? Notification.ADD : Notification.REMOVE, add ? null : values
-                            .get(0), !add ? null : values.get(0), o, ref);
+                    notification= new EventManagerGeneratedNotification(add ? Notification.ADD : Notification.REMOVE, add ? null : values
+                            .get(0), !add ? null : values.get(0), value, ref);
                     break;
                 default:
                     //create many add notification
-                    notification= new MyNotification(add ? Notification.ADD_MANY : Notification.REMOVE_MANY, add ? null : values
-                            , !add ? null : values,  o, ref);
+                    notification= new EventManagerGeneratedNotification(add ? Notification.ADD_MANY : Notification.REMOVE_MANY, add ? null : values
+                            , !add ? null : values,  value, ref);
                     break;
                 }
             }else{
                 //simple set notification
-                    notification= new MyNotification(Notification.SET, add ? null : valueOfRef
-                            , !add ? null : valueOfRef, o, ref);
+                    notification= new EventManagerGeneratedNotification(Notification.SET, add ? null : valueOfRef
+                            , !add ? null : valueOfRef, value, ref);
                 
             }
             if(notification!=null ){
@@ -284,7 +288,12 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         }
     }
     
-    static private class MyNotification extends NotificationImpl {
+    /**
+     * This class is used to generate new {@link Notification} in case of subtree movements
+     * @author Philipp
+     *
+     */
+    static private class EventManagerGeneratedNotification extends NotificationImpl {
 
         private Object feature;
         private Notifier notifier;
@@ -302,8 +311,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         public Notifier getNotifier() {
             return notifier;
         }
-
-        public MyNotification(int eventType, Object oldValue, Object newValue, Notifier noti, Object feature) {
+        public EventManagerGeneratedNotification(int eventType, Object oldValue, Object newValue, Notifier noti, Object feature) {
             super(eventType, oldValue, newValue);
             this.feature = feature;
             this.notifier = noti;
