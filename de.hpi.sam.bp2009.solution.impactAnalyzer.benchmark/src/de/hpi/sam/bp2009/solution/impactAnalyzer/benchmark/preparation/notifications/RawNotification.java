@@ -273,7 +273,7 @@ public class RawNotification {
     private Notification createLinkRemoveNotification(EObject obj1, EObject obj2) {
 	for(EReference reference : obj1.eClass().getEAllReferences()){
 	if(obj1.eGet(reference) != null){
-	    if(obj1.eGet(reference) instanceof EList){
+	    if(obj1.eGet(reference) instanceof EList<?>){
 	        @SuppressWarnings("unchecked")
 	            EList<EObject> eObjectList = (EList<EObject>)obj1.eGet(reference);
 		for(EObject referencedObj : eObjectList){

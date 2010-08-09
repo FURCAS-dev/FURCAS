@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EPackage;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NotFilter;
@@ -129,8 +128,10 @@ public class RegistrationManagerTableBased {
         @SuppressWarnings("unchecked")
         Class<? extends TableForEventFilter>[] tableTypes = (Class<? extends TableForEventFilter>[]) new Class<?>[] {
                 TableForAssociationFilter.class, TableForAttributeFilter.class, TableForClassFilter.class,
+                TableForClassFilterIncludingSubClasses.class,
                 TableForEventTypeFilter.class, TableForPackageFilter.class, TableForContainmentFilter.class,
-                TableForNewValueClassFilter.class, TableForOldValueClassFilter.class };
+                TableForNewValueClassFilter.class, TableForOldValueClassFilter.class,
+                TableForNewValueClassFilterIncludingSubclasses.class, TableForOldValueClassFilterIncludingSubclasses.class};
         createAllTables(tableTypes.length);
         int i=0;
         for (Class<? extends TableForEventFilter> tableType : tableTypes) {
@@ -506,12 +507,13 @@ public class RegistrationManagerTableBased {
             // return new NotFilter(targetOperands[0]);
             // }
         }
-        if (source instanceof ClassFilter && ((ClassFilter) source).getIncludeSubClasses()) {
-            // This method replaces ClassFilters that have a true <code>
-            // includeSubClasses</code> flag with a collection of OR-Connected ClassFilters that represent all subclasses.
-            ClassFilter classFilter = (ClassFilter) source;
-            return getSubTypeFilterTree(classFilter);
-        } else if (source instanceof PackageFilter) {
+//        if (source instanceof ClassFilter && ((ClassFilter) source).getIncludeSubClasses()) {
+//            // This method replaces ClassFilters that have a true <code>
+//            // includeSubClasses</code> flag with a collection of OR-Connected ClassFilters that represent all subclasses.
+//            ClassFilter classFilter = (ClassFilter) source;
+//            return getSubTypeFilterTree(classFilter);
+//        } else 
+            if (source instanceof PackageFilter) {
              // This method replaces ExtentFilters that have a filterCriterion of type <code>
              // EPackage</code> with a
              // collection of OR-Connected ExtentFilterFilters that represent all transitively contained
@@ -609,27 +611,27 @@ public class RegistrationManagerTableBased {
      * @param filter {@link ClassFilter} which should {@link ClassFilter#getIncludeSubClasses()}
      * @return or filter, which contains the filter itself and new filter for all subtypes
      */
-    static EventFilter getSubTypeFilterTree(ClassFilter filter) {
-        EventFilter subTypeFilterTree = null;
-        EClass clazz = filter.getWantedClass();
-        Collection<EClass> subClasses = getSubTypes(clazz);
-        if (subClasses.size() == 0) {
-            return filter;
-        }
-        EventFilter[] orFilterOperands = new EventFilter[subClasses.size() + 1];
-        int index = 0;
-        orFilterOperands[index++] = filter;
-        for (EClass subClass : subClasses) {
-                ClassFilter copy = filter.clone(subClass, /* includeSubclasses */ false, /* negated */ false);
-                orFilterOperands[index++] =copy;
-        }
-        subTypeFilterTree = new OrFilter(orFilterOperands);
-        if (filter.isNegated()) {
-            NotFilter notFilter = new NotFilter(subTypeFilterTree);
-            subTypeFilterTree = notFilter;
-        }
-        return subTypeFilterTree;
-    }
+//    static EventFilter getSubTypeFilterTree(ClassFilter filter) {
+//        EventFilter subTypeFilterTree = null;
+//        EClass clazz = filter.getWantedClass();
+//        Collection<EClass> subClasses = getSubTypes(clazz);
+//        if (subClasses.size() == 0) {
+//            return filter;
+//        }
+//        EventFilter[] orFilterOperands = new EventFilter[subClasses.size() + 1];
+//        int index = 0;
+//        orFilterOperands[index++] = filter;
+//        for (EClass subClass : subClasses) {
+//                ClassFilter copy = filter.clone(subClass, /* includeSubclasses */ false, /* negated */ false);
+//                orFilterOperands[index++] =copy;
+//        }
+//        subTypeFilterTree = new OrFilter(orFilterOperands);
+//        if (filter.isNegated()) {
+//            NotFilter notFilter = new NotFilter(subTypeFilterTree);
+//            subTypeFilterTree = notFilter;
+//        }
+//        return subTypeFilterTree;
+//    }
 
     /**
      * @param generalizableElement

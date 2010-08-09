@@ -11,9 +11,9 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-public class OldValueClassFilter extends ClassFilter {
+public class OldValueClassFilterIncludingSubclasses extends ClassFilterIncludingSubclasses {
 
-    public OldValueClassFilter(EClass clazz, boolean includeSubclasses, boolean isNegated) {
+    public OldValueClassFilterIncludingSubclasses(EClass clazz, boolean isNegated) {
         super(clazz, isNegated);
     }
 
@@ -30,7 +30,7 @@ public class OldValueClassFilter extends ClassFilter {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        OldValueClassFilter other = (OldValueClassFilter) obj;
+        OldValueClassFilterIncludingSubclasses other = (OldValueClassFilterIncludingSubclasses) obj;
         return super.equals(other);
     }
 
@@ -66,12 +66,12 @@ public class OldValueClassFilter extends ClassFilter {
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "old value filter for old " + getWantedClass().toString();
-        return "old value filter for undefined old";
+            return "old value filter incl subs for old " + getWantedClass().toString();
+        return "old value filter incl subs for undefined old";
     }
 
     @Override
-    public OldValueClassFilter clone() {
-        return new OldValueClassFilter(getWantedClass(), false, isNegated());
+    public OldValueClassFilterIncludingSubclasses clone() {
+        return new OldValueClassFilterIncludingSubclasses(getWantedClass(), isNegated());
     }
 } // OldValueClassFilterImpl

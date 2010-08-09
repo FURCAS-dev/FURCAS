@@ -54,7 +54,7 @@ public class ResourceTraversalHelper {
 	 * @param reference
 	 */
 	private static void addNewModelReference(ArrayList<ModelReference> modelReferenceList, EObject fromObject, EReference reference) {
-		if(fromObject.eGet(reference) instanceof EList){
+		if(fromObject.eGet(reference) instanceof EList<?>){
 			for(Object referencedObject : (EList<?>)fromObject.eGet(reference)){
 				if(referencedObject instanceof EObject){
 					modelReferenceList.add(new ModelReference(fromObject, (EObject)referencedObject, reference));
