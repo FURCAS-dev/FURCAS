@@ -71,7 +71,7 @@ public class ModelSizeVariationBenchmarkTaskContainer extends BenchmarkTaskConta
 	    int equalCounter = 0;
 	    for(Object elementInResult1 : result1){
 		for(Object elementInResult2 : result2){
-		    if(elementInResult1 instanceof EList && elementInResult2 instanceof EList){
+		    if(elementInResult1 instanceof EList<?> && elementInResult2 instanceof EList<?>){
 			System.out.println("List result");
 		    }else if(elementInResult1 instanceof EObject && elementInResult2 instanceof EObject){
 			if(EcoreUtil.equals((EObject)elementInResult1, (EObject)elementInResult2)){

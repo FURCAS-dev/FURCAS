@@ -507,11 +507,40 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
      */
     protected boolean checkAffectedStatements(Set<ExpressionInOCL> iaResult, Set<ExpressionInOCL> expectedAffectedStmts) {
         if (iaResult.size() != expectedAffectedStmts.size()) {
+            printDifferences(iaResult, expectedAffectedStmts);
             return false;
         }
         if (iaResult.containsAll(expectedAffectedStmts)) {
             return true;
         }
+        printDifferences(iaResult, expectedAffectedStmts);
+
         return false;
+    }
+
+    private void printDifferences(Set<ExpressionInOCL> iaResult, Set<ExpressionInOCL> expectedAffectedStmts) {
+        HashSet<ExpressionInOCL> toMuch = new HashSet<ExpressionInOCL>(iaResult);
+        toMuch.removeAll(expectedAffectedStmts);
+        
+        HashSet<ExpressionInOCL> toLess = new HashSet<ExpressionInOCL>(expectedAffectedStmts);
+        toLess.removeAll(iaResult);
+        
+       System.err.println("Got more as expected:"+toMuch.size());
+       print(toMuch);
+       System.err.println("Got less as expected:"+ toLess.size());
+       print(toLess);
+       
+    }
+
+    private void print(HashSet<ExpressionInOCL> toMuch) {
+        for(ExpressionInOCL o: toMuch){
+            System.out.println();
+            try {
+                System.out.print(o.getContextVariable().getType().getName()  +" : ");
+            } catch (Exception e) {
+            }
+            System.out.print(o.getBodyExpression());
+        }
+        
     }
 }

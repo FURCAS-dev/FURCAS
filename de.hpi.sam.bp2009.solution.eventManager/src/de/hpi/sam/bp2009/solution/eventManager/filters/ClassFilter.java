@@ -19,17 +19,11 @@ import org.eclipse.emf.ecore.EObject;
 public class ClassFilter extends EventFilter {
 
     protected EClass wantedClass;
-    protected boolean includeSubClasses = false;
 
-    public ClassFilter(EClass subClass, boolean includeSubclasses, boolean negated) {
+    public ClassFilter(EClass clazz, boolean negated) {
         super();
-        setWantedClass(subClass);
+        setWantedClass(clazz);
         setNegated(negated);
-        setIncludeSubClasses(includeSubclasses);
-    }
-
-    private void setIncludeSubClasses(boolean includeSubClasses) {
-        this.includeSubClasses = includeSubClasses;
     }
 
     public EClass getWantedClass() {
@@ -45,7 +39,6 @@ public class ClassFilter extends EventFilter {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (includeSubClasses ? 1231 : 1237);
         result = prime * result + ((wantedClass == null) ? 0 : wantedClass.hashCode());
         if (isNegated()) {
             result = prime * result;
@@ -67,8 +60,6 @@ public class ClassFilter extends EventFilter {
         if (getClass() != obj.getClass())
             return false;
         ClassFilter other = (ClassFilter) obj;
-        if (includeSubClasses != other.includeSubClasses)
-            return false;
         if (wantedClass == null) {
             if (other.wantedClass != null)
                 return false;
@@ -90,7 +81,8 @@ public class ClassFilter extends EventFilter {
         if (cls.equals(getWantedClass())) {
             return true;
         }
-        return getIncludeSubClasses() && cls.getEAllSuperTypes().contains(getWantedClass());
+        return false;
+//        return getIncludeSubClasses() && cls.getEAllSuperTypes().contains(getWantedClass());
     }
 
     private void setWantedClass(EClass newWantedClass) {
@@ -103,23 +95,9 @@ public class ClassFilter extends EventFilter {
             return "wantedClass :" + getWantedClass().toString();
         return "empty ClassFilter";
     }
-
-    public boolean getIncludeSubClasses() {
-        return this.includeSubClasses;
-
-    }
-
     @Override
     public ClassFilter clone() {
-        return new ClassFilter(getWantedClass(), getIncludeSubClasses(), isNegated());
-    }
-    
-    /**
-     * This method avoids an "instanceof" construct when a filter of the same type as an instance
-     * of this class or any of its subclasses shall be created.
-     */
-    public ClassFilter clone(EClass wantedClass, boolean includeSubclasses, boolean negated) {
-        return new ClassFilter(wantedClass, includeSubclasses, negated);
+        return new ClassFilter(getWantedClass(), isNegated());
     }
     
     @Override

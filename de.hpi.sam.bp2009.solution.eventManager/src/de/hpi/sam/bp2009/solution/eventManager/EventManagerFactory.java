@@ -18,8 +18,10 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilterIncludingSubclasses;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NotFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilterIncludingSubclasses;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 
 /**
@@ -56,12 +58,16 @@ public interface EventManagerFactory {
     /**
      * Creates a class filter that includes matches of subclasses if <code>includeSubclasses</code> is <code>true</code>.
      */
-    ClassFilter createClassFilter(EClass clazz, boolean includeSubclasses);
+    ClassFilter createClassFilterIncludingSubclasses(EClass clazz);
     
     AttributeFilter createAttributeFilter();
     AssociationFilter createAssociationFilter();
     OldValueClassFilter createOldValueClassFilter(EClass clazz, boolean includeSubclasses);
-    NewValueClassFilter createNewValueClassFilter(EClass clazz, boolean includeSubclasses);
+    OldValueClassFilterIncludingSubclasses createOldValueClassFilterIncludingSubclasses(EClass clazz);
+
+    NewValueClassFilterIncludingSubclasses createNewValueClassFilterIncludingSubclasses(EClass clazz);
+    NewValueClassFilter createNewValueClassFilter(EClass clazz);
+
     ContainmentFilter createContainmentFilter();
 
     /**

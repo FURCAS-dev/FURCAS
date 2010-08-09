@@ -11,10 +11,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
-public class OldValueClassFilter extends ClassFilter {
+public class NewValueClassFilterIncludingSubclasses extends ClassFilterIncludingSubclasses {
 
-    public OldValueClassFilter(EClass clazz, boolean includeSubclasses, boolean isNegated) {
-        super(clazz, isNegated);
+    public NewValueClassFilterIncludingSubclasses(EClass subClass, boolean negated) {
+        super(subClass, negated);
     }
 
     /*
@@ -30,7 +30,7 @@ public class OldValueClassFilter extends ClassFilter {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        OldValueClassFilter other = (OldValueClassFilter) obj;
+        NewValueClassFilterIncludingSubclasses other = (NewValueClassFilterIncludingSubclasses) obj;
         return super.equals(other);
     }
 
@@ -41,37 +41,34 @@ public class OldValueClassFilter extends ClassFilter {
      */
     @Override
     public int hashCode() {
-        return 43 * super.hashCode();
+        return 37 * super.hashCode();
     }
 
     public boolean matchesFor(Notification event) {
-        if (event.getOldValue() == null) {
-            return false;
+        if (event.getNewValue() instanceof EObject) {
+            return matches(((EObject) event.getNewValue()).eClass());
         }
-        if (event.getOldValue() instanceof EObject) {
-            return matches(((EObject) event.getOldValue()).eClass());
-        }
-        if (event.getOldValue() instanceof EList<?>) {
-            for (Object o : (EList<?>) event.getOldValue()) {
+        if (event.getNewValue() instanceof EList<?>) {
+            for (Object o : (EList<?>) event.getNewValue()) {
                 if (o instanceof EObject && matches(((EObject) o).eClass())) {
                     return true;
                 }
             }
             return false;
         }
-
         return false;
     }
 
     @Override
     public String toString() {
         if (getWantedClass() != null)
-            return "old value filter for old " + getWantedClass().toString();
-        return "old value filter for undefined old";
+            return "new value filter incl subs for new " + getWantedClass().toString();
+        return "new value filter incl subs for undefined new";
     }
 
     @Override
-    public OldValueClassFilter clone() {
-        return new OldValueClassFilter(getWantedClass(), false, isNegated());
+    public NewValueClassFilterIncludingSubclasses clone() {
+        return new NewValueClassFilterIncludingSubclasses(getWantedClass(), isNegated());
     }
-} // OldValueClassFilterImpl
+
+} // NewValueClassFilterImpl

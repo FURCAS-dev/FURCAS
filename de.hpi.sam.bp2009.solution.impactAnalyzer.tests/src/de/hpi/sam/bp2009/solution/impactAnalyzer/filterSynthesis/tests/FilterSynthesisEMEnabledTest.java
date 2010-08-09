@@ -59,7 +59,7 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
         // added by bp2009
         expectedStmts.add(this.getSecretaryOlderThanBossAST());
         expectedStmts.add(this.getBoss10YearsOlderThanJuniorAST());
-
+        
         assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
 
     }
