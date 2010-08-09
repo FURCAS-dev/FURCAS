@@ -173,7 +173,7 @@ public class EventManagerTest extends BaseDepartmentTest {
     public void testResourceCompositeAddContainmentFilter(){
         Resource r = this.comp.eResource();
         Bool b = new Bool();
-        getFixture().subscribe( new ClassFilter(department, false, false), new MyApp(b));
+        getFixture().subscribe( new ClassFilter(department, false), new MyApp(b));
         r.getContents().add(this.aDivision);
         assertTrue(b.is);
      }

@@ -55,7 +55,7 @@ public class NewValueClassFilterTest extends EventFilterTest {
     public void setUp() {
         super.setUp();
         this.createInstances(1, 5, 1);
-        setFixture(EventManagerFactory.eINSTANCE.createNewValueClassFilter(employee, /* includeSubclasses */false));
+        setFixture(EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(employee));
     }
 
     /**

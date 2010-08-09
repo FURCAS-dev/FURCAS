@@ -78,7 +78,7 @@ public class ClassFilterTest extends EventFilterTest {
         cls.getESuperTypes().add(superCls);
         inst = new DynamicEObjectImpl(cls);
         noti = new TestNoti(0, false, false, inst);
-        setFixture(EventManagerFactory.eINSTANCE.createClassFilter(superCls, /* includeSubclasses */ true));
+        setFixture(EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(superCls));
     }
 
     /**
@@ -102,12 +102,12 @@ public class ClassFilterTest extends EventFilterTest {
      * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      */
     public void testMatchesFor__Notification() {
-        setFixture(EventManagerFactory.eINSTANCE.createClassFilter(cls, /* includeSubclasses */ false));
+        setFixture(EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(cls));
         assertTrue("Matches an Event from the given class", getFixture().matchesFor(noti));
     }
 
     public void testMatchesWithSubclasses() {
-        setFixture(EventManagerFactory.eINSTANCE.createClassFilter(superCls, /* includeSubclasses */ true));
+        setFixture(EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(superCls));
         assertTrue("Matches an Event from the given class", getFixture().matchesFor(noti));
     }
 
