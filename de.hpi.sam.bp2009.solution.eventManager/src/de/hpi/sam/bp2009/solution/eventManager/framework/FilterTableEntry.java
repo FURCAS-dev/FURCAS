@@ -103,14 +103,16 @@ public class FilterTableEntry {
     }
     
     /**
-     * Clients must not modify the array returned!
+     * The explicit "yes" registrations, as an array where each element corresponds to one bit set
+     * that describes in which tables the registration is registered. Clients must not modify the array returned!
      */
     public Set<Registration>[] getYesSets() {
         return registrations;
     }
     
     /**
-     * Clients must not modify the array returned!
+     * The explicit "no" registrations, as an array where each element corresponds to one bit set
+     * that describes in which tables the registration is registered. Clients must not modify the array returned!
      */
     public Set<Registration>[] getNoSets() {
         return negatedRegistrations;

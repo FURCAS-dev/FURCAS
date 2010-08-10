@@ -158,7 +158,10 @@ public abstract class TableForEventFilter {
 
     /**
      * Fetches the "Yes" entries for the criterion specific to this table, extracted from <code>event</code>.
-     * See also {@link FilterTableEntry#getYesSets()} and {@link #getAffectedObject(Notification)}.
+     * See also {@link FilterTableEntry#getYesSets()} and {@link #getAffectedObject(Notification)}. The result is
+     * an array with <code>1&lt;&lt;numberOfBitSetsWithAtLeastOneRegistration</code> elements where each element
+     * represents the bit set corresponding to the element's index in the array. The caller must not modify the
+     * array returned.
      */
     Set<Registration>[] getYesSetsFor(Notification event, int numberOfBitSetsWithAtLeastOneRegistration, int[] bitSetsWithAtLeastOneRegistration) {
         return getSetsFor(event, SetSelection.YES, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
@@ -166,7 +169,10 @@ public abstract class TableForEventFilter {
     
     /**
      * Fetches the "No" entries for the criterion specific to this table, extracted from <code>event</code>.
-     * See also {@link FilterTableEntry#getNoSets()} and {@link #getAffectedObject(Notification)}.
+     * See also {@link FilterTableEntry#getNoSets()} and {@link #getAffectedObject(Notification)}. The result is
+     * an array with <code>1&lt;&lt;numberOfBitSetsWithAtLeastOneRegistration</code> elements where each element
+     * represents the bit set corresponding to the element's index in the array. The caller must not modify the
+     * array returned.
      */
     Set<Registration>[] getNoSetsFor(Notification event, int numberOfBitSetsWithAtLeastOneRegistration, int[] bitSetsWithAtLeastOneRegistration) {
         return getSetsFor(event, SetSelection.NO, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
