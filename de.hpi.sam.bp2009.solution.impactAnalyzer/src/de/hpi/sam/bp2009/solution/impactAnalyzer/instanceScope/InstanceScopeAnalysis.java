@@ -151,10 +151,6 @@ public class InstanceScopeAnalysis {
      *            subclasses of a class; as well as for obtaining all instances of a type while performing an
      *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where
      *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
-     * @param pathCache
-     *            caches {@link NavigationPath} traceback navigations to the possible contexts for a given expression that can be
-     *            invoked for model elements; using this cache avoids redundant path calculations for common subexpressions, such
-     *            as operation bodies called by several expressions.
      */
     public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder) {
         if (exprContext == null)
