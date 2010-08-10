@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.eventManager.framework;
 
-import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -46,7 +45,15 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
  *
  */
 public class EventManagerFactoryImpl implements EventManagerFactory {
-    WeakHashMap<ResourceSet,WeakReference<EventManager>> setToManager= new WeakHashMap<ResourceSet, WeakReference<EventManager>>();
+    /**
+     * When a {@link ResourceSet} key becomes only weakly referenced, the corresponding {@link EventManager} no longer
+     * needs to be held here. However, as long as the {@link ResourceSet} exists, an {@link EventManager} obtained
+     * for that resource set remains strongly referenced as long as the {@link ResourceSet} is strongly referenced.
+     * Imagine a usual client interacting: the event manager is used only to perform a subscription. Afterwards it
+     * may happen that the event manager is no longer referenced by the client. Yet, the client would expect the
+     * subscriptions to get notified by the event manager.
+     */
+    WeakHashMap<ResourceSet,EventManager> setToManager= new WeakHashMap<ResourceSet, EventManager>();
 
     /**
      * @return a new {@link EventManagerFactoryImpl}
@@ -56,12 +63,12 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
     @Override
     public EventManager getEventManagerFor(ResourceSet set) {
-        EventManager cached = setToManager.get(set)==null?null:setToManager.get(set).get();
+        EventManager cached = setToManager.get(set)==null?null:setToManager.get(set);
         if(cached!=null){
             return cached;
         }
         EventManager eventManager = new de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased(set);
-        setToManager.put(set, new WeakReference<EventManager>(eventManager));
+        setToManager.put(set, eventManager);
         return eventManager;
     }
 
