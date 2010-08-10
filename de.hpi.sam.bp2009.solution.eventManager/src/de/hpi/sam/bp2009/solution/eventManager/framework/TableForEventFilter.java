@@ -190,7 +190,7 @@ public abstract class TableForEventFilter {
             break;
         default:
             resultSetArray = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
-            for (int i = 0; i < resultSetArray.length; i++) {
+            for (int i = 0; i < resultSetArray.length; i++) { // FIXME scan only actually occupied bit sets
                 List<Set<Registration>> setList = new ArrayList<Set<Registration>>();
                 for (FilterTableEntry filterTableEntry : filterTableEntries) {
                     Set<Registration> yesSetForTableEntryAtBitSet;
@@ -203,8 +203,11 @@ public abstract class TableForEventFilter {
                         setList.add(yesSetForTableEntryAtBitSet);
                     }
                 }
-                CompositeSet<Registration> compositeSetAtBitSet = new CompositeSet<Registration>(
+                CompositeSet<Registration> compositeSetAtBitSet = null;
+                if (!setList.isEmpty()) {
+                    compositeSetAtBitSet = new CompositeSet<Registration>(
                         (Set<Registration>[]) setList.toArray(new Set<?>[0]));
+                }
                 resultSetArray[i] = compositeSetAtBitSet;
             }
         }
@@ -217,8 +220,6 @@ public abstract class TableForEventFilter {
             // Some EventFilterTables return multiple matching criteria. For example the ClassFilterTable (including
             // Subclasses) returns more than one matching row if there were registrations for a class and its superclass
             // when the subclass was changed.
-            // TODO: Possibly not necessary / possible performance optimization
-            // if the table is empty, don't do the following expensive operations:
             if (!tableEntryByFilterCriterion.isEmpty()) {
                 filterTableEntries = new ArrayList<FilterTableEntry>();
                 for (Object criterion : (Collection<?>) affectedFilterTableEntryKeys) {
