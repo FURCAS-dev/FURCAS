@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import company.CompanyFactory;
 import company.Division;
+import company.Employee;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
@@ -31,19 +32,32 @@ public class RecursiveContaimentNotificationCreatorTest extends BaseDepartmentTe
     @Test
     public void testCreateNotificationForComposites() {
         Division div = CompanyFactory.eINSTANCE.createDivision();
-        div.setDirector(aEmployee);
-        aEmployee.setSecretary(CompanyFactory.eINSTANCE.createEmployee());
-        Notification event = NotificationHelper.createElementAddNotification(div, departmentRef, aDepartment);
+        Employee aEmployee2 = CompanyFactory.eINSTANCE.createEmployee();
+        div.setDirector(aEmployee2);
+        aEmployee2.setSecretary(CompanyFactory.eINSTANCE.createEmployee());
+        Notification event = NotificationHelper.createElementAddNotification(div, departmentRef, CompanyFactory.eINSTANCE.createDepartment());
         Collection<Notification> list = EventManagerFactory.eINSTANCE.createNotificationForComposites(event);
-        assertTrue(list.size()==2);
+        /*
+         * Expect
+         * SET for departement budget
+         * SET for departement maxJuniors
+         * ADD departement to devision
+         */
+        assertTrue("Get "+list.size()+" events, expected 3",list.size()==3);
     }
     @Test
     public void testCreateNotificationForComposite() {
         Division div = CompanyFactory.eINSTANCE.createDivision();
-//        div.setDirector(aEmployee);
-        Notification event = NotificationHelper.createElementAddNotification(div, directedRef.getEOpposite(), aEmployee);
+        Notification event = NotificationHelper.createElementAddNotification(div, directedRef.getEOpposite(), CompanyFactory.eINSTANCE.createEmployee());
         Collection<Notification> list = EventManagerFactory.eINSTANCE.createNotificationForComposites(event);
-        assertTrue(list.size()==2);
+        /*
+         * Expected
+         * SET employee as division director
+         * SET division as directed by employee
+         * SET employee name
+         * SET employee age
+         */
+        assertTrue("Get "+list.size()+" events, expected 4",list.size()==4);
     }
 
 }
