@@ -55,7 +55,7 @@ public class NewValueClassFilterTest extends EventFilterTest {
     public void setUp() {
         super.setUp();
         this.createInstances(1, 5, 1);
-        setFixture(EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(employee));
+        setFixture(EventManagerFactory.eINSTANCE.createNewValueClassFilter(employee));
     }
 
     /**
@@ -73,7 +73,7 @@ public class NewValueClassFilterTest extends EventFilterTest {
     public void testMatchesFor__Notification() {
         Employee boss = CompanyFactory.eINSTANCE.createEmployee();
         noti = NotificationHelper.createReferenceAddNotification(this.aDepartment, this.bossRef, boss);
-        assertTrue("No Match to Notification", getFixture().matchesFor(noti));
+        assertTrue("exact class match", getFixture().matchesFor(noti));
         noti = NotificationHelper.createReferenceRemoveNotification(this.aDepartment, this.bossRef, boss);
         assertFalse(getFixture().matchesFor(noti));
         this.aDivision.getDepartment().clear();
