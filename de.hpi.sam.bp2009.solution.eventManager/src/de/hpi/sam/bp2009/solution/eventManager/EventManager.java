@@ -30,7 +30,10 @@ public interface EventManager {
      * @param filter
      *            the {@link EventFilter} which is used to filter events for the given {@link Adapter}
      * @param listener
-     *            the adapter which should receive event which matches the filter
+     *            the adapter which should receive event which matches the filter. This event manager will only
+     *            maintain weak references to the listener which means that the client should hold a strong reference
+     *            in order to make sure that notifications will be received. This is a good idea anyhow since for
+     *            deregistration the listener is required as well.
      */
     void subscribe(EventFilter filter, Adapter listener);
 
