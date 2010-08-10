@@ -75,7 +75,7 @@ public class CompositeSet<E> extends AbstractSet<E> {
             
             private Iterator<E> nextIter() {
                 Iterator<E> result = null;
-                while (nextSet < sets.length && (result == null || result.hasNext())) {
+                while (nextSet < sets.length && (result == null || !result.hasNext())) {
                     result = sets[nextSet++].iterator();
                 }
                 return result;
