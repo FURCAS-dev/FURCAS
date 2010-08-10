@@ -44,6 +44,15 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLEx
 
 
 public class PerformanceStressTestForEventManager extends TestCase {
+    private static final String FILTERSUBSCRIPTION = "filtersubscription";
+    private static final String FILTERCREATION = "filtercreation";
+    private static final String NOTIFY_REFERENCE_INIT_EXPRESSION_478 = "Notify_Reference_InitExpression_478";
+    private static final String NOTIFY_REFERENCE_CLAZZ_264 = "Notify_Reference_Clazz_264";
+    private static final String NOTIFY_REFERENCE_OWNED_SIGNATURES_41 = "Notify_Reference_OwnedSignatures_41";
+    private static final String NOTIFY_REFERENCE_FACTS_1 = "Notify_Reference_Facts_1";
+    private static final String NOTIFY_ATTRIBUTE_UPPER_MULTIPLICITY_487 = "Notify_Attribute_UpperMultiplicity_487";
+    private static final String NOTIFY_ATTRIBUTE_NAME_290 = "Notify_Attribute_Name_290";
+    private static final String NOTIFY_ATTRIBUTE_SNAPSHOT_1 = "Notify_Attribute_Snapshot_1";
     private final int howManyMeasurements = 10;
     private EventManager eventManager;
     private ResourceSet rs;
@@ -110,15 +119,18 @@ public class PerformanceStressTestForEventManager extends TestCase {
            new Runnable() { public void run() { handle_Reference_InitExpression_478(); } },
            
            
-           new Runnable() { public void run() { handle_Attribute_Snapshot_1(); printStats("Notify_Attribute_Snapshot_1"); } },
-           new Runnable() { public void run() { handle_Attribute_Name_290(); printStats("Notify_Attribute_Name_290"); } },
-           new Runnable() { public void run() { handle_Attribute_UpperMultiplicity_487(); printStats("Notify_Attribute_UpperMultiplicity_487"); } },
-           new Runnable() { public void run() { handle_Reference_Facts_1(); printStats("Notify_Reference_Facts_1"); } },
-           new Runnable() { public void run() { handle_Reference_OwnedSignatures_41(); printStats("Notify_Reference_OwnedSignatures_41"); } },
-           new Runnable() { public void run() { handle_Reference_Clazz_264(); printStats("Notify_Reference_Clazz_264"); } },
-           new Runnable() { public void run() { handle_Reference_InitExpression_478(); printStats("Notify_Reference_InitExpression_478"); } }
+           new Runnable() { public void run() { handle_Attribute_Snapshot_1(); printStats(NOTIFY_ATTRIBUTE_SNAPSHOT_1); } },
+           new Runnable() { public void run() { handle_Attribute_Name_290(); printStats(NOTIFY_ATTRIBUTE_NAME_290); } },
+           new Runnable() { public void run() { handle_Attribute_UpperMultiplicity_487(); printStats(NOTIFY_ATTRIBUTE_UPPER_MULTIPLICITY_487); } },
+           new Runnable() { public void run() { handle_Reference_Facts_1(); printStats(NOTIFY_REFERENCE_FACTS_1); } },
+           new Runnable() { public void run() { handle_Reference_OwnedSignatures_41(); printStats(NOTIFY_REFERENCE_OWNED_SIGNATURES_41); } },
+           new Runnable() { public void run() { handle_Reference_Clazz_264(); printStats(NOTIFY_REFERENCE_CLAZZ_264); } },
+           new Runnable() { public void run() { handle_Reference_InitExpression_478(); printStats(NOTIFY_REFERENCE_INIT_EXPRESSION_478); } }
         }) {
             eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
+            for (Adapter listener : listeners) {
+                eventManager.unsubscribe(listener);
+            }
             listeners.clear();
             notificationCount = 0;
             numberOfAlreadyRegisteredExpressions = 0;
@@ -157,15 +169,15 @@ public class PerformanceStressTestForEventManager extends TestCase {
 
     private void registerFilterForExpressionWithEventManager(OCLExpressionWithContext expression) {
         OCLExpression e = expression.getExpression();
-        Statistics.getInstance().begin("filtercreation", e);
+        Statistics.getInstance().begin(FILTERCREATION, e);
         EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(e, expression.getContext()).createFilterForExpression(/* notifyNewContextElements */ false);
-        Statistics.getInstance().end("filtercreation", e);
-        Statistics.getInstance().begin("filtersubscription", e);
+        Statistics.getInstance().end(FILTERCREATION, e);
+        Statistics.getInstance().begin(FILTERSUBSCRIPTION, e);
         NotificationReceiverWithFilter listener = new NotificationReceiverWithFilter(filter);
         listeners.add(listener); // hold on to the instance, otherwise it'll be collected due to weak reference usage
         eventManager.subscribe(filter, listener);
         subscriptions++;
-        Statistics.getInstance().end("filtersubscription", e);
+        Statistics.getInstance().end(FILTERSUBSCRIPTION, e);
     }
 
     private void printStats() {
@@ -193,9 +205,9 @@ public class PerformanceStressTestForEventManager extends TestCase {
         for (int i = 0; i < 1000; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ModelmanagementPackage.eINSTANCE.getNamedElement_Name(), "humba", "trala");
-            Statistics.getInstance().begin("Notify_Attribute_Name_290", ""+i);
+            Statistics.getInstance().begin(NOTIFY_ATTRIBUTE_NAME_290, ""+i);
             eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Attribute_Name_290", ""+i);
+            Statistics.getInstance().end(NOTIFY_ATTRIBUTE_NAME_290, ""+i);
         }
     }
 
@@ -206,9 +218,9 @@ public class PerformanceStressTestForEventManager extends TestCase {
         for (int i = 0; i < 1000; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ClassesPackage.eINSTANCE.getMultiplicity_UpperMultiplicity(), 1, -1);
-            Statistics.getInstance().begin("Notify_Attribute_UpperMultiplicity_487", ""+i);
+            Statistics.getInstance().begin(NOTIFY_ATTRIBUTE_UPPER_MULTIPLICITY_487, ""+i);
             eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Attribute_UpperMultiplicity_487", ""+i);
+            Statistics.getInstance().end(NOTIFY_ATTRIBUTE_UPPER_MULTIPLICITY_487, ""+i);
         }
     }
 
@@ -219,9 +231,9 @@ public class PerformanceStressTestForEventManager extends TestCase {
         for (int i = 0; i < 1000; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ExpressionsPackage.eINSTANCE.getAll_Snapshot(), 1, -1);
-            Statistics.getInstance().begin("Notify_Attribute_Snapshot_1", ""+i);
+            Statistics.getInstance().begin(NOTIFY_ATTRIBUTE_SNAPSHOT_1, ""+i);
             eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Attribute_Snapshot_1", ""+i);
+            Statistics.getInstance().end(NOTIFY_ATTRIBUTE_SNAPSHOT_1, ""+i);
         }
     }
 
@@ -233,9 +245,9 @@ public class PerformanceStressTestForEventManager extends TestCase {
         for (int i = 0; i < 1000; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ClassesPackage.eINSTANCE.getClassTypeDefinition_Clazz(), null, c);
-            Statistics.getInstance().begin("Notify_Reference_Clazz_264", ""+i);
+            Statistics.getInstance().begin(NOTIFY_REFERENCE_CLAZZ_264, ""+i);
             eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Reference_Clazz_264", ""+i);
+            Statistics.getInstance().end(NOTIFY_REFERENCE_CLAZZ_264, ""+i);
         }
     }
 
@@ -247,9 +259,9 @@ public class PerformanceStressTestForEventManager extends TestCase {
         for (int i = 0; i < 1000; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     AnalyticsPackage.eINSTANCE.getDimensionExpression_Facts(), null, s);
-            Statistics.getInstance().begin("Notify_Reference_Facts_1", ""+i);
+            Statistics.getInstance().begin(NOTIFY_REFERENCE_FACTS_1, ""+i);
             eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Reference_Facts_1", ""+i);
+            Statistics.getInstance().end(NOTIFY_REFERENCE_FACTS_1, ""+i);
         }
     }
 
@@ -261,9 +273,9 @@ public class PerformanceStressTestForEventManager extends TestCase {
         for (int i = 0; i < 1000; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ActionsPackage.eINSTANCE.getNamedValueWithOptionalInitExpression_InitExpression(), null, s);
-            Statistics.getInstance().begin("Notify_Reference_InitExpression_478", ""+i);
+            Statistics.getInstance().begin(NOTIFY_REFERENCE_INIT_EXPRESSION_478, ""+i);
             eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Reference_InitExpression_478", ""+i);
+            Statistics.getInstance().end(NOTIFY_REFERENCE_INIT_EXPRESSION_478, ""+i);
         }
     }
 
@@ -275,9 +287,9 @@ public class PerformanceStressTestForEventManager extends TestCase {
         for (int i = 0; i < 1000; i++) {
             Notification n = new ENotificationImpl(notifier, Notification.SET,
                     ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures(), null, m);
-            Statistics.getInstance().begin("Notify_Reference_OwnedSignatures_41", ""+i);
+            Statistics.getInstance().begin(NOTIFY_REFERENCE_OWNED_SIGNATURES_41, ""+i);
             eventManager.handleEMFEvent(n);
-            Statistics.getInstance().end("Notify_Reference_OwnedSignatures_41", ""+i);
+            Statistics.getInstance().end(NOTIFY_REFERENCE_OWNED_SIGNATURES_41, ""+i);
         }
     }
 
