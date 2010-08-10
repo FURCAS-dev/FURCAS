@@ -473,7 +473,7 @@ public class RegistrationManagerTableBased {
                 tablesWithNegatedRegistrations.remove(table);
             }
         }
-        allRegistrations.remove(registration);
+        allRegistrations.remove(registration.getAndFilter());
         rebuildBitSetsWithAtLeastOneRegistration();
     }
 
