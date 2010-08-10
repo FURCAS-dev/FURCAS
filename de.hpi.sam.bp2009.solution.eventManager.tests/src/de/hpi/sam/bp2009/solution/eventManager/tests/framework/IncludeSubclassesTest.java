@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.eventManager.tests.framework;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EObject;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
@@ -36,7 +37,7 @@ public class IncludeSubclassesTest extends FilterSynthesisTest {
         
     }
     
-    public void testIncludingSubclassesFilterStudentGotStudent(){
+    public void testIncludingSubclassesFilterElementInsertionStudentGotStudent(){
         EventFilter filter = EventManagerFactory.eINSTANCE.createFilterForElementInsertion(student);
         App app = new App();
         m.subscribe(filter, app);
@@ -45,7 +46,7 @@ public class IncludeSubclassesTest extends FilterSynthesisTest {
         assertTrue(app.noti);
         
     }
-    public void testIncludingSubclassesFilterEmployeeGotStudent(){
+    public void testIncludingSubclassesFilterElementInsertionEmployeeGotStudent(){
         EventFilter filter = EventManagerFactory.eINSTANCE.createFilterForElementInsertion(employee);
         App app = new App();
         m.subscribe(filter, app);
@@ -54,7 +55,8 @@ public class IncludeSubclassesTest extends FilterSynthesisTest {
         assertTrue(app.noti);
         
     }
-    public void testIncludingSubclassesFilterEmployeeGotFreelancer(){
+    
+    public void testIncludingSubclassesFilterElementInsertionEmployeeGotFreelancer(){
         EventFilter filter = EventManagerFactory.eINSTANCE.createFilterForElementInsertion(employee);
         App app = new App();
         m.subscribe(filter, app);
@@ -63,13 +65,78 @@ public class IncludeSubclassesTest extends FilterSynthesisTest {
         assertTrue(app.noti);
         
     }
-    public void testIncludingSubclasses3(){
-        EventFilter filter = EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(employee);
-        App app = new App();
-        m.subscribe(filter, app);
-        NotificationHelper.createNewElementAddToResourceNotification(this.comp.getEFactoryInstance().create(freelance), this.comp.eResource());
+    public void testIncludingSubclassesSimpleFreeLanceVSEmployee(){
+        EventFilter includeSubClass = EventManagerFactory.eINSTANCE.createClassFilterIncludingSubclasses(employee);
+        App includeSubClassApp = new App();
+        m.subscribe(includeSubClass, includeSubClassApp);
+
+        EventFilter excludeSubClass = EventManagerFactory.eINSTANCE.createClassFilter(employee);
+        App excludeSubClassApp = new App();
+        m.subscribe(excludeSubClass, excludeSubClassApp);
+
+        EventFilter includeSubClassNew = EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(employee);
+        App includeSubClassNewApp = new App();
+        m.subscribe(includeSubClassNew, includeSubClassNewApp);
+
+        EventFilter excludeSubClassNew = EventManagerFactory.eINSTANCE.createNewValueClassFilter(employee);
+        App excludeSubClassNewApp = new App();
+        m.subscribe(excludeSubClassNew, excludeSubClassNewApp);
+
+        EventFilter includeSubClassOld = EventManagerFactory.eINSTANCE.createOldValueClassFilterIncludingSubclasses(employee);
+        App includeSubClassOldApp = new App();
+        m.subscribe(includeSubClassOld, includeSubClassOldApp);
+
+        EventFilter excludeSubClassOld = EventManagerFactory.eINSTANCE.createOldValueClassFilter(employee);
+        App excludeSubClassOldApp = new App();
+        m.subscribe(excludeSubClassOld, excludeSubClassOldApp);
+
+        EObject freeLance = this.comp.getEFactoryInstance().create(freelance);
+        NotificationHelper.createNewElementAddToResourceNotification(freeLance, this.comp.eResource());
+        assertTrue(includeSubClassApp.noti);
+        assertFalse(excludeSubClassApp.noti);
+        assertTrue(includeSubClassNewApp.noti);
+        assertFalse(excludeSubClassNewApp.noti);
+        assertFalse(includeSubClassOldApp.noti);
+        assertFalse(excludeSubClassOldApp.noti);
+        reset(includeSubClassApp, excludeSubClassApp, includeSubClassNewApp,
+                excludeSubClassNewApp, includeSubClassOldApp,excludeSubClassOldApp);
         
-        assertTrue(app.noti);
+        EObject emPloyee = this.comp.getEFactoryInstance().create(employee);
+        NotificationHelper.createNewElementAddToResourceNotification(emPloyee, this.comp.eResource());
+        assertTrue(includeSubClassApp.noti);
+        assertTrue(excludeSubClassApp.noti);
+        assertTrue(includeSubClassNewApp.noti);
+        assertTrue(excludeSubClassNewApp.noti);
+        assertFalse(includeSubClassOldApp.noti);
+        assertFalse(excludeSubClassOldApp.noti);
+        reset(includeSubClassApp, excludeSubClassApp, includeSubClassNewApp,
+                excludeSubClassNewApp, includeSubClassOldApp,excludeSubClassOldApp);
         
+        NotificationHelper.createElementDeleteNotification(emPloyee);
+        assertTrue(includeSubClassApp.noti);
+        assertTrue(excludeSubClassApp.noti);
+        assertFalse(includeSubClassNewApp.noti);
+        assertFalse(excludeSubClassNewApp.noti);
+        assertTrue(includeSubClassOldApp.noti);
+        assertTrue(excludeSubClassOldApp.noti);
+        reset(includeSubClassApp, excludeSubClassApp, includeSubClassNewApp,
+                excludeSubClassNewApp, includeSubClassOldApp,excludeSubClassOldApp);  
+        NotificationHelper.createElementDeleteNotification(freeLance);
+        assertTrue(includeSubClassApp.noti);
+        assertFalse(excludeSubClassApp.noti);
+        assertFalse(includeSubClassNewApp.noti);
+        assertFalse(excludeSubClassNewApp.noti);
+        assertTrue(includeSubClassOldApp.noti);
+        assertFalse(excludeSubClassOldApp.noti);
+        reset(includeSubClassApp, excludeSubClassApp, includeSubClassNewApp,
+                excludeSubClassNewApp, includeSubClassOldApp,excludeSubClassOldApp);
+        
+    }
+    
+    
+    private void reset(App...apps){
+        for(App a:apps){
+            a.noti=false;
+        }
     }
 }
