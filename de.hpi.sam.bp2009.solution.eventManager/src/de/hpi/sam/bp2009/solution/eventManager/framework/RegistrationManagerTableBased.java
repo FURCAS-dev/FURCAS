@@ -352,9 +352,9 @@ public class RegistrationManagerTableBased {
         Set<Registration>[][] noSetsForTables = (Set<Registration>[][]) new Set<?>[allTables.length][];
         int i=0;
         for (TableForEventFilter table : allTables) {
-            Set<Registration>[] yesSetsForTable = table.getYesSetsFor(event);
+            Set<Registration>[] yesSetsForTable = table.getYesSetsFor(event, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
             yesSetsForTables[i] = yesSetsForTable;
-            Set<Registration>[] noSetsForTable = table.getNoSetsFor(event);
+            Set<Registration>[] noSetsForTable = table.getNoSetsFor(event, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
             noSetsForTables[i] = noSetsForTable;
             i++;
         }
