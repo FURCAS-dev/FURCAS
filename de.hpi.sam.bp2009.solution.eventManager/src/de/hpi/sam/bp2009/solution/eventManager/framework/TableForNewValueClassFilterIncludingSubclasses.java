@@ -28,26 +28,25 @@ public class TableForNewValueClassFilterIncludingSubclasses extends TableForEven
      * <code>LinkChangeEvent</code>, <code>null</code> is returned.
      */
     public Object getAffectedObject(Notification event) {
-        if(isEmpty() || event.getNewValue() == null)
+        if (isEmpty() || event.getNewValue() == null)
             return null;
-        Collection<EClass> result= new HashSet<EClass>();
-        if(event.getNewValue() instanceof EObject){
-            EClass eClass = ((EObject)event.getNewValue()).eClass();
+        Collection<EClass> result = new HashSet<EClass>();
+        if (event.getNewValue() instanceof EObject) {
+            EClass eClass = ((EObject) event.getNewValue()).eClass();
             result.add(eClass);
             result.addAll(eClass.getEAllSuperTypes());
             return result;
 
-        }else if(event.getNewValue() instanceof EList<?>){
-            for(Object o: ((EList<?>)event.getNewValue())){
-                if(o instanceof EObject){
-
-                    EClass eClass = ((EObject)o).eClass();
+        } else if (event.getNewValue() instanceof EList<?>) {
+            for (Object o : ((EList<?>) event.getNewValue())) {
+                if (o instanceof EObject) {
+                    EClass eClass = ((EObject) o).eClass();
                     result.add(eClass);
                     result.addAll(eClass.getEAllSuperTypes());
                 }
             }
 
-        }else{
+        } else {
             return null;
         }
         return result;
