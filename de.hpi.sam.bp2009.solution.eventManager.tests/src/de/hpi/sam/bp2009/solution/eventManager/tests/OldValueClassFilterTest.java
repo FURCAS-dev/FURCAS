@@ -81,7 +81,15 @@ public class OldValueClassFilterTest extends EventFilterTest {
         noti = NotificationHelper.createReferenceAddNotification(this.aDivision, this.departmentRef,
                 CompanyFactory.eINSTANCE.createDepartment());
         assertFalse(getFixture().matchesFor(noti));
-
     }
 
+    public void testMatchesFor__NotificationNotIncludingSubclasses() {
+        Employee boss = CompanyFactory.eINSTANCE.createFreelance();
+        this.aDepartment.setBoss(boss);
+        noti = NotificationHelper.createReferenceRemoveNotification(this.aDepartment, this.bossRef, boss);
+        assertFalse("Subclass should not have been matched", getFixture().matchesFor(noti));
+        noti = NotificationHelper.createReferenceAddNotification(this.aDepartment, this.bossRef, boss);
+        assertFalse(getFixture().matchesFor(noti));
+        this.aDivision.getDepartment().clear();
+    }
 } // OldValueClassFilterTest

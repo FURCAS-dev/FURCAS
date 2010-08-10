@@ -6,9 +6,9 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.tests;
 
+import de.hpi.sam.bp2009.solution.eventManager.tests.framework.IncludeSubclassesTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
 import junit.textui.TestRunner;
 
 /**
@@ -40,8 +40,11 @@ public class EventManagerTests extends TestSuite {
 		suite.addTestSuite(AttributeFilterTest.class);
 		suite.addTestSuite(AssociationFilterTest.class);
 		suite.addTestSuite(OldValueClassFilterTest.class);
+                suite.addTestSuite(OldValueClassIncludingSubclassesFilterTest.class);
 		suite.addTestSuite(NewValueClassFilterTest.class);
+                suite.addTestSuite(NewValueClassIncludingSubclassesFilterTest.class);
 		suite.addTestSuite(ContainmentFilterTest.class);
+		suite.addTestSuite(IncludeSubclassesTest.class);
 		return suite;
 	}
 
