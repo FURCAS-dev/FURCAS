@@ -15,13 +15,13 @@ import company.CompanyFactory;
 import company.Employee;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilterIncludingSubclasses;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>New Value Class Filter</b></em>'. <!-- end-user-doc -->
  */
-public class NewValueClassFilterTest extends EventFilterTest {
+public class NewValueClassIncludingSubclassesFilterTest extends EventFilterTest {
 
     private Notification noti;
 
@@ -29,13 +29,13 @@ public class NewValueClassFilterTest extends EventFilterTest {
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      */
     public static void main(String[] args) {
-        TestRunner.run(NewValueClassFilterTest.class);
+        TestRunner.run(NewValueClassIncludingSubclassesFilterTest.class);
     }
 
     /**
      * Constructs a new New Value Class Filter test case with the given name. <!-- begin-user-doc --> <!-- end-user-doc -->
      */
-    public NewValueClassFilterTest() {
+    public NewValueClassIncludingSubclassesFilterTest() {
         super();
     }
 
@@ -43,8 +43,8 @@ public class NewValueClassFilterTest extends EventFilterTest {
      * Returns the fixture for this New Value Class Filter test case. <!-- begin-user-doc --> <!-- end-user-doc -->
      */
     @Override
-    protected NewValueClassFilter getFixture() {
-        return (NewValueClassFilter) fixture;
+    protected NewValueClassFilterIncludingSubclasses getFixture() {
+        return (NewValueClassFilterIncludingSubclasses) fixture;
     }
 
     /**
@@ -56,7 +56,7 @@ public class NewValueClassFilterTest extends EventFilterTest {
     public void setUp() {
         super.setUp();
         this.createInstances(1, 5, 1);
-        setFixture(EventManagerFactory.eINSTANCE.createNewValueClassFilter(employee));
+        setFixture(EventManagerFactory.eINSTANCE.createNewValueClassFilterIncludingSubclasses(employee));
     }
 
     /**
@@ -74,7 +74,7 @@ public class NewValueClassFilterTest extends EventFilterTest {
     public void testMatchesFor__Notification() {
         Employee boss = CompanyFactory.eINSTANCE.createEmployee();
         noti = NotificationHelper.createReferenceAddNotification(this.aDepartment, this.bossRef, boss);
-        assertTrue("exact class match", getFixture().matchesFor(noti));
+        assertTrue("No Match to Notification", getFixture().matchesFor(noti));
         noti = NotificationHelper.createReferenceRemoveNotification(this.aDepartment, this.bossRef, boss);
         assertFalse(getFixture().matchesFor(noti));
         this.aDivision.getDepartment().clear();
@@ -87,7 +87,7 @@ public class NewValueClassFilterTest extends EventFilterTest {
     public void testMatchesFor__SubclassNotification() {
         Employee boss = CompanyFactory.eINSTANCE.createFreelance();
         noti = NotificationHelper.createReferenceAddNotification(this.aDepartment, this.bossRef, boss);
-        assertFalse("Should not have matched for subclass", getFixture().matchesFor(noti));
+        assertTrue("No Match to Notification", getFixture().matchesFor(noti));
         noti = NotificationHelper.createReferenceRemoveNotification(this.aDepartment, this.bossRef, boss);
         assertFalse(getFixture().matchesFor(noti));
         this.aDivision.getDepartment().clear();
