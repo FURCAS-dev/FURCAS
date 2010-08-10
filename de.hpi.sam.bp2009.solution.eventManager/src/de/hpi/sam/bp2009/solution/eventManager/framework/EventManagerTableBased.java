@@ -4,6 +4,7 @@ import java.lang.ref.WeakReference;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.WeakHashMap;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -24,7 +25,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
  */
 
 public class EventManagerTableBased implements EventManager {
-
+    private Logger logger = Logger.getLogger(EventManagerTableBased.class.getName());
+    
     /**
      * the EventAdapter instance for the EventManager
      */
@@ -133,7 +135,7 @@ public class EventManagerTableBased implements EventManager {
         } else if (listenerType.matches(listenersForDeferringNotifier)) {
             notifier = new DeferringNotifier(listenerRef, listenerType, this);
         } else {
-            // TODO log (and throw exception?)
+            logger.warning("Unkown listenerType "+listenerType);
         }
         addNotifierForListener(notifier);
     }
@@ -142,9 +144,7 @@ public class EventManagerTableBased implements EventManager {
      * @see com.sap.tc.moin.repository.events.EventRegistry#deregister(com.sap.tc.moin.repository.events.MoinChangeListener)
      */
     public void deregister(Adapter listener) {
-        /*
-         * @ TODO what if a listener is being removed that has pending events?? -> EventDeferring
-         */
+        // TODO what if a listener is being removed that has pending events?? -> EventDeferring
         registrationManager.deregister(listener);
         // remove Notifier(s) for listener
         removeListener(listener);
@@ -261,14 +261,18 @@ public class EventManagerTableBased implements EventManager {
      */
 
     private void addNotifierForListener(AdapterCapsule notifier) {
-        Collection<AdapterCapsule> notifiers = notifierByListener.get(notifier.getListener().get());
-        if (notifiers == null) {
-            notifiers = new LinkedList<AdapterCapsule>();
-            notifierByListener.put(notifier.getListener().get(), notifiers);
+        Adapter adapter = notifier.getListener().get();
+        if (adapter == null) {
+            logger.warning("listener "+notifier.getListener()+" got GCed; AdapterCapsule: "+notifier);
+        } else {
+            Collection<AdapterCapsule> notifiers = notifierByListener.get(adapter);
+            if (notifiers == null) {
+                notifiers = new LinkedList<AdapterCapsule>();
+                notifierByListener.put(adapter, notifiers);
+            }
+            notifiers.add(notifier);
+            allNotifiers.add(notifier);
         }
-        notifiers.add(notifier);
-        allNotifiers.add(notifier);
-
     }
 
     private void removeListener(Adapter listener) {
@@ -282,17 +286,22 @@ public class EventManagerTableBased implements EventManager {
     }
 
     private AdapterCapsule getNotifierForListener(WeakReference<? extends Adapter> listener, ListenerTypeEnum listenerType) {
-        Collection<AdapterCapsule> notifiers = notifierByListener.get(listener.get());
-        if (notifiers == null) {
-            // TODO log an throw exception?
-            return null;
-        }
-        for (AdapterCapsule notifier : notifiers) {
-            if (notifier.isResponsibleFor(listener.get(), listenerType)) {
-                return notifier;
+        Adapter adapter = listener.get();
+        if (adapter == null) {
+            logger.warning("No notifier found for listener "+listener);
+        } else {
+            Collection<AdapterCapsule> notifiers = notifierByListener.get(adapter);
+            if (notifiers == null) {
+                logger.warning("No notifiers found");
+                return null;
+            }
+            for (AdapterCapsule notifier : notifiers) {
+                if (notifier.isResponsibleFor(adapter, listenerType)) {
+                    return notifier;
+                }
             }
         }
-        // TODO log (and throw exception?)
+        logger.warning("No notifier found");
         return null;
     }
 
