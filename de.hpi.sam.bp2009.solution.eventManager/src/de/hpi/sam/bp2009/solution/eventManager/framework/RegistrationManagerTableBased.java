@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.WeakHashMap;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -52,6 +53,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.PackageFilter;
  * @author Daniel Vocke (D044825), Axel Uhl (D043530)
  */
 public class RegistrationManagerTableBased {
+    private Logger logger = Logger.getLogger(RegistrationManagerTableBased.class.getName());
+    
     /**
      * group ID for {@link Statistics} capturing the minimum table sizes during event handling
      */
@@ -246,10 +249,15 @@ public class RegistrationManagerTableBased {
 
     private void addRegistrationForListener(RegistrationSet registrationSet, WeakReference<? extends Adapter> listener) {
         // registrationsByListener is a WeakHashMap, so direct references to listeners can be stored
-        if (registrationSetByListener.get(listener.get()) == null) {
-            registrationSetByListener.put(listener.get(), new ArrayList<RegistrationSet>());
+        Adapter adapter = listener.get();
+        if (adapter == null) {
+            logger.warning("Registered adapter got GCed: "+listener);
+        } else {
+            if (registrationSetByListener.get(adapter) == null) {
+                registrationSetByListener.put(adapter, new ArrayList<RegistrationSet>());
+            }
+            registrationSetByListener.get(adapter).add(registrationSet);
         }
-        registrationSetByListener.get(listener.get()).add(registrationSet);
     }
 
     /**
