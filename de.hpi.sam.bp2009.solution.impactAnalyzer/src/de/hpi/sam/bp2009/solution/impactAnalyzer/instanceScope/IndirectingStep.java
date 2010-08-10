@@ -62,7 +62,7 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
         boolean result;
         currentlyEvaluatingEqualsForParameters.add(o);
         if (actualStep == null) {
-            result = super.equals(o);
+            result = false; // not identical; could be set to something different later
         } else {
             if (o instanceof IndirectingStep) {
                 result = actualStep.equals(((IndirectingStep) o).getActualStep());
