@@ -23,6 +23,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.ExampleApp;
 
 public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
     private EventManager m;
+    Set<ExampleApp> eS;
 
     @Override
     public void setUp() {
@@ -218,8 +219,8 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
 
         HashSet<ExpressionInOCL> affectedStmts = filterStatementsWithEM();
 
-        NotificationHelper.createElementAddNotification(this.aDepartment, this.employeeRef, comp.getCompanyFactory()
-                .createFreelance());
+        NotificationHelper.createElementAddNotification(this.aDepartment, this.employeeRef, comp
+                .getCompanyFactory().createFreelance());
 
         Set<ExpressionInOCL> expectedStmts = new HashSet<ExpressionInOCL>();
         expectedStmts.add(this.getValidAssignmentAST());
@@ -421,14 +422,6 @@ public class FilterSynthesisEMEnabledTest extends FilterSynthesisTest {
 
         assertTrue(checkAffectedStatements(affectedStmts, expectedStmts));
     }
-
-
-    /**
-     * @param noti
-     *            a {@link Notification} including a model change
-     * @return the {@link OCLExpression}s which are affected by the given {@link Notification}
-     */
-    Set<ExampleApp> eS = new HashSet<ExampleApp>();
 
     private HashSet<ExpressionInOCL> filterStatementsWithEM() {
         HashSet<ExpressionInOCL> affectedStmts = new HashSet<ExpressionInOCL>();
