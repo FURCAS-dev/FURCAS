@@ -26,7 +26,6 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
  * 
  * @author Daniel Vocke (D044825)
  */
-// TODO add type parameter for criterion
 public abstract class TableForEventFilter {
 
     /**
@@ -37,6 +36,8 @@ public abstract class TableForEventFilter {
     private final Set<Registration>[] completeNoSet;
 
     private final int numberOfFilterTables;
+    
+    private final Set<Registration>[] emptyRegistrationArray;
     
     private enum SetSelection { YES, NO  };
 
@@ -55,6 +56,7 @@ public abstract class TableForEventFilter {
     protected TableForEventFilter(int numberOfFilterTables) {
         this.numberOfFilterTables = numberOfFilterTables;
         completeNoSet = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
+        emptyRegistrationArray = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
     }
 
     /**
@@ -158,20 +160,20 @@ public abstract class TableForEventFilter {
      * Fetches the "Yes" entries for the criterion specific to this table, extracted from <code>event</code>.
      * See also {@link FilterTableEntry#getYesSets()} and {@link #getAffectedObject(Notification)}.
      */
-    Set<Registration>[] getYesSetsFor(Notification event) {
-        return getSetsFor(event, SetSelection.YES);
+    Set<Registration>[] getYesSetsFor(Notification event, int numberOfBitSetsWithAtLeastOneRegistration, int[] bitSetsWithAtLeastOneRegistration) {
+        return getSetsFor(event, SetSelection.YES, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
     }
     
     /**
      * Fetches the "No" entries for the criterion specific to this table, extracted from <code>event</code>.
      * See also {@link FilterTableEntry#getNoSets()} and {@link #getAffectedObject(Notification)}.
      */
-    Set<Registration>[] getNoSetsFor(Notification event) {
-        return getSetsFor(event, SetSelection.NO);
+    Set<Registration>[] getNoSetsFor(Notification event, int numberOfBitSetsWithAtLeastOneRegistration, int[] bitSetsWithAtLeastOneRegistration) {
+        return getSetsFor(event, SetSelection.NO, numberOfBitSetsWithAtLeastOneRegistration, bitSetsWithAtLeastOneRegistration);
     }
     
     @SuppressWarnings("unchecked")
-    private Set<Registration>[] getSetsFor(Notification event, SetSelection yesNoSelection) {
+    private Set<Registration>[] getSetsFor(Notification event, SetSelection yesNoSelection, int numberOfBitSetsWithAtLeastOneRegistration, int[] bitSetsWithAtLeastOneRegistration) {
         // returns the filter criterion which is of interest in context of the current EventFilterTable
         Object affectedFilterTableEntryKeys = getAffectedObject(event);
         Set<Registration>[] resultSetArray;
@@ -179,7 +181,7 @@ public abstract class TableForEventFilter {
         List<FilterTableEntry> filterTableEntries = getFilterTableEntries(affectedFilterTableEntryKeys);
         switch (filterTableEntries.size()) {
         case 0:
-            resultSetArray = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
+            resultSetArray = emptyRegistrationArray;
             break;
         case 1:
             if (yesNoSelection == SetSelection.YES) {
@@ -190,14 +192,14 @@ public abstract class TableForEventFilter {
             break;
         default:
             resultSetArray = (Set<Registration>[]) new Set<?>[1<<numberOfFilterTables];
-            for (int i = 0; i < resultSetArray.length; i++) { // FIXME scan only actually occupied bit sets
+            for (int i = 0; i < numberOfBitSetsWithAtLeastOneRegistration; i++) {
                 List<Set<Registration>> setList = new ArrayList<Set<Registration>>();
                 for (FilterTableEntry filterTableEntry : filterTableEntries) {
                     Set<Registration> yesSetForTableEntryAtBitSet;
                     if (yesNoSelection == SetSelection.YES) {
-                        yesSetForTableEntryAtBitSet = filterTableEntry.getYesSet(i);
+                        yesSetForTableEntryAtBitSet = filterTableEntry.getYesSet(bitSetsWithAtLeastOneRegistration[i]);
                     } else {
-                        yesSetForTableEntryAtBitSet = filterTableEntry.getNoSet(i);
+                        yesSetForTableEntryAtBitSet = filterTableEntry.getNoSet(bitSetsWithAtLeastOneRegistration[i]);
                     }
                     if (yesSetForTableEntryAtBitSet != null) {
                         setList.add(yesSetForTableEntryAtBitSet);
@@ -208,7 +210,7 @@ public abstract class TableForEventFilter {
                     compositeSetAtBitSet = new CompositeSet<Registration>(
                         (Set<Registration>[]) setList.toArray(new Set<?>[0]));
                 }
-                resultSetArray[i] = compositeSetAtBitSet;
+                resultSetArray[bitSetsWithAtLeastOneRegistration[i]] = compositeSetAtBitSet;
             }
         }
         return resultSetArray;
