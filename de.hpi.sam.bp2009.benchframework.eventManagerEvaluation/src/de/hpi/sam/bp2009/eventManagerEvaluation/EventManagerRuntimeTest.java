@@ -275,7 +275,7 @@ public class EventManagerRuntimeTest {
             // }
             OrFilter finalF = new OrFilter();
             for (int i = 0; i < x; i++) {
-                finalF.getOperands().add(new NewValueClassFilter(CompanyPackage.eINSTANCE.getEmployee(), true, false));
+                finalF.getOperands().add(new NewValueClassFilter(CompanyPackage.eINSTANCE.getEmployee(), false));
             }
 
             fw.write(getDepth(finalF, 0l) + ",");
