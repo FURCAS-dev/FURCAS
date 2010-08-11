@@ -9,16 +9,17 @@ import java.util.logging.Logger;
 
 import org.antlr.runtime.BitSet;
 import org.antlr.runtime.RecognitionException;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 
-import com.sap.mi.fwk.ConnectionManager;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
@@ -29,9 +30,7 @@ import com.sap.runlet.abstractinterpreter.AbstractRunletInterpreter;
 import com.sap.runlet.abstractinterpreter.StackFrame;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.repository.Repository;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 /**
  * Takes an ExpressionType or a StatementType in a concrete textual syntax and parses it 
@@ -46,14 +45,14 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * @author Axel Uhl (D043530)
  * @author Jan Karstens (D046040)
  */
-public abstract class Evaluator<MetaClass extends RefObject, 
-		       TypeUsage extends RefObject, 
+public abstract class Evaluator<MetaClass extends EObject, 
+		       TypeUsage extends EObject, 
 		       ClassUsage extends TypeUsage, 
-		       LinkMetaObject extends RefObject, 
-		       LinkEndMetaObject extends RefObject, 
-		       StatementType extends RefObject, 
-		       ExpressionType extends RefObject, 
-		       SignatureImplementationType extends RefObject, 
+		       LinkMetaObject extends EObject, 
+		       LinkEndMetaObject extends EObject, 
+		       StatementType extends EObject, 
+		       ExpressionType extends EObject, 
+		       SignatureImplementationType extends EObject, 
 		       StackFrameType extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementationType>, 
 		       NativeType extends SignatureImplementationType, 
 		       InterpreterType extends AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>,
@@ -61,7 +60,7 @@ public abstract class Evaluator<MetaClass extends RefObject,
 
     private Logger log = Logger.getLogger(Evaluator.class.getName());
 
-    private Connection conn;
+    private ResourceSet conn;
 
     /**
      * The stack frame corresponding to the {@link #contextBlock} for statement
@@ -129,7 +128,7 @@ public abstract class Evaluator<MetaClass extends RefObject,
 	}
     }
 
-    public static class ParseResult<ExpressionType extends RefObject> {
+    public static class ParseResult<ExpressionType extends EObject> {
 	private List<String> errors;
 	private Collection<JmiException> constraintViolations;
 	private ExpressionType expression;
@@ -159,7 +158,7 @@ public abstract class Evaluator<MetaClass extends RefObject,
 	init(getConnection(projectName), repository);
     }
 
-    private void init(Connection connection,
+    private void init(ResourceSet connection,
 	    Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> repository) {
 	this.conn = connection;
 	closeConnectionUponFinalize = false;
@@ -177,7 +176,7 @@ public abstract class Evaluator<MetaClass extends RefObject,
      * * closeConnectionUponFinalize (optional, default false)
      * @param connection
      */
-    protected abstract void initLocalFields(Connection connection, Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> repository);
+    protected abstract void initLocalFields(ResourceSet connection, Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> repository);
 
     /**
      * Initializes the {@link #getInterpreter() interpreter} with a connection
@@ -204,7 +203,7 @@ public abstract class Evaluator<MetaClass extends RefObject,
 	init(projectName, repository);
     }
 
-    public Evaluator(Connection connection,
+    public Evaluator(ResourceSet connection,
 	    Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> repository) {
 	init(connection, repository);
     }
@@ -220,9 +219,9 @@ public abstract class Evaluator<MetaClass extends RefObject,
 	return getInterpreter().getRepository();
     }
 
-    public static Connection getConnection(String projectName) {
+    public static ResourceSet getConnection(String projectName) {
 	final IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-	final Connection[] conn = new Connection[1];
+	final ResourceSet[] conn = new ResourceSet[1];
 	IRunnableWithProgress operation = new IRunnableWithProgress() {
 	    public void run(IProgressMonitor monitor) {
 		// non UI thread
@@ -475,7 +474,7 @@ public abstract class Evaluator<MetaClass extends RefObject,
 	return interpreter;
     }
 
-    public Connection getConnection() {
+    public ResourceSet getConnection() {
 	return conn;
     }
 
