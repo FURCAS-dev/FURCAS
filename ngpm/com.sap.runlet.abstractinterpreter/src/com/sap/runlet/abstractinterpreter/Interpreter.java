@@ -2,9 +2,9 @@ package com.sap.runlet.abstractinterpreter;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * An interpreter for model elements of type <tt>T</tt>. The interpreter has to provide
@@ -15,14 +15,14 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * @param <T>
  */
 public interface Interpreter<T,
-			     MetaClass extends RefObject,
-			     TypeUsage extends RefObject,
+			     MetaClass extends EObject,
+			     TypeUsage extends EObject,
 			     ClassUsage extends TypeUsage,
-			     LinkMetaObject extends RefObject,
-			     LinkEndMetaObject extends RefObject,
-			     StatementType extends RefObject,
-			     ExpressionType extends RefObject,
-			     SignatureImplementationType extends RefObject,
+			     LinkMetaObject extends EObject,
+			     LinkEndMetaObject extends EObject,
+			     StatementType extends EObject,
+			     ExpressionType extends EObject,
+			     SignatureImplementationType extends EObject,
 			     StackFrameType extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementationType>,
 			     NativeType extends SignatureImplementationType,
 			     InterpreterType extends AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> {

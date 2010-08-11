@@ -8,6 +8,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.Side;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
@@ -17,8 +19,6 @@ import com.sap.runlet.abstractinterpreter.repository.SimpleLinkContainer;
 import com.sap.runlet.abstractinterpreter.repository.Snapshot;
 import com.sap.runlet.abstractinterpreter.util.HashBag;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * A container for {@link Link}s, similar to the {@link RunletLinkContainer}, but much simpler.
@@ -29,10 +29,10 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * 
  * @author Axel Uhl (D043530)
  */
-public class SimpleLinkContainerImpl<LinkMetaObject extends RefObject,
-				     LinkEndMetaObject extends RefObject,
-				     MetaClass extends RefObject,
-				     TypeUsage extends RefObject,
+public class SimpleLinkContainerImpl<LinkMetaObject extends EObject,
+				     LinkEndMetaObject extends EObject,
+				     MetaClass extends EObject,
+				     TypeUsage extends EObject,
 				     ClassUsage extends TypeUsage>
 implements SimpleLinkContainer<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> {
     /**

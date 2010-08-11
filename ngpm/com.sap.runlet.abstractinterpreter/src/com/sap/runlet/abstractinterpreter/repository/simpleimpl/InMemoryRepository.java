@@ -14,6 +14,8 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.AbstractValueObject;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
@@ -35,15 +37,13 @@ import com.sap.runlet.abstractinterpreter.repository.SnapshotIdentifier;
 import com.sap.runlet.abstractinterpreter.repository.SnapshotImpl;
 import com.sap.runlet.abstractinterpreter.repository.Tag;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 
 
-public class InMemoryRepository<LinkMetaObject extends RefObject,
-LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject,
-TypeUsage extends RefObject,
+public class InMemoryRepository<LinkMetaObject extends EObject,
+LinkEndMetaObject extends EObject,
+MetaClass extends EObject,
+TypeUsage extends EObject,
 ClassUsage extends TypeUsage> implements Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>{
     private Map<Snapshot, SimpleLinkContainerImpl<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>> linkContainers;
     private Map<Snapshot, Set<EntityObject<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>>> entities;

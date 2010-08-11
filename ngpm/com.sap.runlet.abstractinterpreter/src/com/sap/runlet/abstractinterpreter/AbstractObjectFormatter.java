@@ -1,7 +1,8 @@
 package com.sap.runlet.abstractinterpreter;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public interface AbstractObjectFormatter<LinkEndMetaObject, TypeUsage, ClassUsage extends TypeUsage,
 SignatureImplementationType> {
@@ -12,5 +13,5 @@ SignatureImplementationType> {
 
     String formatOwnerOfSignatureOfImpl(SignatureImplementationType signatureImpl);
 
-    String formatCurrentlyEvaluatingRefObject(RefObject currentlyEvaluating);
+    String formatCurrentlyEvaluatingRefObject(EObject currentlyEvaluating);
 }

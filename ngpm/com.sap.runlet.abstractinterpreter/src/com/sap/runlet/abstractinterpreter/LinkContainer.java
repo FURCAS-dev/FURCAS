@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.AbstractValueObject;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
@@ -27,7 +29,6 @@ import com.sap.runlet.abstractinterpreter.repository.SnapshotIdentifier;
 import com.sap.runlet.abstractinterpreter.util.Bag;
 import com.sap.runlet.abstractinterpreter.util.HashBag;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Objects are structurally connected by links which are typed by associations. Each link has two
@@ -45,14 +46,14 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * 
  * @author Axel Uhl (D043530)
  */
-public abstract class LinkContainer<LinkMetaObject extends RefObject,
-				    LinkEndMetaObject extends RefObject,
-				    MetaClass extends RefObject,
-				    TypeUsage extends RefObject,
+public abstract class LinkContainer<LinkMetaObject extends EObject,
+				    LinkEndMetaObject extends EObject,
+				    MetaClass extends EObject,
+				    TypeUsage extends EObject,
 				    ClassUsage extends TypeUsage,
-				    StatementType extends RefObject,
-				    ExpressionType extends RefObject,
-				    SignatureImplementationType extends RefObject,
+				    StatementType extends EObject,
+				    ExpressionType extends EObject,
+				    SignatureImplementationType extends EObject,
 				    StackFrameType extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementationType>,
 				    NativeType extends SignatureImplementationType,
 				    InterpreterType extends AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> {

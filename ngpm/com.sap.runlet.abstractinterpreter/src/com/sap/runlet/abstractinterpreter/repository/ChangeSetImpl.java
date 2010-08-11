@@ -9,14 +9,15 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
 import com.sap.runlet.abstractinterpreter.objects.Link;
 import com.sap.runlet.abstractinterpreter.operationaltransformation.Change;
+import com.sap.runlet.abstractinterpreter.repository.ChangeSetImpl.StretchOfContiguousLinkCreations;
 import com.sap.runlet.abstractinterpreter.util.ClassFilterIterator;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * Describes a set of changes to data. This can include creation and deletion of
@@ -112,8 +113,8 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
  * @author Axel Uhl (D043530)
  * 
  */
-public class ChangeSetImpl<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+public class ChangeSetImpl<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage>
 implements MutableChangeSet<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>,
 Change<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> {
     private final List<RepositoryChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>> changes;
@@ -382,8 +383,8 @@ Change<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> {
      * link sequence that represents the ordered "collection" of objects on the ordered
      * end when navigated from that same object at the unordered end.
      */
-    public static <LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-    MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+    public static <LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+    MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage>
     boolean areLinksFromSameOrderedEntitySequence(
 	    LinkChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> lc1,
 	    LinkChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> lc2) {

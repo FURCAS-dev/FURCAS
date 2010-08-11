@@ -2,9 +2,10 @@ package com.sap.runlet.abstractinterpreter.repository;
 
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
 import com.sap.runlet.abstractinterpreter.objects.Link;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Describes a single change in a {@link ChangeSet}. Positions must be specified
@@ -18,8 +19,8 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * @author Jan Karstens D046040
  * 
  */
-public abstract class RepositoryChange<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+public abstract class RepositoryChange<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage>
 implements Cloneable {
     private RepositoryObject object;
     public RepositoryChange(RepositoryObject object) {

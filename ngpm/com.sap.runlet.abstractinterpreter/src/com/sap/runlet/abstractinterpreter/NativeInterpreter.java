@@ -2,9 +2,9 @@ package com.sap.runlet.abstractinterpreter;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Expected to return a {@link ReturnInterpreter.ReturnResult} from the
@@ -12,14 +12,14 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * 
  * @author Axel Uhl (D043530)
  */
-public abstract class NativeInterpreter<MetaClass extends RefObject,
-			     TypeUsage extends RefObject,
+public abstract class NativeInterpreter<MetaClass extends EObject,
+			     TypeUsage extends EObject,
 			     ClassUsage extends TypeUsage,
-			     LinkMetaObject extends RefObject,
-			     LinkEndMetaObject extends RefObject,
-			     StatementType extends RefObject,
-			     ExpressionType extends RefObject,
-			     SignatureImplementationType extends RefObject,
+			     LinkMetaObject extends EObject,
+			     LinkEndMetaObject extends EObject,
+			     StatementType extends EObject,
+			     ExpressionType extends EObject,
+			     SignatureImplementationType extends EObject,
 			     StackFrameType extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementationType>,
 			     NativeType extends SignatureImplementationType,
 			     InterpreterType extends AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>>

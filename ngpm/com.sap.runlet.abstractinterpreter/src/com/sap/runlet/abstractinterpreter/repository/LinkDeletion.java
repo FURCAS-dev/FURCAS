@@ -2,12 +2,13 @@ package com.sap.runlet.abstractinterpreter.repository;
 
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
 import com.sap.runlet.abstractinterpreter.objects.Link;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-public class LinkDeletion<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+public class LinkDeletion<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage>
 extends LinkChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> {
 
     public LinkDeletion(Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> link, Integer insertPosition) {

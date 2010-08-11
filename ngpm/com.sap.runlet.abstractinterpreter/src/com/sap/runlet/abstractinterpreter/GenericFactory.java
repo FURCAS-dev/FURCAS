@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
 
 /**
  * For an object, such as a model element or a {@link RunletObject}, finds the

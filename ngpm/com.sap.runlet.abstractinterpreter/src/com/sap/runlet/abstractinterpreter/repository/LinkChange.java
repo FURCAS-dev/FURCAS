@@ -1,10 +1,11 @@
 package com.sap.runlet.abstractinterpreter.repository;
 
-import com.sap.runlet.abstractinterpreter.objects.Link;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
 
-public abstract class LinkChange<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+import com.sap.runlet.abstractinterpreter.objects.Link;
+
+public abstract class LinkChange<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage>
 extends RepositoryChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> {
     private Integer position;
 

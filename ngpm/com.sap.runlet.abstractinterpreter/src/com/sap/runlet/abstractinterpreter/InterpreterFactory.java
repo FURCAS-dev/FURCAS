@@ -2,7 +2,7 @@ package com.sap.runlet.abstractinterpreter;
 
 import java.lang.reflect.InvocationTargetException;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * For a model element, such as an expression, finds the most adequate
@@ -34,14 +34,14 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * 
  * @author Axel Uhl (D043530)
  */
-public abstract class InterpreterFactory<C, T extends RefObject, MetaClass extends RefObject,
-TypeUsage extends RefObject,
+public abstract class InterpreterFactory<C, T extends EObject, MetaClass extends EObject,
+TypeUsage extends EObject,
 ClassUsage extends TypeUsage,
-LinkMetaObject extends RefObject,
-LinkEndMetaObject extends RefObject,
-StatementType extends RefObject,
-ExpressionType extends RefObject,
-SignatureImplementationType extends RefObject,
+LinkMetaObject extends EObject,
+LinkEndMetaObject extends EObject,
+StatementType extends EObject,
+ExpressionType extends EObject,
+SignatureImplementationType extends EObject,
 StackFrameType extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementationType>,
 NativeType extends SignatureImplementationType,
 InterpreterType extends AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>>

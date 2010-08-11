@@ -5,11 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
 import com.sap.runlet.abstractinterpreter.objects.Link;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * <h2>Overview</h2>
@@ -105,8 +105,8 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * @author Axel Uhl (D043530)
  * 
  */
-public interface Repository<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject, MetaClass extends RefObject,
-TypeUsage extends RefObject, ClassUsage extends TypeUsage> {
+public interface Repository<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject, MetaClass extends EObject,
+TypeUsage extends EObject, ClassUsage extends TypeUsage> {
     /**
      * @return the "current" or "default" snapshot available at the time of calling. If no means of
      *         locking or synchronization are available or used, it may of course happen that

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**
@@ -34,7 +34,7 @@ public class DebugSession {
      * These are the elements at whose evaluation the interpreter to which this object is attached
      * is supposed to stop.
      */
-    private Set<RefObject> elementBreakpoints;
+    private Set<EObject> elementBreakpoints;
     
     /**
      * Step-into breakpoints, managed per {@link AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType> interpreter}. No need to remember
@@ -74,7 +74,7 @@ public class DebugSession {
 
     public DebugSession(DebugListener listener) {
 	this.listener = listener;
-	elementBreakpoints = new HashSet<RefObject>();
+	elementBreakpoints = new HashSet<EObject>();
 	interpretersToSuspend = new HashSet<AbstractRunletInterpreter<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>>();
 	stepIntoBreakpoints = new HashSet<AbstractRunletInterpreter<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>>();
 	stepOverBreakpoints = new HashMap<AbstractRunletInterpreter<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, Integer>();
@@ -82,11 +82,11 @@ public class DebugSession {
 	resumeReasons = new HashMap<AbstractRunletInterpreter<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?>, DebugListener.ResumeReason>();
     }
     
-    public void addBreakpoint(RefObject elementToStopAt) {
+    public void addBreakpoint(EObject elementToStopAt) {
 	elementBreakpoints.add(elementToStopAt);
     }
     
-    public void removeBreakpoint(RefObject elementToNoLongerStopAt) {
+    public void removeBreakpoint(EObject elementToNoLongerStopAt) {
 	elementBreakpoints.remove(elementToNoLongerStopAt);
     }
     
@@ -116,7 +116,7 @@ public class DebugSession {
      * those to be suspended. Only once the interpreter is resumed will the calling thread get
      * unblocked.
      */
-    public void aboutToEvaluate(AbstractRunletInterpreter<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> interpreter, RefObject element) {
+    public void aboutToEvaluate(AbstractRunletInterpreter<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> interpreter, EObject element) {
 	if (!interpreter.isRunning()) {
 	    if (listener != null) {
 		listener.started(interpreter);

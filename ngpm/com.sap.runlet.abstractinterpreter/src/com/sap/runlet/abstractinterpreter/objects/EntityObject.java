@@ -5,11 +5,11 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.AbstractRunletInterpreter;
 import com.sap.runlet.abstractinterpreter.repository.SnapshotIdentifier;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * Represents an object that is instance of a entity class. It is only a container for an ID
@@ -21,8 +21,8 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
  * 
  * @author Axel Uhl (D043530)
  */
-public class EntityObject<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject, MetaClass extends RefObject,
-TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+public class EntityObject<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject, MetaClass extends EObject,
+TypeUsage extends EObject, ClassUsage extends TypeUsage>
 extends ClassTypedObject<LinkEndMetaObject, TypeUsage, ClassUsage> {
     private final ModelAdapter<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> modelAdapter;
     private final AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, ?, ?, ?, ?, ?, ?> interpreter;
