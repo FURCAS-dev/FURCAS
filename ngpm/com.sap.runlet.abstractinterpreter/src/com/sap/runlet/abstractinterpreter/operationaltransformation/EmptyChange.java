@@ -4,11 +4,12 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sap.runlet.abstractinterpreter.repository.RepositoryChange;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
 
-public class EmptyChange<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+import com.sap.runlet.abstractinterpreter.repository.RepositoryChange;
+
+public class EmptyChange<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage>
 implements Change<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> {
 
     @Override

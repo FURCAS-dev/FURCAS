@@ -3,9 +3,8 @@ package com.sap.runlet.abstractinterpreter;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * For a model element, such as an expression, finds the most adequate
@@ -37,30 +36,30 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * 
  * @author Axel Uhl (D043530)
  */
-public class MofClassInterpreterFactory<T extends RefObject,
-					MetaClass extends RefObject,
-					TypeUsage extends RefObject,
+public class EClassInterpreterFactory<T extends EObject,
+					MetaClass extends EObject,
+					TypeUsage extends EObject,
 					ClassUsage extends TypeUsage,
-					LinkMetaObject extends RefObject,
-					LinkEndMetaObject extends RefObject,
-					StatementType extends RefObject,
-					ExpressionType extends RefObject,
-					SignatureImplementationType extends RefObject,
+					LinkMetaObject extends EObject,
+					LinkEndMetaObject extends EObject,
+					StatementType extends EObject,
+					ExpressionType extends EObject,
+					SignatureImplementationType extends EObject,
 					StackFrameType extends StackFrame<LinkEndMetaObject,
 					TypeUsage, ClassUsage, SignatureImplementationType>,
 					NativeType extends SignatureImplementationType,
 					InterpreterType extends AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>>
 	extends
-	InterpreterFactory<MofClass, T, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> {
-    protected MofClass getType(T modelElement) {
-	MofClass clazz = (MofClass) modelElement.refMetaObject();
+	InterpreterFactory<EClass, T, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> {
+    protected EClass getType(T modelElement) {
+	EClass clazz = (EClass) modelElement.refMetaObject();
 	return clazz;
     }
 
-    protected Iterable<MofClass> getDirectSupertypes(MofClass c) {
-	List<MofClass> result = new LinkedList<MofClass>();
-	for (GeneralizableElement ge:c.getSupertypes()) {
-	    result.add((MofClass) ge);
+    protected Iterable<EClass> getDirectSupertypes(EClass c) {
+	List<EClass> result = new LinkedList<EClass>();
+	for (EClass ge:c.getESuperTypes()) {
+	    result.add((EClass) ge);
 	}
 	return result;
     }

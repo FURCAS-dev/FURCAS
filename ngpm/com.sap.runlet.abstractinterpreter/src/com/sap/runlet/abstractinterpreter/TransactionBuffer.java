@@ -2,6 +2,8 @@ package com.sap.runlet.abstractinterpreter;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
 import com.sap.runlet.abstractinterpreter.objects.Link;
 import com.sap.runlet.abstractinterpreter.repository.ChangeSet;
@@ -15,7 +17,6 @@ import com.sap.runlet.abstractinterpreter.repository.RepositoryObject;
 import com.sap.runlet.abstractinterpreter.repository.Snapshot;
 import com.sap.runlet.abstractinterpreter.repository.SnapshotIdentifier;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * A transaction buffer is a change set, thus keeping track of object and link creations and
@@ -33,8 +34,8 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * @author Axel Uhl (D043530)
  * 
  */
-public class TransactionBuffer<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+public class TransactionBuffer<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage>
 implements ChangeSet<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> {
 
     /**

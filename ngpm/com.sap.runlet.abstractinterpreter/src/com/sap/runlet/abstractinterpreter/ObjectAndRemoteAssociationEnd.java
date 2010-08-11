@@ -1,8 +1,9 @@
 package com.sap.runlet.abstractinterpreter;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * A value-holder class for an object and a remote association end. Use instances
@@ -11,11 +12,11 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * 
  * @author Axel Uhl (D043530)
  */
-public class ObjectAndRemoteAssociationEnd<LinkMetaObject extends RefObject,
-					   LinkEndMetaObject extends RefObject,
-					   TypeUsage extends RefObject,
+public class ObjectAndRemoteAssociationEnd<LinkMetaObject extends EObject,
+					   LinkEndMetaObject extends EObject,
+					   TypeUsage extends EObject,
 					   ClassUsage extends TypeUsage,
-					   MetaClass extends RefObject> {
+					   MetaClass extends EObject> {
 	private final ClassTypedObject<LinkEndMetaObject, TypeUsage, ClassUsage> object;
 	private final LinkEndMetaObject remoteAssociationEnd;
 	private final ModelAdapter<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> modelAdapter;

@@ -1,6 +1,7 @@
 package com.sap.runlet.abstractinterpreter;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
+
 
 /**
  * To be implemented by those who register for events from a {@link DebugSession}
@@ -55,5 +56,5 @@ public interface DebugListener {
 
     void terminated(AbstractRunletInterpreter<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> interpreter);
 
-    void hitBreakpoint(AbstractRunletInterpreter<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> interpreter, RefObject element);
+    void hitBreakpoint(AbstractRunletInterpreter<?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> interpreter, EObject element);
 }

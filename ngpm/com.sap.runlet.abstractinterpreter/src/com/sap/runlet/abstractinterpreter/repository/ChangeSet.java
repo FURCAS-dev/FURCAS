@@ -2,8 +2,9 @@ package com.sap.runlet.abstractinterpreter.repository;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.operationaltransformation.Change;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Describes a set of changes to data. This can include creation and deletion of entity objects as
@@ -51,8 +52,8 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * @author Axel Uhl (D043530)
  * 
  */
-public interface ChangeSet<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+public interface ChangeSet<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage>
 extends Iterable<RepositoryChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>>,
 Change<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> {
     /**

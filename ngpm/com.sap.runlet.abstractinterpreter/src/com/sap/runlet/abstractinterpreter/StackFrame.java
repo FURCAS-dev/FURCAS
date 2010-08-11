@@ -6,11 +6,12 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.omg.CORBA.NamedValue;
 
+import com.sap.furcas.metamodel.TCS.Block;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Holds one frame of a call stack of an execution thread corresponding to a {@link Block}
@@ -45,7 +46,7 @@ public class StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage extends TypeUsa
      * In debug mode, the {@link DebugSession} will maintain the "instruction pointer" which is the
      * model element currently being evaluated
      */
-    private RefObject currentlyEvaluating;
+    private EObject currentlyEvaluating;
     
     /**
      * The <tt>this</tt> pointer of the stack frame in element 0; the array is <tt>null</tt>
@@ -84,11 +85,11 @@ public class StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage extends TypeUsa
 	return result;
     }
     
-    public void setCurrentlyEvaluating(RefObject element) {
+    public void setCurrentlyEvaluating(EObject element) {
 	currentlyEvaluating = element;
     }
     
-    public RefObject getCurrentlyEvaluating() {
+    public EObject getCurrentlyEvaluating() {
 	return currentlyEvaluating;
     }
     

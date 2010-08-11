@@ -13,6 +13,10 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.runlet.abstractinterpreter.objects.AbstractValueObject;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
@@ -28,30 +32,26 @@ import com.sap.runlet.abstractinterpreter.repository.Snapshot;
 import com.sap.runlet.abstractinterpreter.repository.SnapshotIdentifier;
 import com.sap.runlet.abstractinterpreter.util.Bag;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
+
 
 /**
  * 
  */
-abstract public class AbstractRunletInterpreter<MetaClass extends RefObject,
-						TypeUsage extends RefObject,
+abstract public class AbstractRunletInterpreter<MetaClass extends EObject,
+						TypeUsage extends EObject,
 						ClassUsage extends TypeUsage,
-						LinkMetaObject extends RefObject,
-						LinkEndMetaObject extends RefObject,
-						StatementType extends RefObject,
-						ExpressionType extends RefObject,
-						SignatureImplementationType extends RefObject,
+						LinkMetaObject extends EObject,
+						LinkEndMetaObject extends EObject,
+						StatementType extends EObject,
+						ExpressionType extends EObject,
+						SignatureImplementationType extends EObject,
 						StackFrameType extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementationType>,
 						NativeType extends SignatureImplementationType,
 						InterpreterType extends AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> {
 
-    private final MofClassInterpreterFactory<ExpressionType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> expressionInterpreterFactory;
-    private final MofClassInterpreterFactory<StatementType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> statementInterpreterFactory;
-    private final MofClassInterpreterFactory<SignatureImplementationType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> signatureImplementationInterpreterFactory;
+    private final EClassInterpreterFactory<ExpressionType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> expressionInterpreterFactory;
+    private final EClassInterpreterFactory<StatementType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> statementInterpreterFactory;
+    private final EClassInterpreterFactory<SignatureImplementationType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> signatureImplementationInterpreterFactory;
     
     private final LinkContainer<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> linkContainer;
 
@@ -120,11 +120,11 @@ abstract public class AbstractRunletInterpreter<MetaClass extends RefObject,
 
     private final TransactionBuffer<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> transactionBuffer;
     private final Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> repository;
-    private final Connection connection;
+    private final ResourceSet connection;
     private final ModelAdapter<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> modelAdapter;
 
     public AbstractRunletInterpreter(
-	    Connection conn,
+	    ResourceSet conn,
 	    Repository<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> repository,
 	    ModelAdapter<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> modelAdapter,
 	    InterpreterFactory<MetaClass, NativeType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> nativeInterpreterFactory,
@@ -134,9 +134,9 @@ abstract public class AbstractRunletInterpreter<MetaClass extends RefObject,
 	this.connection = conn;
 	this.repository = repository;
 	this.modelAdapter = modelAdapter;
-	expressionInterpreterFactory = new MofClassInterpreterFactory<ExpressionType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>();
-	statementInterpreterFactory = new MofClassInterpreterFactory<StatementType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>();
-	signatureImplementationInterpreterFactory = new MofClassInterpreterFactory<SignatureImplementationType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>();
+	expressionInterpreterFactory = new EClassInterpreterFactory<ExpressionType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>();
+	statementInterpreterFactory = new EClassInterpreterFactory<StatementType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>();
+	signatureImplementationInterpreterFactory = new EClassInterpreterFactory<SignatureImplementationType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>();
 	this.nativeInterpreterFactory = nativeInterpreterFactory;
 	runningChildren = new HashSet<InterpreterType>();
 	transactionBuffer = new TransactionBuffer<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>(
@@ -166,17 +166,17 @@ abstract public class AbstractRunletInterpreter<MetaClass extends RefObject,
 	setDebugSession(parent.getDebugSession());
     }
     
-    private void initInterpreterFactories(Connection conn) {
+    private void initInterpreterFactories(ResourceSet conn) {
 	initExpressionInterpreterFactory(conn);
 	initStatementInterpreterFactory(conn);
 	initSignatureImplementationInterpreterFactory(conn);
 	initNativeInterpreterFactory(conn);
     }
 
-    protected abstract void initExpressionInterpreterFactory(Connection conn);
-    protected abstract void initStatementInterpreterFactory(Connection conn);
-    protected abstract void initSignatureImplementationInterpreterFactory(Connection conn);
-    protected abstract void initNativeInterpreterFactory(Connection conn);
+    protected abstract void initExpressionInterpreterFactory(ResourceSet conn);
+    protected abstract void initStatementInterpreterFactory(ResourceSet conn);
+    protected abstract void initSignatureImplementationInterpreterFactory(ResourceSet conn);
+    protected abstract void initNativeInterpreterFactory(ResourceSet conn);
     
     public ModelAdapter<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> getModelAdapter() {
         return modelAdapter;
@@ -191,15 +191,15 @@ abstract public class AbstractRunletInterpreter<MetaClass extends RefObject,
 	return linkContainer;
     }
 
-    public void registerExpressionInterpreter(Class<Interpreter<ExpressionType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> interpreter, MofClass... classes) {
+    public void registerExpressionInterpreter(Class<Interpreter<ExpressionType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> interpreter, EClass... classes) {
 	getExpressionInterpreterFactory().registerInterpreter(interpreter, classes);
     }
 
-    public void registerStatementInterpreter(Class<Interpreter<StatementType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> interpreter, MofClass... classes) {
+    public void registerStatementInterpreter(Class<Interpreter<StatementType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> interpreter, EClass... classes) {
 	getStatementInterpreterFactory().registerInterpreter(interpreter, classes);
     }
 
-    public void registerSignatureImplementationInterpreter(Class<Interpreter<SignatureImplementationType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> interpreter, MofClass... classes) {
+    public void registerSignatureImplementationInterpreter(Class<Interpreter<SignatureImplementationType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>> interpreter, EClass... classes) {
 	getSignatureImplementationInterpreterFactory().registerInterpreter(interpreter, classes);
     }
     
@@ -208,15 +208,15 @@ abstract public class AbstractRunletInterpreter<MetaClass extends RefObject,
 	getNativeInterpreterFactory().registerInterpreter(interpreter, classes);
     }
 
-    protected MofClassInterpreterFactory<ExpressionType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> getExpressionInterpreterFactory() {
+    protected EClassInterpreterFactory<ExpressionType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> getExpressionInterpreterFactory() {
 	return expressionInterpreterFactory;
     }
 
-    protected MofClassInterpreterFactory<StatementType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> getStatementInterpreterFactory() {
+    protected EClassInterpreterFactory<StatementType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> getStatementInterpreterFactory() {
 	return statementInterpreterFactory;
     }
 
-    protected MofClassInterpreterFactory<SignatureImplementationType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> getSignatureImplementationInterpreterFactory() {
+    protected EClassInterpreterFactory<SignatureImplementationType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> getSignatureImplementationInterpreterFactory() {
 	return signatureImplementationInterpreterFactory;
     }
 
@@ -454,7 +454,7 @@ abstract public class AbstractRunletInterpreter<MetaClass extends RefObject,
 		getModelAdapter().getAssociation(to));
     }
 
-    public Connection getConnection() {
+    public ResourceSet getConnection() {
 	return connection;
     }
 
@@ -644,7 +644,7 @@ abstract public class AbstractRunletInterpreter<MetaClass extends RefObject,
      * 
      * @return the old value of the {@link #running} flag
      */
-    private boolean enterEvaluate(RefObject element) {
+    private boolean enterEvaluate(EObject element) {
 	boolean result = running;
 	if (!result) {
 	    if (getParent() != null) {
@@ -686,7 +686,7 @@ abstract public class AbstractRunletInterpreter<MetaClass extends RefObject,
 	Interpreter<? extends ExpressionType, MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType> interpreter = getExpressionInterpreterFactory().getInterpreterFor(e);
 	if (interpreter == null) {
 	    throw new RuntimeException("No interpreter for expression of type "
-		    + ((MofClass) e.refMetaObject()).getQualifiedName());
+		    + ((EClass) e.refMetaObject()).getQualifiedName());
 	}
 	RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> result = interpreter.evaluate(getThis());
 	exitEvaluate(oldRunning);

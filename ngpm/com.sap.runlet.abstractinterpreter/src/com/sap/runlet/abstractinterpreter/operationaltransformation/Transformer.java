@@ -1,5 +1,7 @@
 package com.sap.runlet.abstractinterpreter.operationaltransformation;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.Side;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
 import com.sap.runlet.abstractinterpreter.repository.ChangeSetImpl;
@@ -8,8 +10,6 @@ import com.sap.runlet.abstractinterpreter.repository.LinkChange;
 import com.sap.runlet.abstractinterpreter.repository.LinkCreation;
 import com.sap.runlet.abstractinterpreter.repository.LinkDeletion;
 import com.sap.runlet.abstractinterpreter.repository.RepositoryChange;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * Takes two {@link Change} objects, one from the client, the other from the
@@ -18,8 +18,8 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
  * @author Axel Uhl D043530
  *
  */
-public class Transformer<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage> {
+public class Transformer<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage> {
     private enum Direction { TO_SERVER, TO_CLIENT };
     
     /**

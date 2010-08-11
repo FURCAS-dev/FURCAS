@@ -2,11 +2,12 @@ package com.sap.runlet.abstractinterpreter.operationaltransformation;
 
 import java.util.Iterator;
 
-import com.sap.runlet.abstractinterpreter.repository.RepositoryChange;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
 
-public class SingleChange<LinkMetaObject extends RefObject, LinkEndMetaObject extends RefObject,
-MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends TypeUsage>
+import com.sap.runlet.abstractinterpreter.repository.RepositoryChange;
+
+public class SingleChange<LinkMetaObject extends EObject, LinkEndMetaObject extends EObject,
+MetaClass extends EObject, TypeUsage extends EObject, ClassUsage extends TypeUsage>
 implements Change<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> {
     private RepositoryChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> change;
     
