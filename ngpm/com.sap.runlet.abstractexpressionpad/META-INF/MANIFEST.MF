@@ -8,11 +8,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.4.2",
  com.sap.runlet.abstractinterpreter,
- com.sap.mi.fwk,
  com.sap.mi.textual.common,
  com.sap.mi.textual.parsing,
- com.sap.tc.moin.libraries.api,
- com.sap.tc.moin.globalmodellistener
+ com.sap.furcas.metamodel;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.runlet.abstractexpressionpad,

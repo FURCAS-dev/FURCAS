@@ -5,6 +5,7 @@ import java.io.StringWriter;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
@@ -33,7 +34,6 @@ import com.sap.runlet.abstractexpressionpad.Evaluator.ExecuteResult;
 import com.sap.runlet.abstractinterpreter.AbstractRunletInterpreter;
 import com.sap.runlet.abstractinterpreter.StackFrame;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * This sample class demonstrates how to plug-in a new workbench view. The view
@@ -50,16 +50,16 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * <p>
  */
 
-public abstract class ConsoleView<LinkMetaObject extends RefObject,
-LinkEndMetaObject extends RefObject, MetaClass extends RefObject,
-TypeUsage extends RefObject, ClassUsage extends TypeUsage,
-StatementType extends RefObject, ExpressionType extends RefObject,
-SignatureImplementationType extends RefObject,
+public abstract class ConsoleView<LinkMetaObject extends EObject,
+LinkEndMetaObject extends EObject, MetaClass extends EObject,
+TypeUsage extends EObject, ClassUsage extends TypeUsage,
+StatementType extends EObject, ExpressionType extends EObject,
+SignatureImplementationType extends EObject,
 StackFrameType extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementationType>, 
 NativeType extends SignatureImplementationType, 
 InterpreterType extends AbstractRunletInterpreter<MetaClass, TypeUsage, ClassUsage, LinkMetaObject, LinkEndMetaObject, StatementType, ExpressionType, SignatureImplementationType, StackFrameType, NativeType, InterpreterType>,
 BlockType extends SignatureImplementationType,
-VariableType extends RefObject> extends ViewPart {
+VariableType extends EObject> extends ViewPart {
 
     protected Text output;
     private Text errorOutput;

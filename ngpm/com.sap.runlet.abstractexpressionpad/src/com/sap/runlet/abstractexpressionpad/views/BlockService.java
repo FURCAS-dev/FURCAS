@@ -2,12 +2,12 @@ package com.sap.runlet.abstractexpressionpad.views;
 
 import java.util.Collection;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
 
-public interface BlockService<BlockType extends RefObject,
-			      VariableType extends RefObject,
-			      StatementType extends RefObject,
-			      TypeUsage extends RefObject> {
+public interface BlockService<BlockType extends EObject,
+			      VariableType extends EObject,
+			      StatementType extends EObject,
+			      TypeUsage extends EObject> {
     Collection<VariableType> getVariables(BlockType block);
     String getVariableName(VariableType variable);
     Collection<StatementType> getStatements(BlockType block);
