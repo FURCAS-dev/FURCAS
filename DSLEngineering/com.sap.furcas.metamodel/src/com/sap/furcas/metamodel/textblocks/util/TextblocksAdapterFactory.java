@@ -102,6 +102,14 @@ public class TextblocksAdapterFactory extends AdapterFactoryImpl {
 				return createForEachContextAdapter();
 			}
 			@Override
+			public Adapter caseEostoken(Eostoken object) {
+				return createEostokenAdapter();
+			}
+			@Override
+			public Adapter caseBostoken(Bostoken object) {
+				return createBostokenAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -216,6 +224,34 @@ public class TextblocksAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createForEachContextAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.textblocks.Eostoken <em>Eostoken</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.textblocks.Eostoken
+	 * @generated
+	 */
+	public Adapter createEostokenAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.sap.furcas.metamodel.textblocks.Bostoken <em>Bostoken</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.sap.furcas.metamodel.textblocks.Bostoken
+	 * @generated
+	 */
+	public Adapter createBostokenAdapter() {
 		return null;
 	}
 

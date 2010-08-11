@@ -32,6 +32,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getOffset <em>Offset</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getLength <em>Length</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getOtherVersions <em>Other Versions</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#isOffsetRelative <em>Offset Relative</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getStartRow <em>Start Row</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getStartColumn <em>Start Column</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getEndRow <em>End Row</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getEndColumn <em>End Column</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +89,136 @@ public interface DocumentNode extends EObject {
 	 * @generated
 	 */
 	EList<DocumentNode> getOtherVersions();
+
+	/**
+	 * Returns the value of the '<em><b>Offset Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Offset Relative</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Offset Relative</em>' attribute.
+	 * @see #setOffsetRelative(boolean)
+	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getDocumentNode_OffsetRelative()
+	 * @model
+	 * @generated
+	 */
+	boolean isOffsetRelative();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#isOffsetRelative <em>Offset Relative</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Offset Relative</em>' attribute.
+	 * @see #isOffsetRelative()
+	 * @generated
+	 */
+	void setOffsetRelative(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Start Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Start Row</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Start Row</em>' attribute.
+	 * @see #setStartRow(int)
+	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getDocumentNode_StartRow()
+	 * @model
+	 * @generated
+	 */
+	int getStartRow();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getStartRow <em>Start Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Start Row</em>' attribute.
+	 * @see #getStartRow()
+	 * @generated
+	 */
+	void setStartRow(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Start Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Start Column</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Start Column</em>' attribute.
+	 * @see #setStartColumn(int)
+	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getDocumentNode_StartColumn()
+	 * @model
+	 * @generated
+	 */
+	int getStartColumn();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getStartColumn <em>Start Column</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Start Column</em>' attribute.
+	 * @see #getStartColumn()
+	 * @generated
+	 */
+	void setStartColumn(int value);
+
+	/**
+	 * Returns the value of the '<em><b>End Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>End Row</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End Row</em>' attribute.
+	 * @see #setEndRow(int)
+	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getDocumentNode_EndRow()
+	 * @model
+	 * @generated
+	 */
+	int getEndRow();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getEndRow <em>End Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End Row</em>' attribute.
+	 * @see #getEndRow()
+	 * @generated
+	 */
+	void setEndRow(int value);
+
+	/**
+	 * Returns the value of the '<em><b>End Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>End Column</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>End Column</em>' attribute.
+	 * @see #setEndColumn(int)
+	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getDocumentNode_EndColumn()
+	 * @model
+	 * @generated
+	 */
+	int getEndColumn();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getEndColumn <em>End Column</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>End Column</em>' attribute.
+	 * @see #getEndColumn()
+	 * @generated
+	 */
+	void setEndColumn(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Children Changed</b></em>' attribute.

@@ -50,6 +50,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getOffset <em>Offset</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getLength <em>Length</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getOtherVersions <em>Other Versions</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#isOffsetRelative <em>Offset Relative</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getStartRow <em>Start Row</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getStartColumn <em>Start Column</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getEndRow <em>End Row</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getEndColumn <em>End Column</em>}</li>
  * </ul>
  * </p>
  *
@@ -207,6 +212,106 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	protected EList<DocumentNode> otherVersions;
 
 	/**
+	 * The default value of the '{@link #isOffsetRelative() <em>Offset Relative</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOffsetRelative()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OFFSET_RELATIVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isOffsetRelative() <em>Offset Relative</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOffsetRelative()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean offsetRelative = OFFSET_RELATIVE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStartRow() <em>Start Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStartRow()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int START_ROW_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getStartRow() <em>Start Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStartRow()
+	 * @generated
+	 * @ordered
+	 */
+	protected int startRow = START_ROW_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getStartColumn() <em>Start Column</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStartColumn()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int START_COLUMN_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getStartColumn() <em>Start Column</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStartColumn()
+	 * @generated
+	 * @ordered
+	 */
+	protected int startColumn = START_COLUMN_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEndRow() <em>End Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndRow()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int END_ROW_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getEndRow() <em>End Row</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndRow()
+	 * @generated
+	 * @ordered
+	 */
+	protected int endRow = END_ROW_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getEndColumn() <em>End Column</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndColumn()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int END_COLUMN_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getEndColumn() <em>End Column</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEndColumn()
+	 * @generated
+	 * @ordered
+	 */
+	protected int endColumn = END_COLUMN_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -256,6 +361,111 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 			otherVersions = new EObjectResolvingEList<DocumentNode>(DocumentNode.class, this, TextblocksPackage.DOCUMENT_NODE__OTHER_VERSIONS);
 		}
 		return otherVersions;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isOffsetRelative() {
+		return offsetRelative;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOffsetRelative(boolean newOffsetRelative) {
+		boolean oldOffsetRelative = offsetRelative;
+		offsetRelative = newOffsetRelative;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE, oldOffsetRelative, offsetRelative));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getStartRow() {
+		return startRow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStartRow(int newStartRow) {
+		int oldStartRow = startRow;
+		startRow = newStartRow;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__START_ROW, oldStartRow, startRow));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getStartColumn() {
+		return startColumn;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStartColumn(int newStartColumn) {
+		int oldStartColumn = startColumn;
+		startColumn = newStartColumn;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__START_COLUMN, oldStartColumn, startColumn));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getEndRow() {
+		return endRow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndRow(int newEndRow) {
+		int oldEndRow = endRow;
+		endRow = newEndRow;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__END_ROW, oldEndRow, endRow));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getEndColumn() {
+		return endColumn;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndColumn(int newEndColumn) {
+		int oldEndColumn = endColumn;
+		endColumn = newEndColumn;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__END_COLUMN, oldEndColumn, endColumn));
 	}
 
 	/**
@@ -472,6 +682,16 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 				return getLength();
 			case TextblocksPackage.DOCUMENT_NODE__OTHER_VERSIONS:
 				return getOtherVersions();
+			case TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE:
+				return isOffsetRelative();
+			case TextblocksPackage.DOCUMENT_NODE__START_ROW:
+				return getStartRow();
+			case TextblocksPackage.DOCUMENT_NODE__START_COLUMN:
+				return getStartColumn();
+			case TextblocksPackage.DOCUMENT_NODE__END_ROW:
+				return getEndRow();
+			case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
+				return getEndColumn();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -518,6 +738,21 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 				getOtherVersions().clear();
 				getOtherVersions().addAll((Collection<? extends DocumentNode>)newValue);
 				return;
+			case TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE:
+				setOffsetRelative((Boolean)newValue);
+				return;
+			case TextblocksPackage.DOCUMENT_NODE__START_ROW:
+				setStartRow((Integer)newValue);
+				return;
+			case TextblocksPackage.DOCUMENT_NODE__START_COLUMN:
+				setStartColumn((Integer)newValue);
+				return;
+			case TextblocksPackage.DOCUMENT_NODE__END_ROW:
+				setEndRow((Integer)newValue);
+				return;
+			case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
+				setEndColumn((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -560,6 +795,21 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 			case TextblocksPackage.DOCUMENT_NODE__OTHER_VERSIONS:
 				getOtherVersions().clear();
 				return;
+			case TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE:
+				setOffsetRelative(OFFSET_RELATIVE_EDEFAULT);
+				return;
+			case TextblocksPackage.DOCUMENT_NODE__START_ROW:
+				setStartRow(START_ROW_EDEFAULT);
+				return;
+			case TextblocksPackage.DOCUMENT_NODE__START_COLUMN:
+				setStartColumn(START_COLUMN_EDEFAULT);
+				return;
+			case TextblocksPackage.DOCUMENT_NODE__END_ROW:
+				setEndRow(END_ROW_EDEFAULT);
+				return;
+			case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
+				setEndColumn(END_COLUMN_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -592,6 +842,16 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 				return length != LENGTH_EDEFAULT;
 			case TextblocksPackage.DOCUMENT_NODE__OTHER_VERSIONS:
 				return otherVersions != null && !otherVersions.isEmpty();
+			case TextblocksPackage.DOCUMENT_NODE__OFFSET_RELATIVE:
+				return offsetRelative != OFFSET_RELATIVE_EDEFAULT;
+			case TextblocksPackage.DOCUMENT_NODE__START_ROW:
+				return startRow != START_ROW_EDEFAULT;
+			case TextblocksPackage.DOCUMENT_NODE__START_COLUMN:
+				return startColumn != START_COLUMN_EDEFAULT;
+			case TextblocksPackage.DOCUMENT_NODE__END_ROW:
+				return endRow != END_ROW_EDEFAULT;
+			case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
+				return endColumn != END_COLUMN_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -616,6 +876,16 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 		result.append(offset);
 		result.append(", length: ");
 		result.append(length);
+		result.append(", offsetRelative: ");
+		result.append(offsetRelative);
+		result.append(", startRow: ");
+		result.append(startRow);
+		result.append(", startColumn: ");
+		result.append(startColumn);
+		result.append(", endRow: ");
+		result.append(endRow);
+		result.append(", endColumn: ");
+		result.append(endColumn);
 		result.append(')');
 		return result.toString();
 	}

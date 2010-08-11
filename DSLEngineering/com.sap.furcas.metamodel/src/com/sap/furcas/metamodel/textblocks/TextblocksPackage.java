@@ -161,13 +161,58 @@ public interface TextblocksPackage extends EPackage {
 	int DOCUMENT_NODE__OTHER_VERSIONS = 9;
 
 	/**
+	 * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT_NODE__OFFSET_RELATIVE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Start Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT_NODE__START_ROW = 11;
+
+	/**
+	 * The feature id for the '<em><b>Start Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT_NODE__START_COLUMN = 12;
+
+	/**
+	 * The feature id for the '<em><b>End Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT_NODE__END_ROW = 13;
+
+	/**
+	 * The feature id for the '<em><b>End Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT_NODE__END_COLUMN = 14;
+
+	/**
 	 * The number of structural features of the '<em>Document Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_NODE_FEATURE_COUNT = 10;
+	int DOCUMENT_NODE_FEATURE_COUNT = 15;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl <em>Text Block</em>}' class.
@@ -270,13 +315,22 @@ public interface TextblocksPackage extends EPackage {
 	int TEXT_BLOCK__OTHER_VERSIONS = DOCUMENT_NODE__OTHER_VERSIONS;
 
 	/**
+	 * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BLOCK__OFFSET_RELATIVE = DOCUMENT_NODE__OFFSET_RELATIVE;
+
+	/**
 	 * The feature id for the '<em><b>Start Row</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__START_ROW = DOCUMENT_NODE_FEATURE_COUNT + 0;
+	int TEXT_BLOCK__START_ROW = DOCUMENT_NODE__START_ROW;
 
 	/**
 	 * The feature id for the '<em><b>Start Column</b></em>' attribute.
@@ -285,7 +339,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__START_COLUMN = DOCUMENT_NODE_FEATURE_COUNT + 1;
+	int TEXT_BLOCK__START_COLUMN = DOCUMENT_NODE__START_COLUMN;
 
 	/**
 	 * The feature id for the '<em><b>End Row</b></em>' attribute.
@@ -294,7 +348,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__END_ROW = DOCUMENT_NODE_FEATURE_COUNT + 2;
+	int TEXT_BLOCK__END_ROW = DOCUMENT_NODE__END_ROW;
 
 	/**
 	 * The feature id for the '<em><b>End Column</b></em>' attribute.
@@ -303,7 +357,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__END_COLUMN = DOCUMENT_NODE_FEATURE_COUNT + 3;
+	int TEXT_BLOCK__END_COLUMN = DOCUMENT_NODE__END_COLUMN;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -312,7 +366,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__TYPE = DOCUMENT_NODE_FEATURE_COUNT + 4;
+	int TEXT_BLOCK__TYPE = DOCUMENT_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Sub Nodes</b></em>' reference list.
@@ -321,7 +375,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__SUB_NODES = DOCUMENT_NODE_FEATURE_COUNT + 5;
+	int TEXT_BLOCK__SUB_NODES = DOCUMENT_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Parent Alt Choices</b></em>' attribute list.
@@ -330,7 +384,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__PARENT_ALT_CHOICES = DOCUMENT_NODE_FEATURE_COUNT + 6;
+	int TEXT_BLOCK__PARENT_ALT_CHOICES = DOCUMENT_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Elements In Context</b></em>' reference list.
@@ -339,7 +393,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__ELEMENTS_IN_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 7;
+	int TEXT_BLOCK__ELEMENTS_IN_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>For Each Context</b></em>' containment reference list.
@@ -348,7 +402,25 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__FOR_EACH_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 8;
+	int TEXT_BLOCK__FOR_EACH_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Alive</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BLOCK__ALIVE = DOCUMENT_NODE_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Cached String</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BLOCK__CACHED_STRING = DOCUMENT_NODE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Text Block</em>' class.
@@ -357,7 +429,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 9;
+	int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.AbstractTokenImpl <em>Abstract Token</em>}' class.
@@ -458,6 +530,51 @@ public interface TextblocksPackage extends EPackage {
 	 * @ordered
 	 */
 	int ABSTRACT_TOKEN__OTHER_VERSIONS = DOCUMENT_NODE__OTHER_VERSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOKEN__OFFSET_RELATIVE = DOCUMENT_NODE__OFFSET_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Start Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOKEN__START_ROW = DOCUMENT_NODE__START_ROW;
+
+	/**
+	 * The feature id for the '<em><b>Start Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOKEN__START_COLUMN = DOCUMENT_NODE__START_COLUMN;
+
+	/**
+	 * The feature id for the '<em><b>End Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOKEN__END_ROW = DOCUMENT_NODE__END_ROW;
+
+	/**
+	 * The feature id for the '<em><b>End Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOKEN__END_COLUMN = DOCUMENT_NODE__END_COLUMN;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -605,6 +722,51 @@ public interface TextblocksPackage extends EPackage {
 	int OMITTED_TOKEN__OTHER_VERSIONS = ABSTRACT_TOKEN__OTHER_VERSIONS;
 
 	/**
+	 * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OMITTED_TOKEN__OFFSET_RELATIVE = ABSTRACT_TOKEN__OFFSET_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Start Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OMITTED_TOKEN__START_ROW = ABSTRACT_TOKEN__START_ROW;
+
+	/**
+	 * The feature id for the '<em><b>Start Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OMITTED_TOKEN__START_COLUMN = ABSTRACT_TOKEN__START_COLUMN;
+
+	/**
+	 * The feature id for the '<em><b>End Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OMITTED_TOKEN__END_ROW = ABSTRACT_TOKEN__END_ROW;
+
+	/**
+	 * The feature id for the '<em><b>End Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OMITTED_TOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -750,6 +912,51 @@ public interface TextblocksPackage extends EPackage {
 	int LEXED_TOKEN__OTHER_VERSIONS = ABSTRACT_TOKEN__OTHER_VERSIONS;
 
 	/**
+	 * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEXED_TOKEN__OFFSET_RELATIVE = ABSTRACT_TOKEN__OFFSET_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Start Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEXED_TOKEN__START_ROW = ABSTRACT_TOKEN__START_ROW;
+
+	/**
+	 * The feature id for the '<em><b>Start Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEXED_TOKEN__START_COLUMN = ABSTRACT_TOKEN__START_COLUMN;
+
+	/**
+	 * The feature id for the '<em><b>End Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEXED_TOKEN__END_ROW = ABSTRACT_TOKEN__END_ROW;
+
+	/**
+	 * The feature id for the '<em><b>End Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEXED_TOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -786,13 +993,22 @@ public interface TextblocksPackage extends EPackage {
 	int LEXED_TOKEN__STATE = ABSTRACT_TOKEN__STATE;
 
 	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEXED_TOKEN__OPERATOR = ABSTRACT_TOKEN_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Lexed Token</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 0;
+	int LEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.UnlexedTokenImpl <em>Unlexed Token</em>}' class.
@@ -895,6 +1111,51 @@ public interface TextblocksPackage extends EPackage {
 	int UNLEXED_TOKEN__OTHER_VERSIONS = ABSTRACT_TOKEN__OTHER_VERSIONS;
 
 	/**
+	 * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLEXED_TOKEN__OFFSET_RELATIVE = ABSTRACT_TOKEN__OFFSET_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Start Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLEXED_TOKEN__START_ROW = ABSTRACT_TOKEN__START_ROW;
+
+	/**
+	 * The feature id for the '<em><b>Start Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLEXED_TOKEN__START_COLUMN = ABSTRACT_TOKEN__START_COLUMN;
+
+	/**
+	 * The feature id for the '<em><b>End Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLEXED_TOKEN__END_ROW = ABSTRACT_TOKEN__END_ROW;
+
+	/**
+	 * The feature id for the '<em><b>End Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLEXED_TOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -995,6 +1256,386 @@ public interface TextblocksPackage extends EPackage {
 	int FOR_EACH_CONTEXT_FEATURE_COUNT = 4;
 
 	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.EostokenImpl <em>Eostoken</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.textblocks.impl.EostokenImpl
+	 * @see com.sap.furcas.metamodel.textblocks.impl.TextblocksPackageImpl#getEostoken()
+	 * @generated
+	 */
+	int EOSTOKEN = 7;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__VERSION = ABSTRACT_TOKEN__VERSION;
+
+	/**
+	 * The feature id for the '<em><b>Children Changed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__CHILDREN_CHANGED = ABSTRACT_TOKEN__CHILDREN_CHANGED;
+
+	/**
+	 * The feature id for the '<em><b>Relexing Needed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__PARENT = ABSTRACT_TOKEN__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__CORRESPONDING_MODEL_ELEMENTS = ABSTRACT_TOKEN__CORRESPONDING_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__REFERENCED_ELEMENTS = ABSTRACT_TOKEN__REFERENCED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__SEQUENCE_ELEMENT = ABSTRACT_TOKEN__SEQUENCE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__OFFSET = ABSTRACT_TOKEN__OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__LENGTH = ABSTRACT_TOKEN__LENGTH;
+
+	/**
+	 * The feature id for the '<em><b>Other Versions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__OTHER_VERSIONS = ABSTRACT_TOKEN__OTHER_VERSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__OFFSET_RELATIVE = ABSTRACT_TOKEN__OFFSET_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Start Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__START_ROW = ABSTRACT_TOKEN__START_ROW;
+
+	/**
+	 * The feature id for the '<em><b>Start Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__START_COLUMN = ABSTRACT_TOKEN__START_COLUMN;
+
+	/**
+	 * The feature id for the '<em><b>End Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__END_ROW = ABSTRACT_TOKEN__END_ROW;
+
+	/**
+	 * The feature id for the '<em><b>End Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__VALUE = ABSTRACT_TOKEN__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Lookahead</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__LOOKAHEAD = ABSTRACT_TOKEN__LOOKAHEAD;
+
+	/**
+	 * The feature id for the '<em><b>Lookback</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__LOOKBACK = ABSTRACT_TOKEN__LOOKBACK;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__STATE = ABSTRACT_TOKEN__STATE;
+
+	/**
+	 * The number of structural features of the '<em>Eostoken</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.BostokenImpl <em>Bostoken</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.sap.furcas.metamodel.textblocks.impl.BostokenImpl
+	 * @see com.sap.furcas.metamodel.textblocks.impl.TextblocksPackageImpl#getBostoken()
+	 * @generated
+	 */
+	int BOSTOKEN = 8;
+
+	/**
+	 * The feature id for the '<em><b>Version</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__VERSION = ABSTRACT_TOKEN__VERSION;
+
+	/**
+	 * The feature id for the '<em><b>Children Changed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__CHILDREN_CHANGED = ABSTRACT_TOKEN__CHILDREN_CHANGED;
+
+	/**
+	 * The feature id for the '<em><b>Relexing Needed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__PARENT = ABSTRACT_TOKEN__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Corresponding Model Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__CORRESPONDING_MODEL_ELEMENTS = ABSTRACT_TOKEN__CORRESPONDING_MODEL_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Referenced Elements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__REFERENCED_ELEMENTS = ABSTRACT_TOKEN__REFERENCED_ELEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Sequence Element</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__SEQUENCE_ELEMENT = ABSTRACT_TOKEN__SEQUENCE_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__OFFSET = ABSTRACT_TOKEN__OFFSET;
+
+	/**
+	 * The feature id for the '<em><b>Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__LENGTH = ABSTRACT_TOKEN__LENGTH;
+
+	/**
+	 * The feature id for the '<em><b>Other Versions</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__OTHER_VERSIONS = ABSTRACT_TOKEN__OTHER_VERSIONS;
+
+	/**
+	 * The feature id for the '<em><b>Offset Relative</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__OFFSET_RELATIVE = ABSTRACT_TOKEN__OFFSET_RELATIVE;
+
+	/**
+	 * The feature id for the '<em><b>Start Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__START_ROW = ABSTRACT_TOKEN__START_ROW;
+
+	/**
+	 * The feature id for the '<em><b>Start Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__START_COLUMN = ABSTRACT_TOKEN__START_COLUMN;
+
+	/**
+	 * The feature id for the '<em><b>End Row</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__END_ROW = ABSTRACT_TOKEN__END_ROW;
+
+	/**
+	 * The feature id for the '<em><b>End Column</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__VALUE = ABSTRACT_TOKEN__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Lookahead</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__LOOKAHEAD = ABSTRACT_TOKEN__LOOKAHEAD;
+
+	/**
+	 * The feature id for the '<em><b>Lookback</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__LOOKBACK = ABSTRACT_TOKEN__LOOKBACK;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__STATE = ABSTRACT_TOKEN__STATE;
+
+	/**
+	 * The number of structural features of the '<em>Bostoken</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.Version <em>Version</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1002,7 +1643,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @see com.sap.furcas.metamodel.textblocks.impl.TextblocksPackageImpl#getVersion()
 	 * @generated
 	 */
-	int VERSION = 7;
+	int VERSION = 9;
 
 
 	/**
@@ -1014,50 +1655,6 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTextBlock();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getStartRow <em>Start Row</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Start Row</em>'.
-	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getStartRow()
-	 * @see #getTextBlock()
-	 * @generated
-	 */
-	EAttribute getTextBlock_StartRow();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getStartColumn <em>Start Column</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Start Column</em>'.
-	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getStartColumn()
-	 * @see #getTextBlock()
-	 * @generated
-	 */
-	EAttribute getTextBlock_StartColumn();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getEndRow <em>End Row</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>End Row</em>'.
-	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getEndRow()
-	 * @see #getTextBlock()
-	 * @generated
-	 */
-	EAttribute getTextBlock_EndRow();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getEndColumn <em>End Column</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>End Column</em>'.
-	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getEndColumn()
-	 * @see #getTextBlock()
-	 * @generated
-	 */
-	EAttribute getTextBlock_EndColumn();
 
 	/**
 	 * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}'.
@@ -1113,6 +1710,28 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTextBlock_ForEachContext();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.TextBlock#is___Alive <em>Alive</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alive</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#is___Alive()
+	 * @see #getTextBlock()
+	 * @generated
+	 */
+	EAttribute getTextBlock____Alive();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getCachedString <em>Cached String</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Cached String</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getCachedString()
+	 * @see #getTextBlock()
+	 * @generated
+	 */
+	EAttribute getTextBlock_CachedString();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.textblocks.AbstractToken <em>Abstract Token</em>}'.
@@ -1189,6 +1808,17 @@ public interface TextblocksPackage extends EPackage {
 	EClass getLexedToken();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.LexedToken#isOperator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Operator</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.LexedToken#isOperator()
+	 * @see #getLexedToken()
+	 * @generated
+	 */
+	EAttribute getLexedToken_Operator();
+
+	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.textblocks.UnlexedToken <em>Unlexed Token</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1229,6 +1859,61 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDocumentNode_OtherVersions();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#isOffsetRelative <em>Offset Relative</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Offset Relative</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#isOffsetRelative()
+	 * @see #getDocumentNode()
+	 * @generated
+	 */
+	EAttribute getDocumentNode_OffsetRelative();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getStartRow <em>Start Row</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start Row</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#getStartRow()
+	 * @see #getDocumentNode()
+	 * @generated
+	 */
+	EAttribute getDocumentNode_StartRow();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getStartColumn <em>Start Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start Column</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#getStartColumn()
+	 * @see #getDocumentNode()
+	 * @generated
+	 */
+	EAttribute getDocumentNode_StartColumn();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getEndRow <em>End Row</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>End Row</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#getEndRow()
+	 * @see #getDocumentNode()
+	 * @generated
+	 */
+	EAttribute getDocumentNode_EndRow();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getEndColumn <em>End Column</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>End Column</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#getEndColumn()
+	 * @see #getDocumentNode()
+	 * @generated
+	 */
+	EAttribute getDocumentNode_EndColumn();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.textblocks.ForEachContext <em>For Each Context</em>}'.
@@ -1283,6 +1968,26 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getForEachContext_SourceModelElement();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.textblocks.Eostoken <em>Eostoken</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Eostoken</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.Eostoken
+	 * @generated
+	 */
+	EClass getEostoken();
+
+	/**
+	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.textblocks.Bostoken <em>Bostoken</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bostoken</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.Bostoken
+	 * @generated
+	 */
+	EClass getBostoken();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#isChildrenChanged <em>Children Changed</em>}'.
@@ -1415,38 +2120,6 @@ public interface TextblocksPackage extends EPackage {
 		EClass TEXT_BLOCK = eINSTANCE.getTextBlock();
 
 		/**
-		 * The meta object literal for the '<em><b>Start Row</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT_BLOCK__START_ROW = eINSTANCE.getTextBlock_StartRow();
-
-		/**
-		 * The meta object literal for the '<em><b>Start Column</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT_BLOCK__START_COLUMN = eINSTANCE.getTextBlock_StartColumn();
-
-		/**
-		 * The meta object literal for the '<em><b>End Row</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT_BLOCK__END_ROW = eINSTANCE.getTextBlock_EndRow();
-
-		/**
-		 * The meta object literal for the '<em><b>End Column</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT_BLOCK__END_COLUMN = eINSTANCE.getTextBlock_EndColumn();
-
-		/**
 		 * The meta object literal for the '<em><b>Sub Nodes</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1485,6 +2158,22 @@ public interface TextblocksPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEXT_BLOCK__FOR_EACH_CONTEXT = eINSTANCE.getTextBlock_ForEachContext();
+
+		/**
+		 * The meta object literal for the '<em><b>Alive</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT_BLOCK__ALIVE = eINSTANCE.getTextBlock____Alive();
+
+		/**
+		 * The meta object literal for the '<em><b>Cached String</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEXT_BLOCK__CACHED_STRING = eINSTANCE.getTextBlock_CachedString();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.textblocks.impl.AbstractTokenImpl <em>Abstract Token</em>}' class.
@@ -1549,6 +2238,14 @@ public interface TextblocksPackage extends EPackage {
 		EClass LEXED_TOKEN = eINSTANCE.getLexedToken();
 
 		/**
+		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEXED_TOKEN__OPERATOR = eINSTANCE.getLexedToken_Operator();
+
+		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.textblocks.impl.UnlexedTokenImpl <em>Unlexed Token</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1583,6 +2280,46 @@ public interface TextblocksPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DOCUMENT_NODE__OTHER_VERSIONS = eINSTANCE.getDocumentNode_OtherVersions();
+
+		/**
+		 * The meta object literal for the '<em><b>Offset Relative</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT_NODE__OFFSET_RELATIVE = eINSTANCE.getDocumentNode_OffsetRelative();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Row</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT_NODE__START_ROW = eINSTANCE.getDocumentNode_StartRow();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Column</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT_NODE__START_COLUMN = eINSTANCE.getDocumentNode_StartColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>End Row</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT_NODE__END_ROW = eINSTANCE.getDocumentNode_EndRow();
+
+		/**
+		 * The meta object literal for the '<em><b>End Column</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT_NODE__END_COLUMN = eINSTANCE.getDocumentNode_EndColumn();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.textblocks.impl.ForEachContextImpl <em>For Each Context</em>}' class.
@@ -1625,6 +2362,26 @@ public interface TextblocksPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FOR_EACH_CONTEXT__SOURCE_MODEL_ELEMENT = eINSTANCE.getForEachContext_SourceModelElement();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.textblocks.impl.EostokenImpl <em>Eostoken</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.textblocks.impl.EostokenImpl
+		 * @see com.sap.furcas.metamodel.textblocks.impl.TextblocksPackageImpl#getEostoken()
+		 * @generated
+		 */
+		EClass EOSTOKEN = eINSTANCE.getEostoken();
+
+		/**
+		 * The meta object literal for the '{@link com.sap.furcas.metamodel.textblocks.impl.BostokenImpl <em>Bostoken</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.sap.furcas.metamodel.textblocks.impl.BostokenImpl
+		 * @see com.sap.furcas.metamodel.textblocks.impl.TextblocksPackageImpl#getBostoken()
+		 * @generated
+		 */
+		EClass BOSTOKEN = eINSTANCE.getBostoken();
 
 		/**
 		 * The meta object literal for the '<em><b>Children Changed</b></em>' attribute feature.

@@ -5850,13 +5850,22 @@ public interface TCSPackage extends EPackage {
 	int FILTER_PARG__FILTER = OCL_PARG_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Invert</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILTER_PARG__INVERT = OCL_PARG_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Filter PArg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FILTER_PARG_FEATURE_COUNT = OCL_PARG_FEATURE_COUNT + 1;
+	int FILTER_PARG_FEATURE_COUNT = OCL_PARG_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.TCS.impl.PropertyReferenceImpl <em>Property Reference</em>}' class.
@@ -9301,6 +9310,17 @@ public interface TCSPackage extends EPackage {
 	EAttribute getFilterPArg_Filter();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.TCS.FilterPArg#getInvert <em>Invert</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Invert</em>'.
+	 * @see com.sap.furcas.metamodel.TCS.FilterPArg#getInvert()
+	 * @see #getFilterPArg()
+	 * @generated
+	 */
+	EAttribute getFilterPArg_Invert();
+
+	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.TCS.OclPArg <em>Ocl PArg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -11570,6 +11590,14 @@ public interface TCSPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FILTER_PARG__FILTER = eINSTANCE.getFilterPArg_Filter();
+
+		/**
+		 * The meta object literal for the '<em><b>Invert</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FILTER_PARG__INVERT = eINSTANCE.getFilterPArg_Invert();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.TCS.impl.OclPArgImpl <em>Ocl PArg</em>}' class.

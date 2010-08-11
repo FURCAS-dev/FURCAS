@@ -138,6 +138,22 @@ public class TextblocksSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TextblocksPackage.EOSTOKEN: {
+				Eostoken eostoken = (Eostoken)theEObject;
+				T result = caseEostoken(eostoken);
+				if (result == null) result = caseAbstractToken(eostoken);
+				if (result == null) result = caseDocumentNode(eostoken);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TextblocksPackage.BOSTOKEN: {
+				Bostoken bostoken = (Bostoken)theEObject;
+				T result = caseBostoken(bostoken);
+				if (result == null) result = caseAbstractToken(bostoken);
+				if (result == null) result = caseDocumentNode(bostoken);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -244,6 +260,36 @@ public class TextblocksSwitch<T> {
 	 * @generated
 	 */
 	public T caseForEachContext(ForEachContext object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Eostoken</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Eostoken</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEostoken(Eostoken object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Bostoken</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Bostoken</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBostoken(Bostoken object) {
 		return null;
 	}
 

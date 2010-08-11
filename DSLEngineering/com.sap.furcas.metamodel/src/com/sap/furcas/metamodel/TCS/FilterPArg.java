@@ -16,6 +16,7 @@ package com.sap.furcas.metamodel.TCS;
  * The following features are supported:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.FilterPArg#getFilter <em>Filter</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.FilterPArg#getInvert <em>Invert</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,4 +51,30 @@ public interface FilterPArg extends OclPArg {
 	 * @generated
 	 */
 	void setFilter(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Invert</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Invert</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Invert</em>' attribute.
+	 * @see #setInvert(String)
+	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getFilterPArg_Invert()
+	 * @model
+	 * @generated
+	 */
+	String getInvert();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.FilterPArg#getInvert <em>Invert</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Invert</em>' attribute.
+	 * @see #getInvert()
+	 * @generated
+	 */
+	void setInvert(String value);
 } // FilterPArg

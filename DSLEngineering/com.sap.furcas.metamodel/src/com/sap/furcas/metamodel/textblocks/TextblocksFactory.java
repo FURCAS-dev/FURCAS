@@ -62,6 +62,24 @@ public interface TextblocksFactory extends EFactory {
 	ForEachContext createForEachContext();
 
 	/**
+	 * Returns a new object of class '<em>Eostoken</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Eostoken</em>'.
+	 * @generated
+	 */
+	Eostoken createEostoken();
+
+	/**
+	 * Returns a new object of class '<em>Bostoken</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Bostoken</em>'.
+	 * @generated
+	 */
+	Bostoken createBostoken();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

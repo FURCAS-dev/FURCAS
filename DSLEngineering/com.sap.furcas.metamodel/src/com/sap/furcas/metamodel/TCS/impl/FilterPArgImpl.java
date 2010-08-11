@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link com.sap.furcas.metamodel.TCS.impl.FilterPArgImpl#getFilter <em>Filter</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.TCS.impl.FilterPArgImpl#getInvert <em>Invert</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,6 +46,25 @@ public class FilterPArgImpl extends OclPArgImpl implements FilterPArg {
 	 * @ordered
 	 */
 	protected String filter = FILTER_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getInvert() <em>Invert</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInvert()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String INVERT_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getInvert() <em>Invert</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInvert()
+	 * @generated
+	 * @ordered
+	 */
+	protected String invert = INVERT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -91,11 +111,34 @@ public class FilterPArgImpl extends OclPArgImpl implements FilterPArg {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getInvert() {
+		return invert;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setInvert(String newInvert) {
+		String oldInvert = invert;
+		invert = newInvert;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TCSPackage.FILTER_PARG__INVERT, oldInvert, invert));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case TCSPackage.FILTER_PARG__FILTER:
 				return getFilter();
+			case TCSPackage.FILTER_PARG__INVERT:
+				return getInvert();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,6 +153,9 @@ public class FilterPArgImpl extends OclPArgImpl implements FilterPArg {
 		switch (featureID) {
 			case TCSPackage.FILTER_PARG__FILTER:
 				setFilter((String)newValue);
+				return;
+			case TCSPackage.FILTER_PARG__INVERT:
+				setInvert((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,6 +172,9 @@ public class FilterPArgImpl extends OclPArgImpl implements FilterPArg {
 			case TCSPackage.FILTER_PARG__FILTER:
 				setFilter(FILTER_EDEFAULT);
 				return;
+			case TCSPackage.FILTER_PARG__INVERT:
+				setInvert(INVERT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -140,6 +189,8 @@ public class FilterPArgImpl extends OclPArgImpl implements FilterPArg {
 		switch (featureID) {
 			case TCSPackage.FILTER_PARG__FILTER:
 				return FILTER_EDEFAULT == null ? filter != null : !FILTER_EDEFAULT.equals(filter);
+			case TCSPackage.FILTER_PARG__INVERT:
+				return INVERT_EDEFAULT == null ? invert != null : !INVERT_EDEFAULT.equals(invert);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -156,6 +207,8 @@ public class FilterPArgImpl extends OclPArgImpl implements FilterPArg {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (filter: ");
 		result.append(filter);
+		result.append(", invert: ");
+		result.append(invert);
 		result.append(')');
 		return result.toString();
 	}
