@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.query.IndexQueryFactory;
 import org.eclipse.emf.query.index.query.QueryCommand;
 import org.eclipse.emf.query.index.query.QueryExecutor;
@@ -38,7 +37,6 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
-import org.eclipse.emf.query2.TypeScopeProvider;
 
 import com.sap.furcas.metamodel.TCS.Alternative;
 import com.sap.furcas.metamodel.TCS.AsPArg;
@@ -85,8 +83,6 @@ import com.sap.furcas.metamodel.TCS.Token;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
-import com.sap.tc.moin.textual.moinadapter.adapter.MoinModelAdapterDelegate;
 
 
 /**

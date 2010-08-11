@@ -5,9 +5,10 @@ package com.sap.mi.textual.tcs.util;
 
 import java.util.List;
 
-import com.sap.mi.textual.common.util.QualifiedNamesHelper;
+import org.eclipse.emf.common.util.EList;
 
-import tcs.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.mi.textual.common.util.QualifiedNamesHelper;
 
 
 /**
@@ -19,7 +20,7 @@ public class MessageHelper {
         if (template.getNames() != null && template.getNames().size() > 0) {
             return QualifiedNamesHelper.getQualifiedString(template.getNames());
         } else if (template.getMetaReference() != null) {
-            List<String> nameList = template.getMetaReference().getQualifiedName();
+            EList<String> nameList = template.getMetaReference().getQualifiedName();
             return QualifiedNamesHelper.getQualifiedString(nameList);
         } else {
             return "<Bug: template without name or reference>";
