@@ -5,10 +5,10 @@ package com.sap.mi.textual.parsing.textblocks.observer;
 
 import java.util.List;
 
-import tcs.Alternative;
-import tcs.ConditionalElement;
-import tcs.SequenceElement;
-import textblocks.AbstractToken;
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
 
 /**
  * traverses a virtual tree based on events, traces an existing tree where there is an overlap.

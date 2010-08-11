@@ -3,9 +3,8 @@ package com.sap.mi.textual.parsing.textblocks.observer;
 import java.util.Collection;
 import java.util.List;
 
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
 
 public class TextBlockComparer {

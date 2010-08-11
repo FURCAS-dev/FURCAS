@@ -4,10 +4,11 @@
 package com.sap.mi.textual.parsing.textblocks;
 
 import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.nextToken;
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
+
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
 
 /**
  *
@@ -31,7 +32,7 @@ public class TbMarkingUtil {
     public static void mark(AbstractToken tok) {
         if (!isEOS(tok) && !isBOS(tok)) {
             tok.setRelexingNeeded(true);
-            TbChangeUtil.markAscending(tok.getParentBlock());
+            TbChangeUtil.markAscending(tok.getParent());
         }
     }
 

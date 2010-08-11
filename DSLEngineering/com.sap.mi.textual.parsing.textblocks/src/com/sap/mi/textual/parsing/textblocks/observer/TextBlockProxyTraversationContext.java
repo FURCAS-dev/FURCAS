@@ -6,9 +6,9 @@ package com.sap.mi.textual.parsing.textblocks.observer;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.Alternative;
-import tcs.SequenceElement;
-import textblocks.LexedToken;
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
 
 /**
  *

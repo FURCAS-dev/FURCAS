@@ -11,24 +11,24 @@ import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import tcs.ContextTemplate;
-import tcs.InjectorAction;
-import tcs.InjectorActionsBlock;
-import tcs.Property;
-import tcs.Template;
-import textblockdefinition.TextBlockDefinition;
-import textblockdefinition.TextblockDefinitionReferencesProduction;
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.ForeachContext;
-import textblocks.LexedToken;
-import textblocks.LexedTokenReferenesSequenceElement;
-import textblocks.TextBlock;
-import textblocks.TextBlockAdditionalTemplates;
-import textblocks.TextBlockType;
-
+import com.sap.furcas.metamodel.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
@@ -36,17 +36,7 @@ import com.sap.mi.textual.parsing.textblocks.LexedTokenWrapper;
 import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.ocl.ia.Statistics;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.events.ChangeListener;
-import com.sap.tc.moin.repository.events.EventChain;
-import com.sap.tc.moin.repository.events.UpdateListener;
-import com.sap.tc.moin.repository.events.type.ChangeEvent;
-import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
+
 
 
 /**
@@ -76,7 +66,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
     @Override
     public void notifyUpdate(EventChain events) {
 	if (!events.getEvents().isEmpty()) {
-	    Connection conn = events.getEvents().iterator().next().getEventTriggerConnection();
+	   ResourceSet conn = events.getEvents().iterator().next().getEventTriggerConnection();
 	    if (reference.isGenericReference()) {
 		// Its a generic reference not an unresolved one
 		if (reference.getQueryElement() != null) {
@@ -106,7 +96,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
     }
 
     private List<DelayedReference> filterEventsAndRegisterDelayedReferencesForInjectorAction(List<ChangeEvent> events,
-	    Connection conn) {
+	    Resource conn) {
 	List<DelayedReference> newReferences = new ArrayList<DelayedReference>();
 	Collection<TextBlock> textBlocksInChosenAlternativeForInjectorAction = getTextBlocksInChosenAlternativeForInjectorAction(conn);
 	if (textBlocksInChosenAlternativeForInjectorAction.size() > 0) {
@@ -125,9 +115,9 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	    }
 	    if (allAffectedElements.size() > 0) {
 		for (TextBlock textBlock : textBlocksInChosenAlternativeForInjectorAction) {
-		    Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
+		    Set<EObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
 			    conn, allAffectedElements, textBlock);
-		    for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
+		    for (EObject ro : intersectionOfCorrespondingAndAffectedElements) {
 			DelayedReference clonedRef = reference.clone();
 			clonedRef.setModelElement(ro);
 			clonedRef.setRealValue(null);
@@ -160,7 +150,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
      */
     @Override
     public void notify(ChangeEvent event) {
-	Connection conn = event.getEventTriggerConnection();
+	ResourceSet conn = event.getEventTriggerConnection();
 	if (reference.isGenericReference()) {
 	    // Its a generic reference not an unresolved one
 	    if (reference.getQueryElement() != null) {
@@ -182,9 +172,9 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	}
     }
 
-    private Collection<TextBlock> getTextBlocksInChosenAlternativeForInjectorAction(Connection conn) {
+    private Collection<TextBlock> getTextBlocksInChosenAlternativeForInjectorAction(ResourceSet conn) {
 	Collection<TextBlock> result = new ArrayList<TextBlock>();
-	InjectorAction injectorAction = (InjectorAction) conn.getElement(((Partitionable) reference.getQueryElement())
+	InjectorAction injectorAction = (InjectorAction) conn.getElement(((EObject) reference.getQueryElement())
 		.get___Mri());
 	InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock) injectorAction.refImmediateComposite();
 	Template template = injectorActionsBlock.getParentTemplate();
@@ -249,7 +239,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	return wasInChosenAlternative;
     }
 
-    private Collection<TextBlock> getTextBlocksUsingQueryElement(Connection conn, Template template) {
+    private Collection<TextBlock> getTextBlocksUsingQueryElement(ResourceSet conn, Template template) {
 	TextblockDefinitionReferencesProduction tbDefAssoc = conn
 		.getAssociation(TextblockDefinitionReferencesProduction.ASSOCIATION_DESCRIPTOR);
 	TextBlockDefinition def = tbDefAssoc.getTextBlockDefinition(template).iterator().next();
@@ -264,7 +254,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	return tbs;
     }
 
-    private List<DelayedReference> filterEventsAndQueueDelayedReferencesForPropertyQuery(List<ChangeEvent> events, Connection conn) {
+    private List<DelayedReference> filterEventsAndQueueDelayedReferencesForPropertyQuery(List<ChangeEvent> events, ResourceSet conn) {
 	List<DelayedReference> newReferences = new ArrayList<DelayedReference>();
 	Collection<LexedToken> toks = getTokensUsingQueryElement(conn);
 	Set<LexedToken> tokensForWhichToAddNewReference = new HashSet<LexedToken>();
@@ -276,7 +266,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	    // elements are cached in elementsImpactedByEvent
 	    if (affectedElements != null && affectedElements.size() > 0) {
 		for (LexedToken lt : toks) {
-		    Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
+		    Set<EObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
 			    conn, affectedElements, lt.getParentBlock());
 		    if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
 			tokensForWhichToAddNewReference.add(lt);
@@ -290,7 +280,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	return newReferences;
     }
 
-    private List<DelayedReference> filterEventsAndQueueDelayedReferencesForContextLookup(List<ChangeEvent> events, Connection conn) {
+    private List<DelayedReference> filterEventsAndQueueDelayedReferencesForContextLookup(List<ChangeEvent> events, ResourceSet conn) {
 	Collection<LexedToken> toks = getTokensUsingQueryElement(conn);
 	Set<LexedToken> tokensForWhichToAddNewReference = new HashSet<LexedToken>();
 	List<DelayedReference> newReferences = new ArrayList<DelayedReference>();
@@ -302,7 +292,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	    // elements are cached in elementsImpactedByEvent
 	    if (affectedElements != null && affectedElements.size() > 0) {
 		for (LexedToken lt : toks) {
-		    Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterAffectedElements(conn,
+		    Set<EObject> intersectionOfCorrespondingAndAffectedElements = filterAffectedElements(conn,
 			    affectedElements, Collections.singletonList(lt.getParentBlock()));
 		    if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
 			tokensForWhichToAddNewReference.add(lt);
@@ -316,14 +306,14 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	return newReferences;
     }
 
-    private Collection<? extends DelayedReference> getReferencesToReEvaluate(Connection conn, LexedToken lt) {
-	Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(conn, lt.getParentBlock(), reference);
+    private Collection<? extends DelayedReference> getReferencesToReEvaluate(ResourceSet conn, LexedToken lt) {
+	Set<EObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(conn, lt.getParentBlock(), reference);
 	List<DelayedReference> newReferences = new ArrayList<DelayedReference>();
-	for (RefObject ro : result) {
+	for (EObject ro : result) {
 	    DelayedReference clonedRef = reference.clone();
 	    clonedRef.setModelElement(ro);
 	    clonedRef.setRealValue(null);
-	    clonedRef.setConnection(conn);
+	    clonedRef.setResourceSet(conn);
 
 	    clonedRef.setToken(new LexedTokenWrapper(lt));
 	    clonedRef.setTextBlock(lt.getParentBlock());
@@ -352,11 +342,11 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
      * @return A type filtered set of elements by the {@link #reference}'s query
      *         elements template.
      */
-    private Set<RefObject> filterCorrespondingElementsByDelayedReferenceSourceType(Connection conn, DocumentNode node,
+    private Set<EObject> filterCorrespondingElementsByDelayedReferenceSourceType(ResourceSet conn, DocumentNode node,
 	    DelayedReference delayedReference) {
-	Set<RefObject> result = new HashSet<RefObject>();
-	RefObject queryElement = (RefObject) conn.getElement(((Partitionable) delayedReference.getQueryElement()).get___Mri());
-	for (RefObject refObject : node.getCorrespondingModelElements()) {
+	Set<EObject> result = new HashSet<EObject>();
+	EObject queryElement = (EObject) conn.getElement(((EObject) delayedReference.getQueryElement()).get___Mri());
+	for (EObject refObject : node.getCorrespondingModelElements()) {
 
 	    if (refObject.refIsInstanceOf(TcsUtil.getParentTemplate(queryElement).getMetaReference(), false)) {
 		result.add(refObject);
@@ -365,8 +355,8 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	return result;
     }
 
-    private Collection<LexedToken> getTokensUsingQueryElement(Connection conn) {
-	Property property = (Property) conn.getElement(((Partitionable) reference.getQueryElement()).get___Mri());
+    private Collection<LexedToken> getTokensUsingQueryElement(ResourceSet conn) {
+	Property property = (Property) conn.getElement(((EObject) reference.getQueryElement()).get___Mri());
 	// now find all TextBlocks referencing this property;
 	LexedTokenReferenesSequenceElement lexedTokenSeqElAssoc = conn
 		.getAssociation(LexedTokenReferenesSequenceElement.ASSOCIATION_DESCRIPTOR);
@@ -392,16 +382,16 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
      * @return the intersection between affected elements and the corresponding
      *         elements of the given {@link TextBlock}.
      */
-    private Set<RefObject> filterCorrespondingOrContextElementWithAffectedElements(Connection conn, Set<MRI> affectedElements,
+    private Set<EObject> filterCorrespondingOrContextElementWithAffectedElements(ResourceSet conn, Set<MRI> affectedElements,
 	    DocumentNode node) {
-	Collection<RefObject> correspondingModelElements = null;
+	Collection<EObject> correspondingModelElements = null;
 	boolean isContext = ContextAndForeachHelper.usesContext(reference.getOclQuery());
 	boolean usesForEach = ContextAndForeachHelper.usesForeach(reference.getOclQuery());
-	Set<RefObject> sourceModelElements = null;
+	Set<EObject> sourceModelElements = null;
 	if (isContext) {
 	    LocalContextBuilder localContextBuilder = new LocalContextBuilder();
 	    TbUtil.constructContext(node, localContextBuilder);
-	    correspondingModelElements = new ArrayList<RefObject>();
+	    correspondingModelElements = new ArrayList<EObject>();
 	    if (!localContextBuilder.getContextStack().isEmpty()) {
 		IModelElementProxy innermostContext = localContextBuilder.getContextStack().peek();
 		Object taggedContext = localContextBuilder.getContextManager().getTaggedContext(innermostContext,
@@ -414,43 +404,43 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 		    // expression's #context, no context object will
 		    // be found. In this case, don't add anything to the
 		    // correspondingModelElements.
-		    RefObject unwrappedContext = null;
+		    EObject unwrappedContext = null;
 		    if (taggedContext instanceof IModelElementProxy) {
-			unwrappedContext = (RefObject) ((IModelElementProxy) taggedContext).getRealObject();
+			unwrappedContext = (EObject) ((IModelElementProxy) taggedContext).getRealObject();
 		    } else {
-			unwrappedContext = (RefObject) taggedContext;
+			unwrappedContext = (EObject) taggedContext;
 		    }
 		    correspondingModelElements.add(unwrappedContext);
 		}
 	    }
 	} else if (usesForEach) {
-	    correspondingModelElements = new ArrayList<RefObject>();
-	    sourceModelElements = new HashSet<RefObject>();
-	    Collection<ForeachContext> fec = null;
+	    correspondingModelElements = new ArrayList<EObject>();
+	    sourceModelElements = new HashSet<EObject>();
+	    Collection<ForEachContext> fec = null;
 	    if (node instanceof TextBlock) {
-		fec = ((TextBlock) node).getForeachContext();
+		fec = ((TextBlock) node).getForEachContext();
 	    } else {
-		fec = ((TextBlock) node.refImmediateComposite()).getForeachContext();
+		fec = ((TextBlock) node.refImmediateComposite()).getForEachContext();
 	    }
-	    for (ForeachContext foreachContext : fec) {
-		if (foreachContext.getForeachPredicatePropertyInit().equals(reference.getQueryElement())) {
+	    for (ForEachContext foreachContext : fec) {
+		if (foreachContext.getForeachPedicatePropertyInit().equals(reference.getQueryElement())) {
 		    correspondingModelElements.addAll(foreachContext.getContextElement());
-		    sourceModelElements.add(foreachContext.getSourceModelelement());
+		    sourceModelElements.add(foreachContext.getSourceModelElement());
 		}
 	    }
 	} else {
-	    correspondingModelElements = new ArrayList<RefObject>(node.getCorrespondingModelElements());
+	    correspondingModelElements = new ArrayList<EObject>(node.getCorrespondingModelElements());
 	    correspondingModelElements.addAll(node.getReferencedElements());
 	}
 
-	Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterAffectedElements(conn, affectedElements,
+	Set<EObject> intersectionOfCorrespondingAndAffectedElements = filterAffectedElements(conn, affectedElements,
 		correspondingModelElements);
 	if (isContext) {
 	    if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-		Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(conn, node, reference);
+		Set<EObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(conn, node, reference);
 		return result;
 	    } else {
-		return new HashSet<RefObject>(0);
+		return new HashSet<EObject>(0);
 	    }
 	} else if (usesForEach) {
 	    return sourceModelElements;
@@ -459,12 +449,12 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	}
     }
 
-    private Set<RefObject> filterAffectedElements(Connection conn, Set<MRI> affectedElements,
-	    Collection<? extends RefObject> correspondingModelElements) {
-	Set<RefObject> intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(correspondingModelElements);
+    private Set<EObject> filterAffectedElements(ResourceSet conn, Set<MRI> affectedElements,
+	    Collection<? extends EObject> correspondingModelElements) {
+	Set<EObject> intersectionOfCorrespondingAndAffectedElements = new HashSet<EObject>(correspondingModelElements);
 	if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
 	    List<MRI> correspondingModelElementsMris = new ArrayList<MRI>(correspondingModelElements.size());
-	    for (RefObject cme : correspondingModelElements) {
+	    for (EObject cme : correspondingModelElements) {
 		correspondingModelElementsMris.add(cme.get___Mri());
 	    }
 
@@ -472,13 +462,13 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	    intersectionOfCorrespondingAndAffectedElementsMris.retainAll(correspondingModelElementsMris);
 	    intersectionOfCorrespondingAndAffectedElements.clear();
 	    for (MRI mri : intersectionOfCorrespondingAndAffectedElementsMris) {
-		intersectionOfCorrespondingAndAffectedElements.add((RefObject) conn.getElement(mri));
+		intersectionOfCorrespondingAndAffectedElements.add((EObject) conn.getElement(mri));
 	    }
 	}
 	return intersectionOfCorrespondingAndAffectedElements;
     }
 
-    private Set<MRI> getAffectedElements(ChangeEvent event, Connection conn) {
+    private Set<MRI> getAffectedElements(ChangeEvent event, ResourceSet conn) {
 	Statistics.getInstance().setCurrentObjectForSelf(reference.getElementForSelf());
 	Set<MRI> affectedElements = new HashSet<MRI>();
 	for (OclExpressionRegistration registration : registrations) {
@@ -489,7 +479,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	return affectedElements;
     }
 
-    public String getDebugInfo(Connection conn) {
+    public String getDebugInfo(ResourceSet conn) {
 	Statistics oclIaStatistics = Statistics.getInstance();
 	StringBuilder result = new StringBuilder();
 	for (OclExpressionRegistration registration : registrations) {
@@ -501,7 +491,7 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	return result.toString();
     }
 
-    public String getDebugInfoAsCsv(Connection conn) {
+    public String getDebugInfoAsCsv(ResourceSet conn) {
 	Statistics oclIaStatistics = Statistics.getInstance();
 	StringBuilder result = new StringBuilder();
 	for (OclExpressionRegistration registration : registrations) {

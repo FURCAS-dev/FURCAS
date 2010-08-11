@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import tcs.AsParg;
-import tcs.FilterParg;
-import tcs.LiteralRef;
-import tcs.Property;
-import tcs.RefersToParg;
-import tcs.SequenceElement;
-import tcs.Template;
-import textblocks.AbstractToken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 
+import com.sap.furcas.metamodel.TCS.AsPArg;
+import com.sap.furcas.metamodel.TCS.FilterPArg;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
@@ -23,13 +25,6 @@ import com.sap.mi.textual.parsing.textblocks.PrettyPrinterUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
-import com.sap.tc.moin.repository.ocl.freestyle.OclFreestyleRegistry;
-import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
-import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
-import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
 
 public class ShortPrettyPrinter {
 
@@ -89,20 +84,20 @@ public class ShortPrettyPrinter {
 
     private String handlePropertyElement(Property se, LexedToken token) {
 	String newvalue = token.getValue();
-	if (TcsUtil.containsRefersToArg(se) || TcsUtil.getFilterParg(se) != null) {
+	if (TcsUtil.containsRefersToArg(se) || TcsUtil.getFilterPArg(se) != null) {
 	    // the new value comes from the value of the referenced element;
-	    for (RefObject referencedObject : token
+	    for (EObject referencedObject : token
 		    .getReferencedElements()) {
 	        if(referencedObject != null &&
-	                referencedObject.refIsInstanceOf(se.getPropertyReference().getStrucfeature().getType(), true)) {
-        		RefersToParg refersToArg = TcsUtil.getRefersToParg(se);
+	                referencedObject.refIsInstanceOf(se.getPropertyReference().getStrucfeature().getEType(), true)) {
+        		RefersToPArg refersToArg = TcsUtil.getRefersToPArg(se);
         		try {
-        		    if (TcsUtil.getFilterParg(se) != null) {
+        		    if (TcsUtil.getFilterPArg(se) != null) {
         			// if the string given in the token is changed
         			// within the query to do the matching
         			// with the target element we need to invert this
         			// change to get the actual value
-        		        AsParg asParg = TcsUtil.getAsParg(se);
+        		        AsPArg asParg = TcsUtil.getAsPArg(se);
         		        Template template = PrettyPrinterUtil.getAsTemplate(asParg);
         			return PrettyPrinterUtil.printUsingSerializer(invertOclQuery(referencedObject, token, se,
         				newvalue), template);
@@ -112,11 +107,11 @@ public class ShortPrettyPrinter {
         		    if (value instanceof Collection<?> && ((Collection<?>)value).size() > 0) {
         			value = ((Collection<?>) value).iterator().next();
         		    }
-        		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection<?>)) {
+        		    if (value != null && !(value instanceof EObject) && !(value instanceof Collection<?>)) {
         			newvalue = value.toString();
         		    }
         		    
-        		    AsParg asParg = TcsUtil.getAsParg(se);
+        		    AsPArg asParg = TcsUtil.getAsPArg(se);
                             Template template = PrettyPrinterUtil.getAsTemplate(asParg);
                             return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
         		} catch (ModelAdapterException e) {
@@ -132,10 +127,10 @@ public class ShortPrettyPrinter {
 	    }	    
 	} else {
 	    //it is always the first element as all others do not have a syntax contribution!
-	    RefObject referencedObject;
-	    List<RefObject> correspondingElements = token.getParentBlock().getCorrespondingModelElements();
+	    EObject referencedObject;
+	    List<EObject> correspondingElements = token.getParent().getCorrespondingModelElements();
 	    if (correspondingElements.isEmpty()) {
-		referencedObject = token.getParentBlock().getReferencedElements().iterator().next();
+		referencedObject = token.getParent().getReferencedElements().iterator().next();
 	    } else {
 		referencedObject = correspondingElements.get(0);
 	    }
@@ -148,7 +143,7 @@ public class ShortPrettyPrinter {
                         && ((Collection<?>) value).size() > 0) {
                     value = ((Collection<?>) value).iterator().next();
                 }
-                if (value != null && !(value instanceof RefObject)
+                if (value != null && !(value instanceof EObject)
                         && !(value instanceof Collection<?>)) {
                     newvalue = value.toString();
                 }
@@ -158,12 +153,12 @@ public class ShortPrettyPrinter {
                 // continue;
             }
 	}
-	AsParg asParg = TcsUtil.getAsParg(se);
+	AsPArg asParg = TcsUtil.getAsPArg(se);
         Template template = PrettyPrinterUtil.getAsTemplate(asParg);
         return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
     }
 
-    private String invertOclQuery(RefObject self, LexedToken token,
+    private String invertOclQuery(EObject self, LexedToken token,
 	    Property se, String newValue) throws OclManagerException,
 	    ModelAdapterException {
 	// TODO this should actually use the splitted version of query and
@@ -171,7 +166,7 @@ public class ShortPrettyPrinter {
 	// to be able to invert the query.
 	// this implementation just checks if there are any prefixes or
 	// postfixes that can be removed.
-	FilterParg filterParg = TcsUtil.getFilterParg(se);
+	FilterPArg filterParg = TcsUtil.getFilterPArg(se);
 	if (filterParg != null && filterParg.getInvert() != null) {
 	    String query = filterParg.getInvert();
 
@@ -180,13 +175,13 @@ public class ShortPrettyPrinter {
 
 	    if (!lcb.getContextStack().isEmpty()
 		    && ContextAndForeachHelper.usesContext(query)) {
-		self = (RefObject) lcb.getContextStack().peek().getRealObject();
+		self = (EObject) lcb.getContextStack().peek().getRealObject();
 	    }
 	    query = MoinHelper.prepareOclQuery(query, token.getValue());
 
 	    if (self != null) {
-		RefPackage root = self.refOutermostPackage();
-		Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
+		EPackage root = self.refOutermostPackage();
+		Collection<EPackage> packagesForLookup = new ArrayList<EPackage>();
 		packagesForLookup.addAll(MoinHelper.getImportedRefPackages(root));
 		packagesForLookup.add(root);
 
@@ -199,7 +194,7 @@ public class ShortPrettyPrinter {
 			freestyleRegistry.deleteRegistration(name);
 		    }
 		    registration = freestyleRegistry.createExpressionRegistration(name, query, OclRegistrationSeverity.Info,
-			    new String[] { name }, self.refClass(), packagesForLookup.toArray(new RefPackage[] {}));
+			    new String[] { name }, self.eClass(), packagesForLookup.toArray(new EPackage[] {}));
 		    Object result = registration.evaluateExpression(self);
 		    if (result == null) {
 			// maybe create an error marker!

@@ -1,22 +1,26 @@
 package com.sap.mi.textual.parsing.textblocks.reference;
 
+import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Vector;
 import java.util.Map.Entry;
+import java.util.Vector;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import tcs.ConcreteSyntax;
-import tcs.Template;
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ModelInjector;
@@ -26,21 +30,7 @@ import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
-import com.sap.tc.moin.globalmodellistener.Activator;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.InvalidConnectionException;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.PartitionEditingNotPossibleException;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.commands.Command;
-import com.sap.tc.moin.repository.commands.CommandStack;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidObjectException;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
-import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
+
 
 /**
  * This class is responsible to resolve {@link DelayedReference}s. This includes references
@@ -69,14 +59,14 @@ public class ReferenceResolver {
 
 	@Override
 	public void doExecute() {
-	    RefPackage outermostPackage = MoinHelper.getOutermostPackageThroughClusteredImports(getConnection(),
-		    (RefBaseObject) ref.getModelElement());
+	    EPackage outermostPackage = MoinHelper.getOutermostPackageThroughClusteredImports(getConnection(),
+		    (EObject) ref.getModelElement());
 	    reEvaluateUnresolvedRef(getConnection(), outermostPackage, ref, (TextBlock) ref.getTextBlock());
 	}
 
 	@Override
 	public Collection<PartitionOperation> getAffectedPartitions() {
-	    PRI pri = ((Partitionable) ref.getModelElement()).get___Partition().getPri();
+	    PRI pri = ((EObject) ref.getModelElement()).get___Partition().getPri();
 	    PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
 	    return Collections.singleton(editOperation);
 	}
@@ -123,7 +113,7 @@ public class ReferenceResolver {
 		unresolvedReferences.clear();
 	    }
 	    monitor.beginTask("Reevaluating OCL References...", workingCopy.size());
-	    for (Entry<Connection, Collection<DelayedReference>> referencesPerConnection : splitPerConnection(workingCopy).entrySet()) {
+	    for (Entry<ResourceSet, Collection<DelayedReference>> referencesPerConnection : splitPerConnection(workingCopy).entrySet()) {
 		CommandStack cmdStack = referencesPerConnection.getKey().getCommandStack();
 		if (cmdStack.canRedo()) {
 		    // the current connection is in the process of undoing commands
@@ -175,8 +165,8 @@ public class ReferenceResolver {
 	} while (referencesAddedFromOutsideOrOneResolved);
     }
 
-    private Map<Connection, Collection<DelayedReference>> splitPerConnection(Collection<DelayedReference> workingCopy) {
-	Map<Connection, Collection<DelayedReference>> referencesPerConnection = new HashMap<Connection, Collection<DelayedReference>>();
+    private Map<ResourceSet, Collection<DelayedReference>> splitPerConnection(Collection<DelayedReference> workingCopy) {
+	Map<ResourceSet, Collection<DelayedReference>> referencesPerConnection = new HashMap<ResourceSet, Collection<DelayedReference>>();
 	for (DelayedReference ref : workingCopy) {
 	    if (!referencesPerConnection.containsKey(ref.getConnection())) {
 		referencesPerConnection.put(ref.getConnection(), new ArrayList<DelayedReference>());
@@ -186,7 +176,7 @@ public class ReferenceResolver {
 	return referencesPerConnection;
     }
 
-    private void reEvaluateUnresolvedRef(Connection conn, RefPackage outermostPackage, DelayedReference unresolvedRef,
+    private void reEvaluateUnresolvedRef(ResourceSet conn, EPackage outermostPackage, DelayedReference unresolvedRef,
 	    TextBlock contextTextBlock) {
 	LocalContextBuilder localContextBuilder = new LocalContextBuilder();
 	try {
@@ -205,7 +195,7 @@ public class ReferenceResolver {
 		    notifier.notifyReferenceResolvingListenerReferencesRemoved(Collections.singleton(unresolvedRef));
 		    return;
 		}
-		cs = tokenInCurrentConnection.getParentBlock().getType().getParseRule().getConcretesyntax();
+		cs = tokenInCurrentConnection.getParent().getType().getParseRule().getConcretesyntax();
 		parser = registry.getParser(cs);
 		((ParserTextBlocksHandler) parser.getObserver()).setConnection(conn);
 		TbUtil.constructContext(tokenInCurrentConnection, localContextBuilder);
@@ -258,7 +248,7 @@ public class ReferenceResolver {
 				((TextBlock) unresolvedRef.getTextBlock()).getAdditionalTemplates().add(template);
 			    }
 			}
-			RefObject value = (RefObject) unresolvedRef.getRealValue();
+			EObject value = (EObject) unresolvedRef.getRealValue();
 			if (!referringDocumentNode.getCorrespondingModelElements().contains(value)) {
 			    referringDocumentNode.getCorrespondingModelElements().add(value);
 			}
@@ -271,8 +261,8 @@ public class ReferenceResolver {
 			// (RefObject) unresolvedRef.getRealValue(), conn);
 			parser.setDelayedReferencesAfterParsing();
 		    } else {
-			if (unresolvedRef.getRealValue() instanceof RefObject) {
-			    referringDocumentNode.getReferencedElements().add((RefObject) unresolvedRef.getRealValue());
+			if (unresolvedRef.getRealValue() instanceof EObject) {
+			    referringDocumentNode.getReferencedElements().add((EObject) unresolvedRef.getRealValue());
 			}
 		    }
 		    if (!unresolvedRef.isGenericReference()) {
@@ -300,8 +290,8 @@ public class ReferenceResolver {
      * @param conn
      *            the {@link Connection} where the elements should be used from.
      */
-    private void ensureUsageOfConnection(DelayedReference unresolvedRef, Connection conn) {
-	RefObject elementInCurrentConnection = (RefObject) conn.getElement(((Partitionable) unresolvedRef.getModelElement()).get___Mri());
+    private void ensureUsageOfConnection(DelayedReference unresolvedRef, ResourceSet conn) {
+	EObject elementInCurrentConnection = (EObject) conn.getElement(((EObject) unresolvedRef.getModelElement()).get___Mri());
 	if (elementInCurrentConnection == null) {
 	    throw new RuntimeException("Element: " + unresolvedRef.getModelElement() + " is not available in connection: " + conn);
 	} else {
@@ -309,7 +299,7 @@ public class ReferenceResolver {
 	}
 	Object elementInOldConnection = unresolvedRef.getContextElement();
 	if (elementInOldConnection != null) {
-	    elementInCurrentConnection = (RefObject) conn.getElement(((Partitionable) elementInOldConnection).get___Mri());
+	    elementInCurrentConnection = (EObject) conn.getElement(((EObject) elementInOldConnection).get___Mri());
 	    if (elementInCurrentConnection == null) {
 		throw new RuntimeException("Element: " + elementInOldConnection + " is not available in connection: " + conn);
 	    } else {
@@ -318,7 +308,7 @@ public class ReferenceResolver {
 	}
 	elementInOldConnection = unresolvedRef.getCurrentForeachElement();
 	if (elementInOldConnection != null) {
-	    elementInCurrentConnection = (RefObject) conn.getElement(((Partitionable) elementInOldConnection).get___Mri());
+	    elementInCurrentConnection = (EObject) conn.getElement(((EObject) elementInOldConnection).get___Mri());
 	    if (elementInCurrentConnection == null) {
 		throw new RuntimeException("Element: " + elementInOldConnection + " is not available in connection: " + conn);
 	    } else {
@@ -327,7 +317,7 @@ public class ReferenceResolver {
 	}
 	elementInOldConnection = unresolvedRef.getQueryElement();
 	if (elementInOldConnection != null) {
-	    elementInCurrentConnection = (RefObject) conn.getElement(((Partitionable) elementInOldConnection).get___Mri());
+	    elementInCurrentConnection = (EObject) conn.getElement(((EObject) elementInOldConnection).get___Mri());
 	    if (elementInCurrentConnection == null) {
 		throw new RuntimeException("Element: " + elementInOldConnection + " is not available in connection: " + conn);
 	    } else {
@@ -336,7 +326,7 @@ public class ReferenceResolver {
 	}
 	elementInOldConnection = unresolvedRef.getTextBlock();
 	if (elementInOldConnection != null) {
-	    elementInCurrentConnection = (RefObject) conn.getElement(((Partitionable) elementInOldConnection).get___Mri());
+	    elementInCurrentConnection = (EObject) conn.getElement(((EObject) elementInOldConnection).get___Mri());
 	    if (elementInCurrentConnection == null) {
 		throw new RuntimeException("Element: " + elementInOldConnection + " is not available in connection: " + conn);
 	    } else {
@@ -345,7 +335,7 @@ public class ReferenceResolver {
 	}
     }
 
-    private ModelInjector constructModelInjector(Connection connection, RefPackage outermostPackage) {
+    private ModelInjector constructModelInjector(ResourceSet connection, RefPackage outermostPackage) {
 	// tokenNames only needed for parse error reporting regarding keyword
 	// issues; not needed here
 	ModelInjector mi = new ModelInjector(/* tonekNames */null);

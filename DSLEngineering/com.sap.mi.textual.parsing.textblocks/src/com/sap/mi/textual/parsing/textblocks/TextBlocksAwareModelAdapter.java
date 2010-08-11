@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
@@ -18,8 +20,7 @@ import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
 import com.sap.mi.textual.grammar.impl.DefaultTextAwareModelAdapter;
 import com.sap.mi.textual.grammar.impl.ModelElementProxy;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
+
 
 /**
  * simple implementation using a simple resolution strategy and a IBareModelAdapter else.
@@ -233,7 +234,7 @@ public class TextBlocksAwareModelAdapter extends DefaultTextAwareModelAdapter {
 	}
 
 	@Override
-	public Collection<PRI> getPRIPartitions(Connection conn, String languageId) {
+	public Collection<PRI> getPRIPartitions(ResourceSet conn, String languageId) {
 		return TcsUtil.getSyntaxePartitions(conn, languageId);
 	}
     

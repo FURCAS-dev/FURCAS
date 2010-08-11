@@ -1,8 +1,8 @@
 package com.sap.mi.textual.parsing.textblocks;
 
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class IllegalTextBlocksStateException extends IllegalStateException {
 

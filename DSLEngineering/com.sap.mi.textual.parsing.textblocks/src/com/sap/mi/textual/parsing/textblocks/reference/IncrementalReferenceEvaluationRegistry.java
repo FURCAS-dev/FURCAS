@@ -2,49 +2,41 @@ package com.sap.mi.textual.parsing.textblocks.reference;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.stream.EventFilter;
+
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.FilterParg;
-import tcs.ForeachPredicatePropertyInit;
-import tcs.InjectorAction;
-import tcs.InjectorActionsBlock;
-import tcs.LookupPropertyInit;
-import tcs.Property;
-import tcs.QueryParg;
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.FilterPArg;
+import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.QueryPArg;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.globalmodellistener.GlobalEventListenerRegistry;
-import com.sap.tc.moin.globalmodellistener.GlobalEventListener.ListenerType;
-import com.sap.tc.moin.ocl.ia.Statistics;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.events.EventListener;
-import com.sap.tc.moin.repository.events.filter.EventFilter;
-import com.sap.tc.moin.repository.events.filter.OrFilter;
-import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
-import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
-import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
-import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
+
 
 /**
  * This registry is responsible to setup and register all {@link IAExpressionInvalidationChangeListener}
@@ -68,17 +60,17 @@ public class IncrementalReferenceEvaluationRegistry {
 	this.globalEventListenerRegistryRef = globalEventListenerRegistryRef;
     }
 
-    public void registerReferenceForIncrementalEvaluation(ConcreteSyntax cs, Connection connection,
-	    RefPackage outermostPackageOfMetamodel, ObservableInjectingParser parser, IRuleName ruleNameBuilder,
+    public void registerReferenceForIncrementalEvaluation(ConcreteSyntax cs, ResourceSet connection,
+	    EPackage outermostPackageOfMetamodel, ObservableInjectingParser parser, IRuleName ruleNameBuilder,
 	    IProgressMonitor monitor) {
 
 	if (!registeredSytaxes.contains(cs)) {
 	    parsersBySyntax.put(cs, parser);
-	    Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
+	    Collection<EPackage> packagesForLookup = new ArrayList<EPackage>();
 	    packagesForLookup.addAll(MoinHelper.getImportedRefPackages(outermostPackageOfMetamodel));
 	    packagesForLookup.add(outermostPackageOfMetamodel);
 
-	    MofClass elementClass = MoinHelper.getReflectElement(connection);
+	    EClass elementClass = MoinHelper.getReflectElement(connection);
 
 	    String mqlQuery = "select instance \n" + "from TCS::InjectorAction as instance";
 
@@ -95,13 +87,13 @@ public class IncrementalReferenceEvaluationRegistry {
 			+ resultSetQueries.getSize());
 		monitor.subTask("PropertyInits");
 
-		for (RefObject result : resultSet.getRefObjects("instance")) {
+		for (EObject result : resultSet.getRefObjects("instance")) {
 		    monitor.worked(1);
 		    InjectorAction injectorActionBase = (InjectorAction) result;
 		    // check if metamodel element is present
-		    if (injectorActionBase.getInjectorActionsBlockReference().getParentTemplate().getMetaReference() == null) {
+		    if (injectorActionBase.getInjectorActionsBlock().getParentTemplate().getMetaReference() == null) {
 			throw new RuntimeException("Cannot resolve reference to metamodel for template:\n"
-				+ injectorActionBase.getInjectorActionsBlockReference().getParentTemplate().get___Mri() + "\n"
+				+ injectorActionBase.getInjectorActionsBlock().getParentTemplate().get___Mri() + "\n"
 				+ "Make sure the metamodel is correctly referenced and loaded.");
 		    }
 		    if (injectorActionBase instanceof LookupPropertyInit) {
@@ -113,7 +105,7 @@ public class IncrementalReferenceEvaluationRegistry {
 		}
 		monitor.subTask("Property Queries");
 
-		for (RefObject result : resultSetQueries.getRefObjects("instance")) {
+		for (EObject result : resultSetQueries.getRefObjects("instance")) {
 		    monitor.worked(1);
 		    Property property = (Property) result;
 		    registerPropertyQueryForIA(connection, packagesForLookup, elementClass, property, cs);
@@ -125,17 +117,17 @@ public class IncrementalReferenceEvaluationRegistry {
 	}
     }
 
-    private void registerForEachPropertyInitForIA(ConcreteSyntax cs, Connection connection,
-	    Collection<RefPackage> packagesForLookup, MofClass elementClass, InjectorAction injectorActionBase,
+    private void registerForEachPropertyInitForIA(ConcreteSyntax cs, ResourceSet connection,
+	    Collection<EPackage> packagesForLookup, EClass elementClass, InjectorAction injectorActionBase,
 	    IRuleName ruleNameFinder) {
 	ForeachPredicatePropertyInit foreachPredicatePropertyInit = (ForeachPredicatePropertyInit) injectorActionBase;
-	InjectorActionsBlock block = foreachPredicatePropertyInit.getInjectorActionsBlockReference();
+	InjectorActionsBlock block = foreachPredicatePropertyInit.getInjectorActionsBlock();
 	Template template = block.getParentTemplate();
 	String query = foreachPredicatePropertyInit.getValue();
 	try {
 	    List<com.sap.mi.textual.grammar.impl.PredicateSemantic> list = new ArrayList<com.sap.mi.textual.grammar.impl.PredicateSemantic>();
 	    String mode = template instanceof ClassTemplate ? ((ClassTemplate) template).getMode() : null;
-	    for (tcs.PredicateSemantic next : foreachPredicatePropertyInit.getPredicatesemantic()) {
+	    for (PredicateSemantic next : foreachPredicatePropertyInit.getPredicatesemantic()) {
 		String localMode = mode;
 		if (next.getMode() != null) {
 		    localMode = next.getMode();
@@ -151,7 +143,7 @@ public class IncrementalReferenceEvaluationRegistry {
 	    }
 	    boolean hasContext = false;
 	    if (block.getParentTemplate() instanceof ClassTemplate) {
-		hasContext = ((ClassTemplate) block.getParentTemplate()).isContext();
+		hasContext = ((ClassTemplate) block.getParentTemplate()).isIsContext();
 	    }
 	    DelayedReference ref = new DelayedReference(null, null, DelayedReference.TYPE_SEMANTIC_PREDICATE, null,
 		    foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().getName(), query,
@@ -181,12 +173,12 @@ public class IncrementalReferenceEvaluationRegistry {
 	}
     }
 
-    private void registerLookupPropertyInitForIA(ConcreteSyntax cs, Connection connection,
-	    Collection<RefPackage> packagesForLookup, MofClass elementClass, InjectorAction injectorActionBase) {
+    private void registerLookupPropertyInitForIA(ConcreteSyntax cs, ResourceSet connection,
+	    Collection<EPackage> packagesForLookup, EClass elementClass, InjectorAction injectorActionBase) {
 	LookupPropertyInit injectorAction = (LookupPropertyInit) injectorActionBase;
 	Template template = ((InjectorActionsBlock) injectorAction.refImmediateComposite()).getParentTemplate();
 	String query = injectorAction.getValue();
-	RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup,
+	EObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup,
 		elementClass);
 	try {
 	    DelayedReference ref = new DelayedReference(null, null, null, injectorAction.getPropertyReference().getStrucfeature()
@@ -206,7 +198,7 @@ public class IncrementalReferenceEvaluationRegistry {
 		}
 		registration = connection.getOclRegistryService().getFreestyleRegistry().createExpressionRegistration(name,
 			query, OclRegistrationSeverity.Info, new String[] { "TCS Property Init" }, parsingContext,
-			packagesForLookup.toArray(new RefPackage[] {}));
+			packagesForLookup.toArray(new EPackage[] {}));
 		Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(ref,
 			registration);
 		GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
@@ -238,8 +230,8 @@ public class IncrementalReferenceEvaluationRegistry {
      * are delivered to the <tt>ref</tt> reference only once. The same listener
      * instance is registered for the combined event filter.
      */
-    private void registerOclExpressionsOfForeachConstruct(Connection connection, Collection<RefPackage> packagesForLookup,
-	    MofClass elementClass, ForeachPredicatePropertyInit foreachPredicatePropertyInit, Template template,
+    private void registerOclExpressionsOfForeachConstruct(ResourceSet connection, Collection<EPackage> packagesForLookup,
+	    EClass elementClass, ForeachPredicatePropertyInit foreachPredicatePropertyInit, Template template,
 	    DelayedReference ref) throws ModelAdapterException, OclManagerException {
 	Set<OclExpressionRegistration> registrations = new HashSet<OclExpressionRegistration>();
 	Map<String, String> mofIdToOclQueryPairs = new HashMap<String, String>();
@@ -259,12 +251,12 @@ public class IncrementalReferenceEvaluationRegistry {
 	    if (registration != null) {
 		connection.getOclRegistryService().getFreestyleRegistry().deleteRegistration(oclRegistrationName);
 	    }
-	    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, mofIdToOclQueryPairs.get(mofId),
+	    EObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, mofIdToOclQueryPairs.get(mofId),
 		    template, packagesForLookup, elementClass);
 	    String preparedQuery = MoinHelper.prepareOclQuery(mofIdToOclQueryPairs.get(mofId), null);
 	    registration = connection.getOclRegistryService().getFreestyleRegistry().createExpressionRegistration(
 		    oclRegistrationName, preparedQuery, OclRegistrationSeverity.Info, new String[] { "TCS Property Init" },
-		    parsingContext, packagesForLookup.toArray(new RefPackage[] {}));
+		    parsingContext, packagesForLookup.toArray(new EPackage[] {}));
 	    registrations.add(registration);
 	    registration2DelayedReference.put(oclRegistrationName, ref);
 	    registrationNames.add(oclRegistrationName);
@@ -277,22 +269,22 @@ public class IncrementalReferenceEvaluationRegistry {
 	delayedReference2ReEvaluationListener.put(ref, reEvaluationListener);
     }
 
-    private void registerPropertyQueryForIA(Connection connection, Collection<RefPackage> packagesForLookup,
-	    MofClass elementClass, Property property, ConcreteSyntax cs) {
+    private void registerPropertyQueryForIA(ResourceSet connection, Collection<EPackage> packagesForLookup,
+	    EClass elementClass, Property property, ConcreteSyntax cs) {
 	Template template = property.getParentTemplate();
-	if (template != null && template.getMetaReference() instanceof MofClass) {
+	if (template != null && template.getMetaReference() instanceof EClass) {
 	    // TODO what about StructureTypes?
-	    QueryParg qarg = TcsUtil.getQueryParg(property);
+	    QueryPArg qarg = TcsUtil.getQueryPArg(property);
 	    // TODO still needed? if not, delete
 	    // RefersToParg refersToArg = TcsUtil.getRefersToParg(property);
-	    FilterParg filter = TcsUtil.getFilterParg(property);
+	    FilterPArg filter = TcsUtil.getFilterPArg(property);
 	    if (qarg != null) {
 		try {
 		    String query = qarg.getQuery();
 		    if (filter != null) {
 			query += filter.getFilter();
 		    }
-		    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template,
+		    EObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template,
 			    packagesForLookup, elementClass);
 		    DelayedReference ref = new DelayedReference(null, null, null, property.getPropertyReference()
 			    .getStrucfeature().getName(), null, null, query, false, null);
@@ -308,7 +300,7 @@ public class IncrementalReferenceEvaluationRegistry {
 			}
 			registration = connection.getOclRegistryService().getFreestyleRegistry().createExpressionRegistration(
 				name, query, OclRegistrationSeverity.Info, new String[] { "TCS Property Query" }, parsingContext,
-				packagesForLookup.toArray(new RefPackage[] {}));
+				packagesForLookup.toArray(new EPackage[] {}));
 			Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(ref,
 				registration);
 			GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
@@ -399,7 +391,7 @@ public class IncrementalReferenceEvaluationRegistry {
 	this.resolver = resolver;
     }
 
-    public String getDebugInfo(Connection conn) {
+    public String getDebugInfo(ResourceSet conn) {
 	StringBuilder result = new StringBuilder();
 	for (IAExpressionInvalidationChangeListener listener : getAllListeners()) {
 	    result.append(listener.getDebugInfo(conn));
@@ -407,7 +399,7 @@ public class IncrementalReferenceEvaluationRegistry {
 	return result.toString();
     }
 
-    public String getDebugInfoAsCsv(Connection conn) {
+    public String getDebugInfoAsCsv(ResourceSet conn) {
 	Statistics oclIaStatistics = Statistics.getInstance();
 	StringBuilder result = new StringBuilder();
 	result.append(oclIaStatistics.getCsvHeader());

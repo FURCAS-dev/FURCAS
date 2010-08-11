@@ -6,8 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,
  com.sap.mi.textual.parsing,
- com.sap.tc.moin.globalmodellistener,
- com.sap.tc.moin.textual.runtime.moin,
  com.sap.mi.textual.common,
  com.sap.mi.textual.tcs.util,
  com.sap.furcas.metamodel;bundle-version="1.0.0"

@@ -16,11 +16,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
 
 /**
@@ -206,7 +205,7 @@ public class TokenRelocationUtil {
             Set<TextBlock> parentsToBeUpdated = new HashSet<TextBlock>();
                         
             for (AbstractToken relocationCandidate : tokensToRelocate) {
-                TextBlock parentBlock = relocationCandidate.getParentBlock();
+                TextBlock parentBlock = relocationCandidate.getParent();
                 if (parentBlock == null || ! parentBlock.equals(targetBlock)) {
                     // token should actually be moved
                     tokensMoved = true;
@@ -288,7 +287,7 @@ public class TokenRelocationUtil {
         int targetAbsoluteLocation = getAbsoluteOffset(relocationCandidate);
         int insertIndex = 0;
         // first set parent to null in any case because else MOIN will try to add second parent
-        relocationCandidate.setParentBlock(null);
+        relocationCandidate.setParent(null);
         
         if (targetBlock != null) {
          
@@ -319,7 +318,7 @@ public class TokenRelocationUtil {
      * @param targetBlock
      */
     static void updateParentsAscendingAfterAdding(TextBlock targetBlock) {
-    	TextBlock parent = targetBlock.getParentBlock();
+    	TextBlock parent = targetBlock.getParent();
     	if(parent != null) {
     		updateTextBlockLocationUsingSubNodesAfterAdding(parent);
     		updateParentsAscendingAfterAdding(parent);
@@ -335,7 +334,7 @@ public class TokenRelocationUtil {
      * @param targetBlock
      */
     static void updateParentsAscendingAfterRemoval(TextBlock targetBlock) {
-    	TextBlock parent = targetBlock.getParentBlock();
+    	TextBlock parent = targetBlock.getParent();
     	if(parent != null) {
     		updateTextBlockLocationAfterRemoval(parent);
     		updateParentsAscendingAfterRemoval(parent);
@@ -578,7 +577,7 @@ public class TokenRelocationUtil {
 		//make offset absolute before moving it to the new block
 		//TODO if offset handling externalized this has to be changed		
 		int originalAbsoluteOffset = getAbsoluteOffset(subNode);
-		TextBlock oldParent = subNode.getParentBlock();
+		TextBlock oldParent = subNode.getParent();
 		if(oldParent.isOffsetRelative()) {
 			oldParent.setOffset(getAbsoluteOffset(oldParent));
 			oldParent.setOffsetRelative(false);
@@ -600,7 +599,7 @@ public class TokenRelocationUtil {
 //		}
 		subNode.setOffset(originalAbsoluteOffset);
 		subNode.setOffsetRelative(false);
-		subNode.setParentBlock(null);
+		subNode.setParent(null);
 		
 		DocumentNode subNodeAtI = getSubNodeAt(tb, i);
 		if(subNodeAtI != null && getAbsoluteOffset(subNodeAtI) == originalAbsoluteOffset) {

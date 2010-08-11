@@ -2,17 +2,15 @@ package com.sap.mi.textual.textblocks.model;
 
 import java.util.List;
 
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.TextBlock;
-import textblocks.Version;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 
 public class VersionedTextBlockNavigator {
 	
-	private Version activeVersion = VersionEnum.REFERENCE;
+	private Version activeVersion = Version.REFERENCE;
 	
 	public VersionedTextBlockNavigator(Version activeVersion) {
 		super();
@@ -89,7 +87,7 @@ public class VersionedTextBlockNavigator {
 	 */
 	public AbstractToken getFloorToken(TextBlock block, int offset) {
 		DocumentNode floorToken = null;
-		if (block.getParentBlock() == null) {
+		if (block.getParent() == null) {
 			// root block, don't search bos and eos
 			floorToken = floorSearchByOffset(TbUtil.withoutBosEos(block.getTokens()),
 					offset);
@@ -147,7 +145,7 @@ public class VersionedTextBlockNavigator {
 //	    if (blockOffset>offset || blockOffset + block.getLength() < offset) return null; // or rather illegalArgument?
 
 	    DocumentNode floorToken = null;
-	    if (currentBlock.getParentBlock() == null) {
+	    if (currentBlock.getParent() == null) {
 	        // root block, don't search bos and eos
 	        floorToken = floorSearchByOffset(TbUtil.withoutBosEos(currentBlock.getTokens()),
 	                offset);
