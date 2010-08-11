@@ -6,6 +6,108 @@
  */
 package com.sap.furcas.metamodel.TCS.impl;
 
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.AndExp;
+import com.sap.furcas.metamodel.TCS.AsPArg;
+import com.sap.furcas.metamodel.TCS.Associativity;
+import com.sap.furcas.metamodel.TCS.AtomExp;
+import com.sap.furcas.metamodel.TCS.AutoCreateKind;
+import com.sap.furcas.metamodel.TCS.AutoCreatePArg;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.BlockArg;
+import com.sap.furcas.metamodel.TCS.BooleanPropertyExp;
+import com.sap.furcas.metamodel.TCS.ClassPattern;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.ContextTags;
+import com.sap.furcas.metamodel.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.TCS.CreateAsPArg;
+import com.sap.furcas.metamodel.TCS.CreateInPArg;
+import com.sap.furcas.metamodel.TCS.CustomSeparator;
+import com.sap.furcas.metamodel.TCS.DisambiguatePArg;
+import com.sap.furcas.metamodel.TCS.EClass0;
+import com.sap.furcas.metamodel.TCS.EndNLBArg;
+import com.sap.furcas.metamodel.TCS.EndOfLineRule;
+import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.TCS.EnumLiteralVal;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.TCS.EqualsExp;
+import com.sap.furcas.metamodel.TCS.Expression;
+import com.sap.furcas.metamodel.TCS.FilterPArg;
+import com.sap.furcas.metamodel.TCS.ForcedLowerPArg;
+import com.sap.furcas.metamodel.TCS.ForcedUpperPArg;
+import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.HexadecimalMapping;
+import com.sap.furcas.metamodel.TCS.ImportContextPArg;
+import com.sap.furcas.metamodel.TCS.IndentIncrBArg;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.InstanceOfExp;
+import com.sap.furcas.metamodel.TCS.IntegerVal;
+import com.sap.furcas.metamodel.TCS.InvertPArg;
+import com.sap.furcas.metamodel.TCS.IsDefinedExp;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.Literal;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.LocatedElement;
+import com.sap.furcas.metamodel.TCS.LookInPArg;
+import com.sap.furcas.metamodel.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.TCS.Mapping;
+import com.sap.furcas.metamodel.TCS.ModePArg;
+import com.sap.furcas.metamodel.TCS.MultiLineRule;
+import com.sap.furcas.metamodel.TCS.NamedElement;
+import com.sap.furcas.metamodel.TCS.NbNLBArg;
+import com.sap.furcas.metamodel.TCS.NegativeIntegerVal;
+import com.sap.furcas.metamodel.TCS.OclPArg;
+import com.sap.furcas.metamodel.TCS.OclPropertyInit;
+import com.sap.furcas.metamodel.TCS.OctalMapping;
+import com.sap.furcas.metamodel.TCS.OneExp;
+import com.sap.furcas.metamodel.TCS.Operator;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.OrPattern;
+import com.sap.furcas.metamodel.TCS.PartialPArg;
+import com.sap.furcas.metamodel.TCS.PredicateSemantic;
+import com.sap.furcas.metamodel.TCS.PrimitivePropertyInit;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.Priority;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.PropertyArg;
+import com.sap.furcas.metamodel.TCS.PropertyInit;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
+import com.sap.furcas.metamodel.TCS.PropertyVal;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.QueryPArg;
+import com.sap.furcas.metamodel.TCS.RefersToKeyPArg;
+import com.sap.furcas.metamodel.TCS.RefersToPArg;
+import com.sap.furcas.metamodel.TCS.Rule;
+import com.sap.furcas.metamodel.TCS.RulePattern;
+import com.sap.furcas.metamodel.TCS.ScopeArg;
+import com.sap.furcas.metamodel.TCS.ScopeKind;
+import com.sap.furcas.metamodel.TCS.SeparatorPArg;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.TCS.SimpleMapping;
+import com.sap.furcas.metamodel.TCS.SimplePattern;
+import com.sap.furcas.metamodel.TCS.SpaceKind;
+import com.sap.furcas.metamodel.TCS.StartNLBArg;
+import com.sap.furcas.metamodel.TCS.StartNbNLBArg;
+import com.sap.furcas.metamodel.TCS.StringPattern;
+import com.sap.furcas.metamodel.TCS.StringVal;
+import com.sap.furcas.metamodel.TCS.Symbol;
+import com.sap.furcas.metamodel.TCS.TCSFactory;
+import com.sap.furcas.metamodel.TCS.TCSPackage;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.TCS.TemplateModifiers;
+import com.sap.furcas.metamodel.TCS.Token;
+import com.sap.furcas.metamodel.TCS.Value;
+import com.sap.furcas.metamodel.TCS.WildcardMapping;
+import com.sap.furcas.metamodel.TCS.Word;
+import com.sap.furcas.metamodel.TCS.WordRule;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -14,6 +116,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.eclipse.ocl.ecore.EcorePackage;
 import com.sap.furcas.metamodel.TCS.*;
 
 /**
@@ -2871,6 +2974,15 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFilterPArg_Invert() {
+		return (EAttribute)filterPArgEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOclPArg() {
 		return oclPArgEClass;
 	}
@@ -3355,6 +3467,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
 		filterPArgEClass = createEClass(FILTER_PARG);
 		createEAttribute(filterPArgEClass, FILTER_PARG__FILTER);
+		createEAttribute(filterPArgEClass, FILTER_PARG__INVERT);
 
 		oclPArgEClass = createEClass(OCL_PARG);
 		createEReference(oclPArgEClass, OCL_PARG__QUERY_EXPRESSION);
@@ -3827,6 +3940,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
 		initEClass(filterPArgEClass, FilterPArg.class, "FilterPArg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFilterPArg_Filter(), theEcorePackage_1.getEString(), "filter", null, 0, 1, FilterPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFilterPArg_Invert(), theEcorePackage_1.getEString(), "invert", null, 0, 1, FilterPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclPArgEClass, OclPArg.class, "OclPArg", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOclPArg_QueryExpression(), theEcorePackage.getOCLExpression(), null, "queryExpression", null, 0, 1, OclPArg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

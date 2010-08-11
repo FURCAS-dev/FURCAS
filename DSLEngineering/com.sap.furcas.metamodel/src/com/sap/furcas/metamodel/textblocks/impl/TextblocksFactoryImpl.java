@@ -67,6 +67,8 @@ public class TextblocksFactoryImpl extends EFactoryImpl implements TextblocksFac
 			case TextblocksPackage.LEXED_TOKEN: return createLexedToken();
 			case TextblocksPackage.UNLEXED_TOKEN: return createUnlexedToken();
 			case TextblocksPackage.FOR_EACH_CONTEXT: return createForEachContext();
+			case TextblocksPackage.EOSTOKEN: return createEostoken();
+			case TextblocksPackage.BOSTOKEN: return createBostoken();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -140,6 +142,26 @@ public class TextblocksFactoryImpl extends EFactoryImpl implements TextblocksFac
 	public ForEachContext createForEachContext() {
 		ForEachContextImpl forEachContext = new ForEachContextImpl();
 		return forEachContext;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Eostoken createEostoken() {
+		EostokenImpl eostoken = new EostokenImpl();
+		return eostoken;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Bostoken createBostoken() {
+		BostokenImpl bostoken = new BostokenImpl();
+		return bostoken;
 	}
 
 	/**

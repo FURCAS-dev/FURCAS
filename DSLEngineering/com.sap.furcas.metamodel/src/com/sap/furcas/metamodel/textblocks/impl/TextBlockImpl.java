@@ -6,6 +6,7 @@
  */
 package com.sap.furcas.metamodel.textblocks.impl;
 
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
@@ -40,101 +41,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getStartRow <em>Start Row</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getStartColumn <em>Start Column</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getEndRow <em>End Row</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getEndColumn <em>End Column</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getType <em>Type</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getSubNodes <em>Sub Nodes</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getParentAltChoices <em>Parent Alt Choices</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getElementsInContext <em>Elements In Context</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getForEachContext <em>For Each Context</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#is___Alive <em>Alive</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getCachedString <em>Cached String</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
-	/**
-	 * The default value of the '{@link #getStartRow() <em>Start Row</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartRow()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int START_ROW_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getStartRow() <em>Start Row</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartRow()
-	 * @generated
-	 * @ordered
-	 */
-	protected int startRow = START_ROW_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getStartColumn() <em>Start Column</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartColumn()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int START_COLUMN_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getStartColumn() <em>Start Column</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getStartColumn()
-	 * @generated
-	 * @ordered
-	 */
-	protected int startColumn = START_COLUMN_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getEndRow() <em>End Row</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndRow()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int END_ROW_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getEndRow() <em>End Row</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndRow()
-	 * @generated
-	 * @ordered
-	 */
-	protected int endRow = END_ROW_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getEndColumn() <em>End Column</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndColumn()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int END_COLUMN_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getEndColumn() <em>End Column</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEndColumn()
-	 * @generated
-	 * @ordered
-	 */
-	protected int endColumn = END_COLUMN_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -186,6 +105,46 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	protected EList<ForEachContext> forEachContext;
 
 	/**
+	 * The default value of the '{@link #is___Alive() <em>Alive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #is___Alive()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean _ALIVE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #is___Alive() <em>Alive</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #is___Alive()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean ___Alive = _ALIVE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCachedString() <em>Cached String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCachedString()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CACHED_STRING_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCachedString() <em>Cached String</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCachedString()
+	 * @generated
+	 * @ordered
+	 */
+	protected String cachedString = CACHED_STRING_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -209,91 +168,18 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getStartRow() {
-		return startRow;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStartRow(int newStartRow) {
-		int oldStartRow = startRow;
-		startRow = newStartRow;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__START_ROW, oldStartRow, startRow));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getStartColumn() {
-		return startColumn;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStartColumn(int newStartColumn) {
-		int oldStartColumn = startColumn;
-		startColumn = newStartColumn;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__START_COLUMN, oldStartColumn, startColumn));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getEndRow() {
-		return endRow;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndRow(int newEndRow) {
-		int oldEndRow = endRow;
-		endRow = newEndRow;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__END_ROW, oldEndRow, endRow));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public int getEndColumn() {
-		return endColumn;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEndColumn(int newEndColumn) {
-		int oldEndColumn = endColumn;
-		endColumn = newEndColumn;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__END_COLUMN, oldEndColumn, endColumn));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<AbstractToken> getTokens() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Template> getAdditionalTemplates() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -401,6 +287,48 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean is___Alive() {
+		return ___Alive;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void set___Alive(boolean new___Alive) {
+		boolean old___Alive = ___Alive;
+		___Alive = new___Alive;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__ALIVE, old___Alive, ___Alive));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getCachedString() {
+		return cachedString;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCachedString(String newCachedString) {
+		String oldCachedString = cachedString;
+		cachedString = newCachedString;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__CACHED_STRING, oldCachedString, cachedString));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -418,14 +346,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TextblocksPackage.TEXT_BLOCK__START_ROW:
-				return getStartRow();
-			case TextblocksPackage.TEXT_BLOCK__START_COLUMN:
-				return getStartColumn();
-			case TextblocksPackage.TEXT_BLOCK__END_ROW:
-				return getEndRow();
-			case TextblocksPackage.TEXT_BLOCK__END_COLUMN:
-				return getEndColumn();
 			case TextblocksPackage.TEXT_BLOCK__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -437,6 +357,10 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 				return getElementsInContext();
 			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
 				return getForEachContext();
+			case TextblocksPackage.TEXT_BLOCK__ALIVE:
+				return is___Alive();
+			case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
+				return getCachedString();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -450,18 +374,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TextblocksPackage.TEXT_BLOCK__START_ROW:
-				setStartRow((Integer)newValue);
-				return;
-			case TextblocksPackage.TEXT_BLOCK__START_COLUMN:
-				setStartColumn((Integer)newValue);
-				return;
-			case TextblocksPackage.TEXT_BLOCK__END_ROW:
-				setEndRow((Integer)newValue);
-				return;
-			case TextblocksPackage.TEXT_BLOCK__END_COLUMN:
-				setEndColumn((Integer)newValue);
-				return;
 			case TextblocksPackage.TEXT_BLOCK__TYPE:
 				setType((TextblockDefinition)newValue);
 				return;
@@ -481,6 +393,12 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 				getForEachContext().clear();
 				getForEachContext().addAll((Collection<? extends ForEachContext>)newValue);
 				return;
+			case TextblocksPackage.TEXT_BLOCK__ALIVE:
+				set___Alive((Boolean)newValue);
+				return;
+			case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
+				setCachedString((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -493,18 +411,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TextblocksPackage.TEXT_BLOCK__START_ROW:
-				setStartRow(START_ROW_EDEFAULT);
-				return;
-			case TextblocksPackage.TEXT_BLOCK__START_COLUMN:
-				setStartColumn(START_COLUMN_EDEFAULT);
-				return;
-			case TextblocksPackage.TEXT_BLOCK__END_ROW:
-				setEndRow(END_ROW_EDEFAULT);
-				return;
-			case TextblocksPackage.TEXT_BLOCK__END_COLUMN:
-				setEndColumn(END_COLUMN_EDEFAULT);
-				return;
 			case TextblocksPackage.TEXT_BLOCK__TYPE:
 				setType((TextblockDefinition)null);
 				return;
@@ -520,6 +426,12 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
 				getForEachContext().clear();
 				return;
+			case TextblocksPackage.TEXT_BLOCK__ALIVE:
+				set___Alive(_ALIVE_EDEFAULT);
+				return;
+			case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
+				setCachedString(CACHED_STRING_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -532,14 +444,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TextblocksPackage.TEXT_BLOCK__START_ROW:
-				return startRow != START_ROW_EDEFAULT;
-			case TextblocksPackage.TEXT_BLOCK__START_COLUMN:
-				return startColumn != START_COLUMN_EDEFAULT;
-			case TextblocksPackage.TEXT_BLOCK__END_ROW:
-				return endRow != END_ROW_EDEFAULT;
-			case TextblocksPackage.TEXT_BLOCK__END_COLUMN:
-				return endColumn != END_COLUMN_EDEFAULT;
 			case TextblocksPackage.TEXT_BLOCK__TYPE:
 				return type != null;
 			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
@@ -550,6 +454,10 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 				return elementsInContext != null && !elementsInContext.isEmpty();
 			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
 				return forEachContext != null && !forEachContext.isEmpty();
+			case TextblocksPackage.TEXT_BLOCK__ALIVE:
+				return ___Alive != _ALIVE_EDEFAULT;
+			case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
+				return CACHED_STRING_EDEFAULT == null ? cachedString != null : !CACHED_STRING_EDEFAULT.equals(cachedString);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -564,16 +472,12 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (startRow: ");
-		result.append(startRow);
-		result.append(", startColumn: ");
-		result.append(startColumn);
-		result.append(", endRow: ");
-		result.append(endRow);
-		result.append(", endColumn: ");
-		result.append(endColumn);
-		result.append(", parentAltChoices: ");
+		result.append(" (parentAltChoices: ");
 		result.append(parentAltChoices);
+		result.append(", ___Alive: ");
+		result.append(___Alive);
+		result.append(", cachedString: ");
+		result.append(cachedString);
 		result.append(')');
 		return result.toString();
 	}
