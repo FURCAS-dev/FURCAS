@@ -78,7 +78,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
     @Test
     public void testCountRedundantFilters() throws IllegalArgumentException, SecurityException, IllegalAccessException,
             NoSuchFieldException, InvocationTargetException, NoSuchMethodException {
-    registerFiltersForAllExpressions();
+        registerFiltersForAllExpressions();
         Object registrationManager = getRegistrationManager();
         Method redundantFiltersMethod = registrationManager.getClass().getDeclaredMethod("redundantFilters");
         int rf = (Integer) redundantFiltersMethod.invoke(registrationManager);
@@ -128,6 +128,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
            new Runnable() { public void run() { handle_Reference_InitExpression_478(); printStats(NOTIFY_REFERENCE_INIT_EXPRESSION_478); } }
         }) {
             eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
+//          eventManager = new EventManagerNaive(rs);
             for (Adapter listener : listeners) {
                 eventManager.unsubscribe(listener);
             }
