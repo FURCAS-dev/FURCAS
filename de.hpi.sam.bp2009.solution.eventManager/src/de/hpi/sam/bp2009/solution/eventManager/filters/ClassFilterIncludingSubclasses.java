@@ -24,4 +24,10 @@ public class ClassFilterIncludingSubclasses extends ClassFilter {
         return new ClassFilterIncludingSubclasses(getWantedClass(), isNegated());
         
     }
+    @Override
+    public String toString() {
+        if (getWantedClass() != null)
+            return "wantedClass conformsTo " + getWantedClass().toString();
+        return "empty ClassFilter";
+    }
 }
