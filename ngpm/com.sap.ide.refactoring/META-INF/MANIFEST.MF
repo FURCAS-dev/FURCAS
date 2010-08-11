@@ -11,18 +11,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.editors;bundle-version="3.4.0",
  org.eclipse.jface.text;bundle-version="3.4.2",
  com.sap.mi.textual.epi;bundle-version="1.0.0",
- tcsmetamodel;bundle-version="1.0.0",
  com.sap.mi.textual;bundle-version="1.0.0",
  com.sap.mi.textual.parsing.textblocks;bundle-version="1.0.0",
- com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
- com.sap.mi.fwk.ui;bundle-version="1.0.0",
- com.sap.mi.fwk;bundle-version="1.0.0",
- com.sap.tc.moin.textual.runtime.moin;bundle-version="1.0.0",
  org.eclipse.ltk.core.refactoring,
  com.sap.ide.cts.parser;bundle-version="1.0.0",
  org.eclipse.ltk.ui.refactoring;bundle-version="3.4.1",
  org.eclipse.core.resources;bundle-version="3.4.2",
- com.sap.ide.cts.moin;bundle-version="1.0.0"
+ com.sap.ide.cts.moin;bundle-version="1.0.0",
+ com.sap.furcas.metamodel;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.ide.refactoring.core.model.rename,

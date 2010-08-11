@@ -3,8 +3,6 @@
  */
 package com.sap.mi.textual.syntaxmodel.moinadapter;
 
-import com.sap.tc.moin.repository.Moin;
-import com.sap.tc.moin.repository.ide.MoinFactory;
 
 /**
  * Provides access to a moin instances, which is either the eclipse one or one set previously.

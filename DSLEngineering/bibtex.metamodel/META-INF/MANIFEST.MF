@@ -4,9 +4,6 @@ Bundle-Name: Bibtex Metamodel Plug-in
 Bundle-SymbolicName: bibtex.metamodel;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: com.sap.tc.moin.incubation.contentprovider;bundle-version="1.0.0",
- com.sap.tc.moin.tcs.mof.editor;bundle-version="1.0.0",
- com.sap.tc.moin.libraries.jmi.facade;bundle-version="2.0.0"
 Export-Package: bibtex,
  bibtex.__impl,
  com.sap.tc.moin.packageFF55A7A61D954C2D4FDB0176F04FBF6E6366AA78

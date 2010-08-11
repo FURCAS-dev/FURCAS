@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension
-         point="com.sap.tc.moin.incubation.contentprovider.Content">
-      <ContentDefinition>
-         <Path
-               Value="moin/meta"
-               Versioned="true">
-         </Path>
-         <Path
-               Value="diagrams"
-               Versioned="true">
-         </Path>
-      </ContentDefinition>
-   </extension>
 
 </plugin>

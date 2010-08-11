@@ -10,15 +10,7 @@
             name="TCS Editor">
       </editor>
    </extension>
-   <extension
-         point="com.sap.tc.moin.incubation.contentprovider.Content">
-      <ContentDefinition>
-         <Path
-               Value="mappings"
-               Versioned="true">
-         </Path>
-      </ContentDefinition>
-   </extension>
+  
    <extension
          point="com.sap.ide.treeprovider.rootNodeDefinition">
          <rootNodeProvider classname="com.sap.mi.tcs.editor.tree.TcsRootNodeProvider" />
@@ -31,16 +23,7 @@
          point="com.sap.ide.treeprovider.imageProvider">
         <imageProvider classname="com.sap.mi.tcs.editor.tree.TcsTreeImageProvider" />
    </extension>
-   <extension
-         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
-      <association
-            canHandleChildren="true"
-            default="false"
-            editorId="com.sap.mi.tcs.editor.TcsEditor"
-            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
-            objectClass="tcs.ConcreteSyntax">
-      </association>
-   </extension>
+   
    <extension
          point="com.sap.ide.cts.parser.parserFactory">
       <configuration

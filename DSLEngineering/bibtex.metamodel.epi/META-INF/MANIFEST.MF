@@ -6,8 +6,6 @@ Bundle-Version: 1.0.0
 Export-Package: bibtex,
  bibtex.__impl,
  com.sap.tc.moin.packageFF55A7A61D954C2D4FDB0176F04FBF6E6366AA78
-Require-Bundle: com.sap.tc.moin.libraries.jmi.facade,
- com.sap.tc.moin.ide.facade,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.junit

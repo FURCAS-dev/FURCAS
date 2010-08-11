@@ -7,7 +7,6 @@ Bundle-Vendor: SAP
 Fragment-Host: com.sap.ide.refactoring;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.junit4,
- com.sap.tc.moin.libraries.core;bundle-version="2.0.0",
  com.sap.ide.cts.editor.test;bundle-version="1.0.0",
  com.sap.ap.metamodel.core;bundle-version="0.0.0",
  com.sap.ap.cts.editor;bundle-version="1.0.0",

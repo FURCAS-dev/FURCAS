@@ -7,18 +7,13 @@ Bundle-Activator: com.sap.mi.tcs.editor.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.sap.tc.moin.libraries.api,
  com.sap.ide.cts.editor,
  com.sap.ide.cts.parser,
  org.eclipse.ui.editors,
  org.eclipse.jface.text,
- com.sap.mi.fwk,
- com.sap.mi.fwk.ui,
  com.sap.mi.textual.parsing,
- com.sap.tcsmeta.mm.eclipse,
  com.sap.mi.textual.parsing.textblocks,
  org.eclipse.core.resources,
- com.sap.tc.moin.incubation.contentprovider;bundle-version="1.0.0",
  com.sap.ide.treeprovider;bundle-version="1.0.0",
  com.sap.mi.textual.epi;bundle-version="1.0.0",
  com.sap.ide.cts.moin;bundle-version="1.0.0",
@@ -26,7 +21,8 @@ Require-Bundle: org.eclipse.ui,
  com.sap.mi.textual.common;bundle-version="1.0.0",
  org.eclipse.ui.navigator;bundle-version="3.4.1",
  com.sap.mi.textual;bundle-version="1.0.0",
- com.sap.mi.textual.syntaxmodel.moinadapter;bundle-version="1.0.0"
+ com.sap.mi.textual.syntaxmodel.moinadapter;bundle-version="1.0.0",
+ com.sap.furcas.metamodel;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.mi.tcs.editor,
  com.sap.mi.tcs.editor.tree,

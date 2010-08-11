@@ -9,12 +9,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
- com.sap.mi.fwk.ui,
- com.sap.mi.fwk,
- com.sap.tc.moin.ide.facade,
  org.eclipse.ui.navigator,
- com.sap.mi.tools.cockpit.editor;bundle-version="1.0.0",
- com.sap.tc.moin.globalmodellistener;bundle-version="1.0.0"
+ com.sap.furcas.metamodel;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

@@ -3,4 +3,3 @@ Bundle-ManifestVersion: 2
 Bundle-Name: ngpmmetamodel
 Bundle-SymbolicName: ngpmmetamodel;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: com.sap.tc.moin.incubation.contentprovider
