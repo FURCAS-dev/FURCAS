@@ -5,9 +5,9 @@ Bundle-SymbolicName: com.sap.runlet.apps.dunning;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.runlet.apps.dunning.Activator
 Bundle-Vendor: SAP
-Require-Bundle: com.sap.tc.moin.incubation.contentprovider,
- com.sap.ap.cts.editor,
+Require-Bundle: com.sap.ap.cts.editor,
  ngpm.stdlib,
- com.sap.runlet.apps.opportunitymanagement
+ com.sap.runlet.apps.opportunitymanagement,
+ com.sap.furcas.metamodel;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
