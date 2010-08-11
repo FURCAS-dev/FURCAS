@@ -29,6 +29,7 @@ import com.sap.furcas.metamodel.TCS.OperatorList;
 import com.sap.furcas.metamodel.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.TCS.Symbol;
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
@@ -421,7 +422,7 @@ public class SyntaxLookup {
     public boolean hasPrimitiveRule(String templateName) {
         for (Iterator<PrimitiveTemplate> iterator = primitiveTemplates.iterator(); iterator.hasNext();) {
             PrimitiveTemplate primTemp = iterator.next();
-            if (templateName.equals(primTemp.getTem	plateName())) {
+            if (templateName.equals(primTemp.getTemplateName())) {
                 return true;
             }
         }
