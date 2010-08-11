@@ -381,6 +381,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="QueryPArg" eSuperTypes="#//OclPArg"/>
   <eClassifiers xsi:type="ecore:EClass" name="FilterPArg" eSuperTypes="#//OclPArg">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="filter" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="invert" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclPArg" abstract="true" eSuperTypes="#//PropertyArg">
     <eStructuralFeatures xsi:type="ecore:EReference" name="queryExpression" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
