@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class TextBlockTraversationContext {
 

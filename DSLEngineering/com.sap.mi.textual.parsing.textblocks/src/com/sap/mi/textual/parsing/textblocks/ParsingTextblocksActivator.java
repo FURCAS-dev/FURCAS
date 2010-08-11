@@ -3,16 +3,16 @@ package com.sap.mi.textual.parsing.textblocks;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.osgi.framework.BundleContext;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.events.ChangeListener;
-import com.sap.tc.moin.repository.events.filter.SessionFilter;
-import com.sap.tc.moin.repository.events.type.ChangeEvent;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -36,7 +36,7 @@ public class ParsingTextblocksActivator extends Plugin {
 	    }
         };
 
-    private Set<Connection> loggingEnabledFor = new HashSet<Connection>();
+    private Set<ResourceSet> loggingEnabledFor = new HashSet<ResourceSet>();
 
     /**
      * The constructor.
@@ -44,25 +44,25 @@ public class ParsingTextblocksActivator extends Plugin {
     public ParsingTextblocksActivator() {
     }
 
-	public synchronized void disableMoinLogging(Connection connection) {
+	public synchronized void disableMoinLogging(ResourceSet connection) {
 	    if (moinLoggingOn) {
 	        if (isMoinLoggingEnabled(connection)) {
-		    connection.getEventRegistry().deregister(moinListener);
+		    connection.getPackageRegistry().deregister(moinListener);
 		    loggingEnabledFor.remove(connection);
 	        }
 	    }
 	}
 
-	public void enableMoinLogging(Connection connection) {
+	public void enableMoinLogging(ResourceSet connection) {
 	    if (moinLoggingOn) {
 		if (!isMoinLoggingEnabled(connection)) {
-		    connection.getEventRegistry().registerListener(moinListener, new SessionFilter(connection.getSession()));
+		    connection.getPackageRegistry().registerListener(moinListener, new SessionFilter(connection.getSession()));
 		    loggingEnabledFor.add(connection);
 		}
 	    }
 	}
 	
-	public boolean isMoinLoggingEnabled(Connection connection) {
+	public boolean isMoinLoggingEnabled(ResourceSet connection) {
 	    return loggingEnabledFor.contains(connection);
 	}
 

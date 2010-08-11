@@ -6,11 +6,11 @@ import static com.sap.mi.textual.parsing.textblocks.TbUtil.getAbsoluteOffset;
 import java.util.Iterator;
 import java.util.List;
 
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class TbValidationUtil {
 

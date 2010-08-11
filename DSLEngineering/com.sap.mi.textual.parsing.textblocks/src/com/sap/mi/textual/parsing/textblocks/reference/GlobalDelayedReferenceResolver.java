@@ -1,26 +1,25 @@
 package com.sap.mi.textual.parsing.textblocks.reference;
 
 import java.util.Collection;
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.stream.EventFilter;
+
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.tc.moin.globalmodellistener.GlobalEventListener;
-import com.sap.tc.moin.globalmodellistener.GlobalEventListenerRegistry;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.events.EventListener;
-import com.sap.tc.moin.repository.events.filter.EventFilter;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+
 
 public class GlobalDelayedReferenceResolver implements GlobalEventListener {
     static final String TEMPORARY_QUERY_PARAM_REPLACEMENT = "__TEMP__";
@@ -42,7 +41,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener {
     }
 
     @Override
-    public Map<EventFilter, Map<ListenerType, EventListener>> getFilters(Connection connection, BundleContext bundleContext) {
+    public Map<EventFilter, Map<ListenerType, EventListener>> getFilters(ResourceSet connection, BundleContext bundleContext) {
 	BundleContext context = bundleContext;
 	ServiceReference globalEventListenerRegistryRef = context
 		.getServiceReference(GlobalEventListenerRegistry.class.getName());
@@ -97,14 +96,14 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener {
 	}
     }
 
-    public void registerReferenceForIncrementalEvaluation(ConcreteSyntax syntax, Connection connection,
-	    RefPackage outermostPackageOfMetamodel, ObservableInjectingParser parser, IRuleName ruleNameBuilder,
+    public void registerReferenceForIncrementalEvaluation(ConcreteSyntax syntax, ResourceSet connection,
+	    EPackage outermostPackageOfMetamodel, ObservableInjectingParser parser, IRuleName ruleNameBuilder,
 	    IProgressMonitor monitor) {
 	registry.registerReferenceForIncrementalEvaluation(syntax, connection, outermostPackageOfMetamodel, parser,
 		ruleNameBuilder, monitor);
     }
 
-    public String getDebugInfoAsCsv(Connection connection) {
+    public String getDebugInfoAsCsv(ResourceSet connection) {
 	return registry.getDebugInfo(connection);
     }
 

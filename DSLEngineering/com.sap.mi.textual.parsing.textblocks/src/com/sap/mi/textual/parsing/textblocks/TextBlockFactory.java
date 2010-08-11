@@ -1,9 +1,8 @@
 package com.sap.mi.textual.parsing.textblocks;
 
-import tcs.Template;
-import textblockdefinition.TextBlockDefinition;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 
 /**
@@ -35,5 +34,5 @@ public interface TextBlockFactory {
 	 * @param template The template for which to search the {@link TextBlockDefinition}
 	 * @return the found {@link TextBlockDefinition} or a new one if none exists.
 	 */
-	TextBlockDefinition getTbDef(Template template);
+	TextblockDefinition getTbDef(Template template);
 }

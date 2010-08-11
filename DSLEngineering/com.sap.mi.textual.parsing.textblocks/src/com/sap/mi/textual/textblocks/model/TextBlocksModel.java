@@ -14,6 +14,7 @@ import static com.sap.mi.textual.textblocks.model.TbReplacingHelper.getGapBlanks
 import static com.sap.mi.textual.textblocks.model.TbReplacingHelper.modifyTokenOnOverlap;
 import static com.sap.mi.textual.textblocks.model.TbReplacingHelper.updateBlockCachedString;
 
+import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -21,27 +22,25 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.Version;
-import textblocks.VersionEnum;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.parsing.textblocks.CoverageBean;
 import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.commands.Command;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidObjectException;
+
 
 /**
  * A model of a textBlocks tree.
@@ -52,7 +51,7 @@ public class TextBlocksModel {
 	
 	private final VersionedTextBlockNavigator navigator;
 	
-	private Version activeVersion = VersionEnum.REFERENCE;
+	private Version activeVersion = Version.REFERENCE;
 
 	private final ShortPrettyPrinter shortPrettyPrinter;
 
@@ -71,7 +70,7 @@ public class TextBlocksModel {
 	 * @param modelAdapter 
 	 */
 	public TextBlocksModel(TextBlock rootBlock2, IModelElementInvestigator modelAdapter) {
-		this(rootBlock2, VersionEnum.REFERENCE, modelAdapter);
+		this(rootBlock2, Version.REFERENCE, modelAdapter);
 	}
 	
 	/**
@@ -121,7 +120,7 @@ public class TextBlocksModel {
             if (rootBlock == null) {
                 throw new IllegalArgumentException("null block passed as root");
             }
-            if (rootBlock.getParentBlock() != null) {
+            if (rootBlock.getParent() != null) {
                 throw new IllegalArgumentException("block passed is not root");
             }
             this.rootBlock = rootBlock;
@@ -370,7 +369,7 @@ public class TextBlocksModel {
 	 */
 	public void replace(final int replacedRegionOffset, final int replacedRegionLength,
 			final String newText) {
-	        final Connection conn = rootBlock.get___Connection();
+	        final ResourceSet conn = rootBlock.get___Connection();
 	        conn.getCommandStack().execute(new Command(conn, "Replace Region"){
 
                 @Override
@@ -396,9 +395,9 @@ public class TextBlocksModel {
                 }
 
                 @Override
-                public Collection<PartitionOperation> getAffectedPartitions() {
-                    PRI pri = ((Partitionable) rootBlock).get___Partition().getPri();
-                    PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
+                public Collection<EOperation> getAffectedPartitions() {
+                    PRI pri = ((EObject) rootBlock).get___Partition().getPri();
+                    EOperation editOperation = new EOperation(PartitionOperation.Operation.EDIT, pri);
                     return Collections.singleton(editOperation);
                 }
                 
@@ -407,7 +406,7 @@ public class TextBlocksModel {
 
 	
 	public void doShortPrettyPrintToEditableVersion() {
-	    	final Connection conn = rootBlock.get___Connection();
+	    	final ResourceSet conn = rootBlock.get___Connection();
 	        conn.getCommandStack().execute(new Command(conn, "Pretty Print Short"){
 
                 @Override
@@ -723,7 +722,7 @@ public class TextBlocksModel {
         if (replacedRegionAbsoluteOffset+ replacedRegionLength > root.getLength()) {
             throw new IllegalArgumentException((replacedRegionAbsoluteOffset+ replacedRegionLength) + " > " +  root.getLength());
         }
-        if (root.getParentBlock() != null) {
+        if (root.getParent() != null) {
             throw new IllegalArgumentException("TextBlock is not root.");
         }
 

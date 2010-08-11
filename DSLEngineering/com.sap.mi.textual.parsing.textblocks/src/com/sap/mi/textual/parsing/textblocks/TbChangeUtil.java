@@ -12,14 +12,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
-
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.TextBlock;
-import textblocks.Version;
-import textblocks.VersionEnum;
 
 /**
  * 
@@ -82,11 +80,11 @@ public class TbChangeUtil {
 		if(first.equals(second)) {
 			return false;
 		}
-		if(VersionEnum.CURRENT.equals(first)) {
+		if(Version.CURRENT.equals(first)) {
 			return true;
-		} else if(VersionEnum.PREVIOUS.equals(first)) {
-			return VersionEnum.REFERENCE.equals(second);
-		} else if(VersionEnum.REFERENCE.equals(first)) {
+		} else if(Version.PREVIOUS.equals(first)) {
+			return Version.REFERENCE.equals(second);
+		} else if(Version.REFERENCE.equals(first)) {
 			return false;
 		}
 		//this should never happen!!
@@ -239,7 +237,7 @@ public class TbChangeUtil {
 		currentTextBlock.getTokens().remove(oldTokenInCurrentBlock);
 		//reduce by length of PREVIOUS version as parernt block still compute with this length
 		AbstractToken previousVersion = TbVersionUtil
-				.getOtherVersion(oldTokenInCurrentBlock, VersionEnum.PREVIOUS);
+				.getOtherVersion(oldTokenInCurrentBlock, Version.PREVIOUS);
 		TbChangeUtil.updateLengthAscending(currentTextBlock, -previousVersion
 				.getLength());
 	}
@@ -322,13 +320,13 @@ public class TbChangeUtil {
 	    // a deletion is the replacement where length > text.length
         int lengthToUpdate = newText.length() - replacedRegionLength;
 		// update length and offsets
-		updateLengthAscending(firstToken.getParentBlock(), lengthToUpdate);
+		updateLengthAscending(firstToken.getParent(), lengthToUpdate);
 		updateOffsets(firstToken, lengthToUpdate);
 
 		// mark as changed
 		TbMarkingUtil.mark(firstToken);
 		TbChangeUtil.markAscending(firstToken
-				.getParentBlock());
+				.getParent());
 
 	}
 
@@ -360,7 +358,7 @@ public class TbChangeUtil {
 	public static void removeTextBlockIfEmpty(TextBlock textblock) {
 		if (textblock != null) {
 			if (getSubNodesSize(textblock) == 0) {
-				TextBlock parent = textblock.getParentBlock();
+				TextBlock parent = textblock.getParent();
 				textblock.refDelete();
 				removeTextBlockIfEmpty(parent);
 			}
@@ -385,7 +383,7 @@ public class TbChangeUtil {
 	public static void markAscending(TextBlock start) {
 		start.setChildrenChanged(true);
 		TextBlock parent;
-		if((parent = start.getParentBlock()) != null) {
+		if((parent = start.getParent()) != null) {
 			markAscending(parent);
 		}
 	}
@@ -411,8 +409,8 @@ public class TbChangeUtil {
 		}
 		if(oldLength != newLength) {
 			tb.setLength(newLength);
-			if(tb.getParentBlock()!= null) {
-				updateLengthAscending(tb.getParentBlock(), newLength-oldLength);
+			if(tb.getParent()!= null) {
+				updateLengthAscending(tb.getParent(), newLength-oldLength);
 			}
 		}
 	}

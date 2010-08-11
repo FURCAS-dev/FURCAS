@@ -1,6 +1,6 @@
 package com.sap.mi.textual.parsing.textblocks;
 
-import textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
 
 public class TokenLocation {
 

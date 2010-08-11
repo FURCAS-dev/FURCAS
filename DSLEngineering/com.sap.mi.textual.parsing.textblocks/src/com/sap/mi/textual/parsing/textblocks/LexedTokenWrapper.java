@@ -3,29 +3,31 @@
  */
 package com.sap.mi.textual.parsing.textblocks;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 
 import org.antlr.runtime.CharStream;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import tcs.FunctionCall;
-import tcs.SequenceElement;
-import textblocks.DocumentNode;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.Version;
-
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+
 
 /**
  * 
@@ -384,7 +386,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 */
 	@Override
 	public void setParentBlock(TextBlock newValue) throws JmiException {
-		wrappedToken.setParentBlock(newValue);
+		wrappedToken.setParent(newValue);
 
 	}
 
@@ -418,7 +420,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	@Override
 	public int getAbsoluteOffset() throws JmiException {
 
-		return wrappedToken.getAbsoluteOffset();
+		return wrappedToken.getOffset();
 	}
 
 	/*
@@ -427,7 +429,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getCorrespondingModelElements()
 	 */
 	@Override
-	public List<RefObject> getCorrespondingModelElements() throws JmiException {
+	public EList<EObject> getCorrespondingModelElements() throws JmiException {
 
 		return wrappedToken.getCorrespondingModelElements();
 	}
@@ -471,7 +473,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getOtherVersions()
 	 */
 	@Override
-	public List<DocumentNode> getOtherVersions() throws JmiException {
+	public EList<DocumentNode> getOtherVersions() throws JmiException {
 
 		return wrappedToken.getOtherVersions();
 	}
@@ -680,7 +682,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 *      boolean)
 	 */
 	@Override
-	public boolean refIsInstanceOf(RefObject objType, boolean considerSubtypes) {
+	public boolean refIsInstanceOf(EObject objType, boolean considerSubtypes) {
 
 		return wrappedToken.refIsInstanceOf(objType, considerSubtypes);
 	}
@@ -702,7 +704,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refGetValue(com.sap.tc.moin.repository.mmi.reflect.RefObject)
 	 */
 	@Override
-	public Object refGetValue(RefObject feature) {
+	public EObject refGetValue(EObject feature) {
 
 		return wrappedToken.refGetValue(feature);
 	}
@@ -713,7 +715,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refGetValue(java.lang.String)
 	 */
 	@Override
-	public Object refGetValue(String featureName) {
+	public EObject refGetValue(String featureName) {
 
 		return wrappedToken.refGetValue(featureName);
 	}
@@ -725,8 +727,8 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 *      java.util.List)
 	 */
 	@Override
-	public Object refInvokeOperation(RefObject requestedOperation,
-			List<? extends Object> args) throws RefException {
+	public Object refInvokeOperation(EObject requestedOperation,
+			EList<? extends EObject> args) throws RefException {
 		return wrappedToken.refInvokeOperation(requestedOperation, args);
 	}
 
@@ -737,8 +739,8 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 *      java.util.List)
 	 */
 	@Override
-	public Object refInvokeOperation(String requestedOperation,
-			List<? extends Object> args) throws RefException {
+	public EObject refInvokeOperation(String requestedOperation,
+			EList<? extends EObject> args) throws RefException {
 		return wrappedToken.refInvokeOperation(requestedOperation, args);
 	}
 
@@ -749,7 +751,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 *      java.lang.Object)
 	 */
 	@Override
-	public void refSetValue(RefObject feature, Object value) {
+	public void refSetValue(EObject feature, Object value) {
 		wrappedToken.refSetValue(feature, value);
 	}
 
@@ -838,41 +840,17 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 		throw new RuntimeException("not implemented");
 	}
 
-	@Override
-	public Connection get___Connection() {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("not implemented");
-	}
+	
 
-	@Override
-	public <T extends RefBaseObject> Class<T> get___JmiInterface() {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("not implemented");
-	}
+	
 
-	@Override
-	public MRI get___Mri() {
-		return wrappedToken.get___Mri();
-	}
-
-	@Override
-	public ModelPartition get___Partition() {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("not implemented");
-	}
-
-	@Override
-	public boolean is___Alive() {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("not implemented");
-	}
-
+	
 	public LexedToken getWrappedToken() {
 	    return wrappedToken;
 	}
 
 	@Override
-	public Collection<RefObject> getReferencedElements()
+	public Collection<EObject> getReferencedElements()
 		throws JmiException {
 	    return wrappedToken.getReferencedElements();
 	}
@@ -886,5 +864,132 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
     public void setOperator(boolean newValue) throws JmiException {
         wrappedToken.setOperator(newValue);
     }
+
+	@Override
+	public TextBlock getParent() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setParent(TextBlock value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public EClass eClass() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Resource eResource() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EObject eContainer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EStructuralFeature eContainingFeature() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EReference eContainmentFeature() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EList<EObject> eContents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TreeIterator<EObject> eAllContents() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean eIsProxy() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public EList<EObject> eCrossReferences() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object eGet(EStructuralFeature feature) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object eGet(EStructuralFeature feature, boolean resolve) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eSet(EStructuralFeature feature, Object newValue) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean eIsSet(EStructuralFeature feature) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void eUnset(EStructuralFeature feature) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object eInvoke(EOperation operation, EList<?> arguments)
+			throws InvocationTargetException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EList<Adapter> eAdapters() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean eDeliver() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void eSetDeliver(boolean deliver) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eNotify(Notification notification) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -11,19 +11,20 @@ import java.util.Map;
 
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import tcs.ForeachPredicatePropertyInit;
-import tcs.InjectorAction;
-import tcs.InjectorActionsBlock;
-import tcs.OperatorTemplate;
-import tcs.SequenceElement;
-import tcs.Template;
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.DocumentNodeReferencesCorrespondingModelElement;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-
+import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -33,14 +34,7 @@ import com.sap.mi.textual.grammar.impl.ModelElementProxy;
 import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
 import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-import com.sap.tc.moin.repository.mql.QueryScopeProvider;
+
 
 /**
  * This class handles the connection between the parser and the textblocks
@@ -75,7 +69,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	// flag to indicate whether root rule has been entered yet or not. 
 	private int ruleDepth = -1; // -1 initial value means outside root context
 
-	private Connection connection;
+	private ResourceSet connection;
 
 	private Map<String, Template> templateCache  = new HashMap<String, Template>();
 
@@ -98,7 +92,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 * @param additionalCRIScope Additional CRIS from where to lookup elements.
 	 */
 	public ParserTextBlocksHandler(ITextBlocksTokenStream input,
-			Connection moinConnection, CRI metamodelCri,
+			ResourceSet moinConnection, CRI metamodelCri,
 			Collection<PRI> mappingDefinitionPartitions,
 			Collection<PRI> additionalScope, Collection<CRI> additionalCRIScope) {
 		this.connection = moinConnection;
@@ -117,7 +111,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		this.traverser = new TextBlockTraverser();
 	}
 	
-	public void setConnection(Connection conn) {
+	public void setConnection(ResourceSet conn) {
 	        this.connection = conn;
 	    }
 
@@ -205,21 +199,21 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                 // TODO query fully qualified name!
                 MQLResultSet result = connection.getMQLProcessor().execute(
                         queryClass, metamodelContainerQueryScope);
-                RefObject[] refObjects = result.getRefObjects("class");
-                Classifier clazz = null;
+                EObject[] refObjects = result.getRefObjects("class");
+                EClassifier clazz = null;
                 if (refObjects.length > 1) {
                     // throw new RuntimeException("Ambigous templates found for: " +
                     // createdElement + " mode=" + mode);
-                    clazz = (Classifier) refObjects[1];
+                    clazz = (EClassifier) refObjects[1];
                 } else if (refObjects.length == 1) {
-                    clazz = (Classifier) refObjects[0];
+                    clazz = (EClassifier) refObjects[0];
                 }
                 if (clazz != null) {
                     String query = "select template \n"
                             + "from \"demo.sap.com/tcsmeta\"#"
                             + "TCS::ClassTemplate as template, \n"
                             + "\""
-                            + ((Partitionable) clazz).get___Mri()
+                            + ((EObject) clazz).get___Mri()
                             + "\" as class "
                             + " where template.metaReference = class where template.mode = ";
                     if (mode != null) {
@@ -249,7 +243,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                         query = "select template \n"
                                 + "from \"demo.sap.com/tcsmeta\"#"
                                 + "TCS::OperatorTemplate as template, \n" + "\""
-                                + ((Partitionable) clazz).get___Mri()
+                                + ((EObject) clazz).get___Mri()
                                 + "\" as class "
                                 + " where template.metaReference = class";
     
@@ -550,9 +544,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                         .getRealObject();
             }
             TextBlock contextBlock = getTextBlockForElementAt(
-                    (RefObject) contextModelElement,
+                    (EObject) contextModelElement,
                     (ANTLR3LocationToken) referenceLocation);
-            if (contextBlock != null && modelElement instanceof RefObject) {
+            if (contextBlock != null && modelElement instanceof EObject) {
 
                 if (reference.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
                     // this means we are in the resolving of a foreachproperty init
@@ -563,7 +557,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     // available for the GDR for the given model element
                     contextBlock.getAdditionalTemplates().add(
                             getCurrentTbProxy().getTemplate());
-                    contextBlock.getCorrespondingModelElements().add((RefObject) modelElement);
+                    contextBlock.getCorrespondingModelElements().add((EObject) modelElement);
 
                 } else {
                     AbstractToken referenceToken = navigateToToken(contextBlock,
@@ -572,10 +566,10 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                         // reference location doesn't correspond to a token. Add to
                         // block
                         contextBlock.getReferencedElements().add(
-                                (RefObject) modelElement);
+                                (EObject) modelElement);
                     } else {
                         referenceToken.getReferencedElements().add(
-                                (RefObject) modelElement);
+                                (EObject) modelElement);
                     }
                 }
             }
@@ -653,9 +647,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 * @param i 
 	 * @return the corresponding {@link TextBlock} for the given element
 	 */
-	private TextBlock getTextBlockForElementAt(RefObject element, ANTLR3LocationToken referenceToken) {
+	private TextBlock getTextBlockForElementAt(EObject element, ANTLR3LocationToken referenceToken) {
 		TextBlock tb = null;
-		DocumentNodeReferencesCorrespondingModelElement assoc = ((Partitionable) element)
+		DocumentNodeReferencesCorrespondingModelElement assoc = ((EObject) element)
 				.get___Connection().getPackage(
 						TextblocksPackage.PACKAGE_DESCRIPTOR)
 				.getDocumentNodeReferencesCorrespondingModelElement();
@@ -675,7 +669,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		        tb = (TextBlock) getNewestVersion(tb);    
 		    } else {
 		        AbstractToken tempToken = (AbstractToken) node;
-		        tb = tempToken.getParentBlock();
+		        tb = tempToken.getParent();
 		    }
 		}
 

@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 /**
  * util class performing navigation operations in TextBlocks tree, which can be
@@ -45,14 +45,14 @@ public class TbNavigationUtil {
         		newNode = getSubNodeAt(((TextBlock) node), index++);
         		if(newNode == null) {
             		//only one empty block contained in the block
-            		newNode = ((TextBlock)node).getParentBlock();
-            		if(((TextBlock)newNode).getParentBlock() != null) {
+            		newNode = ((TextBlock)node).getParent();
+            		if(((TextBlock)newNode).getParent() != null) {
             			index = getSubNodesIndex(newNode) + 1;
-            			DocumentNode siblingNode = getSubNodeAt(((TextBlock)newNode).getParentBlock(), index);
-            			while(siblingNode == null && ((TextBlock)newNode).getParentBlock() != null) {
-            				newNode = ((TextBlock)newNode).getParentBlock();
+            			DocumentNode siblingNode = getSubNodeAt(((TextBlock)newNode).getParent(), index);
+            			while(siblingNode == null && ((TextBlock)newNode).getParent() != null) {
+            				newNode = ((TextBlock)newNode).getParent();
             				index = getSubNodesIndex(newNode) + 1;
-                			siblingNode = getSubNodeAt(((TextBlock)newNode).getParentBlock(), index);
+                			siblingNode = getSubNodeAt(((TextBlock)newNode).getParent(), index);
             			}
             			if(siblingNode != null) {
             				newNode = siblingNode;
@@ -438,7 +438,7 @@ public class TbNavigationUtil {
 	 * @return
 	 */
 	public static AbstractToken nextToken(AbstractToken tok) {
-		TextBlock parent = tok.getParentBlock();
+		TextBlock parent = tok.getParent();
 		if (parent == null) {
 			return null;
 		}
@@ -447,7 +447,7 @@ public class TbNavigationUtil {
 			while (parent != null && isLastInSubTree(parent)) {
 				// its the last element, so traverse to the next subtree and
 				// find the first leaf there
-				parent = parent.getParentBlock();
+				parent = parent.getParent();
 			}
 			DocumentNode parentNextSibling = getNextInSubTree(parent);
 			if (parentNextSibling == null) {
@@ -472,13 +472,13 @@ public class TbNavigationUtil {
 	 * @return
 	 */
 	public static AbstractToken previousToken(AbstractToken tok) {
-		TextBlock parent = tok.getParentBlock();
+		TextBlock parent = tok.getParent();
 		if (isFirstInSubTree(tok)) {
-			while (parent.getParentBlock() != null && isFirstInSubTree(parent)) {
+			while (parent.getParent() != null && isFirstInSubTree(parent)) {
 				// its the first element, so traverse to the previous subtree
 				// and
 				// find the last leaf there
-				parent = parent.getParentBlock();
+				parent = parent.getParent();
 			}
 			// now parent is either root or some TextBlock which is not first in
 			// subtree
@@ -524,9 +524,9 @@ public class TbNavigationUtil {
 	 */
 	public static TextBlock getParentBlock(DocumentNode node) {
 		if (node instanceof TextBlock) {
-			return ((TextBlock) node).getParentBlock();
+			return ((TextBlock) node).getParent();
 		} else if (node instanceof AbstractToken) {
-			return ((AbstractToken) node).getParentBlock();
+			return ((AbstractToken) node).getParent();
 		} else {
 			return null;
 		}
@@ -551,10 +551,10 @@ public class TbNavigationUtil {
 	private static TextBlock getParent(DocumentNode node) {
 		if (node instanceof TextBlock) {
 			TextBlock tb = (TextBlock) node;
-			return tb.getParentBlock();
+			return tb.getParent();
 		} else {
 			AbstractToken tok = (AbstractToken) node;
-			return tok.getParentBlock();
+			return tok.getParent();
 		}
 	}
 
@@ -578,7 +578,7 @@ public class TbNavigationUtil {
 	 */
 	public static void replaceSubTree(TextBlock previous, TextBlock current)
 			throws IllegalArgumentException {
-		TextBlock parent = previous.getParentBlock();
+		TextBlock parent = previous.getParent();
 
 		if (parent != null) {
 			int oldIndex = parent.getSubBlocks().indexOf(previous);
@@ -596,7 +596,7 @@ public class TbNavigationUtil {
 		TextBlock parent = getParentBlock(node);
 		while (parent != null) {
 			level++;
-			parent = parent.getParentBlock();
+			parent = parent.getParent();
 		}
 
 		return level;
@@ -610,7 +610,7 @@ public class TbNavigationUtil {
 	 * @return
 	 */
 	public static TextBlock nextBlockInSubTree(TextBlock currentTextBlock) {
-		TextBlock parent = currentTextBlock.getParentBlock();
+		TextBlock parent = currentTextBlock.getParent();
 		if (parent == null) {
 			return null;
 		}
@@ -632,7 +632,7 @@ public class TbNavigationUtil {
 	 * @return
 	 */
 	public static TextBlock previousBlockInSubTree(TextBlock currentTextBlock) {
-		TextBlock parent = currentTextBlock.getParentBlock();
+		TextBlock parent = currentTextBlock.getParent();
 		if (parent == null) {
 			return null;
 		}
@@ -655,12 +655,12 @@ public class TbNavigationUtil {
 	 */
 	public static TextBlock getUltraRoot(DocumentNode node) {
 		if (node instanceof AbstractToken) {
-			return getUltraRoot(((AbstractToken) node).getParentBlock());
+			return getUltraRoot(((AbstractToken) node).getParent());
 		} else if (node instanceof TextBlock) {
 			if (isUltraRoot((TextBlock)node)) {
 				return (TextBlock) node;
 			}else {
-				return getUltraRoot(((TextBlock) node).getParentBlock());
+				return getUltraRoot(((TextBlock) node).getParent());
 			}
 		} else {
 			throw new RuntimeException(
@@ -676,7 +676,7 @@ public class TbNavigationUtil {
 	 */
 	public static boolean isUltraRoot(TextBlock node) {
 		// TODO If parent instance of UltraRoot if there will be an extra class for this kind of element
-		return node.getParentBlock() == null;
+		return node.getParent() == null;
 	}
 
 //    /**

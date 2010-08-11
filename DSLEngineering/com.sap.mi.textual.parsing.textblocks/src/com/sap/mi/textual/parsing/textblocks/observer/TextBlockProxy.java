@@ -3,12 +3,11 @@ package com.sap.mi.textual.parsing.textblocks.observer;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcs.ClassTemplate;
-import tcs.InjectorAction;
-import tcs.SequenceElement;
-import tcs.Template;
-import textblocks.AbstractToken;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 
 public class TextBlockProxy {
@@ -87,7 +86,7 @@ public class TextBlockProxy {
 
 	public void addCorrespondingModelElementProxy(IModelElementProxy newModelElement) {
 	    if(getTemplate() != null && getTemplate() instanceof ClassTemplate &&
-		    ((ClassTemplate)getTemplate()).isReferenceOnly()) {
+		    ((ClassTemplate)getTemplate()).isIsReferenceOnly()) {
 		addReferencedElementProxy(newModelElement);
 	    } else {
 		this.correspondingModelElements.add(newModelElement);
@@ -125,7 +124,7 @@ public class TextBlockProxy {
 	public void addCorrespondingModelElementProxies(
 			List<IModelElementProxy> correspondingModelElements) {
 	    if(getTemplate() != null && getTemplate() instanceof ClassTemplate &&
-		    ((ClassTemplate)getTemplate()).isReferenceOnly()) {
+		    ((ClassTemplate)getTemplate()).isIsReferenceOnly()) {
 		addReferencedElementProxies(correspondingModelElements);
 	    } else {
 		this.correspondingModelElements.addAll(correspondingModelElements);

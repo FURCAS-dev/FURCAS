@@ -8,18 +8,18 @@ import static com.sap.mi.textual.parsing.textblocks.TbVersionUtil.getOtherVersio
 
 import java.util.List;
 
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.VersionEnum;
+import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.parsing.textblocks.CoverageBean;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
-import com.sap.tc.moin.repository.Partitionable;
 
 /**
  * util for replacing regions within a textBlock Tree.
@@ -71,15 +71,15 @@ public class TbReplacingHelper {
 	 * @return the {@link VersionEnum#PREVIOUS} version of the node
 	 */
 	public static DocumentNode getOrCreateWorkingCopy(DocumentNode node) {
-		if( getOtherVersion(node,VersionEnum.PREVIOUS) == null) {
-			TbUtil.createNewCopy(node, VersionEnum.PREVIOUS, false, null);
+		if( getOtherVersion(node,Version.PREVIOUS) == null) {
+			TbUtil.createNewCopy(node, Version.PREVIOUS, false, null);
 		}
 	    DocumentNode previousVersion = getOtherVersion(node,
-	            VersionEnum.PREVIOUS);
+	            Version.PREVIOUS);
 	    // TODO this might have to be changed if the textblock elements
 	    // should be assignable
 	    // to a custom partition
-	    ((Partitionable) node).get___Partition()
+	    ((EObject) node).get___Partition()
 	    	.assignElementIncludingChildren(previousVersion);
 	    
 	    return previousVersion;
@@ -273,7 +273,7 @@ public class TbReplacingHelper {
     static <Type extends DocumentNode> Type getWorkingCopy(Type node) {
         
         return getOtherVersion(node,
-                VersionEnum.PREVIOUS);
+                Version.PREVIOUS);
     }
     
     static void updateBlockCachedString(TextBlock rootBlock, int replacedRegionOffset,

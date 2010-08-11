@@ -1,8 +1,8 @@
 package com.sap.mi.textual.parsing.textblocks;
 
-import tcs.AsParg;
-import tcs.PrimitiveTemplate;
-import tcs.Template;
+import com.sap.furcas.metamodel.TCS.AsPArg;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.Template;
 
 public class PrettyPrinterUtil {
 
@@ -30,7 +30,7 @@ public class PrettyPrinterUtil {
         }
     }
 
-    public static PrimitiveTemplate getAsTemplate(AsParg asParg) {
+    public static PrimitiveTemplate getAsTemplate(AsPArg asParg) {
         PrimitiveTemplate primitiveTemplateName = null;
 
         if (asParg != null) {

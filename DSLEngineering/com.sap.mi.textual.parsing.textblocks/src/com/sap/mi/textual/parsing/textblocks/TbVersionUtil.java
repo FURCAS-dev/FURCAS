@@ -4,9 +4,9 @@ import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getSubNodes
 
 import java.util.List;
 
-import textblocks.DocumentNode;
-import textblocks.TextBlock;
-import textblocks.Version;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 
 public class TbVersionUtil {
 

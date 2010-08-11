@@ -2,6 +2,7 @@ package com.sap.mi.textual.parsing.textblocks;
 
 import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getParentBlock;
 
+import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -10,34 +11,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-import tcs.ClassTemplate;
-import tcs.ContextTags;
-import tcs.ContextTemplate;
-import tcs.ForeachPredicatePropertyInit;
-import tcs.QualifiedNamedElement;
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.ForeachContext;
-import textblocks.LexedToken;
-import textblocks.OmittedToken;
-import textblocks.TextBlock;
-import textblocks.Version;
-import textblocks.VersionEnum;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ContextTags;
+import com.sap.furcas.metamodel.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.ForEachContext;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.OmittedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.grammar.impl.ContextBuilder;
 import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.DeepCopyMap;
-import com.sap.tc.moin.repository.DeepCopyPolicy;
-import com.sap.tc.moin.repository.DeepCopyPolicyHandler;
-import com.sap.tc.moin.repository.DeepCopyResultSet;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.DeepCopyPolicy.DeepCopyPolicyOption;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidObjectException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 public class TbUtil {
 
@@ -62,14 +57,14 @@ public class TbUtil {
 
 	if (node.isOffsetRelative()) {
 	    if (node instanceof TextBlock) {
-		if (((TextBlock) node).getParentBlock() != null) {
-		    return getAbsoluteOffset(((TextBlock) node).getParentBlock())
+		if (((TextBlock) node).getParent() != null) {
+		    return getAbsoluteOffset(((TextBlock) node).getParent())
 			    + node.getOffset();
 		} else {
 		    return node.getOffset();
 		}
 	    } else if (node instanceof AbstractToken) {
-		int parentOffset = getAbsoluteOffset(((AbstractToken) node).getParentBlock());
+		int parentOffset = getAbsoluteOffset(((AbstractToken) node).getParent());
 		return parentOffset + node.getOffset();
 	    } else {
 		throw new RuntimeException(
@@ -90,13 +85,13 @@ public class TbUtil {
      */
     public static DocumentNode getNewestVersion(DocumentNode tb) {
 	// TODO is it possible that there is already a CURRENT version?
-	if (VersionEnum.CURRENT.equals(tb.getVersion())) {
+	if (Version.CURRENT.equals(tb.getVersion())) {
 		return tb;
 	}
 	for (DocumentNode tbv : tb.getOtherVersions()) {
-	    if (tbv.getVersion().equals(VersionEnum.CURRENT)) {
+	    if (tbv.getVersion().equals(Version.CURRENT)) {
 		return tbv;
-	    } else if (tbv.getVersion().equals(VersionEnum.PREVIOUS)) {
+	    } else if (tbv.getVersion().equals(Version.PREVIOUS)) {
 		tb = tbv;
 	    }
 	}
@@ -124,15 +119,15 @@ public class TbUtil {
      * @return the copied version of <code>rootBlock</code>
      */
     public static DocumentNode createNewCopy(DocumentNode node, Version newVersion, boolean manifestValues, ShortPrettyPrinter shortPrettyPrinter) {
-	Connection conn = ((Partitionable) node).get___Connection();
-	DeepCopyResultSet result = conn.deepCopy(Collections.singleton((RefObject) node),
+	ResourceSet conn = ((EObject) node).get___Connection();
+	DeepCopyResultSet result = conn.deepCopy(Collections.singleton((EObject) node),
 		new TextBlockDeepCopyPolicyHandler(node.getVersion()), false);
 	// iterate and set and connect versions to each other
-	for (RefObject copy : result.getCopiedElements()) {
+	for (EObject copy : result.getCopiedElements()) {
 	    if(copy instanceof DocumentNode) {
                 DocumentNode original = (DocumentNode) conn.getElement(result
                         .getInverseMriMappingTable().get(
-                                ((Partitionable) copy).get___Mri()));
+                                ((EObject) copy).get___Mri()));
                 DocumentNode copiedNode = ((DocumentNode) copy);
                 copiedNode.setVersion(newVersion);
                 if (manifestValues) {
@@ -169,7 +164,7 @@ public class TbUtil {
             }
 	}
 	DocumentNode newCopy = (DocumentNode) result.getMappingTable().get(node).getMappingTarget();
-	((Partitionable) node).get___Partition().assignElementIncludingChildren(newCopy);
+	((EObject) node).get___Partition().assignElementIncludingChildren(newCopy);
 
 	return newCopy;
     }
@@ -239,7 +234,7 @@ public class TbUtil {
 		null);
 
 	@Override
-		public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement,
+		public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement,
 				DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 			if (sourceElement instanceof DocumentNode) {
 				DocumentNode node = (DocumentNode) sourceElement;
@@ -247,7 +242,7 @@ public class TbUtil {
 						&& node.getVersion().equals(versionToBeCopied)) {
 					return fullPolicy;
 				}
-			} else if(sourceElement instanceof ForeachContext) {
+			} else if(sourceElement instanceof ForEachContext) {
 			    return fullPolicy;
 			}
 
@@ -297,7 +292,7 @@ public class TbUtil {
 	Integer curParentLevel = level - 1;
 	while (parent != null) {
 	    levelMap.put(curParentLevel, parent);
-	    parent = parent.getParentBlock();
+	    parent = parent.getParent();
 	    curParentLevel--;
 	}
 
@@ -327,7 +322,7 @@ public class TbUtil {
      *                RefObject to check
      * @return true, if RefObject was deleted, false otherwise
      */
-    public static boolean isDeleted(RefObject o) {
+    public static boolean isDeleted(EObject o) {
 	try {
 	    o.refMofId();
 	} catch (InvalidObjectException e) {
@@ -356,7 +351,7 @@ public class TbUtil {
 	    if (loopParentBlock.equals(parentBlock)) {
 		return true;
 	    }
-	    loopParentBlock = loopParentBlock.getParentBlock();
+	    loopParentBlock = loopParentBlock.getParent();
 	}
 	return false;
     }
@@ -397,8 +392,8 @@ public class TbUtil {
      *         probably created using the template of the {@link TextBlock}. <code>null</code> if
      *         no element matches this criterion.
      */
-    public static RefObject getCreatedElement(TextBlock parentBlock) {
-	for (RefObject ro : parentBlock.getCorrespondingModelElements()) {
+    public static EObject getCreatedElement(TextBlock parentBlock) {
+	for (EObject ro : parentBlock.getCorrespondingModelElements()) {
 	    if (parentBlock.getType() != null && parentBlock.getType().getParseRule() != null) {
 		if (ro.refIsInstanceOf(parentBlock.getType().getParseRule().getMetaReference(),
 			false)) {
@@ -424,32 +419,32 @@ public class TbUtil {
 	Stack<TextBlock> contextStack = new Stack<TextBlock>();
 	while (parentBlock != null) {
 	    if (parentBlock.getType() != null) {
-		tcs.Template template = parentBlock.getType().getParseRule();
+		Template template = parentBlock.getType().getParseRule();
 		if ((template instanceof ContextTemplate && ((ContextTemplate) template).isContext())) {
 		    contextStack.push(parentBlock);
 		}
 	    }
-	    parentBlock = parentBlock.getParentBlock();
+	    parentBlock = parentBlock.getParent();
 	}
 	while (!contextStack.isEmpty()) {
 	    TextBlock t = contextStack.pop();
 	    ContextTags tags = null;
-	    tcs.Template template = t.getType().getParseRule();
+	    Template template = t.getType().getParseRule();
 	    if (template instanceof ContextTemplate) {
 		tags = ((ContextTemplate) template).getContextTags();
 	    }
 	    if (tags != null) {
-		for (RefObject element : t.getCorrespondingModelElements()) {
+		for (EObject element : t.getCorrespondingModelElements()) {
 		    contextBuilder.addContext(new ResolvedModelElementProxy(element), tags.getTags()
 				.toArray(new String[0]));
 		}
 	    } else {
-		for (RefObject element : t.getCorrespondingModelElements()) {
+		for (EObject element : t.getCorrespondingModelElements()) {
 		 // FIXME I saw a case where the iterator did not produce any elements!
 			contextBuilder.addContext(new ResolvedModelElementProxy(element));
 		}
 	    }
-	    for (RefObject elementInContext : t.getElementsInContext()) {
+	    for (EObject elementInContext : t.getElementsInContext()) {
 		contextBuilder.addToCurrentContext(new ResolvedModelElementProxy(elementInContext));
 	    }
 	}
@@ -526,12 +521,12 @@ public class TbUtil {
             return tbs;
         }
 
-        public static void addForEachContext(TextBlock contextBlock, RefObject sourceModelElement,
-            RefObject currentForEachElement, ForeachPredicatePropertyInit sequenceElement, RefObject resultElement, Connection connection) {
+        public static void addForEachContext(TextBlock contextBlock, EObject sourceModelElement,
+            EObject currentForEachElement, ForeachPredicatePropertyInit sequenceElement, EObject resultElement, ResourceSet connection) {
             boolean forEachContextExists = false;
-            for (ForeachContext forEachContext : contextBlock.getForeachContext()) {
-                if(forEachContext.getForeachPredicatePropertyInit().equals(sequenceElement)) {
-                    if(forEachContext.getSourceModelelement().equals(sourceModelElement)) {
+            for (ForEachContext forEachContext : contextBlock.getForEachContext()) {
+                if(forEachContext.getForeachPedicatePropertyInit().equals(sequenceElement)) {
+                    if(forEachContext.getSourceModelElement().equals(sourceModelElement)) {
                         if(!forEachContext.getContextElement().contains(currentForEachElement)) {
                             forEachContext.getContextElement().add(currentForEachElement);
                             forEachContext.setResultModelElement(resultElement);
@@ -541,12 +536,12 @@ public class TbUtil {
                 }
             }
             if(!forEachContextExists) {
-                ForeachContext newContext = (ForeachContext) connection.getClass(ForeachContext.CLASS_DESCRIPTOR).refCreateInstance();
-                newContext.setForeachPredicatePropertyInit(sequenceElement);
-                newContext.setSourceModelelement(sourceModelElement);
+                ForEachContext newContext = (ForEachContext) connection.getClass(ForEachContext.CLASS_DESCRIPTOR).refCreateInstance();
+                newContext.setForeachPedicatePropertyInit(sequenceElement);
+                newContext.setSourceModelElement(sourceModelElement);
                 newContext.getContextElement().add(currentForEachElement);
                 newContext.setResultModelElement(resultElement);
-                contextBlock.getForeachContext().add(newContext);
+                contextBlock.getForEachContext().add(newContext);
             }
 
         }
