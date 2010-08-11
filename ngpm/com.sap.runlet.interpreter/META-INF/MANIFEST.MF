@@ -7,12 +7,6 @@ Bundle-Activator: com.sap.runlet.interpreter.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,
  com.sap.ap.metamodel.core,
- com.sap.tc.moin.libraries.api,
- com.sap.tc.moin.libraries.base,
- com.sap.tc.moin.libraries.core,
- com.sap.tc.moin.libraries.jmi,
- com.sap.tc.moin.libraries.jmi.facade,
- com.sap.tc.moin.globalmodellistener,
  com.sap.runlet.operationaltransformation,
  com.sap.runlet.abstractinterpreter
 Bundle-ActivationPolicy: lazy

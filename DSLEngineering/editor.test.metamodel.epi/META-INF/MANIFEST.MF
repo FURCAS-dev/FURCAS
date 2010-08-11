@@ -3,13 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: com.sap.editor.test.metamodel.mm.eclipse
 Bundle-SymbolicName: com.sap.editor.test.mm.eclipse;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: com.sap.tc.moin.ide.facade,
- com.sap.tc.moin.libraries.jmi.facade,
- org.eclipse.core.resources,
+Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
- com.sap.ide.treeprovider,
- com.sap.mi.fwk.ui;bundle-version="1.0.0",
- com.sap.mi.fwk;bundle-version="1.0.0"
+ com.sap.ide.treeprovider
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.tc.moin.package42CE6AA36F52FA7652048902720F143668901804,
  test,

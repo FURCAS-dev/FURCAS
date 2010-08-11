@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?>
 <plugin>
-     <extension point="com.sap.tc.moin.runtime.MoinMetaModel">
-	  <metamodel class="com.sap.tc.moin.package6DBFA0FAF73913D04E1A01AB2E5C3D47D568CBAD.MetamodelExtension"/>
-   </extension>
-   <extension
-         point="com.sap.tc.moin.globalmodellistener.eventListeners">
-         <listener classname="com.sap.ap.metamodel.eventhandlers.CellSetFunctionSignatureParameterSetter" />
-   </extension>
 
 </plugin>

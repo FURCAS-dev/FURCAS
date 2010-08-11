@@ -4,24 +4,13 @@ Bundle-Name: Standalone Plug-in
 Bundle-SymbolicName: com.sap.mi.textual.moin.standalone
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
-Require-Bundle: com.sap.tc.moin.libraries.api;visibility:=reexport,
- com.sap.tc.moin.libraries.base;visibility:=reexport,
- com.sap.tc.moin.libraries.buildplugin,
- com.sap.tc.moin.libraries.jmi;visibility:=reexport,
- com.sap.tc.moin.libraries.jmi.facade,
- com.sap.tc.moin.facility.primary,
- com.sap.tc.moin.facility.primary.libraries,
- com.sap.tc.moin.facility.build.libraries,
- com.sap.tc.moin.ide.facade;visibility:=reexport,
- com.sap.tc.moin.textual.runtime.moin,
- com.sap.tcsmeta.mm.eclipse,
- org.eclipse.osgi,
+Require-Bundle: org.eclipse.osgi,
  org.eclipse.core.runtime,
- tcsmetamodel,
  com.sap.ap.metamodel.core,
  org.junit4;bundle-version="4.3.1",
  com.sap.editor.test.mm.eclipse,
- com.sap.finex.metamodel
+ com.sap.finex.metamodel,
+ com.sap.furcas.metamodel;bundle-version="1.0.0"
 Export-Package: com.sap.mi.textual.moin.standalone
 Import-Package: org.eclipse.jface.resource,
  org.eclipse.ui.plugin

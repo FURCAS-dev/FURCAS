@@ -12,16 +12,6 @@
       </editor>
    </extension>
    <extension
-         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
-      <association
-            canHandleChildren="true"
-            default="true"
-            editorId="com.sap.runlet.testmetamodel.editor.RunletTestEditor"
-            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
-            objectClass="runlettest.RunletTest">
-      </association>
-   </extension>
-   <extension
          point="com.sap.ide.treeprovider.rootNodeDefinition">
         <rootNodeProvider classname="com.sap.runlet.testmetamodel.editor.RunletRootNodeProvider" />
    </extension>
@@ -32,15 +22,6 @@
    <extension
          point="com.sap.ide.treeprovider.imageProvider">
         <imageProvider classname="com.sap.runlet.testmetamodel.editor.RunletTreeImageProvider" />
-   </extension>
-   <extension
-         point="com.sap.tc.moin.incubation.contentprovider.Content">
-      <ContentDefinition>
-         <Path
-               Value="mappings"
-               Versioned="true">
-         </Path>
-      </ContentDefinition>
    </extension>
 
 </plugin>

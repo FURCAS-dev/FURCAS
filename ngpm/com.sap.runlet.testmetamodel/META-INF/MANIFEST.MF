@@ -5,4 +5,3 @@ Bundle-SymbolicName: com.sap.runlet.testmetamodel;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Vendor: SAP
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: com.sap.tc.moin.incubation.contentprovider

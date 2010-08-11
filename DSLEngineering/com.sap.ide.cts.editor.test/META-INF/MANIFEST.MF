@@ -4,24 +4,17 @@ Bundle-Name: Test CTS Editor Plug-in
 Bundle-SymbolicName: com.sap.ide.cts.editor.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
-Require-Bundle: com.sap.mi.fwk,
- com.sap.tc.moin.ide.facade,
- org.eclipse.emf.ecore.xmi,
- org.eclipse.core.resources,
+Require-Bundle: org.eclipse.core.resources,
  org.eclipse.ui.editors,
  org.eclipse.core.commands,
  org.eclipse.core.runtime,
  org.eclipse.ui.workbench,
  org.eclipse.ui.workbench.texteditor,
- com.sap.mi.fwk.ui,
  org.eclipse.jface.text,
- com.sap.tc.moin.libraries.base,
  org.junit4,
  com.sap.mi.textual.parsing,
- com.sap.tc.moin.textual.runtime.moin,
  com.sap.mi.textual.parsing.textblocks,
  com.sap.ide.cts.editor,
- com.sap.tcsmeta.mm.eclipse,
  com.sap.mi.textual.moin.standalone,
  com.sap.ide.cts.parser,
  com.sap.ap.metamodel.core,
@@ -34,28 +27,19 @@ Require-Bundle: com.sap.mi.fwk,
  com.sap.mi.textual.epi,
  org.eclipse.pde.core,
  org.eclipse.pde.ui,
- com.sap.mi.fwk.services.local,
  com.sap.ap.cts.editor,
  com.sap.ide.cts.moin,
- com.sap.tc.moin.metamodel.testcases,
- com.sap.tc.moin.metamodel.testcases.foundation,
  com.sap.mi.textual.tcs.util,
  com.sap.mi.textual,
  com.sap.mi.textual.ecorelookup,
  com.sap.editor.test.mm.eclipse,
  com.sap.finex.metamodel,
- com.sap.tc.moin.metamodel.generatedmetamodel,
- com.sap.mi.textual.tcs.editor,
- com.sap.mi.gfw.mm.eclipse,
- com.sap.tc.moin.libraries.core,
- com.sap.tc.moin.globalmodellistener;bundle-version="1.0.0"
+ com.sap.mi.textual.tcs.editor
 Export-Package: com.sap.ide.cts.editor.test,
  com.sap.ide.cts.editor.test.util,
  com.sap.mi.textual.parsing.textblocks
 Bundle-Activator: com.sap.ide.cts.editor.Activator
 Bundle-ActivationPolicy: lazy
-Import-Package: com.sap.tc.moin.ocl.ia.analysis,
- com.sap.tc.moin.repository.spi.core
 Bundle-ClassPath: generatedTemp/,
  .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

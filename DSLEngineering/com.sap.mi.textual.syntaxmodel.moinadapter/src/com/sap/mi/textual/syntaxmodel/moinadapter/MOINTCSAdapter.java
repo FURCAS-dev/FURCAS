@@ -11,26 +11,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import tcs.TcsPackage;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 
+import com.sap.furcas.metamodel.TCS.TCSPackage;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.Moin;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+import com.sun.corba.se.pept.transport.Connection;
 
 /**
  * specialized Adapter for TCS Syntaxes
  */
 public class MOINTCSAdapter implements IBareModelAdapter {
 
-	private final MOINModelAdapter adapter;
+	private final MOINTCSAdapter adapter;
 	private final Connection connection;
 
 	/**
@@ -40,12 +36,12 @@ public class MOINTCSAdapter implements IBareModelAdapter {
 	public MOINTCSAdapter(Connection connection, Set<PRI> metamodelPRIs) {
 		super();
 		this.connection = connection;
-		final RefPackage rootPackage = connection
-				.getPackage(TcsPackage.PACKAGE_DESCRIPTOR);
+		final EPackage rootPackage = connection
+				.getPackage(TCSPackage.PACKAGE_DESCRIPTOR);
 		if (rootPackage == null) {
 			throw new IllegalArgumentException(
 					"Connection cannot resolve TCSPackage "
-							+ TcsPackage.PACKAGE_DESCRIPTOR);
+							+ TCSPackage.PACKAGE_DESCRIPTOR);
 		}
 		Set<PRI> adapterReferenceScopePRIs;
 		if (metamodelPRIs != null) {
@@ -77,7 +73,7 @@ public class MOINTCSAdapter implements IBareModelAdapter {
 			adapterReferenceScopePRIs.add(pri);
 		}
 
-		adapter = new MOINModelAdapter(rootPackage, connection,
+		adapter = new MOINTCSAdapter(rootPackage, connection,
 				adapterReferenceScopePRIs,  null);
 	}
 
@@ -206,10 +202,10 @@ public class MOINTCSAdapter implements IBareModelAdapter {
 	 * @return
 	 */
 	public Set<Object> getElementsByType(String string) {
-		RefObject[] array = adapter.getElementsOfType(string);
+		EObject[] array = adapter.getElementsOfType(string);
 		Set<Object> set = null;
 		if (array != null) {
-			set = new HashSet<Object>(Arrays.asList(array));
+			set = new HashSet<EObject>(Arrays.asList(array));
 		}
 		return set;
 	}

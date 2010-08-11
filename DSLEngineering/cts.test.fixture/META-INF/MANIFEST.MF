@@ -2,8 +2,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: CTS Test Fixture Models
 Bundle-SymbolicName: cts.test.fixture;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Require-Bundle: com.sap.tc.moin.incubation.contentprovider,
- ngpm.stdlib,
+Require-Bundle: ngpm.stdlib,
  com.sap.ap.cts.editor,
  com.sap.ap.metamodel.core,
  com.sap.finex.editor,

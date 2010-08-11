@@ -2,11 +2,6 @@
 <?eclipse version="3.2"?>
 <plugin>
    <extension
-         point="com.sap.tc.moin.runtime.MoinMetaModel">
-      <metamodel
-      	    class="com.sap.tc.moin.package42CE6AA36F52FA7652048902720F143668901804.MetamodelExtension"/>
-   </extension>
-   <extension
          point="com.sap.ide.treeprovider.rootNodeDefinition">
         <rootNodeProvider classname="tree.EditorTestRootNodeProvider" />
    </extension>

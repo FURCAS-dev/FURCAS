@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.mi.textual.grammar.ModelParsingResult;
 import com.sap.mi.textual.grammar.ParserFacade;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
@@ -20,8 +22,7 @@ import com.sap.mi.textual.grammar.impl.DefaultTextAwareModelAdapter;
 import com.sap.mi.textual.grammar.impl.IParsingObserver;
 import com.sap.mi.textual.grammar.parser.TCSLexer;
 import com.sap.mi.textual.grammar.parser.TCSParser;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
+
 
 /**
  * parses TCS file and injects into MOIN runtime model.
@@ -38,7 +39,7 @@ public class TCS2MOINInjectorFacade {
 	 * TCSLexer.
 	 */
 	public static ModelInjectionResult parseSyntaxDefinition(InputStream in,
-			Connection connection, Set<PRI> metamodelPRIs,
+			ResourceSet connection, Set<PRI> metamodelPRIs,
 			IParsingObserver observer)
 			throws InvalidParserImplementationException, IOException,
 			UnknownProductionRuleException {
@@ -64,7 +65,7 @@ public class TCS2MOINInjectorFacade {
 	 * @throws IOException
 	 */
 	public static ModelInjectionResult parseSyntaxDefinition(InputStream in,
-			Connection connection, Set<PRI> metamodelPRIs,
+			ResourceSet connection, Set<PRI> metamodelPRIs,
 			IParsingObserver observer, ParserFacade alternativeTcsParserFacade)
 			throws InvalidParserImplementationException, IOException,
 			UnknownProductionRuleException {
