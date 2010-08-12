@@ -8,10 +8,14 @@ syntax TCS {
 
         primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
                 value = "unescapeString(%token%)";
+                
+        primitiveTemplate escapedIdentifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+                value = "unescapeString(%token%)",
+                serializer = "\'%value%\'";
 
         primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
                 value = "unescapeString(%token%)",
-		serializer="\"%value%\"";
+				serializer="\"%value%\"";
 	
 	primitiveTemplate plainStringSymbol for PrimitiveTypes::String using STRING:
                 value = "unescapeString(%token%)";
@@ -154,7 +158,7 @@ syntax TCS {
                         (isReferenceOnly 
                           ? "referenceOnly" -- Reference Templates do not have other classTemplate attributes 
                           : 
-                                (isDefined(mode) ? "#" mode{as = plainStringSymbol})
+                                (isDefined(mode) ? "#" mode{as = identifierOrKeyword})
                                 (isDefined(disambiguate) ? "(" "disambiguate" "=" disambiguate{as = stringSymbol} ")")
                                 (isDefined(disambiguateV3) ? "(" "disambiguateV3" "=" disambiguateV3{as = stringSymbol} ")")
                                 (isMulti ? "multi")
@@ -199,7 +203,7 @@ syntax TCS {
 -- @end Templates
 
         template TCS::Sequence
-                :       elements
+                :       [ elements ]
                 ;
 
 -- @begin Sequence Elements
@@ -282,13 +286,13 @@ syntax TCS {
                 ;
 
         template TCS::Alternative
-                :       "[[" sequences{separator = "|"} "]]" (isMulti ? "*")
+                :       "[[" [ sequences{separator = "|"} ]  "]]" (isMulti ? "*")
                         {{ parentTemplate = lookIn("OCL:#context") }}
                 ;
                 
         template TCS::SequenceInAlternative
                 :       (isDefined(disambiguate) ? "disambiguate" "(" disambiguate{as = stringSymbol} ")") 
-                        elements
+                        [ elements ]
                 ;
                 
         template TCS::FunctionCall
@@ -297,7 +301,7 @@ syntax TCS {
                 ;
 
         template TCS::InjectorActionsBlock
-                :       "{{" injectorActions{separator = ","} "}}"
+                :       "{{" [ injectorActions{separator = ","} ] "}}"
                         {{ parentTemplate = lookIn("OCL:#context") }}
                 ;
                 
@@ -306,7 +310,7 @@ syntax TCS {
         template TCS::PropertyInit abstract;
         
         template TCS::PrimitivePropertyInit
-                :       propertyReference (isDefault ? "<-" : "=") value
+                :       propertyReference (isDefault ? "<-" : "=") value { as = escapedIdentifierOrKeyword }
                 ;
         
         template TCS::LookupPropertyInit
@@ -315,13 +319,13 @@ syntax TCS {
         template TCS::ForeachPredicatePropertyInit
                 :       propertyReference (isDefault ? "<-" : "=") "foreach" "(" 
                                 value {as = stringSymbol} 
-                                (isDefined(mode)? "," "mode" "=" mode {as = stringSymbol})
-                                (isDefined(predicatesemantic)? "," predicatesemantic {separator=","})
+                                (isDefined(mode)? "," "mode" "=" mode {as = identifierOrKeyword})
+                                (isDefined(predicatesemantic)? "," [ predicatesemantic {separator=","} ] )
                                 ")"
                 ;
                 template TCS::PredicateSemantic
                 : (isDefined(when)?  "when" "=" when {as = stringSymbol}",") 
-                  (isDefined(mode)?  "mode" "=" mode {as = stringSymbol}",")
+                  (isDefined(mode)?  "mode" "=" mode {as = identifierOrKeyword}",")
                   "as" "=" 
 /**               [[
                   as {as = qualifiedNameSymbol, 
