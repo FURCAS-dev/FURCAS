@@ -137,7 +137,15 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
 	additionalInformation.put("allInstanceNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(allInstancesEvaluationResult)));
 
-    	return notification != null && filter != null && filter.matchesFor(notification);
+	boolean eventFilterMatches = false;
+	if (notification != null && filter != null) {
+	    long beforeFilterMatchCheck = System.nanoTime();
+	    eventFilterMatches = filter.matchesFor(notification);
+	    long afterFilterMatchCheck = System.nanoTime();
+	    additionalInformation.put("eventFilterMatchCheckTime", String.valueOf(afterFilterMatchCheck - beforeFilterMatchCheck));
+	}
+
+    	return notification != null && eventFilterMatches;
     }
 
     @SuppressWarnings("unused")
@@ -163,8 +171,9 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     	evaluationResult = new ArrayList<Object>();
 
-    	if(notification == null)
+    	if(notification == null) {
 	    throw new RuntimeException("notification cannot be created");
+	}
 
     	((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).resetAll();
     }

@@ -13,7 +13,6 @@ public abstract class Writer {
 
     protected static final String BREAK = System.getProperty("line.separator");
 
-
     public Writer(String path, boolean append) {
     	File f = new File(path);
     	createFileIfNeeded(f);

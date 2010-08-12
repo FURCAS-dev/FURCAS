@@ -1,14 +1,21 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark;
 
+import java.io.File;
+
 public class PathOptions {
     private static String outputPath;
     private static String exceptionDumpFilePath;
-    
+
     private static String modelFixturePath;
     private static String eventTraceFixturePath;
 
     public static void setOutputPath(String outputPath) {
-	PathOptions.outputPath = outputPath;
+	File f = new File(outputPath);
+	if(f.exists() && f.isDirectory()){
+	    PathOptions.outputPath = outputPath + File.pathSeparator + "result.data";
+	}else{
+	    PathOptions.outputPath = outputPath;
+	}
     }
 
     public static String getOutputPath(){
@@ -38,7 +45,7 @@ public class PathOptions {
 	public static String getEventTraceFixturePath() {
 		return eventTraceFixturePath;
 	}
-    
- 
+
+
 
 }

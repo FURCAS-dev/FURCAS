@@ -58,6 +58,9 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 		}
 	    } catch (StackOverflowError e) {
 		getNotExecutedDueToException().put(task.toString(), e);
+		if (ProcessingOptions.isVerbose()) {
+		    e.printStackTrace();
+		}
 	    }
     }
 
