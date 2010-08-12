@@ -1,32 +1,26 @@
 package com.sap.ide.refactoring.op.rename;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.ltk.core.refactoring.Change;
-import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
-import com.sap.ide.refactoring.core.RefactoringResult;
-import com.sap.ide.refactoring.core.TextBlockAwareRefactoringCommandExecutor;
-import com.sap.ide.refactoring.core.model.rename.NamedElement;
-import com.sap.ide.refactoring.core.model.util.RefactoringModelUtil;
+import com.sap.ide.refactoring.core.AbstractModelRefactoring;
+import com.sap.ide.refactoring.core.AbstractRefactoringCommand;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
+import com.sap.ide.refactoring.core.textual.TextBlockRefactoringUtil;
+import com.sap.ide.refactoring.model.RefactoringModelUtil;
+import com.sap.ide.refactoring.model.rename.NamedElement;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-public class RenameRefactoring extends Refactoring {
+public class RenameRefactoring extends AbstractModelRefactoring {
 
 
     private RefObject target;
     private NamedElement targetAsNamedElement;
     private String newName;
-
-    private final RefactoringEditorFacade facade;
-    private RefactoringResult refactoringResult;
-
-
+ 
     public RenameRefactoring(RefactoringEditorFacade facade) {
-	this.facade = facade;
+	super(facade);
     }
 
 // #### Preparation and initial check (before the GUI is shown) ####
@@ -36,7 +30,7 @@ public class RenameRefactoring extends Refactoring {
     }
 
     @Override
-    public RefactoringStatus checkInitialConditions(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+    public RefactoringStatus checkInitialConditions(IProgressMonitor pm) throws OperationCanceledException {
 	if (this.target == null) {
 	    return RefactoringStatus.createFatalErrorStatus("Exactly one element must be selected for renaming.");
 	}
@@ -52,7 +46,7 @@ public class RenameRefactoring extends Refactoring {
 
     RefactoringStatus setNewModelElementName(String newName) {
 	this.newName = newName;
-	return new RefactoringStatus();
+	return TextBlockRefactoringUtil.isValidIdentifier(newName, facade);
     }
 
     String getOldModelElementName() {
@@ -60,21 +54,8 @@ public class RenameRefactoring extends Refactoring {
     }
 
     @Override
-    public RefactoringStatus checkFinalConditions(final IProgressMonitor pm) throws CoreException, OperationCanceledException {
-	assert targetAsNamedElement != null : "LTK must have called checkInitialConditions atleast once.";
-
-	if (refactoringResult == null) {
-	    final RenameCommand cmd = new RenameCommand(facade, targetAsNamedElement, newName);
-	    TextBlockAwareRefactoringCommandExecutor executor = new TextBlockAwareRefactoringCommandExecutor(facade, cmd);
-	    refactoringResult = executor.runRefactoring();
-	}
-	return refactoringResult.status;
-    }
-
-    @Override
-    public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-	assert refactoringResult != null : "LTK must have called checkFinalConditions atleast once.";
-	return refactoringResult.change;
+    protected AbstractRefactoringCommand createExecutableRefactoringCommand() {
+	return new RenameCommand(facade, targetAsNamedElement, newName);
     }
 
     @Override

@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrintContext;
+
 public class PrettyPrintContextTest {
 
 	@Test
@@ -22,7 +24,7 @@ public class PrettyPrintContextTest {
 
 		context.getClassTemplates().push(null);
 
-		PrettyPrintContext dup = context.duplicate();
+		PrettyPrintContext dup = context.clone();
 
 		assertEquals("a", dup.getCurIndent());
 		assertEquals(3, dup.getIndentLevel());

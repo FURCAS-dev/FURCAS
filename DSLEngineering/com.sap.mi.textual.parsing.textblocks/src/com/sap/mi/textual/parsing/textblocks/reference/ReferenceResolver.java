@@ -1,5 +1,7 @@
 package com.sap.mi.textual.parsing.textblocks.reference;
 
+import static com.sap.tc.moin.textual.moinadapter.adapter.MoinModelAdapterDelegate.OCL_QUERY_PREFIX;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -17,6 +19,7 @@ import textblocks.DocumentNode;
 import textblocks.LexedToken;
 import textblocks.TextBlock;
 
+import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ModelInjector;
@@ -39,15 +42,18 @@ import com.sap.tc.moin.repository.mmi.reflect.InvalidObjectException;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
 
 /**
- * This class is responsible to resolve {@link DelayedReference}s. This includes references
- * that could not instantly be resolved during parsing and references that need to be re-evaluated
- * because they might potentially change due to recent model changes.
+ * This class is responsible to resolve {@link DelayedReference}s. This includes
+ * references that could not instantly be resolved during parsing and references
+ * that need to be re-evaluated because they might potentially change due to
+ * recent model changes.
  * <p>
- * The queue of the resolver is filled by the various {@link IAExpressionInvalidationChangeListener}s.
+ * The queue of the resolver is filled by the various
+ * {@link IAExpressionInvalidationChangeListener}s.
  * </p>
  */
 public class ReferenceResolver {
@@ -101,10 +107,10 @@ public class ReferenceResolver {
      * Attempt to resolve all queued unresolved references. References that
      * could not be resolved remain queued.
      * <p>
-     * This method is thread safe: One thread at a time is responsible to resolve
-     * references. Multiple threads however are allowed to queue new references,
-     * while a resolve run is in progress. Those references will be picked up
-     * automatically.
+     * This method is thread safe: One thread at a time is responsible to
+     * resolve references. Multiple threads however are allowed to queue new
+     * references, while a resolve run is in progress. Those references will be
+     * picked up automatically.
      * </p>
      */
     public synchronized void resolveReferences(IProgressMonitor monitor) {
@@ -123,12 +129,16 @@ public class ReferenceResolver {
 		unresolvedReferences.clear();
 	    }
 	    monitor.beginTask("Reevaluating OCL References...", workingCopy.size());
-	    for (Entry<Connection, Collection<DelayedReference>> referencesPerConnection : splitPerConnection(workingCopy).entrySet()) {
+	    for (Entry<Connection, Collection<DelayedReference>> referencesPerConnection : splitPerConnection(workingCopy)
+		    .entrySet()) {
 		CommandStack cmdStack = referencesPerConnection.getKey().getCommandStack();
 		if (cmdStack.canRedo()) {
-		    // the current connection is in the process of undoing commands
-		    // we may not issue reference resolving commands at this point, because
-		    // this would clear the redo stack and make it impossible to ever
+		    // the current connection is in the process of undoing
+		    // commands
+		    // we may not issue reference resolving commands at this
+		    // point, because
+		    // this would clear the redo stack and make it impossible to
+		    // ever
 		    // redo the commands.
 		    failedReferences.addAll(referencesPerConnection.getValue());
 		    Activator.logInfo("Deferring Reevaluation due to ongoing undo action");
@@ -194,18 +204,21 @@ public class ReferenceResolver {
 	    ensureUsageOfConnection(unresolvedRef, conn);
 	    LexedTokenWrapper token = (LexedTokenWrapper) unresolvedRef.getToken();
 	    DocumentNode referringDocumentNode = null;
-	    ConcreteSyntax cs;
 	    ModelInjector modelInjector = constructModelInjector(conn, outermostPackage);
 	    ObservableInjectingParser parser = null;
+	    LexedToken tokenInCurrentConnection = null;
 	    if (token != null) {
 		AbstractToken modelElementToken = token.getWrappedToken();
-		LexedToken tokenInCurrentConnection = (LexedToken) conn.getElement(modelElementToken.get___Mri());
+		tokenInCurrentConnection = (LexedToken) conn.getElement(modelElementToken.get___Mri());
 		if (tokenInCurrentConnection == null || unresolvedRef.getModelElement() == null) {
 		    registry.removeRegistration(unresolvedRef);
-		    notifier.notifyReferenceResolvingListenerReferencesRemoved(Collections.singleton(unresolvedRef));
 		    return;
 		}
-		cs = tokenInCurrentConnection.getParentBlock().getType().getParseRule().getConcretesyntax();
+		if (tokenInCurrentConnection.getParentBlock().getType() == null) {
+		    Activator.logWarning("Ignoring unresolved reference due to a broken mapping: " + unresolvedRef);
+		    return;
+		}
+		ConcreteSyntax cs = tokenInCurrentConnection.getParentBlock().getType().getParseRule().getConcretesyntax();
 		parser = registry.getParser(cs);
 		((ParserTextBlocksHandler) parser.getObserver()).setConnection(conn);
 		TbUtil.constructContext(tokenInCurrentConnection, localContextBuilder);
@@ -226,8 +239,9 @@ public class ReferenceResolver {
 		if (!localContextBuilder.getContextStack().isEmpty()) {
 		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
 		}
-		cs = contextTextBlock.getType().getParseRule().getConcretesyntax();
+		ConcreteSyntax cs = contextTextBlock.getType().getParseRule().getConcretesyntax();
 		parser = registry.getParser(cs);
+		
 		// also rebuild the context for the parser,
 		// as it may be used e.g. in foreach predicate references
 		if (unresolvedRef.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
@@ -236,53 +250,80 @@ public class ReferenceResolver {
 		    ((ParserTextBlocksHandler) parser.getObserver()).setConnection(conn);
 		    parser.setInjector(modelInjector);
 		}
+                // TODO Reconstruct textual representation from TextBlock and create TokenStream from it.#
+                // This TokenStream can then be used upon reevaluation started from the IA to 
+                // determine the values used in the disambiguation queries.
 
 	    } else {
 		registry.removeRegistration(unresolvedRef);
-		notifier.notifyReferenceResolvingListenerReferencesRemoved(Collections.singleton(unresolvedRef));
 		return;
 	    }
-	    // TODO set currentForeachElement on reference
+	    boolean resolved = false;
 	    try {
-		boolean resolved = modelInjector.resolveReference(unresolvedRef, localContextBuilder.getContextManager(), parser);
-		if (resolved) {
-		    if (unresolvedRef.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
-			// to be able to incrementally re evaluate the reference
-			// later
-			// we need to setup a link between the textblock and the
-			// template used in the ref
-			Collection<Template> templates = ((ParserTextBlocksHandler) parser.getObserver()).getCurrentTbProxy()
-				.getAdditionalTemplates();
-			for (Template template : templates) {
-			    if (!((TextBlock) unresolvedRef.getTextBlock()).getAdditionalTemplates().contains(template)) {
-				((TextBlock) unresolvedRef.getTextBlock()).getAdditionalTemplates().add(template);
+		if (unresolvedRef.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE || !(unresolvedRef.getOclQuery() != null && unresolvedRef.getType() != DelayedReference.CONTEXT_LOOKUP)) {
+		    resolved = modelInjector.resolveReference(unresolvedRef, localContextBuilder.getContextManager(), parser);
+		} else {
+		    Collection<?> existingValueCollection = findCurrentlySetElements(unresolvedRef, modelInjector, tokenInCurrentConnection);
+		    Collection<?> resultCollection = findNewElementsToSet(unresolvedRef);
+		    for (Object valueElement : existingValueCollection) {
+			if (!resultCollection.contains(valueElement)) {
+			    modelInjector.unset(unresolvedRef.getModelElement(), unresolvedRef.getPropertyName(), valueElement);
+			    if (referringDocumentNode.getReferencedElements().contains(valueElement)) {
+				referringDocumentNode.getReferencedElements().remove(valueElement);
 			    }
+			    notifier.notifyReferenceUnset(unresolvedRef, valueElement);
+			    
 			}
-			RefObject value = (RefObject) unresolvedRef.getRealValue();
-			if (!referringDocumentNode.getCorrespondingModelElements().contains(value)) {
-			    referringDocumentNode.getCorrespondingModelElements().add(value);
+		    }
+		    for (Object result : resultCollection) {
+			if (!existingValueCollection.contains(result) && result != null) {
+			    modelInjector.set(unresolvedRef.getModelElement(), unresolvedRef.getPropertyName(), result);
+			    resolved = true;
+			    unresolvedRef.setRealValue(result);
+			    notifier.notifyReferenceSet(unresolvedRef, result);
 			}
+		    }
+		}
+	    } catch (ModelAdapterException e) {
+		Activator.logWarning(e);
+		// TODO check if we can ignore this?
+	    } catch (ModelElementCreationException e) {
+		throw new RuntimeException(e);
+	    }
+	    if (resolved) {
+		if (unresolvedRef.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE) {
+		    // to be able to incrementally re evaluate the reference
+		    // later
+		    // we need to setup a link between the textblock and the
+		    // template used in the ref
+		    Collection<Template> templates = ((ParserTextBlocksHandler) parser.getObserver()).getCurrentTbProxy().getAdditionalTemplates();
+		    for (Template template : templates) {
+			if (!((TextBlock) unresolvedRef.getTextBlock()).getAdditionalTemplates().contains(template)) {
+			    ((TextBlock) unresolvedRef.getTextBlock()).getAdditionalTemplates().add(template);
+			}
+		    }
+		    RefObject value = (RefObject) unresolvedRef.getRealValue();
+		    if (!referringDocumentNode.getCorrespondingModelElements().contains(value)) {
+			referringDocumentNode.getCorrespondingModelElements().add(value);
+		    }
 
-			// TbUtil.addForEachContext(unresolvedRef.getTextBlock(),
-			// (RefObject) unresolvedRef.getModelElement(),
-			// (RefObject) unresolvedRef.getCurrentForeachElement(),
-			// (ForeachPredicatePropertyInit)
-			// unresolvedRef.getQueryElement(),
-			// (RefObject) unresolvedRef.getRealValue(), conn);
-			parser.setDelayedReferencesAfterParsing();
-		    } else {
-			if (unresolvedRef.getRealValue() instanceof RefObject) {
+		    // TbUtil.addForEachContext(unresolvedRef.getTextBlock(),
+		    // (RefObject) unresolvedRef.getModelElement(),
+		    // (RefObject) unresolvedRef.getCurrentForeachElement(),
+		    // (ForeachPredicatePropertyInit)
+		    // unresolvedRef.getQueryElement(),
+		    // (RefObject) unresolvedRef.getRealValue(), conn);
+		    parser.setDelayedReferencesAfterParsing();
+		} else {
+		    if (unresolvedRef.getRealValue() instanceof RefObject) {
+			if (!referringDocumentNode.getReferencedElements().contains(unresolvedRef.getRealValue())) {
 			    referringDocumentNode.getReferencedElements().add((RefObject) unresolvedRef.getRealValue());
 			}
 		    }
-		    if (!unresolvedRef.isGenericReference()) {
-			registry.removeRegistration(unresolvedRef);
-			notifier.notifyReferenceResolvingListenerReferenceResolved(unresolvedRef);
-		    }
 		}
-	    } catch (ModelElementCreationException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		if (!unresolvedRef.isGenericReference()) {
+		    registry.removeRegistration(unresolvedRef);
+		}
 	    }
 
 	} catch (InvalidConnectionException ice) {
@@ -290,10 +331,46 @@ public class ReferenceResolver {
 	}
     }
 
+    private Collection<?> findNewElementsToSet(DelayedReference unresolvedRef) throws ModelAdapterException {
+	RefObject sourceModelElement = (RefObject) unresolvedRef.getModelElement();
+	AdapterJMIHelper jmiHelper = new AdapterJMIHelper(sourceModelElement.refOutermostPackage(),
+		unresolvedRef.getConnection(), unresolvedRef.getConnection().getJmiHelper(), null, null);
+	String oclQuery = unresolvedRef.getOclQuery();
+	Object result = null;
+	if (oclQuery.startsWith(OCL_QUERY_PREFIX)) {
+	    result = jmiHelper.findElementWithOCLQuery(sourceModelElement, unresolvedRef.getPropertyName(), unresolvedRef
+		    .getKeyValue(), oclQuery.substring(OCL_QUERY_PREFIX.length()), unresolvedRef.getContextElement(), null);
+	} else {
+	    result = jmiHelper.findElementWithOCLQuery(sourceModelElement, unresolvedRef.getPropertyName(), unresolvedRef
+		    .getKeyValue(), oclQuery, unresolvedRef.getContextElement(), null);
+	}
+	if (result instanceof Collection<?>) {
+	    return (Collection<?>) result;
+	} else {
+	    Collection<?> al = Collections.singleton(result);
+	    return al;
+	}
+    }
+
+    private Collection<?> findCurrentlySetElements(DelayedReference unresolvedRef, ModelInjector modelInjector,
+	    LexedToken tokenInCurrentConnection) throws ModelAdapterException {
+	Object value = modelInjector.getModelAdapter().get(unresolvedRef.getModelElement(), unresolvedRef.getPropertyName());
+	Collection<?> valueCollection = null;
+	if (value instanceof Collection<?>) {
+	    valueCollection = new ArrayList<Object>((Collection<?>) value);
+	} else {
+	    valueCollection = new ArrayList<Object>(Collections.singleton(value));
+	}
+	if (tokenInCurrentConnection != null) {
+	    valueCollection.retainAll(tokenInCurrentConnection.getReferencedElements());
+	}
+	return valueCollection;
+    }
+
     /**
      * Ensures that the {@link DelayedReference unresolvedRef} carries the
      * element using the correct connection given by <code>conn</code>.
-     *
+     * 
      * @param unresolvedRef
      *            the {@link DelayedReference} for which the elements should be
      *            checked.
@@ -301,7 +378,8 @@ public class ReferenceResolver {
      *            the {@link Connection} where the elements should be used from.
      */
     private void ensureUsageOfConnection(DelayedReference unresolvedRef, Connection conn) {
-	RefObject elementInCurrentConnection = (RefObject) conn.getElement(((Partitionable) unresolvedRef.getModelElement()).get___Mri());
+	RefObject elementInCurrentConnection = (RefObject) conn.getElement(((Partitionable) unresolvedRef.getModelElement())
+		.get___Mri());
 	if (elementInCurrentConnection == null) {
 	    throw new RuntimeException("Element: " + unresolvedRef.getModelElement() + " is not available in connection: " + conn);
 	} else {
@@ -345,7 +423,7 @@ public class ReferenceResolver {
 	}
     }
 
-    private ModelInjector constructModelInjector(Connection connection, RefPackage outermostPackage) {
+    /* package */ ModelInjector constructModelInjector(Connection connection, RefPackage outermostPackage) {
 	// tokenNames only needed for parse error reporting regarding keyword
 	// issues; not needed here
 	ModelInjector mi = new ModelInjector(/* tonekNames */null);
@@ -370,7 +448,7 @@ public class ReferenceResolver {
 
     /**
      * Clears all currently deferred references.
-     *
+     * 
      * This should <b>ONLY</b> be used in <b>tests</b>.
      */
     public void clearUnresolvedReferences() {

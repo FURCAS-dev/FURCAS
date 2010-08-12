@@ -36,6 +36,8 @@ import com.sap.mi.textual.parsing.textblocks.LexedTokenWrapper;
 import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
+import com.sap.tc.moin.globalmodellistener.Activator;
 import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
@@ -45,8 +47,11 @@ import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.UpdateListener;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
+import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
 
 
 /**
@@ -75,26 +80,30 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 
     @Override
     public void notifyUpdate(EventChain events) {
-	if (!events.getEvents().isEmpty()) {
-	    Connection conn = events.getEvents().iterator().next().getEventTriggerConnection();
-	    if (reference.isGenericReference()) {
-		// Its a generic reference not an unresolved one
-		if (reference.getQueryElement() != null) {
-		    List<DelayedReference> newRefs = null;
-		    if (reference.getQueryElement() instanceof InjectorAction) {
-			newRefs = filterEventsAndRegisterDelayedReferencesForInjectorAction(events.getEvents(), conn);
-		    } else if (reference.getQueryElement() instanceof Property) {
-			if (reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
-			    newRefs = filterEventsAndQueueDelayedReferencesForContextLookup(events.getEvents(), conn);
-			} else {
-			    newRefs = filterEventsAndQueueDelayedReferencesForPropertyQuery(events.getEvents(), conn);
+	try {
+	    if (!events.getEvents().isEmpty()) {
+		Connection conn = events.getEvents().iterator().next().getEventTriggerConnection();
+		if (reference.isGenericReference()) {
+		    // Its a generic reference not an unresolved one
+		    if (reference.getQueryElement() != null) {
+			List<DelayedReference> newRefs = null;
+			if (reference.getQueryElement() instanceof InjectorAction) {
+			    newRefs = filterEventsAndRegisterDelayedReferencesForInjectorAction(events.getEvents(), conn);
+			} else if (reference.getQueryElement() instanceof Property) {
+			    if (reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
+				newRefs = filterEventsAndQueueDelayedReferencesForContextLookup(events.getEvents(), conn);
+			    } else {
+				newRefs = filterEventsAndQueueDelayedReferencesForPropertyQuery(events.getEvents(), conn);
+			    }
 			}
-		    }
-		    if (newRefs != null && newRefs.size() > 0) {
-			resolve(newRefs);
+			if (newRefs != null && newRefs.size() > 0) {
+			    resolve(newRefs);
+			}
 		    }
 		}
 	    }
+	} catch (Exception e) {
+	    Activator.logError(e, "Preparing Delayed Reference Re-Evaluation");
 	}
     }
 
@@ -160,25 +169,29 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
      */
     @Override
     public void notify(ChangeEvent event) {
-	Connection conn = event.getEventTriggerConnection();
-	if (reference.isGenericReference()) {
-	    // Its a generic reference not an unresolved one
-	    if (reference.getQueryElement() != null) {
-		if (reference.getQueryElement() instanceof InjectorAction) {
-		    if (!areAllRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(event,
-			    /* replacement for __TEMP__*/ null)) {
-			if (getTextBlocksInChosenAlternativeForInjectorAction(conn).size() > 0) {
-			    elementsImpactedByEvent.put(event, getAffectedElements(event, conn));
+	try {
+	    Connection conn = event.getEventTriggerConnection();
+	    if (reference.isGenericReference()) {
+		// Its a generic reference not an unresolved one
+		if (reference.getQueryElement() != null) {
+		    if (reference.getQueryElement() instanceof InjectorAction) {
+			if (!areAllRegistrationsUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(event,
+				/* replacement for __TEMP__*/ null)) {
+			    if (getTextBlocksInChosenAlternativeForInjectorAction(conn).size() > 0) {
+				elementsImpactedByEvent.put(event, getAffectedElements(event, conn));
+			    }
 			}
+		    } else {
+			// compute affected elements because
+			// filterEventsAndQueueDelayedReferencesForContextLookup
+			// and filterEventsAndQueueDelayedReferencesForPropertyQuery
+			// always need them
+			elementsImpactedByEvent.put(event, getAffectedElements(event, conn));
 		    }
-		} else {
-		    // compute affected elements because
-		    // filterEventsAndQueueDelayedReferencesForContextLookup
-		    // and filterEventsAndQueueDelayedReferencesForPropertyQuery
-		    // always need them
-		    elementsImpactedByEvent.put(event, getAffectedElements(event, conn));
 		}
 	    }
+	} catch (Exception e) {
+	    Activator.logError(e, "Calculating effected elements for change event: " + event);
 	}
     }
 
@@ -276,6 +289,10 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	    // elements are cached in elementsImpactedByEvent
 	    if (affectedElements != null && affectedElements.size() > 0) {
 		for (LexedToken lt : toks) {
+		    if (lt == null || lt.getParentBlock() == null) {
+			// dangling token. Ignoring
+			continue;
+		    }
 		    Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterCorrespondingOrContextElementWithAffectedElements(
 			    conn, affectedElements, lt.getParentBlock());
 		    if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
@@ -326,8 +343,11 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	    clonedRef.setConnection(conn);
 
 	    clonedRef.setToken(new LexedTokenWrapper(lt));
+	    RefPackage outermostPackage = MoinHelper.getOutermostPackageThroughClusteredImports(conn, (RefBaseObject) clonedRef.getModelElement());
+	    ShortPrettyPrinter shortPrettyPrinter = new ShortPrettyPrinter(resolver.constructModelInjector(conn, outermostPackage).getModelAdapter());
+	    clonedRef.setKeyValue(shortPrettyPrinter.resynchronizeToEditableState(lt));
+	    
 	    clonedRef.setTextBlock(lt.getParentBlock());
-	    clonedRef.setKeyValue(lt.getValue());
 	    String oclQuery = clonedRef.getOclQuery();
 	    clonedRef.setOclQuery(oclQuery.replaceAll(GlobalDelayedReferenceResolver.TEMPORARY_QUERY_PARAM_REPLACEMENT, lt
 		    .getValue()));

@@ -22,8 +22,7 @@ Require-Bundle: org.eclipse.ui,
  com.sap.ide.treeprovider,
  com.sap.ide.cts.moin,
  com.sap.mi.textual.common,
- com.sap.mi.textual.moinlookup,
- com.sap.ap.cts.refactoring;bundle-version="1.0.0"
+ com.sap.mi.textual.moinlookup
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.ap.cts.editor,
  com.sap.ap.cts.monet.deepcopy,

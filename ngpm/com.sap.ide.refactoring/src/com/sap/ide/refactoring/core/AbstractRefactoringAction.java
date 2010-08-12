@@ -15,7 +15,7 @@ import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 /**
  * Starts a refactoring and a refactoring wizard. Triggered via the editor context menu.
  * 
- * @author D049157
+ * @author Stephan Erb (d049157)
  *
  */
 public abstract class AbstractRefactoringAction implements IEditorActionDelegate {
@@ -38,7 +38,7 @@ public abstract class AbstractRefactoringAction implements IEditorActionDelegate
     
     @Override
     public void selectionChanged(IAction action, ISelection selection) {
-	
+	// do nothing
     }
 
     @Override

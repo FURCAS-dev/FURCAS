@@ -6,7 +6,6 @@ package com.sap.mi.textual.parsing.textblocks.observer;
 import java.util.List;
 
 import tcs.Alternative;
-import tcs.ConditionalElement;
 import tcs.SequenceElement;
 import textblocks.AbstractToken;
 
@@ -15,7 +14,7 @@ import textblocks.AbstractToken;
  */
 public class TextBlockTraverser {
 
-    private Stack<TextBlockProxyTraversationContext> stack = new Stack<TextBlockProxyTraversationContext>();
+    private final Stack<TextBlockProxyTraversationContext> stack = new Stack<TextBlockProxyTraversationContext>();
 
     public TextBlockTraverser() {
         TextBlockProxyTraversationContext rootContext = new TextBlockProxyTraversationContext(new TextBlockProxy());
@@ -96,7 +95,6 @@ public class TextBlockTraverser {
 	}
 
 	public void setCurrentSequenceElement(SequenceElement sequenceElement) {
-		// TODO Auto-generated method stub
 		stack.peek().setCurrentSequenceElement(sequenceElement);
 	}
 
@@ -109,19 +107,19 @@ public class TextBlockTraverser {
 	    stack.peek().addElementToContext(element);
 	}
 
-	public void enterAlternative(int choice) {
-		TextBlockProxyTraversationContext context = stack.peek();
-		if(context.getCurrentSequenceElement() instanceof Alternative) {
-			context.setCurrentAlternative(choice);
-		} else if(context.getCurrentSequenceElement() instanceof ConditionalElement) {
-			context.setCurrentAlternative(choice);
-		}
-		
+    public void enterAlternative(int choice) {
+	TextBlockProxyTraversationContext context = stack.peek();
+	if (context.getCurrentSequenceElement() instanceof Alternative) {
+	    context.setCurrentAlternative(choice);
 	}
+    }
 
-	public void exitAlternative() {
-		//do nothing
+    public void exitAlternative() {
+	TextBlockProxyTraversationContext context = stack.peek();
+	if (context.getCurrentSequenceElement() instanceof Alternative) {
+	    context.exitAlternative();
 	}
+    }
 
     public void setOperatorToken(boolean b) {
         stack.peek().setOperatorToken(b);

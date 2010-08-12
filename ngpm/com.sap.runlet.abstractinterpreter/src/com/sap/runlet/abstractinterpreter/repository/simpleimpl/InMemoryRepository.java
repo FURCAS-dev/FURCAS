@@ -620,7 +620,9 @@ ClassUsage extends TypeUsage> implements Repository<LinkMetaObject, LinkEndMetaO
 	    if (o instanceof Link<?, ?, ?, ?, ?>) {
 		return delegate.logicallyEquals(o);
 	    } else if (LinkWrapper.class.isAssignableFrom(o.getClass())) {
-		return delegate.logicallyEquals(((LinkWrapper) o).delegate);
+		@SuppressWarnings("unchecked")
+		LinkWrapper oAsLinkWrapper = (LinkWrapper) o;
+		return delegate.logicallyEquals(oAsLinkWrapper.delegate);
 	    } else {
 		return false;
 	    }

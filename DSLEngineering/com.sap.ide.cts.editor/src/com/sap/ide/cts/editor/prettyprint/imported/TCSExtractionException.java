@@ -15,13 +15,13 @@ package com.sap.ide.cts.editor.prettyprint.imported;
 /**
  * 
  * @author Fr�d�ric Jouault
- *
+ * 
  */
 public class TCSExtractionException extends RuntimeException {
-	
-	private static final long serialVersionUID = 8291141709543223208L;
 
-	public TCSExtractionException(String msg, Throwable cause) {
-		super(msg, cause);
-	}
+    private static final long serialVersionUID = 8291141709543223208L;
+
+    public TCSExtractionException(String msg, Throwable cause) {
+	super(msg, cause);
+    }
 }

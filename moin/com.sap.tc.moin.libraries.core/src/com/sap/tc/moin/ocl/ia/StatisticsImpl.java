@@ -9,8 +9,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.omg.ocl.expressions.ModelPropertyCallExp;
 import org.omg.ocl.expressions.OclExpression;
@@ -19,8 +19,8 @@ import org.omg.ocl.expressions.OperationCallExp;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclTypeImpl;
 import com.sap.tc.moin.ocl.ia.instancescope.AbstractTracer;
 import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
-import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis.LeadsToEmptySetResult;
+import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.core.ConnectionWrapper;
 import com.sap.tc.moin.repository.core.CoreConnection;
@@ -31,27 +31,28 @@ import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
+import com.sap.tc.moin.repository.ocl.freestyle.OclRegistration;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 import com.sap.tc.moin.repository.shared.util.Tuple.Triple;
 
 public class StatisticsImpl extends Statistics {
-    private List<Record> records = new LinkedList<Record>();
-    private Map<Record, Integer> numberOfAllInstancesCalls = new HashMap<Record, Integer>();
-    private Map<String, Long> classScopeAnalysisDurationInNanosecondsForRegistrationWithName = new HashMap<String, Long>();
-    private Map<String, Map<ModelChangeEvent, List<Long>>> instanceScopeAnalysisDurationInNanosecondsForRegistrationWithName =
+    private final List<Record> records = new LinkedList<Record>();
+    private final Map<Record, Integer> numberOfAllInstancesCalls = new HashMap<Record, Integer>();
+    private final Map<String, Long> classScopeAnalysisDurationInNanosecondsForRegistrationWithName = new HashMap<String, Long>();
+    private final Map<String, Map<ModelChangeEvent, List<Long>>> instanceScopeAnalysisDurationInNanosecondsForRegistrationWithName =
 	new HashMap<String, Map<ModelChangeEvent, List<Long>>>();
-    private Map<String, Map<ModelChangeEvent, List<Integer>>> instanceScopeAnalysisNumberOfAffectedElements =
+    private final Map<String, Map<ModelChangeEvent, List<Integer>>> instanceScopeAnalysisNumberOfAffectedElements =
 	new HashMap<String, Map<ModelChangeEvent, List<Integer>>>();
-    private Map<String, List<Long>> evaluationTimes = new HashMap<String, List<Long>>();
+    private final Map<String, List<Long>> evaluationTimes = new HashMap<String, List<Long>>();
     private OclExpressionRegistration currentlyHandlingEventFor;
     private ModelChangeEvent currentlyHandlingEvent;
     private Object currentObjectForSelf;
-    private Map<NavigationStep, Integer> stepBag = new HashMap<NavigationStep, Integer>();
-    private Map<Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>, Long> timeToComputeNavigationStepInNanoseconds = new HashMap<Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>, Long>();
-    private Map<Set<MofClass>, Integer> haveintersectingSubclassCalls = new HashMap<Set<MofClass>, Integer>();
+    private final Map<NavigationStep, Integer> stepBag = new HashMap<NavigationStep, Integer>();
+    private final Map<Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>, Long> timeToComputeNavigationStepInNanoseconds = new HashMap<Triple<InstanceScopeAnalysis, OclExpression, NavigationStep>, Long>();
+    private final Map<Set<MofClass>, Integer> haveintersectingSubclassCalls = new HashMap<Set<MofClass>, Integer>();
     Map<OperationCallExp, Set<Pair<ModelChangeEvent, RefObject>>> emptySetCheckForParameterlessOperationCall = new HashMap<OperationCallExp, Set<Pair<ModelChangeEvent, RefObject>>>();
-    private Map<ModelPropertyCallExp, Integer> affectedElementComputedForSourceOfParameterlessOperation = new HashMap<ModelPropertyCallExp, Integer>();
-    private Map<String, List<Pair<Long, LeadsToEmptySetResult>>> leadsToEmptySetTimes = new HashMap<String, List<Pair<Long, LeadsToEmptySetResult>>>();
+    private final Map<ModelPropertyCallExp, Integer> affectedElementComputedForSourceOfParameterlessOperation = new HashMap<ModelPropertyCallExp, Integer>();
+    private final Map<String, List<Pair<Long, LeadsToEmptySetResult>>> leadsToEmptySetTimes = new HashMap<String, List<Pair<Long, LeadsToEmptySetResult>>>();
     
     private static class Record {
 	public Record(OclExpressionRegistration registration, ModelChangeEvent event, List<String> allInstancesQName, Object elementForSelf) {
@@ -110,6 +111,7 @@ public class StatisticsImpl extends Statistics {
 	
     }
 
+    @Override
     public void receivedEvent(OclExpressionRegistration oclExpressionRegistration, ModelChangeEvent event) {
 	currentlyHandlingEventFor = oclExpressionRegistration;
 	currentlyHandlingEvent = event;
@@ -120,6 +122,7 @@ public class StatisticsImpl extends Statistics {
 	currentlyHandlingEventFor = null;
 	currentlyHandlingEvent = null;
     }
+    @Override
     public void allInstancesCalled(List<String> classQname) {
 	if (currentlyHandlingEventFor != null && currentlyHandlingEvent != null) {
 	    Record record = new Record(currentlyHandlingEventFor, currentlyHandlingEvent, classQname,
@@ -136,6 +139,7 @@ public class StatisticsImpl extends Statistics {
 	}
     }
 
+    @Override
     public String toString() {
 	StringBuilder result = new StringBuilder();
 	Set<String> distinctOclExpressions = new HashSet<String>();
@@ -162,6 +166,7 @@ public class StatisticsImpl extends Statistics {
 	return result.toString();
     }
 
+    @Override
     public void setCurrentObjectForSelf(Object elementForSelf) {
 	this.currentObjectForSelf = elementForSelf;
     }
@@ -170,6 +175,7 @@ public class StatisticsImpl extends Statistics {
      * Produces a human-readable representation of the statistics gathered so far for the registration
      * passed.
      */
+    @Override
     public String toString(OclExpressionRegistration registration, Connection conn) {
 	CoreConnection coreConnection;
 	if (conn instanceof ConnectionWrapper) {
@@ -220,6 +226,7 @@ public class StatisticsImpl extends Statistics {
      * Produces a human-readable representation of the statistics gathered so far for the registration
      * passed.
      */
+    @Override
     public String toCsv(OclExpressionRegistration registration, Connection conn) {
 	CoreConnection coreConnection;
 	if (conn instanceof ConnectionWrapper) {
@@ -370,6 +377,7 @@ public class StatisticsImpl extends Statistics {
 	return result;
     }
 
+    @Override
     public void instanceScopeAnalysisPerformed(OclExpressionRegistration registration, ModelChangeEvent mce,
 	    long timeInNanoseconds, int numberOfAffectedElements) {
 	Map<ModelChangeEvent, List<Long>> eventsForRegistrationName = instanceScopeAnalysisDurationInNanosecondsForRegistrationWithName
@@ -401,6 +409,7 @@ public class StatisticsImpl extends Statistics {
 	list2.add(numberOfAffectedElements);
     }
 
+    @Override
     public void classScopeAnalysisPerformed(OclExpressionRegistration registration, long timeInNanoseconds) {
 	classScopeAnalysisDurationInNanosecondsForRegistrationWithName.put(registration.getName(), timeInNanoseconds);
     }
@@ -565,7 +574,7 @@ public class StatisticsImpl extends Statistics {
     }
 
     @Override
-    public void leadsToEmptySetPerformed(OclExpressionRegistrationImpl forRegistration, long time,
+    public void leadsToEmptySetPerformed(OclRegistration forRegistration, long time,
 	    LeadsToEmptySetResult result) {
 	List<Pair<Long, LeadsToEmptySetResult>> list = leadsToEmptySetTimes.get(forRegistration.getName());
 	if (list == null) {

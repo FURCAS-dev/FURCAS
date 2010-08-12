@@ -10,19 +10,8 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
-
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+import java.util.Set;
 
 import com.sap.tc.moin.repository.LRI;
 import com.sap.tc.moin.repository.MRI;
@@ -39,6 +28,16 @@ import com.sap.tc.moin.repository.core.consistency.impl.ConsistencyViolationRegi
 import com.sap.tc.moin.repository.core.jmi.reflect.RefFeaturedImpl;
 import com.sap.tc.moin.repository.core.transactions.actions.ActionFactory;
 import com.sap.tc.moin.repository.core.transactions.actions.UpdateConsistencyRegistryAction;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
+import com.sap.tc.moin.repository.mmi.reflect.RefClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.shared.util.IndexedElement;
 import com.sap.tc.moin.repository.shared.util.Utilities;
 
@@ -349,6 +348,8 @@ public abstract class AbstractInstanceDeleteMicroTransactionableImpl extends Abs
                             firstLinkEndCompositeParentLris.add( firstLinkEndCompositeParents.get( i ).get___Mri( ).getLri( ) );
                         }
                         initialState.put( StateSet.STATE_PARAMETER_FIRST_LINK_END_COMPOSITE_PARENTS, firstLinkEndCompositeParentLris );
+                    } else {
+                	initialState.put( StateSet.STATE_PARAMETER_FIRST_LINK_END_COMPOSITE_PARENTS, Collections.emptyList() );
                     }
                     if ( linkEnd1Mri != null ) {
                         List<CorePartitionable> secondLinkEndCompositeParents = getAllCompositeParents( linkToDelete.getEnd( 1 ).get( connection.getSession( ) ) );
@@ -357,6 +358,8 @@ public abstract class AbstractInstanceDeleteMicroTransactionableImpl extends Abs
                             secondLinkEndCompositeParentLris.add( secondLinkEndCompositeParents.get( i ).get___Mri( ).getLri( ) );
                         }
                         initialState.put( StateSet.STATE_PARAMETER_SECOND_LINK_END_COMPOSITE_PARENTS, secondLinkEndCompositeParentLris );
+                    } else {
+                	initialState.put( StateSet.STATE_PARAMETER_SECOND_LINK_END_COMPOSITE_PARENTS, Collections.emptyList() );
                     }
                     // compute the affected partitions
                     affectedPartitionsPri.add( linkToDelete.getStorageEndMri( ).getPri( ) );

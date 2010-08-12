@@ -3,6 +3,7 @@ package com.sap.ide.cts.editor.action;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
@@ -14,6 +15,7 @@ import org.eclipse.ui.progress.IProgressService;
 
 import com.sap.ide.cts.editor.commands.TextBlockHouseKeepingCommand;
 import com.sap.mi.fwk.ConnectionManager;
+import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.tc.moin.repository.Connection;
 
 public class TextBlockHouseKeepingAction implements IObjectActionDelegate {
@@ -25,6 +27,7 @@ public class TextBlockHouseKeepingAction implements IObjectActionDelegate {
 	Connection co = getConnection(project);
 	TextBlockHouseKeepingCommand cmd = new TextBlockHouseKeepingCommand(co, project);
 	cmd.execute();
+	ModelManagerUI.getConnectionManagerUI().save(co, new NullProgressMonitor());
     }
 
     @Override

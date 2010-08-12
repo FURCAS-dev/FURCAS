@@ -95,7 +95,8 @@ extends Evaluator<
     
     @Override
     protected void addToBlock(Statement statement, Block contextBlock) {
-	statement.setBlock(contextBlock);
+	contextBlock.getStatements().add(statement);
+	
     }
 
     @Override

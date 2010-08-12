@@ -8,8 +8,8 @@ import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.OperationCallExp;
 
 import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
-import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis.LeadsToEmptySetResult;
+import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.ocl.service.impl.OclExpressionRegistrationImpl;
@@ -17,6 +17,7 @@ import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
+import com.sap.tc.moin.repository.ocl.freestyle.OclRegistration;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
@@ -42,6 +43,7 @@ public abstract class Statistics {
     
     public abstract void receivedEvent(OclExpressionRegistration oclExpressionRegistration, ModelChangeEvent event);
     public abstract void allInstancesCalled(List<String> classQname);
+    @Override
     public abstract String toString();
     public abstract void setCurrentObjectForSelf(Object elementForSelf);
     public abstract String toString(OclExpressionRegistration registration, Connection conn);
@@ -59,6 +61,6 @@ public abstract class Statistics {
     public abstract List<Pair<String, Integer>> getParameterlessOperationCallEmptyCheckInfo(CoreConnection conn);
     public abstract void affectedElementComputedForSourceOfParameterlessOperation(ModelPropertyCallExp attributeOrAssociationEndCall);
     public abstract List<Pair<String, Integer>> getAffectedElementComputedForSourceOfParameterlessOperationInfo(CoreConnection conn);
-    public abstract void leadsToEmptySetPerformed(OclExpressionRegistrationImpl forRegistration, long time, LeadsToEmptySetResult result);
+    public abstract void leadsToEmptySetPerformed(OclRegistration forRegistration, long time, LeadsToEmptySetResult result);
     public abstract String getLeadsToEmptySetPerformancesAsCsv();
 }
