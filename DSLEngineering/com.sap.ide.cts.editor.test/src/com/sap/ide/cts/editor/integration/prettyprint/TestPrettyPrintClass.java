@@ -9,8 +9,8 @@ import org.junit.Test;
 import textblocks.TextBlock;
 
 import com.sap.ap.cts.monet.parser.ClassParserFactory;
-import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
 import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
+import com.sap.ide.cts.editor.prettyprint.imported.SyntaxAndModelMismatchException;
 import com.sap.tc.moin.repository.mql.MQLProcessor;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
 

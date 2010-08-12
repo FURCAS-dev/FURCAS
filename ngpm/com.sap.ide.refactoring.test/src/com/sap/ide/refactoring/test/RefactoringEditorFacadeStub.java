@@ -23,11 +23,11 @@ import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
  */
 public class RefactoringEditorFacadeStub extends RefactoringEditorFacade {
 
-    private ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
-    private RefObject rootObject;
+    private final ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
+    private final RefObject rootObject;
     private TextBlock rootBlock;
 
-    private TextBlocksModel textBlocksModel;
+    private final TextBlocksModel textBlocksModel;
 
     public RefactoringEditorFacadeStub(RefObject rootObject, TextBlock rootBlock,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
@@ -39,17 +39,16 @@ public class RefactoringEditorFacadeStub extends RefactoringEditorFacade {
 	this.rootBlock = rootBlock;
 
 	this.textBlocksModel = new TextBlocksModel(rootBlock, getModelElementInvestigator());
-
     }
 
     private IModelElementInvestigator getModelElementInvestigator() {
-	RefPackage metamodelPackage = parserFactory.getMetamodelPackage(getConnection());
-	return new MOINModelAdapter(metamodelPackage, getConnection(), null, null);
+	RefPackage metamodelPackage = parserFactory.getMetamodelPackage(getEditorConnection());
+	return new MOINModelAdapter(metamodelPackage, getEditorConnection(), null, null);
     }
 
 
     @Override
-    public Connection getConnection() {
+    public Connection getEditorConnection() {
 	return this.rootBlock.get___Connection();
     }
 
@@ -63,15 +62,20 @@ public class RefactoringEditorFacadeStub extends RefactoringEditorFacade {
 	return textBlocksModel;
     }
 
-
     @Override
-    protected ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> getParserFactory() {
+    public ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> getParserFactory() {
 	return parserFactory;
     }
 
     @Override
     public void refreshUI() {
 	// do nothing
+    }
+    
+    @Override
+    public void updateRootBlock(TextBlock postChangeRootBlock) {
+	textBlocksModel.setRootTextBlock(postChangeRootBlock);
+	rootBlock = postChangeRootBlock;
     }
 
 }

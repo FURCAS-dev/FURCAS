@@ -10,7 +10,7 @@ import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
 /**
  * The {@link OclMetaModelConstraintRegistration} wrapper
  */
-public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectionAwareWrapper<OclMetaModelConstraintRegistrationWrapper> implements OclMetaModelConstraintRegistration {
+public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectionAwareWrapper<OclMetaModelConstraintRegistration> implements OclMetaModelConstraintRegistration {
 
     private final OclMetaModelConstraintRegistration oclMetaModelConstraintRegistration;
 
@@ -24,6 +24,7 @@ public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectio
         this.oclMetaModelConstraintRegistration = actRegistration;
     }
 
+    @Override
     public Set<String> getCategories( ) {
 
         this.synchronizationManager.acquireReadLock( );
@@ -36,6 +37,7 @@ public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectio
         }
     }
 
+    @Override
     public String getName( ) {
 
         this.synchronizationManager.acquireReadLock( );
@@ -48,6 +50,7 @@ public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectio
         }
     }
 
+    @Override
     public String getOclExpression( ) {
 
         this.synchronizationManager.acquireReadLock( );
@@ -60,6 +63,7 @@ public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectio
         }
     }
 
+    @Override
     public OclRegistrationSeverity getSeverity( ) {
 
         this.synchronizationManager.acquireReadLock( );
@@ -72,6 +76,7 @@ public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectio
         }
     }
 
+    @Override
     public OclRegistrationType getType( ) {
 
         this.synchronizationManager.acquireReadLock( );
@@ -84,6 +89,7 @@ public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectio
         }
     }
 
+    @Override
     public Set<String> getConstrainedElements( ) {
 
         this.synchronizationManager.acquireReadLock( );
@@ -96,6 +102,7 @@ public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectio
         }
     }
 
+    @Override
     public List<String> getQualifiedName( ) {
 
         this.synchronizationManager.acquireReadLock( );
@@ -108,16 +115,9 @@ public class OclMetaModelConstraintRegistrationWrapper extends AbstractConnectio
         }
     }
 
-    public OclMetaModelConstraintRegistrationWrapper unwrap( ) {
-
-        this.synchronizationManager.acquireReadLock( );
-        try {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
-            return null;
-        } finally {
-            this.synchronizationManager.releaseReadLock( );
-        }
+    @Override
+    public OclMetaModelConstraintRegistration unwrap( ) {
+	return this.oclMetaModelConstraintRegistration;
     }
 
 }

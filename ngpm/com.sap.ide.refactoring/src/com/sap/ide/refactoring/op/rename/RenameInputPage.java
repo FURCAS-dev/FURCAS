@@ -53,34 +53,22 @@ public class RenameInputPage extends UserInputWizardPage {
 	
 	textField.setFocus();
 	textField.selectAll();
-
     }
 
     protected Text createTextInputField(Composite parent) {
 	textField = new Text(parent, SWT.BORDER);
 	textField.addModifyListener(new ModifyListener() {
 	    public void modifyText(ModifyEvent e) {
-		textModifiedCallback(textField.getText());
+		textModifiedCallback(textField.getText().trim());
 	    }
 	});
 	return textField;
     }
-
-    /**
-     * Performs input validation. Returns a <code>RefactoringStatus</code> which
-     * describes the result of input validation. <code>Null<code> is interpreted
-     * as no error.
-     */
+    
     protected RefactoringStatus validateTextField(String text) {
-	RefactoringStatus status = new RefactoringStatus();
-	status.merge(getRefactoring().setNewModelElementName(text));
-	return status;
+	return getRefactoring().setNewModelElementName(text);
     }
 
-    /**
-     * Checks the page's state and issues a corresponding error message. The
-     * page validation is computed by calling <code>validatePage</code>.
-     */
     protected void textModifiedCallback(String text) {
 	RefactoringStatus status = validateTextField(text);
 	setPageComplete(status);

@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2010-04-14 09:00:22 +0200 (Mi, 14 Apr 2010) $
- * Revision: $Revision: 9646 $
- * Author: $Author: c5106462 $
+ * Date: $Date: 2010-07-06 20:38:52 +0200 (Di, 06 Jul 2010) $
+ * Revision: $Revision: 9826 $
+ * Author: $Author: d049157 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
 
@@ -122,7 +122,7 @@ public class DelayedReferencesHelper {
 	    Collection<?> result = evaluateForeachOcl((RefObject) reference.getModelElement(), reference, modelAdapter,
                 contextElement);
 	    // if there is no result it will be null
-	    if (result == null) {
+	    if (result.isEmpty()) {
 	        //we need to delete all elements created for this foreach
 	        if(reference.getTextBlock() != null) {
 	            for (ForeachContext fec : new ArrayList<ForeachContext>(((TextBlock) reference.getTextBlock()).getForeachContext())) {

@@ -17,7 +17,7 @@ import textblocks.VersionEnum;
 
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.commands.PrettyPrintCommand;
-import com.sap.ide.cts.editor.prettyprint.CtsTextBlockTCSExtractorStream;
+import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockTCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
@@ -129,7 +129,7 @@ public class TbModelInitializationUtil {
 	TextBlock rootBlock = null;
 	ModelPartition partitionForTextBlocks = getPartitionForTextBlocks(rootObject);
 
-	CtsTextBlockTCSExtractorStream target = new CtsTextBlockTCSExtractorStream(tbPackage, partitionForTextBlocks,
+	TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(tbPackage, partitionForTextBlocks,
 		parserFactory);
 	PrettyPrintCommand ppCommand = new PrettyPrintCommand(rootObject, syntax, target, connection);
 	try {

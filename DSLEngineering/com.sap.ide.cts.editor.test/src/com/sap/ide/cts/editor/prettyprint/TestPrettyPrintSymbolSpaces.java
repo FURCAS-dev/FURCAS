@@ -3,6 +3,8 @@ package com.sap.ide.cts.editor.prettyprint;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sap.ide.cts.editor.prettyprint.imported.SyntaxAndModelMismatchException;
+
 import tcs.ConcreteSyntax;
 
 public class TestPrettyPrintSymbolSpaces extends CtsPrettyPrinterTestBase {

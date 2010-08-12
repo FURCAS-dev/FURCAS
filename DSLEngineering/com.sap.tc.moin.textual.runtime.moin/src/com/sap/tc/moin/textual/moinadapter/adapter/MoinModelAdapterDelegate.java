@@ -224,7 +224,7 @@ public class MoinModelAdapterDelegate {
                 	    " has wrong type", tme);
                 }
             } else if (reference != null && value instanceof Collection) {
-                if(reference.getMultiplicity().getUpper() < ((Collection)value).size()) {
+                if(reference.getMultiplicity().getUpper() < ((Collection)value).size() && reference.getMultiplicity().getUpper() != -1) {
                     throw new ModelAdapterException("Cannot add value, property " + propertyName + " has an upper multiplicity of " + 
                             reference.getMultiplicity().getUpper()  + " but wanted to to set " + ((Collection<?>)value).size() + " elements (" + value + "");
                 }

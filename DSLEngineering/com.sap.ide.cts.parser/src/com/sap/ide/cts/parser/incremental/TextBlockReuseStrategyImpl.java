@@ -60,7 +60,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	private ReferenceHandler referenceHandler;
 	private final Lexer lexer;
 	private ShortPrettyPrinter shortPrettyPrinter;
-	private Collection<TextBlock> changedBlocks = new ArrayList<TextBlock>();
+	private final Collection<TextBlock> changedBlocks = new ArrayList<TextBlock>();
 
 	public TextBlockReuseStrategyImpl(Lexer lexer, IModelElementInvestigator mi) {
 		setModelElementInvestigator(mi);
@@ -93,7 +93,6 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 		if (TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
 			return handleReferenceOnlyTemplate(oldVersion, newVersion);
 		} else if (isTBEqual(oldVersion, newVersion)) {
-			//first see if different alternatives were chosen.
 			handleAlternativeChoices(oldVersion, newVersion);
 			int endIndex = 0;
 			if (TbNavigationUtil.isUltraRoot(oldVersion)
@@ -264,7 +263,11 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	}
 
 	private void handleAlternativeChoices(TextBlock oldVersion, TextBlockProxy newVersion) {
-		// TODO Auto-generated method stub
+	    //TODO: is this right in all cases?
+	    // Assumption: if the TB's are equal, there should be no problem to assume
+	    // that also the alternatives information can be re-used.
+	    oldVersion.getParentAltChoices().clear();
+	    oldVersion.getParentAltChoices().addAll(newVersion.getAlternativeChoices());
 		
 	}
 
@@ -321,6 +324,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	 * @param nextToken
 	 * @return
 	 */
+	@Override
 	public boolean canBeReUsed(AbstractToken candidate, Object lexerToken) {
 	        if(!VersionEnum.PREVIOUS.equals(candidate.getVersion())) {
 	            throw new IllegalArgumentException("Candidate token has to be in PREVIOUS Version but was: " + candidate.getVersion());
