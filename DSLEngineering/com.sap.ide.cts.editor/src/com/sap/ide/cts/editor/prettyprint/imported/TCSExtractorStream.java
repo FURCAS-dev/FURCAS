@@ -12,6 +12,7 @@
  */
 package com.sap.ide.cts.editor.prettyprint.imported;
 
+import tcs.Alternative;
 import tcs.SequenceElement;
 import tcs.Template;
 
@@ -26,44 +27,50 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  */
 public interface TCSExtractorStream {
 
-	void close();
+    void close();
 
-	void debug(String string);
+    void debug(String string);
 
-	void printWhiteSpace(String ws);
+    void printWhiteSpace(String ws);
 
-	void printKeyword(String keyword);
+    void printKeyword(String keyword);
 
-	void printSymbol(String symbol);
+    void printSymbol(String symbol);
 
-	void printIdentifier(String ident);
+    void printIdentifier(String ident);
 
-	void printEscapedIdentifier(String identEscStart, String ident,
-			String identEscEnd);
+    void printEscapedIdentifier(String identEscStart, String ident, String identEscEnd);
 
-	void printBoolean(boolean v);
+    void printBoolean(boolean v);
 
-	void printInteger(int v);
+    void printInteger(int v);
 
-	void printReal(String string);
+    void printReal(String string);
 
-	void printString(String stringDelim, String v);
+    void printString(String stringDelim, String v);
 
-	void printComment(String c);
+    void printComment(String c);
 
-	int startClassTemplateForObject(RefObject object, Template template);
+    int startClassTemplateForObject(RefObject object, Template template);
 
-	void endClassTemplate(int handle);
+    void endClassTemplate(int handle);
 
-	void enterSequenceElement(SequenceElement e);
+    void enterSequenceElement(SequenceElement e);
 
-	void exitSequenceElement();
+    void exitSequenceElement();
 
-	// to allow backtracking
-	int createSafePoint();
+    // to allow backtracking
+    int createSafePoint();
 
-	void resetToSafePoint(int handle);
+    void resetToSafePoint(int handle);
 
-	void printDefault(String value);
+    void printDefault(String value);
+
+    // to allow tracking of chosen alternatives
+    void enterAlternative(Alternative alt);
+
+    void beginAlternativeChoice(int choiceIndexInAlternative);
+
+    void exitAlternative();
 
 }

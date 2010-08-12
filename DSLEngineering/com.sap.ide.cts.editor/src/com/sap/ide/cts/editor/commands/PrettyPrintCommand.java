@@ -7,9 +7,9 @@ import tcs.ConcreteSyntax;
 import textblocks.TextBlock;
 
 import com.sap.ide.cts.editor.CtsActivator;
-import com.sap.ide.cts.editor.prettyprint.CtsPrettyPrinter;
-import com.sap.ide.cts.editor.prettyprint.CtsTextBlockTCSExtractorStream;
-import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
+import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
+import com.sap.ide.cts.editor.prettyprint.imported.SyntaxAndModelMismatchException;
+import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockTCSExtractorStream;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.Partitionable;
@@ -21,11 +21,11 @@ public class PrettyPrintCommand extends Command {
 
 	private final RefObject refObject;
 	private final ConcreteSyntax syntax;
-	private final CtsTextBlockTCSExtractorStream target;
+	private final TextBlockTCSExtractorStream target;
 	private TextBlock result;
 
 	public PrettyPrintCommand(RefObject refObject, ConcreteSyntax syntax,
-			CtsTextBlockTCSExtractorStream target, Connection con) {
+			TextBlockTCSExtractorStream target, Connection con) {
 		super(con, "Pretty Print Full");
 		this.refObject = refObject;
 		this.syntax = syntax;
@@ -40,12 +40,12 @@ public class PrettyPrintCommand extends Command {
 	@Override
 	public void doExecute() {
 		try {
-			CtsPrettyPrinter.prettyPrint(refObject, syntax, target, null, null);
+		    	PrettyPrinter prettyPrinter = new PrettyPrinter();
+		    	prettyPrinter.prettyPrint(refObject, syntax, target);
 
-			result = target.getRootBlock();
+			result = target.getPrintedResultRootBlock();
 		} catch (SyntaxAndModelMismatchException e) {
 			CtsActivator.logError(e);
-
 			result = null;
 		}
 	}
@@ -54,8 +54,7 @@ public class PrettyPrintCommand extends Command {
 	public Collection<PartitionOperation> getAffectedPartitions() {
 		Partitionable partitionable = refObject;
 		PRI pri = partitionable.get___Partition().getPri();
-		PartitionOperation editOperation = new PartitionOperation(
-				PartitionOperation.Operation.EDIT, pri);
+		PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
 		return Collections.singleton(editOperation);
 	}
 

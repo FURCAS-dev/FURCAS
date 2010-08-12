@@ -1,11 +1,15 @@
 package com.sap.ide.refactoring.core;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
-public class RefactoringCoreException extends RuntimeException {
+import com.sap.ide.refactoring.Activator;
+import com.sap.ide.refactoring.ui.ExceptionStatusContext;
 
+public class RefactoringCoreException extends Exception {
+    
     private static final long serialVersionUID = 1L;
-
 
     public RefactoringCoreException(String message) {
 	super(message);
@@ -19,7 +23,14 @@ public class RefactoringCoreException extends RuntimeException {
 	super(message, cause);
     }
 
-    public RefactoringStatus asRefactoringStatus() {
-	return RefactoringStatus.createFatalErrorStatus("An exception occured: " + this.getMessage());
+    public RefactoringStatus asRefactoringStatus(RefactoringSeverity severity) {
+	ExceptionStatusContext context = new ExceptionStatusContext(getCause() == null ? this : getCause());
+	return RefactoringStatus.createStatus(severity.asEclipseRefactoringSeverity(), "An exception occured: " + this.getMessage(),
+		context, Activator.PLUGIN_ID, 0, null);
+    }
+    
+    public IStatus asEclipseStatus(RefactoringSeverity severity) {
+	return new Status(severity.asEclipseStatusSeverity(), Activator.PLUGIN_ID, "An exception occured: " + this.getMessage(), getCause());
+	
     }
 }

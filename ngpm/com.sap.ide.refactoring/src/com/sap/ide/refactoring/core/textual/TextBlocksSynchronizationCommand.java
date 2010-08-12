@@ -1,46 +1,66 @@
 package com.sap.ide.refactoring.core.textual;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import tcs.ConcreteSyntax;
-import textblocks.DocumentNode;
 import textblocks.TextBlock;
 
 import com.sap.ide.cts.editor.EditorUtil;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
-import com.sap.ide.refactoring.core.TextBlockChange;
+import com.sap.ide.refactoring.Activator;
+import com.sap.ide.refactoring.core.RefactoringCoreException;
+import com.sap.ide.refactoring.core.RefactoringSeverity;
 import com.sap.ide.refactoring.core.textual.prettyprint.BatchPrettyPrinter;
+import com.sap.ide.refactoring.ui.NamedSubProgressMonitor;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
+import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.commands.PartitionOperation.Operation;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
+/**
+ * Command used to to synchronize the textual views after model changes.
+ * Runs the short and the incremental pretty printer. 
+ * 
+ * @author Stephan Erb (d049157)
+ */
 public class TextBlocksSynchronizationCommand extends Command {
+    
+    private final Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> textBlocksNeedingPrettyPrinting;
+    private final Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> textBlocksNeedingShortPrettyPrinting;
 
-    private final Map<RefObject, List<ModelElementDocumentNodeChangeDescriptor>> textBlocksNeedingPrettyPrinting;
-    private final Map<RefObject, List<ModelElementDocumentNodeChangeDescriptor>> textBlocksNeedingShortPrettyPrinting;
+    private final Map<RootElementTextBlockTuple, TextBlockChange> changePerPrettyPrintedRootTuple = new HashMap<RootElementTextBlockTuple, TextBlockChange>();
 
-    private final Map<TextBlock, TextBlockChange> changePerPrettyPrintedRootTextBlock = new HashMap<TextBlock, TextBlockChange>();
+    private final RefactoringEditorFacade facade;
+    private final RefactoringStatus synchronizationStatus = new RefactoringStatus();
+    private final IProgressMonitor pm;
 
-    public TextBlocksSynchronizationCommand(Connection connection,
-	    Map<RefObject, List<ModelElementDocumentNodeChangeDescriptor>> textBlocksNeedingPrettyPrinting,
-	    Map<RefObject, List<ModelElementDocumentNodeChangeDescriptor>> textBlocksNeedingShortPrettyPrinting) {
-	super(connection, "Synchronize TextBlocksModel according to  DomainModel changes");
-
+    
+    public TextBlocksSynchronizationCommand(RefactoringEditorFacade facade,
+	    Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> textBlocksNeedingPrettyPrinting,
+	    Map<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> textBlocksNeedingShortPrettyPrinting, IProgressMonitor pm) {
+	super(facade.getEditorConnection(), "Synchronize TextBlocksModel according to  DomainModel changes");
+	
+	this.facade = facade;
 	this.textBlocksNeedingPrettyPrinting = textBlocksNeedingPrettyPrinting;
 	this.textBlocksNeedingShortPrettyPrinting = textBlocksNeedingShortPrettyPrinting;
+	this.pm = pm;
     }
 
     @Override
@@ -50,77 +70,78 @@ public class TextBlocksSynchronizationCommand extends Command {
 
     @Override
     public void doExecute() {
-	// do short pretty print
-	doAllShortPrettyPrinting();
-	doAllFullPrettyPrinting();
-    }
-
-    private void doAllFullPrettyPrinting() {
-	BatchPrettyPrinter batchPrettyPrinter = new BatchPrettyPrinter();
-	// First of all, just calculate which textblocks can re reused.
-	for (Entry<RefObject, List<ModelElementDocumentNodeChangeDescriptor>> entry : textBlocksNeedingPrettyPrinting.entrySet()) {
-	    for (ModelElementDocumentNodeChangeDescriptor changeDescriptor : entry.getValue()) {
-		initializeChangeForRootIfNecessary(entry.getKey(), changeDescriptor.documentNode);
-		batchPrettyPrinter.queuePrettyPrintJob(changeDescriptor);
-	    }
-	}
-	batchPrettyPrinter.run();
-	// Finally create the new 
-	for (Entry<RefObject, List<ModelElementDocumentNodeChangeDescriptor>> entry : textBlocksNeedingPrettyPrinting.entrySet()) {
-	    for (ModelElementDocumentNodeChangeDescriptor changeDescriptor : entry.getValue()) {
-		TextBlock prettyPrintedTextBlock = batchPrettyPrinter.getPrettyPrinterResultFor(changeDescriptor);
-		if (prettyPrintedTextBlock != null) {
-		    updateChangeToReflectPrettyPrinting(changeDescriptor.documentNode);
-		    // another init might be needed if either a new rootBlock was created, or we were linked to another parent.
-		    initializeChangeForRootIfNecessary(entry.getKey(), prettyPrintedTextBlock);
-		    updateChangeToReflectPrettyPrinting(prettyPrintedTextBlock);
-		}
-	    }
+	pm.beginTask("Updating Views:", textBlocksNeedingPrettyPrinting.size() + textBlocksNeedingShortPrettyPrinting.size());
+	try {
+	    doAllShortPrettyPrinting();
+	    doAllFullPrettyPrinting();
+	} finally {
+	    pm.done();
 	}
     }
 
     private void doAllShortPrettyPrinting() {
-	for (Entry<RefObject, List<ModelElementDocumentNodeChangeDescriptor>> entry : textBlocksNeedingShortPrettyPrinting.entrySet()) {
+	pm.subTask("Short Pretty Printing");
+	// TODO: we should not try to synchronize the whole model, but only synchronoize
+	// the individual tokens that have actually changed
+	// Promises better performance (though that is not a problem at the momen).
+	for (RootElementTextBlockTuple rootTuple : textBlocksNeedingShortPrettyPrinting.keySet()) {
+	    initializeChangeForRootIfNecessary(rootTuple);
+	    prettyPrintShort(rootTuple.textBlock);
+	    updateChangeToReflectPrettyPrinting(rootTuple, rootTuple.textBlock);
+
+	    pm.worked(1);
+	}
+    }
+
+    private void doAllFullPrettyPrinting() {
+	pm.subTask("Pretty Printing");
+	BatchPrettyPrinter batchPrettyPrinter = new BatchPrettyPrinter();
+	
+	// First of all, just calculate which textblocks can re reused.
+	for (Entry<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> entry : textBlocksNeedingPrettyPrinting.entrySet()) {
 	    for (ModelElementDocumentNodeChangeDescriptor changeDescriptor : entry.getValue()) {
-		initializeChangeForRootIfNecessary(entry.getKey(), changeDescriptor.documentNode);
-		TextBlock rootBlock = TbNavigationUtil.getUltraRoot(changeDescriptor.documentNode);
-		prettyPrintShort(rootBlock);
-		updateChangeToReflectPrettyPrinting(rootBlock);
-		// Short pretty printing works only for a complete TextBlocks tree
-		// no need do redo for the various subtrees
-		break;
+		initializeChangeForRootIfNecessary(entry.getKey());
+		batchPrettyPrinter.queuePrettyPrintJob(changeDescriptor);
+	    }
+	}
+	synchronizationStatus.merge(batchPrettyPrinter.run(new NamedSubProgressMonitor(pm,  textBlocksNeedingPrettyPrinting.size())));
+	for (Entry<RootElementTextBlockTuple, List<ModelElementDocumentNodeChangeDescriptor>> entry : textBlocksNeedingPrettyPrinting.entrySet()) {
+	    for (ModelElementDocumentNodeChangeDescriptor changeDescriptor : entry.getValue()) {
+		TextBlock prettyPrintedTextBlock = batchPrettyPrinter.getPrettyPrinterResultFor(changeDescriptor);
+		updateChangeToReflectPrettyPrinting(entry.getKey(), prettyPrintedTextBlock);
 	    }
 	}
     }
 
-    private void initializeChangeForRootIfNecessary(RefObject rootObject, DocumentNode documentNode) {
-	TextBlock rootBlock = TbNavigationUtil.getUltraRoot(documentNode);
-	if (!changePerPrettyPrintedRootTextBlock.containsKey(rootBlock)) {
-	    TextBlockChange change = new TextBlockChange(rootObject);
-	    change.fetchPreChangeState(rootBlock);
-	    changePerPrettyPrintedRootTextBlock.put(rootBlock, change);
+    private void initializeChangeForRootIfNecessary(RootElementTextBlockTuple rootTuple) {
+	if (!changePerPrettyPrintedRootTuple.containsKey(rootTuple)) {
+	    TextBlockChange change = new TextBlockChange(facade, rootTuple);
+	    changePerPrettyPrintedRootTuple.put(rootTuple, change);
 	}
     }
 
-    private void updateChangeToReflectPrettyPrinting(DocumentNode prettyPrintedTextBlock) {
-	if (!prettyPrintedTextBlock.is___Alive()) {
+    private void updateChangeToReflectPrettyPrinting(RootElementTextBlockTuple rootTuple, TextBlock prettyPrintedTextBlock) {
+	if (!rootTuple.modelElement.is___Alive()) {
 	    return;
 	}
-	TextBlock rootBlock = TbNavigationUtil.getUltraRoot(prettyPrintedTextBlock);
-	TextBlockChange change = changePerPrettyPrintedRootTextBlock.get(rootBlock);
-	change.fetchPostChangeState(rootBlock);
+	TextBlockChange change = changePerPrettyPrintedRootTuple.get(rootTuple);
+	change.fetchPostChangeState(prettyPrintedTextBlock);
     }
-
-
 
     private void prettyPrintShort(TextBlock rootBlock) {
 	if (rootBlock.getType() == null || rootBlock.getType().getParseRule() == null) {
-	    System.out.println(">>> Skipping Tb: Broken Mapping.");
+	    Activator.logWarning("Ignoring TextBlock in pretty printing due to broken mapping: " + rootBlock);
 	    return;
 	}
-	
-	TextBlocksModel model = new TextBlocksModel(rootBlock, getModelElementInvestigator(rootBlock));
-	model.doShortPrettyPrintToEditableVersion();
+	try { 
+	    TextBlocksModel model = new TextBlocksModel(rootBlock, getModelElementInvestigator(rootBlock));
+	    model.doShortPrettyPrintToEditableVersion();
+	    TbValidationUtil.assertTextBlockConsistencyRecursive(TbNavigationUtil.getUltraRoot(rootBlock));
+	    TbValidationUtil.assertCacheIsUpToDate(TbNavigationUtil.getUltraRoot(rootBlock));
+	} catch (Exception e) {
+	    Activator.logError(e, "Short PrettyPrint failed");
+	    synchronizationStatus.merge(new RefactoringCoreException("Short PrettyPrint failed", e).asRefactoringStatus(RefactoringSeverity.ERROR));
+	}
     }
 
     private IModelElementInvestigator getModelElementInvestigator(TextBlock textBlock) {
@@ -133,11 +154,28 @@ public class TextBlocksSynchronizationCommand extends Command {
 
     @Override
     public Collection<PartitionOperation> getAffectedPartitions() {
-	return null;
+	Collection<RootElementTextBlockTuple> tuples = new ArrayList<RootElementTextBlockTuple>();
+	tuples.addAll(textBlocksNeedingPrettyPrinting.keySet());
+	tuples.addAll(textBlocksNeedingShortPrettyPrinting.keySet());
+	
+	HashSet<ModelPartition> partitionThatWillBeTouched = new HashSet<ModelPartition>();
+	for (RootElementTextBlockTuple tuple : tuples) {
+	    partitionThatWillBeTouched.add(tuple.textBlock.get___Partition());
+	    partitionThatWillBeTouched.add(tuple.modelElement.get___Partition());
+	}
+	Collection<PartitionOperation> partitionOps = new ArrayList<PartitionOperation>();
+	for (ModelPartition part : partitionThatWillBeTouched) {
+	    partitionOps.add(new PartitionOperation(Operation.EDIT, part.getPri()));
+	}
+	return partitionOps;
     }
 
     public Collection<TextBlockChange> getTextBlockChanges() {
-	return changePerPrettyPrintedRootTextBlock.values();
+	return changePerPrettyPrintedRootTuple.values();
+    }
+
+    public RefactoringStatus getSynchronizationStatus() {
+        return synchronizationStatus;
     }
 
 }

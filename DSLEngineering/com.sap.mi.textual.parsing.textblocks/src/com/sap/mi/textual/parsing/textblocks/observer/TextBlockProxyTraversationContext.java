@@ -6,7 +6,6 @@ package com.sap.mi.textual.parsing.textblocks.observer;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.Alternative;
 import tcs.SequenceElement;
 import textblocks.LexedToken;
 
@@ -15,15 +14,15 @@ import textblocks.LexedToken;
  */
 public class TextBlockProxyTraversationContext {
 
-    private TextBlockProxy contextBlock;
+    private final TextBlockProxy contextBlock;
 
     private int lastVisitedChildIndex = -1;
 
     private SequenceElement sequenceElement;
 
-    private int currentAlternative;
-
     private boolean operatorToken;
+
+    private int alternativeNestingLevel;
 
     /**
      * @param contextBlock
@@ -122,21 +121,26 @@ public class TextBlockProxyTraversationContext {
     }
 
     /**
-     * Gets the currently navigated {@link Alternative}.
-     * @return
-     */
-    public int getCurrentAlternative() {
-	return currentAlternative;
-    }
-
-    /**
      * Sets the currently chosen alternative
      * @param choice
+     * @param alternativeNestingLevel 
      */
     public void setCurrentAlternative(int choice) {
-	currentAlternative = choice;
+	alternativeNestingLevel++;
+	// Crude hack: we use the negative value of the current
+	// nesting level to mark to which level a certain alternative
+	// choice belongs.
+	// This is required by the pretty printer to decide
+	// which chosen alternative belongs to which nested alternative.
+	contextBlock.addAlternativeChoice(-alternativeNestingLevel); // marker
 	contextBlock.addAlternativeChoice(choice);
     }
+
+    public void exitAlternative() {
+	// Crude hack: add marker to proper model the nesting level
+	contextBlock.addAlternativeChoice(-alternativeNestingLevel); // marker
+	alternativeNestingLevel--;
+    }	
 
     public void setOperatorToken(boolean operatorToken) {
         this.operatorToken = operatorToken;
@@ -144,6 +148,7 @@ public class TextBlockProxyTraversationContext {
 
     public boolean isOperatorToken() {
         return operatorToken;
-    }	
+    }
+
 
 }

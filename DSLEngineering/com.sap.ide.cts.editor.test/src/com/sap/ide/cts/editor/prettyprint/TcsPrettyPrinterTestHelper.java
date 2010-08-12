@@ -8,7 +8,10 @@ import tcs.ConcreteSyntax;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
+import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
+import com.sap.ide.cts.editor.prettyprint.imported.SyntaxAndModelMismatchException;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorPrintStream;
+import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockTCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.tcs.util.TcsUtil;
@@ -21,7 +24,8 @@ public class TcsPrettyPrinterTestHelper {
 	    throws SyntaxAndModelMismatchException {
 	ByteArrayOutputStream output = new ByteArrayOutputStream();
 
-	CtsPrettyPrinter.prettyPrint(source, syntax, new TCSExtractorPrintStream(output), null, null);
+    	PrettyPrinter prettyPrinter = new PrettyPrinter();
+    	prettyPrinter.prettyPrint(source, syntax,  new TCSExtractorPrintStream(output));
 
 	return output.toString();
     }
@@ -32,14 +36,19 @@ public class TcsPrettyPrinterTestHelper {
 
 	Connection con = TcsUtil.getConnectionFromRefObject(source);
 	TextblocksPackage tbPackage = con.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
-	CtsTextBlockTCSExtractorStream target = new CtsTextBlockTCSExtractorStream(tbPackage, null, parserFactory);
-	CtsPrettyPrinter.prettyPrint(source, syntax, target, null, null);
-	return target.getRootBlock();
+	TextBlockTCSExtractorStream target = new TextBlockTCSExtractorStream(tbPackage, null, parserFactory);
+	
+    	PrettyPrinter prettyPrinter = new PrettyPrinter();
+    	prettyPrinter.prettyPrint(source, syntax,  target);
+	
+	return target.getPrintedResultRootBlock();
     }
 
     public static void prettyPrintConsole(RefObject source, ConcreteSyntax syntax)
 	    throws SyntaxAndModelMismatchException {
-	CtsPrettyPrinter.prettyPrint(source, syntax, new TCSExtractorPrintStream(System.out), null, null);
+	
+    	PrettyPrinter prettyPrinter = new PrettyPrinter();
+    	prettyPrinter.prettyPrint(source, syntax,  new TCSExtractorPrintStream(System.out));
     }
 
 }

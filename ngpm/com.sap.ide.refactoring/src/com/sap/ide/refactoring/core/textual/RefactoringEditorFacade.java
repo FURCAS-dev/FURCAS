@@ -1,6 +1,7 @@
 package com.sap.ide.refactoring.core.textual;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -24,11 +25,12 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * This class is intended to shield the refactoring subsystem from the surrounding complexity
  * of the FURCAS editor environment.
  *
- * @author D049157
+ * @author Stephan Erb (d049157)
  */
 public class RefactoringEditorFacade {
 
     protected AbstractGrammarBasedEditor editor;
+    private Collection<String> tokenNames;
 
     public RefactoringEditorFacade(AbstractGrammarBasedEditor editor) {
 	this.editor = editor;
@@ -50,7 +52,7 @@ public class RefactoringEditorFacade {
 	return getTextBlocksModel().get(0, getTextBlocksModel().getLength());
     }
 
-    public Connection getConnection() {
+    public Connection getEditorConnection() {
 	return editor.getWorkingConnection();
     }
 
@@ -79,11 +81,28 @@ public class RefactoringEditorFacade {
 	ObservableInjectingParser parser = createDryParser();
 	return parser.checkSyntaxWithoutInjecting();
     }
+    
+    /* package */Collection<String> getTokenNames() {
+	if (tokenNames == null) {
+	    tokenNames = new HashSet<String>();
+	    for (String tokenName : createDryParser().getTokenNames()) {
+		if (tokenName.startsWith("'") && tokenName.endsWith("'")) {
+		    tokenNames.add(tokenName.substring(1, tokenName.length() - 1));
+		}
+	    }
+	}
+	return tokenNames;
+    }
 
     protected ObservableInjectingParser createDryParser() {
 	Lexer lexer = getParserFactory().createLexer(new ANTLRStringStream(getTextBlocksModel().getRoot().getCachedString()));
-	return getParserFactory().createParser(new CommonTokenStream(lexer), getConnection());
+	return getParserFactory().createParser(new CommonTokenStream(lexer), getEditorConnection());
     }
 
+    public void updateRootBlock(TextBlock postChangeRootBlock) {
+	getTextBlocksModel().setRootTextBlock(postChangeRootBlock);
+	getDocument().setRootBlock(postChangeRootBlock);
+	editor.setModel(postChangeRootBlock);
+    }
 
 }

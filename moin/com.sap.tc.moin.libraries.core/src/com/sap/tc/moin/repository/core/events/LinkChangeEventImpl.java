@@ -3,8 +3,12 @@ package com.sap.tc.moin.repository.core.events;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
 import com.sap.tc.moin.repository.mmi.model.__impl.ModelElementInternal;
 import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
@@ -16,6 +20,7 @@ import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.EndStorageLink;
 import com.sap.tc.moin.repository.core.MoinReference;
+import com.sap.tc.moin.repository.core.links.JmiListImpl;
 import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
 import com.sap.tc.moin.repository.shared.util.QualifiedName;
 
@@ -185,19 +190,38 @@ public abstract class LinkChangeEventImpl extends ModelChangeEventImpl implement
     }
 
     @Override
-    protected String getParameterString( ) {
+    protected String getParameterString() {
 
-        StringBuilder buf = new StringBuilder( "association=" ); //$NON-NLS-1$
-        ModelElementInternal metaObject = (ModelElementInternal) getAffectedMetaObject( eventTriggerConnection );
-        buf.append( QualifiedName.toDotSeparatedString( metaObject.getQualifiedName( eventTriggerConnection ) ) );
-        if ( position != -1 ) {
-            buf.append( ",position=" ).append( position ); //$NON-NLS-1$
-        }
-        buf.append( ",MRI1=" ).append( String.valueOf( getFirstLinkEndMri( ) ) ); //$NON-NLS-1$
-        buf.append( ",MRI2=" ).append( String.valueOf( getSecondLinkEndMri( ) ) ); //$NON-NLS-1$
-        return buf.toString( );
+	StringBuilder buf = new StringBuilder("association="); //$NON-NLS-1$
+	ModelElementInternal metaObject = (ModelElementInternal) getAffectedMetaObject(eventTriggerConnection);
+	buf.append(QualifiedName.toDotSeparatedString(metaObject.getQualifiedName(eventTriggerConnection)));
+	if (position != -1) {
+	    buf.append(",position=").append(position); //$NON-NLS-1$
+	}
+	buf.append(",MRI1=").append(String.valueOf(getFirstLinkEndMri())); //$NON-NLS-1$
+	buf.append(",MRI2=").append(String.valueOf(getSecondLinkEndMri())); //$NON-NLS-1$
+
+	Association association = (Association) metaObject;
+
+	int associationEnds = 0;
+
+	Iterator<ModelElement> iter = ((JmiListImpl<ModelElement>) association.getContents()).iterator(eventTriggerConnection);
+
+	while (iter.hasNext()) {
+	    ModelElement content = iter.next();
+	    if (content instanceof AssociationEnd) {
+		associationEnds++;
+		buf.append(",AE" + (associationEnds + 1) + "=").append(((AssociationEnd) content).getName());
+	    } else {
+		System.out.println("noAssocEnd: " + content);
+	    }
+	}
+	assert associationEnds == 2;
+
+	return buf.toString();
     }
 
+    
     /*
      * (non-Javadoc)
      * @see java.lang.Object#hashCode()

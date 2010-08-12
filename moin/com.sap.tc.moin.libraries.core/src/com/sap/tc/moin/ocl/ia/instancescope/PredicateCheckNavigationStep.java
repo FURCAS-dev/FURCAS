@@ -12,6 +12,7 @@ import org.omg.ocl.expressions.__impl.IteratorExpInternal;
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.ocl.evaluator.EvaluatorException;
+import com.sap.tc.moin.ocl.evaluator.NavigatingModifiedLinkException;
 import com.sap.tc.moin.ocl.evaluator.expr.ExpressionEvaluator;
 import com.sap.tc.moin.ocl.evaluator.stdlib.OclAny;
 import com.sap.tc.moin.ocl.evaluator.stdlib.OclBoolean;
@@ -79,8 +80,14 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
     @Override
     protected Set<AnnotatedRefObjectImpl> navigate(CoreConnection conn, AnnotatedRefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<AnnotatedRefObjectImpl>> cache, Set<Pair<RefFeatured, RefObject>> throwExceptionWhenVisiting) {
 	Set<AnnotatedRefObjectImpl> result = new LinkedHashSet<AnnotatedRefObjectImpl>(1);
-	boolean predicateValue = ((OclBoolean) evaluate(((IteratorExpInternal) getIteratorExp()).getBody(conn), fromObject.getElement(), conn, throwExceptionWhenVisiting)).getWrappedBoolean();
-	if (predicateValue == positive) {
+	try {
+	    boolean predicateValue = ((OclBoolean) evaluate(((IteratorExpInternal) getIteratorExp()).getBody(conn), fromObject.getElement(), conn, throwExceptionWhenVisiting)).getWrappedBoolean();
+	    if (predicateValue == positive) {
+		result.add(fromObject);
+	    }
+	} catch (EvaluatorException e) {
+	    result.add(fromObject);
+	} catch (NavigatingModifiedLinkException e) {
 	    result.add(fromObject);
 	}
 	return result;

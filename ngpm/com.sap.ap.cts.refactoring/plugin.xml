@@ -7,14 +7,17 @@
             adaptableType="com.sap.tc.moin.repository.mmi.reflect.RefObject"
             class="com.sap.ap.cts.refactoring.adaptation.RefactoringModelAdapterFactory">
          <adapter
-               type="com.sap.ide.refactoring.core.model.rename.NamedElement">
+               type="com.sap.ide.refactoring.model.move.MovableElement">
+         </adapter>
+         <adapter
+               type="com.sap.ide.refactoring.model.rename.NamedElement">
          </adapter>
       </factory>
    </extension>
       <extension
          point="org.eclipse.ui.popupMenus">
       <viewerContribution
-            id="com.sap.ide.refactoring.viewerContribution"
+            id="com.sap.ide.refactoring.ClassContribution"
             targetID="com.sap.ap.cts.editor.ClassEditor.EditorContext">
          <menu
                id="com.sap.ide.refactoring.menu"
@@ -34,7 +37,51 @@
                label="Rename..."
                menubarPath="com.sap.ide.refactoring.menu/content"
                style="push"
-               tooltip="Rename">
+               tooltip="Rename a ModelElement">
+         </action>
+         <action
+               class="com.sap.ide.refactoring.op.move.MoveAction"
+               definitionId="com.sap.ide.refactoring.move"
+               helpContextId="com.sap.ide.refactoring.move"
+               id="com.sap.ide.refactoring.move"
+               label="Move..."
+               menubarPath="com.sap.ide.refactoring.menu/content"
+               style="push"
+               tooltip="Move a ModelElement from here to somewhere else.">
+         </action>
+      </viewerContribution>
+      <viewerContribution
+            id="com.sap.ide.refactoring.PackageContribution"
+            targetID="com.sap.ap.cts.editor.PackageEditor.EditorContext">
+         <menu
+               id="com.sap.ide.refactoring.menu"
+               label="Refactor">
+            <groupMarker
+                  name="content">
+            </groupMarker>
+            <separator
+                  name="additions">
+            </separator>
+         </menu>
+         <action
+               class="com.sap.ide.refactoring.op.rename.RenameAction"
+               definitionId="com.sap.ide.refactoring.rename"
+               helpContextId="com.sap.ide.refactoring.rename"
+               id="com.sap.ide.refactoring.rename"
+               label="Rename..."
+               menubarPath="com.sap.ide.refactoring.menu/content"
+               style="push"
+               tooltip="Rename a ModelElement">
+         </action>
+         <action
+               class="com.sap.ide.refactoring.op.move.MoveAction"
+               definitionId="com.sap.ide.refactoring.move"
+               helpContextId="com.sap.ide.refactoring.move"
+               id="com.sap.ide.refactoring.move"
+               label="Move..."
+               menubarPath="com.sap.ide.refactoring.menu/content"
+               style="push"
+               tooltip="Move a ModelElement from here to somewhere else.">
          </action>
       </viewerContribution>
    </extension>

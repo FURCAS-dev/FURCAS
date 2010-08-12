@@ -225,8 +225,8 @@ MetaClass extends RefObject, TypeUsage extends RefObject, ClassUsage extends Typ
 		    result = new ChangeList<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>(
 			    (Change<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>[]) new Change<?, ?, ?, ?, ?>[] {
 				    new SingleChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>(
-					    new LinkDeletion(((LinkCreation) targetChange).getObject(),
-						    ((LinkChange) targetChange).getPosition())),
+					    new LinkDeletion<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>(((LinkCreation<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>) targetChange).getObject(),
+						    ((LinkChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>) targetChange).getPosition())),
 				    new SingleChange<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>(
 					    sourceChange) });
 		}

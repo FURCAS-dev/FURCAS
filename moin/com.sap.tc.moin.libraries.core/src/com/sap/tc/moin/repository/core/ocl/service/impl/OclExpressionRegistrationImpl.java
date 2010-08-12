@@ -251,16 +251,19 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         return result;
     }
 
+    @Override
     public Object evaluateExpression( RefObject context ) throws OclManagerException {
 
         return this.evaluateExpression( context, false );
     }
 
+    @Override
     public Object evaluateExpression( MRI contextMri ) throws OclManagerException {
 
         return this.evaluateExpression( (RefObject) this.myConnection.getElement( contextMri ), false );
     }
 
+    @Override
     public OclDebuggerNode debugExpression( RefObject context ) {
 
         try {
@@ -287,6 +290,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
     }
 
+    @Override
     public OclDebuggerNode debugExpression( MRI contextMri ) {
 
         try {
@@ -362,11 +366,13 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
     }
 
+    @Override
     public boolean registerPartitionBasedInvalidationListener( String category, ExpressionInvalidationListener listener ) {
 
         return this.registerPartitionBasedInvalidationListener( category, listener, new HashSet<MRI>( ) );
     }
 
+    @Override
     public synchronized boolean registerPartitionBasedInvalidationListener( String category, ExpressionInvalidationListener listener, Collection<MRI> objectFilter ) {
 
         // TODO check with valueOf?
@@ -486,6 +492,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         return eventListeners;
     }
 
+    @Override
     public synchronized boolean unregisterInvalidationListener( ExpressionInvalidationListener listener ) {
 
         boolean unregistered = false;
@@ -525,6 +532,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         this.collectedEvents.clear( );
     }
 
+    @Override
     public void notify( ChangeEvent event ) {
 
         if ( !( event instanceof ModelChangeEvent ) ) {
@@ -642,11 +650,13 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         this.registeredInEventFramework = true;
     }
 
+    @Override
     public boolean registerEventBasedInvalidationListener( ExpressionInvalidationListener listener, boolean immediate ) {
 
         return this.registerEventBasedInvalidationListener( listener, new HashSet<MRI>( ), immediate );
     }
 
+    @Override
     public synchronized boolean registerEventBasedInvalidationListener( ExpressionInvalidationListener listener, Collection<MRI> objectFilter, boolean immediate ) {
 
         Set<MRI> filter = new HashSet<MRI>( );
@@ -764,7 +774,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     private InstanceScopeAnalysis getImpactAnalyzer(CoreConnection conn) {
 
         if ( this.analyzer == null ) {
-	    this.analyzer = new InstanceScopeAnalysis(this, conn, instanceScopeAnalysisPathCache,
+	    this.analyzer = new InstanceScopeAnalysis(this, this.getExpression(), conn, instanceScopeAnalysisPathCache,
 		    getClassScopeAnalyzer(/* notifyNewContextElement */false));
         }
         return this.analyzer;

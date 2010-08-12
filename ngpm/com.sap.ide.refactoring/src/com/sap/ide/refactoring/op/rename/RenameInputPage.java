@@ -53,23 +53,20 @@ public class RenameInputPage extends UserInputWizardPage {
 	
 	textField.setFocus();
 	textField.selectAll();
-
     }
 
     protected Text createTextInputField(Composite parent) {
 	textField = new Text(parent, SWT.BORDER);
 	textField.addModifyListener(new ModifyListener() {
 	    public void modifyText(ModifyEvent e) {
-		textModifiedCallback(textField.getText());
+		textModifiedCallback(textField.getText().trim());
 	    }
 	});
 	return textField;
     }
     
     protected RefactoringStatus validateTextField(String text) {
-	RefactoringStatus status = new RefactoringStatus();
-	status.merge(getRefactoring().setNewModelElementName(text));
-	return status;
+	return getRefactoring().setNewModelElementName(text);
     }
 
     protected void textModifiedCallback(String text) {

@@ -32,7 +32,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
 	    }
 	}
 	MofClass innermostType = getInnermostElementType(getExpression().getType(getConnection()));
-	return new BranchingNavigationStep(getConnection(), innermostType, innermostType, getExpression(), pathCache, steps.toArray(new NavigationStep[0]));
+	return new BranchingNavigationStep(getConnection(), innermostType, context, getExpression(), pathCache, steps.toArray(new NavigationStep[0]));
     }
 
 }

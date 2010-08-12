@@ -1,6 +1,5 @@
 package com.sap.mi.textual.parsing.textblocks.reference;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -65,7 +64,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener {
      * Registers a new {@link ReferenceResolvingListener} that gets notified on
      * registration as well as resolving of {@link DelayedReference delayed
      * references}.
-     *
+     * 
      * @param listener
      *            The listener to be registered.
      */
@@ -77,24 +76,12 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener {
      * Unregisters a {@link ReferenceResolvingListener} that gets notified on
      * registration as well as resolving of {@link DelayedReference delayed
      * references}.
-     *
+     * 
      * @param listener
      *            The listener to be unregistered.
      */
     public void removeReferenceResolvingListener(ReferenceResolvingListener listener) {
 	listeners.remove(listener);
-    }
-
-    void notifyReferenceResolvingListenerReferenceResolved(DelayedReference ref) {
-	for (ReferenceResolvingListener listener : listeners) {
-	    listener.referenceResolved(ref);
-	}
-    }
-
-    void notifyReferenceResolvingListenerReferencesRemoved(Collection<DelayedReference> refs) {
-	for (ReferenceResolvingListener listener : listeners) {
-	    listener.outdatedReferencesRemoved(refs);
-	}
     }
 
     public void registerReferenceForIncrementalEvaluation(ConcreteSyntax syntax, Connection connection,
@@ -118,6 +105,18 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener {
 
     public void clearUnresolvedIAReferences() {
 	resolver.clearUnresolvedReferences();
+    }
+
+    void notifyReferenceUnset(DelayedReference reference, Object valueRemovedFromProperty) {
+	for (ReferenceResolvingListener listener : listeners) {
+	    listener.outdatedReferencesRemoved(reference, valueRemovedFromProperty);
+	}
+    }
+
+    void notifyReferenceSet(DelayedReference reference, Object valueSetOnProperty) {
+	for (ReferenceResolvingListener listener : listeners) {
+	    listener.referenceResolved(reference, valueSetOnProperty);
+	}
     }
 
 }
