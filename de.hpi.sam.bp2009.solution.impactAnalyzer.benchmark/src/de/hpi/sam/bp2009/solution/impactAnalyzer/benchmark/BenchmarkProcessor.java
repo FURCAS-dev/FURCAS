@@ -11,6 +11,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution.BenchmarkEx
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationResourceLoader;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTask;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskPreparer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.BenchmarkTaskStepwiseBuilder;
 
 /**
  * The {@link BenchmarkProcessor}s main purpose is to analyze the overall
@@ -43,10 +44,13 @@ public class BenchmarkProcessor {
 	    options.addOption("d", "delayprep",true, "Delay preparation of benchmark task (true/false)");
 	    options.addOption("e", "excdump", true, "An exception dump file will be written to the specified path");
 	    options.addOption("ob", "outbuffer", true, "Buffer size of output stream");
-	    
+
 	    options.addOption("tp", "tracepath", true, "Name of tracefile which shall be replayed");
 	    options.addOption("mp", "modelpath", true, "Name of serialized model file");
 	    options.addOption("sf", "showfiles", false, "Show which trace files and model files are available");
+
+	    //Default option
+	    //options.addOption("pd", "printdscr", true, "Print separate description files for R reports with mapping from result identifiers to descriptions for OCL Expressions, Notifications and Models");
 
 	    options.addOption("v", "verbose", false, "Run in verbose mode");
 	    options.addOption("h", "help", false, "Show this help");
@@ -59,9 +63,9 @@ public class BenchmarkProcessor {
 		formatter.printHelp( "Impact Analysis Benchmark Environment v0.1", options );
 	    }else{
 	    int numberOfJobs = cmd.hasOption("j") ? Integer.parseInt(cmd.getOptionValue("j")) : 1;
-	    boolean delayPreparation = cmd.hasOption("d") ? Boolean.parseBoolean(cmd.getOptionValue("d")) : false;	
-	    
-	    
+	    boolean delayPreparation = cmd.hasOption("d") ? Boolean.parseBoolean(cmd.getOptionValue("d")) : false;
+
+
 	    String modelFile = "";
 	    String eventTraceFile = "";
 	    if(cmd.hasOption("sf")){
@@ -71,18 +75,18 @@ public class BenchmarkProcessor {
 	    	if(!cmd.hasOption("tp") || !NotificationResourceLoader.getFilenamesOfEventFixtures().contains(cmd.getOptionValue("tp"))){
 	    		System.out.println("You started benchmarks without specifying a correct event trace fixture explicitly.");
 	    		printAvailableEventFixtures();
-	    			    		
+
 	    		eventTraceFile = "modifyElementaryTypesEventTrace.trace";
 	    	}else{
 	    		eventTraceFile = cmd.getOptionValue("tp");
 	    	}
 	    	System.out.println("Choosing fixture: " + eventTraceFile);
 	    	System.out.println("");
-	    	
+
 	    	if(!cmd.hasOption("mp") || !NotificationResourceLoader.getFilenamesOfModelFixture().contains(cmd.getOptionValue("mp"))){
 	    		System.out.println("You started benchmarks without specifying a correct model fixture explicitly.");
 	    		printAvailableModelFixtures();
-	    			    		
+
 	    		modelFile = "NgpmModel.xmi";
 	    	}else{
 	    		modelFile = cmd.getOptionValue("mp");
@@ -90,7 +94,7 @@ public class BenchmarkProcessor {
     		System.out.println("Choosing fixture: " + modelFile);
     		System.out.println("");
 	    }
-	    
+
 	    start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"),  numberOfJobs, delayPreparation, cmd.getOptionValue("e"), cmd.hasOption("v"), eventTraceFile, modelFile);
 	    }
 
@@ -98,32 +102,31 @@ public class BenchmarkProcessor {
 	    System.err.println( "Parsing failed.  Reason: " + e.getMessage() );
 	}
     }
-    
+
     	public static void printAvailableEventFixtures(){
     		System.out.println("The following event trace fixtures are available and can be specified with the --tracepath option:");
-    		
+
     		int number = 1;
     		for(String path : NotificationResourceLoader.getFilenamesOfEventFixtures()){
     			System.out.println("[" + number + "] " + path);
     			number++;
     		}
     	}
-    	
+
     	public static void printAvailableModelFixtures(){
     		System.out.println("The following model fixtures are available and can be specified with the --modelpath option:");
-    		
+
     		int number = 1;
     		for(String path : NotificationResourceLoader.getFilenamesOfModelFixture()){
     			System.out.println("[" + number + "] " + path);
     			number++;
     		}
     	}
-    
-   
+
+
     	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs, boolean delayPreparation, String dumpFilePath, boolean verbose, String eventTraceFile, String modelFile) {
     	    	System.out.println("Impact Analysis Benchmark started with " + warmUps + " warm-ups and " + measures + " measures per benchmark task");
 
-    	    
     	    	ProcessingOptions.setNumberOfWarmUps(warmUps);
     	    	ProcessingOptions.setNumberOfMeasures(measures);
     	    	if(numberOfJobs > 1){
@@ -134,17 +137,21 @@ public class BenchmarkProcessor {
 
     	    	PathOptions.setOutputPath(outputPath);
     	    	PathOptions.setExceptionDumpFilePath(dumpFilePath);
-    	    	
+
     	    	PathOptions.setModelFixturePath(modelFile);
     	    	PathOptions.setEventTraceFixturePath(eventTraceFile);
 
+    	    	BenchmarkTaskStepwiseBuilder builder = BenchmarkTaskPreparer.createBenchmarkBuilder();
+    	    	builder.printDescriptionFiles();
 			// Preparing
 			// Processing
 			if (numberOfJobs > 1) {
-				BenchmarkExecutionProcessor.processBenchmarksInParallel(BenchmarkTaskPreparer.createBenchmarkBuilder(), delayPreparation, numberOfJobs);
+				BenchmarkExecutionProcessor.processBenchmarksInParallel(builder, delayPreparation, numberOfJobs);
 			} else {
-				BenchmarkExecutionProcessor.processBenchmarks(BenchmarkTaskPreparer.createBenchmarkBuilder(), delayPreparation);
+				BenchmarkExecutionProcessor.processBenchmarks(builder, delayPreparation);
 			}
+
+
 
 	}
 }

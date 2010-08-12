@@ -18,13 +18,11 @@ public class BenchmarkResultWriter extends Writer {
 
     public synchronized void writeDataSet(Map<String, String> additionalInformation, ArrayList<Long> executionTimeList,  ArrayList<Long> evaluationTimeList, ArrayList<Map<String, String>> additionalMeasurementInformationList, HashMap<String, ArrayList<Measurement>>microMeasurementList){
    	 try {
-
-	final String TAB = "\t";
+   	 final String TAB = "\t";
 
 	if(withHeadline){
 
 			writer.write(" ");
-
 
 	    for(String label : additionalInformation.keySet()){
 		writer.write(TAB + label);
