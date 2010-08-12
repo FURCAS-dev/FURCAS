@@ -1,7 +1,6 @@
 package com.sap.ide.refactoring.core.textual;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -37,14 +36,15 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 	sut = new TextBlockInChangeCalculator();
 	facade = createEditorFacadeForRunletClass("Class1");
 	RefObject rootObject = facade.getDecoratedDomainRootObject();
+	RootElementTextBlockTuple rootTuple = new RootElementTextBlockTuple(rootObject, facade.getTextBlocksModel().getRoot());
 	TextBlock rootBlock = facade.getTextBlocksModel().getRoot();
 
 	sut.add(rootObject, ChangeType.CHANGED);
 	assertTextBlockInTupleList("If the root block has changed, the corresponding root textblock needs pretty printing", sut
-		.getTextBlocksNeedingPrettyPrinting().get(rootObject), rootBlock);
+		.getTextBlocksNeedingPrettyPrinting().get(rootTuple), rootBlock);
 	assertEquals("Class1 has no overlapping views on it.", 1, sut.getTextBlocksNeedingPrettyPrinting().size());
 	assertEquals("Class1 is only references by the token that holds its name in the TB model", 1, sut
-		.getTextBlocksNeedingShortPrettyPrinting().size());
+		.getTextBlocksNeedingShortPrettyPrinting().get(rootTuple).size());
     }
 
     @Test
@@ -52,6 +52,7 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 	sut = new TextBlockInChangeCalculator();
 	facade = createEditorFacadeForRunletClass("Class1");
 	RefObject rootObject = facade.getDecoratedDomainRootObject();
+	RootElementTextBlockTuple rootTuple = new RootElementTextBlockTuple(rootObject, facade.getTextBlocksModel().getRoot());
 	RefObject compositeChild = ((SapClass) rootObject).getOwnedSignatures().iterator().next();
 
 	TextBlock rootBlock = facade.getTextBlocksModel().getRoot();
@@ -60,9 +61,9 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 	sut.add(rootObject, ChangeType.CHANGED);
 	sut.add(compositeChild, ChangeType.CHANGED);
 
-	assertTextBlockInTupleList(sut.getTextBlocksNeedingPrettyPrinting().get(rootObject), rootBlock);
+	assertTextBlockInTupleList(sut.getTextBlocksNeedingPrettyPrinting().get(rootTuple), rootBlock);
 	assertEquals("If the parent block is in, the composite child must have been filtered.",
-		1, sut.getTextBlocksNeedingPrettyPrinting().size());
+		1, sut.getTextBlocksNeedingPrettyPrinting().get(rootTuple).size());
     }
 
     @Test
@@ -70,6 +71,7 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 	sut = new TextBlockInChangeCalculator();
 	facade = createEditorFacadeForRunletClass("Class1");
 	RefObject rootObject = facade.getDecoratedDomainRootObject();
+	RootElementTextBlockTuple rootTuple = new RootElementTextBlockTuple(rootObject, facade.getTextBlocksModel().getRoot());
 	RefObject compositeChild = ((SapClass) rootObject).getOwnedSignatures().iterator().next();
 
 	TextBlock rootBlock = facade.getTextBlocksModel().getRoot();
@@ -78,9 +80,9 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 	sut.add(compositeChild, ChangeType.CHANGED);
 	sut.add(rootObject, ChangeType.CHANGED);
 
-	assertTextBlockInTupleList(sut.getTextBlocksNeedingPrettyPrinting().get(rootObject), rootBlock);
+	assertTextBlockInTupleList(sut.getTextBlocksNeedingPrettyPrinting().get(rootTuple), rootBlock);
 	assertEquals("If the parent block is in, the composite child must have been filtered.",
-		1, sut.getTextBlocksNeedingPrettyPrinting().size());
+		1, sut.getTextBlocksNeedingPrettyPrinting().get(rootTuple).size());
     }
 
     @Test
@@ -89,6 +91,7 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 	facade = createEditorFacadeForRunletClass("AddTwoParametersTest");
 
 	SapClass rootObject = (SapClass) facade.getDecoratedDomainRootObject();
+	RootElementTextBlockTuple rootTuple = new RootElementTextBlockTuple(rootObject, facade.getTextBlocksModel().getRoot());
 	MethodSignature firstMethod = rootObject.getOwnedSignatures().iterator().next();
 	MethodSignature secondMethod = rootObject.getOwnedSignatures().iterator().next();
 
@@ -98,11 +101,11 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 	sut.add(firstStatementInFirstMethod, ChangeType.CHANGED);
 	sut.add(secondMethod, ChangeType.CHANGED);
 	assertEquals("Expect to find the statement and the second method.", 2,
-		sut.getTextBlocksNeedingPrettyPrinting().get(rootObject).size());
+		sut.getTextBlocksNeedingPrettyPrinting().get(rootTuple).size());
 
 	sut.add(firstMethodImpl, ChangeType.CHANGED);
 	assertEquals("Expect to find one method and one method body.", 2,
-		sut.getTextBlocksNeedingPrettyPrinting().get(rootObject).size());
+		sut.getTextBlocksNeedingPrettyPrinting().get(rootTuple).size());
 
 	// double inserts should do no harm
 	sut.add(firstMethodImpl, ChangeType.CHANGED);
@@ -110,15 +113,20 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 	sut.add(secondMethod, ChangeType.CHANGED);
 	sut.add(firstMethod, ChangeType.CHANGED); // should lead to removeal of the body and the statement
 	assertEquals("Expect to find both methods.", 2,
-		sut.getTextBlocksNeedingPrettyPrinting().get(rootObject).size());
+		sut.getTextBlocksNeedingPrettyPrinting().get(rootTuple).size());
 
 	sut.add(rootObject, ChangeType.CHANGED);
 	assertEquals("Expect to find just the root tb.", 1,
-		sut.getTextBlocksNeedingPrettyPrinting().get(rootObject).size());
+		sut.getTextBlocksNeedingPrettyPrinting().get(rootTuple).size());
 	TextBlock rootBlock = facade.getTextBlocksModel().getRoot();
-	assertTextBlockInTupleList(sut.getTextBlocksNeedingPrettyPrinting().get(rootObject), rootBlock);
+	assertTextBlockInTupleList(sut.getTextBlocksNeedingPrettyPrinting().get(rootTuple), rootBlock);
     }
 
+    /**
+     * For now we expect new top level elements do not get a new view automatically 
+     * 
+     * If  anyone has a good reasons to change it, we will.
+     */
     @Test
     public void testCreateNewRootElement() {
 	sut = new TextBlockInChangeCalculator();
@@ -131,8 +139,7 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 	newclazz.setName("NewClass");
 
 	sut.add(newclazz, ChangeType.CREATED);
-	assertFalse("New element was created. We expect it gets pretty printed.",
-		sut.getTextBlocksNeedingPrettyPrinting().isEmpty());
+	assertTrue(sut.getTextBlocksNeedingPrettyPrinting().isEmpty());
     }
 
     private void assertTextBlockInTupleList(List<ModelElementDocumentNodeChangeDescriptor> tuples, TextBlock tb) {

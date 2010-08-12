@@ -1,15 +1,15 @@
 package com.sap.ide.refactoring.op.rename;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import com.sap.ide.refactoring.core.AbstractModelRefactoring;
 import com.sap.ide.refactoring.core.AbstractRefactoringCommand;
-import com.sap.ide.refactoring.core.model.rename.NamedElement;
-import com.sap.ide.refactoring.core.model.util.RefactoringModelUtil;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
+import com.sap.ide.refactoring.core.textual.TextBlockRefactoringUtil;
+import com.sap.ide.refactoring.model.RefactoringModelUtil;
+import com.sap.ide.refactoring.model.rename.NamedElement;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class RenameRefactoring extends AbstractModelRefactoring {
@@ -18,7 +18,7 @@ public class RenameRefactoring extends AbstractModelRefactoring {
     private RefObject target;
     private NamedElement targetAsNamedElement;
     private String newName;
-
+ 
     public RenameRefactoring(RefactoringEditorFacade facade) {
 	super(facade);
     }
@@ -30,7 +30,7 @@ public class RenameRefactoring extends AbstractModelRefactoring {
     }
 
     @Override
-    public RefactoringStatus checkInitialConditions(IProgressMonitor pm) throws CoreException, OperationCanceledException {
+    public RefactoringStatus checkInitialConditions(IProgressMonitor pm) throws OperationCanceledException {
 	if (this.target == null) {
 	    return RefactoringStatus.createFatalErrorStatus("Exactly one element must be selected for renaming.");
 	}
@@ -46,7 +46,7 @@ public class RenameRefactoring extends AbstractModelRefactoring {
 
     RefactoringStatus setNewModelElementName(String newName) {
 	this.newName = newName;
-	return new RefactoringStatus();
+	return TextBlockRefactoringUtil.isValidIdentifier(newName, facade);
     }
 
     String getOldModelElementName() {

@@ -89,19 +89,19 @@ extends ClassTypedObject<LinkEndMetaObject, TypeUsage, ClassUsage> {
 	if (!(o instanceof RunletObject)) {
 	    return false;
 	}
-	Iterator<RunletObject<LinkEndMetaObject, TypeUsage, TypeUsage>> oIter =
-	    ((RunletObject<LinkEndMetaObject, TypeUsage, TypeUsage>) o).iterator();
+	Iterator<RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage>> oIter =
+	    ((RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage>) o).iterator();
 	if (!oIter.hasNext()) {
 	    return false;
 	}
-	RunletObject oro = oIter.next();
+	RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> oro = oIter.next();
 	if (oIter.hasNext() || !(oro instanceof EntityObject)) {
 	    return false;
 	}
 	if (this == oro) {
 	    return true;
 	}
-	EntityObject other = (EntityObject) oro;
+	EntityObject<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> other = (EntityObject<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>) oro;
 	return getId().equals(other.getId())
 		&& (getOrigin() == other.getOrigin() 
 			|| ((getOrigin() != null) 

@@ -1,7 +1,5 @@
 package com.sap.mi.textual.parsing.textblocks;
 
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
 import textblocks.TextBlock;
 
 public class IllegalTextBlocksStateException extends IllegalStateException {
@@ -20,26 +18,7 @@ public class IllegalTextBlocksStateException extends IllegalStateException {
     @Override
     public String getMessage() {
 	return super.getMessage() + "\n" + 
-		"TextBlock was:\n" + getTextBlockAsString(currentTextBlock);
+		"TextBlock was:\n" + TbDebugUtil.getTextBlockAsAnnotatedString(currentTextBlock);
     }
 
-    private String getTextBlockAsString(TextBlock currentTextBlock) {
-	String temp = "";
-	if(!currentTextBlock.is___Alive())
-	    return "<deleted>";
-	for (DocumentNode node : TbNavigationUtil.getSubNodes(currentTextBlock)) {
-	    if (node instanceof TextBlock) {
-		TextBlock tb = (TextBlock) node;
-		 temp += "tb["+tb.getSubNodes().size()+"]:\"" + getTextBlockAsString(tb) + "\"";
-	    } 
-	    if (node instanceof AbstractToken) {
-		AbstractToken tok = (AbstractToken) node;
-		temp += tok.getValue();
-	    }
-	}
-	return temp+ "[o:"+ currentTextBlock.getOffset() +
-		(currentTextBlock.isOffsetRelative() ? "r":"a") +
-		",l:" + currentTextBlock.getLength() + "]<Version:"+
-		currentTextBlock.getVersion()+">";
-    }
 }

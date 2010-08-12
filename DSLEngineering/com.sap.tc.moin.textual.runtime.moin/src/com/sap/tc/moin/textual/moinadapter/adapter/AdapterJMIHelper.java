@@ -582,11 +582,7 @@ public class AdapterJMIHelper {
 					.evaluateExpression(useContextInsteadOfSelf ? contextRefObject
 							: sourceModelElement);
 			if (result instanceof Collection<?>) {
-				if (((Collection<?>) result).size() == 0) {
-					return null;
-				} else {
-					return (Collection<?>)result;
-				}
+			    	return (Collection<?>)result;
 			} 
 			else
 			{

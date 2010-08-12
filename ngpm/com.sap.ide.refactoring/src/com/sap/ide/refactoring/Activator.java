@@ -1,34 +1,52 @@
 package com.sap.ide.refactoring;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import com.sap.ide.refactoring.core.constraints.ConstraintSpecificImpactAnalysisFacade;
+
 public class Activator extends AbstractUIPlugin {
 
     public static final String PLUGIN_ID = "com.sap.ide.refactoring";
     private static Activator plugin;
+    
+    /**
+     * The construction of impact analyzer data structures is costly.
+     * As metamodel constraints do not change at runtime, we can cache these data structures.
+     * 
+     * Key is OclMetaModelConstraintRegistration.getQualifiedName()
+     */
+    private HashMap<List<String>, ConstraintSpecificImpactAnalysisFacade> impactAnalyzerConstraintCache;
 
     @Override
     public void start(BundleContext context) throws Exception {
 	super.start(context);
 	plugin = this;
+	
+	impactAnalyzerConstraintCache = new HashMap<List<String>, ConstraintSpecificImpactAnalysisFacade>();
     }
 
     @Override
     public void stop(BundleContext context) throws Exception {
 	plugin = null;
 	super.stop(context);
+	
+	impactAnalyzerConstraintCache = null;
     }
 
     public static Activator getDefault() {
 	return plugin;
     }
-
-    public static void logError(Exception e) {
-	logError(e, "");
+    
+    
+    public HashMap<List<String>, ConstraintSpecificImpactAnalysisFacade> getImpactAnalyzerConstraintCache() {
+	return this.impactAnalyzerConstraintCache;
     }
 
     /**
@@ -132,20 +150,6 @@ public class Activator extends AbstractUIPlugin {
 		System.out.println("Refactoring.logWarning: " + msg);
 	    }
 
-	}
-    }
-
-    /**
-     * Log warning.
-     * 
-     * @param msg
-     *            the msg
-     */
-    public static void logError(String msg) {
-	if (getDefault() != null) {
-	    getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, msg, new Exception("Dummy Exception")));
-	} else {
-	    System.out.println("Unknown Refactoring Error");
 	}
     }
 

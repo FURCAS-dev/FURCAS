@@ -19,6 +19,7 @@ import org.junit.Test;
 
 import behavioral.actions.Block;
 import behavioral.actions.NamedValueDeclaration;
+import behavioral.actions.Return;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
@@ -30,9 +31,53 @@ import com.sap.tc.moin.repository.ModelPartition;
 
 import data.classes.MethodSignature;
 import data.classes.SapClass;
+import dataaccess.expressions.Expression;
+import dataaccess.expressions.MethodCallExpression;
 import dataaccess.expressions.VariableExpression;
+import dataaccess.expressions.literals.NumberLiteral;
 
 public class FailingEditingActions extends RunletEditorTest {
+    /**
+    I tried to add a 2.times(...) around an existing Number expression
+
+    */
+    @Test
+    public void testFailingExpressionTransformation() throws PartInitException, BadLocationException, CoreException {
+        // Source / Copy of: PF.IDE:E012BF1E67C2AFF0A53B11DFBFC6C9820A128A57
+        final SapClass refObject = findClass("SebastiansCCpy0");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(56, 0, "2");
+        document.replace(57, 0, ".");
+        document.replace(58, 0, "t");
+        document.replace(59, 0, "i");
+        document.replace(60, 0, "m");
+        document.replace(61, 0, "e");
+        document.replace(62, 0, "s");
+        document.replace(63, 0, "()");
+        document.replace(80, 1, ")");
+        document.replace(64, 1, "");
+        document.replace(80, 0, "l");
+        document.replace(80, 1, "");
+        document.replace(80, 0, ";");
+        saveAll(editor);
+        failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        MethodSignature sLength = null;
+        for (MethodSignature ms : refObject.getOwnedSignatures()) {
+            if (ms.getName().equals("sLength")) {
+        	sLength = ms;
+        	break;
+            }
+        }
+        Expression sourceForMethodCall = ((MethodCallExpression) ((Return) ((Block) sLength.getImplementation()).getStatements().iterator().next()).
+        	getArgument()).getObject();
+        assertTrue(sourceForMethodCall instanceof NumberLiteral);
+        assertEquals("2", ((NumberLiteral) sourceForMethodCall).getLiteral());
+        close(editor);
+    };
 
     /**
      * Added a parameter to two operations and used the new parameter in both operations' implementation

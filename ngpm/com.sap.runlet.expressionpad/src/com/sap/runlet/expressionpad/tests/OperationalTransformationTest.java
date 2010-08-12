@@ -18,8 +18,8 @@ import com.sap.runlet.abstractinterpreter.repository.LinkChange;
 import com.sap.runlet.abstractinterpreter.repository.LinkCreation;
 import com.sap.runlet.abstractinterpreter.repository.LinkDeletion;
 import com.sap.runlet.abstractinterpreter.repository.RepositoryChange;
-import com.sap.runlet.expressionpad.RunletEvaluator;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
+import com.sap.runlet.expressionpad.RunletEvaluator;
 import com.sap.runlet.interpreter.Activator;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.objects.NativeObject;
@@ -108,8 +108,8 @@ public class OperationalTransformationTest extends TestCase {
 	
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs1 = main1.getInterpreter().getTransactionBuffer().getChangeSetImpl();
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs2 = main2.getInterpreter().getTransactionBuffer().getChangeSetImpl();
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(cs1, cs2);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(cs1, cs2);
 	
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
@@ -139,8 +139,8 @@ public class OperationalTransformationTest extends TestCase {
 	
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs1 = main1.getInterpreter().getTransactionBuffer().getChangeSetImpl();
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs2 = main2.getInterpreter().getTransactionBuffer().getChangeSetImpl();
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(cs1, cs2);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(cs1, cs2);
 	
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
@@ -179,8 +179,8 @@ public class OperationalTransformationTest extends TestCase {
 	
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs1 = main1.getInterpreter().getTransactionBuffer().getChangeSetImpl();
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs2 = main2.getInterpreter().getTransactionBuffer().getChangeSetImpl();
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(cs1, cs2);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(cs1, cs2);
 	
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
@@ -223,8 +223,8 @@ public class OperationalTransformationTest extends TestCase {
 	
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs1 = main1.getInterpreter().getTransactionBuffer().getChangeSetImpl();
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs2 = main2.getInterpreter().getTransactionBuffer().getChangeSetImpl();
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(cs1, cs2);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(cs1, cs2);
 	
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
@@ -253,7 +253,7 @@ public class OperationalTransformationTest extends TestCase {
 	assertEquals(6, result1.length);
 	
 	RunletInterpreter i = (RunletInterpreter) main1.getInterpreter();
-	ClassTypedObject o = (ClassTypedObject) main1.getStackFrame().getAllVisibleVariableValues().get("o");
+	ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> o = (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) main1.getStackFrame().getAllVisibleVariableValues().get("o");
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> clientChanges = new ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(Activator.getDefault().getModelAdapter());
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, clientChanges, o, 1, "d");
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, clientChanges, o, 1, "e");
@@ -265,8 +265,8 @@ public class OperationalTransformationTest extends TestCase {
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, serverChanges, o, 2, "h");
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, serverChanges, o, 1, "i");
 
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(clientChanges, serverChanges);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(clientChanges, serverChanges);
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
 		new Triple<Class<?>, Integer, String>(LinkCreation.class, 2, "d"),
@@ -294,7 +294,7 @@ public class OperationalTransformationTest extends TestCase {
 	assertEquals(6, result1.length);
 	
 	RunletInterpreter i = (RunletInterpreter) main1.getInterpreter();
-	ClassTypedObject o = (ClassTypedObject) main1.getStackFrame().getAllVisibleVariableValues().get("o");
+	ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> o = (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) main1.getStackFrame().getAllVisibleVariableValues().get("o");
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> clientChanges = new ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(Activator.getDefault().getModelAdapter());
 	deleteOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, clientChanges, o, 0, "a");
 	deleteOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, clientChanges, o, 0, "b");
@@ -305,8 +305,8 @@ public class OperationalTransformationTest extends TestCase {
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, serverChanges, o, 2, "l");
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, serverChanges, o, 2, "l");
 
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(clientChanges, serverChanges);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(clientChanges, serverChanges);
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
 		new Triple<Class<?>, Integer, String>(LinkDeletion.class, 1, "a"),
@@ -332,7 +332,7 @@ public class OperationalTransformationTest extends TestCase {
 	assertEquals(4, result1.length);
 	
 	RunletInterpreter i = (RunletInterpreter) main1.getInterpreter();
-	ClassTypedObject o = (ClassTypedObject) main1.getStackFrame().getAllVisibleVariableValues().get("o");
+	ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> o = (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) main1.getStackFrame().getAllVisibleVariableValues().get("o");
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> clientChanges = new ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(Activator.getDefault().getModelAdapter());
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, clientChanges, o, 0, "b");
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, clientChanges, o, 1, "c");
@@ -345,8 +345,8 @@ public class OperationalTransformationTest extends TestCase {
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, serverChanges, o, 2, "h");
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, serverChanges, o, 3, "i");
 
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(clientChanges, serverChanges);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(clientChanges, serverChanges);
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
 		new Triple<Class<?>, Integer, String>(LinkCreation.class, 4, "b"),
@@ -374,7 +374,7 @@ public class OperationalTransformationTest extends TestCase {
 	assertEquals(4, result1.length);
 	
 	RunletInterpreter i = (RunletInterpreter) main1.getInterpreter();
-	ClassTypedObject o = (ClassTypedObject) main1.getStackFrame().getAllVisibleVariableValues().get("o");
+	ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> o = (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) main1.getStackFrame().getAllVisibleVariableValues().get("o");
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> clientChanges = new ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(Activator.getDefault().getModelAdapter());
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, clientChanges, o, 0, "b");
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, clientChanges, o, 1, "c");
@@ -387,8 +387,8 @@ public class OperationalTransformationTest extends TestCase {
 	addOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, serverChanges, o, 4, "i");
 	deleteOrderedLinkToString(i, stringClassTypeDefinitionExactlyOneForMain1, serverChanges, o, 2, "a");
 
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(clientChanges, serverChanges);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(clientChanges, serverChanges);
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
 		new Triple<Class<?>, Integer, String>(LinkCreation.class, 2, "b"),
@@ -417,7 +417,7 @@ public class OperationalTransformationTest extends TestCase {
 	assertEquals(6, result.length);
 	
 	RunletInterpreter i = (RunletInterpreter) main1.getInterpreter();
-	ClassTypedObject u = (ClassTypedObject) main1.getStackFrame().getAllVisibleVariableValues().get("u");
+	ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> u = (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) main1.getStackFrame().getAllVisibleVariableValues().get("u");
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> clientChanges = new ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(Activator.getDefault().getModelAdapter());
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain1, clientChanges, u, new Fraction(4));
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain1, clientChanges, u, new Fraction(5));
@@ -427,8 +427,8 @@ public class OperationalTransformationTest extends TestCase {
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain2, serverChanges, u, new Fraction(8));
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain2, serverChanges, u, new Fraction(9));
 	
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(clientChanges, serverChanges);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(clientChanges, serverChanges);
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
 		new Triple<Class<?>, Fraction, Fraction>(LinkCreation.class, null, new Fraction(4)),
@@ -454,7 +454,7 @@ public class OperationalTransformationTest extends TestCase {
 	assertEquals(6, result.length);
 	
 	RunletInterpreter i = (RunletInterpreter) main1.getInterpreter();
-	ClassTypedObject u = (ClassTypedObject) main1.getStackFrame().getAllVisibleVariableValues().get("u");
+	ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> u = (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) main1.getStackFrame().getAllVisibleVariableValues().get("u");
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> clientChanges = new ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(Activator.getDefault().getModelAdapter());
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain1, clientChanges, u, new Fraction(4));
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain1, clientChanges, u, new Fraction(5));
@@ -464,8 +464,8 @@ public class OperationalTransformationTest extends TestCase {
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain2, serverChanges, u, new Fraction(8));
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain2, serverChanges, u, new Fraction(9));
 	
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(clientChanges, serverChanges);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(clientChanges, serverChanges);
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
 		new Triple<Class<?>, Fraction, Fraction>(LinkCreation.class, null, new Fraction(5)),
@@ -489,7 +489,7 @@ public class OperationalTransformationTest extends TestCase {
 	assertEquals(6, result.length);
 	
 	RunletInterpreter i = (RunletInterpreter) main1.getInterpreter();
-	ClassTypedObject u = (ClassTypedObject) main1.getStackFrame().getAllVisibleVariableValues().get("u");
+	ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> u = (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) main1.getStackFrame().getAllVisibleVariableValues().get("u");
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> clientChanges = new ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(Activator.getDefault().getModelAdapter());
 	deleteUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain1, clientChanges, u, new Fraction(3));
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain1, clientChanges, u, new Fraction(4));
@@ -497,8 +497,8 @@ public class OperationalTransformationTest extends TestCase {
 	deleteUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain2, serverChanges, u, new Fraction(3));
 	addUniqueLinkToNumber(i, numberClassTypeDefinitionExactlyOneForMain2, serverChanges, u, new Fraction(5));
 	
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(clientChanges, serverChanges);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(clientChanges, serverChanges);
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {
 		new Triple<Class<?>, Fraction, Fraction>(LinkCreation.class, null, new Fraction(4))
@@ -532,8 +532,8 @@ public class OperationalTransformationTest extends TestCase {
 	
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs1 = main1.getInterpreter().getTransactionBuffer().getChangeSetImpl();
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs2 = main2.getInterpreter().getTransactionBuffer().getChangeSetImpl();
-	Transformer t = new Transformer();
-	Pair<Change, Change> p = t.transform(cs1, cs2);
+	Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> t = new Transformer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>();
+	Pair<Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>, Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>> p = t.transform(cs1, cs2);
 	
 	Change<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> serverResult = p.getB();
 	Triple<Class<?>, Integer, String>[] expectedServerResult = new Triple[] {

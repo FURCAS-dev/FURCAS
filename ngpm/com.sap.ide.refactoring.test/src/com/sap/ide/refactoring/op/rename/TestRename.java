@@ -4,14 +4,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.CompositeChange;
+import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.junit.Test;
 
-import com.sap.ide.refactoring.core.TextBlockChange;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
+import com.sap.ide.refactoring.core.textual.TextBlockChange;
 import com.sap.ide.refactoring.test.RefactoringBaseTest;
 
 public class TestRename extends RefactoringBaseTest {
@@ -22,7 +22,7 @@ public class TestRename extends RefactoringBaseTest {
     private RenameRefactoring sut;
     private RefactoringEditorFacade facade;
 
-    private Change rename(String oldName, String newName) throws CoreException {
+    private Change rename(String oldName, String newName) {
 	facade = createEditorFacadeForRunletClass(oldName);
 
 	sut = new RenameRefactoring(facade);
@@ -31,7 +31,8 @@ public class TestRename extends RefactoringBaseTest {
 	assertTrue(sut.checkInitialConditions(new NullProgressMonitor()).isOK());
 	assertTrue(sut.setNewModelElementName(newName).isOK());
 	assertEquals(oldName, sut.getOldModelElementName());
-	assertTrue(sut.checkFinalConditions(new NullProgressMonitor()).isOK());
+	RefactoringStatus finalCheck = sut.checkFinalConditions(new NullProgressMonitor());
+	assertTrue(finalCheck.toString(), finalCheck.isOK());
 	
 	Change change = sut.createChange(new NullProgressMonitor());
 	return change;
@@ -69,23 +70,28 @@ public class TestRename extends RefactoringBaseTest {
 
     /**
      * This is a whitebox test: We make heavy assumption on implementations
-     * interna...
+     * interna.... Consider rewriting it.
      */
     @Test
     public void testRenamRefactoringPreviewChange() throws Exception {
-	CompositeChange change = (CompositeChange) rename("Class2", "NewName");
+	CompositeChange compositeChange = (CompositeChange) rename("Class2", "NewName");
 	assertNotNull("Mapping must not be broken", facade.getTextBlocksModel().getRoot().getType());
 
 	// If the following breaks we have either changed the way we return
 	// changes or a block was not pretty printed as expected and therefore no change
 	// object was created.
-	TextBlockChange textualChange = (TextBlockChange) change.getChildren()[1];
+	TextBlockChange textualChange = null;
+	for (Change change :  ((CompositeChange) compositeChange.getChildren()[1]).getChildren()) {
+	    if (change instanceof TextBlockChange && change.getModifiedElement().equals(facade.getDecoratedDomainRootObject())) {
+		textualChange = (TextBlockChange) change;
+	    }
+	}
 
 	String preview = textualChange.getPreviewContent(new NullProgressMonitor());
 	String current = textualChange.getCurrentContent(new NullProgressMonitor());
 	
 	assertEquals("Current content must be the actual document", facade.getContentAsText(), current);
-	change.perform(new NullProgressMonitor());
+	compositeChange.perform(new NullProgressMonitor());
 
 	assertEquals("Preview must be contain the actual changes", facade.getContentAsText(), preview);
     }

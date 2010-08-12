@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.antlr.runtime.ANTLRStringStream;
@@ -34,11 +34,11 @@ import org.eclipse.jface.text.TextEvent;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.jface.text.source.AnnotationPainter;
+import org.eclipse.jface.text.source.AnnotationPainter.IDrawingStrategy;
 import org.eclipse.jface.text.source.DefaultCharacterPairMatcher;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ICharacterPairMatcher;
 import org.eclipse.jface.text.source.SourceViewer;
-import org.eclipse.jface.text.source.AnnotationPainter.IDrawingStrategy;
 import org.eclipse.jface.text.source.projection.ProjectionAnnotation;
 import org.eclipse.jface.text.source.projection.ProjectionAnnotationModel;
 import org.eclipse.jface.text.source.projection.ProjectionSupport;
@@ -79,8 +79,8 @@ import com.sap.ide.cts.editor.commands.ParseCommand;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.matching.CtsStaticMatcher;
 import com.sap.ide.cts.editor.preferences.PreferenceInitializer;
-import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorPrintStream;
+import com.sap.ide.cts.editor.prettyprint.textblocks.IncrementalTextBlockPrettyPrinter;
 import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.ide.cts.editor.recovery.TbRecoverUtil;
 import com.sap.ide.cts.parser.errorhandling.ErrorEntry;
@@ -91,9 +91,9 @@ import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
 import com.sap.mi.fwk.MarkerManager;
+import com.sap.mi.fwk.MarkerManager.MarkerRefreshListener;
 import com.sap.mi.fwk.ModelAdapter;
 import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.fwk.MarkerManager.MarkerRefreshListener;
 import com.sap.mi.fwk.ui.editor.ModelEditorInput;
 import com.sap.mi.textual.grammar.impl.ModelInjector;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
@@ -183,12 +183,13 @@ public abstract class AbstractGrammarBasedEditor extends
 
 	
 
-	private static class BoxDrawingStrategy implements IDrawingStrategy {
+	public static class BoxDrawingStrategy implements IDrawingStrategy {
 		/*
 		 * @see org.eclipse.jface.text.source.AnnotationPainter.IDrawingStrategy#draw(org.eclipse.jface.text.source.Annotation,
 		 *      org.eclipse.swt.graphics.GC, org.eclipse.swt.custom.StyledText,
 		 *      int, int, org.eclipse.swt.graphics.Color)
 		 */
+		@Override
 		public void draw(Annotation annotation, GC gc, StyledText textWidget,
 				int offset, int length, Color color) {
 
@@ -256,7 +257,7 @@ public abstract class AbstractGrammarBasedEditor extends
 	/**
 	 * A thread-safe queue with the data which {@link OnMarkerChangeJob} needs to process it's work.
 	 */
-	private ConcurrentLinkedQueue<IDocumentProvider> providerTaskQueue = new ConcurrentLinkedQueue<IDocumentProvider>();
+	private final ConcurrentLinkedQueue<IDocumentProvider> providerTaskQueue = new ConcurrentLinkedQueue<IDocumentProvider>();
 	
 	private OnMarkerChangeJob onMarkerChangeJob = null;
 	
@@ -325,6 +326,7 @@ public abstract class AbstractGrammarBasedEditor extends
 		
 		final SourceViewer textViewer = (SourceViewer) getSourceViewerPublic();
 		textViewer.getTextWidget().addListener(SWT.KeyDown, new Listener() {
+			@Override
 			public void handleEvent(Event event) {
 				if (event.character == ' '
 						&& (event.stateMask & SWT.CTRL) == SWT.CTRL) {
@@ -378,6 +380,7 @@ public abstract class AbstractGrammarBasedEditor extends
 		    };
 		textViewer.addTextListener(new ITextListener() {
 
+			@Override
 			public void textChanged(TextEvent event) {
 				if (event.getDocumentEvent() != null) {
 				    if(parseRunnable.getState() == Job.WAITING) {
@@ -574,15 +577,11 @@ public abstract class AbstractGrammarBasedEditor extends
 				    		String newClass = "";
 							try
 							{
-								PrettyPrinter pp = new PrettyPrinter();
-//								CtsTextBlockTCSExtractorStream target = new CtsTextBlockTCSExtractorStream(
-//										TcsUtil.getConnectionFromRefObject(rootObject).getPackage(
-//												TextblocksPackage.PACKAGE_DESCRIPTOR), null, getParserFactory());
+								IncrementalTextBlockPrettyPrinter pp = new IncrementalTextBlockPrettyPrinter(/*readOnly*/ true);
 								ByteArrayOutputStream stream = new ByteArrayOutputStream();
 								TCSExtractorPrintStream target = new TCSExtractorPrintStream(stream);
-								pp.prettyPrint(rootObject, rootTemplate.getConcretesyntax(), target, null, null);
+								pp.prettyPrint(rootObject, blockInError, rootTemplate.getConcretesyntax(), rootTemplate, target);
 								newClass = stream.toString();
-								//newClass = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(rootObject, rootTemplate.getConcretesyntax(), getParserFactory()).getCachedString();
 							}
 							catch(Exception e)
 							{
@@ -626,6 +625,7 @@ public abstract class AbstractGrammarBasedEditor extends
 		    
 		    final AttributeValueChangeEvent changeEvent = (AttributeValueChangeEvent) event;
 		    Runnable uiUpdater = new Runnable() {
+			@Override
 			public void run() {
 			setPartName((String) changeEvent.getNewValue());
 			// this will make the tab re-render itself
@@ -800,7 +800,8 @@ public abstract class AbstractGrammarBasedEditor extends
 	private void setStatusLineErrorMessageInUIThread(final String message) {
 	    if(Display.getCurrent() == null) {
 		Display.getDefault().asyncExec(new Runnable() {
-		           public void run() {
+		           @Override
+			public void run() {
 		              setStatusLineErrorMessage(message);
 		           }
 		        });
@@ -813,7 +814,8 @@ public abstract class AbstractGrammarBasedEditor extends
 	private void setStatusLineMessageInUIThread(final String message) {
 	    if(Display.getCurrent() == null) {
 		Display.getDefault().asyncExec(new Runnable() {
-		           public void run() {
+		           @Override
+			public void run() {
 		              setStatusLineMessage(message);
 		           }
 		        });
@@ -824,11 +826,11 @@ public abstract class AbstractGrammarBasedEditor extends
 	}
 
 	
-	private Set<ModelPartition> annotatedPartitionsToUpdate = Collections.synchronizedSet(new HashSet<ModelPartition>());
+	private final Set<ModelPartition> annotatedPartitionsToUpdate = Collections.synchronizedSet(new HashSet<ModelPartition>());
 	
 	private class AnnotationUpdater implements Runnable {
     
-	    	private ModelPartition rootPartition;
+	    	private final ModelPartition rootPartition;
         
         	public AnnotationUpdater(ModelPartition partition) {
         	    this.rootPartition = partition;
@@ -916,7 +918,8 @@ public abstract class AbstractGrammarBasedEditor extends
 			if (outlinePage != null && !runningOutlineUpdate) {
 			    	runningOutlineUpdate = true;
 				    Display.getDefault().asyncExec(new Runnable() {
-				           public void run() {
+				           @Override
+					public void run() {
 				              runningOutlineUpdate = false;
 				               outlinePage.setInput(getModel());
 				           }
@@ -1161,7 +1164,7 @@ public abstract class AbstractGrammarBasedEditor extends
 				.getLength());
 	}
 
-	private void setModel(Object model) {
+	public void setModel(Object model) {
 		this.model = model;
 	}
 

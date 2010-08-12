@@ -62,7 +62,7 @@ public class DocumentHistory implements IDocumentListener {
      *
      * Automatically set to false once an internal error occurs
      */
-    private Boolean isActive = false;
+    private Boolean isActive = true;
 
     private static final String PRI_ENDING = ".types";
     private static final String PRI_FOLDER = "src/";

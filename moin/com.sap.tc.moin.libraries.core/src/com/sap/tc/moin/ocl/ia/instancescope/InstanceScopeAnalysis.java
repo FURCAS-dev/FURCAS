@@ -50,7 +50,6 @@ import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl;
 import com.sap.tc.moin.repository.core.links.JmiListImpl;
-import com.sap.tc.moin.repository.core.ocl.service.impl.OclExpressionRegistrationImpl;
 import com.sap.tc.moin.repository.events.type.AttributeValueChangeEvent;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ElementLifeCycleEvent;
@@ -69,6 +68,7 @@ import com.sap.tc.moin.repository.mmi.model.__impl.MofClassImpl;
 import com.sap.tc.moin.repository.mmi.model.__impl.OperationImpl;
 import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.ocl.freestyle.OclRegistration;
 import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
 import com.sap.tc.moin.repository.spi.core.Wrapper;
@@ -89,7 +89,7 @@ public class InstanceScopeAnalysis {
     private final Map<OclExpression, NavigationStep> expressionToStep;
     private final PathCache pathCache;
     private final ClassScopeAnalyzer classScopeAnalyzer;
-    private final OclExpressionRegistrationImpl forRegistration;
+    private final OclRegistration forRegistration;
     
     /**
      * @param expression
@@ -104,15 +104,20 @@ public class InstanceScopeAnalysis {
      *            makes available the operation call relations reachable from the root expression that was analyzed by
      *            the class scope analyzer.
      */
-    public InstanceScopeAnalysis(OclExpressionRegistrationImpl forRegistration, CoreConnection conn, PathCache pathCache,
+    public InstanceScopeAnalysis(OclRegistration forRegistration, OclExpression expression, CoreConnection conn, PathCache pathCache,
 	    ClassScopeAnalyzer classScopeAnalyzer) {
 	associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder(conn);
 	expressionToStep = new HashMap<OclExpression, NavigationStep>();
 	this.pathCache = pathCache;
 	this.classScopeAnalyzer = classScopeAnalyzer;
-	associationEndAndAttributeCallFinder.walk((OclExpressionInternal) forRegistration.getExpression());
+	associationEndAndAttributeCallFinder.walk((OclExpressionInternal) expression);
 	this.forRegistration = forRegistration;
     }
+    
+//    public InstanceScopeAnalysis(OclRegistration forRegistration, OclExpression expression, Connection conn, PathCache pathCache,
+//	    ClassScopeAnalyzer classScopeAnalyzer) {
+//	this(forRegistration, (OclExpression)((Wrapper<?>) expression).unwrap(), ((ConnectionWrapper) conn).unwrap(), pathCache, classScopeAnalyzer); 
+//    }
     
     /**
      * Looks up <tt>exp</tt> in {@link #expressionToStep}. If not found, the respective {@link Tracer} is created and

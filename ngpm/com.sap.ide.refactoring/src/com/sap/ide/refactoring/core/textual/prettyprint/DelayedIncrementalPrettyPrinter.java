@@ -2,42 +2,44 @@ package com.sap.ide.refactoring.core.textual.prettyprint;
 
 import textblocks.TextBlock;
 
-import com.sap.ide.cts.editor.prettyprint.IncrementalPrettyPrinter;
-import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
+import com.sap.ide.cts.editor.prettyprint.textblocks.IncrementalTextBlockPrettyPrinter;
+import com.sap.ide.cts.editor.prettyprint.textblocks.TextBlockIndex;
 
-public class DelayedIncrementalPrettyPrinter extends IncrementalPrettyPrinter {
 
-    private TCSExtractorStream target;
-    private FinishPrettyPrintParameter parameterObject;
+/**
+ * This is an enhancement to the IncrementalPrettyPrinter that allows to
+ * delay the deletion of old TextBlocks.
+ * 
+ * This is required in batch pretty printing to allow re-use of individual
+ * textblocks across the boundaries of a single textblocks model.
+ * 
+ * @author Stephan Erb (d049157)
+ *
+ */
+public class DelayedIncrementalPrettyPrinter extends IncrementalTextBlockPrettyPrinter {
+
+    private TextBlock resultRootBlock;
+    private TextBlockParentContextData data;
+    private TextBlock oldTextBlock;
     
-    private boolean isFinished;
-
+    public DelayedIncrementalPrettyPrinter(TextBlockIndex sharedTextBlocksIndex) {
+	super(sharedTextBlocksIndex);
+    }    
     
     @Override
-    protected void finishPrettyPrint(TCSExtractorStream target, FinishPrettyPrintParameter parameterObject) {
+    protected void completeIncrementalTextBlocksPrinting(TextBlock resultRootBlock, TextBlock oldTextBlock, TextBlockParentContextData data) {
 	// Just delay the call to this method until finish is called for now.
-	this.target = target;
-	this.parameterObject = parameterObject;
+	this.resultRootBlock = resultRootBlock;
+	this.oldTextBlock = oldTextBlock;
+	this.data = data;
     }
     
     /**
-     * This method must be called between the calls to {@link #prettyPrint()} and {@link #getRootBlock()}.
-     * 
-     * It instructs the underlying extractor stream to check if there are any more text blocks to reuse.
+     * This method must be called between the calls to {@link #prettyPrint()} and before
+     * finally using the TextBlocks found within the stream..
      */
     /*package*/ void finish() {
-	isFinished = true;
-	if (target instanceof CtsTextBlockBatchEnabledIncrementalTCSExtractorStream) {
-	    ((CtsTextBlockBatchEnabledIncrementalTCSExtractorStream) target).tryReuse();
-	}
-	super.finishPrettyPrint(target, parameterObject);
+	super.completeIncrementalTextBlocksPrinting(resultRootBlock, oldTextBlock, data);
     }
-
-    @Override
-    public TextBlock getRootBlock() {
-	assert isFinished;
-	return super.getRootBlock();
-    }
-    
 
 }

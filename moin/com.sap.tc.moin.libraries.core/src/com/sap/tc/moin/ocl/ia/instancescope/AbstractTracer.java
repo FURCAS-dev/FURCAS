@@ -1,5 +1,6 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
+import org.omg.ocl.attaching.OclConstraint;
 import org.omg.ocl.expressions.AFirstCollectionRange;
 import org.omg.ocl.expressions.AItemCollectionItem;
 import org.omg.ocl.expressions.ALastCollectionRange;
@@ -31,8 +32,8 @@ import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 
 public abstract class AbstractTracer<T extends RefObjectImpl> implements Tracer {
-    private T expression;
-    private CoreConnection conn;
+    private final T expression;
+    private final CoreConnection conn;
 
     protected AbstractTracer(CoreConnection conn, T expression) {
 	this.conn = conn;
@@ -80,7 +81,10 @@ public abstract class AbstractTracer<T extends RefObjectImpl> implements Tracer 
     
     private static RefObjectImpl getLogicalImmediateComposite(RefObjectImpl x, CoreConnection connection) {
 	RefObjectImpl result = (RefObjectImpl) x.refImmediateComposite(connection.getSession());
-	if (result == null) {
+	
+	if (result instanceof OclConstraint) {
+	    return null; // needed for metamodel constraints
+	} else if (result == null) {
 	    if (x instanceof VariableDeclaration) {
 		// maybe this is a tuplePart of a TupleLiteralExp
 		ATuplePartTupleLiteralExpImpl a = (ATuplePartTupleLiteralExpImpl) connection.getAssociation(
