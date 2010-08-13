@@ -18,6 +18,7 @@ public interface BenchmarkTask extends Callable<Collection<EObject>> {
     public boolean activate();
     public void beforeCall();
     public void afterCall();
+    public boolean deactivate();
 
     public void callEvaluation();
 

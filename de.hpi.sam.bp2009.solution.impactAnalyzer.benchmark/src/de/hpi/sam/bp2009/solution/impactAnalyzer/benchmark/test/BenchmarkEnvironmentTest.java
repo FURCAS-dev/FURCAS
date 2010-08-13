@@ -163,5 +163,11 @@ public class BenchmarkEnvironmentTest extends TestCase {
 	    // TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public boolean deactivate() {
+	    // TODO Auto-generated method stub
+	    return false;
+	}
     }
 }
