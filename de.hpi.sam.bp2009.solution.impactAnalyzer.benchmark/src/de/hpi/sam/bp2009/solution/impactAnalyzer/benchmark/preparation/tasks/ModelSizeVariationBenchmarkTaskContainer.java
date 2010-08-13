@@ -31,39 +31,17 @@ public class ModelSizeVariationBenchmarkTaskContainer extends BenchmarkTaskConta
 
 	private void cloneModelAndAttachToBenchmarkTasks() {
 	    Resource clonedModel = ModelCloner.cloneResource(modelToClone, "x" + containerId);
+	    Resource clonedModelBeforeChange = ModelCloner.cloneResource(modelToClone, "y" + containerId);
 	    //Resource clonedModel = modelToClone;
 	    for(BenchmarkTask task : this){
 	    	((ModelSizeVariationBenchmarkTask)task).setModel(clonedModel);
+	    	((ModelSizeVariationBenchmarkTask)task).setModelForIaAccuracyDetermination(clonedModelBeforeChange);
 	    }
 	}
 
 	@Override
 	public void afterBenchmark() {
-	    	//TODO: implement comparing if evaluation result stays the same
-	    	//Resource clonedModel = ModelCloner.cloneResource(modelToClone, "x" + containerId);
 
-	    	/*Resource clonedModel = ModelCloner.cloneResource(modelToClone, "y" + containerId);
-	    	while(!this.isEmpty()){
-	    	    ModelSizeVariationBenchmarkTask task = (ModelSizeVariationBenchmarkTask)this.remove();
-
-	    	    if(task.getResult() != null && task.getResult() instanceof Collection<?>){
-	    		@SuppressWarnings("unchecked")
-			Collection<EObject> affectedElements = (Collection<EObject>)task.getResult();
-
-	    		OCL ocl = task.getOcl();
-
-	    		Collection<Object> beforeEvaluationResult = new LinkedList<Object>();
-	    		for(EObject affectedElement : affectedElements){
-	    		    beforeEvaluationResult.add(ocl.evaluate(affectedElement, task.getExpression().getExpression()));
-	    		}
-
-	    		// Now change model after notification
-	    		task.getRawNotification().convertToNotification(clonedModel);
-
-	    		task.getAdditionalInformation().put("beforeNoInvalidEvals", String.valueOf(task.getNoOfInvalidEvaluations(beforeEvaluationResult)));
-	    		task.getAdditionalInformation().put("noEqualResultsBeforeAndAfter", String.valueOf(getNumberOfEqualResults(beforeEvaluationResult, task.getEvaluationResult())));
-	    	    }
-	    	}*/
 	}
 
 	@SuppressWarnings("unused")

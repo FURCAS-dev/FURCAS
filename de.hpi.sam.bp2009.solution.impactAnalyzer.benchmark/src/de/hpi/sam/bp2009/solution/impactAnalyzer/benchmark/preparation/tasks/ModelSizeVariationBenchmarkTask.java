@@ -9,10 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.internal.OCLStandardLibraryImpl;
 
@@ -37,7 +39,7 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     /**
      * Also store original model in order to evaluate expression on model state before the value changed
      */
-    private Resource originalModel;
+    private Resource modelForIaAccuracyDetermination;
 
     private final LinkedHashMap<String, String> additionalInformation = new LinkedHashMap<String, String>();
     private final LinkedHashMap<String, String> additionalMeasurementInformation = new LinkedHashMap<String, String>();
@@ -45,6 +47,8 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     private Collection<EObject> result = null;
     private Collection<Object> evaluationResult = null;
     private Collection<EObject> allInstances = null;
+
+    private final ArrayList<Collection<EObject>> allResults = new ArrayList<Collection<EObject>>();
 
     private final OCLExpressionWithContext expression;
     private final OppositeEndFinder oppositeEndFinder;
@@ -228,7 +232,72 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	additionalInformation.put("evaluationTimeWoInvalid", String.valueOf(new Long(timeToEvaluateWithoutInvalidResults)));
 
 	evaluationResult = null;
+
+	allResults.add(result);
 	result = null;
+    }
+
+
+    public boolean deactivate(){
+		Collection<EObject> result = allResults.get(0);
+
+    	    if(result != null){
+    		Collection<Object> beforeEvaluationResult = evaluateOnAffectedElement(result);
+    		additionalInformation.put("beforeNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(beforeEvaluationResult)));
+
+    		// Change model by creating a real notification through changing the original model
+    		rawNotification.convertToNotification(getModelForIaAccuracyDetermination());
+
+    		Collection<Object> afterEvaluationResult = evaluateOnAffectedElement(result);
+    		additionalInformation.put("afterNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(afterEvaluationResult)));
+
+    		additionalInformation.put("noEqualResultsBeforeAndAfter", String.valueOf(getNumberOfEqualResults(beforeEvaluationResult, afterEvaluationResult)));
+    	    }
+
+	return true;
+    }
+
+
+	@SuppressWarnings("unchecked")
+	private int getNumberOfEqualResults(Collection<Object> result1, Collection<Object> result2){
+	    int equalCounter = 0;
+	    for(Object elementInResult1 : result1){
+		for(Object elementInResult2 : result2){
+		    if(elementInResult1 instanceof EList<?> && elementInResult2 instanceof EList<?>){
+			if(((EList<EObject>)elementInResult1).containsAll((EList<EObject>)elementInResult2) &&
+			   ((EList<EObject>)elementInResult2).containsAll((EList<EObject>)elementInResult1)){
+			    equalCounter++;
+			    break;
+			}
+		    }else if(elementInResult1 instanceof EObject && elementInResult2 instanceof EObject){
+			if(EcoreUtil.equals((EObject)elementInResult1, (EObject)elementInResult2)){
+				equalCounter++;
+				break;
+			    }
+		    }else{
+			if(elementInResult1.equals(elementInResult2)){
+			    equalCounter++;
+			    break;
+			}
+		    }
+
+		}
+	    }
+	    return equalCounter;
+	}
+
+    private Collection<Object> evaluateOnAffectedElement(Collection<EObject> result) {
+	Collection<Object> beforeEvaluationResult = new LinkedList<Object>();
+	for(EObject affectedElement : result){
+	    EObject element = getElementWithSameIdOutOfAnotherResource(model, affectedElement, getModelForIaAccuracyDetermination());
+	    beforeEvaluationResult.add(ocl.evaluate(element, expression.getExpression()));
+	}
+	return beforeEvaluationResult;
+    }
+
+    private EObject getElementWithSameIdOutOfAnotherResource(Resource model2, EObject affectedElement, Resource originalModel2) {
+	String id = model2.getURIFragment(affectedElement);
+	return originalModel2.getEObject(id);
     }
 
     public int getNoOfInvalidEvaluations(Collection<Object> evaluationResult) {
@@ -278,19 +347,13 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     }
 
 	public void setModel(Resource model) {
+
+
 		this.model = model;
 	}
 
 	public Resource getModel() {
 		return model;
-	}
-
-	public void setOriginalModel(Resource originalModel) {
-	    this.originalModel = originalModel;
-	}
-
-	public Resource getOriginalModel() {
-	    return originalModel;
 	}
 
 	@Override
@@ -324,6 +387,14 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
 	public OCLExpressionWithContext getExpression() {
 	    return expression;
+	}
+
+	public void setModelForIaAccuracyDetermination(Resource modelForIaAccuracyDetermination) {
+	    this.modelForIaAccuracyDetermination = modelForIaAccuracyDetermination;
+	}
+
+	public Resource getModelForIaAccuracyDetermination() {
+	    return modelForIaAccuracyDetermination;
 	}
 
 }

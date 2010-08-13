@@ -26,8 +26,8 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 
     @Override
     public void execute(BenchmarkTask task, BenchmarkResultWriter writer) {
-	    try {
-		if (task.activate()) {
+	try {
+	    if (task.activate()) {
 		// Warmup
 		for (int i = 0; i < ProcessingOptions.getNumberOfWarmUps(); i++) {
 		    task.beforeCall();
@@ -46,22 +46,24 @@ public class StandardBenchmarkExecutor implements BenchmarkExecutor {
 		    BenchmarkMeasurements.aggregate();
 		}
 
-		writer.writeDataSet(task.getAdditionalInformation(), executionTimeList, evaluationTimeList, additionalMeasurementInformationList,
-			BenchmarkMeasurements.getMeasurementList());
+		task.deactivate();
+
+		writer.writeDataSet(task.getAdditionalInformation(), executionTimeList, evaluationTimeList,
+			additionalMeasurementInformationList, BenchmarkMeasurements.getMeasurementList());
 
 		BenchmarkMeasurements.reset();
-		}
-	    } catch (Exception e) {
-		getNotExecutedDueToException().put(task.toString(), e);
-		if (ProcessingOptions.isVerbose()) {
-		    e.printStackTrace();
-		}
-	    } catch (StackOverflowError e) {
-		getNotExecutedDueToException().put(task.toString(), e);
-		if (ProcessingOptions.isVerbose()) {
-		    e.printStackTrace();
-		}
 	    }
+	} catch (Exception e) {
+	    getNotExecutedDueToException().put(task.toString(), e);
+	    if (ProcessingOptions.isVerbose()) {
+		e.printStackTrace();
+	    }
+	} catch (StackOverflowError e) {
+	    getNotExecutedDueToException().put(task.toString(), e);
+	    if (ProcessingOptions.isVerbose()) {
+		e.printStackTrace();
+	    }
+	}
     }
 
     private void measureExecutionTime(BenchmarkTask task, ArrayList<Long> executionTimeList, ArrayList<Long> evaluationTimeList,
