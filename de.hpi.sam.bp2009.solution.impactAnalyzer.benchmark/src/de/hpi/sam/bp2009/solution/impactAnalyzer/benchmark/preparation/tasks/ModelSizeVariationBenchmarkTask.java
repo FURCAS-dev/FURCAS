@@ -185,6 +185,9 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     @Override
     public Collection<EObject> call() throws Exception {
 	result = ia.getContextObjects(notification);
+
+	System.out.println(result.size());
+
 	return result;
     }
 
@@ -238,61 +241,62 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     }
 
 
-    public boolean deactivate(){
-		Collection<EObject> result = allResults.get(0);
+    public boolean deactivate() {
+	Collection<EObject> result = allResults.get(0);
 
-    	    if(result != null){
-    		Collection<Object> beforeEvaluationResult = evaluateOnAffectedElement(result);
-    		additionalInformation.put("beforeNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(beforeEvaluationResult)));
+	if (result != null) {
+	    List<Object> beforeEvaluationResult = evaluateOnAffectedElement(result);
+	    additionalInformation.put("beforeNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(beforeEvaluationResult)));
 
-    		// Change model by creating a real notification through changing the original model
-    		rawNotification.convertToNotification(getModelForIaAccuracyDetermination());
+	    // Change model by creating a real notification through changing the
+	    // original model
+	    rawNotification.convertToNotification(getModelForIaAccuracyDetermination());
 
-    		Collection<Object> afterEvaluationResult = evaluateOnAffectedElement(result);
-    		additionalInformation.put("afterNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(afterEvaluationResult)));
+	    List<Object> afterEvaluationResult = evaluateOnAffectedElement(result);
+	    additionalInformation.put("afterNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(afterEvaluationResult)));
 
-    		additionalInformation.put("noEqualResultsBeforeAndAfter", String.valueOf(getNumberOfEqualResults(beforeEvaluationResult, afterEvaluationResult)));
-    	    }
+	    additionalInformation.put("noEqualResultsBeforeAndAfter",String.valueOf(getNumberOfEqualResults(beforeEvaluationResult, afterEvaluationResult)));
+	}
 
 	return true;
     }
 
 
-	@SuppressWarnings("unchecked")
-	private int getNumberOfEqualResults(Collection<Object> result1, Collection<Object> result2){
-	    int equalCounter = 0;
-	    for(Object elementInResult1 : result1){
-		for(Object elementInResult2 : result2){
-		    if(elementInResult1 instanceof EList<?> && elementInResult2 instanceof EList<?>){
-			if(((EList<EObject>)elementInResult1).containsAll((EList<EObject>)elementInResult2) &&
-			   ((EList<EObject>)elementInResult2).containsAll((EList<EObject>)elementInResult1)){
-			    equalCounter++;
-			    break;
-			}
-		    }else if(elementInResult1 instanceof EObject && elementInResult2 instanceof EObject){
-			if(EcoreUtil.equals((EObject)elementInResult1, (EObject)elementInResult2)){
-				equalCounter++;
-				break;
-			    }
-		    }else{
-			if(elementInResult1.equals(elementInResult2)){
-			    equalCounter++;
-			    break;
-			}
-		    }
+    @SuppressWarnings("unchecked")
+    private int getNumberOfEqualResults(List<Object> result1, List<Object> result2) {
+	int equalCounter = 0;
+
+	assert result1.size() == result2.size();
+
+	for (int i = 0; i < result1.size(); i++) {
+	    Object elementInResult1 = result1.get(i);
+	    Object elementInResult2 = result2.get(i);
+
+	    if (elementInResult1 instanceof EList<?> && elementInResult2 instanceof EList<?>) {
+		if (((EList<EObject>) elementInResult1).containsAll((EList<EObject>) elementInResult2)
+		&& ((EList<EObject>) elementInResult2).containsAll((EList<EObject>) elementInResult1)) {
+		    equalCounter++;
 
 		}
+	    } else if (elementInResult1 instanceof EObject && elementInResult2 instanceof EObject && EcoreUtil.equals((EObject) elementInResult1, (EObject) elementInResult2)) {
+		    equalCounter++;
+	    } else {
+		if (elementInResult1.equals(elementInResult2)) {
+		    equalCounter++;
+		}
 	    }
-	    return equalCounter;
 	}
 
-    private Collection<Object> evaluateOnAffectedElement(Collection<EObject> result) {
-	Collection<Object> beforeEvaluationResult = new LinkedList<Object>();
+	return equalCounter;
+    }
+
+    private List<Object> evaluateOnAffectedElement(Collection<EObject> result) {
+	List<Object> evaluationResult = new LinkedList<Object>();
 	for(EObject affectedElement : result){
 	    EObject element = getElementWithSameIdOutOfAnotherResource(model, affectedElement, getModelForIaAccuracyDetermination());
-	    beforeEvaluationResult.add(ocl.evaluate(element, expression.getExpression()));
+	    evaluationResult.add(ocl.evaluate(element, expression.getExpression()));
 	}
-	return beforeEvaluationResult;
+	return evaluationResult;
     }
 
     private EObject getElementWithSameIdOutOfAnotherResource(Resource model2, EObject affectedElement, Resource originalModel2) {
