@@ -397,7 +397,6 @@ public class RegistrationManagerTableBased {
         result.addAll(resultForTablesInBitSet);
     }
 
-    // TODO only pass elements of lists neeeded here; save tableWithMinSize argument
     private Collection<Registration> getStartCollectionFromMinSizeTable(int bitSetForTableCombination,
             Set<Registration>[][] yesSetsForTables, Set<Registration>[][] noSetsForTables, int tableWithMinSize, HashSet<Registration> resultForTablesInBitSet) {
         resultForTablesInBitSet.clear();
