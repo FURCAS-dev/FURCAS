@@ -164,6 +164,8 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	    writer.writeDescriptionLine(descriptionMap);
 	    optionId++;
 	}
+
+	writer.close();
     }
 
     private void writeNotificationAndModelDescription(){

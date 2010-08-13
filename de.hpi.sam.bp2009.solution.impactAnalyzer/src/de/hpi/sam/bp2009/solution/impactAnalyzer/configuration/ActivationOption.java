@@ -1,59 +1,67 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.configuration;
 
 public class ActivationOption {
-	    // Level 1 Optimizations
-	    private boolean isImpactAnalysisActive = true;
-	
-	    // Level 2 Optimizations
-	    private boolean isDeltaPropagationActive = true;
-	    private boolean isInstanceScopeActive = true;
+    // Level 1 Optimizations
+    private boolean isImpactAnalysisActive = true;
 
-	 	public ActivationOption(boolean isImpactAnalysisActive, boolean isDeltaPropagationActive){
-			this.isImpactAnalysisActive = isImpactAnalysisActive;
-			this.isDeltaPropagationActive = isDeltaPropagationActive;
-	 	}
-	    
-	    public void setImpactAnalysisActive(boolean isImpactAnalysisActive) {
-	    	this.isImpactAnalysisActive = isImpactAnalysisActive;
-	    }
-	
-	    public boolean isImpactAnalysisActive() {
-	    	return isImpactAnalysisActive;
-	    }
-	
-	    public void setDeltaPropagationActive(boolean isDeltaPropagationActive) {
-	    	this.isDeltaPropagationActive = isDeltaPropagationActive;
-	    }
-	
-	    public boolean isDeltaPropagationActive() {
-	    	return isDeltaPropagationActive;
-	    }
-	
-	    public void setInstanceScopeActive(boolean isInstanceScopeActive) {
-	    	this.isInstanceScopeActive = isInstanceScopeActive;
-	    }
-	
-	    public boolean isInstanceScopeActive() {
-	    	return isInstanceScopeActive;
-	    }
-	
-	    public String getActivationString(){
-		StringBuffer activationInformation = new StringBuffer();
-		activationInformation.append("[IA=");
-		activationInformation.append(isImpactAnalysisActive);
-		activationInformation.append("]");
-	
-		activationInformation.append("[IS=");
-		activationInformation.append(isInstanceScopeActive);
-		activationInformation.append("]");
-	
-		activationInformation.append("[DP=");
-		activationInformation.append(isDeltaPropagationActive);
-		activationInformation.append("]");
-	
-		return activationInformation.toString();
-	    }
+    // Level 2 Optimizations
+    private boolean isDeltaPropagationActive = true;
+    private boolean isInstanceScopeActive = true;
+
+    private final String optionDescription;
+
+    public ActivationOption(boolean isImpactAnalysisActive, boolean isDeltaPropagationActive, String description) {
+	this.isImpactAnalysisActive = isImpactAnalysisActive;
+	this.isDeltaPropagationActive = isDeltaPropagationActive;
+	this.optionDescription = description;
+    }
+
+    public void setImpactAnalysisActive(boolean isImpactAnalysisActive) {
+	this.isImpactAnalysisActive = isImpactAnalysisActive;
+    }
+
+    public boolean isImpactAnalysisActive() {
+	return isImpactAnalysisActive;
+    }
+
+    public void setDeltaPropagationActive(boolean isDeltaPropagationActive) {
+	this.isDeltaPropagationActive = isDeltaPropagationActive;
+    }
+
+    public boolean isDeltaPropagationActive() {
+	return isDeltaPropagationActive;
+    }
+
+    public void setInstanceScopeActive(boolean isInstanceScopeActive) {
+	this.isInstanceScopeActive = isInstanceScopeActive;
+    }
+
+    public boolean isInstanceScopeActive() {
+	return isInstanceScopeActive;
+    }
+
+    public String getActivationString() {
+	StringBuffer activationInformation = new StringBuffer();
+	activationInformation.append("[IA=");
+	activationInformation.append(isImpactAnalysisActive);
+	activationInformation.append("]");
+
+	activationInformation.append("[IS=");
+	activationInformation.append(isInstanceScopeActive);
+	activationInformation.append("]");
+
+	activationInformation.append("[DP=");
+	activationInformation.append(isDeltaPropagationActive);
+	activationInformation.append("]");
+
+	return activationInformation.toString();
+    }
+
     // Level 3 Optimization
-    //TODO: Add level 3 optimizations
+    // TODO: Add level 3 optimizations
+
+    public String getOptionDescription() {
+	return optionDescription;
+    }
 
 }
