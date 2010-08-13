@@ -41,11 +41,11 @@ public interface EventManager {
      * Removes the given {@link Adapter} from the {@link EventManager} and the linked {@link EventFilter}, so that the given
      * {@link Adapter} will not be notified anymore
      * 
-     * @param caller
+     * @param listener
      *            the {@link Adapter} to unsubscribe
      * @return <code>true</code> if the adapter was registered
      */
-    boolean unsubscribe(Adapter caller);
+    boolean unsubscribe(Adapter listener);
 
     /**
      * Returns the {@link ResourceSet} of the {@link EventManager}, which defines the root for receiving event of composite
