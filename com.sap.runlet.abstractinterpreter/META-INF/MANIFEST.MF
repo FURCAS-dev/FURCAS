@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Abstractinterpreter Plug-in
+Bundle-SymbolicName: com.sap.runlet.abstractinterpreter
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sap.runlet.abstractinterpreter.Activator
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sap.runlet.abstractinterpreter,
+ com.sap.runlet.abstractinterpreter.objects,
+ com.sap.runlet.abstractinterpreter.operationaltransformation,
+ com.sap.runlet.abstractinterpreter.repository,
+ com.sap.runlet.abstractinterpreter.repository.simpleimpl,
+ com.sap.runlet.abstractinterpreter.util
