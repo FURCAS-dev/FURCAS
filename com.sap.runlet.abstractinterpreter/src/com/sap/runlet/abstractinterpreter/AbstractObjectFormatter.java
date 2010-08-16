@@ -13,5 +13,5 @@ SignatureImplementationType> {
 
     String formatOwnerOfSignatureOfImpl(SignatureImplementationType signatureImpl);
 
-    String formatCurrentlyEvaluatingRefObject(EObject currentlyEvaluating);
+    String formatCurrentlyEvaluatingEObject(EObject currentlyEvaluating);
 }
