@@ -166,6 +166,7 @@ implements OperationBodyToCallMapper {
                 //std. library operation nothing to do
             } else {
                 // handle self defined operation
+                // TODO this is only required to obtain the operation body from our proprietary annotation URI. Could use InvocationBehavior.getOperationBody later
                 EAnnotationOCLParser parser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
                 OCLExpression body = parser.getExpressionFromAnnotationsOf(opCallExp.getReferredOperation(), "body");
                 if (body != null) {

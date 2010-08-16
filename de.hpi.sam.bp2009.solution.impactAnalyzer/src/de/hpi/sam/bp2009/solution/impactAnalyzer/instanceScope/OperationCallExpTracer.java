@@ -45,6 +45,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
         // TODO what about "product"?
     }
 
+    // TODO this is only required to obtain the operation body from our proprietary annotation URI. Could use InvocationBehavior.getOperationBody later
     private final EAnnotationOCLParser annotationParser;
     
     public OperationCallExpTracer(OperationCallExp expression, String[] tuplePartNames) {
