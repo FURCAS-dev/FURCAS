@@ -21,7 +21,7 @@ public class AttributeGrammarImpl implements AttributeGrammar {
     private final Map<OCLExpression, ImpactAnalyzer> impactAnalyzers = new HashMap<OCLExpression, ImpactAnalyzer>();
     
     /**
-     * Defaults: no notifications upon appearence of new context eleements; impact analyzers will use
+     * Defaults: no notifications upon appearance of new context elements; impact analyzers will use
      * a default {@link OppositeEndFinder} to navigate references in reverse direction.
      */
     public AttributeGrammarImpl(Map<EStructuralFeature, OCLExpression> rules) {
@@ -32,7 +32,7 @@ public class AttributeGrammarImpl implements AttributeGrammar {
     }
 
     /**
-     * Defaults: no notifications upon appearence of new context eleements
+     * Defaults: no notifications upon appearance of new context elements
      */
     public AttributeGrammarImpl(Map<EStructuralFeature, OCLExpression> rules, OppositeEndFinder oppositeEndFinder) {
         this.oppositeEndFinder = oppositeEndFinder;
