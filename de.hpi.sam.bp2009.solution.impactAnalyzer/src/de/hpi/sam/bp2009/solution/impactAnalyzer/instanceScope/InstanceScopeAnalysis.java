@@ -49,6 +49,7 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.ExpressionsPackage;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
 import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
@@ -153,10 +154,12 @@ public class InstanceScopeAnalysis {
      *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
      */
     public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder) {
-        if (exprContext == null)
+        if (exprContext == null) {
 	    throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
-        if (expression == null || filterSynthesizer == null)
+	}
+        if (expression == null || filterSynthesizer == null) {
 	    throw new IllegalArgumentException("Arguments must not be null");
+	}
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
         context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
@@ -195,11 +198,15 @@ public class InstanceScopeAnalysis {
 
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
             AnnotatedEObject sourceElement){
+	if(OptimizationActivation.getOption().isDeltaPropagationActive()){
 	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder);
 	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
+	}else{
+	    return false;
+	}
     }
 
     private final PartialEvaluator partialEvaluatorForAllInstancesDeltaPropagation = new PartialEvaluator();
@@ -279,8 +286,9 @@ public class InstanceScopeAnalysis {
      */
     public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(Notification changeEvent,
             String replacementFor__TEMP__) {
-        if (!NotificationHelper.isAttributeValueChangeEvent(changeEvent))
+        if (!NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
 	    return false;
+	}
         Set<? extends NavigationCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
         if (calls.size() == 0) {
             // this is likely to be dead code because if the filter synthesis works correctly,
@@ -312,11 +320,13 @@ public class InstanceScopeAnalysis {
                     }
                     if (otherArgument != null && otherArgument instanceof PrimitiveLiteralExp) {
                         if (doesComparisonResultChange(changeEvent, (PrimitiveLiteralExp) otherArgument, replacementFor__TEMP__,
-                                op.getReferredOperation().getName(), attributeIsParameter))
+                                op.getReferredOperation().getName(), attributeIsParameter)) {
 			    return false;
-                    } else
+			}
+                    } else {
 			// attribute not used in comparison operation; we assume a change
                         return false;
+		    }
                 }
             }
 
@@ -345,8 +355,9 @@ public class InstanceScopeAnalysis {
                 value = ((IntegerLiteralExp) otherArgument).getIntegerSymbol();
             } else if (otherArgument instanceof RealLiteralExp) {
                 value = ((RealLiteralExp) otherArgument).getRealSymbol();
-            } else
+            } else {
 		throw new RuntimeException("Internal error. Unknown OCL primitive literal expression " + otherArgument);
+	    }
             int oldComparison = (attributeIsParameter ? ((Comparable<Object>) value).compareTo(avce.getOldValue())
                     : ((Comparable<Object>) avce.getOldValue()).compareTo(value));
             int newComparison = (attributeIsParameter ? ((Comparable<Object>) value).compareTo(avce.getNewValue())
@@ -453,9 +464,10 @@ public class InstanceScopeAnalysis {
                             + o));
                 }
             }
-        } else
+        } else {
 	    throw new RuntimeException("Can only handle PropertyCallExp and OppositePropertyCallExp expression types, not "+
                     attributeOrAssociationEndCall.getClass().getName());
+	}
         return result;
     }
 

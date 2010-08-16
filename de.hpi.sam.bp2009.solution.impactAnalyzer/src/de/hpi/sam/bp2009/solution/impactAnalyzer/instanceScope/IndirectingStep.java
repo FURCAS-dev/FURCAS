@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 
 /**
  * Steps of this type can be an empty placeholder during the analysis phase and can
@@ -23,12 +24,13 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * {@link HashCodeChangeListener}. Changes to the actual step's hash code are forwarded to this
  * step's hash code change listeners.
  */
-public class IndirectingStep extends AbstractNavigationStep implements HashCodeChangeListener {
+public class IndirectingStep extends AbstractNavigationStep implements HashCodeChangeListener{
     private NavigationStep actualStep;
     private int hashCode;
-    private boolean currentlyEvaluatingHashCode = false;
+    private final boolean currentlyEvaluatingHashCode = false;
     private int maxTokenSeen = -1;
     private final List<Object> currentlyEvaluatingEqualsForParameters = new ArrayList<Object>();
+    private final SemanticIdentity semanticIdentity;
 
     /**
      * The set of objects for which {@link #navigate(Set, Map, Notification)} is currently being evaluated on
@@ -36,7 +38,7 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
      * endless recursions. Navigating the same thing again starting from the same object wouldn't contribute new things.
      * So in that case, an empty set will be returned.
      */
-    private ThreadLocal<Set<EObject>> currentlyEvaluatingNavigateFor = new ThreadLocal<Set<EObject>>() {
+    private final ThreadLocal<Set<EObject>> currentlyEvaluatingNavigateFor = new ThreadLocal<Set<EObject>>() {
 	@Override
 	protected Set<EObject> initialValue() {
 	    return new HashSet<EObject>();
@@ -45,8 +47,12 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 
     public IndirectingStep(OCLExpression expr) {
 	super(null, null, expr);
+
+	semanticIdentity = new IndirectingStepSemanticIdentity();
     }
-    
+
+    public class IndirectingStepSemanticIdentity extends SemanticIdentity{
+    @Override
     public synchronized boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -73,33 +79,44 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
         currentlyEvaluatingEqualsForParameters.remove(currentlyEvaluatingEqualsForParameters.size()-1);
 	return result;
     }
-    
-    public synchronized int hashCode() {
+
+    @Override
+    protected synchronized int calculateHashCode() {
 	int result;
 	if (currentlyEvaluatingHashCode) {
 	    result = 0;
         } else {
-            currentlyEvaluatingHashCode = true;
-            if (actualStep == null) {
-                result = super.hashCode();
-            } else {
-                result = hashCode;
-            }
-            currentlyEvaluatingHashCode = false;
+        if (actualStep == null) {
+            result = getStep().hashCode();
+        } else {
+            result = hashCode;
         }
+        }
+
 	return result;
     }
-    
+
+    @Override
+    public NavigationStep getStep() {
+	return IndirectingStep.this;
+    }
+    }
+
+    @SuppressWarnings("unused")
+    private SemanticIdentity getSemanticIdentityOfSuper(){
+	return super.getSemanticIdentity();
+    }
+
     public void setActualStep(NavigationStep actualStep) {
 	if (this.actualStep != null) {
 	   throw new RuntimeException("Internal error: can't set an IndirectingStep's actual step twice");
 	}
 	fireBeforeHashCodeChange(newTokenForFiringHashCodeChangeEvent());
 	this.actualStep = actualStep;
-	hashCode = actualStep.hashCode();
+	hashCode = actualStep.getSemanticIdentity().hashCode();
 	fireAfterHashCodeChange(newTokenForFiringHashCodeChangeEvent());
 	actualStep.addHashCodeChangeListener(this);
-        if (actualStep.getSourceType() == null) {
+	if (actualStep.getSourceType() == null) {
             actualStep.addSourceTypeChangeListener(new SourceTypeChangeListener() {
                 @Override
                 public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
@@ -131,7 +148,7 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 	    });
 	}
     }
-    
+
     public NavigationStep getActualStep() {
         return actualStep;
     }
@@ -149,26 +166,26 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 	}
 	return result;
     }
-    
-    /** 
-     * Overrides incrementNavigateCounter to suppress counting of additional navigate() call in case of a recursion 
+
+    /**
+     * Overrides incrementNavigateCounter to suppress counting of additional navigate() call in case of a recursion
      */
     @Override
     protected void incrementNavigateCounter(Set<AnnotatedEObject> from) {
 	boolean oneFromObjectIsEvaluating = false;
-	
+
 	for(EObject obj : from){
 	    if( currentlyEvaluatingNavigateFor.get().contains(obj) ){
 		oneFromObjectIsEvaluating = true;
 		return;
 	    }
 	}
-	
+
 	if(!oneFromObjectIsEvaluating){
             super.incrementNavigateCounter(from);
         }
     }
-    
+
     @Override
     public boolean isAbsolute() {
 	boolean result;
@@ -179,14 +196,14 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 	}
 	return result;
     }
-    
+
     @Override
     public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 	return "(i)"
 		+ ((actualStep != null) ? ((actualStep instanceof AbstractNavigationStep ? ((AbstractNavigationStep) actualStep)
 			.contentToString(visited, indent) : actualStep.toString())) : "null");
     }
-    
+
     /**
      * An indirecting step  <tt>1</tt>.
      */
@@ -195,7 +212,13 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 	if (visited.contains(this)) {
 	    return 0;
 	} else {
-	    return 1+((AbstractNavigationStep) actualStep).size(visited);
+	    visited.add(this);
+
+	    if(((AbstractNavigationStep) actualStep) != null){
+		return 1+((AbstractNavigationStep) actualStep).size(visited);
+	    }else{
+		return 0;
+	    }
 	}
     }
 
@@ -211,8 +234,25 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
     public synchronized void afterHashCodeChange(NavigationStep step, int token) {
         if (token > maxTokenSeen) {
             maxTokenSeen = token;
-            hashCode = step.hashCode();
+            hashCode = step.getSemanticIdentity().hashCode();
             fireAfterHashCodeChange(token);
         }
+    }
+
+    @Override
+    protected int distinctSize(Set<SemanticIdentity> visited) {
+	if (visited.contains(this.getSemanticIdentity())) {
+	    return 0;
+	} else {
+	    visited.add(this.getSemanticIdentity());
+
+	    return 1+((AbstractNavigationStep) actualStep).distinctSize(visited);
+	}
+    }
+
+
+    @Override
+    public SemanticIdentity getSemanticIdentity() {
+	return semanticIdentity;
     }
 }

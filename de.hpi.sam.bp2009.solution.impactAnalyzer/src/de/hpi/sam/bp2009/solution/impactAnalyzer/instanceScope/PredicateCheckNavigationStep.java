@@ -20,6 +20,7 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 
 /**
  * Evaluates an OCL expression that is expected to be the {@link IteratorExp#getBody() body} expression of an iterator expression.
@@ -29,12 +30,13 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * passed on if and only if the OCL expression evaluates to <tt>true</tt>/<tt>false</tt>/<tt>true</tt>, respectively. For any
  * iterators other than <tt>select</tt>, <tt>reject</tt> or <tt>any</tt> the object is passed through right away because the
  * semantics of the iterator are not known.
- * 
+ *
  * @author Axel Uhl D043530
- * 
+ *
  */
 public class PredicateCheckNavigationStep extends AbstractNavigationStep {
-    private String contentAsString;
+    private final String contentAsString;
+    private final SemanticIdentity semanticIdentity;
 
     /**
      * Tells if the OCL predicate of the {@link #getIteratorExp() iterator expression} needs to be <tt>true</tt> so that the
@@ -42,9 +44,9 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
      * <tt>false</tt>.
      */
     private final boolean positive;
-    
+
     private final IteratorExp iteratorExp;
-    
+
     /**
      * The opposite end finder is required for partial evaluation which shall use this finder to navigate
      * hidden opposites.
@@ -52,7 +54,7 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
     private final OppositeEndFinder oppositeEndFinder;
 
     public PredicateCheckNavigationStep(EClass sourceType, EClass targetType, IteratorExp iteratorExp, PathCache pathCache) {
-        super(sourceType, targetType, (OCLExpression) iteratorExp);
+        super(sourceType, targetType, (OCLExpression)iteratorExp);
         this.iteratorExp = iteratorExp;
         if (!haveIntersectingSubclassTree(sourceType, targetType)) {
             setAlwaysEmpty();
@@ -65,21 +67,40 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
         this.oppositeEndFinder = pathCache.getOppositeEndFinder();
         // TODO check if this is expressive enough
         contentAsString = "checkPredicate[" + iteratorExp.getBody().toString() + "]";
+
+        semanticIdentity = new PredicateCheckNavigationStepIdentity();
     }
-    
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+
+    private class PredicateCheckNavigationStepIdentity extends SemanticIdentity{
+	public PredicateCheckNavigationStep getNavigationStep(){
+	    return PredicateCheckNavigationStep.this;
+	}
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || hashCode() != o.hashCode()) {
+                return false;
+            }
+            return getSemanticIdentityOfSuper().equals(o) && PredicateCheckNavigationStep.this.positive == ((PredicateCheckNavigationStepIdentity)o).getNavigationStep().positive &&
+                            PredicateCheckNavigationStep.this.iteratorExp.equals(((PredicateCheckNavigationStepIdentity)o).getNavigationStep().iteratorExp);
         }
-        if (o == null || hashCode() != o.hashCode()) {
-            return false;
+
+        @Override
+        public int calculateHashCode() {
+            return getSemanticIdentityOfSuper().hashCode() ^ (positive ? 123 : 0) ^ iteratorExp.hashCode();
         }
-        return super.equals(o) && this.positive == ((PredicateCheckNavigationStep) o).positive &&
-                        this.iteratorExp == ((PredicateCheckNavigationStep) o).iteratorExp;
+
+	@Override
+	public NavigationStep getStep() {
+	    return getNavigationStep();
+	}
     }
-    
-    public int hashCode() {
-        return super.hashCode() ^ (positive ? 123 : 0) ^ iteratorExp.hashCode();
+
+    public SemanticIdentity getSemanticIdentityOfSuper(){
+	return super.getSemanticIdentity();
     }
 
     private IteratorExp getIteratorExp() {
@@ -137,5 +158,10 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
     @Override
     public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
         return contentAsString;
+    }
+
+    @Override
+    public SemanticIdentity getSemanticIdentity() {
+	return semanticIdentity;
     }
 }

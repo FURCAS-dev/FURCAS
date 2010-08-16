@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 
 /**
  * A navigation step that branches in several paths and combines the results into one.
@@ -23,7 +25,9 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
      * branching step. This step tracks initially unknown source/target types so that additional steps may be marked as
      * empty in this step's context.
      */
-    private List<NavigationStep> stepsAlwaysEmptyInThisStepsContext;
+    private final List<NavigationStep> stepsAlwaysEmptyInThisStepsContext;
+
+    private final SemanticIdentity semanticIdentity;
 
     public BranchingNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo, NavigationStep... parallelSteps) {
         // TODO be smart about allInstances steps that subsume other steps with same or specialized targetType
@@ -31,6 +35,8 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
         // TODO be smart and combine steps where one is just an indirection for another
         // TODO if parallelSteps contains a BranchingNavigationStep, pull its branches up into this step
         super(sourceType, targetType, debugInfo, parallelSteps);
+        semanticIdentity = new BranchingNavigationStepIdentity();
+
         stepsAlwaysEmptyInThisStepsContext = new ArrayList<NavigationStep>();
         if (areAllStepsAlwaysEmpty()) {
             setAlwaysEmpty();
@@ -88,34 +94,115 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
         }
     }
 
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || hashCode() != o.hashCode()) {
-            return false;
-        }
-        if (!abstractNavigationStepEquals(o)) {
-            return false;
-        }
-        BranchingNavigationStep branchingO = (BranchingNavigationStep) o;
-        if (getSteps().length != branchingO.getSteps().length) {
-            return false;
-        }
-        for (NavigationStep step : getSteps()) {
-            boolean found = false;
-            for (NavigationStep oStep : branchingO.getSteps()) {
-                if (step.equals(oStep)) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found) {
-                return false;
-            }
-        }
-        return true;
+    private class BranchingNavigationStepIdentity extends SemanticIdentity {
+	public BranchingNavigationStep getNavigationStep() {
+	    return BranchingNavigationStep.this;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+	    if (this == o) {
+		return true;
+	    }
+	    if (o == null || hashCode() != o.hashCode()) {
+		return false;
+	    }
+	    if (!getSemanticIdentityOfSuperSuper().equals(o)) {
+		return false;
+	    }
+
+	    BranchingNavigationStep other = ((BranchingNavigationStepIdentity) o).getNavigationStep();
+
+	    if (other.getSteps().length != getNavigationStep().getSteps().length) {
+		return false;
+	    }
+
+	    for (NavigationStep step : getNavigationStep().getSteps()) {
+		if (!otherStepHasEqualStep(step, other.getSteps())) {
+		    return false;
+		}
+	    }
+	    return true;
+	}
+
+	private boolean otherStepHasEqualStep(NavigationStep step, NavigationStep... otherSteps) {
+	    for (NavigationStep stepOfOther : otherSteps) {
+		if (stepOfOther.getSemanticIdentity().equals(step.getSemanticIdentity())) {
+		    return true;
+		}
+	    }
+	    return false;
+	}
+
+	@Override
+	public int calculateHashCode() {
+	    int hashCode = getSemanticIdentityOfSuperSuper().hashCode();
+
+	    for (NavigationStep step : getSteps()) {
+		hashCode ^= step.hashCode();
+	    }
+
+	    return hashCode;
+	}
+
+	@Override
+	public NavigationStep getStep() {
+	    return getNavigationStep();
+	}
     }
+
+
+    /**
+     * TODO: This method was created initially to semantically compare branching navigation steps
+     * at top level. Therefore a BranchingNavigationStep hierarchy shall be flattened when comparing two
+     * BranchingNavigationSteps semantically. This method is unused at the moment since the implementation
+     * of this idea has not been finished.
+     *
+     * @param branchingNavigationStep
+     * @return
+     */
+    @SuppressWarnings("unused")
+    private List<NavigationStep> getFlattenedSubsteps(BranchingNavigationStep branchingNavigationStep){
+	List<NavigationStep> subStepListHierarchic = new ArrayList<NavigationStep>(branchingNavigationStep.getSteps().length);
+	subStepListHierarchic.addAll(Arrays.asList(branchingNavigationStep.getSteps()));
+
+	return reduceBranchingNavigationSteps(subStepListHierarchic);
+    }
+
+    private final static Set<List<NavigationStep>> currentlyReducingForList = new HashSet<List<NavigationStep>>();
+
+    private List<NavigationStep> reduceBranchingNavigationSteps(List<NavigationStep> stepList){
+	List<NavigationStep> result = new ArrayList<NavigationStep>();
+	result.addAll(stepList);
+
+	if(!currentlyReducingForList.contains(stepList)){
+	    currentlyReducingForList.add(stepList);
+	//System.out.println("Before: " + stepList);
+	for(NavigationStep subStep : stepList){
+	    if(subStep instanceof BranchingNavigationStep){
+		BranchingNavigationStep subBranchingNavigationStep = (BranchingNavigationStep)subStep;
+
+		if (getSourceType() != null && subBranchingNavigationStep.getSourceType() != null && getSourceType().equals(subBranchingNavigationStep.getSourceType())
+		 && getTargetType() != null && subBranchingNavigationStep.getTargetType() != null && getTargetType().equals(subBranchingNavigationStep.getTargetType())) {
+		    List<NavigationStep> subStepListHierarchic = new ArrayList<NavigationStep>(subBranchingNavigationStep.getSteps().length);
+		    subStepListHierarchic.addAll(Arrays.asList(subBranchingNavigationStep.getSteps()));
+
+		    List<NavigationStep> subStepListFlat = reduceBranchingNavigationSteps(subStepListHierarchic);
+
+		    result.remove(subBranchingNavigationStep);
+		    result.addAll(subStepListFlat);
+		}
+	    }
+	}
+	currentlyReducingForList.remove(stepList);
+	}
+	return result;
+    }
+
+
+	public SemanticIdentity getSemanticIdentityOfSuperSuper() {
+	    return super.getSemanticIdentityOfAbstractNavigationStep();
+	}
 
     private boolean areAllStepsAlwaysEmpty() {
         boolean result = true;
@@ -173,5 +260,10 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
         for (int i=0; i<indent; i++) {
             sb.append(' ');
         }
+    }
+
+    @Override
+    public SemanticIdentity getSemanticIdentity() {
+	return semanticIdentity;
     }
 }
