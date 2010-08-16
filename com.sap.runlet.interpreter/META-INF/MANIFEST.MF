@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Interpreter Plug-in
+Bundle-SymbolicName: com.sap.runlet.interpreter;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sap.runlet.interpreter.Activator
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.core.runtime,
+ com.sap.runlet.operationaltransformation,
+ com.sap.runlet.abstractinterpreter,
+ de.hpi.sam.bp2009.ngpm,
+ org.eclipse.emf.ecore,
+ com.sap.ngpm.utils
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sap.runlet.interpreter,
+ com.sap.runlet.interpreter.objects,
+ com.sap.runlet.interpreter.repository.simpleimpl,
+ com.sap.runlet.interpreter.rucola
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
