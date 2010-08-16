@@ -15,27 +15,47 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 
 public class AssociationNavigationStep extends AbstractNavigationStep {
     private final EReference toEnd;
+    private final SemanticIdentity semanticIdentity;
 
     public AssociationNavigationStep(EClass sourceType, EClass targetType, EReference toEnd, OCLExpression debugInfo) {
         super(sourceType, targetType, debugInfo);
         this.toEnd = toEnd;
+        semanticIdentity = new AssociationNavigationStepIdentity();
     }
-    
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || hashCode() != o.hashCode()) {
-            return false;
-        }
-        return super.equals(o) && toEnd == ((AssociationNavigationStep) o).toEnd;
+
+    private class AssociationNavigationStepIdentity extends SemanticIdentity {
+	@Override
+	public boolean equals(Object o) {
+	    if (this == o) {
+		return true;
+	    }
+	    if (o == null || hashCode() != o.hashCode()) {
+		return false;
+	    }
+	    return getSemanticIdentityOfSuper().equals(o) && toEnd == ((AssociationNavigationStepIdentity)o).getNavigationStep().toEnd;
+	}
+
+	@Override
+	public int calculateHashCode() {
+	    return getSemanticIdentityOfSuper().hashCode() ^ toEnd.hashCode();
+	}
+
+	private AssociationNavigationStep getNavigationStep(){
+	    return AssociationNavigationStep.this;
+	}
+
+	@Override
+	public NavigationStep getStep() {
+	    return getNavigationStep();
+	}
     }
-    
-    public int hashCode() {
-        return super.hashCode() ^ toEnd.hashCode();
+
+    private SemanticIdentity getSemanticIdentityOfSuper(){
+	return super.getSemanticIdentity();
     }
 
     @Override
@@ -44,8 +64,9 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
         List<Object> cacheLookup = new BasicEList<Object>();
         cacheLookup.add(this);
         cacheLookup.add(fromObject);
-        if (cache.containsKey(cacheLookup))
-            return cache.get(cacheLookup);
+        if (cache.containsKey(cacheLookup)) {
+	    return cache.get(cacheLookup);
+	}
 
         // cache lookup was unsuccessful -> perform the navigation
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
@@ -78,5 +99,10 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
     @Override
     public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
         return toEnd.getName();
+    }
+
+    @Override
+    public SemanticIdentity getSemanticIdentity() {
+	return semanticIdentity;
     }
 }

@@ -1,10 +1,11 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import java.util.Arrays;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 
 /**
  * A navigation step that branches in several paths and combines the results into one. As hashCode and equals
@@ -15,6 +16,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 public abstract class CompositeNavigationStep extends AbstractNavigationStep implements HashCodeChangeListener {
     private final NavigationStep[] steps;
     private int cachedXorOfStepHashCodes;
+    private final SemanticIdentity semanticIdentity;
 
     public CompositeNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo, NavigationStep... steps) {
 	super(sourceType, targetType, debugInfo);
@@ -23,30 +25,68 @@ public abstract class CompositeNavigationStep extends AbstractNavigationStep imp
 	    cachedXorOfStepHashCodes ^= step.hashCode();
 	    step.addHashCodeChangeListener(this);
 	}
+	semanticIdentity = new CompositeNavigationStepIdentity();
     }
-    
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || hashCode() != o.hashCode()) {
-            return false;
-        }
-        return super.equals(o) && Arrays.equals(steps, ((CompositeNavigationStep) o).steps);
+
+    private class CompositeNavigationStepIdentity extends SemanticIdentity {
+	@Override
+	public boolean equals(Object o) {
+	    if (this == o) {
+		return true;
+	    }
+	    if (o == null || hashCode() != o.hashCode()) {
+		return false;
+	    }
+	    if(o instanceof CompositeNavigationStep){
+		NavigationStep[] otherSteps = ((CompositeNavigationStepIdentity) o).getNavigationStep().getSteps();
+
+		if(otherSteps.length != steps.length){
+		    return false;
+		}
+
+		for(int i = 0; i < steps.length; i++){
+		    SemanticIdentity thisSubStepIdentity = steps[i].getSemanticIdentity();
+		    SemanticIdentity otherSubStepIdentity = otherSteps[i].getSemanticIdentity();
+		    if(!thisSubStepIdentity.equals(otherSubStepIdentity)){
+			return false;
+		    }
+		}
+
+		return true;
+	    }else{
+		return false;
+	    }
+	}
+
+	@Override
+	public int calculateHashCode() {
+	    int hashCode = getSemanticIdentityOfSuper().hashCode();
+	    hashCode = hashCode ^ cachedXorOfStepHashCodes;
+	    return hashCode;
+	}
+
+	public CompositeNavigationStep getNavigationStep() {
+	    return CompositeNavigationStep.this;
+	}
+
+	@Override
+	public NavigationStep getStep() {
+	    return getNavigationStep();
+	}
     }
-    
-    protected boolean abstractNavigationStepEquals(Object o) {
-        return super.equals(o);
+
+    private SemanticIdentity getSemanticIdentityOfSuper(){
+	return super.getSemanticIdentity();
     }
-    
-    public int hashCode() {
-        return super.hashCode() ^ cachedXorOfStepHashCodes;
+
+    protected  SemanticIdentity getSemanticIdentityOfAbstractNavigationStep(){
+	return super.getSemanticIdentity();
     }
-    
+
     public NavigationStep[] getSteps() {
 	return steps;
     }
-    
+
     @Override
     public void beforeHashCodeChange(NavigationStep step, int token) {
         fireBeforeHashCodeChange(token);
@@ -73,5 +113,23 @@ public abstract class CompositeNavigationStep extends AbstractNavigationStep imp
 	    }
 	}
 	return result;
+    }
+
+    @Override
+    protected int distinctSize(Set<SemanticIdentity> visited) {
+	int result = 0;
+	if (!visited.contains(this.getSemanticIdentity())) {
+	    visited.add(this.getSemanticIdentity());
+	    result++;
+	    for (NavigationStep step : steps) {
+		result += ((AbstractNavigationStep) step).distinctSize(visited);
+	    }
+	}
+	return result;
+    }
+
+    @Override
+    public SemanticIdentity getSemanticIdentity() {
+	return semanticIdentity;
     }
 }

@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 /**
@@ -61,12 +63,12 @@ public class PathCache implements HashCodeChangeListener {
      * instead of passing an empty list to avoid ambiguities.
      */
     private final Map<Pair<OCLExpression, List<String>>, NavigationStep> subexpressionToPath = new HashMap<Pair<OCLExpression, List<String>>, NavigationStep>();
-    
+
     /**
      * Contains all distinct steps contained in {@link #subexpressionToPath}. Can be used to look up
      * semantically equal steps in order not to create redundant steps. Values are identical to keys per entry.
      */
-    private final Map<NavigationStep, NavigationStep> allNavigationSteps = new HashMap<NavigationStep, NavigationStep>();
+    private final Map<SemanticIdentity, NavigationStep> allNavigationSteps = new HashMap<SemanticIdentity, NavigationStep>();
 
     /**
      * Can be used for certain metamodel queries such as finding all subclasses, but as well during an
@@ -81,7 +83,7 @@ public class PathCache implements HashCodeChangeListener {
     public OppositeEndFinder getOppositeEndFinder() {
         return oppositeEndFinder;
     }
-    
+
     public NavigationStep getPathForNode(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor) {
         return subexpressionToPath.get(new Pair<OCLExpression, List<String>>(subexpression,
                 getTupleLiteralPartNamesToLookForAsList(tupleLiteralPartNamesToLookFor)));
@@ -100,8 +102,8 @@ public class PathCache implements HashCodeChangeListener {
     private void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, NavigationStep path) {
         List<String> tupleLiteralPartNamesToLookForAsList = getTupleLiteralPartNamesToLookForAsList(tupleLiteralPartNamesToLookFor);
         subexpressionToPath.put(new Pair<OCLExpression, List<String>>(subexpression, tupleLiteralPartNamesToLookForAsList), path);
-        if (!allNavigationSteps.containsKey(path)) {
-            allNavigationSteps.put(path, path);
+        if (!allNavigationSteps.containsKey(path.getSemanticIdentity())) {
+            allNavigationSteps.put(path.getSemanticIdentity(), path);
             path.addHashCodeChangeListener(this);
         }
     }
@@ -135,7 +137,7 @@ public class PathCache implements HashCodeChangeListener {
      * A factory method for {@link NavigationStep}s that combines a sequence of navigation steps into a single new one. In doing
      * so, shortcuts may be taken. For example, if the last step is an absolute step, it is returned as the result because all
      * prior navigations are irrelevant. Also, if there is only one step in <code>steps</code>, that step is simply used.<p>
-     * 
+     *
      * The method first performs a cache lookup. Callers must make sure that the expression returned by this method
      * will be used as the resulting step for <code>expression</code>. In particular, they must not create an
      * {@link IndirectingStep} as the resulting step for <code>expression</code> in which the step produced by this
@@ -195,9 +197,78 @@ public class PathCache implements HashCodeChangeListener {
         if (steps.length == 1) {
             result = steps[0];
         } else {
-            result = new BranchingNavigationStep(sourceType, targetType, expression, steps);
-        }
+        	result = new BranchingNavigationStep(sourceType, targetType, expression, steps);
+       }
         return result;
+    }
+
+    @SuppressWarnings("unused")
+    private boolean incrementallyReduceSteps(List<NavigationStep> steps, EClass sourceType, EClass targetType){
+	boolean somethingHasChanged = false;
+
+	//TODO: Change to Set
+	List<SemanticIdentity> newStepListIdentities = getSemanticIdentities(steps);
+	List<BranchingNavigationStep> subSetBranches = new ArrayList<BranchingNavigationStep>();
+
+	for (SemanticIdentity identity : allNavigationSteps.keySet()) {
+	    if (identity.getStep() instanceof BranchingNavigationStep) {
+		BranchingNavigationStep oldStep = (BranchingNavigationStep) identity.getStep();
+		List<SemanticIdentity> oldStepListIdentities = getSemanticIdentities(Arrays.asList(oldStep.getSteps()));
+
+		if (sourceType != null && oldStep.getSourceType() != null && sourceType.equals(oldStep.getSourceType())
+			&& targetType != null && oldStep.getTargetType() != null && targetType.equals(oldStep.getTargetType())) {
+		    if (newStepListIdentities.containsAll(oldStepListIdentities)) {
+			subSetBranches.add(oldStep);
+		    }
+		}
+	    }
+	}
+
+	if (subSetBranches.size() > 0) {
+	    BranchingNavigationStep replacementStep = getBranchingStepWithHighestNumberOfSteps(subSetBranches);
+	    List<NavigationStep> stepsToDelete = Arrays.asList(replacementStep.getSteps());
+	    if (steps.removeAll(stepsToDelete)) {
+		steps.add(replacementStep);
+		somethingHasChanged = true;
+	    }
+	}
+
+	return somethingHasChanged;
+    }
+
+
+    public BranchingNavigationStep getBranchingStepWithHighestNumberOfSteps(List<BranchingNavigationStep> list){
+	BranchingNavigationStep biggestStep = list.get(0);
+
+	for(BranchingNavigationStep step : list){
+	    if(step.getSteps().length > biggestStep.getSteps().length){
+		biggestStep = step;
+	    }
+	}
+
+	return biggestStep;
+    }
+
+    public List<SemanticIdentity> getSemanticIdentities(List<NavigationStep> steps){
+	List<SemanticIdentity> result = new ArrayList<SemanticIdentity>(steps.size());
+
+	for(NavigationStep step : steps){
+	    result.add(step.getSemanticIdentity());
+	}
+
+	return result;
+    }
+
+    //TODO: Rename
+    //TODO: Add doc
+    public NavigationStep reduceToCachedStep(NavigationStep step){
+	if(allNavigationSteps.containsKey(step.getSemanticIdentity())){
+	    return allNavigationSteps.get(step.getSemanticIdentity());
+	}
+
+	allNavigationSteps.put(step.getSemanticIdentity(), step);
+
+	return step;
     }
 
     /**
@@ -212,15 +283,14 @@ public class PathCache implements HashCodeChangeListener {
         put(expr, tupleLiteralPartNamesToLookFor, result);
         return result;
     }
-
+    
     @Override
     public void beforeHashCodeChange(NavigationStep step, int token) {
-        allNavigationSteps.remove(step);
+        allNavigationSteps.remove(step.getSemanticIdentity());
     }
 
     @Override
     public void afterHashCodeChange(NavigationStep step, int token) {
-        allNavigationSteps.put(step, step);
+        allNavigationSteps.put(step.getSemanticIdentity(), step);
     }
-
 }
