@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Operationaltransformation Plug-in
+Bundle-SymbolicName: com.sap.runlet.operationaltransformation
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.sap.runlet.operationaltransformation,
+ com.sap.runlet.operationaltransformation.test
+Require-Bundle: org.junit

@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Plug-in
+Bundle-SymbolicName: com.sap.runlet.interpreter.test
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sap.runlet.interpreter.test.Activator
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ com.sap.runlet.interpreter,
+ org.junit,
+ com.sap.runlet.operationaltransformation,
+ com.sap.runlet.abstractinterpreter,
+ de.hpi.sam.bp2009.ngpm,
+ org.eclipse.jface,
+ com.sap.ngpm.utils
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sap.runlet.interpreter.test
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
