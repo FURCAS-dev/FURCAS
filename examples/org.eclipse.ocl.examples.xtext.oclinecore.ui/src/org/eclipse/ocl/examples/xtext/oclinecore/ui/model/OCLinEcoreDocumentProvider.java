@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.6 2010/05/29 17:30:48 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.7 2010/08/17 17:03:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -22,6 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,11 +38,13 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.Ecore2OCLinEcore;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreResourceForEditorInputFactory;
+import org.eclipse.ocl.examples.xtext.oclinecore.ui.OCLinEcoreUiPluginHelper;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
@@ -72,17 +75,20 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 	@Override
 	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
 		if ((element instanceof IFileEditorInput) && (document instanceof OCLinEcoreDocument) && (saveAsEcoreMap.get(document) == Boolean.TRUE)) {
-			ByteArrayOutputStream ecoreStream = new ByteArrayOutputStream();
+			StringWriter ecoreWriter = new StringWriter();
 			String savedContent = document.get();
 			try {
 				ResourceSet resourceSet = getResourceSet();
 				URI uri = EditUIUtil.getURI((IFileEditorInput)element);
-				((OCLinEcoreDocument) document).saveAsEcore(resourceSet, uri, ecoreStream);
-				document.set(ecoreStream.toString());
+				((OCLinEcoreDocument) document).saveAsEcore(resourceSet, uri, ecoreWriter);
+				document.set(ecoreWriter.toString());
 				super.doSaveDocument(monitor, element, document, overwrite);
 				loadedAsEcoreMap.put(document, Boolean.TRUE);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+				OCLinEcoreUiPluginHelper helper = OCLinEcoreUiPluginHelper.INSTANCE;
+				String title = helper.getString("_UI_SaveFailure_title", true);
+				String message = helper.getString("_UI_SaveFailure_message", true);
+				ErrorDialog.openError(null, title, message, helper.createErrorStatus(e));
 				e.printStackTrace();
 			} finally {
 				document.set(savedContent);
@@ -163,7 +169,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 					List<Diagnostic> diagnostics = ((XtextResource) xtextResource).validateConcreteSyntax();
 					if (diagnostics.size() > 0) {
 						StringBuffer s = new StringBuffer();
-						s.append("Concrete Syntax valiation failed");
+						s.append("Concrete Syntax validation failed");
 						for (Diagnostic diagnostic : diagnostics) {
 							s.append("\n");
 							s.append(diagnostic.toString());

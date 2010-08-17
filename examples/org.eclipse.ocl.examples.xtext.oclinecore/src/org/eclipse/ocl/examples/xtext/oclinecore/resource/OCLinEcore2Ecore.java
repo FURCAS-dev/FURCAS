@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore2Ecore.java,v 1.6 2010/05/23 18:58:05 ewillink Exp $
+ * $Id: OCLinEcore2Ecore.java,v 1.7 2010/08/17 17:04:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -690,7 +690,7 @@ public class OCLinEcore2Ecore extends AbstractConversion
 		errors.add(new XMIException(message));
 	}
 
-	public Resource exportToEcore() {
+	public XMLResource exportToEcore() {
 		OCLinEcoreDocumentCS document = (OCLinEcoreDocumentCS) csResource.getContents().get(0);
 		Collection<? extends EObject> ecoreContents = convertAll(document.getPackages());
 		eResource.getContents().addAll(ecoreContents);
