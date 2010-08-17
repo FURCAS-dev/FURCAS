@@ -1,6 +1,5 @@
 package com.sap.runlet.interpreter.test;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -8,6 +7,8 @@ import java.util.Map;
 import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import behavioral.actions.ActionsFactory;
@@ -46,6 +47,7 @@ import data.classes.Parameter;
 import data.classes.SapClass;
 import data.classes.TypeAdapter;
 import data.classes.TypeDefinition;
+import data.classes.util.ClassesValidator;
 import dataaccess.analytics.AnalyticsFactory;
 import dataaccess.analytics.CellSet;
 import dataaccess.analytics.Dimension;
@@ -498,16 +500,12 @@ public class TestBasicExpressions extends TestCase {
 	    impl2.getStatements().add(c2ToC3AdapterImplReturn);
 	    impl2.setImplements_(adapter2Sig);
 	    adapter2.getOwnedSignatures().add(adapter2Sig);
-	    Collection<JmiException> exceptions = adapter
-		    .refVerifyConstraints(/* deepVerify */false);
-	    assertTrue("Adapter should be valid but has "
-		    + ((exceptions == null) ? 0 : exceptions.size()) + " violated constraints",
-		    exceptions == null || exceptions.size() == 0);
-	    Collection<JmiException> exceptions2 = adapter2
-		    .refVerifyConstraints(/* deepVerify */false);
-	    assertTrue("Adapter should be valid but has "
-		    + ((exceptions2 == null) ? 0 : exceptions2.size()) + " violated constraints",
-		    exceptions2 == null || exceptions2.size() == 0);
+	    BasicDiagnostic diagnostics = new BasicDiagnostic();
+	    ClassesValidator.INSTANCE.validate(adapter, diagnostics, new HashMap<Object, Object>());
+	    assertTrue("Adapter should be valid", diagnostics.getSeverity() == Diagnostic.OK);
+            diagnostics = new BasicDiagnostic();
+            ClassesValidator.INSTANCE.validate(adapter2, diagnostics, new HashMap<Object, Object>());
+            assertTrue("Adapter should be valid", diagnostics.getSeverity() == Diagnostic.OK);
 	    assertTrue("Classes with no signatures and an adapter between them should conform", c1
 		    .conformsTo(c3));
 	    
@@ -520,10 +518,9 @@ public class TestBasicExpressions extends TestCase {
 	    mce.setObject(oce);
 	    mce.setMethodSignature(s3);
 	    mce.setOwnedTypeDefinition(numberTD);
-	    Collection<JmiException> exceptions3 = mce.refVerifyConstraints(/* deepVerify */false);
-	    assertTrue("Method call on new C1().s3() should be valid but has "
-		    + ((exceptions3 == null) ? 0 : exceptions3.size()) + " violated constraints",
-		    exceptions3 == null || exceptions3.size() == 0);
+            diagnostics = new BasicDiagnostic();
+            ClassesValidator.INSTANCE.validate(mce, diagnostics, new HashMap<Object, Object>());
+            assertTrue("Method call on new C1().s3() should be valid", diagnostics.getSeverity() == Diagnostic.OK);
 	    assertEquals(new Fraction(12345),
 		    ((NativeObject) new RunletInterpreter(resourceSet, new RunletInMemoryRepository(com.sap.runlet.interpreter.Activator.getDefault().getModelAdapter())).evaluate(mce)).getNativeObject());
 	} catch (Exception e) {
@@ -927,10 +924,9 @@ public class TestBasicExpressions extends TestCase {
 	    fce.getParameters().add(MetamodelUtils.createStringLiteral(resourceSet, "Toys"));     // productCategory parameter
 	    fce.getParameters().add(MetamodelUtils.createStringLiteral(resourceSet, "Americas")); // customerRegion parameter
 	    
-	    Collection<JmiException> cellExpressionExceptions = fce.refVerifyConstraints(/* deepVerify */true);
-	    assertTrue("CellSet function call expression has "
-		    + ((cellExpressionExceptions == null) ? 0 : cellExpressionExceptions.size()) + " violated constraints",
-		    cellExpressionExceptions == null || cellExpressionExceptions.size() == 0);
+            BasicDiagnostic diagnostics = new BasicDiagnostic();
+            ClassesValidator.INSTANCE.validate(fce, diagnostics, new HashMap<Object, Object>());
+            assertTrue("CellSet function call expression should be valid", diagnostics.getSeverity() == Diagnostic.OK);
 	    assertEquals(new Fraction(12345+12345+45678),
 		    ((NativeObject) new RunletInterpreter(resourceSet, new RunletInMemoryRepository(com.sap.runlet.interpreter.Activator.getDefault().getModelAdapter())).evaluate(fce)).getNativeObject());
 	} catch (Exception e) {
