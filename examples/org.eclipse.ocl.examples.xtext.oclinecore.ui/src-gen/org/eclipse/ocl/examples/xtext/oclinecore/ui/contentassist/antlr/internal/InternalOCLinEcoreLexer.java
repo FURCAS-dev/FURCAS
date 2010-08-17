@@ -12,126 +12,126 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalOCLinEcoreLexer extends Lexer {
-    public static final int T29=29;
-    public static final int T70=70;
-    public static final int T74=74;
-    public static final int T85=85;
-    public static final int T20=20;
-    public static final int T102=102;
-    public static final int T18=18;
     public static final int T114=114;
-    public static final int T103=103;
-    public static final int T32=32;
-    public static final int T17=17;
-    public static final int T81=81;
-    public static final int T118=118;
-    public static final int RULE_DOUBLE_QUOTED_STRING=8;
-    public static final int T16=16;
-    public static final int T117=117;
-    public static final int T41=41;
-    public static final int T24=24;
-    public static final int T19=19;
-    public static final int T113=113;
-    public static final int T62=62;
-    public static final int T109=109;
-    public static final int T68=68;
-    public static final int T73=73;
-    public static final int T84=84;
-    public static final int T33=33;
-    public static final int T78=78;
-    public static final int T120=120;
     public static final int T115=115;
-    public static final int T42=42;
+    public static final int T116=116;
+    public static final int RULE_ID=6;
+    public static final int T117=117;
+    public static final int T118=118;
+    public static final int T119=119;
+    public static final int RULE_ANY_OTHER=12;
+    public static final int RULE_DOUBLE_QUOTED_STRING=8;
+    public static final int T29=29;
+    public static final int T28=28;
+    public static final int T27=27;
+    public static final int T26=26;
+    public static final int T25=25;
+    public static final int T24=24;
+    public static final int EOF=-1;
+    public static final int T120=120;
+    public static final int T23=23;
+    public static final int T22=22;
+    public static final int T21=21;
     public static final int T121=121;
-    public static final int T96=96;
-    public static final int T71=71;
-    public static final int T13=13;
-    public static final int T72=72;
-    public static final int T94=94;
-    public static final int T76=76;
+    public static final int T20=20;
+    public static final int T38=38;
+    public static final int T37=37;
+    public static final int T39=39;
+    public static final int T34=34;
+    public static final int T33=33;
+    public static final int T36=36;
+    public static final int T35=35;
+    public static final int T30=30;
+    public static final int T32=32;
+    public static final int T31=31;
+    public static final int RULE_SINGLE_QUOTED_STRING=5;
+    public static final int T49=49;
+    public static final int T48=48;
+    public static final int T100=100;
+    public static final int T43=43;
+    public static final int T42=42;
+    public static final int T102=102;
+    public static final int T41=41;
+    public static final int T101=101;
+    public static final int T40=40;
+    public static final int T47=47;
+    public static final int T46=46;
+    public static final int RULE_ML_COMMENT=9;
+    public static final int T45=45;
+    public static final int T44=44;
+    public static final int T109=109;
+    public static final int T107=107;
+    public static final int T108=108;
+    public static final int T105=105;
+    public static final int T106=106;
+    public static final int T103=103;
+    public static final int T104=104;
+    public static final int T50=50;
+    public static final int T59=59;
+    public static final int T113=113;
+    public static final int T52=52;
+    public static final int T112=112;
+    public static final int T51=51;
+    public static final int T111=111;
+    public static final int T54=54;
+    public static final int T110=110;
+    public static final int T53=53;
+    public static final int T56=56;
+    public static final int T55=55;
+    public static final int T58=58;
+    public static final int T57=57;
     public static final int T75=75;
+    public static final int T76=76;
+    public static final int T73=73;
+    public static final int T74=74;
+    public static final int T79=79;
+    public static final int T77=77;
+    public static final int T78=78;
+    public static final int T72=72;
+    public static final int T71=71;
+    public static final int T70=70;
+    public static final int T62=62;
+    public static final int T63=63;
+    public static final int T64=64;
+    public static final int T65=65;
+    public static final int T66=66;
+    public static final int T67=67;
+    public static final int T68=68;
+    public static final int T69=69;
+    public static final int RULE_UNQUOTED_STRING=7;
+    public static final int RULE_INT=4;
+    public static final int T61=61;
+    public static final int T60=60;
+    public static final int T99=99;
+    public static final int T97=97;
+    public static final int T98=98;
+    public static final int T95=95;
+    public static final int T96=96;
+    public static final int T94=94;
+    public static final int Tokens=122;
+    public static final int T93=93;
+    public static final int RULE_SL_COMMENT=10;
+    public static final int T92=92;
+    public static final int T91=91;
+    public static final int T90=90;
+    public static final int T88=88;
+    public static final int T89=89;
+    public static final int T84=84;
+    public static final int T85=85;
+    public static final int T86=86;
+    public static final int T87=87;
+    public static final int T13=13;
+    public static final int T14=14;
     public static final int RULE_WS=11;
     public static final int T15=15;
-    public static final int T89=89;
-    public static final int T67=67;
-    public static final int T119=119;
-    public static final int T31=31;
-    public static final int T60=60;
-    public static final int T82=82;
-    public static final int T100=100;
-    public static final int T49=49;
-    public static final int RULE_SL_COMMENT=10;
-    public static final int T30=30;
-    public static final int T79=79;
-    public static final int T14=14;
-    public static final int T36=36;
-    public static final int T58=58;
-    public static final int T93=93;
-    public static final int T35=35;
-    public static final int T107=107;
-    public static final int T83=83;
-    public static final int T61=61;
-    public static final int T45=45;
-    public static final int T34=34;
-    public static final int T101=101;
-    public static final int T64=64;
-    public static final int T25=25;
-    public static final int T91=91;
-    public static final int T105=105;
-    public static final int T37=37;
-    public static final int T86=86;
-    public static final int T116=116;
-    public static final int T26=26;
-    public static final int RULE_INT=4;
-    public static final int T51=51;
-    public static final int RULE_SINGLE_QUOTED_STRING=5;
-    public static final int T111=111;
-    public static final int T46=46;
-    public static final int T77=77;
-    public static final int T38=38;
-    public static final int T106=106;
-    public static final int T112=112;
-    public static final int T69=69;
-    public static final int T39=39;
-    public static final int T21=21;
-    public static final int T44=44;
-    public static final int RULE_ML_COMMENT=9;
-    public static final int T55=55;
-    public static final int RULE_ID=6;
-    public static final int T95=95;
-    public static final int T22=22;
-    public static final int T50=50;
-    public static final int T110=110;
-    public static final int T108=108;
-    public static final int T92=92;
-    public static final int T43=43;
-    public static final int T28=28;
-    public static final int T23=23;
-    public static final int T40=40;
-    public static final int T66=66;
-    public static final int T88=88;
-    public static final int T63=63;
-    public static final int T57=57;
-    public static final int RULE_UNQUOTED_STRING=7;
-    public static final int T65=65;
-    public static final int T98=98;
-    public static final int T56=56;
-    public static final int T87=87;
+    public static final int T81=81;
+    public static final int T16=16;
     public static final int T80=80;
-    public static final int T59=59;
-    public static final int T97=97;
-    public static final int T48=48;
-    public static final int T54=54;
-    public static final int EOF=-1;
-    public static final int T104=104;
-    public static final int T47=47;
-    public static final int Tokens=122;
-    public static final int T53=53;
-    public static final int RULE_ANY_OTHER=12;
-    public static final int T99=99;
-    public static final int T27=27;
-    public static final int T52=52;
-    public static final int T90=90;
+    public static final int T17=17;
+    public static final int T83=83;
+    public static final int T18=18;
+    public static final int T82=82;
+    public static final int T19=19;
     public InternalOCLinEcoreLexer() {;} 
     public InternalOCLinEcoreLexer(CharStream input) {
         super(input);
@@ -2209,11 +2209,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public final void mRULE_DOUBLE_QUOTED_STRING() throws RecognitionException {
         try {
             int _type = RULE_DOUBLE_QUOTED_STRING;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:27: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:29: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:27: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:29: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:33: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
             loop1:
             do {
                 int alt1=3;
@@ -2229,10 +2229,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:34: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:34: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
-            	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
+            	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
             	        input.consume();
 
             	    }
@@ -2246,7 +2246,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:75: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24988:79: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2282,11 +2282,11 @@ public class InternalOCLinEcoreLexer extends Lexer {
     public final void mRULE_SINGLE_QUOTED_STRING() throws RecognitionException {
         try {
             int _type = RULE_SINGLE_QUOTED_STRING;
-            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:27: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:29: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:27: ( '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:29: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
             {
             match('\''); 
-            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:34: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+            // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:34: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
             loop2:
             do {
                 int alt2=3;
@@ -2302,10 +2302,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:35: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | 'u' | '\"' | '\\'' | '\\\\' )
             	    {
             	    match('\\'); 
-            	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
+            	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||(input.LA(1)>='t' && input.LA(1)<='u') ) {
             	        input.consume();
 
             	    }
@@ -2319,7 +2319,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:76: ~ ( ( '\\\\' | '\\'' ) )
+            	    // ../org.eclipse.ocl.examples.xtext.oclinecore.ui/src-gen/org/eclipse/ocl/examples/xtext/oclinecore/ui/contentassist/antlr/internal/InternalOCLinEcore.g:24990:80: ~ ( ( '\\\\' | '\\'' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -3739,14 +3739,24 @@ public class InternalOCLinEcoreLexer extends Lexer {
         case 'n':
             {
             switch ( input.LA(3) ) {
-            case 'n':
+            case 'd':
                 {
                 int LA11_152 = input.LA(4);
 
-                if ( (LA11_152=='o') ) {
-                    int LA11_216 = input.LA(5);
+                if ( ((LA11_152>='0' && LA11_152<='9')||(LA11_152>='A' && LA11_152<='Z')||LA11_152=='_'||(LA11_152>='a' && LA11_152<='z')) ) {
+                    return 113;
+                }
+                else {
+                    return 109;}
+                }
+            case 'n':
+                {
+                int LA11_153 = input.LA(4);
 
-                    if ( (LA11_216=='t') ) {
+                if ( (LA11_153=='o') ) {
+                    int LA11_217 = input.LA(5);
+
+                    if ( (LA11_217=='t') ) {
                         int LA11_280 = input.LA(6);
 
                         if ( (LA11_280=='a') ) {
@@ -3791,53 +3801,37 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 else {
                     return 113;}
                 }
-            case 'd':
-                {
-                int LA11_153 = input.LA(4);
-
-                if ( ((LA11_153>='0' && LA11_153<='9')||(LA11_153>='A' && LA11_153<='Z')||LA11_153=='_'||(LA11_153>='a' && LA11_153<='z')) ) {
-                    return 113;
-                }
-                else {
-                    return 109;}
-                }
             default:
                 return 113;}
 
             }
-        case 't':
+        case 'b':
             {
             int LA11_60 = input.LA(3);
 
-            if ( (LA11_60=='t') ) {
+            if ( (LA11_60=='s') ) {
                 int LA11_154 = input.LA(4);
 
-                if ( (LA11_154=='r') ) {
+                if ( (LA11_154=='t') ) {
                     int LA11_218 = input.LA(5);
 
-                    if ( (LA11_218=='i') ) {
+                    if ( (LA11_218=='r') ) {
                         int LA11_281 = input.LA(6);
 
-                        if ( (LA11_281=='b') ) {
+                        if ( (LA11_281=='a') ) {
                             int LA11_335 = input.LA(7);
 
-                            if ( (LA11_335=='u') ) {
+                            if ( (LA11_335=='c') ) {
                                 int LA11_382 = input.LA(8);
 
                                 if ( (LA11_382=='t') ) {
                                     int LA11_424 = input.LA(9);
 
-                                    if ( (LA11_424=='e') ) {
-                                        int LA11_460 = input.LA(10);
-
-                                        if ( ((LA11_460>='0' && LA11_460<='9')||(LA11_460>='A' && LA11_460<='Z')||LA11_460=='_'||(LA11_460>='a' && LA11_460<='z')) ) {
-                                            return 113;
-                                        }
-                                        else {
-                                            return 4;}
+                                    if ( ((LA11_424>='0' && LA11_424<='9')||(LA11_424>='A' && LA11_424<='Z')||LA11_424=='_'||(LA11_424>='a' && LA11_424<='z')) ) {
+                                        return 113;
                                     }
                                     else {
-                                        return 113;}
+                                        return 2;}
                                 }
                                 else {
                                     return 113;}
@@ -3857,33 +3851,39 @@ public class InternalOCLinEcoreLexer extends Lexer {
             else {
                 return 113;}
             }
-        case 'b':
+        case 't':
             {
             int LA11_61 = input.LA(3);
 
-            if ( (LA11_61=='s') ) {
+            if ( (LA11_61=='t') ) {
                 int LA11_155 = input.LA(4);
 
-                if ( (LA11_155=='t') ) {
+                if ( (LA11_155=='r') ) {
                     int LA11_219 = input.LA(5);
 
-                    if ( (LA11_219=='r') ) {
+                    if ( (LA11_219=='i') ) {
                         int LA11_282 = input.LA(6);
 
-                        if ( (LA11_282=='a') ) {
+                        if ( (LA11_282=='b') ) {
                             int LA11_336 = input.LA(7);
 
-                            if ( (LA11_336=='c') ) {
+                            if ( (LA11_336=='u') ) {
                                 int LA11_383 = input.LA(8);
 
                                 if ( (LA11_383=='t') ) {
                                     int LA11_425 = input.LA(9);
 
-                                    if ( ((LA11_425>='0' && LA11_425<='9')||(LA11_425>='A' && LA11_425<='Z')||LA11_425=='_'||(LA11_425>='a' && LA11_425<='z')) ) {
-                                        return 113;
+                                    if ( (LA11_425=='e') ) {
+                                        int LA11_461 = input.LA(10);
+
+                                        if ( ((LA11_461>='0' && LA11_461<='9')||(LA11_461>='A' && LA11_461<='Z')||LA11_461=='_'||(LA11_461>='a' && LA11_461<='z')) ) {
+                                            return 113;
+                                        }
+                                        else {
+                                            return 4;}
                                     }
                                     else {
-                                        return 2;}
+                                        return 113;}
                                 }
                                 else {
                                     return 113;}
@@ -3938,51 +3938,23 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     private int mTokensHelper004() throws RecognitionException {
         switch ( input.LA(2) ) {
-        case 'l':
+        case 'o':
             {
             int LA11_64 = input.LA(3);
 
-            if ( (LA11_64=='a') ) {
+            if ( (LA11_64=='m') ) {
                 int LA11_157 = input.LA(4);
 
-                if ( (LA11_157=='s') ) {
+                if ( (LA11_157=='p') ) {
                     int LA11_221 = input.LA(5);
 
-                    if ( (LA11_221=='s') ) {
+                    if ( (LA11_221=='o') ) {
                         int LA11_284 = input.LA(6);
 
-                        if ( ((LA11_284>='0' && LA11_284<='9')||(LA11_284>='A' && LA11_284<='Z')||LA11_284=='_'||(LA11_284>='a' && LA11_284<='z')) ) {
-                            return 113;
-                        }
-                        else {
-                            return 6;}
-                    }
-                    else {
-                        return 113;}
-                }
-                else {
-                    return 113;}
-            }
-            else {
-                return 113;}
-            }
-        case 'o':
-            {
-            int LA11_65 = input.LA(3);
+                        if ( (LA11_284=='s') ) {
+                            int LA11_337 = input.LA(7);
 
-            if ( (LA11_65=='m') ) {
-                int LA11_158 = input.LA(4);
-
-                if ( (LA11_158=='p') ) {
-                    int LA11_222 = input.LA(5);
-
-                    if ( (LA11_222=='o') ) {
-                        int LA11_285 = input.LA(6);
-
-                        if ( (LA11_285=='s') ) {
-                            int LA11_338 = input.LA(7);
-
-                            if ( (LA11_338=='e') ) {
+                            if ( (LA11_337=='e') ) {
                                 int LA11_384 = input.LA(8);
 
                                 if ( (LA11_384=='s') ) {
@@ -4012,6 +3984,34 @@ public class InternalOCLinEcoreLexer extends Lexer {
             else {
                 return 113;}
             }
+        case 'l':
+            {
+            int LA11_65 = input.LA(3);
+
+            if ( (LA11_65=='a') ) {
+                int LA11_158 = input.LA(4);
+
+                if ( (LA11_158=='s') ) {
+                    int LA11_222 = input.LA(5);
+
+                    if ( (LA11_222=='s') ) {
+                        int LA11_285 = input.LA(6);
+
+                        if ( ((LA11_285>='0' && LA11_285<='9')||(LA11_285>='A' && LA11_285<='Z')||LA11_285=='_'||(LA11_285>='a' && LA11_285<='z')) ) {
+                            return 113;
+                        }
+                        else {
+                            return 6;}
+                    }
+                    else {
+                        return 113;}
+                }
+                else {
+                    return 113;}
+            }
+            else {
+                return 113;}
+            }
         default:
             return 113;}
 
@@ -4031,17 +4031,33 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
                     if ( (LA11_223=='v') ) {
                         switch ( input.LA(6) ) {
-                        case 'a':
+                        case 'e':
                             {
                             int LA11_339 = input.LA(7);
 
-                            if ( (LA11_339=='t') ) {
+                            if ( (LA11_339=='d') ) {
                                 int LA11_385 = input.LA(8);
 
-                                if ( (LA11_385=='i') ) {
-                                    int LA11_427 = input.LA(9);
+                                if ( ((LA11_385>='0' && LA11_385<='9')||(LA11_385>='A' && LA11_385<='Z')||LA11_385=='_'||(LA11_385>='a' && LA11_385<='z')) ) {
+                                    return 113;
+                                }
+                                else {
+                                    return 9;}
+                            }
+                            else {
+                                return 113;}
+                            }
+                        case 'a':
+                            {
+                            int LA11_340 = input.LA(7);
 
-                                    if ( (LA11_427=='o') ) {
+                            if ( (LA11_340=='t') ) {
+                                int LA11_386 = input.LA(8);
+
+                                if ( (LA11_386=='i') ) {
+                                    int LA11_428 = input.LA(9);
+
+                                    if ( (LA11_428=='o') ) {
                                         int LA11_463 = input.LA(10);
 
                                         if ( (LA11_463=='n') ) {
@@ -4061,22 +4077,6 @@ public class InternalOCLinEcoreLexer extends Lexer {
                                 }
                                 else {
                                     return 113;}
-                            }
-                            else {
-                                return 113;}
-                            }
-                        case 'e':
-                            {
-                            int LA11_340 = input.LA(7);
-
-                            if ( (LA11_340=='d') ) {
-                                int LA11_386 = input.LA(8);
-
-                                if ( ((LA11_386>='0' && LA11_386<='9')||(LA11_386>='A' && LA11_386<='Z')||LA11_386=='_'||(LA11_386>='a' && LA11_386<='z')) ) {
-                                    return 113;
-                                }
-                                else {
-                                    return 9;}
                             }
                             else {
                                 return 113;}
@@ -4147,32 +4147,78 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 return 113;}
 
             }
-        case 'o':
+        case 'a':
             {
             int LA11_67 = input.LA(3);
 
-            if ( (LA11_67=='c') ) {
+            if ( (LA11_67=='t') ) {
                 int LA11_161 = input.LA(4);
 
-                if ( (LA11_161=='u') ) {
+                if ( (LA11_161=='a') ) {
                     int LA11_225 = input.LA(5);
 
-                    if ( (LA11_225=='m') ) {
+                    if ( (LA11_225=='t') ) {
                         int LA11_288 = input.LA(6);
 
-                        if ( (LA11_288=='e') ) {
+                        if ( (LA11_288=='y') ) {
                             int LA11_342 = input.LA(7);
 
-                            if ( (LA11_342=='n') ) {
+                            if ( (LA11_342=='p') ) {
                                 int LA11_388 = input.LA(8);
 
-                                if ( (LA11_388=='t') ) {
+                                if ( (LA11_388=='e') ) {
                                     int LA11_430 = input.LA(9);
 
-                                    if ( (LA11_430=='a') ) {
-                                        int LA11_465 = input.LA(10);
+                                    if ( ((LA11_430>='0' && LA11_430<='9')||(LA11_430>='A' && LA11_430<='Z')||LA11_430=='_'||(LA11_430>='a' && LA11_430<='z')) ) {
+                                        return 113;
+                                    }
+                                    else {
+                                        return 8;}
+                                }
+                                else {
+                                    return 113;}
+                            }
+                            else {
+                                return 113;}
+                        }
+                        else {
+                            return 113;}
+                    }
+                    else {
+                        return 113;}
+                }
+                else {
+                    return 113;}
+            }
+            else {
+                return 113;}
+            }
+        case 'o':
+            {
+            int LA11_68 = input.LA(3);
 
-                                        if ( (LA11_465=='t') ) {
+            if ( (LA11_68=='c') ) {
+                int LA11_162 = input.LA(4);
+
+                if ( (LA11_162=='u') ) {
+                    int LA11_226 = input.LA(5);
+
+                    if ( (LA11_226=='m') ) {
+                        int LA11_289 = input.LA(6);
+
+                        if ( (LA11_289=='e') ) {
+                            int LA11_343 = input.LA(7);
+
+                            if ( (LA11_343=='n') ) {
+                                int LA11_389 = input.LA(8);
+
+                                if ( (LA11_389=='t') ) {
+                                    int LA11_431 = input.LA(9);
+
+                                    if ( (LA11_431=='a') ) {
+                                        int LA11_466 = input.LA(10);
+
+                                        if ( (LA11_466=='t') ) {
                                             int LA11_487 = input.LA(11);
 
                                             if ( (LA11_487=='i') ) {
@@ -4204,52 +4250,6 @@ public class InternalOCLinEcoreLexer extends Lexer {
                                     }
                                     else {
                                         return 113;}
-                                }
-                                else {
-                                    return 113;}
-                            }
-                            else {
-                                return 113;}
-                        }
-                        else {
-                            return 113;}
-                    }
-                    else {
-                        return 113;}
-                }
-                else {
-                    return 113;}
-            }
-            else {
-                return 113;}
-            }
-        case 'a':
-            {
-            int LA11_68 = input.LA(3);
-
-            if ( (LA11_68=='t') ) {
-                int LA11_162 = input.LA(4);
-
-                if ( (LA11_162=='a') ) {
-                    int LA11_226 = input.LA(5);
-
-                    if ( (LA11_226=='t') ) {
-                        int LA11_289 = input.LA(6);
-
-                        if ( (LA11_289=='y') ) {
-                            int LA11_343 = input.LA(7);
-
-                            if ( (LA11_343=='p') ) {
-                                int LA11_389 = input.LA(8);
-
-                                if ( (LA11_389=='e') ) {
-                                    int LA11_431 = input.LA(9);
-
-                                    if ( ((LA11_431>='0' && LA11_431<='9')||(LA11_431>='A' && LA11_431<='Z')||LA11_431=='_'||(LA11_431>='a' && LA11_431<='z')) ) {
-                                        return 113;
-                                    }
-                                    else {
-                                        return 8;}
                                 }
                                 else {
                                     return 113;}
@@ -4459,27 +4459,21 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
             if ( (LA11_73=='p') ) {
                 switch ( input.LA(4) ) {
-                case 'l':
+                case 'o':
                     {
                     int LA11_231 = input.LA(5);
 
-                    if ( (LA11_231=='i') ) {
+                    if ( (LA11_231=='r') ) {
                         int LA11_294 = input.LA(6);
 
-                        if ( (LA11_294=='e') ) {
+                        if ( (LA11_294=='t') ) {
                             int LA11_346 = input.LA(7);
 
-                            if ( (LA11_346=='s') ) {
-                                int LA11_391 = input.LA(8);
-
-                                if ( ((LA11_391>='0' && LA11_391<='9')||(LA11_391>='A' && LA11_391<='Z')||LA11_391=='_'||(LA11_391>='a' && LA11_391<='z')) ) {
-                                    return 113;
-                                }
-                                else {
-                                    return 106;}
+                            if ( ((LA11_346>='0' && LA11_346<='9')||(LA11_346>='A' && LA11_346<='Z')||LA11_346=='_'||(LA11_346>='a' && LA11_346<='z')) ) {
+                                return 113;
                             }
                             else {
-                                return 113;}
+                                return 14;}
                         }
                         else {
                             return 113;}
@@ -4487,21 +4481,27 @@ public class InternalOCLinEcoreLexer extends Lexer {
                     else {
                         return 113;}
                     }
-                case 'o':
+                case 'l':
                     {
                     int LA11_232 = input.LA(5);
 
-                    if ( (LA11_232=='r') ) {
+                    if ( (LA11_232=='i') ) {
                         int LA11_295 = input.LA(6);
 
-                        if ( (LA11_295=='t') ) {
+                        if ( (LA11_295=='e') ) {
                             int LA11_347 = input.LA(7);
 
-                            if ( ((LA11_347>='0' && LA11_347<='9')||(LA11_347>='A' && LA11_347<='Z')||LA11_347=='_'||(LA11_347>='a' && LA11_347<='z')) ) {
-                                return 113;
+                            if ( (LA11_347=='s') ) {
+                                int LA11_392 = input.LA(8);
+
+                                if ( ((LA11_392>='0' && LA11_392<='9')||(LA11_392>='A' && LA11_392<='Z')||LA11_392=='_'||(LA11_392>='a' && LA11_392<='z')) ) {
+                                    return 113;
+                                }
+                                else {
+                                    return 106;}
                             }
                             else {
-                                return 14;}
+                                return 113;}
                         }
                         else {
                             return 113;}
@@ -4519,34 +4519,46 @@ public class InternalOCLinEcoreLexer extends Lexer {
         case 'n':
             {
             switch ( input.LA(3) ) {
-            case 'v':
+            case 'i':
                 {
                 int LA11_168 = input.LA(4);
 
-                if ( (LA11_168=='a') ) {
-                    switch ( input.LA(5) ) {
-                    case 'l':
-                        {
+                if ( (LA11_168=='t') ) {
+                    int LA11_233 = input.LA(5);
+
+                    if ( (LA11_233=='i') ) {
                         int LA11_296 = input.LA(6);
 
-                        if ( (LA11_296=='i') ) {
+                        if ( (LA11_296=='a') ) {
                             int LA11_348 = input.LA(7);
 
-                            if ( (LA11_348=='d') ) {
+                            if ( (LA11_348=='l') ) {
                                 int LA11_393 = input.LA(8);
 
                                 if ( ((LA11_393>='0' && LA11_393<='9')||(LA11_393>='A' && LA11_393<='Z')||LA11_393=='_'||(LA11_393>='a' && LA11_393<='z')) ) {
                                     return 113;
                                 }
                                 else {
-                                    return 88;}
+                                    return 15;}
                             }
                             else {
                                 return 113;}
                         }
                         else {
                             return 113;}
-                        }
+                    }
+                    else {
+                        return 113;}
+                }
+                else {
+                    return 113;}
+                }
+            case 'v':
+                {
+                int LA11_169 = input.LA(4);
+
+                if ( (LA11_169=='a') ) {
+                    switch ( input.LA(5) ) {
                     case 'r':
                         {
                         int LA11_297 = input.LA(6);
@@ -4581,43 +4593,31 @@ public class InternalOCLinEcoreLexer extends Lexer {
                         else {
                             return 113;}
                         }
-                    default:
-                        return 113;}
-
-                }
-                else {
-                    return 113;}
-                }
-            case 'i':
-                {
-                int LA11_169 = input.LA(4);
-
-                if ( (LA11_169=='t') ) {
-                    int LA11_234 = input.LA(5);
-
-                    if ( (LA11_234=='i') ) {
+                    case 'l':
+                        {
                         int LA11_298 = input.LA(6);
 
-                        if ( (LA11_298=='a') ) {
+                        if ( (LA11_298=='i') ) {
                             int LA11_350 = input.LA(7);
 
-                            if ( (LA11_350=='l') ) {
+                            if ( (LA11_350=='d') ) {
                                 int LA11_395 = input.LA(8);
 
                                 if ( ((LA11_395>='0' && LA11_395<='9')||(LA11_395>='A' && LA11_395<='Z')||LA11_395=='_'||(LA11_395>='a' && LA11_395<='z')) ) {
                                     return 113;
                                 }
                                 else {
-                                    return 15;}
+                                    return 88;}
                             }
                             else {
                                 return 113;}
                         }
                         else {
                             return 113;}
-                    }
-                    else {
+                        }
+                    default:
                         return 113;}
+
                 }
                 else {
                     return 113;}
@@ -4735,7 +4735,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 return 99;}
 
             }
-        case 'd':
+        case 'f':
             {
             int LA11_75 = input.LA(3);
 
@@ -4743,9 +4743,9 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 return 113;
             }
             else {
-                return 13;}
+                return 94;}
             }
-        case 'f':
+        case 'd':
             {
             int LA11_76 = input.LA(3);
 
@@ -4753,7 +4753,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 return 113;
             }
             else {
-                return 94;}
+                return 13;}
             }
         default:
             return 113;}
@@ -4825,78 +4825,26 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     private int mTokensHelper009() throws RecognitionException {
         switch ( input.LA(2) ) {
-        case 'p':
-            {
-            int LA11_79 = input.LA(3);
-
-            if ( (LA11_79=='e') ) {
-                int LA11_176 = input.LA(4);
-
-                if ( (LA11_176=='r') ) {
-                    int LA11_238 = input.LA(5);
-
-                    if ( (LA11_238=='a') ) {
-                        int LA11_301 = input.LA(6);
-
-                        if ( (LA11_301=='t') ) {
-                            int LA11_353 = input.LA(7);
-
-                            if ( (LA11_353=='i') ) {
-                                int LA11_398 = input.LA(8);
-
-                                if ( (LA11_398=='o') ) {
-                                    int LA11_439 = input.LA(9);
-
-                                    if ( (LA11_439=='n') ) {
-                                        int LA11_469 = input.LA(10);
-
-                                        if ( ((LA11_469>='0' && LA11_469<='9')||(LA11_469>='A' && LA11_469<='Z')||LA11_469=='_'||(LA11_469>='a' && LA11_469<='z')) ) {
-                                            return 113;
-                                        }
-                                        else {
-                                            return 19;}
-                                    }
-                                    else {
-                                        return 113;}
-                                }
-                                else {
-                                    return 113;}
-                            }
-                            else {
-                                return 113;}
-                        }
-                        else {
-                            return 113;}
-                    }
-                    else {
-                        return 113;}
-                }
-                else {
-                    return 113;}
-            }
-            else {
-                return 113;}
-            }
         case 'r':
             {
             switch ( input.LA(3) ) {
             case 'd':
                 {
-                int LA11_177 = input.LA(4);
+                int LA11_176 = input.LA(4);
 
-                if ( (LA11_177=='e') ) {
-                    int LA11_239 = input.LA(5);
+                if ( (LA11_176=='e') ) {
+                    int LA11_238 = input.LA(5);
 
-                    if ( (LA11_239=='r') ) {
-                        int LA11_302 = input.LA(6);
+                    if ( (LA11_238=='r') ) {
+                        int LA11_301 = input.LA(6);
 
-                        if ( (LA11_302=='e') ) {
-                            int LA11_354 = input.LA(7);
+                        if ( (LA11_301=='e') ) {
+                            int LA11_353 = input.LA(7);
 
-                            if ( (LA11_354=='d') ) {
-                                int LA11_399 = input.LA(8);
+                            if ( (LA11_353=='d') ) {
+                                int LA11_398 = input.LA(8);
 
-                                if ( ((LA11_399>='0' && LA11_399<='9')||(LA11_399>='A' && LA11_399<='Z')||LA11_399=='_'||(LA11_399>='a' && LA11_399<='z')) ) {
+                                if ( ((LA11_398>='0' && LA11_398<='9')||(LA11_398>='A' && LA11_398<='Z')||LA11_398=='_'||(LA11_398>='a' && LA11_398<='z')) ) {
                                     return 113;
                                 }
                                 else {
@@ -4983,40 +4931,39 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 return 108;}
 
             }
-        default:
-            return 113;}
-
-    }
-
-    private int mTokensHelper010() throws RecognitionException {
-        switch ( input.LA(2) ) {
-        case 'r':
+        case 'p':
             {
-            switch ( input.LA(3) ) {
-            case 'o':
-                {
-                int LA11_179 = input.LA(4);
+            int LA11_80 = input.LA(3);
 
-                if ( (LA11_179=='p') ) {
-                    int LA11_240 = input.LA(5);
+            if ( (LA11_80=='e') ) {
+                int LA11_178 = input.LA(4);
 
-                    if ( (LA11_240=='e') ) {
-                        int LA11_303 = input.LA(6);
+                if ( (LA11_178=='r') ) {
+                    int LA11_239 = input.LA(5);
 
-                        if ( (LA11_303=='r') ) {
-                            int LA11_355 = input.LA(7);
+                    if ( (LA11_239=='a') ) {
+                        int LA11_302 = input.LA(6);
 
-                            if ( (LA11_355=='t') ) {
-                                int LA11_400 = input.LA(8);
+                        if ( (LA11_302=='t') ) {
+                            int LA11_354 = input.LA(7);
 
-                                if ( (LA11_400=='y') ) {
-                                    int LA11_441 = input.LA(9);
+                            if ( (LA11_354=='i') ) {
+                                int LA11_399 = input.LA(8);
 
-                                    if ( ((LA11_441>='0' && LA11_441<='9')||(LA11_441>='A' && LA11_441<='Z')||LA11_441=='_'||(LA11_441>='a' && LA11_441<='z')) ) {
-                                        return 113;
+                                if ( (LA11_399=='o') ) {
+                                    int LA11_440 = input.LA(9);
+
+                                    if ( (LA11_440=='n') ) {
+                                        int LA11_469 = input.LA(10);
+
+                                        if ( ((LA11_469>='0' && LA11_469<='9')||(LA11_469>='A' && LA11_469<='Z')||LA11_469=='_'||(LA11_469>='a' && LA11_469<='z')) ) {
+                                            return 113;
+                                        }
+                                        else {
+                                            return 19;}
                                     }
                                     else {
-                                        return 22;}
+                                        return 113;}
                                 }
                                 else {
                                     return 113;}
@@ -5032,7 +4979,96 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 }
                 else {
                     return 113;}
+            }
+            else {
+                return 113;}
+            }
+        default:
+            return 113;}
+
+    }
+
+    private int mTokensHelper010() throws RecognitionException {
+        switch ( input.LA(2) ) {
+        case 'o':
+            {
+            int LA11_81 = input.LA(3);
+
+            if ( (LA11_81=='s') ) {
+                int LA11_179 = input.LA(4);
+
+                if ( (LA11_179=='t') ) {
+                    int LA11_240 = input.LA(5);
+
+                    if ( (LA11_240=='c') ) {
+                        int LA11_303 = input.LA(6);
+
+                        if ( (LA11_303=='o') ) {
+                            int LA11_355 = input.LA(7);
+
+                            if ( (LA11_355=='n') ) {
+                                int LA11_400 = input.LA(8);
+
+                                if ( (LA11_400=='d') ) {
+                                    int LA11_441 = input.LA(9);
+
+                                    if ( (LA11_441=='i') ) {
+                                        int LA11_470 = input.LA(10);
+
+                                        if ( (LA11_470=='t') ) {
+                                            int LA11_491 = input.LA(11);
+
+                                            if ( (LA11_491=='i') ) {
+                                                int LA11_504 = input.LA(12);
+
+                                                if ( (LA11_504=='o') ) {
+                                                    int LA11_513 = input.LA(13);
+
+                                                    if ( (LA11_513=='n') ) {
+                                                        int LA11_518 = input.LA(14);
+
+                                                        if ( ((LA11_518>='0' && LA11_518<='9')||(LA11_518>='A' && LA11_518<='Z')||LA11_518=='_'||(LA11_518>='a' && LA11_518<='z')) ) {
+                                                            return 113;
+                                                        }
+                                                        else {
+                                                            return 101;}
+                                                    }
+                                                    else {
+                                                        return 113;}
+                                                }
+                                                else {
+                                                    return 113;}
+                                            }
+                                            else {
+                                                return 113;}
+                                        }
+                                        else {
+                                            return 113;}
+                                    }
+                                    else {
+                                        return 113;}
+                                }
+                                else {
+                                    return 113;}
+                            }
+                            else {
+                                return 113;}
+                        }
+                        else {
+                            return 113;}
+                    }
+                    else {
+                        return 113;}
                 }
+                else {
+                    return 113;}
+            }
+            else {
+                return 113;}
+            }
+        case 'r':
+            {
+            switch ( input.LA(3) ) {
             case 'e':
                 {
                 switch ( input.LA(4) ) {
@@ -5056,15 +5092,15 @@ public class InternalOCLinEcoreLexer extends Lexer {
                                         int LA11_471 = input.LA(10);
 
                                         if ( (LA11_471=='i') ) {
-                                            int LA11_491 = input.LA(11);
+                                            int LA11_492 = input.LA(11);
 
-                                            if ( (LA11_491=='o') ) {
-                                                int LA11_504 = input.LA(12);
+                                            if ( (LA11_492=='o') ) {
+                                                int LA11_505 = input.LA(12);
 
-                                                if ( (LA11_504=='n') ) {
-                                                    int LA11_513 = input.LA(13);
+                                                if ( (LA11_505=='n') ) {
+                                                    int LA11_514 = input.LA(13);
 
-                                                    if ( ((LA11_513>='0' && LA11_513<='9')||(LA11_513>='A' && LA11_513<='Z')||LA11_513=='_'||(LA11_513>='a' && LA11_513<='z')) ) {
+                                                    if ( ((LA11_514>='0' && LA11_514<='9')||(LA11_514>='A' && LA11_514<='Z')||LA11_514=='_'||(LA11_514>='a' && LA11_514<='z')) ) {
                                                         return 113;
                                                     }
                                                     else {
@@ -5163,67 +5199,30 @@ public class InternalOCLinEcoreLexer extends Lexer {
                     return 92;}
 
                 }
-            default:
-                return 113;}
-
-            }
-        case 'o':
-            {
-            int LA11_82 = input.LA(3);
-
-            if ( (LA11_82=='s') ) {
+            case 'o':
+                {
                 int LA11_181 = input.LA(4);
 
-                if ( (LA11_181=='t') ) {
+                if ( (LA11_181=='p') ) {
                     int LA11_243 = input.LA(5);
 
-                    if ( (LA11_243=='c') ) {
+                    if ( (LA11_243=='e') ) {
                         int LA11_305 = input.LA(6);
 
-                        if ( (LA11_305=='o') ) {
+                        if ( (LA11_305=='r') ) {
                             int LA11_357 = input.LA(7);
 
-                            if ( (LA11_357=='n') ) {
+                            if ( (LA11_357=='t') ) {
                                 int LA11_402 = input.LA(8);
 
-                                if ( (LA11_402=='d') ) {
+                                if ( (LA11_402=='y') ) {
                                     int LA11_443 = input.LA(9);
 
-                                    if ( (LA11_443=='i') ) {
-                                        int LA11_472 = input.LA(10);
-
-                                        if ( (LA11_472=='t') ) {
-                                            int LA11_492 = input.LA(11);
-
-                                            if ( (LA11_492=='i') ) {
-                                                int LA11_505 = input.LA(12);
-
-                                                if ( (LA11_505=='o') ) {
-                                                    int LA11_514 = input.LA(13);
-
-                                                    if ( (LA11_514=='n') ) {
-                                                        int LA11_519 = input.LA(14);
-
-                                                        if ( ((LA11_519>='0' && LA11_519<='9')||(LA11_519>='A' && LA11_519<='Z')||LA11_519=='_'||(LA11_519>='a' && LA11_519<='z')) ) {
-                                                            return 113;
-                                                        }
-                                                        else {
-                                                            return 101;}
-                                                    }
-                                                    else {
-                                                        return 113;}
-                                                }
-                                                else {
-                                                    return 113;}
-                                            }
-                                            else {
-                                                return 113;}
-                                        }
-                                        else {
-                                            return 113;}
+                                    if ( ((LA11_443>='0' && LA11_443<='9')||(LA11_443>='A' && LA11_443<='Z')||LA11_443=='_'||(LA11_443>='a' && LA11_443<='z')) ) {
+                                        return 113;
                                     }
                                     else {
-                                        return 113;}
+                                        return 22;}
                                 }
                                 else {
                                     return 113;}
@@ -5239,9 +5238,10 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 }
                 else {
                     return 113;}
-            }
-            else {
+                }
+            default:
                 return 113;}
+
             }
         case 'a':
             {
@@ -5293,27 +5293,33 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
         if ( (LA11_11=='e') ) {
             switch ( input.LA(3) ) {
-            case 's':
+            case 'a':
                 {
                 int LA11_183 = input.LA(4);
 
-                if ( (LA11_183=='o') ) {
+                if ( (LA11_183=='d') ) {
                     int LA11_245 = input.LA(5);
 
-                    if ( (LA11_245=='l') ) {
+                    if ( (LA11_245=='o') ) {
                         int LA11_307 = input.LA(6);
 
-                        if ( (LA11_307=='v') ) {
+                        if ( (LA11_307=='n') ) {
                             int LA11_359 = input.LA(7);
 
-                            if ( (LA11_359=='e') ) {
+                            if ( (LA11_359=='l') ) {
                                 int LA11_404 = input.LA(8);
 
-                                if ( ((LA11_404>='0' && LA11_404<='9')||(LA11_404>='A' && LA11_404<='Z')||LA11_404=='_'||(LA11_404>='a' && LA11_404<='z')) ) {
-                                    return 113;
+                                if ( (LA11_404=='y') ) {
+                                    int LA11_445 = input.LA(9);
+
+                                    if ( ((LA11_445>='0' && LA11_445<='9')||(LA11_445>='A' && LA11_445<='Z')||LA11_445=='_'||(LA11_445>='a' && LA11_445<='z')) ) {
+                                        return 113;
+                                    }
+                                    else {
+                                        return 23;}
                                 }
                                 else {
-                                    return 24;}
+                                    return 113;}
                             }
                             else {
                                 return 113;}
@@ -5327,33 +5333,27 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 else {
                     return 113;}
                 }
-            case 'a':
+            case 's':
                 {
                 int LA11_184 = input.LA(4);
 
-                if ( (LA11_184=='d') ) {
+                if ( (LA11_184=='o') ) {
                     int LA11_246 = input.LA(5);
 
-                    if ( (LA11_246=='o') ) {
+                    if ( (LA11_246=='l') ) {
                         int LA11_308 = input.LA(6);
 
-                        if ( (LA11_308=='n') ) {
+                        if ( (LA11_308=='v') ) {
                             int LA11_360 = input.LA(7);
 
-                            if ( (LA11_360=='l') ) {
+                            if ( (LA11_360=='e') ) {
                                 int LA11_405 = input.LA(8);
 
-                                if ( (LA11_405=='y') ) {
-                                    int LA11_446 = input.LA(9);
-
-                                    if ( ((LA11_446>='0' && LA11_446<='9')||(LA11_446>='A' && LA11_446<='Z')||LA11_446=='_'||(LA11_446>='a' && LA11_446<='z')) ) {
-                                        return 113;
-                                    }
-                                    else {
-                                        return 23;}
+                                if ( ((LA11_405>='0' && LA11_405<='9')||(LA11_405>='A' && LA11_405<='Z')||LA11_405=='_'||(LA11_405>='a' && LA11_405<='z')) ) {
+                                    return 113;
                                 }
                                 else {
-                                    return 113;}
+                                    return 24;}
                             }
                             else {
                                 return 113;}
@@ -5533,26 +5533,77 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     private int mTokensHelper013() throws RecognitionException {
         switch ( input.LA(2) ) {
+        case 'h':
+            {
+            switch ( input.LA(3) ) {
+            case 'r':
+                {
+                int LA11_189 = input.LA(4);
+
+                if ( (LA11_189=='o') ) {
+                    int LA11_251 = input.LA(5);
+
+                    if ( (LA11_251=='w') ) {
+                        int LA11_313 = input.LA(6);
+
+                        if ( (LA11_313=='s') ) {
+                            int LA11_364 = input.LA(7);
+
+                            if ( ((LA11_364>='0' && LA11_364<='9')||(LA11_364>='A' && LA11_364<='Z')||LA11_364=='_'||(LA11_364>='a' && LA11_364<='z')) ) {
+                                return 113;
+                            }
+                            else {
+                                return 83;}
+                        }
+                        else {
+                            return 113;}
+                    }
+                    else {
+                        return 113;}
+                }
+                else {
+                    return 113;}
+                }
+            case 'e':
+                {
+                int LA11_190 = input.LA(4);
+
+                if ( (LA11_190=='n') ) {
+                    int LA11_252 = input.LA(5);
+
+                    if ( ((LA11_252>='0' && LA11_252<='9')||(LA11_252>='A' && LA11_252<='Z')||LA11_252=='_'||(LA11_252>='a' && LA11_252<='z')) ) {
+                        return 113;
+                    }
+                    else {
+                        return 95;}
+                }
+                else {
+                    return 113;}
+                }
+            default:
+                return 113;}
+
+            }
         case 'r':
             {
             switch ( input.LA(3) ) {
             case 'a':
                 {
-                int LA11_189 = input.LA(4);
+                int LA11_191 = input.LA(4);
 
-                if ( (LA11_189=='n') ) {
-                    int LA11_251 = input.LA(5);
+                if ( (LA11_191=='n') ) {
+                    int LA11_253 = input.LA(5);
 
-                    if ( (LA11_251=='s') ) {
-                        int LA11_313 = input.LA(6);
+                    if ( (LA11_253=='s') ) {
+                        int LA11_315 = input.LA(6);
 
-                        if ( (LA11_313=='i') ) {
-                            int LA11_364 = input.LA(7);
+                        if ( (LA11_315=='i') ) {
+                            int LA11_365 = input.LA(7);
 
-                            if ( (LA11_364=='e') ) {
-                                int LA11_408 = input.LA(8);
+                            if ( (LA11_365=='e') ) {
+                                int LA11_409 = input.LA(8);
 
-                                if ( (LA11_408=='n') ) {
+                                if ( (LA11_409=='n') ) {
                                     int LA11_448 = input.LA(9);
 
                                     if ( (LA11_448=='t') ) {
@@ -5584,67 +5635,16 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 }
             case 'u':
                 {
-                int LA11_190 = input.LA(4);
-
-                if ( (LA11_190=='e') ) {
-                    int LA11_252 = input.LA(5);
-
-                    if ( ((LA11_252>='0' && LA11_252<='9')||(LA11_252>='A' && LA11_252<='Z')||LA11_252=='_'||(LA11_252>='a' && LA11_252<='z')) ) {
-                        return 113;
-                    }
-                    else {
-                        return 104;}
-                }
-                else {
-                    return 113;}
-                }
-            default:
-                return 113;}
-
-            }
-        case 'h':
-            {
-            switch ( input.LA(3) ) {
-            case 'r':
-                {
-                int LA11_191 = input.LA(4);
-
-                if ( (LA11_191=='o') ) {
-                    int LA11_253 = input.LA(5);
-
-                    if ( (LA11_253=='w') ) {
-                        int LA11_315 = input.LA(6);
-
-                        if ( (LA11_315=='s') ) {
-                            int LA11_365 = input.LA(7);
-
-                            if ( ((LA11_365>='0' && LA11_365<='9')||(LA11_365>='A' && LA11_365<='Z')||LA11_365=='_'||(LA11_365>='a' && LA11_365<='z')) ) {
-                                return 113;
-                            }
-                            else {
-                                return 83;}
-                        }
-                        else {
-                            return 113;}
-                    }
-                    else {
-                        return 113;}
-                }
-                else {
-                    return 113;}
-                }
-            case 'e':
-                {
                 int LA11_192 = input.LA(4);
 
-                if ( (LA11_192=='n') ) {
+                if ( (LA11_192=='e') ) {
                     int LA11_254 = input.LA(5);
 
                     if ( ((LA11_254>='0' && LA11_254<='9')||(LA11_254>='A' && LA11_254<='Z')||LA11_254=='_'||(LA11_254>='a' && LA11_254<='z')) ) {
                         return 113;
                     }
                     else {
-                        return 95;}
+                        return 104;}
                 }
                 else {
                     return 113;}
@@ -5817,11 +5817,19 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     private int mTokensHelper019() throws RecognitionException {
         switch ( input.LA(2) ) {
+        case 'a':
+            {
+            return 43;
+            }
+        case 'v':
+            {
+            return 42;
+            }
         case 'u':
             {
-            int LA11_95 = input.LA(3);
+            int LA11_97 = input.LA(3);
 
-            if ( (LA11_95=='n') ) {
+            if ( (LA11_97=='n') ) {
                 int LA11_196 = input.LA(4);
 
                 if ( (LA11_196=='s') ) {
@@ -5839,27 +5847,27 @@ public class InternalOCLinEcoreLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1:1: Tokens : ( T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | T92 | T93 | T94 | T95 | T96 | T97 | T98 | T99 | T100 | T101 | T102 | T103 | T104 | T105 | T106 | T107 | T108 | T109 | T110 | T111 | T112 | T113 | T114 | T115 | T116 | T117 | T118 | T119 | T120 | T121 | RULE_UNQUOTED_STRING | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 11, 95, input);
+                    new NoViableAltException("1:1: Tokens : ( T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | T92 | T93 | T94 | T95 | T96 | T97 | T98 | T99 | T100 | T101 | T102 | T103 | T104 | T105 | T106 | T107 | T108 | T109 | T110 | T111 | T112 | T113 | T114 | T115 | T116 | T117 | T118 | T119 | T120 | T121 | RULE_UNQUOTED_STRING | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 11, 97, input);
 
                 throw nvae;
             }
             }
-        case 'c':
+        case 't':
             {
-            return 46;
+            return 39;
             }
         case 'r':
             {
-            int LA11_97 = input.LA(3);
+            int LA11_99 = input.LA(3);
 
-            if ( (LA11_97=='e') ) {
+            if ( (LA11_99=='e') ) {
                 int LA11_197 = input.LA(4);
 
-                if ( (LA11_197=='s') ) {
-                    return 47;
-                }
-                else if ( (LA11_197=='a') ) {
+                if ( (LA11_197=='a') ) {
                     return 38;
+                }
+                else if ( (LA11_197=='s') ) {
+                    return 47;
                 }
                 else {
                     NoViableAltException nvae =
@@ -5870,51 +5878,43 @@ public class InternalOCLinEcoreLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1:1: Tokens : ( T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | T92 | T93 | T94 | T95 | T96 | T97 | T98 | T99 | T100 | T101 | T102 | T103 | T104 | T105 | T106 | T107 | T108 | T109 | T110 | T111 | T112 | T113 | T114 | T115 | T116 | T117 | T118 | T119 | T120 | T121 | RULE_UNQUOTED_STRING | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 11, 97, input);
-
-                throw nvae;
-            }
-            }
-        case 'v':
-            {
-            return 42;
-            }
-        case 'i':
-            {
-            int LA11_99 = input.LA(3);
-
-            if ( (LA11_99=='d') ) {
-                return 36;
-            }
-            else if ( (LA11_99=='n') ) {
-                return 44;
-            }
-            else {
-                NoViableAltException nvae =
                     new NoViableAltException("1:1: Tokens : ( T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | T92 | T93 | T94 | T95 | T96 | T97 | T98 | T99 | T100 | T101 | T102 | T103 | T104 | T105 | T106 | T107 | T108 | T109 | T110 | T111 | T112 | T113 | T114 | T115 | T116 | T117 | T118 | T119 | T120 | T121 | RULE_UNQUOTED_STRING | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 11, 99, input);
 
                 throw nvae;
             }
             }
-        case 'a':
+        case 'o':
             {
-            return 43;
+            return 37;
             }
-        case 't':
+        case 'i':
             {
-            return 39;
+            int LA11_101 = input.LA(3);
+
+            if ( (LA11_101=='d') ) {
+                return 36;
+            }
+            else if ( (LA11_101=='n') ) {
+                return 44;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("1:1: Tokens : ( T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | T90 | T91 | T92 | T93 | T94 | T95 | T96 | T97 | T98 | T99 | T100 | T101 | T102 | T103 | T104 | T105 | T106 | T107 | T108 | T109 | T110 | T111 | T112 | T113 | T114 | T115 | T116 | T117 | T118 | T119 | T120 | T121 | RULE_UNQUOTED_STRING | RULE_DOUBLE_QUOTED_STRING | RULE_SINGLE_QUOTED_STRING | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 11, 101, input);
+
+                throw nvae;
+            }
             }
         case 'd':
             {
             return 35;
             }
+        case 'c':
+            {
+            return 46;
+            }
         case 's':
             {
             return 45;
-            }
-        case 'o':
-            {
-            return 37;
             }
         default:
             return 118;}
@@ -5933,13 +5933,13 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     private int mTokensHelper021() throws RecognitionException {
         switch ( input.LA(2) ) {
-        case '-':
-            {
-            return 116;
-            }
         case '>':
             {
             return 73;
+            }
+        case '-':
+            {
+            return 116;
             }
         default:
             return 50;}
@@ -6085,43 +6085,19 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     private int mTokensHelper025() throws RecognitionException {
         switch ( input.LA(2) ) {
-        case 't':
-            {
-            int LA11_113 = input.LA(3);
-
-            if ( (LA11_113=='r') ) {
-                int LA11_204 = input.LA(4);
-
-                if ( (LA11_204=='i') ) {
-                    int LA11_266 = input.LA(5);
-
-                    if ( (LA11_266=='n') ) {
-                        int LA11_323 = input.LA(6);
-
-                        if ( (LA11_323=='g') ) {
-                            int LA11_371 = input.LA(7);
-
-                            if ( ((LA11_371>='0' && LA11_371<='9')||(LA11_371>='A' && LA11_371<='Z')||LA11_371=='_'||(LA11_371>='a' && LA11_371<='z')) ) {
-                                return 113;
-                            }
-                            else {
-                                return 54;}
-                        }
-                        else {
-                            return 113;}
-                    }
-                    else {
-                        return 113;}
-                }
-                else {
-                    return 113;}
-            }
-            else {
-                return 113;}
-            }
         case 'e':
             {
             switch ( input.LA(3) ) {
+            case 't':
+                {
+                int LA11_204 = input.LA(4);
+
+                if ( ((LA11_204>='0' && LA11_204<='9')||(LA11_204>='A' && LA11_204<='Z')||LA11_204=='_'||(LA11_204>='a' && LA11_204<='z')) ) {
+                    return 113;
+                }
+                else {
+                    return 59;}
+                }
             case 'q':
                 {
                 int LA11_205 = input.LA(4);
@@ -6130,15 +6106,15 @@ public class InternalOCLinEcoreLexer extends Lexer {
                     int LA11_267 = input.LA(5);
 
                     if ( (LA11_267=='e') ) {
-                        int LA11_324 = input.LA(6);
+                        int LA11_323 = input.LA(6);
 
-                        if ( (LA11_324=='n') ) {
-                            int LA11_372 = input.LA(7);
+                        if ( (LA11_323=='n') ) {
+                            int LA11_371 = input.LA(7);
 
-                            if ( (LA11_372=='c') ) {
-                                int LA11_416 = input.LA(8);
+                            if ( (LA11_371=='c') ) {
+                                int LA11_415 = input.LA(8);
 
-                                if ( (LA11_416=='e') ) {
+                                if ( (LA11_415=='e') ) {
                                     int LA11_453 = input.LA(9);
 
                                     if ( ((LA11_453>='0' && LA11_453<='9')||(LA11_453>='A' && LA11_453<='Z')||LA11_453=='_'||(LA11_453>='a' && LA11_453<='z')) ) {
@@ -6162,19 +6138,43 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 else {
                     return 113;}
                 }
-            case 't':
-                {
-                int LA11_206 = input.LA(4);
-
-                if ( ((LA11_206>='0' && LA11_206<='9')||(LA11_206>='A' && LA11_206<='Z')||LA11_206=='_'||(LA11_206>='a' && LA11_206<='z')) ) {
-                    return 113;
-                }
-                else {
-                    return 59;}
-                }
             default:
                 return 113;}
 
+            }
+        case 't':
+            {
+            int LA11_114 = input.LA(3);
+
+            if ( (LA11_114=='r') ) {
+                int LA11_206 = input.LA(4);
+
+                if ( (LA11_206=='i') ) {
+                    int LA11_268 = input.LA(5);
+
+                    if ( (LA11_268=='n') ) {
+                        int LA11_324 = input.LA(6);
+
+                        if ( (LA11_324=='g') ) {
+                            int LA11_372 = input.LA(7);
+
+                            if ( ((LA11_372>='0' && LA11_372<='9')||(LA11_372>='A' && LA11_372<='Z')||LA11_372=='_'||(LA11_372>='a' && LA11_372<='z')) ) {
+                                return 113;
+                            }
+                            else {
+                                return 54;}
+                        }
+                        else {
+                            return 113;}
+                    }
+                    else {
+                        return 113;}
+                }
+                else {
+                    return 113;}
+            }
+            else {
+                return 113;}
             }
         default:
             return 113;}
@@ -6283,39 +6283,39 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     private int mTokensHelper027() throws RecognitionException {
         switch ( input.LA(2) ) {
-        case 'r':
+        case 'c':
             {
             int LA11_116 = input.LA(3);
 
-            if ( (LA11_116=='d') ) {
-                int LA11_208 = input.LA(4);
-
-                if ( (LA11_208=='e') ) {
+            if ( (LA11_116=='l') ) {
+                switch ( input.LA(4) ) {
+                case 'I':
+                    {
                     int LA11_270 = input.LA(5);
 
-                    if ( (LA11_270=='r') ) {
+                    if ( (LA11_270=='n') ) {
                         int LA11_326 = input.LA(6);
 
-                        if ( (LA11_326=='e') ) {
+                        if ( (LA11_326=='v') ) {
                             int LA11_374 = input.LA(7);
 
-                            if ( (LA11_374=='d') ) {
+                            if ( (LA11_374=='a') ) {
                                 int LA11_418 = input.LA(8);
 
-                                if ( (LA11_418=='S') ) {
+                                if ( (LA11_418=='l') ) {
                                     int LA11_455 = input.LA(9);
 
-                                    if ( (LA11_455=='e') ) {
+                                    if ( (LA11_455=='i') ) {
                                         int LA11_480 = input.LA(10);
 
-                                        if ( (LA11_480=='t') ) {
+                                        if ( (LA11_480=='d') ) {
                                             int LA11_497 = input.LA(11);
 
                                             if ( ((LA11_497>='0' && LA11_497<='9')||(LA11_497>='A' && LA11_497<='Z')||LA11_497=='_'||(LA11_497>='a' && LA11_497<='z')) ) {
                                                 return 113;
                                             }
                                             else {
-                                                return 63;}
+                                                return 57;}
                                         }
                                         else {
                                             return 113;}
@@ -6334,19 +6334,7 @@ public class InternalOCLinEcoreLexer extends Lexer {
                     }
                     else {
                         return 113;}
-                }
-                else {
-                    return 113;}
-            }
-            else {
-                return 113;}
-            }
-        case 'c':
-            {
-            int LA11_117 = input.LA(3);
-
-            if ( (LA11_117=='l') ) {
-                switch ( input.LA(4) ) {
+                    }
                 case 'V':
                     {
                     int LA11_271 = input.LA(5);
@@ -6375,33 +6363,68 @@ public class InternalOCLinEcoreLexer extends Lexer {
                     else {
                         return 113;}
                     }
-                case 'I':
+                case 'A':
                     {
                     int LA11_272 = input.LA(5);
 
                     if ( (LA11_272=='n') ) {
                         int LA11_328 = input.LA(6);
 
-                        if ( (LA11_328=='v') ) {
+                        if ( (LA11_328=='y') ) {
                             int LA11_376 = input.LA(7);
 
-                            if ( (LA11_376=='a') ) {
-                                int LA11_420 = input.LA(8);
+                            if ( ((LA11_376>='0' && LA11_376<='9')||(LA11_376>='A' && LA11_376<='Z')||LA11_376=='_'||(LA11_376>='a' && LA11_376<='z')) ) {
+                                return 113;
+                            }
+                            else {
+                                return 56;}
+                        }
+                        else {
+                            return 113;}
+                    }
+                    else {
+                        return 113;}
+                    }
+                default:
+                    return 113;}
 
-                                if ( (LA11_420=='l') ) {
+            }
+            else {
+                return 113;}
+            }
+        case 'r':
+            {
+            int LA11_117 = input.LA(3);
+
+            if ( (LA11_117=='d') ) {
+                int LA11_209 = input.LA(4);
+
+                if ( (LA11_209=='e') ) {
+                    int LA11_273 = input.LA(5);
+
+                    if ( (LA11_273=='r') ) {
+                        int LA11_329 = input.LA(6);
+
+                        if ( (LA11_329=='e') ) {
+                            int LA11_377 = input.LA(7);
+
+                            if ( (LA11_377=='d') ) {
+                                int LA11_421 = input.LA(8);
+
+                                if ( (LA11_421=='S') ) {
                                     int LA11_457 = input.LA(9);
 
-                                    if ( (LA11_457=='i') ) {
+                                    if ( (LA11_457=='e') ) {
                                         int LA11_481 = input.LA(10);
 
-                                        if ( (LA11_481=='d') ) {
+                                        if ( (LA11_481=='t') ) {
                                             int LA11_498 = input.LA(11);
 
                                             if ( ((LA11_498>='0' && LA11_498<='9')||(LA11_498>='A' && LA11_498<='Z')||LA11_498=='_'||(LA11_498>='a' && LA11_498<='z')) ) {
                                                 return 113;
                                             }
                                             else {
-                                                return 57;}
+                                                return 63;}
                                         }
                                         else {
                                             return 113;}
@@ -6420,32 +6443,9 @@ public class InternalOCLinEcoreLexer extends Lexer {
                     }
                     else {
                         return 113;}
-                    }
-                case 'A':
-                    {
-                    int LA11_273 = input.LA(5);
-
-                    if ( (LA11_273=='n') ) {
-                        int LA11_329 = input.LA(6);
-
-                        if ( (LA11_329=='y') ) {
-                            int LA11_377 = input.LA(7);
-
-                            if ( ((LA11_377>='0' && LA11_377<='9')||(LA11_377>='A' && LA11_377<='Z')||LA11_377=='_'||(LA11_377>='a' && LA11_377<='z')) ) {
-                                return 113;
-                            }
-                            else {
-                                return 56;}
-                        }
-                        else {
-                            return 113;}
-                    }
-                    else {
-                        return 113;}
-                    }
-                default:
+                }
+                else {
                     return 113;}
-
             }
             else {
                 return 113;}
@@ -6525,13 +6525,13 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     private int mTokensHelper030() throws RecognitionException {
         switch ( input.LA(2) ) {
-        case '>':
-            {
-            return 65;
-            }
         case '=':
             {
             return 69;
+            }
+        case '>':
+            {
+            return 65;
             }
         default:
             return 67;}
@@ -6560,17 +6560,33 @@ public class InternalOCLinEcoreLexer extends Lexer {
 
     private int mTokensHelper033() throws RecognitionException {
         switch ( input.LA(2) ) {
-        case 'u':
+        case 'o':
             {
             int LA11_127 = input.LA(3);
 
-            if ( (LA11_127=='l') ) {
+            if ( (LA11_127=='t') ) {
                 int LA11_211 = input.LA(4);
 
-                if ( (LA11_211=='l') ) {
-                    int LA11_275 = input.LA(5);
+                if ( ((LA11_211>='0' && LA11_211<='9')||(LA11_211>='A' && LA11_211<='Z')||LA11_211=='_'||(LA11_211>='a' && LA11_211<='z')) ) {
+                    return 113;
+                }
+                else {
+                    return 71;}
+            }
+            else {
+                return 113;}
+            }
+        case 'u':
+            {
+            int LA11_128 = input.LA(3);
 
-                    if ( ((LA11_275>='0' && LA11_275<='9')||(LA11_275>='A' && LA11_275<='Z')||LA11_275=='_'||(LA11_275>='a' && LA11_275<='z')) ) {
+            if ( (LA11_128=='l') ) {
+                int LA11_212 = input.LA(4);
+
+                if ( (LA11_212=='l') ) {
+                    int LA11_276 = input.LA(5);
+
+                    if ( ((LA11_276>='0' && LA11_276<='9')||(LA11_276>='A' && LA11_276<='Z')||LA11_276=='_'||(LA11_276>='a' && LA11_276<='z')) ) {
                         return 113;
                     }
                     else {
@@ -6578,22 +6594,6 @@ public class InternalOCLinEcoreLexer extends Lexer {
                 }
                 else {
                     return 113;}
-            }
-            else {
-                return 113;}
-            }
-        case 'o':
-            {
-            int LA11_128 = input.LA(3);
-
-            if ( (LA11_128=='t') ) {
-                int LA11_212 = input.LA(4);
-
-                if ( ((LA11_212>='0' && LA11_212<='9')||(LA11_212>='A' && LA11_212<='Z')||LA11_212=='_'||(LA11_212>='a' && LA11_212<='z')) ) {
-                    return 113;
-                }
-                else {
-                    return 71;}
             }
             else {
                 return 113;}
