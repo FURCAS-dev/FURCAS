@@ -34,8 +34,8 @@ public class ScopeProviderAllTests extends TestSuite {
 	 * @generated
 	 */
 	public static Test suite() {
-		TestSuite suite = new ScopeProviderAllTests("ScopeProvider Tests"); //$NON-NLS-1$
-		suite.addTest(ScopeProviderTests.suite());
+		TestSuite suite = new ScopeProviderAllTests("Scope Provider Tests"); //$NON-NLS-1$
+		suite.addTestSuite(ProjectBasedScopeProviderTest.class);
 		return suite;
 	}
 
