@@ -7,12 +7,7 @@
     <package 
        uri = "http://www.eclipse.org/ocl/3.0.0/CompleteOCLCST" 
        class = "org.eclipse.ocl.examples.xtext.completeocl.completeOCLCST.CompleteOCLCSTPackage"
-       genModel = "org.eclipse.ocl.examples.xtext.completeocl/model/CompleteOCLCST.genmodel" /> 
-	
+       genModel = "model/CompleteOCLCST.genmodel" /> 
   </extension>
-
-
-
-
 
 </plugin>
