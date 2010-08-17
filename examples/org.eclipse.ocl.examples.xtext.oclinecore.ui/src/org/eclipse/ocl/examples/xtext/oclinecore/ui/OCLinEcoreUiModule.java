@@ -12,12 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreUiModule.java,v 1.5 2010/05/24 19:36:34 ewillink Exp $
+ * $Id: OCLinEcoreUiModule.java,v 1.6 2010/08/17 20:50:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui;
 
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLHighlightingConfiguration;
 import org.eclipse.ocl.examples.xtext.essentialocl.ui.syntaxcoloring.EssentialOCLSemanticHighlightingCalculator;
+import org.eclipse.ocl.examples.xtext.oclinecore.ui.internal.OCLinEcoreActivator;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocument;
 import org.eclipse.ocl.examples.xtext.oclinecore.ui.model.OCLinEcoreDocumentProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -32,6 +34,22 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculato
  */
 public class OCLinEcoreUiModule extends org.eclipse.ocl.examples.xtext.oclinecore.ui.AbstractOCLinEcoreUiModule
 {
+	private static EMFPlugin.InternalHelper helper = new EMFPlugin.InternalHelper(OCLinEcoreActivator.getInstance());
+
+	/**
+	 * Return the optionally translated value of a plugin.properties key.
+	 */
+	public static String getString(String key, boolean translate) {
+		return helper.getString(key, translate);
+	}
+
+	/**
+	 * Return the optionally translated value of a plugin.properties key with substitutions.
+	 */
+	public static String getString(String key, Object [] substitutions, boolean translate) {
+		return helper.getString(key, substitutions, translate);
+	}
+
 	public OCLinEcoreUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
