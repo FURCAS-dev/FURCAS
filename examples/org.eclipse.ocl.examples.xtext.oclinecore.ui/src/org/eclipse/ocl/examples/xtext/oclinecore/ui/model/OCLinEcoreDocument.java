@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.5 2010/05/29 15:30:44 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.6 2010/08/17 17:03:58 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -20,7 +20,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.List;
@@ -32,6 +31,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.OCLinEcore2Ecore;
 import org.eclipse.ocl.examples.xtext.oclstdlib.ui.model.BaseDocument;
@@ -41,9 +41,9 @@ public class OCLinEcoreDocument extends BaseDocument
 {
 	private static final Logger log = Logger.getLogger(OCLinEcoreDocument.class);
 	
-	public void saveAsEcore(ResourceSet resourceSet, URI ecoreURI, OutputStream outputStream) throws IOException, CoreException {
+	public void saveAsEcore(ResourceSet resourceSet, URI ecoreURI, Writer writer) throws IOException, CoreException {
 		OCLinEcore2Ecore copier = new OCLinEcore2Ecore(resourceSet, resource2, ecoreURI);
-		Resource ecoreResource = copier.exportToEcore();
+		XMLResource ecoreResource = copier.exportToEcore();
 		List<Resource.Diagnostic> errors = ecoreResource.getErrors();
 		if (errors.size() > 0) {
 			StringBuffer s = new StringBuffer();
@@ -53,7 +53,7 @@ public class OCLinEcoreDocument extends BaseDocument
 			}
 			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
 		}
-		ecoreResource.save(outputStream, null);
+		ecoreResource.save(writer, null);
 	}
 
 	@Override
