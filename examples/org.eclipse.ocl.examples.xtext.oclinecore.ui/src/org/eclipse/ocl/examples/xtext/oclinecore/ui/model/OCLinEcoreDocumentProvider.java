@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocumentProvider.java,v 1.7 2010/08/17 17:03:58 ewillink Exp $
+ * $Id: OCLinEcoreDocumentProvider.java,v 1.8 2010/08/17 20:50:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS;
@@ -51,11 +52,12 @@ import org.eclipse.xtext.parsetree.reconstr.XtextSerializationException;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.model.XtextDocumentProvider;
 
+/**
+ * OCLinEcoreDocumentProvider orchestrates the load and saving of optional XMI content
+ * externally while maintaining the serialised human friendly form internally. 
+ */
 public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 {
-//	@Inject
-//	private IResourceSetProvider resourceSetProvider;
-	
 	private Map<IDocument,Boolean> loadedAsEcoreMap = new HashMap<IDocument,Boolean>();
 	
 	private Map<IDocument,Boolean> saveAsEcoreMap = new HashMap<IDocument,Boolean>();
@@ -76,22 +78,19 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite) throws CoreException {
 		if ((element instanceof IFileEditorInput) && (document instanceof OCLinEcoreDocument) && (saveAsEcoreMap.get(document) == Boolean.TRUE)) {
 			StringWriter ecoreWriter = new StringWriter();
-			String savedContent = document.get();
 			try {
-				ResourceSet resourceSet = getResourceSet();
 				URI uri = EditUIUtil.getURI((IFileEditorInput)element);
+				ResourceSet resourceSet = getResourceSet();
 				((OCLinEcoreDocument) document).saveAsEcore(resourceSet, uri, ecoreWriter);
-				document.set(ecoreWriter.toString());
-				super.doSaveDocument(monitor, element, document, overwrite);
+				IDocument saveDocument = new Document();
+				saveDocument.set(ecoreWriter.toString());
+				super.doSaveDocument(monitor, element, saveDocument, overwrite);
 				loadedAsEcoreMap.put(document, Boolean.TRUE);
 			} catch (Exception e) {
 				OCLinEcoreUiPluginHelper helper = OCLinEcoreUiPluginHelper.INSTANCE;
 				String title = helper.getString("_UI_SaveFailure_title", true);
 				String message = helper.getString("_UI_SaveFailure_message", true);
 				ErrorDialog.openError(null, title, message, helper.createErrorStatus(e));
-				e.printStackTrace();
-			} finally {
-				document.set(savedContent);
 			}
 		}
 		else {
@@ -188,7 +187,7 @@ public class OCLinEcoreDocumentProvider extends XtextDocumentProvider
 		} catch (IOException e) {
 			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, "Failed to load", e));
 		}
-		super.setDocumentContent(document, inputStream, encoding);		// FIXME encoding
+		super.setDocumentContent(document, inputStream, encoding);
 	}
 
 	public void setPersistAsEcore(Object element, Boolean asEcore) {

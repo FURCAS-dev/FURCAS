@@ -12,19 +12,14 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreDocument.java,v 1.6 2010/08/17 17:03:58 ewillink Exp $
+ * $Id: OCLinEcoreDocument.java,v 1.7 2010/08/17 20:50:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.model;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -35,12 +30,16 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.ocl.examples.common.plugin.OCLExamplesCommonPlugin;
 import org.eclipse.ocl.examples.xtext.oclinecore.resource.OCLinEcore2Ecore;
 import org.eclipse.ocl.examples.xtext.oclstdlib.ui.model.BaseDocument;
-import org.eclipse.xtext.resource.XtextResource;
 
+/**
+ * An OCLinEcoreDocument refines a document to support generation of an alternate (XMI) content
+ * for use during save in place of its normal textual content.
+ */
 public class OCLinEcoreDocument extends BaseDocument
 {
-	private static final Logger log = Logger.getLogger(OCLinEcoreDocument.class);
-	
+	/**
+	 * Fill outputStream with the XMI representation of the Ecore to be saved.
+	 */
 	public void saveAsEcore(ResourceSet resourceSet, URI ecoreURI, Writer writer) throws IOException, CoreException {
 		OCLinEcore2Ecore copier = new OCLinEcore2Ecore(resourceSet, resource2, ecoreURI);
 		XMLResource ecoreResource = copier.exportToEcore();
@@ -54,24 +53,5 @@ public class OCLinEcoreDocument extends BaseDocument
 			throw new CoreException(new Status(IStatus.ERROR, OCLExamplesCommonPlugin.PLUGIN_ID, s.toString()));
 		}
 		ecoreResource.save(writer, null);
-	}
-
-	@Override
-	public void setInput(XtextResource resource) {
-		// Works around Bug 309383 to avoid second untranslated read
-		String contents = get();
-		if (contents != null) {
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			Writer writer = new OutputStreamWriter(outputStream);
-			try {
-				writer.write(contents);
-				writer.close();
-				InputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-				resource.load(inputStream, null);
-			} catch (IOException e) {
-				log.error(e.getMessage(), e);
-			}
-		}
-		super.setInput(resource);
 	}
 }
