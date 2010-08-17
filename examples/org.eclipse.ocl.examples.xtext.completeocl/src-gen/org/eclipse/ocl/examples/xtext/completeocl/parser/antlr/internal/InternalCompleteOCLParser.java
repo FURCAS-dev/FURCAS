@@ -27,15 +27,15 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_SINGLE_QUOTED_STRING", "RULE_INT", "RULE_ID", "RULE_DOUBLE_QUOTED_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'body'", "'context'", "'def'", "'derive'", "'import'", "'init'", "'inv'", "'Boolean'", "'Integer'", "'Real'", "'String'", "'UnlimitedNatural'", "'OclAny'", "'OclInvalid'", "'OclMessage'", "'OclState'", "'OclVoid'", "':'", "'static'", "'('", "','", "')'", "'='", "'package'", "'endpackage'", "'post'", "'pre'", "'::'", "'.'", "'->'", "'^^'", "'^'", "'?'", "'e'", "'E'", "'+'", "'-'", "'Set'", "'Bag'", "'Sequence'", "'Collection'", "'OrderedSet'", "'Tuple'", "'{'", "'}'", "'..'", "'true'", "'false'", "'invalid'", "'null'", "'implies'", "'xor'", "'or'", "'and'", "'<>'", "'>'", "'<'", "'>='", "'<='", "'*'", "'/'", "'not'", "'@'", "';'", "'|'", "'['", "']'", "'self'", "'if'", "'then'", "'else'", "'endif'", "'let'", "'in'"
     };
-    public static final int RULE_ML_COMMENT=8;
     public static final int RULE_ID=6;
-    public static final int RULE_WS=10;
-    public static final int EOF=-1;
-    public static final int RULE_INT=5;
-    public static final int RULE_SINGLE_QUOTED_STRING=4;
     public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_SINGLE_QUOTED_STRING=4;
     public static final int RULE_DOUBLE_QUOTED_STRING=7;
+    public static final int RULE_INT=5;
+    public static final int RULE_WS=10;
     public static final int RULE_SL_COMMENT=9;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=8;
 
         public InternalCompleteOCLParser(TokenStream input) {
             super(input);
@@ -1548,11 +1548,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA8_3 = input.LA(2);
 
-                if ( (LA8_3==EOF||(LA8_3>=13 && LA8_3<=14)||LA8_3==18||LA8_3==30||(LA8_3>=35 && LA8_3<=36)) ) {
-                    alt8=2;
-                }
-                else if ( (LA8_3==39) ) {
+                if ( (LA8_3==39) ) {
                     alt8=1;
+                }
+                else if ( (LA8_3==EOF||(LA8_3>=13 && LA8_3<=14)||LA8_3==18||LA8_3==30||(LA8_3>=35 && LA8_3<=36)) ) {
+                    alt8=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -1567,11 +1567,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA8_4 = input.LA(2);
 
-                if ( (LA8_4==EOF||(LA8_4>=13 && LA8_4<=14)||LA8_4==18||LA8_4==30||(LA8_4>=35 && LA8_4<=36)) ) {
-                    alt8=2;
-                }
-                else if ( (LA8_4==39) ) {
+                if ( (LA8_4==39) ) {
                     alt8=1;
+                }
+                else if ( (LA8_4==EOF||(LA8_4>=13 && LA8_4<=14)||LA8_4==18||LA8_4==30||(LA8_4>=35 && LA8_4<=36)) ) {
+                    alt8=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -1586,11 +1586,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA8_5 = input.LA(2);
 
-                if ( (LA8_5==EOF||(LA8_5>=13 && LA8_5<=14)||LA8_5==18||LA8_5==30||(LA8_5>=35 && LA8_5<=36)) ) {
-                    alt8=2;
-                }
-                else if ( (LA8_5==39) ) {
+                if ( (LA8_5==39) ) {
                     alt8=1;
+                }
+                else if ( (LA8_5==EOF||(LA8_5>=13 && LA8_5<=14)||LA8_5==18||LA8_5==30||(LA8_5>=35 && LA8_5<=36)) ) {
+                    alt8=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -1643,11 +1643,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA8_8 = input.LA(2);
 
-                if ( (LA8_8==39) ) {
-                    alt8=1;
-                }
-                else if ( (LA8_8==EOF||(LA8_8>=13 && LA8_8<=14)||LA8_8==18||LA8_8==30||(LA8_8>=35 && LA8_8<=36)) ) {
+                if ( (LA8_8==EOF||(LA8_8>=13 && LA8_8<=14)||LA8_8==18||LA8_8==30||(LA8_8>=35 && LA8_8<=36)) ) {
                     alt8=2;
+                }
+                else if ( (LA8_8==39) ) {
+                    alt8=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -1681,11 +1681,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA8_10 = input.LA(2);
 
-                if ( (LA8_10==EOF||(LA8_10>=13 && LA8_10<=14)||LA8_10==18||LA8_10==30||(LA8_10>=35 && LA8_10<=36)) ) {
-                    alt8=2;
-                }
-                else if ( (LA8_10==39) ) {
+                if ( (LA8_10==39) ) {
                     alt8=1;
+                }
+                else if ( (LA8_10==EOF||(LA8_10>=13 && LA8_10<=14)||LA8_10==18||LA8_10==30||(LA8_10>=35 && LA8_10<=36)) ) {
+                    alt8=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -3725,11 +3725,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA22_2 = input.LA(2);
 
-                if ( (LA22_2==EOF||LA22_2==31) ) {
-                    alt22=2;
-                }
-                else if ( (LA22_2==39) ) {
+                if ( (LA22_2==39) ) {
                     alt22=1;
+                }
+                else if ( (LA22_2==EOF||LA22_2==31) ) {
+                    alt22=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -3763,11 +3763,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA22_4 = input.LA(2);
 
-                if ( (LA22_4==39) ) {
-                    alt22=1;
-                }
-                else if ( (LA22_4==EOF||LA22_4==31) ) {
+                if ( (LA22_4==EOF||LA22_4==31) ) {
                     alt22=2;
+                }
+                else if ( (LA22_4==39) ) {
+                    alt22=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -3782,11 +3782,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA22_5 = input.LA(2);
 
-                if ( (LA22_5==39) ) {
-                    alt22=1;
-                }
-                else if ( (LA22_5==EOF||LA22_5==31) ) {
+                if ( (LA22_5==EOF||LA22_5==31) ) {
                     alt22=2;
+                }
+                else if ( (LA22_5==39) ) {
+                    alt22=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -3839,11 +3839,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA22_8 = input.LA(2);
 
-                if ( (LA22_8==EOF||LA22_8==31) ) {
-                    alt22=2;
-                }
-                else if ( (LA22_8==39) ) {
+                if ( (LA22_8==39) ) {
                     alt22=1;
+                }
+                else if ( (LA22_8==EOF||LA22_8==31) ) {
+                    alt22=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -3858,11 +3858,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA22_9 = input.LA(2);
 
-                if ( (LA22_9==EOF||LA22_9==31) ) {
-                    alt22=2;
-                }
-                else if ( (LA22_9==39) ) {
+                if ( (LA22_9==39) ) {
                     alt22=1;
+                }
+                else if ( (LA22_9==EOF||LA22_9==31) ) {
+                    alt22=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -4231,11 +4231,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA24_1 = input.LA(2);
 
-                if ( (LA24_1==39) ) {
-                    alt24=1;
-                }
-                else if ( (LA24_1==EOF||LA24_1==13||LA24_1==36) ) {
+                if ( (LA24_1==EOF||LA24_1==13||LA24_1==36) ) {
                     alt24=2;
+                }
+                else if ( (LA24_1==39) ) {
+                    alt24=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -4269,11 +4269,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA24_3 = input.LA(2);
 
-                if ( (LA24_3==EOF||LA24_3==13||LA24_3==36) ) {
-                    alt24=2;
-                }
-                else if ( (LA24_3==39) ) {
+                if ( (LA24_3==39) ) {
                     alt24=1;
+                }
+                else if ( (LA24_3==EOF||LA24_3==13||LA24_3==36) ) {
+                    alt24=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -4288,11 +4288,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA24_4 = input.LA(2);
 
-                if ( (LA24_4==EOF||LA24_4==13||LA24_4==36) ) {
-                    alt24=2;
-                }
-                else if ( (LA24_4==39) ) {
+                if ( (LA24_4==39) ) {
                     alt24=1;
+                }
+                else if ( (LA24_4==EOF||LA24_4==13||LA24_4==36) ) {
+                    alt24=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -4307,11 +4307,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA24_5 = input.LA(2);
 
-                if ( (LA24_5==39) ) {
-                    alt24=1;
-                }
-                else if ( (LA24_5==EOF||LA24_5==13||LA24_5==36) ) {
+                if ( (LA24_5==EOF||LA24_5==13||LA24_5==36) ) {
                     alt24=2;
+                }
+                else if ( (LA24_5==39) ) {
+                    alt24=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -4345,11 +4345,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA24_7 = input.LA(2);
 
-                if ( (LA24_7==EOF||LA24_7==13||LA24_7==36) ) {
-                    alt24=2;
-                }
-                else if ( (LA24_7==39) ) {
+                if ( (LA24_7==39) ) {
                     alt24=1;
+                }
+                else if ( (LA24_7==EOF||LA24_7==13||LA24_7==36) ) {
+                    alt24=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -4364,11 +4364,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA24_8 = input.LA(2);
 
-                if ( (LA24_8==39) ) {
-                    alt24=1;
-                }
-                else if ( (LA24_8==EOF||LA24_8==13||LA24_8==36) ) {
+                if ( (LA24_8==EOF||LA24_8==13||LA24_8==36) ) {
                     alt24=2;
+                }
+                else if ( (LA24_8==39) ) {
+                    alt24=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -4383,11 +4383,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA24_9 = input.LA(2);
 
-                if ( (LA24_9==EOF||LA24_9==13||LA24_9==36) ) {
-                    alt24=2;
-                }
-                else if ( (LA24_9==39) ) {
+                if ( (LA24_9==39) ) {
                     alt24=1;
+                }
+                else if ( (LA24_9==EOF||LA24_9==13||LA24_9==36) ) {
+                    alt24=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -4402,11 +4402,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA24_10 = input.LA(2);
 
-                if ( (LA24_10==39) ) {
-                    alt24=1;
-                }
-                else if ( (LA24_10==EOF||LA24_10==13||LA24_10==36) ) {
+                if ( (LA24_10==EOF||LA24_10==13||LA24_10==36) ) {
                     alt24=2;
+                }
+                else if ( (LA24_10==39) ) {
+                    alt24=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -5646,11 +5646,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA32_2 = input.LA(2);
 
-                if ( (LA32_2==EOF||LA32_2==29) ) {
-                    alt32=2;
-                }
-                else if ( (LA32_2==39) ) {
+                if ( (LA32_2==39) ) {
                     alt32=1;
+                }
+                else if ( (LA32_2==EOF||LA32_2==29) ) {
+                    alt32=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -5722,11 +5722,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA32_6 = input.LA(2);
 
-                if ( (LA32_6==39) ) {
-                    alt32=1;
-                }
-                else if ( (LA32_6==EOF||LA32_6==29) ) {
+                if ( (LA32_6==EOF||LA32_6==29) ) {
                     alt32=2;
+                }
+                else if ( (LA32_6==39) ) {
+                    alt32=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -5741,11 +5741,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA32_7 = input.LA(2);
 
-                if ( (LA32_7==EOF||LA32_7==29) ) {
-                    alt32=2;
-                }
-                else if ( (LA32_7==39) ) {
+                if ( (LA32_7==39) ) {
                     alt32=1;
+                }
+                else if ( (LA32_7==EOF||LA32_7==29) ) {
+                    alt32=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -17136,10 +17136,7 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                     {
                     int LA94_1 = input.LA(2);
 
-                    if ( (LA94_1==29||(LA94_1>=75 && LA94_1<=76)) ) {
-                        alt94=1;
-                    }
-                    else if ( (LA94_1==32) ) {
+                    if ( (LA94_1==32) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -17233,6 +17230,9 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( (LA94_1==29||(LA94_1>=75 && LA94_1<=76)) ) {
+                        alt94=1;
                     }
                     }
                     break;
@@ -17344,7 +17344,10 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                     {
                     int LA94_3 = input.LA(2);
 
-                    if ( (LA94_3==32) ) {
+                    if ( (LA94_3==29||(LA94_3>=75 && LA94_3<=76)) ) {
+                        alt94=1;
+                    }
+                    else if ( (LA94_3==32) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -17438,9 +17441,6 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( (LA94_3==29||(LA94_3>=75 && LA94_3<=76)) ) {
-                        alt94=1;
                     }
                     }
                     break;
@@ -17864,7 +17864,10 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                     {
                     int LA94_8 = input.LA(2);
 
-                    if ( (LA94_8==32) ) {
+                    if ( (LA94_8==29||(LA94_8>=75 && LA94_8<=76)) ) {
+                        alt94=1;
+                    }
+                    else if ( (LA94_8==32) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -17958,9 +17961,6 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( (LA94_8==29||(LA94_8>=75 && LA94_8<=76)) ) {
-                        alt94=1;
                     }
                     }
                     break;
@@ -18072,7 +18072,10 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                     {
                     int LA94_10 = input.LA(2);
 
-                    if ( (LA94_10==32) ) {
+                    if ( (LA94_10==29||(LA94_10>=75 && LA94_10<=76)) ) {
+                        alt94=1;
+                    }
+                    else if ( (LA94_10==32) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -18166,9 +18169,6 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( (LA94_10==29||(LA94_10>=75 && LA94_10<=76)) ) {
-                        alt94=1;
                     }
                     }
                     break;
@@ -19120,11 +19120,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA99_1 = input.LA(2);
 
-                if ( (LA99_1==39) ) {
-                    alt99=1;
-                }
-                else if ( (LA99_1==EOF||(LA99_1>=12 && LA99_1<=15)||(LA99_1>=17 && LA99_1<=18)||(LA99_1>=30 && LA99_1<=38)||(LA99_1>=40 && LA99_1<=43)||(LA99_1>=47 && LA99_1<=48)||(LA99_1>=56 && LA99_1<=57)||(LA99_1>=62 && LA99_1<=72)||(LA99_1>=74 && LA99_1<=78)||(LA99_1>=81 && LA99_1<=83)||LA99_1==85) ) {
+                if ( (LA99_1==EOF||(LA99_1>=12 && LA99_1<=15)||(LA99_1>=17 && LA99_1<=18)||(LA99_1>=30 && LA99_1<=38)||(LA99_1>=40 && LA99_1<=43)||(LA99_1>=47 && LA99_1<=48)||(LA99_1>=56 && LA99_1<=57)||(LA99_1>=62 && LA99_1<=72)||(LA99_1>=74 && LA99_1<=78)||(LA99_1>=81 && LA99_1<=83)||LA99_1==85) ) {
                     alt99=2;
+                }
+                else if ( (LA99_1==39) ) {
+                    alt99=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -19158,11 +19158,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA99_3 = input.LA(2);
 
-                if ( (LA99_3==EOF||(LA99_3>=12 && LA99_3<=15)||(LA99_3>=17 && LA99_3<=18)||(LA99_3>=30 && LA99_3<=38)||(LA99_3>=40 && LA99_3<=43)||(LA99_3>=47 && LA99_3<=48)||(LA99_3>=56 && LA99_3<=57)||(LA99_3>=62 && LA99_3<=72)||(LA99_3>=74 && LA99_3<=78)||(LA99_3>=81 && LA99_3<=83)||LA99_3==85) ) {
-                    alt99=2;
-                }
-                else if ( (LA99_3==39) ) {
+                if ( (LA99_3==39) ) {
                     alt99=1;
+                }
+                else if ( (LA99_3==EOF||(LA99_3>=12 && LA99_3<=15)||(LA99_3>=17 && LA99_3<=18)||(LA99_3>=30 && LA99_3<=38)||(LA99_3>=40 && LA99_3<=43)||(LA99_3>=47 && LA99_3<=48)||(LA99_3>=56 && LA99_3<=57)||(LA99_3>=62 && LA99_3<=72)||(LA99_3>=74 && LA99_3<=78)||(LA99_3>=81 && LA99_3<=83)||LA99_3==85) ) {
+                    alt99=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -19177,11 +19177,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA99_4 = input.LA(2);
 
-                if ( (LA99_4==39) ) {
-                    alt99=1;
-                }
-                else if ( (LA99_4==EOF||(LA99_4>=12 && LA99_4<=15)||(LA99_4>=17 && LA99_4<=18)||(LA99_4>=30 && LA99_4<=38)||(LA99_4>=40 && LA99_4<=43)||(LA99_4>=47 && LA99_4<=48)||(LA99_4>=56 && LA99_4<=57)||(LA99_4>=62 && LA99_4<=72)||(LA99_4>=74 && LA99_4<=78)||(LA99_4>=81 && LA99_4<=83)||LA99_4==85) ) {
+                if ( (LA99_4==EOF||(LA99_4>=12 && LA99_4<=15)||(LA99_4>=17 && LA99_4<=18)||(LA99_4>=30 && LA99_4<=38)||(LA99_4>=40 && LA99_4<=43)||(LA99_4>=47 && LA99_4<=48)||(LA99_4>=56 && LA99_4<=57)||(LA99_4>=62 && LA99_4<=72)||(LA99_4>=74 && LA99_4<=78)||(LA99_4>=81 && LA99_4<=83)||LA99_4==85) ) {
                     alt99=2;
+                }
+                else if ( (LA99_4==39) ) {
+                    alt99=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -19215,11 +19215,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA99_6 = input.LA(2);
 
-                if ( (LA99_6==39) ) {
-                    alt99=1;
-                }
-                else if ( (LA99_6==EOF||(LA99_6>=12 && LA99_6<=15)||(LA99_6>=17 && LA99_6<=18)||(LA99_6>=30 && LA99_6<=38)||(LA99_6>=40 && LA99_6<=43)||(LA99_6>=47 && LA99_6<=48)||(LA99_6>=56 && LA99_6<=57)||(LA99_6>=62 && LA99_6<=72)||(LA99_6>=74 && LA99_6<=78)||(LA99_6>=81 && LA99_6<=83)||LA99_6==85) ) {
+                if ( (LA99_6==EOF||(LA99_6>=12 && LA99_6<=15)||(LA99_6>=17 && LA99_6<=18)||(LA99_6>=30 && LA99_6<=38)||(LA99_6>=40 && LA99_6<=43)||(LA99_6>=47 && LA99_6<=48)||(LA99_6>=56 && LA99_6<=57)||(LA99_6>=62 && LA99_6<=72)||(LA99_6>=74 && LA99_6<=78)||(LA99_6>=81 && LA99_6<=83)||LA99_6==85) ) {
                     alt99=2;
+                }
+                else if ( (LA99_6==39) ) {
+                    alt99=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -19234,11 +19234,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA99_7 = input.LA(2);
 
-                if ( (LA99_7==39) ) {
-                    alt99=1;
-                }
-                else if ( (LA99_7==EOF||(LA99_7>=12 && LA99_7<=15)||(LA99_7>=17 && LA99_7<=18)||(LA99_7>=30 && LA99_7<=38)||(LA99_7>=40 && LA99_7<=43)||(LA99_7>=47 && LA99_7<=48)||(LA99_7>=56 && LA99_7<=57)||(LA99_7>=62 && LA99_7<=72)||(LA99_7>=74 && LA99_7<=78)||(LA99_7>=81 && LA99_7<=83)||LA99_7==85) ) {
+                if ( (LA99_7==EOF||(LA99_7>=12 && LA99_7<=15)||(LA99_7>=17 && LA99_7<=18)||(LA99_7>=30 && LA99_7<=38)||(LA99_7>=40 && LA99_7<=43)||(LA99_7>=47 && LA99_7<=48)||(LA99_7>=56 && LA99_7<=57)||(LA99_7>=62 && LA99_7<=72)||(LA99_7>=74 && LA99_7<=78)||(LA99_7>=81 && LA99_7<=83)||LA99_7==85) ) {
                     alt99=2;
+                }
+                else if ( (LA99_7==39) ) {
+                    alt99=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -19272,11 +19272,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA99_9 = input.LA(2);
 
-                if ( (LA99_9==39) ) {
-                    alt99=1;
-                }
-                else if ( (LA99_9==EOF||(LA99_9>=12 && LA99_9<=15)||(LA99_9>=17 && LA99_9<=18)||(LA99_9>=30 && LA99_9<=38)||(LA99_9>=40 && LA99_9<=43)||(LA99_9>=47 && LA99_9<=48)||(LA99_9>=56 && LA99_9<=57)||(LA99_9>=62 && LA99_9<=72)||(LA99_9>=74 && LA99_9<=78)||(LA99_9>=81 && LA99_9<=83)||LA99_9==85) ) {
+                if ( (LA99_9==EOF||(LA99_9>=12 && LA99_9<=15)||(LA99_9>=17 && LA99_9<=18)||(LA99_9>=30 && LA99_9<=38)||(LA99_9>=40 && LA99_9<=43)||(LA99_9>=47 && LA99_9<=48)||(LA99_9>=56 && LA99_9<=57)||(LA99_9>=62 && LA99_9<=72)||(LA99_9>=74 && LA99_9<=78)||(LA99_9>=81 && LA99_9<=83)||LA99_9==85) ) {
                     alt99=2;
+                }
+                else if ( (LA99_9==39) ) {
+                    alt99=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -21365,179 +21365,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end synpred132
 
-    public final boolean synpred132() {
+    public final boolean synpred126() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred132_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred107() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred107_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred25() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred25_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred118() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred118_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred37() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred37_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred131() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred131_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred26() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred26_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred102() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred102_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred128() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred128_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred121() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred121_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred130() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred130_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred112() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred112_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred98() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred98_fragment(); // can never throw exception
+            synpred126_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -21561,25 +21393,11 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred126() {
+    public final boolean synpred118() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred126_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred100() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred100_fragment(); // can never throw exception
+            synpred118_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -21603,11 +21421,137 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
+    public final boolean synpred128() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred128_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
     public final boolean synpred122() {
         backtracking++;
         int start = input.mark();
         try {
             synpred122_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred37() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred37_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred125() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred125_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred112() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred112_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred100() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred100_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred121() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred121_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred102() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred102_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred131() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred131_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred132() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred132_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -21631,11 +21575,67 @@ public class InternalCompleteOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred125() {
+    public final boolean synpred98() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred125_fragment(); // can never throw exception
+            synpred98_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred107() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred107_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred130() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred130_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred25() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred25_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred26() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred26_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
