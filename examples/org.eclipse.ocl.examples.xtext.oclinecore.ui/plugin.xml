@@ -219,35 +219,35 @@
 	      </visibleWhen>
 	    </command>
 	  </menuContribution-->
-       <menuContribution locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+      <menuContribution locationURI="popup:#TextEditorContext?before=group.open">
          <menu id="org.eclipse.ocl.examples.xtext.oclinecore.ui.SaveAs" label="%MF_SaveAs"/>         
-       </menuContribution>
+      </menuContribution>
 	  <menuContribution locationURI="popup:org.eclipse.ocl.examples.xtext.oclinecore.ui.SaveAs?after=additions">
 	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsEcoreCommand"
 	      label="%MF_SaveAsEcore">
-	      <visibleWhen checkEnabled="false">
-	        <iterate>
-	          <adapt type="org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS"/>
-	        </iterate>
-	      </visibleWhen>
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.Editor.opened">
+                </reference>
+            </visibleWhen>
 	    </command>
 	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.SaveAsOCLinEcoreCommand"
 	      label="%MF_SaveAsOCLinEcore">
-	      <visibleWhen checkEnabled="false">
-	        <iterate>
-	          <adapt type="org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreDocumentCS"/>
-	        </iterate>
-	      </visibleWhen>
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.Editor.opened">
+                </reference>
+            </visibleWhen>
 	    </command>
 	  </menuContribution>
-	  <menuContribution locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+	  <menuContribution locationURI="popup:#TextEditorContext?after=group.rest">
 	    <command commandId="org.eclipse.ocl.examples.xtext.oclinecore.ui.outline.CreateDynamicInstanceCommand"
 	      label="%MF_CreateDynamicInstance">
-	      <visibleWhen checkEnabled="false">
-	        <iterate>
-	          <adapt type="org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS"/>
-	        </iterate>
-	      </visibleWhen>
+            <visibleWhen checkEnabled="false">
+                <reference
+                    definitionId="org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcore.Editor.opened">
+                </reference>
+            </visibleWhen>
 	    </command>
 	  </menuContribution>
 	</extension>
