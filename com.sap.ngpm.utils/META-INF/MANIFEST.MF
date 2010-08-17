@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Utils
+Bundle-SymbolicName: com.sap.ngpm.utils
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: de.hpi.sam.bp2009.ngpm,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.query2,
+ org.eclipse.emf.query.index.ui,
+ org.eclipse.emf.query.index,
+ org.junit,
+ de.hpi.sam.bp2009.solution.eventManager,
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider,
+ de.hpi.sam.bp2009.solution.scopeProvider
+Export-Package: com.sap.ap.metamodel.utils
