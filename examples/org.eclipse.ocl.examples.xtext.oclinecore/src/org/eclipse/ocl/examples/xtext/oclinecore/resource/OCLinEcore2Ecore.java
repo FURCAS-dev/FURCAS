@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcore2Ecore.java,v 1.7 2010/08/17 17:04:00 ewillink Exp $
+ * $Id: OCLinEcore2Ecore.java,v 1.8 2010/08/17 18:55:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -55,6 +55,7 @@ import org.eclipse.ocl.ecore.delegate.InvocationBehavior;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.eclipse.ocl.ecore.delegate.ValidationBehavior;
+import org.eclipse.ocl.examples.common.utils.StringUtils;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AnnotationElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.AttributeCSRef;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
@@ -123,7 +124,7 @@ public class OCLinEcore2Ecore extends AbstractConversion
 						for (DetailCS csDetail : ((AnnotationCS)csAnnotation).getDetails()) {
 							String name = csDetail.getIdName();
 							if ("literal".equals(name)) {
-								eEnumLiteral.setLiteral(csDetail.getValue());
+								eEnumLiteral.setLiteral(StringUtils.splice(csDetail.getValue(), ""));
 							}
 							else {
 								error("Unsupported namespace detail " + name + " in pass1");
@@ -385,7 +386,7 @@ public class OCLinEcore2Ecore extends AbstractConversion
 				if (name == null) {
 					name = csDetail.getStringName();
 				}
-				eAnnotation.getDetails().put(name, csDetail.getValue());
+				eAnnotation.getDetails().put(name, StringUtils.splice(csDetail.getValue(), ""));
 			}
 		}
 

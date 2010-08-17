@@ -27,15 +27,15 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_SINGLE_QUOTED_STRING", "RULE_DOUBLE_QUOTED_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'.'", "'e'", "'E'", "'+'", "'-'", "'Boolean'", "'Integer'", "'Real'", "'String'", "'UnlimitedNatural'", "'OclAny'", "'OclInvalid'", "'OclVoid'", "'Set'", "'Bag'", "'Sequence'", "'Collection'", "'OrderedSet'", "'('", "')'", "'Tuple'", "','", "':'", "'{'", "'}'", "'..'", "'='", "'true'", "'false'", "'invalid'", "'null'", "'implies'", "'xor'", "'or'", "'and'", "'<>'", "'>'", "'<'", "'>='", "'<='", "'*'", "'/'", "'not'", "'->'", "'@'", "'pre'", "';'", "'|'", "'['", "']'", "'self'", "'::'", "'if'", "'then'", "'else'", "'endif'", "'let'", "'in'"
     };
-    public static final int RULE_ML_COMMENT=8;
     public static final int RULE_ID=5;
-    public static final int RULE_WS=10;
-    public static final int EOF=-1;
-    public static final int RULE_INT=4;
-    public static final int RULE_SINGLE_QUOTED_STRING=6;
     public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_SINGLE_QUOTED_STRING=6;
     public static final int RULE_DOUBLE_QUOTED_STRING=7;
+    public static final int RULE_INT=4;
+    public static final int RULE_WS=10;
     public static final int RULE_SL_COMMENT=9;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=8;
 
         public InternalEssentialOCLParser(TokenStream input) {
             super(input);
@@ -9411,10 +9411,7 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                     {
                     int LA55_1 = input.LA(2);
 
-                    if ( (LA55_1==34||(LA55_1>=58 && LA55_1<=59)) ) {
-                        alt55=1;
-                    }
-                    else if ( (LA55_1==33) ) {
+                    if ( (LA55_1==33) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -9445,6 +9442,9 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
+                    }
+                    else if ( (LA55_1==34||(LA55_1>=58 && LA55_1<=59)) ) {
+                        alt55=1;
                     }
                     }
                     break;
@@ -9452,7 +9452,10 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                     {
                     int LA55_2 = input.LA(2);
 
-                    if ( (LA55_2==33) ) {
+                    if ( (LA55_2==34||(LA55_2>=58 && LA55_2<=59)) ) {
+                        alt55=1;
+                    }
+                    else if ( (LA55_2==33) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -9483,9 +9486,6 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( (LA55_2==34||(LA55_2>=58 && LA55_2<=59)) ) {
-                        alt55=1;
                     }
                     }
                     break;
@@ -9493,7 +9493,10 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                     {
                     int LA55_3 = input.LA(2);
 
-                    if ( (LA55_3==33) ) {
+                    if ( (LA55_3==34||(LA55_3>=58 && LA55_3<=59)) ) {
+                        alt55=1;
+                    }
+                    else if ( (LA55_3==33) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -9524,9 +9527,6 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                                 break;
                         }
 
-                    }
-                    else if ( (LA55_3==34||(LA55_3>=58 && LA55_3<=59)) ) {
-                        alt55=1;
                     }
                     }
                     break;
@@ -10478,11 +10478,11 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
                 {
                 int LA60_1 = input.LA(2);
 
-                if ( (LA60_1==EOF||LA60_1==12||(LA60_1>=15 && LA60_1<=16)||(LA60_1>=30 && LA60_1<=31)||LA60_1==33||(LA60_1>=36 && LA60_1<=38)||(LA60_1>=43 && LA60_1<=53)||(LA60_1>=55 && LA60_1<=56)||(LA60_1>=58 && LA60_1<=61)||(LA60_1>=65 && LA60_1<=67)||LA60_1==69) ) {
-                    alt60=2;
-                }
-                else if ( (LA60_1==63) ) {
+                if ( (LA60_1==63) ) {
                     alt60=1;
+                }
+                else if ( (LA60_1==EOF||LA60_1==12||(LA60_1>=15 && LA60_1<=16)||(LA60_1>=30 && LA60_1<=31)||LA60_1==33||(LA60_1>=36 && LA60_1<=38)||(LA60_1>=43 && LA60_1<=53)||(LA60_1>=55 && LA60_1<=56)||(LA60_1>=58 && LA60_1<=61)||(LA60_1>=65 && LA60_1<=67)||LA60_1==69) ) {
+                    alt60=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return current;}
@@ -12527,11 +12527,11 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
     }
     // $ANTLR end synpred78
 
-    public final boolean synpred72() {
+    public final boolean synpred44() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred72_fragment(); // can never throw exception
+            synpred44_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12541,39 +12541,11 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred54() {
+    public final boolean synpred71() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred54_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred78() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred78_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred73() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred73_fragment(); // can never throw exception
+            synpred71_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12597,95 +12569,11 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred40() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred40_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
     public final boolean synpred57() {
         backtracking++;
         int start = input.mark();
         try {
             synpred57_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred68() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred68_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred42() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred42_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred44() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred44_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred49() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred49_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred77() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred77_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12709,11 +12597,95 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
+    public final boolean synpred72() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred72_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred68() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred68_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred49() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred49_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred54() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred54_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
     public final boolean synpred67() {
         backtracking++;
         int start = input.mark();
         try {
             synpred67_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred73() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred73_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred78() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred78_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12737,11 +12709,11 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred60() {
+    public final boolean synpred77() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred60_fragment(); // can never throw exception
+            synpred77_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -12751,11 +12723,39 @@ public class InternalEssentialOCLParser extends AbstractInternalAntlrParser {
         failed=false;
         return success;
     }
-    public final boolean synpred71() {
+    public final boolean synpred40() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred71_fragment(); // can never throw exception
+            synpred40_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred42() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred42_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred60() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred60_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }

@@ -12,14 +12,17 @@
  *
  * </copyright>
  *
- * $Id: DetailCSImpl.java,v 1.3 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: DetailCSImpl.java,v 1.4 2010/08/17 18:53:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
@@ -82,24 +85,14 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 	protected String stringName = STRING_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String value = VALUE_EDEFAULT;
+	protected EList<String> value;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -167,20 +160,11 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
+	public EList<String> getValue() {
+		if (value == null) {
+			value = new EDataTypeUniqueEList<String>(String.class, this, BaseCSTPackage.DETAIL_CS__VALUE);
+		}
 		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setValue(String newValue) {
-		String oldValue = value;
-		value = newValue;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BaseCSTPackage.DETAIL_CS__VALUE, oldValue, value));
 	}
 
 	/**
@@ -206,6 +190,7 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -216,7 +201,8 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 				setStringName((String)newValue);
 				return;
 			case BaseCSTPackage.DETAIL_CS__VALUE:
-				setValue((String)newValue);
+				getValue().clear();
+				getValue().addAll((Collection<? extends String>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -237,7 +223,7 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 				setStringName(STRING_NAME_EDEFAULT);
 				return;
 			case BaseCSTPackage.DETAIL_CS__VALUE:
-				setValue(VALUE_EDEFAULT);
+				getValue().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -256,7 +242,7 @@ public class DetailCSImpl extends ElementCSImpl implements DetailCS {
 			case BaseCSTPackage.DETAIL_CS__STRING_NAME:
 				return STRING_NAME_EDEFAULT == null ? stringName != null : !STRING_NAME_EDEFAULT.equals(stringName);
 			case BaseCSTPackage.DETAIL_CS__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+				return value != null && !value.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

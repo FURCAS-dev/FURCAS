@@ -2272,13 +2272,13 @@ public class EssentialOCLGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal DOUBLE_QUOTED_STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
 	public TerminalRule getDOUBLE_QUOTED_STRINGRule() {
 		return (tDOUBLE_QUOTED_STRING != null) ? tDOUBLE_QUOTED_STRING : (tDOUBLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DOUBLE_QUOTED_STRING"));
 	} 
 
 	//terminal SINGLE_QUOTED_STRING:
-	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
 		return (tSINGLE_QUOTED_STRING != null) ? tSINGLE_QUOTED_STRING : (tSINGLE_QUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SINGLE_QUOTED_STRING"));
 	} 

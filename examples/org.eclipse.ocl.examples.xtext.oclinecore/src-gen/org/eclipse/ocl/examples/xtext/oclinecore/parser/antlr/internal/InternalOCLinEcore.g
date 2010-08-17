@@ -3391,7 +3391,7 @@ ruleDetailCS returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        try {
-	       		set(
+	       		add(
 	       			$current, 
 	       			"value",
 	        		lv_value_3_0, 
@@ -3403,7 +3403,7 @@ ruleDetailCS returns [EObject current=null]
 	    }
 
 )
-))
+)*)
 ;
 
 
@@ -11624,9 +11624,9 @@ ruleLetVariableCS returns [EObject current=null]
 
 RULE_UNQUOTED_STRING : '\u00A3$%^\u00A3$%^';
 
-RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
+RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
-RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
+RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
 
 RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_SINGLE_QUOTED_STRING);
 

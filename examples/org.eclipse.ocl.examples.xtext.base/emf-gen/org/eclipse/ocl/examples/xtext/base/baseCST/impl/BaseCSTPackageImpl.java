@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackageImpl.java,v 1.6 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: BaseCSTPackageImpl.java,v 1.7 2010/08/17 18:53:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST.impl;
@@ -1945,7 +1945,7 @@ public class BaseCSTPackageImpl extends EPackageImpl implements BaseCSTPackage {
 		initEClass(detailCSEClass, DetailCS.class, "DetailCS", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getDetailCS_IdName(), ecorePackage.getEString(), "idName", null, 0, 1, DetailCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getDetailCS_StringName(), ecorePackage.getEString(), "stringName", null, 0, 1, DetailCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getDetailCS_Value(), ecorePackage.getEString(), "value", null, 0, 1, DetailCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getDetailCS_Value(), ecorePackage.getEString(), "value", null, 0, -1, DetailCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(documentCSEClass, DocumentCS.class, "DocumentCS", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getDocumentCS_Imports(), this.getImportCS(), null, "imports", null, 0, -1, DocumentCS.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

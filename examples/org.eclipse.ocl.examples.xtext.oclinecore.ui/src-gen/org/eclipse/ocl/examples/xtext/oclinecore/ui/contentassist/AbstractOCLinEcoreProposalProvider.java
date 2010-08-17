@@ -14,6 +14,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
  * Methods are dynamically dispatched on the first parameter, i.e., you can override them 
  * with a more concrete subtype. 
  */
+@SuppressWarnings("all")
 public class AbstractOCLinEcoreProposalProvider extends EssentialOCLProposalProvider {
 		
 	public void completeOCLinEcoreDocumentCS_Libraries(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
@@ -472,7 +473,6 @@ public class AbstractOCLinEcoreProposalProvider extends EssentialOCLProposalProv
 	public void complete_UPPER(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
-	@Override
 	public void complete_RestrictedKeywords(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}

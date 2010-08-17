@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreLabelProvider.java,v 1.3 2010/05/22 19:02:23 ewillink Exp $
+ * $Id: OCLinEcoreLabelProvider.java,v 1.4 2010/08/17 18:52:24 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.ui.labeling;
 
@@ -157,7 +157,7 @@ public class OCLinEcoreLabelProvider extends EssentialOCLLabelProvider {
 			s.append("\"");
 		}
 		s.append(" : ");
-		appendString(s, ele.getValue());
+		appendString(s, ele.getValue().get(0));
 		return s.toString();
 	}
 

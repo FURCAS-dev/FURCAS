@@ -26,14 +26,14 @@ public class InternalOCLstdlibParser extends AbstractInternalContentAssistParser
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_DOUBLE_QUOTED_STRING", "RULE_SINGLE_QUOTED_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "'*'", "'conformsTo'", "'extends'", "'import'", "'iteration'", "'library'", "'operation'", "'package'", "'property'", "'super'", "'type'", "'+'", "'?'", "'{'", "'}'", "':'", "'<'", "'>'", "','", "'('", "')'", "'=>'", "';'", "'['", "']'", "'..'", "'::'", "'&&'"
     };
-    public static final int RULE_ML_COMMENT=8;
     public static final int RULE_ID=5;
-    public static final int RULE_WS=10;
-    public static final int EOF=-1;
-    public static final int RULE_INT=4;
     public static final int RULE_SINGLE_QUOTED_STRING=7;
     public static final int RULE_DOUBLE_QUOTED_STRING=6;
+    public static final int RULE_INT=4;
+    public static final int RULE_WS=10;
     public static final int RULE_SL_COMMENT=9;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=8;
 
         public InternalOCLstdlibParser(TokenStream input) {
             super(input);

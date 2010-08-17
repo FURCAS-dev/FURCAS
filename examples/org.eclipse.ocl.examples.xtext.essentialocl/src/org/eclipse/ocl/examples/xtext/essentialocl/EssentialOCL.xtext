@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EssentialOCL.xtext,v 1.5 2010/05/21 20:12:10 ewillink Exp $
+ * $Id: EssentialOCL.xtext,v 1.6 2010/08/17 18:56:16 ewillink Exp $
  */
 grammar org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCL hidden(WS, ML_COMMENT, SL_COMMENT) //with org.eclipse.xtext.common.Terminals
 
@@ -26,11 +26,11 @@ Model returns ExpCS:
 ;
 
 terminal DOUBLE_QUOTED_STRING:
-	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* '"'
+	'"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|'"') )* '"'
 ;
 
 terminal SINGLE_QUOTED_STRING :
-	"'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|"'") )* "'"
+	"'" ( '\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\') | !('\\'|"'") )* "'"
 ; 
 	
 terminal ID :

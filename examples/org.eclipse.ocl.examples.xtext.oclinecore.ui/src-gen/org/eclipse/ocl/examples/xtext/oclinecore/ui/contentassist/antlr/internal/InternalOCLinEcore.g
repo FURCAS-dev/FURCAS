@@ -9767,7 +9767,7 @@ rule__DetailCS__Group__2__Impl
 :
 (
 { before(grammarAccess.getDetailCSAccess().getValueAssignment_2()); }
-(rule__DetailCS__ValueAssignment_2)
+(rule__DetailCS__ValueAssignment_2)*
 { after(grammarAccess.getDetailCSAccess().getValueAssignment_2()); }
 )
 
@@ -24985,9 +24985,9 @@ finally {
 
 RULE_UNQUOTED_STRING : '\u00A3$%^\u00A3$%^';
 
-RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
+RULE_DOUBLE_QUOTED_STRING : '"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"';
 
-RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
+RULE_SINGLE_QUOTED_STRING : '\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'';
 
 RULE_ID : (('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*|'_' RULE_SINGLE_QUOTED_STRING);
 

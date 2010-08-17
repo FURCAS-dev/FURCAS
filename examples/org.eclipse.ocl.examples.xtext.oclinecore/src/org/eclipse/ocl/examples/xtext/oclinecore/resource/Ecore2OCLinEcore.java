@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: Ecore2OCLinEcore.java,v 1.9 2010/05/22 18:53:01 ewillink Exp $
+ * $Id: Ecore2OCLinEcore.java,v 1.10 2010/08/17 18:55:40 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.resource;
 
@@ -262,7 +262,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 				csAnnotation.setIdSource(EcorePackage.eNS_URI);
 				DetailCS csDetail = BaseCSTFactory.eINSTANCE.createDetailCS();
 				csDetail.setIdName("literal");
-				csDetail.setValue(literal);
+				copyDetailLines(csDetail.getValue(), literal);
 				csAnnotation.getDetails().add(csDetail);
 				csEnumLiteral.getAnnotations().add(csAnnotation);
 			}
@@ -470,6 +470,17 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 			setAttribute(qualifiers, "serializable", "!serializable", eDataType, EcorePackage.Literals.EDATA_TYPE__SERIALIZABLE);
 		}
 
+
+		public void copyDetailLines(List<String> lines, String value) {
+			String[] splitLines = value.split("\n");
+			for (int i = 0; i < splitLines.length-1; i++) {
+				lines.add(splitLines[i] + '\n');
+			}
+			if (splitLines.length > 0) {
+				lines.add(splitLines[splitLines.length-1]);
+			}
+		}
+
 		protected void copyDetails(AnnotationElementCS csAnnotation, EAnnotation eAnnotation, List<String> excludedKeys) {
 			copyModelElement(csAnnotation, eAnnotation);
 			copyAnnotatedElement(csAnnotation, eAnnotation, null);
@@ -484,7 +495,7 @@ public class Ecore2OCLinEcore extends AbstractConversion implements Adapter
 					else {
 						csDetail.setStringName(name);
 					}
-					csDetail.setValue(eDetail.getValue());
+					copyDetailLines(csDetail.getValue(), eDetail.getValue());
 					csAnnotation.getDetails().add(csDetail);
 				}
 			}

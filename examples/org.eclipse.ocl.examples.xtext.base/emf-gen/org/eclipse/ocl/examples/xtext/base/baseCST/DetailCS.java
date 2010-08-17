@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
- * $Id: DetailCS.java,v 1.1 2010/05/03 05:24:47 ewillink Exp $
+ * $Id: DetailCS.java,v 1.2 2010/08/17 18:53:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
+
+import org.eclipse.emf.common.util.EList;
 
 
 /**
@@ -90,29 +92,19 @@ public interface DetailCS extends ElementCS {
 	void setStringName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * Returns the value of the '<em><b>Value</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(String)
+	 * @return the value of the '<em>Value</em>' attribute list.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage#getDetailCS_Value()
 	 * @model
 	 * @generated
 	 */
-	String getValue();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS#getValue <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' attribute.
-	 * @see #getValue()
-	 * @generated
-	 */
-	void setValue(String value);
+	EList<String> getValue();
 
 } // DetailCS

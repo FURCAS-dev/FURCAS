@@ -1562,10 +1562,10 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueSINGLE_QUOTED_STRINGTerminalRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//DetailCS returns base::DetailCS:
-		//	(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value=SINGLE_QUOTED_STRING;
+		//	(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value+=SINGLE_QUOTED_STRING*;
 		public ParserRule getRule() { return rule; }
 
-		//(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value=SINGLE_QUOTED_STRING
+		//(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value+=SINGLE_QUOTED_STRING*
 		public Group getGroup() { return cGroup; }
 
 		//idName=Identifier | stringName=SINGLE_QUOTED_STRING
@@ -1586,7 +1586,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
-		//value=SINGLE_QUOTED_STRING
+		//value+=SINGLE_QUOTED_STRING*
 		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
 
 		//SINGLE_QUOTED_STRING
@@ -3547,7 +3547,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	//
 	//terminal UNQUOTED_STRING: //  for reverse serialisation of embedded OCL 
 	//
-	//	"£$%^£$%^";
+	//	"Â£$%^Â£$%^";
 	public TerminalRule getUNQUOTED_STRINGRule() {
 		return (tUNQUOTED_STRING != null) ? tUNQUOTED_STRING : (tUNQUOTED_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "UNQUOTED_STRING"));
 	} 
@@ -3751,7 +3751,7 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DetailCS returns base::DetailCS:
-	//	(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value=SINGLE_QUOTED_STRING;
+	//	(idName=Identifier | stringName=SINGLE_QUOTED_STRING) "=" value+=SINGLE_QUOTED_STRING*;
 	public DetailCSElements getDetailCSAccess() {
 		return (pDetailCS != null) ? pDetailCS : (pDetailCS = new DetailCSElements());
 	}
@@ -4003,13 +4003,13 @@ public class OCLinEcoreGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal DOUBLE_QUOTED_STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
 	public TerminalRule getDOUBLE_QUOTED_STRINGRule() {
 		return gaEssentialOCL.getDOUBLE_QUOTED_STRINGRule();
 	} 
 
 	//terminal SINGLE_QUOTED_STRING:
-	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSINGLE_QUOTED_STRINGRule() {
 		return gaEssentialOCL.getSINGLE_QUOTED_STRINGRule();
 	} 
