@@ -15,6 +15,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -129,7 +130,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     public Collection<IProject> getForwardScopeAsProjects() {
-        return scopeAsProjects(true);
+        return scopeAsProjects(/*forward*/ true);
     }
 
     public Collection<Resource> getForwardScopeAsResources() {
@@ -146,7 +147,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     public Collection<IProject> getBackwardScopeAsProjects() {
-        return scopeAsProjects(false);
+        return scopeAsProjects(/*forward*/ false);
 
     }
 
@@ -214,17 +215,15 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     }
 
     private IFolder getModelDirectoryFromProject(IProject project) throws IllegalArgumentException {
-        // refresh if project is not totally loaded some resources should appear hear
+        // refresh: if project is not totally loaded some resources should appear hear
         try {
             project.refreshLocal(IResource.DEPTH_INFINITE, null);
         } catch (CoreException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         IResource member = project.findMember("model", true);
         if (member == null || !(member instanceof IFolder)){
             System.err.println("WARNING!!"+ project.getName() + " does not contain a model folder. It is invalid.");
-//            throw new IllegalArgumentException(project.getName() + " does not contain a model folder. It is invalid.");
             return null;
         }
         return (IFolder) member;
@@ -232,22 +231,23 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     private Set<Resource> getAllResourcesFromDirectory(IFolder modelDirectory) throws CoreException {
         final Set<Resource> resources = new HashSet<Resource>();
-        // FIXME this is probably too expensive to do upon each query / scope determination
+        /* TODO All files in the given directory are seen as model files.
+        * Perhaps, a check whether a file is a valid resource or not is necessary.
+        * But this is probably too expensive to do upon each query / scope determination.
+        */
         for (IResource f : modelDirectory.members()) {
-//            boolean successful = checkIfResourceIsValidLoadable(org.eclipse.emf.common.util.URI.createURI(f.getLocationURI()
-//                        .toString()));
-//
-//            if (successful)
+            if(!(f instanceof IFile))
+                continue;
             IProject project = f.getProject();
             IPath projectRelativePath = f.getProjectRelativePath();
-            URI uri = URI.createURI("platform:/resource/"+project.getName()+"/"+projectRelativePath.toString());
+            URI uri = URI.createPlatformResourceURI(project.getName()+"/"+projectRelativePath.toString(), /*encode*/ true);
             addNewOrInMemoryResource(resources, uri, f.getFileExtension());
         }
         return resources;
     }
 
     private IProject getProjectForResource(Resource res, URIConverter converter) throws IllegalArgumentException {
-        final String platformResourceURIPrefix = "platform:/resource/";
+        final String platformResourceURIPrefix = URI.createPlatformResourceURI("/", /*encode*/ true).toString();
         URI uri = converter.normalize(res.getURI());
         IProject project = null;
         
@@ -260,16 +260,16 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             }
             if (project == null) {
                 java.net.URI netUri = java.net.URI.create(uri.toString());
-                IContainer[] result = ResourcesPlugin.getWorkspace().getRoot().findContainersForLocationURI(netUri);
-                for (IFile file : ResourcesPlugin.getWorkspace().getRoot().findFilesForLocationURI(netUri)) {
+                IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+                IContainer[] result = root.findContainersForLocationURI(netUri);
+                for (IFile file : root.findFilesForLocationURI(netUri)) {
                     project = file.getProject();
                 }
                 for (IContainer c : result)
                     if (c instanceof IProject)
                         project = (IProject) c;
-                // TODO Think about a better way for resource without projects
-                // if(project==null)
-                // throw new IllegalArgumentException(uri +" is no valid Resource because not in the workspace");
+                if(project==null)
+                    System.err.println("Scope Provider could not resolve project for resource " + uri +", because resource not in the workspace.");
             }
         }else{
         	workSpaceClosedWarning();
@@ -290,14 +290,21 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
      */
     private void addNewOrInMemoryResource(final Set<Resource> resources, URI uri, String extension) {
         Resource inMemory = null;
-        // FIXME this comparison doesn't work for a file: URI compared to a platform: URI pointing to the same file
-        for (Resource r : getInMemoryResources())
-            if (uri.equals(r.getURI()))
+        for (Resource r : getInMemoryResources()){
+            URI resUri = r.getURI();
+            if(uri.isFile() && resUri.isPlatformResource()){
+                uri = URI.createPlatformResourceURI(uri.toString(), /*encode*/ true);
+            }
+            if(uri.isPlatformResource() && resUri.isFile()){
+                resUri = URI.createPlatformResourceURI(resUri.toString(), /*encode*/ true);
+            }
+            if (uri.equals(resUri))
                 inMemory = r;
+        }
         if(inMemory == null){
                 if(rs==null){            
-                    System.err.println("WARNING!! New ResourceSet created for \""+uri+"\". This is usually unexpected");
-                    resources.add(new ResourceSetImpl().getResource(uri, true));
+                    System.err.println("Attention!! New ResourceSet created for \""+uri+"\". This is usually unexpected!");
+                    resources.add(new ResourceSetImpl().getResource(uri, /* loadOnDemand */ true));
                 }else{
                     resources.add(rs.getResource(uri, /* loadOnDemand */ true));
                 }
@@ -321,7 +328,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 				result = recursiveGetReferenceProjectsForProjects(project,
 						result, pool, forward);
 			} catch (CoreException e) {
-				// TODO Add Exception to an intern array of errors
 				e.printStackTrace();
 			}
 		}
@@ -344,7 +350,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             try {
                 result.addAll(getAllResourcesFromDirectory(modelDir));
             } catch (CoreException e) {
-                // TODO Add Exception to an intern array of errors
                 e.printStackTrace();
             }
         }
@@ -363,7 +368,6 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
             try {
                 result.addAll(getAllResourceURIsFromDirectory(modelDir));
             } catch (CoreException e) {
-                // TODO Add Exception to an intern array of errors
                 e.printStackTrace();
             }
         }
@@ -377,7 +381,7 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
         for (IResource f : modelDir.members()) {
             IProject project = f.getProject();
             IPath projectRelativePath = f.getProjectRelativePath();
-            URI uri = URI.createURI("platform:/resource/"+project.getName()+"/"+projectRelativePath.toString());
+            URI uri = URI.createPlatformResourceURI(project.getName()+"/"+projectRelativePath.toString(), /*encoded*/ true);
             uris.add(uri);
         }
         return uris;
@@ -386,14 +390,10 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
     private Collection<EObject> scopeAsEObjects(Collection<Resource> resources) {
         Collection<EObject> result = new HashSet<EObject>();
         for (Resource resource : resources) {
-            /*
-             * FIXME unfortunately a memory leak
-             */
             if (!resource.isLoaded())
                 try {
                     resource.load(null);
                 } catch (IOException e) {
-                    // TODO Add Exception to an intern array of errors
                     e.printStackTrace();
                 }
             result.addAll(iteratorToCollection(resource.getAllContents()));
