@@ -26,15 +26,15 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_SINGLE_QUOTED_STRING", "RULE_ID", "RULE_INT", "RULE_DOUBLE_QUOTED_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'body'", "'context'", "'def'", "'derive'", "'import'", "'init'", "'inv'", "'Boolean'", "'Integer'", "'Real'", "'String'", "'UnlimitedNatural'", "'OclAny'", "'OclInvalid'", "'OclMessage'", "'OclState'", "'OclVoid'", "'.'", "'->'", "'^^'", "'^'", "'e'", "'E'", "'+'", "'-'", "'Set'", "'Bag'", "'Sequence'", "'Collection'", "'OrderedSet'", "'='", "'<>'", "'>'", "'<'", "'>='", "'<='", "'*'", "'/'", "'not'", "':'", "'('", "')'", "','", "'package'", "'endpackage'", "'post'", "'pre'", "'::'", "'?'", "'{'", "'}'", "'..'", "'Tuple'", "'invalid'", "'null'", "'@'", "'|'", "';'", "'['", "']'", "'self'", "'if'", "'then'", "'else'", "'endif'", "'let'", "'in'", "'static'", "'true'", "'false'", "'implies'", "'xor'", "'or'", "'and'"
     };
-    public static final int RULE_ML_COMMENT=8;
     public static final int RULE_ID=5;
-    public static final int RULE_WS=10;
-    public static final int EOF=-1;
-    public static final int RULE_INT=6;
-    public static final int RULE_SINGLE_QUOTED_STRING=4;
     public static final int RULE_ANY_OTHER=11;
+    public static final int RULE_SINGLE_QUOTED_STRING=4;
     public static final int RULE_DOUBLE_QUOTED_STRING=7;
+    public static final int RULE_INT=6;
+    public static final int RULE_WS=10;
     public static final int RULE_SL_COMMENT=9;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=8;
 
         public InternalCompleteOCLParser(TokenStream input) {
             super(input);
@@ -7244,11 +7244,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA6_3 = input.LA(2);
 
-                if ( (LA6_3==59) ) {
-                    alt6=1;
-                }
-                else if ( (LA6_3==EOF||(LA6_3>=13 && LA6_3<=14)||LA6_3==18||(LA6_3>=55 && LA6_3<=56)||LA6_3==79) ) {
+                if ( (LA6_3==EOF||(LA6_3>=13 && LA6_3<=14)||LA6_3==18||(LA6_3>=55 && LA6_3<=56)||LA6_3==79) ) {
                     alt6=2;
+                }
+                else if ( (LA6_3==59) ) {
+                    alt6=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7320,11 +7320,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA6_7 = input.LA(2);
 
-                if ( (LA6_7==EOF||(LA6_7>=13 && LA6_7<=14)||LA6_7==18||(LA6_7>=55 && LA6_7<=56)||LA6_7==79) ) {
-                    alt6=2;
-                }
-                else if ( (LA6_7==59) ) {
+                if ( (LA6_7==59) ) {
                     alt6=1;
+                }
+                else if ( (LA6_7==EOF||(LA6_7>=13 && LA6_7<=14)||LA6_7==18||(LA6_7>=55 && LA6_7<=56)||LA6_7==79) ) {
+                    alt6=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7339,11 +7339,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA6_8 = input.LA(2);
 
-                if ( (LA6_8==EOF||(LA6_8>=13 && LA6_8<=14)||LA6_8==18||(LA6_8>=55 && LA6_8<=56)||LA6_8==79) ) {
-                    alt6=2;
-                }
-                else if ( (LA6_8==59) ) {
+                if ( (LA6_8==59) ) {
                     alt6=1;
+                }
+                else if ( (LA6_8==EOF||(LA6_8>=13 && LA6_8<=14)||LA6_8==18||(LA6_8>=55 && LA6_8<=56)||LA6_8==79) ) {
+                    alt6=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7358,11 +7358,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA6_9 = input.LA(2);
 
-                if ( (LA6_9==59) ) {
-                    alt6=1;
-                }
-                else if ( (LA6_9==EOF||(LA6_9>=13 && LA6_9<=14)||LA6_9==18||(LA6_9>=55 && LA6_9<=56)||LA6_9==79) ) {
+                if ( (LA6_9==EOF||(LA6_9>=13 && LA6_9<=14)||LA6_9==18||(LA6_9>=55 && LA6_9<=56)||LA6_9==79) ) {
                     alt6=2;
+                }
+                else if ( (LA6_9==59) ) {
+                    alt6=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7377,11 +7377,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA6_10 = input.LA(2);
 
-                if ( (LA6_10==59) ) {
-                    alt6=1;
-                }
-                else if ( (LA6_10==EOF||(LA6_10>=13 && LA6_10<=14)||LA6_10==18||(LA6_10>=55 && LA6_10<=56)||LA6_10==79) ) {
+                if ( (LA6_10==EOF||(LA6_10>=13 && LA6_10<=14)||LA6_10==18||(LA6_10>=55 && LA6_10<=56)||LA6_10==79) ) {
                     alt6=2;
+                }
+                else if ( (LA6_10==59) ) {
+                    alt6=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7733,11 +7733,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA9_1 = input.LA(2);
 
-                if ( (LA9_1==EOF||LA9_1==52) ) {
-                    alt9=2;
-                }
-                else if ( (LA9_1==59) ) {
+                if ( (LA9_1==59) ) {
                     alt9=1;
+                }
+                else if ( (LA9_1==EOF||LA9_1==52) ) {
+                    alt9=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7752,11 +7752,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA9_2 = input.LA(2);
 
-                if ( (LA9_2==EOF||LA9_2==52) ) {
-                    alt9=2;
-                }
-                else if ( (LA9_2==59) ) {
+                if ( (LA9_2==59) ) {
                     alt9=1;
+                }
+                else if ( (LA9_2==EOF||LA9_2==52) ) {
+                    alt9=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7771,11 +7771,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA9_3 = input.LA(2);
 
-                if ( (LA9_3==59) ) {
-                    alt9=1;
-                }
-                else if ( (LA9_3==EOF||LA9_3==52) ) {
+                if ( (LA9_3==EOF||LA9_3==52) ) {
                     alt9=2;
+                }
+                else if ( (LA9_3==59) ) {
+                    alt9=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7809,11 +7809,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA9_5 = input.LA(2);
 
-                if ( (LA9_5==59) ) {
-                    alt9=1;
-                }
-                else if ( (LA9_5==EOF||LA9_5==52) ) {
+                if ( (LA9_5==EOF||LA9_5==52) ) {
                     alt9=2;
+                }
+                else if ( (LA9_5==59) ) {
+                    alt9=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7866,11 +7866,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA9_8 = input.LA(2);
 
-                if ( (LA9_8==59) ) {
-                    alt9=1;
-                }
-                else if ( (LA9_8==EOF||LA9_8==52) ) {
+                if ( (LA9_8==EOF||LA9_8==52) ) {
                     alt9=2;
+                }
+                else if ( (LA9_8==59) ) {
+                    alt9=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7885,11 +7885,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA9_9 = input.LA(2);
 
-                if ( (LA9_9==EOF||LA9_9==52) ) {
-                    alt9=2;
-                }
-                else if ( (LA9_9==59) ) {
+                if ( (LA9_9==59) ) {
                     alt9=1;
+                }
+                else if ( (LA9_9==EOF||LA9_9==52) ) {
+                    alt9=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -7904,11 +7904,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA9_10 = input.LA(2);
 
-                if ( (LA9_10==EOF||LA9_10==52) ) {
-                    alt9=2;
-                }
-                else if ( (LA9_10==59) ) {
+                if ( (LA9_10==59) ) {
                     alt9=1;
+                }
+                else if ( (LA9_10==EOF||LA9_10==52) ) {
+                    alt9=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8022,11 +8022,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA10_2 = input.LA(2);
 
-                if ( (LA10_2==EOF||LA10_2==13||LA10_2==56) ) {
-                    alt10=2;
-                }
-                else if ( (LA10_2==59) ) {
+                if ( (LA10_2==59) ) {
                     alt10=1;
+                }
+                else if ( (LA10_2==EOF||LA10_2==13||LA10_2==56) ) {
+                    alt10=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8041,11 +8041,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA10_3 = input.LA(2);
 
-                if ( (LA10_3==59) ) {
-                    alt10=1;
-                }
-                else if ( (LA10_3==EOF||LA10_3==13||LA10_3==56) ) {
+                if ( (LA10_3==EOF||LA10_3==13||LA10_3==56) ) {
                     alt10=2;
+                }
+                else if ( (LA10_3==59) ) {
+                    alt10=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8060,11 +8060,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA10_4 = input.LA(2);
 
-                if ( (LA10_4==EOF||LA10_4==13||LA10_4==56) ) {
-                    alt10=2;
-                }
-                else if ( (LA10_4==59) ) {
+                if ( (LA10_4==59) ) {
                     alt10=1;
+                }
+                else if ( (LA10_4==EOF||LA10_4==13||LA10_4==56) ) {
+                    alt10=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8117,11 +8117,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA10_7 = input.LA(2);
 
-                if ( (LA10_7==EOF||LA10_7==13||LA10_7==56) ) {
-                    alt10=2;
-                }
-                else if ( (LA10_7==59) ) {
+                if ( (LA10_7==59) ) {
                     alt10=1;
+                }
+                else if ( (LA10_7==EOF||LA10_7==13||LA10_7==56) ) {
+                    alt10=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8136,11 +8136,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA10_8 = input.LA(2);
 
-                if ( (LA10_8==59) ) {
-                    alt10=1;
-                }
-                else if ( (LA10_8==EOF||LA10_8==13||LA10_8==56) ) {
+                if ( (LA10_8==EOF||LA10_8==13||LA10_8==56) ) {
                     alt10=2;
+                }
+                else if ( (LA10_8==59) ) {
+                    alt10=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8174,11 +8174,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA10_10 = input.LA(2);
 
-                if ( (LA10_10==EOF||LA10_10==13||LA10_10==56) ) {
-                    alt10=2;
-                }
-                else if ( (LA10_10==59) ) {
+                if ( (LA10_10==59) ) {
                     alt10=1;
+                }
+                else if ( (LA10_10==EOF||LA10_10==13||LA10_10==56) ) {
+                    alt10=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8382,11 +8382,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA13_1 = input.LA(2);
 
-                if ( (LA13_1==EOF||LA13_1==51) ) {
-                    alt13=2;
-                }
-                else if ( (LA13_1==59) ) {
+                if ( (LA13_1==59) ) {
                     alt13=1;
+                }
+                else if ( (LA13_1==EOF||LA13_1==51) ) {
+                    alt13=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8420,11 +8420,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA13_3 = input.LA(2);
 
-                if ( (LA13_3==59) ) {
-                    alt13=1;
-                }
-                else if ( (LA13_3==EOF||LA13_3==51) ) {
+                if ( (LA13_3==EOF||LA13_3==51) ) {
                     alt13=2;
+                }
+                else if ( (LA13_3==59) ) {
+                    alt13=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8439,11 +8439,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA13_4 = input.LA(2);
 
-                if ( (LA13_4==59) ) {
-                    alt13=1;
-                }
-                else if ( (LA13_4==EOF||LA13_4==51) ) {
+                if ( (LA13_4==EOF||LA13_4==51) ) {
                     alt13=2;
+                }
+                else if ( (LA13_4==59) ) {
+                    alt13=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8458,11 +8458,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA13_5 = input.LA(2);
 
-                if ( (LA13_5==59) ) {
-                    alt13=1;
-                }
-                else if ( (LA13_5==EOF||LA13_5==51) ) {
+                if ( (LA13_5==EOF||LA13_5==51) ) {
                     alt13=2;
+                }
+                else if ( (LA13_5==59) ) {
+                    alt13=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8477,11 +8477,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA13_6 = input.LA(2);
 
-                if ( (LA13_6==EOF||LA13_6==51) ) {
-                    alt13=2;
-                }
-                else if ( (LA13_6==59) ) {
+                if ( (LA13_6==59) ) {
                     alt13=1;
+                }
+                else if ( (LA13_6==EOF||LA13_6==51) ) {
+                    alt13=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8496,11 +8496,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA13_7 = input.LA(2);
 
-                if ( (LA13_7==59) ) {
-                    alt13=1;
-                }
-                else if ( (LA13_7==EOF||LA13_7==51) ) {
+                if ( (LA13_7==EOF||LA13_7==51) ) {
                     alt13=2;
+                }
+                else if ( (LA13_7==59) ) {
+                    alt13=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8515,11 +8515,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA13_8 = input.LA(2);
 
-                if ( (LA13_8==59) ) {
-                    alt13=1;
-                }
-                else if ( (LA13_8==EOF||LA13_8==51) ) {
+                if ( (LA13_8==EOF||LA13_8==51) ) {
                     alt13=2;
+                }
+                else if ( (LA13_8==59) ) {
+                    alt13=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -8534,11 +8534,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA13_9 = input.LA(2);
 
-                if ( (LA13_9==EOF||LA13_9==51) ) {
-                    alt13=2;
-                }
-                else if ( (LA13_9==59) ) {
+                if ( (LA13_9==59) ) {
                     alt13=1;
+                }
+                else if ( (LA13_9==EOF||LA13_9==51) ) {
+                    alt13=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -12630,11 +12630,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA47_1 = input.LA(2);
 
-                if ( (LA47_1==EOF||(LA47_1>=12 && LA47_1<=15)||(LA47_1>=17 && LA47_1<=18)||(LA47_1>=29 && LA47_1<=32)||(LA47_1>=35 && LA47_1<=36)||(LA47_1>=42 && LA47_1<=49)||(LA47_1>=52 && LA47_1<=58)||(LA47_1>=62 && LA47_1<=63)||(LA47_1>=67 && LA47_1<=71)||(LA47_1>=74 && LA47_1<=76)||(LA47_1>=78 && LA47_1<=79)||(LA47_1>=82 && LA47_1<=85)) ) {
-                    alt47=2;
-                }
-                else if ( (LA47_1==59) ) {
+                if ( (LA47_1==59) ) {
                     alt47=1;
+                }
+                else if ( (LA47_1==EOF||(LA47_1>=12 && LA47_1<=15)||(LA47_1>=17 && LA47_1<=18)||(LA47_1>=29 && LA47_1<=32)||(LA47_1>=35 && LA47_1<=36)||(LA47_1>=42 && LA47_1<=49)||(LA47_1>=52 && LA47_1<=58)||(LA47_1>=62 && LA47_1<=63)||(LA47_1>=67 && LA47_1<=71)||(LA47_1>=74 && LA47_1<=76)||(LA47_1>=78 && LA47_1<=79)||(LA47_1>=82 && LA47_1<=85)) ) {
+                    alt47=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -12687,11 +12687,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA47_4 = input.LA(2);
 
-                if ( (LA47_4==59) ) {
-                    alt47=1;
-                }
-                else if ( (LA47_4==EOF||(LA47_4>=12 && LA47_4<=15)||(LA47_4>=17 && LA47_4<=18)||(LA47_4>=29 && LA47_4<=32)||(LA47_4>=35 && LA47_4<=36)||(LA47_4>=42 && LA47_4<=49)||(LA47_4>=52 && LA47_4<=58)||(LA47_4>=62 && LA47_4<=63)||(LA47_4>=67 && LA47_4<=71)||(LA47_4>=74 && LA47_4<=76)||(LA47_4>=78 && LA47_4<=79)||(LA47_4>=82 && LA47_4<=85)) ) {
+                if ( (LA47_4==EOF||(LA47_4>=12 && LA47_4<=15)||(LA47_4>=17 && LA47_4<=18)||(LA47_4>=29 && LA47_4<=32)||(LA47_4>=35 && LA47_4<=36)||(LA47_4>=42 && LA47_4<=49)||(LA47_4>=52 && LA47_4<=58)||(LA47_4>=62 && LA47_4<=63)||(LA47_4>=67 && LA47_4<=71)||(LA47_4>=74 && LA47_4<=76)||(LA47_4>=78 && LA47_4<=79)||(LA47_4>=82 && LA47_4<=85)) ) {
                     alt47=2;
+                }
+                else if ( (LA47_4==59) ) {
+                    alt47=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -12706,11 +12706,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA47_5 = input.LA(2);
 
-                if ( (LA47_5==EOF||(LA47_5>=12 && LA47_5<=15)||(LA47_5>=17 && LA47_5<=18)||(LA47_5>=29 && LA47_5<=32)||(LA47_5>=35 && LA47_5<=36)||(LA47_5>=42 && LA47_5<=49)||(LA47_5>=52 && LA47_5<=58)||(LA47_5>=62 && LA47_5<=63)||(LA47_5>=67 && LA47_5<=71)||(LA47_5>=74 && LA47_5<=76)||(LA47_5>=78 && LA47_5<=79)||(LA47_5>=82 && LA47_5<=85)) ) {
-                    alt47=2;
-                }
-                else if ( (LA47_5==59) ) {
+                if ( (LA47_5==59) ) {
                     alt47=1;
+                }
+                else if ( (LA47_5==EOF||(LA47_5>=12 && LA47_5<=15)||(LA47_5>=17 && LA47_5<=18)||(LA47_5>=29 && LA47_5<=32)||(LA47_5>=35 && LA47_5<=36)||(LA47_5>=42 && LA47_5<=49)||(LA47_5>=52 && LA47_5<=58)||(LA47_5>=62 && LA47_5<=63)||(LA47_5>=67 && LA47_5<=71)||(LA47_5>=74 && LA47_5<=76)||(LA47_5>=78 && LA47_5<=79)||(LA47_5>=82 && LA47_5<=85)) ) {
+                    alt47=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -12744,11 +12744,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA47_7 = input.LA(2);
 
-                if ( (LA47_7==59) ) {
-                    alt47=1;
-                }
-                else if ( (LA47_7==EOF||(LA47_7>=12 && LA47_7<=15)||(LA47_7>=17 && LA47_7<=18)||(LA47_7>=29 && LA47_7<=32)||(LA47_7>=35 && LA47_7<=36)||(LA47_7>=42 && LA47_7<=49)||(LA47_7>=52 && LA47_7<=58)||(LA47_7>=62 && LA47_7<=63)||(LA47_7>=67 && LA47_7<=71)||(LA47_7>=74 && LA47_7<=76)||(LA47_7>=78 && LA47_7<=79)||(LA47_7>=82 && LA47_7<=85)) ) {
+                if ( (LA47_7==EOF||(LA47_7>=12 && LA47_7<=15)||(LA47_7>=17 && LA47_7<=18)||(LA47_7>=29 && LA47_7<=32)||(LA47_7>=35 && LA47_7<=36)||(LA47_7>=42 && LA47_7<=49)||(LA47_7>=52 && LA47_7<=58)||(LA47_7>=62 && LA47_7<=63)||(LA47_7>=67 && LA47_7<=71)||(LA47_7>=74 && LA47_7<=76)||(LA47_7>=78 && LA47_7<=79)||(LA47_7>=82 && LA47_7<=85)) ) {
                     alt47=2;
+                }
+                else if ( (LA47_7==59) ) {
+                    alt47=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -12801,11 +12801,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                 {
                 int LA47_10 = input.LA(2);
 
-                if ( (LA47_10==59) ) {
-                    alt47=1;
-                }
-                else if ( (LA47_10==EOF||(LA47_10>=12 && LA47_10<=15)||(LA47_10>=17 && LA47_10<=18)||(LA47_10>=29 && LA47_10<=32)||(LA47_10>=35 && LA47_10<=36)||(LA47_10>=42 && LA47_10<=49)||(LA47_10>=52 && LA47_10<=58)||(LA47_10>=62 && LA47_10<=63)||(LA47_10>=67 && LA47_10<=71)||(LA47_10>=74 && LA47_10<=76)||(LA47_10>=78 && LA47_10<=79)||(LA47_10>=82 && LA47_10<=85)) ) {
+                if ( (LA47_10==EOF||(LA47_10>=12 && LA47_10<=15)||(LA47_10>=17 && LA47_10<=18)||(LA47_10>=29 && LA47_10<=32)||(LA47_10>=35 && LA47_10<=36)||(LA47_10>=42 && LA47_10<=49)||(LA47_10>=52 && LA47_10<=58)||(LA47_10>=62 && LA47_10<=63)||(LA47_10>=67 && LA47_10<=71)||(LA47_10>=74 && LA47_10<=76)||(LA47_10>=78 && LA47_10<=79)||(LA47_10>=82 && LA47_10<=85)) ) {
                     alt47=2;
+                }
+                else if ( (LA47_10==59) ) {
+                    alt47=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
@@ -33760,7 +33760,10 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                     {
                     int LA101_1 = input.LA(2);
 
-                    if ( (LA101_1==54) ) {
+                    if ( (LA101_1==51||(LA101_1>=68 && LA101_1<=69)) ) {
+                        alt101=1;
+                    }
+                    else if ( (LA101_1==54) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -33854,9 +33857,6 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                                 break;
                         }
 
-                    }
-                    else if ( (LA101_1==51||(LA101_1>=68 && LA101_1<=69)) ) {
-                        alt101=1;
                     }
                     }
                     break;
@@ -33864,7 +33864,10 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                     {
                     int LA101_2 = input.LA(2);
 
-                    if ( (LA101_2==54) ) {
+                    if ( (LA101_2==51||(LA101_2>=68 && LA101_2<=69)) ) {
+                        alt101=1;
+                    }
+                    else if ( (LA101_2==54) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -33958,9 +33961,6 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                                 break;
                         }
 
-                    }
-                    else if ( (LA101_2==51||(LA101_2>=68 && LA101_2<=69)) ) {
-                        alt101=1;
                     }
                     }
                     break;
@@ -34176,7 +34176,10 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                     {
                     int LA101_5 = input.LA(2);
 
-                    if ( (LA101_5==54) ) {
+                    if ( (LA101_5==51||(LA101_5>=68 && LA101_5<=69)) ) {
+                        alt101=1;
+                    }
+                    else if ( (LA101_5==54) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -34270,9 +34273,6 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                                 break;
                         }
 
-                    }
-                    else if ( (LA101_5==51||(LA101_5>=68 && LA101_5<=69)) ) {
-                        alt101=1;
                     }
                     }
                     break;
@@ -34280,7 +34280,10 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                     {
                     int LA101_6 = input.LA(2);
 
-                    if ( (LA101_6==54) ) {
+                    if ( (LA101_6==51||(LA101_6>=68 && LA101_6<=69)) ) {
+                        alt101=1;
+                    }
+                    else if ( (LA101_6==54) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -34374,9 +34377,6 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                                 break;
                         }
 
-                    }
-                    else if ( (LA101_6==51||(LA101_6>=68 && LA101_6<=69)) ) {
-                        alt101=1;
                     }
                     }
                     break;
@@ -34384,7 +34384,10 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                     {
                     int LA101_7 = input.LA(2);
 
-                    if ( (LA101_7==54) ) {
+                    if ( (LA101_7==51||(LA101_7>=68 && LA101_7<=69)) ) {
+                        alt101=1;
+                    }
+                    else if ( (LA101_7==54) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -34478,9 +34481,6 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                                 break;
                         }
 
-                    }
-                    else if ( (LA101_7==51||(LA101_7>=68 && LA101_7<=69)) ) {
-                        alt101=1;
                     }
                     }
                     break;
@@ -34488,7 +34488,10 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                     {
                     int LA101_8 = input.LA(2);
 
-                    if ( (LA101_8==54) ) {
+                    if ( (LA101_8==51||(LA101_8>=68 && LA101_8<=69)) ) {
+                        alt101=1;
+                    }
+                    else if ( (LA101_8==54) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -34582,9 +34585,6 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                                 break;
                         }
 
-                    }
-                    else if ( (LA101_8==51||(LA101_8>=68 && LA101_8<=69)) ) {
-                        alt101=1;
                     }
                     }
                     break;
@@ -34592,10 +34592,7 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                     {
                     int LA101_9 = input.LA(2);
 
-                    if ( (LA101_9==51||(LA101_9>=68 && LA101_9<=69)) ) {
-                        alt101=1;
-                    }
-                    else if ( (LA101_9==54) ) {
+                    if ( (LA101_9==54) ) {
                         switch ( input.LA(3) ) {
                             case RULE_ID:
                                 {
@@ -34689,6 +34686,9 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
                                 break;
                         }
 
+                    }
+                    else if ( (LA101_9==51||(LA101_9>=68 && LA101_9<=69)) ) {
+                        alt101=1;
                     }
                     }
                     break;
@@ -45838,11 +45838,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
     }
     // $ANTLR end synpred134
 
-    public final boolean synpred132() {
+    public final boolean synpred70() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred132_fragment(); // can never throw exception
+            synpred70_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -45852,39 +45852,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
         failed=false;
         return success;
     }
-    public final boolean synpred79() {
+    public final boolean synpred71() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred79_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred129() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred129_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred131() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred131_fragment(); // can never throw exception
+            synpred71_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -45908,11 +45880,25 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
         failed=false;
         return success;
     }
-    public final boolean synpred22() {
+    public final boolean synpred127() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred22_fragment(); // can never throw exception
+            synpred127_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred133() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred133_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -45927,6 +45913,160 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
         int start = input.mark();
         try {
             synpred128_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred81() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred81_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred134() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred134_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred129() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred129_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred74() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred74_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred75() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred75_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred79() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred79_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred76() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred76_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred77() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred77_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred131() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred131_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred132() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred132_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred98() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred98_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -45964,151 +46104,11 @@ public class InternalCompleteOCLParser extends AbstractInternalContentAssistPars
         failed=false;
         return success;
     }
-    public final boolean synpred75() {
+    public final boolean synpred22() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred75_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred81() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred81_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred77() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred77_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred98() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred98_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred127() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred127_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred74() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred74_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred76() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred76_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred70() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred70_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred133() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred133_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred134() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred134_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred71() {
-        backtracking++;
-        int start = input.mark();
-        try {
-            synpred71_fragment(); // can never throw exception
+            synpred22_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
