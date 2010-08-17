@@ -26,8 +26,8 @@ import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 public class MappingOCL extends OCLWithHiddenOpposites {
 
-    protected MappingOCL(MappingOCLEnvironmentFactory INSTANCE) {
-        super(INSTANCE);
+    protected MappingOCL(MappingOCLEnvironmentFactory instance) {
+        super(instance);
     }
 
     protected MappingOCL(
@@ -67,7 +67,6 @@ public class MappingOCL extends OCLWithHiddenOpposites {
         } finally {
             localEvalEnv.remove(Environment.SELF_VARIABLE_NAME);
         }
-
         return result;
     }
 
@@ -77,7 +76,7 @@ public class MappingOCL extends OCLWithHiddenOpposites {
 
         Object result = element;
 
-        if (expr.eContainer() instanceof ExpressionInOCL<?, ?>) {
+        if (expr.eContainer() instanceof ExpressionInOCL) {
             @SuppressWarnings("unchecked")
             ExpressionInOCL<EClassifier, EParameter> specification = (ExpressionInOCL<EClassifier, EParameter>) expr.eContainer();
 
@@ -92,7 +91,6 @@ public class MappingOCL extends OCLWithHiddenOpposites {
                 }
             }
         }
-
         return result;
     }
 }
