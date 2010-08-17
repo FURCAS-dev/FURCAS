@@ -48,6 +48,8 @@ import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
+// TODO refactor
+
 public class MqlMapperToString extends MappingEvaluationVisitor {
     private EvaluationEnvironment.Enumerations<EEnumLiteral> enumerations;
     private boolean error ;
@@ -109,9 +111,7 @@ public class MqlMapperToString extends MappingEvaluationVisitor {
     public Object visitIterateExp(IterateExp<EClassifier, EParameter> ie) {
         error = true;
         return "#error#";
-
     }
-
 
     @Override
     public Object visitIteratorExp(IteratorExp<EClassifier, EParameter> ie) {
@@ -225,8 +225,6 @@ public class MqlMapperToString extends MappingEvaluationVisitor {
     @Override
     public Object visitTypeExp(TypeExp<EClassifier> t) {
     	// TODO check if it is possible to map
-//    	String refType = t.getReferredType().toString();
-//        return refType;
         error = true;
         return "#error#";
     }
@@ -234,8 +232,6 @@ public class MqlMapperToString extends MappingEvaluationVisitor {
     @Override
     public Object visitStateExp(StateExp<EClassifier, EObject> s) {
     	// TODO check if it is possible to map
-//    	String refState = s.getReferredState().toString();
-//        return refState;
     	error = true;
         return "#error#";
     }
@@ -306,24 +302,18 @@ public class MqlMapperToString extends MappingEvaluationVisitor {
 
     @Override
     public Object visitCollectionLiteralExp(CollectionLiteralExp<EClassifier> cl) {
-        // TODO Auto-generated method stub
-//        return super.visitCollectionLiteralExp(cl);
     	error = true;
         return "#error#";
     }
 
     @Override
     public Object visitTupleLiteralExp(TupleLiteralExp<EClassifier, EStructuralFeature> tl) {
-        // TODO Auto-generated method stub
-//        return super.visitTupleLiteralExp(tl);
     	error = true;
         return "#error#";
     }
 
     @Override
     public Object visitTupleLiteralPart(TupleLiteralPart<EClassifier, EStructuralFeature> tp) {
-        // TODO Auto-generated method stub
-//        return super.visitTupleLiteralPart(tp);
     	error = true;
         return "#error#";
     }
@@ -332,6 +322,5 @@ public class MqlMapperToString extends MappingEvaluationVisitor {
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> evalEnv, Map<? extends EClass, ? extends Set<? extends EObject>> extentMap) {
         super(env, evalEnv, extentMap);
     }
-
 
 }
