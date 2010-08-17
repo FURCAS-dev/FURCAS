@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LoadTests.java,v 1.9 2010/08/17 07:52:48 ewillink Exp $
+ * $Id: LoadTests.java,v 1.10 2010/08/17 08:35:59 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -67,6 +67,10 @@ public class LoadTests extends XtextTestCase
 	public void testLoad_Bug321171_oclinecore() throws IOException, InterruptedException {
 		doLoad("Bug321171", "oclinecore");
 	}
+	
+	public void testLoad_Bug321903_oclinecore() throws IOException, InterruptedException {
+		doLoad("Bug321903", "oclinecore");
+	}	
 	
 	public void testLoad_Ecore_ecore() throws IOException, InterruptedException {
 		doLoad("Ecore", "ecore");

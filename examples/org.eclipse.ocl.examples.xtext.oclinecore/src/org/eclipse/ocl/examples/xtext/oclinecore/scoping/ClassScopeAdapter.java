@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.7 2010/08/17 06:51:08 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.8 2010/08/17 08:36:00 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
@@ -57,7 +58,9 @@ public class ClassScopeAdapter extends OCLinEcoreScopeAdapter<OCLinEcoreClassCS>
 		EList<TypedRefCS> superTypes = target.getSuperTypes();
 		if (superTypes.size() > 0) {
 			for (TypedRefCS csSuperType : superTypes) {
-				environmentView.addElementsOfScope(csSuperType, scopeView);
+				if (csSuperType instanceof ParameterizedTypeRefCS) {
+					environmentView.addElementsOfScope(((ParameterizedTypeRefCS)csSuperType).getType(), scopeView);
+				}
 			}
 		}
 		else {
