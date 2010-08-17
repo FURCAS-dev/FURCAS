@@ -12,17 +12,17 @@
  *
  * </copyright>
  *
- * $Id: OCLinEcoreReferenceScopeAdapter.java,v 1.3 2010/05/16 19:22:58 ewillink Exp $
+ * $Id: OCLinEcoreReferenceScopeAdapter.java,v 1.4 2010/08/17 07:52:49 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassCS;
+import org.eclipse.ocl.examples.xtext.base.baseCST.ParameterizedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypedTypeRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
 import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
@@ -40,8 +40,8 @@ public class OCLinEcoreReferenceScopeAdapter extends EssentialOCLScopeAdapter<OC
 		int newSize = environmentView.getSize();
 		if (newSize <= oldSize) {
 			for (TypedRefCS csTypeRef : csClass.getSuperTypes()) {
-				if (csTypeRef instanceof TypedTypeRefCS) {
-					TypeCS csType = ((TypedTypeRefCS)csTypeRef).getType();
+				if (csTypeRef instanceof ParameterizedTypeRefCS) {
+					TypeCS csType = ((ParameterizedTypeRefCS)csTypeRef).getType();
 					if (csType instanceof ClassCS) {
 						addAllReferences(environmentView, (ClassCS)csType, bindings);
 					}
@@ -56,8 +56,8 @@ public class OCLinEcoreReferenceScopeAdapter extends EssentialOCLScopeAdapter<OC
 		if (containmentFeature == BaseCSTPackage.Literals.REFERENCE_CS__OPPOSITE) {
 			OCLinEcoreReferenceCS target = getTarget();
 			TypedRefCS typeRef = target.getType();
-			if (typeRef instanceof TypedTypeRefCS) {
-				TypeCS type = ((TypedTypeRefCS)typeRef).getType();
+			if (typeRef instanceof ParameterizedTypeRefCS) {
+				TypeCS type = ((ParameterizedTypeRefCS)typeRef).getType();
 				if (type instanceof ClassCS) {
 					addAllReferences(environmentView, (ClassCS)type, scopeView.getBindings());
 				}
