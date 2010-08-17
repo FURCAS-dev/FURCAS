@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BaseCSTPackage.java,v 1.4 2010/05/24 08:59:31 ewillink Exp $
+ * $Id: BaseCSTPackage.java,v 1.5 2010/08/17 18:53:39 ewillink Exp $
  */
 
 package org.eclipse.ocl.examples.xtext.base.baseCST;
@@ -2145,7 +2145,7 @@ public interface BaseCSTPackage extends EPackage {
 	int DETAIL_CS__STRING_NAME = ELEMENT_CS_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * The feature id for the '<em><b>Value</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4056,10 +4056,10 @@ public interface BaseCSTPackage extends EPackage {
 	EAttribute getDetailCS_StringName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute list '{@link org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @return the meta object for the attribute list '<em>Value</em>'.
 	 * @see org.eclipse.ocl.examples.xtext.base.baseCST.DetailCS#getValue()
 	 * @see #getDetailCS()
 	 * @generated
@@ -5250,7 +5250,7 @@ public interface BaseCSTPackage extends EPackage {
 		EAttribute DETAIL_CS__STRING_NAME = eINSTANCE.getDetailCS_StringName();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
