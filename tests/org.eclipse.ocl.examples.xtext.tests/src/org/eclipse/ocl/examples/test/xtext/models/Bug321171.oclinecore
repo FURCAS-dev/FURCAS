@@ -1,0 +1,17 @@
+import ecore : 'http://www.eclipse.org/emf/2002/Ecore#/';
+
+package tutorial : tut = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial'
+{
+ package pack1 : p1 = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial/p1' {
+    class Library
+    {
+      property books#_'library' : tutorial::pack2::Book[*] { composes };       
+}
+ }
+ package pack2 : p2 = 'http://www.eclipse.org/mdt/ocl/oclinecore/tutorial/p2' {
+   class Book
+   {
+     property _'library'#books : tutorial::pack1::Library;
+   }
+ }
+}
