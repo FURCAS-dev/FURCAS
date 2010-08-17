@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SerializeTests.java,v 1.7 2010/05/24 09:04:24 ewillink Exp $
+ * $Id: SerializeTests.java,v 1.8 2010/08/17 06:51:07 ewillink Exp $
  */
 package org.eclipse.ocl.examples.test.xtext;
 
@@ -62,6 +62,10 @@ public class SerializeTests extends XtextTestCase
 		
 		
 		return documentCS;
+	}
+	
+	public void testBug320689Serialize() throws IOException, InterruptedException {
+		doSerialize("Bug320689");
 	}
 
 	public void testCompanySerialize() throws IOException, InterruptedException {

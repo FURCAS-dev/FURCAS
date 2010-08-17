@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ClassScopeAdapter.java,v 1.6 2010/05/24 08:55:13 ewillink Exp $
+ * $Id: ClassScopeAdapter.java,v 1.7 2010/08/17 06:51:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
@@ -20,18 +20,15 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
 import org.eclipse.ocl.examples.xtext.base.baseCST.ClassifierCS;
-import org.eclipse.ocl.examples.xtext.base.baseCST.ModelElementCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.baseCST.TypedRefCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.essentialocl.scoping.EssentialOCLScopeAdapter;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreCSTPackage;
 import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.OCLinEcoreClassCS;
-import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.LibClassCS;
 import org.eclipse.ocl.examples.xtext.oclstdlib.oclstdlibCST.OCLstdlibCSTPackage;
 
-public class ClassScopeAdapter extends EssentialOCLScopeAdapter<OCLinEcoreClassCS>
+public class ClassScopeAdapter extends OCLinEcoreScopeAdapter<OCLinEcoreClassCS>
 {
 	public ClassScopeAdapter(OCLinEcoreClassCS csElement) {
 		super(csElement);
@@ -66,18 +63,6 @@ public class ClassScopeAdapter extends EssentialOCLScopeAdapter<OCLinEcoreClassC
 		else {
 			ClassifierCS libType = getLibraryClassifierType();
 			addLibContents(environmentView, libType, scopeView);
-		}
-	}
-
-	public void addLibContents(EnvironmentView environmentView, ModelElementCS libType, ScopeView scopeView) {
-		if (libType == null) {
-			return;
-		}
-		environmentView.addElementsOfScope(libType, scopeView);
-		if (libType instanceof LibClassCS) {
-			for (TypedRefCS csSuperType : ((LibClassCS) libType).getConformsTo()) {
-				addLibContents(environmentView, csSuperType, scopeView);
-			}
 		}
 	}
 	

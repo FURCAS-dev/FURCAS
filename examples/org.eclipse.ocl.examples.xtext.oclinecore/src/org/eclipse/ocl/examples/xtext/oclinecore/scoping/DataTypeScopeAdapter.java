@@ -12,28 +12,22 @@
  *
  * </copyright>
  *
- * $Id: EnumScopeAdapter.java,v 1.4 2010/08/17 06:51:08 ewillink Exp $
+ * $Id: DataTypeScopeAdapter.java,v 1.1 2010/08/17 06:51:08 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclinecore.scoping;
 
-import org.eclipse.ocl.examples.xtext.base.baseCST.BaseCSTPackage;
-import org.eclipse.ocl.examples.xtext.base.baseCST.TypeBindingsCS;
 import org.eclipse.ocl.examples.xtext.base.scope.EnvironmentView;
 import org.eclipse.ocl.examples.xtext.base.scope.ScopeView;
-import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.EnumCS;
+import org.eclipse.ocl.examples.xtext.oclinecore.oclinEcoreCST.DataTypeCS;
 
-public class EnumScopeAdapter extends OCLinEcoreScopeAdapter<EnumCS>
+public class DataTypeScopeAdapter extends OCLinEcoreScopeAdapter<DataTypeCS>
 {
-	public EnumScopeAdapter(EnumCS csElement) {
+	public DataTypeScopeAdapter(DataTypeCS csElement) {
 		super(csElement);
 	}
 
 	@Override
 	public ScopeView computeLookup(EnvironmentView environmentView, ScopeView scopeView) {
-		TypeBindingsCS bindings = scopeView.getBindings();
-		EnumCS target = getTarget();
-		environmentView.addNamedElements(BaseCSTPackage.Literals.ENUM_LITERAL_CS, target.getLiterals(), bindings);
-		environmentView.addNamedElements(BaseCSTPackage.Literals.TYPE_PARAMETER_CS, target.getTypeParameters(), bindings);
 		addLibContents(environmentView, getLibraryOclAnyType(), scopeView);
 		return scopeView.getOuterScope();
 	}
