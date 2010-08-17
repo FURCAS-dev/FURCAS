@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLstdlibValueConverterService.java,v 1.4 2010/05/21 20:08:37 ewillink Exp $
+ * $Id: OCLstdlibValueConverterService.java,v 1.5 2010/08/17 18:53:32 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.oclstdlib.services;
 
@@ -40,7 +40,7 @@ public class OCLstdlibValueConverterService extends AbstractDeclarativeValueConv
 			@Override
 			protected String internalToValue(String string, AbstractNode node) {
 				try {
-					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), false);
+					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), true);
 				} catch(IllegalArgumentException e) {
 					throw new ValueConverterException(e.getMessage(), node, e);
 				}
@@ -48,7 +48,7 @@ public class OCLstdlibValueConverterService extends AbstractDeclarativeValueConv
 
 			@Override
 			protected String internalToString(String value) {
-				return '"' + Strings.convertToJavaString(value, false) + '"';
+				return '"' + Strings.convertToJavaString(value, true) + '"';
 			}
 		};
 	}
@@ -106,7 +106,7 @@ public class OCLstdlibValueConverterService extends AbstractDeclarativeValueConv
 			@Override
 			protected String internalToValue(String string, AbstractNode node) {
 				try {
-					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), false);
+					return Strings.convertFromJavaString(string.substring(1, string.length() - 1), true);
 				} catch(IllegalArgumentException e) {
 					throw new ValueConverterException(e.getMessage(), node, e);
 				}
@@ -114,7 +114,7 @@ public class OCLstdlibValueConverterService extends AbstractDeclarativeValueConv
 
 			@Override
 			protected String internalToString(String value) {
-				return "'" + Strings.convertToJavaString(value, false) + "'";
+				return "'" + Strings.convertToJavaString(value, true) + "'";
 			}
 		};
 	}
