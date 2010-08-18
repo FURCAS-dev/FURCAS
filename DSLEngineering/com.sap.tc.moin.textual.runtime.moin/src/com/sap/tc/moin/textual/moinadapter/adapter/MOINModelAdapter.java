@@ -440,7 +440,8 @@ public class MOINModelAdapter implements IBareModelAdapter {
 //catch( MQLException e) {}
             
         } else {
-            throw new IllegalArgumentException("Unknown Model Element type " + sourceModelElement.getClass());
+        	return null;
+            //throw new IllegalArgumentException("Unknown Model Element type " + sourceModelElement.getClass());
         }
     }
 
