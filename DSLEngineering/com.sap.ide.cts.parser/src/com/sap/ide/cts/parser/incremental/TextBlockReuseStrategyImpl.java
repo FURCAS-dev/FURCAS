@@ -74,6 +74,8 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	@Override
 	public void setTextBlockFactory(TextBlockFactory factory) {
 		tbFactory = factory;
+		((ReuseAwareTextBlockFactoryImpl) tbFactory).setTextBlocksReuseStrategy(this);
+		((ReuseAwareTextBlockFactoryImpl) tbFactory).setReferenceHandler(referenceHandler);
 	}
 
 	@Override
@@ -536,7 +538,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 
 					}
 					if (newTokens.size() == getTokenSize(newVersion)
-						&& getTokenSize(oldVersion) > newTokens.size()) {
+						&& getTokenSize(oldVersion) > oldTokens.size()) {
 						// there are ONLY new tokens in the new block AND
 						// there are still tokens in the oldVersion block
 						// so oldVersion block will be reused later and a
@@ -579,7 +581,17 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 					            return false;
 					        }
 					} else {
-						return true;
+//					    //no old tokens that have been reused 
+//					    //check if they are reused somewhere else
+//					    boolean hasCurrentVersionToken = false;
+//					    for (AbstractToken lexedToken : oldVersion.getTokens()) {
+//                                                if(lexedToken instanceof LexedToken) {
+//                                                    if(TbUtil.getNewestVersion(lexedToken).getVersion().equals(VersionEnum.CURRENT)) {
+//                                                        hasCurrentVersionToken = true;
+//                                                    }
+//                                                }
+//                                            }
+					    return true;
 					}
 				}
 			}

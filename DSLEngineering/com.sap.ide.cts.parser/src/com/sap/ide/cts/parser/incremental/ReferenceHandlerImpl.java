@@ -40,7 +40,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class ReferenceHandlerImpl implements ReferenceHandler {
 
-	private ObservableInjectingParser batchParser;
+	protected ObservableInjectingParser batchParser;
 	private ITextBlocksTokenStream tbtokenStream;
 	private Collection<AbstractToken> tokensForReferenceResolving = new ArrayList<AbstractToken>();
 	private Collection<DelayedReference> newlyResolvableReferences = new ArrayList<DelayedReference>();
@@ -109,6 +109,12 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 		IncrementalParsingUtil.unsetPrimitiveFeature(oldVersion, lt,
 				batchParser.getInjector());
 	}
+	
+	@Override
+        public void unsetFeature(TextBlock oldVersion, TextBlock tb) {
+                IncrementalParsingUtil.unsetFeature(oldVersion, tb,
+                                batchParser.getInjector());
+        }
 
 	@Override
 	public void reEvaluatePropertyInits(TextBlock oldVersion,

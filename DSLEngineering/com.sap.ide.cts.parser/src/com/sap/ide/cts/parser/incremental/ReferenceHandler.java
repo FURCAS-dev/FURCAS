@@ -65,13 +65,22 @@ public interface ReferenceHandler {
 		AbstractToken subNode);
 
 	/**
-	 * Unsets the value of the property that is represented by the given <code>subNode</code>
+	 * Unsets the value of the property that is represented by the given <code>lt</code>
 	 * within the corresponding model element of the given {@link TextBlock}.
 	 * 
 	 * @param oldVersion
-	 * @param subNode
+	 * @param lt
 	 */
 	void unsetPrimitiveFeature(TextBlock oldVersion, LexedToken lt);
+	
+	/**
+         * Unsets the value of the property that is represented by the given <code>tb</code>
+         * within the corresponding model element of the given {@link TextBlock}.
+         * 
+         * @param oldVersion
+         * @param tb
+         */
+        void unsetFeature(TextBlock oldVersion, TextBlock tb);
 
 	/**
 	 * Uses the newly computed PropertyInits stored in the proxy that is attached to the

@@ -320,7 +320,7 @@ public class IncrementalParsingUtil {
 		int i = 0;
 		TypedElement compareToProperty = null;
 		if (subNode instanceof LexedToken) {
-	                if(((LexedToken) subNode).isOperator()) {
+	                if(((LexedToken) subNode).isOperator() && newVersion.getTemplate() instanceof OperatorTemplate) {
 		                PropertyReference storeOperatorTo = ((OperatorTemplate) newVersion.getTemplate()).getStoreOperatorTo();
                                 if(storeOperatorTo != null) {
                                     compareToProperty = storeOperatorTo.getStrucfeature();
@@ -574,6 +574,29 @@ public class IncrementalParsingUtil {
 
 		}
 	}
+    
+    public static void unsetFeature(TextBlock oldVersion, TextBlock tb,
+            IModelInjector injector) {
+        if (oldVersion.getCorrespondingModelElements().size() > 0
+                && tb.getSequenceElement() != null
+                && tb.getSequenceElement() instanceof Property) {
+            for (RefObject ro : oldVersion.getCorrespondingModelElements()) {
+                Collection<RefObject> elements = new ArrayList<RefObject>(tb
+                        .getReferencedElements());
+                elements.addAll(tb.getCorrespondingModelElements());
+                for (RefObject refObject : elements) {
+                    try {
+                        injector.unset(ro, ((Property) tb.getSequenceElement())
+                                .getPropertyReference().getStrucfeature()
+                                .getName(), Collections.singleton(refObject));
+                    } catch (ModelCreationOntheFlyRuntimeException e) {
+                        // do nothing just try next element
+                    }
+                }
+            }
+
+        }
+    }
 
 	/**
 	 * Returns a {@link SetNewFeatureBean} for the corresponding AND referenced elements of the
