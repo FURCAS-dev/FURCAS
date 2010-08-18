@@ -30,6 +30,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilterIncludingSubclasses;
+import de.hpi.sam.bp2009.solution.eventManager.filters.NotFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilterIncludingSubclasses;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
@@ -73,12 +74,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     public EventTypeFilter createEventTypeFilter() {
         EventTypeFilter eventTypeFilter = new EventTypeFilter();
         return eventTypeFilter;
-    }
-
-    @Override
-    public OrFilter createOrFilter() {
-        OrFilter orFilter = new OrFilter();
-        return orFilter;
     }
 
     @Override
@@ -167,7 +162,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     private LogicalOperationFilterImpl createOrFilterForEventTypes(int... types) {
-        LogicalOperationFilterImpl or = createOrFilter();
+        LogicalOperationFilterImpl or = new OrFilter();
         for (int t : types) {
             EventTypeFilter e1 = createEventTypeFilter();
             e1.setEventType(t);
