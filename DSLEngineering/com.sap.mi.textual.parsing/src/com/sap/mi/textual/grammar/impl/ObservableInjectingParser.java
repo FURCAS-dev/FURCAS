@@ -788,6 +788,8 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 					tempResolvedDelayedReferenceList.add(ref);
 				}
 				// Those with a context lookup will be handled below
+			} else if(ref.getType() == DelayedReference.SEMANTIC_DISAMBIGUATE) {
+				tempResolvedDelayedReferenceList.add(ref);
 			}
 			if (ref.getContextElement() != null
 					&& ref.getContextElement() instanceof IModelElementProxy
@@ -816,6 +818,15 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 	public final void setProperty(Object modelElement, String featurename,
 			Object value) {
 		injector.set(modelElement, featurename, value);
+	}
+	
+	public final void setParent(Object modelElement, Object parent, String propertyName)
+	{
+		if(modelElement instanceof ModelElementProxy){
+			ModelElementProxy proxy = ((ModelElementProxy)modelElement);
+			proxy.setParent(parent);
+			proxy.setParentPropertyName(propertyName);
+		}
 	}
 
 	/**
@@ -1000,6 +1011,24 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 				true);
 		unResolvedDelayedReferenceList.add(ref);
 		onDelayedReferenceCreated(ref);
+	}
+	
+	public final void setSemDisambiguate(Object proxy,Object opTemplateLefthand, String opName,
+			Object element,
+			List<SemanticDisambRuleData> preds, boolean hasContext, ANTLR3LocationToken firstToken) {
+		ANTLR3LocationToken lastToken = (ANTLR3LocationToken) input.LT(-1);
+		DelayedReference ref = new DelayedReference(getCurrentContextElement(),
+				DelayedReference.SEMANTIC_DISAMBIGUATE,
+				proxy,
+				element,
+				opTemplateLefthand,
+				opName,
+				preds,
+				lastToken,
+				firstToken,
+				hasContext,
+				true);
+		unResolvedDelayedReferenceList.add(ref);
 	}
 
 	/**

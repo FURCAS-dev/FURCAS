@@ -6,9 +6,11 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub;
 import java.util.ArrayList;
 import java.util.List;
 
+import tcs.ClassTemplate;
 import tcs.OperatorList;
 
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.OperatorHandler;
+import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyBufferFactory;
 
 /**
  *
@@ -26,7 +28,7 @@ public class OperatorHandlerStub extends OperatorHandler {
     public List<String> templates = new ArrayList<String>();
    
     @Override
-    public void addOperatorList(OperatorList opList, String classTemplateName, boolean hasPrimaries) {
+    public void addOperatorList(OperatorList opList, String classTemplateName, boolean hasPrimaries, RuleBodyBufferFactory body, ClassTemplate template) {
         // add to list to check called operations later
         elements.add(opList);
         templates.add(classTemplateName);

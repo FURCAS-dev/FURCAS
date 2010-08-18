@@ -30,6 +30,8 @@ public class ModelElementProxy implements IModelElementProxy {
 	private Token firstToken;
 	private Token lastToken;
 	private Object textBlock;
+	private Object parent;
+	private String parentPropertyName; //used for semanticDisambiguate
 
 	/**
 	 * @param name
@@ -88,6 +90,11 @@ public class ModelElementProxy implements IModelElementProxy {
 		    existingList.add(value);
 		}
 		attributeMap.put(prop, existingList);
+	}
+	
+	public void setParent(Object parent)
+	{
+		this.parent = parent;
 	}
 
 	/**
@@ -207,4 +214,17 @@ public class ModelElementProxy implements IModelElementProxy {
             return textBlock;
         }
 
+		@Override
+		public Object getParent() {
+			return parent;
+		}
+
+		public String getParentPropertyName() {
+			return parentPropertyName;
+		}
+
+		public void setParentPropertyName(String parentPropertyName) {
+			this.parentPropertyName = parentPropertyName;
+		}
+		
 }
