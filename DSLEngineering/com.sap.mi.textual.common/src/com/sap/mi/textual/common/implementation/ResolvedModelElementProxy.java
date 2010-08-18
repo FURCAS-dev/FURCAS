@@ -48,6 +48,11 @@ public class ResolvedModelElementProxy implements IModelElementProxy {
 		return false;
 	    return true;
 	}
+
+	@Override
+	public Object getParent() {
+		return realObject; //this is also the parent object
+	}
 	
 	
 }
