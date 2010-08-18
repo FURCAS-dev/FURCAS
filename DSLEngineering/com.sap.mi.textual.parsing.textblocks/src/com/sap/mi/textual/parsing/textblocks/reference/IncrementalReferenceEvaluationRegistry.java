@@ -186,9 +186,10 @@ public class IncrementalReferenceEvaluationRegistry {
 	LookupPropertyInit injectorAction = (LookupPropertyInit) injectorActionBase;
 	Template template = ((InjectorActionsBlock) injectorAction.refImmediateComposite()).getParentTemplate();
 	String query = injectorAction.getValue();
-	RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup,
-		elementClass);
+	
 	try {
+	    RefObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, query, template, packagesForLookup,
+	                elementClass);
 	    DelayedReference ref = new DelayedReference(null, null, null, injectorAction.getPropertyReference().getStrucfeature()
 		    .getName(), null, null, query, false, null);
 	    // now replace any #context parts within the query with self
@@ -226,7 +227,9 @@ public class IncrementalReferenceEvaluationRegistry {
 	} catch (MoinLocalizedBaseRuntimeException ex) {
 	    System.err.println("Failed to register at IA: " + injectorAction.getValue() + "\n" + ex.getMessage());
 	    ex.printStackTrace();
-	}
+	} catch (RuntimeException ex) {
+	    System.err.println("Failed to register at IA: " + injectorAction.getValue() + "\n" + ex.getMessage());
+        }
     }
 
     /**

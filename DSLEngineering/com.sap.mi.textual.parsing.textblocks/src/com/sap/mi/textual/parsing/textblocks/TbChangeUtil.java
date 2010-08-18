@@ -442,6 +442,9 @@ public class TbChangeUtil {
 				while(index > 0 && !(elementBefore instanceof TextBlock)) {
 					elementBefore = subNodes.get(--index);
 				}
+				if(((TextBlock) element).getParentBlock() != null) {
+				    ((TextBlock) element).setParentBlock(null);
+				}
 				subBlocks.add(subBlocks.indexOf(elementBefore)+1, (TextBlock) element);
 			} else if(element instanceof AbstractToken){
 				while(index > 0 && !(elementBefore instanceof AbstractToken)) {

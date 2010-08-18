@@ -127,27 +127,31 @@ public class ShortPrettyPrinter {
 	    }	    
 	} else {
 	    //it is always the first element as all others do not have a syntax contribution!
-	    RefObject referencedObject;
+	    RefObject referencedObject = null;
 	    List<RefObject> correspondingElements = token.getParentBlock().getCorrespondingModelElements();
 	    if (correspondingElements.isEmpty()) {
-		referencedObject = token.getParentBlock().getReferencedElements().iterator().next();
+	        if( token.getParentBlock().getReferencedElements().size() > 0) {
+	            referencedObject = token.getParentBlock().getReferencedElements().iterator().next();
+	        }
 	    } else {
 		referencedObject = correspondingElements.get(0);
 	    }
             try {
-                Object value = investigator.get(referencedObject, se
-                        .getPropertyReference().getStrucfeature().getName());
-                // TODO handle pretty printing and escaping according to
-                // syntax
-                if (value instanceof Collection<?>
-                        && ((Collection<?>) value).size() > 0) {
-                    value = ((Collection<?>) value).iterator().next();
+                if(referencedObject != null) {
+                    Object value = investigator.get(referencedObject, se
+                            .getPropertyReference().getStrucfeature().getName());
+                    // TODO handle pretty printing and escaping according to
+                    // syntax
+                    if (value instanceof Collection<?>
+                            && ((Collection<?>) value).size() > 0) {
+                        value = ((Collection<?>) value).iterator().next();
+                    }
+                    if (value != null && !(value instanceof RefObject)
+                            && !(value instanceof Collection<?>)) {
+                        newvalue = value.toString();
+                    }
+                    // break;
                 }
-                if (value != null && !(value instanceof RefObject)
-                        && !(value instanceof Collection<?>)) {
-                    newvalue = value.toString();
-                }
-                // break;
             } catch (ModelAdapterException e) {
                 // element does not have such a property
                 // continue;
