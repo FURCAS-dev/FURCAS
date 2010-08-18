@@ -741,7 +741,7 @@ public class ProjectBasedScopeProviderTest extends TestCase {
         }
 
         ResourceSet resourceSet = new ResourceSetImpl();
-        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("*", new XMLResourceFactoryImpl());
+        Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMLResourceFactoryImpl());
         resourceSet.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
         Resource resource = resourceSet.createResource(URI.createURI(getFolderAsPlatformURI(folder) + "/test1.xmi"));
 
