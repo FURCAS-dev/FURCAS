@@ -345,7 +345,7 @@ public class TextBlockPrettyPrintingTraverser implements PrettyPrintingPolicy, P
 	    return;
 	}
 	LinkedList<Integer> remainingChoices = getCurrentContext().remainingAlternativeChoicesOfBlock;
-	if (getCurrentContext().haveConsumedAlternativeChoice.peek()) {
+	if (getCurrentContext().haveConsumedAlternativeChoice.peek() && remainingChoices != null) {
 	    // when we entered the alternative that is now closed, we consumed an opening marker
 	    // from the list of remainingChoices. We must now also consume the corresponding closing marker
 	    while (remainingChoices.peek() != markerOfCurrentLevel()) {
