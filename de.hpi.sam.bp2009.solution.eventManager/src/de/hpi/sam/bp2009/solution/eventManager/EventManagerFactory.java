@@ -19,10 +19,10 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilterIncludingSubclasses;
+import de.hpi.sam.bp2009.solution.eventManager.filters.NotFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilterIncludingSubclasses;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
-import de.hpi.sam.bp2009.solution.eventManager.framework.NotFilter;
 
 /**
  * Used to obtain an {@link EventManager} instance that listens to change {@link Notification}s occurring on a {@link ResourceSet}
@@ -48,11 +48,6 @@ public interface EventManagerFactory {
      * {@see EventTypeFilter#EventTypeFilter()}
      */
     EventTypeFilter createEventTypeFilter();
-
-    /**
-     * {@see OrFilter#OrFilter()}
-     */
-    OrFilter createOrFilter();
 
     /**
      * {@see NotFilter#NotFilter()}

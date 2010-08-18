@@ -1,8 +1,8 @@
-package de.hpi.sam.bp2009.solution.eventManager.framework;
+package de.hpi.sam.bp2009.solution.eventManager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
 
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.framework.LogicalOperationFilterImpl;
 
 public class NotFilter extends LogicalOperationFilterImpl {
     public NotFilter() {
@@ -10,14 +10,14 @@ public class NotFilter extends LogicalOperationFilterImpl {
     }
 
     public NotFilter(EventFilter subTypeFilterTree) {
-        filters.add(subTypeFilterTree);
+        super(subTypeFilterTree);
     }
 
     @Override
     public boolean matchesFor(Notification event) {
-        if (filters.isEmpty())
+        if (getOperands().isEmpty())
             return true;
-        return !(filters.iterator().next().matchesFor(event));
+        return !(getOperands().iterator().next().matchesFor(event));
 
     }
 
