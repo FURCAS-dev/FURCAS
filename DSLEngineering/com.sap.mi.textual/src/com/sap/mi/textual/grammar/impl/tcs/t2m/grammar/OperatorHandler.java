@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import tcs.AssociativityEnum;
+import tcs.ClassTemplate;
 import tcs.Keyword;
 import tcs.Literal;
 import tcs.Operator;
@@ -22,6 +23,7 @@ import tcs.OperatorTemplate;
 import tcs.Priority;
 import tcs.PropertyReference;
 
+import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.ClassProductionRule;
@@ -99,9 +101,11 @@ public class OperatorHandler {
      * @param opList the op list
      * @param classTemplateName the class template name
      * @param hasPrimaries 
+     * @param ruleBodyBufferFactory 
+     * @param template 
      * @throws SyntaxParsingException 
      */
-    public void addOperatorList(OperatorList opList, String classTemplateName, boolean hasPrimaries) {
+    public void addOperatorList(OperatorList opList, String classTemplateName, boolean hasPrimaries, RuleBodyBufferFactory ruleBodyBufferFactory, ClassTemplate template) {
 
         Collection<Priority> prios = opList.getPriorities();
         if (prios == null) {
@@ -144,14 +148,15 @@ public class OperatorHandler {
 
             
 
-            appendOperatorAlternatives(rulebody, priority, calledRule, associatedCallRule, isLeftAssociative);
+            appendOperatorAlternatives(rulebody, priority, calledRule, associatedCallRule, isLeftAssociative, ruleBodyBufferFactory, template);
 
             rulebody.append("\n{\n")
             .append("this.setLocationAndComment(ret, firstToken);\n")
             .append("ret2=ret;\n }");
 
 
-            String initString = "java.lang.String opName=null; org.antlr.runtime.Token firstToken=input.LT(1);";
+            String initString = "java.lang.String opName=null;\norg.antlr.runtime.Token firstToken=input.LT(1);" +
+            		"\nObject semRef=null;";
 
 
             ClassProductionRule rule = ClassProductionRule.getClassTemplateProductionRule(prefix + "priority_" + priority.getValue(), "Object ret2", initString, rulebody.toString(), false, true);
@@ -183,10 +188,12 @@ public class OperatorHandler {
      * @param nextCalledRule the rule to call in case there is no operator of this priority (fall through)
      * @param associatedCalledRule the rule to call to allow for associativity (a + b + c +  ...)
      * @param isLeftAssociative the is left associative
+     * @param ruleBodyBufferFactory 
+     * @param template 
      * @throws SyntaxParsingException 
      */
     private void appendOperatorAlternatives(VarStringBuffer rulebody,
-            Priority priority, String nextCalledRule, String associatedCalledRule, boolean isLeftAssociative ) {
+            Priority priority, String nextCalledRule, String associatedCalledRule, boolean isLeftAssociative, RuleBodyBufferFactory ruleBodyBufferFactory, ClassTemplate template ) {
 
         rulebody.append(" ("); // b1
         Collection<Operator> operators = priority.getOperators();
@@ -209,7 +216,7 @@ public class OperatorHandler {
 					}
 				}
             	if(nonPostFixUnaryOperators.size() > 0) {
-            		appendOperatorsList(rulebody, nonPostFixUnaryOperators, associatedCalledRule, isLeftAssociative, 1);
+            		appendOperatorsList(rulebody, nonPostFixUnaryOperators, associatedCalledRule, isLeftAssociative, 1, ruleBodyBufferFactory, template);
             		rulebody.append("\n|\n");
             	}
             }
@@ -229,7 +236,7 @@ public class OperatorHandler {
 				}
             	if(postFixUnaryOperators.size() > 0) {
             		rulebody.append("\n)(\n"); //b2
-            		appendOperatorsList(rulebody, postFixUnaryOperators, associatedCalledRule, isLeftAssociative, 1);
+            		appendOperatorsList(rulebody, postFixUnaryOperators, associatedCalledRule, isLeftAssociative, 1, ruleBodyBufferFactory, template);
                 	rulebody.append("\n|\n");
             	}
             }
@@ -237,7 +244,7 @@ public class OperatorHandler {
             // now append all the possible operators + right sides to rule body, if any
             if (binaryOperators.size() > 0) {
 
-                appendOperatorsList(rulebody, binaryOperators, associatedCalledRule, isLeftAssociative, 2);
+                appendOperatorsList(rulebody, binaryOperators, associatedCalledRule, isLeftAssociative, 2, ruleBodyBufferFactory, template);
                 // '*' or '?' depends on associativity of Priority
 
             }
@@ -280,10 +287,12 @@ public class OperatorHandler {
      * @param operators the operators
      * @param associativityCalledRule the associativity called rule
      * @param isLeftAssociative 
+     * @param ruleBodyBufferFactory 
+     * @param template 
      * @throws SyntaxParsingException 
      */
     private void appendOperatorsList(VarStringBuffer targetrulebody,
-            List<Operator> operators, String associativityCalledRule, boolean isLeftAssociative, int arity) {
+            List<Operator> operators, String associativityCalledRule, boolean isLeftAssociative, int arity, RuleBodyBufferFactory ruleBodyBufferFactory, ClassTemplate template) {
         try {
             VarStringBuffer rulebody = new VarStringBuffer();
             boolean hasAddedOperator = false; // used to decide about parentheses, none if nothing is added
@@ -302,6 +311,11 @@ public class OperatorHandler {
                     errorBucket.addWarning("Operator not used by any template.", operator);
                     continue;
                 }
+                
+                if (hasAddedOperator) {
+                    rulebody.append("\n| ");
+                }
+                
                 hasAddedOperator = true;
 
                 tcs.Literal literal = operator.getLiteral();
@@ -325,9 +339,11 @@ public class OperatorHandler {
                     }
                 	rulebody.append("((", literalValue, ")(");
                         boolean first = true;
+                        List<String> synpreds = new ArrayList<String>(opTemplateList.size());
                         for (OperatorTemplate operatorTemplate : opTemplateList) {
                             
-                            if(operatorTemplate.getDisambiguateV3() != null) {
+                            if(operatorTemplate.getDisambiguateV3() != null && !synpreds.contains(operatorTemplate.getDisambiguateV3())) {
+                                synpreds.add(operatorTemplate.getDisambiguateV3());
                                 if(!first) {
                                     rulebody.append("|");
                                 } else {
@@ -351,6 +367,9 @@ public class OperatorHandler {
                 
                 rulebody.append('('); // b3  / required to separate templates if many
                 
+                SemanticDisambiguateHandler semanticHandler = new SemanticDisambiguateHandler(opTemplateList,
+                		errorBucket, namingHelper);
+                boolean addedSemanticDisambiguateRule = false;
                 for (Iterator<OperatorTemplate> iterator2 = opTemplateList.iterator(); iterator2.hasNext();) {
                     OperatorTemplate opTemplate = iterator2.next();
 
@@ -358,10 +377,7 @@ public class OperatorHandler {
 //                  // TODO: Can this ever happen after parsing the syntax? Probably not.
 //                  throw new RuntimeException("Inconsistent OperatorTemplate either null or name == null " + opTemplate);
 //                  }
-                    if(opTemplate.getDisambiguateV3() != null) {
-                    	// add disambiguation rule
-                    	rulebody.append("(" + opTemplate.getDisambiguateV3() + ")=>");
-                    }
+                    
                     /*
                      * if there are 2 operands (arity = 2), the expression for both operands is first created with 
                      * the first operand, then the second operand is parsed and set. For unary operators, there 
@@ -369,56 +385,97 @@ public class OperatorHandler {
                      * then the operand is set.
                      */
                     if (arity == 2) {
-                        rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, ret, firstToken]");
-                        String storeRightTo = getRightSideStorageName(opTemplate);
-                        if (storeRightTo != null) { // is this ever possible?
-                            rulebody.append("right=", associativityCalledRule);
-                            rulebody.append(" {setProperty(ret, \"", storeRightTo, "\", right);\n",
-                                    "this.setLocationAndComment(ret, firstToken);\n",
-                            "}");
+                        if (semanticHandler
+                                .shouldUseSemanticDisambiguate(opTemplate)) {
+                            addedSemanticDisambiguateRule = semanticHandler
+                                    .addSemanticDisambiguateRule(
+                                            opTemplate,
+                                            rulebody,
+                                            ruleBodyBufferFactory,
+                                            template,
+                                            namingHelper
+                                                    .getMetaTypeListParameter(template), addedSemanticDisambiguateRule);
+                            if (iterator2.hasNext()) {
+                                rulebody.append("\n| ");
+                            }
+                        } else {
+                            if (opTemplate.getDisambiguateV3() != null) {
+                                // add disambiguation rule
+                                rulebody.append("("
+                                        + opTemplate.getDisambiguateV3()
+                                        + ")=>");
+                            }
+                            rulebody.append("(ret=", namingHelper
+                                    .getRuleName(opTemplate),
+                                    "[opName, ret, firstToken]");
+                            // auch für sem prädikat am ende erzeugen
+                            String storeRightTo = getRightSideStorageName(opTemplate);
+                            if (storeRightTo != null) { // is this ever
+                                                        // possible?
+                                rulebody.append("right=",
+                                        associativityCalledRule);
+                                rulebody
+                                        .append(
+                                                " {setProperty(ret, \"",
+                                                storeRightTo,
+                                                "\", right);\n",
+                                                "this.setLocationAndComment(ret, firstToken);\n",
+                                                "}");
+                            }
+                            rulebody.append(')');
+                            if (iterator2.hasNext()) {
+                                rulebody.append("\n| ");
+                            }
                         }
-                        rulebody.append(')');
-                    } else { 
-                        // arity == 1, unary templates don't have a StoreRightTo attribute, because they are unary.
-                    	 if (opTemplate.getDisambiguateV3() != null) {
-                         	// add disambiguation rule
-                         	rulebody.append("(" + opTemplate.getDisambiguateV3() + ")=>");
-                         }
-                    	 if(operator.isPostfix()) {
-                    		 rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, ret, firstToken]");
-                    	 } else {
-                    		 rulebody.append("(ret=", namingHelper.getRuleName(opTemplate), "[opName, null, firstToken]");
-                    	 }
-                        if ( ! isLeftAssociative) { // add here if unary and right associative
-                            rulebody.append(ObservationDirectivesHelper.getEnterSequenceElementNotification(null));
+
+                    } else {
+                        // arity == 1, unary templates don't have a StoreRightTo
+                        // attribute, because they are unary.
+                        if (opTemplate.getDisambiguateV3() != null) {
+                            // add disambiguation rule
+                            rulebody.append("("
+                                    + opTemplate.getDisambiguateV3() + ")=>");
+                        }
+                        if (operator.isPostfix()) {
+                            rulebody.append("(ret=", namingHelper
+                                    .getRuleName(opTemplate),
+                                    "[opName, ret, firstToken]");
+                        } else {
+                            rulebody.append("(ret=", namingHelper
+                                    .getRuleName(opTemplate),
+                                    "[opName, null, firstToken]");
+                        }
+                        if (!isLeftAssociative) { // add here if unary and right
+                                                  // associative
+                            rulebody.append(ObservationDirectivesHelper
+                                    .getEnterSequenceElementNotification(null));
                             appendOperatorLiteralBit(rulebody, literal);
-                            rulebody.append(ObservationDirectivesHelper.getExitSequenceElementNotification());
+                            rulebody.append(ObservationDirectivesHelper
+                                    .getExitSequenceElementNotification());
                         }
-                        if ( ! operator.isPostfix()) {
-                            rulebody.append("right=", associativityCalledRule);				    
-                            rulebody.append(" {setProperty(ret, \"", getSourceStorageName(opTemplate), "\", right);\n");
+                        if (!operator.isPostfix()) {
+                            rulebody.append("right=", associativityCalledRule);
+                            rulebody.append(" {setProperty(ret, \"",
+                                    getSourceStorageName(opTemplate),
+                                    "\", right);\n");
                         } else {
                             rulebody.append("{");
                         }
-                        rulebody.append("this.setLocationAndComment(ret, firstToken);\n",
-                        "})");
-                    }
-
-
-                    if (iterator2.hasNext()) {
-                        rulebody.append("\n| ");
+                        rulebody
+                                .append(
+                                        "this.setLocationAndComment(ret, firstToken);\n",
+                                        "})");
+                        if (iterator2.hasNext()) {
+                            rulebody.append("\n| ");
+                        }
                     }
                 } // end for operatorTemplates of operator
                 rulebody.append(')'); // b3
 
-                rulebody.append(ObservationDirectivesHelper.getExitOperatorSequenceNotification());
+                rulebody.append(ObservationDirectivesHelper
+                        .getExitOperatorSequenceNotification());
                 rulebody.append(')'); // b2
-                if (iterator.hasNext()) {
-                    rulebody.append("\n| ");
-                }			
             } // end for operators
-
-
 
             if (hasAddedOperator) {
                 targetrulebody.append('('); // bx
@@ -437,6 +494,9 @@ public class OperatorHandler {
             } // end if added anything
         } catch (SyntaxElementException e) {
             errorBucket.addException(e);
+        } catch (MetaModelLookupException e) {
+            errorBucket.addException(new SyntaxElementException(e.getMessage(),
+                    null, e));
         }
     }
 

@@ -43,30 +43,30 @@ public class RuleBodyStringBuffer {
 
     // elements protected to make unit testing a bit easier
     /** The alternative handler. */
-    private AlternativeHandler alternativeHandler;
+    protected AlternativeHandler alternativeHandler;
     
-    private InjectorActionsHandler<?> injectorActionsHandler;
+    protected InjectorActionsHandler<?> injectorActionsHandler;
 
     /** The block handler. */
-    private BlockTypeHandler blockHandler;
+    protected BlockTypeHandler blockHandler;
 
     /** The con el handler. */
-    private ConditionalElementHandler<?> conElHandler;
+    protected ConditionalElementHandler<?> conElHandler;
 
     /** The property handler. */
-    private PropertyTypeHandler<?> propertyHandler;
+    protected PropertyTypeHandler<?> propertyHandler;
 
     /** The syntax lookup. */
-    private SyntaxLookup syntaxLookup;
+    protected SyntaxLookup syntaxLookup;
 
     /** The buf. */
-    private VarStringBuffer buf = new VarStringBuffer();
+    protected VarStringBuffer buf = new VarStringBuffer();
 
-    private TemplateNamingHelper<?> namingHelper;
+    protected TemplateNamingHelper<?> namingHelper;
     
-    private List<RuleBodyPropertyConstraint> constraints = new ArrayList<RuleBodyPropertyConstraint>();
+    protected List<RuleBodyPropertyConstraint> constraints = new ArrayList<RuleBodyPropertyConstraint>();
 
-    private SemanticErrorBucket errorBucket;
+    protected SemanticErrorBucket errorBucket;
 
 
     /**
@@ -171,7 +171,7 @@ public class RuleBodyStringBuffer {
             Property prop = (Property) element;
             propertyHandler.addElement(prop, this);
         } else if (element instanceof Literal) {
-            Literal lit = (Literal) element;	
+            Literal lit = (Literal) element;
             this.append(lit.getValue());
         } else if (element instanceof LiteralRef) {
             LiteralRef lit = (LiteralRef) element;
