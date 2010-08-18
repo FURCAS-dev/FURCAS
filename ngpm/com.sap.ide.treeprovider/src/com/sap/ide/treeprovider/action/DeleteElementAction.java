@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -17,9 +19,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
 
 import com.sap.ide.treeprovider.GenericRefObjectNode;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 class DeleteElementAction extends Action {
 
@@ -39,7 +39,7 @@ class DeleteElementAction extends Action {
     public void run() {
 	ISelection lSelectedNodes = mSelection;
 	final IStructuredSelection lStructuredSelection = (IStructuredSelection) lSelectedNodes;
-	List<RefObject> ldevobjs = toRefObjectList(lStructuredSelection);
+	List<EObject> ldevobjs = toRefObjectList(lStructuredSelection);
 
 	if (ldevobjs == null)
 	    throw new IllegalStateException("Strange Input" + lSelectedNodes.toString());
@@ -47,10 +47,10 @@ class DeleteElementAction extends Action {
 	boolean lProceed = MessageDialog.openQuestion(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell().getShell(),
 		"Confirm deletion of development object", "Are you sure you want to delete selected object(s)?");
 
-	Connection connection = null;
+	ResourceSet connection = null;
 	if (lProceed) {
-	    for (RefObject devobj : ldevobjs) {
-		if (((Partitionable) devobj).is___Alive()) {
+	    for (EObject devobj : ldevobjs) {
+		if (((EObject) devobj).is___Alive()) {
 		    if (connection == null) {
 			connection = devobj.get___Connection();
 		    }
@@ -68,8 +68,8 @@ class DeleteElementAction extends Action {
     }
 
     @SuppressWarnings("unchecked")
-    private List<RefObject> toRefObjectList(IStructuredSelection selection) {
-	List<RefObject> result = new ArrayList<RefObject>(selection.size());
+    private List<EObject> toRefObjectList(IStructuredSelection selection) {
+	List<EObject> result = new ArrayList<EObject>(selection.size());
 	Iterator<Object> it = selection.iterator();
 	while (it.hasNext()) {
 	    Object o = it.next();

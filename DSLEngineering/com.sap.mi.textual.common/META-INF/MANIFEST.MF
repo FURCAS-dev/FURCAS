@@ -7,4 +7,4 @@ Export-Package: com.sap.mi.textual.common.exceptions,
  com.sap.mi.textual.common.implementation,
  com.sap.mi.textual.common.interfaces,
  com.sap.mi.textual.common.util
-Require-Bundle: com.sap.furcas.metamodel;bundle-version="1.0.0"
+Require-Bundle: com.sap.furcas.metamodel

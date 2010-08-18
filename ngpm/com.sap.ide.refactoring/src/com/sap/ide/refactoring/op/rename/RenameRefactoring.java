@@ -3,6 +3,7 @@ package com.sap.ide.refactoring.op.rename;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
@@ -12,12 +13,11 @@ import com.sap.ide.refactoring.core.TextBlockAwareRefactoringCommandExecutor;
 import com.sap.ide.refactoring.core.model.rename.NamedElement;
 import com.sap.ide.refactoring.core.model.util.RefactoringModelUtil;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class RenameRefactoring extends Refactoring {
 
 
-    private RefObject target;
+    private EObject target;
     private NamedElement targetAsNamedElement;
     private String newName;
 
@@ -31,7 +31,7 @@ public class RenameRefactoring extends Refactoring {
 
 // #### Preparation and initial check (before the GUI is shown) ####
 
-    void setRenameTarget(RefObject target) {
+    void setRenameTarget(EObject target) {
 	this.target = target;
     }
 

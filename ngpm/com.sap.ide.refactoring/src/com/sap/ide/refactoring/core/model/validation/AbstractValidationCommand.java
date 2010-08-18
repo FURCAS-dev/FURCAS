@@ -3,17 +3,17 @@ package com.sap.ide.refactoring.core.model.validation;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.core.commands.Command;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.commands.Command;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
 
 public abstract class AbstractValidationCommand extends Command {
 
     protected RefactoringStatus status = new RefactoringStatus();
 
-    protected AbstractValidationCommand(Connection connection, String description) {
+    protected AbstractValidationCommand(ResourceSet connection, String description) {
 	super(connection, description);
     }
     
@@ -23,7 +23,7 @@ public abstract class AbstractValidationCommand extends Command {
     }
     
     @Override
-    public Collection<PartitionOperation> getAffectedPartitions() {
+    public Collection<EOperation> getAffectedPartitions() {
 	return Collections.emptyList();
     }
     

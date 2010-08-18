@@ -2,12 +2,12 @@ package ocljmi;
 
 
 
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.semantics.SemanticsVisitor;
 import org.oslo.ocl20.semantics.bridge.Classifier;
 import org.oslo.ocl20.semantics.bridge.Property;
-
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
 
 
 /**
@@ -16,13 +16,13 @@ import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
  */
 public class PropertyImpl extends org.oslo.ocl20.semantics.bridge.impl.PropertyImpl implements Property {
 
-	StructuralFeature _impl;
+	EStructuralFeature _impl;
 	OclProcessor processor;
 
 	/**
 	 * Constructor for Property$Impl.
 	 */
-	public PropertyImpl(StructuralFeature sf, OclProcessor proc) {
+	public PropertyImpl(EStructuralFeature sf, OclProcessor proc) {
 		_impl = sf;
 		this.processor = proc;
 	}
@@ -34,10 +34,10 @@ public class PropertyImpl extends org.oslo.ocl20.semantics.bridge.impl.PropertyI
 	public Classifier getType() {
 		if (_type == null) {
 			//????????????????????????????????????
-			com.sap.tc.moin.repository.mmi.model.Classifier moftype = _impl.getType();
+			EClassifier moftype = _impl.getEType();
 			Classifier type = this.processor.getBridgeFactory().buildClassifier(moftype);
-			if (_impl.getMultiplicity().getUpper() > 1 || _impl.getMultiplicity().getUpper() == -1) {
-				if (_impl.getMultiplicity().isUnique()) {
+			if (_impl.getUpperBound() > 1 || _impl.getUpperBound() == -1) {
+				if (_impl.isUnique()) {
 					_type = this.processor.getTypeFactory().buildOrderedSetType(type);
 				} else {
 					_type = this.processor.getTypeFactory().buildSequenceType(type);

@@ -8,14 +8,11 @@ Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,
  com.sap.finex.interpreter,
  com.sap.finex.editor,
- com.sap.tc.moin.libraries.api,
  org.eclipse.core.resources,
- com.sap.mi.fwk,
  org.junit4,
  org.eclipse.jface,
  org.eclipse.ui,
  com.sap.finex.metamodel,
- com.sap.runlet.abstractinterpreter,
- com.sap.tc.moin.libraries.base
+ com.sap.runlet.abstractinterpreter
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

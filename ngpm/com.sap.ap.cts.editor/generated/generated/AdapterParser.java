@@ -1,22 +1,25 @@
 // $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Adapter.g 2009-12-10 22:16:06
 
 package generated;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.impl.PredicateSemantic;
-import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import org.antlr.runtime.Token;
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.List;
+
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.DFA;
+import org.antlr.runtime.IntStream;
+import org.antlr.runtime.MismatchedSetException;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
+
+import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
+import com.sap.mi.textual.grammar.impl.PredicateSemantic;
 public class AdapterParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "BOOL", "BINARY", "DATE", "SEMICOLON", "LCURL", "RCURL", "LPAREN", "RPAREN", "EQUALS", "DOT", "DCOLON", "ARROW", "LBRACKET", "EQUALSEQUALS", "COLON", "PIPE", "LANGLE", "RANGLE", "RBRACKET", "INCLUDING", "EXCLUDING", "ITERATE", "DDOT", "STAR", "LBRACK_LCURL", "RCURL_RBRACK", "LCURL_LBRACK", "RBRACK_RCURL", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "ASSIGN", "INCLUDINGAT", "EXCLUDINGAT", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "OBJECT", "RANGE_OR_INT", "'delete'", "'replace'", "'head'", "'store'", "'foreach'", "'$>'", "'from'", "'all'", "'NULL'", "'aggregate'", "'-='", "'<=>'", "'new'", "'adapter'", "'owns'", "'snapshot'", "'var'", "'if'", "'to'", "'const'", "'native'", "','", "'function'", "'this'", "'RemoveLink'", "'converter'", "'value'", "'key'", "'by'", "'else'", "'while'", "'void'", "'dim'", "'rollback'", "'tail'", "'changed'", "'commit'", "'?'", "'<$'", "'AddLink'", "'+='", "'return'", "'count'", "'1000'", "'2000'", "'3000'", "'1002'", "'2002'", "'3002'"

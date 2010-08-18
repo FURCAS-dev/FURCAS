@@ -9,10 +9,9 @@ import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Display;
 
-import tcs.ConcreteSyntax;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.prettyprint.CtsPrettyPrinter;
@@ -22,9 +21,7 @@ import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sun.corba.se.pept.transport.Connection;
 
 /**
  * This class is intended to shield the refactoring subsystem from the surrounding complexity

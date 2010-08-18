@@ -6,19 +6,24 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-import tcs.Alternative;
-import tcs.ClassTemplate;
-import tcs.ConditionalElement;
-import tcs.FunctionTemplate;
-import tcs.InjectorAction;
-import tcs.InjectorActionsBlock;
-import tcs.PrimitivePropertyInit;
-import tcs.SequenceElement;
-import textblocks.AbstractToken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
+import javax.naming.NameNotFoundException;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.ocl.utilities.TypedElement;
+
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.PrimitivePropertyInit;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.parser.Activator;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
@@ -30,13 +35,6 @@ import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class ReferenceHandlerImpl implements ReferenceHandler {
 
@@ -53,7 +51,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 	}
 
 	@Override
-	public Object getFeatureValue(RefObject modelElement, String featureName) {
+	public Object getFeatureValue(EObject modelElement, String featureName) {
 		try {
 			return batchParser.getInjector().getModelAdapter().get(
 					modelElement, featureName);
@@ -114,7 +112,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 	public void reEvaluatePropertyInits(TextBlock oldVersion,
 			TextBlockProxy newVersion) {
 		if (oldVersion.getCorrespondingModelElements().size() > 0) {
-			RefObject modelElement = oldVersion.getCorrespondingModelElements()
+			EObject modelElement = oldVersion.getCorrespondingModelElements()
 					.iterator().next();
 			if (newVersion.getCorrespondingModelElementProxies().size() > 0) {
 				ModelElementProxy proxy = (ModelElementProxy) newVersion
@@ -187,7 +185,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 				.getUnresolvedReferences())) {
 			AbstractToken refToken = tbtokenStream
 					.getTokenModelElementForParserToken(ref.getToken());
-			ref.setTextBlock(refToken.getParentBlock());
+			ref.setTextBlock(refToken.getParent());
 			boolean resolveNewlyFromToken = tokensForReferenceResolving
 					.contains(tbtokenStream
 							.getTokenModelElementForParserToken(ref.getToken()));
@@ -195,7 +193,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 			if(ref.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE && refToken != null){
 				if(TbVersionUtil.getOtherVersion(tbtokenStream
 						.getTokenModelElementForParserToken(ref.getToken())
-						.getParentBlock(), VersionEnum.REFERENCE) != null) {
+						.getParent(), VersionEnum.REFERENCE) != null) {
 					batchParser.removeUnresolvedReference(ref);
 				}
 			}
@@ -210,8 +208,8 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 						// only the reference changed and not the containing
 						// model element
 						// therefore re-use the old element from the textblock
-						RefObject existingElement = TbUtil
-								.getCreatedElement(refToken.getParentBlock());
+						EObject existingElement = TbUtil
+								.getCreatedElement(refToken.getParent());
 						((ModelElementProxy) proxy)
 								.setRealObject(existingElement);
 					}
@@ -219,26 +217,26 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 				if (resolveNewlyFromToken) {
 					// delete old reference first
 					// TODO use reflective call on association proxy instead
-					RefObject modelElement = null;
+					EObject modelElement = null;
 					if (ref.getModelElement() instanceof IModelElementProxy) {
-						modelElement = (RefObject) ((IModelElementProxy) ref
+						modelElement = (EObject) ((IModelElementProxy) ref
 								.getModelElement()).getRealObject();
 					} else {
-						modelElement = (RefObject) ref.getModelElement();
+						modelElement = (EObject) ref.getModelElement();
 					}
 					if (ref.getLookIn() != null) {
 						// a lookIn means that the result was added to the
 						// parent textblock.
-						ModelElement me;
+						EModelElement me;
 						boolean propertyIsAssocEnd = false;
 						try {
-							me = ((MofClass) modelElement.refMetaObject())
+							me = ((EClass) modelElement.refMetaObject())
 									.lookupElementExtended(ref
 											.getPropertyName());
 							if (me instanceof TypedElement) {
 								TypedElement feature = (TypedElement) me;
-								for (RefObject actualValue : refToken
-										.getParentBlock()
+								for (EObject actualValue : refToken
+										.getParent()
 										.getReferencedElements()) {
 									try {
 										if (actualValue.refIsInstanceOf(feature
@@ -267,7 +265,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 						}
 					} else {
 						if (refToken.getReferencedElements().size() > 0) {
-							for (RefObject value : refToken
+							for (EObject value : refToken
 									.getReferencedElements()) {
 							    try {
 								batchParser.getInjector().unset(modelElement,
@@ -290,11 +288,11 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 		while (newRefIt.hasNext()) {
 			DelayedReference ref = newRefIt.next();
 			if (ref.getType() == DelayedReference.TYPE_SEMANTIC_PREDICATE &&
-				ref.getRealValue() != null && ref.getRealValue() instanceof RefObject) {
+				ref.getRealValue() != null && ref.getRealValue() instanceof EObject) {
 				((LexedToken) tbtokenStream
 						.getTokenModelElementForParserToken(ref.getToken()))
-						.getParentBlock().getCorrespondingModelElements().add(
-								(RefObject) ref.getRealValue());
+						.getParent().getCorrespondingModelElements().add(
+								(EObject) ref.getRealValue());
 			}
 		}
 

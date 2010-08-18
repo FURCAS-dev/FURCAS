@@ -14,15 +14,13 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 
-import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.Constants;
 import com.sap.mi.textual.epi.conf.IProjectMetaRefConf;
 import com.sap.mi.textual.epi.conf.ReferenceScopeBean;
 import com.sap.mi.textual.epi.errors.GrammarGenerationErrorHandler;
 import com.sap.mi.textual.epi.util.EclipseMarkerUtil;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.tc.moin.repository.Connection;
+
 
 
 
@@ -201,7 +199,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 						GrammarGenerationErrorHandler errorhandler = new GrammarGenerationErrorHandler(file);
 						ReferenceScopeBean refScopeBean = conf.getMetaLookUpForProject(); // may open a connection
 						try {
-						    Connection targetConnection = null;
+						    ResourceSet targetConnection = null;
 						    if(ModelManager.getInstance().isMoinProject(project)) {
 						    	targetConnection = ModelManager.getConnectionManager().createConnection(project);
 						    } else {

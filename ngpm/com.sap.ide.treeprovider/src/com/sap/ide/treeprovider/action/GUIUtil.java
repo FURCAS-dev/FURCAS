@@ -6,14 +6,14 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 import com.sap.ide.treeprovider.RootNodeProvider;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
 
 public class GUIUtil {
 
@@ -45,7 +45,7 @@ public class GUIUtil {
      * @param project
      * @return
      */
-    public static IPath createPartitionPath(final String name, Connection connection, MofClass parentOfCompositionClazz) {
+    public static IPath createPartitionPath(final String name, ResourceSet connection, EClass parentOfCompositionClazz) {
 	String ts = Long.toHexString(System.currentTimeMillis());
 	String folder = "src";
 	String extension = "types";

@@ -7,9 +7,7 @@ Bundle-Activator: com.sap.finex.interpreter.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,
  com.sap.runlet.abstractinterpreter,
- com.sap.finex.metamodel,
- com.sap.tc.moin.libraries.api,
- com.sap.tc.moin.libraries.base
+ com.sap.finex.metamodel
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.finex.interpreter,

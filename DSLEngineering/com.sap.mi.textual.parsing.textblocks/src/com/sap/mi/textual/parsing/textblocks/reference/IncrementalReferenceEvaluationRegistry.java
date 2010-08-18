@@ -117,7 +117,8 @@ public class IncrementalReferenceEvaluationRegistry {
 	}
     }
 
-    private void registerForEachPropertyInitForIA(ConcreteSyntax cs, ResourceSet connection,
+    @SuppressWarnings("restriction")
+	private void registerForEachPropertyInitForIA(ConcreteSyntax cs, ResourceSet connection,
 	    Collection<EPackage> packagesForLookup, EClass elementClass, InjectorAction injectorActionBase,
 	    IRuleName ruleNameFinder) {
 	ForeachPredicatePropertyInit foreachPredicatePropertyInit = (ForeachPredicatePropertyInit) injectorActionBase;
@@ -127,13 +128,13 @@ public class IncrementalReferenceEvaluationRegistry {
 	try {
 	    List<com.sap.mi.textual.grammar.impl.PredicateSemantic> list = new ArrayList<com.sap.mi.textual.grammar.impl.PredicateSemantic>();
 	    String mode = template instanceof ClassTemplate ? ((ClassTemplate) template).getMode() : null;
-	    for (PredicateSemantic next : foreachPredicatePropertyInit.getPredicatesemantic()) {
+	    for (PredicateSemantic next : foreachPredicatePropertyInit.getPredicateSemantic()) {
 		String localMode = mode;
 		if (next.getMode() != null) {
 		    localMode = next.getMode();
 		}
 		if (next.getWhen() != null) {
-		    list.add(new com.sap.mi.textual.grammar.impl.PredicateSemantic(next.getWhen(), ruleNameFinder.getRuleName(
+		    list.add(new com.sap.mi.textual.grammar.impl.PredicateSemantic(next.getWhen().toString(), ruleNameFinder.getRuleName(
 			    next.getAs(), localMode)));
 
 		} else {

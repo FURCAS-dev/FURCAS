@@ -3,6 +3,7 @@ package com.sap.mi.tcs.editor.tree;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
@@ -16,11 +17,9 @@ import org.eclipse.ui.navigator.CommonActionProvider;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 import org.eclipse.ui.navigator.ICommonMenuConstants;
 
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.ide.treeprovider.GenericRefObjectNode;
 import com.sap.mi.tcs.editor.action.GenerateGrammarAction;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * ActionProvider that provides actions for context menus based on the current
@@ -129,7 +128,7 @@ public class TcsActionProviderContainmentTree extends CommonActionProvider
 				if(firstElement instanceof GenericRefObjectNode)
 				{
 					GenericRefObjectNode node = (GenericRefObjectNode) firstElement;
-					RefObject modelElement = node.getValue();
+					EObject modelElement = node.getValue();
 					if(modelElement instanceof ConcreteSyntax) {
         					GenerateGrammarAction action = new GenerateGrammarAction((ConcreteSyntax) modelElement, true);
         					subMenuManager.add(action);

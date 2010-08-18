@@ -1,19 +1,23 @@
 // $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.mi.textual.tcs.editor\\generated\\generated\\TCS.g 2010-06-09 18:02:15
 
 package generated;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
-import com.sap.mi.textual.grammar.antlr3.DefaultANTLR3LocationTokenFactory;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-import org.antlr.runtime.BitSet;
-import org.antlr.runtime.IntStream;
-import org.antlr.runtime.RecognitionException;
 
-import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.DFA;
+import org.antlr.runtime.EarlyExitException;
+import org.antlr.runtime.Lexer;
+import org.antlr.runtime.MismatchedSetException;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
+
+import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
+import com.sap.mi.textual.grammar.antlr3.DefaultANTLR3LocationTokenFactory;
+import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
 
 public class TCSLexer extends Lexer {
     public static final int LT=19;

@@ -5,16 +5,20 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.naming.NameNotFoundException;
+
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EPackage;
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.semantics.SemanticsVisitor;
+import org.oslo.ocl20.semantics.bridge.Classifier;
 import org.oslo.ocl20.semantics.bridge.Environment;
 import org.oslo.ocl20.semantics.bridge.ModelElement;
 import org.oslo.ocl20.semantics.bridge.Namespace;
 
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.Import;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
+
+
 
 
 /**
@@ -25,12 +29,12 @@ public class NamespaceImpl extends org.oslo.ocl20.semantics.bridge.impl.Namespac
 
 	protected OclProcessor processor=null;
 
-	public NamespaceImpl(MofPackage mofPkg, OclProcessor proc) {
+	public NamespaceImpl(EPackage mofPkg, OclProcessor proc) {
 		this.processor = proc;
 		_mofPkg = mofPkg;
 	}
 
-	MofPackage _mofPkg;
+	EPackage _mofPkg;
 
 	Map _elements = new HashMap();
 	public ModelElement lookupOwnedElement(String name) {
@@ -39,7 +43,7 @@ public class NamespaceImpl extends org.oslo.ocl20.semantics.bridge.impl.Namespac
 			Classifier ecl = null;
 			try {
 				//*******************bearbeit spaeter***********************
-				com.sap.tc.moin.repository.mmi.model.ModelElement el = _mofPkg.lookupElement(name);
+				EModelElement el = _mofPkg.lookupElement(name);
 				if(el instanceof Classifier)
 					ecl = (Classifier)el; 
 			} catch (NameNotFoundException e) {
@@ -47,19 +51,19 @@ public class NamespaceImpl extends org.oslo.ocl20.semantics.bridge.impl.Namespac
 			}
 			if (ecl == null) {
 				//List Classifiers = _mofPkg.getContents()
-				for (Iterator it=_mofPkg.getContents().iterator(); it.hasNext(); ) {
+				for (Iterator it=_mofPkg.eAllContents(); it.hasNext(); ) {
 					
-					com.sap.tc.moin.repository.mmi.model.ModelElement me=(com.sap.tc.moin.repository.mmi.model.ModelElement) it.next();
-					if (me instanceof MofPackage){
-						MofPackage pp=(MofPackage) me;
+					EModelElement me=(EModelElement) it.next();
+					if (me instanceof EPackage){
+						EPackage pp=(EPackage) me;
 					
 						if (name.equals(pp.getName())) {
 							mel = this.processor.getBridgeFactory().buildNamespace(pp);
 							_elements.put(name, mel);
 							return mel;
 						}
-					} else if(me instanceof Import) {
-					    MofPackage pp= (MofPackage) ((Import) me).getImportedNamespace();
+					} else if(me instanceof EFactory) {
+					    EPackage pp= (EPackage) ((EFactory) me).getImportedNamespace();
 	                                        
                                             if (name.equals(pp.getName())) {
                                                     mel = this.processor.getBridgeFactory().buildNamespace(pp);
@@ -83,7 +87,7 @@ public class NamespaceImpl extends org.oslo.ocl20.semantics.bridge.impl.Namespac
 	public Namespace getNamespace() {
 		if (_namespace == null)
 			//*******************bearbeit spaeter***********************
-			_namespace = new NamespaceImpl((MofPackage) _mofPkg.getContainer(), this.processor);
+			_namespace = new NamespaceImpl((EPackage) _mofPkg.eContainer(), this.processor);
 		return _namespace;
 	}
 	public void setNamespace(Namespace n) {
@@ -122,11 +126,11 @@ public class NamespaceImpl extends org.oslo.ocl20.semantics.bridge.impl.Namespac
 
 	public String getFullName(String sep) {
 		String name = "";
-		MofPackage pkg = (MofPackage) _mofPkg.getContainer();
+		EPackage pkg = (EPackage) _mofPkg.eContainer();
 		while (pkg != null) {
 			if (!name.equals("")) name = sep+name;
 			name = pkg.getName()+name;
-			pkg = (MofPackage) pkg.getContainer();
+			pkg = (EPackage) pkg.eContainer();
 		}
 		if (!name.equals("")) name += sep;
 		return name+_mofPkg.getName();

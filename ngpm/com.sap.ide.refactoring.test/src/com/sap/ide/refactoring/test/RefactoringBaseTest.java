@@ -4,19 +4,14 @@ import java.util.Collection;
 
 import org.antlr.runtime.Lexer;
 
-import textblocks.DocumentNode;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-
 import com.sap.ap.cts.monet.parser.ClassParserFactory;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.editor.test.util.FixtureBasedTest;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-
-import data.classes.SapClass;
 
 /**
  * Base class for refactoring tests which don't need a UI.

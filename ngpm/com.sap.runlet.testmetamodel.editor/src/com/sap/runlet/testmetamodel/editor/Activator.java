@@ -1,10 +1,9 @@
 package com.sap.runlet.testmetamodel.editor;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-
-import com.sap.tc.moin.repository.mmi.model.MofClass;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -54,7 +53,7 @@ public class Activator extends AbstractUIPlugin {
 	return plugin;
     }
 
-    public static ImageDescriptor getImageDescriptor(MofClass clazz) {
+    public static ImageDescriptor getImageDescriptor(EClass clazz) {
 	StringBuilder imagename = new StringBuilder("resources/icons");
 	for (String pathElement : clazz.getQualifiedName()) {
 	    imagename.append('/');

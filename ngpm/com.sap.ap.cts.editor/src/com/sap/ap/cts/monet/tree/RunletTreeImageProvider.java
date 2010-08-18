@@ -1,21 +1,21 @@
 package com.sap.ap.cts.monet.tree;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 
 import com.sap.ap.cts.editor.Activator;
 import com.sap.ide.treeprovider.ImageProvider;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class RunletTreeImageProvider implements ImageProvider {
 
     @Override
-    public ImageDescriptor getImageDescriptor(MofClass clazz) {
+    public ImageDescriptor getImageDescriptor(EClass clazz) {
 	return Activator.getImageDescriptor(clazz);
     }
 
     @Override
-    public ImageDescriptor getImageDescriptor(RefObject element) {
+    public ImageDescriptor getImageDescriptor(EObject element) {
 	return Activator.getImageDescriptor(element);
     }
 }

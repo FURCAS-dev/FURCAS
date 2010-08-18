@@ -6,18 +6,13 @@ import java.util.HashSet;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.fwk.mm.MetamodelManager;
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.Constants;
 import com.sap.mi.textual.epi.util.ExceptionHelper;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Moin;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.ide.MoinFactory;
-import com.sap.tc.moin.repository.ide.metamodels.MmDeploymentInfo;
+
 
 
 /**
@@ -65,13 +60,13 @@ public final class DeployedMetaProjectConf implements IProjectMetaRefConf {
 	public ReferenceScopeBean getMetaLookUpForProject() throws CoreException {
 
 		try {
-			Connection connection = null;
+			ResourceSet connection = null;
 			if(configuredProject != null && ModelManager.getInstance().isMoinProject(configuredProject)) {
 				connection = ModelManager.getConnectionManager().getDefaultConnection(configuredProject);
 			}else {
 				connection = ConnectionManager.getInstance().createTransientConnection();
 			}
-		    HashSet<PRI> newPRIs = getPRIs();
+		    HashSet<URI> newPRIs = getPRIs();
 		    return new ReferenceScopeBean(connection, newPRIs);
 
 		} catch (IOException e) {
@@ -85,13 +80,13 @@ public final class DeployedMetaProjectConf implements IProjectMetaRefConf {
      * @throws IOException
      * @throws CoreException 
      */
-    private HashSet<PRI> getPRIs() throws IOException, CoreException {
-        HashSet<PRI> newPRIs = null;
+    private HashSet<URI> getPRIs() throws IOException, CoreException {
+        HashSet<URI> newPRIs = null;
         Moin moin = MoinFactory.getMoinInstance();
         if ("sap.com/tc/moin/mof_1.4".equals(containerName)) {
           
-            newPRIs = new HashSet<PRI>();
-            PRI pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm");
+            newPRIs = new HashSet<URI>();
+            URI pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm");
             newPRIs.add(pri);
             pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/OCL.moinmm");
             newPRIs.add(pri);
@@ -106,8 +101,8 @@ public final class DeployedMetaProjectConf implements IProjectMetaRefConf {
         } else {
             MmDeploymentInfo mm = MetamodelManager.getInstance().getDeployedMetamodel(containerName);
             if (mm != null) {
-                newPRIs = new HashSet<PRI>(mm.getPRIs());
-                PRI pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm");
+                newPRIs = new HashSet<URI>(mm.getPRIs());
+                URI pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm");
                 newPRIs.add(pri);
                 pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm");
                 newPRIs.add(pri); 

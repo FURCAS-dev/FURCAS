@@ -4,19 +4,18 @@ import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import behavioral.actions.Block;
 import behavioral.actions.IfElse;
 
-import com.sap.mi.fwk.ModelManager;
-import com.sap.tc.moin.repository.Connection;
 
 public class OclPerformanceTest extends TestCase {
     public void testDerivedGetterPerformance() {
 	IProject project = getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = ModelManager.getConnectionManager()
+	    ResourceSet conn = ModelManager.getConnectionManager()
 		    .createConnection(project);
 	    Block ifBlock = conn.createElement(Block.CLASS_DESCRIPTOR);
 	    Block elseBlock = conn.createElement(Block.CLASS_DESCRIPTOR);

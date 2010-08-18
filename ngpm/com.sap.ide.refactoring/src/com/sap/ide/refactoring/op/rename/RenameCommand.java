@@ -3,6 +3,8 @@ package com.sap.ide.refactoring.op.rename;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import com.sap.ide.refactoring.core.AbstractRefactoringCommand;
@@ -10,9 +12,8 @@ import com.sap.ide.refactoring.core.model.rename.NamedElement;
 import com.sap.ide.refactoring.core.model.validation.AbstractValidationCommand;
 import com.sap.ide.refactoring.core.model.validation.CheckBlockIsParsableCommand;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.sap.tc.moin.repository.commands.PartitionOperation.Operation;
+
+
 
 public class RenameCommand extends AbstractRefactoringCommand {
 
@@ -29,9 +30,9 @@ public class RenameCommand extends AbstractRefactoringCommand {
     }
 
     @Override
-    public Collection<PartitionOperation> getAffectedPartitions() {
-	PRI pri = target.getWrappedModelElement().get___Partition().getPri();
-	return Collections.singleton(new PartitionOperation(Operation.EDIT, pri));
+    public Collection<EOperation> getAffectedPartitions() {
+	URI pri = target.getWrappedModelElement().get___Partition().getPri();
+	return Collections.singleton(new EOperation(Operation.EDIT, pri));
     }
 
     @Override

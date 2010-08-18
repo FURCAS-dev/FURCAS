@@ -6,6 +6,9 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
@@ -25,10 +28,6 @@ import org.eclipse.ui.navigator.ICommonMenuConstants;
 import com.sap.ide.treeprovider.GenericRefObjectNode;
 import com.sap.ide.treeprovider.INodeExplorer;
 import com.sap.ide.treeprovider.internal.explorer.nodes.RootNodeComponent;
-import com.sap.mi.fwk.ui.dnd.CopyPasteActionGroup;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * ActionProvider that provides actions for context menus based on the current
@@ -42,7 +41,7 @@ public class ActionProviderContainmentTree extends CommonActionProvider {
     /**
      * @generated
      */
-    private List<Object> mMenuItems;
+    private List<EObject> mMenuItems;
     public static final String NEW_SUBMENU_ID = ActionProviderContainmentTree.class.getName() + ".new.submenu.id";
     private CopyPasteActionGroup mCopyPasteActionGroup;
     
@@ -61,7 +60,7 @@ public class ActionProviderContainmentTree extends CommonActionProvider {
 	super.setContext(context);
 
 	if (mMenuItems == null) {
-	    mMenuItems = new ArrayList<Object>();
+	    mMenuItems = new ArrayList<EObject>();
 	} else {
 	    mMenuItems.clear();
 	}
@@ -81,7 +80,7 @@ public class ActionProviderContainmentTree extends CommonActionProvider {
     public void fillActionBars(IActionBars actionBars) {
 	ActionContext context = getContext();
 	if (context != null) {
-	    for (Object item : mMenuItems) {
+	    for (EObject item : mMenuItems) {
 		if (item instanceof IAction) {
 		    IAction action = (IAction) item;
 		    if (action instanceof DeleteElementAction) {
@@ -107,7 +106,7 @@ public class ActionProviderContainmentTree extends CommonActionProvider {
     public void fillContextMenu(IMenuManager menu) {
 	ActionContext context = getContext();
 	if (context != null) {
-	    for (Object item : mMenuItems) {
+	    for (EObject item : mMenuItems) {
 
 		if (item instanceof IAction) {
 		    IAction action = (IAction) item;
@@ -132,11 +131,11 @@ public class ActionProviderContainmentTree extends CommonActionProvider {
 	    TreeSelection selection = (TreeSelection) context.getSelection();
 	    if (selection.size() == 1) {
 		MenuManager subMenuManager = new MenuManager("New", NEW_SUBMENU_ID);
-		Object firstElement = selection.getFirstElement();
+		EObject firstElement = selection.getFirstElement();
 
 		if (firstElement instanceof GenericRefObjectNode) {
 		    GenericRefObjectNode node = (GenericRefObjectNode) firstElement;
-		    RefObject modelElement = node.getValue();
+		    EObject modelElement = node.getValue();
 
 		    // find project
 		    while (!(node.getParent() instanceof RootNodeComponent)) {
@@ -147,13 +146,13 @@ public class ActionProviderContainmentTree extends CommonActionProvider {
 		    }
 		    IProject project = (IProject) ((RootNodeComponent) node.getParent()).getParent();
 		    
-		    Map<AssociationEnd, Set<MofClass>> concreteCompositeChildClasses = GenericRefObjectNode
-			    .getConcreteCompositeChildClasses((MofClass) modelElement.refMetaObject());
+		    Map<EReference, Set<EClass>> concreteCompositeChildClasses = GenericRefObjectNode
+			    .getConcreteCompositeChildClasses((EClass) modelElement.refMetaObject());
 
 		    // add a CreateElementAction for each concrete composite
 		    // child class
-		    for (AssociationEnd ae : concreteCompositeChildClasses.keySet()) {
-			for (MofClass clazz : concreteCompositeChildClasses.get(ae)) {
+		    for (EReference ae : concreteCompositeChildClasses.keySet()) {
+			for (EClass clazz : concreteCompositeChildClasses.get(ae)) {
 			    CreateElementAction action = new CreateElementAction(clazz, ae, (INodeExplorer) firstElement, project);
 			    subMenuManager.add(action);
 			}
@@ -162,8 +161,8 @@ public class ActionProviderContainmentTree extends CommonActionProvider {
 		    RootNodeComponent rootNode = (RootNodeComponent) firstElement;
 		    if (rootNode.isConnectionInitialized()) {
 			IProject project = (IProject) rootNode.getParent();
-			List<MofClass> classes = rootNode.getTopLevelModelElementTypes();
-			for (MofClass mofClass : classes) {
+			List<EClass> classes = rootNode.getTopLevelModelElementTypes();
+			for (EClass mofClass : classes) {
 			    subMenuManager.add(new CreateTopLevelElementAction(mofClass, project));
 			}
 		    }
@@ -182,7 +181,7 @@ public class ActionProviderContainmentTree extends CommonActionProvider {
      */
     @Override
     public void dispose() {
-	for (Object item : mMenuItems) {
+	for (EObject item : mMenuItems) {
 	    if (item instanceof ActionGroup) {
 		((ActionGroup) item).dispose();
 	    }
@@ -209,7 +208,7 @@ public class ActionProviderContainmentTree extends CommonActionProvider {
      *            the menu item to add, the value might be <code>null</code>.
      * @generated
      */
-    private void addToContextMenu(Object item) {
+    private void addToContextMenu(EObject item) {
 	if (item != null) {
 	    mMenuItems.add(item);
 	}

@@ -1,12 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: TCSParser
-Bundle-SymbolicName: com.sap.mi.textual.grammar.parser
+Bundle-SymbolicName: com.sap.mi.textual.grammar.parser;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: com.sap.mi.textual.common,
  com.sap.mi.textual.parsing,
- com.sap.mi.textual;bundle-version="1.0.0",
- com.sap.mi.textual.ecorelookup;bundle-version="1.0.0"
+ com.sap.mi.textual,
+ com.sap.mi.textual.ecorelookup,
+ org.antlr
 Export-Package: 
  com.sap.mi.textual.grammar.parser
 Bundle-ClassPath: .
+Bundle-ActivationPolicy: lazy

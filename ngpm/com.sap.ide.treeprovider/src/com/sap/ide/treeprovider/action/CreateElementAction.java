@@ -4,25 +4,22 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 import java.util.List;
 
+
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.Event;
 
 import com.sap.ide.treeprovider.GenericRefObjectNode;
 import com.sap.ide.treeprovider.INodeExplorer;
 import com.sap.ide.treeprovider.internal.Activator;
-import com.sap.mi.fwk.ModelManager;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.AttachesTo;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.Tag;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 /**
  * Generic create action that allows creation of composite child elements.
@@ -32,13 +29,13 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  */
 public class CreateElementAction extends Action {
 
-    private final MofClass mClazz;
-    private final AssociationEnd mAe;
+    private final EClass mClazz;
+    private final EReference mAe;
     private final INodeExplorer mNode;
-    private final RefObject mCompositeParent;
+    private final EObject mCompositeParent;
     private final IProject mProject;
 
-    public CreateElementAction(MofClass clazz, AssociationEnd ae, INodeExplorer node, IProject project) {
+    public CreateElementAction(EClass clazz, EReference ae, INodeExplorer node, IProject project) {
 	super(clazz.getName());
 	setImageDescriptor(Activator.getImageDescriptor(clazz));
 	mClazz = clazz;
@@ -50,18 +47,18 @@ public class CreateElementAction extends Action {
 
     @Override
     public void runWithEvent(Event event) {
-	Connection connection = mCompositeParent.get___Connection();
+	ResourceSet connection = mCompositeParent.get___Connection();
 	JmiHelper helper = connection.getJmiHelper();
 
 	// get name from user
 	final String name = GUIUtil.enterText("New", "Name", "new" + mClazz.getName());
 	if (name != null) {
 	    // create new model element
-	    RefObject newModelElement = helper.getRefClassForMofClass(mClazz).refCreateInstance();
+	    EObject newModelElement = helper.getRefClassForMofClass(mClazz).refCreateInstance();
 	    if (newModelElement != null) {
 		// add link between mCompositeParent and newModelElement
-		Association assoc = (Association) mAe.getContainer();
-		RefAssociation refAssoc = helper.getRefAssociationForAssociation(assoc);
+		EReference assoc = (EReference) mAe.eContainer();
+		EReference refAssoc = helper.getRefAssociationForAssociation(assoc);
 		if (helper.isFirstAssociationEnd(assoc, mAe)) {
 		    refAssoc.refAddLink(newModelElement, mCompositeParent);
 		} else {
@@ -78,7 +75,7 @@ public class CreateElementAction extends Action {
 		}
 
 		// determine or create partition
-		ModelPartition partition = null;
+		Resource partition = null;
 		AttachesTo attachesToAssoc = connection.getAssociation(AttachesTo.ASSOCIATION_DESCRIPTOR);
 		Collection<Tag> tags = attachesToAssoc.getTag(mClazz);
 		for (Tag tag : tags) {
@@ -86,7 +83,7 @@ public class CreateElementAction extends Action {
 			List<String> values = tag.getValues();
 			if (values.size() == 1 && Boolean.parseBoolean(values.get(0))) {
 			    // create new partition
-			    MofClass outermostParent = (MofClass) mCompositeParent.refOutermostComposite().refMetaObject();
+			    EClass outermostParent = (EClass) mCompositeParent.refOutermostComposite().refMetaObject();
 			    IPath partitionPath = GUIUtil.createPartitionPath(name, connection, outermostParent);
 			    partition = ModelManager.getPartitionService().createPartition(connection, mProject, partitionPath,
 				    null);
@@ -96,7 +93,7 @@ public class CreateElementAction extends Action {
 		}
 		if (partition == null) {
 		 // store in partition of composite parent
-		    partition = mCompositeParent.get___Partition();
+		    partition = mCompositeParent.eResource();
 		}
 		// assign partition
 		newModelElement.assign___PartitionIncludingChildren(partition);

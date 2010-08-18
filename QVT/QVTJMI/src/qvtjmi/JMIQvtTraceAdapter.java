@@ -13,6 +13,15 @@ import java.util.Set;
 
 import ocljmi.OclModelElementTypeImpl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.oslo.ocl20.semantics.bridge.Classifier;
 import org.oslo.ocl20.semantics.bridge.Enumeration;
 import org.oslo.ocl20.semantics.bridge.OclModelElementType;
@@ -23,24 +32,6 @@ import org.oslo.ocl20.semantics.model.types.IntegerType;
 import org.oslo.ocl20.semantics.model.types.RealType;
 import org.oslo.ocl20.semantics.model.types.StringType;
 import org.oslo.ocl20.standard.lib.OclAny;
-
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.PartitionsNotSavedException;
-import com.sap.tc.moin.repository.ReferencedTransientElementsException;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.ModelPackage;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.MultiplicityType;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 import de.ikv.medini.qvt.QvtProcessorImpl;
 import de.ikv.medini.qvt.QvtTraceAdapter;
@@ -59,9 +50,9 @@ import de.ikv.medini.qvt.model.qvtrelation.Relation;
  */
 public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 
-	private Connection connection;
+	private ResourceSet connection;
 
-	public JMIQvtTraceAdapter(Connection connection) {
+	public JMIQvtTraceAdapter(ResourceSet connection) {
 		super();
 		this.connection = connection;
 	}
@@ -97,7 +88,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 
 	protected Collection traceMetamodelResources = new HashSet();
 
-	private ModelPackage mofRefPackage;
+	private EPackage mofRefPackage;
 
 	/**
 	 * Sets the QVT processor for this trace adapter.
@@ -144,7 +135,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		}
 		this.buildTraceMM();
 
-		ModelPartition resourceSet = this.getResourceSetForTraces();
+		Resource resourceSet = this.getResourceSetForTraces();
 		Map traceResourceMap = new HashMap();
 
 		for (Iterator iter = traces.iterator(); iter.hasNext();) {
@@ -152,7 +143,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 			Relation currentRelation = currentTrace.getRelation();
 			String currentTransformationName = currentRelation
 					.getTransformation().getName();
-			ModelPartition traceResource = ((JMIQvtProcessorImpl) this.qvtProcessor)
+			Resource traceResource = ((JMIQvtProcessorImpl) this.qvtProcessor)
 					.getResourceSetForTraces();
 			this.storeTrace(currentTrace, currentRelation, resourceSet,
 					traceResource);
@@ -193,19 +184,19 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		}
 	}
 
-	// private void saveTracePartitions(Map traceResourceMap, ModelPartition
+	// private void saveTracePartitions(Map traceResourceMap, Resource
 	// partition) {
 	// Set transformationNames = traceResourceMap.keySet();
 	//
 	// for (Iterator iter = transformationNames.iterator(); iter.hasNext();) {
 	// String currentTransformationName = (String) iter.next();
-	// ModelPartition currentPartition = (ModelPartition)
+	// Resource currentPartition = (Resource)
 	// traceResourceMap.get(currentTransformationName);
 	//
-	// PRI traceMMFileUri = ((MOFQvtProcessorImpl)
+	// URI traceMMFileUri = ((MOFQvtProcessorImpl)
 	// this.qvtProcessor).getWorkingLocation
 	// ().appendSegment(currentTransformationName).appendFileExtension("ecore");
-	// ModelPartition traceMMResource = partition.getResource(traceMMFileUri,
+	// Resource traceMMResource = partition.getResource(traceMMFileUri,
 	// false);
 	//
 	// String nsURI = "urn:" + currentTransformationName + ".ecore";
@@ -225,9 +216,9 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 	// }
 
 	private void storeTrace(Trace trace, Relation relation,
-			ModelPartition partitionSet, ModelPartition tracePartition) {
+			Resource partitionSet, Resource tracePartition) {
 
-		MofClass relationMetaClass = this
+		EClass relationMetaClass = this
 				.lookupRelation(((JMIQvtProcessorImpl) this.qvtProcessor)
 						.getTraceMMPartition(), relation);
 		List bindings = trace.getBindings();
@@ -240,7 +231,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 			// RuntimeException("Binding are not suppose to be empty");
 		}
 
-		RefClass refClassForMofClass = ((JMIQvtProcessorImpl) this.qvtProcessor)
+		EClass refClassForMofClass = ((JMIQvtProcessorImpl) this.qvtProcessor)
 				.getConnection().getJmiHelper().getRefClassForMofClass(
 				relationMetaClass);
 		if(refClassForMofClass == null) {
@@ -251,7 +242,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 			Map currentBinding = (Map) iterator.next();
 			Set keys = currentBinding.keySet();
 			
-			RefObject traceModelElement = refClassForMofClass.refCreateInstance();
+			EObject traceModelElement = refClassForMofClass.refCreateInstance();
 			this.restoreTraceIdentifier(trace, currentBinding,
 					traceModelElement);
 			tracePartition.assignElement(traceModelElement);
@@ -267,35 +258,35 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 	}
 
 	private void storeBindingVariable(String bindingVariable,
-			OclAny bindingValue, MofClass relationMetaClass,
-			RefObject bindingModelElement, Relation relation) {
-		List listStructuralFeatures = relationMetaClass.getContents();
+			OclAny bindingValue, EClass relationMetaClass,
+			EObject bindingModelElement, Relation relation) {
+		List listStructuralFeatures = relationMetaClass.eContents();
 		Iterator it = listStructuralFeatures.iterator();
 		Object obj;
-		StructuralFeature currentStructuralFeature = null;
+		EStructuralFeature currentStructuralFeature = null;
 		while (it.hasNext()) {
 			obj = it.next();
-			if (obj instanceof StructuralFeature) {
-				if (((StructuralFeature) obj).getName().equals(bindingVariable))
-					currentStructuralFeature = (StructuralFeature) obj;
+			if (obj instanceof EStructuralFeature) {
+				if (((EStructuralFeature) obj).getName().equals(bindingVariable))
+					currentStructuralFeature = (EStructuralFeature) obj;
 			}
 		}
 
-		// StructuralFeature currentStructuralFeature =
+		// EStructuralFeature currentStructuralFeature =
 		// relationMetaClass.getEStructuralFeature(bindingVariable);
 		Object currentJavaValue = bindingValue.asJavaObject();
-		bindingModelElement.refSetValue(currentStructuralFeature,
+		bindingModelElement.eSet(currentStructuralFeature,
 				currentJavaValue);
 		this.setQvtTraceFiles(currentJavaValue, PartitionHelper.getPartition(
 				bindingModelElement).getPri());
 	}
 
-	protected void setQvtTraceFiles(Object modelElement, PRI traceResourcePRI) {
+	protected void setQvtTraceFiles(Object modelElement, URI traceResourcePRI) {
 		// do nothing
 	}
 
 	protected void restoreTraceIdentifier(Trace trace, Map binding,
-			RefObject bindingModelElement) {
+			EObject bindingModelElement) {
 		// do nothing
 	}
 
@@ -314,8 +305,8 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 	// * the resource set for creating a new resource.
 	// * @return the trace resource for the given transformation.
 	// */
-	// private ModelPartition getTraceResource(String currentTransformationName,
-	// Map traceResourceMap, ModelPartition partitionSet) {
+	// private Resource getTraceResource(String currentTransformationName,
+	// Map traceResourceMap, Resource partitionSet) {
 	//
 	// if (this.allTracesInOneFile &&
 	// this.allTransformations.iterator().hasNext()) {
@@ -324,14 +315,14 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 	// this.allTransformations.iterator().next()).getName();
 	// }
 	//
-	// ModelPartition tracePartition = (ModelPartition)
+	// Resource tracePartition = (Resource)
 	// traceResourceMap.get(currentTransformationName);
 	//
 	// if (tracePartition != null) {
 	// return tracePartition;
 	// }
 	//
-	// PRI traceFilePri = ((MOFQvtProcessorImpl)
+	// URI traceFilePri = ((MOFQvtProcessorImpl)
 	// this.qvtProcessor).getWorkingLocation
 	// ().appendSegment(MOFQvtTraceAdapter.TRACE_FILE_NAME
 	// ).appendFileExtension(currentTransformationName);
@@ -395,7 +386,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		this.loadTraceMM();
 		Set traces = new HashSet();
 
-		ModelPartition partitionSet = this.getResourceSetForTraces();
+		Resource partitionSet = this.getResourceSetForTraces();
 
 		for (Iterator transformationsIter = this.allTransformations.iterator(); transformationsIter
 				.hasNext();) {
@@ -403,11 +394,11 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 					.next();
 			String currentTransformationName = currentTransformation.getName();
 
-			// PRI traceFilePri = ((MOFQvtProcessorImpl)
+			// URI traceFilePri = ((MOFQvtProcessorImpl)
 			// this.qvtProcessor).getWorkingLocation
 			// ().appendSegment(MOFQvtTraceAdapter
 			// .TRACE_FILE_NAME).appendFileExtension(currentTransformationName);
-			ModelPartition tracePartition = ((JMIQvtProcessorImpl) this.qvtProcessor)
+			Resource tracePartition = ((JMIQvtProcessorImpl) this.qvtProcessor)
 					.getResourceSetForTraces();
 			// try {
 			// tracePartition = partitionSet.getResource(traceFilePri, true);
@@ -416,11 +407,11 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 			// exception.getCause() instanceof
 			// // FileNotFoundException) {
 			// // clean up
-			// PRI traceMMFileUri = ((MOFQvtProcessorImpl)
+			// URI traceMMFileUri = ((MOFQvtProcessorImpl)
 			// this.qvtProcessor).getWorkingLocation
 			// ().appendSegment(currentTransformationName
 			// ).appendFileExtension("ecore");
-			// ModelPartition traceMMResource =
+			// Resource traceMMResource =
 			// partitionSet.getResource(traceMMFileUri, false);
 			//
 			// String nsURI = "urn:" + currentTransformationName + ".ecore";
@@ -446,13 +437,13 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 			// // throw new RuntimeException(exception);
 			// }
 			// TODO getElement
-			Collection tracePartitionContent = tracePartition.getElements();
+			Collection tracePartitionContent = tracePartition.getContents();
 			// List traceResourceContent = tracePartition...getContents();
 			for (Iterator iterTraceResourceContent = tracePartitionContent
 					.iterator(); iterTraceResourceContent.hasNext();) {
-				RefObject currentBindingObject = (RefObject) iterTraceResourceContent
+				EObject currentBindingObject = (EObject) iterTraceResourceContent
 						.next();
-				MofClass currentBindingClass = (MofClass) currentBindingObject.refMetaObject();
+				EClass currentBindingClass = (EClass) currentBindingObject.refMetaObject();
 				// TODO traces constraint check !!
 				Relation relation = this.lookupRelation(currentBindingClass);
 				if (relation == null) {
@@ -465,16 +456,16 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 					Domain currentDomain = (Domain) iter.next();
 					// TODO optimize
 					List listStructuralFeatures = currentBindingClass
-							.getContents();
+							.eContents();
 					Iterator it = listStructuralFeatures.iterator();
 					Object obj;
-					StructuralFeature structuralFeature = null;
+					EStructuralFeature structuralFeature = null;
 					while (it.hasNext()) {
 						obj = it.next();
-						if (obj instanceof StructuralFeature) {
-							if (((StructuralFeature) obj).getName().equals(
+						if (obj instanceof EStructuralFeature) {
+							if (((EStructuralFeature) obj).getName().equals(
 									currentDomain.getName()))
-								structuralFeature = (StructuralFeature) obj;
+								structuralFeature = (EStructuralFeature) obj;
 						}
 					}
 					if (structuralFeature == null) {
@@ -487,8 +478,8 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 					}
 					Object value = currentBindingObject
 							.refGetValue(structuralFeature);
-					if (value instanceof RefObject) {
-						RefObject evalue = (RefObject) value;
+					if (value instanceof EObject) {
+						EObject evalue = (EObject) value;
 						if (PartitionHelper.getPartition(evalue) == null) {
 							value = null;
 						}
@@ -530,20 +521,20 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 					VariableDeclaration currentVariableDeclaration = (VariableDeclaration) iter
 							.next();
 					List listStructuralFeatures = currentBindingClass
-							.getContents();
+							.eContents();
 					Iterator it = listStructuralFeatures.iterator();
 					Object obj;
-					StructuralFeature structuralFeature = null;
+					EStructuralFeature structuralFeature = null;
 					while (it.hasNext()) {
 						obj = it.next();
-						if (obj instanceof StructuralFeature) {
-							if (((StructuralFeature) obj).getName().equals(
+						if (obj instanceof EStructuralFeature) {
+							if (((EStructuralFeature) obj).getName().equals(
 									currentVariableDeclaration.getName()))
-								structuralFeature = (StructuralFeature) obj;
+								structuralFeature = (EStructuralFeature) obj;
 						}
 					}
 
-					// StructuralFeature structuralFeature =
+					// EStructuralFeature structuralFeature =
 					// currentBindingClass.
 					// getEStructuralFeature(currentVariableDeclaration
 					// .getName());
@@ -555,9 +546,9 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 						continue;
 					}
 					Object value = currentBindingObject
-							.refGetValue(structuralFeature);
-					if (value instanceof RefObject) {
-						RefObject evalue = (RefObject) value;
+							.eGet(structuralFeature);
+					if (value instanceof EObject) {
+						EObject evalue = (EObject) value;
 						if (PartitionHelper.getPartition(evalue) == null) {
 							value = null;
 							// isValidBinding=false;
@@ -596,11 +587,11 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		//
 		// // clean up
 		//
-		// PRI traceMMFileUri = ((MOFQvtProcessorImpl)
+		// URI traceMMFileUri = ((MOFQvtProcessorImpl)
 		// this.qvtProcessor).getWorkingLocation
 		// ().appendSegment(currentTransformationName
 		// ).appendFileExtension("ecore");
-		// ModelPartition traceMMResource =
+		// Resource traceMMResource =
 		// partitionSet.getResource(traceMMFileUri, false);
 		//
 		// if (traceMMResource != null) {
@@ -614,11 +605,11 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 	}
 
 	protected void postAddBindingHook(Trace trace,
-			RefObject currentBindingObject, Map binding) {
+			EObject currentBindingObject, Map binding) {
 		// do nothing
 	}
 
-	private Transformation lookupTransformation(MofPackage package1) {
+	private Transformation lookupTransformation(EPackage package1) {
 		for (Iterator iter = this.allTransformations.iterator(); iter.hasNext();) {
 			Transformation currenTransformation = (Transformation) iter.next();
 			if (package1.getName() != null
@@ -630,10 +621,10 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		return null;
 	}
 
-	private Relation lookupRelation(MofClass relation) {
+	private Relation lookupRelation(EClass relation) {
 
 		Transformation transformation = this
-				.lookupTransformation((MofPackage) relation.getContainer());
+				.lookupTransformation((EPackage) relation.eContainer());
 
 		// Transformation transformation =
 		// this.lookupTransformation(relataion.getEPackage());
@@ -652,12 +643,12 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		return null;
 	}
 
-	private MofPackage lookupTransformation(ModelPartition parition,
+	private EPackage lookupTransformation(Resource parition,
 			Transformation transformation) {
-		List rootPackages = (List) parition.getElements();
+		List rootPackages = (List) parition.getContents();
 		for (Iterator iter = rootPackages.iterator(); iter.hasNext();) {
 			//TODO check with istanceof
-			MofPackage currentPackage = (MofPackage) iter.next();
+			EPackage currentPackage = (EPackage) iter.next();
 			if (currentPackage.getName() != null
 					&& currentPackage.getName()
 							.equals(transformation.getName())) {
@@ -667,37 +658,37 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		return null;
 	}
 
-	private MofClass lookupRelation(ModelPartition partition, Relation relation) {
+	private EClass lookupRelation(Resource partition, Relation relation) {
 		// String nsURI = "urn:" + relation.getTransformation().getName() +
 		// ".ecore";
 		// TODO getPackagebyName
-		Iterator it = partition.getElements().iterator();
+		Iterator it = partition.getAllContents();
 		Object obj = null;
-		MofPackage currentMofTransformation = null;
+		EPackage currentMofTransformation = null;
 		while (it.hasNext()) {
 			obj = it.next();
-			if (obj instanceof MofPackage && ((MofPackage) obj).getName() != null) {
-				if (((MofPackage) obj).getName().equals(
+			if (obj instanceof EPackage && ((EPackage) obj).getName() != null) {
+				if (((EPackage) obj).getName().equals(
 						relation.getTransformation().getName())) {
-					currentMofTransformation = (MofPackage) obj;
+					currentMofTransformation = (EPackage) obj;
 					break;
 				}
 			}
 		}
-		// MofPackage currentMofTransformation = (MofPackage)
+		// EPackage currentMofTransformation = (EPackage)
 		// partition.getElements().getPackageRegistry().get(nsURI);
 		if (currentMofTransformation == null) {
 			throw new RuntimeException();
 		}
-		List listClassifier = currentMofTransformation.getContents();
+		List listClassifier = currentMofTransformation.eContents();
 		Iterator it2 = listClassifier.iterator();
 		Object obj2;
-		StructuralFeature structuralFeature = null;
+		EStructuralFeature structuralFeature = null;
 		while (it2.hasNext()) {
 			obj2 = it2.next();
-			if (obj2 instanceof MofClass) {
-				if (((MofClass) obj2).getName().equals(relation.getName()))
-					return (MofClass) obj2;
+			if (obj2 instanceof EClass) {
+				if (((EClass) obj2).getName().equals(relation.getName()))
+					return (EClass) obj2;
 			}
 		}
 		return null;
@@ -705,7 +696,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 
 	// TODO check how this works in JMI
 	private void loadTraceMM() {
-		ModelPartition partitionSet = this.getResourceSetForTraces();
+		Resource partitionSet = this.getResourceSetForTraces();
 
 		// partitionSet.getResourceFactoryRegistry().getExtensionToFactoryMap().
 		// put(Resource.Factory.Registry.DEFAULT_EXTENSION, new
@@ -715,12 +706,12 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 //		for (Iterator iter = this.allTransformations.iterator(); iter.hasNext();) {
 //			Transformation currentTransformation = (Transformation) iter.next();
 //			String currentTransformationName = currentTransformation.getName();
-//			PRI traceMMFileUri = ((MOFQvtProcessorImpl) this.qvtProcessor)
+//			URI traceMMFileUri = ((MOFQvtProcessorImpl) this.qvtProcessor)
 //					.getWorkingLocation().appendSegment(
 //							currentTransformationName).appendFileExtension(
 //							"ecore");
 //			String nsURI = "urn:" + currentTransformationName + ".ecore";
-//			ModelPartition traceMMPartition = null;
+//			Resource traceMMPartition = null;
 //			try {
 //				traceMMPartition = partitionSet.getResource(traceMMFileUri,
 //						true);
@@ -745,7 +736,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 
 		for (Iterator iter = this.allTransformations.iterator(); iter.hasNext();) {
 			Transformation currentTransformation = (Transformation) iter.next();
-			ModelPartition traceMMPartition = ((JMIQvtProcessorImpl) this.qvtProcessor)
+			Resource traceMMPartition = ((JMIQvtProcessorImpl) this.qvtProcessor)
 					.getTraceMMPartition();
 
 			if (traceMMPartition != null) {
@@ -760,7 +751,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 	}
 
 //	// TODO check how this works in JMI
-//	protected void fillPackageRegistry(ModelPartition partition) {
+//	protected void fillPackageRegistry(Resource partition) {
 //		partition.getPackageRegistry().put(EcorePackage.eINSTANCE.getNsURI(),
 //				EcorePackage.eINSTANCE);
 //	}
@@ -771,7 +762,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 	 */
 	private void buildTraceMM() {
 		// DO increment !!
-		ModelPartition partitionSet = this.getResourceSetForTraces();
+		Resource partitionSet = this.getResourceSetForTraces();
 
 		//partitionSet.getPackageRegistry().put(EcorePackage.eINSTANCE.getNsURI(
 		// ), EcorePackage.eINSTANCE);
@@ -783,22 +774,22 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		}
 	}
 
-	private ModelPartition getResourceSetForTraces() {
+	private Resource getResourceSetForTraces() {
 		return ((JMIQvtProcessorImpl) this.qvtProcessor)
 				.getResourceSetForTraces();
 	}
 
-	private void buildTraceMMForTransformation(ModelPartition partition,
+	private void buildTraceMMForTransformation(Resource partition,
 			Transformation currentTransformation) {
 		String currentTransformationName = currentTransformation.getName();
-		// PRI traceMMFileUri = ((MOFQvtProcessorImpl)
+		// URI traceMMFileUri = ((MOFQvtProcessorImpl)
 		// this.qvtProcessor).getWorkingLocation
 		// ().appendSegment(currentTransformationName
 		// ).appendFileExtension("ecore");
-		ModelPartition traceMMPartition = ((JMIQvtProcessorImpl) this.qvtProcessor)
+		Resource traceMMPartition = ((JMIQvtProcessorImpl) this.qvtProcessor)
 				.getTraceMMPartition();
 
-		MofPackage currentTransformationPackage = (MofPackage) getMofRefPackage().getMofPackage()
+		EPackage currentTransformationPackage = (EPackage) getMofRefPackage().getMofPackage()
 				.refCreateInstance();
 		// currentTransformationPackage.setNsPrefix(currentTransformationName);
 		// String nsURI = "urn:" + currentTransformationName + ".ecore";
@@ -812,10 +803,9 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		List relationList = currentTransformation.getRule();
 		for (Iterator iterator = relationList.iterator(); iterator.hasNext();) {
 			Relation currentRelation = (Relation) iterator.next();
-			MofClass currentRelationClass = (MofClass) mofRefPackage.getMofClass()
-					.refCreateInstance();
+			EClass currentRelationClass = (EClass) mofRefPackage.eClass().refCreateInstance();
 			this.setSuperTypes(currentRelationClass);
-			currentTransformationPackage.getContents()
+			currentTransformationPackage.eContents()
 					.add(currentRelationClass);
 			currentRelationClass.setName(currentRelation.getName());
 			List currentRelataionVariables = currentRelation.getVariable();
@@ -827,58 +817,63 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 						.getType();
 				if (currentVariableType instanceof Primitive
 						|| currentVariableType instanceof Enumeration) {
-					Attribute currentAttribute =(Attribute) mofRefPackage.getAttribute().refCreateInstance();
-					currentRelationClass.getContents().add(currentAttribute);
+					EAttribute currentAttribute =(EAttribute) mofRefPackage.getAttribute().refCreateInstance();
+					currentRelationClass.eContents().add(currentAttribute);
 					currentAttribute.setName(currentVariableDeclaration
 							.getName());
 					// TODO currentAttribute.setMultiplicity();
-					MultiplicityType mult = JmiHelper.createMultiplicity(0, 1,
+					EReference mult = JmiHelper.createMultiplicity(0, 1,
 							false, false);
-					currentAttribute.setMultiplicity(mult);
+					currentAttribute.setUpperBound(mult.getUpperBound());
+					currentAttribute.setLowerBound(mult.getLowerBound());
+					
 
 					if (currentVariableType instanceof Enumeration) {
-						currentAttribute.setType((com.sap.tc.moin.repository.mmi.model.Classifier) JmiHelper.getEnumeratorObject());
+						currentAttribute.setEType((EClassifier) JmiHelper.getEnumeratorObject());
 					} else if (currentVariableType instanceof IntegerType) {
-						currentAttribute.setType((com.sap.tc.moin.repository.mmi.model.Classifier) JmiHelper.getIntegerObject());
+						currentAttribute.setEType((EClassifier) JmiHelper.getIntegerObject());
 					} else if (currentVariableType instanceof BooleanType) {
-						currentAttribute.setType((com.sap.tc.moin.repository.mmi.model.Classifier) JmiHelper.getBooleanObject());
+						currentAttribute.setEType((EClassifier) JmiHelper.getBooleanObject());
 					} else if (currentVariableType instanceof RealType) {
-						currentAttribute.setType((com.sap.tc.moin.repository.mmi.model.Classifier) JmiHelper.getDoubleObject());
+						currentAttribute.setEType((EClassifier) JmiHelper.getDoubleObject());
 					} else if (currentVariableType instanceof StringType) {
-						currentAttribute.setType((com.sap.tc.moin.repository.mmi.model.Classifier) JmiHelper.getStringObject());
+						currentAttribute.setEType((EClassifier) JmiHelper.getStringObject());
 					} else {
 						throw new RuntimeException();
 					}
 				} else if (currentVariableType instanceof OclModelElementType) {
-					// TODO also create Association, AssociationEnd, References
+					// TODO also create EReference, EReference, References
 					// and link together
 					
 					OclModelElementTypeImpl currentOclModelElementType = (OclModelElementTypeImpl) currentVariableType;
-					com.sap.tc.moin.repository.mmi.model.Classifier mofType = currentOclModelElementType
+					EClassifier mofType = currentOclModelElementType
 							.getImplementation();
 					//*************************************
-					Association currentAssocation =(Association) mofRefPackage.getAssociation().refCreateInstance();
-					AssociationEnd leftAssocationEnd=(AssociationEnd) mofRefPackage.getAssociationEnd().refCreateInstance();
-					AssociationEnd rightAssocationEnd=(AssociationEnd) mofRefPackage.getAssociationEnd().refCreateInstance();
-					currentAssocation.getContents().add(leftAssocationEnd);
-					currentAssocation.getContents().add(rightAssocationEnd);
+					EReference currentAssocation =(EReference) mofRefPackage.getAssociation().refCreateInstance();
+					EReference leftAssocationEnd=(EReference) mofRefPackage.getAssociationEnd().refCreateInstance();
+					EReference rightAssocationEnd=(EReference) mofRefPackage.getAssociationEnd().refCreateInstance();
+					currentAssocation.eContents().add(leftAssocationEnd);
+					currentAssocation.eContents().add(rightAssocationEnd);
 					
 					
 					//**************************************	
-					Reference currentReference = (Reference) mofRefPackage.getReference().refCreateInstance();
-					currentRelationClass.getContents().add(currentReference);
+					EReference currentReference = (EReference) mofRefPackage.getReference().refCreateInstance();
+					currentRelationClass.eContents().add(currentReference);
 					currentReference.setName(currentVariableDeclaration
 							.getName());
-					currentReference.setType(mofType);
+					currentReference.setEType(mofType);
 					
 					//********************************
 					currentReference.setReferencedEnd(leftAssocationEnd);
 					currentReference.setExposedEnd(rightAssocationEnd);
-					leftAssocationEnd.setType(mofType);
-					rightAssocationEnd.setType(currentRelationClass);
-					MultiplicityType mult = JmiHelper.createMultiplicity(0, 1,
+					leftAssocationEnd.setEType(mofType);
+					rightAssocationEnd.setEType(currentRelationClass);
+					EReference mult = JmiHelper.createMultiplicity(0, 1,
 							false, false);
-					currentReference.setMultiplicity(mult);
+					
+					currentReference.setUpperBound(mult.getUpperBound());
+					currentReference.setLowerBound(mult.getLowerBound());
+					
 				}
 			}
 		}
@@ -900,14 +895,14 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 		}
 	}
 
-	private ModelPackage getMofRefPackage() {
+	private EPackage getMofRefPackage() {
 		if(mofRefPackage == null) {
-			mofRefPackage = connection.getPackage(ModelPackage.PACKAGE_DESCRIPTOR);
+			mofRefPackage = connection.getPackage(EPackage.PACKAGE_DESCRIPTOR);
 		}
 		return mofRefPackage;
 	}
 
-	protected void setSuperTypes(MofClass currentRelationClass) {
+	protected void setSuperTypes(EClass currentRelationClass) {
 		// do nothing
 	}
 
@@ -922,7 +917,7 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 	 * @return the part of the given <code>uri</code> from the project name.
 	 * @see #getPathRelativeToProject(URI, boolean)
 	 */
-	private static String getPathFromProject(String projectName, PRI pri) {
+	private static String getPathFromProject(String projectName, URI pri) {
 		String priString = pri.toString();
 		int projectIndex = priString.indexOf(projectName);
 		return priString.substring(projectIndex);
@@ -940,14 +935,14 @@ public class JMIQvtTraceAdapter implements QvtTraceAdapter {
 //	 * @return the part of the given <code>uri</code> relative to the project
 //	 *         name.
 //	 */
-//	private static String getPathRelativeToProject(PRI modelPRI, PRI tracePRI) {
+//	private static String getPathRelativeToProject(URI modelPRI, URI tracePRI) {
 //		String projectName = MOFQvtTraceAdapter.getProjectName(modelPRI);
 //		String pathFromProject = MOFQvtTraceAdapter.getPathFromProject(
 //				projectName, tracePRI);
 //		return pathFromProject.substring(projectName.length() + 1);
 //	}
 //
-//	private static String getProjectName(PRI modelPRI) {
+//	private static String getProjectName(URI modelPRI) {
 //		return modelPRI.trimSegments(1).lastSegment();
 //	}
 

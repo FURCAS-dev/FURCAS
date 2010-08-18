@@ -1,13 +1,11 @@
 package com.sap.ap.cts.monet.parser;
 
-import ngpm.NgpmPackage;
-
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 public abstract class AbstractRunletParserFactory<P extends ObservableInjectingParser, L extends Lexer>
 extends AbstractParserFactory<P, L> {
@@ -17,7 +15,7 @@ extends AbstractParserFactory<P, L> {
     }
 
     @Override
-    public RefPackage getMetamodelPackage(Connection connection) {
+    public EPackage getMetamodelPackage(ResourceSet connection) {
         return connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
     }
 

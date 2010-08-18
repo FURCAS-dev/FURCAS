@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.semantics.SemanticsVisitor;
 import org.oslo.ocl20.semantics.bridge.Classifier;
@@ -13,9 +15,6 @@ import org.oslo.ocl20.semantics.bridge.Enumeration;
 import org.oslo.ocl20.semantics.bridge.ModelElement;
 import org.oslo.ocl20.semantics.bridge.Property;
 
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-
 /**
  * @author dha
  * 
@@ -23,9 +22,9 @@ import com.sap.tc.moin.repository.mmi.model.MofPackage;
  */
 public class EnumerationImpl extends org.oslo.ocl20.semantics.bridge.impl.EnumerationImpl implements Enumeration {
 
-	protected EnumerationType _mofenum;
+	protected EEnum _mofenum;
 
-	public EnumerationImpl(EnumerationType mofenum, OclProcessor proc) {
+	public EnumerationImpl(EEnum mofenum, OclProcessor proc) {
 		this._mofenum = mofenum;
 		this.processor = proc;
 
@@ -41,13 +40,13 @@ public class EnumerationImpl extends org.oslo.ocl20.semantics.bridge.impl.Enumer
 	public String getName() {
 		if (this._mofenum != null) {
 			this.name = "";
-			MofPackage pkg = (MofPackage) this._mofenum.getContainer();
+			EPackage pkg = (EPackage) this._mofenum.eContainer();
 			while (pkg != null) {
 				if (!this.name.equals("")) {
 					this.name = "." + this.name;
 				}
 				this.name = pkg.getName() + this.name;
-				pkg = (MofPackage) pkg.getContainer();
+				pkg = (EPackage) pkg.eContainer();
 			}
 			if (!this.name.equals("")) {
 				this.name += ".";

@@ -5,20 +5,15 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import runlettest.RunletTest;
 
 import com.sap.ide.treeprovider.GenericRefObjectNode;
 import com.sap.ide.treeprovider.RootNodeProvider;
-import com.sap.mi.fwk.IPartitionScopeProvider;
-import com.sap.mi.fwk.PartitionService;
-import com.sap.mi.fwk.QueryService;
-import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-import com.sap.tc.moin.repository.mql.QueryScopeProvider;
+
 
 /**
  * Computes the root nodes of the Runlet metamodel which are the deployment
@@ -29,16 +24,16 @@ import com.sap.tc.moin.repository.mql.QueryScopeProvider;
  */
 public class RunletRootNodeProvider implements RootNodeProvider {
 
-    private static List<MofClass> topLevelModelElementTypes;
+    private static List<EClass> topLevelModelElementTypes;
 
     @Override
-    public List<ITreeNode<?>> getChildren(Object parent, IProject project, Connection connection) {
+    public List<ITreeNode<?>> getChildren(Object parent, IProject project, ResourceSet connection) {
 	IPartitionScopeProvider partitionScopeProvider = PartitionService.getInstance().getPartitionScopeProvider(project, connection,
 		com.sap.mi.fwk.IPartitionScopeProvider.PartitionScope.INNER);
 	QueryScopeProvider queryScopeProvider = QueryService.getInstance().getQueryScopeProvider(partitionScopeProvider);
 	MQLResultSet runletTestTest = connection.getMQLProcessor().execute(
 		"select rt from runlettest::RunletTest as rt", queryScopeProvider); //$NON-NLS-1$
-	RefObject[] runletTest = runletTestTest.getRefObjects("rt"); //$NON-NLS-1$
+	EObject[] runletTest = runletTestTest.getRefObjects("rt"); //$NON-NLS-1$
 	List<ITreeNode<?>> children = new ArrayList<ITreeNode<?>>(runletTest.length + 1);
 	for (int i = 0; i < runletTest.length; i++) {
 	    children.add(new GenericRefObjectNode(parent, runletTest[i]));
@@ -47,12 +42,12 @@ public class RunletRootNodeProvider implements RootNodeProvider {
     }
 
     @Override
-    public List<MofClass> getTopLevelModelElementTypes(Connection connection) {
+    public List<EClass> getTopLevelModelElementTypes(ResourceSet connection) {
 	if (connection == null) {
 	    return Collections.emptyList();
 	} 
 	else if (topLevelModelElementTypes == null) {
-	    topLevelModelElementTypes = new ArrayList<MofClass>(1);
+	    topLevelModelElementTypes = new ArrayList<EClass>(1);
 	    topLevelModelElementTypes.add(connection.getClass(RunletTest.CLASS_DESCRIPTOR).refMetaObject());
 	}
 	return topLevelModelElementTypes;

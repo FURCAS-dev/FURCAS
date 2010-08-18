@@ -10,8 +10,8 @@ public class RefactoringModelAdapterFactory implements IAdapterFactory {
     public RefactoringModelAdapterFactory() {
     }
 
-    @Override
     @SuppressWarnings("unchecked")
+    @Override
     public Object getAdapter(Object adaptableObject, Class adapterType) {
 	if (adaptableObject instanceof modelmanagement.NamedElement) {
 	    return new NamedElementAdapter((modelmanagement.NamedElement) adaptableObject);
@@ -25,5 +25,6 @@ public class RefactoringModelAdapterFactory implements IAdapterFactory {
     public Class[] getAdapterList() {
 	return new Class[] { NamedElement.class };
     }
+
 
 }

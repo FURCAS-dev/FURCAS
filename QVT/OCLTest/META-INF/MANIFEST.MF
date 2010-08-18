@@ -36,7 +36,6 @@ Export-Package: de.ikv.medini.ocl20.bridge4medini.test,
  de.ikv.medini.ocl20.bridge4medini.test.lib.datatype,
  de.ikv.medini.ocl20.bridge4medini.test.lib.datatype.primitivetype,
  de.ikv.medini.ocl20.bridge4medini.test.performance
-Require-Bundle: com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
- OCLTestAdapter;bundle-version="1.0.0",
+Require-Bundle: OCLTestAdapter;bundle-version="1.0.0",
  testmetamodel.epi;bundle-version="1.0.0",
  OCLJMITest;bundle-version="1.0.0"

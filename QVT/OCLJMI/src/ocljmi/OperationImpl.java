@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EOperation;
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.semantics.SemanticsVisitor;
 import org.oslo.ocl20.semantics.bridge.BridgeFactory;
@@ -19,14 +21,14 @@ import org.oslo.ocl20.semantics.bridge.Parameter;
  */
 public class OperationImpl extends org.oslo.ocl20.semantics.bridge.impl.OperationImpl implements Operation {
 
-	com.sap.tc.moin.repository.mmi.model.Operation _impl;
+	EOperation _impl;
 
 	OclProcessor processor;
 
 	/**
 	 * Constructor for Operation$Impl.
 	 */
-	public OperationImpl(com.sap.tc.moin.repository.mmi.model.Operation op, OclProcessor proc) {
+	public OperationImpl(EOperation op, OclProcessor proc) {
 		this._impl = op;
 		this.processor = proc;
 	}
@@ -46,13 +48,13 @@ public class OperationImpl extends org.oslo.ocl20.semantics.bridge.impl.Operatio
 		Classifier _type;
 
 
-		Iterator operationsIterator= this._impl.getContents().iterator();
+		Iterator operationsIterator= this._impl.eAllContents();
 		Object operationObject;
-		com.sap.tc.moin.repository.mmi.model.Parameter mofParam=null;
+		EOperation mofParam=null;
 		while (operationsIterator.hasNext()){
 			operationObject=operationsIterator.next();
-			if (operationObject instanceof com.sap.tc.moin.repository.mmi.model.Parameter){
-				mofParam=(com.sap.tc.moin.repository.mmi.model.Parameter) operationObject;
+			if (operationObject instanceof EOperation){
+				mofParam=(EOperation) operationObject;
 				break;
 				}
 		}
@@ -60,9 +62,9 @@ public class OperationImpl extends org.oslo.ocl20.semantics.bridge.impl.Operatio
 		
 		//com.sap.tc.moin.repository.mmi.model.Classifier moftype = this._impl.getEType();
 		
-		Classifier type = this.processor.getBridgeFactory().buildClassifier(mofParam.getType());
-		if (mofParam.getMultiplicity().getUpper() > 1) {
-			if (mofParam.getMultiplicity().isUnique()) {
+		Classifier type = this.processor.getBridgeFactory().buildClassifier(mofParam.getEType());
+		if (mofParam.getUpperBound() > 1) {
+			if (mofParam.isUnique()) {
 				_type = this.processor.getTypeFactory().buildOrderedSetType(type);
 			} else {
 				_type = this.processor.getTypeFactory().buildSequenceType(type);
@@ -140,7 +142,7 @@ public class OperationImpl extends org.oslo.ocl20.semantics.bridge.impl.Operatio
 
 				
 				List parametersList=new ArrayList();
-				Iterator j = this._impl.getContents().iterator();
+				Iterator j = this._impl.eAllContents();
 				Object obj;
 				while(j.hasNext()){
 					obj=j.next();
@@ -150,10 +152,10 @@ public class OperationImpl extends org.oslo.ocl20.semantics.bridge.impl.Operatio
 				}
 				Iterator i = parametersList.iterator();
 				while (i.hasNext()) {
-					com.sap.tc.moin.repository.mmi.model.Parameter p = (com.sap.tc.moin.repository.mmi.model.Parameter) i.next();
+					EOperation p = (EOperation) i.next();
 					// TODO use Bridge factory to build parameters
 					Parameter parameter = BridgeFactory.eINSTANCE.createParameter();
-					parameter.setType(this.processor.getBridgeFactory().buildClassifier(p.getType()));
+					parameter.setType(this.processor.getBridgeFactory().buildClassifier(p.getEType()));
 					parameter.setName(p.getName());
 					this._ownedParameters.add(parameter);
 				}

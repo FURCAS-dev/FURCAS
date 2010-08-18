@@ -4,13 +4,13 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 import org.osgi.framework.BundleContext;
 
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.tc.moin.repository.Connection;
+
 
 /**
  * The activator class controls the plug-in life cycle
@@ -57,8 +57,8 @@ public class Activator extends Plugin {
 	    return project;
 	}
 
-	static Connection createConnection(final IProject project) {
-	    final Connection[] conn = new Connection[1];
+	static ResourceSet createConnection(final IProject project) {
+	    final ResourceSet[] conn = new ResourceSet[1];
 	    IRunnableWithProgress operation = new IRunnableWithProgress() {
 	        public void run(IProgressMonitor monitor) {
 	    	// non UI thread
@@ -75,7 +75,7 @@ public class Activator extends Plugin {
 	    return conn[0];
 	}
 	
-	static Connection createConnection(String projectName) {
+	static ResourceSet createConnection(String projectName) {
 	    return createConnection(getProject(projectName));
 	}
 

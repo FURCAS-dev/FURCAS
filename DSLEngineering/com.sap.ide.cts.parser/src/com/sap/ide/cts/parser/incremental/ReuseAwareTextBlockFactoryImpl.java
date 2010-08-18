@@ -6,22 +6,19 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import tcs.ClassTemplate;
-import tcs.Template;
-import textblockdefinition.TextBlockDefinition;
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.VersionEnum;
+import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.parsing.textblocks.ModelElementFromTextBlocksFactory;
 import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.mi.textual.parsing.textblocks.observer.TokenRelocationUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 
@@ -112,17 +109,17 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 									+ elementInContext);
 				}
 				tb.getElementsInContext().add(
-						(RefObject) ((IModelElementProxy) elementInContext)
+						(EObject) ((IModelElementProxy) elementInContext)
 								.getRealObject());
-			} else if (elementInContext instanceof RefObject) {
-				tb.getElementsInContext().add((RefObject) elementInContext);
+			} else if (elementInContext instanceof EObject) {
+				tb.getElementsInContext().add((EObject) elementInContext);
 			}
 		}
 		// if the template has specified the addToContext property we need to
 		// add the corresponding element
 		// to the context
 		if (newVersion.getTemplate() instanceof ClassTemplate) {
-			if (((ClassTemplate) newVersion.getTemplate()).isAddToContext()) {
+			if (((ClassTemplate) newVersion.getTemplate()).isIsAddToContext()) {
 				// move up to the first parent textblock that has the context
 				// property set
 				TextBlock loopParent = parent;
@@ -183,7 +180,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 				.getTextblockdefinition().getTextBlockDefinition()
 				.refCreateInstance();
 		tbDef.setParseRule(template);
-		((Partitionable) template).get___Partition()
+		((EObject) template).get___Partition()
 				.assignElementIncludingChildren(tbDef);
 		return tbDef;
 	}

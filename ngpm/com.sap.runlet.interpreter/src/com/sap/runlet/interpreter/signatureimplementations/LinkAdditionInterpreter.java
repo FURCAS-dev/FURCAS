@@ -7,7 +7,6 @@ import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.RunletStackFrame;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -31,7 +30,7 @@ public class LinkAdditionInterpreter implements Interpreter<LinkAddition, SapCla
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
 	    throws SecurityException, IllegalArgumentException, JmiException {
-	MethodSignature sig = linkAddition.getImplements();
+	MethodSignature sig = linkAddition.getImplements_();
 	// parameter and this are in the current stack frame; grab them:
 	Parameter param = sig.getInput().get(0);
 	boolean isFirstEnd = linkAddition.getEnd().equals(linkAddition.getEnd().getAssociation().getEnds().get(0));

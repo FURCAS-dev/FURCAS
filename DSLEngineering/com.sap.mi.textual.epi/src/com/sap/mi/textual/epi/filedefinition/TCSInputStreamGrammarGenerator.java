@@ -17,12 +17,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 
-import tcs.ConcreteSyntax;
-
-import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.exceptions.ParserInvokationException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
@@ -32,13 +27,8 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.AbstractTCSGrammarGenerator;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.TCSSyntaxContainerBean;
 import com.sap.mi.textual.syntaxmodel.moinadapter.ModelInjectionResult;
 import com.sap.mi.textual.syntaxmodel.moinadapter.TCS2MOINInjectorFacade;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.PartitionsNotSavedException;
-import com.sap.tc.moin.repository.ReferencedTransientElementsException;
+
+
 
 
 /**
@@ -66,7 +56,7 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 	}
 
 
-	private TCSSyntaxContainerBean initMembers(InputStream definitionInputStream, Connection connection, Set<PRI> metamodelPRIs) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException, SyntaxParsingException, ModelAdapterException {
+	private TCSSyntaxContainerBean initMembers(InputStream definitionInputStream, ResourceSet connection, Set<PRI> metamodelPRIs) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException, SyntaxParsingException, ModelAdapterException {
 
         // By choosing this injector, we establish the dependency to MOIN.
 	    ModelInjectionResult result = TCS2MOINInjectorFacade.parseSyntaxDefinition(definitionInputStream, connection, metamodelPRIs, null);
@@ -100,7 +90,7 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 	 * @see com.sap.mi.textual.grammar.impl.tcs.t2m.AbstractTCSGrammarGenerator#doGetSyntaxDef()
 	 */
 	@Override
-	protected TCSSyntaxContainerBean doGetSyntaxDef(Connection connection, Set<PRI> metamodelPRIs) throws IOException, SyntaxParsingException, ModelAdapterException, ParserInvokationException
+	protected TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet connection, Set<PRI> metamodelPRIs) throws IOException, SyntaxParsingException, ModelAdapterException, ParserInvokationException
 	 {
 		try {
             return initMembers(syntaxDefinitionStream, connection, metamodelPRIs);
@@ -117,7 +107,7 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 
 
 	@Override
-	protected TCSSyntaxContainerBean doGetSyntaxDef(Connection connection,
+	protected TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet connection,
 			Set<PRI> metamodelPRIs, String languageId)
 			throws SyntaxParsingException, IOException, ModelAdapterException,
 			ParserInvokationException {
@@ -135,9 +125,9 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 	 * @param syntax
 	 */
 	public void writeMappingToFile(IProject project, ConcreteSyntax syntax) {
-		Connection connection = ((Partitionable)syntax).get___Connection();
-		ModelPartition partition = getOrCreateMappingPartition(project, syntax, connection);
-		for (Partitionable element : connection.getNullPartition().getElements()) {
+		ResourceSet connection = ((EObject)syntax).get___Connection();
+		Resource partition = getOrCreateMappingPartition(project, syntax, connection);
+		for (EObject element : connection.getNullPartition().getElements()) {
 			partition.assignElementIncludingChildren(element);
 		}
 		try {
@@ -152,10 +142,10 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 	}
 
 
-	private ModelPartition getOrCreateMappingPartition(IProject project,
-			ConcreteSyntax syntax, Connection connection) {
+	private Resource getOrCreateMappingPartition(IProject project,
+			ConcreteSyntax syntax, ResourceSet connection) {
 		IPath partitionRelativePath = project.getFile("mappings/"+syntax.getName() + MAPPING_XMI_POSTFIX).getProjectRelativePath();
-		ModelPartition partition = ModelManager.getPartitionService().getPartition(connection, project, partitionRelativePath);
+		Resource partition = ModelManager.getPartitionService().getPartition(connection, project, partitionRelativePath);
 		if(partition != null) {
 			partition.deleteElements();
 		} else {

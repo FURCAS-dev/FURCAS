@@ -12,35 +12,22 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 import com.sap.ide.treeprovider.internal.Activator;
-import com.sap.mi.fwk.ui.ModelManagerUI;
-import com.sap.mi.fwk.ui.dnd.DefaultModelTransferTarget;
-import com.sap.mi.fwk.ui.dnd.IModelTransferPreparer;
-import com.sap.mi.fwk.ui.tree.dnd.ITreeNodeTransfer;
-import com.sap.mi.fwk.ui.tree.dnd.ITreeNodeTransferHandler;
-import com.sap.mi.fwk.ui.tree.nodes.TreeNodeRefObject;
-import com.sap.mi.tools.cockpit.editor.model.properties.MOINModelBrowserPropertySourceManager;
-import com.sap.tc.moin.globalmodellistener.GlobalEventListenerRegistry;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.DeepCopyResultSet;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.commands.CommandStack;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.sap.tc.moin.repository.commands.PartitionOperation.Operation;
-import com.sap.tc.moin.repository.mmi.model.AggregationKindEnum;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implements INodeExplorer, ITreeNodeTransferHandler, IModelTransferPreparer {
+
+
+public class GenericRefObjectNode extends TreeNodeRefObject<EObject> implements INodeExplorer, ITreeNodeTransferHandler, IModelTransferPreparer {
     
     private static MOINModelBrowserPropertySourceManager propManager = new MOINModelBrowserPropertySourceManager();
 
@@ -50,15 +37,15 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
      * {@link #roleName} is <tt>null</tt>, only the object will be shown.
      * <p>
      * 
-     * If the object is a {@link RefObject}, a class in this package named
+     * If the object is a {@link EObject}, a class in this package named
      * <tt>NodeX</tt> with <tt>X</tt> being replaced by the unqualified name of
-     * the {@link RefObject}'s class will be looked up (example:
+     * the {@link EObject}'s class will be looked up (example:
      * <tt>NodeSapClass</tt> for class <tt>data.classes.SapClass</tt>). If
      * found, a two-argument constructor is called, using the parent object and
-     * the {@link RefObject} as arguments. Note, that the tree node class must
+     * the {@link EObject} as arguments. Note, that the tree node class must
      * implement the {@link INodeExplorer} interface. If no such class is found,
      * the class {@link GenericRefObjectNode} is used to show the
-     * {@link RefObject} in the tree.
+     * {@link EObject} in the tree.
      * <p>
      * 
      * @author Axel Uhl D043530
@@ -82,31 +69,31 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
 	    return theObject;
 	}
 
-	public Object getTreeNode(Object parent) {
-	    Object node = null;
-	    if (getObject() instanceof RefObject) {
+	public EObject getTreeNode(EObject parent) {
+	    EObject node = null;
+	    if (getObject() instanceof EObject) {
 		node = getTreeNodeForRefObject(parent, node);
 	    }
 	    return node;
 	}
 
-	private Object getTreeNodeForRefObject(Object parent, Object node) {
+	private EObject getTreeNodeForRefObject(EObject parent, EObject node) {
 	    try {
 		Class<?> nodeClass = Class.forName("com.sap.ide.treeprovider.internal.explorer.nodes.Node"
-			+ ((MofClass) ((RefObject) getObject()).refMetaObject()).getName());
+			+ ((EClass) ((EObject) getObject()).refMetaObject()).getName());
 		for (Constructor<?> c : nodeClass.getDeclaredConstructors()) {
 		    if (c.getParameterTypes().length == 2 && c.getParameterTypes()[0].isAssignableFrom(parent.getClass())
 			    && c.getParameterTypes()[1].isAssignableFrom(getObject().getClass())) {
-			node = c.newInstance(parent, getObject());
+			node = (EObject) c.newInstance(parent, getObject());
 			break;
 		    }
 		}
 		if (node == null) {
-		    node = new GenericRefObjectNode(parent, ((RefObject) getObject()), getRoleName());
+		    node = (EObject) new GenericRefObjectNode(parent, ((EObject) getObject()), getRoleName());
 		}
 	    } catch (ClassNotFoundException cnfe) {
 		// in this case, use this generic node type
-		node = new GenericRefObjectNode(parent, ((RefObject) getObject()), getRoleName());
+		node = (EObject) new GenericRefObjectNode(parent, ((EObject) getObject()), getRoleName());
 	    } catch (Exception e) {
 		throw new RuntimeException(e);
 	    }
@@ -126,11 +113,11 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
 	return roleName;
     }
 
-    public GenericRefObjectNode(Object parent, RefObject modelElement) {
+    public GenericRefObjectNode(EObject parent, EObject modelElement) {
 	super(parent, modelElement);
     }
 
-    public GenericRefObjectNode(Object parent, RefObject modelElement, String roleName) {
+    public GenericRefObjectNode(EObject parent, EObject modelElement, String roleName) {
 	this(parent, modelElement);
 	this.roleName = roleName;
     }
@@ -138,15 +125,15 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
     protected Collection<RoleNameAndObject> getChildRefObjects() {
 	JmiHelper jmiHelper = getValue().get___Connection().getJmiHelper();
 	List<RoleNameAndObject> kids = new ArrayList<RoleNameAndObject>();
-	for (AssociationEnd ae : jmiHelper.getAssociationEnds((MofClass) getValue().refMetaObject(), /* includeSupertypes */
+	for (EReference ae : jmiHelper.getAssociationEnds((EClass) getValue().refMetaObject(), /* includeSupertypes */
 	true)) {
-	    Association a = (Association) ae.getContainer();
-	    if (ae.getAggregation() == AggregationKindEnum.COMPOSITE) {
-		RefAssociation refAssoc = jmiHelper.getRefAssociationForAssociation(a);
-		boolean isSingle = ae.otherEnd().getMultiplicity().getUpper() == 1;
-		String roleName = isSingle ? ae.otherEnd().getName() : null;
-		Collection<RefObject> localKids = refAssoc.refQuery(ae, getValue());
-		for (RefObject localKid : localKids) {
+	    EReference a = (EReference) ae.eContainer();
+	    if (ae.getAggregation() == EEnum.COMPOSITE) {
+		EReference refAssoc = jmiHelper.getRefAssociationForAssociation(a);
+		boolean isSingle = ae.getEOpposite().getUpperBound() == 1;
+		String roleName = isSingle ? ae.getEOpposite().getName() : null;
+		Collection<EObject> localKids = refAssoc.refQuery(ae, getValue());
+		for (EObject localKid : localKids) {
 		    kids.add(new RoleNameAndObject(roleName, localKid));
 		}
 	    }
@@ -160,40 +147,40 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
      * finds all concrete classes whose instances can act as composite children
      * on that opposite end. Those classes are returned.
      */
-    public static Map<AssociationEnd, Set<MofClass>> getConcreteCompositeChildClasses(MofClass of) {
-	Map<AssociationEnd, Set<MofClass>> result = new LinkedHashMap<AssociationEnd, Set<MofClass>>();
+    public static Map<EReference, Set<EClass>> getConcreteCompositeChildClasses(EClass of) {
+	Map<EReference, Set<EClass>> result = new LinkedHashMap<EReference, Set<EClass>>();
 	JmiHelper jmiHelper = of.get___Connection().getJmiHelper();
-	for (AssociationEnd ae : jmiHelper.getAssociationEnds(of, /* includeSupertypes */true)) {
-	    Set<MofClass> resultsForEnd = new LinkedHashSet<MofClass>();
-	    if (ae.getAggregation().equals(AggregationKindEnum.COMPOSITE)) {
-		MofClass opposite = (MofClass) ae.otherEnd().getType();
+	for (EReference ae : jmiHelper.getAssociationEnds(of, /* includeSupertypes */true)) {
+	    Set<EClass> resultsForEnd = new LinkedHashSet<EClass>();
+	    if (ae.getAggregation().equals(EEnum.COMPOSITE)) {
+		EClass opposite = (EClass) ae.getEOpposite().getEType();
 		if (!opposite.isAbstract()) {
 		    resultsForEnd.add(opposite);
 		}
-		for (GeneralizableElement ge : jmiHelper.getAllSubtypes(opposite)) {
-		    MofClass mc = (MofClass) ge;
+		for (EClass ge : jmiHelper.getAllSubtypes(opposite)) {
+		    EClass mc = (EClass) ge;
 		    if (!mc.isAbstract()) {
 			resultsForEnd.add(mc);
 		    }
 		}
-		result.put(ae.otherEnd(), resultsForEnd);
+		result.put(ae.getEOpposite(), resultsForEnd);
 	    }
 	}
 	return result;
     }
 
-    @Override
-    public Object[] getChildren() {
-	List<Object> nodes = new ArrayList<Object>();
+    
+    public EObject[] getChildren() {
+	List<EObject> nodes = new ArrayList<EObject>();
 	Collection<RoleNameAndObject> kids = getChildRefObjects();
 	for (RoleNameAndObject o : kids) {
-	    Object node = o.getTreeNode(this);
+	    EObject node = o.getTreeNode(this);
 	    nodes.add(node);
 	}
 	return nodes.toArray();
     }
 
-    @Override
+    
     public boolean hasChildren() {
 	return getChildRefObjects().size() > 0;
     }
@@ -203,7 +190,7 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
      */
     @SuppressWarnings("unchecked")
     @Override
-    public Object getAdapter(Class adapter) {
+    public EObject getAdapter(EClass adapter) {
 	if (adapter == IPropertySource.class) {
 	    return propManager.getPropertySource(this.getValue());
 	}
@@ -232,11 +219,11 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
     @Override
     public boolean handleTransfer(Object target, ITreeNodeTransfer transfer) {
 	assert target == this;
-	Connection co = getConnection();
+	ResourceSet co = getConnection();
 	JmiHelper helper = co.getJmiHelper();
 	
-	RefBaseObject[] objects =  transfer.getRefBaseObjects(co);
-	RefObject actualTarget = (RefObject) getAdapter(RefObject.class);
+	EObject[] objects =  transfer.getRefBaseObjects(co);
+	EObject actualTarget = (EObject) getAdapter(EObject.class);
 	
 	// Save all editors with unsaved changes to prevent locking errors
 	IStatus status = ModelManagerUI.getCommandManager().prepareExecution(
@@ -249,16 +236,16 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
 	stk.openGroup("Handle DND Transfer");	
 	
 	// Remove existing links to old composite parents
-	for (RefBaseObject obj : objects) {
-		if (obj instanceof RefObject) {
-			RefObject source = (RefObject) obj;
-			RefObject parent = (RefObject) source.refImmediateComposite();
+	for (EObject obj : objects) {
+		if (obj instanceof EObject) {
+			EObject source = (EObject) obj;
+			EObject parent = (EObject) source.refImmediateComposite();
 			
-			for (Association assoc : helper.getCompositeAssociations((MofClass)
-					parent.refMetaObject(), (MofClass) source.refMetaObject())) {
+			for (EReference assoc : helper.getCompositeAssociations((EClass)
+					parent.refMetaObject(), (EClass) source.refMetaObject())) {
 				
-				RefAssociation refAssoc = helper.getRefAssociationForAssociation(assoc);
-				AssociationEnd compAssocEnd = co.getJmiHelper().getCompositeAssociationEnd(assoc);
+				EReference refAssoc = helper.getRefAssociationForAssociation(assoc);
+				EReference compAssocEnd = co.getJmiHelper().getCompositeAssociationEnd(assoc);
 				if (helper.isFirstAssociationEnd(assoc, compAssocEnd) &&
 						refAssoc.refLinkExists(parent, source)) {
 					refAssoc.refRemoveLink(parent, source);
@@ -287,35 +274,35 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
 	@Override
     public boolean isTransferAllowed(Object target, ITreeNodeTransfer transfer) {
 	assert target == this;
-	RefBaseObject[] objects =  transfer.getRefBaseObjects(getConnection());
+	EObject[] objects =  transfer.getRefBaseObjects(getConnection());
 	DefaultModelTransferTarget dmth = new DefaultModelTransferTarget();
-	RefObject actualTarget = (RefObject) getAdapter(RefObject.class);
+	EObject actualTarget = (EObject) getAdapter(EObject.class);
 	return dmth.isTransferAllowed(actualTarget, objects);
     }	
 	
-    private Collection<PartitionOperation> getAffectedPartitionsForDND(RefObject target, RefBaseObject[] objects) {
-	Collection<PartitionOperation> partitions = new HashSet<PartitionOperation>();
-	partitions.add(new PartitionOperation(Operation.EDIT, target.get___Partition().getPri()));
+    private Collection<EOperation> getAffectedPartitionsForDND(EObject target, EObject[] objects) {
+	Collection<EOperation> partitions = new HashSet<EOperation>();
+	partitions.add(new EOperation(EOperation.EDIT, target.get___Partition().getPri()));
 		
-	for (RefBaseObject obj : objects) {
-		partitions.add(new PartitionOperation(Operation.EDIT, obj.get___Partition().getPri()));
-		if (obj instanceof RefObject) {
-			RefObject source = (RefObject) obj;
-			RefBaseObject parent = source.refImmediateComposite();
+	for (EObject obj : objects) {
+		partitions.add(new EOperation(EOperation.EDIT, obj.get___Partition().getPri()));
+		if (obj instanceof EObject) {
+			EObject source = (EObject) obj;
+			EObject parent = source.refImmediateComposite();
 			// TODO only add partitions with storage
-			partitions.add(new PartitionOperation(Operation.EDIT, parent.get___Partition().getPri()));
+			partitions.add(new EOperation(EOperation.EDIT, parent.get___Partition().getPri()));
 		}
 	}
 	return partitions;
     }
 
 	@Override
-	public void handlePostCopy(Connection targetConnection, RefObject[] srcObjects, DeepCopyResultSet copyResult) {
+	public void handlePostCopy(ResourceSet targetConnection, EObject[] srcObjects, DeepCopyResultSet copyResult) {
 		enableEventListeners(targetConnection);
 	}
 
-	@Override
-	public void handlePreCopy(Connection targetConnection, RefObject[] srcObjects) {
+	
+	public void handlePreCopy(ResourceSet targetConnection, EObject[] srcObjects) {
 		disableEventListeners(targetConnection);
 	}
 	
@@ -325,7 +312,7 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
 	 *
 	 * @param co
 	 */
-	private void disableEventListeners(Connection co) {
+	private void disableEventListeners(ResourceSet co) {
 		BundleContext context = Activator.getDefault().getBundle().getBundleContext();
 		ServiceReference ref = context.getServiceReference(GlobalEventListenerRegistry.class.getName());
 		GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context.getService(ref);
@@ -337,7 +324,7 @@ public class GenericRefObjectNode extends TreeNodeRefObject<RefObject> implement
 	 *
 	 * @param co
 	 */
-	private void enableEventListeners(Connection co) {
+	private void enableEventListeners(ResourceSet co) {
 		BundleContext context = Activator.getDefault().getBundle().getBundleContext();
 		ServiceReference ref = context.getServiceReference(GlobalEventListenerRegistry.class.getName());
 		GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context.getService(ref);

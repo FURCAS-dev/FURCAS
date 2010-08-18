@@ -1,10 +1,10 @@
 package com.sap.mi.textual.epi.errors;
 
-import org.antlr.tool.Message;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 
 import com.sap.mi.textual.epi.util.EclipseMarkerUtil;
+
 
 /**
  * handles occuring errors by adding eclipse marker to the grammar file.

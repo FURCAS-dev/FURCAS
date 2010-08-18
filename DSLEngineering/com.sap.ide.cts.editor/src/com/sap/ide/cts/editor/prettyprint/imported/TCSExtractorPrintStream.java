@@ -17,10 +17,10 @@ import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import tcs.SequenceElement;
-import tcs.Template;
+import org.eclipse.emf.ecore.EObject;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
 
 /**
  * 
@@ -105,7 +105,7 @@ public class TCSExtractorPrintStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public int startClassTemplateForObject(RefObject object, Template t) {
+	public int startClassTemplateForObject(EObject object, Template t) {
 		// do nothing
 		return 0;
 

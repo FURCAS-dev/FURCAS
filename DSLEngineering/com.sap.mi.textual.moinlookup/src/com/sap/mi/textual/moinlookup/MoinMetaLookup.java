@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 
@@ -17,7 +18,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  */
 public class MoinMetaLookup extends AbstractQueryBasedMoinMetaLookUp {
     
-    private HashSet<PRI> newPRIs;
+    private HashSet<URI> newPRIs;
 
     /**
      * test workaround constructor to specify own PRIs for the standalone case, where no MetaModelManager is available.
@@ -26,12 +27,12 @@ public class MoinMetaLookup extends AbstractQueryBasedMoinMetaLookUp {
      * @param priList 
      * @throws IOException 
      */
-    public MoinMetaLookup(ResourceSet connection, Collection<PRI> priList) {
+    public MoinMetaLookup(ResourceSet connection, Collection<URI> priList) {
         super(connection);
         if (priList != null) {
-            newPRIs = new HashSet<PRI>(priList);
+            newPRIs = new HashSet<URI>(priList);
         } else {
-            newPRIs = new HashSet<PRI>();
+            newPRIs = new HashSet<URI>();
         }
     }
 
@@ -39,7 +40,7 @@ public class MoinMetaLookup extends AbstractQueryBasedMoinMetaLookUp {
      * @see com.sap.mi.textual.moinlookup.AbstractQueryBasedMoinMetaLookUp#initQueryPRIs()
      */
     @Override
-    protected Set<PRI> initQueryPRIs() {
+    protected Set<URI> initQueryPRIs() {
         return newPRIs;
     }
 

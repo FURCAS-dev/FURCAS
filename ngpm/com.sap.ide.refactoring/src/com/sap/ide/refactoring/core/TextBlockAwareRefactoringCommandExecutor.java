@@ -3,6 +3,8 @@ package com.sap.ide.refactoring.core;
 
 import java.util.Collection;
 
+import javax.xml.stream.EventFilter;
+
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.CompositeChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
@@ -10,9 +12,6 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 import com.sap.ide.refactoring.core.textual.TextBlocksNeedingPrettyPrintChangeListener;
 import com.sap.ide.refactoring.core.textual.UpdateTextBlocksCommand;
-import com.sap.tc.moin.repository.commands.CommandHandle;
-import com.sap.tc.moin.repository.events.filter.ConnectionFilter;
-import com.sap.tc.moin.repository.events.filter.EventFilter;
 
 public class TextBlockAwareRefactoringCommandExecutor {
 

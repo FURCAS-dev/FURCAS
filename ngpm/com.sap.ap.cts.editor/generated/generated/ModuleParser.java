@@ -1,20 +1,18 @@
 // $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g 2010-03-03 09:14:40
 
 package generated;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.impl.PredicateSemantic;
-import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import org.antlr.runtime.Token;
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
 import java.util.List;
-import java.util.ArrayList;
+
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
+
+import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 
 public class ModuleParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {

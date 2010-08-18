@@ -21,16 +21,13 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.exceptions.ParserInvokationException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.grammar.impl.ParsingError;
+
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.GenerationReport;
 import com.sap.mi.textual.util.FileReadHelper;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
+
+
+
+
 
 
 
@@ -55,7 +52,7 @@ public class GrammarWritingHelper {
 	 * @throws ModelAdapterException the model handler exception
 	 * @throws GrammarGenerationException the grammar generation exception
 	 */
-	public static Collection<String> writeGrammarIfChanged( IMetaModelLookup<?> lookup, File syntaxDefFile, File grammarFile, String qualifiedNamesSeparator, String targetPackage, Connection connection, Set<PRI> metamodelPRIs) throws FileNotFoundException,
+	public static Collection<String> writeGrammarIfChanged( IMetaModelLookup<?> lookup, File syntaxDefFile, File grammarFile, String qualifiedNamesSeparator, String targetPackage, ResourceSet connection, Set<URI> metamodelPRIs) throws FileNotFoundException,
 	IOException, ModelAdapterException, GrammarGenerationException {
 	    ArrayList<String> warnings = new ArrayList<String>();
 		// byte array target for grammar file

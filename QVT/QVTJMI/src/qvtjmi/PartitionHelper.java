@@ -1,15 +1,15 @@
 package qvtjmi;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 public class PartitionHelper {
-	public static ModelPartition getPartition(RefObject object) {
-		return ((Partitionable)object).get___Partition();
+	public static Resource getPartition(EObject object) {
+		return ((EObject)object).eResource();
 	}
 	
-	public static void addToPartion(RefObject object) {
+	public static void addToPartion(EObject object) {
 	}
 }

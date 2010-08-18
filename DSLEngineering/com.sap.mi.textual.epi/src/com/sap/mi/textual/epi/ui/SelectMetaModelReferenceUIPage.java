@@ -29,7 +29,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ListDialog;
 
-import com.sap.mi.fwk.mm.MetamodelManager;
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.Constants;
 import com.sap.mi.textual.epi.Messages;
@@ -37,7 +36,6 @@ import com.sap.mi.textual.epi.builder.SyntaxGenerationNature;
 import com.sap.mi.textual.epi.conf.DeployedMetaProjectConf;
 import com.sap.mi.textual.epi.conf.IProjectMetaRefConf;
 import com.sap.mi.textual.epi.conf.OpenMOF14MetaProjectConf;
-import com.sap.tc.moin.repository.ide.metamodels.MmDeploymentInfo;
 
 
 /**

@@ -5,27 +5,27 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Stack;
 
-import tcs.ClassTemplate;
+import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class PrettyPrintContext {
 
 	// to keep the pretty printer from going into recursion in the case that
 	// serialize for one model elment calls serialize for the same model element
 	// recursively
-	private Set<RefObject> visitedModelElements = new HashSet<RefObject>();
+	private Set<EObject> visitedModelElements = new HashSet<EObject>();
 
 	private Stack<Integer> priorities = new Stack<Integer>();
 	private Stack<String> currentSeparator = new Stack<String>();
 	private Stack<ClassTemplate> classTemplates = new Stack<ClassTemplate>();
-	private Stack<RefObject> parentRefObjects = new Stack<RefObject>();
+	private Stack<EObject> parentRefObjects = new Stack<EObject>();
 
 	private int indentLevel = 0;
 	private String curIndent = "";
 
-	public Stack<RefObject> getParentRefObjects() {
+	public Stack<EObject> getParentRefObjects() {
 		return parentRefObjects;
 	}
 
@@ -43,7 +43,7 @@ public class PrettyPrintContext {
 		this.typeLast = typeLast;
 	}
 
-	public Set<RefObject> getVisitedModelElements() {
+	public Set<EObject> getVisitedModelElements() {
 		return visitedModelElements;
 	}
 
@@ -110,7 +110,7 @@ public class PrettyPrintContext {
 			result.getClassTemplates().push(ctIter.next());
 		}
 
-		Iterator<RefObject> poIter = parentRefObjects.iterator();
+		Iterator<EObject> poIter = parentRefObjects.iterator();
 		while (poIter.hasNext()) {
 			result.getParentRefObjects().push(poIter.next());
 		}
@@ -125,7 +125,7 @@ public class PrettyPrintContext {
 	 * @param tag
 	 * @return
 	 */
-	public static RefObject getContextElement(PrettyPrintContext context,
+	public static EObject getContextElement(PrettyPrintContext context,
 			String tag) {
 		assert (context.getClassTemplates().size() == context
 				.getParentRefObjects().size());
@@ -134,7 +134,7 @@ public class PrettyPrintContext {
 		PrettyPrintContext clone = context.duplicate();
 
 		ClassTemplate curParentCT = null;
-		RefObject curParentRO = null;
+		EObject curParentRO = null;
 
 		while (clone.getClassTemplates().size() > 0) {
 			curParentCT = clone.getClassTemplates().pop();

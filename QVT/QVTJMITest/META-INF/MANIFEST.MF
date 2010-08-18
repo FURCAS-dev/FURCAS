@@ -4,8 +4,8 @@ Bundle-Name: QVTJMITest
 Bundle-SymbolicName: QVTJMITest
 Bundle-Version: 1.0.0.qualifier
 Export-Package: de.ikv.medini.qvtemf.test
-Require-Bundle: com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
- com.sap.mi.textual.moin.standalone,
+Require-Bundle: com.sap.mi.textual.moin.standalone,
  QVTJMITestAdapter;bundle-version="1.0.0",
  OCLJMITestAdapter;bundle-version="1.0.0",
- OCLCommon;bundle-version="1.0.0"
+ OCLCommon;bundle-version="1.0.0",
+ com.sap.furcas.metamodel;bundle-version="1.0.0"

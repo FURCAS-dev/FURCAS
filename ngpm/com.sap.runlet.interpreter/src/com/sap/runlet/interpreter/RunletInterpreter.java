@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import persistence.actions.Delete;
 import persistence.actions.Rollback;
 import persistence.actions.Store;
@@ -25,8 +27,6 @@ import behavioral.actions.Return;
 import behavioral.actions.Statement;
 import behavioral.actions.WhileLoop;
 
-import com.sap.ap.metamodel.formatter.StringFormatter;
-import com.sap.ap.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.AbstractRunletInterpreter;
 import com.sap.runlet.abstractinterpreter.DebugSession;
 import com.sap.runlet.abstractinterpreter.objects.AbstractValueObject;
@@ -98,8 +98,7 @@ import com.sap.runlet.interpreter.statements.ReturnInterpreter;
 import com.sap.runlet.interpreter.statements.RollbackInterpreter;
 import com.sap.runlet.interpreter.statements.StoreInterpreter;
 import com.sap.runlet.interpreter.statements.WhileInterpreter;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+
 
 import data.classes.ActualObjectParameter;
 import data.classes.Association;
@@ -192,7 +191,7 @@ public class RunletInterpreter extends
      * @param repository
      *            used to load/store objects durably / persistently
      */
-    public RunletInterpreter(Connection conn,
+    public RunletInterpreter(ResourceSet conn,
 	    Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository) {
 	super(conn, repository, Activator.getDefault().getModelAdapter(),
 		new NativeInterpreterFactory(),
@@ -202,10 +201,10 @@ public class RunletInterpreter extends
     }
 
     /**
-     * Like {@link RunletInterpreter#RiverInterpreter(Connection, Repository)},
+     * Like {@link RunletInterpreter#RiverInterpreter(ResourceSet, Repository)},
      * only that also a {@link #debugSession debug session} can be set.
      */
-    public RunletInterpreter(Connection conn,
+    public RunletInterpreter(ResourceSet conn,
 	    Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository,
 	    DebugSession debugSession) {
 	this(conn, repository);
@@ -237,7 +236,7 @@ public class RunletInterpreter extends
     }
 
     @Override
-    protected void initExpressionInterpreterFactory(Connection conn) {
+    protected void initExpressionInterpreterFactory(ResourceSet conn) {
 	// expressions
 	getExpressionInterpreterFactory().registerInterpreter(StringLiteralInterpreter.class,
 		conn.getClass(StringLiteral.CLASS_DESCRIPTOR).refMetaObject());
@@ -312,7 +311,7 @@ public class RunletInterpreter extends
     }
 
     @Override
-    protected void initStatementInterpreterFactory(Connection conn) {
+    protected void initStatementInterpreterFactory(ResourceSet conn) {
 	// statements
 	getStatementInterpreterFactory().registerInterpreter(ReturnInterpreter.class,
 		conn.getClass(Return.CLASS_DESCRIPTOR).refMetaObject());
@@ -341,7 +340,7 @@ public class RunletInterpreter extends
     }
 
     @Override
-    protected void initSignatureImplementationInterpreterFactory(Connection conn) {
+    protected void initSignatureImplementationInterpreterFactory(ResourceSet conn) {
 	// signature implementations
 	getSignatureImplementationInterpreterFactory().registerInterpreter(RunletNativeInterpreter.class,
 		conn.getClass(NativeImpl.CLASS_DESCRIPTOR).refMetaObject());
@@ -362,7 +361,7 @@ public class RunletInterpreter extends
     }
 
     @Override
-    protected void initNativeInterpreterFactory(Connection conn) {
+    protected void initNativeInterpreterFactory(ResourceSet conn) {
 	final String NUMBER_CLASS_NAME = "Number";
 	final String STRING_CLASS_NAME = "String";
 	final String BOOLEAN_CLASS_NAME = "Boolean";

@@ -8,19 +8,19 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.junit.Test;
 
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 import com.sap.ide.refactoring.test.RefactoringBaseTest;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
 
 public class TestTextBlockAwareRefactoringCommandExecutor extends RefactoringBaseTest {
 
     private static class PassingNullRefactoring extends AbstractRefactoringCommand {
 
-	protected PassingNullRefactoring(Connection connection, String description) {
+	protected PassingNullRefactoring(ResourceSet connection, String description) {
 	    super(connection, description);
 	}
 
@@ -30,14 +30,14 @@ public class TestTextBlockAwareRefactoringCommandExecutor extends RefactoringBas
 	}
 
 	@Override
-	public Collection<PartitionOperation> getAffectedPartitions() {
+	public Collection<EOperation> getAffectedPartitions() {
 	    return Collections.emptyList();
 	}
     }
 
     private static class FailingNullRefactoring extends PassingNullRefactoring {
 
-	protected FailingNullRefactoring(Connection connection, String description) {
+	protected FailingNullRefactoring(ResourceSet connection, String description) {
 	    super(connection, description);
 	}
 
@@ -49,7 +49,7 @@ public class TestTextBlockAwareRefactoringCommandExecutor extends RefactoringBas
 
     private static class CrashingNullRefactoring extends PassingNullRefactoring {
 
-	protected CrashingNullRefactoring(Connection connection, String description) {
+	protected CrashingNullRefactoring(ResourceSet connection, String description) {
 	    super(connection, description);
 	}
 

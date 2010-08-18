@@ -2,11 +2,11 @@ package com.sap.runlet.interpreter;
 
 import java.lang.reflect.Method;
 
-import com.sap.ap.metamodel.formatter.StringFormatter;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.runlet.abstractinterpreter.AbstractObjectFormatter;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
@@ -29,11 +29,11 @@ public class RunletObjectFormatter implements
 
     @Override
     public String formatOwnerOfSignatureOfImpl(SignatureImplementation signatureImpl) {
-	return signatureImpl.getImplements().getOwner().getName();
+	return signatureImpl.getImplements_().getOwner().getName();
     }
 
     @Override
-    public String formatCurrentlyEvaluatingRefObject(RefObject currentlyEvaluating) {
+    public String formatCurrentlyEvaluatingRefObject(EObject currentlyEvaluating) {
 	StringBuilder result = new StringBuilder();
 	if (currentlyEvaluating instanceof Signature) {
 	    result.append(StringFormatter.toString((Signature) currentlyEvaluating));
@@ -48,7 +48,7 @@ public class RunletObjectFormatter implements
 		// just don't add result of getName() then...
 	    }
 	    result.append(':');
-	    result.append(((MofClass) currentlyEvaluating.refMetaObject()).getName());
+	    result.append(((EClass) currentlyEvaluating.refMetaObject()).getName());
 	}
 	return result.toString();
     }

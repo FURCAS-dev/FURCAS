@@ -5,10 +5,8 @@ import java.util.Date;
 
 import persistence.expressions.All;
 import persistence.expressions.SnapshotSelection;
-import persistence.expressions.SnapshotSelectionEnum;
 import behavioral.actions.Statement;
 
-import com.sap.ap.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
@@ -19,7 +17,6 @@ import com.sap.runlet.abstractinterpreter.repository.SnapshotIdentifier;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.RunletStackFrame;
 import com.sap.runlet.interpreter.objects.NativeObject;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;

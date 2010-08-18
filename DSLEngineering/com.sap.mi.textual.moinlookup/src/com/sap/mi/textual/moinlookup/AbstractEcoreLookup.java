@@ -350,9 +350,9 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
             return true;
         }
         
-        List<EClassifier> superList = subtypeClass.allSupertypes();
-        for (Iterator<EClassifier> iterator = superList.iterator(); iterator.hasNext();) {
-            EClassifier generalizableElement = iterator
+        List<EClass> superList = ((EClass)subtypeClass).getEAllSuperTypes();
+        for (Iterator<EClass> iterator = superList.iterator(); iterator.hasNext();) {
+            EClass generalizableElement = iterator
                     .next();
             if (generalizableElement.equals(supertypeClass)) {
                 return true;

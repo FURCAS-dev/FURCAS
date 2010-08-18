@@ -1,20 +1,20 @@
 package com.sap.mi.tcs.editor.tree;
 
-import tcs.ClassTemplate;
-import tcs.LiteralRef;
-import tcs.NamedElement;
-import tcs.Operator;
-import tcs.OperatorTemplate;
-import tcs.Property;
+import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.NamedElement;
+import com.sap.furcas.metamodel.TCS.Operator;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Property;
 import com.sap.ide.treeprovider.GenericRefObjectNode;
 import com.sap.ide.treeprovider.TextLabelProvider;
-import com.sap.mi.fwk.ui.tree.nodes.TreeNodeRefObject;
 
 public class TcsTreeLabelProvider implements TextLabelProvider {
 	@Override
 	public String getText(Object treenode) {
-		if (treenode instanceof TreeNodeRefObject) {
+		if (treenode instanceof EObject) {
 			TreeNodeRefObject<?> node = (TreeNodeRefObject<?>) treenode;
 			String roleName = "";
 			if (node instanceof GenericRefObjectNode) {

@@ -13,16 +13,6 @@
       </editor>
    </extension>
    <extension
-         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
-      <association
-            canHandleChildren="false"
-            default="true"
-            editorId="com.sap.finex.editor.TypeEditor"
-            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
-            objectClass="structure.Type">
-      </association>
-   </extension>
-   <extension
          point="com.sap.ide.treeprovider.rootNodeDefinition">
         <rootNodeProvider classname="com.sap.finex.tree.FinexRootNodeProvider" />
    </extension>
@@ -33,15 +23,6 @@
    <extension
          point="com.sap.ide.treeprovider.imageProvider">
         <imageProvider classname="com.sap.finex.tree.FinexTreeImageProvider" />
-   </extension>
-   <extension
-         point="com.sap.tc.moin.incubation.contentprovider.Content">
-      <ContentDefinition>
-         <Path
-               Value="mappings"
-               Versioned="true">
-         </Path>
-      </ContentDefinition>
    </extension>
    <extension
          point="com.sap.ide.cts.editor.autoEditing">

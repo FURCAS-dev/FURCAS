@@ -12,22 +12,24 @@ import java.util.Collection;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.utilities.TypedElement;
 
-import tcs.Alternative;
-import tcs.AndExp;
-import tcs.AtomExp;
-import tcs.ConditionalElement;
-import tcs.LiteralRef;
-import tcs.Property;
-import tcs.SequenceElement;
-import tcs.Template;
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.AndExp;
+import com.sap.furcas.metamodel.TCS.AtomExp;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.parser.Activator;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
@@ -42,12 +44,6 @@ import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.mi.textual.parsing.textblocks.observer.TokenRelocationUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.model.StructureType;
-import com.sap.tc.moin.repository.mmi.model.TypedElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * @see TextBlockReuseStrategy
@@ -126,10 +122,10 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						if (subNodeResult.reuseType
 							.equals(ReuseType.DELETE)) {
 							// Delete all blocks that are empty now
-							Collection<RefObject> affectedModelElements = IncrementalParsingUtil
+							Collection<EObject> affectedModelElements = IncrementalParsingUtil
 								.deleteEmptyBlocksIncludingAdjecentBlocks(original);
 							// delete all affected modelelements
-							for (RefObject refObject : affectedModelElements) {
+							for (EObject refObject : affectedModelElements) {
 								if (refObject.is___Alive()
 									&& !isFromReferenceOnlyTemplate(subNodeResult.textBlock)) {
 									refObject.refDelete();
@@ -142,7 +138,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 							// otherwise the client has to be
 							// responsible for
 							// dealing with these elements
-							if (((Partitionable) original).is___Alive()
+							if (((EObject) original).is___Alive()
 								&& TbNavigationUtil
 									.getSubNodesSize(original) == 0) {
 								// delete only if original subblock
@@ -190,7 +186,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						referenceHandler.setNewPrimitiveFeature(newVersion,
 							oldVersion, token);
 					}
-					if (!oldVersion.equals((token).getParentBlock())) {
+					if (!oldVersion.equals((token).getParent())) {
 						// parent needs to be changed so move it to the new
 						// block
 						TokenRelocationUtil.relocateToken(token, endIndex,
@@ -211,12 +207,12 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						oldVersion, (AbstractToken) node);
 				}
 			}
-			if (oldVersion.getParentBlock() != null) {
+			if (oldVersion.getParent() != null) {
 				// delete any non existent siblings
 				IncrementalParsingUtil
 					.deleteEmptyBlocksIncludingAdjecentBlocks(oldVersion
-						.getParentBlock());
-				deleteElementsForRemovedSubBlocks(oldVersion.getParentBlock());
+						.getParent());
+				deleteElementsForRemovedSubBlocks(oldVersion.getParent());
 			}
 			IncrementalParsingUtil.deleteEmptyBlocksIncludingAdjecentBlocks(oldVersion);
 
@@ -231,7 +227,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 		// return new TbBean(tbCreator.createNewTextBlock(newVersion), true,
 		// getReuseType(oldVersion, newVersion));
 		TextBlock tb = tbFactory
-			.createNewTextBlock(newVersion, oldVersion.getParentBlock());
+			.createNewTextBlock(newVersion, oldVersion.getParent());
 		changedBlocks.add(tb);
 		if (!TbUtil.isEmpty(oldVersion)) {
 			// old version still there to this was an insert case
@@ -257,8 +253,8 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                 if (element instanceof IModelElementProxy) {
                     element = ((IModelElementProxy) element).getRealObject();
                 }
-                if (element instanceof RefObject) {
-                    oldVersion.getElementsInContext().add((RefObject) element);
+                if (element instanceof EObject) {
+                    oldVersion.getElementsInContext().add((EObject) element);
                 }
             }
 	}
@@ -269,9 +265,9 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	}
 
 	private TbBean handleReferenceOnlyTemplate(TextBlock oldVersion, TextBlockProxy newVersion) {
-		for (RefObject ro : new ArrayList<RefObject>(oldVersion.getParentBlock()
+		for (EObject ro : new ArrayList<EObject>(oldVersion.getParent()
 			.getCorrespondingModelElements())) {
-			for (RefObject value : new ArrayList<RefObject>(oldVersion
+			for (EObject value : new ArrayList<EObject>(oldVersion
 				.getReferencedElements())) {
 				try {
 					SetNewFeatureBean bean = new SetNewFeatureBean(ro,
@@ -286,7 +282,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 			}
 		}
 		TextBlock tb = tbFactory
-			.createNewTextBlock(newVersion, oldVersion.getParentBlock());
+			.createNewTextBlock(newVersion, oldVersion.getParent());
 		changedBlocks.add(tb);
 		if (!TbUtil.isEmpty(oldVersion)) {
 			// old version still there to this was an insert case
@@ -666,15 +662,15 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 					&& ((Property) se).getPropertyReference().getStrucfeature() != null) {
 					TypedElement te = ((Property) se).getPropertyReference()
 						.getStrucfeature();
-					if (te instanceof AssociationEnd) {
-						return ((AssociationEnd) te).getMultiplicity()
+					if (te instanceof EReference) {
+						return ((EReference) te).getMultiplicity()
 							.getLower() == 0
-							|| ((AssociationEnd) te).getMultiplicity()
+							|| ((EReference) te).getMultiplicity()
 								.getUpper() > 1;
-					} else if (te instanceof StructuralFeature) {
-						return ((StructuralFeature) te).getMultiplicity()
+					} else if (te instanceof EStructuralFeature) {
+						return ((EStructuralFeature) te).getMultiplicity()
 							.getLower() == 0
-							|| ((StructuralFeature) te)
+							|| ((EStructuralFeature) te)
 								.getMultiplicity().getUpper() > 1;
 					}
 				}
@@ -756,7 +752,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	 */
 	private void resolveProxies(TextBlock oldVersion, TextBlockProxy newVersion) {
 		int i = 0;
-		for (RefObject ro : oldVersion.getCorrespondingModelElements()) {
+		for (EObject ro : oldVersion.getCorrespondingModelElements()) {
 			if (newVersion.getCorrespondingModelElementProxies().size() >= i + 1) {
 				ModelElementProxy proxy = (ModelElementProxy) newVersion
 					.getCorrespondingModelElementProxies().get(i);
@@ -767,7 +763,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 			i++;
 		}
 		i = 0;
-		for (RefObject ro : oldVersion.getReferencedElements()) {
+		for (EObject ro : oldVersion.getReferencedElements()) {
 			if (newVersion.getReferencedElementProxies().size() >= i + 1) {
 				ModelElementProxy proxy = (ModelElementProxy) newVersion
 					.getReferencedElementProxies().get(i);
@@ -798,9 +794,9 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                             deleteElementsForRemovedSubBlocks(tb);
                             if (tb.getReferencedElements().size() > 0
                                     && tb.getSequenceElement() instanceof Property) {
-                                for (RefObject ro : new ArrayList<RefObject>(tb
+                                for (EObject ro : new ArrayList<EObject>(tb
                                         .getCorrespondingModelElements())) {
-                                    for (RefObject value : new ArrayList<RefObject>(
+                                    for (EObject value : new ArrayList<EObject>(
                                             tb.getReferencedElements())) {
                                         try {
                                             SetNewFeatureBean bean = new SetNewFeatureBean(
@@ -831,9 +827,9 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
                                     // that were
                                     // resolved from somewhere else,
                                     // such as property inits
-                                    for (RefObject ro : new ArrayList<RefObject>(tb
+                                    for (EObject ro : new ArrayList<EObject>(tb
                                             .getCorrespondingModelElements())) {
-                                        if (((Partitionable) ro).is___Alive()) {
+                                        if (((EObject) ro).is___Alive()) {
                                             ro.refDelete();
                                         }
                                     }

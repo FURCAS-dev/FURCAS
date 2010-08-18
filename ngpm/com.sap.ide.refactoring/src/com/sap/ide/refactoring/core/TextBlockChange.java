@@ -5,6 +5,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
@@ -16,20 +18,17 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.TextEditBasedChange;
 import org.eclipse.ltk.core.refactoring.TextEditBasedChangeGroup;
 
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.refactoring.Activator;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class TextBlockChange extends TextEditBasedChange {
 
-    private final RefObject correspondingRootObject;
+    private final EObject correspondingRootObject;
     private String preChangeState;
     private String postChangeState;
     private String changeDescription = "Pretty Print";
 
-    public TextBlockChange(RefObject correspondingRootObject) {
+    public TextBlockChange(EObject correspondingRootObject) {
 	super("Pretty Print");
 	this.correspondingRootObject = correspondingRootObject;
     }
@@ -41,7 +40,7 @@ public class TextBlockChange extends TextEditBasedChange {
 
     @Override
     public String getName() {
-	return changeDescription + " " + ((MofClass) correspondingRootObject.refMetaObject()).getName();
+	return changeDescription + " " + ((EClass) correspondingRootObject.refMetaObject()).getName();
     }
 
     @Override

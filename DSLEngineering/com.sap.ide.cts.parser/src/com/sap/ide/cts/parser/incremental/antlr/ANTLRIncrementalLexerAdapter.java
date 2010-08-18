@@ -10,10 +10,8 @@ import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenSource;
 
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.LexerAdapter;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
@@ -24,7 +22,7 @@ import com.sap.mi.textual.grammar.impl.ModelInjector;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
-import com.sap.tc.moin.repository.Connection;
+
 
 /**
  * 
@@ -71,7 +69,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	}
 
 	public ANTLRIncrementalLexerAdapter(LexerAdapter lexerAdapter, IModelElementInvestigator mi,
-			Connection moinConnection) {
+			ResourceSet moinConnection) {
 		super(lexerAdapter, mi, moinConnection, bosTokenType, eosTokenType);
 	}
 
@@ -150,7 +148,7 @@ public class ANTLRIncrementalLexerAdapter extends IncrementalLexer implements
 	public void consume() {
 		while (readOffset == asString(readToken).length()
 				&& !isEOS(readToken)) {
-			readToken = nextToken(readToken, VersionEnum.PREVIOUS);
+			readToken = nextToken(readToken, EEnum.PREVIOUS);
 			/*
 			 * this is needed to track the lookahead of the lexer.
 			 */

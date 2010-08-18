@@ -8,6 +8,7 @@ import java.util.Map;
 import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import behavioral.actions.AddLink;
 import behavioral.actions.Assignment;
@@ -21,14 +22,12 @@ import behavioral.actions.Return;
 import behavioral.actions.Statement;
 import behavioral.actions.Variable;
 
-import com.sap.ap.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.objects.NativeObject;
 import com.sap.runlet.interpreter.repository.simpleimpl.RunletInMemoryRepository;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -77,7 +76,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    StringLiteral nl = conn.createElement(StringLiteral.CLASS_DESCRIPTOR);
 	    nl.setLiteral("Humba");
 	    SapClass stringClass = MetamodelUtils.findClass(conn, "String");
@@ -96,7 +95,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    NumberLiteral nl = conn.createElement(NumberLiteral.CLASS_DESCRIPTOR);
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
@@ -114,7 +113,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    NumberLiteral nl = conn.createElement(NumberLiteral.CLASS_DESCRIPTOR);
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
@@ -152,7 +151,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    NumberLiteral nl = conn.createElement(NumberLiteral.CLASS_DESCRIPTOR);
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
@@ -202,7 +201,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    NumberLiteral nl = conn.createElement(NumberLiteral.CLASS_DESCRIPTOR);
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
@@ -255,7 +254,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    Block block = conn.createElement(Block.CLASS_DESCRIPTOR);
 
 	    SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
@@ -342,7 +341,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    Block block = conn.createElement(Block.CLASS_DESCRIPTOR);
 	    NamedValueDeclaration varDecl = conn.createElement(NamedValueDeclaration.CLASS_DESCRIPTOR);
 	    Variable a = conn.createElement(Variable.CLASS_DESCRIPTOR);
@@ -435,7 +434,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    SapClass c1 = createClass(conn, "C1");
 	    MethodSignature s1 = conn.createElement(MethodSignature.CLASS_DESCRIPTOR);
 	    s1.setName("s1");
@@ -530,7 +529,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    SapClass c1 = createClass(conn, "C1");
 	    SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
 	    Association c1ToNumber = MetamodelUtils.createAssociation(conn, c1, 0, -1,
@@ -578,7 +577,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    SapClass c1 = createClass(conn, "C1");
 	    SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
 	    Association c1ToNumber = conn.createElement(Association.CLASS_DESCRIPTOR);
@@ -644,7 +643,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    NumberLiteral nl = conn.createElement(NumberLiteral.CLASS_DESCRIPTOR);
 	    nl.setLiteral("123.450");
 	    SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
@@ -683,7 +682,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    SapClass c1 = createClass(conn, "C1");
 	    SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
 	    Association c1ToNumber = conn.createElement(Association.CLASS_DESCRIPTOR);
@@ -751,7 +750,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
 
-    private SapClass createClass(Connection conn, String name) {
+    private SapClass createClass(ResourceSet conn, String name) {
 	SapClass c1 = conn.createElement(SapClass.CLASS_DESCRIPTOR);
 	c1.setName(name);
 	return c1;
@@ -762,7 +761,7 @@ public class TestBasicExpressions extends TestCase {
      * is the type of <tt>end</tt>'s opposite end by adding them to that class's owned
      * signatures.
      */
-    private Map<Accessors, MethodSignature> exposeAssociationEnd(Connection conn, AssociationEnd end,
+    private Map<Accessors, MethodSignature> exposeAssociationEnd(ResourceSet conn, AssociationEnd end,
 	    Accessors[] accessorsToExpose) {
 	Map<Accessors, MethodSignature> result = new HashMap<Accessors, MethodSignature>();
 	SapClass otherEndClass = end.otherEnd().getType().getClazz();
@@ -831,7 +830,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    
 	    // set up data structures
 	    SapClass salesOrderItem = createClass(conn, "SalesOrderItem");
@@ -938,7 +937,7 @@ public class TestBasicExpressions extends TestCase {
      * Assembles a {@link FunctionCallExpression} that calls a function assembled here that,
      * when executed, constructs a multi-valued SalesOrderItem object.
      */
-    private Expression createFacts(Connection conn, SapClass salesOrder, SapClass salesOrderItem,
+    private Expression createFacts(ResourceSet conn, SapClass salesOrder, SapClass salesOrderItem,
 	    SapClass product, SapClass customer, Association productToCategory,
 	    Association salesOrderItemToPrice, Association salesOrderItemToProduct,
 	    Association customerToRegion, Association salesOrderToCustomer, Association salesOrderToSalesOrderItems) {
@@ -1055,7 +1054,7 @@ public class TestBasicExpressions extends TestCase {
      * @param c the variable to bind the customer to
      * @param customerRegion 
      */
-    private void createCodeToCreateSalesOrder(Connection conn, SapClass salesOrder,
+    private void createCodeToCreateSalesOrder(ResourceSet conn, SapClass salesOrder,
 	    SapClass customer, Association customerToRegion, Association salesOrderToCustomer,
 	    Block impl, Variable so, Variable c, String customerRegion) {
 	//     so = new SalesOrder();
@@ -1087,7 +1086,7 @@ public class TestBasicExpressions extends TestCase {
      * <tt>soi</tt> to the multi-valued object bound to the variable identified by <tt>result</tt>.
      * The code created is added to the block <tt>impl</tt>.
      */
-    private void createCodeToAddSalesOrderItemToResult(Connection conn, Block impl,
+    private void createCodeToAddSalesOrderItemToResult(ResourceSet conn, Block impl,
 	    Variable result, Variable soi) {
 	Assignment assignment;
 	VariableExpression soiAccess;
@@ -1117,7 +1116,7 @@ public class TestBasicExpressions extends TestCase {
      * @param price the price to set for the item that will be created
      * @param productCategory the name of the product category for the product that will be created
      */
-    private void createCodeToCreateSalesOrderItem(Connection conn, SapClass salesOrderItem,
+    private void createCodeToCreateSalesOrderItem(ResourceSet conn, SapClass salesOrderItem,
 	    SapClass product, Association productToCategory, Association salesOrderItemToPrice,
 	    Association salesOrderItemToProduct, Association salesOrderToSalesOrderItems,
 	    Block blockToAddStatementsTo, Variable so, Variable soi, Variable p, String price,
@@ -1165,7 +1164,7 @@ public class TestBasicExpressions extends TestCase {
 	blockToAddStatementsTo.getStatements().add(addLink);
     }
 
-    private Statement assignNewToVariable(Connection conn, SapClass clazz, Variable variable) {
+    private Statement assignNewToVariable(ResourceSet conn, SapClass clazz, Variable variable) {
 	ObjectCreationExpression oce = conn.createElement(ObjectCreationExpression.CLASS_DESCRIPTOR);
 	oce.setClassToInstantiate(clazz);
 	oce.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinitionExactlyOne(conn, clazz));
@@ -1175,7 +1174,7 @@ public class TestBasicExpressions extends TestCase {
 	return assignment;
     }
 
-    private CellSet createCellSet(Connection conn, SapClass salesOrderItem,
+    private CellSet createCellSet(ResourceSet conn, SapClass salesOrderItem,
 	    Association salesOrderItemToPrice, Association salesOrderItemToProduct,
 	    Association salesOrderToSalesOrderItems, Association salesOrderToCustomer,
 	    Association productToCategory, Association customerToRegion) {
@@ -1293,7 +1292,7 @@ public class TestBasicExpressions extends TestCase {
 	return cellSet;
     }
 
-    private VariableExpression createVariableExpression(Connection conn,
+    private VariableExpression createVariableExpression(ResourceSet conn,
 	    NamedValue variable) {
 	VariableExpression itemParameterValue = conn.createElement(VariableExpression.CLASS_DESCRIPTOR);
 	itemParameterValue.setVariable(variable);
@@ -1304,7 +1303,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    
 	    // set up data structures
 	    SapClass salesOrderItem = createClass(conn, "SalesOrderItem");
@@ -1446,7 +1445,7 @@ public class TestBasicExpressions extends TestCase {
      * by <tt>on</tt>, passing the value bound to the variable identified by <tt>arg</tt>. The
      * resulting statement is appended to <tt>impl</tt>'s statement sequence.
      */
-    private void createCodeToInvokeMethod(Connection conn,
+    private void createCodeToInvokeMethod(ResourceSet conn,
 	    MethodSignature method, Variable on, Variable arg, Block impl) {
 	Expression onExp = createVariableExpression(conn, on);
 	Expression argExp = createVariableExpression(conn, arg);
@@ -1458,7 +1457,7 @@ public class TestBasicExpressions extends TestCase {
      * evaluates, passing the value to which <tt>argExp</tt> evaluates. The
      * resulting statement is appended to <tt>impl</tt>'s statement sequence.
      */
-    private void createCodeToInvokeMethod(Connection conn, MethodSignature method,
+    private void createCodeToInvokeMethod(ResourceSet conn, MethodSignature method,
 	    Expression onExp, Expression argExp, Block impl) {
 	MethodCallExpression mce = createMethodCallExpression(conn, method, onExp, argExp);
 	ExpressionStatement es = conn.createElement(ExpressionStatement.CLASS_DESCRIPTOR);
@@ -1470,7 +1469,7 @@ public class TestBasicExpressions extends TestCase {
      * Creates and returns a method call expression. If argument expressions (<tt>argExp</tt>)
      * are provided, they are added to the expression's parameter list.
      */
-    private MethodCallExpression createMethodCallExpression(Connection conn,
+    private MethodCallExpression createMethodCallExpression(ResourceSet conn,
 	    MethodSignature method, Expression onExp, Expression... argExps) {
 	MethodCallExpression mce = conn.createElement(MethodCallExpression.CLASS_DESCRIPTOR);
 	mce.setObject(onExp);
@@ -1485,7 +1484,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    // sig = function() {
 	    FunctionSignature sig = conn.createElement(FunctionSignature.CLASS_DESCRIPTOR);
 	    Block impl = conn.createElement(Block.CLASS_DESCRIPTOR);
@@ -1560,7 +1559,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    // sig = function() {
 	    FunctionSignature sig = conn.createElement(FunctionSignature.CLASS_DESCRIPTOR);
 	    Block impl = conn.createElement(Block.CLASS_DESCRIPTOR);
@@ -1650,7 +1649,7 @@ public class TestBasicExpressions extends TestCase {
 	IProject project = Activator.getStdlibProject();
 	try {
 	    project.open(/* progress monitor */null);
-	    Connection conn = Activator.createConnection(project);
+	    ResourceSet conn = Activator.createConnection(project);
 	    // sig = function() {
 	    FunctionSignature sig = conn.createElement(FunctionSignature.CLASS_DESCRIPTOR);
 	    Block impl = conn.createElement(Block.CLASS_DESCRIPTOR);

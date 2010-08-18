@@ -10,6 +10,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
@@ -22,7 +23,7 @@ import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.grammar.impl.TextLocation;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.GenerationReport;
 import com.sap.mi.textual.moinlookup.MoinMetaLookup;
-import com.sap.tc.moin.repository.Connection;
+import com.sun.corba.se.pept.transport.Connection;
 
 
 /**
@@ -47,11 +48,11 @@ public class ToolClassesGenerationHelper {
      * 
      * @throws CoreException the core exception
      */
-    public static void writeGrammarIfChanged( IFile syntaxDefFile, ReferenceScopeBean refScopeBean, Connection targetConnection, IFile grammarFile, IProgressMonitor monitor, GrammarGenerationErrorHandler errorhandler, String targetPackage, Class<? extends ObservableInjectingParser> parserSuperClass) throws CoreException {
+    public static void writeGrammarIfChanged( IFile syntaxDefFile, ReferenceScopeBean refScopeBean, ResourceSet targetConnection, IFile grammarFile, IProgressMonitor monitor, GrammarGenerationErrorHandler errorhandler, String targetPackage, Class<? extends ObservableInjectingParser> parserSuperClass) throws CoreException {
 
         InputStream in = syntaxDefFile.getContents();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        Connection transientConnection = null;
+        ResourceSet transientConnection = null;
         try {
 
             MoinMetaLookup lookup = new MoinMetaLookup(refScopeBean.getConnection(), refScopeBean.getReferencePRIs());

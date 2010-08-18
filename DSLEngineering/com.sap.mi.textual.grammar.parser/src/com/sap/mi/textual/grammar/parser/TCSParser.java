@@ -1,22 +1,22 @@
 // $ANTLR 3.1.1 parser/TCS.g 2010-02-01 13:00:17
 
 package com.sap.mi.textual.grammar.parser;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.impl.PredicateSemantic;
-import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import org.antlr.runtime.Token;
-
-
-import org.antlr.runtime.*;
-import java.util.Stack;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+
+import org.antlr.runtime.BaseRecognizer;
+import org.antlr.runtime.BitSet;
+import org.antlr.runtime.DFA;
+import org.antlr.runtime.IntStream;
+import org.antlr.runtime.NoViableAltException;
+import org.antlr.runtime.RecognitionException;
+import org.antlr.runtime.RecognizerSharedState;
+import org.antlr.runtime.Token;
+import org.antlr.runtime.TokenStream;
+
+import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 public class TCSParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "LPAREN", "RPAREN", "EQ", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "SHARP", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'part'", "'instanceOf'", "'refersTo'", "'omitted'", "'importContext'", "'template'", "'drop'", "'autoCreate'", "'lexer'", "'leftSpace'", "'ifmissing'", "'when'", "'query'", "'foreach'", "'partial'", "'leftNone'", "'start'", "'isDefined'", "'lookIn'", "'esc'", "'invert'", "'default'", "'separator'", "'multiLine'", "'operatorTemplate'", "'filter'", "'deep'", "'disambiguateV3'", "'all'", "'startNbNL'", "'function'", "'rightNone'", "'keywords'", "'priority'", "'false'", "'enumerationTemplate'", "'storeRightTo'", "'octal'", "'mode'", "'true'", "'storeOpTo'", "'abstract'", "'context'", "'symbols'", "'auto'", "'word'", "'disambiguate'", "'orKeyword'", "'always'", "'forcedUpper'", "'multi'", "'main'", "'addToContext'", "'semDisambiguate'", "'primitiveTemplate'", "'referenceOnly'", "'prefix'", "'for'", "'one'", "'left'", "'postfix'", "'syntax'", "'operatored'", "'hex'", "'nonPrimary'", "'forcedLower'", "'endNL'", "'and'", "'end'", "'right'", "'token'", "'indentIncr'", "'createIn'", "'k'", "'value'", "'endOfLine'", "'rightSpace'", "'source'", "'as'", "'never'", "'using'", "'startNL'", "'nbNL'", "'operators'", "'createAs'", "'serializer'"

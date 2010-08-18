@@ -16,15 +16,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.Version;
-import textblocks.VersionEnum;
+import antlr.Version;
 
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.parser.Activator;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.parsing.textblocks.IllegalTextBlocksStateException;
@@ -36,8 +35,7 @@ import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.TokenLocation;
 import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Partitionable;
+import com.sun.corba.se.pept.transport.Connection;
 
 /**
  * The Incremental Lexer Servers as an intermediate class that serves the

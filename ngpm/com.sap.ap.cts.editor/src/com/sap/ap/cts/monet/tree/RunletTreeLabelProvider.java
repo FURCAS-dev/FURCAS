@@ -2,10 +2,8 @@ package com.sap.ap.cts.monet.tree;
 
 import modelmanagement.NamedElement;
 
-import com.sap.ap.metamodel.formatter.StringFormatter;
 import com.sap.ide.treeprovider.GenericRefObjectNode;
 import com.sap.ide.treeprovider.TextLabelProvider;
-import com.sap.mi.fwk.ui.tree.nodes.TreeNodeRefObject;
 
 import data.classes.Signature;
 import data.classes.TypeDefinition;

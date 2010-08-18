@@ -4,12 +4,12 @@ package com.sap.ap.cts.editor;
 
 //import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-import textblocks.TextBlock;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.ap.cts.monet.parser.ClassParserFactory;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import com.sap.tc.moin.repository.Connection;
 
 //import data.classes.SapClass;
 
@@ -21,7 +21,7 @@ public class ClassEditor extends AbstractGrammarBasedEditor {
 
 	@Override
 	public TextBlock parse(TextBlock rootBlock) throws SemanticParserException {
-		Connection connection = getWorkingConnection();
+		ResourceSet connection = getWorkingConnection();
 		initializeNewParser(connection);
 
 //		Iterator<RefObject> iterator = rootBlock.getCorrespondingModelElements().iterator();

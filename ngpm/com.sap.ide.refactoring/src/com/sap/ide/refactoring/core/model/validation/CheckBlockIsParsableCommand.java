@@ -4,8 +4,7 @@ import java.util.Collection;
 
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 import com.sap.mi.textual.grammar.impl.ParsingError;
 

@@ -6,8 +6,6 @@ import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.NullChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
-import com.sap.tc.moin.repository.commands.CommandHandle;
-
 public class RefactoringResult {
 
     public final Change change;

@@ -1,8 +1,8 @@
 package com.sap.ide.cts.parser.incremental;
 
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+
 
 public interface PartitionAssignmentHandler {
 
@@ -14,18 +14,18 @@ public interface PartitionAssignmentHandler {
 	 * @param element
 	 * @param partition
 	 */
-	void assignToPartition(Partitionable element, Partitionable elementInpartition);
+	void assignToPartition(EObject element, EObject elementInpartition);
 
 	/**
 	 * Specifies which partition to use as default.
 	 * 
 	 * @param defaultPartition
 	 */
-	void setDefaultPartition(ModelPartition defaultPartition);
+	void setDefaultPartition(Resource defaultPartition);
 
 	/**
 	 * Assigns the given element <tt>element</tt> to the default partition set using
-	 * {@link #setDefaultPartition(ModelPartition)}.
+	 * {@link #setDefaultPartition(Resource)}.
 	 */
-	void assignToDefaultPartition(RefObject element);
+	void assignToDefaultPartition(EObject element);
 }

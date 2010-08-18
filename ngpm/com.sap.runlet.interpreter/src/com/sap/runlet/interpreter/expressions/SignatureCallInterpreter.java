@@ -21,7 +21,6 @@ import com.sap.runlet.interpreter.RunletStackFrame;
 import com.sap.runlet.interpreter.objects.FunctionFromMethodObject;
 import com.sap.runlet.interpreter.objects.FunctionObject;
 import com.sap.runlet.interpreter.objects.NativeObject;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;

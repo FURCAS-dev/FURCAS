@@ -1,12 +1,13 @@
 package com.sap.ap.cts.refactoring.model;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.ide.refactoring.core.model.rename.NamedElementDefaultImpl;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 
 public class NamedElementAdapter extends NamedElementDefaultImpl {
 
-    public NamedElementAdapter(RefObject wrapped) {
+    public NamedElementAdapter(EObject wrapped) {
 	super(wrapped, "name");
     }
 

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/com.sap.furcas.metamodel"/>
-	<classpathentry kind="lib" path="C:/data/helios/plugins/org.antlr.runtime_3.0.0.v200803061811.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/com.sap.ide.cts.parser"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

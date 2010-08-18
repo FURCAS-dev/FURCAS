@@ -10,7 +10,6 @@ import java.util.Set;
 import behavioral.actions.Iterator;
 import behavioral.actions.Statement;
 
-import com.sap.ap.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
 import com.sap.runlet.abstractinterpreter.objects.MultiValuedObject;
@@ -19,7 +18,6 @@ import com.sap.runlet.abstractinterpreter.util.Fraction;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.RunletStackFrame;
 import com.sap.runlet.interpreter.objects.NativeObject;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;

@@ -6,6 +6,8 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -19,9 +21,6 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
 import com.sap.ide.treeprovider.ImageProvider;
-import com.sap.mi.fwk.ui.ModelManagerUI;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -117,7 +116,7 @@ public void stop(BundleContext context) throws Exception {
      * @param element
      * @return
      */
-    public static Image getImage(RefObject element) {
+    public static Image getImage(EObject element) {
 	IExtensionPoint eventListenerPoint = Platform.getExtensionRegistry().getExtensionPoint("com.sap.ide.treeprovider.imageProvider");
 	for (IConfigurationElement e : eventListenerPoint.getConfigurationElements()) {
 	    if (e.getName().equals("imageProvider")) {
@@ -133,7 +132,7 @@ public void stop(BundleContext context) throws Exception {
 		}
 	    }
 	}
-	return Activator.getImage((MofClass)element.refMetaObject());
+	return Activator.getImage((EClass)element.refMetaObject());
     }
 
     /**
@@ -141,7 +140,7 @@ public void stop(BundleContext context) throws Exception {
      * classname. If not found, polls all providers to the
      * <tt>imageProvider</tt> extension point.
      */
-    public static Image getImage(MofClass clazz) {
+    public static Image getImage(EClass clazz) {
 	ImageRegistry registry = getDefault().getImageRegistry();
 	String classMofId = clazz.refMofId();
 	Image image = registry.get(classMofId);
@@ -168,7 +167,7 @@ public void stop(BundleContext context) throws Exception {
 	return image;
     }
 
-    public static ImageDescriptor getImageDescriptor(MofClass clazz) {
+    public static ImageDescriptor getImageDescriptor(EClass clazz) {
 	IExtensionPoint eventListenerPoint = Platform.getExtensionRegistry().getExtensionPoint("com.sap.ide.treeprovider.imageProvider");
 	for (IConfigurationElement e : eventListenerPoint.getConfigurationElements()) {
 	    if (e.getName().equals("imageProvider")) {

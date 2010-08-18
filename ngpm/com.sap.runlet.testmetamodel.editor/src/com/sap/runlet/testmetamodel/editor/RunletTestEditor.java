@@ -1,10 +1,11 @@
 package com.sap.runlet.testmetamodel.editor;
 
-import textblocks.TextBlock;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import com.sap.tc.moin.repository.Connection;
+
 
 public class RunletTestEditor extends AbstractGrammarBasedEditor {
 
@@ -16,7 +17,7 @@ public class RunletTestEditor extends AbstractGrammarBasedEditor {
 
 	@Override
 	public TextBlock parse(TextBlock rootBlock) throws SemanticParserException {
-		Connection connection = getWorkingConnection();
+		ResourceSet connection = getWorkingConnection();
 		initializeNewParser(connection);
 		TextBlock newRoot =  super.parse(rootBlock);
 		return newRoot;

@@ -11,7 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import com.sap.ap.metamodel.utils.MetamodelUtils;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
 import com.sap.runlet.abstractinterpreter.objects.EntityObject;
@@ -25,8 +27,7 @@ import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.objects.NativeObject;
 import com.sap.runlet.interpreter.objects.ValueObject;
 import com.sap.runlet.interpreter.repository.simpleimpl.RunletInMemoryRepository;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
+
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -51,11 +52,11 @@ public class Rucola {
      * Initializes a new {@link RunletInterpreter} with a new empty
      * {@link RunletInMemoryRepository} and wraps it by a {@link Rucola} object.
      */
-    public Rucola(Connection conn) {
+    public Rucola(ResourceSet conn) {
 	this(conn, new RunletInMemoryRepository(Activator.getDefault().getModelAdapter()));
     }
     
-    public Rucola(Connection conn,
+    public Rucola(ResourceSet conn,
 	    Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository) {
 	this(new RunletInterpreter(conn, repository));
     }
@@ -68,7 +69,7 @@ public class Rucola {
         return interpreter;
     }
     
-    protected Connection getConnection() {
+    protected ResourceSet getConnection() {
 	return getInterpreter().getConnection();
     }
 
@@ -173,7 +174,7 @@ public class Rucola {
 	}
     }
     
-    private ModelPartition getTransientPartition() {
+    private Resource getTransientPartition() {
 	return getConnection().getOrCreateTransientPartition("RucolaTransient_Thread"+Thread.currentThread().getId());
     }
     

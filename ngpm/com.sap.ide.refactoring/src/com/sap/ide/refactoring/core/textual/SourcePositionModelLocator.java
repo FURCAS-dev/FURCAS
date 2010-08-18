@@ -6,15 +6,13 @@ import java.util.HashSet;
 
 import org.eclipse.jface.text.source.ISourceViewer;
 
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.ide.cts.parser.incremental.IncrementalParser.TextBlocksTarjanTreeContentProvider;
 import com.sap.ide.cts.parser.incremental.util.TarjansLCA;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Helper to access the underlying domain model through the textblocks model.

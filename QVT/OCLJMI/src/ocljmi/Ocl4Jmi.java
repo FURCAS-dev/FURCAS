@@ -1,12 +1,14 @@
 package ocljmi;
 
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import uk.ac.kent.cs.kmf.util.ConsoleLog;
 import uk.ac.kent.cs.kmf.util.ILog;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
+
 
 /**
  * @author dha
@@ -41,15 +43,15 @@ public class Ocl4Jmi {
 //			// String enterpiseURI = LibraryPackage.eNS_URI;
 //			Field field = interf.getField("eNS_URI");
 //			String enterpiseURI = (String)field.get(null);
-			MofPackage model = null;//TODO: getMofPackage by name
+			EPackage model = null;//TODO: getMofPackage by name
 			InitModel(model, log);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void InitModel(MofPackage model, ILog log) {
-		processor = new JmiOclProcessorImpl(log, ((Partitionable)model).get___Connection());
+	public static void InitModel(EPackage model, ILog log) {
+		processor = new JmiOclProcessorImpl(log, ((EObject)model).get___Connection());
 		processor.addMetaModel(model);
 	}
 	
@@ -61,7 +63,7 @@ public class Ocl4Jmi {
 		System.out.println("test1");
 	}
 
-	private static Connection getConnection() {
+	private static ResourceSet getConnection() {
 		// TODO Auto-generated method stub
 		return null;
 	}

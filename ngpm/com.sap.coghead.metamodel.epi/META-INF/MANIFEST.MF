@@ -6,19 +6,8 @@ Bundle-Version: 0.0.1
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: com.sap.tc.moin.libraries.jmi.facade,
- com.sap.tc.moin.ide.facade,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.junit,
- com.sap.tc.moin.globalmodellistener;bundle-version="1.0.0"
+ org.junit
 Bundle-ActivationPolicy: lazy
-Export-Package: coghead,
- coghead.__impl,
- coghead.action,
- coghead.action.__impl,
- coghead.packages,
- coghead.packages.__impl,
- coghead.xpath,
- coghead.xpath.__impl
 

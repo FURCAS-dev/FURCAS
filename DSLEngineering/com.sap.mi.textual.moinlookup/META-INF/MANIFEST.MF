@@ -6,6 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Require-Bundle: 
  com.sap.mi.textual.common,
  com.sap.mi.textual.tcs.util,
- com.sap.furcas.metamodel;bundle-version="1.0.0"
+ com.sap.furcas.metamodel
 Export-Package: com.sap.mi.textual.moinlookup;uses:="com.sap.tc.moin.textual.interfaces",
  com.sap.mi.textual.moinlookup.util

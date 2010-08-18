@@ -7,9 +7,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.lang.model.element.Element;
+import javax.lang.model.type.PrimitiveType;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.semantics.SemanticsVisitor;
 import org.oslo.ocl20.semantics.bridge.Classifier;
@@ -19,13 +28,6 @@ import org.oslo.ocl20.semantics.bridge.Operation;
 import org.oslo.ocl20.semantics.bridge.Property;
 import org.oslo.ocl20.standard.types.OclAnyTypeImpl;
 
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-
 /**
  * @author dha
  * 
@@ -33,7 +35,7 @@ import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
 public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelElementType {
 	private static final String REFLECT_ELEMENT_MOFID = "45ED2E29000DEAF733A545E62844AF3FC5E44767";
 
-    public OclModelElementTypeImpl(com.sap.tc.moin.repository.mmi.model.Classifier impl, OclProcessor proc) {
+    public OclModelElementTypeImpl(EClassifier impl, OclProcessor proc) {
 		super(proc);
 		this._impl = impl;
 		List oper = super.getOperations();
@@ -43,9 +45,9 @@ public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelE
 		oper.addAll(oclAnyOper);
 	}
 
-	com.sap.tc.moin.repository.mmi.model.Classifier _impl;
+	EClassifier _impl;
 
-	public com.sap.tc.moin.repository.mmi.model.Classifier getImplementation() {
+	public EClassifier getImplementation() {
 		return this._impl;
 	}
 
@@ -55,11 +57,11 @@ public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelE
 	public Property lookupProperty(String name) {
 		Property prop = (Property) this._properties.get(name);
 		if (prop == null) {
-			if (this._impl instanceof MofClass) {
+			if (this._impl instanceof EClass) {
 				// String emf_name = Ocl4Emf.adaptor.getGetterName(name);
 				// getEStructuralFeature uses names from the model.
 				//this._impl.refGetValue(name)
-				StructuralFeature sf = getStructuralFeature(name);
+				EStructuralFeature sf = getStructuralFeature(name);
 				if (sf == null && name.startsWith("_")) {
 					sf = getStructuralFeature(name.substring(1));
 				}
@@ -71,14 +73,14 @@ public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelE
 					prop = super.processor.getBridgeFactory().buildProperty(sf);
 					this._properties.put(name, prop);
 				}
-			} else if (this._impl instanceof EnumerationType) {
+			} else if (this._impl instanceof EEnum) {
 			} else if (this._impl instanceof PrimitiveType) {
 			}
 		}
 		// if still not found check for property in 'Classifier' for superclasses of _impl
 		if (prop == null) {
-			if (this._impl instanceof MofClass) {
-				List l = ((MofClass) this._impl).getSupertypes();
+			if (this._impl instanceof EClass) {
+				List l = ((EClass) this._impl).getESuperTypes();
 				Iterator i = l.iterator();
 				while (i.hasNext()) {
 					Classifier spCls = this.processor.getBridgeFactory().buildClassifier(i.next());
@@ -117,22 +119,22 @@ public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelE
 		// if (o==null) {
 		// o = (Operation)_operations.get( new P(name,types) );
 		if (o == null) {
-			if (this._impl instanceof MofClass) {
-				MofClass impCls = (MofClass) this._impl;
+			if (this._impl instanceof EClass) {
+				EClass impCls = (EClass) this._impl;
 				if (o == null) {
 					
 					List operationsList = new ArrayList();
-					Iterator operationsIterator=impCls.getContents().iterator();
+					Iterator operationsIterator=impCls.eAllContents();
 					Object operationObject;
 					while (operationsIterator.hasNext()){
 						operationObject=operationsIterator.next();
-						if (operationObject instanceof com.sap.tc.moin.repository.mmi.model.Operation){
+						if (operationObject instanceof EOperation){
 							operationsList.add(operationObject);}
 					}
 					Iterator i = operationsList.iterator();
 					//Iterator i = impCls.getEAllOperations().iterator();
 					while (i.hasNext()) {
-						com.sap.tc.moin.repository.mmi.model.Operation op = (com.sap.tc.moin.repository.mmi.model.Operation) i.next();
+						EOperation op = (EOperation) i.next();
 						if (op.getName().equals(name)) {
 							o = new OperationImpl(op, super.processor);
 							break;
@@ -144,8 +146,8 @@ public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelE
 		}
 		// if still not found check for operation in 'Classifier' for superclasses of _impl
 		if (o == null) {
-			if (this._impl instanceof MofClass) {
-				List l = ((MofClass) this._impl).getSupertypes();
+			if (this._impl instanceof EClass) {
+				List l = ((EClass) this._impl).getESuperTypes();
 				Iterator i = l.iterator();
 				while (i.hasNext()) {
 					Classifier spCls = this.processor.getBridgeFactory().buildClassifier(i.next());
@@ -177,10 +179,10 @@ public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelE
 	public Namespace getNamespace() {
 		Namespace ns = super.getNamespace();
 		if (ns == null) {
-			ModelElement mofPackage=this._impl.getContainer();
-			while (!(mofPackage.getContainer() instanceof MofPackage))
+			EObject mofPackage=this._impl.eContainer();
+			while (!(mofPackage.eContainer() instanceof EPackage))
 			{
-				mofPackage=mofPackage.getContainer();
+				mofPackage=mofPackage.eContainer();
 			}
 			ns = this.processor.getBridgeFactory().buildNamespace(mofPackage);
 			
@@ -196,14 +198,14 @@ public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelE
 		if (c.equals(this.processor.getTypeFactory().buildOclAnyType())) {
 			return Boolean.TRUE;
 		}
-		if (this._impl instanceof MofClass) {
+		if (this._impl instanceof EClass) {
 			if (c instanceof OclModelElementTypeImpl) {
-				com.sap.tc.moin.repository.mmi.model.Classifier cc = ((OclModelElementTypeImpl) c)._impl;
-				MofClass self = (MofClass) this._impl;
-				return new Boolean(cc.equals(self) || self.allSupertypes().contains(cc) ||
+				EClassifier cc = ((OclModelElementTypeImpl) c)._impl;
+				EClass self = (EClass) this._impl;
+				return new Boolean(cc.equals(self) || self.getESuperTypes().contains(cc) ||
 				        cc.refMofId().equals(REFLECT_ELEMENT_MOFID));
 			}
-		} else if (this._impl instanceof EnumerationType) {
+		} else if (this._impl instanceof EEnum) {
 		} else if (this._impl instanceof PrimitiveType) {
 		}
 		return Boolean.FALSE;
@@ -226,15 +228,15 @@ public class OclModelElementTypeImpl extends OclAnyTypeImpl implements OclModelE
 //		}
 		return this._impl;
 	}
-	 private StructuralFeature getStructuralFeature(String name){
-		List sfList = ((MofClass) this._impl).getContents();
+	 private EStructuralFeature getStructuralFeature(String name){
+		List sfList = ((EClass) this._impl).eContents();
 		Iterator i = sfList.iterator();
 		Object obj;
 		while (i.hasNext()) {
 			obj = i.next();
-			if (obj instanceof StructuralFeature) {
-				if (((StructuralFeature) obj).getName().equals(name)) {
-					return (StructuralFeature) obj;
+			if (obj instanceof EStructuralFeature) {
+				if (((EStructuralFeature) obj).getName().equals(name)) {
+					return (EStructuralFeature) obj;
 				}
 			}
 		}
