@@ -13,13 +13,16 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
-import com.sap.furcas.metamodel.TCS.TCSPackage;
+import com.sap.furcas.metamodel.TCS.*;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-import com.sun.corba.se.pept.transport.Connection;
+
 
 /**
  * specialized Adapter for TCS Syntaxes
@@ -27,28 +30,28 @@ import com.sun.corba.se.pept.transport.Connection;
 public class MOINTCSAdapter implements IBareModelAdapter {
 
 	private final MOINTCSAdapter adapter;
-	private final Connection connection;
+	private final ResourceSet connection;
 
 	/**
 	 * @param metamodelPRIs
 	 * 
 	 */
-	public MOINTCSAdapter(Connection connection, Set<PRI> metamodelPRIs) {
+	public MOINTCSAdapter(ResourceSet connection, Set<URI> metamodelPRIs) {
 		super();
 		this.connection = connection;
 		final EPackage rootPackage = connection
 				.getPackage(TCSPackage.PACKAGE_DESCRIPTOR);
 		if (rootPackage == null) {
 			throw new IllegalArgumentException(
-					"Connection cannot resolve TCSPackage "
+					"ResourceSet cannot resolve TCSPackage "
 							+ TCSPackage.PACKAGE_DESCRIPTOR);
 		}
-		Set<PRI> adapterReferenceScopePRIs;
+		Set<URI> adapterReferenceScopePRIs;
 		if (metamodelPRIs != null) {
-			adapterReferenceScopePRIs = new HashSet<PRI>(
+			adapterReferenceScopePRIs = new HashSet<URI>(
 					metamodelPRIs);
 		} else {
-			adapterReferenceScopePRIs = new HashSet<PRI>();
+			adapterReferenceScopePRIs = new HashSet<URI>();
 		}
 
 		// since we have a connection, which is not null, and which
@@ -63,13 +66,13 @@ public class MOINTCSAdapter implements IBareModelAdapter {
 				.add(moin
 						.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm"));
 
-		Collection<ModelPartition> transpartitions = connection
+		Collection<Resource> transpartitions = connection
 				.getTransientPartitions();
-		for (Iterator<ModelPartition> iterator = transpartitions
+		for (Iterator<Resource> iterator = transpartitions
 				.iterator(); iterator.hasNext();) {
-			ModelPartition modelPartition = iterator
+			Resource modelPartition = iterator
 					.next();
-			PRI pri = modelPartition.getPri();
+			URI pri = modelPartition.getPri();
 			adapterReferenceScopePRIs.add(pri);
 		}
 
@@ -202,10 +205,10 @@ public class MOINTCSAdapter implements IBareModelAdapter {
 	 * @return
 	 */
 	public Set<Object> getElementsByType(String string) {
-		EObject[] array = adapter.getElementsOfType(string);
+		Object[] array = adapter.getElementsOfType(string);
 		Set<Object> set = null;
 		if (array != null) {
-			set = new HashSet<EObject>(Arrays.asList(array));
+			set = new HashSet<Object>(Arrays.asList(array));
 		}
 		return set;
 	}

@@ -5,29 +5,28 @@ package com.sap.mi.textual.epi.conf;
 
 import java.util.Set;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
+
 
 /**
  *
  */
 public class ReferenceScopeBean {
 
-    private Connection connection;
-    private Set<PRI> referencePRIs;
+    private ResourceSet connection;
+    private Set<URI> referencePRIs;
     /**
      * @param connection
      * @param referencePRIs
      */
-    public ReferenceScopeBean(Connection connection, Set<PRI> referencePRIs) {
+    public ReferenceScopeBean(ResourceSet connection, Set<URI> referencePRIs) {
         super();
         this.connection = connection;
         this.referencePRIs = referencePRIs;
     }
-    public Connection getConnection() {
+    public ResourceSet getConnection() {
         return connection;
     }
-    public Set<PRI> getReferencePRIs() {
+    public Set<URI> getReferencePRIs() {
         return referencePRIs;
     }
     

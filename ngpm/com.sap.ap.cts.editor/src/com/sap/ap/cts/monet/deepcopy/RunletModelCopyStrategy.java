@@ -2,17 +2,12 @@ package com.sap.ap.cts.monet.deepcopy;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.ide.cts.editor.deepcopy.DeepCopyHelper;
 import com.sap.ide.cts.editor.deepcopy.GenericModelCopyStrategy;
 import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.DeepCopyMap;
-import com.sap.tc.moin.repository.DeepCopyPolicy;
-import com.sap.tc.moin.repository.DeepCopyPolicy.DeepCopyPolicyOption;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
 
 import data.classes.AssociationEndSignatureImplementation;
 import data.classes.SapClass;
@@ -28,11 +23,11 @@ public class RunletModelCopyStrategy extends GenericModelCopyStrategy {
 
     private static final String COPY_POSTFIX = "Cpy0";
 
-    private Boolean hasAssocEndConnectedToAssocEndSignImpl(RefObject sourceElement, DeepCopyMap copyMap) {
-	Connection co = sourceElement.get___Connection();
+    private Boolean hasAssocEndConnectedToAssocEndSignImpl(EObject sourceElement, DeepCopyMap copyMap) {
+	ResourceSet co = sourceElement.get___Connection();
 	if (sourceElement instanceof data.classes.AssociationEnd) {
-	    Collection<RefObject> linkedElements = DeepCopyHelper.getAllLinkedElements(co, sourceElement);
-	    for (RefObject linkedElement : linkedElements) {
+	    Collection<EObject> linkedElements = DeepCopyHelper.getAllLinkedElements(co, sourceElement);
+	    for (EObject linkedElement : linkedElements) {
 		if (linkedElement instanceof AssociationEndSignatureImplementation
 			&& copyMap.containsKey(linkedElement)
 			&& copyMap.get(linkedElement).getModifiedPolicy().getDeepCopyPolicyOption() == DeepCopyPolicyOption.FULL_COPY) {
@@ -43,11 +38,11 @@ public class RunletModelCopyStrategy extends GenericModelCopyStrategy {
 	return false;
     }
 
-    private Boolean hasAssocConnectedToAssocEnd(RefObject sourceElement, DeepCopyMap copyMap) {
-	Connection co = sourceElement.get___Connection();
+    private Boolean hasAssocConnectedToAssocEnd(EObject sourceElement, DeepCopyMap copyMap) {
+	ResourceSet co = sourceElement.get___Connection();
 	if (sourceElement instanceof data.classes.Association) {
-	    Collection<RefObject> childElements = DeepCopyHelper.getCompositeChildrenImmediate(co, sourceElement);
-	    for (RefObject childElement : childElements) {
+	    Collection<EObject> childElements = DeepCopyHelper.getCompositeChildrenImmediate(co, sourceElement);
+	    for (EObject childElement : childElements) {
 		if (childElement instanceof data.classes.AssociationEnd
 			&& copyMap.containsKey(childElement)
 			&& copyMap.get(childElement).getModifiedPolicy().getDeepCopyPolicyOption() == DeepCopyPolicyOption.FULL_COPY) {
@@ -58,11 +53,11 @@ public class RunletModelCopyStrategy extends GenericModelCopyStrategy {
 	return false;
     }
 
-    private Boolean hasAssocConnectedToClassTypeDef(RefObject sourceElement, DeepCopyMap copyMap) {
-	Connection co = sourceElement.get___Connection();
+    private Boolean hasAssocConnectedToClassTypeDef(EObject sourceElement, DeepCopyMap copyMap) {
+	ResourceSet co = sourceElement.get___Connection();
 	if (sourceElement instanceof data.classes.Association) {
-	    Collection<RefObject> childElements = DeepCopyHelper.getCompositeChildrenImmediate(co, sourceElement);
-	    for (RefObject childElement : childElements) {
+	    Collection<EObject> childElements = DeepCopyHelper.getCompositeChildrenImmediate(co, sourceElement);
+	    for (EObject childElement : childElements) {
 		if (childElement instanceof data.classes.ClassTypeDefinition
 			&& copyMap.containsKey(childElement)
 			&& copyMap.get(childElement).getModifiedPolicy().getDeepCopyPolicyOption() == DeepCopyPolicyOption.FULL_COPY) {
@@ -73,7 +68,7 @@ public class RunletModelCopyStrategy extends GenericModelCopyStrategy {
     }
 
     @Override
-    protected DeepCopyPolicy getMetaModelSpecificMapping(RefObject sourceElement, DeepCopyMap copyMap) {
+    protected DeepCopyPolicy getMetaModelSpecificMapping(EObject sourceElement, DeepCopyMap copyMap) {
 	if (hasAssocEndConnectedToAssocEndSignImpl(sourceElement, copyMap)) {
 	    // System.out.println("altering to FULL for: AssocEnd via AssocEndSignImpl");
 	    return new DeepCopyPolicy(DeepCopyPolicyOption.FULL_COPY, null);
@@ -98,7 +93,7 @@ public class RunletModelCopyStrategy extends GenericModelCopyStrategy {
 	// need to be adapted.
 	if (copy instanceof SapClass) {
 	    SapClass clazz = (SapClass) copy;
-	    Connection co = clazz.get___Connection();
+	    ResourceSet co = clazz.get___Connection();
 	    String classname = clazz.getName();
 	    	    
 	    if (COPY_POSTFIX.length() <= classname.length()) {
@@ -126,7 +121,7 @@ public class RunletModelCopyStrategy extends GenericModelCopyStrategy {
 	return strBegin + replaceEnd;
     }
     
-    private Boolean classExists(Connection co, String classname) {
+    private Boolean classExists(ResourceSet co, String classname) {
 	MQLProcessor mql = co.getMQLProcessor();
 	MQLResultSet queryResult = mql.execute(
 		"select c from data::classes::SapClass as c where for c(name='" + classname + "')",

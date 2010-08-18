@@ -8,14 +8,11 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EClass;
 
 import com.sap.ide.treeprovider.INodeExplorer;
 import com.sap.ide.treeprovider.RootNodeProvider;
 import com.sap.ide.treeprovider.internal.Activator;
-import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
-import com.sap.mi.fwk.ui.tree.nodes.TreeNodeDomainRoot;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mql.MQLFormatException;
 
 /**
  * Root tree node for simple component sample
@@ -60,8 +57,8 @@ public final class RootNodeComponent extends TreeNodeDomainRoot implements INode
 	return children.toArray();
     }
 
-    public List<MofClass> getTopLevelModelElementTypes() {
-	List<MofClass> result = new ArrayList<MofClass>();
+    public List<EClass> getTopLevelModelElementTypes() {
+	List<EClass> result = new ArrayList<EClass>();
 	IExtensionPoint eventListenerPoint = Platform.getExtensionRegistry().getExtensionPoint(
 		"com.sap.ide.treeprovider.rootNodeDefinition");
 	for (IConfigurationElement element : eventListenerPoint.getConfigurationElements()) {

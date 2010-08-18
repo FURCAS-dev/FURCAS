@@ -4,9 +4,8 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -17,16 +16,13 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.navigator.ILinkHelper;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.mi.fwk.ui.editor.ModelEditorInput;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
-import com.sap.tc.moin.repository.Partitionable;
 
 public class LinkHelper implements ILinkHelper {
 
@@ -42,10 +38,10 @@ public class LinkHelper implements ILinkHelper {
 	    AbstractGrammarBasedEditor ctsEditor = (AbstractGrammarBasedEditor) editor;
 	    IAdaptable adaptedSelection = (IAdaptable) selection
 		    .getFirstElement();
-	    RefObject ro = (RefObject) adaptedSelection
-		    .getAdapter(RefObject.class);
+	    EObject ro = (EObject) adaptedSelection
+		    .getAdapter(EObject.class);
 	    if (ro != null) {
-		Collection<DocumentNode> docNodes = ((Partitionable) ro)
+		Collection<DocumentNode> docNodes = ((EObject) ro)
 			.get___Connection().getPackage(
 				TextblocksPackage.PACKAGE_DESCRIPTOR)
 			.getDocumentNodeReferencesCorrespondingModelElement()

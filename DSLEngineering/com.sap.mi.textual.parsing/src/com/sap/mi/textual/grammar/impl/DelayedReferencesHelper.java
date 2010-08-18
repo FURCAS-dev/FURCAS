@@ -36,9 +36,8 @@ import org.eclipse.emf.query2.TypeScopeProvider;
 
 import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.ForEachContext;
-
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
@@ -319,7 +318,7 @@ public class DelayedReferencesHelper {
 				&& ((ForeachPredicatePropertyInit) ref.getQueryElement()) != null) {
 			int i = 0;
 		
-			for (tcs.PredicateSemantic predSem : ((ForeachPredicatePropertyInit) ref
+			for (com.sap.furcas.metamodel.TCS.PredicateSemantic predSem : ((ForeachPredicatePropertyInit) ref
 					.getQueryElement()).getPredicateSemantic()) {
 				if (i++ == index) {
 					return predSem.getAs();

@@ -11,6 +11,10 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
 import com.sap.mi.textual.common.interfaces.IRuleName;
@@ -24,18 +28,13 @@ import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+
 
 public abstract class AbstractParserFactory<P extends ObservableInjectingParser, L extends Lexer>
 	extends ANTLRParserFactory<P, L> {
 	private IRuleName ruleNameFinder = new RuleNameFinder();
 
-    public abstract RefPackage getMetamodelPackage(Connection connection);
+    public abstract EPackage getMetamodelPackage(ResourceSet connection);
 
 	/**
 	 * Return the names of the constants that define the tokens in the parser class (see
@@ -48,22 +47,22 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 	public abstract Integer[] getOmittedTokensForFormatting();
 
 	@Override
-	public P createParser(TokenStream input, Connection connection) {
+	public P createParser(TokenStream input, ResourceSet connection) {
 		return createParser(input, connection, null, null);
 	}
 
 	@Override
-	public P createParser(TokenStream input, Connection connection,
-		Collection<PRI> additionalPRIScope, Collection<CRI> additionalCRIScope) {
-		Collection<PRI> priScope = new ArrayList<PRI>();
-		Collection<PRI> parserScope = getParserLookupScope(connection);
+	public P createParser(TokenStream input, ResourceSet connection,
+		Collection<URI> additionalPRIScope, Collection<URI> additionalCRIScope) {
+		Collection<URI> priScope = new ArrayList<URI>();
+		Collection<URI> parserScope = getParserLookupScope(connection);
 		if (parserScope != null) {
-			for (PRI pri : parserScope) {
+			for (URI pri : parserScope) {
 				priScope.add(pri);
 			}
 		}
 		if (additionalPRIScope != null) {
-			for (PRI pri : additionalPRIScope) {
+			for (URI pri : additionalPRIScope) {
 				priScope.add(pri);
 			}
 		}
@@ -79,7 +78,7 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 				}
 			}
 
-			RefPackage metamodelPackage = getMetamodelPackage(connection);
+			EPackage metamodelPackage = getMetamodelPackage(connection);
 			TextBlocksAwareModelAdapter ma = new TextBlocksAwareModelAdapter(
 				new MOINModelAdapter(metamodelPackage, connection, priScope,
 					additionalCRIScope));
@@ -105,14 +104,14 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 	}
 
 	@Override
-	public Collection<PRI> getParserLookupScope(Connection connection) {
+	public Collection<URI> getParserLookupScope(ResourceSet connection) {
 		return null;
 	}
 
 	@Override
-	public CRI getMetamodelCri(Connection connection) {
-		RefPackage mmPackage = getMetamodelPackage(connection);
-		return ((Partitionable) mmPackage.refMetaObject()).get___Mri().getCri();
+	public URI getMetamodelCri(ResourceSet connection) {
+		EPackage mmPackage = getMetamodelPackage(connection);
+		return ((EObject) mmPackage.refMetaObject()).get___Mri().getCri();
 	}
 
 	@Override

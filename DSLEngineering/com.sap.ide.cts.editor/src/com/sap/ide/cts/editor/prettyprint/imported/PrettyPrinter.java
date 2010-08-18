@@ -26,57 +26,46 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import tcs.Alternative;
-import tcs.AsParg;
-import tcs.BooleanPropertyExp;
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.EnumLiteralMapping;
-import tcs.EnumerationTemplate;
-import tcs.EqualsExp;
-import tcs.FilterParg;
-import tcs.ForcedLowerParg;
-import tcs.ForcedUpperParg;
-import tcs.InjectorAction;
-import tcs.InjectorActionsBlock;
-import tcs.InstanceOfExp;
-import tcs.IsDefinedExp;
-import tcs.Keyword;
-import tcs.LiteralRef;
-import tcs.LookupPropertyInit;
-import tcs.ModeParg;
-import tcs.OneExp;
-import tcs.Operator;
-import tcs.OperatorTemplate;
-import tcs.PartialParg;
-import tcs.PrimitivePropertyInit;
-import tcs.PrimitiveTemplate;
-import tcs.Priority;
-import tcs.Property;
-import tcs.PropertyInit;
-import tcs.RefersToParg;
-import tcs.Sequence;
-import tcs.SequenceElement;
-import tcs.SequenceInAlternative;
-import tcs.SpaceKind;
-import tcs.Symbol;
-import tcs.Template;
-import tcs.Token;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import antlr.Token;
+
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.BooleanPropertyExp;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.TCS.EqualsExp;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.metamodel.TCS.InstanceOfExp;
+import com.sap.furcas.metamodel.TCS.IsDefinedExp;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.LookupPropertyInit;
+import com.sap.furcas.metamodel.TCS.OneExp;
+import com.sap.furcas.metamodel.TCS.Operator;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.PrimitivePropertyInit;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.Priority;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.PropertyInit;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.TCS.SpaceKind;
+import com.sap.furcas.metamodel.TCS.Symbol;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.ide.cts.editor.prettyprint.MOINImportedModelAdapter;
 import com.sap.ide.cts.editor.prettyprint.PrettyPrintContext;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.parsing.textblocks.PrettyPrinterUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
-import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
+
 
 /**
  * @author Fr�d�ric Jouault
@@ -110,13 +99,14 @@ public class PrettyPrinter {
                     .getPropertyReference());
             this.lowerArg = lowerArg;
             this.upperArg = upperArg;
+            
         }
 
         @Override
         protected String getMismatchError() {
             Object propValue = null;
-            if (element instanceof RefObject) {
-                propValue = TcsUtil.getPropertyValue((RefObject) element, p
+            if (element instanceof EObject) {
+                propValue = TcsUtil.getPropertyValue((EObject) element, p
                         .getPropertyReference());
             } else if (element instanceof RefStruct) {
                 propValue = TcsUtil.getPropertyValue((RefStruct) element, p
@@ -161,7 +151,7 @@ public class PrettyPrinter {
         String typeName;
 
         public NoTemplateMatchFoundException(PrettyPrintContext context,
-                RefObject element, String typeName, String mode) {
+                EObject element, String typeName, String mode) {
             super(context);
             this.element = element;
             this.typeName = typeName;
@@ -225,9 +215,9 @@ public class PrettyPrinter {
             if (element instanceof RefStruct) {
                 error += " is "
                         + ((RefStruct) element).refGetValue(propertyName);
-            } else if (element instanceof RefObject) {
+            } else if (element instanceof EObject) {
                 error += " is "
-                        + ((RefObject) element).refGetValue(propertyName);
+                        + ((EObject) element).refGetValue(propertyName);
             }
             error += " instead of the expected " + p.getValue();
 
@@ -400,7 +390,7 @@ public class PrettyPrinter {
         return null;
     }
 
-    private static ClassTemplate findSupertypeTemplate(RefObject r,
+    private static ClassTemplate findSupertypeTemplate(EObject r,
             String mode,
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap) {
         return findSupertypeTemplate((MofClass) r.refMetaObject(), mode,
@@ -410,41 +400,41 @@ public class PrettyPrinter {
     private static ClassTemplate findSupertypeTemplate(RefStruct r,
             String mode,
             Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
-            Connection conn) {
+            ResourceSet conn) {
         return findSupertypeTemplate((MofClass) conn.getElement(r
                 .refMetaObjectMri()), mode, classTemplateMap);
     }
 
-    private static RefObject getBArg(RefObject ame, String name) {
-        RefObject ret = null;
+    private static EObject getBArg(EObject ame, String name) {
+        EObject ret = null;
 
         for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame, "blockArgs"); i
                 .hasNext()
                 && (ret == null);) {
             Object arg = i.next();
-            if (MOINImportedModelAdapter.getTypeName((RefObject) arg).equals(
+            if (MOINImportedModelAdapter.getTypeName((EObject) arg).equals(
                     "TCS::" + name + "BArg"))
-                ret = (RefObject) arg;
+                ret = (EObject) arg;
         }
 
         return ret;
     }
 
-    private static RefObject getPArg(RefObject ame, String name) {
-        RefObject ret = null;
+    private static EObject getPArg(EObject ame, String name) {
+        EObject ret = null;
 
         for (Iterator<?> i = MOINImportedModelAdapter.getCol(ame,
                 "propertyArgs"); i.hasNext() && (ret == null);) {
             Object arg = i.next();
-            if (MOINImportedModelAdapter.getTypeName((RefObject) arg).equals(
+            if (MOINImportedModelAdapter.getTypeName((EObject) arg).equals(
                     "TCS::" + name + "PArg"))
-                ret = (RefObject) arg;
+                ret = (EObject) arg;
         }
 
         return ret;
     }
 
-    private static boolean isInstanceOf(RefObject element, List<String> type) {
+    private static boolean isInstanceOf(EObject element, List<String> type) {
         MofClass m = (MofClass) element.refMetaObject();
 
         List<GeneralizableElement> typesToCheck = new ArrayList<GeneralizableElement>(
@@ -495,7 +485,7 @@ public class PrettyPrinter {
 
     // Low-level serialization
 
-    private RefObject computeContextObject(String oclQuery) {
+    private EObject computeContextObject(String oclQuery) {
 
         String tag = TcsUtil.getContextTag(oclQuery);
 
@@ -520,7 +510,7 @@ public class PrettyPrinter {
     }
 
     @SuppressWarnings("unchecked")
-    private boolean eval(Object context, RefObject condition) {
+    private boolean eval(Object context, EObject condition) {
         boolean ret = true;
 
         String ctn = MOINImportedModelAdapter.getTypeName(condition);
@@ -528,7 +518,7 @@ public class PrettyPrinter {
             ret = true;
             for (Iterator<?> i = MOINImportedModelAdapter.getCol(condition,
                     "expressions"); i.hasNext();) {
-                ret &= eval(context, (RefObject) i.next());
+                ret &= eval(context, (EObject) i.next());
             }
         } else if (ctn.equals("TCS::BooleanPropertyExp")) {
             BooleanPropertyExp booleanPropertyExp = (BooleanPropertyExp) condition;
@@ -537,8 +527,8 @@ public class PrettyPrinter {
             if (context instanceof RefStruct) {
                 ret = MOINImportedModelAdapter.getBool((RefStruct) context,
                         propName);
-            } else if (context instanceof RefObject) {
-                ret = MOINImportedModelAdapter.getBool((RefObject) context,
+            } else if (context instanceof EObject) {
+                ret = MOINImportedModelAdapter.getBool((EObject) context,
                         propName);
             }
         } else if (ctn.equals("TCS::IsDefinedExp")) {
@@ -549,8 +539,8 @@ public class PrettyPrinter {
             if (context instanceof RefStruct) {
                 val = MOINImportedModelAdapter.get((RefStruct) context,
                         propName);
-            } else if (context instanceof RefObject) {
-                val = MOINImportedModelAdapter.get((RefObject) context,
+            } else if (context instanceof EObject) {
+                val = MOINImportedModelAdapter.get((EObject) context,
                         propName);
             }
             if (val == null) {
@@ -570,8 +560,8 @@ public class PrettyPrinter {
             if (context instanceof RefStruct) {
                 val = MOINImportedModelAdapter.get((RefStruct) context,
                         propName);
-            } else if (context instanceof RefObject) {
-                val = MOINImportedModelAdapter.get((RefObject) context,
+            } else if (context instanceof EObject) {
+                val = MOINImportedModelAdapter.get((EObject) context,
                         propName);
             }
             if (val == null) {
@@ -588,14 +578,14 @@ public class PrettyPrinter {
             if (context instanceof RefStruct) {
                 referredObject = TcsUtil.getPropertyValue((RefStruct) context,
                         ioExp.getPropertyReference());
-            } else if (context instanceof RefObject) {
-                referredObject = TcsUtil.getPropertyValue((RefObject) context,
+            } else if (context instanceof EObject) {
+                referredObject = TcsUtil.getPropertyValue((EObject) context,
                         ioExp.getPropertyReference());
             }
 
-            if (referredObject instanceof RefObject) {
+            if (referredObject instanceof EObject) {
 
-                if (isInstanceOf((RefObject) referredObject, ioExp
+                if (isInstanceOf((EObject) referredObject, ioExp
                         .getSupertype())) {
                     ret = true;
                 } else {
@@ -609,7 +599,7 @@ public class PrettyPrinter {
             EqualsExp equalsExp = (EqualsExp) condition;
             String propName = TcsUtil.getPropertyName(equalsExp
                     .getPropertyReference());
-            RefObject value = MOINImportedModelAdapter
+            EObject value = MOINImportedModelAdapter
                     .getME(condition, "value");
             String vtn = MOINImportedModelAdapter.getTypeName(value);
             if (vtn.equals("TCS::IntegerVal")) {
@@ -618,8 +608,8 @@ public class PrettyPrinter {
                 if (context instanceof RefStruct) {
                     pv = MOINImportedModelAdapter.getInt((RefStruct) context,
                             propName);
-                } else if (context instanceof RefObject) {
-                    pv = MOINImportedModelAdapter.getInt((RefObject) context,
+                } else if (context instanceof EObject) {
+                    pv = MOINImportedModelAdapter.getInt((EObject) context,
                             propName);
                 }
                 ret = (lv == pv);
@@ -629,8 +619,8 @@ public class PrettyPrinter {
                 if (context instanceof RefStruct) {
                     pv = MOINImportedModelAdapter.getInt((RefStruct) context,
                             propName);
-                } else if (context instanceof RefObject) {
-                    pv = MOINImportedModelAdapter.getInt((RefObject) context,
+                } else if (context instanceof EObject) {
+                    pv = MOINImportedModelAdapter.getInt((EObject) context,
                             propName);
                 }
                 ret = (lv == pv);
@@ -640,9 +630,9 @@ public class PrettyPrinter {
                 if (context instanceof RefStruct) {
                     pv = (List<String>) MOINImportedModelAdapter.get(
                             (RefStruct) context, propName);
-                } else if (context instanceof RefObject) {
+                } else if (context instanceof EObject) {
                     pv = (List<String>) MOINImportedModelAdapter.get(
-                            (RefObject) context, propName);
+                            (EObject) context, propName);
                 }
                 ret = (lv.equals(TcsUtil.joinNameList(pv)));
             } else if (vtn.equals("TCS::EnumLiteralVal")) {
@@ -652,9 +642,9 @@ public class PrettyPrinter {
                 if (context instanceof RefStruct) {
                     pv = (RefEnum) MOINImportedModelAdapter.get(
                             (RefStruct) context, propName);
-                } else if (context instanceof RefObject) {
+                } else if (context instanceof EObject) {
                     pv = (RefEnum) MOINImportedModelAdapter.get(
-                            (RefObject) context, propName);
+                            (EObject) context, propName);
                 }
                 ret = (lv.equals(pv.toString()));
             } else {
@@ -702,7 +692,7 @@ public class PrettyPrinter {
      * @throws SyntaxAndModelMismatchException
      */
     @SuppressWarnings("unchecked")
-    public void prettyPrint(RefObject source, ConcreteSyntax syntax,
+    public void prettyPrint(EObject source, ConcreteSyntax syntax,
             TCSExtractorStream target, ClassTemplate template,
             PrettyPrintContext ownContext)
             throws SyntaxAndModelMismatchException {
@@ -714,7 +704,7 @@ public class PrettyPrinter {
             this.context = ownContext;
         }
 
-        Connection con = TcsUtil.getConnectionFromRefObject(source);
+        ResourceSet con = TcsUtil.getConnectionFromRefObject(source);
         oclHelper = new AdapterJMIHelper(source.refOutermostPackage(), con, con
                 .getJmiHelper(), null, null);
 
@@ -861,7 +851,7 @@ public class PrettyPrinter {
         context.setTypeLast(TYPE_KEYWORD);
     }
 
-    private void printLiteral(RefObject literal) {
+    private void printLiteral(EObject literal) {
         String s = MOINImportedModelAdapter.getString(literal, "value");
         String ltn = MOINImportedModelAdapter.getTypeName(literal);
         if (ltn != null) {
@@ -937,11 +927,11 @@ public class PrettyPrinter {
         out.resetToSafePoint(handle);
     }
 
-    private void serialize(RefObject ame) throws SyntaxMismatchException {
+    private void serialize(EObject ame) throws SyntaxMismatchException {
         serialize(ame, null, null);
     }
 
-    private void serialize(RefObject ame, String mode, Template template)
+    private void serialize(EObject ame, String mode, Template template)
             throws SyntaxMismatchException {
 
         if (context.getVisitedModelElements().contains(ame)) {
@@ -992,7 +982,7 @@ public class PrettyPrinter {
         }
 
         String templateTypeName = MOINImportedModelAdapter
-                .getTypeName((RefObject) template);
+                .getTypeName((EObject) template);
         debug("Applying template type " + templateTypeName);
 
         if (template instanceof ClassTemplate) {
@@ -1035,7 +1025,7 @@ public class PrettyPrinter {
                     (Template) template);
 
             serializeSeq(ame, MOINImportedModelAdapter.getME(
-                    (RefObject) template, "templateSequence"));
+                    (EObject) template, "templateSequence"));
 
             out.endClassTemplate(handle);
             context.getParentRefObjects().pop();
@@ -1080,19 +1070,19 @@ public class PrettyPrinter {
                             + MOINImportedModelAdapter.getMetaobject(ame) + ")");
                 }
                 for (Iterator<?> i = MOINImportedModelAdapter.getCol(
-                        (RefObject) template, "operators"); i.hasNext()
+                        (EObject) template, "operators"); i.hasNext()
                         && (operator == null);) {
                     Object opme = i.next();
                     Object literal = MOINImportedModelAdapter.getME(
-                            (RefObject) opme, "literal");
+                            (EObject) opme, "literal");
                     String opmes = null;
                     if (literal == null)
                         opmes = "";
                     else
                         opmes = MOINImportedModelAdapter.getString(
-                                (RefObject) literal, "value");
+                                (EObject) literal, "value");
                     int arity = MOINImportedModelAdapter.getInt(
-                            (RefObject) opme, "arity");
+                            (EObject) opme, "arity");
                     if (op.equals(opmes)) {
                         if (rightPropName != null) {
                             if ((isUnary && (arity == 1))
@@ -1102,7 +1092,7 @@ public class PrettyPrinter {
                         } else {
                             operator = opme;
                             isPostfix = MOINImportedModelAdapter.getBool(
-                                    (RefObject) opme, "isPostfix");
+                                    (EObject) opme, "isPostfix");
                         }
                     }
                 }
@@ -1112,12 +1102,12 @@ public class PrettyPrinter {
                 }
             } else {
                 operator = MOINImportedModelAdapter.getCol(
-                        (RefObject) template, "operators").next();
-                isUnary = MOINImportedModelAdapter.getInt((RefObject) operator,
+                        (EObject) template, "operators").next();
+                isUnary = MOINImportedModelAdapter.getInt((EObject) operator,
                         "arity") == 1;
                 if (isUnary) {
                     isPostfix = MOINImportedModelAdapter.getBool(
-                            (RefObject) operator, "isPostfix");
+                            (EObject) operator, "isPostfix");
                 }
             }
             int curPrio = context.getPriorities().peek().intValue();
@@ -1125,8 +1115,8 @@ public class PrettyPrinter {
             int priority = ((Priority) op.refImmediateComposite()).getValue();
             boolean paren = priority > curPrio;
             context.getPriorities().push(new Integer(priority));
-            RefObject literal = MOINImportedModelAdapter.getME(
-                    (RefObject) operator, "literal");
+            EObject literal = MOINImportedModelAdapter.getME(
+                    (EObject) operator, "literal");
             debug("PRIORITY = "
                     + priority
                     + " ; CURPRIO = "
@@ -1138,7 +1128,7 @@ public class PrettyPrinter {
             if (paren)
                 printSymbol("(");
 
-            RefObject source = MOINImportedModelAdapter.getME(ame,
+            EObject source = MOINImportedModelAdapter.getME(ame,
                     sourcePropName);
             if (isUnary) {
                 if (isPostfix) {
@@ -1159,8 +1149,8 @@ public class PrettyPrinter {
                     printLiteral(literal);
             }
 
-            RefObject seq = MOINImportedModelAdapter.getME(
-                    (RefObject) template, "otSequence");
+            EObject seq = MOINImportedModelAdapter.getME(
+                    (EObject) template, "otSequence");
             if (rightPropName == null) {
                 context.getPriorities().push(new Integer(Integer.MAX_VALUE));
                 serializeSeq(ame, seq);
@@ -1171,11 +1161,11 @@ public class PrettyPrinter {
                 if (r instanceof Collection<?>) {
                     for (Iterator<?> i = ((Collection<?>) r).iterator(); i
                             .hasNext();) {
-                        serialize((RefObject) i.next());
+                        serialize((EObject) i.next());
                     }
                 } else {
                     if (!isUnary)
-                        serialize((RefObject) r);
+                        serialize((EObject) r);
                 }
             }
             context.getPriorities().pop();
@@ -1210,7 +1200,7 @@ public class PrettyPrinter {
         context.getVisitedModelElements().remove(ame);
     }
 
-    private void serialize(RefStruct s, String mode, Connection connection)
+    private void serialize(RefStruct s, String mode, ResourceSet connection)
             throws SyntaxMismatchException {
         String typeName = TcsUtil.joinNameList(s.refTypeName());
 
@@ -1250,7 +1240,7 @@ public class PrettyPrinter {
         }
 
         String templateTypeName = MOINImportedModelAdapter
-                .getTypeName((RefObject) template);
+                .getTypeName((EObject) template);
         debug("Applying template type " + templateTypeName);
 
         if (template instanceof ClassTemplate) {
@@ -1266,7 +1256,7 @@ public class PrettyPrinter {
             // (Template) template);
             //                
             serializeSeq(s, MOINImportedModelAdapter.getME(
-                    (RefObject) template, "templateSequence"));
+                    (EObject) template, "templateSequence"));
 
             // out.endClassTemplate(handle);
             // context.getParentRefObjects().pop();
@@ -1314,19 +1304,19 @@ public class PrettyPrinter {
             // + s.refTypeName() + ")");
             // }
             // for (Iterator<?> i = MOINImportedModelAdapter.getCol(
-            // (RefObject) template, "operators"); i.hasNext()
+            // (EObject) template, "operators"); i.hasNext()
             // && (operator == null);) {
             // Object opme = i.next();
             // Object literal = MOINImportedModelAdapter.getME(
-            // (RefObject) opme, "literal");
+            // (EObject) opme, "literal");
             // String opmes = null;
             // if (literal == null)
             // opmes = "";
             // else
             // opmes = MOINImportedModelAdapter.getString(
-            // (RefObject) literal, "value");
+            // (EObject) literal, "value");
             // int arity = MOINImportedModelAdapter.getInt(
-            // (RefObject) opme, "arity");
+            // (EObject) opme, "arity");
             // if (op.equals(opmes)) {
             // if (rightPropName != null) {
             // if ((isUnary && (arity == 1))
@@ -1336,7 +1326,7 @@ public class PrettyPrinter {
             // } else {
             // operator = opme;
             // isPostfix = MOINImportedModelAdapter.getBool(
-            // (RefObject) opme, "isPostfix");
+            // (EObject) opme, "isPostfix");
             // }
             // }
             // }
@@ -1346,12 +1336,12 @@ public class PrettyPrinter {
             // }
             // } else {
             // operator = MOINImportedModelAdapter.getCol(
-            // (RefObject) template, "operators").next();
-            // isUnary = MOINImportedModelAdapter.getInt((RefObject) operator,
+            // (EObject) template, "operators").next();
+            // isUnary = MOINImportedModelAdapter.getInt((EObject) operator,
             // "arity") == 1;
             // if (isUnary) {
             // isPostfix = MOINImportedModelAdapter.getBool(
-            // (RefObject) operator, "isPostfix");
+            // (EObject) operator, "isPostfix");
             // }
             // }
             // int curPrio = context.getPriorities().peek().intValue();
@@ -1360,8 +1350,8 @@ public class PrettyPrinter {
             // op.refImmediateComposite()).getValue();
             // boolean paren = priority > curPrio;
             // context.getPriorities().push(new Integer(priority));
-            // RefObject literal = MOINImportedModelAdapter.getME(
-            // (RefObject) operator, "literal");
+            // EObject literal = MOINImportedModelAdapter.getME(
+            // (EObject) operator, "literal");
             // debug("PRIORITY = "
             // + priority
             // + " ; CURPRIO = "
@@ -1373,7 +1363,7 @@ public class PrettyPrinter {
             // if (paren)
             // printSymbol("(");
             //
-            // RefObject source = MOINImportedModelAdapter.getME(s,
+            // EObject source = MOINImportedModelAdapter.getME(s,
             // sourcePropName);
             // if (isUnary) {
             // if (isPostfix) {
@@ -1394,8 +1384,8 @@ public class PrettyPrinter {
             // printLiteral(literal);
             // }
             //
-            // RefObject seq = MOINImportedModelAdapter.getME(
-            // (RefObject) template, "otSequence");
+            // EObject seq = MOINImportedModelAdapter.getME(
+            // (EObject) template, "otSequence");
             // if (rightPropName == null) {
             // context.getPriorities().push(new Integer(Integer.MAX_VALUE));
             // serializeSeq(ame, seq);
@@ -1406,11 +1396,11 @@ public class PrettyPrinter {
             // if (r instanceof Collection) {
             // for (Iterator<?> i = ((Collection<?>) r).iterator(); i
             // .hasNext();) {
-            // serialize((RefObject) i.next());
+            // serialize((EObject) i.next());
             // }
             // } else {
             // if (!isUnary)
-            // serialize((RefObject) r);
+            // serialize((EObject) r);
             // }
             // }
             // context.getPriorities().pop();
@@ -1449,7 +1439,7 @@ public class PrettyPrinter {
         if (value instanceof String) {
 
             // TODO what about serializer attribute?
-            RefObject template = primitiveTemplates.get(as);
+            EObject template = primitiveTemplates.get(as);
             printAccordingToSerializer(value, as, template);
         } else if (value instanceof Integer) {
             printIntegerLiteral(((Integer) value).intValue());
@@ -1461,7 +1451,7 @@ public class PrettyPrinter {
     }
 
     public void printAccordingToSerializer(Object value, String as,
-            RefObject template) {
+            EObject template) {
         if (template != null && template instanceof PrimitiveTemplate) {
             if (((PrimitiveTemplate) template).getSerializer() != null
                     && !((PrimitiveTemplate) template).getSerializer().equals(
@@ -1507,7 +1497,7 @@ public class PrettyPrinter {
         }
 
         RefersToParg refersToParg = (RefersToParg) getPArg(property, "RefersTo");
-        RefObject query = getPArg(property, "Query");
+        EObject query = getPArg(property, "Query");
         
         AsParg asParg = (AsParg) getPArg(property, "As");
         PrimitiveTemplate asTemplate = PrettyPrinterUtil.getAsTemplate(asParg);
@@ -1516,7 +1506,7 @@ public class PrettyPrinter {
         if (value == null)
             return;
         if (value instanceof Collection) {
-            RefObject sep = getPArg(property, "Separator");
+            EObject sep = getPArg(property, "Separator");
             if (sep != null)
                 sep = MOINImportedModelAdapter.getME(sep, "separatorSequence");
             boolean first = true;
@@ -1561,8 +1551,8 @@ public class PrettyPrinter {
             SequenceElement seqElem = mappings.get(MOINImportedModelAdapter
                     .getEnumLiteralName(e));
             serializeSeqElem(element, seqElem);
-        } else if (value instanceof RefObject) {
-            RefObject valueME = (RefObject) value;
+        } else if (value instanceof EObject) {
+            EObject valueME = (EObject) value;
             printWSBlockNoDup();
 
             if (asParg != null && query != null) {
@@ -1663,7 +1653,7 @@ public class PrettyPrinter {
 
     // Source model navigation helpers.
 
-    private void serializeSeq(Object ame, RefObject seq)
+    private void serializeSeq(Object ame, EObject seq)
             throws SyntaxMismatchException {
         if (seq != null) {
             for (Iterator<?> i = MOINImportedModelAdapter.getCol(seq,
@@ -1710,8 +1700,8 @@ public class PrettyPrinter {
                 v = TcsUtil.getPropertyValue((RefStruct) element, prop
                         .getPropertyReference());
 
-            } else if (element instanceof RefObject) {
-                v = TcsUtil.getPropertyValue((RefObject) element, prop
+            } else if (element instanceof EObject) {
+                v = TcsUtil.getPropertyValue((EObject) element, prop
                         .getPropertyReference());
             }
             // also check for partial property arg
@@ -1731,24 +1721,24 @@ public class PrettyPrinter {
             boolean endNL = true;
 
             if (nbNLBArg != null) {
-                nbNL = MOINImportedModelAdapter.getInt((RefObject) nbNLBArg,
+                nbNL = MOINImportedModelAdapter.getInt((EObject) nbNLBArg,
                         "value");
             }
             int startNbNL = nbNL; // by default, startNbNL = nbNL
             if (startNbNLBArg != null) {
                 startNbNL = MOINImportedModelAdapter.getInt(
-                        (RefObject) startNbNLBArg, "value");
+                        (EObject) startNbNLBArg, "value");
             }
             if (indentIncrBArg != null) {
                 indentIncr = MOINImportedModelAdapter.getInt(
-                        (RefObject) indentIncrBArg, "value");
+                        (EObject) indentIncrBArg, "value");
             }
             if (startNLBArg != null) {
                 startNL = MOINImportedModelAdapter.getBool(
-                        (RefObject) startNLBArg, "value");
+                        (EObject) startNLBArg, "value");
             }
             if (endNLBArg != null) {
-                endNL = MOINImportedModelAdapter.getBool((RefObject) endNLBArg,
+                endNL = MOINImportedModelAdapter.getBool((EObject) endNLBArg,
                         "value");
             }
             debug("nbNL = " + nbNL + " ; indentIncr = " + indentIncr);
@@ -1799,16 +1789,16 @@ public class PrettyPrinter {
                     MOINImportedModelAdapter.getME(seqElem, "calledFunction"),
                     "functionSequence"));
         } else if (tn.equals("TCS::ConditionalElement")) {
-            RefObject condition = MOINImportedModelAdapter.getME(seqElem,
+            EObject condition = MOINImportedModelAdapter.getME(seqElem,
                     "condition");
             if (eval(element, condition)) {
-                RefObject tseq = MOINImportedModelAdapter.getME(seqElem,
+                EObject tseq = MOINImportedModelAdapter.getME(seqElem,
                         "thenSequence");
                 if (tseq != null)
                     printWSBlockNoDup();
                 serializeSeq(element, tseq);
             } else {
-                RefObject eseq = MOINImportedModelAdapter.getME(seqElem,
+                EObject eseq = MOINImportedModelAdapter.getME(seqElem,
                         "elseSequence");
                 debug("ELSE SEQ = " + eseq);
                 if (eseq != null)
@@ -1965,26 +1955,26 @@ public class PrettyPrinter {
             if (element instanceof RefStruct) {
                 prop = TcsUtil.getPropertyValue((RefStruct) element, p
                         .getPropertyReference());
-            } else if (element instanceof RefObject) {
-                prop = TcsUtil.getPropertyValue((RefObject) element, p
+            } else if (element instanceof EObject) {
+                prop = TcsUtil.getPropertyValue((EObject) element, p
                         .getPropertyReference());
             }
 
             String oclQuery = p.getValue();
-            RefObject contextObject = computeContextObject(oclQuery);
-            RefObject foreachObject = computeForeachObject(oclQuery);
+            EObject contextObject = computeContextObject(oclQuery);
+            EObject foreachObject = computeForeachObject(oclQuery);
 
             Object expectedValue = null;
             try {
-                if (element instanceof RefObject) {
+                if (element instanceof EObject) {
                     // keyValue is always null for LookUpPropertyInits
                     // in QueryPArg it denotes the RefersToParg propertyValue
                     expectedValue = TcsUtil.executeOclQuery(
-                            (RefObject) element, oclQuery, contextObject,
+                            (EObject) element, oclQuery, contextObject,
                             foreachObject, null);
                 }
             } catch (ModelAdapterException e) {
-                throw new PropertyInitException((RefObject) element, p, context);
+                throw new PropertyInitException((EObject) element, p, context);
             }
 
             // oclHelper.findElementWithOCLQuery returns null for empty
@@ -1998,7 +1988,7 @@ public class PrettyPrinter {
         }
     }
 
-    private RefObject computeForeachObject(String oclQuery) {
+    private EObject computeForeachObject(String oclQuery) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -2018,8 +2008,8 @@ public class PrettyPrinter {
             if (element instanceof RefStruct) {
                 prop = TcsUtil.getPropertyValue((RefStruct) element, p
                         .getPropertyReference());
-            } else if (element instanceof RefObject) {
-                prop = TcsUtil.getPropertyValue((RefObject) element, p
+            } else if (element instanceof EObject) {
+                prop = TcsUtil.getPropertyValue((EObject) element, p
                         .getPropertyReference());
             }
 

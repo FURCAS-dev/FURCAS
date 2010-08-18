@@ -3,11 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: EUML Epi
 Bundle-SymbolicName: euml.epi
 Bundle-Version: 1.0.0.qualifier
-Export-Package: com.sap.tc.moin,
- com.sap.tc.moin.ocl.gen.oclgenerated4007594b2531905a3ca1c04e401e127fab5d1754,
- com.sap.tc.moin.ocl.gen.oclgenerated4007594b2531905a3ca1c04e401e127fab5d1754.__impl,
- com.sap.tc.moin.package58FE58412B26152589B8D1F21B46FFC1F1E4B9B9,
- de,
+Export-Package: de,
  de.__impl,
  de.ikv,
  de.ikv.__impl,
@@ -43,8 +39,6 @@ Export-Package: com.sap.tc.moin,
  euml.presentation.graphic.__impl,
  uml,
  uml.__impl
-Require-Bundle: com.sap.tc.moin.libraries.jmi.facade,
- com.sap.tc.moin.ide.facade,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.junit

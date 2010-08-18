@@ -7,14 +7,19 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.core.commands.Command;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.CompositeChange;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.editor.EditorUtil;
 import com.sap.ide.cts.editor.prettyprint.CtsTextBlockIncrementalTCSExtractorStream;
 import com.sap.ide.cts.editor.prettyprint.IncrementalPrettyPrinter;
@@ -27,24 +32,18 @@ import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.commands.Command;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+
 
 public class UpdateTextBlocksCommand extends Command {
 
-    private final Map<RefObject, List<ModelElementTextBlockTuple>> textBlocksNeedingPrettyPrinting;
-    private final Map<RefObject, List<ModelElementTextBlockTuple>> textBlocksNeedingShortPrettyPrinting;
+    private final Map<EObject, List<ModelElementTextBlockTuple>> textBlocksNeedingPrettyPrinting;
+    private final Map<EObject, List<ModelElementTextBlockTuple>> textBlocksNeedingShortPrettyPrinting;
 
     private final Collection<Change> prettyPrintedTextBlocks = new ArrayList<Change>();
 
-    public UpdateTextBlocksCommand(Connection connection,
-	    Map<RefObject, List<ModelElementTextBlockTuple>> textBlocksNeedingPrettyPrinting,
-	    Map<RefObject, List<ModelElementTextBlockTuple>> textBlocksNeedingShortPrettyPrinting) {
+    public UpdateTextBlocksCommand(ResourceSet connection,
+	    Map<EObject, List<ModelElementTextBlockTuple>> textBlocksNeedingPrettyPrinting,
+	    Map<EObject, List<ModelElementTextBlockTuple>> textBlocksNeedingShortPrettyPrinting) {
 	super(connection, "Update Refactoring dependet TextBlocks");
 
 	this.textBlocksNeedingPrettyPrinting = textBlocksNeedingPrettyPrinting;
@@ -60,8 +59,8 @@ public class UpdateTextBlocksCommand extends Command {
     public void doExecute() {
 
 	// do full pretty print
-	for (Entry<RefObject, List<ModelElementTextBlockTuple>> entry : textBlocksNeedingPrettyPrinting.entrySet()) {
-	    CompositeChange composite = new CompositeChange("Pretty Print " + ((MofClass) entry.getKey().refMetaObject()).getName());
+	for (Entry<EObject, List<ModelElementTextBlockTuple>> entry : textBlocksNeedingPrettyPrinting.entrySet()) {
+	    CompositeChange composite = new CompositeChange("Pretty Print " + ((EClass) entry.getKey().refMetaObject()).getName());
 	    for (ModelElementTextBlockTuple tuple : entry.getValue()) {
 
 		if (tuple.textBlock.getType() == null ) {
@@ -81,7 +80,7 @@ public class UpdateTextBlocksCommand extends Command {
 	}
 
 	// do short pretty print
-	for (Entry<RefObject, List<ModelElementTextBlockTuple>> entry : textBlocksNeedingShortPrettyPrinting.entrySet()) {
+	for (Entry<EObject, List<ModelElementTextBlockTuple>> entry : textBlocksNeedingShortPrettyPrinting.entrySet()) {
 	    for (ModelElementTextBlockTuple tuple : entry.getValue()) {
 		if (tuple.textBlock.getType() == null ) {
 		    System.out.println(">>> Skipping Tb: Broken Mapping for " + tuple.textBlock.getClass().getName());
@@ -116,7 +115,7 @@ public class UpdateTextBlocksCommand extends Command {
 		tuple.textBlock.get___Partition(), parserFactory, /*progressive mode*/ false);
 
 	try {
-	    prettyPrinter.prettyPrint(new RefObject[]{tuple.textBlock}, tuple.modelElement, syntax, stream, template);
+	    prettyPrinter.prettyPrint(new EObject[]{tuple.textBlock}, tuple.modelElement, syntax, stream, template);
 	} catch (SyntaxAndModelMismatchException e) {
 	    throw new RefactoringCoreException("Unable to pretty print ModelElement: " + tuple.modelElement, e);
 	}
@@ -132,12 +131,12 @@ public class UpdateTextBlocksCommand extends Command {
 	ConcreteSyntax syntax = textBlock.getType().getParseRule().getConcretesyntax();
 	AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory = EditorUtil
 		.constructParserFactoryForSyntax(syntax);
-	RefPackage metamodelPackage = parserFactory.getMetamodelPackage(getConnection());
+	EPackage metamodelPackage = parserFactory.getMetamodelPackage(getConnection());
 	return new MOINModelAdapter(metamodelPackage, getConnection(), null, null);
     }
 
     @Override
-    public Collection<PartitionOperation> getAffectedPartitions() {
+    public Collection<EOperation> getAffectedPartitions() {
 	return null;
     }
 

@@ -1,18 +1,11 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Parsing
-Bundle-SymbolicName: com.sap.mi.textual.parsing
+Bundle-SymbolicName: com.sap.mi.textual.parsing;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: 
  bin/,
  .
-Export-Package: 
- com.sap.mi.textual.grammar,
- com.sap.mi.textual.grammar.antlr3,
- com.sap.mi.textual.grammar.exceptions,
- com.sap.mi.textual.grammar.impl,
- com.sap.mi.textual.grammar.impl.context,
- com.sap.mi.textual.grammar.wrapper
 Require-Bundle: com.sap.mi.textual.common;bundle-version="1.0.0",
  org.eclipse.core.resources;bundle-version="3.4.2",
  org.eclipse.emf.ecore;bundle-version="2.6.0",
@@ -21,3 +14,11 @@ Require-Bundle: com.sap.mi.textual.common;bundle-version="1.0.0",
  org.antlr;bundle-version="3.1.1",
  com.sap.furcas.metamodel;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.sap.mi.textual.grammar,
+ com.sap.mi.textual.grammar.antlr3,
+ com.sap.mi.textual.grammar.exceptions,
+ com.sap.mi.textual.grammar.impl,
+ com.sap.mi.textual.grammar.impl.context,
+ com.sap.mi.textual.grammar.wrapper
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.ocl.expressions

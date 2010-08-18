@@ -1,9 +1,9 @@
 package com.sap.ide.refactoring.core;
 
+import org.eclipse.core.commands.Command;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.commands.Command;
+
 
 /**
  * Base class for Refactorings  of the domain model.
@@ -15,7 +15,7 @@ import com.sap.tc.moin.repository.commands.Command;
  */
 public abstract class AbstractRefactoringCommand extends Command {
 
-    protected AbstractRefactoringCommand(Connection connection,  String description) {
+    protected AbstractRefactoringCommand(ResourceSet connection,  String description) {
 	super(connection, description);
     }
 

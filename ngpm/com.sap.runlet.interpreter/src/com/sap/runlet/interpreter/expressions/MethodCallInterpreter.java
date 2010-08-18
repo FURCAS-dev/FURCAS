@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.sap.ap.metamodel.formatter.StringFormatter;
 import com.sap.runlet.abstractinterpreter.StackFrame;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
@@ -14,7 +13,6 @@ import com.sap.runlet.abstractinterpreter.objects.MultiValuedObject;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.objects.FunctionFromMethodObject;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;

@@ -1,26 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?>
 <plugin>
-   <extension point="com.sap.tc.moin.runtime.MoinMetaModel">
-	  <metamodel class="com.sap.tc.moin.package0E380DB5B2129F38A5F987C7DC23AD2785E77730.MetamodelExtension" />
-   </extension>
-   <extension
-         point="com.sap.tc.moin.globalmodellistener.eventListeners">
-         <listener classname="com.sap.coghead.metamodel.eventhandlers.CollectionCreationEventHandler" />
-   </extension>
-   <extension
-         point="com.sap.tc.moin.globalmodellistener.eventListeners">
-         <listener classname="com.sap.coghead.metamodel.eventhandlers.AccountCreationEventHandler" />
-   </extension>
-   <extension
-         point="com.sap.tc.moin.globalmodellistener.eventListeners">
-         <listener classname="com.sap.coghead.metamodel.eventhandlers.ApplicationCreationEventHandler" />
-   </extension>
-   <extension
-         point="com.sap.tc.moin.globalmodellistener.eventListeners">
-         <listener classname="com.sap.coghead.metamodel.eventhandlers.CollectionNameChangeEventHandler" />
-   </extension>
-   <extension
-         point="com.sap.tc.moin.globalmodellistener.eventListeners">
-         <listener classname="com.sap.coghead.metamodel.eventhandlers.SchemaConnectionLinkAddEventHandler" />
-   </extension>
 </plugin>

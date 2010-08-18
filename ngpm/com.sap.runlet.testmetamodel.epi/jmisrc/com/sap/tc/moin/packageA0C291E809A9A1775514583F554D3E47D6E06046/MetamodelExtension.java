@@ -4,6 +4,8 @@
 
 package com.sap.tc.moin.packageA0C291E809A9A1775514583F554D3E47D6E06046;
 
+import org.eclipse.emf.ecore.EObject;
+
 public final class MetamodelExtension implements com.sap.tc.moin.repository.metamodels.DeploymentExtension
 {
 	private	java.util.List<java.lang.String> mofIds;
@@ -128,8 +130,8 @@ public final class MetamodelExtension implements com.sap.tc.moin.repository.meta
         }
     }
     
-    public java.lang.Class<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject> getJmiClass(java.lang.String className) throws java.lang.ClassNotFoundException {
-        return (java.lang.Class<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject>)java.lang.Class.forName(className);
+    public java.lang.Class<EObject> getJmiClass(java.lang.String className) throws java.lang.ClassNotFoundException {
+        return (java.lang.Class<EObject>)java.lang.Class.forName(className);
     }
     
     public java.lang.String getVersion() {

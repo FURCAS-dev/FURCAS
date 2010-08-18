@@ -1,13 +1,13 @@
 package com.sap.ide.cts.parser.incremental;
 
-import textblocks.AbstractToken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
+import org.eclipse.emf.ecore.EObject;
 
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Provides services to re-resolve references and set feature values.
@@ -106,5 +106,5 @@ public interface ReferenceHandler {
 	 *                the feature to get the value for.
 	 * @return the value of the given feature from the given model element.
 	 */
-	Object getFeatureValue(RefObject modelElement, String featureName);
+	Object getFeatureValue(EObject modelElement, String featureName);
 }

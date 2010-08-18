@@ -12,16 +12,20 @@ import static com.sap.mi.textual.parsing.textblocks.TbVersionUtil.getOtherVersio
 
 import java.util.List;
 
-import com.sap.tc.moin.repository.Connection;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.Version;
-import textblocks.VersionEnum;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.textblocks.Version;
+
+
+
+
+
 
 public abstract class IncrementalRecognizer {
 
@@ -30,9 +34,9 @@ public abstract class IncrementalRecognizer {
 	protected Bostoken bosRef;
 	protected Eostoken eosRef;
 	protected TextblocksPackage textblocksPackage;
-	protected Connection connection;
+	protected ResourceSet connection;
 	
-	public IncrementalRecognizer(Connection connection) {
+	public IncrementalRecognizer(ResourceSet connection) {
 		this.connection = connection;
 		textblocksPackage = connection.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
 	}
@@ -48,7 +52,7 @@ public abstract class IncrementalRecognizer {
 				&& hasNestedChanges((TextBlock) node, VersionEnum.PREVIOUS))
 			return findNextRegion(getSubNodeAt(((TextBlock) node), 0));
 		if (node instanceof TextBlock
-				&& ((TextBlock) node).getParentBlock() == null) {
+				&& ((TextBlock) node).getParent() == null) {
 			// node is the parent block and there were no changes detected so
 			// return EOS which
 			// is always the last token within the Root Textblock
@@ -70,7 +74,7 @@ public abstract class IncrementalRecognizer {
 			while (getParentBlock(parent) != null && isLastInSubTree(parent)) {
 				// its the last element, so traverse to the next subtree and
 				// find the first leaf there
-				parent = parent.getParentBlock();
+				parent = parent.getParent();
 			}
 			DocumentNode child = getNextInSubTree(parent);
 			return child;

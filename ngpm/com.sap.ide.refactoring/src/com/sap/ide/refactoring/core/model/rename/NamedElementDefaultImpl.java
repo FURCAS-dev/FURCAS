@@ -1,14 +1,15 @@
 package com.sap.ide.refactoring.core.model.rename;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.ide.refactoring.core.model.IllegalRefactoringModelOperationException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class NamedElementDefaultImpl implements NamedElement {
 
-    protected final RefObject wrapped;
+    protected final EObject wrapped;
     private final String attributeName;
 
-    public NamedElementDefaultImpl(RefObject wrapped, String attributeName) {
+    public NamedElementDefaultImpl(EObject wrapped, String attributeName) {
 	this.wrapped = wrapped;
 	this.attributeName = attributeName;
     }
@@ -39,7 +40,7 @@ public class NamedElementDefaultImpl implements NamedElement {
     }
 
     @Override
-    public RefObject getWrappedModelElement() {
+    public EObject getWrappedModelElement() {
 	return wrapped;
     }
 

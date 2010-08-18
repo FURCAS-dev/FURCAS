@@ -7,22 +7,16 @@ Bundle-Activator: com.sap.coghead.editor.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.sap.tc.moin.libraries.api,
  com.sap.ide.cts.editor,
  com.sap.ide.cts.parser,
  org.eclipse.ui.editors,
  org.eclipse.jface.text,
- com.sap.mi.fwk,
- com.sap.mi.fwk.ui,
  com.sap.mi.textual.parsing,
  com.sap.coghead.metamodel,
- com.sap.tcsmeta.mm.eclipse,
- com.sap.tc.moin.textual.runtime.moin,
  com.sap.mi.textual.parsing.textblocks,
  org.eclipse.core.resources;bundle-version="3.4.2",
  com.sap.ide.treeprovider,
  com.sap.ide.cts.moin;bundle-version="1.0.0",
- com.sap.mi.textual.common;bundle-version="1.0.0",
- com.sap.mi.textual.moinlookup;bundle-version="1.0.0"
+ com.sap.mi.textual.common;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

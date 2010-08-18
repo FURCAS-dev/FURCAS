@@ -7,25 +7,20 @@ import java.util.Collection;
 import java.util.List;
 
 import org.antlr.runtime.CharStream;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
-import tcs.FunctionCall;
-import tcs.SequenceElement;
-import textblocks.DocumentNode;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.Version;
-
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+
 
 /**
  * 
@@ -331,7 +326,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	@Override
 	public TextBlock getParentBlock() throws JmiException {
 
-		return wrappedToken.getParentBlock();
+		return wrappedToken.getParent();
 	}
 
 	/*
@@ -384,7 +379,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 */
 	@Override
 	public void setParentBlock(TextBlock newValue) throws JmiException {
-		wrappedToken.setParentBlock(newValue);
+		wrappedToken.setParent(newValue);
 
 	}
 
@@ -427,7 +422,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getCorrespondingModelElements()
 	 */
 	@Override
-	public List<RefObject> getCorrespondingModelElements() throws JmiException {
+	public List<EObject> getCorrespondingModelElements() throws JmiException {
 
 		return wrappedToken.getCorrespondingModelElements();
 	}
@@ -644,10 +639,10 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refClass()
+	 * @see com.sap.tc.moin.repository.mmi.reflect.EObject#refClass()
 	 */
 	@Override
-	public RefClass refClass() {
+	public EClass refClass() {
 
 		return wrappedToken.refClass();
 	}
@@ -655,7 +650,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refDelete()
+	 * @see com.sap.tc.moin.repository.mmi.reflect.EObject#refDelete()
 	 */
 	@Override
 	public void refDelete() {
@@ -665,7 +660,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refImmediateComposite()
+	 * @see com.sap.tc.moin.repository.mmi.reflect.EObject#refImmediateComposite()
 	 */
 	@Override
 	public RefFeatured refImmediateComposite() {
@@ -676,11 +671,11 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refIsInstanceOf(com.sap.tc.moin.repository.mmi.reflect.RefObject,
+	 * @see com.sap.tc.moin.repository.mmi.reflect.EObject#refIsInstanceOf(com.sap.tc.moin.repository.mmi.reflect.EObject,
 	 *      boolean)
 	 */
 	@Override
-	public boolean refIsInstanceOf(RefObject objType, boolean considerSubtypes) {
+	public boolean refIsInstanceOf(EObject objType, boolean considerSubtypes) {
 
 		return wrappedToken.refIsInstanceOf(objType, considerSubtypes);
 	}
@@ -688,7 +683,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refOutermostComposite()
+	 * @see com.sap.tc.moin.repository.mmi.reflect.EObject#refOutermostComposite()
 	 */
 	@Override
 	public RefFeatured refOutermostComposite() {
@@ -699,10 +694,10 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refGetValue(com.sap.tc.moin.repository.mmi.reflect.RefObject)
+	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refGetValue(com.sap.tc.moin.repository.mmi.reflect.EObject)
 	 */
 	@Override
-	public Object refGetValue(RefObject feature) {
+	public Object refGetValue(EObject feature) {
 
 		return wrappedToken.refGetValue(feature);
 	}
@@ -721,11 +716,11 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refInvokeOperation(com.sap.tc.moin.repository.mmi.reflect.RefObject,
+	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refInvokeOperation(com.sap.tc.moin.repository.mmi.reflect.EObject,
 	 *      java.util.List)
 	 */
 	@Override
-	public Object refInvokeOperation(RefObject requestedOperation,
+	public Object refInvokeOperation(EObject requestedOperation,
 			List<? extends Object> args) throws RefException {
 		return wrappedToken.refInvokeOperation(requestedOperation, args);
 	}
@@ -745,11 +740,11 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refSetValue(com.sap.tc.moin.repository.mmi.reflect.RefObject,
+	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refSetValue(com.sap.tc.moin.repository.mmi.reflect.EObject,
 	 *      java.lang.Object)
 	 */
 	@Override
-	public void refSetValue(RefObject feature, Object value) {
+	public void refSetValue(EObject feature, Object value) {
 		wrappedToken.refSetValue(feature, value);
 	}
 
@@ -780,7 +775,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see com.sap.tc.moin.repository.mmi.reflect.RefBaseObject#refMetaObject()
 	 */
 	@Override
-	public RefObject refMetaObject() {
+	public EObject refMetaObject() {
 		return wrappedToken.refMetaObject();
 	}
 
@@ -827,19 +822,19 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	}
 
 	@Override
-	public void assign___Partition(ModelPartition mp) {
+	public void assign___Partition(Resource mp) {
 		// TODO Auto-generated method stub
 		throw new RuntimeException("not implemented");
 	}
 
 	@Override
-	public void assign___PartitionIncludingChildren(ModelPartition mp) {
+	public void assign___PartitionIncludingChildren(Resource mp) {
 		// TODO Auto-generated method stub
 		throw new RuntimeException("not implemented");
 	}
 
 	@Override
-	public Connection get___Connection() {
+	public ResourceSet get___Connection() {
 		// TODO Auto-generated method stub
 		throw new RuntimeException("not implemented");
 	}
@@ -851,12 +846,12 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	}
 
 	@Override
-	public MRI get___Mri() {
+	public URI get___Mri() {
 		return wrappedToken.get___Mri();
 	}
 
 	@Override
-	public ModelPartition get___Partition() {
+	public Resource get___Partition() {
 		// TODO Auto-generated method stub
 		throw new RuntimeException("not implemented");
 	}
@@ -868,7 +863,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	}
 
 	@Override
-	public Collection<RefObject> getReferencedElements()
+	public Collection<EObject> getReferencedElements()
 		throws JmiException {
 	    return wrappedToken.getReferencedElements();
 	}

@@ -7,11 +7,10 @@ import java.util.Set;
 
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import textblocks.AbstractToken;
-import textblocks.TextblocksPackage;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.LexerAdapter;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy;
@@ -19,14 +18,14 @@ import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.ModelInjector;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
-import com.sap.tc.moin.repository.Connection;
+
 
 public class ANTLRLexerAdapter implements LexerAdapter {
 
 	public static final String LEXER_INJECTOR_FIELD_NAME = "ei";
 	private Lexer antlrLexer;
 	private TextblocksPackage textblocksPackage;
-	private final Connection connection;
+	private final ResourceSet connection;
 	private IncrementalLexer incrementalLexer;
 	private Set<AbstractToken> reusedTokens = new HashSet<AbstractToken>();
 	private TextBlockReuseStrategy reuseStrategy = null;
@@ -35,7 +34,7 @@ public class ANTLRLexerAdapter implements LexerAdapter {
 		return antlrLexer;
 	}
 
-	public ANTLRLexerAdapter(Lexer antlrLexer, TextBlockReuseStrategy reuseStrategy, Connection conn) {
+	public ANTLRLexerAdapter(Lexer antlrLexer, TextBlockReuseStrategy reuseStrategy, ResourceSet conn) {
 		this.reuseStrategy = reuseStrategy;
 		this.connection = conn;
 		this.textblocksPackage = connection

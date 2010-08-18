@@ -2,14 +2,14 @@ package ocljmi;
 
 
 
+import javax.lang.model.type.PrimitiveType;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.semantics.bridge.Classifier;
 import org.oslo.ocl20.semantics.bridge.OclModelElementType;
 import org.oslo.ocl20.standard.types.TypeFactoryImpl;
-
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
 
 
 /**
@@ -24,18 +24,18 @@ public class JmiTypeFactory
 		super(proc);
 	}
 	
-	public Classifier buildClassifier(MofClass ecl) {
+	public Classifier buildClassifier(EClass ecl) {
 		//EList ? -- see PropertyImpl, fix here.
-		if (ecl instanceof MofClass)
+		if (ecl instanceof EClass)
 			return buildOclModelElementType(ecl);
-		else if (ecl instanceof EnumerationType)
+		else if (ecl instanceof EEnum)
 			return null;
 		else if (ecl instanceof PrimitiveType)
 			return null;
 		return null;
 	}
 	
-	public OclModelElementType buildOclModelElementType(MofClass ecl) {
+	public OclModelElementType buildOclModelElementType(EClass ecl) {
 		return new OclModelElementTypeImpl(ecl, processor);
 	}
 

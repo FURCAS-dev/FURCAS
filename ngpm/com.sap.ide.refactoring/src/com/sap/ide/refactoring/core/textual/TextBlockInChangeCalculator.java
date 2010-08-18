@@ -7,28 +7,27 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
-import textblocks.DocumentNode;
-import textblocks.DocumentNodeReferencedElement;
-import textblocks.DocumentNodeReferencesCorrespondingModelElement;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 public class TextBlockInChangeCalculator {
 
     public static class ModelElementTextBlockTuple {
 
-	public final RefObject modelElement;
+	public final EObject modelElement;
 	public final TextBlock textBlock;
 
-	public ModelElementTextBlockTuple(RefObject modelElement, TextBlock textBlock) {
+	public ModelElementTextBlockTuple(EObject modelElement, TextBlock textBlock) {
 	    this.modelElement = modelElement;
 	    this.textBlock = textBlock;
 	}
@@ -65,12 +64,12 @@ public class TextBlockInChangeCalculator {
 	}
     }
 
-    private Map<RefObject, List<ModelElementTextBlockTuple>> correspondingTextBlocksPerRootObject = new HashMap<RefObject, List<ModelElementTextBlockTuple>>();
-    private Map<RefObject, List<ModelElementTextBlockTuple>> referencingTextBlocksPerRootObject = new HashMap<RefObject, List<ModelElementTextBlockTuple>>();
+    private Map<EObject, List<ModelElementTextBlockTuple>> correspondingTextBlocksPerRootObject = new HashMap<EObject, List<ModelElementTextBlockTuple>>();
+    private Map<EObject, List<ModelElementTextBlockTuple>> referencingTextBlocksPerRootObject = new HashMap<EObject, List<ModelElementTextBlockTuple>>();
 
 
-    public void add(RefObject modelElement) {
-	for (RefObject decoratedDomainRootObject : findDecoratedDomainRootObjects(modelElement)) {
+    public void add(EObject modelElement) {
+	for (EObject decoratedDomainRootObject : findDecoratedDomainRootObjects(modelElement)) {
 
 	    for (DocumentNode tbToAdd : findCorrespondingTextBlocks(modelElement)) {
 		if (!isValidTextBlock(tbToAdd)) {
@@ -96,7 +95,7 @@ public class TextBlockInChangeCalculator {
 	return true;
     }
 
-    private void mergeTextBlockIntoList(RefObject modelElement, DocumentNode tbToAdd, List<ModelElementTextBlockTuple> textBlocks) {
+    private void mergeTextBlockIntoList(EObject modelElement, DocumentNode tbToAdd, List<ModelElementTextBlockTuple> textBlocks) {
 	int insertPosition = findInsertPosition(tbToAdd, textBlocks);
 	if (insertPosition >= 0) {
 	    removeChildBlocks(insertPosition, tbToAdd, textBlocks);
@@ -158,10 +157,10 @@ public class TextBlockInChangeCalculator {
 	}
     }
 
-    private Collection<RefObject> findDecoratedDomainRootObjects(RefObject modelElement) {
-	Connection co = modelElement.get___Connection();
+    private Collection<EObject> findDecoratedDomainRootObjects(EObject modelElement) {
+	ResourceSet co = modelElement.get___Connection();
 	DocumentNodeReferencesCorrespondingModelElement assoc = co.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR).getDocumentNodeReferencesCorrespondingModelElement();
-	Set<RefObject> roots = new HashSet<RefObject>();
+	Set<EObject> roots = new HashSet<EObject>();
 	for (DocumentNode node : assoc.getDocumentNode(modelElement)) {
 	    DocumentNode tbRootNode = TbNavigationUtil.getUltraRoot(node);
 	    roots.addAll(assoc.getCorrespondingModelElements(tbRootNode));
@@ -169,44 +168,44 @@ public class TextBlockInChangeCalculator {
 	return roots;
     }
 
-    private List<ModelElementTextBlockTuple> getCorrespondingTextBlockListOfComposite(RefObject decoratedDomainRootObject) {
+    private List<ModelElementTextBlockTuple> getCorrespondingTextBlockListOfComposite(EObject decoratedDomainRootObject) {
 	if (!correspondingTextBlocksPerRootObject.containsKey(decoratedDomainRootObject)) {
 	    correspondingTextBlocksPerRootObject.put(decoratedDomainRootObject, new LinkedList<ModelElementTextBlockTuple>());
 	}
 	return correspondingTextBlocksPerRootObject.get(decoratedDomainRootObject);
     }
 
-    private List<ModelElementTextBlockTuple> getReferencingTextBlockListOfComposite(RefObject decoratedDomainRootObject) {
+    private List<ModelElementTextBlockTuple> getReferencingTextBlockListOfComposite(EObject decoratedDomainRootObject) {
 	if (!referencingTextBlocksPerRootObject.containsKey(decoratedDomainRootObject)) {
 	    referencingTextBlocksPerRootObject.put(decoratedDomainRootObject, new LinkedList<ModelElementTextBlockTuple>());
 	}
 	return referencingTextBlocksPerRootObject.get(decoratedDomainRootObject);
     }
 
-    private Collection<DocumentNode> findCorrespondingTextBlocks(RefObject modelElement) {
-	Connection co = modelElement.get___Connection();
+    private Collection<DocumentNode> findCorrespondingTextBlocks(EObject modelElement) {
+	ResourceSet co = modelElement.get___Connection();
 	DocumentNodeReferencesCorrespondingModelElement assoc = co.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR).getDocumentNodeReferencesCorrespondingModelElement();
 	return assoc.getDocumentNode(modelElement);
     }
 
-    private Collection<DocumentNode> findReferencedTextBlocks(RefObject modelElement) {
-	Connection co = modelElement.get___Connection();
+    private Collection<DocumentNode> findReferencedTextBlocks(EObject modelElement) {
+	ResourceSet co = modelElement.get___Connection();
 	DocumentNodeReferencedElement assoc = co.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR).getDocumentNodeReferencedElement();
 	return assoc.getDocumentNode(modelElement);
     }
 
-    public Map<RefObject, List<ModelElementTextBlockTuple>> getTextBlocksNeedingPrettyPrinting() {
-	Map<RefObject, List<ModelElementTextBlockTuple>> cpy = new HashMap<RefObject, List<ModelElementTextBlockTuple>>(correspondingTextBlocksPerRootObject);
-	for (Entry<RefObject, List<ModelElementTextBlockTuple>> entry : cpy.entrySet()) {
+    public Map<EObject, List<ModelElementTextBlockTuple>> getTextBlocksNeedingPrettyPrinting() {
+	Map<EObject, List<ModelElementTextBlockTuple>> cpy = new HashMap<EObject, List<ModelElementTextBlockTuple>>(correspondingTextBlocksPerRootObject);
+	for (Entry<EObject, List<ModelElementTextBlockTuple>> entry : cpy.entrySet()) {
 	    cpy.put(entry.getKey(), new LinkedList<ModelElementTextBlockTuple>(entry.getValue()));
 	}
 	return cpy;
 
     }
 
-    public Map<RefObject, List<ModelElementTextBlockTuple>> getTextBlocksNeedingShortPrettyPrinting() {
-	Map<RefObject, List<ModelElementTextBlockTuple>> cpy = new HashMap<RefObject, List<ModelElementTextBlockTuple>>(referencingTextBlocksPerRootObject);
-	for (Entry<RefObject, List<ModelElementTextBlockTuple>> entry : cpy.entrySet()) {
+    public Map<EObject, List<ModelElementTextBlockTuple>> getTextBlocksNeedingShortPrettyPrinting() {
+	Map<EObject, List<ModelElementTextBlockTuple>> cpy = new HashMap<EObject, List<ModelElementTextBlockTuple>>(referencingTextBlocksPerRootObject);
+	for (Entry<EObject, List<ModelElementTextBlockTuple>> entry : cpy.entrySet()) {
 	    cpy.put(entry.getKey(), new LinkedList<ModelElementTextBlockTuple>(entry.getValue()));
 	}
 	return cpy;

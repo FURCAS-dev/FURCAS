@@ -11,15 +11,15 @@
 
 package de.ikv.medini.qvtemf.test;
 
+import org.eclipse.emf.ecore.EPackage;
+
 import com.sap.mi.textual.moin.standalone.StandaloneConnectionFactoryFacade;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 import de.ikv.medini.qvt.test.QVTJMITestAdapter;
 
 public class QVTJMITestAdapterForEUML extends QVTJMITestAdapter {
 	private static final String mmbuildpath = "../OCLJMITest/mmbuild/demo.sap.com~euml~def_assmbl.zip";
-	static RefPackage companyPackage = null;
+	static EPackage companyPackage = null;
 //	@Override
 //	public void initRepository() {
 //		for (String metaModelID : this.metamodelIDs) {
@@ -34,7 +34,7 @@ public class QVTJMITestAdapterForEUML extends QVTJMITestAdapter {
 
 		setConnection(StandaloneConnectionFactoryFacade.getMetaModelConnection(mmbuildpath));
 		for (String metaModelID : this.metamodelIDs) {
-			addMetaModel((MofPackage) connection.getPackage(null, metaModelID).refMetaObject());
+			addMetaModel((EPackage) connection.getPackage(null, metaModelID).refMetaObject());
 		}
 		super.initRepository(); 
 	}

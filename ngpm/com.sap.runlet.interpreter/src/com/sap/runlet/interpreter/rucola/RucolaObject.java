@@ -3,11 +3,11 @@ package com.sap.runlet.interpreter.rucola;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
 import com.sap.runlet.interpreter.RunletInterpreter;
-import com.sap.tc.moin.repository.Connection;
-
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
 import data.classes.TypeDefinition;
@@ -57,7 +57,7 @@ public class RucolaObject implements Iterable<RucolaObject> {
 	return rucola.getInterpreter();
     }
     
-    protected Connection getConnection() {
+    protected ResourceSet getConnection() {
 	return rucola.getInterpreter().getConnection();
     }
     

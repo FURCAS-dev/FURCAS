@@ -7,17 +7,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import tcs.ClassTemplate;
-import tcs.ForeachPredicatePropertyInit;
-import tcs.Template;
-import textblockdefinition.TextBlockDefinition;
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.ForeachContext;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
@@ -27,14 +28,7 @@ import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.commands.Command;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sun.corba.se.pept.transport.Connection;
 
 public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
 
@@ -43,7 +37,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
             IncrementalLexer incrementalLexer,
             ObservableInjectingParser batchParser,
             TextBlockReuseStrategy reuseStrategy,
-            Collection<CRI> additionalCRIScope) {
+            Collection<URI> additionalCRIScope) {
         super(connection, parserFactory, incrementalLexer, batchParser,
                 reuseStrategy, additionalCRIScope);
     }
@@ -174,7 +168,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
             textBlock.setType(tbDef);
             textBlock.getAdditionalTemplates().addAll(
                     proxy.getAdditionalTemplates());
-            if (textBlock.getForeachContext().size() > 0) {
+            if (textBlock.getForEachContext().size() > 0) {
                 recoverForEachContext(textBlock, proxy);
             }
             int i = 0;
@@ -198,7 +192,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         private void recoverForEachContext(TextBlock textBlock,
                 TextBlockProxy proxy) {
             DelayedReferencesHelper helper = new DelayedReferencesHelper(batchParser.getInjector());
-            for (ForeachContext fec : textBlock.getForeachContext()) {
+            for (ForeachContext fec : textBlock.getForEachContext()) {
                 for (RefObject ro : textBlock.getCorrespondingModelElements()) {
                     if(fec.getSourceModelelement().equals(ro)) {
                         for (DelayedReference ref : tBProxy2Reference.get(proxy)) {
@@ -253,11 +247,11 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
         }
 
         @Override
-        public Collection<PartitionOperation> getAffectedPartitions() {
-            Partitionable partitionable = existingRoot;
-            PRI pri = partitionable.get___Partition().getPri();
-            PartitionOperation editOperation = new PartitionOperation(
-                    PartitionOperation.Operation.EDIT, pri);
+        public Collection<EOperation> getAffectedPartitions() {
+            EObject partitionable = existingRoot;
+            URI pri = partitionable.get___Partition().getPri();
+            EOperation editOperation = new EOperation(
+                    EOperation.Operation.EDIT, pri);
             return Collections.singleton(editOperation);
         }
 

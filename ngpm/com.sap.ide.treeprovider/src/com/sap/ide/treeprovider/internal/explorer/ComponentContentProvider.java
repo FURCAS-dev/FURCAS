@@ -3,8 +3,6 @@ package com.sap.ide.treeprovider.internal.explorer;
 import org.eclipse.core.resources.IProject;
 
 import com.sap.ide.treeprovider.internal.explorer.nodes.RootNodeComponent;
-import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
-import com.sap.mi.fwk.ui.tree.provider.TreeNodeNavigatorContentProvider;
 
 /**
  * The tree content provider. Able to provide the virtual "BO Nodes" root and

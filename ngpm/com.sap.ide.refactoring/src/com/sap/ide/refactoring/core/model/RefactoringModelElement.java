@@ -1,6 +1,9 @@
 package com.sap.ide.refactoring.core.model;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
+
+
+
 
 /**
  * Base class of all model elements of the refactoring metamodel.
@@ -12,5 +15,5 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  */
 public interface RefactoringModelElement {
 
-    public RefObject getWrappedModelElement();
+    public EObject getWrappedModelElement();
 }

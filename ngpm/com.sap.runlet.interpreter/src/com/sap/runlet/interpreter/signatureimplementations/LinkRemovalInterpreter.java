@@ -7,7 +7,6 @@ import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.RunletStackFrame;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -31,7 +30,7 @@ public class LinkRemovalInterpreter implements Interpreter<LinkRemoval, SapClass
     @Override
     public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evaluate(RunletInterpreter interpreter)
 	    throws SecurityException, IllegalArgumentException, JmiException {
-	MethodSignature sig = linkRemoval.getImplements();
+	MethodSignature sig = linkRemoval.getImplements_();
 	// parameter and this are in the current stack frame; grab them:
 	Parameter param = sig.getInput().get(0);
 	boolean isFirstEnd = linkRemoval.getEnd().equals(linkRemoval.getEnd().getAssociation().getEnds().get(0));

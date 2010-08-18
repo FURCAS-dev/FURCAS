@@ -1,14 +1,14 @@
 package com.sap.ide.refactoring.core;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.commands.CommandHandle;
-import com.sap.tc.moin.repository.commands.CommandStack;
+import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 public class CommandUndoRedoHelper {
 
-    private final Connection connection;
+    private final ResourceSet connection;
+    
 
-    public CommandUndoRedoHelper(Connection connection) {
+    public CommandUndoRedoHelper(ResourceSet connection) {
 	this.connection = connection;
     }
 

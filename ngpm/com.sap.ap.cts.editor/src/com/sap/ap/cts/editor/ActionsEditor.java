@@ -2,17 +2,15 @@ package com.sap.ap.cts.editor;
 
 import java.util.Iterator;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
 
-import textblocks.TextBlock;
 import behavioral.actions.Block;
 
 import com.sap.ap.cts.monet.parser.ActionsParserFactory;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.parser.errorhandling.SemanticParserException;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
+import com.sun.corba.se.pept.transport.Connection;
 
 import data.classes.ClassTypeDefinition;
 import data.classes.MethodSignature;
@@ -44,12 +42,12 @@ public class ActionsEditor extends AbstractGrammarBasedEditor {
 			for (Iterator<?> it = newRoot.getCorrespondingModelElements().iterator(); it.hasNext();) {
 				block = (Block) it.next();
 				if(!oldBlock.equals(block)) {
-					RefObject parent = (RefObject) oldBlock.refImmediateComposite();
+					EObject parent = (EObject) oldBlock.refImmediateComposite();
 					if(parent instanceof MethodSignature) {
 						//((MethodSignature)parent).setImplementation(block);
 						block.setImplements((MethodSignature) parent);
-						((Partitionable)parent).get___Partition().assignElementIncludingChildren(block);
-						((Partitionable)parent).get___Partition().assignElementIncludingChildren(newRoot);
+						((EObject)parent).get___Partition().assignElementIncludingChildren(block);
+						((EObject)parent).get___Partition().assignElementIncludingChildren(newRoot);
 					}
 					oldBlock.refDelete();
 				}
@@ -57,11 +55,11 @@ public class ActionsEditor extends AbstractGrammarBasedEditor {
 		}
 		
 		MQLResultSet resultThis =getWorkingConnection().getMQLProcessor().execute("select this from dataaccess::expressions::This as this");
-		RefObject[] thisObjects = resultThis.getRefObjects("this");
+		EObject[] thisObjects = resultThis.getRefObjects("this");
 		
 		for (int i = 0; i < thisObjects.length; i++) {
 			ClassTypeDefinition ctd = getWorkingConnection().createElementInPartition(
-					ClassTypeDefinition.CLASS_DESCRIPTOR, ((Partitionable)rootBlock).get___Partition());
+					ClassTypeDefinition.CLASS_DESCRIPTOR, ((EObject)rootBlock).get___Partition());
 			ctd.setClazz((SapClass) block.getImplementedSignature().refImmediateComposite());
 			ctd.setLowerMultiplicity(1);
 			ctd.setUpperMultiplicity(1);

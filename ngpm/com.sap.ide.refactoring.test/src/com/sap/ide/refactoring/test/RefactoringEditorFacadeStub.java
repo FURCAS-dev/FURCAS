@@ -1,18 +1,16 @@
 package com.sap.ide.refactoring.test;
 
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
 /**
  * Version of the RefactoringEditorFacade which can work without a running
@@ -24,12 +22,12 @@ import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 public class RefactoringEditorFacadeStub extends RefactoringEditorFacade {
 
     private ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory;
-    private RefObject rootObject;
+    private EObject rootObject;
     private TextBlock rootBlock;
 
     private TextBlocksModel textBlocksModel;
 
-    public RefactoringEditorFacadeStub(RefObject rootObject, TextBlock rootBlock,
+    public RefactoringEditorFacadeStub(EObject rootObject, TextBlock rootBlock,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory) {
 	super(null);
 	assert rootBlock != null : "rootBock must not be null";
@@ -43,18 +41,18 @@ public class RefactoringEditorFacadeStub extends RefactoringEditorFacade {
     }
 
     private IModelElementInvestigator getModelElementInvestigator() {
-	RefPackage metamodelPackage = parserFactory.getMetamodelPackage(getConnection());
+	EPackage metamodelPackage = parserFactory.getMetamodelPackage(getConnection());
 	return new MOINModelAdapter(metamodelPackage, getConnection(), null, null);
     }
 
 
     @Override
-    public Connection getConnection() {
+    public ResourceSet getConnection() {
 	return this.rootBlock.get___Connection();
     }
 
     @Override
-    public RefObject getDecoratedDomainRootObject() {
+    public EObject getDecoratedDomainRootObject() {
 	return rootObject;
     }
 

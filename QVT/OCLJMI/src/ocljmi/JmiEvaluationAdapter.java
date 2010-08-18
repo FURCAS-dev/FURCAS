@@ -9,6 +9,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.semantics.bridge.Classifier;
 import org.oslo.ocl20.semantics.bridge.EnumLiteral;
@@ -26,10 +30,7 @@ import org.oslo.ocl20.synthesis.ModelEvaluationAdapter;
 
 import uk.ac.kent.cs.kmf.util.ILog;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 /**
  * @author dha
@@ -82,12 +83,12 @@ public class JmiEvaluationAdapter implements ModelEvaluationAdapter {
 
 		Object obj1 = o1.asJavaObject();
 		Object obj2 = o2.asJavaObject();
-		if (obj1 instanceof RefObject &&
-				obj2 instanceof RefObject &&
-				((RefObject) obj1).refMofId() != null &&
-				((RefObject) obj2).refMofId() != null) {
+		if (obj1 instanceof EObject &&
+				obj2 instanceof EObject &&
+				((EObject) obj1).refMofId() != null &&
+				((EObject) obj2).refMofId() != null) {
 			if (obj1 != null) {
-				return (((RefObject) obj1).refMofId()).equals(((RefObject) obj2).refMofId());
+				return (((EObject) obj1).refMofId()).equals(((EObject) obj2).refMofId());
 			}
 		}
 		return obj1.equals(obj2);
@@ -106,7 +107,7 @@ public class JmiEvaluationAdapter implements ModelEvaluationAdapter {
 	}
 
 	public boolean OclModelElement_oclIsTypeOf(OclAny o1, OclType type) {
-		if (type.asJavaObject() instanceof OclModelElementType != o1.asJavaObject() instanceof RefObject) {
+		if (type.asJavaObject() instanceof OclModelElementType != o1.asJavaObject() instanceof EObject) {
 			return false;
 		}
 		if (!(type.asJavaObject() instanceof OclModelElementType)) {
@@ -198,9 +199,9 @@ public class JmiEvaluationAdapter implements ModelEvaluationAdapter {
 	 */
 	private OclSet internalAllInstances(OclType type, Collection resources) {
 		OclModelElementTypeImpl oclModelElementTypeImpl = (OclModelElementTypeImpl) type.asJavaObject();
-		MofClass instanceTyp = (MofClass) oclModelElementTypeImpl.getImplementation();
+		EClass instanceTyp = (EClass) oclModelElementTypeImpl.getImplementation();
 		//******************************************
-		RefClass instanceRefClass = getRefClass(instanceTyp);// TODO getRefClass Spaeter
+		EClass instanceRefClass = getRefClass(instanceTyp);// TODO getRefClass Spaeter
 //**********************************
 		LinkedHashSet instancesList = new LinkedHashSet();
 
@@ -216,15 +217,15 @@ public class JmiEvaluationAdapter implements ModelEvaluationAdapter {
 //			}
 //		}
 		//****************************************************
-		instancesList.addAll(instanceRefClass.refAllOfType());
+		instancesList.addAll(instanceRefClass.getEAllReferences());
 //***********************************************************
 		OclSet set = this.processor.getStdLibAdapter().Set(oclModelElementTypeImpl, instancesList);
 		return set;
 	}
 
-	private RefClass getRefClass(MofClass instanceTyp) {
+	private EClass getRefClass(EClass instanceTyp) {
 		try {
-			return ((Connection)processor.getClass().getMethod("getConnection").invoke(processor)).getJmiHelper().getRefClassForMofClass(instanceTyp);
+			return ((ResourceSet)processor.getClass().getMethod("getConnection").invoke(processor)).getJmiHelper().getRefClassForMofClass(instanceTyp);
 		} catch (IllegalArgumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -245,9 +246,9 @@ public class JmiEvaluationAdapter implements ModelEvaluationAdapter {
 	}
 
 	public OclType OclModelElement_oclType(OclAnyModelElement self) {
-		RefObject mofObj = (RefObject) self.asJavaObject();
+		EObject mofObj = (EObject) self.asJavaObject();
 		//????
-		MofClass cObj = (MofClass) mofObj.refMetaObject();
+		EClass cObj = (EClass) mofObj.refMetaObject();
 		Classifier type = this.processor.getBridgeFactory().buildClassifier(cObj);
 		return this.processor.getStdLibAdapter().Type(type);
 	}
@@ -312,8 +313,8 @@ public class JmiEvaluationAdapter implements ModelEvaluationAdapter {
 	}
 
 	public Object getValueForFeauture(Object source, Property property) {
-		if (source instanceof RefObject) {
-			RefObject mofo = (RefObject) source;
+		if (source instanceof EObject) {
+			EObject mofo = (EObject) source;
 			return mofo.refGetValue(property.getName());
 		}
 		throw new RuntimeException("Expected EObject but found " + source);

@@ -1,10 +1,6 @@
 package com.sap.ide.refactoring.test;
 
 import com.sap.ide.cts.editor.test.CtsEditorTest;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-
-import data.classes.SapClass;
 
 public class RefactoringEditorIntegrationTest extends CtsEditorTest {
 

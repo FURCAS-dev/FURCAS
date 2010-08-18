@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.action.Action;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
-import tcs.ConcreteSyntax;
-import tcs.Keyword;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.Keyword;
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
@@ -25,13 +25,12 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.GenerationReport;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.validation.SyntaxDefinitionValidation;
 import com.sap.mi.textual.moinlookup.MoinMetaLookup;
 import com.sap.mi.textual.syntaxmodel.moinadapter.MOINTCSAdapter;
-import com.sap.tc.moin.repository.Connection;
 
 public class GenerateGrammarAction extends Action {
 
     private static final String GENERATIONDIR = "generated";
     private ConcreteSyntax syntax;
-    private Connection connection;
+    private ResourceSet connection;
 
     public GenerateGrammarAction(ConcreteSyntax modelElement, boolean b) {
         super("Generate Grammar", PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ETOOL_PRINT_EDIT));

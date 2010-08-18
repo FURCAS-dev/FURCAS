@@ -6,22 +6,20 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.graphics.Image;
 
 import com.sap.ide.treeprovider.GenericRefObjectNode;
 import com.sap.ide.treeprovider.TextLabelProvider;
 import com.sap.ide.treeprovider.internal.Activator;
 import com.sap.ide.treeprovider.internal.explorer.nodes.RootNodeComponent;
-import com.sap.mi.fwk.ui.tree.nodes.TreeNodeRefObject;
-import com.sap.mi.fwk.ui.tree.provider.TreeNodeLabelProvider;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Provides images and texts for the tree nodes. By default, the
  * {@link Activator#getImage(com.sap.tc.moin.repository.mmi.reflect.RefObject)}
  * method is used to determine the image for the tree node. The root node and
- * nodes that are not of type {@link TreeNodeRefObject} get handled
+ * nodes that are not of type {@link EObject} get handled
  * specifically.
  * <p>
  * 
@@ -40,7 +38,7 @@ public final class TreeLabelProvider extends TreeNodeLabelProvider {
     }
 
     @Override
-    public String getText(Object treenode) {
+    public String getText(EObject treenode) {
 	String result = super.getText(treenode);
 	if (result == null) {
 	    // specials for RootNode and Loading Node
@@ -68,8 +66,8 @@ public final class TreeLabelProvider extends TreeNodeLabelProvider {
 	    // default handling
 	    if (result == null) {
 		// if it has a name: show the name
-		TreeNodeRefObject<?> node = (TreeNodeRefObject<?>) treenode;
-		RefObject modelElement = node.getValue();
+		EObject<?> node = (EObject<?>) treenode;
+		EObject modelElement = node.getValue();
 		try {
 		    Method getName = modelElement.getClass().getMethod("getName", String.class);
 		    String name = (String) getName.invoke(modelElement);
@@ -84,7 +82,7 @@ public final class TreeLabelProvider extends TreeNodeLabelProvider {
 			    roleName = nodeRoleName + ": ";
 			}
 		    }
-		    return roleName + "[" + ((MofClass) node.getValue().refMetaObject()).getName() + "] MOF ID "
+		    return roleName + "[" + ((EClass) node.getValue().refMetaObject()).getName() + "] MOF ID "
 			    + node.getValue().refMofId();
 		} catch (Exception e) {
 		    throw new RuntimeException(e);
@@ -94,15 +92,14 @@ public final class TreeLabelProvider extends TreeNodeLabelProvider {
 	return result;
     }
 
-    @Override
-    public Image getImage(Object treenode) {
+    public Image getImage(EObject treenode) {
 
 	if (treenode instanceof RootNodeComponent) {
 	    return Activator.getImageModelRoot();
 	}
 
-	if (treenode instanceof TreeNodeRefObject<?>) {
-	    Image image = Activator.getImage(((TreeNodeRefObject<?>) treenode).getValue());
+	if (treenode instanceof EObject<?>) {
+	    Image image = Activator.getImage(((EObject<?>) treenode).getValue());
 	    if (image != null) {
 		return image;
 	    }

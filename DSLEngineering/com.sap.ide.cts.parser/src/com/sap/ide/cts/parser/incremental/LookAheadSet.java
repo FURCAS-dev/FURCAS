@@ -3,7 +3,7 @@ package com.sap.ide.cts.parser.incremental;
 import java.util.ArrayList;
 import java.util.List;
 
-import textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
 
 public class LookAheadSet {
 

@@ -8,6 +8,10 @@ import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.xml.stream.EventFilter;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.ltk.core.refactoring.Change;
@@ -18,11 +22,6 @@ import org.junit.Test;
 import com.sap.ide.refactoring.core.TextBlockChange;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
 import com.sap.ide.refactoring.test.RefactoringBaseTest;
-import com.sap.tc.moin.repository.events.ChangeListener;
-import com.sap.tc.moin.repository.events.filter.ConnectionFilter;
-import com.sap.tc.moin.repository.events.filter.EventFilter;
-import com.sap.tc.moin.repository.events.type.AttributeValueChangeEvent;
-import com.sap.tc.moin.repository.events.type.ChangeEvent;
 
 public class TestRename extends RefactoringBaseTest {
 

@@ -7,15 +7,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.antlr.runtime.TokenStream;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
-import tcs.TcsPackage;
 
-import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Moin;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+
 
 public class TcsParserFactory extends AbstractParserFactory<TCSParser, TCSLexer> {
 
@@ -39,7 +36,7 @@ public class TcsParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
     }
 
     @Override
-    public RefPackage getMetamodelPackage(Connection connection) {
+    public EPackage getMetamodelPackage(ResourceSet connection) {
 	return connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR);
     }
 
@@ -53,9 +50,9 @@ public class TcsParserFactory extends AbstractParserFactory<TCSParser, TCSLexer>
      * meta-metamodel to the scope
      */
     @Override
-    public Collection<PRI> getParserLookupScope(Connection connection) {
+    public Collection<URI> getParserLookupScope(ResourceSet connection) {
 	Moin moin = connection.getSession().getMoin();
-	Set<PRI> referencePRIs = new HashSet<PRI>();
+	Set<URI> referencePRIs = new HashSet<URI>();
 	referencePRIs.add(moin
 		.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm"));
 	referencePRIs.add(moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm"));

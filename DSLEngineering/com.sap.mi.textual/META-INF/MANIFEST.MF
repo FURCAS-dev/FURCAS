@@ -12,7 +12,7 @@ Export-Package: com.sap.mi.textual.grammar.impl.tcs.t2m,
 Require-Bundle: com.sap.mi.textual.common;visibility:=reexport,
  com.sap.mi.textual.parsing;visibility:=reexport,
  com.sap.mi.textual.ecorelookup,
- com.sap.mi.textual.tcs.util,
- org.eclipse.emf.ecore;bundle-version="2.6.0",
- com.sap.furcas.metamodel;bundle-version="1.0.0",
- org.eclipse.ocl.ecore;bundle-version="3.0.0"
+ com.sap.furcas.metamodel,
+ com.sap.mi.textual.tcs.util
+Bundle-ClassPath: bin/,
+ .

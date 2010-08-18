@@ -19,6 +19,14 @@ import java.util.Set;
 
 import ocljmi.OclModelElementTypeImpl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.oslo.ocl20.semantics.bridge.Classifier;
 import org.oslo.ocl20.semantics.bridge.OclModelElementType;
 import org.oslo.ocl20.semantics.bridge.Property;
@@ -26,19 +34,6 @@ import org.oslo.ocl20.semantics.bridge.impl.PropertyImpl;
 import org.oslo.ocl20.semantics.model.types.CollectionType;
 import org.oslo.ocl20.standard.lib.OclAny;
 import org.oslo.ocl20.standard.lib.OclAnyModelElement;
-
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.model.AggregationKindEnum;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 import de.ikv.medini.qvt.QvtModelManipulationAdapter;
 import de.ikv.medini.qvt.QvtProcessorImpl;
@@ -58,8 +53,8 @@ public class JMIQvtModelManipulationAdapterImpl implements
 			OclModelElementType oclModelElementType, TypedModel typedModel) {
 		OclModelElementTypeImpl mofOclModelElementType = (OclModelElementTypeImpl) oclModelElementType;
 		// TODO normal Package?
-		RefObject newInstance = getConnection().getJmiHelper().getRefClassForMofClass(
-						(MofClass) mofOclModelElementType.getImplementation())
+		EObject newInstance = getConnection().getJmiHelper().getRefClassForMofClass(
+						(EClass) mofOclModelElementType.getImplementation())
 				.refCreateInstance();
 		// find resource to put into !!
 		JMIQvtProcessorImpl mofQvtProcessorImpl = (JMIQvtProcessorImpl) this.qvtProcessorImpl;
@@ -70,52 +65,52 @@ public class JMIQvtModelManipulationAdapterImpl implements
 				.OclAny(newInstance);
 	}
 
-	private Connection getConnection() {
+	private ResourceSet getConnection() {
 		return ((JMIQvtProcessorImpl) this.qvtProcessorImpl)
 				.getConnection();
 	}
 
-	private void addToPartition(RefObject newInstance) {
-		((ModelPartition)this.qvtProcessorImpl.getTargetModel()).assignElementIncludingChildren(newInstance);
+	private void addToPartition(EObject newInstance) {
+		((Resource)this.qvtProcessorImpl.getTargetModel()).assignElementIncludingChildren(newInstance);
 	}
 
 	public void setOrAddValueForFeauture(OclAnyModelElement modelElement,
 			Property property, OclAny value) {
-		RefObject source = (RefObject) modelElement.asJavaObject();
-		ModelPartition res = PartitionHelper.getPartition(source);
+		EObject source = (EObject) modelElement.asJavaObject();
+		Resource res = PartitionHelper.getPartition(source);
 		Object javaObject = value.asJavaObject();
-		StructuralFeature feature = (StructuralFeature) property.getDelegate();
-		if (!feature.isChangeable() && feature instanceof Reference
-				&& ((Reference) feature).getReferencedEnd().getType() != null
-				&& ((Reference) feature).getReferencedEnd().isChangeable()
-				&& javaObject instanceof RefObject) {
-			RefObject x = source;
-			source = (RefObject) javaObject;
+		EStructuralFeature feature = (EStructuralFeature) property.getDelegate();
+		if (!feature.isChangeable() && feature instanceof EReference
+				&& ((EReference) feature).getReferencedEnd().getType() != null
+				&& ((EReference) feature).getReferencedEnd().isChangeable()
+				&& javaObject instanceof EObject) {
+			EObject x = source;
+			source = (EObject) javaObject;
 			javaObject = x;
-			com.sap.tc.moin.repository.mmi.model.Classifier type = ((Reference) feature)
+			EClassifier type = ((EReference) feature)
 					.getReferencedEnd().getType();
-			for (Object y : type.getContents()) {
-				if (y instanceof Reference) {
-					if (((Reference) y).getExposedEnd().equals(
-							((Reference) feature).getReferencedEnd())) {
-						feature = (StructuralFeature) y;
+			for (Object y : type.eContents()) {
+				if (y instanceof EReference) {
+					if (((EReference) y).getExposedEnd().equals(
+							((EReference) feature).getReferencedEnd())) {
+						feature = (EStructuralFeature) y;
 					}
 				}
 			}
 		}
 		if (javaObject instanceof Integer
-				&& feature.getType().getName().equals("Long")) {
+				&& feature.getEType().getName().equals("Long")) {
 			javaObject = new Long((Integer) javaObject);
 		}
-		if (feature.getMultiplicity().getUpper() > 1 || feature.getMultiplicity().getUpper() == JmiHelper.MULTIPLICITY_BOUND_INFINITE) {
+		if (feature.getUpperBound() > 1 || feature.getUpperBound() == JmiHelper.MULTIPLICITY_BOUND_INFINITE) {
 			Collection<Object> list = (Collection<Object>) source.refGetValue(feature);
 			if (javaObject instanceof Collection) {
 				list.clear();
 				if(isCompositeFeature(feature)) {
 					//composed elements have to be removed from their composite parent before they are moved
 					for (Object object : (Collection)javaObject) {
-						if(object instanceof RefObject) {
-							RefObject child = (RefObject) object;
+						if(object instanceof EObject) {
+							EObject child = (EObject) object;
 							removeCompositeParentLink(child);
 							
 						}
@@ -128,16 +123,16 @@ public class JMIQvtModelManipulationAdapterImpl implements
 		} else {
 			//TODO delete old element?
 //			Object oldValue = source.refGetValue(feature);
-//			if(oldValue instanceof RefObject){
-//				((RefObject)oldValue).refDelete();
+//			if(oldValue instanceof EObject){
+//				((EObject)oldValue).refDelete();
 //			}
-			if(javaObject instanceof RefObject && isCompositeFeature(feature)) {
-				removeCompositeParentLink((RefObject) javaObject);
+			if(javaObject instanceof EObject && isCompositeFeature(feature)) {
+				removeCompositeParentLink((EObject) javaObject);
 			}
-//			ModelPartition oldResource = null;
-//			if (oldValue instanceof RefObject) {
+//			Resource oldResource = null;
+//			if (oldValue instanceof EObject) {
 //				oldResource = PartitionHelper
-//						.getPartition((RefObject) oldValue);
+//						.getPartition((EObject) oldValue);
 //			}
 			source.refSetValue(feature, javaObject);
 
@@ -145,26 +140,26 @@ public class JMIQvtModelManipulationAdapterImpl implements
 
 	}
 
-	private boolean isCompositeFeature(StructuralFeature feature) {
-		return feature instanceof Attribute ||
-				(feature instanceof Reference &&
-						((Reference)feature).getExposedEnd().getAggregation().equals(AggregationKindEnum.COMPOSITE));
+	private boolean isCompositeFeature(EStructuralFeature feature) {
+		return feature instanceof EAttribute ||
+				(feature instanceof EReference &&
+						((EReference)feature).getExposedEnd().getAggregation().equals(AggregationKindEnum.COMPOSITE));
 	}
 
-	private void removeCompositeParentLink(RefObject child) {
-		RefObject parent = (RefObject) child.refImmediateComposite();
+	private void removeCompositeParentLink(EObject child) {
+		EObject parent = (EObject) child.refImmediateComposite();
 			if(parent != null) {
-			Collection<Association> compositeAssociations = getConnection()
+			Collection<EReference> compositeAssociations = getConnection()
 					.getJmiHelper().getCompositeAssociations(
-							(MofClass) parent.refMetaObject(),
-							(MofClass) child.refMetaObject());
-			for (Association association : compositeAssociations) {
-				AssociationEnd compositeAssociationEnd = getConnection()
+							(EClass) parent.refMetaObject(),
+							(EClass) child.refMetaObject());
+			for (EReference association : compositeAssociations) {
+				EReference compositeAssociationEnd = getConnection()
 						.getJmiHelper()
 						.getCompositeAssociationEnd(association);
 				Object composedElement = parent
-						.refGetValue(compositeAssociationEnd.otherEnd());
-				RefAssociation refAssoc = getConnection().getJmiHelper().getRefAssociationForAssociation(association);
+						.refGetValue(compositeAssociationEnd.getEOpposite());
+				EReference refAssoc = getConnection().getJmiHelper().getRefAssociationForAssociation(association);
 				if (composedElement != null && (composedElement.equals(child)
 						|| (composedElement instanceof Collection && ((Collection) composedElement).contains(child)))) {
 					if(getConnection().getJmiHelper().isFirstAssociationEnd(association, compositeAssociationEnd)) {
@@ -206,9 +201,9 @@ public class JMIQvtModelManipulationAdapterImpl implements
 	public void deleteElementInTarget(OclAny modelElement1) {
 		JMIQvtProcessorImpl mofQvtProcessorImpl = (JMIQvtProcessorImpl) this.qvtProcessorImpl;
 		Object javaObject = modelElement1.asJavaObject();
-		((RefObject) javaObject).refDelete();
-//		if (javaObject instanceof RefObject) {
-//			EcoreUtil.remove((RefObject) javaObject);
+		((EObject) javaObject).refDelete();
+//		if (javaObject instanceof EObject) {
+//			EcoreUtil.remove((EObject) javaObject);
 //			List allObjects = new ArrayList();
 //			Iterator all = mofQvtProcessorImpl.getTargetResource()
 //					.getElements().iterator();
@@ -217,15 +212,15 @@ public class JMIQvtModelManipulationAdapterImpl implements
 //			}
 //			all = allObjects.iterator();
 //			while (all.hasNext()) {
-//				RefObject currentObject = (RefObject) all.next();
+//				EObject currentObject = (EObject) all.next();
 //				// ***************************************
 //				List allStructuralFeatures = new ArrayList();
-//				Iterator itx = ((MofClass) currentObject.refMetaObject())
+//				Iterator itx = ((EClass) currentObject.refMetaObject())
 //						.getContents().iterator();
 //				Object objx;
 //				while (itx.hasNext()) {
 //					objx = itx.next();
-//					if (objx instanceof StructuralFeature) {
+//					if (objx instanceof EStructuralFeature) {
 //						allStructuralFeatures.add(objx);
 //					}
 //				}
@@ -233,7 +228,7 @@ public class JMIQvtModelManipulationAdapterImpl implements
 //				// currentObject.refClass().getEAllStructuralFeatures();
 //				for (Iterator allStructuralFeaturesIter = allStructuralFeatures
 //						.iterator(); allStructuralFeaturesIter.hasNext();) {
-//					StructuralFeature currentStructuralFeature = (StructuralFeature) allStructuralFeaturesIter
+//					EStructuralFeature currentStructuralFeature = (EStructuralFeature) allStructuralFeaturesIter
 //							.next();
 //					if (currentStructuralFeature.isChangeable()) {
 //						MOFQvtModelManipulationAdapterImpl.remove(
@@ -255,9 +250,9 @@ public class JMIQvtModelManipulationAdapterImpl implements
 	 * @param value
 	 *            the value to remove.
 	 */
-	public static void remove(RefObject mofObject,
-			StructuralFeature mofStructuralFeature, Object value) {
-		if (mofStructuralFeature.getMultiplicity().getUpper() > 1) {
+	public static void remove(EObject mofObject,
+			EStructuralFeature mofStructuralFeature, Object value) {
+		if (mofStructuralFeature.getUpperBound() > 1) {
 			((Collection) mofObject.refGetValue(mofStructuralFeature)).remove(value);
 		} else {
 			if (mofObject.refGetValue(mofStructuralFeature) != null
@@ -279,10 +274,10 @@ public class JMIQvtModelManipulationAdapterImpl implements
 			return;
 		}
 
-		RefObject source = (RefObject) modelElement.asJavaObject();
+		EObject source = (EObject) modelElement.asJavaObject();
 		Collection<Object> javaValuesToRemove = JMIQvtModelManipulationAdapterImpl
 				.asJavaObjects(oclValues);
-		StructuralFeature structuralFeature = (StructuralFeature) ((PropertyImpl) property)
+		EStructuralFeature structuralFeature = (EStructuralFeature) ((PropertyImpl) property)
 				.getDelegate();
 
 		if (property.getType() instanceof CollectionType) {
@@ -303,13 +298,13 @@ public class JMIQvtModelManipulationAdapterImpl implements
 	}
 
 	public boolean isOpposite(Property property1, Property property2) {
-		StructuralFeature feature1 = (StructuralFeature) property1
+		EStructuralFeature feature1 = (EStructuralFeature) property1
 				.getDelegate();
-		StructuralFeature feature2 = (StructuralFeature) property2
+		EStructuralFeature feature2 = (EStructuralFeature) property2
 				.getDelegate();
-		if (feature1 instanceof Reference && feature2 instanceof Reference) {
-			Reference reference1 = (Reference) feature1;
-			Reference reference2 = (Reference) feature2;
+		if (feature1 instanceof EReference && feature2 instanceof EReference) {
+			EReference reference1 = (EReference) feature1;
+			EReference reference2 = (EReference) feature2;
 			return reference1.getReferencedEnd().equals(
 					reference2.getExposedEnd());
 		}
@@ -318,35 +313,35 @@ public class JMIQvtModelManipulationAdapterImpl implements
 
 	public boolean areAllReferencesWithin(OclAny element, Set targetElements) {
 		Set<Object> javaElements = new HashSet<Object>();
-		RefObject mofObj = (RefObject) element.asJavaObject();
+		EObject mofObj = (EObject) element.asJavaObject();
 		for (Iterator iter = targetElements.iterator(); iter.hasNext();) {
 			OclAny targetElement = (OclAny) iter.next();
 			javaElements.add(targetElement.asJavaObject());
 		}
 
 		Collection<Object> moflist = new ArrayList<Object>();
-		Iterator itx = ((MofClass) mofObj.refMetaObject()).getContents()
-				.iterator();
+		Iterator itx = ((EClass) mofObj.refMetaObject()).eAllContents();
+				
 		Object objx;
 		while (itx.hasNext()) {
 			objx = itx.next();
-			if (objx instanceof Reference) {
+			if (objx instanceof EReference) {
 				moflist.add(objx);
 			}
 		}
 		for (Object element2 : moflist) {
-			Reference ref = (Reference) element2;
+			EReference ref = (EReference) element2;
 			Object refTarget = mofObj.refGetValue(ref);
 			if (refTarget instanceof Collection) {
 				for (Iterator iterator = ((Collection) refTarget).iterator(); iterator
 						.hasNext();) {
 					Object javaTarget = iterator.next();
-					if (javaTarget instanceof RefObject
+					if (javaTarget instanceof EObject
 							&& !javaElements.contains(javaTarget)) {
 						return false;
 					}
 				}
-			} else if (refTarget instanceof RefObject
+			} else if (refTarget instanceof EObject
 					&& !javaElements.contains(refTarget)) {
 				return false;
 			}
@@ -356,14 +351,14 @@ public class JMIQvtModelManipulationAdapterImpl implements
 
 	public boolean unsetOrRemoveValueForFeauture(
 			OclAnyModelElement modelElement, Property property, OclAny value) {
-		RefObject source = (RefObject) modelElement.asJavaObject();
-		ModelPartition res = PartitionHelper.getPartition(source);
-		ModelPartition valueResource = null;
-		if (value != null && value.asJavaObject() instanceof RefObject) {
-			RefObject valueElement = (RefObject) value.asJavaObject();
+		EObject source = (EObject) modelElement.asJavaObject();
+		Resource res = PartitionHelper.getPartition(source);
+		Resource valueResource = null;
+		if (value != null && value.asJavaObject() instanceof EObject) {
+			EObject valueElement = (EObject) value.asJavaObject();
 			valueResource = PartitionHelper.getPartition(valueElement);
 		}
-		StructuralFeature feature = (StructuralFeature) property.getDelegate();
+		EStructuralFeature feature = (EStructuralFeature) property.getDelegate();
 		if (value != null && value.asJavaObject() instanceof Collection) {
 			return false;
 		}
@@ -382,16 +377,16 @@ public class JMIQvtModelManipulationAdapterImpl implements
 	}
 
 	public boolean isChangeable(Property property) {
-		StructuralFeature feature = (StructuralFeature) property.getDelegate();
+		EStructuralFeature feature = (EStructuralFeature) property.getDelegate();
 		return feature.isChangeable();
 	}
 
 	public boolean isAbstract(Classifier type) {
 		if (type instanceof OclModelElementTypeImpl) {
-			com.sap.tc.moin.repository.mmi.model.Classifier mofType = ((OclModelElementTypeImpl) type)
+			EClassifier mofType = ((OclModelElementTypeImpl) type)
 					.getImplementation();
-			return mofType instanceof MofClass
-					&& ((MofClass) mofType).isAbstract();
+			return mofType instanceof EClass
+					&& ((EClass) mofType).isAbstract();
 		}
 		return false;
 	}

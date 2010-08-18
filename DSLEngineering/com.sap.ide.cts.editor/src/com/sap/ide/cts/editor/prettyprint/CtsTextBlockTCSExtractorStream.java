@@ -9,21 +9,20 @@ import java.util.Stack;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 
-import tcs.ClassTemplate;
-import tcs.ContextTemplate;
-import tcs.SequenceElement;
-import tcs.Template;
-import textblockdefinition.TextBlockDefinition;
-import textblocks.AbstractToken;
-import textblocks.Bostoken;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.OmittedToken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ContextTemplate;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.OmittedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.editor.contentassist.TcsDebugUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
@@ -33,8 +32,6 @@ import com.sap.mi.textual.parsing.textblocks.TbMarkingUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 /**
  * 
  * @author Philipp Meier, Andreas Landerer
@@ -59,12 +56,12 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	class AddNextTextBlockCommand implements TextBlockCommand
 	{
 
-		private RefObject		object;
+		private EObject		object;
 		private Template		t;
 		private SequenceElement	se;
 		private int				handle;
 
-		public AddNextTextBlockCommand(RefObject object, Template t,
+		public AddNextTextBlockCommand(EObject object, Template t,
 				SequenceElement se, int handle)
 		{
 			this.object = object;
@@ -120,7 +117,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	private Map<TextBlock, Template>				blockToTemplate			= new HashMap<TextBlock, Template>();
 
 	TextblocksPackage								pack					= null;
-	ModelPartition									part					= null;
+	Resource									part					= null;
 	TextBlock										rootBlock				= null;
 	TextBlock										curBlock				= null;
 	int												curOffset				= 0;
@@ -131,7 +128,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 
 	public CtsTextBlockTCSExtractorStream(
 			TextblocksPackage pack,
-			ModelPartition partitionForTextBlocks,
+			Resource partitionForTextBlocks,
 			ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory)
 	{
 		this.pack = pack;
@@ -210,7 +207,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 		return t;
 	}
 
-	void addNextTextBlock(RefObject correspondingModelElement,
+	void addNextTextBlock(EObject correspondingModelElement,
 			Template template, SequenceElement se, int handle)
 	{
 		if (debug)
@@ -258,7 +255,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 			}
 			else if(template == null)
 			{
-				if (curBlock.getParentBlock() == null)
+				if (curBlock.getParent() == null)
 				{
 					addBosToken();
 				}
@@ -345,7 +342,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 
 		curBlock.setLength(curBlockLength);
 
-		TextBlock parent = curBlock.getParentBlock();
+		TextBlock parent = curBlock.getParent();
 		if (parent != null)
 		{
 
@@ -364,7 +361,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 				if (t instanceof ClassTemplate)
 				{
 					ClassTemplate ct = (ClassTemplate) t;
-					if (ct.isAddToContext())
+					if (ct.isIsAddToContext())
 					{
 						addToParentContext(curBlock);
 					}
@@ -414,10 +411,10 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	private void addToParentContext(TextBlock startBlock)
 	{
 
-		List<RefObject> modelElements = startBlock
+		List<EObject> modelElements = startBlock
 				.getCorrespondingModelElements();
 
-		TextBlock parentBlock = startBlock.getParentBlock();
+		TextBlock parentBlock = startBlock.getParent();
 		while (parentBlock != null)
 		{
 			Template t = getType(parentBlock);
@@ -425,14 +422,14 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 			if (t instanceof ContextTemplate)
 			{
 				ContextTemplate ct = (ContextTemplate) t;
-				if (ct.isContext())
+				if (ct.isIsContext())
 				{
 					parentBlock.getElementsInContext().addAll(modelElements);
 					return;
 				}
 			}
 
-			parentBlock = parentBlock.getParentBlock();
+			parentBlock = parentBlock.getParent();
 		}
 
 	}
@@ -533,7 +530,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 			}
 			else if(template == null)
 			{
-				if(rootBlock.getParentBlock() == null)
+				if(rootBlock.getParent() == null)
 				{
 					addEosToken();
 				}
@@ -555,7 +552,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	}
 
 	@Override
-	public int startClassTemplateForObject(RefObject object, Template t)
+	public int startClassTemplateForObject(EObject object, Template t)
 	{
 		int handle = textBlocksHandleCounter++;
 		current.add(new AddNextTextBlockCommand(object, t, getCurrentSE(),

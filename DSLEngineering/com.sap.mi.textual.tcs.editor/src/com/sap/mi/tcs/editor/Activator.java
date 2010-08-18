@@ -1,5 +1,7 @@
 package com.sap.mi.tcs.editor;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -54,7 +56,7 @@ public class Activator extends AbstractUIPlugin {
 	return plugin;
     }
 
-    public static ImageDescriptor getImageDescriptor(MofClass clazz) {
+    public static ImageDescriptor getImageDescriptor(EClass clazz) {
 	if (clazz.refOutermostPackage() == clazz.get___Connection().getPackage(TcsPackage.PACKAGE_DESCRIPTOR)) {
 	    StringBuilder key = new StringBuilder("icons/");
 	    // for (String pathElement : clazz.getQualifiedName()) {
@@ -69,7 +71,7 @@ public class Activator extends AbstractUIPlugin {
 	}
     }
 
-    public static ImageDescriptor getImageDescriptor(RefObject element) {
+    public static ImageDescriptor getImageDescriptor(EObject element) {
 	ImageDescriptor result = null;
 	// if (element instanceof SapClass) {
 	// SapClass sc = (SapClass) element;

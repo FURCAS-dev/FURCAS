@@ -22,46 +22,39 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 
+import javax.naming.NameNotFoundException;
+
 import ocljmi.JmiOclProcessorImpl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.oslo.ocl20.OclProcessor;
+import org.oslo.ocl20.semantics.bridge.Classifier;
 
 import uk.ac.kent.cs.kmf.util.ILog;
 import uk.ac.kent.cs.kmf.util.OutputStreamLog;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.model.AggregationKindEnum;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.Import;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+
 
 import de.ikv.medini.ocl.test.util.Utilities;
 
 abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 	
-	protected Connection connection;
+	protected ResourceSet connection;
 
 	public Object getIdentityObject(Object obj) {
 		// EcoreUtil.getID((EObject)obj);
 		//Object result = this.getValueForFeature(obj, "mediniIdentifier");
 	        Object result = null;
-	        if(obj instanceof RefObject) {
-	            result = ((RefObject)obj).refMofId();
+	        if(obj instanceof EObject) {
+	            result = ((EObject)obj).refMofId();
 	        } 
 		if (result == null) {
 			return obj;
@@ -69,11 +62,11 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		return result;
 	}
 
-	private ModelPartition partition;
+	private Resource partition;
 
 	protected OclProcessor processor;
 
-	protected ModelPartition simplePartition;
+	protected Resource simplePartition;
 
 	protected ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
@@ -104,7 +97,7 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		}
 	}
 	
-	protected void addMetaModel(MofPackage metamodel) {
+	protected void addMetaModel(EPackage metamodel) {
 		this.getJmiOclProcessorImpl().addMetaModel(metamodel);
 	}
 
@@ -132,9 +125,9 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 	}
 
 	
-	static public StructuralFeature getFeature(RefObject ro, String name) {
+	static public EStructuralFeature getFeature(EObject ro, String name) {
 		try {
-			return (StructuralFeature) ((MofClass)ro.refMetaObject()).lookupElementExtended(name);
+			return (EStructuralFeature) ((EClass)ro.refMetaObject()).lookupElementExtended(name);
 		} catch (JmiException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -146,10 +139,10 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		}
 	}
 
-	public void addValueForFeature(Object modelElement, String property, Object value) {
-		RefObject source = (RefObject) modelElement;
-		StructuralFeature feature = OCLJMITestAdapter.getFeature(source, property);
-		if (feature.getMultiplicity().getUpper() == 1 || feature.getMultiplicity().getUpper() == 0) {
+	public void addValueForFeature(EObject modelElement, String property, EObject value) {
+		EObject source = (EObject) modelElement;
+		EStructuralFeature feature = OCLJMITestAdapter.getFeature(source, property);
+		if (feature.getUpperBound() == 1 || feature.getUpperBound() == 0) {
 			throw new RuntimeException("For property " + property + " is isMany=false");
 		}
 		Collection list = (Collection) source.refGetValue(feature);
@@ -157,8 +150,8 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 	}
 
 	public void setValueForFeature(Object modelElement, String property, Object value) {
-		RefObject source = (RefObject) modelElement;
-		StructuralFeature feature = OCLJMITestAdapter.getFeature(source, property);
+		EObject source = (EObject) modelElement;
+		EStructuralFeature feature = OCLJMITestAdapter.getFeature(source, property);
 		if (feature == null) {
 			property = Utilities.capitalize(property);
 			feature = OCLJMITestAdapter.getFeature(source, property);
@@ -166,30 +159,30 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		if (value != null && value.getClass().isArray()) {
 			value = Utilities.asArrayList(value);
 		}
-		if (feature.getMultiplicity().getUpper() > 1 || feature.getMultiplicity().getUpper() == JmiHelper.MULTIPLICITY_BOUND_INFINITE) {
+		if (feature.getUpperBound() > 1 || feature.getUpperBound() == JmiHelper.MULTIPLICITY_BOUND_INFINITE) {
 			List list = (List) source.refGetValue(feature);
 			if (value instanceof List) {
 				list.clear();
-				if(feature instanceof Attribute ||
-						(feature instanceof Reference &&
-								((Reference)feature).getExposedEnd().getAggregation().equals(AggregationKindEnum.COMPOSITE))) {
+				if(feature instanceof EAttribute ||
+						(feature instanceof EReference &&
+								((EReference)feature).getExposedEnd().getAggregation().equals(AggregationKindEnum.COMPOSITE))) {
 					//composed elements have to be removed from their composite parent before they are moved
 					for (Object object : (List)value) {
-						if(object instanceof RefObject) {
-							RefObject child = (RefObject) object;
-							RefObject parent = (RefObject) child.refImmediateComposite();
+						if(object instanceof EObject) {
+							EObject child = (EObject) object;
+							EObject parent = (EObject) child.refImmediateComposite();
 							if(parent != null) {
-								Collection<Association> compositeAssociations = getConnection()
+								Collection<EReference> compositeAssociations = getConnection()
 										.getJmiHelper().getCompositeAssociations(
-												(MofClass) parent.refMetaObject(),
-												(MofClass) child.refMetaObject());
-								for (Association association : compositeAssociations) {
-									AssociationEnd compositeAssociationEnd = getConnection()
+												(EClass) parent.refMetaObject(),
+												(EClass) child.refMetaObject());
+								for (EReference association : compositeAssociations) {
+									EReference compositeAssociationEnd = getConnection()
 											.getJmiHelper()
 											.getCompositeAssociationEnd(association);
 									Object composedElement = parent
 											.refGetValue(compositeAssociationEnd.otherEnd());
-									RefAssociation refAssoc = getConnection().getJmiHelper().getRefAssociationForAssociation(association);
+									EReference refAssoc = getConnection().getJmiHelper().getRefAssociationForAssociation(association);
 									if (composedElement != null && (composedElement.equals(child)
 											|| (composedElement instanceof Collection && ((Collection) composedElement).contains(child)))) {
 										if(getConnection().getJmiHelper().isFirstAssociationEnd(association, compositeAssociationEnd)) {
@@ -227,8 +220,8 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 	}
 
 	public Object getValueForFeature(Object modelElement, String property) {
-		RefObject source = (RefObject) modelElement;
-		StructuralFeature feature = OCLJMITestAdapter.getFeature(source, property);
+		EObject source = (EObject) modelElement;
+		EStructuralFeature feature = OCLJMITestAdapter.getFeature(source, property);
 		if (feature == null) {
 			property = Utilities.capitalize(property);
 			feature = OCLJMITestAdapter.getFeature(source, property);
@@ -251,10 +244,10 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		String nsPrefix = modelElementType.substring(0, betweenPackageAndClass);
 
 		for (Object metamodel : this.getProcessor().getMetaModels()) {
-			MofPackage mmPack = (MofPackage)metamodel;
-			MofPackage innerPack = (MofPackage) connection.getJmiHelper().findElementByQualifiedName(
+			EPackage mmPack = (EPackage)metamodel;
+			EPackage innerPack = (EPackage) connection.getJmiHelper().findElementByQualifiedName(
 					Arrays.asList(nsPrefix.split("::")), mmPack);
-			RefPackage innerPackRef = connection.getJmiHelper().getRefPackageForMofPackage(innerPack);
+			EPackage innerPackRef = connection.getJmiHelper().getRefPackageForMofPackage(innerPack);
 			
 			try {
 				return innerPackRef.refGetEnum(enumName, literalName);
@@ -272,28 +265,28 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		String className = modelElementType.substring(betweenPackageAndClass + 2);
 		String nsPrefix = betweenPackageAndClass == -1 ? "" : modelElementType.substring(0, betweenPackageAndClass);
 		for (Object metamodel : this.getProcessor().getMetaModels()) {
-			MofPackage mmPack = (MofPackage)metamodel;
+			EPackage mmPack = (EPackage)metamodel;
 			List<String> nameAsList = Arrays.asList(nsPrefix.split("::"));
-			RefObject innerObject = (RefObject) connection.getJmiHelper().findElementByQualifiedName(
+			EObject innerObject = (EObject) connection.getJmiHelper().findElementByQualifiedName(
 					nameAsList, mmPack);
-			MofPackage innerPack = null;
-			if(innerObject instanceof Import) {
-			    innerPack = (MofPackage) ((Import) innerObject).getImportedNamespace();
+			EPackage innerPack = null;
+			if(innerObject instanceof EFactory) {
+			    innerPack = (EPackage) ((EFactory) innerObject).getImportedNamespace();
 			} else {
-			    innerPack = (MofPackage) innerObject;
+			    innerPack = (EPackage) innerObject;
 			}
 			if(innerPack == null) {
-			    innerPack = (MofPackage) connection.getJmiHelper().findElementByQualifiedName(
+			    innerPack = (EPackage) connection.getJmiHelper().findElementByQualifiedName(
                                     nameAsList.subList(1, nameAsList.size()), mmPack);
 			}
 			if (innerPack != null) {
-				RefPackage innerPackRef = connection.getJmiHelper()
+				EPackage innerPackRef = connection.getJmiHelper()
 						.getRefPackageForMofPackage(innerPack);
 
 				if (innerPackRef != null) {
 					try {
-						RefClass refClass = innerPackRef.refClass(className);
-						RefObject instance = refClass.refCreateInstance();
+						EClass refClass = innerPackRef.eClass();
+						EObject instance = refClass.refCreateInstance();
 						simplePartition.assignElement(instance);
 						return instance;
 					} catch (InvalidCallException e) {
@@ -311,13 +304,13 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		String className = modelElementType.substring(betweenPackageAndClass + 1);
 		String nsPrefix = betweenPackageAndClass == -1 ? "" : modelElementType.substring(0, betweenPackageAndClass);
 		for (Object metamodel : this.getProcessor().getMetaModels()) {
-			RefPackage mmPack = (RefPackage)metamodel;
-			RefPackage innerPack = connection.getJmiHelper().findRefPackageByQualifiedName(
+			EPackage mmPack = (EPackage)metamodel;
+			EPackage innerPack = connection.getJmiHelper().findRefPackageByQualifiedName(
 					Arrays.asList(nsPrefix.split("::")), mmPack);
 			if(innerPack != null){
 				try {
-					RefClass refClass = innerPack.refClass(className);
-					RefObject instance = refClass.refCreateInstance();
+					EClass refClass = innerPack.eClass());
+					EObject instance = refClass.refCreateInstance();
 					if (addToModel) {
 						simplePartition.assignElement(instance);
 					} else {
@@ -333,7 +326,7 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 	}
 
 	public void delete(Object modelElement) {
-		((RefObject)modelElement).refDelete();
+		((EObject)modelElement).refDelete();
 	}
 
 
@@ -375,7 +368,7 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		return (JmiOclProcessorImpl) this.getProcessor();
 	}
 
-	public ModelPartition getMetamodelPartitions() {
+	public Resource getMetamodelPartitions() {
 		if (this.partition == null) {
 			//TODO init metamodels
 		}
@@ -445,7 +438,7 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 	 */
 	public boolean isOfType(Object modelElement, String modelElementType, boolean considerSuperTypes) {
 
-		if (!(modelElement instanceof RefObject)) {
+		if (!(modelElement instanceof EObject)) {
 			return false;
 		}
 
@@ -455,12 +448,12 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 
 		Classifier mofClassifier = null;
 		for (Object metamodel : this.getProcessor().getMetaModels()) {
-			RefPackage mmPack = connection.getJmiHelper().getRefPackageForMofPackage((MofPackage)metamodel);
-			RefPackage innerPack = connection.getJmiHelper().findRefPackageByQualifiedName(
+			EPackage mmPack = connection.getJmiHelper().getRefPackageForMofPackage((EPackage)metamodel);
+			EPackage innerPack = connection.getJmiHelper().findRefPackageByQualifiedName(
 					Arrays.asList(nsPrefix.split("::")), mmPack);
 			if(innerPack != null){
 				try {
-					RefClass refClass = innerPack.refClass(className);
+					EClass refClass = innerPack.eClass();
 					mofClassifier = (Classifier) refClass.refMetaObject();
 				} catch (InvalidCallException e) {
 					// do nothing
@@ -468,7 +461,7 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 			}
 		}
 
-		if (((RefObject) modelElement).refMetaObject().equals(mofClassifier)) {
+		if (((EObject) modelElement).refMetaObject().equals(mofClassifier)) {
 			return true;
 		}
 
@@ -476,11 +469,11 @@ abstract public class OCLJMITestAdapter implements OCLTestAdapter {
 		return false;
 	}
 
-	public Connection getConnection() {
+	public ResourceSet getConnection() {
 		return connection;
 	}
 
-	public void setConnection(Connection connection) {
+	public void setConnection(ResourceSet connection) {
 		this.connection = connection;
 	}
 

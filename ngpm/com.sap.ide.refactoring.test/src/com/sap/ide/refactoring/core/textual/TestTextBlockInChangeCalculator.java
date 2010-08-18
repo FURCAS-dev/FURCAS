@@ -3,24 +3,17 @@ package com.sap.ide.refactoring.core.textual;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+
 import java.util.List;
 
-import ngpm.NgpmPackage;
-
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EObject;
 import org.junit.Test;
 
-import textblocks.TextBlock;
-import behavioral.actions.Block;
-import behavioral.actions.Statement;
-
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.refactoring.core.textual.TextBlockInChangeCalculator.ModelElementTextBlockTuple;
 import com.sap.ide.refactoring.test.RefactoringBaseTest;
-import com.sap.mi.fwk.ModelManager;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
-import data.classes.MethodSignature;
-import data.classes.SapClass;
 
 public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
 
@@ -35,7 +28,7 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
     public void testRootObjectChanged() {
 	sut = new TextBlockInChangeCalculator();
 	facade = createEditorFacadeForRunletClass("Class1");
-	RefObject rootObject = facade.getDecoratedDomainRootObject();
+	EObject rootObject = facade.getDecoratedDomainRootObject();
 	TextBlock rootBlock = facade.getTextBlocksModel().getRoot();
 
 	sut.add(rootObject);
@@ -69,8 +62,8 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
     public void testRootObjectAndCompositeChanged1() {
 	sut = new TextBlockInChangeCalculator();
 	facade = createEditorFacadeForRunletClass("Class1");
-	RefObject rootObject = facade.getDecoratedDomainRootObject();
-	RefObject compositeChild = ((SapClass) rootObject).getOwnedSignatures().iterator().next();
+	EObject rootObject = facade.getDecoratedDomainRootObject();
+	EObject compositeChild = ((SapClass) rootObject).getOwnedSignatures().iterator().next();
 
 	TextBlock rootBlock = facade.getTextBlocksModel().getRoot();
 
@@ -87,8 +80,8 @@ public class TestTextBlockInChangeCalculator extends RefactoringBaseTest {
     public void testRootObjectAndCompositeChanged2() {
 	sut = new TextBlockInChangeCalculator();
 	facade = createEditorFacadeForRunletClass("Class1");
-	RefObject rootObject = facade.getDecoratedDomainRootObject();
-	RefObject compositeChild = ((SapClass) rootObject).getOwnedSignatures().iterator().next();
+	EObject rootObject = facade.getDecoratedDomainRootObject();
+	EObject compositeChild = ((SapClass) rootObject).getOwnedSignatures().iterator().next();
 
 	TextBlock rootBlock = facade.getTextBlocksModel().getRoot();
 

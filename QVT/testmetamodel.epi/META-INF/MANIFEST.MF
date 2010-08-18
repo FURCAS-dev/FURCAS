@@ -3,30 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Epi
 Bundle-SymbolicName: testmetamodel.epi
 Bundle-Version: 1.0.0.qualifier
-Export-Package: com.sap.tc.moin,
- com.sap.tc.moin.package4C5694E7B42B40844C972B612BDAA8A1809B2B15,
- de,
- de.__impl,
- de.ikv,
- de.ikv.__impl,
- de.ikv.medini,
- de.ikv.medini.__impl,
- de.ikv.medini.kernel,
- de.ikv.medini.kernel.__impl,
- testmetamodel,
- testmetamodel.__impl,
- testmetamodel.classifiertest,
- testmetamodel.classifiertest.__impl,
- testmetamodel.datatypetests,
- testmetamodel.datatypetests.__impl,
- testmetamodel.primitivetypesstatictests,
- testmetamodel.primitivetypesstatictests.__impl,
- testmetamodel.primitivetypestest,
- testmetamodel.primitivetypestest.__impl,
- testmetamodel.relationshiptests,
- testmetamodel.relationshiptests.__impl
-Require-Bundle: com.sap.tc.moin.libraries.jmi.facade,
- com.sap.tc.moin.ide.facade,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.junit

@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
@@ -12,8 +14,6 @@ import com.sap.mi.textual.grammar.impl.ModelElementProxy;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.parsing.textblocks.ModelElementFromTextBlocksFactory;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.textual.moinadapter.adapter.StructureTypeMockObject;
 
 public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTextBlocksFactory {
 
@@ -31,8 +31,8 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 
 
 	@Override
-	public Collection<? extends RefObject> createModelElementsFromTextBlock(TextBlockProxy newVersion) {
-		List<RefObject> elements = new ArrayList<RefObject>(newVersion
+	public Collection<? extends EObject> createModelElementsFromTextBlock(TextBlockProxy newVersion) {
+		List<EObject> elements = new ArrayList<EObject>(newVersion
 			.getCorrespondingModelElementProxies().size());
 		for (IModelElementProxy proxy : newVersion.getCorrespondingModelElementProxies()) {
 			if (proxy instanceof ModelElementProxy) {
@@ -43,7 +43,7 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 	}
 
 
-	private void instantiateProxy(List<RefObject> elements,
+	private void instantiateProxy(List<EObject> elements,
 			IModelElementProxy proxy) {
 		// only instantiate if it was not already instantiated
 		if (proxy.getRealObject() == null) {
@@ -57,15 +57,15 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 					(ANTLR3LocationToken) ((ModelElementProxy) proxy)
 							.getLastToken());
 			if (result != null) {
-				if (result instanceof RefObject) {
-					elements.add((RefObject) result);
+				if (result instanceof EObject) {
+					elements.add((EObject) result);
 					batchParser.setLocationAndComment(result,
 							((ModelElementProxy) proxy).getFirstToken());
 					if (!proxy.isReferenceOnly()) {
 						// assign to default partition, but only if it was not
 						// resolved
 						// by a reference only template
-						partitionHandler.assignToDefaultPartition((RefObject) result);
+						partitionHandler.assignToDefaultPartition((EObject) result);
 					}
 				} else if (result instanceof StructureTypeMockObject) {
 					// try {
@@ -76,7 +76,7 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 					// }
 				} else {
 					// throw new RuntimeException(
-					// "Expected to resolve element to RefObject but got: "
+					// "Expected to resolve element to EObject but got: "
 					// + result);
 				}
 			} else {
@@ -92,7 +92,7 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 				}
 			}
 		} else {
-			elements.add((RefObject) proxy.getRealObject());
+			elements.add((EObject) proxy.getRealObject());
 		}
 	}
 
@@ -110,7 +110,7 @@ public class ModelElementFromTextBlocksFactoryImpl implements ModelElementFromTe
 				Object element = iterator.next();
 				if (element instanceof IModelElementProxy) {
 					if (((IModelElementProxy) element).getRealObject() == null) {
-						instantiateProxy(new ArrayList<RefObject>(),
+						instantiateProxy(new ArrayList<EObject>(),
 								(IModelElementProxy) element);
 						// iterator.remove();
 					}

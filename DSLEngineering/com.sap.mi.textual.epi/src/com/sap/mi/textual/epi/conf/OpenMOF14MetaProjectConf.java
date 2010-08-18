@@ -11,16 +11,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.fwk.IPartitionScopeProvider;
-import com.sap.mi.fwk.PartitionService;
-import com.sap.mi.fwk.IPartitionScopeProvider.PartitionScope;
 import com.sap.mi.textual.epi.Constants;
 import com.sap.mi.textual.epi.util.ExceptionHelper;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.Moin;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.ide.MoinFactory;
+
 
 
 /**
@@ -86,11 +79,11 @@ public final class OpenMOF14MetaProjectConf implements IProjectMetaRefConf {
      * com.sap.mi.textual.epi.conf.IProjectMetaRefConf#getMetaLookUpForProject()
      */
     public ReferenceScopeBean getMetaLookUpForProject() {
-	Connection connection = ConnectionManager.getInstance().getExistingDefaultConnection(referencedProject);
+	ResourceSet connection = ConnectionManager.getInstance().getExistingDefaultConnection(referencedProject);
 	if(connection == null) {
 	    if (Display.getCurrent() != null) {
 		//this means we are in the UI thread
-		 final Connection[] conn = new Connection[1];
+		 final ResourceSet[] conn = new ResourceSet[1];
 			IRunnableWithProgress operation = new IRunnableWithProgress() {
 			    public void run(IProgressMonitor monitor)
 				    throws InterruptedException {

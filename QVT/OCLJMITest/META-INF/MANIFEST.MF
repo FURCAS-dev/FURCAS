@@ -4,10 +4,10 @@ Bundle-Name: OCLJMITest
 Bundle-SymbolicName: OCLJMITest
 Bundle-Version: 1.0.0.qualifier
 Export-Package: de.ikv.medini.ocljmi.test
-Require-Bundle: com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
- OCLJMI;bundle-version="1.0.0",
+Require-Bundle: OCLJMI;bundle-version="1.0.0",
  OCLCommon;bundle-version="1.0.0",
  OCLTestAdapter;bundle-version="1.0.0",
  testmetamodel.epi;bundle-version="1.0.0",
  OCLJMITestAdapter;bundle-version="1.0.0",
- com.sap.mi.textual.moin.standalone;bundle-version="1.0.0"
+ com.sap.mi.textual.moin.standalone;bundle-version="1.0.0",
+ com.sap.furcas.metamodel;bundle-version="1.0.0"

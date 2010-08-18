@@ -1,6 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?>
 <plugin>
-   <extension point="com.sap.tc.moin.runtime.MoinMetaModel">
-	  <metamodel class="com.sap.tc.moin.packageDD4C50ED6C92CD29CB00AA4B65989950FD9AD9F2.MetamodelExtension"/>
-   </extension>
 </plugin>

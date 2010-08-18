@@ -10,6 +10,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.OclProcessorImpl;
 import org.oslo.ocl20.semantics.analyser.OclSemanticAnalyser;
@@ -32,12 +39,7 @@ import org.oslo.ocl20.synthesis.RuntimeEnvironment;
 
 import uk.ac.kent.cs.kmf.util.ILog;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 /**
  * @author dha
@@ -46,7 +48,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcessor {
 	JmiBridgeFactory bridgeFactory;
 	
-	private Connection connection;
+	private ResourceSet connection;
 
 	private static List list_ = new ArrayList();
 
@@ -54,7 +56,7 @@ public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcesso
 
 	List sourceResources = new ArrayList();
 
-	public void addSourceResources(ModelPartition resource) {
+	public void addSourceResources(Resource resource) {
 		this.sourceResources.add(resource);
 	}
 
@@ -129,7 +131,7 @@ public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcesso
 	}
 
 	protected Object validateModel(Object mdl) {
-		if (!(mdl instanceof ModelPartition)) {
+		if (!(mdl instanceof EObject)) {
 			this.getLog().reportError("Models must be of type ModelPartition for an JMI OCL Processor.");
 			return null;
 		}
@@ -137,15 +139,15 @@ public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcesso
 	}
 
 	public void addMetaModel(Object metamodel) {
-		if (metamodel instanceof MofPackage) {
-			MofPackage pkg = (MofPackage) metamodel;
+		if (metamodel instanceof EPackage) {
+			EPackage pkg = (EPackage) metamodel;
 			this.metaModels.add(pkg);
 		} else {
 			this.getLog().reportError("Metamodels added to the namespace must be of type MofPackage for an JMI OclProcessor.");
 		}
 	}
 
-	public JmiOclProcessorImpl(ILog log, Connection conn) {
+	public JmiOclProcessorImpl(ILog log, ResourceSet conn) {
 		super(log);
 		this.connection = conn;
 		bridgeFactory = new JmiBridgeFactory(this, conn);
@@ -159,7 +161,7 @@ public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcesso
 		context = str.substring(8, p);
 		context = context.replaceAll(" ", "");
 
-		RefObject mofobject = (RefObject) renv.getValue("self");
+		EObject mofobject = (EObject) renv.getValue("self");
 		JmiOclProcessorImpl.list_.clear();
 		JmiOclProcessorImpl.visit_list_.clear();
 
@@ -177,8 +179,8 @@ public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcesso
 		return wholelist;
 	}
 
-	private static void findInstances(String InstanceName, RefObject object) {
-		if (((MofClass)object.refMetaObject()).getName().toString().equals(InstanceName)) {
+	private static void findInstances(String InstanceName, EObject object) {
+		if (((EClass)object.refMetaObject()).getName().toString().equals(InstanceName)) {
 			if (!JmiOclProcessorImpl.list_.contains(object)) {
 				JmiOclProcessorImpl.list_.add(object);
 
@@ -188,18 +190,18 @@ public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcesso
 		}
 		//*********************************
 		List moflist = new ArrayList();
-		Iterator itx=((MofClass)object.refMetaObject()).getContents().iterator();
+		Iterator itx=((EClass)object.refMetaObject()).eAllContents();
 		Object objx;
 		while (itx.hasNext()){
 			objx=itx.next();
-			if (objx instanceof StructuralFeature){
+			if (objx instanceof EStructuralFeature){
 			moflist.add(objx);}
 		}
 
 		for (int l = 0; l < moflist.size(); l++) {
-			StructuralFeature sf = (StructuralFeature) moflist.get(l);
+			EStructuralFeature sf = (EStructuralFeature) moflist.get(l);
 
-			if (((MofClass)sf.refMetaObject()).getName() == "Reference") {
+			if (((EClass)sf.refMetaObject()).getName() == "Reference") {
 
 				// System.out.println(sf);
 				if (sf != null) {
@@ -209,9 +211,9 @@ public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcesso
 					if (obj instanceof List) {
 						List li_ = (List) obj;
 						for (int a = 0; a < li_.size(); a++) {
-							RefObject mofo = (RefObject) li_.get(a);
+							EObject mofo = (EObject) li_.get(a);
 
-							if (((MofClass)mofo.refMetaObject()).getName().toString().equals(InstanceName)) {
+							if (((EClass)mofo.refMetaObject()).getName().toString().equals(InstanceName)) {
 								// System.out.println(eo);
 								if (!JmiOclProcessorImpl.list_.contains(mofo)) {
 									JmiOclProcessorImpl.list_.add(mofo);
@@ -228,12 +230,12 @@ public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcesso
 						}
 					}
 
-					if (obj instanceof RefObject) {
-						RefObject mofo = (RefObject) obj;
+					if (obj instanceof EObject) {
+						EObject mofo = (EObject) obj;
 
 						if (mofo != null) {
 
-							if (((MofClass)mofo.refMetaObject()).getName().toString().equals(InstanceName)) {
+							if (((EClass)mofo.refMetaObject()).getName().toString().equals(InstanceName)) {
 								// System.out.println(eo);
 								if (!JmiOclProcessorImpl.list_.contains(mofo)) {
 									JmiOclProcessorImpl.list_.add(mofo);
@@ -270,7 +272,7 @@ public class JmiOclProcessorImpl extends OclProcessorImpl implements OclProcesso
 		return this.metaModels;
 	}
 
-	public Connection getConnection() {
+	public ResourceSet getConnection() {
 		return connection;
 	}
 

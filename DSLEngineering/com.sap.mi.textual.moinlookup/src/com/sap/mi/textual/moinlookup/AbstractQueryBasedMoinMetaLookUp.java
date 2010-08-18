@@ -11,12 +11,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+
+
 
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
@@ -36,9 +39,9 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
     private static final String MOF14_CONTAINER_NAME = "sap.com/tc/moin/mof_1.4";
 
 //    should not be used directly, always use getter
-    private Set<PRI> queryPRIs;
+    private Set<URI> queryPRIs;
 
-    final Set<CRI> containerScope = new HashSet<CRI>(); 
+    final Set<URI> containerScope = new HashSet<URI>(); 
     
     /**
      * 
@@ -49,23 +52,23 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
         this.connection = connection;
     }
     
-    protected abstract Set<PRI> initQueryPRIs();
+    protected abstract Set<URI> initQueryPRIs();
       
-    protected Set<PRI> getQueryPRIs() {
+    protected Set<URI> getQueryPRIs() {
         if (this.queryPRIs == null) {
-            Set<PRI> subclassPRIs = initQueryPRIs();
+            Set<URI> subclassPRIs = initQueryPRIs();
             if (subclassPRIs != null) {
-                this.queryPRIs = new HashSet<PRI>(subclassPRIs.size() + 1);
+                this.queryPRIs = new HashSet<URI>(subclassPRIs.size() + 1);
                 this.queryPRIs.addAll(subclassPRIs);
             } else {
-                this.queryPRIs = new HashSet<PRI>(1);
+                this.queryPRIs = new HashSet<URI>(1);
             }
 //            this.queryPRIs = initQueryPRIs(); // does not work if list is immutable
 
             boolean primitivesIncluded = false;
-            for (Iterator<PRI> iterator = subclassPRIs.iterator(); iterator
+            for (Iterator<URI> iterator = subclassPRIs.iterator(); iterator
                     .hasNext();) {
-                PRI pri = iterator.next();
+                URI pri = iterator.next();
                 if ("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm".equals(pri.toString())) {
                     primitivesIncluded = true;
                     break;
@@ -74,7 +77,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
             if (! primitivesIncluded) {
                 // Include MOF 1.4 primitive Types
                 try {
-                    PRI primPRI = connection.getSession().getMoin().getFacilityById("PF").getRIFactory().createPri(
+                    URI primPRI = connection.getSession().getMoin().getFacilityById("PF").getRIFactory().createPri(
                     		"MetaModelDataArea", "sap.com/tc/moin/mof_1.4", "moin/meta/PrimitiveTypes.moinmm");
                     queryPRIs.add(primPRI);
                 } catch (Exception e) {
@@ -161,8 +164,8 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
         result = new ArrayList<EClassifier>(resultSet.getSize());
 
         for (int i = 0; i < resultSet.getSize(); i++) {
-            MRI mri = resultSet.getMri(i, "instance");
-            EObject object = connection.getElement(mri);
+            URI mri = resultSet.getMri(i, "instance");
+            EObject object = connection.getEObject(mri, true);
             if (object != null) {
                 EClassifier classifier = (EClassifier) object;
                 result.add(classifier );
@@ -219,7 +222,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
 	private MQLResultSet executeQuery(String query) throws MetaModelLookupException {
 	    try {
 	        MQLProcessor processor = connection.getMQLProcessor();
-	        Set<PRI> tempPris = getQueryPRIs();
+	        Set<URI> tempPris = getQueryPRIs();
 	        
 	        // TODO remove this again or fix otherwise: enforce loading of MOF ROM/OCL partitions
 	        connection.getClass(OclExpression.CLASS_DESCRIPTOR).getClass();
@@ -314,7 +317,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
 		    } else {
 		        ArrayList<EPackage> packages = new ArrayList<EPackage>(MoinHelper
                             .getImportedMofPackages((EPackage) ((EClass) context).refOutermostComposite()));
-		        packages.add((EPackage) ((EClass) context).refOutermostComposite());
+		        packages.add((EPackage) ((EClass) context).getEPackage());
 		        
 		        registration = connection
                             .getOclRegistryService()

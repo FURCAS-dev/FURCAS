@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.core;bundle-version="3.4.4",
  com.sap.ide.treeprovider;bundle-version="1.0.0",
  com.sap.mi.textual.tcs.util;bundle-version="1.0.0",
- com.sap.furcas.metamodel;bundle-version="1.0.0"
+ com.sap.furcas.metamodel
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.ide.cts.editor,
  com.sap.ide.cts.editor.action,

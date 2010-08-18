@@ -1,25 +1,24 @@
 package com.sap.mi.textual.epi.builder;
 
 import java.util.ArrayList;
+import java.util.logging.ErrorManager;
 
-import org.antlr.Tool;
-import org.antlr.tool.ANTLRErrorListener;
-import org.antlr.tool.ErrorManager;
-import org.antlr.tool.Message;
-import org.antlr.tool.ToolMessage;
+import javax.tools.Tool;
+
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.mi.textual.epi.conf.ReferenceScopeBean;
 import com.sap.mi.textual.epi.errors.GrammarGenerationErrorHandler;
 import com.sap.mi.textual.epi.util.EclipseMarkerUtil;
 import com.sap.mi.textual.epi.util.ToolClassesGenerationHelper;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.tc.moin.repository.Connection;
+
 
 
 
@@ -43,7 +42,7 @@ public class GrammarGenerationBuildHelper {
 	 * 
 	 * @throws CoreException the core exception
 	 */
-	public static IFile buildGrammar(ReferenceScopeBean refScopeBean, Connection targetConnection, IFile file, IProgressMonitor monitor, GrammarGenerationErrorHandler errorhandler, String targetpackage, Class<? extends ObservableInjectingParser> parserSuperClass) throws CoreException {
+	public static IFile buildGrammar(ReferenceScopeBean refScopeBean, ResourceSet targetConnection, IFile file, IProgressMonitor monitor, GrammarGenerationErrorHandler errorhandler, String targetpackage, Class<? extends ObservableInjectingParser> parserSuperClass) throws CoreException {
 
 		
 

@@ -10,10 +10,11 @@ import java.util.List;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.parser.incremental.IncrementalParser;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
@@ -25,9 +26,7 @@ import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+
 
 /**
  * Facade for handling incremental parser and lexer construction as well as
@@ -52,8 +51,8 @@ public class IncrementalParserFacade {
 
 	public IncrementalParserFacade(
 			ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-			IModelAdapter modelAdapter, Connection connection,
-			Collection<CRI> additionalCRIScope) {
+			IModelAdapter modelAdapter, ResourceSet connection,
+			Collection<URI> additionalCRIScope) {
 		this.parserFactory = parserFactory;
 		// TODO use token wrapper factory her
 		TextBlockReuseStrategyImpl reuseStrategy = new TextBlockReuseStrategyImpl(
@@ -217,7 +216,7 @@ public class IncrementalParserFacade {
 	}
 
 	public static Object getParsingResult(TextBlock rootBlock) {
-		Collection<RefObject> result = rootBlock
+		Collection<EObject> result = rootBlock
 				.getCorrespondingModelElements();
 		if (result.size() == 0) {
 			return null;

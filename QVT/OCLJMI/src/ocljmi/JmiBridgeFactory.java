@@ -5,6 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.lang.model.type.PrimitiveType;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.oslo.ocl20.OclProcessor;
 import org.oslo.ocl20.semantics.bridge.BridgeFactory;
 import org.oslo.ocl20.semantics.bridge.Classifier;
@@ -19,13 +29,6 @@ import org.oslo.ocl20.semantics.bridge.Parameter;
 import org.oslo.ocl20.semantics.bridge.Property;
 import org.oslo.ocl20.semantics.factories.BridgeFactoryImpl;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
 
 /**
  * @author dha
@@ -33,20 +36,20 @@ import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
  */
 public class JmiBridgeFactory extends BridgeFactoryImpl {
 
-	private final Connection connection;
+	private final ResourceSet connection;
 
-	public JmiBridgeFactory(OclProcessor proc, Connection conn) {
+	public JmiBridgeFactory(OclProcessor proc, ResourceSet conn) {
 		super(proc);
 		this.connection = conn;
 	}
 
-	public Environment buildEnvironment(MofPackage mofPkg) {
+	public Environment buildEnvironment(EPackage mofPkg) {
 		Namespace ns = new NamespaceImpl(mofPkg, super.processor);
 		Environment env = super.buildEnvironment();
 		return env.addNamespace(ns);
 	}
 
-	public Namespace buildNamespace(MofPackage mofPkg) {
+	public Namespace buildNamespace(EPackage mofPkg) {
 		return new NamespaceImpl(mofPkg, super.processor);
 	}
 
@@ -68,7 +71,7 @@ public class JmiBridgeFactory extends BridgeFactoryImpl {
 
 	Map _properties = new HashMap();
 
-	public Property buildProperty(StructuralFeature sf) {
+	public Property buildProperty(EStructuralFeature sf) {
 		Property p = (Property) this._properties.get(sf);
 		if (p == null) {
 			p = new PropertyImpl(sf, super.processor);
@@ -84,17 +87,17 @@ public class JmiBridgeFactory extends BridgeFactoryImpl {
 		return prop;
 	}
 
-	public Classifier buildClassifier(com.sap.tc.moin.repository.mmi.model.Classifier cls) {
+	public Classifier buildClassifier(EClassifier cls) {
 		return (Classifier) this.buildModelElement(cls);
 	}
 
 	public ModelElement buildModelElement(Object o) {
-		if (o instanceof MofClass) {
-			return this.buildOclModelElementType((MofClass) o);
-		} else if (o instanceof EnumerationType) {
-			return this.buildEnumeration_((EnumerationType) o);
-		} else if (o instanceof PrimitiveType) {
-			PrimitiveType dt = (PrimitiveType) o;
+		if (o instanceof EClass) {
+			return this.buildOclModelElementType((EClass) o);
+		} else if (o instanceof EEnum) {
+			return this.buildEnumeration_((EEnum) o);
+		} else if (o instanceof EDataType) {
+			EDataType dt = (EDataType) o;
 			//Class c = dt.getInstanceClass();
 			//Class c = dt.getInstanceClass();
 			if (dt.getName().equals("String")) {
@@ -122,7 +125,7 @@ public class JmiBridgeFactory extends BridgeFactoryImpl {
 		this._modelElementTypes.clear();
 	}
 
-	public OclModelElementType buildOclModelElementType(com.sap.tc.moin.repository.mmi.model.Classifier ecls) {
+	public OclModelElementType buildOclModelElementType(EClassifier ecls) {
 		OclModelElementType t = (OclModelElementType) this._modelElementTypes.get(ecls);
 		if (t == null) {
 			t = new OclModelElementTypeImpl(ecls, super.processor);
@@ -131,13 +134,13 @@ public class JmiBridgeFactory extends BridgeFactoryImpl {
 		return t;
 	}
 
-	public Enumeration buildEnumeration_(EnumerationType mofenum) {
+	public Enumeration buildEnumeration_(EEnum mofenum) {
 		return new EnumerationImpl(mofenum, super.processor);
 	}
 
 	public EnumLiteral buildEnumLiteral(String mofenumLit, Enumeration enumerationType) {
-		List<RefEnum> enumLit = connection.getJmiHelper().getEnumerationConstants((EnumerationType) enumerationType.getDelegate());
-		for (RefEnum refEnum : enumLit) {
+		List<EEnum> enumLit = connection.getJmiHelper().getEnumerationConstants((EEnum) enumerationType.getDelegate());
+		for (EEnum refEnum : enumLit) {
 			if(refEnum.toString().equals(mofenumLit)) {
 				return new EnumLiteralImpl(mofenumLit, enumerationType, this.getProcessor().getStdLibAdapter());
 			}
@@ -146,15 +149,15 @@ public class JmiBridgeFactory extends BridgeFactoryImpl {
 	}
 
 	public OclModelElementType buildOclModelElementType(Object o) {
-		if (o instanceof MofClass) {
-			return this.buildOclModelElementType((MofClass) o);
+		if (o instanceof EClass) {
+			return this.buildOclModelElementType((EClass) o);
 		} else {
 			return null;
 		}
 	}
 
 	public Enumeration buildEnumeration(Object o) {
-		if (o instanceof EnumerationType) {
+		if (o instanceof EEnum) {
 			return this.buildEnumeration(o);
 		} else {
 			return null;
@@ -170,24 +173,24 @@ public class JmiBridgeFactory extends BridgeFactoryImpl {
 	}
 
 	public Classifier buildClassifier(Object o) {
-		if (o instanceof com.sap.tc.moin.repository.mmi.model.Classifier) {
-			return this.buildClassifier((com.sap.tc.moin.repository.mmi.model.Classifier) o);
+		if (o instanceof EClassifier) {
+			return this.buildClassifier((EClassifier) o);
 		} else {
 			return null;
 		}
 	}
 
 	public Namespace buildNamespace(Object o) {
-		if (o instanceof MofPackage) {
-			return this.buildNamespace((MofPackage) o);
+		if (o instanceof EPackage) {
+			return this.buildNamespace((EPackage) o);
 		} else {
 			return null;
 		}
 	}
 
 	public Property buildProperty(Object o) {
-		if (o instanceof StructuralFeature) {
-			return this.buildProperty((StructuralFeature) o);
+		if (o instanceof EStructuralFeature) {
+			return this.buildProperty((EStructuralFeature) o);
 		} else {
 			return null;
 		}

@@ -4,7 +4,6 @@ Bundle-Name: QVTJMI Plug-in
 Bundle-SymbolicName: QVTJMI
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
- com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
  OCLCommon;bundle-version="1.0.0",
  OCLJMI;bundle-version="1.0.0",
  QVTCommon;bundle-version="1.0.0",

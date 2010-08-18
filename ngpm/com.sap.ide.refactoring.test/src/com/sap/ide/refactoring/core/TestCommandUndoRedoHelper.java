@@ -5,21 +5,21 @@ import static org.junit.Assert.assertNull;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.core.commands.Command;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.ide.refactoring.test.RefactoringBaseTest;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.commands.Command;
-import com.sap.tc.moin.repository.commands.CommandHandle;
-import com.sap.tc.moin.repository.commands.PartitionOperation;
+
 
 
 public class TestCommandUndoRedoHelper extends RefactoringBaseTest {
 
 
     private static class NullCommand extends Command {
-	protected NullCommand(Connection connection, String description) {
+	protected NullCommand(ResourceSet connection, String description) {
 	    super(connection, description);
 	}
 	@Override
@@ -31,7 +31,7 @@ public class TestCommandUndoRedoHelper extends RefactoringBaseTest {
 	   // do nothing
 	}
 	@Override
-	public Collection<PartitionOperation> getAffectedPartitions() {
+	public Collection<EOperation> getAffectedPartitions() {
 	    return Collections.emptyList();
 	}
 	@Override

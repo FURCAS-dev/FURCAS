@@ -7,19 +7,18 @@ import static org.junit.Assert.fail;
 
 import java.util.Collection;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.PartInitException;
 import org.junit.After;
 import org.junit.Test;
 
-import textblocks.DocumentNode;
-
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.refactoring.test.RefactoringEditorIntegrationTest;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class TestSourcePositionModelLocator extends RefactoringEditorIntegrationTest {
 
@@ -38,7 +37,7 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
      * @param className
      */
     private void initializeForClass(String className) {
-	final RefObject refObject = findRunletClass(className);
+	final EObject refObject = findRunletClass(className);
 	assertNotNull(refObject);
 	assertTrue(refObject.is___Alive());
 
@@ -78,7 +77,7 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
 	initializeForClass("OrderedAssocTestCase");
 
 	setCursor("class Order".length());
-	Collection<RefObject> selected = sut.findSelectedCorrespondingModelElements();
+	Collection<EObject> selected = sut.findSelectedCorrespondingModelElements();
 
 	assertEquals(1, selected.size());
 	assertEquals(findRunletClass("OrderedAssocTestCase"), selected.iterator().next());
@@ -101,7 +100,7 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
 	initializeForClass("OrderedAssocTestCase");
 
 	selectRange(0, document.getLength());
-	Collection<RefObject> selected = sut.findSelectedCorrespondingModelElements();
+	Collection<EObject> selected = sut.findSelectedCorrespondingModelElements();
 
 	assertEquals(1, selected.size());
 	assertEquals(findRunletClass("OrderedAssocTestCase"), selected.iterator().next());
@@ -113,7 +112,7 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
 	String text = document.get();
 
 	selectRange(text.indexOf("Number"), "Number".length());
-	Collection<RefObject> selected = sut.findSelectedReferencedModelElements();
+	Collection<EObject> selected = sut.findSelectedReferencedModelElements();
 
 	assertEquals(1, selected.size());
 	assertEquals(findRunletClass("Number"), selected.iterator().next());
@@ -134,7 +133,7 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
 	int statementsEnd = methodOnly.lastIndexOf(";") - 1; // end of the second statement
 
 	selectRange(offsetOfMethodInClass + statementStart, statementsEnd - statementStart);
-	Collection<RefObject> selected = sut.findSelectedCorrespondingModelElements();
+	Collection<EObject> selected = sut.findSelectedCorrespondingModelElements();
 
 	assertEquals(2, selected.size());
     }
@@ -152,14 +151,14 @@ public class TestSourcePositionModelLocator extends RefactoringEditorIntegration
 	int varDeclIndex = text.substring(0, usageIndex).lastIndexOf("m");
 
 	selectRange(usageIndex, 1);
-	Collection<RefObject> referenced = sut.findSelectedReferencedModelElements();
+	Collection<EObject> referenced = sut.findSelectedReferencedModelElements();
 	assertEquals(1, referenced.size());
-	RefObject varDeclReferenced = referenced.iterator().next();
+	EObject varDeclReferenced = referenced.iterator().next();
 
 	selectRange(varDeclIndex, 1);
-	Collection<RefObject> corresponding = sut.findSelectedCorrespondingModelElements();
+	Collection<EObject> corresponding = sut.findSelectedCorrespondingModelElements();
 	assertEquals(1, corresponding.size());
-	RefObject varDecl = corresponding.iterator().next();
+	EObject varDecl = corresponding.iterator().next();
 
 	assertEquals(varDecl, varDeclReferenced);
     }

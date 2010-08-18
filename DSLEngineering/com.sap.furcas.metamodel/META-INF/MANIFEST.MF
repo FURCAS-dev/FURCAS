@@ -6,8 +6,10 @@ Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.sap.furcas.metamodel.TCS,
+Export-Package: TCS,
+ TCS.impl,
+ TCS.util,
+ com.sap.furcas.metamodel.TCS,
  com.sap.furcas.metamodel.TCS.impl,
  com.sap.furcas.metamodel.TCS.util,
  com.sap.furcas.metamodel.textblockdefinition,

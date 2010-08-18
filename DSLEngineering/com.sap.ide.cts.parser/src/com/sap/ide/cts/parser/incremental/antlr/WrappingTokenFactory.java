@@ -5,8 +5,7 @@ package com.sap.ide.cts.parser.incremental.antlr;
 
 import org.antlr.runtime.CharStream;
 
-import textblocks.LexedToken;
-
+import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
 import com.sap.mi.textual.parsing.textblocks.LexedTokenWrapper;
 

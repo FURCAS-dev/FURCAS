@@ -15,7 +15,6 @@ import com.sap.runlet.abstractinterpreter.util.HashBag;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.RunletStackFrame;
 import com.sap.runlet.interpreter.statements.ReturnInterpreter;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;

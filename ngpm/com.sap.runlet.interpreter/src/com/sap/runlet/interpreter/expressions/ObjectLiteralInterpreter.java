@@ -14,7 +14,6 @@ import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.RunletStackFrame;
 import com.sap.runlet.interpreter.objects.ValueObject;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 import data.classes.ActualObjectParameter;
 import data.classes.Association;

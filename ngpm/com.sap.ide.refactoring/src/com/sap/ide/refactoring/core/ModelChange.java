@@ -8,7 +8,6 @@ import org.eclipse.ltk.core.refactoring.NullChange;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
-import com.sap.tc.moin.repository.commands.CommandHandle;
 
 public class ModelChange extends Change {
 

@@ -4,6 +4,8 @@
 
 package runlettest;
 
+import org.eclipse.emf.ecore.EClass;
+
 /**
  * This interface is not intended to be implemented by clients.
  */
@@ -14,9 +16,9 @@ public interface RunlettestPackage extends com.sap.tc.moin.repository.mmi.reflec
      */
     public final com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<runlettest.RunlettestPackage> PACKAGE_DESCRIPTOR = new com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<runlettest.RunlettestPackage>("E0BF480E567D03508B0E11DEB3D400155883529C", "sap.com/com/sap/runlet/testmetamodel", "runlettest"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
     // classes
-    public com.sap.tc.moin.repository.mmi.reflect.RefClass getRunletTest();
-    public com.sap.tc.moin.repository.mmi.reflect.RefClass getNamed();
-    public com.sap.tc.moin.repository.mmi.reflect.RefClass getSubcomponent();
+    public EClass getRunletTest();
+    public EClass getNamed();
+    public EClass getSubcomponent();
     // associations
     public runlettest.ASubRunletTest getASubRunletTest();
 }

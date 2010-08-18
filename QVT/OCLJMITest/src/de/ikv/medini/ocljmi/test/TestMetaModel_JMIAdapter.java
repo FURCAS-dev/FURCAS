@@ -11,18 +11,16 @@
 
 package de.ikv.medini.ocljmi.test;
 
-import testmetamodel.TestMetaModelPackage;
+import org.eclipse.emf.ecore.EPackage;
 
 import com.sap.mi.textual.moin.standalone.StandaloneConnectionFactoryFacade;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 import de.ikv.medini.ocl.test.OCLJMITestAdapter;
 
 public class TestMetaModel_JMIAdapter extends OCLJMITestAdapter {
 
 	private static final String mmbuildpath = "../OCLJMITest/mmbuild/demo.sap.com~testmetamodel~def_assmbl.zip";
-	static RefPackage companyPackage = null;
+	static EPackage companyPackage = null;
 
 	@Override
 	public void initRepository() {
@@ -30,7 +28,7 @@ public class TestMetaModel_JMIAdapter extends OCLJMITestAdapter {
 		boolean doReflective = Boolean.valueOf(this.getProperty("doReflective"));
 
 		setConnection(StandaloneConnectionFactoryFacade.getMetaModelConnection(mmbuildpath));
-		addMetaModel((MofPackage) connection.getPackage(TestMetaModelPackage.PACKAGE_DESCRIPTOR).refMetaObject());
+		addMetaModel((EPackage) connection.getPackage(TestMetaModelPackage.PACKAGE_DESCRIPTOR).refMetaObject());
 		super.initRepository();
 	}
 

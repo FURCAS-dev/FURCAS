@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 
 import com.sap.ide.treeprovider.GenericRefObjectNode;
 import com.sap.ide.treeprovider.TextLabelProvider;
-import com.sap.mi.fwk.ui.tree.nodes.TreeNodeRefObject;
 
 public class RunletTreeLabelProvider implements TextLabelProvider {
     @Override

@@ -6,11 +6,11 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.osgi,
  org.eclipse.core.runtime,
- com.sap.ap.metamodel.core,
  org.junit4;bundle-version="4.3.1",
  com.sap.editor.test.mm.eclipse,
  com.sap.finex.metamodel,
- com.sap.furcas.metamodel;bundle-version="1.0.0"
+ com.sap.furcas.metamodel;bundle-version="1.0.0",
+ de.hpi.sam.bp2009.ngpm;bundle-version="1.0.0"
 Export-Package: com.sap.mi.textual.moin.standalone
 Import-Package: org.eclipse.jface.resource,
  org.eclipse.ui.plugin

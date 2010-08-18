@@ -1,12 +1,12 @@
 package com.sap.ap.cts.editor;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 import com.sap.ap.cts.refactoring.adaptation.RefactoringModelAdapterFactory;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 import data.classes.SapClass;
 
@@ -59,7 +59,7 @@ public class Activator extends AbstractUIPlugin {
 	super.stop(context);
     }
 
-    public static ImageDescriptor getImageDescriptor(MofClass clazz) {
+    public static ImageDescriptor getImageDescriptor(EClass clazz) {
 	StringBuilder imagename = new StringBuilder("resources/icons");
 	for (String pathElement : clazz.getQualifiedName()) {
 	    imagename.append('/');
@@ -69,7 +69,7 @@ public class Activator extends AbstractUIPlugin {
 	return imageDescriptorFromPlugin(PLUGIN_ID, imagename.toString());
     }
     
-    public static ImageDescriptor getImageDescriptor(RefObject element) {
+    public static ImageDescriptor getImageDescriptor(EObject element) {
 	ImageDescriptor result = null;
 	if (element instanceof SapClass) {
 	    SapClass sc = (SapClass) element;

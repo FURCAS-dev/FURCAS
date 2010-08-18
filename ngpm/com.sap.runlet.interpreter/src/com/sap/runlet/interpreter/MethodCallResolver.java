@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.ap.metamodel.formatter.StringFormatter;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
+
+
 
 import data.classes.MethodSignature;
 import data.classes.SapClass;
@@ -21,16 +20,16 @@ import data.classes.TypeAdapter;
 
 public class MethodCallResolver {
     /**
-     * Caches the {@link MRI}s of the signature implementation model elements; only MRIs
+     * Caches the {@link URI}s of the signature implementation model elements; only MRIs
      * because different connections may want to know.
      */
-    private Map<Pair<MethodSignature, SapClass>, MRI> cache =
-	new HashMap<Pair<MethodSignature, SapClass>, MRI>();
+    private Map<Pair<MethodSignature, SapClass>, URI> cache =
+	new HashMap<Pair<MethodSignature, SapClass>, URI>();
 
     public SignatureImplementation getImplementation(MethodSignature staticSignature, SapClass dynamicClass, Connection conn) {
 	Pair<MethodSignature, SapClass> key = new Pair<MethodSignature, SapClass>(staticSignature, dynamicClass);
 	SignatureImplementation result;
-	MRI implMri = cache.get(key);
+	URI implMri = cache.get(key);
 	if (implMri == null) {
 	    result = resolveMethodCallToImplementation(staticSignature, dynamicClass);
 	    cache.put(key, result.get___Mri());

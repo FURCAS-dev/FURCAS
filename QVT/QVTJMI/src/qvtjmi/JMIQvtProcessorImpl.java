@@ -20,17 +20,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-
-//import org.eclipse.emf.common.command.Command;
-//import org.eclipse.emf.common.util.URI;
-//import org.eclipse.emf.ecore.EPackage;
-//import org.eclipse.emf.ecore.resource.Resource;
-//import org.eclipse.emf.ecore.resource.ResourceSet;
-//import org.eclipse.emf.transaction.RecordingCommand;
-//import org.eclipse.emf.transaction.TransactionalEditingDomain;
-//import org.eclipse.emf.transaction.util.TransactionUtil;
 import ocljmi.JmiBridgeFactory;
+
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 import org.oslo.ocl20.semantics.analyser.OclSemanticAnalyser;
 import org.oslo.ocl20.semantics.factories.TypeFactory;
 import org.oslo.ocl20.standard.lib.StdLibAdapter;
@@ -45,12 +40,10 @@ import org.oslo.ocl20.synthesis.OclEvaluator;
 import org.oslo.ocl20.synthesis.OclEvaluatorImpl;
 import org.oslo.ocl20.synthesis.RuntimeEnvironment;
 
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.PRI;
-
 import uk.ac.kent.cs.kmf.util.ILog;
+
+
+
 import de.ikv.medini.qvt.QVTProcessorConsts;
 import de.ikv.medini.qvt.QvtEvaluatorImpl;
 import de.ikv.medini.qvt.QvtEvaluatorVisitorImpl;
@@ -65,13 +58,13 @@ import de.ikv.medini.qvt.model.qvtbase.TypedModel;
 public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 
 
-	protected final Connection connection;
+	protected final ResourceSet connection;
 	
-	public Connection getConnection() {
+	public ResourceSet getConnection() {
 		return connection;
 	}
 	
-	public JMIQvtProcessorImpl(ILog log, Connection connection) {
+	public JMIQvtProcessorImpl(ILog log, ResourceSet connection) {
 		super(log);
 		this.connection = connection;
 		bridgeFactory = new JmiBridgeFactory(this, connection);
@@ -87,7 +80,7 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 //		Set editingDomains = new HashSet();
 //
 //		for (java.util.Iterator iter = this.getModels().iterator(); iter.hasNext();) {
-//			ModelPartition partition = (ModelPartition) iter.next();
+//			Resource partition = (Resource) iter.next();
 //			TransactionalEditingDomain transactionalEditingdomain = TransactionUtil.getEditingDomain(partition);
 //			if (transactionalEditingdomain != null) {
 //				editingDomains.add(transactionalEditingdomain);
@@ -96,7 +89,7 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 //
 //		TransactionalEditingDomain transactionalEditingdomain;
 //		if (editingDomains.isEmpty()) {
-//			ModelPartition rset = this.getFirstResourceSet();
+//			Resource rset = this.getFirstResourceSet();
 //			transactionalEditingdomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(rset);
 //			editingDomains.add(transactionalEditingdomain);
 //			hasCreatedTransactionalEditingDomain = true;
@@ -266,8 +259,8 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 
 	@Override
 	protected Object validateModel(Object mdl) {
-		if (!(mdl instanceof ModelPartition)) {
-			throw new RuntimeException("Model is not of type ModelPartition: " + mdl);
+		if (!(mdl instanceof Resource)) {
+			throw new RuntimeException("Model is not of type Resource: " + mdl);
 		}
 		return mdl;
 	}
@@ -296,13 +289,13 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 		return qvtTraceAdapter;
 	}
 
-	//TODO private PRI workingLocation = PRI.createFileURI(".");
-	private PRI workingLocation = null;
-	public PRI getWorkingLocation() {
+	//TODO private URI workingLocation = URI.createFileURI(".");
+	private URI workingLocation = null;
+	public URI getWorkingLocation() {
 		return this.workingLocation;
 	}
 
-	public void setWorkingLocation(PRI workingLoactaion) {
+	public void setWorkingLocation(URI workingLoactaion) {
 		this.workingLocation = workingLoactaion;
 	}
 
@@ -311,7 +304,7 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 	 * @deprecated use {@link #setWorkingLocation(URI)} instead
 	 */
 	@Deprecated
-	public void setWorkingLoactaion(PRI workingLoactaion) {
+	public void setWorkingLoactaion(URI workingLoactaion) {
 		this.setWorkingLocation(workingLoactaion);
 	}
 
@@ -320,7 +313,7 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 	 * @deprecated use {@link #getWorkingLocation()} instead
 	 */
 	@Deprecated
-	public PRI getWorkingLoactaion() {
+	public URI getWorkingLoactaion() {
 		return this.getWorkingLocation();
 	}
 
@@ -331,10 +324,10 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 	Set metaModels = new HashSet();
 
 	public void addMetaModel(Object metamodel) {
-		if (metamodel instanceof MofPackage) {
-			MofPackage pkg = (MofPackage) metamodel;
-			while (pkg.getContainer() != null) {
-				pkg = (MofPackage) pkg.getContainer();
+		if (metamodel instanceof EPackage) {
+			EPackage pkg = (EPackage) metamodel;
+			while (pkg.eContainer() != null) {
+				pkg = (EPackage) pkg.eContainer();
 			}
 			this.metaModels.add(pkg);
 		} else {
@@ -343,19 +336,19 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 		}
 	}
 
-	public ModelPartition getTargetResource() {
-		return (ModelPartition) this.getTargetModel();
+	public Resource getTargetResource() {
+		return (Resource) this.getTargetModel();
 	}
 
-	private ModelPartition partitionForTraces;
+	private Resource partitionForTraces;
 
-	private ModelPartition traceMMPartition;
+	private Resource traceMMPartition;
 	
-	public ModelPartition getTraceMMPartition() {
+	public Resource getTraceMMPartition() {
 		if(traceMMPartition == null) {
 			//TODO make a more intelligent choice than just using the location of the null partition
-//			CRI cri = ((ModelPartition)getModels().get(0)).getPri().getCri();
-//			PRI traceMMPRI = connection.getSession().getMoin().createPri(cri.getDataAreaDescriptor().getFacilityId(),
+//			CRI cri = ((Resource)getModels().get(0)).getPri().getCri();
+//			URI traceMMPRI = connection.getSession().getMoin().createPri(cri.getDataAreaDescriptor().getFacilityId(),
 //					cri.getDataAreaDescriptor().getDataAreaName(), cri.getContainerName(), "/moin/TraceMM.xmi");
 //			traceMMPartition = connection.getPartition(traceMMPRI);
 //			if(traceMMPartition == null) {
@@ -366,24 +359,24 @@ public class JMIQvtProcessorImpl extends QvtProcessorImpl {
 		return traceMMPartition;
 	}
 
-	public void setTraceMMPartition(ModelPartition traceMMPartition) {
+	public void setTraceMMPartition(Resource traceMMPartition) {
 		this.traceMMPartition = traceMMPartition;
 	}
 
-	public ModelPartition getResourceSetForTraces() {
+	public Resource getResourceSetForTraces() {
 		if (this.partitionForTraces != null) {
 			return this.partitionForTraces;
 		}
 		return this.getFirstPartition();
 	}
 
-	public void setResourceSetForTraces(ModelPartition resourceSetForTraces) {
+	public void setResourceSetForTraces(Resource resourceSetForTraces) {
 		this.partitionForTraces = resourceSetForTraces;
 	}
 
-	public ModelPartition getFirstPartition() {
+	public Resource getFirstPartition() {
 		for (java.util.Iterator iter = this.getModels().iterator(); iter.hasNext();) {
-			ModelPartition partition = (ModelPartition) iter.next();
+			Resource partition = (Resource) iter.next();
 			return partition;
 		}
 		throw new RuntimeException("To return a resource set, at least one model must be specified!");

@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
 import com.sap.mi.textual.grammar.ModelParsingResult;
 import com.sap.mi.textual.grammar.ParserFacade;
@@ -39,7 +40,7 @@ public class TCS2MOINInjectorFacade {
 	 * TCSLexer.
 	 */
 	public static ModelInjectionResult parseSyntaxDefinition(InputStream in,
-			ResourceSet connection, Set<PRI> metamodelPRIs,
+			ResourceSet connection, Set<URI> metamodelPRIs,
 			IParsingObserver observer)
 			throws InvalidParserImplementationException, IOException,
 			UnknownProductionRuleException {
@@ -65,7 +66,7 @@ public class TCS2MOINInjectorFacade {
 	 * @throws IOException
 	 */
 	public static ModelInjectionResult parseSyntaxDefinition(InputStream in,
-			ResourceSet connection, Set<PRI> metamodelPRIs,
+			ResourceSet connection, Set<URI> metamodelPRIs,
 			IParsingObserver observer, ParserFacade alternativeTcsParserFacade)
 			throws InvalidParserImplementationException, IOException,
 			UnknownProductionRuleException {

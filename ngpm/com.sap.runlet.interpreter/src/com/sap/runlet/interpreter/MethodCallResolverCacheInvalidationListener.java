@@ -1,30 +1,21 @@
 package com.sap.runlet.interpreter;
 
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 import org.osgi.framework.BundleContext;
 
-import com.sap.tc.moin.globalmodellistener.GlobalEventListener;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.events.EventChain;
-import com.sap.tc.moin.repository.events.EventListener;
-import com.sap.tc.moin.repository.events.UpdateListener;
-import com.sap.tc.moin.repository.events.filter.AndFilter;
-import com.sap.tc.moin.repository.events.filter.AssociationFilter;
-import com.sap.tc.moin.repository.events.filter.EventFilter;
-import com.sap.tc.moin.repository.events.type.ChangeEvent;
-import com.sap.tc.moin.repository.events.type.LinkAddEvent;
-import com.sap.tc.moin.repository.events.type.LinkRemoveEvent;
+import behavioral.events.EventFilter;
 
-import data.classes.AAdaptedAdapters;
-import data.classes.AdaptedTo;
-import data.classes.OwnedSignatures;
+
 
 public class MethodCallResolverCacheInvalidationListener implements GlobalEventListener, UpdateListener {
 
     @Override
-    public Map<EventFilter, Map<ListenerType, EventListener>> getFilters(Connection connection, BundleContext context) {
+    public Map<EventFilter, Map<ListenerType, EventListener>> getFilters(ResourceSet connection, BundleContext context) {
 	HashMap<EventFilter, Map<ListenerType, EventListener>> result = new HashMap<EventFilter, Map<ListenerType, EventListener>>();
 	EventFilter ownedMethodSignaturesFilter = new AssociationFilter(connection.getAssociation(
 		OwnedSignatures.ASSOCIATION_DESCRIPTOR).refMetaObject());
@@ -48,7 +39,7 @@ public class MethodCallResolverCacheInvalidationListener implements GlobalEventL
 		Activator.getDefault().getMethodCallResolver().invalidateCache();
 		/* TODO do more fine-grained invalidation
 		LinkChangeEvent lce = (LinkChangeEvent) event;
-		Connection conn = lce.getEventTriggerConnection();
+		ResourceSet conn = lce.getEventTriggerConnection();
 		Association a = (Association) lce.getAffectedMetaObject(conn);
 		if (a.equals(conn.getAssociation(OwnedSignatures.ASSOCIATION_DESCRIPTOR).refMetaObject())) {
 		    SignatureOwner owner = (SignatureOwner) conn.getElement(lce.getFirstLinkEndMri().getLri());

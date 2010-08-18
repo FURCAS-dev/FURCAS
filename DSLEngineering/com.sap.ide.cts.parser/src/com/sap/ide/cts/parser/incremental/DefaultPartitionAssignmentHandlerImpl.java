@@ -1,12 +1,12 @@
 package com.sap.ide.cts.parser.incremental;
 
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+
 
 public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmentHandler {
 
-	private ModelPartition defaultPartition;
+	private Resource defaultPartition;
 
 	/**
 	 * Assigns the <code>newElement</code> to a partition according to the given
@@ -18,8 +18,8 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 	 * @param newElement
 	 */
 	@Override
-	public void assignToPartition(Partitionable element, Partitionable elementInPartition) {
-		ModelPartition partition = null;
+	public void assignToPartition(EObject element, EObject elementInPartition) {
+		Resource partition = null;
 		// AttachesTo attachesToAssoc = connection
 		// .getAssociation(AttachesTo.ASSOCIATION_DESCRIPTOR);
 		// Collection<Tag> tags = attachesToAssoc.getTag((ModelElement)
@@ -58,12 +58,12 @@ public class DefaultPartitionAssignmentHandlerImpl implements PartitionAssignmen
 	}
 
 	@Override
-	public void setDefaultPartition(ModelPartition defaultPartition) {
+	public void setDefaultPartition(Resource defaultPartition) {
 		this.defaultPartition = defaultPartition;		
 	}
 
 	@Override
-	public void assignToDefaultPartition(RefObject element) {
+	public void assignToDefaultPartition(EObject element) {
 		defaultPartition.assignElementIncludingChildren(element);
 	}
 

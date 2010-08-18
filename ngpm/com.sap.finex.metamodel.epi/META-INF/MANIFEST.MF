@@ -6,32 +6,9 @@ Bundle-Version: 0.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: com.sap.tc.moin.libraries.jmi.facade,
- com.sap.tc.moin.ide.facade,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
- org.junit,
- com.sap.tc.moin.globalmodellistener
+ org.junit
 Bundle-ActivationPolicy: lazy
-Export-Package: behavior,
- behavior.__impl,
- behavior.actions,
- behavior.actions.__impl,
- behavior.expressions,
- behavior.expressions.__impl,
- behavior.expressions.literals,
- behavior.expressions.literals.__impl,
- behavior.expressions.oql,
- behavior.expressions.oql.__impl,
- behavior.functions,
- behavior.functions.__impl,
- com.sap.finex.metamodel.utils,
- com.sap.tc.moin.ocl.gen.oclgeneratedb2877aa13a720286d5483574839e70834cf5e577,
- com.sap.tc.moin.ocl.gen.oclgeneratedb2877aa13a720286d5483574839e70834cf5e577.__impl,
- com.sap.tc.moin.packageDD4C50ED6C92CD29CB00AA4B65989950FD9AD9F2,
- finex,
- finex.__impl,
- finex.modelmanagement,
- finex.modelmanagement.__impl,
- structure,
- structure.__impl
+Export-Package: com.sap.finex.metamodel.utils
+ 

@@ -19,16 +19,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.oslo.ocl20.OclProcessor;
 
 import qvtjmi.JMIQvtProcessorImpl;
-
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
-import com.sap.tc.moin.repository.PartitionsNotSavedException;
-import com.sap.tc.moin.repository.ReferencedTransientElementsException;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-
 import de.ikv.medini.ocl.test.util.Utilities;
 import de.ikv.medini.qvt.QVTProcessorConsts;
 import de.ikv.medini.qvt.QvtProcessorImpl;
@@ -36,7 +31,7 @@ import de.ikv.medini.qvt.util.QvtSemanticTaskDebugInfo;
 
 public class QVTJMITestAdapter extends de.ikv.medini.ocl.test.OCLJMITestAdapter implements QVTTestAdapter {
 
-	private ModelPartition targetResource;
+	private Resource targetResource;
 
 	protected String[] metamodelIDs;
 
@@ -67,7 +62,7 @@ public class QVTJMITestAdapter extends de.ikv.medini.ocl.test.OCLJMITestAdapter 
 		}
 		if ("true".equalsIgnoreCase(this.getProperty(QVTTestAdapter.QVTTESTADAPTER_TWOSOURCEMODELS))) {
 			//URI targetFileUri = URI.createFileURI((new File("test/source2.xml")).getAbsolutePath());
-			ModelPartition source2Partition = connection.getOrCreateTransientPartition("target2");
+			Resource source2Partition = connection.getOrCreateTransientPartition("target2");
 			//this.setIDs(source2Resource);
 			this.sourceModelList.add(source2Partition);
 		}
@@ -193,7 +188,7 @@ public class QVTJMITestAdapter extends de.ikv.medini.ocl.test.OCLJMITestAdapter 
 	}
 
 	public Object createModelElementInTarget(String modelElementType) {
-		ModelPartition r = this.simplePartition;
+		Resource r = this.simplePartition;
 		try {
 			this.simplePartition = this.targetResource;
 			return this.createModelElement(modelElementType);
@@ -203,7 +198,7 @@ public class QVTJMITestAdapter extends de.ikv.medini.ocl.test.OCLJMITestAdapter 
 	}
 
 	@Override
-	protected void addMetaModel(MofPackage metamodel) {
+	protected void addMetaModel(EPackage metamodel) {
 		this.getJMIQvtProcessorImpl().addMetaModel(metamodel);
 	}
 
@@ -226,9 +221,9 @@ public class QVTJMITestAdapter extends de.ikv.medini.ocl.test.OCLJMITestAdapter 
 	}
 
 	public Object createModelElementInModel(String modelElementType, int modelIndex) {
-		ModelPartition r = this.simplePartition;
+		Resource r = this.simplePartition;
 		try {
-			this.simplePartition = (ModelPartition) this.getQvtProcessorImpl().getModels().get(modelIndex);
+			this.simplePartition = (Resource) this.getQvtProcessorImpl().getModels().get(modelIndex);
 			return this.createModelElement(modelElementType);
 		} finally {
 			this.simplePartition = r;
@@ -237,5 +232,12 @@ public class QVTJMITestAdapter extends de.ikv.medini.ocl.test.OCLJMITestAdapter 
 
 	public boolean supportsRandomMode() {
 		return true;
+	}
+
+	@Override
+	public void addValueForFeature(Object modelElement, String property,
+			Object value) {
+		// TODO Auto-generated method stub
+		
 	}
 }
