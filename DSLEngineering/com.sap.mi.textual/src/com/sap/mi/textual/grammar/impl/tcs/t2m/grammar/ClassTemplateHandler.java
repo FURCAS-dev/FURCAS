@@ -35,6 +35,7 @@ import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.mi.textual.util.VarStringBuffer;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
@@ -153,13 +154,18 @@ public class ClassTemplateHandler<Type extends Object> {
             }
 
             String initString = null;
-            StringBuilder rulebody = new StringBuilder(); // first add ANTLR rule to Rulebody, then Java elements
+            VarStringBuffer rulebody = new VarStringBuffer(); // first add ANTLR rule to Rulebody, then Java elements
             
             boolean isAbstractRule = false;
             
             if (template.isAbstract()) {
-                initString = getInitString(template, false, false, false);
-                addAbstractRuleBody(template, templateRulename, rulebody, ruleBodyBufferFactory);
+            	if (addAbstractRuleBody(template, templateRulename, rulebody,
+						ruleBodyBufferFactory)) {
+					initString = "Object semRef = null;\n";
+					initString += getInitString(template, false, true, true);
+				}
+            	else
+            		initString = getInitString(template, false, false, false);
                 isAbstractRule = true;
             } else { // not abstract
                 
@@ -174,7 +180,7 @@ public class ClassTemplateHandler<Type extends Object> {
                 	//first we need to create a rule for the concrete classes case
                 	initString = getInitString(template, false, false, false);
                 	String templateRulenameImpl = namingHelper.getConcreteRuleNameForTemplate(template, syntaxLookup);
-                	StringBuilder implRuleBody = new StringBuilder();
+                	VarStringBuffer implRuleBody = new VarStringBuffer();
                 	String implRuleInitString = getInitString(template, false, true, true);
                 	addTemplateSequenceToRuleBody(template, ruleBodyBufferFactory, implRuleBody);
                 	addPostActions(template, implRuleBody);
@@ -222,7 +228,7 @@ public class ClassTemplateHandler<Type extends Object> {
     }
 
     private void addTemplateSequenceToRuleBody(ClassTemplate template,
-            RuleBodyBufferFactory ruleBodyBufferFactory, StringBuilder rulebody)
+            RuleBodyBufferFactory ruleBodyBufferFactory, VarStringBuffer rulebody)
     throws MetaModelLookupException {
         Sequence sequence = template.getTemplateSequence();
         String rulefragment = ruleBodyBufferFactory.getNewRuleBodyFragment(sequence);
@@ -230,7 +236,7 @@ public class ClassTemplateHandler<Type extends Object> {
         rulebody.append(rulefragment);
     }
 
-    private void addPostActions(ClassTemplate template, StringBuilder rulebody) {
+    private void addPostActions(ClassTemplate template, VarStringBuffer rulebody) {
         rulebody.append("\n  {\n"); // code action here
 
         // set location command
@@ -252,42 +258,50 @@ public class ClassTemplateHandler<Type extends Object> {
 
         StringBuilder initString = new StringBuilder(128);
         try {
-            if (withEnterNotification) {
-                String metaObjectListParam = namingHelper.getMetaTypeListParameter(template);
-                initString.append("List<String> metaType=").append( metaObjectListParam).append( ";\n");
-                ObservationDirectivesHelper.appendEnterTemplateNotification(initString, template);            
-            }
-            
             if (addObjectCreation) {
-                if (template.isReferenceOnly()) { // determine the type of proxy to create
-                    initString.append("IModelElementProxy ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaType) : null;\n");
-                } else {
-                    initString.append("IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, ");
-                    initString.append(template.isContext()).append(", ").append(
-                            ( template.isAddToContext() && (! forceAddToContextFalse)));
-                    ContextTags tags = template.getContextTags();
-                    if (tags != null && tags.getTags() != null && tags.getTags().size() > 0) {
-                        initString.append(", new String[]{");
-                        for (Iterator<String> iterator = tags.getTags().iterator(); iterator
-                                .hasNext();) {
-                            String tag = iterator.next();
-                            initString.append("\"").append(tag).append("\"");
-                            if (iterator.hasNext()) {
-                                initString.append(", ");
-                            }
-                        }
-                        initString.append("}");
-                    }
-                    initString.append(") : null;\n");
+            	String metaObjectListParam = namingHelper.getMetaTypeListParameter(template);
+            	initString.append("IModelElementProxy ret;\n"+ClassTemplateHandler.
+            		   createModelElementProxyString(template, 
+            		   forceAddToContextFalse,metaObjectListParam));
+            	if (withEnterNotification) {
+                    ObservationDirectivesHelper.appendEnterTemplateNotification(initString, template);            
                 }
                initString.append("org.antlr.runtime.Token firstToken=input.LT(1);\n");
             }
+        
         } catch (SyntaxElementException e) {
             errorBucket.addException(e);
         }
         return initString.toString();
     }
-
+    public static String createModelElementProxyString(ClassTemplate template, boolean forceAddToContextFalse,
+    		String metaObjectListParam)
+    {
+    	StringBuffer initString = new StringBuffer();
+    	initString.append("List<String> metaType=").append( metaObjectListParam).append( ";\n");
+    	if (template.isReferenceOnly()) { // determine the type of proxy to create
+            initString.append("ret=(getBacktrackingLevel()==0) ? createReferenceProxy(metaType) : null;\n");
+        } else {
+            initString.append("ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, ");
+            initString.append(template.isContext()).append(", ").append(
+                    ( template.isAddToContext() && (! forceAddToContextFalse)));
+            ContextTags tags = template.getContextTags();
+            if (tags != null && tags.getTags() != null && tags.getTags().size() > 0) {
+                initString.append(", new String[]{");
+                for (Iterator<String> iterator = tags.getTags().iterator(); iterator
+                        .hasNext();) {
+                    String tag = iterator.next();
+                    initString.append("\"").append(tag).append("\"");
+                    if (iterator.hasNext()) {
+                        initString.append(", ");
+                    }
+                }
+                initString.append("}");
+            }
+            initString.append(") : null;\n");
+        }
+    	return initString.toString();
+    }
     /**
      * utility method wrapping functionality for abstract template bodies
      * @param template
@@ -297,8 +311,9 @@ public class ClassTemplateHandler<Type extends Object> {
      * @throws MetaModelLookupException
      * @throws MetamodelNameResolvingException
      */
-    private void addAbstractRuleBody(ClassTemplate template, String templateRulename, StringBuilder rulebody, RuleBodyBufferFactory ruleBodyBufferFactory) throws MetaModelLookupException {
+    private boolean addAbstractRuleBody(ClassTemplate template, String templateRulename, VarStringBuffer rulebody, RuleBodyBufferFactory ruleBodyBufferFactory) throws MetaModelLookupException {
         boolean hasAddedSubTemplates = false; // drives writing "ret2=ret;"
+        boolean hasSemanticDisambiguate = false;
         String templateMode = template.getMode();
         
         if (template.isOperatored()) {
@@ -307,7 +322,7 @@ public class ClassTemplateHandler<Type extends Object> {
                 throw new RuntimeException("Operatored classtemplates with mode not implemented yet");
             }
             hasAddedSubTemplates = addOperatoredRules(template,
-                    templateRulename, rulebody);
+                    templateRulename, rulebody, ruleBodyBufferFactory);
 
         } else { // not operatored
             List<ResolvedNameAndReferenceBean<Type>> subtypes = null;
@@ -352,6 +367,8 @@ public class ClassTemplateHandler<Type extends Object> {
 						if(o1.equals(o2)) {
 						    return 0;
 						} else {
+							if(o1.getConcretesyntax() == null || o2.getConcretesyntax() == null)
+								return 0;
 							return o1.getConcretesyntax().getTemplates().indexOf(o1) -
 							o2.getConcretesyntax().getTemplates().indexOf(o2);
 						}
@@ -359,6 +376,8 @@ public class ClassTemplateHandler<Type extends Object> {
                 	
                 });
                 //add (ret = xyz | ret = abc | ...) for all templates xyz, abc, ... extending this one
+                SemanticDisambiguateHandler semanticHandler = new SemanticDisambiguateHandler(templates,
+                		errorBucket, namingHelper);
                 for(Template subtemp : templates){
                 	try {
 						if (subtemp instanceof OperatorTemplate) {
@@ -366,15 +385,23 @@ public class ClassTemplateHandler<Type extends Object> {
 										// need to be invoked from Operator
 										// rules
 						}
-						if (!isFirstAlternative) {
-							rulebody.append("\n  | ");
+						
+						if(semanticHandler.shouldUseSemanticDisambiguate(subtemp)) {
+							semanticHandler.addSemanticDisambiguateRule(subtemp, 
+									rulebody, ruleBodyBufferFactory,null, null, false);
+							hasSemanticDisambiguate = true;
+							
 						}
-						if (subtemp.getDisambiguateV3() != null) {
-							// add disambiguation rule
-							rulebody.append("(" + subtemp.getDisambiguateV3() + ")=>("); // b2
-						}
-						rulebody.append("ret="
+						else{
+							if(!isFirstAlternative)
+								rulebody.append("\n  | ");
+							if (subtemp.getDisambiguateV3() != null) {
+								// add disambiguation rule
+								rulebody.append("(" + subtemp.getDisambiguateV3() + ")=>("); // b2
+							}
+							rulebody.append("ret="
 								+ namingHelper.getRuleNameForMode(subtemp, templateMode));
+						}
 
 						isFirstAlternative = false;
 						hasAddedSubTemplates = true;
@@ -411,7 +438,10 @@ public class ClassTemplateHandler<Type extends Object> {
             rulebody.append("ret2=ret;");
         }
         rulebody.append("\n }");
+        return hasSemanticDisambiguate;
     }
+    
+    
 
     /**
      * adds a separate rule to the grammar which creates the given template element (cannot work if abstract template refers to abstract modelElement)
@@ -421,7 +451,7 @@ public class ClassTemplateHandler<Type extends Object> {
      */
     private void addAbstractContentsRule(ClassTemplate template, String templateAbstractRulename, RuleBodyBufferFactory ruleBodyBufferFactory) throws MetaModelLookupException {
         String initString = getInitString(template, true, true, true);
-        StringBuilder rulebody = new StringBuilder(); 
+        VarStringBuffer rulebody = new VarStringBuffer(); 
         addTemplateSequenceToRuleBody(template, ruleBodyBufferFactory,
                 rulebody);
         addPostActions(template, rulebody);
@@ -443,11 +473,12 @@ public class ClassTemplateHandler<Type extends Object> {
      * @param template
      * @param templateRulename
      * @param rulebody
+     * @param ruleBodyBufferFactory 
      * @return true if subtemplate rules have been added
      * @throws MetaModelLookupException
      */
     private boolean addOperatoredRules(ClassTemplate template,
-            String templateRulename, StringBuilder rulebody)
+            String templateRulename, VarStringBuffer rulebody, RuleBodyBufferFactory ruleBodyBufferFactory)
     throws MetaModelLookupException {
         boolean hasAddedSubTemplates = false;
         // need to create 2 production rules in this case, one for 
@@ -486,7 +517,7 @@ public class ClassTemplateHandler<Type extends Object> {
             boolean hasPrimaries = subtypes != null && primaries.size() > 0;
             
             
-            operatorHandler.addOperatorList(operatorList, templateRulename, hasPrimaries);
+            operatorHandler.addOperatorList(operatorList, templateRulename, hasPrimaries, ruleBodyBufferFactory, template);
 
             // add "primary_"+name rule alternating over primary subtemplates
 
