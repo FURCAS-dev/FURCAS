@@ -8,17 +8,13 @@ package de.hpi.sam.bp2009.solution.eventManager.tests;
 
 import junit.textui.TestRunner;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
-import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
+import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '<em><b>And Filter</b></em>'. <!-- end-user-doc -->
  * 
  */
-public class AndFilterTest extends EventFilterTest {
-
-    protected EventFilter trueFilter;
-    protected EventFilter falseFilter;
+public class AndFilterTest extends LogicalEventFilterTest {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -37,24 +33,13 @@ public class AndFilterTest extends EventFilterTest {
     }
 
     /**
-     * Returns the fixture for this And Filter test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     */
-    @Override
-    protected LogicalOperationFilter getFixture() {
-        return (LogicalOperationFilter) fixture;
-    }
-
-    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @see junit.framework.TestCase#setUp()
      */
     @Override
     public void setUp() {
-        setFixture(EventManagerFactory.eINSTANCE.createAndFilter());
-        this.trueFilter = new TrueFilter();
-        this.falseFilter = new FalseFilter();
+        super.setUp();
     }
 
     /**
@@ -77,21 +62,18 @@ public class AndFilterTest extends EventFilterTest {
      * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
      */
     public void testMatchesFor__NotificationTwoTrue() {
-        getFixture().getOperands().add(trueFilter);
-        getFixture().getOperands().add(trueFilter);
-        assertTrue("Two true is true", getFixture().matchesFor(null));
+        AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(trueFilter, trueFilter);
+        assertTrue("Two true is true", andFilter.matchesFor(null));
     }
 
     public void testMatchesFor__NotificationTwoFalse() {
-        getFixture().getOperands().add(falseFilter);
-        getFixture().getOperands().add(falseFilter);
-        assertFalse("Two false is false", getFixture().matchesFor(null));
+        AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(falseFilter, falseFilter);
+        assertFalse("Two false is false", andFilter.matchesFor(null));
     }
 
     public void testMatchesFor__Notification() {
-        getFixture().getOperands().add(falseFilter);
-        getFixture().getOperands().add(trueFilter);
-        assertFalse("Two true/false is false", getFixture().matchesFor(null));
+        AndFilter andFilter = EventManagerFactory.eINSTANCE.createAndFilterFor(falseFilter, trueFilter);
+        assertFalse("Two true/false is false",andFilter.matchesFor(null));
     }
 
 } // AndFilterTest

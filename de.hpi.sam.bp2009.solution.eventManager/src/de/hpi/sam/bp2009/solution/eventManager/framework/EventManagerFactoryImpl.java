@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.eventManager.framework;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -79,12 +78,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     @Override
-    public LogicalOperationFilter createAndFilter() {
-        LogicalOperationFilter andFilter = new AndFilter();
-        return andFilter;
-    }
-
-    @Override
     public OrFilter createOrFilter() {
         OrFilter orFilter = new OrFilter();
         return orFilter;
@@ -149,16 +142,14 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
    
     @Override
-    public EventFilter getAndFilterFor(EventFilter... eventFilters) {
-        LogicalOperationFilter and = createAndFilter();
-        and.getOperands().addAll(Arrays.asList(eventFilters));
+    public AndFilter createAndFilterFor(EventFilter... eventFilters) {
+        AndFilter and = new AndFilter(eventFilters);
         return and;
     }
 
     @Override
-    public EventFilter getOrFilterFor(EventFilter... eventFilters) {
-        LogicalOperationFilter or = createOrFilter();
-        or.getOperands().addAll(Arrays.asList(eventFilters));
+    public OrFilter createOrFilterFor(EventFilter... eventFilters) {
+        OrFilter or = new OrFilter(eventFilters);
         return or;
     }
 
@@ -166,14 +157,14 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     public EventFilter createFilterForElementInsertionOrDeletion(EClass cls) {
         NewValueClassFilterIncludingSubclasses nv = createNewValueClassFilterIncludingSubclasses(cls);
         OldValueClassFilterIncludingSubclasses ov = createOldValueClassFilterIncludingSubclasses(cls);
-        return getAndFilterFor(getOrFilterFor(nv, ov), createContainmentFilter());
+        return createAndFilterFor(createOrFilterFor(nv, ov), createContainmentFilter());
     }
 
     @Override
     public EventFilter createFilterForElementInsertion(EClass cls) {
         NewValueClassFilterIncludingSubclasses nv = createNewValueClassFilterIncludingSubclasses(cls);
         // Figure out what the containing Reference is
-        return getAndFilterFor(createOrFilterForEventTypes(Notification.ADD, Notification.SET, Notification.ADD_MANY), nv,
+        return createAndFilterFor(createOrFilterForEventTypes(Notification.ADD, Notification.SET, Notification.ADD_MANY), nv,
                 createContainmentFilter());
     }
 
@@ -195,7 +186,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         sf.setFeature(referredProperty);
 
         ClassFilter cf = createClassFilterIncludingSubclasses(eClass);
-        return getAndFilterFor(sf, cf);
+        return createAndFilterFor(sf, cf);
     }
 
     @Override
@@ -204,7 +195,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         sf = createAssociationFilter();
         sf.setFeature(referredProperty);
         ClassFilter cf = createClassFilterIncludingSubclasses(eClass);
-        return getAndFilterFor(sf, cf);
+        return createAndFilterFor(sf, cf);
     }
 
     @Override
