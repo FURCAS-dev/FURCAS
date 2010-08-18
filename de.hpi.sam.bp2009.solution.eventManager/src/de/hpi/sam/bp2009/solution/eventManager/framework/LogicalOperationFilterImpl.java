@@ -10,7 +10,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 
 abstract public class LogicalOperationFilterImpl extends EventFilter implements LogicalOperationFilter {
-    Set<EventFilter> filters = new HashSet<EventFilter>();
+    private Set<EventFilter> filters = new HashSet<EventFilter>();
 
     /**
      * Returns a read-only collection containing the filters
