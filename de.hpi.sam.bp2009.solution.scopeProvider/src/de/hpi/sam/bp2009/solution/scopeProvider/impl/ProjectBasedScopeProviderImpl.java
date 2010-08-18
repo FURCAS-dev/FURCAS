@@ -231,17 +231,18 @@ public class ProjectBasedScopeProviderImpl implements ProjectBasedScopeProvider 
 
     private Set<Resource> getAllResourcesFromDirectory(IFolder modelDirectory) throws CoreException {
         final Set<Resource> resources = new HashSet<Resource>();
-        /* TODO All files in the given directory are seen as model files.
-        * Perhaps, a check whether a file is a valid resource or not is necessary.
-        * But this is probably too expensive to do upon each query / scope determination.
-        */
         for (IResource f : modelDirectory.members()) {
             if(!(f instanceof IFile))
                 continue;
-            IProject project = f.getProject();
-            IPath projectRelativePath = f.getProjectRelativePath();
-            URI uri = URI.createPlatformResourceURI(project.getName()+"/"+projectRelativePath.toString(), /*encode*/ true);
-            addNewOrInMemoryResource(resources, uri, f.getFileExtension());
+            final Set<String> extensions = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().keySet();
+            String fileExtension = f.getFileExtension();
+            //only files with extension 'xmi', 'xml' or one of the registered ones include a resource
+            if ("xmi".equals(fileExtension) || "xml".equals(fileExtension) || extensions.contains(fileExtension)) {
+                IProject project = f.getProject();
+                IPath projectRelativePath = f.getProjectRelativePath();
+                URI uri = URI.createPlatformResourceURI(project.getName()+"/"+projectRelativePath.toString(), /*encode*/ true);
+                addNewOrInMemoryResource(resources, uri, fileExtension);
+            }
         }
         return resources;
     }
