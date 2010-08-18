@@ -180,8 +180,7 @@ public class RegistrationManagerTableBased {
         // adjustFilter() has to be called before the dnf is formed, but there has to be at least one logicaloperationfilter at
         // the top
         if (!(filterTree instanceof OrFilter || filterTree instanceof AndFilter)) {
-            LogicalOperationFilter topOfTree = EventManagerFactory.eINSTANCE.createAndFilter();
-            topOfTree.getOperands().add(filterTree);
+            LogicalOperationFilter topOfTree = EventManagerFactory.eINSTANCE.createAndFilterFor(filterTree);
             filterTree = topOfTree;
         }
         // the order of the following 2 calls is important! adjustFilter might change the structure of the filter tree

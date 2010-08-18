@@ -17,7 +17,6 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilterIncludingSubcl
 import de.hpi.sam.bp2009.solution.eventManager.filters.ContainmentFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilterIncludingSubclasses;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NotFilter;
@@ -49,11 +48,6 @@ public interface EventManagerFactory {
      * {@see EventTypeFilter#EventTypeFilter()}
      */
     EventTypeFilter createEventTypeFilter();
-
-    /**
-     * {@see AndFilter#AndFilter()}
-     */
-    LogicalOperationFilter createAndFilter();
 
     /**
      * {@see OrFilter#OrFilter()}
@@ -150,7 +144,7 @@ public interface EventManagerFactory {
      *            filter to combine with an OR
      * @return the created {@link OrFilter}
      */
-    EventFilter getOrFilterFor(EventFilter... eventFilters);
+    OrFilter createOrFilterFor(EventFilter... eventFilters);
 
     /**
      * Shortcut, to create an {@link AndFilter} for incoming {@link EventFilter}s
@@ -159,7 +153,7 @@ public interface EventManagerFactory {
      *            filter to combine with an And
      * @return the created {@link AndFilter}
      */
-    EventFilter getAndFilterFor(EventFilter... eventFilters);
+    AndFilter createAndFilterFor(EventFilter... eventFilters);
 
     /**
      * If <code>event</code> indicates the setting/adding/removal of/to/from a containment reference, then it is expanded into a

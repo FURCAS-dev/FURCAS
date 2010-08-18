@@ -213,7 +213,7 @@ implements OperationBodyToCallMapper {
      * @return the filter matching all relevant events 
      */
     public EventFilter getSynthesisedFilter() {
-        return EventManagerFactory.eINSTANCE.getOrFilterFor(filters.toArray(new EventFilter[filters.size()]));
+        return EventManagerFactory.eINSTANCE.createOrFilterFor(filters.toArray(new EventFilter[filters.size()]));
     }
 
     /**
