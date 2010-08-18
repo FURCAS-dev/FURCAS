@@ -18,6 +18,12 @@ public interface IModelElementProxy {
     Object getRealObject();
     
     /**
+     * the parent modelElement.
+     * @return
+     */
+    Object getParent();
+    
+    /**
      * if true, this proxy should never cause ModelElement generation.
      * @return
      */
