@@ -363,7 +363,7 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})", buf.getResult() );
     }
     
     
@@ -391,7 +391,7 @@ public class PropertyTypeHandlerTest {
         
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName_testmode {setProperty(ret, \"PropertyName\", temp);})", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName_testmode {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})", buf.getResult() );
     }
 
     /**
@@ -439,7 +439,7 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})? ", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})? ", buf.getResult() );
     }
 
     /**
@@ -463,7 +463,7 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})* )", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");} ( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})* )", buf.getResult() );
     }
 
     /**
@@ -493,7 +493,9 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})* )", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}" +
+        		" ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})* )", 
+        		buf.getResult() );
     }
 
     /**
@@ -517,7 +519,9 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})* )? ", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})* )? ",
+        		buf.getResult() );
     }
 
     /**
@@ -549,7 +553,9 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})+)", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}" +
+        		" ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);" +
+        		"\nsetParent(temp,ret,\"PropertyName\");})+)", buf.getResult() );
     }
     
     /**
@@ -581,7 +587,11 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})?)", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}) ((SEP) temp=FeatureTypeName " +
+        		"{setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"})? ((SEP) temp=FeatureTypeName " +
+        		"{setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})?)", buf.getResult() );
     }
     
     /**
@@ -612,7 +622,9 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})?)", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");})?)", buf.getResult() );
     }
     
     /**
@@ -643,7 +655,10 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);})?)? ", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"})? ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"})?)? ", buf.getResult() );
     }
     
     /**
@@ -674,7 +689,10 @@ public class PropertyTypeHandlerTest {
 
         propHandler.addElement(prop , buf);
 
-        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);}))", buf.getResult() );
+        assertEquals("( temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"} ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"}) ((SEP) temp=FeatureTypeName {setProperty(ret, \"PropertyName\", temp);\nsetParent(temp,ret,\"PropertyName\");" +
+        		"}))", buf.getResult() );
     }
     
     /**

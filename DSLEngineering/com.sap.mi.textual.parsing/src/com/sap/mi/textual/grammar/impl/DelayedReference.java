@@ -26,7 +26,11 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  */
 public class DelayedReference implements Cloneable {
 
-    /** The Constant AUTOCREATE_ALWAYS. */
+    public ANTLR3LocationToken getFirstToken() {
+		return firstToken;
+	}
+
+	/** The Constant AUTOCREATE_ALWAYS. */
     public static final String AUTOCREATE_ALWAYS = "always";
 
     /** The Constant AUTOCREATE_NEVER. */
@@ -42,7 +46,9 @@ public class DelayedReference implements Cloneable {
     public static final int TYPE_SEMANTIC_PREDICATE = 1;
 
     public static final int CONTEXT_LOOKUP = 2;
-
+    
+    public static final int SEMANTIC_DISAMBIGUATE = 3;
+    
     /** The current context. */
     private Object referenceContextObject;
     
@@ -57,7 +63,7 @@ public class DelayedReference implements Cloneable {
     private Object modelElement;
 
     /** The property name. */
-    private final String propertyName;
+    private String propertyName;
 
     /** The value type name. */
     private List<String> valueTypeName;
@@ -101,6 +107,8 @@ public class DelayedReference implements Cloneable {
     private String mode;
 
     private IRuleName ruleNameFinder;
+    
+    private ANTLR3LocationToken firstToken;
 
     /**
      * indicates the type of this reference expected to be one of the type
@@ -116,6 +124,12 @@ public class DelayedReference implements Cloneable {
     private Object textBlock;
 
     private Connection connection;
+
+	private List<SemanticDisambRuleData> semRulData;
+	
+	private Object semanticObject;
+
+	private Object opTemplateLefthand;
 
     /**
      * Used by
@@ -252,7 +266,26 @@ public class DelayedReference implements Cloneable {
         this.isOptional = isOptional;
     }
 
-    /**
+    public DelayedReference(Object currentContextElement,
+			int type, Object modelElement, Object semanticObject,
+			Object opTemplateLefthand, String opName, List<SemanticDisambRuleData> ruleData, ANTLR3LocationToken lastToken, ANTLR3LocationToken firstToken,
+			boolean hasContext2, boolean isOptional) {
+		super();
+		this.referenceContextObject = currentContextElement;
+		this.modelElement = modelElement;
+		this.type = type;
+		this.firstToken = firstToken;
+		this.propertyName = null;
+		this.token = lastToken;
+		this.isOptional = isOptional;
+		this.hasContext = hasContext2;
+		this.semRulData = ruleData;
+		this.semanticObject = semanticObject;
+		this.propertyName =opName;
+		this.opTemplateLefthand = opTemplateLefthand;
+	}
+
+	/**
      * Gets the current context.
      * 
      * @return the current context
@@ -593,8 +626,29 @@ public class DelayedReference implements Cloneable {
     public Connection getConnection() {
         return connection;
     }
-
     public void setCurrentForeachElement(RefObject currentForeachElement) {
         this.currentForeachElement = currentForeachElement;
     }
+
+
+	public List<SemanticDisambRuleData> getSemRulData() {
+		return semRulData;
+	}
+
+	public void setSemRulData(List<SemanticDisambRuleData> semRulData) {
+		this.semRulData = semRulData;
+	}
+
+	public Object getSemanticObject() {
+		return semanticObject;
+	}
+
+	public Object getOpTemplateLefthand() {
+		return opTemplateLefthand;
+	}
+    
+	public boolean isSemanticDisambiguatedOperatorRule()
+	{
+		return type == SEMANTIC_DISAMBIGUATE && opTemplateLefthand != null;
+	}
 }
