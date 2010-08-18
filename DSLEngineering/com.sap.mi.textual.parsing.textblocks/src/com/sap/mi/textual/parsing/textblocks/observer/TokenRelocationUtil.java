@@ -334,7 +334,7 @@ public class TokenRelocationUtil {
      * 
      * @param targetBlock
      */
-    static void updateParentsAscendingAfterRemoval(TextBlock targetBlock) {
+    public static void updateParentsAscendingAfterRemoval(TextBlock targetBlock) {
     	TextBlock parent = targetBlock.getParentBlock();
     	if(parent != null) {
     		updateTextBlockLocationAfterRemoval(parent);

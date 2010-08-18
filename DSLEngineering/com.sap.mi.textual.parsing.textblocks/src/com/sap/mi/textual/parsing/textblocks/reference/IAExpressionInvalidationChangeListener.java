@@ -199,24 +199,26 @@ public class IAExpressionInvalidationChangeListener implements UpdateListener, C
 	Collection<TextBlock> result = new ArrayList<TextBlock>();
 	InjectorAction injectorAction = (InjectorAction) conn.getElement(((Partitionable) reference.getQueryElement())
 		.get___Mri());
-	InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock) injectorAction.refImmediateComposite();
-	Template template = injectorActionsBlock.getParentTemplate();
-
-	// now find all TextBlocks referencing this template;
-	Collection<TextBlock> tbs = getTextBlocksUsingQueryElement(conn, template);
-
-	for (TextBlock textBlock : tbs) {
-	    // first check if the alternative in which the injector action
-	    // resides was
-	    // chosen during the parsing process
-	    // TODO this is a workaround. to properly decide this we need to
-	    // keep track
-	    // of the alternative chosen at runtime of the parser
-	    boolean wasInChosenAlternative = isInjectorActionInChosenAlternative(injectorActionsBlock, textBlock);
-
-	    if (wasInChosenAlternative) {
-		result.add(textBlock);
-	    }
+	if(injectorAction != null) {
+        	InjectorActionsBlock injectorActionsBlock = (InjectorActionsBlock) injectorAction.refImmediateComposite();
+        	Template template = injectorActionsBlock.getParentTemplate();
+        
+        	// now find all TextBlocks referencing this template;
+        	Collection<TextBlock> tbs = getTextBlocksUsingQueryElement(conn, template);
+        
+        	for (TextBlock textBlock : tbs) {
+        	    // first check if the alternative in which the injector action
+        	    // resides was
+        	    // chosen during the parsing process
+        	    // TODO this is a workaround. to properly decide this we need to
+        	    // keep track
+        	    // of the alternative chosen at runtime of the parser
+        	    boolean wasInChosenAlternative = isInjectorActionInChosenAlternative(injectorActionsBlock, textBlock);
+        
+        	    if (wasInChosenAlternative) {
+        		result.add(textBlock);
+        	    }
+        	}
 	}
 	return result;
     }

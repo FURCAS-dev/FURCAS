@@ -94,6 +94,9 @@ public class TextBlocksAwareModelAdapter extends DefaultTextAwareModelAdapter {
         		createdObject = modelAdapter.createElement(typeName);
         	}
         		
+        	if(createdObject == null) {
+        		return null;
+        	}
             
             Set<String> features = attributes.keySet();
             for (String prop : features) {
@@ -104,8 +107,10 @@ public class TextBlocksAwareModelAdapter extends DefaultTextAwareModelAdapter {
                     if (value instanceof ModelElementProxy) {
                         ModelElementProxy valueProxy = (ModelElementProxy) value;
                         value = valueProxy.getRealObject();
-                        if (value == null) 
-                        	throw new RuntimeException("Bug: proxy value for '" +prop +"' of type "+valueProxy.getType()+" had not been resolved.");
+                        //TODO this should be checked after delayed references have been resolved as
+                        //due to semantically predicated templates elements may be resolved later on
+//                        if (value == null) 
+//                        	throw new RuntimeException("Bug: proxy value for '" +prop +"' of type "+valueProxy.getType()+" had not been resolved.");
                     }
                     try {
                         set(createdObject, prop, value);
