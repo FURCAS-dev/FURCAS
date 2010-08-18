@@ -23,8 +23,6 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.Statistics;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.NotFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.PackageFilter;
 
@@ -180,12 +178,12 @@ public class RegistrationManagerTableBased {
         // adjustFilter() has to be called before the dnf is formed, but there has to be at least one logicaloperationfilter at
         // the top
         if (!(filterTree instanceof OrFilter || filterTree instanceof AndFilter)) {
-            LogicalOperationFilter topOfTree = EventManagerFactory.eINSTANCE.createAndFilterFor(filterTree);
+            LogicalOperationFilterImpl topOfTree = EventManagerFactory.eINSTANCE.createAndFilterFor(filterTree);
             filterTree = topOfTree;
         }
         // the order of the following 2 calls is important! adjustFilter might change the structure of the filter tree
         filterTree = adjustFilter(filterTree);
-        OrFilter filterInNormalForm = getDisjunctiveNormalForm((LogicalOperationFilter) filterTree);
+        OrFilter filterInNormalForm = getDisjunctiveNormalForm((LogicalOperationFilterImpl) filterTree);
         // visit the whole filter tree and add each atomic filter to its corresponding filterTable.
         List<Registration> registrations = new LinkedList<Registration>();
         for (EventFilter filter : filterInNormalForm.getOperands()) {
@@ -234,7 +232,7 @@ public class RegistrationManagerTableBased {
     private Map<EventFilter, TableForEventFilter> getFilterTablesToRegisterWith(AndFilter andFilter) {
         // determine tables to register with; needed already for construction of Registration
         Map<EventFilter, TableForEventFilter> filterTablesToRegisterWith = new HashMap<EventFilter, TableForEventFilter>();
-        LogicalOperationFilter level1OfTree = andFilter;
+        LogicalOperationFilterImpl level1OfTree = andFilter;
         for (EventFilter leafOfTree : level1OfTree.getOperands()) {
             TableForEventFilter filterTable = getFilterTable(leafOfTree);
             if (filterTable == null) {
@@ -495,8 +493,8 @@ public class RegistrationManagerTableBased {
      */
     private static EventFilter adjustFilter(EventFilter source) {
         // traverse tree recursively
-        if (source instanceof LogicalOperationFilter) {
-            Set<EventFilter> sourceOperands = ((LogicalOperationFilter) source).getOperands();
+        if (source instanceof LogicalOperationFilterImpl) {
+            Set<EventFilter> sourceOperands = ((LogicalOperationFilterImpl) source).getOperands();
             EventFilter[] targetOperands = new EventFilter[sourceOperands.size()];
             int index = 0;
             for (EventFilter operand : sourceOperands) {
@@ -582,7 +580,7 @@ public class RegistrationManagerTableBased {
         for (EPackage _package : containedPackages) {
             orFilterOperands[index++] = new PackageFilter(_package);
         }
-        LogicalOperationFilter orFilter = new OrFilter(orFilterOperands);
+        LogicalOperationFilterImpl orFilter = new OrFilter(orFilterOperands);
 
         if (filter.isNegated()) {
             NotFilter notFilter = new NotFilter(orFilter);
@@ -617,23 +615,23 @@ public class RegistrationManagerTableBased {
      * 
      * @return a filter tree in disjunctive normal form which has exactly the same semantics like the original tree
      */
-    public static OrFilter getDisjunctiveNormalForm(LogicalOperationFilter filter) {
+    public static OrFilter getDisjunctiveNormalForm(LogicalOperationFilterImpl filter) {
 
         // perhaps the tree is in DNF yet?
         if (isInDisjunctiveNormalForm(filter))
             return (OrFilter) filter;
 
-        LogicalOperationFilter result = filter;
+        LogicalOperationFilterImpl result = filter;
 
         // eliminate negations and then expand the tree until the disjunctive
         // normalform is reached
-        result = (LogicalOperationFilter) eliminateNegations(result);
-        result = (LogicalOperationFilter) getExpandedSubTree(null, result);
+        result = (LogicalOperationFilterImpl) eliminateNegations(result);
+        result = (LogicalOperationFilterImpl) getExpandedSubTree(null, result);
 
         // expandSubTree might also produce a conjunctive normal form =>
         // transform again
         if (!isInDisjunctiveNormalForm(result))
-            result = (LogicalOperationFilter) getExpandedSubTree(null, result);
+            result = (LogicalOperationFilterImpl) getExpandedSubTree(null, result);
         else
             return (OrFilter) result;
 
@@ -645,10 +643,10 @@ public class RegistrationManagerTableBased {
                  * This is currently an OrFilter which connects the leaves of the tree => between the OrFilter and each leaf, an
                  * AndFilter is inserted.
                  */
-                LogicalOperationFilter orfilter = new OrFilter();
+                LogicalOperationFilterImpl orfilter = new OrFilter();
                 for (EventFilter operand : result.getOperands()) {
-                    LogicalOperationFilter tmp = new AndFilter(operand);
-                    orfilter.getOperands().add(tmp);
+                    LogicalOperationFilterImpl tmp = new AndFilter(operand);
+                    orfilter.addOperand(tmp);
                 }
                 result = orfilter;
 
@@ -656,13 +654,13 @@ public class RegistrationManagerTableBased {
                 /*
                  * This is an AndFilter which connects the leafs => put an OrFilter on the top of the tree
                  */
-                LogicalOperationFilter tmp = new OrFilter(result);
+                LogicalOperationFilterImpl tmp = new OrFilter(result);
                 result = tmp;
 
             } else if (result instanceof NotFilter) {
                 // TODO log an error, this may not happen (or does it? => test it!!)
-                LogicalOperationFilter afilter = new AndFilter(result);
-                LogicalOperationFilter tmp = new OrFilter(afilter);
+                LogicalOperationFilterImpl afilter = new AndFilter(result);
+                LogicalOperationFilterImpl tmp = new OrFilter(afilter);
                 result = tmp;
 
             }
@@ -686,10 +684,10 @@ public class RegistrationManagerTableBased {
          */
         if (!(filter instanceof OrFilter))
             return false;
-        for (EventFilter operand : ((LogicalOperationFilter) filter).getOperands()) {
+        for (EventFilter operand : ((LogicalOperationFilterImpl) filter).getOperands()) {
             if (!(operand instanceof AndFilter))
                 return false;
-            for (EventFilter operandsOperand : ((LogicalOperationFilter) operand).getOperands()) {
+            for (EventFilter operandsOperand : ((LogicalOperationFilterImpl) operand).getOperands()) {
                 if (operandsOperand instanceof OrFilter || operandsOperand instanceof AndFilter)
                     return false;
             }
@@ -701,7 +699,7 @@ public class RegistrationManagerTableBased {
      * This method traverses the tree recursively and pushes negation to the leafs of the tree using "De Morgan". When the first
      * <code>NotFilter</code> is reached, the traversing is being continued using {@link #getNegatedSubTree()}.
      * 
-     * @return a filter tree without <code>NotFilter</code>s, wich has exactly the same semantic like the original tree.
+     * @return a filter tree without <code>NotFilter</code>s, which has exactly the same semantics as the original tree.
      */
     private static EventFilter eliminateNegations(EventFilter filter) {
 
@@ -709,23 +707,22 @@ public class RegistrationManagerTableBased {
         if (filter instanceof NotFilter) {
             // DeMorgan: negate the Terminals (Filter) and replace the connecting OR
             // by AND and vice versa (is done in getNegatedSubTree())
-            EventFilter operand = ((LogicalOperationFilter) filter).getOperands().iterator().next();
+            EventFilter operand = ((LogicalOperationFilterImpl) filter).getOperands().iterator().next();
             // substitue this by the negated subtree
             return getNegatedSubTree(operand);
         }
 
-        // Check if a LogicalOperationFilter was shall be negated
-        if (filter instanceof LogicalOperationFilter) {
+        // Check if a LogicalOperationFilter shall be negated
+        if (filter instanceof LogicalOperationFilterImpl) {
             // clone list
-            List<EventFilter> oldOperands = new ArrayList<EventFilter>(((LogicalOperationFilter) filter).getOperands().size());
-            oldOperands.addAll(((LogicalOperationFilter) filter).getOperands());
+            List<EventFilter> oldOperands = new ArrayList<EventFilter>(((LogicalOperationFilterImpl) filter).getOperands());
 
             // clear original list
-            ((LogicalOperationFilter) filter).getOperands().clear();
+            ((LogicalOperationFilterImpl) filter).clearOperands();
 
             // refill original list
             for (EventFilter operand : oldOperands)
-                addOperand(((LogicalOperationFilter) filter), eliminateNegations(operand));
+                addOperand(((LogicalOperationFilterImpl) filter), eliminateNegations(operand));
 
             // no substitution of the filter needed
             return filter;
@@ -743,12 +740,12 @@ public class RegistrationManagerTableBased {
      * 
      * @return the expanded subtree which did not change any semantics.
      */
-    static EventFilter getExpandedSubTree(LogicalOperationFilter parent, EventFilter filter) {
-        if (!(filter instanceof LogicalOperationFilter)) {
+    static EventFilter getExpandedSubTree(LogicalOperationFilterImpl parent, EventFilter filter) {
+        if (!(filter instanceof LogicalOperationFilterImpl)) {
             return filter;
         }
 
-        LogicalOperationFilter lof = (LogicalOperationFilter) filter;
+        LogicalOperationFilterImpl lof = (LogicalOperationFilterImpl) filter;
 
         // recursively expand subtree
         // clone operands
@@ -756,20 +753,19 @@ public class RegistrationManagerTableBased {
         oldOperands.addAll(lof.getOperands());
 
         // clear "new" operands
-        lof.getOperands().clear();
+        lof.clearOperands();
 
         /*
          * shrink degenerated trees, e.g. an AndFilter that contains only one OrFilter which contains filters is shrinked to the
          * AndFilter which then contains the OrFilter's operands
          */
-        if (oldOperands.size() == 1 && oldOperands.iterator().next() instanceof LogicalOperationFilter) {
+        if (oldOperands.size() == 1 && oldOperands.iterator().next() instanceof LogicalOperationFilterImpl) {
             if(oldOperands.iterator().next() instanceof AndFilter){
                 lof = new AndFilter();
             }else{
                 lof = new OrFilter();
             }
-            oldOperands = ((LogicalOperationFilter) oldOperands.iterator().next()).getOperands();
-            
+            oldOperands = ((LogicalOperationFilterImpl) oldOperands.iterator().next()).getOperands();
         }
 
         for (EventFilter operand : oldOperands) {
@@ -779,7 +775,7 @@ public class RegistrationManagerTableBased {
                  * simplyfy: due to commutativity of logical ORs and ANDs, the operands of the subtree can be added to this's
                  * operands if the composite LogicalOperationFilter is of the same type
                  */
-                lof.getOperands().addAll(((LogicalOperationFilter) expandedSubtree).getOperands());
+                lof.addOperands(((LogicalOperationFilterImpl) expandedSubtree).getOperands());
             } else {
                 addOperand(lof, expandedSubtree);
             }
@@ -790,12 +786,12 @@ public class RegistrationManagerTableBased {
         if (isDNFyet || willBeShrinkedIfNotMultipliedOut)
             return lof;
         else
-            return multiplyOut(lof, new LinkedList<LogicalOperationFilter>(), 0);
+            return multiplyOut(lof, new LinkedList<LogicalOperationFilterImpl>(), 0);
     }
     static long getLeafCount (EventFilter f){
-        if(f instanceof LogicalOperationFilter){
+        if(f instanceof LogicalOperationFilterImpl){
             long count =0l;
-            for(EventFilter o: ((LogicalOperationFilter) f).getOperands()){
+            for(EventFilter o: ((LogicalOperationFilterImpl) f).getOperands()){
                 count +=getLeafCount(o);
             }
             return count;
@@ -812,8 +808,8 @@ public class RegistrationManagerTableBased {
      *            start with 0, this param is only needed internally
      * @return the expanded tree.
      */
-    private static LogicalOperationFilter multiplyOut(LogicalOperationFilter filter,
-            List<LogicalOperationFilter> intermediateResult, int index) {
+    private static LogicalOperationFilterImpl multiplyOut(LogicalOperationFilterImpl filter,
+            List<LogicalOperationFilterImpl> intermediateResult, int index) {
 //        System.out.println("Depth: "+ getDepth(filter) + " Leaves: "+getLeafCount(filter));
         List<EventFilter> operands = new ArrayList<EventFilter>(filter.getOperands());
         if (operands.size() < 2)
@@ -825,7 +821,7 @@ public class RegistrationManagerTableBased {
             // first check, if multiplying out the subtree is possible
             boolean moPossible = false;
             for (EventFilter operand : operands) {
-                if (operand instanceof LogicalOperationFilter) {
+                if (operand instanceof LogicalOperationFilterImpl) {
                     moPossible = true;
                     break; // one contained LogicalOperationFilter is enough
                 }
@@ -834,16 +830,16 @@ public class RegistrationManagerTableBased {
                 return filter;
 
             Set<EventFilter> tmp1 = null;
-            if (operands.get(0) instanceof LogicalOperationFilter)
-                tmp1 = ((LogicalOperationFilter) operands.get(0)).getOperands();
+            if (operands.get(0) instanceof LogicalOperationFilterImpl)
+                tmp1 = ((LogicalOperationFilterImpl) operands.get(0)).getOperands();
             else {
                 tmp1 = new HashSet<EventFilter>(1);
                 tmp1.add(operands.get(0));
             }
 
             Set<EventFilter> tmp2 = null;
-            if (operands.get(1) instanceof LogicalOperationFilter)
-                tmp2 = ((LogicalOperationFilter) operands.get(1)).getOperands();
+            if (operands.get(1) instanceof LogicalOperationFilterImpl)
+                tmp2 = ((LogicalOperationFilterImpl) operands.get(1)).getOperands();
             else {
                 tmp2 = new HashSet<EventFilter>(1);
                 tmp2.add(operands.get(1));
@@ -852,7 +848,7 @@ public class RegistrationManagerTableBased {
             /*
              * take the first 2 expressions ( (a | b) & (c | d) ) and tramsform them to (a & c) | (a & d) | (b & c) | (b & d)
              */
-            LogicalOperationFilter lof = null;
+            LogicalOperationFilterImpl lof = null;
             for (EventFilter filter1 : tmp1) {
                 for (EventFilter filter2 : tmp2) {
                     if (filter instanceof AndFilter) {
@@ -872,22 +868,22 @@ public class RegistrationManagerTableBased {
             /*
              * the intermediate result is just a list of small trees they have to be connected using a LogicalOperationFilter.
              */
-            LogicalOperationFilter result;
+            LogicalOperationFilterImpl result;
             try {
-                result = (LogicalOperationFilter) getSubstitutionForLogicalOperation(filter);
+                result = (LogicalOperationFilterImpl) getSubstitutionForLogicalOperation(filter);
             } catch (Exception e) {
                 result = null;
             }
 
-            for (LogicalOperationFilter lof : intermediateResult)
+            for (LogicalOperationFilterImpl lof : intermediateResult)
                 addOperand(result, lof);
 
             return result;
         }
 
         Set<EventFilter> currentOperands = null;
-        if (operands.get(index) instanceof LogicalOperationFilter) {
-            currentOperands = ((LogicalOperationFilter) operands.get(index)).getOperands();
+        if (operands.get(index) instanceof LogicalOperationFilterImpl) {
+            currentOperands = ((LogicalOperationFilterImpl) operands.get(index)).getOperands();
         } else {
             currentOperands = new HashSet<EventFilter>(1);
             currentOperands.add(operands.get(index));
@@ -898,13 +894,13 @@ public class RegistrationManagerTableBased {
          * respectively to each clone. => (a & c & e) | (a & d & e) | (b & c & e) | (b & d & e) | (a & c & f) | (a & d & f) | (b &
          * c & f) | (b & d & f)
          */
-        List<LogicalOperationFilter> irClone = new ArrayList<LogicalOperationFilter>(intermediateResult.size());
+        List<LogicalOperationFilterImpl> irClone = new ArrayList<LogicalOperationFilterImpl>(intermediateResult.size());
         irClone.addAll(intermediateResult);
         intermediateResult.clear();
 
         for (EventFilter currentOperand : currentOperands) {
-            for (LogicalOperationFilter currentIntermediateResult : irClone) {
-                LogicalOperationFilter clone = (LogicalOperationFilter) currentIntermediateResult.clone();
+            for (LogicalOperationFilterImpl currentIntermediateResult : irClone) {
+                LogicalOperationFilterImpl clone = (LogicalOperationFilterImpl) currentIntermediateResult.clone();
                 addOperand(clone, currentOperand);
                 intermediateResult.add(clone);
             }
@@ -913,7 +909,7 @@ public class RegistrationManagerTableBased {
         return multiplyOut(filter, intermediateResult, index + 1);
     }
 
-    private static LogicalOperationFilter getSubstitutionForLogicalOperation(LogicalOperationFilter filter) {
+    private static LogicalOperationFilterImpl getSubstitutionForLogicalOperation(LogicalOperationFilterImpl filter) {
         if (filter instanceof AndFilter) {
             return new OrFilter();
         }
@@ -928,20 +924,20 @@ public class RegistrationManagerTableBased {
      * 
      * @return the maximal depth of the tree.
      */
-    public static int getDepth(LogicalOperationFilter filter) {
+    public static int getDepth(LogicalOperationFilterImpl filter) {
         return getDepth(filter, 1);
     }
 
-    private static int getDepth(LogicalOperationFilter filter, int level) {
+    private static int getDepth(LogicalOperationFilterImpl filter, int level) {
         int result = 0;
         for (EventFilter currentFilter : filter.getOperands()) {
-            if (currentFilter instanceof LogicalOperationFilter) {
+            if (currentFilter instanceof LogicalOperationFilterImpl) {
                 int nextLevel = level + 1;
                 // Do not count NotFilter
                 if (currentFilter instanceof NotFilter)
                     nextLevel = level;
 
-                result = Math.max(result, getDepth((LogicalOperationFilter) currentFilter, nextLevel));
+                result = Math.max(result, getDepth((LogicalOperationFilterImpl) currentFilter, nextLevel));
             }
         }
         return result + level;
@@ -953,20 +949,20 @@ public class RegistrationManagerTableBased {
      */
     private static EventFilter getNegatedSubTree(EventFilter filter) {
         if (filter instanceof NotFilter) {
-            EventFilter result = new ArrayList<EventFilter>(((LogicalOperationFilter) filter).getOperands()).get(0);
+            EventFilter result = new ArrayList<EventFilter>(((LogicalOperationFilterImpl) filter).getOperands()).get(0);
             // trick in oder to continue the recursion without negating the operand
             return getNegatedSubTree(getNegatedSubTree(result));
         }
 
-        if (filter instanceof LogicalOperationFilter) {
+        if (filter instanceof LogicalOperationFilterImpl) {
             // replace the OrFilter(this) by an AndFilter and negate its operands
-            LogicalOperationFilter result = getSubstitutionForLogicalOperation((LogicalOperationFilter) filter);
+            LogicalOperationFilterImpl result = getSubstitutionForLogicalOperation((LogicalOperationFilterImpl) filter);
 
-            for (EventFilter operand : ((LogicalOperationFilter) filter).getOperands()) {
+            for (EventFilter operand : ((LogicalOperationFilterImpl) filter).getOperands()) {
                 EventFilter negatedOperand = getNegatedSubTree(operand);
                 // simplify due to commutativity of AND/OR conjunction
                 if (operand.getClass().equals(result.getClass())) {
-                    result.getOperands().addAll(((LogicalOperationFilter) negatedOperand).getOperands());
+                    result.addOperands(((LogicalOperationFilterImpl) negatedOperand).getOperands());
                 } else {
                     addOperand(result, negatedOperand);
                 }
@@ -989,13 +985,9 @@ public class RegistrationManagerTableBased {
      *            the operand to add
      * @return true if the operand was added
      */
-    private static boolean addOperand(LogicalOperationFilter filter, EventFilter operand) {
-
+    private static boolean addOperand(LogicalOperationFilterImpl filter, EventFilter operand) {
         // prevent doubles
-        if (filter.getOperands().contains(operand))
-            return false;
-        else
-            filter.getOperands().add(operand);
+        filter.addOperand(operand);
         return true;
     }
 

@@ -28,10 +28,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.ClassFilterIncludingSubcl
 import de.hpi.sam.bp2009.solution.eventManager.filters.ContainmentFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilterIncludingSubclasses;
-import de.hpi.sam.bp2009.solution.eventManager.filters.NotFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OldValueClassFilterIncludingSubclasses;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
@@ -168,12 +166,12 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
                 createContainmentFilter());
     }
 
-    private LogicalOperationFilter createOrFilterForEventTypes(int... types) {
-        LogicalOperationFilter or = createOrFilter();
+    private LogicalOperationFilterImpl createOrFilterForEventTypes(int... types) {
+        LogicalOperationFilterImpl or = createOrFilter();
         for (int t : types) {
             EventTypeFilter e1 = createEventTypeFilter();
             e1.setEventType(t);
-            or.getOperands().add(e1);
+            or.addOperand(e1);
         }
         return or;
 

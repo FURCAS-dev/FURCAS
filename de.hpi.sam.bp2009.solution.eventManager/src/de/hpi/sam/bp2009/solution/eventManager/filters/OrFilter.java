@@ -8,7 +8,9 @@ package de.hpi.sam.bp2009.solution.eventManager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
 
-public class OrFilter extends LogicalOperationFilter {
+import de.hpi.sam.bp2009.solution.eventManager.framework.LogicalOperationFilterImpl;
+
+public class OrFilter extends LogicalOperationFilterImpl {
 
     public OrFilter() {
         super();
