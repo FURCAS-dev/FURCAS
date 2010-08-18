@@ -30,14 +30,6 @@ public class Activator extends Plugin {
 	 */
 	private Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> runletDataStore;
 	
-	/**
-	 * The method call resolved used by the {@link RunletInterpreter interpreter} to dynamically
-	 * resolve polymorphic method calls. Put here during plugin extension initialization because
-	 * the {@link MethodCallResolver} acts as a global model listener and is therefore initialized
-	 * when the repository comes up.
-	 */
-	private final MethodCallResolver methodCallResolver;
-	
 	private final ModelAdapter<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> modelAdapter;
 	
 	public ModelAdapter<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> getModelAdapter() {
@@ -50,7 +42,6 @@ public class Activator extends Plugin {
 	public Activator() {
 	    modelAdapter = new RunletModelAdapter();
 	    runletDataStore = new RunletInMemoryRepository(getModelAdapter());
-	    methodCallResolver = new MethodCallResolver();
 	}
 
 	/*
@@ -83,9 +74,4 @@ public class Activator extends Plugin {
 	public Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> getRunletDataStore() {
 	    return runletDataStore;
 	}
-
-	public MethodCallResolver getMethodCallResolver() {
-	    return methodCallResolver;
-	}
-
 }

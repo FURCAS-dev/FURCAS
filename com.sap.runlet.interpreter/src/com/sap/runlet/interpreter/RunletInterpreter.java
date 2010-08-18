@@ -162,7 +162,7 @@ public class RunletInterpreter extends
 		new NativeInterpreterFactory(),
 		new RunletLinkContainer(repository,
 			Activator.getDefault().getModelAdapter()));
-	methodCallResolver = Activator.getDefault().getMethodCallResolver();
+	methodCallResolver = new MethodCallResolver(resourceSet);
     }
 
     /**

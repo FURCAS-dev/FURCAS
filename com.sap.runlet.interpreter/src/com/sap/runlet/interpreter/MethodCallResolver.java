@@ -20,6 +20,7 @@ import data.classes.SapClass;
 import data.classes.SignatureImplementation;
 import data.classes.SignatureOwner;
 import data.classes.TypeAdapter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 
 public class MethodCallResolver {
     /**
@@ -28,6 +29,18 @@ public class MethodCallResolver {
      */
     private Map<Pair<MethodSignature, SapClass>, URI> cache =
 	new HashMap<Pair<MethodSignature, SapClass>, URI>();
+    
+    private final MethodCallResolverCacheInvalidationListener listener;
+
+    /**
+     * Registers the method call resolver as an event listener with an event manager for the
+     * resource set. Every time an event is received that may cause a change in method resolution,
+     * the cache is invalidated.
+     */
+    public MethodCallResolver(ResourceSet resourceSet) {
+        listener = new MethodCallResolverCacheInvalidationListener(this);
+        EventManagerFactory.eINSTANCE.getEventManagerFor(resourceSet).subscribe(listener.getFilter(), listener);
+    }
 
     public SignatureImplementation getImplementation(MethodSignature staticSignature, SapClass dynamicClass, ResourceSet resourceSet) {
 	Pair<MethodSignature, SapClass> key = new Pair<MethodSignature, SapClass>(staticSignature, dynamicClass);
@@ -62,6 +75,8 @@ public class MethodCallResolver {
      * design-time's type checks. A {@link RuntimeException} is thrown in this
      * case. Otherwise, the signature implementation found in an adapter will be
      * returned.
+     * 
+     * TODO what about delegation?
      */
     public SignatureImplementation resolveMethodCallToImplementation(MethodSignature calledSignature, SapClass thizClass) {
 	SapClass staticClass = (SapClass) calledSignature.getOwner();
