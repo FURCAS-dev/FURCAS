@@ -41,9 +41,9 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.filters.LogicalOperationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.NewValueClassFilter;
 import de.hpi.sam.bp2009.solution.eventManager.filters.OrFilter;
+import de.hpi.sam.bp2009.solution.eventManager.framework.LogicalOperationFilterImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLTestExpressionContainer.OclExpressionWithPackage;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -69,10 +69,10 @@ public class EventManagerRuntimeTest {
 
      long getDepth(EventFilter f, long l) {
 
-        if (f instanceof LogicalOperationFilter) {
+        if (f instanceof LogicalOperationFilterImpl) {
             l++;
             long max = 0l;
-            for (EventFilter o : ((LogicalOperationFilter) f).getOperands()) {
+            for (EventFilter o : ((LogicalOperationFilterImpl) f).getOperands()) {
                 max = Math.max(max, getDepth(o, l));
             }
             return max;
@@ -81,9 +81,9 @@ public class EventManagerRuntimeTest {
     }
 
      long getLeafCount(EventFilter f) {
-        if (f instanceof LogicalOperationFilter) {
+        if (f instanceof LogicalOperationFilterImpl) {
             long count = 0l;
-            for (EventFilter o : ((LogicalOperationFilter) f).getOperands()) {
+            for (EventFilter o : ((LogicalOperationFilterImpl) f).getOperands()) {
                 count += getLeafCount(o);
             }
             return count;
@@ -273,10 +273,12 @@ public class EventManagerRuntimeTest {
             // finalF = new AndFilter(finalF, createFilterWith8Depth(), new OrFilter(createFilterWith8Depth(),
             // createFilterWith8Depth(), createFilterWith8Depth()), createFilterWith8Depth());
             // }
-            OrFilter finalF = new OrFilter();
+            OrFilter finalF;
+            EventFilter[] filters = new EventFilter[x];
             for (int i = 0; i < x; i++) {
-                finalF.getOperands().add(new NewValueClassFilter(CompanyPackage.eINSTANCE.getEmployee(), false));
+                filters[i] = new NewValueClassFilter(CompanyPackage.eINSTANCE.getEmployee(), false);
             }
+            finalF = EventManagerFactory.eINSTANCE.createOrFilterFor(filters);
 
             fw.write(getDepth(finalF, 0l) + ",");
             fw.write(getLeafCount(finalF) + ",");
@@ -385,89 +387,72 @@ public class EventManagerRuntimeTest {
     }
 
      EventFilter createFilterWith8Depth() {
-        OrFilter result = new OrFilter();
-        OrFilter level1 = new OrFilter();
-        OrFilter level2 = new OrFilter();
-        OrFilter level3 = new OrFilter();
-        OrFilter level4 = new OrFilter();
-        OrFilter level5 = new OrFilter();
-        OrFilter level6 = new OrFilter();
-        OrFilter level7 = new OrFilter();
-        OrFilter level8 = new OrFilter();
-        OrFilter level9 = new OrFilter();
+        OrFilter result;
+        OrFilter level1;
+        OrFilter level2;
+        OrFilter level3;
+        OrFilter level4;
+        OrFilter level5;
+        OrFilter level6;
+        OrFilter level7;
+        OrFilter level8;
+        OrFilter level9;
 
-        level9.getOperands().add(
-                EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-        level9.getOperands().add(
+        level9 = EventManagerFactory.eINSTANCE.createOrFilterFor(EventManagerFactory.eINSTANCE
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()),
                 EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
-        level8.getOperands().add(level9);
-        level8.getOperands().add(
+        level8 = EventManagerFactory.eINSTANCE.createOrFilterFor(level9,
                 EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-        level8.getOperands().add(
-                EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-
-        level7.getOperands().add(level8);
-        level7.getOperands().add(
-                EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-        level7.getOperands().add(
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()),
                 EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
-        level6.getOperands().add(level7);
-        level6.getOperands().add(
+        level7 = EventManagerFactory.eINSTANCE.createOrFilterFor(level8,
                 EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-        level6.getOperands().add(
-                EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-
-        level5.getOperands().add(level6);
-        level5.getOperands().add(
-                EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-        level5.getOperands().add(
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()),
                 EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
-        level4.getOperands().add(level5);
-        level4.getOperands().add(
+
+        level6 = EventManagerFactory.eINSTANCE.createOrFilterFor(level7,
                 EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-        level4.getOperands().add(
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()),
                 EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
-        level3.getOperands().add(level4);
-        level3.getOperands().add(
+        level5 = EventManagerFactory.eINSTANCE.createOrFilterFor(level6,
                 EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-        level3.getOperands().add(
-                EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-
-        level2.getOperands().add(level3);
-        level2.getOperands().add(
-                EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-        level2.getOperands().add(
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()),
                 EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
-        level1.getOperands().add(level2);
-        level1.getOperands().add(
+        level4 = EventManagerFactory.eINSTANCE.createOrFilterFor(level5,
                 EventManagerFactory.eINSTANCE
-                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
-        level1.getOperands().add(
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()),
                 EventManagerFactory.eINSTANCE
                         .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
 
-        result.getOperands().add(level1);
+        level3 = EventManagerFactory.eINSTANCE.createOrFilterFor(level4,
+                EventManagerFactory.eINSTANCE
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()),
+                EventManagerFactory.eINSTANCE
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
+
+        level2 = EventManagerFactory.eINSTANCE.createOrFilterFor(level3,
+                EventManagerFactory.eINSTANCE
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()),
+                EventManagerFactory.eINSTANCE
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
+
+        level1 = EventManagerFactory.eINSTANCE.createOrFilterFor(level2,
+                EventManagerFactory.eINSTANCE
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()),
+                EventManagerFactory.eINSTANCE
+                        .createFilterForElementInsertionOrDeletion(CompanyPackage.eINSTANCE.getEmployee()));
+
+        result = EventManagerFactory.eINSTANCE.createOrFilterFor(level1);
 
         return result;
     }

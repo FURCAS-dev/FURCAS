@@ -8,7 +8,9 @@ package de.hpi.sam.bp2009.solution.eventManager.filters;
 
 import org.eclipse.emf.common.notify.Notification;
 
-public class AndFilter extends LogicalOperationFilter {
+import de.hpi.sam.bp2009.solution.eventManager.framework.LogicalOperationFilterImpl;
+
+public class AndFilter extends LogicalOperationFilterImpl {
 
 
     public AndFilter() {
@@ -47,7 +49,7 @@ public class AndFilter extends LogicalOperationFilter {
         return bld.toString();
     }
     @Override
-    public LogicalOperationFilter clone(){
+    public LogicalOperationFilterImpl clone(){
         return new AndFilter(cloneContents());
         
     }
