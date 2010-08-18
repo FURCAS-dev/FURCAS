@@ -221,9 +221,14 @@ public class AdapterJMIHelper {
 				qualifiedNameList, root);
 		if (modelElement != null) {
 			if (modelElement instanceof MofClass) {
-				MofClass mofClass = (MofClass) modelElement;
-				RefClass refClass = jmiHelper.getRefClassForMofClass(mofClass);
-				return createInstance(refClass);
+				if(! ((MofClass) modelElement).isAbstract()) {
+					MofClass mofClass = (MofClass) modelElement;
+					RefClass refClass = jmiHelper.getRefClassForMofClass(mofClass);
+					return createInstance(refClass);
+				} else {
+					//TODO check if returning null is a valid result.
+					return null;
+				}
 			} else if (modelElement instanceof StructureType) {
 				StructureType structype = (StructureType) modelElement;
 				StructureTypeMockObject mock = new StructureTypeMockObject(
@@ -632,12 +637,14 @@ public class AdapterJMIHelper {
 		    objectForSelf = contextRefObject;
 		} else if (ContextAndForeachHelper.usesForeach(oclQuery)) {
 		    objectForSelf = unwrapProxy(foreachObject);
-		} else {
+		}else {
 		    objectForSelf = sourceModelElement;
 		}
 		queryToExecute = MoinHelper.prepareOclQuery(queryToExecute, keyValue);
 		try {
-		        if(registerForBaseClass == null) {
+		    if(objectForSelf == null)
+		    	return null;
+			if(registerForBaseClass == null) {
 		            registerForBaseClass = objectForSelf.refClass();
 		        }
 		    	String registrationName = getOclRegistrationName(queryToExecute, registerForBaseClass);
