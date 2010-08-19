@@ -3,6 +3,7 @@ package com.sap.runlet.interpreter.test;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.osgi.framework.BundleContext;
@@ -43,7 +44,7 @@ public class Activator extends Plugin {
 	}
 
 	static IProject getStdlibProject() {
-	    return getProject("ngpm.stdlib");
+	    return getProject("de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark");
 	}
 	
 	static IProject getProject(String projectName) {
@@ -53,7 +54,10 @@ public class Activator extends Plugin {
 	}
 
 	static ResourceSet createResourceSet(final IProject project) {
-	    return new ResourceSetImpl();
+	    ResourceSet result = new ResourceSetImpl();
+	    result.getResources().add(result.createResource(
+	            URI.createURI("platform:/plugin/de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark/src/de/hpi/sam/bp2009/solution/impactAnalyzer/benchmark/preparation/notifications/fixtures/models/NgpmModel.xmi")));
+	    return result;
 	}
 	
 	static ResourceSet createConnection(String projectName) {
