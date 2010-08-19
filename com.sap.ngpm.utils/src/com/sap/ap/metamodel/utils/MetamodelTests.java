@@ -236,10 +236,10 @@ public class MetamodelTests extends TestCase {
 	c1.getOwnedSignatures().add(setter);
 	
         diagnostics = new BasicDiagnostic();
-        ClassesValidator.INSTANCE.validate(c1, diagnostics, new HashMap<Object, Object>());
+        ClassesValidator.INSTANCE.validate(linkSetting, diagnostics, new HashMap<Object, Object>());
         assertEquals(1, diagnostics.getChildren().size());
-	assertEquals("[data, classes, ExtentModifyingAssociationEndSignatureImplementation, MustNotModifyExtentIfEqualityRelevantForValueClass]",
-		diagnostics.getChildren().iterator().next().getMessage());
+	assertTrue(diagnostics.getChildren().iterator().next().getMessage().startsWith(
+            "The 'MustNotModifyExtentIfEqualityRelevantForValueClass' constraint is violated"));
     }
     
     /**
@@ -265,9 +265,8 @@ public class MetamodelTests extends TestCase {
 	adapter.getOwnedSignatures().add(adapterSig);
         BasicDiagnostic diagnostics = new BasicDiagnostic();
         ClassesValidator.INSTANCE.validate(adapter, diagnostics, new HashMap<Object, Object>());
-	assertTrue("Adapter should be considered invalid and should violate the SignatureCannotBeAbstract constraint",
-		diagnostics.getChildren().size() == 1 && diagnostics.getChildren().iterator().next().getMessage().equals(
-			"Signatures can not be abstract"));
+        assertEquals(1, diagnostics.getChildren().size());
+	assertTrue(diagnostics.getChildren().iterator().next().getMessage().startsWith("The 'SignaturesCannotBeAbstract' constraint is violated"));
     }
     
     /**
