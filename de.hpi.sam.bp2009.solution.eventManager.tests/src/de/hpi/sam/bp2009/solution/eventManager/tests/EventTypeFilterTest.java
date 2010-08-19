@@ -20,8 +20,6 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventTypeFilter;
  * <!-- end-user-doc -->
  */
 public class EventTypeFilterTest extends EventFilterTest {
-
-	private int eventType;
 	private NotificationImpl notification;
 
 	/**
@@ -42,17 +40,6 @@ public class EventTypeFilterTest extends EventFilterTest {
 		super();
 	}
 
-
-	/**
-	 * Returns the fixture for this Event Type Filter test case.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	@Override
-	protected EventTypeFilter getFixture() {
-		return (EventTypeFilter)fixture;
-	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -60,9 +47,7 @@ public class EventTypeFilterTest extends EventFilterTest {
 	 */
 	@Override
 	public void setUp()   {
-		setFixture(EventManagerFactory.eINSTANCE.createEventTypeFilter());
-		eventType = Notification.ADD;
-		notification = new NotificationImpl(eventType, false, false);
+		notification = new NotificationImpl(Notification.ADD, false, false);
 	}
 
 	/**
@@ -73,7 +58,6 @@ public class EventTypeFilterTest extends EventFilterTest {
 	@Override
 	public void tearDown()  {
 		setFixture(null);
-		eventType = -1;
 		notification = null;
 	}
 
@@ -84,8 +68,8 @@ public class EventTypeFilterTest extends EventFilterTest {
 	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter#matchesFor(org.eclipse.emf.common.notify.Notification)
 	 */
 	public void testMatchesFor__Notification() {
-		getFixture().setEventType(new Integer(eventType));
-		assertTrue(getFixture().matchesFor(notification));
+		EventTypeFilter filter = EventManagerFactory.eINSTANCE.createEventTypeFilter(Notification.ADD);
+		assertTrue(filter.matchesFor(notification));
 	}
 
 } //EventTypeFilterTest

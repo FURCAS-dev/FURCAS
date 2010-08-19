@@ -11,15 +11,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class StructuralFeatureFilter extends EventFilter {
 
-    protected EStructuralFeature feature;
-
-    public StructuralFeatureFilter() {
-        super();
-    }
+    private final EStructuralFeature feature;
 
     public StructuralFeatureFilter(EStructuralFeature feature2) {
         super();
-        setFeature(feature2);
+        feature = feature2;
     }
 
     public EStructuralFeature getFeature() {
@@ -70,10 +66,6 @@ public abstract class StructuralFeatureFilter extends EventFilter {
         }
         return event.getFeature().equals(this.getFeature());
 
-    }
-
-    public void setFeature(EStructuralFeature newFeature) {
-        feature = newFeature;
     }
 
     @Override

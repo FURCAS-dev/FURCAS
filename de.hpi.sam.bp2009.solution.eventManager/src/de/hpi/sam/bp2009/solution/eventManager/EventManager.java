@@ -16,7 +16,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 /**
  * Common interface for all Implementations of an EMF EventManager
  * 
- * @author Philipp Berger
+ * @author Philipp Berger, Axel Uhl
  * 
  */
 public interface EventManager {
@@ -67,4 +67,20 @@ public interface EventManager {
      *            {@link Notification} to send to clients whose event filter matches the notification
      */
     void handleEMFEvent(Notification notification);
+    
+    /**
+     * Sometimes it can be convenient to temporarily stop the flow of events. For example, if a particular event manager
+     * receives a particular set of events for a certain reason, and that reason temporarily doesn't apply, instead of
+     * completely removing the event manager from the underlying {@link ResourceSet} and thus removing the
+     * adapter from all objects in the resource set, it is more efficient to just block forwarding the events to the
+     * {@link Adapter}s subscribed with this event manager.<p>
+     * 
+     * Calling this method with <code>active==false</code> will stop this event manager from forwarding events to
+     * the {@link Adapter}s subscribed. Calling it with <code>active==true</code> again will forward events received
+     * after the call again. Events that arrived in between are <em>not</em> forwarded and therefore "lost" for the
+     * subscribers to this event manager.<p>
+     * 
+     * By default, an event manager starts in the "active" state.
+     */
+    void setActive(boolean active);
 } // EventManager

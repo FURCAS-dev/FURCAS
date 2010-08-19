@@ -18,17 +18,11 @@ public class MethodCallResolverCacheInvalidationListener extends AdapterImpl {
 
     public EventFilter getFilter() {
         EventManagerFactory emf = EventManagerFactory.eINSTANCE;
-        AssociationFilter ownedMethodSignaturesFilter = emf.createAssociationFilter();
-        ownedMethodSignaturesFilter.setFeature(ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures());
-        AssociationFilter adaptedToFilter = emf.createAssociationFilter();
-        adaptedToFilter.setFeature(ClassesPackage.eINSTANCE.getTypeAdapter_To());
-        AssociationFilter adaptersFilter = emf.createAssociationFilter();
-        adaptersFilter.setFeature(ClassesPackage.eINSTANCE.getTypeAdapter_Adapted());
+        AssociationFilter ownedMethodSignaturesFilter = emf.createAssociationFilter(ClassesPackage.eINSTANCE.getSignatureOwner_OwnedSignatures());
+        AssociationFilter adaptedToFilter = emf.createAssociationFilter(ClassesPackage.eINSTANCE.getTypeAdapter_To());
+        AssociationFilter adaptersFilter = emf.createAssociationFilter(ClassesPackage.eINSTANCE.getTypeAdapter_Adapted());
         // TODO what about watching delegation changes?
-        AndFilter allFilter = emf.createAndFilter();
-        allFilter.getOperands().add(ownedMethodSignaturesFilter);
-        allFilter.getOperands().add(adaptedToFilter);
-        allFilter.getOperands().add(adaptersFilter);
+        AndFilter allFilter = emf.createAndFilterFor(ownedMethodSignaturesFilter, adaptedToFilter, adaptersFilter);
         return allFilter;
     }
 

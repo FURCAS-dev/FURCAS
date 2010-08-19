@@ -24,7 +24,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
  * encapsulates the knowledge how to get the necessary information from the passed event (
  * {@link #getAffectedObject(ChangeEvent)}).<br>
  * 
- * @author Daniel Vocke (D044825)
+ * @author Daniel Vocke (D044825), Axel Uhl (D043530)
  */
 public abstract class TableForEventFilter {
 

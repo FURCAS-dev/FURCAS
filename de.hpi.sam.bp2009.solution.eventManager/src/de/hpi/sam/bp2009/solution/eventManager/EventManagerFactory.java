@@ -4,8 +4,9 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -37,32 +38,42 @@ public interface EventManagerFactory {
     EventManagerFactory eINSTANCE = de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerFactoryImpl.init();
 
     /**
-     * Creates an {@link EventManager} that receives all change notifications from all notifiers contained directly or indirectly
-     * by <code>set</code>. Those events matching the filters provided by listeners in their call to
-     * {@link EventManager#subscribe(EventFilter, org.eclipse.emf.common.notify.Adapter)} will be passed on to those listener
+     * Creates a new or re-uses an existing {@link EventManager} that was previously created by calling this operation (and not by
+     * {@link #createEventManagerFor(ResourceSet)}). The event manager receives all change notifications from all notifiers
+     * contained directly or indirectly by <code>set</code>. Those events matching the filters provided by listeners in their call
+     * to {@link EventManager#subscribe(EventFilter, org.eclipse.emf.common.notify.Adapter)} will be passed on to those listener
      * {@link Adapter}s.
      */
     EventManager getEventManagerFor(ResourceSet set);
 
     /**
+     * Creates a new {@link EventManager} that receives all change notifications from all notifiers contained directly or
+     * indirectly by <code>set</code>. Those events matching the filters provided by listeners in their call to
+     * {@link EventManager#subscribe(EventFilter, org.eclipse.emf.common.notify.Adapter)} will be passed on to those listener
+     * {@link Adapter}s. The event manager returned will never be returned by {@link #getEventManagerFor(ResourceSet)}.
+     * This is useful if you need to control which adapters subscribe to the event manager returned.
+     */
+    EventManager createEventManagerFor(ResourceSet set);
+
+    /**
      * {@see EventTypeFilter#EventTypeFilter()}
      */
-    EventTypeFilter createEventTypeFilter();
+    EventTypeFilter createEventTypeFilter(int eventType);
 
     /**
      * {@see NotFilter#NotFilter()}
      */
-    NotFilter createNotFilter();
+    NotFilter createNotFilter(EventFilter filter);
 
     /**
      * {@see AttributeFilter#AttributeFilter()}
      */
-    AttributeFilter createAttributeFilter();
+    AttributeFilter createAttributeFilter(EAttribute attribute);
 
     /**
      * {@see AssociationFilter#AssociationFilter()}
      */
-    AssociationFilter createAssociationFilter();
+    AssociationFilter createAssociationFilter(EReference reference);
 
     /**
      * {@see ContainmentFilter#INSTANCE}
@@ -106,13 +117,13 @@ public interface EventManagerFactory {
      * Constructs an {@link AndFilter} combining a {@link ClassFilter} for <code>eClass</code> and an {@link AttributeFilter} for
      * <code>referredProperty</code>.
      */
-    EventFilter createFilterForEReference(EClass eClass, EStructuralFeature referredProperty);
+    EventFilter createFilterForEReference(EClass eClass, EReference referredProperty);
 
     /**
      * Constructs an {@link AndFilter} combining a {@link ClassFilter} for <code>eClass</code> and an {@link AttributeFilter} for
      * <code>referredProperty</code>.
      */
-    EventFilter createFilterForEAttribute(EClass eClass, EStructuralFeature referredProperty);
+    EventFilter createFilterForEAttribute(EClass eClass, EAttribute referredProperty);
 
     /**
      * Creates an event filter that listens for events which indicate that an element of type <code>cls</code> has been added to

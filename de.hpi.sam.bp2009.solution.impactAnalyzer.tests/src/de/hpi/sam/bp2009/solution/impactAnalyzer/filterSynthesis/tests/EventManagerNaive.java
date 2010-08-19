@@ -26,6 +26,7 @@ public class EventManagerNaive implements EventManager {
     private EventAdapter adapter = new EventAdapter(this);
     protected HashMap<EventFilter, Set<Adapter>> filterToListener = new HashMap<EventFilter, Set<Adapter>>();
     private WeakReference<ResourceSet> resourceSet;
+    private boolean active = true;
 
     public EventManagerNaive(ResourceSet set) {
         super();
@@ -38,13 +39,20 @@ public class EventManagerNaive implements EventManager {
         return resourceSet.get();
     }
 
+    @Override
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public void handleEMFEvent(Notification notification) {
-        Collection<Notification> notis = EventManagerFactory.eINSTANCE.createNotificationForComposites(notification);
-        for (Notification noti : notis) {
-            for (EventFilter filter : this.filterToListener.keySet()) {
-                if (filter.matchesFor(noti)) {
-                    for (Adapter a : this.filterToListener.get(filter)) {
-                        a.notifyChanged(noti);
+        if (active) {
+            Collection<Notification> notis = EventManagerFactory.eINSTANCE.createNotificationForComposites(notification);
+            for (Notification noti : notis) {
+                for (EventFilter filter : this.filterToListener.keySet()) {
+                    if (filter.matchesFor(noti)) {
+                        for (Adapter a : this.filterToListener.get(filter)) {
+                            a.notifyChanged(noti);
+                        }
                     }
                 }
             }

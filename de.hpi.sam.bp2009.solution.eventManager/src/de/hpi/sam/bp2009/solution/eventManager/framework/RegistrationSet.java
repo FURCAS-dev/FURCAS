@@ -14,7 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
  * mapped to multiple registrations internally. In order to distinguish between one registration using OR-connected filters and
  * several registrations, the resulting Registration objects are being pooled in the first case.
  * 
- * @author Daniel Vocke (D044825)
+ * @author Daniel Vocke (D044825), Axel Uhl (D043530)
  */
 public class RegistrationSet {
 

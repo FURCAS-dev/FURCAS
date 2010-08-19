@@ -65,7 +65,7 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	@Override
 	public void setUp()  {
 		super.setUp();
-		setFixture(EventManagerFactory.eINSTANCE.createAttributeFilter());
+		setFixture(EventManagerFactory.eINSTANCE.createAttributeFilter(null));
 		this.attribute = EcoreFactory.eINSTANCE.createEAttribute();
 		attribute.setName("myAttribute");
 	}
@@ -89,8 +89,8 @@ public class AttributeFilterTest extends StructuralFeatureFilterTest {
 	 * @see de.hpi.sam.bp2009.solution.eventManager.filters.AttributeFilter#setAttribute(org.eclipse.emf.ecore.EAttribute)
 	 */
 	public void testSetAttribute__EAttribute() {
-		getFixture().setAttribute(attribute);
-		assertSame(getFixture().getFeature(), attribute);
+		AttributeFilter filter = EventManagerFactory.eINSTANCE.createAttributeFilter(attribute);
+		assertSame(filter.getFeature(), attribute);
 	}
 
 } //AttributeFilterTest

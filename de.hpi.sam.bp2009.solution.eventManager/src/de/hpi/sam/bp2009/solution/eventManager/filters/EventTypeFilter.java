@@ -9,22 +9,11 @@ package de.hpi.sam.bp2009.solution.eventManager.filters;
 import org.eclipse.emf.common.notify.Notification;
 
 public class EventTypeFilter extends EventFilter {
+    private final int eventType;
 
-    protected static final Notification MATCHING_NOTIFICATION_EDEFAULT = null;
-
-    protected Notification matchingNotification = MATCHING_NOTIFICATION_EDEFAULT;
-
-    protected static final Integer EVENT_TYPE_EDEFAULT = null;
-
-    protected Integer eventType = EVENT_TYPE_EDEFAULT;
-
-    public EventTypeFilter() {
+    public EventTypeFilter(int eventType2) {
         super();
-    }
-
-    public EventTypeFilter(Integer eventType2) {
-        super();
-        setEventType(eventType2);
+        eventType = eventType2;
     }
 
     /*
@@ -41,20 +30,14 @@ public class EventTypeFilter extends EventFilter {
         if (getClass() != obj.getClass())
             return false;
         EventTypeFilter other = (EventTypeFilter) obj;
-        if (eventType == null) {
-            if (other.eventType != null)
-                return false;
-        } else if (!eventType.equals(other.eventType))
+        if (eventType != other.eventType) {
             return false;
+        }
         return isNegated() == ((EventFilter) other).isNegated();
     }
 
-    public Integer getEventType() {
+    public int getEventType() {
         return eventType;
-    }
-
-    public Notification getMatchingNotification() {
-        return matchingNotification;
     }
 
     /*
@@ -66,7 +49,7 @@ public class EventTypeFilter extends EventFilter {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((eventType == null) ? 0 : eventType.hashCode());
+        result = prime * result + eventType;
         if (isNegated()) {
             result = prime * result;
         }
@@ -75,14 +58,6 @@ public class EventTypeFilter extends EventFilter {
 
     public boolean matchesFor(Notification event) {
         return event.getEventType() == getEventType();
-    }
-
-    public void setEventType(Integer newEventType) {
-        eventType = newEventType;
-    }
-
-    public void setMatchingNotification(Notification newMatchingNotification) {
-        matchingNotification = newMatchingNotification;
     }
 
     @Override
