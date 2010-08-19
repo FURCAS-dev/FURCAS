@@ -27,7 +27,6 @@ import dataaccess.expressions.fp.FpFactory;
 import dataaccess.expressions.literals.LiteralsFactory;
 import dataaccess.expressions.literals.NumberLiteral;
 import dataaccess.expressions.literals.StringLiteral;
-import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectBasedQueryContextScopeProviderImpl;
 
 /**
  * Some utility / helper methods for the AP/NGPM/Runlet metamodel
