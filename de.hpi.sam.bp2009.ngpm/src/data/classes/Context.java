@@ -43,73 +43,73 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Context extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>For </b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>For </b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>For </em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>For </em>' reference.
-	 * @see #setFor_(SapClass)
-	 * @see data.classes.ClassesPackage#getContext_For_()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>For </em>' reference.
+     * @see #setFor_(SapClass)
+     * @see data.classes.ClassesPackage#getContext_For_()
+     * @model required="true"
+     * @generated
+     */
 	SapClass getFor_();
 
 	/**
-	 * Sets the value of the '{@link data.classes.Context#getFor_ <em>For </em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.classes.Context#getFor_ <em>For </em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>For </em>' reference.
-	 * @see #getFor_()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>For </em>' reference.
+     * @see #getFor_()
+     * @generated
+     */
 	void setFor_(SapClass value);
 
 	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-	 * The list contents are of type {@link data.constraints.Constraint}.
-	 * It is bidirectional and its opposite is '{@link data.constraints.Constraint#getTheContext <em>The Context</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
+     * The list contents are of type {@link data.constraints.Constraint}.
+     * It is bidirectional and its opposite is '{@link data.constraints.Constraint#getTheContext <em>The Context</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraints</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraints</em>' containment reference list.
-	 * @see data.classes.ClassesPackage#getContext_Constraints()
-	 * @see data.constraints.Constraint#getTheContext
-	 * @model opposite="theContext" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Constraints</em>' containment reference list.
+     * @see data.classes.ClassesPackage#getContext_Constraints()
+     * @see data.constraints.Constraint#getTheContext
+     * @model opposite="theContext" containment="true" resolveProxies="true"
+     * @generated
+     */
 	EList<Constraint> getConstraints();
 
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(Expression)
-	 * @see data.classes.ClassesPackage#getContext_Condition()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Condition</em>' containment reference.
+     * @see #setCondition(Expression)
+     * @see data.classes.ClassesPackage#getContext_Condition()
+     * @model containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	Expression getCondition();
 
 	/**
-	 * Sets the value of the '{@link data.classes.Context#getCondition <em>Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.classes.Context#getCondition <em>Condition</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' containment reference.
-	 * @see #getCondition()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Condition</em>' containment reference.
+     * @see #getCondition()
+     * @generated
+     */
 	void setCondition(Expression value);
 
 } // Context

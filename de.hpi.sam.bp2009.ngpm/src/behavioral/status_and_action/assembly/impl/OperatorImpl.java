@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class OperatorImpl extends ConnectableElementImpl implements Operator {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected OperatorImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.OPERATOR;
-	}
+        return AssemblyPackage.Literals.OPERATOR;
+    }
 
 } //OperatorImpl

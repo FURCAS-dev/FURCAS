@@ -26,19 +26,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface BusinessTopic extends ConfigurationElement {
 	/**
-	 * Returns the value of the '<em><b>Business Option</b></em>' containment reference list.
-	 * The list contents are of type {@link configuration.businessconfiguration.BusinessOption}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Business Option</b></em>' containment reference list.
+     * The list contents are of type {@link configuration.businessconfiguration.BusinessOption}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Business Option</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Business Option</em>' containment reference list.
-	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getBusinessTopic_BusinessOption()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Business Option</em>' containment reference list.
+     * @see configuration.businessconfiguration.BusinessconfigurationPackage#getBusinessTopic_BusinessOption()
+     * @model containment="true" resolveProxies="true"
+     * @generated
+     */
 	EList<BusinessOption> getBusinessOption();
 
 } // BusinessTopic

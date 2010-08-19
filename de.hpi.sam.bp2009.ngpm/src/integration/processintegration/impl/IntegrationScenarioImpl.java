@@ -39,133 +39,133 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class IntegrationScenarioImpl extends NamedElementImpl implements IntegrationScenario {
 	/**
-	 * The cached value of the '{@link #getInteractions() <em>Interactions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getInteractions() <em>Interactions</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInteractions()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getInteractions()
+     * @generated
+     * @ordered
+     */
 	protected EList<ProcessComponentInteraction> interactions;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IntegrationScenarioImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ProcessintegrationPackage.Literals.INTEGRATION_SCENARIO;
-	}
+        return ProcessintegrationPackage.Literals.INTEGRATION_SCENARIO;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ProcessComponentInteraction> getInteractions() {
-		if (interactions == null) {
-			interactions = new EObjectContainmentWithInverseEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__USES);
-		}
-		return interactions;
-	}
+        if (interactions == null) {
+            interactions = new EObjectContainmentWithInverseEList.Resolving<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__USES);
+        }
+        return interactions;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInteractions()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getInteractions()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
-				return ((InternalEList<?>)getInteractions()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
+                return ((InternalEList<?>)getInteractions()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
-				return getInteractions();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
+                return getInteractions();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
-				getInteractions().clear();
-				getInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
+                getInteractions().clear();
+                getInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
-				getInteractions().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
+                getInteractions().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
-				return interactions != null && !interactions.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ProcessintegrationPackage.INTEGRATION_SCENARIO__INTERACTIONS:
+                return interactions != null && !interactions.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //IntegrationScenarioImpl

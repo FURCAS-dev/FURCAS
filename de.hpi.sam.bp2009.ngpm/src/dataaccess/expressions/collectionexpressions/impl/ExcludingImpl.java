@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ExcludingImpl extends CollectionExpressionWithArgumentImpl implements Excluding {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ExcludingImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return CollectionexpressionsPackage.Literals.EXCLUDING;
-	}
+        return CollectionexpressionsPackage.Literals.EXCLUDING;
+    }
 
 } //ExcludingImpl

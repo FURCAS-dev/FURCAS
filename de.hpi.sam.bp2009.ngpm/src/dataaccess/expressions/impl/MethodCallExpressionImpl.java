@@ -55,410 +55,421 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class MethodCallExpressionImpl extends ObjectBasedExpressionImpl implements MethodCallExpression {
 	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameters()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getParameters()
+     * @generated
+     * @ordered
+     */
 	protected EList<Expression> parameters;
 
 	/**
-	 * The default value of the '{@link #isAsynchronous() <em>Asynchronous</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isAsynchronous() <em>Asynchronous</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAsynchronous()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isAsynchronous()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean ASYNCHRONOUS_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isAsynchronous() <em>Asynchronous</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isAsynchronous() <em>Asynchronous</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAsynchronous()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isAsynchronous()
+     * @generated
+     * @ordered
+     */
 	protected boolean asynchronous = ASYNCHRONOUS_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getMethodSignature() <em>Method Signature</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getMethodSignature() <em>Method Signature</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMethodSignature()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getMethodSignature()
+     * @generated
+     * @ordered
+     */
 	protected MethodSignature methodSignature;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MethodCallExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.METHOD_CALL_EXPRESSION;
-	}
+        return ExpressionsPackage.Literals.METHOD_CALL_EXPRESSION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Expression> getParameters() {
-		if (parameters == null) {
-			parameters = new EObjectContainmentWithInverseEList<Expression>(Expression.class, this, ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS, ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL);
-		}
-		return parameters;
-	}
+        if (parameters == null) {
+            parameters = new EObjectContainmentWithInverseEList.Resolving<Expression>(Expression.class, this, ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS, ExpressionsPackage.EXPRESSION__USED_AS_ARGUMENT_IN_SIGNATURE_CALL);
+        }
+        return parameters;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isAsynchronous() {
-		return asynchronous;
-	}
+        return asynchronous;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAsynchronous(boolean newAsynchronous) {
-		boolean oldAsynchronous = asynchronous;
-		asynchronous = newAsynchronous;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS, oldAsynchronous, asynchronous));
-	}
+        boolean oldAsynchronous = asynchronous;
+        asynchronous = newAsynchronous;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS, oldAsynchronous, asynchronous));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MethodSignature getMethodSignature() {
-		if (methodSignature != null && methodSignature.eIsProxy()) {
-			InternalEObject oldMethodSignature = (InternalEObject)methodSignature;
-			methodSignature = (MethodSignature)eResolveProxy(oldMethodSignature);
-			if (methodSignature != oldMethodSignature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE, oldMethodSignature, methodSignature));
-			}
-		}
-		return methodSignature;
-	}
+        if (methodSignature != null && methodSignature.eIsProxy()) {
+            InternalEObject oldMethodSignature = (InternalEObject)methodSignature;
+            methodSignature = (MethodSignature)eResolveProxy(oldMethodSignature);
+            if (methodSignature != oldMethodSignature) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE, oldMethodSignature, methodSignature));
+            }
+        }
+        return methodSignature;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MethodSignature basicGetMethodSignature() {
-		return methodSignature;
-	}
+        return methodSignature;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setMethodSignature(MethodSignature newMethodSignature) {
-		MethodSignature oldMethodSignature = methodSignature;
-		methodSignature = newMethodSignature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE, oldMethodSignature, methodSignature));
-	}
+        MethodSignature oldMethodSignature = methodSignature;
+        methodSignature = newMethodSignature;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE, oldMethodSignature, methodSignature));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ObjectCreationExpression getCreationExpression() {
-		if (eContainerFeatureID() != ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION) return null;
-		return (ObjectCreationExpression)eContainer();
-	}
+        if (eContainerFeatureID() != ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION) return null;
+        return (ObjectCreationExpression)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ObjectCreationExpression basicGetCreationExpression() {
+        if (eContainerFeatureID() != ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION) return null;
+        return (ObjectCreationExpression)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetCreationExpression(ObjectCreationExpression newCreationExpression, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newCreationExpression, ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newCreationExpression, ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCreationExpression(ObjectCreationExpression newCreationExpression) {
-		if (newCreationExpression != eInternalContainer() || (eContainerFeatureID() != ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION && newCreationExpression != null)) {
-			if (EcoreUtil.isAncestor(this, newCreationExpression))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newCreationExpression != null)
-				msgs = ((InternalEObject)newCreationExpression).eInverseAdd(this, ExpressionsPackage.OBJECT_CREATION_EXPRESSION__INITIALIZERS, ObjectCreationExpression.class, msgs);
-			msgs = basicSetCreationExpression(newCreationExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION, newCreationExpression, newCreationExpression));
-	}
+        if (newCreationExpression != eInternalContainer() || (eContainerFeatureID() != ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION && newCreationExpression != null)) {
+            if (EcoreUtil.isAncestor(this, newCreationExpression))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newCreationExpression != null)
+                msgs = ((InternalEObject)newCreationExpression).eInverseAdd(this, ExpressionsPackage.OBJECT_CREATION_EXPRESSION__INITIALIZERS, ObjectCreationExpression.class, msgs);
+            msgs = basicSetCreationExpression(newCreationExpression, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION, newCreationExpression, newCreationExpression));
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #getSignature() <em>Get Signature</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #getSignature() <em>Get Signature</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSignature()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSignature()
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate GET_SIGNATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)ExpressionsPackage.Literals.SIGNATURE_CALL_EXPRESSION.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Signature getSignature() {
-		try {
-			return (Signature)GET_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Signature)GET_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #getMultiplicityOfCallTarget() <em>Get Multiplicity Of Call Target</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #getMultiplicityOfCallTarget() <em>Get Multiplicity Of Call Target</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMultiplicityOfCallTarget()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getMultiplicityOfCallTarget()
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate GET_MULTIPLICITY_OF_CALL_TARGET__EINVOCATION_DELEGATE = ((EOperation.Internal)ExpressionsPackage.Literals.SIGNATURE_CALL_EXPRESSION.getEOperations().get(1)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Multiplicity getMultiplicityOfCallTarget() {
-		try {
-			return (Multiplicity)GET_MULTIPLICITY_OF_CALL_TARGET__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Multiplicity)GET_MULTIPLICITY_OF_CALL_TARGET__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameters()).basicAdd(otherEnd, msgs);
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetCreationExpression((ObjectCreationExpression)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameters()).basicAdd(otherEnd, msgs);
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetCreationExpression((ObjectCreationExpression)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
-				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
-				return basicSetCreationExpression(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
+                return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
+                return basicSetCreationExpression(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
-				return eInternalContainer().eInverseRemove(this, ExpressionsPackage.OBJECT_CREATION_EXPRESSION__INITIALIZERS, ObjectCreationExpression.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
+                return eInternalContainer().eInverseRemove(this, ExpressionsPackage.OBJECT_CREATION_EXPRESSION__INITIALIZERS, ObjectCreationExpression.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
-				return getParameters();
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS:
-				return isAsynchronous();
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE:
-				if (resolve) return getMethodSignature();
-				return basicGetMethodSignature();
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
-				return getCreationExpression();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
+                return getParameters();
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS:
+                return isAsynchronous();
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE:
+                if (resolve) return getMethodSignature();
+                return basicGetMethodSignature();
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
+                if (resolve) return getCreationExpression();
+                return basicGetCreationExpression();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
-				getParameters().clear();
-				getParameters().addAll((Collection<? extends Expression>)newValue);
-				return;
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS:
-				setAsynchronous((Boolean)newValue);
-				return;
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE:
-				setMethodSignature((MethodSignature)newValue);
-				return;
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
-				setCreationExpression((ObjectCreationExpression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
+                getParameters().clear();
+                getParameters().addAll((Collection<? extends Expression>)newValue);
+                return;
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS:
+                setAsynchronous((Boolean)newValue);
+                return;
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE:
+                setMethodSignature((MethodSignature)newValue);
+                return;
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
+                setCreationExpression((ObjectCreationExpression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
-				getParameters().clear();
-				return;
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS:
-				setAsynchronous(ASYNCHRONOUS_EDEFAULT);
-				return;
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE:
-				setMethodSignature((MethodSignature)null);
-				return;
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
-				setCreationExpression((ObjectCreationExpression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
+                getParameters().clear();
+                return;
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS:
+                setAsynchronous(ASYNCHRONOUS_EDEFAULT);
+                return;
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE:
+                setMethodSignature((MethodSignature)null);
+                return;
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
+                setCreationExpression((ObjectCreationExpression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
-				return parameters != null && !parameters.isEmpty();
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS:
-				return asynchronous != ASYNCHRONOUS_EDEFAULT;
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE:
-				return methodSignature != null;
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
-				return getCreationExpression() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS:
+                return parameters != null && !parameters.isEmpty();
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__ASYNCHRONOUS:
+                return asynchronous != ASYNCHRONOUS_EDEFAULT;
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__METHOD_SIGNATURE:
+                return methodSignature != null;
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION__CREATION_EXPRESSION:
+                return basicGetCreationExpression() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == SignatureCallExpression.class) {
-			switch (derivedFeatureID) {
-				case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS: return ExpressionsPackage.SIGNATURE_CALL_EXPRESSION__PARAMETERS;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == SignatureCallExpression.class) {
+            switch (derivedFeatureID) {
+                case ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS: return ExpressionsPackage.SIGNATURE_CALL_EXPRESSION__PARAMETERS;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == SignatureCallExpression.class) {
-			switch (baseFeatureID) {
-				case ExpressionsPackage.SIGNATURE_CALL_EXPRESSION__PARAMETERS: return ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == SignatureCallExpression.class) {
+            switch (baseFeatureID) {
+                case ExpressionsPackage.SIGNATURE_CALL_EXPRESSION__PARAMETERS: return ExpressionsPackage.METHOD_CALL_EXPRESSION__PARAMETERS;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (asynchronous: ");
-		result.append(asynchronous);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (asynchronous: ");
+        result.append(asynchronous);
+        result.append(')');
+        return result.toString();
+    }
 
 } //MethodCallExpressionImpl

@@ -32,129 +32,129 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class PreconditionImpl extends ConnectorImpl implements Precondition {
 	/**
-	 * The cached value of the '{@link #getStrategy() <em>Strategy</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getStrategy() <em>Strategy</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getStrategy()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getStrategy()
+     * @generated
+     * @ordered
+     */
 	protected Strategy strategy;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PreconditionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.PRECONDITION;
-	}
+        return AssemblyPackage.Literals.PRECONDITION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Strategy getStrategy() {
-		if (strategy != null && strategy.eIsProxy()) {
-			InternalEObject oldStrategy = (InternalEObject)strategy;
-			strategy = (Strategy)eResolveProxy(oldStrategy);
-			if (strategy != oldStrategy) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AssemblyPackage.PRECONDITION__STRATEGY, oldStrategy, strategy));
-			}
-		}
-		return strategy;
-	}
+        if (strategy != null && strategy.eIsProxy()) {
+            InternalEObject oldStrategy = (InternalEObject)strategy;
+            strategy = (Strategy)eResolveProxy(oldStrategy);
+            if (strategy != oldStrategy) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AssemblyPackage.PRECONDITION__STRATEGY, oldStrategy, strategy));
+            }
+        }
+        return strategy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Strategy basicGetStrategy() {
-		return strategy;
-	}
+        return strategy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setStrategy(Strategy newStrategy) {
-		Strategy oldStrategy = strategy;
-		strategy = newStrategy;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AssemblyPackage.PRECONDITION__STRATEGY, oldStrategy, strategy));
-	}
+        Strategy oldStrategy = strategy;
+        strategy = newStrategy;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AssemblyPackage.PRECONDITION__STRATEGY, oldStrategy, strategy));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AssemblyPackage.PRECONDITION__STRATEGY:
-				if (resolve) return getStrategy();
-				return basicGetStrategy();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case AssemblyPackage.PRECONDITION__STRATEGY:
+                if (resolve) return getStrategy();
+                return basicGetStrategy();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AssemblyPackage.PRECONDITION__STRATEGY:
-				setStrategy((Strategy)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case AssemblyPackage.PRECONDITION__STRATEGY:
+                setStrategy((Strategy)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AssemblyPackage.PRECONDITION__STRATEGY:
-				setStrategy((Strategy)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case AssemblyPackage.PRECONDITION__STRATEGY:
+                setStrategy((Strategy)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AssemblyPackage.PRECONDITION__STRATEGY:
-				return strategy != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case AssemblyPackage.PRECONDITION__STRATEGY:
+                return strategy != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //PreconditionImpl

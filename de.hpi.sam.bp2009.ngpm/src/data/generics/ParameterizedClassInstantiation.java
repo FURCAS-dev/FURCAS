@@ -34,70 +34,70 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ParameterizedClassInstantiation extends SapClass {
 	/**
-	 * Returns the value of the '<em><b>Actual Type Parameters For Instantiation</b></em>' containment reference list.
-	 * The list contents are of type {@link data.generics.ActualTypeParameter}.
-	 * It is bidirectional and its opposite is '{@link data.generics.ActualTypeParameter#getParameterizedClassInstantiation <em>Parameterized Class Instantiation</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Actual Type Parameters For Instantiation</b></em>' containment reference list.
+     * The list contents are of type {@link data.generics.ActualTypeParameter}.
+     * It is bidirectional and its opposite is '{@link data.generics.ActualTypeParameter#getParameterizedClassInstantiation <em>Parameterized Class Instantiation</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Actual Type Parameters For Instantiation</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actual Type Parameters For Instantiation</em>' containment reference list.
-	 * @see data.generics.GenericsPackage#getParameterizedClassInstantiation_ActualTypeParametersForInstantiation()
-	 * @see data.generics.ActualTypeParameter#getParameterizedClassInstantiation
-	 * @model opposite="parameterizedClassInstantiation" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Actual Type Parameters For Instantiation</em>' containment reference list.
+     * @see data.generics.GenericsPackage#getParameterizedClassInstantiation_ActualTypeParametersForInstantiation()
+     * @see data.generics.ActualTypeParameter#getParameterizedClassInstantiation
+     * @model opposite="parameterizedClassInstantiation" containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	EList<ActualTypeParameter> getActualTypeParametersForInstantiation();
 
 	/**
-	 * Returns the value of the '<em><b>Parameterized Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Parameterized Class</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameterized Class</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameterized Class</em>' reference.
-	 * @see #setParameterizedClass(SapClass)
-	 * @see data.generics.GenericsPackage#getParameterizedClassInstantiation_ParameterizedClass()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Parameterized Class</em>' reference.
+     * @see #setParameterizedClass(SapClass)
+     * @see data.generics.GenericsPackage#getParameterizedClassInstantiation_ParameterizedClass()
+     * @model required="true"
+     * @generated
+     */
 	SapClass getParameterizedClass();
 
 	/**
-	 * Sets the value of the '{@link data.generics.ParameterizedClassInstantiation#getParameterizedClass <em>Parameterized Class</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.generics.ParameterizedClassInstantiation#getParameterizedClass <em>Parameterized Class</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parameterized Class</em>' reference.
-	 * @see #getParameterizedClass()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Parameterized Class</em>' reference.
+     * @see #getParameterizedClass()
+     * @generated
+     */
 	void setParameterizedClass(SapClass value);
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Returns the ActualTypeParameter's type (a Class) from the actualTypeParameters association end whose formalTypeParameter is the one passed. If no such formal type parameter is found, no object (null) is returned.
-	 * <!-- end-model-doc -->
-	 * @model unique="false" ordered="false" ftpUnique="false" ftpRequired="true" ftpOrdered="false"
-	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.actualTypeParametersForInstantiation->select(atp:ActualTypeParameter |\n    atp.formalTypeParameter = ftp)->asSequence()->at(1).type'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-	 * @generated
-	 */
+     * <!-- begin-model-doc -->
+     * Returns the ActualTypeParameter's type (a Class) from the actualTypeParameters association end whose formalTypeParameter is the one passed. If no such formal type parameter is found, no object (null) is returned.
+     * <!-- end-model-doc -->
+     * @model unique="false" ordered="false" ftpUnique="false" ftpRequired="true" ftpOrdered="false"
+     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.actualTypeParametersForInstantiation->select(atp:ActualTypeParameter |\n    atp.formalTypeParameter = ftp)->asSequence()->at(1).type'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+     * @generated
+     */
 	SapClass resolveFormalTypeParameter(FormalTypeParameter ftp);
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" unique="false" required="true" ordered="false"
-	 *        annotation="http://de.hpi.sam.bp2009.OCL body='parameterizedClass.parameterization'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-	 * @generated
-	 */
+     * @model kind="operation" unique="false" required="true" ordered="false"
+     *        annotation="http://de.hpi.sam.bp2009.OCL body='parameterizedClass.parameterization'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+     * @generated
+     */
 	ClassParameterization getClassParameterization();
 
 } // ParameterizedClassInstantiation

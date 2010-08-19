@@ -27,21 +27,21 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface PackageOwner extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.
-	 * The list contents are of type {@link modelmanagement.Package}.
-	 * It is bidirectional and its opposite is '{@link modelmanagement.Package#getOwner <em>Owner</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Owned Packages</b></em>' containment reference list.
+     * The list contents are of type {@link modelmanagement.Package}.
+     * It is bidirectional and its opposite is '{@link modelmanagement.Package#getOwner <em>Owner</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Packages</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Packages</em>' containment reference list.
-	 * @see modelmanagement.ModelmanagementPackage#getPackageOwner_OwnedPackages()
-	 * @see modelmanagement.Package#getOwner
-	 * @model opposite="owner" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Owned Packages</em>' containment reference list.
+     * @see modelmanagement.ModelmanagementPackage#getPackageOwner_OwnedPackages()
+     * @see modelmanagement.Package#getOwner
+     * @model opposite="owner" containment="true" resolveProxies="true"
+     * @generated
+     */
 	EList<modelmanagement.Package> getOwnedPackages();
 
 } // PackageOwner

@@ -24,109 +24,109 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class GenericsFactoryImpl extends EFactoryImpl implements GenericsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static GenericsFactory init() {
-		try {
-			GenericsFactory theGenericsFactory = (GenericsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/generics.ecore"); 
-			if (theGenericsFactory != null) {
-				return theGenericsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new GenericsFactoryImpl();
-	}
+        try {
+            GenericsFactory theGenericsFactory = (GenericsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/generics.ecore"); 
+            if (theGenericsFactory != null) {
+                return theGenericsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new GenericsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public GenericsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case GenericsPackage.FORMAL_TYPE_PARAMETER: return createFormalTypeParameter();
-			case GenericsPackage.PARAMETERIZED_CLASS_INSTANTIATION: return createParameterizedClassInstantiation();
-			case GenericsPackage.CLASS_PARAMETERIZATION: return createClassParameterization();
-			case GenericsPackage.ACTUAL_TYPE_PARAMETER: return createActualTypeParameter();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case GenericsPackage.FORMAL_TYPE_PARAMETER: return createFormalTypeParameter();
+            case GenericsPackage.PARAMETERIZED_CLASS_INSTANTIATION: return createParameterizedClassInstantiation();
+            case GenericsPackage.CLASS_PARAMETERIZATION: return createClassParameterization();
+            case GenericsPackage.ACTUAL_TYPE_PARAMETER: return createActualTypeParameter();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FormalTypeParameter createFormalTypeParameter() {
-		FormalTypeParameterImpl formalTypeParameter = new FormalTypeParameterImpl();
-		return formalTypeParameter;
-	}
+        FormalTypeParameterImpl formalTypeParameter = new FormalTypeParameterImpl();
+        return formalTypeParameter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ParameterizedClassInstantiation createParameterizedClassInstantiation() {
-		ParameterizedClassInstantiationImpl parameterizedClassInstantiation = new ParameterizedClassInstantiationImpl();
-		return parameterizedClassInstantiation;
-	}
+        ParameterizedClassInstantiationImpl parameterizedClassInstantiation = new ParameterizedClassInstantiationImpl();
+        return parameterizedClassInstantiation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ClassParameterization createClassParameterization() {
-		ClassParameterizationImpl classParameterization = new ClassParameterizationImpl();
-		return classParameterization;
-	}
+        ClassParameterizationImpl classParameterization = new ClassParameterizationImpl();
+        return classParameterization;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActualTypeParameter createActualTypeParameter() {
-		ActualTypeParameterImpl actualTypeParameter = new ActualTypeParameterImpl();
-		return actualTypeParameter;
-	}
+        ActualTypeParameterImpl actualTypeParameter = new ActualTypeParameterImpl();
+        return actualTypeParameter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public GenericsPackage getGenericsPackage() {
-		return (GenericsPackage)getEPackage();
-	}
+        return (GenericsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static GenericsPackage getPackage() {
-		return GenericsPackage.eINSTANCE;
-	}
+        return GenericsPackage.eINSTANCE;
+    }
 
 } //GenericsFactoryImpl

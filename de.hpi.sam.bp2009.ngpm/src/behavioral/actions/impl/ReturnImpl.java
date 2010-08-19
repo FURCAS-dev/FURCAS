@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ReturnImpl extends StatementWithArgumentImpl implements Return {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ReturnImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.RETURN;
-	}
+        return ActionsPackage.Literals.RETURN;
+    }
 
 } //ReturnImpl

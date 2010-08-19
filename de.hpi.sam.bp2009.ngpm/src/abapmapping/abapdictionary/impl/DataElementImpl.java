@@ -32,129 +32,129 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class DataElementImpl extends UnstructuredAbapTypeImpl implements DataElement {
 	/**
-	 * The cached value of the '{@link #getAbapType() <em>Abap Type</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAbapType() <em>Abap Type</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAbapType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAbapType()
+     * @generated
+     * @ordered
+     */
 	protected AbapPrimtiveType abapType;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DataElementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AbapdictionaryPackage.Literals.DATA_ELEMENT;
-	}
+        return AbapdictionaryPackage.Literals.DATA_ELEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapPrimtiveType getAbapType() {
-		if (abapType != null && abapType.eIsProxy()) {
-			InternalEObject oldAbapType = (InternalEObject)abapType;
-			abapType = (AbapPrimtiveType)eResolveProxy(oldAbapType);
-			if (abapType != oldAbapType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE, oldAbapType, abapType));
-			}
-		}
-		return abapType;
-	}
+        if (abapType != null && abapType.eIsProxy()) {
+            InternalEObject oldAbapType = (InternalEObject)abapType;
+            abapType = (AbapPrimtiveType)eResolveProxy(oldAbapType);
+            if (abapType != oldAbapType) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE, oldAbapType, abapType));
+            }
+        }
+        return abapType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapPrimtiveType basicGetAbapType() {
-		return abapType;
-	}
+        return abapType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAbapType(AbapPrimtiveType newAbapType) {
-		AbapPrimtiveType oldAbapType = abapType;
-		abapType = newAbapType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE, oldAbapType, abapType));
-	}
+        AbapPrimtiveType oldAbapType = abapType;
+        abapType = newAbapType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE, oldAbapType, abapType));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE:
-				if (resolve) return getAbapType();
-				return basicGetAbapType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE:
+                if (resolve) return getAbapType();
+                return basicGetAbapType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE:
-				setAbapType((AbapPrimtiveType)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE:
+                setAbapType((AbapPrimtiveType)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE:
-				setAbapType((AbapPrimtiveType)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE:
+                setAbapType((AbapPrimtiveType)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE:
-				return abapType != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.DATA_ELEMENT__ABAP_TYPE:
+                return abapType != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //DataElementImpl

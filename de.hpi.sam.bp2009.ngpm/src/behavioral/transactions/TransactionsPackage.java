@@ -32,78 +32,78 @@ import org.eclipse.emf.ecore.EPackage;
  */
 public interface TransactionsPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc -->
+     * The package name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNAME = "transactions";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc -->
+     * The package namespace URI.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_URI = "http:///behavioral/transactions.ecore";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc -->
+     * The package namespace name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_PREFIX = "behavioral.transactions";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	TransactionsPackage eINSTANCE = behavioral.transactions.impl.TransactionsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link behavioral.transactions.impl.DummyImpl <em>Dummy</em>}' class.
-	 * <!-- begin-user-doc -->
+     * The meta object id for the '{@link behavioral.transactions.impl.DummyImpl <em>Dummy</em>}' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see behavioral.transactions.impl.DummyImpl
-	 * @see behavioral.transactions.impl.TransactionsPackageImpl#getDummy()
-	 * @generated
-	 */
+     * @see behavioral.transactions.impl.DummyImpl
+     * @see behavioral.transactions.impl.TransactionsPackageImpl#getDummy()
+     * @generated
+     */
 	int DUMMY = 0;
 
 	/**
-	 * The number of structural features of the '<em>Dummy</em>' class.
-	 * <!-- begin-user-doc -->
+     * The number of structural features of the '<em>Dummy</em>' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int DUMMY_FEATURE_COUNT = 0;
 
 
 	/**
-	 * Returns the meta object for class '{@link behavioral.transactions.Dummy <em>Dummy</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for class '{@link behavioral.transactions.Dummy <em>Dummy</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Dummy</em>'.
-	 * @see behavioral.transactions.Dummy
-	 * @generated
-	 */
+     * @return the meta object for class '<em>Dummy</em>'.
+     * @see behavioral.transactions.Dummy
+     * @generated
+     */
 	EClass getDummy();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc -->
+     * Returns the factory that creates the instances of the model.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the factory that creates the instances of the model.
-	 * @generated
-	 */
+     * @return the factory that creates the instances of the model.
+     * @generated
+     */
 	TransactionsFactory getTransactionsFactory();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
 	 *   <li>each class,</li>
@@ -112,17 +112,17 @@ public interface TransactionsPackage extends EPackage {
 	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link behavioral.transactions.impl.DummyImpl <em>Dummy</em>}' class.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link behavioral.transactions.impl.DummyImpl <em>Dummy</em>}' class.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see behavioral.transactions.impl.DummyImpl
-		 * @see behavioral.transactions.impl.TransactionsPackageImpl#getDummy()
-		 * @generated
-		 */
+         * @see behavioral.transactions.impl.DummyImpl
+         * @see behavioral.transactions.impl.TransactionsPackageImpl#getDummy()
+         * @generated
+         */
 		EClass DUMMY = eINSTANCE.getDummy();
 
 	}

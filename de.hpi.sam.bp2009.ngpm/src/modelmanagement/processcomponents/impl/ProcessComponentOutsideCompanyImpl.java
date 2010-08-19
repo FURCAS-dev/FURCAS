@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ProcessComponentOutsideCompanyImpl extends ProcessComponentImpl implements ProcessComponentOutsideCompany {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ProcessComponentOutsideCompanyImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ProcesscomponentsPackage.Literals.PROCESS_COMPONENT_OUTSIDE_COMPANY;
-	}
+        return ProcesscomponentsPackage.Literals.PROCESS_COMPONENT_OUTSIDE_COMPANY;
+    }
 
 } //ProcessComponentOutsideCompanyImpl

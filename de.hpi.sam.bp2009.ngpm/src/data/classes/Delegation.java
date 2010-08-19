@@ -34,57 +34,57 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Delegation extends EObject {
 	/**
-	 * Returns the value of the '<em><b>All Features</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>All Features</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>All Features</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>All Features</em>' attribute.
-	 * @see #setAllFeatures(boolean)
-	 * @see data.classes.ClassesPackage#getDelegation_AllFeatures()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>All Features</em>' attribute.
+     * @see #setAllFeatures(boolean)
+     * @see data.classes.ClassesPackage#getDelegation_AllFeatures()
+     * @model unique="false" required="true" ordered="false"
+     * @generated
+     */
 	boolean isAllFeatures();
 
 	/**
-	 * Sets the value of the '{@link data.classes.Delegation#isAllFeatures <em>All Features</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.classes.Delegation#isAllFeatures <em>All Features</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>All Features</em>' attribute.
-	 * @see #isAllFeatures()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>All Features</em>' attribute.
+     * @see #isAllFeatures()
+     * @generated
+     */
 	void setAllFeatures(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>From</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link data.classes.AssociationEnd#getDelegation <em>Delegation</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>From</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link data.classes.AssociationEnd#getDelegation <em>Delegation</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>From</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>From</em>' container reference.
-	 * @see #setFrom(AssociationEnd)
-	 * @see data.classes.ClassesPackage#getDelegation_From()
-	 * @see data.classes.AssociationEnd#getDelegation
-	 * @model opposite="delegation" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>From</em>' container reference.
+     * @see #setFrom(AssociationEnd)
+     * @see data.classes.ClassesPackage#getDelegation_From()
+     * @see data.classes.AssociationEnd#getDelegation
+     * @model opposite="delegation" required="true"
+     * @generated
+     */
 	AssociationEnd getFrom();
 
 	/**
-	 * Sets the value of the '{@link data.classes.Delegation#getFrom <em>From</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.classes.Delegation#getFrom <em>From</em>}' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>From</em>' container reference.
-	 * @see #getFrom()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>From</em>' container reference.
+     * @see #getFrom()
+     * @generated
+     */
 	void setFrom(AssociationEnd value);
 
 } // Delegation

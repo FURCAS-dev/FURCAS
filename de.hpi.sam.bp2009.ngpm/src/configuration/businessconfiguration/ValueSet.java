@@ -40,75 +40,75 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ValueSet extends NamedElement, TypedElement {
 	/**
-	 * Returns the value of the '<em><b>Extensible</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Extensible</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extensible</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extensible</em>' attribute.
-	 * @see #setExtensible(boolean)
-	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSet_Extensible()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Extensible</em>' attribute.
+     * @see #setExtensible(boolean)
+     * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSet_Extensible()
+     * @model unique="false" required="true" ordered="false"
+     * @generated
+     */
 	boolean isExtensible();
 
 	/**
-	 * Sets the value of the '{@link configuration.businessconfiguration.ValueSet#isExtensible <em>Extensible</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link configuration.businessconfiguration.ValueSet#isExtensible <em>Extensible</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Extensible</em>' attribute.
-	 * @see #isExtensible()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Extensible</em>' attribute.
+     * @see #isExtensible()
+     * @generated
+     */
 	void setExtensible(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Configuration Business Option</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link configuration.businessconfiguration.BusinessOption#getValueSet <em>Value Set</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Configuration Business Option</b></em>' reference.
+     * It is bidirectional and its opposite is '{@link configuration.businessconfiguration.BusinessOption#getValueSet <em>Value Set</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Configuration Business Option</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Configuration Business Option</em>' reference.
-	 * @see #setConfigurationBusinessOption(BusinessOption)
-	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSet_ConfigurationBusinessOption()
-	 * @see configuration.businessconfiguration.BusinessOption#getValueSet
-	 * @model opposite="valueSet" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Configuration Business Option</em>' reference.
+     * @see #setConfigurationBusinessOption(BusinessOption)
+     * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSet_ConfigurationBusinessOption()
+     * @see configuration.businessconfiguration.BusinessOption#getValueSet
+     * @model opposite="valueSet" required="true"
+     * @generated
+     */
 	BusinessOption getConfigurationBusinessOption();
 
 	/**
-	 * Sets the value of the '{@link configuration.businessconfiguration.ValueSet#getConfigurationBusinessOption <em>Configuration Business Option</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link configuration.businessconfiguration.ValueSet#getConfigurationBusinessOption <em>Configuration Business Option</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Configuration Business Option</em>' reference.
-	 * @see #getConfigurationBusinessOption()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Configuration Business Option</em>' reference.
+     * @see #getConfigurationBusinessOption()
+     * @generated
+     */
 	void setConfigurationBusinessOption(BusinessOption value);
 
 	/**
-	 * Returns the value of the '<em><b>Entries</b></em>' containment reference list.
-	 * The list contents are of type {@link configuration.businessconfiguration.ValueSetEntry}.
-	 * It is bidirectional and its opposite is '{@link configuration.businessconfiguration.ValueSetEntry#getValueSet <em>Value Set</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Entries</b></em>' containment reference list.
+     * The list contents are of type {@link configuration.businessconfiguration.ValueSetEntry}.
+     * It is bidirectional and its opposite is '{@link configuration.businessconfiguration.ValueSetEntry#getValueSet <em>Value Set</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Entries</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Entries</em>' containment reference list.
-	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSet_Entries()
-	 * @see configuration.businessconfiguration.ValueSetEntry#getValueSet
-	 * @model opposite="valueSet" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Entries</em>' containment reference list.
+     * @see configuration.businessconfiguration.BusinessconfigurationPackage#getValueSet_Entries()
+     * @see configuration.businessconfiguration.ValueSetEntry#getValueSet
+     * @model opposite="valueSet" containment="true" resolveProxies="true"
+     * @generated
+     */
 	EList<ValueSetEntry> getEntries();
 
 } // ValueSet

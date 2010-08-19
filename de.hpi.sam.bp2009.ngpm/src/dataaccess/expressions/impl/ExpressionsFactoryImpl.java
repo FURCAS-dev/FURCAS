@@ -24,241 +24,241 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ExpressionsFactory init() {
-		try {
-			ExpressionsFactory theExpressionsFactory = (ExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/expressions.ecore"); 
-			if (theExpressionsFactory != null) {
-				return theExpressionsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new ExpressionsFactoryImpl();
-	}
+        try {
+            ExpressionsFactory theExpressionsFactory = (ExpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/expressions.ecore"); 
+            if (theExpressionsFactory != null) {
+                return theExpressionsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new ExpressionsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExpressionsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ExpressionsPackage.VARIABLE_EXPRESSION: return createVariableExpression();
-			case ExpressionsPackage.METHOD_CALL_EXPRESSION: return createMethodCallExpression();
-			case ExpressionsPackage.OBJECT_CREATION_EXPRESSION: return createObjectCreationExpression();
-			case ExpressionsPackage.FUNCTION_CALL_EXPRESSION: return createFunctionCallExpression();
-			case ExpressionsPackage.THIS: return createThis();
-			case ExpressionsPackage.EQUALS: return createEquals();
-			case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION: return createAssociationEndNavigationExpression();
-			case ExpressionsPackage.OBJECT_COUNT: return createObjectCount();
-			case ExpressionsPackage.REPLACE: return createReplace();
-			case ExpressionsPackage.NAVIGATION_STEP: return createNavigationStep();
-			case ExpressionsPackage.HEAD: return createHead();
-			case ExpressionsPackage.TAIL: return createTail();
-			case ExpressionsPackage.AS_LIST: return createAsList();
-			case ExpressionsPackage.TERNARY: return createTernary();
-			case ExpressionsPackage.CONTENT_EQUALS: return createContentEquals();
-			case ExpressionsPackage.MAP: return createMap();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case ExpressionsPackage.VARIABLE_EXPRESSION: return createVariableExpression();
+            case ExpressionsPackage.METHOD_CALL_EXPRESSION: return createMethodCallExpression();
+            case ExpressionsPackage.OBJECT_CREATION_EXPRESSION: return createObjectCreationExpression();
+            case ExpressionsPackage.FUNCTION_CALL_EXPRESSION: return createFunctionCallExpression();
+            case ExpressionsPackage.THIS: return createThis();
+            case ExpressionsPackage.EQUALS: return createEquals();
+            case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION: return createAssociationEndNavigationExpression();
+            case ExpressionsPackage.OBJECT_COUNT: return createObjectCount();
+            case ExpressionsPackage.REPLACE: return createReplace();
+            case ExpressionsPackage.NAVIGATION_STEP: return createNavigationStep();
+            case ExpressionsPackage.HEAD: return createHead();
+            case ExpressionsPackage.TAIL: return createTail();
+            case ExpressionsPackage.AS_LIST: return createAsList();
+            case ExpressionsPackage.TERNARY: return createTernary();
+            case ExpressionsPackage.CONTENT_EQUALS: return createContentEquals();
+            case ExpressionsPackage.MAP: return createMap();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public VariableExpression createVariableExpression() {
-		VariableExpressionImpl variableExpression = new VariableExpressionImpl();
-		return variableExpression;
-	}
+        VariableExpressionImpl variableExpression = new VariableExpressionImpl();
+        return variableExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MethodCallExpression createMethodCallExpression() {
-		MethodCallExpressionImpl methodCallExpression = new MethodCallExpressionImpl();
-		return methodCallExpression;
-	}
+        MethodCallExpressionImpl methodCallExpression = new MethodCallExpressionImpl();
+        return methodCallExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ObjectCreationExpression createObjectCreationExpression() {
-		ObjectCreationExpressionImpl objectCreationExpression = new ObjectCreationExpressionImpl();
-		return objectCreationExpression;
-	}
+        ObjectCreationExpressionImpl objectCreationExpression = new ObjectCreationExpressionImpl();
+        return objectCreationExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FunctionCallExpression createFunctionCallExpression() {
-		FunctionCallExpressionImpl functionCallExpression = new FunctionCallExpressionImpl();
-		return functionCallExpression;
-	}
+        FunctionCallExpressionImpl functionCallExpression = new FunctionCallExpressionImpl();
+        return functionCallExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public This createThis() {
-		ThisImpl this_ = new ThisImpl();
-		return this_;
-	}
+        ThisImpl this_ = new ThisImpl();
+        return this_;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Equals createEquals() {
-		EqualsImpl equals = new EqualsImpl();
-		return equals;
-	}
+        EqualsImpl equals = new EqualsImpl();
+        return equals;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssociationEndNavigationExpression createAssociationEndNavigationExpression() {
-		AssociationEndNavigationExpressionImpl associationEndNavigationExpression = new AssociationEndNavigationExpressionImpl();
-		return associationEndNavigationExpression;
-	}
+        AssociationEndNavigationExpressionImpl associationEndNavigationExpression = new AssociationEndNavigationExpressionImpl();
+        return associationEndNavigationExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ObjectCount createObjectCount() {
-		ObjectCountImpl objectCount = new ObjectCountImpl();
-		return objectCount;
-	}
+        ObjectCountImpl objectCount = new ObjectCountImpl();
+        return objectCount;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Replace createReplace() {
-		ReplaceImpl replace = new ReplaceImpl();
-		return replace;
-	}
+        ReplaceImpl replace = new ReplaceImpl();
+        return replace;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NavigationStep createNavigationStep() {
-		NavigationStepImpl navigationStep = new NavigationStepImpl();
-		return navigationStep;
-	}
+        NavigationStepImpl navigationStep = new NavigationStepImpl();
+        return navigationStep;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Head createHead() {
-		HeadImpl head = new HeadImpl();
-		return head;
-	}
+        HeadImpl head = new HeadImpl();
+        return head;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Tail createTail() {
-		TailImpl tail = new TailImpl();
-		return tail;
-	}
+        TailImpl tail = new TailImpl();
+        return tail;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AsList createAsList() {
-		AsListImpl asList = new AsListImpl();
-		return asList;
-	}
+        AsListImpl asList = new AsListImpl();
+        return asList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Ternary createTernary() {
-		TernaryImpl ternary = new TernaryImpl();
-		return ternary;
-	}
+        TernaryImpl ternary = new TernaryImpl();
+        return ternary;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ContentEquals createContentEquals() {
-		ContentEqualsImpl contentEquals = new ContentEqualsImpl();
-		return contentEquals;
-	}
+        ContentEqualsImpl contentEquals = new ContentEqualsImpl();
+        return contentEquals;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Map createMap() {
-		MapImpl map = new MapImpl();
-		return map;
-	}
+        MapImpl map = new MapImpl();
+        return map;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExpressionsPackage getExpressionsPackage() {
-		return (ExpressionsPackage)getEPackage();
-	}
+        return (ExpressionsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static ExpressionsPackage getPackage() {
-		return ExpressionsPackage.eINSTANCE;
-	}
+        return ExpressionsPackage.eINSTANCE;
+    }
 
 } //ExpressionsFactoryImpl

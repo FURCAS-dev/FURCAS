@@ -24,252 +24,252 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class ActionsFactoryImpl extends EFactoryImpl implements ActionsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ActionsFactory init() {
-		try {
-			ActionsFactory theActionsFactory = (ActionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/actions.ecore"); 
-			if (theActionsFactory != null) {
-				return theActionsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new ActionsFactoryImpl();
-	}
+        try {
+            ActionsFactory theActionsFactory = (ActionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/actions.ecore"); 
+            if (theActionsFactory != null) {
+                return theActionsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new ActionsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActionsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ActionsPackage.ASSIGNMENT: return createAssignment();
-			case ActionsPackage.BLOCK: return createBlock();
-			case ActionsPackage.IF_ELSE: return createIfElse();
-			case ActionsPackage.WHILE_LOOP: return createWhileLoop();
-			case ActionsPackage.FOREACH: return createForeach();
-			case ActionsPackage.RETURN: return createReturn();
-			case ActionsPackage.ADD_LINK: return createAddLink();
-			case ActionsPackage.REMOVE_LINK: return createRemoveLink();
-			case ActionsPackage.EXPRESSION_STATEMENT: return createExpressionStatement();
-			case ActionsPackage.SORT: return createSort();
-			case ActionsPackage.QUERY_INVOCATION: return createQueryInvocation();
-			case ActionsPackage.CONSTANT: return createConstant();
-			case ActionsPackage.VARIABLE: return createVariable();
-			case ActionsPackage.ITERATOR: return createIterator();
-			case ActionsPackage.NAMED_VALUE_DECLARATION: return createNamedValueDeclaration();
-			case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS: return createStatementWithNestedBlocks();
-			case ActionsPackage.SINGLE_BLOCK_STATEMENT: return createSingleBlockStatement();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case ActionsPackage.ASSIGNMENT: return createAssignment();
+            case ActionsPackage.BLOCK: return createBlock();
+            case ActionsPackage.IF_ELSE: return createIfElse();
+            case ActionsPackage.WHILE_LOOP: return createWhileLoop();
+            case ActionsPackage.FOREACH: return createForeach();
+            case ActionsPackage.RETURN: return createReturn();
+            case ActionsPackage.ADD_LINK: return createAddLink();
+            case ActionsPackage.REMOVE_LINK: return createRemoveLink();
+            case ActionsPackage.EXPRESSION_STATEMENT: return createExpressionStatement();
+            case ActionsPackage.SORT: return createSort();
+            case ActionsPackage.QUERY_INVOCATION: return createQueryInvocation();
+            case ActionsPackage.CONSTANT: return createConstant();
+            case ActionsPackage.VARIABLE: return createVariable();
+            case ActionsPackage.ITERATOR: return createIterator();
+            case ActionsPackage.NAMED_VALUE_DECLARATION: return createNamedValueDeclaration();
+            case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS: return createStatementWithNestedBlocks();
+            case ActionsPackage.SINGLE_BLOCK_STATEMENT: return createSingleBlockStatement();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Assignment createAssignment() {
-		AssignmentImpl assignment = new AssignmentImpl();
-		return assignment;
-	}
+        AssignmentImpl assignment = new AssignmentImpl();
+        return assignment;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Block createBlock() {
-		BlockImpl block = new BlockImpl();
-		return block;
-	}
+        BlockImpl block = new BlockImpl();
+        return block;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public IfElse createIfElse() {
-		IfElseImpl ifElse = new IfElseImpl();
-		return ifElse;
-	}
+        IfElseImpl ifElse = new IfElseImpl();
+        return ifElse;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public WhileLoop createWhileLoop() {
-		WhileLoopImpl whileLoop = new WhileLoopImpl();
-		return whileLoop;
-	}
+        WhileLoopImpl whileLoop = new WhileLoopImpl();
+        return whileLoop;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Foreach createForeach() {
-		ForeachImpl foreach = new ForeachImpl();
-		return foreach;
-	}
+        ForeachImpl foreach = new ForeachImpl();
+        return foreach;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Return createReturn() {
-		ReturnImpl return_ = new ReturnImpl();
-		return return_;
-	}
+        ReturnImpl return_ = new ReturnImpl();
+        return return_;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AddLink createAddLink() {
-		AddLinkImpl addLink = new AddLinkImpl();
-		return addLink;
-	}
+        AddLinkImpl addLink = new AddLinkImpl();
+        return addLink;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public RemoveLink createRemoveLink() {
-		RemoveLinkImpl removeLink = new RemoveLinkImpl();
-		return removeLink;
-	}
+        RemoveLinkImpl removeLink = new RemoveLinkImpl();
+        return removeLink;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExpressionStatement createExpressionStatement() {
-		ExpressionStatementImpl expressionStatement = new ExpressionStatementImpl();
-		return expressionStatement;
-	}
+        ExpressionStatementImpl expressionStatement = new ExpressionStatementImpl();
+        return expressionStatement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Sort createSort() {
-		SortImpl sort = new SortImpl();
-		return sort;
-	}
+        SortImpl sort = new SortImpl();
+        return sort;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryInvocation createQueryInvocation() {
-		QueryInvocationImpl queryInvocation = new QueryInvocationImpl();
-		return queryInvocation;
-	}
+        QueryInvocationImpl queryInvocation = new QueryInvocationImpl();
+        return queryInvocation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Constant createConstant() {
-		ConstantImpl constant = new ConstantImpl();
-		return constant;
-	}
+        ConstantImpl constant = new ConstantImpl();
+        return constant;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Variable createVariable() {
-		VariableImpl variable = new VariableImpl();
-		return variable;
-	}
+        VariableImpl variable = new VariableImpl();
+        return variable;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Iterator createIterator() {
-		IteratorImpl iterator = new IteratorImpl();
-		return iterator;
-	}
+        IteratorImpl iterator = new IteratorImpl();
+        return iterator;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NamedValueDeclaration createNamedValueDeclaration() {
-		NamedValueDeclarationImpl namedValueDeclaration = new NamedValueDeclarationImpl();
-		return namedValueDeclaration;
-	}
+        NamedValueDeclarationImpl namedValueDeclaration = new NamedValueDeclarationImpl();
+        return namedValueDeclaration;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StatementWithNestedBlocks createStatementWithNestedBlocks() {
-		StatementWithNestedBlocksImpl statementWithNestedBlocks = new StatementWithNestedBlocksImpl();
-		return statementWithNestedBlocks;
-	}
+        StatementWithNestedBlocksImpl statementWithNestedBlocks = new StatementWithNestedBlocksImpl();
+        return statementWithNestedBlocks;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SingleBlockStatement createSingleBlockStatement() {
-		SingleBlockStatementImpl singleBlockStatement = new SingleBlockStatementImpl();
-		return singleBlockStatement;
-	}
+        SingleBlockStatementImpl singleBlockStatement = new SingleBlockStatementImpl();
+        return singleBlockStatement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActionsPackage getActionsPackage() {
-		return (ActionsPackage)getEPackage();
-	}
+        return (ActionsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static ActionsPackage getPackage() {
-		return ActionsPackage.eINSTANCE;
-	}
+        return ActionsPackage.eINSTANCE;
+    }
 
 } //ActionsFactoryImpl

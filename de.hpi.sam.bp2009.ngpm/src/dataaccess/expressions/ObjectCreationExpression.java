@@ -30,47 +30,47 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ObjectCreationExpression extends Expression {
 	/**
-	 * Returns the value of the '<em><b>Class To Instantiate</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Class To Instantiate</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Class To Instantiate</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class To Instantiate</em>' reference.
-	 * @see #setClassToInstantiate(SapClass)
-	 * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression_ClassToInstantiate()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Class To Instantiate</em>' reference.
+     * @see #setClassToInstantiate(SapClass)
+     * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression_ClassToInstantiate()
+     * @model required="true"
+     * @generated
+     */
 	SapClass getClassToInstantiate();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.expressions.ObjectCreationExpression#getClassToInstantiate <em>Class To Instantiate</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.expressions.ObjectCreationExpression#getClassToInstantiate <em>Class To Instantiate</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class To Instantiate</em>' reference.
-	 * @see #getClassToInstantiate()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Class To Instantiate</em>' reference.
+     * @see #getClassToInstantiate()
+     * @generated
+     */
 	void setClassToInstantiate(SapClass value);
 
 	/**
-	 * Returns the value of the '<em><b>Initializers</b></em>' containment reference list.
-	 * The list contents are of type {@link dataaccess.expressions.MethodCallExpression}.
-	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.MethodCallExpression#getCreationExpression <em>Creation Expression</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Initializers</b></em>' containment reference list.
+     * The list contents are of type {@link dataaccess.expressions.MethodCallExpression}.
+     * It is bidirectional and its opposite is '{@link dataaccess.expressions.MethodCallExpression#getCreationExpression <em>Creation Expression</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Initializers</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Initializers</em>' containment reference list.
-	 * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression_Initializers()
-	 * @see dataaccess.expressions.MethodCallExpression#getCreationExpression
-	 * @model opposite="creationExpression" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Initializers</em>' containment reference list.
+     * @see dataaccess.expressions.ExpressionsPackage#getObjectCreationExpression_Initializers()
+     * @see dataaccess.expressions.MethodCallExpression#getCreationExpression
+     * @model opposite="creationExpression" containment="true" resolveProxies="true"
+     * @generated
+     */
 	EList<MethodCallExpression> getInitializers();
 
 } // ObjectCreationExpression

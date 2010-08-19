@@ -28,21 +28,21 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ContextualElement extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Contextual Element Configuration</b></em>' containment reference list.
-	 * The list contents are of type {@link configuration.context_drivers.ContexConfiguration}.
-	 * It is bidirectional and its opposite is '{@link configuration.context_drivers.ContexConfiguration#getConfiguredElement <em>Configured Element</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Contextual Element Configuration</b></em>' containment reference list.
+     * The list contents are of type {@link configuration.context_drivers.ContexConfiguration}.
+     * It is bidirectional and its opposite is '{@link configuration.context_drivers.ContexConfiguration#getConfiguredElement <em>Configured Element</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Contextual Element Configuration</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Contextual Element Configuration</em>' containment reference list.
-	 * @see configuration.context_drivers.Context_driversPackage#getContextualElement_ContextualElementConfiguration()
-	 * @see configuration.context_drivers.ContexConfiguration#getConfiguredElement
-	 * @model opposite="configuredElement" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Contextual Element Configuration</em>' containment reference list.
+     * @see configuration.context_drivers.Context_driversPackage#getContextualElement_ContextualElementConfiguration()
+     * @see configuration.context_drivers.ContexConfiguration#getConfiguredElement
+     * @model opposite="configuredElement" containment="true" resolveProxies="true"
+     * @generated
+     */
 	EList<ContexConfiguration> getContextualElementConfiguration();
 
 } // ContextualElement

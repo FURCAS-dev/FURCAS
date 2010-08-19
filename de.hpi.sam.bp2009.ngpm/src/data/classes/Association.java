@@ -36,103 +36,103 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Association extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Ends</b></em>' containment reference list.
-	 * The list contents are of type {@link data.classes.AssociationEnd}.
-	 * It is bidirectional and its opposite is '{@link data.classes.AssociationEnd#getAssociation <em>Association</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Ends</b></em>' containment reference list.
+     * The list contents are of type {@link data.classes.AssociationEnd}.
+     * It is bidirectional and its opposite is '{@link data.classes.AssociationEnd#getAssociation <em>Association</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ends</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Ends</em>' containment reference list.
-	 * @see data.classes.ClassesPackage#getAssociation_Ends()
-	 * @see data.classes.AssociationEnd#getAssociation
-	 * @model opposite="association" containment="true" lower="2" upper="2"
-	 * @generated
-	 */
+     * @return the value of the '<em>Ends</em>' containment reference list.
+     * @see data.classes.ClassesPackage#getAssociation_Ends()
+     * @see data.classes.AssociationEnd#getAssociation
+     * @model opposite="association" containment="true" resolveProxies="true" lower="2" upper="2"
+     * @generated
+     */
 	EList<AssociationEnd> getEnds();
 
 	/**
-	 * Returns the value of the '<em><b>Package </b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link modelmanagement.Package#getAssociations <em>Associations</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Package </b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link modelmanagement.Package#getAssociations <em>Associations</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Package </em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Package </em>' container reference.
-	 * @see #setPackage_(modelmanagement.Package)
-	 * @see data.classes.ClassesPackage#getAssociation_Package_()
-	 * @see modelmanagement.Package#getAssociations
-	 * @model opposite="associations" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Package </em>' container reference.
+     * @see #setPackage_(modelmanagement.Package)
+     * @see data.classes.ClassesPackage#getAssociation_Package_()
+     * @see modelmanagement.Package#getAssociations
+     * @model opposite="associations" required="true"
+     * @generated
+     */
 	modelmanagement.Package getPackage_();
 
 	/**
-	 * Sets the value of the '{@link data.classes.Association#getPackage_ <em>Package </em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.classes.Association#getPackage_ <em>Package </em>}' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package </em>' container reference.
-	 * @see #getPackage_()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Package </em>' container reference.
+     * @see #getPackage_()
+     * @generated
+     */
 	void setPackage_(modelmanagement.Package value);
 
 	/**
-	 * Returns the value of the '<em><b>Time Dependency</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link data.timedependency.TimeDependency#getAssociation <em>Association</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Time Dependency</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link data.timedependency.TimeDependency#getAssociation <em>Association</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Time Dependency</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Time Dependency</em>' containment reference.
-	 * @see #setTimeDependency(TimeDependency)
-	 * @see data.classes.ClassesPackage#getAssociation_TimeDependency()
-	 * @see data.timedependency.TimeDependency#getAssociation
-	 * @model opposite="association" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Time Dependency</em>' containment reference.
+     * @see #setTimeDependency(TimeDependency)
+     * @see data.classes.ClassesPackage#getAssociation_TimeDependency()
+     * @see data.timedependency.TimeDependency#getAssociation
+     * @model opposite="association" containment="true" resolveProxies="true"
+     * @generated
+     */
 	TimeDependency getTimeDependency();
 
 	/**
-	 * Sets the value of the '{@link data.classes.Association#getTimeDependency <em>Time Dependency</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.classes.Association#getTimeDependency <em>Time Dependency</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Time Dependency</em>' containment reference.
-	 * @see #getTimeDependency()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Time Dependency</em>' containment reference.
+     * @see #getTimeDependency()
+     * @generated
+     */
 	void setTimeDependency(TimeDependency value);
 
 	/**
-	 * Returns the value of the '<em><b>Abap Annotation</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Abap Annotation</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Abap Annotation</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Abap Annotation</em>' reference.
-	 * @see #setAbapAnnotation(AbapAssociationImplementationAnnotation)
-	 * @see data.classes.ClassesPackage#getAssociation_AbapAnnotation()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Abap Annotation</em>' reference.
+     * @see #setAbapAnnotation(AbapAssociationImplementationAnnotation)
+     * @see data.classes.ClassesPackage#getAssociation_AbapAnnotation()
+     * @model
+     * @generated
+     */
 	AbapAssociationImplementationAnnotation getAbapAnnotation();
 
 	/**
-	 * Sets the value of the '{@link data.classes.Association#getAbapAnnotation <em>Abap Annotation</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.classes.Association#getAbapAnnotation <em>Abap Annotation</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Abap Annotation</em>' reference.
-	 * @see #getAbapAnnotation()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Abap Annotation</em>' reference.
+     * @see #getAbapAnnotation()
+     * @generated
+     */
 	void setAbapAnnotation(AbapAssociationImplementationAnnotation value);
 
 } // Association

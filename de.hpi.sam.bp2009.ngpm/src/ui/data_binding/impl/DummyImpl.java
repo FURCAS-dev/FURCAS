@@ -24,22 +24,22 @@ import ui.data_binding.Dummy;
  */
 public class DummyImpl extends EObjectImpl implements Dummy {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DummyImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return Data_bindingPackage.Literals.DUMMY;
-	}
+        return Data_bindingPackage.Literals.DUMMY;
+    }
 
 } //DummyImpl

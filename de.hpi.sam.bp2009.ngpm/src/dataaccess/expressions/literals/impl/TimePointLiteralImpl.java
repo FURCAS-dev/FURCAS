@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class TimePointLiteralImpl extends LiteralImpl implements TimePointLiteral {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TimePointLiteralImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return LiteralsPackage.Literals.TIME_POINT_LITERAL;
-	}
+        return LiteralsPackage.Literals.TIME_POINT_LITERAL;
+    }
 
 } //TimePointLiteralImpl

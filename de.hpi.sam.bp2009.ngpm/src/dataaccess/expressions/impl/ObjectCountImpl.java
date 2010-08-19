@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ObjectCountImpl extends ObjectBasedExpressionImpl implements ObjectCount {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ObjectCountImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.OBJECT_COUNT;
-	}
+        return ExpressionsPackage.Literals.OBJECT_COUNT;
+    }
 
 } //ObjectCountImpl

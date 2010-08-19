@@ -28,45 +28,45 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface SimpleContent extends AbstractContent {
 	/**
-	 * Returns the value of the '<em><b>Base</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Base</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Base</em>' attribute.
-	 * @see #setBase(String)
-	 * @see integration.xsd.XsdPackage#getSimpleContent_Base()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Base</em>' attribute.
+     * @see #setBase(String)
+     * @see integration.xsd.XsdPackage#getSimpleContent_Base()
+     * @model unique="false" required="true" ordered="false"
+     * @generated
+     */
 	String getBase();
 
 	/**
-	 * Sets the value of the '{@link integration.xsd.SimpleContent#getBase <em>Base</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link integration.xsd.SimpleContent#getBase <em>Base</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Base</em>' attribute.
-	 * @see #getBase()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Base</em>' attribute.
+     * @see #getBase()
+     * @generated
+     */
 	void setBase(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Enum Vals</b></em>' attribute list.
-	 * The list contents are of type {@link java.lang.String}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Enum Vals</b></em>' attribute list.
+     * The list contents are of type {@link java.lang.String}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Enum Vals</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enum Vals</em>' attribute list.
-	 * @see integration.xsd.XsdPackage#getSimpleContent_EnumVals()
-	 * @model unique="false" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Enum Vals</em>' attribute list.
+     * @see integration.xsd.XsdPackage#getSimpleContent_EnumVals()
+     * @model unique="false" ordered="false"
+     * @generated
+     */
 	EList<String> getEnumVals();
 
 } // SimpleContent

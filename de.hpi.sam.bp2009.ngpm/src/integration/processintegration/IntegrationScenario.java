@@ -28,21 +28,21 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface IntegrationScenario extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Interactions</b></em>' containment reference list.
-	 * The list contents are of type {@link integration.processintegration.ProcessComponentInteraction}.
-	 * It is bidirectional and its opposite is '{@link integration.processintegration.ProcessComponentInteraction#getUses <em>Uses</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Interactions</b></em>' containment reference list.
+     * The list contents are of type {@link integration.processintegration.ProcessComponentInteraction}.
+     * It is bidirectional and its opposite is '{@link integration.processintegration.ProcessComponentInteraction#getUses <em>Uses</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Interactions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Interactions</em>' containment reference list.
-	 * @see integration.processintegration.ProcessintegrationPackage#getIntegrationScenario_Interactions()
-	 * @see integration.processintegration.ProcessComponentInteraction#getUses
-	 * @model opposite="uses" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Interactions</em>' containment reference list.
+     * @see integration.processintegration.ProcessintegrationPackage#getIntegrationScenario_Interactions()
+     * @see integration.processintegration.ProcessComponentInteraction#getUses
+     * @model opposite="uses" containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	EList<ProcessComponentInteraction> getInteractions();
 
 } // IntegrationScenario

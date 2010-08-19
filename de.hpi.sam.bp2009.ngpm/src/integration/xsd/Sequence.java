@@ -26,19 +26,19 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Sequence extends Containable {
 	/**
-	 * Returns the value of the '<em><b>Children</b></em>' reference list.
-	 * The list contents are of type {@link integration.xsd.Containable}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Children</b></em>' reference list.
+     * The list contents are of type {@link integration.xsd.Containable}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Children</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Children</em>' reference list.
-	 * @see integration.xsd.XsdPackage#getSequence_Children()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Children</em>' reference list.
+     * @see integration.xsd.XsdPackage#getSequence_Children()
+     * @model
+     * @generated
+     */
 	EList<Containable> getChildren();
 
 } // Sequence

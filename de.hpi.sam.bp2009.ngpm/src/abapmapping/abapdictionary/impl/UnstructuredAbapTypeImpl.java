@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class UnstructuredAbapTypeImpl extends AbapTypeImpl implements UnstructuredAbapType {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected UnstructuredAbapTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AbapdictionaryPackage.Literals.UNSTRUCTURED_ABAP_TYPE;
-	}
+        return AbapdictionaryPackage.Literals.UNSTRUCTURED_ABAP_TYPE;
+    }
 
 } //UnstructuredAbapTypeImpl

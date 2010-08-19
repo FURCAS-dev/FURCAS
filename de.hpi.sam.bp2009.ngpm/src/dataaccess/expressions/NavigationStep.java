@@ -31,84 +31,84 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface NavigationStep extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Replace</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Replace#getSteps <em>Steps</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Replace</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Replace#getSteps <em>Steps</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Replace</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Replace</em>' container reference.
-	 * @see #setReplace(Replace)
-	 * @see dataaccess.expressions.ExpressionsPackage#getNavigationStep_Replace()
-	 * @see dataaccess.expressions.Replace#getSteps
-	 * @model opposite="steps" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Replace</em>' container reference.
+     * @see #setReplace(Replace)
+     * @see dataaccess.expressions.ExpressionsPackage#getNavigationStep_Replace()
+     * @see dataaccess.expressions.Replace#getSteps
+     * @model opposite="steps" required="true"
+     * @generated
+     */
 	Replace getReplace();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.expressions.NavigationStep#getReplace <em>Replace</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.expressions.NavigationStep#getReplace <em>Replace</em>}' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Replace</em>' container reference.
-	 * @see #getReplace()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Replace</em>' container reference.
+     * @see #getReplace()
+     * @generated
+     */
 	void setReplace(Replace value);
 
 	/**
-	 * Returns the value of the '<em><b>To</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>To</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>To</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>To</em>' reference.
-	 * @see #setTo(AssociationEnd)
-	 * @see dataaccess.expressions.ExpressionsPackage#getNavigationStep_To()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>To</em>' reference.
+     * @see #setTo(AssociationEnd)
+     * @see dataaccess.expressions.ExpressionsPackage#getNavigationStep_To()
+     * @model required="true"
+     * @generated
+     */
 	AssociationEnd getTo();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.expressions.NavigationStep#getTo <em>To</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.expressions.NavigationStep#getTo <em>To</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>To</em>' reference.
-	 * @see #getTo()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>To</em>' reference.
+     * @see #getTo()
+     * @generated
+     */
 	void setTo(AssociationEnd value);
 
 	/**
-	 * Returns the value of the '<em><b>Filter Function</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Filter Function</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Filter Function</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filter Function</em>' containment reference.
-	 * @see #setFilterFunction(Expression)
-	 * @see dataaccess.expressions.ExpressionsPackage#getNavigationStep_FilterFunction()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='navigationStep'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Filter Function</em>' containment reference.
+     * @see #setFilterFunction(Expression)
+     * @see dataaccess.expressions.ExpressionsPackage#getNavigationStep_FilterFunction()
+     * @model containment="true" resolveProxies="true"
+     *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='navigationStep'"
+     * @generated
+     */
 	Expression getFilterFunction();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.expressions.NavigationStep#getFilterFunction <em>Filter Function</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.expressions.NavigationStep#getFilterFunction <em>Filter Function</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filter Function</em>' containment reference.
-	 * @see #getFilterFunction()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Filter Function</em>' containment reference.
+     * @see #getFilterFunction()
+     * @generated
+     */
 	void setFilterFunction(Expression value);
 
 } // NavigationStep

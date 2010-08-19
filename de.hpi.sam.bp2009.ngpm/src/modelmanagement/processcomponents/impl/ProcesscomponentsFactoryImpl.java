@@ -24,87 +24,87 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class ProcesscomponentsFactoryImpl extends EFactoryImpl implements ProcesscomponentsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ProcesscomponentsFactory init() {
-		try {
-			ProcesscomponentsFactory theProcesscomponentsFactory = (ProcesscomponentsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///modelmanagement/processcomponents.ecore"); 
-			if (theProcesscomponentsFactory != null) {
-				return theProcesscomponentsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new ProcesscomponentsFactoryImpl();
-	}
+        try {
+            ProcesscomponentsFactory theProcesscomponentsFactory = (ProcesscomponentsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///modelmanagement/processcomponents.ecore"); 
+            if (theProcesscomponentsFactory != null) {
+                return theProcesscomponentsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new ProcesscomponentsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ProcesscomponentsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ProcesscomponentsPackage.PROCESS_COMPONENT_INSIDE_COMPANY: return createProcessComponentInsideCompany();
-			case ProcesscomponentsPackage.PROCESS_COMPONENT_OUTSIDE_COMPANY: return createProcessComponentOutsideCompany();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case ProcesscomponentsPackage.PROCESS_COMPONENT_INSIDE_COMPANY: return createProcessComponentInsideCompany();
+            case ProcesscomponentsPackage.PROCESS_COMPONENT_OUTSIDE_COMPANY: return createProcessComponentOutsideCompany();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ProcessComponentInsideCompany createProcessComponentInsideCompany() {
-		ProcessComponentInsideCompanyImpl processComponentInsideCompany = new ProcessComponentInsideCompanyImpl();
-		return processComponentInsideCompany;
-	}
+        ProcessComponentInsideCompanyImpl processComponentInsideCompany = new ProcessComponentInsideCompanyImpl();
+        return processComponentInsideCompany;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ProcessComponentOutsideCompany createProcessComponentOutsideCompany() {
-		ProcessComponentOutsideCompanyImpl processComponentOutsideCompany = new ProcessComponentOutsideCompanyImpl();
-		return processComponentOutsideCompany;
-	}
+        ProcessComponentOutsideCompanyImpl processComponentOutsideCompany = new ProcessComponentOutsideCompanyImpl();
+        return processComponentOutsideCompany;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ProcesscomponentsPackage getProcesscomponentsPackage() {
-		return (ProcesscomponentsPackage)getEPackage();
-	}
+        return (ProcesscomponentsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static ProcesscomponentsPackage getPackage() {
-		return ProcesscomponentsPackage.eINSTANCE;
-	}
+        return ProcesscomponentsPackage.eINSTANCE;
+    }
 
 } //ProcesscomponentsFactoryImpl

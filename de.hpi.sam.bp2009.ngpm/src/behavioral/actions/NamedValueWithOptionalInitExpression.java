@@ -31,59 +31,59 @@ import dataaccess.expressions.Expression;
  */
 public interface NamedValueWithOptionalInitExpression extends NamedValue {
 	/**
-	 * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getInitExpressionFor <em>Init Expression For</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Init Expression</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getInitExpressionFor <em>Init Expression For</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Init Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Init Expression</em>' containment reference.
-	 * @see #setInitExpression(Expression)
-	 * @see behavioral.actions.ActionsPackage#getNamedValueWithOptionalInitExpression_InitExpression()
-	 * @see dataaccess.expressions.Expression#getInitExpressionFor
-	 * @model opposite="initExpressionFor" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Init Expression</em>' containment reference.
+     * @see #setInitExpression(Expression)
+     * @see behavioral.actions.ActionsPackage#getNamedValueWithOptionalInitExpression_InitExpression()
+     * @see dataaccess.expressions.Expression#getInitExpressionFor
+     * @model opposite="initExpressionFor" containment="true" resolveProxies="true"
+     * @generated
+     */
 	Expression getInitExpression();
 
 	/**
-	 * Sets the value of the '{@link behavioral.actions.NamedValueWithOptionalInitExpression#getInitExpression <em>Init Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link behavioral.actions.NamedValueWithOptionalInitExpression#getInitExpression <em>Init Expression</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Init Expression</em>' containment reference.
-	 * @see #getInitExpression()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Init Expression</em>' containment reference.
+     * @see #getInitExpression()
+     * @generated
+     */
 	void setInitExpression(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Named Value Declaration</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link behavioral.actions.NamedValueDeclaration#getNamedValue <em>Named Value</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Named Value Declaration</b></em>' reference.
+     * It is bidirectional and its opposite is '{@link behavioral.actions.NamedValueDeclaration#getNamedValue <em>Named Value</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Named Value Declaration</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Named Value Declaration</em>' reference.
-	 * @see #setNamedValueDeclaration(NamedValueDeclaration)
-	 * @see behavioral.actions.ActionsPackage#getNamedValueWithOptionalInitExpression_NamedValueDeclaration()
-	 * @see behavioral.actions.NamedValueDeclaration#getNamedValue
-	 * @model opposite="namedValue"
-	 * @generated
-	 */
+     * @return the value of the '<em>Named Value Declaration</em>' reference.
+     * @see #setNamedValueDeclaration(NamedValueDeclaration)
+     * @see behavioral.actions.ActionsPackage#getNamedValueWithOptionalInitExpression_NamedValueDeclaration()
+     * @see behavioral.actions.NamedValueDeclaration#getNamedValue
+     * @model opposite="namedValue"
+     * @generated
+     */
 	NamedValueDeclaration getNamedValueDeclaration();
 
 	/**
-	 * Sets the value of the '{@link behavioral.actions.NamedValueWithOptionalInitExpression#getNamedValueDeclaration <em>Named Value Declaration</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link behavioral.actions.NamedValueWithOptionalInitExpression#getNamedValueDeclaration <em>Named Value Declaration</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Named Value Declaration</em>' reference.
-	 * @see #getNamedValueDeclaration()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Named Value Declaration</em>' reference.
+     * @see #getNamedValueDeclaration()
+     * @generated
+     */
 	void setNamedValueDeclaration(NamedValueDeclaration value);
 
 } // NamedValueWithOptionalInitExpression

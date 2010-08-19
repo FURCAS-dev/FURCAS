@@ -27,136 +27,136 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
  */
 public class TimedependencyValidator extends EObjectValidator {
 	/**
-	 * The cached model package
-	 * <!-- begin-user-doc -->
+     * The cached model package
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static final TimedependencyValidator INSTANCE = new TimedependencyValidator();
 
 	/**
-	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
-	 * <!-- begin-user-doc -->
+     * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.common.util.Diagnostic#getSource()
-	 * @see org.eclipse.emf.common.util.Diagnostic#getCode()
-	 * @generated
-	 */
+     * @see org.eclipse.emf.common.util.Diagnostic#getSource()
+     * @see org.eclipse.emf.common.util.Diagnostic#getCode()
+     * @generated
+     */
 	public static final String DIAGNOSTIC_SOURCE = "data.timedependency";
 
 	/**
-	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
-	 * <!-- begin-user-doc -->
+     * A constant with a fixed name that can be used as the base value for additional hand written constants.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
 	/**
-	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
-	 * <!-- begin-user-doc -->
+     * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
 	/**
-	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the switch.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TimedependencyValidator() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * Returns the package of this validator switch.
-	 * <!-- begin-user-doc -->
+     * Returns the package of this validator switch.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EPackage getEPackage() {
-	  return TimedependencyPackage.eINSTANCE;
-	}
+      return TimedependencyPackage.eINSTANCE;
+    }
 
 	/**
-	 * Calls <code>validateXXX</code> for the corresponding classifier of the model.
-	 * <!-- begin-user-doc -->
+     * Calls <code>validateXXX</code> for the corresponding classifier of the model.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		switch (classifierID) {
-			case TimedependencyPackage.TIME_DEPENDENCY:
-				return validateTimeDependency((TimeDependency)value, diagnostics, context);
-			default:
-				return true;
-		}
-	}
+        switch (classifierID) {
+            case TimedependencyPackage.TIME_DEPENDENCY:
+                return validateTimeDependency((TimeDependency)value, diagnostics, context);
+            default:
+                return true;
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean validateTimeDependency(TimeDependency timeDependency, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(timeDependency, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(timeDependency, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(timeDependency, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(timeDependency, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(timeDependency, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(timeDependency, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(timeDependency, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(timeDependency, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(timeDependency, diagnostics, context);
-		if (result || diagnostics != null) result &= validateTimeDependency_RecordCutoffGreaterOrEqualZero(timeDependency, diagnostics, context);
-		return result;
-	}
+        if (!validate_NoCircularContainment(timeDependency, diagnostics, context)) return false;
+        boolean result = validate_EveryMultiplicityConforms(timeDependency, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryDataValueConforms(timeDependency, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(timeDependency, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(timeDependency, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryProxyResolves(timeDependency, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_UniqueID(timeDependency, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryKeyUnique(timeDependency, diagnostics, context);
+        if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(timeDependency, diagnostics, context);
+        if (result || diagnostics != null) result &= validateTimeDependency_RecordCutoffGreaterOrEqualZero(timeDependency, diagnostics, context);
+        return result;
+    }
 
 	/**
-	 * The cached validation expression for the RecordCutoffGreaterOrEqualZero constraint of '<em>Time Dependency</em>'.
-	 * <!-- begin-user-doc -->
+     * The cached validation expression for the RecordCutoffGreaterOrEqualZero constraint of '<em>Time Dependency</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected static final String TIME_DEPENDENCY__RECORD_CUTOFF_GREATER_OR_EQUAL_ZERO__EEXPRESSION = "self.recordCutoffInMilliseconds >= 0";
 
 	/**
-	 * Validates the RecordCutoffGreaterOrEqualZero constraint of '<em>Time Dependency</em>'.
-	 * <!-- begin-user-doc -->
+     * Validates the RecordCutoffGreaterOrEqualZero constraint of '<em>Time Dependency</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean validateTimeDependency_RecordCutoffGreaterOrEqualZero(TimeDependency timeDependency, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return
-			validate
-				(TimedependencyPackage.Literals.TIME_DEPENDENCY,
-				 timeDependency,
-				 diagnostics,
-				 context,
-				 "http://de.hpi.sam.bp2009.OCL",
-				 "RecordCutoffGreaterOrEqualZero",
-				 TIME_DEPENDENCY__RECORD_CUTOFF_GREATER_OR_EQUAL_ZERO__EEXPRESSION,
-				 Diagnostic.ERROR,
-				 DIAGNOSTIC_SOURCE,
-				 0);
-	}
+        return
+            validate
+                (TimedependencyPackage.Literals.TIME_DEPENDENCY,
+                 timeDependency,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "RecordCutoffGreaterOrEqualZero",
+                 TIME_DEPENDENCY__RECORD_CUTOFF_GREATER_OR_EQUAL_ZERO__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
+    }
 
 	/**
-	 * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
-	 * <!-- begin-user-doc -->
+     * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		// TODO
-		// Specialize this to return a resource locator for messages specific to this validator.
-		// Ensure that you remove @generated or mark it @generated NOT
-		return super.getResourceLocator();
-	}
+        // TODO
+        // Specialize this to return a resource locator for messages specific to this validator.
+        // Ensure that you remove @generated or mark it @generated NOT
+        return super.getResourceLocator();
+    }
 
 } //TimedependencyValidator

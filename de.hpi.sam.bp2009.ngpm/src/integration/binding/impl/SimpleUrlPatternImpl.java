@@ -30,137 +30,137 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class SimpleUrlPatternImpl extends UrlPatternImpl implements SimpleUrlPattern {
 	/**
-	 * The default value of the '{@link #getBaseUrl() <em>Base Url</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getBaseUrl() <em>Base Url</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBaseUrl()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBaseUrl()
+     * @generated
+     * @ordered
+     */
 	protected static final String BASE_URL_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBaseUrl() <em>Base Url</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBaseUrl() <em>Base Url</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBaseUrl()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBaseUrl()
+     * @generated
+     * @ordered
+     */
 	protected String baseUrl = BASE_URL_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SimpleUrlPatternImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BindingPackage.Literals.SIMPLE_URL_PATTERN;
-	}
+        return BindingPackage.Literals.SIMPLE_URL_PATTERN;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getBaseUrl() {
-		return baseUrl;
-	}
+        return baseUrl;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBaseUrl(String newBaseUrl) {
-		String oldBaseUrl = baseUrl;
-		baseUrl = newBaseUrl;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BindingPackage.SIMPLE_URL_PATTERN__BASE_URL, oldBaseUrl, baseUrl));
-	}
+        String oldBaseUrl = baseUrl;
+        baseUrl = newBaseUrl;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, BindingPackage.SIMPLE_URL_PATTERN__BASE_URL, oldBaseUrl, baseUrl));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BindingPackage.SIMPLE_URL_PATTERN__BASE_URL:
-				return getBaseUrl();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case BindingPackage.SIMPLE_URL_PATTERN__BASE_URL:
+                return getBaseUrl();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BindingPackage.SIMPLE_URL_PATTERN__BASE_URL:
-				setBaseUrl((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case BindingPackage.SIMPLE_URL_PATTERN__BASE_URL:
+                setBaseUrl((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BindingPackage.SIMPLE_URL_PATTERN__BASE_URL:
-				setBaseUrl(BASE_URL_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case BindingPackage.SIMPLE_URL_PATTERN__BASE_URL:
+                setBaseUrl(BASE_URL_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BindingPackage.SIMPLE_URL_PATTERN__BASE_URL:
-				return BASE_URL_EDEFAULT == null ? baseUrl != null : !BASE_URL_EDEFAULT.equals(baseUrl);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case BindingPackage.SIMPLE_URL_PATTERN__BASE_URL:
+                return BASE_URL_EDEFAULT == null ? baseUrl != null : !BASE_URL_EDEFAULT.equals(baseUrl);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (baseUrl: ");
-		result.append(baseUrl);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (baseUrl: ");
+        result.append(baseUrl);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SimpleUrlPatternImpl

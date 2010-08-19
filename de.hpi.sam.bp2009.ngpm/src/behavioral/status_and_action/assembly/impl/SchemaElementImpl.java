@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class SchemaElementImpl extends NamedElementImpl implements SchemaElement {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SchemaElementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.SCHEMA_ELEMENT;
-	}
+        return AssemblyPackage.Literals.SCHEMA_ELEMENT;
+    }
 
 } //SchemaElementImpl

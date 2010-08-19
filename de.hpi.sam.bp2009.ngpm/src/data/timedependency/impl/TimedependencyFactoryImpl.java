@@ -24,76 +24,76 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class TimedependencyFactoryImpl extends EFactoryImpl implements TimedependencyFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static TimedependencyFactory init() {
-		try {
-			TimedependencyFactory theTimedependencyFactory = (TimedependencyFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/timedependency.ecore"); 
-			if (theTimedependencyFactory != null) {
-				return theTimedependencyFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new TimedependencyFactoryImpl();
-	}
+        try {
+            TimedependencyFactory theTimedependencyFactory = (TimedependencyFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/timedependency.ecore"); 
+            if (theTimedependencyFactory != null) {
+                return theTimedependencyFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new TimedependencyFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TimedependencyFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case TimedependencyPackage.TIME_DEPENDENCY: return createTimeDependency();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case TimedependencyPackage.TIME_DEPENDENCY: return createTimeDependency();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TimeDependency createTimeDependency() {
-		TimeDependencyImpl timeDependency = new TimeDependencyImpl();
-		return timeDependency;
-	}
+        TimeDependencyImpl timeDependency = new TimeDependencyImpl();
+        return timeDependency;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TimedependencyPackage getTimedependencyPackage() {
-		return (TimedependencyPackage)getEPackage();
-	}
+        return (TimedependencyPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static TimedependencyPackage getPackage() {
-		return TimedependencyPackage.eINSTANCE;
-	}
+        return TimedependencyPackage.eINSTANCE;
+    }
 
 } //TimedependencyFactoryImpl

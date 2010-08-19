@@ -179,467 +179,467 @@ import ui.templates.impl.TemplatesPackageImpl;
  */
 public class AbapmappingPackageImpl extends EPackageImpl implements AbapmappingPackage {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass abapClassImplementationAnnotationEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass abapAssociationImplementationAnnotationEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass abapAssociationEndImplementationAnnotationEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EClass abapSignatureImplementationAnnotationEClass = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EEnum abapClassKindEEnum = null;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private EEnum abapSignatureKindEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with
-	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-	 * package URI value.
-	 * <p>Note: the correct way to create the package is via the static
-	 * factory method {@link #init init()}, which also performs
-	 * initialization of the package, or returns the registered package,
-	 * if one already exists.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the model <b>Package</b>, registered with
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+     * package URI value.
+     * <p>Note: the correct way to create the package is via the static
+     * factory method {@link #init init()}, which also performs
+     * initialization of the package, or returns the registered package,
+     * if one already exists.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see abapmapping.AbapmappingPackage#eNS_URI
-	 * @see #init()
-	 * @generated
-	 */
+     * @see org.eclipse.emf.ecore.EPackage.Registry
+     * @see abapmapping.AbapmappingPackage#eNS_URI
+     * @see #init()
+     * @generated
+     */
 	private AbapmappingPackageImpl() {
-		super(eNS_URI, AbapmappingFactory.eINSTANCE);
-	}
+        super(eNS_URI, AbapmappingFactory.eINSTANCE);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link AbapmappingPackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc -->
+     * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+     * 
+     * <p>This method is used to initialize {@link AbapmappingPackage#eINSTANCE} when that field is accessed.
+     * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #eNS_URI
-	 * @see #createPackageContents()
-	 * @see #initializePackageContents()
-	 * @generated
-	 */
+     * @see #eNS_URI
+     * @see #createPackageContents()
+     * @see #initializePackageContents()
+     * @generated
+     */
 	public static AbapmappingPackage init() {
-		if (isInited) return (AbapmappingPackage)EPackage.Registry.INSTANCE.getEPackage(AbapmappingPackage.eNS_URI);
+        if (isInited) return (AbapmappingPackage)EPackage.Registry.INSTANCE.getEPackage(AbapmappingPackage.eNS_URI);
 
-		// Obtain or create and register package
-		AbapmappingPackageImpl theAbapmappingPackage = (AbapmappingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AbapmappingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AbapmappingPackageImpl());
+        // Obtain or create and register package
+        AbapmappingPackageImpl theAbapmappingPackage = (AbapmappingPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AbapmappingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AbapmappingPackageImpl());
 
-		isInited = true;
+        isInited = true;
 
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
+        // Initialize simple dependencies
+        EcorePackage.eINSTANCE.eClass();
 
-		// Obtain or create and register interdependencies
-		BpdmPackageImpl theBpdmPackage = (BpdmPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BpdmPackage.eNS_URI) instanceof BpdmPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BpdmPackage.eNS_URI) : BpdmPackage.eINSTANCE);
-		BusinesstasksPackageImpl theBusinesstasksPackage = (BusinesstasksPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BusinesstasksPackage.eNS_URI) instanceof BusinesstasksPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BusinesstasksPackage.eNS_URI) : BusinesstasksPackage.eINSTANCE);
-		ActionsPackageImpl theActionsPackage = (ActionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ActionsPackage.eNS_URI) instanceof ActionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ActionsPackage.eNS_URI) : ActionsPackage.eINSTANCE);
-		RulesPackageImpl theRulesPackage = (RulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) instanceof RulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) : RulesPackage.eINSTANCE);
-		EventsPackageImpl theEventsPackage = (EventsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
-		TransactionsPackageImpl theTransactionsPackage = (TransactionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransactionsPackage.eNS_URI) instanceof TransactionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransactionsPackage.eNS_URI) : TransactionsPackage.eINSTANCE);
-		Status_and_action_oldPackageImpl theStatus_and_action_oldPackage = (Status_and_action_oldPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Status_and_action_oldPackage.eNS_URI) instanceof Status_and_action_oldPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Status_and_action_oldPackage.eNS_URI) : Status_and_action_oldPackage.eINSTANCE);
-		DesignPackageImpl theDesignPackage = (DesignPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DesignPackage.eNS_URI) instanceof DesignPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DesignPackage.eNS_URI) : DesignPackage.eINSTANCE);
-		AssemblyPackageImpl theAssemblyPackage = (AssemblyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AssemblyPackage.eNS_URI) instanceof AssemblyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AssemblyPackage.eNS_URI) : AssemblyPackage.eINSTANCE);
-		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
-		ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI) instanceof ConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI) : ConstraintsPackage.eINSTANCE);
-		QuantitystructurePackageImpl theQuantitystructurePackage = (QuantitystructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuantitystructurePackage.eNS_URI) instanceof QuantitystructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuantitystructurePackage.eNS_URI) : QuantitystructurePackage.eINSTANCE);
-		TimedependencyPackageImpl theTimedependencyPackage = (TimedependencyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TimedependencyPackage.eNS_URI) instanceof TimedependencyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TimedependencyPackage.eNS_URI) : TimedependencyPackage.eINSTANCE);
-		DocumentsPackageImpl theDocumentsPackage = (DocumentsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentsPackage.eNS_URI) instanceof DocumentsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentsPackage.eNS_URI) : DocumentsPackage.eINSTANCE);
-		GenericsPackageImpl theGenericsPackage = (GenericsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericsPackage.eNS_URI) instanceof GenericsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericsPackage.eNS_URI) : GenericsPackage.eINSTANCE);
-		TuplesPackageImpl theTuplesPackage = (TuplesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TuplesPackage.eNS_URI) instanceof TuplesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TuplesPackage.eNS_URI) : TuplesPackage.eINSTANCE);
-		ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
-		LiteralsPackageImpl theLiteralsPackage = (LiteralsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LiteralsPackage.eNS_URI) instanceof LiteralsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LiteralsPackage.eNS_URI) : LiteralsPackage.eINSTANCE);
-		CollectionexpressionsPackageImpl theCollectionexpressionsPackage = (CollectionexpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CollectionexpressionsPackage.eNS_URI) instanceof CollectionexpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CollectionexpressionsPackage.eNS_URI) : CollectionexpressionsPackage.eINSTANCE);
-		FpPackageImpl theFpPackage = (FpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FpPackage.eNS_URI) instanceof FpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FpPackage.eNS_URI) : FpPackage.eINSTANCE);
-		QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
-		AnalyticsPackageImpl theAnalyticsPackage = (AnalyticsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AnalyticsPackage.eNS_URI) instanceof AnalyticsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AnalyticsPackage.eNS_URI) : AnalyticsPackage.eINSTANCE);
-		ModelmanagementPackageImpl theModelmanagementPackage = (ModelmanagementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelmanagementPackage.eNS_URI) instanceof ModelmanagementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelmanagementPackage.eNS_URI) : ModelmanagementPackage.eINSTANCE);
-		ProcesscomponentsPackageImpl theProcesscomponentsPackage = (ProcesscomponentsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProcesscomponentsPackage.eNS_URI) instanceof ProcesscomponentsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProcesscomponentsPackage.eNS_URI) : ProcesscomponentsPackage.eINSTANCE);
-		DeploymentunitsPackageImpl theDeploymentunitsPackage = (DeploymentunitsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DeploymentunitsPackage.eNS_URI) instanceof DeploymentunitsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DeploymentunitsPackage.eNS_URI) : DeploymentunitsPackage.eINSTANCE);
-		Data_bindingPackageImpl theData_bindingPackage = (Data_bindingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Data_bindingPackage.eNS_URI) instanceof Data_bindingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Data_bindingPackage.eNS_URI) : Data_bindingPackage.eINSTANCE);
-		TemplatesPackageImpl theTemplatesPackage = (TemplatesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TemplatesPackage.eNS_URI) instanceof TemplatesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TemplatesPackage.eNS_URI) : TemplatesPackage.eINSTANCE);
-		BusinessconfigurationPackageImpl theBusinessconfigurationPackage = (BusinessconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BusinessconfigurationPackage.eNS_URI) instanceof BusinessconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BusinessconfigurationPackage.eNS_URI) : BusinessconfigurationPackage.eINSTANCE);
-		ExperimentalPackageImpl theExperimentalPackage = (ExperimentalPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExperimentalPackage.eNS_URI) instanceof ExperimentalPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExperimentalPackage.eNS_URI) : ExperimentalPackage.eINSTANCE);
-		Context_driversPackageImpl theContext_driversPackage = (Context_driversPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Context_driversPackage.eNS_URI) instanceof Context_driversPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Context_driversPackage.eNS_URI) : Context_driversPackage.eINSTANCE);
-		ProcessintegrationPackageImpl theProcessintegrationPackage = (ProcessintegrationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProcessintegrationPackage.eNS_URI) instanceof ProcessintegrationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProcessintegrationPackage.eNS_URI) : ProcessintegrationPackage.eINSTANCE);
-		XsdPackageImpl theXsdPackage = (XsdPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(XsdPackage.eNS_URI) instanceof XsdPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(XsdPackage.eNS_URI) : XsdPackage.eINSTANCE);
-		BindingPackageImpl theBindingPackage = (BindingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI) instanceof BindingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI) : BindingPackage.eINSTANCE);
-		LocalizationPackageImpl theLocalizationPackage = (LocalizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LocalizationPackage.eNS_URI) instanceof LocalizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LocalizationPackage.eNS_URI) : LocalizationPackage.eINSTANCE);
-		Ap_runtime_constraintsPackageImpl theAp_runtime_constraintsPackage = (Ap_runtime_constraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Ap_runtime_constraintsPackage.eNS_URI) instanceof Ap_runtime_constraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Ap_runtime_constraintsPackage.eNS_URI) : Ap_runtime_constraintsPackage.eINSTANCE);
-		AbapdictionaryPackageImpl theAbapdictionaryPackage = (AbapdictionaryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AbapdictionaryPackage.eNS_URI) instanceof AbapdictionaryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AbapdictionaryPackage.eNS_URI) : AbapdictionaryPackage.eINSTANCE);
-		persistence.actions.impl.ActionsPackageImpl theActionsPackage_1 = (persistence.actions.impl.ActionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(persistence.actions.ActionsPackage.eNS_URI) instanceof persistence.actions.impl.ActionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(persistence.actions.ActionsPackage.eNS_URI) : persistence.actions.ActionsPackage.eINSTANCE);
-		persistence.expressions.impl.ExpressionsPackageImpl theExpressionsPackage_1 = (persistence.expressions.impl.ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(persistence.expressions.ExpressionsPackage.eNS_URI) instanceof persistence.expressions.impl.ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(persistence.expressions.ExpressionsPackage.eNS_URI) : persistence.expressions.ExpressionsPackage.eINSTANCE);
+        // Obtain or create and register interdependencies
+        BpdmPackageImpl theBpdmPackage = (BpdmPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BpdmPackage.eNS_URI) instanceof BpdmPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BpdmPackage.eNS_URI) : BpdmPackage.eINSTANCE);
+        BusinesstasksPackageImpl theBusinesstasksPackage = (BusinesstasksPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BusinesstasksPackage.eNS_URI) instanceof BusinesstasksPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BusinesstasksPackage.eNS_URI) : BusinesstasksPackage.eINSTANCE);
+        ActionsPackageImpl theActionsPackage = (ActionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ActionsPackage.eNS_URI) instanceof ActionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ActionsPackage.eNS_URI) : ActionsPackage.eINSTANCE);
+        RulesPackageImpl theRulesPackage = (RulesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) instanceof RulesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(RulesPackage.eNS_URI) : RulesPackage.eINSTANCE);
+        EventsPackageImpl theEventsPackage = (EventsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) instanceof EventsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI) : EventsPackage.eINSTANCE);
+        TransactionsPackageImpl theTransactionsPackage = (TransactionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TransactionsPackage.eNS_URI) instanceof TransactionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TransactionsPackage.eNS_URI) : TransactionsPackage.eINSTANCE);
+        Status_and_action_oldPackageImpl theStatus_and_action_oldPackage = (Status_and_action_oldPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Status_and_action_oldPackage.eNS_URI) instanceof Status_and_action_oldPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Status_and_action_oldPackage.eNS_URI) : Status_and_action_oldPackage.eINSTANCE);
+        DesignPackageImpl theDesignPackage = (DesignPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DesignPackage.eNS_URI) instanceof DesignPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DesignPackage.eNS_URI) : DesignPackage.eINSTANCE);
+        AssemblyPackageImpl theAssemblyPackage = (AssemblyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AssemblyPackage.eNS_URI) instanceof AssemblyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AssemblyPackage.eNS_URI) : AssemblyPackage.eINSTANCE);
+        ClassesPackageImpl theClassesPackage = (ClassesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI) : ClassesPackage.eINSTANCE);
+        ConstraintsPackageImpl theConstraintsPackage = (ConstraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI) instanceof ConstraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ConstraintsPackage.eNS_URI) : ConstraintsPackage.eINSTANCE);
+        QuantitystructurePackageImpl theQuantitystructurePackage = (QuantitystructurePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QuantitystructurePackage.eNS_URI) instanceof QuantitystructurePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QuantitystructurePackage.eNS_URI) : QuantitystructurePackage.eINSTANCE);
+        TimedependencyPackageImpl theTimedependencyPackage = (TimedependencyPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TimedependencyPackage.eNS_URI) instanceof TimedependencyPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TimedependencyPackage.eNS_URI) : TimedependencyPackage.eINSTANCE);
+        DocumentsPackageImpl theDocumentsPackage = (DocumentsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DocumentsPackage.eNS_URI) instanceof DocumentsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DocumentsPackage.eNS_URI) : DocumentsPackage.eINSTANCE);
+        GenericsPackageImpl theGenericsPackage = (GenericsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(GenericsPackage.eNS_URI) instanceof GenericsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(GenericsPackage.eNS_URI) : GenericsPackage.eINSTANCE);
+        TuplesPackageImpl theTuplesPackage = (TuplesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TuplesPackage.eNS_URI) instanceof TuplesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TuplesPackage.eNS_URI) : TuplesPackage.eINSTANCE);
+        ExpressionsPackageImpl theExpressionsPackage = (ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) instanceof ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExpressionsPackage.eNS_URI) : ExpressionsPackage.eINSTANCE);
+        LiteralsPackageImpl theLiteralsPackage = (LiteralsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LiteralsPackage.eNS_URI) instanceof LiteralsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LiteralsPackage.eNS_URI) : LiteralsPackage.eINSTANCE);
+        CollectionexpressionsPackageImpl theCollectionexpressionsPackage = (CollectionexpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(CollectionexpressionsPackage.eNS_URI) instanceof CollectionexpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(CollectionexpressionsPackage.eNS_URI) : CollectionexpressionsPackage.eINSTANCE);
+        FpPackageImpl theFpPackage = (FpPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(FpPackage.eNS_URI) instanceof FpPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(FpPackage.eNS_URI) : FpPackage.eINSTANCE);
+        QueryPackageImpl theQueryPackage = (QueryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) instanceof QueryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(QueryPackage.eNS_URI) : QueryPackage.eINSTANCE);
+        AnalyticsPackageImpl theAnalyticsPackage = (AnalyticsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AnalyticsPackage.eNS_URI) instanceof AnalyticsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AnalyticsPackage.eNS_URI) : AnalyticsPackage.eINSTANCE);
+        ModelmanagementPackageImpl theModelmanagementPackage = (ModelmanagementPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ModelmanagementPackage.eNS_URI) instanceof ModelmanagementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ModelmanagementPackage.eNS_URI) : ModelmanagementPackage.eINSTANCE);
+        ProcesscomponentsPackageImpl theProcesscomponentsPackage = (ProcesscomponentsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProcesscomponentsPackage.eNS_URI) instanceof ProcesscomponentsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProcesscomponentsPackage.eNS_URI) : ProcesscomponentsPackage.eINSTANCE);
+        DeploymentunitsPackageImpl theDeploymentunitsPackage = (DeploymentunitsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(DeploymentunitsPackage.eNS_URI) instanceof DeploymentunitsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(DeploymentunitsPackage.eNS_URI) : DeploymentunitsPackage.eINSTANCE);
+        Data_bindingPackageImpl theData_bindingPackage = (Data_bindingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Data_bindingPackage.eNS_URI) instanceof Data_bindingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Data_bindingPackage.eNS_URI) : Data_bindingPackage.eINSTANCE);
+        TemplatesPackageImpl theTemplatesPackage = (TemplatesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(TemplatesPackage.eNS_URI) instanceof TemplatesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(TemplatesPackage.eNS_URI) : TemplatesPackage.eINSTANCE);
+        BusinessconfigurationPackageImpl theBusinessconfigurationPackage = (BusinessconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BusinessconfigurationPackage.eNS_URI) instanceof BusinessconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BusinessconfigurationPackage.eNS_URI) : BusinessconfigurationPackage.eINSTANCE);
+        ExperimentalPackageImpl theExperimentalPackage = (ExperimentalPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExperimentalPackage.eNS_URI) instanceof ExperimentalPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExperimentalPackage.eNS_URI) : ExperimentalPackage.eINSTANCE);
+        Context_driversPackageImpl theContext_driversPackage = (Context_driversPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Context_driversPackage.eNS_URI) instanceof Context_driversPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Context_driversPackage.eNS_URI) : Context_driversPackage.eINSTANCE);
+        ProcessintegrationPackageImpl theProcessintegrationPackage = (ProcessintegrationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ProcessintegrationPackage.eNS_URI) instanceof ProcessintegrationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ProcessintegrationPackage.eNS_URI) : ProcessintegrationPackage.eINSTANCE);
+        XsdPackageImpl theXsdPackage = (XsdPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(XsdPackage.eNS_URI) instanceof XsdPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(XsdPackage.eNS_URI) : XsdPackage.eINSTANCE);
+        BindingPackageImpl theBindingPackage = (BindingPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI) instanceof BindingPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(BindingPackage.eNS_URI) : BindingPackage.eINSTANCE);
+        LocalizationPackageImpl theLocalizationPackage = (LocalizationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(LocalizationPackage.eNS_URI) instanceof LocalizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(LocalizationPackage.eNS_URI) : LocalizationPackage.eINSTANCE);
+        Ap_runtime_constraintsPackageImpl theAp_runtime_constraintsPackage = (Ap_runtime_constraintsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(Ap_runtime_constraintsPackage.eNS_URI) instanceof Ap_runtime_constraintsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(Ap_runtime_constraintsPackage.eNS_URI) : Ap_runtime_constraintsPackage.eINSTANCE);
+        AbapdictionaryPackageImpl theAbapdictionaryPackage = (AbapdictionaryPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(AbapdictionaryPackage.eNS_URI) instanceof AbapdictionaryPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(AbapdictionaryPackage.eNS_URI) : AbapdictionaryPackage.eINSTANCE);
+        persistence.actions.impl.ActionsPackageImpl theActionsPackage_1 = (persistence.actions.impl.ActionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(persistence.actions.ActionsPackage.eNS_URI) instanceof persistence.actions.impl.ActionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(persistence.actions.ActionsPackage.eNS_URI) : persistence.actions.ActionsPackage.eINSTANCE);
+        persistence.expressions.impl.ExpressionsPackageImpl theExpressionsPackage_1 = (persistence.expressions.impl.ExpressionsPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(persistence.expressions.ExpressionsPackage.eNS_URI) instanceof persistence.expressions.impl.ExpressionsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(persistence.expressions.ExpressionsPackage.eNS_URI) : persistence.expressions.ExpressionsPackage.eINSTANCE);
 
-		// Create package meta-data objects
-		theAbapmappingPackage.createPackageContents();
-		theBpdmPackage.createPackageContents();
-		theBusinesstasksPackage.createPackageContents();
-		theActionsPackage.createPackageContents();
-		theRulesPackage.createPackageContents();
-		theEventsPackage.createPackageContents();
-		theTransactionsPackage.createPackageContents();
-		theStatus_and_action_oldPackage.createPackageContents();
-		theDesignPackage.createPackageContents();
-		theAssemblyPackage.createPackageContents();
-		theClassesPackage.createPackageContents();
-		theConstraintsPackage.createPackageContents();
-		theQuantitystructurePackage.createPackageContents();
-		theTimedependencyPackage.createPackageContents();
-		theDocumentsPackage.createPackageContents();
-		theGenericsPackage.createPackageContents();
-		theTuplesPackage.createPackageContents();
-		theExpressionsPackage.createPackageContents();
-		theLiteralsPackage.createPackageContents();
-		theCollectionexpressionsPackage.createPackageContents();
-		theFpPackage.createPackageContents();
-		theQueryPackage.createPackageContents();
-		theAnalyticsPackage.createPackageContents();
-		theModelmanagementPackage.createPackageContents();
-		theProcesscomponentsPackage.createPackageContents();
-		theDeploymentunitsPackage.createPackageContents();
-		theData_bindingPackage.createPackageContents();
-		theTemplatesPackage.createPackageContents();
-		theBusinessconfigurationPackage.createPackageContents();
-		theExperimentalPackage.createPackageContents();
-		theContext_driversPackage.createPackageContents();
-		theProcessintegrationPackage.createPackageContents();
-		theXsdPackage.createPackageContents();
-		theBindingPackage.createPackageContents();
-		theLocalizationPackage.createPackageContents();
-		theAp_runtime_constraintsPackage.createPackageContents();
-		theAbapdictionaryPackage.createPackageContents();
-		theActionsPackage_1.createPackageContents();
-		theExpressionsPackage_1.createPackageContents();
+        // Create package meta-data objects
+        theAbapmappingPackage.createPackageContents();
+        theBpdmPackage.createPackageContents();
+        theBusinesstasksPackage.createPackageContents();
+        theActionsPackage.createPackageContents();
+        theRulesPackage.createPackageContents();
+        theEventsPackage.createPackageContents();
+        theTransactionsPackage.createPackageContents();
+        theStatus_and_action_oldPackage.createPackageContents();
+        theDesignPackage.createPackageContents();
+        theAssemblyPackage.createPackageContents();
+        theClassesPackage.createPackageContents();
+        theConstraintsPackage.createPackageContents();
+        theQuantitystructurePackage.createPackageContents();
+        theTimedependencyPackage.createPackageContents();
+        theDocumentsPackage.createPackageContents();
+        theGenericsPackage.createPackageContents();
+        theTuplesPackage.createPackageContents();
+        theExpressionsPackage.createPackageContents();
+        theLiteralsPackage.createPackageContents();
+        theCollectionexpressionsPackage.createPackageContents();
+        theFpPackage.createPackageContents();
+        theQueryPackage.createPackageContents();
+        theAnalyticsPackage.createPackageContents();
+        theModelmanagementPackage.createPackageContents();
+        theProcesscomponentsPackage.createPackageContents();
+        theDeploymentunitsPackage.createPackageContents();
+        theData_bindingPackage.createPackageContents();
+        theTemplatesPackage.createPackageContents();
+        theBusinessconfigurationPackage.createPackageContents();
+        theExperimentalPackage.createPackageContents();
+        theContext_driversPackage.createPackageContents();
+        theProcessintegrationPackage.createPackageContents();
+        theXsdPackage.createPackageContents();
+        theBindingPackage.createPackageContents();
+        theLocalizationPackage.createPackageContents();
+        theAp_runtime_constraintsPackage.createPackageContents();
+        theAbapdictionaryPackage.createPackageContents();
+        theActionsPackage_1.createPackageContents();
+        theExpressionsPackage_1.createPackageContents();
 
-		// Initialize created meta-data
-		theAbapmappingPackage.initializePackageContents();
-		theBpdmPackage.initializePackageContents();
-		theBusinesstasksPackage.initializePackageContents();
-		theActionsPackage.initializePackageContents();
-		theRulesPackage.initializePackageContents();
-		theEventsPackage.initializePackageContents();
-		theTransactionsPackage.initializePackageContents();
-		theStatus_and_action_oldPackage.initializePackageContents();
-		theDesignPackage.initializePackageContents();
-		theAssemblyPackage.initializePackageContents();
-		theClassesPackage.initializePackageContents();
-		theConstraintsPackage.initializePackageContents();
-		theQuantitystructurePackage.initializePackageContents();
-		theTimedependencyPackage.initializePackageContents();
-		theDocumentsPackage.initializePackageContents();
-		theGenericsPackage.initializePackageContents();
-		theTuplesPackage.initializePackageContents();
-		theExpressionsPackage.initializePackageContents();
-		theLiteralsPackage.initializePackageContents();
-		theCollectionexpressionsPackage.initializePackageContents();
-		theFpPackage.initializePackageContents();
-		theQueryPackage.initializePackageContents();
-		theAnalyticsPackage.initializePackageContents();
-		theModelmanagementPackage.initializePackageContents();
-		theProcesscomponentsPackage.initializePackageContents();
-		theDeploymentunitsPackage.initializePackageContents();
-		theData_bindingPackage.initializePackageContents();
-		theTemplatesPackage.initializePackageContents();
-		theBusinessconfigurationPackage.initializePackageContents();
-		theExperimentalPackage.initializePackageContents();
-		theContext_driversPackage.initializePackageContents();
-		theProcessintegrationPackage.initializePackageContents();
-		theXsdPackage.initializePackageContents();
-		theBindingPackage.initializePackageContents();
-		theLocalizationPackage.initializePackageContents();
-		theAp_runtime_constraintsPackage.initializePackageContents();
-		theAbapdictionaryPackage.initializePackageContents();
-		theActionsPackage_1.initializePackageContents();
-		theExpressionsPackage_1.initializePackageContents();
+        // Initialize created meta-data
+        theAbapmappingPackage.initializePackageContents();
+        theBpdmPackage.initializePackageContents();
+        theBusinesstasksPackage.initializePackageContents();
+        theActionsPackage.initializePackageContents();
+        theRulesPackage.initializePackageContents();
+        theEventsPackage.initializePackageContents();
+        theTransactionsPackage.initializePackageContents();
+        theStatus_and_action_oldPackage.initializePackageContents();
+        theDesignPackage.initializePackageContents();
+        theAssemblyPackage.initializePackageContents();
+        theClassesPackage.initializePackageContents();
+        theConstraintsPackage.initializePackageContents();
+        theQuantitystructurePackage.initializePackageContents();
+        theTimedependencyPackage.initializePackageContents();
+        theDocumentsPackage.initializePackageContents();
+        theGenericsPackage.initializePackageContents();
+        theTuplesPackage.initializePackageContents();
+        theExpressionsPackage.initializePackageContents();
+        theLiteralsPackage.initializePackageContents();
+        theCollectionexpressionsPackage.initializePackageContents();
+        theFpPackage.initializePackageContents();
+        theQueryPackage.initializePackageContents();
+        theAnalyticsPackage.initializePackageContents();
+        theModelmanagementPackage.initializePackageContents();
+        theProcesscomponentsPackage.initializePackageContents();
+        theDeploymentunitsPackage.initializePackageContents();
+        theData_bindingPackage.initializePackageContents();
+        theTemplatesPackage.initializePackageContents();
+        theBusinessconfigurationPackage.initializePackageContents();
+        theExperimentalPackage.initializePackageContents();
+        theContext_driversPackage.initializePackageContents();
+        theProcessintegrationPackage.initializePackageContents();
+        theXsdPackage.initializePackageContents();
+        theBindingPackage.initializePackageContents();
+        theLocalizationPackage.initializePackageContents();
+        theAp_runtime_constraintsPackage.initializePackageContents();
+        theAbapdictionaryPackage.initializePackageContents();
+        theActionsPackage_1.initializePackageContents();
+        theExpressionsPackage_1.initializePackageContents();
 
-		// Register package validator
-		EValidator.Registry.INSTANCE.put
-			(theAbapmappingPackage, 
-			 new EValidator.Descriptor() {
-				 public EValidator getEValidator() {
-					 return AbapmappingValidator.INSTANCE;
-				 }
-			 });
+        // Register package validator
+        EValidator.Registry.INSTANCE.put
+            (theAbapmappingPackage, 
+             new EValidator.Descriptor() {
+                 public EValidator getEValidator() {
+                     return AbapmappingValidator.INSTANCE;
+                 }
+             });
 
-		// Mark meta-data to indicate it can't be changed
-		theAbapmappingPackage.freeze();
+        // Mark meta-data to indicate it can't be changed
+        theAbapmappingPackage.freeze();
 
   
-		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(AbapmappingPackage.eNS_URI, theAbapmappingPackage);
-		return theAbapmappingPackage;
-	}
+        // Update the registry and return the package
+        EPackage.Registry.INSTANCE.put(AbapmappingPackage.eNS_URI, theAbapmappingPackage);
+        return theAbapmappingPackage;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getAbapClassImplementationAnnotation() {
-		return abapClassImplementationAnnotationEClass;
-	}
+        return abapClassImplementationAnnotationEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EAttribute getAbapClassImplementationAnnotation_Kind() {
-		return (EAttribute)abapClassImplementationAnnotationEClass.getEStructuralFeatures().get(0);
-	}
+        return (EAttribute)abapClassImplementationAnnotationEClass.getEStructuralFeatures().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EReference getAbapClassImplementationAnnotation_AbapType() {
-		return (EReference)abapClassImplementationAnnotationEClass.getEStructuralFeatures().get(1);
-	}
+        return (EReference)abapClassImplementationAnnotationEClass.getEStructuralFeatures().get(1);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getAbapAssociationImplementationAnnotation() {
-		return abapAssociationImplementationAnnotationEClass;
-	}
+        return abapAssociationImplementationAnnotationEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getAbapAssociationEndImplementationAnnotation() {
-		return abapAssociationEndImplementationAnnotationEClass;
-	}
+        return abapAssociationEndImplementationAnnotationEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EClass getAbapSignatureImplementationAnnotation() {
-		return abapSignatureImplementationAnnotationEClass;
-	}
+        return abapSignatureImplementationAnnotationEClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EAttribute getAbapSignatureImplementationAnnotation_Kind() {
-		return (EAttribute)abapSignatureImplementationAnnotationEClass.getEStructuralFeatures().get(0);
-	}
+        return (EAttribute)abapSignatureImplementationAnnotationEClass.getEStructuralFeatures().get(0);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EEnum getAbapClassKind() {
-		return abapClassKindEEnum;
-	}
+        return abapClassKindEEnum;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EEnum getAbapSignatureKind() {
-		return abapSignatureKindEEnum;
-	}
+        return abapSignatureKindEEnum;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapmappingFactory getAbapmappingFactory() {
-		return (AbapmappingFactory)getEFactoryInstance();
-	}
+        return (AbapmappingFactory)getEFactoryInstance();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
+     * Creates the meta-model objects for the package.  This method is
+     * guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void createPackageContents() {
-		if (isCreated) return;
-		isCreated = true;
+        if (isCreated) return;
+        isCreated = true;
 
-		// Create classes and their features
-		abapClassImplementationAnnotationEClass = createEClass(ABAP_CLASS_IMPLEMENTATION_ANNOTATION);
-		createEAttribute(abapClassImplementationAnnotationEClass, ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND);
-		createEReference(abapClassImplementationAnnotationEClass, ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE);
+        // Create classes and their features
+        abapClassImplementationAnnotationEClass = createEClass(ABAP_CLASS_IMPLEMENTATION_ANNOTATION);
+        createEAttribute(abapClassImplementationAnnotationEClass, ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND);
+        createEReference(abapClassImplementationAnnotationEClass, ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE);
 
-		abapAssociationImplementationAnnotationEClass = createEClass(ABAP_ASSOCIATION_IMPLEMENTATION_ANNOTATION);
+        abapAssociationImplementationAnnotationEClass = createEClass(ABAP_ASSOCIATION_IMPLEMENTATION_ANNOTATION);
 
-		abapAssociationEndImplementationAnnotationEClass = createEClass(ABAP_ASSOCIATION_END_IMPLEMENTATION_ANNOTATION);
+        abapAssociationEndImplementationAnnotationEClass = createEClass(ABAP_ASSOCIATION_END_IMPLEMENTATION_ANNOTATION);
 
-		abapSignatureImplementationAnnotationEClass = createEClass(ABAP_SIGNATURE_IMPLEMENTATION_ANNOTATION);
-		createEAttribute(abapSignatureImplementationAnnotationEClass, ABAP_SIGNATURE_IMPLEMENTATION_ANNOTATION__KIND);
+        abapSignatureImplementationAnnotationEClass = createEClass(ABAP_SIGNATURE_IMPLEMENTATION_ANNOTATION);
+        createEAttribute(abapSignatureImplementationAnnotationEClass, ABAP_SIGNATURE_IMPLEMENTATION_ANNOTATION__KIND);
 
-		// Create enums
-		abapClassKindEEnum = createEEnum(ABAP_CLASS_KIND);
-		abapSignatureKindEEnum = createEEnum(ABAP_SIGNATURE_KIND);
-	}
+        // Create enums
+        abapClassKindEEnum = createEEnum(ABAP_CLASS_KIND);
+        abapSignatureKindEEnum = createEEnum(ABAP_SIGNATURE_KIND);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc -->
+     * Complete the initialization of the package and its meta-model.  This
+     * method is guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void initializePackageContents() {
-		if (isInitialized) return;
-		isInitialized = true;
+        if (isInitialized) return;
+        isInitialized = true;
 
-		// Initialize package
-		setName(eNAME);
-		setNsPrefix(eNS_PREFIX);
-		setNsURI(eNS_URI);
+        // Initialize package
+        setName(eNAME);
+        setNsPrefix(eNS_PREFIX);
+        setNsURI(eNS_URI);
 
-		// Obtain other dependent packages
-		AbapdictionaryPackage theAbapdictionaryPackage = (AbapdictionaryPackage)EPackage.Registry.INSTANCE.getEPackage(AbapdictionaryPackage.eNS_URI);
+        // Obtain other dependent packages
+        AbapdictionaryPackage theAbapdictionaryPackage = (AbapdictionaryPackage)EPackage.Registry.INSTANCE.getEPackage(AbapdictionaryPackage.eNS_URI);
 
-		// Add subpackages
-		getESubpackages().add(theAbapdictionaryPackage);
+        // Add subpackages
+        getESubpackages().add(theAbapdictionaryPackage);
 
-		// Create type parameters
+        // Create type parameters
 
-		// Set bounds for type parameters
+        // Set bounds for type parameters
 
-		// Add supertypes to classes
+        // Add supertypes to classes
 
-		// Initialize classes and features; add operations and parameters
-		initEClass(abapClassImplementationAnnotationEClass, AbapClassImplementationAnnotation.class, "AbapClassImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbapClassImplementationAnnotation_Kind(), this.getAbapClassKind(), "kind", null, 1, 1, AbapClassImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getAbapClassImplementationAnnotation_AbapType(), theAbapdictionaryPackage.getAbapType(), null, "abapType", null, 1, 1, AbapClassImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        // Initialize classes and features; add operations and parameters
+        initEClass(abapClassImplementationAnnotationEClass, AbapClassImplementationAnnotation.class, "AbapClassImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getAbapClassImplementationAnnotation_Kind(), this.getAbapClassKind(), "kind", null, 1, 1, AbapClassImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getAbapClassImplementationAnnotation_AbapType(), theAbapdictionaryPackage.getAbapType(), null, "abapType", null, 1, 1, AbapClassImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abapAssociationImplementationAnnotationEClass, AbapAssociationImplementationAnnotation.class, "AbapAssociationImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(abapAssociationImplementationAnnotationEClass, AbapAssociationImplementationAnnotation.class, "AbapAssociationImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(abapAssociationEndImplementationAnnotationEClass, AbapAssociationEndImplementationAnnotation.class, "AbapAssociationEndImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEClass(abapAssociationEndImplementationAnnotationEClass, AbapAssociationEndImplementationAnnotation.class, "AbapAssociationEndImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(abapSignatureImplementationAnnotationEClass, AbapSignatureImplementationAnnotation.class, "AbapSignatureImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbapSignatureImplementationAnnotation_Kind(), this.getAbapSignatureKind(), "kind", null, 1, 1, AbapSignatureImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEClass(abapSignatureImplementationAnnotationEClass, AbapSignatureImplementationAnnotation.class, "AbapSignatureImplementationAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getAbapSignatureImplementationAnnotation_Kind(), this.getAbapSignatureKind(), "kind", null, 1, 1, AbapSignatureImplementationAnnotation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		// Initialize enums and add enum literals
-		initEEnum(abapClassKindEEnum, AbapClassKind.class, "AbapClassKind");
-		addEEnumLiteral(abapClassKindEEnum, AbapClassKind.BO_AND_ROOT_NODE);
-		addEEnumLiteral(abapClassKindEEnum, AbapClassKind.BO_NODE);
-		addEEnumLiteral(abapClassKindEEnum, AbapClassKind.DEPENDENT_OBJECT);
-		addEEnumLiteral(abapClassKindEEnum, AbapClassKind.DATA_TYPE);
-		addEEnumLiteral(abapClassKindEEnum, AbapClassKind.ABAP_TYPE);
+        // Initialize enums and add enum literals
+        initEEnum(abapClassKindEEnum, AbapClassKind.class, "AbapClassKind");
+        addEEnumLiteral(abapClassKindEEnum, AbapClassKind.BO_AND_ROOT_NODE);
+        addEEnumLiteral(abapClassKindEEnum, AbapClassKind.BO_NODE);
+        addEEnumLiteral(abapClassKindEEnum, AbapClassKind.DEPENDENT_OBJECT);
+        addEEnumLiteral(abapClassKindEEnum, AbapClassKind.DATA_TYPE);
+        addEEnumLiteral(abapClassKindEEnum, AbapClassKind.ABAP_TYPE);
 
-		initEEnum(abapSignatureKindEEnum, AbapSignatureKind.class, "AbapSignatureKind");
-		addEEnumLiteral(abapSignatureKindEEnum, AbapSignatureKind.QUERY);
-		addEEnumLiteral(abapSignatureKindEEnum, AbapSignatureKind.ACTION);
+        initEEnum(abapSignatureKindEEnum, AbapSignatureKind.class, "AbapSignatureKind");
+        addEEnumLiteral(abapSignatureKindEEnum, AbapSignatureKind.QUERY);
+        addEEnumLiteral(abapSignatureKindEEnum, AbapSignatureKind.ACTION);
 
-		// Create resource
-		createResource(eNS_URI);
+        // Create resource
+        createResource(eNS_URI);
 
-		// Create annotations
-		// http://www.eclipse.org/emf/2002/Ecore
-		createEcoreAnnotations();
-		// http://de.hpi.sam.bp2009.OCL
-		createDeAnnotations();
-	}
+        // Create annotations
+        // http://www.eclipse.org/emf/2002/Ecore
+        createEcoreAnnotations();
+        // http://de.hpi.sam.bp2009.OCL
+        createDeAnnotations();
+    }
 
 	/**
-	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-	 * <!-- begin-user-doc -->
+     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore";		
-		addAnnotation
-		  (this, 
-		   source, 
-		   new String[] {
-			 "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
-			 "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
-		   });			
-		addAnnotation
-		  (abapClassImplementationAnnotationEClass, 
-		   source, 
-		   new String[] {
-			 "constraints", "AbapTypeMustBeUnstructured"
-		   });
-	}
+        String source = "http://www.eclipse.org/emf/2002/Ecore";		
+        addAnnotation
+          (this, 
+           source, 
+           new String[] {
+             "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
+             "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
+           });			
+        addAnnotation
+          (abapClassImplementationAnnotationEClass, 
+           source, 
+           new String[] {
+             "constraints", "AbapTypeMustBeUnstructured"
+           });
+    }
 
 	/**
-	 * Initializes the annotations for <b>http://de.hpi.sam.bp2009.OCL</b>.
-	 * <!-- begin-user-doc -->
+     * Initializes the annotations for <b>http://de.hpi.sam.bp2009.OCL</b>.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected void createDeAnnotations() {
-		String source = "http://de.hpi.sam.bp2009.OCL";			
-		addAnnotation
-		  (abapClassImplementationAnnotationEClass, 
-		   source, 
-		   new String[] {
-			 "AbapTypeMustBeUnstructured", "self.kind = AbapClassKind::ABAP_TYPE implies\r\n    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)"
-		   });	
-	}
+        String source = "http://de.hpi.sam.bp2009.OCL";			
+        addAnnotation
+          (abapClassImplementationAnnotationEClass, 
+           source, 
+           new String[] {
+             "AbapTypeMustBeUnstructured", "self.kind = AbapClassKind::ABAP_TYPE implies\r\n    self.abapType.oclIsKindOf(abapmapping::abapdictionary::UnstructuredAbapType)"
+           });	
+    }
 
 } //AbapmappingPackageImpl

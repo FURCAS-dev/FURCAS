@@ -18,29 +18,29 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface LocalizationFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	LocalizationFactory eINSTANCE = localization.impl.LocalizationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Translatable Text</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Translatable Text</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Translatable Text</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Translatable Text</em>'.
+     * @generated
+     */
 	TranslatableText createTranslatableText();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	LocalizationPackage getLocalizationPackage();
 
 } //LocalizationFactory

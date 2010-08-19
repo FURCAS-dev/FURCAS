@@ -41,102 +41,102 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Constraint extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>The Context</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link data.classes.Context#getConstraints <em>Constraints</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>The Context</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link data.classes.Context#getConstraints <em>Constraints</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>The Context</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>The Context</em>' container reference.
-	 * @see #setTheContext(Context)
-	 * @see data.constraints.ConstraintsPackage#getConstraint_TheContext()
-	 * @see data.classes.Context#getConstraints
-	 * @model opposite="constraints"
-	 * @generated
-	 */
+     * @return the value of the '<em>The Context</em>' container reference.
+     * @see #setTheContext(Context)
+     * @see data.constraints.ConstraintsPackage#getConstraint_TheContext()
+     * @see data.classes.Context#getConstraints
+     * @model opposite="constraints"
+     * @generated
+     */
 	Context getTheContext();
 
 	/**
-	 * Sets the value of the '{@link data.constraints.Constraint#getTheContext <em>The Context</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.constraints.Constraint#getTheContext <em>The Context</em>}' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>The Context</em>' container reference.
-	 * @see #getTheContext()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>The Context</em>' container reference.
+     * @see #getTheContext()
+     * @generated
+     */
 	void setTheContext(Context value);
 
 	/**
-	 * Returns the value of the '<em><b>Constrained Type</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link data.classes.SapClass#getConstraints <em>Constraints</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Constrained Type</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link data.classes.SapClass#getConstraints <em>Constraints</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constrained Type</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constrained Type</em>' container reference.
-	 * @see #setConstrainedType(SapClass)
-	 * @see data.constraints.ConstraintsPackage#getConstraint_ConstrainedType()
-	 * @see data.classes.SapClass#getConstraints
-	 * @model opposite="constraints"
-	 * @generated
-	 */
+     * @return the value of the '<em>Constrained Type</em>' container reference.
+     * @see #setConstrainedType(SapClass)
+     * @see data.constraints.ConstraintsPackage#getConstraint_ConstrainedType()
+     * @see data.classes.SapClass#getConstraints
+     * @model opposite="constraints"
+     * @generated
+     */
 	SapClass getConstrainedType();
 
 	/**
-	 * Sets the value of the '{@link data.constraints.Constraint#getConstrainedType <em>Constrained Type</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.constraints.Constraint#getConstrainedType <em>Constrained Type</em>}' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constrained Type</em>' container reference.
-	 * @see #getConstrainedType()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Constrained Type</em>' container reference.
+     * @see #getConstrainedType()
+     * @generated
+     */
 	void setConstrainedType(SapClass value);
 
 	/**
-	 * Returns the value of the '<em><b>Severity In State</b></em>' containment reference list.
-	 * The list contents are of type {@link data.constraints.SeverityInState}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Severity In State</b></em>' containment reference list.
+     * The list contents are of type {@link data.constraints.SeverityInState}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Severity In State</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Severity In State</em>' containment reference list.
-	 * @see data.constraints.ConstraintsPackage#getConstraint_SeverityInState()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='constraint'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Severity In State</em>' containment reference list.
+     * @see data.constraints.ConstraintsPackage#getConstraint_SeverityInState()
+     * @model containment="true" resolveProxies="true" required="true"
+     *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='constraint'"
+     * @generated
+     */
 	EList<SeverityInState> getSeverityInState();
 
 	/**
-	 * Returns the value of the '<em><b>Constraint Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Constraint Expression</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constraint Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constraint Expression</em>' containment reference.
-	 * @see #setConstraintExpression(Expression)
-	 * @see data.constraints.ConstraintsPackage#getConstraint_ConstraintExpression()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Constraint Expression</em>' containment reference.
+     * @see #setConstraintExpression(Expression)
+     * @see data.constraints.ConstraintsPackage#getConstraint_ConstraintExpression()
+     * @model containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	Expression getConstraintExpression();
 
 	/**
-	 * Sets the value of the '{@link data.constraints.Constraint#getConstraintExpression <em>Constraint Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.constraints.Constraint#getConstraintExpression <em>Constraint Expression</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Constraint Expression</em>' containment reference.
-	 * @see #getConstraintExpression()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Constraint Expression</em>' containment reference.
+     * @see #getConstraintExpression()
+     * @generated
+     */
 	void setConstraintExpression(Expression value);
 
 } // Constraint

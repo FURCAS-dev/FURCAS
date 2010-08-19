@@ -18,101 +18,101 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface AbapdictionaryFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	AbapdictionaryFactory eINSTANCE = abapmapping.abapdictionary.impl.AbapdictionaryFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Xsd Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Xsd Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Xsd Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Xsd Type</em>'.
+     * @generated
+     */
 	XsdType createXsdType();
 
 	/**
-	 * Returns a new object of class '<em>Unstructured Abap Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Unstructured Abap Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unstructured Abap Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Unstructured Abap Type</em>'.
+     * @generated
+     */
 	UnstructuredAbapType createUnstructuredAbapType();
 
 	/**
-	 * Returns a new object of class '<em>Code Value</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Code Value</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Code Value</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Code Value</em>'.
+     * @generated
+     */
 	CodeValue createCodeValue();
 
 	/**
-	 * Returns a new object of class '<em>Code</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Code</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Code</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Code</em>'.
+     * @generated
+     */
 	Code createCode();
 
 	/**
-	 * Returns a new object of class '<em>Data Element</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Data Element</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Element</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Data Element</em>'.
+     * @generated
+     */
 	DataElement createDataElement();
 
 	/**
-	 * Returns a new object of class '<em>Abap Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Abap Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Abap Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Abap Type</em>'.
+     * @generated
+     */
 	AbapType createAbapType();
 
 	/**
-	 * Returns a new object of class '<em>Abap Structure Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Abap Structure Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Abap Structure Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Abap Structure Type</em>'.
+     * @generated
+     */
 	AbapStructureType createAbapStructureType();
 
 	/**
-	 * Returns a new object of class '<em>Abap Structure Field</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Abap Structure Field</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Abap Structure Field</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Abap Structure Field</em>'.
+     * @generated
+     */
 	AbapStructureField createAbapStructureField();
 
 	/**
-	 * Returns a new object of class '<em>Abap Primtive Type</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Abap Primtive Type</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Abap Primtive Type</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Abap Primtive Type</em>'.
+     * @generated
+     */
 	AbapPrimtiveType createAbapPrimtiveType();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	AbapdictionaryPackage getAbapdictionaryPackage();
 
 } //AbapdictionaryFactory

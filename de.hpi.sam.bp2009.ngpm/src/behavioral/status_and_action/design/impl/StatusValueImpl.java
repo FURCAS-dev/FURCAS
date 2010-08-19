@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class StatusValueImpl extends AbstractStatusValueImpl implements StatusValue {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StatusValueImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return DesignPackage.Literals.STATUS_VALUE;
-	}
+        return DesignPackage.Literals.STATUS_VALUE;
+    }
 
 } //StatusValueImpl

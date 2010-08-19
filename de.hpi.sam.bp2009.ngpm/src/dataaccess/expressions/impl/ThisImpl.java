@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ThisImpl extends ExpressionImpl implements This {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ThisImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.THIS;
-	}
+        return ExpressionsPackage.Literals.THIS;
+    }
 
 } //ThisImpl

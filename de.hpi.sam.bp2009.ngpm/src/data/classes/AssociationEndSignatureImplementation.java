@@ -27,31 +27,31 @@ package data.classes;
  */
 public interface AssociationEndSignatureImplementation extends SignatureImplementation {
 	/**
-	 * Returns the value of the '<em><b>End</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link data.classes.AssociationEnd#getSignatureImplementations <em>Signature Implementations</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>End</b></em>' reference.
+     * It is bidirectional and its opposite is '{@link data.classes.AssociationEnd#getSignatureImplementations <em>Signature Implementations</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>End</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>End</em>' reference.
-	 * @see #setEnd(AssociationEnd)
-	 * @see data.classes.ClassesPackage#getAssociationEndSignatureImplementation_End()
-	 * @see data.classes.AssociationEnd#getSignatureImplementations
-	 * @model opposite="signatureImplementations" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>End</em>' reference.
+     * @see #setEnd(AssociationEnd)
+     * @see data.classes.ClassesPackage#getAssociationEndSignatureImplementation_End()
+     * @see data.classes.AssociationEnd#getSignatureImplementations
+     * @model opposite="signatureImplementations" required="true"
+     * @generated
+     */
 	AssociationEnd getEnd();
 
 	/**
-	 * Sets the value of the '{@link data.classes.AssociationEndSignatureImplementation#getEnd <em>End</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.classes.AssociationEndSignatureImplementation#getEnd <em>End</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>End</em>' reference.
-	 * @see #getEnd()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>End</em>' reference.
+     * @see #getEnd()
+     * @generated
+     */
 	void setEnd(AssociationEnd value);
 
 } // AssociationEndSignatureImplementation

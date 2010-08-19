@@ -35,129 +35,129 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ActionProxyImpl extends AbstractActionImpl implements ActionProxy {
 	/**
-	 * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAction() <em>Action</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAction()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAction()
+     * @generated
+     * @ordered
+     */
 	protected Signature action;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ActionProxyImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.ACTION_PROXY;
-	}
+        return AssemblyPackage.Literals.ACTION_PROXY;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Signature getAction() {
-		if (action != null && action.eIsProxy()) {
-			InternalEObject oldAction = (InternalEObject)action;
-			action = (Signature)eResolveProxy(oldAction);
-			if (action != oldAction) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AssemblyPackage.ACTION_PROXY__ACTION, oldAction, action));
-			}
-		}
-		return action;
-	}
+        if (action != null && action.eIsProxy()) {
+            InternalEObject oldAction = (InternalEObject)action;
+            action = (Signature)eResolveProxy(oldAction);
+            if (action != oldAction) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AssemblyPackage.ACTION_PROXY__ACTION, oldAction, action));
+            }
+        }
+        return action;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Signature basicGetAction() {
-		return action;
-	}
+        return action;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAction(Signature newAction) {
-		Signature oldAction = action;
-		action = newAction;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AssemblyPackage.ACTION_PROXY__ACTION, oldAction, action));
-	}
+        Signature oldAction = action;
+        action = newAction;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AssemblyPackage.ACTION_PROXY__ACTION, oldAction, action));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AssemblyPackage.ACTION_PROXY__ACTION:
-				if (resolve) return getAction();
-				return basicGetAction();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case AssemblyPackage.ACTION_PROXY__ACTION:
+                if (resolve) return getAction();
+                return basicGetAction();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AssemblyPackage.ACTION_PROXY__ACTION:
-				setAction((Signature)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case AssemblyPackage.ACTION_PROXY__ACTION:
+                setAction((Signature)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AssemblyPackage.ACTION_PROXY__ACTION:
-				setAction((Signature)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case AssemblyPackage.ACTION_PROXY__ACTION:
+                setAction((Signature)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AssemblyPackage.ACTION_PROXY__ACTION:
-				return action != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case AssemblyPackage.ACTION_PROXY__ACTION:
+                return action != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ActionProxyImpl

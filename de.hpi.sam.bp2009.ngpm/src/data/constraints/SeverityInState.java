@@ -27,61 +27,61 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SeverityInState extends EObject {
 	/**
-	 * Returns the value of the '<em><b>State</b></em>' attribute.
-	 * The literals are from the enumeration {@link data.constraints.ObjectState}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>State</b></em>' attribute.
+     * The literals are from the enumeration {@link data.constraints.ObjectState}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>State</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>State</em>' attribute.
-	 * @see data.constraints.ObjectState
-	 * @see #setState(ObjectState)
-	 * @see data.constraints.ConstraintsPackage#getSeverityInState_State()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>State</em>' attribute.
+     * @see data.constraints.ObjectState
+     * @see #setState(ObjectState)
+     * @see data.constraints.ConstraintsPackage#getSeverityInState_State()
+     * @model unique="false" required="true" ordered="false"
+     * @generated
+     */
 	ObjectState getState();
 
 	/**
-	 * Sets the value of the '{@link data.constraints.SeverityInState#getState <em>State</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.constraints.SeverityInState#getState <em>State</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>State</em>' attribute.
-	 * @see data.constraints.ObjectState
-	 * @see #getState()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>State</em>' attribute.
+     * @see data.constraints.ObjectState
+     * @see #getState()
+     * @generated
+     */
 	void setState(ObjectState value);
 
 	/**
-	 * Returns the value of the '<em><b>Severity</b></em>' attribute.
-	 * The literals are from the enumeration {@link data.constraints.Severity}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Severity</b></em>' attribute.
+     * The literals are from the enumeration {@link data.constraints.Severity}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Severity</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Severity</em>' attribute.
-	 * @see data.constraints.Severity
-	 * @see #setSeverity(Severity)
-	 * @see data.constraints.ConstraintsPackage#getSeverityInState_Severity()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Severity</em>' attribute.
+     * @see data.constraints.Severity
+     * @see #setSeverity(Severity)
+     * @see data.constraints.ConstraintsPackage#getSeverityInState_Severity()
+     * @model unique="false" required="true" ordered="false"
+     * @generated
+     */
 	Severity getSeverity();
 
 	/**
-	 * Sets the value of the '{@link data.constraints.SeverityInState#getSeverity <em>Severity</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.constraints.SeverityInState#getSeverity <em>Severity</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Severity</em>' attribute.
-	 * @see data.constraints.Severity
-	 * @see #getSeverity()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Severity</em>' attribute.
+     * @see data.constraints.Severity
+     * @see #getSeverity()
+     * @generated
+     */
 	void setSeverity(Severity value);
 
 } // SeverityInState

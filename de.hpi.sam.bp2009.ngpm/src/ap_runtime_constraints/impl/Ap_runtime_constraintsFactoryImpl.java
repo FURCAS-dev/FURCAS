@@ -24,76 +24,76 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class Ap_runtime_constraintsFactoryImpl extends EFactoryImpl implements Ap_runtime_constraintsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static Ap_runtime_constraintsFactory init() {
-		try {
-			Ap_runtime_constraintsFactory theAp_runtime_constraintsFactory = (Ap_runtime_constraintsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///ap_runtime_constraints.ecore"); 
-			if (theAp_runtime_constraintsFactory != null) {
-				return theAp_runtime_constraintsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new Ap_runtime_constraintsFactoryImpl();
-	}
+        try {
+            Ap_runtime_constraintsFactory theAp_runtime_constraintsFactory = (Ap_runtime_constraintsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///ap_runtime_constraints.ecore"); 
+            if (theAp_runtime_constraintsFactory != null) {
+                return theAp_runtime_constraintsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new Ap_runtime_constraintsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Ap_runtime_constraintsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case Ap_runtime_constraintsPackage.QUERY_CONSTRAINT: return createQueryConstraint();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case Ap_runtime_constraintsPackage.QUERY_CONSTRAINT: return createQueryConstraint();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QueryConstraint createQueryConstraint() {
-		QueryConstraintImpl queryConstraint = new QueryConstraintImpl();
-		return queryConstraint;
-	}
+        QueryConstraintImpl queryConstraint = new QueryConstraintImpl();
+        return queryConstraint;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Ap_runtime_constraintsPackage getAp_runtime_constraintsPackage() {
-		return (Ap_runtime_constraintsPackage)getEPackage();
-	}
+        return (Ap_runtime_constraintsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static Ap_runtime_constraintsPackage getPackage() {
-		return Ap_runtime_constraintsPackage.eINSTANCE;
-	}
+        return Ap_runtime_constraintsPackage.eINSTANCE;
+    }
 
 } //Ap_runtime_constraintsFactoryImpl

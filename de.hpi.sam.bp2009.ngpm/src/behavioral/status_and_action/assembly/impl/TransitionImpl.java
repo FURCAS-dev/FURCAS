@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class TransitionImpl extends ConnectorImpl implements Transition {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TransitionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.TRANSITION;
-	}
+        return AssemblyPackage.Literals.TRANSITION;
+    }
 
 } //TransitionImpl

@@ -33,129 +33,129 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class AssociationEndNavigationExpressionImpl extends ObjectBasedExpressionImpl implements AssociationEndNavigationExpression {
 	/**
-	 * The cached value of the '{@link #getToEnd() <em>To End</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getToEnd() <em>To End</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getToEnd()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getToEnd()
+     * @generated
+     * @ordered
+     */
 	protected AssociationEnd toEnd;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AssociationEndNavigationExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.ASSOCIATION_END_NAVIGATION_EXPRESSION;
-	}
+        return ExpressionsPackage.Literals.ASSOCIATION_END_NAVIGATION_EXPRESSION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssociationEnd getToEnd() {
-		if (toEnd != null && toEnd.eIsProxy()) {
-			InternalEObject oldToEnd = (InternalEObject)toEnd;
-			toEnd = (AssociationEnd)eResolveProxy(oldToEnd);
-			if (toEnd != oldToEnd) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END, oldToEnd, toEnd));
-			}
-		}
-		return toEnd;
-	}
+        if (toEnd != null && toEnd.eIsProxy()) {
+            InternalEObject oldToEnd = (InternalEObject)toEnd;
+            toEnd = (AssociationEnd)eResolveProxy(oldToEnd);
+            if (toEnd != oldToEnd) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END, oldToEnd, toEnd));
+            }
+        }
+        return toEnd;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssociationEnd basicGetToEnd() {
-		return toEnd;
-	}
+        return toEnd;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setToEnd(AssociationEnd newToEnd) {
-		AssociationEnd oldToEnd = toEnd;
-		toEnd = newToEnd;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END, oldToEnd, toEnd));
-	}
+        AssociationEnd oldToEnd = toEnd;
+        toEnd = newToEnd;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END, oldToEnd, toEnd));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END:
-				if (resolve) return getToEnd();
-				return basicGetToEnd();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END:
+                if (resolve) return getToEnd();
+                return basicGetToEnd();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END:
-				setToEnd((AssociationEnd)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END:
+                setToEnd((AssociationEnd)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END:
-				setToEnd((AssociationEnd)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END:
+                setToEnd((AssociationEnd)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END:
-				return toEnd != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.ASSOCIATION_END_NAVIGATION_EXPRESSION__TO_END:
+                return toEnd != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //AssociationEndNavigationExpressionImpl

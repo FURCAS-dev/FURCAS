@@ -24,109 +24,109 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class Context_driversFactoryImpl extends EFactoryImpl implements Context_driversFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static Context_driversFactory init() {
-		try {
-			Context_driversFactory theContext_driversFactory = (Context_driversFactory)EPackage.Registry.INSTANCE.getEFactory("http:///configuration/context_drivers.ecore"); 
-			if (theContext_driversFactory != null) {
-				return theContext_driversFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new Context_driversFactoryImpl();
-	}
+        try {
+            Context_driversFactory theContext_driversFactory = (Context_driversFactory)EPackage.Registry.INSTANCE.getEFactory("http:///configuration/context_drivers.ecore"); 
+            if (theContext_driversFactory != null) {
+                return theContext_driversFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new Context_driversFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Context_driversFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case Context_driversPackage.CONTEXT_CATEGORY: return createContextCategory();
-			case Context_driversPackage.CONTEXT_CATEGORY_VALUE: return createContextCategoryValue();
-			case Context_driversPackage.CONTEXTUAL_ELEMENT: return createContextualElement();
-			case Context_driversPackage.CONTEX_CONFIGURATION: return createContexConfiguration();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case Context_driversPackage.CONTEXT_CATEGORY: return createContextCategory();
+            case Context_driversPackage.CONTEXT_CATEGORY_VALUE: return createContextCategoryValue();
+            case Context_driversPackage.CONTEXTUAL_ELEMENT: return createContextualElement();
+            case Context_driversPackage.CONTEX_CONFIGURATION: return createContexConfiguration();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ContextCategory createContextCategory() {
-		ContextCategoryImpl contextCategory = new ContextCategoryImpl();
-		return contextCategory;
-	}
+        ContextCategoryImpl contextCategory = new ContextCategoryImpl();
+        return contextCategory;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ContextCategoryValue createContextCategoryValue() {
-		ContextCategoryValueImpl contextCategoryValue = new ContextCategoryValueImpl();
-		return contextCategoryValue;
-	}
+        ContextCategoryValueImpl contextCategoryValue = new ContextCategoryValueImpl();
+        return contextCategoryValue;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ContextualElement createContextualElement() {
-		ContextualElementImpl contextualElement = new ContextualElementImpl();
-		return contextualElement;
-	}
+        ContextualElementImpl contextualElement = new ContextualElementImpl();
+        return contextualElement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ContexConfiguration createContexConfiguration() {
-		ContexConfigurationImpl contexConfiguration = new ContexConfigurationImpl();
-		return contexConfiguration;
-	}
+        ContexConfigurationImpl contexConfiguration = new ContexConfigurationImpl();
+        return contexConfiguration;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Context_driversPackage getContext_driversPackage() {
-		return (Context_driversPackage)getEPackage();
-	}
+        return (Context_driversPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static Context_driversPackage getPackage() {
-		return Context_driversPackage.eINSTANCE;
-	}
+        return Context_driversPackage.eINSTANCE;
+    }
 
 } //Context_driversFactoryImpl

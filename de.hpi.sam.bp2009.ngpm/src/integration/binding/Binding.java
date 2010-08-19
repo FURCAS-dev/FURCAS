@@ -30,29 +30,29 @@ import modelmanagement.NamedElement;
  */
 public interface Binding extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Function</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Function</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Function</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Function</em>' containment reference.
-	 * @see #setFunction(Expression)
-	 * @see integration.binding.BindingPackage#getBinding_Function()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Function</em>' containment reference.
+     * @see #setFunction(Expression)
+     * @see integration.binding.BindingPackage#getBinding_Function()
+     * @model containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	Expression getFunction();
 
 	/**
-	 * Sets the value of the '{@link integration.binding.Binding#getFunction <em>Function</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link integration.binding.Binding#getFunction <em>Function</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Function</em>' containment reference.
-	 * @see #getFunction()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Function</em>' containment reference.
+     * @see #getFunction()
+     * @generated
+     */
 	void setFunction(Expression value);
 
 } // Binding

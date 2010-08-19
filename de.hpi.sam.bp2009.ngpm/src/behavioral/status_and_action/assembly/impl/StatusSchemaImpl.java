@@ -46,217 +46,217 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class StatusSchemaImpl extends NamedElementImpl implements StatusSchema {
 	/**
-	 * The cached value of the '{@link #getNode() <em>Node</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getNode() <em>Node</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNode()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getNode()
+     * @generated
+     * @ordered
+     */
 	protected SapClass node;
 
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElements()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getElements()
+     * @generated
+     * @ordered
+     */
 	protected EList<SchemaElement> elements;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StatusSchemaImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.STATUS_SCHEMA;
-	}
+        return AssemblyPackage.Literals.STATUS_SCHEMA;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass getNode() {
-		if (node != null && node.eIsProxy()) {
-			InternalEObject oldNode = (InternalEObject)node;
-			node = (SapClass)eResolveProxy(oldNode);
-			if (node != oldNode) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AssemblyPackage.STATUS_SCHEMA__NODE, oldNode, node));
-			}
-		}
-		return node;
-	}
+        if (node != null && node.eIsProxy()) {
+            InternalEObject oldNode = (InternalEObject)node;
+            node = (SapClass)eResolveProxy(oldNode);
+            if (node != oldNode) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AssemblyPackage.STATUS_SCHEMA__NODE, oldNode, node));
+            }
+        }
+        return node;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass basicGetNode() {
-		return node;
-	}
+        return node;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetNode(SapClass newNode, NotificationChain msgs) {
-		SapClass oldNode = node;
-		node = newNode;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblyPackage.STATUS_SCHEMA__NODE, oldNode, newNode);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        SapClass oldNode = node;
+        node = newNode;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblyPackage.STATUS_SCHEMA__NODE, oldNode, newNode);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setNode(SapClass newNode) {
-		if (newNode != node) {
-			NotificationChain msgs = null;
-			if (node != null)
-				msgs = ((InternalEObject)node).eInverseRemove(this, ClassesPackage.SAP_CLASS__BEHAVIOURAL_MODEL, SapClass.class, msgs);
-			if (newNode != null)
-				msgs = ((InternalEObject)newNode).eInverseAdd(this, ClassesPackage.SAP_CLASS__BEHAVIOURAL_MODEL, SapClass.class, msgs);
-			msgs = basicSetNode(newNode, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AssemblyPackage.STATUS_SCHEMA__NODE, newNode, newNode));
-	}
+        if (newNode != node) {
+            NotificationChain msgs = null;
+            if (node != null)
+                msgs = ((InternalEObject)node).eInverseRemove(this, ClassesPackage.SAP_CLASS__BEHAVIOURAL_MODEL, SapClass.class, msgs);
+            if (newNode != null)
+                msgs = ((InternalEObject)newNode).eInverseAdd(this, ClassesPackage.SAP_CLASS__BEHAVIOURAL_MODEL, SapClass.class, msgs);
+            msgs = basicSetNode(newNode, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AssemblyPackage.STATUS_SCHEMA__NODE, newNode, newNode));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<SchemaElement> getElements() {
-		if (elements == null) {
-			elements = new EObjectContainmentEList<SchemaElement>(SchemaElement.class, this, AssemblyPackage.STATUS_SCHEMA__ELEMENTS);
-		}
-		return elements;
-	}
+        if (elements == null) {
+            elements = new EObjectContainmentEList.Resolving<SchemaElement>(SchemaElement.class, this, AssemblyPackage.STATUS_SCHEMA__ELEMENTS);
+        }
+        return elements;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case AssemblyPackage.STATUS_SCHEMA__NODE:
-				if (node != null)
-					msgs = ((InternalEObject)node).eInverseRemove(this, ClassesPackage.SAP_CLASS__BEHAVIOURAL_MODEL, SapClass.class, msgs);
-				return basicSetNode((SapClass)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case AssemblyPackage.STATUS_SCHEMA__NODE:
+                if (node != null)
+                    msgs = ((InternalEObject)node).eInverseRemove(this, ClassesPackage.SAP_CLASS__BEHAVIOURAL_MODEL, SapClass.class, msgs);
+                return basicSetNode((SapClass)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case AssemblyPackage.STATUS_SCHEMA__NODE:
-				return basicSetNode(null, msgs);
-			case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
-				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case AssemblyPackage.STATUS_SCHEMA__NODE:
+                return basicSetNode(null, msgs);
+            case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
+                return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AssemblyPackage.STATUS_SCHEMA__NODE:
-				if (resolve) return getNode();
-				return basicGetNode();
-			case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
-				return getElements();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case AssemblyPackage.STATUS_SCHEMA__NODE:
+                if (resolve) return getNode();
+                return basicGetNode();
+            case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
+                return getElements();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AssemblyPackage.STATUS_SCHEMA__NODE:
-				setNode((SapClass)newValue);
-				return;
-			case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
-				getElements().clear();
-				getElements().addAll((Collection<? extends SchemaElement>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case AssemblyPackage.STATUS_SCHEMA__NODE:
+                setNode((SapClass)newValue);
+                return;
+            case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
+                getElements().clear();
+                getElements().addAll((Collection<? extends SchemaElement>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AssemblyPackage.STATUS_SCHEMA__NODE:
-				setNode((SapClass)null);
-				return;
-			case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
-				getElements().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case AssemblyPackage.STATUS_SCHEMA__NODE:
+                setNode((SapClass)null);
+                return;
+            case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
+                getElements().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AssemblyPackage.STATUS_SCHEMA__NODE:
-				return node != null;
-			case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
-				return elements != null && !elements.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case AssemblyPackage.STATUS_SCHEMA__NODE:
+                return node != null;
+            case AssemblyPackage.STATUS_SCHEMA__ELEMENTS:
+                return elements != null && !elements.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //StatusSchemaImpl

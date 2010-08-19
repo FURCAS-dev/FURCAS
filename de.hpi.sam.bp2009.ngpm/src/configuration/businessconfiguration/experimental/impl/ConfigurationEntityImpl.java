@@ -38,188 +38,188 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ConfigurationEntityImpl extends NamedElementImpl implements ConfigurationEntity {
 	/**
-	 * The cached value of the '{@link #getPickList() <em>Pick List</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPickList() <em>Pick List</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPickList()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPickList()
+     * @generated
+     * @ordered
+     */
 	protected ValueSet pickList;
 
 	/**
-	 * The cached value of the '{@link #getConfigurableItem() <em>Configurable Item</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getConfigurableItem() <em>Configurable Item</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConfigurableItem()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getConfigurableItem()
+     * @generated
+     * @ordered
+     */
 	protected AssociationEnd configurableItem;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConfigurationEntityImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExperimentalPackage.Literals.CONFIGURATION_ENTITY;
-	}
+        return ExperimentalPackage.Literals.CONFIGURATION_ENTITY;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueSet getPickList() {
-		if (pickList != null && pickList.eIsProxy()) {
-			InternalEObject oldPickList = (InternalEObject)pickList;
-			pickList = (ValueSet)eResolveProxy(oldPickList);
-			if (pickList != oldPickList) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST, oldPickList, pickList));
-			}
-		}
-		return pickList;
-	}
+        if (pickList != null && pickList.eIsProxy()) {
+            InternalEObject oldPickList = (InternalEObject)pickList;
+            pickList = (ValueSet)eResolveProxy(oldPickList);
+            if (pickList != oldPickList) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST, oldPickList, pickList));
+            }
+        }
+        return pickList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ValueSet basicGetPickList() {
-		return pickList;
-	}
+        return pickList;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPickList(ValueSet newPickList) {
-		ValueSet oldPickList = pickList;
-		pickList = newPickList;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST, oldPickList, pickList));
-	}
+        ValueSet oldPickList = pickList;
+        pickList = newPickList;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST, oldPickList, pickList));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssociationEnd getConfigurableItem() {
-		if (configurableItem != null && configurableItem.eIsProxy()) {
-			InternalEObject oldConfigurableItem = (InternalEObject)configurableItem;
-			configurableItem = (AssociationEnd)eResolveProxy(oldConfigurableItem);
-			if (configurableItem != oldConfigurableItem) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM, oldConfigurableItem, configurableItem));
-			}
-		}
-		return configurableItem;
-	}
+        if (configurableItem != null && configurableItem.eIsProxy()) {
+            InternalEObject oldConfigurableItem = (InternalEObject)configurableItem;
+            configurableItem = (AssociationEnd)eResolveProxy(oldConfigurableItem);
+            if (configurableItem != oldConfigurableItem) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM, oldConfigurableItem, configurableItem));
+            }
+        }
+        return configurableItem;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssociationEnd basicGetConfigurableItem() {
-		return configurableItem;
-	}
+        return configurableItem;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setConfigurableItem(AssociationEnd newConfigurableItem) {
-		AssociationEnd oldConfigurableItem = configurableItem;
-		configurableItem = newConfigurableItem;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM, oldConfigurableItem, configurableItem));
-	}
+        AssociationEnd oldConfigurableItem = configurableItem;
+        configurableItem = newConfigurableItem;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM, oldConfigurableItem, configurableItem));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST:
-				if (resolve) return getPickList();
-				return basicGetPickList();
-			case ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM:
-				if (resolve) return getConfigurableItem();
-				return basicGetConfigurableItem();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST:
+                if (resolve) return getPickList();
+                return basicGetPickList();
+            case ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM:
+                if (resolve) return getConfigurableItem();
+                return basicGetConfigurableItem();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST:
-				setPickList((ValueSet)newValue);
-				return;
-			case ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM:
-				setConfigurableItem((AssociationEnd)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST:
+                setPickList((ValueSet)newValue);
+                return;
+            case ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM:
+                setConfigurableItem((AssociationEnd)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST:
-				setPickList((ValueSet)null);
-				return;
-			case ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM:
-				setConfigurableItem((AssociationEnd)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST:
+                setPickList((ValueSet)null);
+                return;
+            case ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM:
+                setConfigurableItem((AssociationEnd)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST:
-				return pickList != null;
-			case ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM:
-				return configurableItem != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExperimentalPackage.CONFIGURATION_ENTITY__PICK_LIST:
+                return pickList != null;
+            case ExperimentalPackage.CONFIGURATION_ENTITY__CONFIGURABLE_ITEM:
+                return configurableItem != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ConfigurationEntityImpl

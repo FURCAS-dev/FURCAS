@@ -41,105 +41,105 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface GroupBy extends ObjectBasedExpression {
 	/**
-	 * Returns the value of the '<em><b>Dimensions</b></em>' containment reference list.
-	 * The list contents are of type {@link dataaccess.analytics.DimensionDefinition}.
-	 * It is bidirectional and its opposite is '{@link dataaccess.analytics.DimensionDefinition#getGroupBy <em>Group By</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Dimensions</b></em>' containment reference list.
+     * The list contents are of type {@link dataaccess.analytics.DimensionDefinition}.
+     * It is bidirectional and its opposite is '{@link dataaccess.analytics.DimensionDefinition#getGroupBy <em>Group By</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dimensions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Dimensions</em>' containment reference list.
-	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Dimensions()
-	 * @see dataaccess.analytics.DimensionDefinition#getGroupBy
-	 * @model opposite="groupBy" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Dimensions</em>' containment reference list.
+     * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Dimensions()
+     * @see dataaccess.analytics.DimensionDefinition#getGroupBy
+     * @model opposite="groupBy" containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	EList<DimensionDefinition> getDimensions();
 
 	/**
-	 * Returns the value of the '<em><b>Fact</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getFactOfGroupBy <em>Fact Of Group By</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Fact</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getFactOfGroupBy <em>Fact Of Group By</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Fact</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Fact</em>' containment reference.
-	 * @see #setFact(Iterator)
-	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Fact()
-	 * @see behavioral.actions.Iterator#getFactOfGroupBy
-	 * @model opposite="factOfGroupBy" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Fact</em>' containment reference.
+     * @see #setFact(Iterator)
+     * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_Fact()
+     * @see behavioral.actions.Iterator#getFactOfGroupBy
+     * @model opposite="factOfGroupBy" containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	Iterator getFact();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.analytics.GroupBy#getFact <em>Fact</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.analytics.GroupBy#getFact <em>Fact</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Fact</em>' containment reference.
-	 * @see #getFact()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Fact</em>' containment reference.
+     * @see #getFact()
+     * @generated
+     */
 	void setFact(Iterator value);
 
 	/**
-	 * Returns the value of the '<em><b>Map Expression</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getMapExpressionOfGroupBy <em>Map Expression Of Group By</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Map Expression</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getMapExpressionOfGroupBy <em>Map Expression Of Group By</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Map Expression</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Map Expression</em>' containment reference.
-	 * @see #setMapExpression(Expression)
-	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_MapExpression()
-	 * @see dataaccess.expressions.Expression#getMapExpressionOfGroupBy
-	 * @model opposite="mapExpressionOfGroupBy" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Map Expression</em>' containment reference.
+     * @see #setMapExpression(Expression)
+     * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_MapExpression()
+     * @see dataaccess.expressions.Expression#getMapExpressionOfGroupBy
+     * @model opposite="mapExpressionOfGroupBy" containment="true" resolveProxies="true"
+     * @generated
+     */
 	Expression getMapExpression();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.analytics.GroupBy#getMapExpression <em>Map Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.analytics.GroupBy#getMapExpression <em>Map Expression</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Map Expression</em>' containment reference.
-	 * @see #getMapExpression()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Map Expression</em>' containment reference.
+     * @see #getMapExpression()
+     * @generated
+     */
 	void setMapExpression(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Grouped Facts</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getGroupedFactsOfGroupBy <em>Grouped Facts Of Group By</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Grouped Facts</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getGroupedFactsOfGroupBy <em>Grouped Facts Of Group By</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Grouped Facts</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Grouped Facts</em>' containment reference.
-	 * @see #setGroupedFacts(Iterator)
-	 * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_GroupedFacts()
-	 * @see behavioral.actions.Iterator#getGroupedFactsOfGroupBy
-	 * @model opposite="groupedFactsOfGroupBy" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Grouped Facts</em>' containment reference.
+     * @see #setGroupedFacts(Iterator)
+     * @see dataaccess.analytics.AnalyticsPackage#getGroupBy_GroupedFacts()
+     * @see behavioral.actions.Iterator#getGroupedFactsOfGroupBy
+     * @model opposite="groupedFactsOfGroupBy" containment="true" resolveProxies="true"
+     * @generated
+     */
 	Iterator getGroupedFacts();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.analytics.GroupBy#getGroupedFacts <em>Grouped Facts</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.analytics.GroupBy#getGroupedFacts <em>Grouped Facts</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Grouped Facts</em>' containment reference.
-	 * @see #getGroupedFacts()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Grouped Facts</em>' containment reference.
+     * @see #getGroupedFacts()
+     * @generated
+     */
 	void setGroupedFacts(Iterator value);
 
 } // GroupBy

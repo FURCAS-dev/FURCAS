@@ -25,29 +25,29 @@ package integration.xsd;
  */
 public interface SimpleType extends AbstractType {
 	/**
-	 * Returns the value of the '<em><b>Content</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Content</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Content</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Content</em>' reference.
-	 * @see #setContent(SimpleContent)
-	 * @see integration.xsd.XsdPackage#getSimpleType_Content()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Content</em>' reference.
+     * @see #setContent(SimpleContent)
+     * @see integration.xsd.XsdPackage#getSimpleType_Content()
+     * @model required="true"
+     * @generated
+     */
 	SimpleContent getContent();
 
 	/**
-	 * Sets the value of the '{@link integration.xsd.SimpleType#getContent <em>Content</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link integration.xsd.SimpleType#getContent <em>Content</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Content</em>' reference.
-	 * @see #getContent()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Content</em>' reference.
+     * @see #getContent()
+     * @generated
+     */
 	void setContent(SimpleContent value);
 
 } // SimpleType

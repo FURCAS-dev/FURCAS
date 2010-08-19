@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class HttpPutBindingImpl extends HttpBindingImpl implements HttpPutBinding {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected HttpPutBindingImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BindingPackage.Literals.HTTP_PUT_BINDING;
-	}
+        return BindingPackage.Literals.HTTP_PUT_BINDING;
+    }
 
 } //HttpPutBindingImpl

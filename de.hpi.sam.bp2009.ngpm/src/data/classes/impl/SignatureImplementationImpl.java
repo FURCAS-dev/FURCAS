@@ -42,189 +42,200 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public abstract class SignatureImplementationImpl extends EObjectImpl implements SignatureImplementation {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SignatureImplementationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.SIGNATURE_IMPLEMENTATION;
-	}
+        return ClassesPackage.Literals.SIGNATURE_IMPLEMENTATION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public MethodSignature getImplements_() {
-		if (eContainerFeatureID() != ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_) return null;
-		return (MethodSignature)eContainer();
-	}
+        if (eContainerFeatureID() != ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_) return null;
+        return (MethodSignature)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public MethodSignature basicGetImplements_() {
+        if (eContainerFeatureID() != ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_) return null;
+        return (MethodSignature)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplements_(MethodSignature newImplements_, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newImplements_, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newImplements_, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplements_(MethodSignature newImplements_) {
-		if (newImplements_ != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_ && newImplements_ != null)) {
-			if (EcoreUtil.isAncestor(this, newImplements_))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newImplements_ != null)
-				msgs = ((InternalEObject)newImplements_).eInverseAdd(this, ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, MethodSignature.class, msgs);
-			msgs = basicSetImplements_(newImplements_, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, newImplements_, newImplements_));
-	}
+        if (newImplements_ != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_ && newImplements_ != null)) {
+            if (EcoreUtil.isAncestor(this, newImplements_))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newImplements_ != null)
+                msgs = ((InternalEObject)newImplements_).eInverseAdd(this, ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, MethodSignature.class, msgs);
+            msgs = basicSetImplements_(newImplements_, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, newImplements_, newImplements_));
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #getImplementedSignature() <em>Get Implemented Signature</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #getImplementedSignature() <em>Get Implemented Signature</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImplementedSignature()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getImplementedSignature()
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate GET_IMPLEMENTED_SIGNATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.SIGNATURE_IMPLEMENTATION.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Signature getImplementedSignature() {
-		try {
-			return (Signature)GET_IMPLEMENTED_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Signature)GET_IMPLEMENTED_SIGNATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetImplements_((MethodSignature)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetImplements_((MethodSignature)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
-				return basicSetImplements_(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
+                return basicSetImplements_(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
-				return eInternalContainer().eInverseRemove(this, ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, MethodSignature.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
+                return eInternalContainer().eInverseRemove(this, ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, MethodSignature.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
-				return getImplements_();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
+                if (resolve) return getImplements_();
+                return basicGetImplements_();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
-				setImplements_((MethodSignature)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
+                setImplements_((MethodSignature)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
-				setImplements_((MethodSignature)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
+                setImplements_((MethodSignature)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
-				return getImplements_() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_:
+                return basicGetImplements_() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SignatureImplementationImpl

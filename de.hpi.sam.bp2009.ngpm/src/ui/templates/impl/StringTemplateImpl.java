@@ -41,133 +41,133 @@ import ui.templates.TemplatesPackage;
  */
 public class StringTemplateImpl extends FunctionSignatureImplementationImpl implements StringTemplate {
 	/**
-	 * The cached value of the '{@link #getExpressions() <em>Expressions</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExpressions() <em>Expressions</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExpressions()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExpressions()
+     * @generated
+     * @ordered
+     */
 	protected EList<Expression> expressions;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StringTemplateImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return TemplatesPackage.Literals.STRING_TEMPLATE;
-	}
+        return TemplatesPackage.Literals.STRING_TEMPLATE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Expression> getExpressions() {
-		if (expressions == null) {
-			expressions = new EObjectContainmentWithInverseEList<Expression>(Expression.class, this, TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS, ExpressionsPackage.EXPRESSION__TEMPLATE);
-		}
-		return expressions;
-	}
+        if (expressions == null) {
+            expressions = new EObjectContainmentWithInverseEList.Resolving<Expression>(Expression.class, this, TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS, ExpressionsPackage.EXPRESSION__TEMPLATE);
+        }
+        return expressions;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getExpressions()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getExpressions()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
-				return ((InternalEList<?>)getExpressions()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
+                return ((InternalEList<?>)getExpressions()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
-				return getExpressions();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
+                return getExpressions();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
-				getExpressions().clear();
-				getExpressions().addAll((Collection<? extends Expression>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
+                getExpressions().clear();
+                getExpressions().addAll((Collection<? extends Expression>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
-				getExpressions().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
+                getExpressions().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
-				return expressions != null && !expressions.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case TemplatesPackage.STRING_TEMPLATE__EXPRESSIONS:
+                return expressions != null && !expressions.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //StringTemplateImpl

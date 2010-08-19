@@ -33,59 +33,59 @@ package dataaccess.expressions;
  */
 public interface Equals extends Expression {
 	/**
-	 * Returns the value of the '<em><b>Left</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getLeftOfEquals <em>Left Of Equals</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Left</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getLeftOfEquals <em>Left Of Equals</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Left</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Left</em>' containment reference.
-	 * @see #setLeft(Expression)
-	 * @see dataaccess.expressions.ExpressionsPackage#getEquals_Left()
-	 * @see dataaccess.expressions.Expression#getLeftOfEquals
-	 * @model opposite="leftOfEquals" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Left</em>' containment reference.
+     * @see #setLeft(Expression)
+     * @see dataaccess.expressions.ExpressionsPackage#getEquals_Left()
+     * @see dataaccess.expressions.Expression#getLeftOfEquals
+     * @model opposite="leftOfEquals" containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	Expression getLeft();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.expressions.Equals#getLeft <em>Left</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.expressions.Equals#getLeft <em>Left</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Left</em>' containment reference.
-	 * @see #getLeft()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Left</em>' containment reference.
+     * @see #getLeft()
+     * @generated
+     */
 	void setLeft(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>Right</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getRightOfEquals <em>Right Of Equals</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Right</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getRightOfEquals <em>Right Of Equals</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Right</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Right</em>' containment reference.
-	 * @see #setRight(Expression)
-	 * @see dataaccess.expressions.ExpressionsPackage#getEquals_Right()
-	 * @see dataaccess.expressions.Expression#getRightOfEquals
-	 * @model opposite="rightOfEquals" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Right</em>' containment reference.
+     * @see #setRight(Expression)
+     * @see dataaccess.expressions.ExpressionsPackage#getEquals_Right()
+     * @see dataaccess.expressions.Expression#getRightOfEquals
+     * @model opposite="rightOfEquals" containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	Expression getRight();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.expressions.Equals#getRight <em>Right</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.expressions.Equals#getRight <em>Right</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Right</em>' containment reference.
-	 * @see #getRight()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Right</em>' containment reference.
+     * @see #getRight()
+     * @generated
+     */
 	void setRight(Expression value);
 
 } // Equals

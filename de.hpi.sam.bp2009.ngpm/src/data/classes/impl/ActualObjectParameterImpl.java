@@ -49,332 +49,367 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ActualObjectParameterImpl extends EObjectImpl implements ActualObjectParameter {
 	/**
-	 * The cached value of the '{@link #getFormalObjectParameter() <em>Formal Object Parameter</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getFormalObjectParameter() <em>Formal Object Parameter</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFormalObjectParameter()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getFormalObjectParameter()
+     * @generated
+     * @ordered
+     */
 	protected Parameter formalObjectParameter;
 
 	/**
-	 * The cached value of the '{@link #getClassTypeDefinitions() <em>Class Type Definitions</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getClassTypeDefinitions() <em>Class Type Definitions</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClassTypeDefinitions()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getClassTypeDefinitions()
+     * @generated
+     * @ordered
+     */
 	protected EList<ClassTypeDefinition> classTypeDefinitions;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getValue()
+     * @generated
+     * @ordered
+     */
 	protected Expression value;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ActualObjectParameterImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.ACTUAL_OBJECT_PARAMETER;
-	}
+        return ClassesPackage.Literals.ACTUAL_OBJECT_PARAMETER;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Parameter getFormalObjectParameter() {
-		if (formalObjectParameter != null && formalObjectParameter.eIsProxy()) {
-			InternalEObject oldFormalObjectParameter = (InternalEObject)formalObjectParameter;
-			formalObjectParameter = (Parameter)eResolveProxy(oldFormalObjectParameter);
-			if (formalObjectParameter != oldFormalObjectParameter) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER, oldFormalObjectParameter, formalObjectParameter));
-			}
-		}
-		return formalObjectParameter;
-	}
+        if (formalObjectParameter != null && formalObjectParameter.eIsProxy()) {
+            InternalEObject oldFormalObjectParameter = (InternalEObject)formalObjectParameter;
+            formalObjectParameter = (Parameter)eResolveProxy(oldFormalObjectParameter);
+            if (formalObjectParameter != oldFormalObjectParameter) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER, oldFormalObjectParameter, formalObjectParameter));
+            }
+        }
+        return formalObjectParameter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Parameter basicGetFormalObjectParameter() {
-		return formalObjectParameter;
-	}
+        return formalObjectParameter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setFormalObjectParameter(Parameter newFormalObjectParameter) {
-		Parameter oldFormalObjectParameter = formalObjectParameter;
-		formalObjectParameter = newFormalObjectParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER, oldFormalObjectParameter, formalObjectParameter));
-	}
+        Parameter oldFormalObjectParameter = formalObjectParameter;
+        formalObjectParameter = newFormalObjectParameter;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER, oldFormalObjectParameter, formalObjectParameter));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ClassTypeDefinition> getClassTypeDefinitions() {
-		if (classTypeDefinitions == null) {
-			classTypeDefinitions = new EObjectWithInverseResolvingEList.ManyInverse<ClassTypeDefinition>(ClassTypeDefinition.class, this, ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS, ClassesPackage.CLASS_TYPE_DEFINITION__OBJECT_PARAMETERS);
-		}
-		return classTypeDefinitions;
-	}
+        if (classTypeDefinitions == null) {
+            classTypeDefinitions = new EObjectWithInverseResolvingEList.ManyInverse<ClassTypeDefinition>(ClassTypeDefinition.class, this, ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS, ClassesPackage.CLASS_TYPE_DEFINITION__OBJECT_PARAMETERS);
+        }
+        return classTypeDefinitions;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Expression getValue() {
-		return value;
-	}
+        if (value != null && value.eIsProxy()) {
+            InternalEObject oldValue = (InternalEObject)value;
+            value = (Expression)eResolveProxy(oldValue);
+            if (value != oldValue) {
+                InternalEObject newValue = (InternalEObject)value;
+                NotificationChain msgs =  oldValue.eInverseRemove(this, ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER, Expression.class, null);
+                if (newValue.eInternalContainer() == null) {
+                    msgs =  newValue.eInverseAdd(this, ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER, Expression.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, oldValue, value));
+            }
+        }
+        return value;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Expression basicGetValue() {
+        return value;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs) {
-		Expression oldValue = value;
-		value = newValue;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, oldValue, newValue);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        Expression oldValue = value;
+        value = newValue;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, oldValue, newValue);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setValue(Expression newValue) {
-		if (newValue != value) {
-			NotificationChain msgs = null;
-			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER, Expression.class, msgs);
-			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER, Expression.class, msgs);
-			msgs = basicSetValue(newValue, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, newValue, newValue));
-	}
+        if (newValue != value) {
+            NotificationChain msgs = null;
+            if (value != null)
+                msgs = ((InternalEObject)value).eInverseRemove(this, ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER, Expression.class, msgs);
+            if (newValue != null)
+                msgs = ((InternalEObject)newValue).eInverseAdd(this, ExpressionsPackage.EXPRESSION__ACTUAL_OBJECT_PARAMETER, Expression.class, msgs);
+            msgs = basicSetValue(newValue, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, newValue, newValue));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ClassTypeDefinition getOwningClassTypeDefinition() {
-		if (eContainerFeatureID() != ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION) return null;
-		return (ClassTypeDefinition)eContainer();
-	}
+        if (eContainerFeatureID() != ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION) return null;
+        return (ClassTypeDefinition)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ClassTypeDefinition basicGetOwningClassTypeDefinition() {
+        if (eContainerFeatureID() != ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION) return null;
+        return (ClassTypeDefinition)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetOwningClassTypeDefinition(ClassTypeDefinition newOwningClassTypeDefinition, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwningClassTypeDefinition, ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newOwningClassTypeDefinition, ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setOwningClassTypeDefinition(ClassTypeDefinition newOwningClassTypeDefinition) {
-		if (newOwningClassTypeDefinition != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION && newOwningClassTypeDefinition != null)) {
-			if (EcoreUtil.isAncestor(this, newOwningClassTypeDefinition))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwningClassTypeDefinition != null)
-				msgs = ((InternalEObject)newOwningClassTypeDefinition).eInverseAdd(this, ClassesPackage.CLASS_TYPE_DEFINITION__OWNED_OBJECT_PARAMETERS, ClassTypeDefinition.class, msgs);
-			msgs = basicSetOwningClassTypeDefinition(newOwningClassTypeDefinition, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION, newOwningClassTypeDefinition, newOwningClassTypeDefinition));
-	}
+        if (newOwningClassTypeDefinition != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION && newOwningClassTypeDefinition != null)) {
+            if (EcoreUtil.isAncestor(this, newOwningClassTypeDefinition))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newOwningClassTypeDefinition != null)
+                msgs = ((InternalEObject)newOwningClassTypeDefinition).eInverseAdd(this, ClassesPackage.CLASS_TYPE_DEFINITION__OWNED_OBJECT_PARAMETERS, ClassTypeDefinition.class, msgs);
+            msgs = basicSetOwningClassTypeDefinition(newOwningClassTypeDefinition, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION, newOwningClassTypeDefinition, newOwningClassTypeDefinition));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getClassTypeDefinitions()).basicAdd(otherEnd, msgs);
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
-				if (value != null)
-					msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, null, msgs);
-				return basicSetValue((Expression)otherEnd, msgs);
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwningClassTypeDefinition((ClassTypeDefinition)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getClassTypeDefinitions()).basicAdd(otherEnd, msgs);
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
+                if (value != null)
+                    msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE, null, msgs);
+                return basicSetValue((Expression)otherEnd, msgs);
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetOwningClassTypeDefinition((ClassTypeDefinition)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
-				return ((InternalEList<?>)getClassTypeDefinitions()).basicRemove(otherEnd, msgs);
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
-				return basicSetValue(null, msgs);
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
-				return basicSetOwningClassTypeDefinition(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
+                return ((InternalEList<?>)getClassTypeDefinitions()).basicRemove(otherEnd, msgs);
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
+                return basicSetValue(null, msgs);
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
+                return basicSetOwningClassTypeDefinition(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
-				return eInternalContainer().eInverseRemove(this, ClassesPackage.CLASS_TYPE_DEFINITION__OWNED_OBJECT_PARAMETERS, ClassTypeDefinition.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
+                return eInternalContainer().eInverseRemove(this, ClassesPackage.CLASS_TYPE_DEFINITION__OWNED_OBJECT_PARAMETERS, ClassTypeDefinition.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER:
-				if (resolve) return getFormalObjectParameter();
-				return basicGetFormalObjectParameter();
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
-				return getClassTypeDefinitions();
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
-				return getValue();
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
-				return getOwningClassTypeDefinition();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER:
+                if (resolve) return getFormalObjectParameter();
+                return basicGetFormalObjectParameter();
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
+                return getClassTypeDefinitions();
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
+                if (resolve) return getValue();
+                return basicGetValue();
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
+                if (resolve) return getOwningClassTypeDefinition();
+                return basicGetOwningClassTypeDefinition();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER:
-				setFormalObjectParameter((Parameter)newValue);
-				return;
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
-				getClassTypeDefinitions().clear();
-				getClassTypeDefinitions().addAll((Collection<? extends ClassTypeDefinition>)newValue);
-				return;
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
-				setValue((Expression)newValue);
-				return;
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
-				setOwningClassTypeDefinition((ClassTypeDefinition)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER:
+                setFormalObjectParameter((Parameter)newValue);
+                return;
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
+                getClassTypeDefinitions().clear();
+                getClassTypeDefinitions().addAll((Collection<? extends ClassTypeDefinition>)newValue);
+                return;
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
+                setValue((Expression)newValue);
+                return;
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
+                setOwningClassTypeDefinition((ClassTypeDefinition)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER:
-				setFormalObjectParameter((Parameter)null);
-				return;
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
-				getClassTypeDefinitions().clear();
-				return;
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
-				setValue((Expression)null);
-				return;
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
-				setOwningClassTypeDefinition((ClassTypeDefinition)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER:
+                setFormalObjectParameter((Parameter)null);
+                return;
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
+                getClassTypeDefinitions().clear();
+                return;
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
+                setValue((Expression)null);
+                return;
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
+                setOwningClassTypeDefinition((ClassTypeDefinition)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER:
-				return formalObjectParameter != null;
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
-				return classTypeDefinitions != null && !classTypeDefinitions.isEmpty();
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
-				return value != null;
-			case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
-				return getOwningClassTypeDefinition() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__FORMAL_OBJECT_PARAMETER:
+                return formalObjectParameter != null;
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__CLASS_TYPE_DEFINITIONS:
+                return classTypeDefinitions != null && !classTypeDefinitions.isEmpty();
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__VALUE:
+                return value != null;
+            case ClassesPackage.ACTUAL_OBJECT_PARAMETER__OWNING_CLASS_TYPE_DEFINITION:
+                return basicGetOwningClassTypeDefinition() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ActualObjectParameterImpl

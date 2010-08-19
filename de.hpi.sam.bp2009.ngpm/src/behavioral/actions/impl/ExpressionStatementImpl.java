@@ -35,163 +35,187 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ExpressionStatementImpl extends StatementImpl implements ExpressionStatement {
 	/**
-	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExpression()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getExpression()
+     * @generated
+     * @ordered
+     */
 	protected Expression expression;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ExpressionStatementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.EXPRESSION_STATEMENT;
-	}
+        return ActionsPackage.Literals.EXPRESSION_STATEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Expression getExpression() {
-		return expression;
-	}
+        if (expression != null && expression.eIsProxy()) {
+            InternalEObject oldExpression = (InternalEObject)expression;
+            expression = (Expression)eResolveProxy(oldExpression);
+            if (expression != oldExpression) {
+                InternalEObject newExpression = (InternalEObject)expression;
+                NotificationChain msgs =  oldExpression.eInverseRemove(this, ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT, Expression.class, null);
+                if (newExpression.eInternalContainer() == null) {
+                    msgs =  newExpression.eInverseAdd(this, ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT, Expression.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION, oldExpression, expression));
+            }
+        }
+        return expression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Expression basicGetExpression() {
+        return expression;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetExpression(Expression newExpression, NotificationChain msgs) {
-		Expression oldExpression = expression;
-		expression = newExpression;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION, oldExpression, newExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        Expression oldExpression = expression;
+        expression = newExpression;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION, oldExpression, newExpression);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExpression(Expression newExpression) {
-		if (newExpression != expression) {
-			NotificationChain msgs = null;
-			if (expression != null)
-				msgs = ((InternalEObject)expression).eInverseRemove(this, ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT, Expression.class, msgs);
-			if (newExpression != null)
-				msgs = ((InternalEObject)newExpression).eInverseAdd(this, ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT, Expression.class, msgs);
-			msgs = basicSetExpression(newExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION, newExpression, newExpression));
-	}
+        if (newExpression != expression) {
+            NotificationChain msgs = null;
+            if (expression != null)
+                msgs = ((InternalEObject)expression).eInverseRemove(this, ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT, Expression.class, msgs);
+            if (newExpression != null)
+                msgs = ((InternalEObject)newExpression).eInverseAdd(this, ExpressionsPackage.EXPRESSION__EXPRESSION_STATEMENT, Expression.class, msgs);
+            msgs = basicSetExpression(newExpression, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION, newExpression, newExpression));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
-				if (expression != null)
-					msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION, null, msgs);
-				return basicSetExpression((Expression)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
+                if (expression != null)
+                    msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION, null, msgs);
+                return basicSetExpression((Expression)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
-				return basicSetExpression(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
+                return basicSetExpression(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
-				return getExpression();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
+                if (resolve) return getExpression();
+                return basicGetExpression();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
-				setExpression((Expression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
+                setExpression((Expression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
-				setExpression((Expression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
+                setExpression((Expression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
-				return expression != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.EXPRESSION_STATEMENT__EXPRESSION:
+                return expression != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ExpressionStatementImpl

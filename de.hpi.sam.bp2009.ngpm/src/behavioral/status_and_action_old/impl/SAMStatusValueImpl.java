@@ -37,232 +37,243 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class SAMStatusValueImpl extends EObjectImpl implements SAMStatusValue {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SAMStatusValueImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return Status_and_action_oldPackage.Literals.SAM_STATUS_VALUE;
-	}
+        return Status_and_action_oldPackage.Literals.SAM_STATUS_VALUE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getName() {
-		return name;
-	}
+        return name;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME, oldName, name));
-	}
+        String oldName = name;
+        name = newName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME, oldName, name));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SAMStatusVariable getSamStatusVariable() {
-		if (eContainerFeatureID() != Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE) return null;
-		return (SAMStatusVariable)eContainer();
-	}
+        if (eContainerFeatureID() != Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE) return null;
+        return (SAMStatusVariable)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SAMStatusVariable basicGetSamStatusVariable() {
+        if (eContainerFeatureID() != Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE) return null;
+        return (SAMStatusVariable)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetSamStatusVariable(SAMStatusVariable newSamStatusVariable, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newSamStatusVariable, Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newSamStatusVariable, Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSamStatusVariable(SAMStatusVariable newSamStatusVariable) {
-		if (newSamStatusVariable != eInternalContainer() || (eContainerFeatureID() != Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE && newSamStatusVariable != null)) {
-			if (EcoreUtil.isAncestor(this, newSamStatusVariable))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newSamStatusVariable != null)
-				msgs = ((InternalEObject)newSamStatusVariable).eInverseAdd(this, Status_and_action_oldPackage.SAM_STATUS_VARIABLE__SAM_STATUS_VALUES, SAMStatusVariable.class, msgs);
-			msgs = basicSetSamStatusVariable(newSamStatusVariable, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE, newSamStatusVariable, newSamStatusVariable));
-	}
+        if (newSamStatusVariable != eInternalContainer() || (eContainerFeatureID() != Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE && newSamStatusVariable != null)) {
+            if (EcoreUtil.isAncestor(this, newSamStatusVariable))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newSamStatusVariable != null)
+                msgs = ((InternalEObject)newSamStatusVariable).eInverseAdd(this, Status_and_action_oldPackage.SAM_STATUS_VARIABLE__SAM_STATUS_VALUES, SAMStatusVariable.class, msgs);
+            msgs = basicSetSamStatusVariable(newSamStatusVariable, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE, newSamStatusVariable, newSamStatusVariable));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetSamStatusVariable((SAMStatusVariable)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetSamStatusVariable((SAMStatusVariable)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
-				return basicSetSamStatusVariable(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
+                return basicSetSamStatusVariable(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
-				return eInternalContainer().eInverseRemove(this, Status_and_action_oldPackage.SAM_STATUS_VARIABLE__SAM_STATUS_VALUES, SAMStatusVariable.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
+                return eInternalContainer().eInverseRemove(this, Status_and_action_oldPackage.SAM_STATUS_VARIABLE__SAM_STATUS_VALUES, SAMStatusVariable.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME:
-				return getName();
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
-				return getSamStatusVariable();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME:
+                return getName();
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
+                if (resolve) return getSamStatusVariable();
+                return basicGetSamStatusVariable();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME:
-				setName((String)newValue);
-				return;
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
-				setSamStatusVariable((SAMStatusVariable)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME:
+                setName((String)newValue);
+                return;
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
+                setSamStatusVariable((SAMStatusVariable)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
-				setSamStatusVariable((SAMStatusVariable)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
+                setSamStatusVariable((SAMStatusVariable)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
-				return getSamStatusVariable() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case Status_and_action_oldPackage.SAM_STATUS_VALUE__SAM_STATUS_VARIABLE:
+                return basicGetSamStatusVariable() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (name: ");
+        result.append(name);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SAMStatusValueImpl

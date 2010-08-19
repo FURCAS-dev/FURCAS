@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public abstract class ExtentModifyingAssociationEndSignatureImplementationImpl extends AssociationEndSignatureImplementationImpl implements ExtentModifyingAssociationEndSignatureImplementation {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ExtentModifyingAssociationEndSignatureImplementationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.EXTENT_MODIFYING_ASSOCIATION_END_SIGNATURE_IMPLEMENTATION;
-	}
+        return ClassesPackage.Literals.EXTENT_MODIFYING_ASSOCIATION_END_SIGNATURE_IMPLEMENTATION;
+    }
 
 } //ExtentModifyingAssociationEndSignatureImplementationImpl

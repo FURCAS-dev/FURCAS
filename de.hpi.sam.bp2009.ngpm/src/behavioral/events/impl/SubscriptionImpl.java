@@ -49,291 +49,302 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SubscriptionImpl extends NamedElementImpl implements Subscription {
 	/**
-	 * The cached value of the '{@link #getProducer() <em>Producer</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getProducer() <em>Producer</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProducer()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProducer()
+     * @generated
+     * @ordered
+     */
 	protected EventProducer producer;
 
 	/**
-	 * The cached value of the '{@link #getFilters() <em>Filters</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getFilters() <em>Filters</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFilters()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getFilters()
+     * @generated
+     * @ordered
+     */
 	protected EList<EventFilter> filters;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SubscriptionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EventsPackage.Literals.SUBSCRIPTION;
-	}
+        return EventsPackage.Literals.SUBSCRIPTION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EventProducer getProducer() {
-		if (producer != null && producer.eIsProxy()) {
-			InternalEObject oldProducer = (InternalEObject)producer;
-			producer = (EventProducer)eResolveProxy(oldProducer);
-			if (producer != oldProducer) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.SUBSCRIPTION__PRODUCER, oldProducer, producer));
-			}
-		}
-		return producer;
-	}
+        if (producer != null && producer.eIsProxy()) {
+            InternalEObject oldProducer = (InternalEObject)producer;
+            producer = (EventProducer)eResolveProxy(oldProducer);
+            if (producer != oldProducer) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.SUBSCRIPTION__PRODUCER, oldProducer, producer));
+            }
+        }
+        return producer;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EventProducer basicGetProducer() {
-		return producer;
-	}
+        return producer;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetProducer(EventProducer newProducer, NotificationChain msgs) {
-		EventProducer oldProducer = producer;
-		producer = newProducer;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.SUBSCRIPTION__PRODUCER, oldProducer, newProducer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        EventProducer oldProducer = producer;
+        producer = newProducer;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.SUBSCRIPTION__PRODUCER, oldProducer, newProducer);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setProducer(EventProducer newProducer) {
-		if (newProducer != producer) {
-			NotificationChain msgs = null;
-			if (producer != null)
-				msgs = ((InternalEObject)producer).eInverseRemove(this, EventsPackage.EVENT_PRODUCER__SUBSCRIPTIONS, EventProducer.class, msgs);
-			if (newProducer != null)
-				msgs = ((InternalEObject)newProducer).eInverseAdd(this, EventsPackage.EVENT_PRODUCER__SUBSCRIPTIONS, EventProducer.class, msgs);
-			msgs = basicSetProducer(newProducer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SUBSCRIPTION__PRODUCER, newProducer, newProducer));
-	}
+        if (newProducer != producer) {
+            NotificationChain msgs = null;
+            if (producer != null)
+                msgs = ((InternalEObject)producer).eInverseRemove(this, EventsPackage.EVENT_PRODUCER__SUBSCRIPTIONS, EventProducer.class, msgs);
+            if (newProducer != null)
+                msgs = ((InternalEObject)newProducer).eInverseAdd(this, EventsPackage.EVENT_PRODUCER__SUBSCRIPTIONS, EventProducer.class, msgs);
+            msgs = basicSetProducer(newProducer, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SUBSCRIPTION__PRODUCER, newProducer, newProducer));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<EventFilter> getFilters() {
-		if (filters == null) {
-			filters = new EObjectContainmentWithInverseEList<EventFilter>(EventFilter.class, this, EventsPackage.SUBSCRIPTION__FILTERS, EventsPackage.EVENT_FILTER__SUBSCRIPTION);
-		}
-		return filters;
-	}
+        if (filters == null) {
+            filters = new EObjectContainmentWithInverseEList.Resolving<EventFilter>(EventFilter.class, this, EventsPackage.SUBSCRIPTION__FILTERS, EventsPackage.EVENT_FILTER__SUBSCRIPTION);
+        }
+        return filters;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass getSubscribingClass() {
-		if (eContainerFeatureID() != EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS) return null;
-		return (SapClass)eContainer();
-	}
+        if (eContainerFeatureID() != EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS) return null;
+        return (SapClass)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SapClass basicGetSubscribingClass() {
+        if (eContainerFeatureID() != EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS) return null;
+        return (SapClass)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetSubscribingClass(SapClass newSubscribingClass, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newSubscribingClass, EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newSubscribingClass, EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSubscribingClass(SapClass newSubscribingClass) {
-		if (newSubscribingClass != eInternalContainer() || (eContainerFeatureID() != EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS && newSubscribingClass != null)) {
-			if (EcoreUtil.isAncestor(this, newSubscribingClass))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newSubscribingClass != null)
-				msgs = ((InternalEObject)newSubscribingClass).eInverseAdd(this, ClassesPackage.SAP_CLASS__SUBSCRIPTION, SapClass.class, msgs);
-			msgs = basicSetSubscribingClass(newSubscribingClass, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS, newSubscribingClass, newSubscribingClass));
-	}
+        if (newSubscribingClass != eInternalContainer() || (eContainerFeatureID() != EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS && newSubscribingClass != null)) {
+            if (EcoreUtil.isAncestor(this, newSubscribingClass))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newSubscribingClass != null)
+                msgs = ((InternalEObject)newSubscribingClass).eInverseAdd(this, ClassesPackage.SAP_CLASS__SUBSCRIPTION, SapClass.class, msgs);
+            msgs = basicSetSubscribingClass(newSubscribingClass, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS, newSubscribingClass, newSubscribingClass));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EventsPackage.SUBSCRIPTION__PRODUCER:
-				if (producer != null)
-					msgs = ((InternalEObject)producer).eInverseRemove(this, EventsPackage.EVENT_PRODUCER__SUBSCRIPTIONS, EventProducer.class, msgs);
-				return basicSetProducer((EventProducer)otherEnd, msgs);
-			case EventsPackage.SUBSCRIPTION__FILTERS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getFilters()).basicAdd(otherEnd, msgs);
-			case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetSubscribingClass((SapClass)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case EventsPackage.SUBSCRIPTION__PRODUCER:
+                if (producer != null)
+                    msgs = ((InternalEObject)producer).eInverseRemove(this, EventsPackage.EVENT_PRODUCER__SUBSCRIPTIONS, EventProducer.class, msgs);
+                return basicSetProducer((EventProducer)otherEnd, msgs);
+            case EventsPackage.SUBSCRIPTION__FILTERS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getFilters()).basicAdd(otherEnd, msgs);
+            case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetSubscribingClass((SapClass)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EventsPackage.SUBSCRIPTION__PRODUCER:
-				return basicSetProducer(null, msgs);
-			case EventsPackage.SUBSCRIPTION__FILTERS:
-				return ((InternalEList<?>)getFilters()).basicRemove(otherEnd, msgs);
-			case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
-				return basicSetSubscribingClass(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case EventsPackage.SUBSCRIPTION__PRODUCER:
+                return basicSetProducer(null, msgs);
+            case EventsPackage.SUBSCRIPTION__FILTERS:
+                return ((InternalEList<?>)getFilters()).basicRemove(otherEnd, msgs);
+            case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
+                return basicSetSubscribingClass(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
-				return eInternalContainer().eInverseRemove(this, ClassesPackage.SAP_CLASS__SUBSCRIPTION, SapClass.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
+                return eInternalContainer().eInverseRemove(this, ClassesPackage.SAP_CLASS__SUBSCRIPTION, SapClass.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EventsPackage.SUBSCRIPTION__PRODUCER:
-				if (resolve) return getProducer();
-				return basicGetProducer();
-			case EventsPackage.SUBSCRIPTION__FILTERS:
-				return getFilters();
-			case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
-				return getSubscribingClass();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EventsPackage.SUBSCRIPTION__PRODUCER:
+                if (resolve) return getProducer();
+                return basicGetProducer();
+            case EventsPackage.SUBSCRIPTION__FILTERS:
+                return getFilters();
+            case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
+                if (resolve) return getSubscribingClass();
+                return basicGetSubscribingClass();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EventsPackage.SUBSCRIPTION__PRODUCER:
-				setProducer((EventProducer)newValue);
-				return;
-			case EventsPackage.SUBSCRIPTION__FILTERS:
-				getFilters().clear();
-				getFilters().addAll((Collection<? extends EventFilter>)newValue);
-				return;
-			case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
-				setSubscribingClass((SapClass)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EventsPackage.SUBSCRIPTION__PRODUCER:
+                setProducer((EventProducer)newValue);
+                return;
+            case EventsPackage.SUBSCRIPTION__FILTERS:
+                getFilters().clear();
+                getFilters().addAll((Collection<? extends EventFilter>)newValue);
+                return;
+            case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
+                setSubscribingClass((SapClass)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EventsPackage.SUBSCRIPTION__PRODUCER:
-				setProducer((EventProducer)null);
-				return;
-			case EventsPackage.SUBSCRIPTION__FILTERS:
-				getFilters().clear();
-				return;
-			case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
-				setSubscribingClass((SapClass)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EventsPackage.SUBSCRIPTION__PRODUCER:
+                setProducer((EventProducer)null);
+                return;
+            case EventsPackage.SUBSCRIPTION__FILTERS:
+                getFilters().clear();
+                return;
+            case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
+                setSubscribingClass((SapClass)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventsPackage.SUBSCRIPTION__PRODUCER:
-				return producer != null;
-			case EventsPackage.SUBSCRIPTION__FILTERS:
-				return filters != null && !filters.isEmpty();
-			case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
-				return getSubscribingClass() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case EventsPackage.SUBSCRIPTION__PRODUCER:
+                return producer != null;
+            case EventsPackage.SUBSCRIPTION__FILTERS:
+                return filters != null && !filters.isEmpty();
+            case EventsPackage.SUBSCRIPTION__SUBSCRIBING_CLASS:
+                return basicGetSubscribingClass() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SubscriptionImpl

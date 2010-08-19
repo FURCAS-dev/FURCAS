@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class IndustryImpl extends ScopingContextImpl implements Industry {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IndustryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BusinessconfigurationPackage.Literals.INDUSTRY;
-	}
+        return BusinessconfigurationPackage.Literals.INDUSTRY;
+    }
 
 } //IndustryImpl

@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class BooleanLiteralImpl extends LiteralImpl implements BooleanLiteral {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BooleanLiteralImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return LiteralsPackage.Literals.BOOLEAN_LITERAL;
-	}
+        return LiteralsPackage.Literals.BOOLEAN_LITERAL;
+    }
 
 } //BooleanLiteralImpl

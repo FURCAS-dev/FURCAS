@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class RestUrlPatternImpl extends UrlPatternImpl implements RestUrlPattern {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected RestUrlPatternImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BindingPackage.Literals.REST_URL_PATTERN;
-	}
+        return BindingPackage.Literals.REST_URL_PATTERN;
+    }
 
 } //RestUrlPatternImpl

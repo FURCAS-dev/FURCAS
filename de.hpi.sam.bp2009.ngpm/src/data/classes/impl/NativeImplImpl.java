@@ -37,118 +37,118 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class NativeImplImpl extends SignatureImplementationImpl implements NativeImpl {
 	/**
-	 * The cached value of the '{@link #getPlatformSpecificImplementaiton() <em>Platform Specific Implementaiton</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPlatformSpecificImplementaiton() <em>Platform Specific Implementaiton</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPlatformSpecificImplementaiton()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPlatformSpecificImplementaiton()
+     * @generated
+     * @ordered
+     */
 	protected EList<PlatformSpecificImplementation> platformSpecificImplementaiton;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected NativeImplImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.NATIVE_IMPL;
-	}
+        return ClassesPackage.Literals.NATIVE_IMPL;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<PlatformSpecificImplementation> getPlatformSpecificImplementaiton() {
-		if (platformSpecificImplementaiton == null) {
-			platformSpecificImplementaiton = new EObjectContainmentEList<PlatformSpecificImplementation>(PlatformSpecificImplementation.class, this, ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON);
-		}
-		return platformSpecificImplementaiton;
-	}
+        if (platformSpecificImplementaiton == null) {
+            platformSpecificImplementaiton = new EObjectContainmentEList.Resolving<PlatformSpecificImplementation>(PlatformSpecificImplementation.class, this, ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON);
+        }
+        return platformSpecificImplementaiton;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
-				return ((InternalEList<?>)getPlatformSpecificImplementaiton()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
+                return ((InternalEList<?>)getPlatformSpecificImplementaiton()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
-				return getPlatformSpecificImplementaiton();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
+                return getPlatformSpecificImplementaiton();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
-				getPlatformSpecificImplementaiton().clear();
-				getPlatformSpecificImplementaiton().addAll((Collection<? extends PlatformSpecificImplementation>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
+                getPlatformSpecificImplementaiton().clear();
+                getPlatformSpecificImplementaiton().addAll((Collection<? extends PlatformSpecificImplementation>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
-				getPlatformSpecificImplementaiton().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
+                getPlatformSpecificImplementaiton().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
-				return platformSpecificImplementaiton != null && !platformSpecificImplementaiton.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.NATIVE_IMPL__PLATFORM_SPECIFIC_IMPLEMENTAITON:
+                return platformSpecificImplementaiton != null && !platformSpecificImplementaiton.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //NativeImplImpl

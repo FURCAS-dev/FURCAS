@@ -48,271 +48,282 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SAMDerivatorImpl extends EObjectImpl implements SAMDerivator {
 	/**
-	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getKind()
+     * @generated
+     * @ordered
+     */
 	protected static final SAMDerivatorKindEnum KIND_EDEFAULT = SAMDerivatorKindEnum.POPULATION;
 
 	/**
-	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getKind()
+     * @generated
+     * @ordered
+     */
 	protected SAMDerivatorKindEnum kind = KIND_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSamSchemaDerivators() <em>Sam Schema Derivators</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSamSchemaDerivators() <em>Sam Schema Derivators</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSamSchemaDerivators()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSamSchemaDerivators()
+     * @generated
+     * @ordered
+     */
 	protected EList<SAMSchemaDerivator> samSchemaDerivators;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SAMDerivatorImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return Status_and_action_oldPackage.Literals.SAM_DERIVATOR;
-	}
+        return Status_and_action_oldPackage.Literals.SAM_DERIVATOR;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SAMDerivatorKindEnum getKind() {
-		return kind;
-	}
+        return kind;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setKind(SAMDerivatorKindEnum newKind) {
-		SAMDerivatorKindEnum oldKind = kind;
-		kind = newKind == null ? KIND_EDEFAULT : newKind;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Status_and_action_oldPackage.SAM_DERIVATOR__KIND, oldKind, kind));
-	}
+        SAMDerivatorKindEnum oldKind = kind;
+        kind = newKind == null ? KIND_EDEFAULT : newKind;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Status_and_action_oldPackage.SAM_DERIVATOR__KIND, oldKind, kind));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass getBusinessObject() {
-		if (eContainerFeatureID() != Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT) return null;
-		return (SapClass)eContainer();
-	}
+        if (eContainerFeatureID() != Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT) return null;
+        return (SapClass)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SapClass basicGetBusinessObject() {
+        if (eContainerFeatureID() != Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT) return null;
+        return (SapClass)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetBusinessObject(SapClass newBusinessObject, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newBusinessObject, Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newBusinessObject, Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBusinessObject(SapClass newBusinessObject) {
-		if (newBusinessObject != eInternalContainer() || (eContainerFeatureID() != Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT && newBusinessObject != null)) {
-			if (EcoreUtil.isAncestor(this, newBusinessObject))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newBusinessObject != null)
-				msgs = ((InternalEObject)newBusinessObject).eInverseAdd(this, ClassesPackage.SAP_CLASS__SAM_DERIVATORS, SapClass.class, msgs);
-			msgs = basicSetBusinessObject(newBusinessObject, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT, newBusinessObject, newBusinessObject));
-	}
+        if (newBusinessObject != eInternalContainer() || (eContainerFeatureID() != Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT && newBusinessObject != null)) {
+            if (EcoreUtil.isAncestor(this, newBusinessObject))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newBusinessObject != null)
+                msgs = ((InternalEObject)newBusinessObject).eInverseAdd(this, ClassesPackage.SAP_CLASS__SAM_DERIVATORS, SapClass.class, msgs);
+            msgs = basicSetBusinessObject(newBusinessObject, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT, newBusinessObject, newBusinessObject));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<SAMSchemaDerivator> getSamSchemaDerivators() {
-		if (samSchemaDerivators == null) {
-			samSchemaDerivators = new EObjectWithInverseResolvingEList<SAMSchemaDerivator>(SAMSchemaDerivator.class, this, Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS, Status_and_action_oldPackage.SAM_SCHEMA_DERIVATOR__SAM_DERIVATOR);
-		}
-		return samSchemaDerivators;
-	}
+        if (samSchemaDerivators == null) {
+            samSchemaDerivators = new EObjectWithInverseResolvingEList<SAMSchemaDerivator>(SAMSchemaDerivator.class, this, Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS, Status_and_action_oldPackage.SAM_SCHEMA_DERIVATOR__SAM_DERIVATOR);
+        }
+        return samSchemaDerivators;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetBusinessObject((SapClass)otherEnd, msgs);
-			case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSamSchemaDerivators()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetBusinessObject((SapClass)otherEnd, msgs);
+            case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getSamSchemaDerivators()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
-				return basicSetBusinessObject(null, msgs);
-			case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
-				return ((InternalEList<?>)getSamSchemaDerivators()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
+                return basicSetBusinessObject(null, msgs);
+            case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
+                return ((InternalEList<?>)getSamSchemaDerivators()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
-				return eInternalContainer().eInverseRemove(this, ClassesPackage.SAP_CLASS__SAM_DERIVATORS, SapClass.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
+                return eInternalContainer().eInverseRemove(this, ClassesPackage.SAP_CLASS__SAM_DERIVATORS, SapClass.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_DERIVATOR__KIND:
-				return getKind();
-			case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
-				return getBusinessObject();
-			case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
-				return getSamSchemaDerivators();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_DERIVATOR__KIND:
+                return getKind();
+            case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
+                if (resolve) return getBusinessObject();
+                return basicGetBusinessObject();
+            case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
+                return getSamSchemaDerivators();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_DERIVATOR__KIND:
-				setKind((SAMDerivatorKindEnum)newValue);
-				return;
-			case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
-				setBusinessObject((SapClass)newValue);
-				return;
-			case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
-				getSamSchemaDerivators().clear();
-				getSamSchemaDerivators().addAll((Collection<? extends SAMSchemaDerivator>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_DERIVATOR__KIND:
+                setKind((SAMDerivatorKindEnum)newValue);
+                return;
+            case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
+                setBusinessObject((SapClass)newValue);
+                return;
+            case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
+                getSamSchemaDerivators().clear();
+                getSamSchemaDerivators().addAll((Collection<? extends SAMSchemaDerivator>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_DERIVATOR__KIND:
-				setKind(KIND_EDEFAULT);
-				return;
-			case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
-				setBusinessObject((SapClass)null);
-				return;
-			case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
-				getSamSchemaDerivators().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_DERIVATOR__KIND:
+                setKind(KIND_EDEFAULT);
+                return;
+            case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
+                setBusinessObject((SapClass)null);
+                return;
+            case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
+                getSamSchemaDerivators().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case Status_and_action_oldPackage.SAM_DERIVATOR__KIND:
-				return kind != KIND_EDEFAULT;
-			case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
-				return getBusinessObject() != null;
-			case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
-				return samSchemaDerivators != null && !samSchemaDerivators.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case Status_and_action_oldPackage.SAM_DERIVATOR__KIND:
+                return kind != KIND_EDEFAULT;
+            case Status_and_action_oldPackage.SAM_DERIVATOR__BUSINESS_OBJECT:
+                return basicGetBusinessObject() != null;
+            case Status_and_action_oldPackage.SAM_DERIVATOR__SAM_SCHEMA_DERIVATORS:
+                return samSchemaDerivators != null && !samSchemaDerivators.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (kind: ");
-		result.append(kind);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (kind: ");
+        result.append(kind);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SAMDerivatorImpl

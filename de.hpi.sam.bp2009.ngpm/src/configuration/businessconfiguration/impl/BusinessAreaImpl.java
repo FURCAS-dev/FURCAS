@@ -37,118 +37,118 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class BusinessAreaImpl extends ConfigurationElementImpl implements BusinessArea {
 	/**
-	 * The cached value of the '{@link #getBusinessPackage() <em>Business Package</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBusinessPackage() <em>Business Package</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBusinessPackage()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBusinessPackage()
+     * @generated
+     * @ordered
+     */
 	protected EList<BusinessPackage> businessPackage;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BusinessAreaImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BusinessconfigurationPackage.Literals.BUSINESS_AREA;
-	}
+        return BusinessconfigurationPackage.Literals.BUSINESS_AREA;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<BusinessPackage> getBusinessPackage() {
-		if (businessPackage == null) {
-			businessPackage = new EObjectContainmentEList<BusinessPackage>(BusinessPackage.class, this, BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE);
-		}
-		return businessPackage;
-	}
+        if (businessPackage == null) {
+            businessPackage = new EObjectContainmentEList.Resolving<BusinessPackage>(BusinessPackage.class, this, BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE);
+        }
+        return businessPackage;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
-				return ((InternalEList<?>)getBusinessPackage()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
+                return ((InternalEList<?>)getBusinessPackage()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
-				return getBusinessPackage();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
+                return getBusinessPackage();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
-				getBusinessPackage().clear();
-				getBusinessPackage().addAll((Collection<? extends BusinessPackage>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
+                getBusinessPackage().clear();
+                getBusinessPackage().addAll((Collection<? extends BusinessPackage>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
-				getBusinessPackage().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
+                getBusinessPackage().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
-				return businessPackage != null && !businessPackage.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case BusinessconfigurationPackage.BUSINESS_AREA__BUSINESS_PACKAGE:
+                return businessPackage != null && !businessPackage.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //BusinessAreaImpl

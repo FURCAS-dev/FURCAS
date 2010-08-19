@@ -30,78 +30,78 @@ import org.eclipse.emf.ecore.EPackage;
  */
 public interface BusinesstasksPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc -->
+     * The package name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNAME = "businesstasks";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc -->
+     * The package namespace URI.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_URI = "http:///behavioral/businesstasks.ecore";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc -->
+     * The package namespace name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_PREFIX = "behavioral.businesstasks";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	BusinesstasksPackage eINSTANCE = behavioral.businesstasks.impl.BusinesstasksPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link behavioral.businesstasks.impl.TaskAgentImpl <em>Task Agent</em>}' class.
-	 * <!-- begin-user-doc -->
+     * The meta object id for the '{@link behavioral.businesstasks.impl.TaskAgentImpl <em>Task Agent</em>}' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see behavioral.businesstasks.impl.TaskAgentImpl
-	 * @see behavioral.businesstasks.impl.BusinesstasksPackageImpl#getTaskAgent()
-	 * @generated
-	 */
+     * @see behavioral.businesstasks.impl.TaskAgentImpl
+     * @see behavioral.businesstasks.impl.BusinesstasksPackageImpl#getTaskAgent()
+     * @generated
+     */
 	int TASK_AGENT = 0;
 
 	/**
-	 * The number of structural features of the '<em>Task Agent</em>' class.
-	 * <!-- begin-user-doc -->
+     * The number of structural features of the '<em>Task Agent</em>' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int TASK_AGENT_FEATURE_COUNT = 0;
 
 
 	/**
-	 * Returns the meta object for class '{@link behavioral.businesstasks.TaskAgent <em>Task Agent</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for class '{@link behavioral.businesstasks.TaskAgent <em>Task Agent</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Task Agent</em>'.
-	 * @see behavioral.businesstasks.TaskAgent
-	 * @generated
-	 */
+     * @return the meta object for class '<em>Task Agent</em>'.
+     * @see behavioral.businesstasks.TaskAgent
+     * @generated
+     */
 	EClass getTaskAgent();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc -->
+     * Returns the factory that creates the instances of the model.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the factory that creates the instances of the model.
-	 * @generated
-	 */
+     * @return the factory that creates the instances of the model.
+     * @generated
+     */
 	BusinesstasksFactory getBusinesstasksFactory();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
 	 *   <li>each class,</li>
@@ -110,17 +110,17 @@ public interface BusinesstasksPackage extends EPackage {
 	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link behavioral.businesstasks.impl.TaskAgentImpl <em>Task Agent</em>}' class.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link behavioral.businesstasks.impl.TaskAgentImpl <em>Task Agent</em>}' class.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see behavioral.businesstasks.impl.TaskAgentImpl
-		 * @see behavioral.businesstasks.impl.BusinesstasksPackageImpl#getTaskAgent()
-		 * @generated
-		 */
+         * @see behavioral.businesstasks.impl.TaskAgentImpl
+         * @see behavioral.businesstasks.impl.BusinesstasksPackageImpl#getTaskAgent()
+         * @generated
+         */
 		EClass TASK_AGENT = eINSTANCE.getTaskAgent();
 
 	}

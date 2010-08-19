@@ -18,56 +18,56 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface Context_driversFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	Context_driversFactory eINSTANCE = configuration.context_drivers.impl.Context_driversFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Context Category</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Context Category</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Context Category</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Context Category</em>'.
+     * @generated
+     */
 	ContextCategory createContextCategory();
 
 	/**
-	 * Returns a new object of class '<em>Context Category Value</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Context Category Value</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Context Category Value</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Context Category Value</em>'.
+     * @generated
+     */
 	ContextCategoryValue createContextCategoryValue();
 
 	/**
-	 * Returns a new object of class '<em>Contextual Element</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Contextual Element</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Contextual Element</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Contextual Element</em>'.
+     * @generated
+     */
 	ContextualElement createContextualElement();
 
 	/**
-	 * Returns a new object of class '<em>Contex Configuration</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Contex Configuration</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Contex Configuration</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Contex Configuration</em>'.
+     * @generated
+     */
 	ContexConfiguration createContexConfiguration();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	Context_driversPackage getContext_driversPackage();
 
 } //Context_driversFactory

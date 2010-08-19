@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class RemoveLinkImpl extends LinkManipulationStatementImpl implements RemoveLink {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected RemoveLinkImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.REMOVE_LINK;
-	}
+        return ActionsPackage.Literals.REMOVE_LINK;
+    }
 
 } //RemoveLinkImpl

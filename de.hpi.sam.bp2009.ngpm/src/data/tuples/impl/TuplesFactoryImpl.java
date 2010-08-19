@@ -24,87 +24,87 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class TuplesFactoryImpl extends EFactoryImpl implements TuplesFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static TuplesFactory init() {
-		try {
-			TuplesFactory theTuplesFactory = (TuplesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/tuples.ecore"); 
-			if (theTuplesFactory != null) {
-				return theTuplesFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new TuplesFactoryImpl();
-	}
+        try {
+            TuplesFactory theTuplesFactory = (TuplesFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/tuples.ecore"); 
+            if (theTuplesFactory != null) {
+                return theTuplesFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new TuplesFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TuplesFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case TuplesPackage.TUPLE_TYPE_DEFINITION: return createTupleTypeDefinition();
-			case TuplesPackage.TUPLE_ELEMENT: return createTupleElement();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case TuplesPackage.TUPLE_TYPE_DEFINITION: return createTupleTypeDefinition();
+            case TuplesPackage.TUPLE_ELEMENT: return createTupleElement();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TupleTypeDefinition createTupleTypeDefinition() {
-		TupleTypeDefinitionImpl tupleTypeDefinition = new TupleTypeDefinitionImpl();
-		return tupleTypeDefinition;
-	}
+        TupleTypeDefinitionImpl tupleTypeDefinition = new TupleTypeDefinitionImpl();
+        return tupleTypeDefinition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TupleElement createTupleElement() {
-		TupleElementImpl tupleElement = new TupleElementImpl();
-		return tupleElement;
-	}
+        TupleElementImpl tupleElement = new TupleElementImpl();
+        return tupleElement;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TuplesPackage getTuplesPackage() {
-		return (TuplesPackage)getEPackage();
-	}
+        return (TuplesPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static TuplesPackage getPackage() {
-		return TuplesPackage.eINSTANCE;
-	}
+        return TuplesPackage.eINSTANCE;
+    }
 
 } //TuplesFactoryImpl

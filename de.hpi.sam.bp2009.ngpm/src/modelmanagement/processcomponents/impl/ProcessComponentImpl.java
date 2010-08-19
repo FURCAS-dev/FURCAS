@@ -50,236 +50,236 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class ProcessComponentImpl extends PackageOwnerImpl implements ProcessComponent {
 	/**
-	 * The cached value of the '{@link #getProvidedInterfaces() <em>Provided Interfaces</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getProvidedInterfaces() <em>Provided Interfaces</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getProvidedInterfaces()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getProvidedInterfaces()
+     * @generated
+     * @ordered
+     */
 	protected EList<SapClass> providedInterfaces;
 
 	/**
-	 * The cached value of the '{@link #getEventProducers() <em>Event Producers</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getEventProducers() <em>Event Producers</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEventProducers()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getEventProducers()
+     * @generated
+     * @ordered
+     */
 	protected EList<EventProducer> eventProducers;
 
 	/**
-	 * The cached value of the '{@link #getInitiatedInteractions() <em>Initiated Interactions</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getInitiatedInteractions() <em>Initiated Interactions</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInitiatedInteractions()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getInitiatedInteractions()
+     * @generated
+     * @ordered
+     */
 	protected EList<ProcessComponentInteraction> initiatedInteractions;
 
 	/**
-	 * The cached value of the '{@link #getInteractions() <em>Interactions</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getInteractions() <em>Interactions</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInteractions()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getInteractions()
+     * @generated
+     * @ordered
+     */
 	protected EList<ProcessComponentInteraction> interactions;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ProcessComponentImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ProcesscomponentsPackage.Literals.PROCESS_COMPONENT;
-	}
+        return ProcesscomponentsPackage.Literals.PROCESS_COMPONENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<SapClass> getProvidedInterfaces() {
-		if (providedInterfaces == null) {
-			providedInterfaces = new EObjectResolvingEList<SapClass>(SapClass.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES);
-		}
-		return providedInterfaces;
-	}
+        if (providedInterfaces == null) {
+            providedInterfaces = new EObjectResolvingEList<SapClass>(SapClass.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES);
+        }
+        return providedInterfaces;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<EventProducer> getEventProducers() {
-		if (eventProducers == null) {
-			eventProducers = new EObjectResolvingEList<EventProducer>(EventProducer.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS);
-		}
-		return eventProducers;
-	}
+        if (eventProducers == null) {
+            eventProducers = new EObjectResolvingEList<EventProducer>(EventProducer.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS);
+        }
+        return eventProducers;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ProcessComponentInteraction> getInteractions() {
-		if (interactions == null) {
-			interactions = new EObjectWithInverseResolvingEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT);
-		}
-		return interactions;
-	}
+        if (interactions == null) {
+            interactions = new EObjectWithInverseResolvingEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__PROCESS_COMPONENT);
+        }
+        return interactions;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInitiatedInteractions()).basicAdd(otherEnd, msgs);
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInteractions()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getInitiatedInteractions()).basicAdd(otherEnd, msgs);
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getInteractions()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ProcessComponentInteraction> getInitiatedInteractions() {
-		if (initiatedInteractions == null) {
-			initiatedInteractions = new EObjectWithInverseResolvingEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT);
-		}
-		return initiatedInteractions;
-	}
+        if (initiatedInteractions == null) {
+            initiatedInteractions = new EObjectWithInverseResolvingEList<ProcessComponentInteraction>(ProcessComponentInteraction.class, this, ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS, ProcessintegrationPackage.PROCESS_COMPONENT_INTERACTION__INITIATOR_PROCESS_COMPONENT);
+        }
+        return initiatedInteractions;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				return ((InternalEList<?>)getInitiatedInteractions()).basicRemove(otherEnd, msgs);
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				return ((InternalEList<?>)getInteractions()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
+                return ((InternalEList<?>)getInitiatedInteractions()).basicRemove(otherEnd, msgs);
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+                return ((InternalEList<?>)getInteractions()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
-				return getProvidedInterfaces();
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
-				return getEventProducers();
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				return getInitiatedInteractions();
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				return getInteractions();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
+                return getProvidedInterfaces();
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
+                return getEventProducers();
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
+                return getInitiatedInteractions();
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+                return getInteractions();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
-				getProvidedInterfaces().clear();
-				getProvidedInterfaces().addAll((Collection<? extends SapClass>)newValue);
-				return;
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
-				getEventProducers().clear();
-				getEventProducers().addAll((Collection<? extends EventProducer>)newValue);
-				return;
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				getInitiatedInteractions().clear();
-				getInitiatedInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
-				return;
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				getInteractions().clear();
-				getInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
+                getProvidedInterfaces().clear();
+                getProvidedInterfaces().addAll((Collection<? extends SapClass>)newValue);
+                return;
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
+                getEventProducers().clear();
+                getEventProducers().addAll((Collection<? extends EventProducer>)newValue);
+                return;
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
+                getInitiatedInteractions().clear();
+                getInitiatedInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
+                return;
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+                getInteractions().clear();
+                getInteractions().addAll((Collection<? extends ProcessComponentInteraction>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
-				getProvidedInterfaces().clear();
-				return;
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
-				getEventProducers().clear();
-				return;
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				getInitiatedInteractions().clear();
-				return;
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				getInteractions().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
+                getProvidedInterfaces().clear();
+                return;
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
+                getEventProducers().clear();
+                return;
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
+                getInitiatedInteractions().clear();
+                return;
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+                getInteractions().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
-				return providedInterfaces != null && !providedInterfaces.isEmpty();
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
-				return eventProducers != null && !eventProducers.isEmpty();
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
-				return initiatedInteractions != null && !initiatedInteractions.isEmpty();
-			case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
-				return interactions != null && !interactions.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__PROVIDED_INTERFACES:
+                return providedInterfaces != null && !providedInterfaces.isEmpty();
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__EVENT_PRODUCERS:
+                return eventProducers != null && !eventProducers.isEmpty();
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INITIATED_INTERACTIONS:
+                return initiatedInteractions != null && !initiatedInteractions.isEmpty();
+            case ProcesscomponentsPackage.PROCESS_COMPONENT__INTERACTIONS:
+                return interactions != null && !interactions.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ProcessComponentImpl

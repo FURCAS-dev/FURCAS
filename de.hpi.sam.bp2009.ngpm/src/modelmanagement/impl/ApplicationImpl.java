@@ -44,153 +44,153 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ApplicationImpl extends NamedElementImpl implements Application {
 	/**
-	 * The cached value of the '{@link #getDeploymentUnits() <em>Deployment Units</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDeploymentUnits() <em>Deployment Units</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDeploymentUnits()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDeploymentUnits()
+     * @generated
+     * @ordered
+     */
 	protected EList<DeploymentUnit> deploymentUnits;
 
 	/**
-	 * The cached value of the '{@link #getIntegrationScenarios() <em>Integration Scenarios</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getIntegrationScenarios() <em>Integration Scenarios</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIntegrationScenarios()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getIntegrationScenarios()
+     * @generated
+     * @ordered
+     */
 	protected EList<IntegrationScenario> integrationScenarios;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ApplicationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelmanagementPackage.Literals.APPLICATION;
-	}
+        return ModelmanagementPackage.Literals.APPLICATION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<DeploymentUnit> getDeploymentUnits() {
-		if (deploymentUnits == null) {
-			deploymentUnits = new EObjectContainmentEList<DeploymentUnit>(DeploymentUnit.class, this, ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS);
-		}
-		return deploymentUnits;
-	}
+        if (deploymentUnits == null) {
+            deploymentUnits = new EObjectContainmentEList.Resolving<DeploymentUnit>(DeploymentUnit.class, this, ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS);
+        }
+        return deploymentUnits;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<IntegrationScenario> getIntegrationScenarios() {
-		if (integrationScenarios == null) {
-			integrationScenarios = new EObjectContainmentEList<IntegrationScenario>(IntegrationScenario.class, this, ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS);
-		}
-		return integrationScenarios;
-	}
+        if (integrationScenarios == null) {
+            integrationScenarios = new EObjectContainmentEList.Resolving<IntegrationScenario>(IntegrationScenario.class, this, ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS);
+        }
+        return integrationScenarios;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
-				return ((InternalEList<?>)getDeploymentUnits()).basicRemove(otherEnd, msgs);
-			case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
-				return ((InternalEList<?>)getIntegrationScenarios()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
+                return ((InternalEList<?>)getDeploymentUnits()).basicRemove(otherEnd, msgs);
+            case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
+                return ((InternalEList<?>)getIntegrationScenarios()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
-				return getDeploymentUnits();
-			case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
-				return getIntegrationScenarios();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
+                return getDeploymentUnits();
+            case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
+                return getIntegrationScenarios();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
-				getDeploymentUnits().clear();
-				getDeploymentUnits().addAll((Collection<? extends DeploymentUnit>)newValue);
-				return;
-			case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
-				getIntegrationScenarios().clear();
-				getIntegrationScenarios().addAll((Collection<? extends IntegrationScenario>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
+                getDeploymentUnits().clear();
+                getDeploymentUnits().addAll((Collection<? extends DeploymentUnit>)newValue);
+                return;
+            case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
+                getIntegrationScenarios().clear();
+                getIntegrationScenarios().addAll((Collection<? extends IntegrationScenario>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
-				getDeploymentUnits().clear();
-				return;
-			case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
-				getIntegrationScenarios().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
+                getDeploymentUnits().clear();
+                return;
+            case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
+                getIntegrationScenarios().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
-				return deploymentUnits != null && !deploymentUnits.isEmpty();
-			case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
-				return integrationScenarios != null && !integrationScenarios.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.APPLICATION__DEPLOYMENT_UNITS:
+                return deploymentUnits != null && !deploymentUnits.isEmpty();
+            case ModelmanagementPackage.APPLICATION__INTEGRATION_SCENARIOS:
+                return integrationScenarios != null && !integrationScenarios.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ApplicationImpl

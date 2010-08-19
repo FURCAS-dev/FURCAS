@@ -39,320 +39,320 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public abstract class MultiplicityImpl extends EObjectImpl implements Multiplicity {
 	/**
-	 * The default value of the '{@link #getLowerMultiplicity() <em>Lower Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getLowerMultiplicity() <em>Lower Multiplicity</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLowerMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getLowerMultiplicity()
+     * @generated
+     * @ordered
+     */
 	protected static final int LOWER_MULTIPLICITY_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getLowerMultiplicity() <em>Lower Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getLowerMultiplicity() <em>Lower Multiplicity</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLowerMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getLowerMultiplicity()
+     * @generated
+     * @ordered
+     */
 	protected int lowerMultiplicity = LOWER_MULTIPLICITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getUpperMultiplicity() <em>Upper Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getUpperMultiplicity() <em>Upper Multiplicity</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUpperMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getUpperMultiplicity()
+     * @generated
+     * @ordered
+     */
 	protected static final int UPPER_MULTIPLICITY_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getUpperMultiplicity() <em>Upper Multiplicity</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getUpperMultiplicity() <em>Upper Multiplicity</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUpperMultiplicity()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getUpperMultiplicity()
+     * @generated
+     * @ordered
+     */
 	protected int upperMultiplicity = UPPER_MULTIPLICITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isOrdered() <em>Ordered</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isOrdered() <em>Ordered</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isOrdered()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isOrdered()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean ORDERED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isOrdered() <em>Ordered</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isOrdered() <em>Ordered</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isOrdered()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isOrdered()
+     * @generated
+     * @ordered
+     */
 	protected boolean ordered = ORDERED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isUnique()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isUnique()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean UNIQUE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isUnique() <em>Unique</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isUnique() <em>Unique</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isUnique()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isUnique()
+     * @generated
+     * @ordered
+     */
 	protected boolean unique = UNIQUE_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MultiplicityImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.MULTIPLICITY;
-	}
+        return ClassesPackage.Literals.MULTIPLICITY;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getLowerMultiplicity() {
-		return lowerMultiplicity;
-	}
+        return lowerMultiplicity;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setLowerMultiplicity(int newLowerMultiplicity) {
-		int oldLowerMultiplicity = lowerMultiplicity;
-		lowerMultiplicity = newLowerMultiplicity;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY, oldLowerMultiplicity, lowerMultiplicity));
-	}
+        int oldLowerMultiplicity = lowerMultiplicity;
+        lowerMultiplicity = newLowerMultiplicity;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY, oldLowerMultiplicity, lowerMultiplicity));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getUpperMultiplicity() {
-		return upperMultiplicity;
-	}
+        return upperMultiplicity;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setUpperMultiplicity(int newUpperMultiplicity) {
-		int oldUpperMultiplicity = upperMultiplicity;
-		upperMultiplicity = newUpperMultiplicity;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY, oldUpperMultiplicity, upperMultiplicity));
-	}
+        int oldUpperMultiplicity = upperMultiplicity;
+        upperMultiplicity = newUpperMultiplicity;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY, oldUpperMultiplicity, upperMultiplicity));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isOrdered() {
-		return ordered;
-	}
+        return ordered;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setOrdered(boolean newOrdered) {
-		boolean oldOrdered = ordered;
-		ordered = newOrdered;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.MULTIPLICITY__ORDERED, oldOrdered, ordered));
-	}
+        boolean oldOrdered = ordered;
+        ordered = newOrdered;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.MULTIPLICITY__ORDERED, oldOrdered, ordered));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isUnique() {
-		return unique;
-	}
+        return unique;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setUnique(boolean newUnique) {
-		boolean oldUnique = unique;
-		unique = newUnique;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.MULTIPLICITY__UNIQUE, oldUnique, unique));
-	}
+        boolean oldUnique = unique;
+        unique = newUnique;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.MULTIPLICITY__UNIQUE, oldUnique, unique));
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #isMany() <em>Is Many</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #isMany() <em>Is Many</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMany()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isMany()
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate IS_MANY__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.MULTIPLICITY.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isMany() {
-		try {
-			return (Boolean)IS_MANY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Boolean)IS_MANY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY:
-				return getLowerMultiplicity();
-			case ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY:
-				return getUpperMultiplicity();
-			case ClassesPackage.MULTIPLICITY__ORDERED:
-				return isOrdered();
-			case ClassesPackage.MULTIPLICITY__UNIQUE:
-				return isUnique();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY:
+                return getLowerMultiplicity();
+            case ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY:
+                return getUpperMultiplicity();
+            case ClassesPackage.MULTIPLICITY__ORDERED:
+                return isOrdered();
+            case ClassesPackage.MULTIPLICITY__UNIQUE:
+                return isUnique();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY:
-				setLowerMultiplicity((Integer)newValue);
-				return;
-			case ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY:
-				setUpperMultiplicity((Integer)newValue);
-				return;
-			case ClassesPackage.MULTIPLICITY__ORDERED:
-				setOrdered((Boolean)newValue);
-				return;
-			case ClassesPackage.MULTIPLICITY__UNIQUE:
-				setUnique((Boolean)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY:
+                setLowerMultiplicity((Integer)newValue);
+                return;
+            case ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY:
+                setUpperMultiplicity((Integer)newValue);
+                return;
+            case ClassesPackage.MULTIPLICITY__ORDERED:
+                setOrdered((Boolean)newValue);
+                return;
+            case ClassesPackage.MULTIPLICITY__UNIQUE:
+                setUnique((Boolean)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY:
-				setLowerMultiplicity(LOWER_MULTIPLICITY_EDEFAULT);
-				return;
-			case ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY:
-				setUpperMultiplicity(UPPER_MULTIPLICITY_EDEFAULT);
-				return;
-			case ClassesPackage.MULTIPLICITY__ORDERED:
-				setOrdered(ORDERED_EDEFAULT);
-				return;
-			case ClassesPackage.MULTIPLICITY__UNIQUE:
-				setUnique(UNIQUE_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY:
+                setLowerMultiplicity(LOWER_MULTIPLICITY_EDEFAULT);
+                return;
+            case ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY:
+                setUpperMultiplicity(UPPER_MULTIPLICITY_EDEFAULT);
+                return;
+            case ClassesPackage.MULTIPLICITY__ORDERED:
+                setOrdered(ORDERED_EDEFAULT);
+                return;
+            case ClassesPackage.MULTIPLICITY__UNIQUE:
+                setUnique(UNIQUE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY:
-				return lowerMultiplicity != LOWER_MULTIPLICITY_EDEFAULT;
-			case ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY:
-				return upperMultiplicity != UPPER_MULTIPLICITY_EDEFAULT;
-			case ClassesPackage.MULTIPLICITY__ORDERED:
-				return ordered != ORDERED_EDEFAULT;
-			case ClassesPackage.MULTIPLICITY__UNIQUE:
-				return unique != UNIQUE_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.MULTIPLICITY__LOWER_MULTIPLICITY:
+                return lowerMultiplicity != LOWER_MULTIPLICITY_EDEFAULT;
+            case ClassesPackage.MULTIPLICITY__UPPER_MULTIPLICITY:
+                return upperMultiplicity != UPPER_MULTIPLICITY_EDEFAULT;
+            case ClassesPackage.MULTIPLICITY__ORDERED:
+                return ordered != ORDERED_EDEFAULT;
+            case ClassesPackage.MULTIPLICITY__UNIQUE:
+                return unique != UNIQUE_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (lowerMultiplicity: ");
-		result.append(lowerMultiplicity);
-		result.append(", upperMultiplicity: ");
-		result.append(upperMultiplicity);
-		result.append(", ordered: ");
-		result.append(ordered);
-		result.append(", unique: ");
-		result.append(unique);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (lowerMultiplicity: ");
+        result.append(lowerMultiplicity);
+        result.append(", upperMultiplicity: ");
+        result.append(upperMultiplicity);
+        result.append(", ordered: ");
+        result.append(ordered);
+        result.append(", unique: ");
+        result.append(unique);
+        result.append(')');
+        return result.toString();
+    }
 
 } //MultiplicityImpl

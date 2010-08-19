@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class AbapAssociationImplementationAnnotationImpl extends EObjectImpl implements AbapAssociationImplementationAnnotation {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbapAssociationImplementationAnnotationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AbapmappingPackage.Literals.ABAP_ASSOCIATION_IMPLEMENTATION_ANNOTATION;
-	}
+        return AbapmappingPackage.Literals.ABAP_ASSOCIATION_IMPLEMENTATION_ANNOTATION;
+    }
 
 } //AbapAssociationImplementationAnnotationImpl

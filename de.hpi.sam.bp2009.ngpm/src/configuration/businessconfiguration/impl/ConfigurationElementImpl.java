@@ -35,104 +35,104 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class ConfigurationElementImpl extends EObjectImpl implements ConfigurationElement {
 	/**
-	 * The cached value of the '{@link #getApplicableInContext() <em>Applicable In Context</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getApplicableInContext() <em>Applicable In Context</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getApplicableInContext()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getApplicableInContext()
+     * @generated
+     * @ordered
+     */
 	protected EList<ScopingContext> applicableInContext;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ConfigurationElementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BusinessconfigurationPackage.Literals.CONFIGURATION_ELEMENT;
-	}
+        return BusinessconfigurationPackage.Literals.CONFIGURATION_ELEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ScopingContext> getApplicableInContext() {
-		if (applicableInContext == null) {
-			applicableInContext = new EObjectResolvingEList<ScopingContext>(ScopingContext.class, this, BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT);
-		}
-		return applicableInContext;
-	}
+        if (applicableInContext == null) {
+            applicableInContext = new EObjectResolvingEList<ScopingContext>(ScopingContext.class, this, BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT);
+        }
+        return applicableInContext;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT:
-				return getApplicableInContext();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT:
+                return getApplicableInContext();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT:
-				getApplicableInContext().clear();
-				getApplicableInContext().addAll((Collection<? extends ScopingContext>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT:
+                getApplicableInContext().clear();
+                getApplicableInContext().addAll((Collection<? extends ScopingContext>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT:
-				getApplicableInContext().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT:
+                getApplicableInContext().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT:
-				return applicableInContext != null && !applicableInContext.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case BusinessconfigurationPackage.CONFIGURATION_ELEMENT__APPLICABLE_IN_CONTEXT:
+                return applicableInContext != null && !applicableInContext.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ConfigurationElementImpl

@@ -39,230 +39,265 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class EventFilterImpl extends EObjectImpl implements EventFilter {
 	/**
-	 * The cached value of the '{@link #getTest() <em>Test</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTest() <em>Test</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTest()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTest()
+     * @generated
+     * @ordered
+     */
 	protected Block test;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EventFilterImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return EventsPackage.Literals.EVENT_FILTER;
-	}
+        return EventsPackage.Literals.EVENT_FILTER;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Subscription getSubscription() {
-		if (eContainerFeatureID() != EventsPackage.EVENT_FILTER__SUBSCRIPTION) return null;
-		return (Subscription)eContainer();
-	}
+        if (eContainerFeatureID() != EventsPackage.EVENT_FILTER__SUBSCRIPTION) return null;
+        return (Subscription)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Subscription basicGetSubscription() {
+        if (eContainerFeatureID() != EventsPackage.EVENT_FILTER__SUBSCRIPTION) return null;
+        return (Subscription)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetSubscription(Subscription newSubscription, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newSubscription, EventsPackage.EVENT_FILTER__SUBSCRIPTION, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newSubscription, EventsPackage.EVENT_FILTER__SUBSCRIPTION, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSubscription(Subscription newSubscription) {
-		if (newSubscription != eInternalContainer() || (eContainerFeatureID() != EventsPackage.EVENT_FILTER__SUBSCRIPTION && newSubscription != null)) {
-			if (EcoreUtil.isAncestor(this, newSubscription))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newSubscription != null)
-				msgs = ((InternalEObject)newSubscription).eInverseAdd(this, EventsPackage.SUBSCRIPTION__FILTERS, Subscription.class, msgs);
-			msgs = basicSetSubscription(newSubscription, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT_FILTER__SUBSCRIPTION, newSubscription, newSubscription));
-	}
+        if (newSubscription != eInternalContainer() || (eContainerFeatureID() != EventsPackage.EVENT_FILTER__SUBSCRIPTION && newSubscription != null)) {
+            if (EcoreUtil.isAncestor(this, newSubscription))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newSubscription != null)
+                msgs = ((InternalEObject)newSubscription).eInverseAdd(this, EventsPackage.SUBSCRIPTION__FILTERS, Subscription.class, msgs);
+            msgs = basicSetSubscription(newSubscription, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT_FILTER__SUBSCRIPTION, newSubscription, newSubscription));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Block getTest() {
-		return test;
-	}
+        if (test != null && test.eIsProxy()) {
+            InternalEObject oldTest = (InternalEObject)test;
+            test = (Block)eResolveProxy(oldTest);
+            if (test != oldTest) {
+                InternalEObject newTest = (InternalEObject)test;
+                NotificationChain msgs = oldTest.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.EVENT_FILTER__TEST, null, null);
+                if (newTest.eInternalContainer() == null) {
+                    msgs = newTest.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.EVENT_FILTER__TEST, null, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventsPackage.EVENT_FILTER__TEST, oldTest, test));
+            }
+        }
+        return test;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Block basicGetTest() {
+        return test;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetTest(Block newTest, NotificationChain msgs) {
-		Block oldTest = test;
-		test = newTest;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT_FILTER__TEST, oldTest, newTest);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        Block oldTest = test;
+        test = newTest;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT_FILTER__TEST, oldTest, newTest);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTest(Block newTest) {
-		if (newTest != test) {
-			NotificationChain msgs = null;
-			if (test != null)
-				msgs = ((InternalEObject)test).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.EVENT_FILTER__TEST, null, msgs);
-			if (newTest != null)
-				msgs = ((InternalEObject)newTest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.EVENT_FILTER__TEST, null, msgs);
-			msgs = basicSetTest(newTest, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT_FILTER__TEST, newTest, newTest));
-	}
+        if (newTest != test) {
+            NotificationChain msgs = null;
+            if (test != null)
+                msgs = ((InternalEObject)test).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EventsPackage.EVENT_FILTER__TEST, null, msgs);
+            if (newTest != null)
+                msgs = ((InternalEObject)newTest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EventsPackage.EVENT_FILTER__TEST, null, msgs);
+            msgs = basicSetTest(newTest, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, EventsPackage.EVENT_FILTER__TEST, newTest, newTest));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetSubscription((Subscription)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetSubscription((Subscription)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
-				return basicSetSubscription(null, msgs);
-			case EventsPackage.EVENT_FILTER__TEST:
-				return basicSetTest(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
+                return basicSetSubscription(null, msgs);
+            case EventsPackage.EVENT_FILTER__TEST:
+                return basicSetTest(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
-				return eInternalContainer().eInverseRemove(this, EventsPackage.SUBSCRIPTION__FILTERS, Subscription.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
+                return eInternalContainer().eInverseRemove(this, EventsPackage.SUBSCRIPTION__FILTERS, Subscription.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
-				return getSubscription();
-			case EventsPackage.EVENT_FILTER__TEST:
-				return getTest();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
+                if (resolve) return getSubscription();
+                return basicGetSubscription();
+            case EventsPackage.EVENT_FILTER__TEST:
+                if (resolve) return getTest();
+                return basicGetTest();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
-				setSubscription((Subscription)newValue);
-				return;
-			case EventsPackage.EVENT_FILTER__TEST:
-				setTest((Block)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
+                setSubscription((Subscription)newValue);
+                return;
+            case EventsPackage.EVENT_FILTER__TEST:
+                setTest((Block)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
-				setSubscription((Subscription)null);
-				return;
-			case EventsPackage.EVENT_FILTER__TEST:
-				setTest((Block)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
+                setSubscription((Subscription)null);
+                return;
+            case EventsPackage.EVENT_FILTER__TEST:
+                setTest((Block)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
-				return getSubscription() != null;
-			case EventsPackage.EVENT_FILTER__TEST:
-				return test != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case EventsPackage.EVENT_FILTER__SUBSCRIPTION:
+                return basicGetSubscription() != null;
+            case EventsPackage.EVENT_FILTER__TEST:
+                return test != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //EventFilterImpl

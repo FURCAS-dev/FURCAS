@@ -32,78 +32,78 @@ import org.eclipse.emf.ecore.EPackage;
  */
 public interface RulesPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc -->
+     * The package name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNAME = "rules";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc -->
+     * The package namespace URI.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_URI = "http:///behavioral/rules.ecore";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc -->
+     * The package namespace name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_PREFIX = "behavioral.rules";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	RulesPackage eINSTANCE = behavioral.rules.impl.RulesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link behavioral.rules.impl.DummyImpl <em>Dummy</em>}' class.
-	 * <!-- begin-user-doc -->
+     * The meta object id for the '{@link behavioral.rules.impl.DummyImpl <em>Dummy</em>}' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see behavioral.rules.impl.DummyImpl
-	 * @see behavioral.rules.impl.RulesPackageImpl#getDummy()
-	 * @generated
-	 */
+     * @see behavioral.rules.impl.DummyImpl
+     * @see behavioral.rules.impl.RulesPackageImpl#getDummy()
+     * @generated
+     */
 	int DUMMY = 0;
 
 	/**
-	 * The number of structural features of the '<em>Dummy</em>' class.
-	 * <!-- begin-user-doc -->
+     * The number of structural features of the '<em>Dummy</em>' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int DUMMY_FEATURE_COUNT = 0;
 
 
 	/**
-	 * Returns the meta object for class '{@link behavioral.rules.Dummy <em>Dummy</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for class '{@link behavioral.rules.Dummy <em>Dummy</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Dummy</em>'.
-	 * @see behavioral.rules.Dummy
-	 * @generated
-	 */
+     * @return the meta object for class '<em>Dummy</em>'.
+     * @see behavioral.rules.Dummy
+     * @generated
+     */
 	EClass getDummy();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc -->
+     * Returns the factory that creates the instances of the model.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the factory that creates the instances of the model.
-	 * @generated
-	 */
+     * @return the factory that creates the instances of the model.
+     * @generated
+     */
 	RulesFactory getRulesFactory();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
 	 *   <li>each class,</li>
@@ -112,17 +112,17 @@ public interface RulesPackage extends EPackage {
 	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link behavioral.rules.impl.DummyImpl <em>Dummy</em>}' class.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link behavioral.rules.impl.DummyImpl <em>Dummy</em>}' class.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see behavioral.rules.impl.DummyImpl
-		 * @see behavioral.rules.impl.RulesPackageImpl#getDummy()
-		 * @generated
-		 */
+         * @see behavioral.rules.impl.DummyImpl
+         * @see behavioral.rules.impl.RulesPackageImpl#getDummy()
+         * @generated
+         */
 		EClass DUMMY = eINSTANCE.getDummy();
 
 	}

@@ -18,29 +18,29 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface Data_bindingFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	Data_bindingFactory eINSTANCE = ui.data_binding.impl.Data_bindingFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Dummy</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Dummy</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Dummy</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Dummy</em>'.
+     * @generated
+     */
 	Dummy createDummy();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	Data_bindingPackage getData_bindingPackage();
 
 } //Data_bindingFactory

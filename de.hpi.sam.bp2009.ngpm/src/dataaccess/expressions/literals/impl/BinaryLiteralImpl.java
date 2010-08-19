@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class BinaryLiteralImpl extends LiteralImpl implements BinaryLiteral {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected BinaryLiteralImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return LiteralsPackage.Literals.BINARY_LITERAL;
-	}
+        return LiteralsPackage.Literals.BINARY_LITERAL;
+    }
 
 } //BinaryLiteralImpl
