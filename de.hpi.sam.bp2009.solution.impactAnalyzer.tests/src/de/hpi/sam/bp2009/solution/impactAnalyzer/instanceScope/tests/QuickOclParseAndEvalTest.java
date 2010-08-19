@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -51,6 +52,25 @@ public class QuickOclParseAndEvalTest extends TestCase
     ocl = OCLWithHiddenOpposites.newInstance();
     oclHelper = ocl.createOCLHelper();
     oclHelper.setContext(ClassesPackage.eINSTANCE.getParameter());
+  }
+
+  /**
+   * Testing if shadowing a variable by an iterator leads to incorrect results because the shadowed
+   * variable is overwritten by the iterator values
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionIteratorShadowingLetVariable() throws ParserException
+  {
+    param.setOwnedTypeDefinition(ctd);
+    ctd.setClazz(null);
+    try {
+        OCLExpression expression4 = oclHelper.createQuery("let i:Integer=1 in if self.ownedTypeDefinition->select(i|i.oclAsType(ClassTypeDefinition).clazz->notEmpty())->isEmpty() then i else 0 endif");
+        Object result4 = ocl.evaluate(param, expression4);
+        assertEquals(1, result4);
+    } catch (SemanticException e) {
+        // it's ok if the OCL implementation doesn't accept shadowing:
+        assertEquals("Variable name already used: (i)", e.getMessage());
+    }
   }
 
   /**
