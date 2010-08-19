@@ -27,6 +27,8 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 public class EventManagerTableBased implements EventManager {
     private Logger logger = Logger.getLogger(EventManagerTableBased.class.getName());
     
+    private boolean active = true;
+    
     /**
      * the EventAdapter instance for the EventManager
      */
@@ -69,6 +71,11 @@ public class EventManagerTableBased implements EventManager {
     @Override
     public ResourceSet getResourceSet() {
         return resourceSet.get();
+    }
+    
+    @Override
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     /* Methods from EventRegistry interface */
@@ -307,9 +314,11 @@ public class EventManagerTableBased implements EventManager {
 
     @Override
     public void handleEMFEvent(Notification notification) {
-        if (!notifierByListener.isEmpty()) {
-            for (Notification n : EventManagerFactory.eINSTANCE.createNotificationForComposites(notification)) {
-                fireChangeEvent(n);
+        if (active) {
+            if (!notifierByListener.isEmpty()) {
+                for (Notification n : EventManagerFactory.eINSTANCE.createNotificationForComposites(notification)) {
+                    fireChangeEvent(n);
+                }
             }
         }
     }

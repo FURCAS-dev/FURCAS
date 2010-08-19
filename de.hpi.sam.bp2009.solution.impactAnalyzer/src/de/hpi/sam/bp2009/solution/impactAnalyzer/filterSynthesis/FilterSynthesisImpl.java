@@ -99,7 +99,7 @@ implements OperationBodyToCallMapper {
             return result;
         }
         if (property instanceof EAttribute){
-            filters.add(EventManagerFactory.eINSTANCE.createFilterForEAttribute( cls, property));
+            filters.add(EventManagerFactory.eINSTANCE.createFilterForEAttribute( cls, (EAttribute) property));
             EAttribute refAttr = (EAttribute)property;
             Set<PropertyCallExp> set = attributeCallExpressions.get(refAttr);
             if (set==null) {
@@ -109,7 +109,7 @@ implements OperationBodyToCallMapper {
             set.add((PropertyCallExp) propCallExp);
             
         } else if (propCallExp.getReferredProperty() instanceof EReference){
-            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference(cls, property));
+            filters.add(EventManagerFactory.eINSTANCE.createFilterForEReference(cls, (EReference) property));
             EReference refRef = (EReference) property;
             Set<NavigationCallExp> set = associationEndCallExpressions.get(refRef);
             if (set==null) {

@@ -51,8 +51,7 @@ public class MetamodelTests extends TestCase {
 	final SapClass clazz = ClassesFactory.eINSTANCE.createSapClass();
 	final TypeAdapter ta = ClassesFactory.eINSTANCE.createTypeAdapter();
 	EventManager em = EventManagerFactory.eINSTANCE.getEventManagerFor(resourceSet);
-	AssociationFilter filter = EventManagerFactory.eINSTANCE.createAssociationFilter();
-	filter.setFeature(ClassesPackage.eINSTANCE.getTypeAdapter_To());
+	AssociationFilter filter = EventManagerFactory.eINSTANCE.createAssociationFilter(ClassesPackage.eINSTANCE.getTypeAdapter_To());
 	em.subscribe(filter, new AdapterImpl() {
 	    public void notifyChanged(Notification event) {
 			if (event.getEventType() == Notification.UNSET) {

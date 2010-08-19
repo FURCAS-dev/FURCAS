@@ -9,6 +9,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -39,7 +40,7 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.StructuralFeatureFilter;
 /**
  * The default implementation for the {@link EventManagerFactory} interface
  * Provides a {@link ResourceSet} based cache for {@link EventManager} instances and uses as implementation the {@link EventManagerTableBased}
- * @author Philipp Berger
+ * @author Philipp Berger, Axel Uhl
  *
  */
 public class EventManagerFactoryImpl implements EventManagerFactory {
@@ -59,6 +60,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     public static EventManagerFactory init() {
         return new EventManagerFactoryImpl();
     }
+
     @Override
     public EventManager getEventManagerFor(ResourceSet set) {
         EventManager cached = setToManager.get(set)==null?null:setToManager.get(set);
@@ -71,14 +73,20 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     @Override
-    public EventTypeFilter createEventTypeFilter() {
-        EventTypeFilter eventTypeFilter = new EventTypeFilter();
+    public EventManager createEventManagerFor(ResourceSet set) {
+        EventManager eventManager = new de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased(set);
+        return eventManager;
+    }
+
+    @Override
+    public EventTypeFilter createEventTypeFilter(int eventType) {
+        EventTypeFilter eventTypeFilter = new EventTypeFilter(eventType);
         return eventTypeFilter;
     }
 
     @Override
-    public NotFilter createNotFilter() {
-        NotFilter notFilter = new NotFilter();
+    public NotFilter createNotFilter(EventFilter filter) {
+        NotFilter notFilter = new NotFilter(filter);
         return notFilter;
     }
 
@@ -95,14 +103,14 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     @Override
-    public AttributeFilter createAttributeFilter() {
-        AttributeFilter attributeFilter = new AttributeFilter();
+    public AttributeFilter createAttributeFilter(EAttribute attribute) {
+        AttributeFilter attributeFilter = new AttributeFilter(attribute);
         return attributeFilter;
     }
 
     @Override
-    public AssociationFilter createAssociationFilter() {
-        AssociationFilter associationFilter = new AssociationFilter();
+    public AssociationFilter createAssociationFilter(EReference reference) {
+        AssociationFilter associationFilter = new AssociationFilter(reference);
         return associationFilter;
     }
 
@@ -164,8 +172,7 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     private LogicalOperationFilterImpl createOrFilterForEventTypes(int... types) {
         LogicalOperationFilterImpl or = new OrFilter();
         for (int t : types) {
-            EventTypeFilter e1 = createEventTypeFilter();
-            e1.setEventType(t);
+            EventTypeFilter e1 = createEventTypeFilter(t);
             or.addOperand(e1);
         }
         return or;
@@ -173,20 +180,18 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
     }
 
     @Override
-    public EventFilter createFilterForEAttribute(EClass eClass, EStructuralFeature referredProperty) {
+    public EventFilter createFilterForEAttribute(EClass eClass, EAttribute referredProperty) {
         StructuralFeatureFilter sf = null;
-        sf = createAttributeFilter();
-        sf.setFeature(referredProperty);
+        sf = createAttributeFilter(referredProperty);
 
         ClassFilter cf = createClassFilterIncludingSubclasses(eClass);
         return createAndFilterFor(sf, cf);
     }
 
     @Override
-    public EventFilter createFilterForEReference(EClass eClass, EStructuralFeature referredProperty) {
+    public EventFilter createFilterForEReference(EClass eClass, EReference referredProperty) {
         StructuralFeatureFilter sf = null;
-        sf = createAssociationFilter();
-        sf.setFeature(referredProperty);
+        sf = createAssociationFilter(referredProperty);
         ClassFilter cf = createClassFilterIncludingSubclasses(eClass);
         return createAndFilterFor(sf, cf);
     }
