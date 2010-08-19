@@ -1,4 +1,4 @@
-package com.sap.ocl.oppositefinder.query2.internal;
+package com.sap.ocl.oppositefinder.query2;
 
 import java.util.ArrayList;
 import java.util.List;

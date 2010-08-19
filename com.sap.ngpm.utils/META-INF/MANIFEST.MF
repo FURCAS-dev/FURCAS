@@ -13,5 +13,6 @@ Require-Bundle: de.hpi.sam.bp2009.ngpm,
  org.junit,
  de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
- de.hpi.sam.bp2009.solution.scopeProvider
+ de.hpi.sam.bp2009.solution.scopeProvider,
+ com.sap.ocl.oppositefinder.query2
 Export-Package: com.sap.ap.metamodel.utils

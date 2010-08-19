@@ -2,15 +2,19 @@ package com.sap.ap.metamodel.utils;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 
+import com.sap.ocl.oppositefinder.query2.DefaultQueryContextProvider;
+
 import data.classes.Association;
 import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
 import data.classes.ClassesFactory;
+import data.classes.ClassesPackage;
 import data.classes.FunctionSignature;
 import data.classes.FunctionSignatureTypeDefinition;
 import data.classes.MethodSignature;
@@ -115,10 +119,10 @@ public class MetamodelUtils {
     public static MethodSignature findMethod(ResourceSet resourceSet, String classname, String methodname) {
         QueryProcessor mql = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
 	ResultSet methodSignatureQueryResult = mql.execute(
-	    "select s from data::classes::MethodSignature as s, "+
-	    "data::classes::SapClass as c where s.owner = c where s.name='"+methodname+"' "+
-	    "where c.name='"+classname+"'",
-	    new ProjectBasedQueryContextScopeProviderImpl(resourceSet).getForwardScopeAsQueryContext());
+                "select s from [" + EcoreUtil.getURI(ClassesPackage.eINSTANCE.getMethodSignature()) + "] as s, ["
+                        + EcoreUtil.getURI(ClassesPackage.eINSTANCE.getSapClass()) + "] as c where s.owner = c where s.name='"
+                        + methodname + "' " + "where c.name='" + classname + "'",
+                        new DefaultQueryContextProvider().getForwardScopeQueryContext(resourceSet));
 	MethodSignature methodSignature = null;
 	URI[] array = methodSignatureQueryResult.getUris("s");
 	if (array.length > 0) {
@@ -131,8 +135,8 @@ public class MetamodelUtils {
     public static SapClass findClass(ResourceSet resourceSet, String classname) {
         QueryProcessor mql = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
 	ResultSet queryResult = mql.execute(
-	    "select c from data::classes::SapClass as c where for c(name='"+classname+"')",
-            new ProjectBasedQueryContextScopeProviderImpl(resourceSet).getForwardScopeAsQueryContext());
+	    "select c from [" + EcoreUtil.getURI(ClassesPackage.eINSTANCE.getSapClass()) + "] as c where c.name='"+classname+"'",
+            new DefaultQueryContextProvider().getForwardScopeQueryContext(resourceSet));
 	SapClass clazz = (SapClass) resourceSet.getEObject(queryResult.getUris("c")[0], /* loadOnDemand */ true);
 	return clazz;
     }
