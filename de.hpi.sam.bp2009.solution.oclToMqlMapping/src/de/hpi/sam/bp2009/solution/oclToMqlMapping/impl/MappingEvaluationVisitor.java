@@ -18,17 +18,16 @@ import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.TypeExp;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.EvaluationVisitorWithHiddenOppositesImpl;
 
-public class MappingEvaluationVisitor
-extends EvaluationVisitorWithHiddenOppositesImpl {
+public class MappingEvaluationVisitor extends EvaluationVisitorWithHiddenOppositesImpl {
 
     private boolean isNotMapped = false; ;
     private Object query2Result;
@@ -38,6 +37,10 @@ extends EvaluationVisitorWithHiddenOppositesImpl {
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> evalEnv,
             Map<? extends EClass, ? extends Set<? extends EObject>> extentMap) {
         super(env, evalEnv, extentMap);
+    }
+    
+    public MappingEvaluationVisitor(MappingEvaluationVisitor mapEvalVisitor){
+        super(mapEvalVisitor.getEnvironment(), mapEvalVisitor.getEvaluationEnvironment(), mapEvalVisitor.getExtentMap());
     }
 
     @Override
@@ -61,7 +64,6 @@ extends EvaluationVisitorWithHiddenOppositesImpl {
         return !isNotMapped;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public Object visitOperationCallExp(OperationCallExp<EClassifier, EOperation> oc) {
         if(couldBeMapped()){
@@ -75,35 +77,35 @@ extends EvaluationVisitorWithHiddenOppositesImpl {
                 }
                 OCLExpression<EClassifier> ocSource = oc.getSource();
 
-                Object ocType=null;
+                EClassifier ocType=null;
                 if (ocSource instanceof TypeExp){
-                    ocType = ((TypeExp<EClassifier>) ocSource).getReferredType();
+                    ocType = ((TypeExp) ocSource).getReferredType();
                 }
                 /*
                  * the expression must have the form allInstances()->IteratorExp(body)
                  * otherwise traverse the AST from beginning
                  */
-                if (oc.eContainer()instanceof IteratorExp){
-                    IteratorExp<EClassifier, EParameter> itExp = (IteratorExp<EClassifier, EParameter>) oc.eContainer();
+                if (oc.eContainer()instanceof IteratorExp && oc.eContainer() != null){
+                    IteratorExp<EClassifier, EParameter> itExp = (org.eclipse.ocl.ecore.IteratorExp) oc.eContainer();
                     OCLExpression<EClassifier> body = itExp.getBody();
                     query2Result = new Query2().buildMqlQuery(contextObjects, ocType, body, itExp, this); 
                     if (query2Result == null){
                         //if the query2 fail traverse the AST from beginning
                         isNotMapped = true;
-                        return visitExpression((OCLExpression<EClassifier>)oc.eContainer());}
+                        return visitExpression((org.eclipse.ocl.ecore.OCLExpression)oc.eContainer());}
                     else
                         return query2Result;
 
                 }else{
                     // if the expression has another form, traverse the AST from beginning
                     isNotMapped=true;
-                    return visitExpression((OCLExpression<EClassifier>) oc.eContainer());
+                    return visitExpression((org.eclipse.ocl.ecore.OCLExpression) oc.eContainer());
                 }
 
             }else{
                 //if there isn't any allInstances()
                 isNotMapped=true;
-                OCLExpression<EClassifier> oclExp = (OCLExpression<EClassifier>) oc.eContainer();
+                OCLExpression<EClassifier> oclExp = (org.eclipse.ocl.ecore.OCLExpression) oc.eContainer();
                 return visitExpression(oclExp);
             }
         }
@@ -112,7 +114,6 @@ extends EvaluationVisitorWithHiddenOppositesImpl {
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public Object visitIteratorExp(IteratorExp<EClassifier, EParameter> itExp) {
         if(couldBeMapped()){
@@ -125,7 +126,7 @@ extends EvaluationVisitorWithHiddenOppositesImpl {
             case PredefinedType.COLLECT_NESTED:
             case PredefinedType.ANY:
                 if (itExp.getSource() instanceof OperationCallExp)
-                    return visitOperationCallExp((OperationCallExp<EClassifier, EOperation>) itExp.getSource());
+                    return visitOperationCallExp((org.eclipse.ocl.ecore.OperationCallExp) itExp.getSource());
                 else
                     return super.visitIteratorExp(itExp);
             default:

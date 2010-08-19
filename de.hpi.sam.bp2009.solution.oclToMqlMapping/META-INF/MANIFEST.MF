@@ -9,5 +9,6 @@ Require-Bundle: org.eclipse.ocl,
  org.eclipse.emf.query2,
  com.sap.emf.ocl.hiddenopposites,
  de.hpi.sam.bp2009.solution.queryContextScopeProvider,
- de.hpi.sam.bp2009.solution.scopeProvider
+ de.hpi.sam.bp2009.solution.scopeProvider,
+ org.eclipse.emf.query.index.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

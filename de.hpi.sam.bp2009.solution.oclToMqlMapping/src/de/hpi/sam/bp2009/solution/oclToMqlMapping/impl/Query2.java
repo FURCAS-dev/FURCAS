@@ -3,11 +3,8 @@ package de.hpi.sam.bp2009.solution.oclToMqlMapping.impl;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -15,294 +12,400 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
-import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
+import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query2.FromEntry;
+import org.eclipse.emf.query2.FromType;
+import org.eclipse.emf.query2.LocalWhereEntry;
+import org.eclipse.emf.query2.Operation;
+import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
-import org.eclipse.ocl.EvaluationHaltedException;
+import org.eclipse.emf.query2.SelectAlias;
+import org.eclipse.emf.query2.SelectAttrs;
+import org.eclipse.emf.query2.SelectEntry;
+import org.eclipse.emf.query2.WhereComparisonAliases;
+import org.eclipse.emf.query2.WhereComparisonAttrs;
+import org.eclipse.emf.query2.WhereEntry;
+import org.eclipse.emf.query2.WhereInt;
+import org.eclipse.emf.query2.WhereNestedReference;
+import org.eclipse.emf.query2.WhereRelationReference;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.expressions.IteratorExp;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 import de.hpi.sam.bp2009.solution.queryContextScopeProvider.impl.ProjectBasedQueryContextScopeProviderImpl;
 
-public class Query2  {
+public class Query2 {
 
-/**
- * buildMqlQuery prepares for each Predefined type of the Iterator Expression a matching Query 2
- * after mapping all parts of the Expression, the query 2 will be executed
- * @param contextObjects a Set<EObject> for setting the Query Context
- * @param ocType an Object for building the scope for Query 2
- * @param body is the OCLExpression, this must be the body of the IteratorExp for mapping all parts of the Expression to Query 2
- * @param itExp is the IteratorExp, needed to defined the different mapping for each Predefined Type 
- * @param mapev is the Mapping Evaluation Visitor, needed to instantiate a second Visitor to map the expression
- * @return result
- */
-    public Object buildMqlQuery(Set<EObject> contextObjects,  Object ocType, OCLExpression<EClassifier> body, IteratorExp<EClassifier, EParameter> itExp, MappingEvaluationVisitor mapev){
-        Object result = null;
-        MqlMapperToString mmts ;
-        mmts = new MqlMapperToString(mapev.getEnvironment(), mapev.getEvaluationEnvironment(), mapev.getExtentMap());
-        URI uri = EcoreUtil.getURI((EObject) ocType);
-        String stringBody =null;
-        stringBody = (String) mmts.visitExpression(body);
-        if (mmts.wasErrorful()){
-            return result;
-        }
+    /**
+     * buildMqlQuery prepares for each Predefined type of the Iterator Expression a matching Query 2 after mapping all parts of
+     * the Expression, the query 2 will be executed
+     * 
+     * @param contextObjects
+     *            a Set<EObject> for setting the Query Context
+     * @param ocType
+     *            an Object for building the scope for Query 2
+     * @param body
+     *            is the OCLExpression, this must be the body of the IteratorExp for mapping all parts of the Expression to Query
+     *            2
+     * @param itExp
+     *            is the IteratorExp, needed to defined the different mapping for each Predefined Type
+     * @param mapEvalVisitor
+     *            is the Mapping Evaluation Visitor, needed to instantiate a second Visitor to map the expression
+     * @return result
+     */
+    public Object buildMqlQuery(Set<EObject> contextObjects, EClassifier ocType, OCLExpression<EClassifier> body,
+            IteratorExp<EClassifier, EParameter> itExp, MappingEvaluationVisitor mapEvalVisitor) {
 
-        switch (OCLStandardLibraryUtil.getOperationCode(itExp.getName())){
-        case 209:// select
-            return mappingForSelect(contextObjects, body, uri, stringBody);
-        case 206:// collect
-            return mappingForCollect(contextObjects, body, stringBody, uri);
-        case 201:// exists
-        case 202:// forAll    
-        case 205:// any
-        case 210:// reject
-        case 207:// collectNested
-        case 204:// one
-        case 211:// sortedBy
-        case 203:// isUnique
-        case 208:// closure
+        switch (OCLStandardLibraryUtil.getOperationCode(itExp.getName())) {
+        case PredefinedType.SELECT:
+            return mappingForSelect(contextObjects, body, ocType);
+        case PredefinedType.COLLECT:
+            return mappingForCollect(contextObjects, body, ocType);
+        case PredefinedType.EXISTS:
+        case PredefinedType.FOR_ALL:
+        case PredefinedType.ANY:
+        case PredefinedType.REJECT:
+        case PredefinedType.COLLECT_NESTED:
+        case PredefinedType.ONE:
+        case PredefinedType.SORTED_BY:
+        case PredefinedType.IS_UNIQUE:
+        case PredefinedType.CLOSURE:
         default:
-            return result;     
+            return null;
         }
     }
 
-private Object mappingForSelect(Set<EObject> allO, OCLExpression<EClassifier> body, URI uri1, String stringBody) {
-    //TODO refactor
-    Object result = null;
-    QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(allO.toArray(new EObject[allO.size()])).getForwardScopeAsQueryContext();
-    QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED));
-    ResultSet resultSet=null;
-    String regex="([0-9A-Za-z]+)\\.([0-9A-Za-z]+)\\*\\*\\*([0-9A-Za-z]+)\\=([0-9A-Za-z]+)";
-    String regex2="([0-9A-Za-z]+)\\.([0-9A-Za-z]+)\\=([0-9A-Za-z]+)\\.([0-9A-Za-z]+)\\*\\*\\*([0-9A-Za-z]+)";
-    String regex3="([0-9A-Za-z]+)\\.([0-9A-Za-z]+)=([0-9A-Za-z]+)\\.([0-9A-Za-z]+)";
-    String stars = "\\*\\*\\*";
-    String alias = "([0-9A-Za-z]\\.)";
-    String comp ="([0-9A-Za-z]{1}\\.)([0-9A-Za-z]+)([\\=\\<\\>]+)";
-    Pattern pattern=Pattern.compile(regex);
-    Pattern pattern2=Pattern.compile(regex2);
-    Pattern pattern3=Pattern.compile(regex3);
-    Pattern pattern_stars=Pattern.compile(stars);
-    Pattern pattern_alias = Pattern.compile(alias);
-    Pattern pattern_comp=Pattern.compile(comp);
-    Matcher match=pattern.matcher(stringBody);
-    Matcher match2=pattern_stars.matcher(stringBody);
-    Matcher match3=pattern_alias.matcher(stringBody);
-    Matcher match4=pattern2.matcher(stringBody);
-    Matcher match5=pattern_comp.matcher(stringBody);
-    Matcher match6=pattern3.matcher(stringBody);
-    boolean test = match.find();
-    boolean test2 = match2.find();
-    boolean test3 =match3.find();
-    boolean test4 =match4.find();
-    boolean test5 =match5.find();
-    boolean test6 =match6.find();
-    if(test && test2 && test3){
-
-        String nav = stringBody.substring(match.start(1), stringBody.indexOf("***"));
-        String cond = stringBody.substring(stringBody.indexOf("***")+3);
-        String ali = stringBody.substring(match3.start(1), stringBody.indexOf("."));
-        if (body instanceof OperationCallExp){
-
-            Object prop = ((PropertyCallExp) ((PropertyCallExp) ((OperationCallExp) body).getSource()).getSource()).getReferredProperty();
-            if(prop instanceof EReference){
-                Object propType = ((EReference) prop).getEType();
-                EClassifier eclass2 = (EClassifier) propType;
-                URI uri2=EcoreUtil.getURI(eclass2);
-
-                try{
-                    //select over body with navigation
-                    resultSet = queryProcessor.execute("select "+ali+" from  [" + uri1 + //$NON-NLS-1$
-                            "] as "+ali+" where "+nav+" in ( select p2 from [" + uri2+"] as p2 where p2." + cond+")", queryContext); //$NON-NLS-1$
-                }
-                catch (EvaluationHaltedException e) {
-                    // evaluation stopped on demand, propagate further
-                    throw e;
-                } catch (RuntimeException e) {
-                    result=null;
-                }
-                finally{
-                    result = buildResult(resultSet, queryContext, ali);
-                }
-
-            }}}
-    else if(test3 &&!test2 &&!test6){
-
-        String ali = stringBody.substring(match3.start(1), stringBody.indexOf("."));
-        try{
-            //select over body with condition
-            resultSet = queryProcessor.execute("select "+ ali+" from  [" + uri1 + //$NON-NLS-1$
-                    "] as "+ali+" where " + stringBody, queryContext); //$NON-NLS-1$
-        }
-        catch (EvaluationHaltedException e) {
-            // evaluation stopped on demand, propagate further
-            throw e;
-        } catch (RuntimeException e) {
-            result=null;
-        }
-        finally{
-            result = buildResult(resultSet, queryContext, ali);
-        }
-    }
-    else if(test4 && test5 ){
-
-        String ali = stringBody.substring(match4.start(1), stringBody.indexOf("."));
-        String nav = stringBody.substring(match5.end(), stringBody.indexOf("***"));
-        String cond = stringBody.substring(stringBody.indexOf("."),match5.end());
-        String cond2=stringBody.substring(stringBody.indexOf("***")+3);
-
-        if (body instanceof OperationCallExp){
-            List<OCLExpression<EClassifier>> args = ((OperationCallExp) body).getArgument();
-            OCLExpression<EClassifier> arg = args.get(0);
-            PropertyCallExp src = (PropertyCallExp) ((PropertyCallExp) arg).getSource();
-            Object prop = src.getReferredProperty();
-            if(prop instanceof EReference){
-                Object propType = ((EReference) prop).getEType();
-                EClassifier eclass2 = (EClassifier) propType;
-                URI uri2=EcoreUtil.getURI(eclass2);
-
-                try{
-                    //select over body with a comparison with navigation
-                    resultSet = queryProcessor.execute("select "+ ali+" from  [" + uri1 + //$NON-NLS-1$
-                            "] as "+ali+" ,["+uri2+"] as p3 where " +nav+"=p3 where "+ali+ cond+ "p3."+ cond2, queryContext); //$NON-NLS-1$
-                }
-                catch (EvaluationHaltedException e) {
-                    // evaluation stopped on demand, propagate further
-                    throw e;
-                } catch (RuntimeException e) {
-                    result=null;
-                }
-                finally{
-                    result = buildResult(resultSet, queryContext, ali);
-                }
-            }}
-
-    }
-    else if(test6 && test3){
-        String ali = stringBody.substring(match6.start(1), stringBody.indexOf("."));
-        String cond= stringBody.replaceFirst(alias,"p.");
-        try{
-            //select over body with a comparison without navigation 
-            resultSet = queryProcessor.execute("select "+ ali+" from [" + uri1 + //$NON-NLS-1$
-                    "] as p , ["+uri1+"] as "+ali+" where "+ali+"=p where "+cond, queryContext); //$NON-NLS-1$
-        } catch (RuntimeException e) {
-            result=null;
-        }
-        finally{
-            result = buildResult(resultSet, queryContext, ali);
-        }
-    }
-    return result;
-}
-
-    private Object mappingForCollect(Set<EObject> contextObjects, OCLExpression<EClassifier> body, String stringBody, URI uri1) {
-        //TODO refactor
-        Object result = null;
-        QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
-        QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED));
-        ResultSet resultSet=null;
-
-        String alias = "([0-9A-Za-z]{1}\\.)";
-
-        Pattern pattern3 = Pattern.compile(alias);
-
-        Matcher match3=pattern3.matcher(stringBody);
-        match3.find();
-        if (body instanceof PropertyCallExp){
-
-            Object prop = ((PropertyCallExp) body).getReferredProperty();
-            if(prop instanceof EReference){
-                //collect over an association
-                Object propType = ((EReference) prop).getEType();
-                EClassifier eclass2 = (EClassifier) propType;
-                URI uri2=EcoreUtil.getURI(eclass2);
-                String ali = stringBody.substring(match3.start(1), stringBody.indexOf("."));
-                String alia= "a2";
-
-                try{
-                    resultSet = queryProcessor.execute("select "+alia+" from  [" + uri1 + //$NON-NLS-1$
-                            "] as "+ali+" , [" +uri2+ "] as a2 where "+stringBody +" in (select p2 from ["+uri2+"] as p2)", queryContext);
-                } catch (RuntimeException e) {
-                    result=null;
-                }
-                finally{
-                    if(!resultSet.isEmpty()){
-                        Map<EObject,Integer> col= new HashMap<EObject, Integer>();
-                        int count = 1;
-                        for(int i=0; i<resultSet.getSize();i++){
-                            EObject value = queryContext.getResourceSet().getEObject(resultSet.getUri(i, alia), /* loadOnDemand */true); //$NON-NLS-1$
-                            if(col.containsValue(value)){
-                                count++;
-                                col.put(value, count);   
+    private Collection<EObject> mappingForSelect(Set<EObject> contextObjects, OCLExpression<EClassifier> body, EClassifier ocType) {  
+        if(body instanceof OperationCallExp){
+            OCLExpression<EClassifier> bodySource = ((OperationCallExp)body).getSource();
+            if(bodySource instanceof PropertyCallExp){
+                OCLExpression<EClassifier> bodySourceSource = ((PropertyCallExp)bodySource).getSource();
+                if (bodySourceSource instanceof PropertyCallExp){                    
+                    EStructuralFeature prop = ((PropertyCallExp) bodySourceSource).getReferredProperty();
+                    if (prop instanceof EReference) {
+                        return selectOverBodyWithNavigation(contextObjects, body, ocType);
+                    }
+                }else{
+                    OCLExpression<EClassifier> arg = ((OperationCallExp) body).getArgument().get(0);
+                    if (arg instanceof PropertyCallExp){
+                        OCLExpression<EClassifier> argSource = ((PropertyCallExp)arg).getSource();
+                        if(argSource instanceof PropertyCallExp){
+                            PropertyCallExp src = (PropertyCallExp) argSource;
+                            EStructuralFeature prop = src.getReferredProperty();
+                            if (prop instanceof EReference) {
+                                return selectOverBodyWithComparisonAndNavigation(body, ocType, null);                         
                             }
-                            else{
-                                count=1;
-                                col.put(value, count);
-                            }
+                        }else{
+                            return selectOverBodyWithComparisonWithoutNavigation(null, body, ocType);
                         }
-                        result = col;
-                        System.out.println("successfull");
+                    }else{                
+                        return selectOverBodyWithCondition(null, body, ocType);
                     }
-                    else {
-                        Collection<EObject> col= new HashSet<EObject>();
-
-                        result = col;
-                    }
-
                 }
-
-            }else if(prop instanceof EAttribute){
-                String ali = stringBody.substring(match3.start(1), stringBody.indexOf("."));
-                try{
-                    //collect over  an attribute
-                    resultSet = queryProcessor.execute("select "+ stringBody+" from  [" + uri1 + //$NON-NLS-1$
-                            "] as "+ali, queryContext); //$NON-NLS-1$
-                } catch (RuntimeException e) {
-                    result=null;
-                }
-                finally{
-                    Map<Object, Integer> col= new HashMap<Object,Integer>();
-                    if(!resultSet.isEmpty()){
-                        int count = 1;                          
-                        for(int i = 0;i<resultSet.getSize();i++){
-                            Object value=null;
-                            Object[] attribute = resultSet.getAttributes(i, ali);
-                            for (int j=0; j<attribute.length;j++){
-                                value =attribute[j];
-                            }
-                            if(col.containsKey(value)){
-                                count++;  
-                                col.put(value,count);}
-                            else{
-                                count=1;
-                                col.put(value,count);
-                            }
-                        }
-                        System.out.println("successfull");
-                    }
-                    result = col;
-                } 
             }
-            return result;
         }
-        else{
-            //body is of type OperationCallExpression -> the expression can not be mapped
-            return result;
-        }
-}
 
-    private Collection<EObject> buildResult(ResultSet resultSet, QueryContext queryContext, String ali){
-        Collection<EObject> result= new HashSet<EObject>();
-        if(!resultSet.isEmpty()){          
-            for(int i=0; i<resultSet.getSize();i++){
+        return null;
+    }
+
+    private Map<?, Integer> mappingForCollect(Set<EObject> contextObjects, OCLExpression<EClassifier> body, EClassifier ocType) {
+        if (body instanceof PropertyCallExp) {    
+            EStructuralFeature prop = ((PropertyCallExp) body).getReferredProperty();
+            if (prop instanceof EReference) {
+                return collectOverReference(contextObjects, body, ocType);
+
+            }
+            if (prop instanceof EAttribute) {
+                return collectOverAttribute(contextObjects, body, ocType);
+            }
+        } 
+        // body is of type OperationCallExpression -> the expression can not be mapped
+        return null;
+    }
+
+    private Collection<EObject> selectOverBodyWithNavigation(Set<EObject> contextObjects, OCLExpression<EClassifier> body, EClassifier ocType) {
+        Collection<EObject> result = null;
+        ResultSet resultSet = null;
+        QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
+        QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        URI uri = EcoreUtil.getURI(ocType);
+        if (body instanceof OperationCallExp) {
+            OCLExpression<EClassifier> bodySource = ((OperationCallExp) body).getSource();
+            if (bodySource instanceof PropertyCallExp){
+                OCLExpression<EClassifier> bodySourceSource = ((PropertyCallExp)bodySource).getSource();
+                if (bodySourceSource instanceof PropertyCallExp){                    
+                    EStructuralFeature prop = ((PropertyCallExp) bodySourceSource).getReferredProperty();
+                    if (prop instanceof EReference) {
+                        String ali = ((PropertyCallExp) bodySourceSource).getSource().getName();
+                        try {
+                            // select over body with navigation
+                            // "select "+ali+" from  [" + uri1 + "] as "+ali+" where "+nav+" in ( select p2 from [" +
+                            // uri2+"] as p2 where p2." + cond+")"
+                            URI uri2 = EcoreUtil.getURI(((EReference) prop).getEType());
+                            String ali2 = ali.concat("_");
+                            Operation operation = mapStringToOperation(((OperationCallExp) body).getReferredOperation().getName());
+                            Integer value = new Integer(((OperationCallExp) body).getArgument().get(0).toString());
+                            SelectEntry nestedSelect = new SelectAlias(ali2);
+                            FromEntry nestedFrom = new FromType(ali2, uri2, /* withoutSubtypes */true);
+                            WhereInt whereLong = new WhereInt(((PropertyCallExp)bodySource).getReferredProperty().getName(), operation, value);
+                            LocalWhereEntry nestedWhere = new LocalWhereEntry(ali2, whereLong);
+                            Query nestedQuery = new Query(new SelectEntry[] { nestedSelect }, new FromEntry[] { nestedFrom },
+                                    new WhereEntry[] { nestedWhere });
+                            SelectEntry select = new SelectAlias(ali);
+                            FromEntry from = new FromType(ali, uri, /* withoutSubtypes */true);
+                            WhereNestedReference where = new WhereNestedReference(ali, prop.getName(), nestedQuery);
+                            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from }, new WhereEntry[] { where });
+                            resultSet = queryProcessor.execute(query, queryContext);
+                        } catch (RuntimeException e) {
+                        } finally {
+                            result = buildResult(resultSet, queryContext, ali);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    private Collection<EObject> selectOverBodyWithCondition(Set<EObject> contextObjects, OCLExpression<EClassifier> body, EClassifier ocType) {
+        Collection<EObject> result = null;
+        ResultSet resultSet = null;
+        QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
+        QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        URI uri = EcoreUtil.getURI(ocType);
+        if (body instanceof OperationCallExp) {
+            OCLExpression<EClassifier> bodySource = ((OperationCallExp) body).getSource();
+            if (bodySource instanceof PropertyCallExp) {
+                String ali = ((PropertyCallExp) bodySource).getSource().getName();
+                try {
+                    // select over body with condition
+                    // "select "+ ali+" from  [" + uri1 + "] as "+ali+" where " + stringBody
+                    String attrName = ((PropertyCallExp) bodySource).getReferredProperty().getName();
+                    Operation operation = mapStringToOperation(((OperationCallExp) body).getReferredOperation().getName());
+                    Integer value = new Integer(((OperationCallExp) body).getArgument().get(0).toString());
+                    SelectEntry select = new SelectAlias(ali);
+                    FromEntry from = new FromType(ali, uri, true);
+                    WhereInt whereLong = new WhereInt(attrName, operation, value);
+                    LocalWhereEntry where = new LocalWhereEntry(ali, whereLong);
+                    Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from }, new WhereEntry[] { where });
+                    resultSet = queryProcessor.execute(query, queryContext);
+                } catch (RuntimeException e) {
+                } finally {
+                    result = buildResult(resultSet, queryContext, ali);
+                }
+            }
+        }
+        return result;
+    }
+
+    private Collection<EObject> selectOverBodyWithComparisonAndNavigation(OCLExpression<EClassifier> body, EClassifier ocType, Set<EObject> contextObjects) {
+        Collection<EObject> result = null;
+        ResultSet resultSet = null;
+        QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
+        QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        URI uri = EcoreUtil.getURI(ocType);
+        if (body instanceof OperationCallExp) {
+            OCLExpression<EClassifier> arg = ((OperationCallExp) body).getArgument().get(0);
+            if (arg instanceof PropertyCallExp){
+                OCLExpression<EClassifier> argSource = ((PropertyCallExp)arg).getSource();
+                if(argSource instanceof PropertyCallExp){                    
+                    PropertyCallExp src = (PropertyCallExp) argSource;
+                    EStructuralFeature prop = src.getReferredProperty();
+                    if (prop instanceof EReference) {
+                        String ali = src.getSource().toString();
+                        try {
+                            // select over body with a comparison with navigation
+                            // "select "+ ali+" from  [" + uri1 + "] as "+ali+" ,["+uri2+"] as p3 where " +nav+"=p3 where "+ali+ cond+
+                            // "p3."+ cond2
+                            EClassifier propType = ((EReference) prop).getEType();
+                            URI uri2 = EcoreUtil.getURI(propType);
+                            PropertyCallExp bodySource = ((PropertyCallExp) ((OperationCallExp) body).getSource());
+                            String ali2 = bodySource.getSource().toString();
+                            if (ali.equals(ali2)) {
+                                ali2 = ali2.concat("_");
+                            }
+                            String navName = prop.getName();
+                            Operation operation = mapStringToOperation(((OperationCallExp) body).getReferredOperation().getName());
+                            SelectEntry select = new SelectAlias(ali);
+                            FromEntry from1 = new FromType(ali, uri, /* withoutSubtypes */true);
+                            FromEntry from2 = new FromType(ali2, uri2, /* withoutSubtypes */true);
+                            WhereRelationReference where1 = new WhereRelationReference(ali, navName, ali2);
+                            WhereComparisonAttrs where2 = new WhereComparisonAttrs(ali, bodySource.getReferredProperty().getName(),
+                                    operation, ali2, ((PropertyCallExp) arg).getReferredProperty().getName());
+                            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from1, from2 }, new WhereEntry[] {
+                                    where1, where2 });
+                            resultSet = queryProcessor.execute(query, queryContext);
+                        } catch (RuntimeException e) { }
+                        finally {
+                            result = buildResult(resultSet, queryContext, ali);
+                        }
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    private Collection<EObject> selectOverBodyWithComparisonWithoutNavigation(Set<EObject> contextObjects, OCLExpression<EClassifier> body, EClassifier ocType) {
+        Collection<EObject> result = null;
+        ResultSet resultSet = null;
+        QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
+        QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        URI uri = EcoreUtil.getURI(ocType);
+        if (body instanceof OperationCallExp) {
+            OCLExpression<EClassifier> bodySource = ((OperationCallExp) body).getSource();
+            if (bodySource instanceof PropertyCallExp) {
+                String ali = ((PropertyCallExp) bodySource).getSource().getName();
+                try {
+                    // select over body with a comparison without navigation
+                    // "select "+ ali+" from [" + uri1 + "] as p , ["+uri1+"] as "+ali+" where "+ali+"=p where "+cond
+                    String ali2 = ali.concat("_");
+                    String leftAttrName = ((PropertyCallExp) bodySource).getReferredProperty().getName();
+                    String eOp = ((OperationCallExp) body).getReferredOperation().getName();
+                    Operation operation = mapStringToOperation(eOp);
+                    OCLExpression<EClassifier> rightProperty = ((OperationCallExp) body).getArgument().get(0);
+                    if (!(rightProperty instanceof PropertyCallExp)) {
+                        throw new RuntimeException();
+                    }
+                    String rightAlias = ((PropertyCallExp) rightProperty).getSource().getName();
+                    String rightAttrName = ((PropertyCallExp) rightProperty).getReferredProperty().getName();
+                    SelectEntry select = new SelectAlias(ali);
+                    FromEntry from1 = new FromType(ali2, uri, /* withoutSubtypes */true);
+                    FromEntry from2 = new FromType(ali, uri, /* withoutSubtypes */true);
+                    WhereComparisonAliases where1 = new WhereComparisonAliases(ali, ali2);
+                    WhereComparisonAttrs where2 = new WhereComparisonAttrs(ali2, leftAttrName, operation, rightAlias,
+                            rightAttrName);
+                    Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from1, from2 }, new WhereEntry[] {
+                            where1, where2 });
+                    resultSet = queryProcessor.execute(query, queryContext);
+                } catch (RuntimeException e) {
+                } finally {
+                    result = buildResult(resultSet, queryContext, ali);
+                }
+            }
+        }
+        return result;
+    }
+
+    private Map<EObject, Integer> collectOverReference(Set<EObject> contextObjects, OCLExpression<EClassifier> body, EClassifier ocType) {
+        Map<EObject, Integer> result = null;
+        ResultSet resultSet = null;
+        QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
+        QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        URI uri = EcoreUtil.getURI(ocType);
+        // collect over an association
+        // "select "+ali2+" from  [" + uri1 + "] as "+ali+" , [" +uri2+ "] as " + ali2 + " where "+ stringBody
+        // +" in (select p2 from ["+uri2+"] as p2
+        URI uri2 = EcoreUtil.getURI(((EReference) ((PropertyCallExp) body).getReferredProperty()).getEType());
+        String ali = ((PropertyCallExp) body).getSource().getName();
+        String ali2 = ali.concat("_");
+        try {
+            String ali3 = ali2.concat("_");
+            SelectEntry nestedSelect = new SelectAlias(ali3);
+            FromEntry nestedFrom = new FromType(ali3, uri2, /* withoutSubtypes */true);
+            Query nestedQuery = new Query(new SelectEntry[] { nestedSelect }, new FromEntry[] { nestedFrom });
+            SelectEntry select = new SelectAlias(ali2);
+            FromEntry from1 = new FromType(ali, uri, /* withoutSubtypes */true);
+            FromEntry from2 = new FromType(ali2, uri2, /* withoutSubtypes */true);
+            WhereNestedReference where = new WhereNestedReference(ali, ((PropertyCallExp) body).getReferredProperty().getName(),
+                    nestedQuery);
+            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from1, from2 }, new WhereEntry[] { where });
+            resultSet = queryProcessor.execute(query, queryContext);
+
+        } catch (RuntimeException e) { }
+        finally {
+            result = new HashMap<EObject, Integer>();
+            if (!resultSet.isEmpty()) {                
+                int count = 1;
+                for (int i = 0; i < resultSet.getSize(); i++) {
+                    EObject value = queryContext.getResourceSet().getEObject(resultSet.getUri(i, ali2), /* loadOnDemand */true); //$NON-NLS-1$
+                    if (result.containsValue(value)) {
+                        count++;
+                        result.put(value, count);
+                    } else {
+                        count = 1;
+                        result.put(value, count);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
+    private Map<Object, Integer> collectOverAttribute(Set<EObject> contextObjects, OCLExpression<EClassifier> body, EClassifier ocType) {
+        Map<Object, Integer> result = null;
+        ResultSet resultSet = null;
+        QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
+        QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        URI uri = EcoreUtil.getURI(ocType);
+        String ali = ((PropertyCallExp) body).getSource().getName();
+        try {
+            // collect over an attribute
+            // "select "+ stringBody+" from  [" + uri1 + "] as "+ali
+            SelectEntry select = new SelectAttrs(ali, new String[] { ((PropertyCallExp) body).getReferredProperty().getName() });
+            FromEntry from = new FromType(ali, uri, /* withoutSubtypes */true);
+            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from });
+            resultSet = queryProcessor.execute(query, queryContext);
+        } catch (RuntimeException e) { }
+        finally {
+            Map<Object, Integer> col = new HashMap<Object, Integer>();
+            if (!resultSet.isEmpty()) {
+                int count = 1;
+                for (int i = 0; i < resultSet.getSize(); i++) {
+                    Object value = null;
+                    Object[] attribute = resultSet.getAttributes(i, ali);
+                    for (int j = 0; j < attribute.length; j++) {
+                        value = attribute[j];
+                    }
+                    if (col.containsKey(value)) {
+                        count++;
+                        col.put(value, count);
+                    } else {
+                        count = 1;
+                        col.put(value, count);
+                    }
+                }
+            }
+            result = col;
+        }
+        return result;
+    }
+
+    private Operation mapStringToOperation(String eOp) {
+        Operation operation;
+        if ("=".equals(eOp))
+            operation = Operation.EQUAL;
+        else if ("!=".equals(eOp) || "=!".equals(eOp) || "<>".equals(eOp))
+            operation = Operation.NOTEQUAL;
+        else if (">=".equals(eOp) || "=>".equals(eOp))
+            operation = Operation.GREATEREQUAL;
+        else if (">".equals(eOp))
+            operation = Operation.GREATER;
+        else if ("<=".equals(eOp) || "=<".equals(eOp))
+            operation = Operation.SMALLEREQUAL;
+        else if ("<".equals(eOp))
+            operation = Operation.SMALLER;
+        else if ("like".equalsIgnoreCase(eOp))
+            operation = Operation.GREATEREQUAL;
+        else
+            throw new RuntimeException();
+        return operation;
+    }
+
+    private Collection<EObject> buildResult(ResultSet resultSet, QueryContext queryContext, String ali) {
+        Collection<EObject> result = new HashSet<EObject>();
+        if (!resultSet.isEmpty()) {
+            for (int i = 0; i < resultSet.getSize(); i++) {
                 result.add(queryContext.getResourceSet().getEObject(resultSet.getUri(i, ali), /* loadOnDemand */true)); //$NON-NLS-1$
-            }           
+            }
         }
         return result;
     }

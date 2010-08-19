@@ -56,12 +56,12 @@ public class MappingOCL extends OCLWithHiddenOpposites {
             extents = localEvalEnv.createExtentMap(context);
         }
 
-        EvaluationVisitor<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ev;
-        ev = new MappingEvaluationVisitor(getEnvironment(), localEvalEnv, extents);
+        EvaluationVisitor<?, EClassifier, EOperation, EStructuralFeature, ?, ?, ?, ?, ?, Constraint, EClass, EObject> evalVisitor = new MappingEvaluationVisitor(
+                getEnvironment(), localEvalEnv, extents);
 
-        Object result;
+        Object result = null;
         try {
-            result = ev.visitExpression((org.eclipse.ocl.expressions.OCLExpression<EClassifier>) expression);
+            result = evalVisitor.visitExpression((org.eclipse.ocl.expressions.OCLExpression<EClassifier>) expression);
         } catch (EvaluationHaltedException e) {
             result = getEnvironment().getOCLStandardLibrary().getInvalid();
         } finally {
@@ -77,8 +77,7 @@ public class MappingOCL extends OCLWithHiddenOpposites {
         Object result = element;
 
         if (expr.eContainer() instanceof ExpressionInOCL) {
-            @SuppressWarnings("unchecked")
-            ExpressionInOCL<EClassifier, EParameter> specification = (ExpressionInOCL<EClassifier, EParameter>) expr.eContainer();
+            ExpressionInOCL<EClassifier, EParameter> specification = (org.eclipse.ocl.ecore.ExpressionInOCL) expr.eContainer();
 
             Variable<EClassifier, EParameter> contextVariable = specification.getContextVariable();
             if (contextVariable != null) {
