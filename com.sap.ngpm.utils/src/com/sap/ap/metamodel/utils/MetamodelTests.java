@@ -178,8 +178,8 @@ public class MetamodelTests extends TestCase {
         BasicDiagnostic diagnostics = new BasicDiagnostic();
         ClassesValidator.INSTANCE.validate(a, diagnostics, new HashMap<Object, Object>());
 	assertEquals("Expected exactly one constraint violation", 1, diagnostics.getChildren().size());
-	assertEquals("Associations between two value types that affect equality of both types are currently not supported. It would lead to a recursive equality definition and therefore to recursive value constructors.",
-		diagnostics.getChildren().iterator().next().getMessage());
+	assertTrue(diagnostics.getChildren().iterator().next().getMessage().startsWith(
+	        "The 'AtMostOneEqualityContributionForTwoValueClasses' constraint is violated"));
     }
     
     /**
