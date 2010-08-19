@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.Diagnostic;
@@ -305,8 +306,8 @@ public class EAnnotationOCLParserImpl implements EAnnotationOCLParser {
 
         int pos = -1;
         int count = 0;
-        for (String constraint1 : anno.getDetails().keySet()) {
-            if (constraint1.equals(constraintName)) {
+        for (Map.Entry<String, String> constraint1 : anno.getDetails()) {
+            if (constraint1.getKey().equals(constraintName)) {
                 pos = count;
                 break;
             }
