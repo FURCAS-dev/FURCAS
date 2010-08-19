@@ -9,7 +9,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
@@ -32,9 +34,12 @@ import de.hpi.sam.bp2009.solution.eventManager.filters.AssociationFilter;
 
 public class MetamodelTests extends TestCase {
     private ResourceSet resourceSet;
+    private Resource resource;
 
     public void setUp() {
 	resourceSet = new ResourceSetImpl();
+	resource = resourceSet.createResource(URI.createURI("http://some_uri.xmi"));
+	resourceSet.getResources().add(resource);
     }
     
     public void tearDown() {
@@ -50,13 +55,15 @@ public class MetamodelTests extends TestCase {
 	
 	final SapClass clazz = ClassesFactory.eINSTANCE.createSapClass();
 	final TypeAdapter ta = ClassesFactory.eINSTANCE.createTypeAdapter();
+	resource.getContents().add(clazz);
+	resource.getContents().add(ta);
 	EventManager em = EventManagerFactory.eINSTANCE.getEventManagerFor(resourceSet);
 	AssociationFilter filter = EventManagerFactory.eINSTANCE.createAssociationFilter(ClassesPackage.eINSTANCE.getTypeAdapter_To());
 	em.subscribe(filter, new AdapterImpl() {
 	    public void notifyChanged(Notification event) {
-			if (event.getEventType() == Notification.UNSET) {
-			    ok[0] = ok[0] || event.getNotifier().equals(clazz) &&
-			    	             event.getOldValue().equals(ta);
+			if (event.getEventType() == Notification.SET && event.getNewValue() == null) {
+			    ok[0] = ok[0] || event.getNotifier().equals(ta) &&
+			    	             event.getOldValue().equals(clazz);
 			}
 		    }
 	});
