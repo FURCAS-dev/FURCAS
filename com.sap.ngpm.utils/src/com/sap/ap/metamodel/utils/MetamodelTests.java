@@ -149,8 +149,8 @@ public class MetamodelTests extends TestCase {
         ClassesValidator.INSTANCE.validate(adapter, diagnostics, new HashMap<Object, Object>());
 	assertTrue("Adapter should be considered invalid and should violate the IsFullAdaptationToTo constraint",
 		diagnostics.getSeverity() != Diagnostic.OK &&
-		diagnostics.getChildren().iterator().next().getMessage().equals(
-			"[data, classes, TypeAdapter, IsFullAdaptationToTo]")
+		diagnostics.getChildren().iterator().next().getMessage().startsWith(
+		        "The 'IsFullAdaptationToTo' constraint is violated")
 		);
     }
     
