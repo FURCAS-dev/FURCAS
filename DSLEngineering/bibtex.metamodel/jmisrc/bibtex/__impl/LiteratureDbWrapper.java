@@ -77,56 +77,6 @@ public class LiteratureDbWrapper extends com.sap.tc.moin.repository.core.jmi.ref
 
      
     // methods for references
-    public java.util.Collection<bibtex.Entry> getEntry() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        try {
-            if (synchronize) {
-                synchronizationManager.acquireReadLock();
-                try {
-                    assertConnectionAlive();
-                    attachConnectionIfRequired();
-                    return (java.util.Collection<bibtex.Entry>) wrapResult(getCastWrappedObject().getEntry(connection));
-                } finally {
-                    synchronizationManager.releaseReadLock();
-                }
-       
-            }
-            assertConnectionAlive();
-            attachConnectionIfRequired();
-            return (java.util.Collection<bibtex.Entry>) wrapResult(getCastWrappedObject().getEntry(connection)); 
-        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
-            wrapJmiExceptionArgs(ex);
-            throw ex;
-        }
-    }
-
-
-
-    public java.util.Collection<bibtex.Author> getAuthor() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        try {
-            if (synchronize) {
-                synchronizationManager.acquireReadLock();
-                try {
-                    assertConnectionAlive();
-                    attachConnectionIfRequired();
-                    return (java.util.Collection<bibtex.Author>) wrapResult(getCastWrappedObject().getAuthor(connection));
-                } finally {
-                    synchronizationManager.releaseReadLock();
-                }
-       
-            }
-            assertConnectionAlive();
-            attachConnectionIfRequired();
-            return (java.util.Collection<bibtex.Author>) wrapResult(getCastWrappedObject().getAuthor(connection)); 
-        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
-            wrapJmiExceptionArgs(ex);
-            throw ex;
-        }
-    }
-
-
-
    
     // methods for modeled operations
     

@@ -16,53 +16,6 @@ public final class LitertureDbAuthorImpl extends com.sap.tc.moin.repository.core
         super(workspace, mofId, immediatePackage, metaObject);
     }
     
-    public boolean exists(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Literturedb, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return exists(get___CurrentConnection(), _Literturedb, _Authors);
-    }
-    public boolean exists(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Literturedb, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return ___existsMultN( connection, _Literturedb, _Authors, "E02C978B281FF212395111DE8F1100016CE99C52"); //$NON-NLS-1$
-    }
-    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getLiterturedb(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return getLiterturedb(get___CurrentConnection(), _Authors);
-    }
-    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getLiterturedb(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( 1 );
-        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( connection, _Authors, endAndMetaObject );
-    }
-    public java.util.Collection<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject> getAuthors(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Literturedb) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return getAuthors(get___CurrentConnection(), _Literturedb);
-    }
-    public java.util.Collection<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject> getAuthors(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Literturedb) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject>) ___getElementsAtOtherLinkEnd( connection, (com.sap.tc.moin.repository.core.CorePartitionable) _Literturedb, get___EndAndMetaObject( 0 ) );
-    }
-    public boolean add(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Literturedb, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-          return refAddLink((com.sap.tc.moin.repository.mmi.reflect.RefObject)_Literturedb, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Authors);
-    }
-    public boolean add(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Literturedb, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-          return refAddLink(connection, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Literturedb, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Authors);
-    }
-    public boolean remove(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Literturedb, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return refRemoveLink((com.sap.tc.moin.repository.mmi.reflect.RefObject)_Literturedb, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Authors);
-    }
-    public boolean remove(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Literturedb, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return refRemoveLink(connection, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Literturedb, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Authors);
-    }
-    public boolean refLinkExists(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefObject firstEnd, com.sap.tc.moin.repository.mmi.reflect.RefObject secondEnd) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        if ( firstEnd == null || secondEnd == null ) { return false; }
-        checkTypesForRefLinkExists( connection, firstEnd, secondEnd );
-        return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
-    }
 
     @SuppressWarnings("unchecked")
     public java.lang.Class<bibtex.LitertureDbAuthor> get___JmiInterface() {

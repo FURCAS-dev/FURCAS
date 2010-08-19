@@ -16,52 +16,6 @@ public final class EntryAuthorImpl extends com.sap.tc.moin.repository.core.jmi.r
         super(workspace, mofId, immediatePackage, metaObject);
     }
     
-    public boolean exists(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Publications, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return exists(get___CurrentConnection(), _Publications, _Authors);
-    }
-    public boolean exists(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Publications, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return ___existsMultN( connection, _Publications, _Authors, "E02C978B3A2F82E2395111DE940E00016CE99C52"); //$NON-NLS-1$
-    }
-    public java.util.Collection<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject> getPublications(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return getPublications(get___CurrentConnection(), _Authors);
-    }
-    public java.util.Collection<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject> getPublications(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject>) ___queryElementsAtOtherLinkEnd( connection, (com.sap.tc.moin.repository.core.CorePartitionable) _Authors, get___EndAndMetaObject( 1 ) );
-    }
-    public java.util.Collection<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject> getAuthors(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Publications) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return getAuthors(get___CurrentConnection(), _Publications);
-    }
-    public java.util.Collection<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject> getAuthors(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Publications) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection<com.sap.tc.moin.repository.mmi.reflect.RefBaseObject>) ___getElementsAtOtherLinkEnd( connection, (com.sap.tc.moin.repository.core.CorePartitionable) _Publications, get___EndAndMetaObject( 0 ) );
-    }
-    public boolean add(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Publications, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-          return refAddLink((com.sap.tc.moin.repository.mmi.reflect.RefObject)_Publications, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Authors);
-    }
-    public boolean add(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Publications, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-          return refAddLink(connection, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Publications, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Authors);
-    }
-    public boolean remove(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Publications, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return refRemoveLink((com.sap.tc.moin.repository.mmi.reflect.RefObject)_Publications, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Authors);
-    }
-    public boolean remove(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Publications, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return refRemoveLink(connection, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Publications, (com.sap.tc.moin.repository.mmi.reflect.RefObject)_Authors);
-    }
-    public boolean refLinkExists(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefObject firstEnd, com.sap.tc.moin.repository.mmi.reflect.RefObject secondEnd) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        if ( firstEnd == null || secondEnd == null ) { return false; }
-        checkTypesForRefLinkExists( connection, firstEnd, secondEnd );
-        return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
-    }
 
     @SuppressWarnings("unchecked")
     public java.lang.Class<bibtex.EntryAuthor> get___JmiInterface() {

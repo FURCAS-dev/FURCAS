@@ -37,32 +37,14 @@ public final class AuthorImpl extends com.sap.tc.moin.repository.core.jmi.reflec
     }
     public void setName(java.lang.String newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(get___CurrentConnection(), 1, "E0412956EEB52010542E11DE893500016CE99C52", __name, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(get___CurrentConnection(), 1, "E012BF1E9E0A44E0A62811DFC89DFAEF0A0001C6", __name, newValue); //$NON-NLS-1$
     }
     public void setName(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(connection, 1, "E0412956EEB52010542E11DE893500016CE99C52", __name, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(connection, 1, "E012BF1E9E0A44E0A62811DFC89DFAEF0A0001C6", __name, newValue); //$NON-NLS-1$
     }
-
-    // methods for references
-    public java.util.Collection getPublications() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___queryElementsAtOtherLinkEnd( get___CurrentConnection(), this, get___EndAndMetaObject( "E02C978B3A2F82E0395111DE9DE900016CE99C52" /* attribute or association */, 0 ) ); //$NON-NLS-1$
-       
-    }
-    public java.util.Collection getPublications(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___queryElementsAtOtherLinkEnd( connection, this, get___EndAndMetaObject( "E02C978B3A2F82E0395111DE9DE900016CE99C52" /* attribute or association */, 0 ) ); //$NON-NLS-1$
-       
-    }
-
-
 
     // methods for internal attribute setter
-    private void set__Name(java.lang.String newValue) {
-            __name = newValue;
-    }
-
 
     // reflective methods
     public java.lang.Object refGetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName) {
@@ -75,16 +57,9 @@ public final class AuthorImpl extends com.sap.tc.moin.repository.core.jmi.reflec
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "refGetValue(String)"); //$NON-NLS-1$
         }
         switch (featureId) {
-            case 0: 
-                result = getPublications(connection);
-                break;
-            case 1: 
-                result = getName();
-                break;
         default:
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "refGetValue(String)"); //$NON-NLS-1$
         }
-        return result;
     }
 
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
@@ -96,14 +71,6 @@ public final class AuthorImpl extends com.sap.tc.moin.repository.core.jmi.reflec
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "refSetValue(String)"); //$NON-NLS-1$
         }
         switch (featureId) {
-            case 0:
-                ___changeReference(connection, "E02C978B3A2F82E0395111DE9DE900016CE99C52" /* mofId of association */, "E0C85117219638B0395511DEAF0200016CE99C52" /* mofId of reference */, value, 0); //$NON-NLS-1$ //$NON-NLS-2$     
-                break;
-                    
-            case 1:
-                ___changeDataTypeAttribute(connection, 1, "E0412956EEB52010542E11DE893500016CE99C52", __name, value); //$NON-NLS-1$
-                break;
-                    
         default:
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
@@ -111,9 +78,6 @@ public final class AuthorImpl extends com.sap.tc.moin.repository.core.jmi.reflec
 
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
-            case 1:
-                set__Name((java.lang.String) value);     
-                break;
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
@@ -121,9 +85,6 @@ public final class AuthorImpl extends com.sap.tc.moin.repository.core.jmi.reflec
 
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
-            case 1:
-                set__Name((java.lang.String) value);     
-                break;
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
@@ -131,9 +92,6 @@ public final class AuthorImpl extends com.sap.tc.moin.repository.core.jmi.reflec
 
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
-            case 1:
-                set__Name((java.lang.String) value);     
-                break;
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }

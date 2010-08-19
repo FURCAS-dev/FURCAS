@@ -27,58 +27,9 @@ public interface Entry extends com.sap.tc.moin.repository.mmi.reflect.RefObject 
     public java.lang.String getId() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setId(java.lang.String newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
-    // references
-    public java.util.Collection<bibtex.Author> getAuthor() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public bibtex.LiteratureDb getLiterturedb() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public void setLiterturedb(bibtex.LiteratureDb newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-
 
     public static final class Descriptors {
         Descriptors( ) { 
-        }
-        private com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,bibtex.Entry,java.lang.String> __title;
-        /**
-         * Returns the descriptor for the <code>title</code> attribute.
-         * @return  the descriptor for the <code>title</code> attribute
-         */
-        public synchronized com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,bibtex.Entry,java.lang.String> TITLE( ) {
-            if ( __title == null ) {
-                __title = new com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,bibtex.Entry,java.lang.String>( "E02C978B50904560395111DE842F00016CE99C52", "sap.com/moin/mm/bibtex.metamodel", new java.lang.String[] { "Bibtex", "Entry", "title" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
-            }
-            return __title;
-        }
-        private com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,bibtex.Entry,java.lang.String> __id;
-        /**
-         * Returns the descriptor for the <code>id</code> attribute.
-         * @return  the descriptor for the <code>id</code> attribute
-         */
-        public synchronized com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,bibtex.Entry,java.lang.String> ID( ) {
-            if ( __id == null ) {
-                __id = new com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,bibtex.Entry,java.lang.String>( "E041295660826D10542F11DEB79800016CE99C52", "sap.com/moin/mm/bibtex.metamodel", new java.lang.String[] { "Bibtex", "Entry", "id" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
-            }
-            return __id;
-        }
-        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,bibtex.Entry,java.util.Collection<bibtex.Author>> __author;
-        /**
-         * Returns the descriptor for the <code>author</code> reference.
-         * @return  the descriptor for the <code>author</code> reference
-         */
-        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,bibtex.Entry,java.util.Collection<bibtex.Author>> AUTHOR( ) {
-            if ( __author == null ) {
-                __author = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,bibtex.Entry,java.util.Collection<bibtex.Author>>( "E02C978B3A310980395111DEC43000016CE99C52", "sap.com/moin/mm/bibtex.metamodel", new java.lang.String[] { "Bibtex", "Entry", "author" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
-            }
-            return __author;
-        }
-        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,bibtex.Entry,bibtex.LiteratureDb> __literturedb;
-        /**
-         * Returns the descriptor for the <code>literturedb</code> reference.
-         * @return  the descriptor for the <code>literturedb</code> reference
-         */
-        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,bibtex.Entry,bibtex.LiteratureDb> LITERTUREDB( ) {
-            if ( __literturedb == null ) {
-                __literturedb = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,bibtex.Entry,bibtex.LiteratureDb>( "E0C8511715DE7F00395511DEA98700016CE99C52", "sap.com/moin/mm/bibtex.metamodel", new java.lang.String[] { "Bibtex", "Entry", "literturedb" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
-            }
-            return __literturedb;
         }
     }
 }    

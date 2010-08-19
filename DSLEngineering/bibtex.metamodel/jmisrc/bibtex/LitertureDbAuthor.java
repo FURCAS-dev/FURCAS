@@ -16,9 +16,4 @@ public interface LitertureDbAuthor extends com.sap.tc.moin.repository.mmi.reflec
 
 
     // association interface
-    public boolean exists(bibtex.LiteratureDb _Literturedb, bibtex.Author _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public bibtex.LiteratureDb getLiterturedb(bibtex.Author _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public java.util.Collection<bibtex.Author> getAuthors(bibtex.LiteratureDb _Literturedb) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public boolean add(bibtex.LiteratureDb _Literturedb, bibtex.Author _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public boolean remove(bibtex.LiteratureDb _Literturedb, bibtex.Author _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 }
