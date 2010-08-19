@@ -62,40 +62,6 @@ public final class EntryImpl extends com.sap.tc.moin.repository.core.jmi.reflect
           ___changeDataTypeAttribute(connection, 3, "E041295660826D10542F11DEB79800016CE99C52", __id, newValue); //$NON-NLS-1$
     }
 
-    // methods for references
-    public java.util.Collection getAuthor() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___getElementsAtOtherLinkEnd( get___CurrentConnection(), this, get___EndAndMetaObject( "E02C978B3A2F82E0395111DE9DE900016CE99C52" /* attribute or association */, 1 ) ) ; //$NON-NLS-1$
-       
-    }
-    public java.util.Collection getAuthor(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___getElementsAtOtherLinkEnd( connection, this, get___EndAndMetaObject( "E02C978B3A2F82E0395111DE9DE900016CE99C52" /* attribute or association */, 1 ) ) ; //$NON-NLS-1$
-       
-    }
-
-
-    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getLiterturedb() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E02C978B24982AE0395111DEA43F00016CE99C52" /* attribute or association */, 0 ); //$NON-NLS-1$
-        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( get___CurrentConnection(), endAndMetaObject );   
-    }
-    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getLiterturedb(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E02C978B24982AE0395111DEA43F00016CE99C52" /* attribute or association */, 0 ); //$NON-NLS-1$
-        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( connection, endAndMetaObject );   
-    }
-    public void setLiterturedb(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-          ___changeReference(get___CurrentConnection(), /* mofId of association */ "E02C978B24982AE0395111DEA43F00016CE99C52", /* mofId of reference */ "E0C8511715DE7F00395511DEA98700016CE99C52" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
-    }
-    public void setLiterturedb(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-          ___changeReference(connection, /* mofId of association */ "E02C978B24982AE0395111DEA43F00016CE99C52", /* mofId of reference */ "E0C8511715DE7F00395511DEA98700016CE99C52" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
-    }
-
     // methods for internal attribute setter
     private void set__Title(java.lang.String newValue) {
             __title = newValue;

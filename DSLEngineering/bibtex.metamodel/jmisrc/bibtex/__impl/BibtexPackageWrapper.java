@@ -44,28 +44,6 @@ public class BibtexPackageWrapper extends com.sap.tc.moin.repository.core.jmi.re
             throw ex;
         }
     }
-    public com.sap.tc.moin.repository.mmi.reflect.RefClass getAuthor()
-    {
-        try {
-            if (synchronize) {
-                synchronizationManager.acquireReadLock();
-                try {
-                    assertConnectionAlive();
-                    attachConnectionIfRequired();
-                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getAuthor(connection));
-                } finally {
-                    synchronizationManager.releaseReadLock();
-                }
-       
-            }
-            assertConnectionAlive();
-            attachConnectionIfRequired();
-            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getAuthor(connection)); 
-        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
-            wrapJmiExceptionArgs(ex);
-            throw ex;
-        }
-    }
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getLiteratureDb()
     {
         try {
@@ -83,6 +61,28 @@ public class BibtexPackageWrapper extends com.sap.tc.moin.repository.core.jmi.re
             assertConnectionAlive();
             attachConnectionIfRequired();
             return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getLiteratureDb(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getAuthor()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getAuthor(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getAuthor(connection)); 
         } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
             wrapJmiExceptionArgs(ex);
             throw ex;

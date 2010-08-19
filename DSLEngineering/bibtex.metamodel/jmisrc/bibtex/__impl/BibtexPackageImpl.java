@@ -13,8 +13,8 @@ public final class BibtexPackageImpl extends com.sap.tc.moin.repository.core.jmi
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
         FEATURE_IDS.put("Entry", Integer.valueOf(0)); //$NON-NLS-1$
-        FEATURE_IDS.put("Author", Integer.valueOf(1)); //$NON-NLS-1$
-        FEATURE_IDS.put("LiteratureDb", Integer.valueOf(2)); //$NON-NLS-1$
+        FEATURE_IDS.put("LiteratureDb", Integer.valueOf(1)); //$NON-NLS-1$
+        FEATURE_IDS.put("Author", Integer.valueOf(2)); //$NON-NLS-1$
         FEATURE_IDS.put("LitertureDb_Entry", Integer.valueOf(3)); //$NON-NLS-1$
         FEATURE_IDS.put("LitertureDb_Author", Integer.valueOf(4)); //$NON-NLS-1$
         FEATURE_IDS.put("Entry_Author", Integer.valueOf(5)); //$NON-NLS-1$
@@ -36,11 +36,11 @@ public final class BibtexPackageImpl extends com.sap.tc.moin.repository.core.jmi
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getEntry(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refClass(connection, "Entry"); //$NON-NLS-1$
     }
-    public com.sap.tc.moin.repository.mmi.reflect.RefClass getAuthor(com.sap.tc.moin.repository.core.CoreConnection connection) {
-        return  refClass(connection, "Author"); //$NON-NLS-1$
-    }
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getLiteratureDb(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refClass(connection, "LiteratureDb"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getAuthor(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "Author"); //$NON-NLS-1$
     }
     // associations
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getLitertureDbEntry(com.sap.tc.moin.repository.core.CoreConnection connection) {
@@ -62,9 +62,9 @@ public final class BibtexPackageImpl extends com.sap.tc.moin.repository.core.jmi
                 case 0:
                     return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("bibtex.__impl.EntryImpl")); //$NON-NLS-1$
                 case 1:
-                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("bibtex.__impl.AuthorImpl")); //$NON-NLS-1$
-                case 2:
                     return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("bibtex.__impl.LiteratureDbImpl")); //$NON-NLS-1$
+                case 2:
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("bibtex.__impl.AuthorImpl")); //$NON-NLS-1$
                 case 3:
                     return new bibtex.__impl.LitertureDbEntryImpl(workspace, mofId, immediatePackage, metaObject);
                 case 4:
@@ -107,12 +107,12 @@ public final class BibtexPackageImpl extends com.sap.tc.moin.repository.core.jmi
             rcan = new RefClassAndName(name, "bibtex.Entry"); //$NON-NLS-1$
             ___refClasses.add(rcan);
             ___refClassesByName.put(name, rcan);
-            name = "Author"; //$NON-NLS-1$
-            rcan = new RefClassAndName(name, "bibtex.Author"); //$NON-NLS-1$
-            ___refClasses.add(rcan);
-            ___refClassesByName.put(name, rcan);
             name = "LiteratureDb"; //$NON-NLS-1$
             rcan = new RefClassAndName(name, "bibtex.LiteratureDb"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
+            name = "Author"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "bibtex.Author"); //$NON-NLS-1$
             ___refClasses.add(rcan);
             ___refClassesByName.put(name, rcan);
         }

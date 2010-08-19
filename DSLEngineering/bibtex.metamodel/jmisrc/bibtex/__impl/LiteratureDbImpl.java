@@ -49,32 +49,6 @@ public final class LiteratureDbImpl extends com.sap.tc.moin.repository.core.jmi.
           ___changeDataTypeAttribute(connection, 2, "E03D84711AE3A5B060D911DEC6E0C4600A59867A", __name, newValue); //$NON-NLS-1$
     }
 
-    // methods for references
-    public java.util.Collection getEntry() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___getElementsAtOtherLinkEnd( get___CurrentConnection(), this, get___EndAndMetaObject( "E02C978B24982AE0395111DEA43F00016CE99C52" /* attribute or association */, 1 ) ) ; //$NON-NLS-1$
-       
-    }
-    public java.util.Collection getEntry(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___getElementsAtOtherLinkEnd( connection, this, get___EndAndMetaObject( "E02C978B24982AE0395111DEA43F00016CE99C52" /* attribute or association */, 1 ) ) ; //$NON-NLS-1$
-       
-    }
-
-
-    public java.util.Collection getAuthor() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___getElementsAtOtherLinkEnd( get___CurrentConnection(), this, get___EndAndMetaObject( "E02C978B281FF210395111DE99CC00016CE99C52" /* attribute or association */, 1 ) ) ; //$NON-NLS-1$
-       
-    }
-    public java.util.Collection getAuthor(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___getElementsAtOtherLinkEnd( connection, this, get___EndAndMetaObject( "E02C978B281FF210395111DE99CC00016CE99C52" /* attribute or association */, 1 ) ) ; //$NON-NLS-1$
-       
-    }
-
-
-
     // methods for internal attribute setter
     private void set__Name(java.lang.String newValue) {
             __name = newValue;

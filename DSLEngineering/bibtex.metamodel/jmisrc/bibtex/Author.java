@@ -5,6 +5,7 @@
 package bibtex;
 
 /**
+ * /**  
  * This interface is not intended to be implemented by clients.
  */
 public interface Author extends com.sap.tc.moin.repository.mmi.reflect.RefObject {
@@ -18,14 +19,23 @@ public interface Author extends com.sap.tc.moin.repository.mmi.reflect.RefObject
     /**
      * Extent descriptor
      */
-    public final com.sap.tc.moin.repository.mmi.descriptors.ClassDescriptor<com.sap.tc.moin.repository.mmi.reflect.RefClass, bibtex.Author> CLASS_DESCRIPTOR = new com.sap.tc.moin.repository.mmi.descriptors.ClassDescriptor<com.sap.tc.moin.repository.mmi.reflect.RefClass, bibtex.Author>("E02C978B118CADE0395111DE8BC900016CE99C52", "sap.com/moin/mm/bibtex.metamodel", "Bibtex", "Author"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ 
+    public final com.sap.tc.moin.repository.mmi.descriptors.ClassDescriptor<com.sap.tc.moin.repository.mmi.reflect.RefClass, bibtex.Author> CLASS_DESCRIPTOR = new com.sap.tc.moin.repository.mmi.descriptors.ClassDescriptor<com.sap.tc.moin.repository.mmi.reflect.RefClass, bibtex.Author>("E04695308CE3C440A61711DF9EFFFAD68D1505E2", "sap.com/moin/mm/bibtex.metamodel", "Bibtex", "Author"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ 
 
     
     // attributes
+    /**
+     * /**  
+     */
     public java.lang.String getName() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    /**
+     * /**  
+     */
     public void setName(java.lang.String newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
     // references
+    /**
+     * /**  
+     */
     public java.util.Collection<bibtex.Entry> getPublications() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
@@ -39,7 +49,7 @@ public interface Author extends com.sap.tc.moin.repository.mmi.reflect.RefObject
          */
         public synchronized com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,bibtex.Author,java.lang.String> NAME( ) {
             if ( __name == null ) {
-                __name = new com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,bibtex.Author,java.lang.String>( "E0412956EEB52010542E11DE893500016CE99C52", "sap.com/moin/mm/bibtex.metamodel", new java.lang.String[] { "Bibtex", "Author", "name" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+                __name = new com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,bibtex.Author,java.lang.String>( "E012BF1E9E0A44E0A62811DFC89DFAEF0A0001C6", "sap.com/moin/mm/bibtex.metamodel", new java.lang.String[] { "Bibtex", "Author", "name" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
             }
             return __name;
         }
@@ -50,7 +60,7 @@ public interface Author extends com.sap.tc.moin.repository.mmi.reflect.RefObject
          */
         public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,bibtex.Author,java.util.Collection<bibtex.Entry>> PUBLICATIONS( ) {
             if ( __publications == null ) {
-                __publications = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,bibtex.Author,java.util.Collection<bibtex.Entry>>( "E0C85117219638B0395511DEAF0200016CE99C52", "sap.com/moin/mm/bibtex.metamodel", new java.lang.String[] { "Bibtex", "Author", "publications" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+                __publications = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,bibtex.Author,java.util.Collection<bibtex.Entry>>( "E012BF1E9E01B960A62811DF9802FAEF0A0001C6", "sap.com/moin/mm/bibtex.metamodel", new java.lang.String[] { "Bibtex", "Author", "publications" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
             }
             return __publications;
         }

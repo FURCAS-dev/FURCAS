@@ -77,31 +77,6 @@ public class AuthorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
 
      
     // methods for references
-    public java.util.Collection<bibtex.Entry> getPublications() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        try {
-            if (synchronize) {
-                synchronizationManager.acquireReadLock();
-                try {
-                    assertConnectionAlive();
-                    attachConnectionIfRequired();
-                    return (java.util.Collection<bibtex.Entry>) wrapResult(getCastWrappedObject().getPublications(connection));
-                } finally {
-                    synchronizationManager.releaseReadLock();
-                }
-       
-            }
-            assertConnectionAlive();
-            attachConnectionIfRequired();
-            return (java.util.Collection<bibtex.Entry>) wrapResult(getCastWrappedObject().getPublications(connection)); 
-        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
-            wrapJmiExceptionArgs(ex);
-            throw ex;
-        }
-    }
-
-
-
    
     // methods for modeled operations
     

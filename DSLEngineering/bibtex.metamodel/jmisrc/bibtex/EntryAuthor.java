@@ -16,9 +16,4 @@ public interface EntryAuthor extends com.sap.tc.moin.repository.mmi.reflect.RefA
 
 
     // association interface
-    public boolean exists(bibtex.Entry _Publications, bibtex.Author _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public java.util.Collection<bibtex.Entry> getPublications(bibtex.Author _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public java.util.Collection<bibtex.Author> getAuthors(bibtex.Entry _Publications) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public boolean add(bibtex.Entry _Publications, bibtex.Author _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public boolean remove(bibtex.Entry _Publications, bibtex.Author _Authors) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 }
