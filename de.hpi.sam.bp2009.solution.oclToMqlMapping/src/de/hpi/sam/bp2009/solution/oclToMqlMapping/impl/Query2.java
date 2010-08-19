@@ -121,7 +121,6 @@ public class Query2 {
             EStructuralFeature prop = ((PropertyCallExp) body).getReferredProperty();
             if (prop instanceof EReference) {
                 return collectOverReference(contextObjects, body, ocType);
-
             }
             if (prop instanceof EAttribute) {
                 return collectOverAttribute(contextObjects, body, ocType);
@@ -136,41 +135,33 @@ public class Query2 {
         ResultSet resultSet = null;
         QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
         QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-        URI uri = EcoreUtil.getURI(ocType);
-        if (body instanceof OperationCallExp) {
-            OCLExpression<EClassifier> bodySource = ((OperationCallExp) body).getSource();
-            if (bodySource instanceof PropertyCallExp){
-                OCLExpression<EClassifier> bodySourceSource = ((PropertyCallExp)bodySource).getSource();
-                if (bodySourceSource instanceof PropertyCallExp){                    
-                    EStructuralFeature prop = ((PropertyCallExp) bodySourceSource).getReferredProperty();
-                    if (prop instanceof EReference) {
-                        String ali = ((PropertyCallExp) bodySourceSource).getSource().getName();
-                        try {
-                            // select over body with navigation
-                            // "select "+ali+" from  [" + uri1 + "] as "+ali+" where "+nav+" in ( select p2 from [" +
-                            // uri2+"] as p2 where p2." + cond+")"
-                            URI uri2 = EcoreUtil.getURI(((EReference) prop).getEType());
-                            String ali2 = ali.concat("_");
-                            Operation operation = mapStringToOperation(((OperationCallExp) body).getReferredOperation().getName());
-                            Integer value = new Integer(((OperationCallExp) body).getArgument().get(0).toString());
-                            SelectEntry nestedSelect = new SelectAlias(ali2);
-                            FromEntry nestedFrom = new FromType(ali2, uri2, /* withoutSubtypes */true);
-                            WhereInt whereLong = new WhereInt(((PropertyCallExp)bodySource).getReferredProperty().getName(), operation, value);
-                            LocalWhereEntry nestedWhere = new LocalWhereEntry(ali2, whereLong);
-                            Query nestedQuery = new Query(new SelectEntry[] { nestedSelect }, new FromEntry[] { nestedFrom },
-                                    new WhereEntry[] { nestedWhere });
-                            SelectEntry select = new SelectAlias(ali);
-                            FromEntry from = new FromType(ali, uri, /* withoutSubtypes */true);
-                            WhereNestedReference where = new WhereNestedReference(ali, prop.getName(), nestedQuery);
-                            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from }, new WhereEntry[] { where });
-                            resultSet = queryProcessor.execute(query, queryContext);
-                        } catch (RuntimeException e) {
-                        } finally {
-                            result = buildResult(resultSet, queryContext, ali);
-                        }
-                    }
-                }
-            }
+        URI uri = EcoreUtil.getURI(ocType);        
+        OCLExpression<EClassifier> bodySource = ((OperationCallExp) body).getSource();            
+        OCLExpression<EClassifier> bodySourceSource = ((PropertyCallExp)bodySource).getSource();                                   
+        EStructuralFeature prop = ((PropertyCallExp) bodySourceSource).getReferredProperty();                    
+        String ali = ((PropertyCallExp) bodySourceSource).getSource().getName();
+        try {
+            // select over body with navigation
+            // "select "+ali+" from  [" + uri1 + "] as "+ali+" where "+nav+" in ( select p2 from [" +
+            // uri2+"] as p2 where p2." + cond+")"
+            URI uri2 = EcoreUtil.getURI(((EReference) prop).getEType());
+            String ali2 = ali.concat("_");
+            Operation operation = mapStringToOperation(((OperationCallExp) body).getReferredOperation().getName());
+            Integer value = new Integer(((OperationCallExp) body).getArgument().get(0).toString());
+            SelectEntry nestedSelect = new SelectAlias(ali2);
+            FromEntry nestedFrom = new FromType(ali2, uri2, /* withoutSubtypes */true);
+            WhereInt whereLong = new WhereInt(((PropertyCallExp)bodySource).getReferredProperty().getName(), operation, value);
+            LocalWhereEntry nestedWhere = new LocalWhereEntry(ali2, whereLong);
+            Query nestedQuery = new Query(new SelectEntry[] { nestedSelect }, new FromEntry[] { nestedFrom },
+                    new WhereEntry[] { nestedWhere });
+            SelectEntry select = new SelectAlias(ali);
+            FromEntry from = new FromType(ali, uri, /* withoutSubtypes */true);
+            WhereNestedReference where = new WhereNestedReference(ali, prop.getName(), nestedQuery);
+            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from }, new WhereEntry[] { where });
+            resultSet = queryProcessor.execute(query, queryContext);
+        } catch (RuntimeException e) {
+        } finally {
+            result = buildResult(resultSet, queryContext, ali);
         }
         return result;
     }
@@ -180,28 +171,24 @@ public class Query2 {
         ResultSet resultSet = null;
         QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
         QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-        URI uri = EcoreUtil.getURI(ocType);
-        if (body instanceof OperationCallExp) {
-            OCLExpression<EClassifier> bodySource = ((OperationCallExp) body).getSource();
-            if (bodySource instanceof PropertyCallExp) {
-                String ali = ((PropertyCallExp) bodySource).getSource().getName();
-                try {
-                    // select over body with condition
-                    // "select "+ ali+" from  [" + uri1 + "] as "+ali+" where " + stringBody
-                    String attrName = ((PropertyCallExp) bodySource).getReferredProperty().getName();
-                    Operation operation = mapStringToOperation(((OperationCallExp) body).getReferredOperation().getName());
-                    Integer value = new Integer(((OperationCallExp) body).getArgument().get(0).toString());
-                    SelectEntry select = new SelectAlias(ali);
-                    FromEntry from = new FromType(ali, uri, true);
-                    WhereInt whereLong = new WhereInt(attrName, operation, value);
-                    LocalWhereEntry where = new LocalWhereEntry(ali, whereLong);
-                    Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from }, new WhereEntry[] { where });
-                    resultSet = queryProcessor.execute(query, queryContext);
-                } catch (RuntimeException e) {
-                } finally {
-                    result = buildResult(resultSet, queryContext, ali);
-                }
-            }
+        URI uri = EcoreUtil.getURI(ocType);        
+        OCLExpression<EClassifier> bodySource = ((OperationCallExp) body).getSource();          
+        String ali = ((PropertyCallExp) bodySource).getSource().getName();
+        try {
+            // select over body with condition
+            // "select "+ ali+" from  [" + uri1 + "] as "+ali+" where " + stringBody
+            String attrName = ((PropertyCallExp) bodySource).getReferredProperty().getName();
+            Operation operation = mapStringToOperation(((OperationCallExp) body).getReferredOperation().getName());
+            Integer value = new Integer(((OperationCallExp) body).getArgument().get(0).toString());
+            SelectEntry select = new SelectAlias(ali);
+            FromEntry from = new FromType(ali, uri, true);
+            WhereInt whereLong = new WhereInt(attrName, operation, value);
+            LocalWhereEntry where = new LocalWhereEntry(ali, whereLong);
+            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from }, new WhereEntry[] { where });
+            resultSet = queryProcessor.execute(query, queryContext);
+        } catch (RuntimeException e) {
+        } finally {
+            result = buildResult(resultSet, queryContext, ali);
         }
         return result;
     }
@@ -211,45 +198,36 @@ public class Query2 {
         ResultSet resultSet = null;
         QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
         QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-        URI uri = EcoreUtil.getURI(ocType);
-        if (body instanceof OperationCallExp) {
-            OCLExpression<EClassifier> arg = ((OperationCallExp) body).getArgument().get(0);
-            if (arg instanceof PropertyCallExp){
-                OCLExpression<EClassifier> argSource = ((PropertyCallExp)arg).getSource();
-                if(argSource instanceof PropertyCallExp){                    
-                    PropertyCallExp src = (PropertyCallExp) argSource;
-                    EStructuralFeature prop = src.getReferredProperty();
-                    if (prop instanceof EReference) {
-                        String ali = src.getSource().toString();
-                        try {
-                            // select over body with a comparison with navigation
-                            // "select "+ ali+" from  [" + uri1 + "] as "+ali+" ,["+uri2+"] as p3 where " +nav+"=p3 where "+ali+ cond+
-                            // "p3."+ cond2
-                            EClassifier propType = ((EReference) prop).getEType();
-                            URI uri2 = EcoreUtil.getURI(propType);
-                            PropertyCallExp bodySource = ((PropertyCallExp) ((OperationCallExp) body).getSource());
-                            String ali2 = bodySource.getSource().toString();
-                            if (ali.equals(ali2)) {
-                                ali2 = ali2.concat("_");
-                            }
-                            String navName = prop.getName();
-                            Operation operation = mapStringToOperation(((OperationCallExp) body).getReferredOperation().getName());
-                            SelectEntry select = new SelectAlias(ali);
-                            FromEntry from1 = new FromType(ali, uri, /* withoutSubtypes */true);
-                            FromEntry from2 = new FromType(ali2, uri2, /* withoutSubtypes */true);
-                            WhereRelationReference where1 = new WhereRelationReference(ali, navName, ali2);
-                            WhereComparisonAttrs where2 = new WhereComparisonAttrs(ali, bodySource.getReferredProperty().getName(),
-                                    operation, ali2, ((PropertyCallExp) arg).getReferredProperty().getName());
-                            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from1, from2 }, new WhereEntry[] {
-                                    where1, where2 });
-                            resultSet = queryProcessor.execute(query, queryContext);
-                        } catch (RuntimeException e) { }
-                        finally {
-                            result = buildResult(resultSet, queryContext, ali);
-                        }
-                    }
-                }
+        URI uri = EcoreUtil.getURI(ocType);       
+        OCLExpression<EClassifier> arg = ((OperationCallExp) body).getArgument().get(0);            
+        OCLExpression<EClassifier> argSource = ((PropertyCallExp)arg).getSource();                            
+        PropertyCallExp src = (PropertyCallExp) argSource;
+        EStructuralFeature prop = src.getReferredProperty();                   
+        String ali = src.getSource().toString();
+        try {
+            // select over body with a comparison with navigation
+            // "select "+ ali+" from  [" + uri1 + "] as "+ali+" ,["+uri2+"] as p3 where " +nav+"=p3 where "+ali+ cond+ "p3."+ cond2
+            EClassifier propType = ((EReference) prop).getEType();
+            URI uri2 = EcoreUtil.getURI(propType);
+            PropertyCallExp bodySource = ((PropertyCallExp) ((OperationCallExp) body).getSource());
+            String ali2 = bodySource.getSource().toString();
+            if (ali.equals(ali2)) {
+                ali2 = ali2.concat("_");
             }
+            String navName = prop.getName();
+            Operation operation = mapStringToOperation(((OperationCallExp) body).getReferredOperation().getName());
+            SelectEntry select = new SelectAlias(ali);
+            FromEntry from1 = new FromType(ali, uri, /* withoutSubtypes */true);
+            FromEntry from2 = new FromType(ali2, uri2, /* withoutSubtypes */true);
+            WhereRelationReference where1 = new WhereRelationReference(ali, navName, ali2);
+            WhereComparisonAttrs where2 = new WhereComparisonAttrs(ali, bodySource.getReferredProperty().getName(),
+                    operation, ali2, ((PropertyCallExp) arg).getReferredProperty().getName());
+            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from1, from2 }, new WhereEntry[] {
+                    where1, where2 });
+            resultSet = queryProcessor.execute(query, queryContext);
+        } catch (RuntimeException e) { }
+        finally {
+            result = buildResult(resultSet, queryContext, ali);
         }
         return result;
     }
@@ -259,38 +237,34 @@ public class Query2 {
         ResultSet resultSet = null;
         QueryContext queryContext = new ProjectBasedQueryContextScopeProviderImpl(contextObjects.toArray(new EObject[contextObjects.size()])).getForwardScopeAsQueryContext();
         QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
-        URI uri = EcoreUtil.getURI(ocType);
-        if (body instanceof OperationCallExp) {
-            OCLExpression<EClassifier> bodySource = ((OperationCallExp) body).getSource();
-            if (bodySource instanceof PropertyCallExp) {
-                String ali = ((PropertyCallExp) bodySource).getSource().getName();
-                try {
-                    // select over body with a comparison without navigation
-                    // "select "+ ali+" from [" + uri1 + "] as p , ["+uri1+"] as "+ali+" where "+ali+"=p where "+cond
-                    String ali2 = ali.concat("_");
-                    String leftAttrName = ((PropertyCallExp) bodySource).getReferredProperty().getName();
-                    String eOp = ((OperationCallExp) body).getReferredOperation().getName();
-                    Operation operation = mapStringToOperation(eOp);
-                    OCLExpression<EClassifier> rightProperty = ((OperationCallExp) body).getArgument().get(0);
-                    if (!(rightProperty instanceof PropertyCallExp)) {
-                        throw new RuntimeException();
-                    }
-                    String rightAlias = ((PropertyCallExp) rightProperty).getSource().getName();
-                    String rightAttrName = ((PropertyCallExp) rightProperty).getReferredProperty().getName();
-                    SelectEntry select = new SelectAlias(ali);
-                    FromEntry from1 = new FromType(ali2, uri, /* withoutSubtypes */true);
-                    FromEntry from2 = new FromType(ali, uri, /* withoutSubtypes */true);
-                    WhereComparisonAliases where1 = new WhereComparisonAliases(ali, ali2);
-                    WhereComparisonAttrs where2 = new WhereComparisonAttrs(ali2, leftAttrName, operation, rightAlias,
-                            rightAttrName);
-                    Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from1, from2 }, new WhereEntry[] {
-                            where1, where2 });
-                    resultSet = queryProcessor.execute(query, queryContext);
-                } catch (RuntimeException e) {
-                } finally {
-                    result = buildResult(resultSet, queryContext, ali);
-                }
+        URI uri = EcoreUtil.getURI(ocType);      
+        OCLExpression<EClassifier> bodySource = ((OperationCallExp) body).getSource();         
+        String ali = ((PropertyCallExp) bodySource).getSource().getName();
+        try {
+            // select over body with a comparison without navigation
+            // "select "+ ali+" from [" + uri1 + "] as p , ["+uri1+"] as "+ali+" where "+ali+"=p where "+cond
+            String ali2 = ali.concat("_");
+            String leftAttrName = ((PropertyCallExp) bodySource).getReferredProperty().getName();
+            String eOp = ((OperationCallExp) body).getReferredOperation().getName();
+            Operation operation = mapStringToOperation(eOp);
+            OCLExpression<EClassifier> rightProperty = ((OperationCallExp) body).getArgument().get(0);
+            if (!(rightProperty instanceof PropertyCallExp)) {
+                throw new RuntimeException();
             }
+            String rightAlias = ((PropertyCallExp) rightProperty).getSource().getName();
+            String rightAttrName = ((PropertyCallExp) rightProperty).getReferredProperty().getName();
+            SelectEntry select = new SelectAlias(ali);
+            FromEntry from1 = new FromType(ali2, uri, /* withoutSubtypes */true);
+            FromEntry from2 = new FromType(ali, uri, /* withoutSubtypes */true);
+            WhereComparisonAliases where1 = new WhereComparisonAliases(ali, ali2);
+            WhereComparisonAttrs where2 = new WhereComparisonAttrs(ali2, leftAttrName, operation, rightAlias,
+                    rightAttrName);
+            Query query = new Query(new SelectEntry[] { select }, new FromEntry[] { from1, from2 }, new WhereEntry[] {
+                    where1, where2 });
+            resultSet = queryProcessor.execute(query, queryContext);
+        } catch (RuntimeException e) {
+        } finally {
+            result = buildResult(resultSet, queryContext, ali);
         }
         return result;
     }
