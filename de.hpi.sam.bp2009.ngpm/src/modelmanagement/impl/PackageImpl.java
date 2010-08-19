@@ -61,373 +61,384 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class PackageImpl extends PackageOwnerImpl implements modelmanagement.Package {
 	/**
-	 * The cached value of the '{@link #getAssociations() <em>Associations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAssociations() <em>Associations</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAssociations()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAssociations()
+     * @generated
+     * @ordered
+     */
 	protected EList<Association> associations;
 
 	/**
-	 * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getClasses() <em>Classes</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getClasses()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getClasses()
+     * @generated
+     * @ordered
+     */
 	protected EList<SapClass> classes;
 
 	/**
-	 * The cached value of the '{@link #getParameterizedClasses() <em>Parameterized Classes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getParameterizedClasses() <em>Parameterized Classes</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getParameterizedClasses()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getParameterizedClasses()
+     * @generated
+     * @ordered
+     */
 	protected EList<ClassParameterization> parameterizedClasses;
 
 	/**
-	 * The cached value of the '{@link #getConfigurability() <em>Configurability</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getConfigurability() <em>Configurability</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConfigurability()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getConfigurability()
+     * @generated
+     * @ordered
+     */
 	protected EList<ConfigurationEntity> configurability;
 
 	/**
-	 * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBindings() <em>Bindings</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBindings()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBindings()
+     * @generated
+     * @ordered
+     */
 	protected EList<Binding> bindings;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PackageImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelmanagementPackage.Literals.PACKAGE;
-	}
+        return ModelmanagementPackage.Literals.PACKAGE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Association> getAssociations() {
-		if (associations == null) {
-			associations = new EObjectContainmentWithInverseEList<Association>(Association.class, this, ModelmanagementPackage.PACKAGE__ASSOCIATIONS, ClassesPackage.ASSOCIATION__PACKAGE_);
-		}
-		return associations;
-	}
+        if (associations == null) {
+            associations = new EObjectContainmentWithInverseEList.Resolving<Association>(Association.class, this, ModelmanagementPackage.PACKAGE__ASSOCIATIONS, ClassesPackage.ASSOCIATION__PACKAGE_);
+        }
+        return associations;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<SapClass> getClasses() {
-		if (classes == null) {
-			classes = new EObjectContainmentWithInverseEList<SapClass>(SapClass.class, this, ModelmanagementPackage.PACKAGE__CLASSES, ClassesPackage.SAP_CLASS__PACKAGE_);
-		}
-		return classes;
-	}
+        if (classes == null) {
+            classes = new EObjectContainmentWithInverseEList.Resolving<SapClass>(SapClass.class, this, ModelmanagementPackage.PACKAGE__CLASSES, ClassesPackage.SAP_CLASS__PACKAGE_);
+        }
+        return classes;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ClassParameterization> getParameterizedClasses() {
-		if (parameterizedClasses == null) {
-			parameterizedClasses = new EObjectContainmentWithInverseEList<ClassParameterization>(ClassParameterization.class, this, ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES, GenericsPackage.CLASS_PARAMETERIZATION__PACKAGE_);
-		}
-		return parameterizedClasses;
-	}
+        if (parameterizedClasses == null) {
+            parameterizedClasses = new EObjectContainmentWithInverseEList.Resolving<ClassParameterization>(ClassParameterization.class, this, ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES, GenericsPackage.CLASS_PARAMETERIZATION__PACKAGE_);
+        }
+        return parameterizedClasses;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PackageOwner getOwner() {
-		if (eContainerFeatureID() != ModelmanagementPackage.PACKAGE__OWNER) return null;
-		return (PackageOwner)eContainer();
-	}
+        if (eContainerFeatureID() != ModelmanagementPackage.PACKAGE__OWNER) return null;
+        return (PackageOwner)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PackageOwner basicGetOwner() {
+        if (eContainerFeatureID() != ModelmanagementPackage.PACKAGE__OWNER) return null;
+        return (PackageOwner)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetOwner(PackageOwner newOwner, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwner, ModelmanagementPackage.PACKAGE__OWNER, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newOwner, ModelmanagementPackage.PACKAGE__OWNER, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setOwner(PackageOwner newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != ModelmanagementPackage.PACKAGE__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, PackageOwner.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelmanagementPackage.PACKAGE__OWNER, newOwner, newOwner));
-	}
+        if (newOwner != eInternalContainer() || (eContainerFeatureID() != ModelmanagementPackage.PACKAGE__OWNER && newOwner != null)) {
+            if (EcoreUtil.isAncestor(this, newOwner))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newOwner != null)
+                msgs = ((InternalEObject)newOwner).eInverseAdd(this, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, PackageOwner.class, msgs);
+            msgs = basicSetOwner(newOwner, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ModelmanagementPackage.PACKAGE__OWNER, newOwner, newOwner));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ConfigurationEntity> getConfigurability() {
-		if (configurability == null) {
-			configurability = new EObjectContainmentEList<ConfigurationEntity>(ConfigurationEntity.class, this, ModelmanagementPackage.PACKAGE__CONFIGURABILITY);
-		}
-		return configurability;
-	}
+        if (configurability == null) {
+            configurability = new EObjectContainmentEList.Resolving<ConfigurationEntity>(ConfigurationEntity.class, this, ModelmanagementPackage.PACKAGE__CONFIGURABILITY);
+        }
+        return configurability;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Binding> getBindings() {
-		if (bindings == null) {
-			bindings = new EObjectContainmentEList<Binding>(Binding.class, this, ModelmanagementPackage.PACKAGE__BINDINGS);
-		}
-		return bindings;
-	}
+        if (bindings == null) {
+            bindings = new EObjectContainmentEList.Resolving<Binding>(Binding.class, this, ModelmanagementPackage.PACKAGE__BINDINGS);
+        }
+        return bindings;
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #hasOwnershipCycle(org.eclipse.emf.common.util.EList) <em>Has Ownership Cycle</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #hasOwnershipCycle(org.eclipse.emf.common.util.EList) <em>Has Ownership Cycle</em>}' operation.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @see #hasOwnershipCycle(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
+     * @see #hasOwnershipCycle(org.eclipse.emf.common.util.EList)
+     * @generated
+     * @ordered
+     */
   protected static final EOperation.Internal.InvocationDelegate HAS_OWNERSHIP_CYCLE_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ModelmanagementPackage.Literals.PACKAGE.getEOperations().get(0)).getInvocationDelegate();
 
   /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
   public boolean hasOwnershipCycle(EList<modelmanagement.Package> pks)
   {
-		try {
-			return (Boolean)HAS_OWNERSHIP_CYCLE_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{pks}));
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Boolean)HAS_OWNERSHIP_CYCLE_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{pks}));
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
   /**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssociations()).basicAdd(otherEnd, msgs);
-			case ModelmanagementPackage.PACKAGE__CLASSES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getClasses()).basicAdd(otherEnd, msgs);
-			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameterizedClasses()).basicAdd(otherEnd, msgs);
-			case ModelmanagementPackage.PACKAGE__OWNER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwner((PackageOwner)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getAssociations()).basicAdd(otherEnd, msgs);
+            case ModelmanagementPackage.PACKAGE__CLASSES:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getClasses()).basicAdd(otherEnd, msgs);
+            case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameterizedClasses()).basicAdd(otherEnd, msgs);
+            case ModelmanagementPackage.PACKAGE__OWNER:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetOwner((PackageOwner)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
-				return ((InternalEList<?>)getAssociations()).basicRemove(otherEnd, msgs);
-			case ModelmanagementPackage.PACKAGE__CLASSES:
-				return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
-			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
-				return ((InternalEList<?>)getParameterizedClasses()).basicRemove(otherEnd, msgs);
-			case ModelmanagementPackage.PACKAGE__OWNER:
-				return basicSetOwner(null, msgs);
-			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
-				return ((InternalEList<?>)getConfigurability()).basicRemove(otherEnd, msgs);
-			case ModelmanagementPackage.PACKAGE__BINDINGS:
-				return ((InternalEList<?>)getBindings()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
+                return ((InternalEList<?>)getAssociations()).basicRemove(otherEnd, msgs);
+            case ModelmanagementPackage.PACKAGE__CLASSES:
+                return ((InternalEList<?>)getClasses()).basicRemove(otherEnd, msgs);
+            case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
+                return ((InternalEList<?>)getParameterizedClasses()).basicRemove(otherEnd, msgs);
+            case ModelmanagementPackage.PACKAGE__OWNER:
+                return basicSetOwner(null, msgs);
+            case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
+                return ((InternalEList<?>)getConfigurability()).basicRemove(otherEnd, msgs);
+            case ModelmanagementPackage.PACKAGE__BINDINGS:
+                return ((InternalEList<?>)getBindings()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case ModelmanagementPackage.PACKAGE__OWNER:
-				return eInternalContainer().eInverseRemove(this, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, PackageOwner.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case ModelmanagementPackage.PACKAGE__OWNER:
+                return eInternalContainer().eInverseRemove(this, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, PackageOwner.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
-				return getAssociations();
-			case ModelmanagementPackage.PACKAGE__CLASSES:
-				return getClasses();
-			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
-				return getParameterizedClasses();
-			case ModelmanagementPackage.PACKAGE__OWNER:
-				return getOwner();
-			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
-				return getConfigurability();
-			case ModelmanagementPackage.PACKAGE__BINDINGS:
-				return getBindings();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
+                return getAssociations();
+            case ModelmanagementPackage.PACKAGE__CLASSES:
+                return getClasses();
+            case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
+                return getParameterizedClasses();
+            case ModelmanagementPackage.PACKAGE__OWNER:
+                if (resolve) return getOwner();
+                return basicGetOwner();
+            case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
+                return getConfigurability();
+            case ModelmanagementPackage.PACKAGE__BINDINGS:
+                return getBindings();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
-				getAssociations().clear();
-				getAssociations().addAll((Collection<? extends Association>)newValue);
-				return;
-			case ModelmanagementPackage.PACKAGE__CLASSES:
-				getClasses().clear();
-				getClasses().addAll((Collection<? extends SapClass>)newValue);
-				return;
-			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
-				getParameterizedClasses().clear();
-				getParameterizedClasses().addAll((Collection<? extends ClassParameterization>)newValue);
-				return;
-			case ModelmanagementPackage.PACKAGE__OWNER:
-				setOwner((PackageOwner)newValue);
-				return;
-			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
-				getConfigurability().clear();
-				getConfigurability().addAll((Collection<? extends ConfigurationEntity>)newValue);
-				return;
-			case ModelmanagementPackage.PACKAGE__BINDINGS:
-				getBindings().clear();
-				getBindings().addAll((Collection<? extends Binding>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
+                getAssociations().clear();
+                getAssociations().addAll((Collection<? extends Association>)newValue);
+                return;
+            case ModelmanagementPackage.PACKAGE__CLASSES:
+                getClasses().clear();
+                getClasses().addAll((Collection<? extends SapClass>)newValue);
+                return;
+            case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
+                getParameterizedClasses().clear();
+                getParameterizedClasses().addAll((Collection<? extends ClassParameterization>)newValue);
+                return;
+            case ModelmanagementPackage.PACKAGE__OWNER:
+                setOwner((PackageOwner)newValue);
+                return;
+            case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
+                getConfigurability().clear();
+                getConfigurability().addAll((Collection<? extends ConfigurationEntity>)newValue);
+                return;
+            case ModelmanagementPackage.PACKAGE__BINDINGS:
+                getBindings().clear();
+                getBindings().addAll((Collection<? extends Binding>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
-				getAssociations().clear();
-				return;
-			case ModelmanagementPackage.PACKAGE__CLASSES:
-				getClasses().clear();
-				return;
-			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
-				getParameterizedClasses().clear();
-				return;
-			case ModelmanagementPackage.PACKAGE__OWNER:
-				setOwner((PackageOwner)null);
-				return;
-			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
-				getConfigurability().clear();
-				return;
-			case ModelmanagementPackage.PACKAGE__BINDINGS:
-				getBindings().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
+                getAssociations().clear();
+                return;
+            case ModelmanagementPackage.PACKAGE__CLASSES:
+                getClasses().clear();
+                return;
+            case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
+                getParameterizedClasses().clear();
+                return;
+            case ModelmanagementPackage.PACKAGE__OWNER:
+                setOwner((PackageOwner)null);
+                return;
+            case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
+                getConfigurability().clear();
+                return;
+            case ModelmanagementPackage.PACKAGE__BINDINGS:
+                getBindings().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
-				return associations != null && !associations.isEmpty();
-			case ModelmanagementPackage.PACKAGE__CLASSES:
-				return classes != null && !classes.isEmpty();
-			case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
-				return parameterizedClasses != null && !parameterizedClasses.isEmpty();
-			case ModelmanagementPackage.PACKAGE__OWNER:
-				return getOwner() != null;
-			case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
-				return configurability != null && !configurability.isEmpty();
-			case ModelmanagementPackage.PACKAGE__BINDINGS:
-				return bindings != null && !bindings.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE__ASSOCIATIONS:
+                return associations != null && !associations.isEmpty();
+            case ModelmanagementPackage.PACKAGE__CLASSES:
+                return classes != null && !classes.isEmpty();
+            case ModelmanagementPackage.PACKAGE__PARAMETERIZED_CLASSES:
+                return parameterizedClasses != null && !parameterizedClasses.isEmpty();
+            case ModelmanagementPackage.PACKAGE__OWNER:
+                return basicGetOwner() != null;
+            case ModelmanagementPackage.PACKAGE__CONFIGURABILITY:
+                return configurability != null && !configurability.isEmpty();
+            case ModelmanagementPackage.PACKAGE__BINDINGS:
+                return bindings != null && !bindings.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //PackageImpl

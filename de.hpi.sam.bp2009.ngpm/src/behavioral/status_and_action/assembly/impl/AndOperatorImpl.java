@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class AndOperatorImpl extends OperatorImpl implements AndOperator {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AndOperatorImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.AND_OPERATOR;
-	}
+        return AssemblyPackage.Literals.AND_OPERATOR;
+    }
 
 } //AndOperatorImpl

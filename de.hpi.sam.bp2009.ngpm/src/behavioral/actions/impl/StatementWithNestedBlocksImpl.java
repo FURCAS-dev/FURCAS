@@ -37,133 +37,133 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class StatementWithNestedBlocksImpl extends StatementImpl implements StatementWithNestedBlocks {
 	/**
-	 * The cached value of the '{@link #getNestedBlocks() <em>Nested Blocks</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getNestedBlocks() <em>Nested Blocks</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNestedBlocks()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getNestedBlocks()
+     * @generated
+     * @ordered
+     */
 	protected EList<Block> nestedBlocks;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StatementWithNestedBlocksImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.STATEMENT_WITH_NESTED_BLOCKS;
-	}
+        return ActionsPackage.Literals.STATEMENT_WITH_NESTED_BLOCKS;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Block> getNestedBlocks() {
-		if (nestedBlocks == null) {
-			nestedBlocks = new EObjectContainmentWithInverseEList<Block>(Block.class, this, ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS, ActionsPackage.BLOCK__OWNING_STATEMENT);
-		}
-		return nestedBlocks;
-	}
+        if (nestedBlocks == null) {
+            nestedBlocks = new EObjectContainmentWithInverseEList.Resolving<Block>(Block.class, this, ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS, ActionsPackage.BLOCK__OWNING_STATEMENT);
+        }
+        return nestedBlocks;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedBlocks()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedBlocks()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
-				return ((InternalEList<?>)getNestedBlocks()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
+                return ((InternalEList<?>)getNestedBlocks()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
-				return getNestedBlocks();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
+                return getNestedBlocks();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
-				getNestedBlocks().clear();
-				getNestedBlocks().addAll((Collection<? extends Block>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
+                getNestedBlocks().clear();
+                getNestedBlocks().addAll((Collection<? extends Block>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
-				getNestedBlocks().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
+                getNestedBlocks().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
-				return nestedBlocks != null && !nestedBlocks.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS:
+                return nestedBlocks != null && !nestedBlocks.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //StatementWithNestedBlocksImpl

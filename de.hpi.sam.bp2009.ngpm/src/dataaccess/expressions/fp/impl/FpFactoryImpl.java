@@ -24,87 +24,87 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class FpFactoryImpl extends EFactoryImpl implements FpFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static FpFactory init() {
-		try {
-			FpFactory theFpFactory = (FpFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/expressions/fp.ecore"); 
-			if (theFpFactory != null) {
-				return theFpFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new FpFactoryImpl();
-	}
+        try {
+            FpFactory theFpFactory = (FpFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/expressions/fp.ecore"); 
+            if (theFpFactory != null) {
+                return theFpFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new FpFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FpFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case FpPackage.ANONYMOUS_FUNCTION_EXPR: return createAnonymousFunctionExpr();
-			case FpPackage.FUNCTION_FROM_METHOD_EXPR: return createFunctionFromMethodExpr();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case FpPackage.ANONYMOUS_FUNCTION_EXPR: return createAnonymousFunctionExpr();
+            case FpPackage.FUNCTION_FROM_METHOD_EXPR: return createFunctionFromMethodExpr();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AnonymousFunctionExpr createAnonymousFunctionExpr() {
-		AnonymousFunctionExprImpl anonymousFunctionExpr = new AnonymousFunctionExprImpl();
-		return anonymousFunctionExpr;
-	}
+        AnonymousFunctionExprImpl anonymousFunctionExpr = new AnonymousFunctionExprImpl();
+        return anonymousFunctionExpr;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FunctionFromMethodExpr createFunctionFromMethodExpr() {
-		FunctionFromMethodExprImpl functionFromMethodExpr = new FunctionFromMethodExprImpl();
-		return functionFromMethodExpr;
-	}
+        FunctionFromMethodExprImpl functionFromMethodExpr = new FunctionFromMethodExprImpl();
+        return functionFromMethodExpr;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FpPackage getFpPackage() {
-		return (FpPackage)getEPackage();
-	}
+        return (FpPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static FpPackage getPackage() {
-		return FpPackage.eINSTANCE;
-	}
+        return FpPackage.eINSTANCE;
+    }
 
 } //FpFactoryImpl

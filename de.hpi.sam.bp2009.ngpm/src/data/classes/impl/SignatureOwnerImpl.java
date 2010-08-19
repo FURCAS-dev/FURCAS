@@ -39,133 +39,133 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SignatureOwnerImpl extends NamedElementImpl implements SignatureOwner {
 	/**
-	 * The cached value of the '{@link #getOwnedSignatures() <em>Owned Signatures</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getOwnedSignatures() <em>Owned Signatures</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedSignatures()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getOwnedSignatures()
+     * @generated
+     * @ordered
+     */
 	protected EList<MethodSignature> ownedSignatures;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SignatureOwnerImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.SIGNATURE_OWNER;
-	}
+        return ClassesPackage.Literals.SIGNATURE_OWNER;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<MethodSignature> getOwnedSignatures() {
-		if (ownedSignatures == null) {
-			ownedSignatures = new EObjectContainmentWithInverseEList<MethodSignature>(MethodSignature.class, this, ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES, ClassesPackage.METHOD_SIGNATURE__OWNER);
-		}
-		return ownedSignatures;
-	}
+        if (ownedSignatures == null) {
+            ownedSignatures = new EObjectContainmentWithInverseEList.Resolving<MethodSignature>(MethodSignature.class, this, ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES, ClassesPackage.METHOD_SIGNATURE__OWNER);
+        }
+        return ownedSignatures;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedSignatures()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedSignatures()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
-				return ((InternalEList<?>)getOwnedSignatures()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
+                return ((InternalEList<?>)getOwnedSignatures()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
-				return getOwnedSignatures();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
+                return getOwnedSignatures();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
-				getOwnedSignatures().clear();
-				getOwnedSignatures().addAll((Collection<? extends MethodSignature>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
+                getOwnedSignatures().clear();
+                getOwnedSignatures().addAll((Collection<? extends MethodSignature>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
-				getOwnedSignatures().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
+                getOwnedSignatures().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
-				return ownedSignatures != null && !ownedSignatures.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES:
+                return ownedSignatures != null && !ownedSignatures.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SignatureOwnerImpl

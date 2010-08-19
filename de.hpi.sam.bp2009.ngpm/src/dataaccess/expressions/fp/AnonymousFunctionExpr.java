@@ -31,16 +31,16 @@ import dataaccess.expressions.Expression;
  */
 public interface AnonymousFunctionExpr extends Expression {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Determines the Block implementing the function to which this expression evaluates by navigating to the FunctionSignatureTypeDefinition that tells this expression's type, and from there obtaining the signature's implementation.
-	 * <!-- end-model-doc -->
-	 * @model kind="operation" unique="false" required="true" ordered="false"
-	 *        annotation="http://de.hpi.sam.bp2009.OCL body='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation'"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
-	 * @generated
-	 */
+     * <!-- begin-model-doc -->
+     * Determines the Block implementing the function to which this expression evaluates by navigating to the FunctionSignatureTypeDefinition that tells this expression's type, and from there obtaining the signature's implementation.
+     * <!-- end-model-doc -->
+     * @model kind="operation" unique="false" required="true" ordered="false"
+     *        annotation="http://de.hpi.sam.bp2009.OCL body='self.ownedTypeDefinition.oclAsType(data::classes::FunctionSignatureTypeDefinition).signature.oclAsType(data::classes::FunctionSignature).implementation'"
+     *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='body'"
+     * @generated
+     */
 	FunctionSignatureImplementation getImplementation();
 
 } // AnonymousFunctionExpr

@@ -30,137 +30,137 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class AbapPrimtiveTypeImpl extends UnstructuredAbapTypeImpl implements AbapPrimtiveType {
 	/**
-	 * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLength()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getLength()
+     * @generated
+     * @ordered
+     */
 	protected static final int LENGTH_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getLength()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getLength()
+     * @generated
+     * @ordered
+     */
 	protected int length = LENGTH_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbapPrimtiveTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AbapdictionaryPackage.Literals.ABAP_PRIMTIVE_TYPE;
-	}
+        return AbapdictionaryPackage.Literals.ABAP_PRIMTIVE_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getLength() {
-		return length;
-	}
+        return length;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setLength(int newLength) {
-		int oldLength = length;
-		length = newLength;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH, oldLength, length));
-	}
+        int oldLength = length;
+        length = newLength;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH, oldLength, length));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH:
-				return getLength();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH:
+                return getLength();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH:
-				setLength((Integer)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH:
+                setLength((Integer)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH:
-				setLength(LENGTH_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH:
+                setLength(LENGTH_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH:
-				return length != LENGTH_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.ABAP_PRIMTIVE_TYPE__LENGTH:
+                return length != LENGTH_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (length: ");
-		result.append(length);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (length: ");
+        result.append(length);
+        result.append(')');
+        return result.toString();
+    }
 
 } //AbapPrimtiveTypeImpl

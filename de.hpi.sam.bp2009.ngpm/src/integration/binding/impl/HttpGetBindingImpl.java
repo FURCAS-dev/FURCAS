@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class HttpGetBindingImpl extends HttpBindingImpl implements HttpGetBinding {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected HttpGetBindingImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BindingPackage.Literals.HTTP_GET_BINDING;
-	}
+        return BindingPackage.Literals.HTTP_GET_BINDING;
+    }
 
 } //HttpGetBindingImpl

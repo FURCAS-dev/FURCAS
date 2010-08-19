@@ -24,120 +24,120 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class DesignFactoryImpl extends EFactoryImpl implements DesignFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static DesignFactory init() {
-		try {
-			DesignFactory theDesignFactory = (DesignFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/status_and_action/design.ecore"); 
-			if (theDesignFactory != null) {
-				return theDesignFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new DesignFactoryImpl();
-	}
+        try {
+            DesignFactory theDesignFactory = (DesignFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/status_and_action/design.ecore"); 
+            if (theDesignFactory != null) {
+                return theDesignFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new DesignFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DesignFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case DesignPackage.BUSINESS_OBJECT: return createBusinessObject();
-			case DesignPackage.BUSINESS_OBJECT_NODE: return createBusinessObjectNode();
-			case DesignPackage.STATUS_VARIABLE: return createStatusVariable();
-			case DesignPackage.STATUS_VALUE: return createStatusValue();
-			case DesignPackage.ACTION: return createAction();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case DesignPackage.BUSINESS_OBJECT: return createBusinessObject();
+            case DesignPackage.BUSINESS_OBJECT_NODE: return createBusinessObjectNode();
+            case DesignPackage.STATUS_VARIABLE: return createStatusVariable();
+            case DesignPackage.STATUS_VALUE: return createStatusValue();
+            case DesignPackage.ACTION: return createAction();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BusinessObject createBusinessObject() {
-		BusinessObjectImpl businessObject = new BusinessObjectImpl();
-		return businessObject;
-	}
+        BusinessObjectImpl businessObject = new BusinessObjectImpl();
+        return businessObject;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BusinessObjectNode createBusinessObjectNode() {
-		BusinessObjectNodeImpl businessObjectNode = new BusinessObjectNodeImpl();
-		return businessObjectNode;
-	}
+        BusinessObjectNodeImpl businessObjectNode = new BusinessObjectNodeImpl();
+        return businessObjectNode;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StatusVariable createStatusVariable() {
-		StatusVariableImpl statusVariable = new StatusVariableImpl();
-		return statusVariable;
-	}
+        StatusVariableImpl statusVariable = new StatusVariableImpl();
+        return statusVariable;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StatusValue createStatusValue() {
-		StatusValueImpl statusValue = new StatusValueImpl();
-		return statusValue;
-	}
+        StatusValueImpl statusValue = new StatusValueImpl();
+        return statusValue;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Action createAction() {
-		ActionImpl action = new ActionImpl();
-		return action;
-	}
+        ActionImpl action = new ActionImpl();
+        return action;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DesignPackage getDesignPackage() {
-		return (DesignPackage)getEPackage();
-	}
+        return (DesignPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static DesignPackage getPackage() {
-		return DesignPackage.eINSTANCE;
-	}
+        return DesignPackage.eINSTANCE;
+    }
 
 } //DesignFactoryImpl

@@ -18,110 +18,110 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface BusinessconfigurationFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	BusinessconfigurationFactory eINSTANCE = configuration.businessconfiguration.impl.BusinessconfigurationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Scoping Context</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Scoping Context</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Scoping Context</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Scoping Context</em>'.
+     * @generated
+     */
 	ScopingContext createScopingContext();
 
 	/**
-	 * Returns a new object of class '<em>Industry</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Industry</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Industry</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Industry</em>'.
+     * @generated
+     */
 	Industry createIndustry();
 
 	/**
-	 * Returns a new object of class '<em>Country</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Country</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Country</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Country</em>'.
+     * @generated
+     */
 	Country createCountry();
 
 	/**
-	 * Returns a new object of class '<em>Configuration Element</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Configuration Element</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Configuration Element</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Configuration Element</em>'.
+     * @generated
+     */
 	ConfigurationElement createConfigurationElement();
 
 	/**
-	 * Returns a new object of class '<em>Business Topic</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Business Topic</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Business Topic</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Business Topic</em>'.
+     * @generated
+     */
 	BusinessTopic createBusinessTopic();
 
 	/**
-	 * Returns a new object of class '<em>Business Package</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Business Package</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Business Package</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Business Package</em>'.
+     * @generated
+     */
 	BusinessPackage createBusinessPackage();
 
 	/**
-	 * Returns a new object of class '<em>Business Option</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Business Option</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Business Option</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Business Option</em>'.
+     * @generated
+     */
 	BusinessOption createBusinessOption();
 
 	/**
-	 * Returns a new object of class '<em>Business Area</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Business Area</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Business Area</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Business Area</em>'.
+     * @generated
+     */
 	BusinessArea createBusinessArea();
 
 	/**
-	 * Returns a new object of class '<em>Value Set</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Value Set</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Set</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Value Set</em>'.
+     * @generated
+     */
 	ValueSet createValueSet();
 
 	/**
-	 * Returns a new object of class '<em>Value Set Entry</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Value Set Entry</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value Set Entry</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Value Set Entry</em>'.
+     * @generated
+     */
 	ValueSetEntry createValueSetEntry();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	BusinessconfigurationPackage getBusinessconfigurationPackage();
 
 } //BusinessconfigurationFactory

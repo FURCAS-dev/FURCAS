@@ -25,29 +25,29 @@ package integration.xsd;
  */
 public interface NamedElement extends Root {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see integration.xsd.XsdPackage#getNamedElement_Name()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(String)
+     * @see integration.xsd.XsdPackage#getNamedElement_Name()
+     * @model unique="false" required="true" ordered="false"
+     * @generated
+     */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link integration.xsd.NamedElement#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link integration.xsd.NamedElement#getName <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
+     * @generated
+     */
 	void setName(String value);
 
 } // NamedElement

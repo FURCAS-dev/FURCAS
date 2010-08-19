@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class EnablingStrategyImpl extends StrategyImpl implements EnablingStrategy {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected EnablingStrategyImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.ENABLING_STRATEGY;
-	}
+        return AssemblyPackage.Literals.ENABLING_STRATEGY;
+    }
 
 } //EnablingStrategyImpl

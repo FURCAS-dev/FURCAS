@@ -33,196 +33,196 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class ComplexContentImpl extends AbstractContentImpl implements ComplexContent {
 	/**
-	 * The default value of the '{@link #isMixed() <em>Mixed</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isMixed() <em>Mixed</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMixed()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isMixed()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean MIXED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isMixed() <em>Mixed</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isMixed() <em>Mixed</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isMixed()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isMixed()
+     * @generated
+     * @ordered
+     */
 	protected boolean mixed = MIXED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getContentModel() <em>Content Model</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getContentModel() <em>Content Model</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContentModel()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getContentModel()
+     * @generated
+     * @ordered
+     */
 	protected Containable contentModel;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ComplexContentImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return XsdPackage.Literals.COMPLEX_CONTENT;
-	}
+        return XsdPackage.Literals.COMPLEX_CONTENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isMixed() {
-		return mixed;
-	}
+        return mixed;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setMixed(boolean newMixed) {
-		boolean oldMixed = mixed;
-		mixed = newMixed;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.COMPLEX_CONTENT__MIXED, oldMixed, mixed));
-	}
+        boolean oldMixed = mixed;
+        mixed = newMixed;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.COMPLEX_CONTENT__MIXED, oldMixed, mixed));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Containable getContentModel() {
-		if (contentModel != null && contentModel.eIsProxy()) {
-			InternalEObject oldContentModel = (InternalEObject)contentModel;
-			contentModel = (Containable)eResolveProxy(oldContentModel);
-			if (contentModel != oldContentModel) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL, oldContentModel, contentModel));
-			}
-		}
-		return contentModel;
-	}
+        if (contentModel != null && contentModel.eIsProxy()) {
+            InternalEObject oldContentModel = (InternalEObject)contentModel;
+            contentModel = (Containable)eResolveProxy(oldContentModel);
+            if (contentModel != oldContentModel) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL, oldContentModel, contentModel));
+            }
+        }
+        return contentModel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Containable basicGetContentModel() {
-		return contentModel;
-	}
+        return contentModel;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setContentModel(Containable newContentModel) {
-		Containable oldContentModel = contentModel;
-		contentModel = newContentModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL, oldContentModel, contentModel));
-	}
+        Containable oldContentModel = contentModel;
+        contentModel = newContentModel;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL, oldContentModel, contentModel));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case XsdPackage.COMPLEX_CONTENT__MIXED:
-				return isMixed();
-			case XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL:
-				if (resolve) return getContentModel();
-				return basicGetContentModel();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case XsdPackage.COMPLEX_CONTENT__MIXED:
+                return isMixed();
+            case XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL:
+                if (resolve) return getContentModel();
+                return basicGetContentModel();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case XsdPackage.COMPLEX_CONTENT__MIXED:
-				setMixed((Boolean)newValue);
-				return;
-			case XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL:
-				setContentModel((Containable)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case XsdPackage.COMPLEX_CONTENT__MIXED:
+                setMixed((Boolean)newValue);
+                return;
+            case XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL:
+                setContentModel((Containable)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case XsdPackage.COMPLEX_CONTENT__MIXED:
-				setMixed(MIXED_EDEFAULT);
-				return;
-			case XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL:
-				setContentModel((Containable)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case XsdPackage.COMPLEX_CONTENT__MIXED:
+                setMixed(MIXED_EDEFAULT);
+                return;
+            case XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL:
+                setContentModel((Containable)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case XsdPackage.COMPLEX_CONTENT__MIXED:
-				return mixed != MIXED_EDEFAULT;
-			case XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL:
-				return contentModel != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case XsdPackage.COMPLEX_CONTENT__MIXED:
+                return mixed != MIXED_EDEFAULT;
+            case XsdPackage.COMPLEX_CONTENT__CONTENT_MODEL:
+                return contentModel != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (mixed: ");
-		result.append(mixed);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (mixed: ");
+        result.append(mixed);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ComplexContentImpl

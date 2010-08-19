@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public abstract class StrategyImpl extends EObjectImpl implements Strategy {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StrategyImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.STRATEGY;
-	}
+        return AssemblyPackage.Literals.STRATEGY;
+    }
 
 } //StrategyImpl

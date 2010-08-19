@@ -33,83 +33,83 @@ import dataaccess.expressions.Expression;
  */
 public interface Foreach extends SingleBlockStatement {
 	/**
-	 * Returns the value of the '<em><b>Parallel</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Parallel</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parallel</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parallel</em>' attribute.
-	 * @see #setParallel(boolean)
-	 * @see behavioral.actions.ActionsPackage#getForeach_Parallel()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Parallel</em>' attribute.
+     * @see #setParallel(boolean)
+     * @see behavioral.actions.ActionsPackage#getForeach_Parallel()
+     * @model unique="false" required="true" ordered="false"
+     * @generated
+     */
 	boolean isParallel();
 
 	/**
-	 * Sets the value of the '{@link behavioral.actions.Foreach#isParallel <em>Parallel</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link behavioral.actions.Foreach#isParallel <em>Parallel</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parallel</em>' attribute.
-	 * @see #isParallel()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Parallel</em>' attribute.
+     * @see #isParallel()
+     * @generated
+     */
 	void setParallel(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Collection</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Collection</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Collection</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Collection</em>' reference.
-	 * @see #setCollection(Expression)
-	 * @see behavioral.actions.ActionsPackage#getForeach_Collection()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Collection</em>' reference.
+     * @see #setCollection(Expression)
+     * @see behavioral.actions.ActionsPackage#getForeach_Collection()
+     * @model required="true"
+     * @generated
+     */
 	Expression getCollection();
 
 	/**
-	 * Sets the value of the '{@link behavioral.actions.Foreach#getCollection <em>Collection</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link behavioral.actions.Foreach#getCollection <em>Collection</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Collection</em>' reference.
-	 * @see #getCollection()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Collection</em>' reference.
+     * @see #getCollection()
+     * @generated
+     */
 	void setCollection(Expression value);
 
 	/**
-	 * Returns the value of the '<em><b>For Variable</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getBoundToFor <em>Bound To For</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>For Variable</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link behavioral.actions.Iterator#getBoundToFor <em>Bound To For</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>For Variable</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>For Variable</em>' containment reference.
-	 * @see #setForVariable(Iterator)
-	 * @see behavioral.actions.ActionsPackage#getForeach_ForVariable()
-	 * @see behavioral.actions.Iterator#getBoundToFor
-	 * @model opposite="boundToFor" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>For Variable</em>' containment reference.
+     * @see #setForVariable(Iterator)
+     * @see behavioral.actions.ActionsPackage#getForeach_ForVariable()
+     * @see behavioral.actions.Iterator#getBoundToFor
+     * @model opposite="boundToFor" containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	Iterator getForVariable();
 
 	/**
-	 * Sets the value of the '{@link behavioral.actions.Foreach#getForVariable <em>For Variable</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link behavioral.actions.Foreach#getForVariable <em>For Variable</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>For Variable</em>' containment reference.
-	 * @see #getForVariable()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>For Variable</em>' containment reference.
+     * @see #getForVariable()
+     * @generated
+     */
 	void setForVariable(Iterator value);
 
 } // Foreach

@@ -25,258 +25,258 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class XsdFactoryImpl extends EFactoryImpl implements XsdFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static XsdFactory init() {
-		try {
-			XsdFactory theXsdFactory = (XsdFactory)EPackage.Registry.INSTANCE.getEFactory("http:///integration/xsd.ecore"); 
-			if (theXsdFactory != null) {
-				return theXsdFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new XsdFactoryImpl();
-	}
+        try {
+            XsdFactory theXsdFactory = (XsdFactory)EPackage.Registry.INSTANCE.getEFactory("http:///integration/xsd.ecore"); 
+            if (theXsdFactory != null) {
+                return theXsdFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new XsdFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public XsdFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case XsdPackage.SEQUENCE: return createSequence();
-			case XsdPackage.CHOICE: return createChoice();
-			case XsdPackage.COMPLEX_TYPE: return createComplexType();
-			case XsdPackage.ELEMENT_DEFINITION: return createElementDefinition();
-			case XsdPackage.ATTRIBUTE: return createAttribute();
-			case XsdPackage.ANY: return createAny();
-			case XsdPackage.GROUP: return createGroup();
-			case XsdPackage.ANNOTATION: return createAnnotation();
-			case XsdPackage.NOTATION: return createNotation();
-			case XsdPackage.SIMPLE_TYPE: return createSimpleType();
-			case XsdPackage.ELEMENT_REFERENCE: return createElementReference();
-			case XsdPackage.SIMPLE_CONTENT: return createSimpleContent();
-			case XsdPackage.COMPLEX_CONTENT: return createComplexContent();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case XsdPackage.SEQUENCE: return createSequence();
+            case XsdPackage.CHOICE: return createChoice();
+            case XsdPackage.COMPLEX_TYPE: return createComplexType();
+            case XsdPackage.ELEMENT_DEFINITION: return createElementDefinition();
+            case XsdPackage.ATTRIBUTE: return createAttribute();
+            case XsdPackage.ANY: return createAny();
+            case XsdPackage.GROUP: return createGroup();
+            case XsdPackage.ANNOTATION: return createAnnotation();
+            case XsdPackage.NOTATION: return createNotation();
+            case XsdPackage.SIMPLE_TYPE: return createSimpleType();
+            case XsdPackage.ELEMENT_REFERENCE: return createElementReference();
+            case XsdPackage.SIMPLE_CONTENT: return createSimpleContent();
+            case XsdPackage.COMPLEX_CONTENT: return createComplexContent();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case XsdPackage.ATT_USE_TYPE:
-				return createAttUseTypeFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case XsdPackage.ATT_USE_TYPE:
+                return createAttUseTypeFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case XsdPackage.ATT_USE_TYPE:
-				return convertAttUseTypeToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case XsdPackage.ATT_USE_TYPE:
+                return convertAttUseTypeToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Sequence createSequence() {
-		SequenceImpl sequence = new SequenceImpl();
-		return sequence;
-	}
+        SequenceImpl sequence = new SequenceImpl();
+        return sequence;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Choice createChoice() {
-		ChoiceImpl choice = new ChoiceImpl();
-		return choice;
-	}
+        ChoiceImpl choice = new ChoiceImpl();
+        return choice;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ComplexType createComplexType() {
-		ComplexTypeImpl complexType = new ComplexTypeImpl();
-		return complexType;
-	}
+        ComplexTypeImpl complexType = new ComplexTypeImpl();
+        return complexType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ElementDefinition createElementDefinition() {
-		ElementDefinitionImpl elementDefinition = new ElementDefinitionImpl();
-		return elementDefinition;
-	}
+        ElementDefinitionImpl elementDefinition = new ElementDefinitionImpl();
+        return elementDefinition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Attribute createAttribute() {
-		AttributeImpl attribute = new AttributeImpl();
-		return attribute;
-	}
+        AttributeImpl attribute = new AttributeImpl();
+        return attribute;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Any createAny() {
-		AnyImpl any = new AnyImpl();
-		return any;
-	}
+        AnyImpl any = new AnyImpl();
+        return any;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Group createGroup() {
-		GroupImpl group = new GroupImpl();
-		return group;
-	}
+        GroupImpl group = new GroupImpl();
+        return group;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Annotation createAnnotation() {
-		AnnotationImpl annotation = new AnnotationImpl();
-		return annotation;
-	}
+        AnnotationImpl annotation = new AnnotationImpl();
+        return annotation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Notation createNotation() {
-		NotationImpl notation = new NotationImpl();
-		return notation;
-	}
+        NotationImpl notation = new NotationImpl();
+        return notation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SimpleType createSimpleType() {
-		SimpleTypeImpl simpleType = new SimpleTypeImpl();
-		return simpleType;
-	}
+        SimpleTypeImpl simpleType = new SimpleTypeImpl();
+        return simpleType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ElementReference createElementReference() {
-		ElementReferenceImpl elementReference = new ElementReferenceImpl();
-		return elementReference;
-	}
+        ElementReferenceImpl elementReference = new ElementReferenceImpl();
+        return elementReference;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SimpleContent createSimpleContent() {
-		SimpleContentImpl simpleContent = new SimpleContentImpl();
-		return simpleContent;
-	}
+        SimpleContentImpl simpleContent = new SimpleContentImpl();
+        return simpleContent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ComplexContent createComplexContent() {
-		ComplexContentImpl complexContent = new ComplexContentImpl();
-		return complexContent;
-	}
+        ComplexContentImpl complexContent = new ComplexContentImpl();
+        return complexContent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AttUseType createAttUseTypeFromString(EDataType eDataType, String initialValue) {
-		AttUseType result = AttUseType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        AttUseType result = AttUseType.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertAttUseTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public XsdPackage getXsdPackage() {
-		return (XsdPackage)getEPackage();
-	}
+        return (XsdPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static XsdPackage getPackage() {
-		return XsdPackage.eINSTANCE;
-	}
+        return XsdPackage.eINSTANCE;
+    }
 
 } //XsdFactoryImpl

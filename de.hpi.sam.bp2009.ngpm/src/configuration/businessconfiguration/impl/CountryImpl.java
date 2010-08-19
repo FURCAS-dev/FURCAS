@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class CountryImpl extends ScopingContextImpl implements Country {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CountryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BusinessconfigurationPackage.Literals.COUNTRY;
-	}
+        return BusinessconfigurationPackage.Literals.COUNTRY;
+    }
 
 } //CountryImpl

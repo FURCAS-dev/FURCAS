@@ -32,129 +32,129 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class SimpleTypeImpl extends AbstractTypeImpl implements SimpleType {
 	/**
-	 * The cached value of the '{@link #getContent() <em>Content</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getContent() <em>Content</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContent()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getContent()
+     * @generated
+     * @ordered
+     */
 	protected SimpleContent content;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SimpleTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return XsdPackage.Literals.SIMPLE_TYPE;
-	}
+        return XsdPackage.Literals.SIMPLE_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SimpleContent getContent() {
-		if (content != null && content.eIsProxy()) {
-			InternalEObject oldContent = (InternalEObject)content;
-			content = (SimpleContent)eResolveProxy(oldContent);
-			if (content != oldContent) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XsdPackage.SIMPLE_TYPE__CONTENT, oldContent, content));
-			}
-		}
-		return content;
-	}
+        if (content != null && content.eIsProxy()) {
+            InternalEObject oldContent = (InternalEObject)content;
+            content = (SimpleContent)eResolveProxy(oldContent);
+            if (content != oldContent) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, XsdPackage.SIMPLE_TYPE__CONTENT, oldContent, content));
+            }
+        }
+        return content;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SimpleContent basicGetContent() {
-		return content;
-	}
+        return content;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setContent(SimpleContent newContent) {
-		SimpleContent oldContent = content;
-		content = newContent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.SIMPLE_TYPE__CONTENT, oldContent, content));
-	}
+        SimpleContent oldContent = content;
+        content = newContent;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.SIMPLE_TYPE__CONTENT, oldContent, content));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case XsdPackage.SIMPLE_TYPE__CONTENT:
-				if (resolve) return getContent();
-				return basicGetContent();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case XsdPackage.SIMPLE_TYPE__CONTENT:
+                if (resolve) return getContent();
+                return basicGetContent();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case XsdPackage.SIMPLE_TYPE__CONTENT:
-				setContent((SimpleContent)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case XsdPackage.SIMPLE_TYPE__CONTENT:
+                setContent((SimpleContent)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case XsdPackage.SIMPLE_TYPE__CONTENT:
-				setContent((SimpleContent)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case XsdPackage.SIMPLE_TYPE__CONTENT:
+                setContent((SimpleContent)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case XsdPackage.SIMPLE_TYPE__CONTENT:
-				return content != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case XsdPackage.SIMPLE_TYPE__CONTENT:
+                return content != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //SimpleTypeImpl

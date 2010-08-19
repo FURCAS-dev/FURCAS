@@ -25,183 +25,183 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class AbapmappingFactoryImpl extends EFactoryImpl implements AbapmappingFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static AbapmappingFactory init() {
-		try {
-			AbapmappingFactory theAbapmappingFactory = (AbapmappingFactory)EPackage.Registry.INSTANCE.getEFactory("http:///abapmapping.ecore"); 
-			if (theAbapmappingFactory != null) {
-				return theAbapmappingFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new AbapmappingFactoryImpl();
-	}
+        try {
+            AbapmappingFactory theAbapmappingFactory = (AbapmappingFactory)EPackage.Registry.INSTANCE.getEFactory("http:///abapmapping.ecore"); 
+            if (theAbapmappingFactory != null) {
+                return theAbapmappingFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new AbapmappingFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapmappingFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION: return createAbapClassImplementationAnnotation();
-			case AbapmappingPackage.ABAP_ASSOCIATION_IMPLEMENTATION_ANNOTATION: return createAbapAssociationImplementationAnnotation();
-			case AbapmappingPackage.ABAP_ASSOCIATION_END_IMPLEMENTATION_ANNOTATION: return createAbapAssociationEndImplementationAnnotation();
-			case AbapmappingPackage.ABAP_SIGNATURE_IMPLEMENTATION_ANNOTATION: return createAbapSignatureImplementationAnnotation();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION: return createAbapClassImplementationAnnotation();
+            case AbapmappingPackage.ABAP_ASSOCIATION_IMPLEMENTATION_ANNOTATION: return createAbapAssociationImplementationAnnotation();
+            case AbapmappingPackage.ABAP_ASSOCIATION_END_IMPLEMENTATION_ANNOTATION: return createAbapAssociationEndImplementationAnnotation();
+            case AbapmappingPackage.ABAP_SIGNATURE_IMPLEMENTATION_ANNOTATION: return createAbapSignatureImplementationAnnotation();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-			case AbapmappingPackage.ABAP_CLASS_KIND:
-				return createAbapClassKindFromString(eDataType, initialValue);
-			case AbapmappingPackage.ABAP_SIGNATURE_KIND:
-				return createAbapSignatureKindFromString(eDataType, initialValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case AbapmappingPackage.ABAP_CLASS_KIND:
+                return createAbapClassKindFromString(eDataType, initialValue);
+            case AbapmappingPackage.ABAP_SIGNATURE_KIND:
+                return createAbapSignatureKindFromString(eDataType, initialValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-			case AbapmappingPackage.ABAP_CLASS_KIND:
-				return convertAbapClassKindToString(eDataType, instanceValue);
-			case AbapmappingPackage.ABAP_SIGNATURE_KIND:
-				return convertAbapSignatureKindToString(eDataType, instanceValue);
-			default:
-				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eDataType.getClassifierID()) {
+            case AbapmappingPackage.ABAP_CLASS_KIND:
+                return convertAbapClassKindToString(eDataType, instanceValue);
+            case AbapmappingPackage.ABAP_SIGNATURE_KIND:
+                return convertAbapSignatureKindToString(eDataType, instanceValue);
+            default:
+                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapClassImplementationAnnotation createAbapClassImplementationAnnotation() {
-		AbapClassImplementationAnnotationImpl abapClassImplementationAnnotation = new AbapClassImplementationAnnotationImpl();
-		return abapClassImplementationAnnotation;
-	}
+        AbapClassImplementationAnnotationImpl abapClassImplementationAnnotation = new AbapClassImplementationAnnotationImpl();
+        return abapClassImplementationAnnotation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapAssociationImplementationAnnotation createAbapAssociationImplementationAnnotation() {
-		AbapAssociationImplementationAnnotationImpl abapAssociationImplementationAnnotation = new AbapAssociationImplementationAnnotationImpl();
-		return abapAssociationImplementationAnnotation;
-	}
+        AbapAssociationImplementationAnnotationImpl abapAssociationImplementationAnnotation = new AbapAssociationImplementationAnnotationImpl();
+        return abapAssociationImplementationAnnotation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapAssociationEndImplementationAnnotation createAbapAssociationEndImplementationAnnotation() {
-		AbapAssociationEndImplementationAnnotationImpl abapAssociationEndImplementationAnnotation = new AbapAssociationEndImplementationAnnotationImpl();
-		return abapAssociationEndImplementationAnnotation;
-	}
+        AbapAssociationEndImplementationAnnotationImpl abapAssociationEndImplementationAnnotation = new AbapAssociationEndImplementationAnnotationImpl();
+        return abapAssociationEndImplementationAnnotation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapSignatureImplementationAnnotation createAbapSignatureImplementationAnnotation() {
-		AbapSignatureImplementationAnnotationImpl abapSignatureImplementationAnnotation = new AbapSignatureImplementationAnnotationImpl();
-		return abapSignatureImplementationAnnotation;
-	}
+        AbapSignatureImplementationAnnotationImpl abapSignatureImplementationAnnotation = new AbapSignatureImplementationAnnotationImpl();
+        return abapSignatureImplementationAnnotation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapClassKind createAbapClassKindFromString(EDataType eDataType, String initialValue) {
-		AbapClassKind result = AbapClassKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        AbapClassKind result = AbapClassKind.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertAbapClassKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapSignatureKind createAbapSignatureKindFromString(EDataType eDataType, String initialValue) {
-		AbapSignatureKind result = AbapSignatureKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
+        AbapSignatureKind result = AbapSignatureKind.get(initialValue);
+        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+        return result;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String convertAbapSignatureKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
+        return instanceValue == null ? null : instanceValue.toString();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapmappingPackage getAbapmappingPackage() {
-		return (AbapmappingPackage)getEPackage();
-	}
+        return (AbapmappingPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static AbapmappingPackage getPackage() {
-		return AbapmappingPackage.eINSTANCE;
-	}
+        return AbapmappingPackage.eINSTANCE;
+    }
 
 } //AbapmappingFactoryImpl

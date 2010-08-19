@@ -39,250 +39,274 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class NamedValueWithOptionalInitExpressionImpl extends NamedValueImpl implements NamedValueWithOptionalInitExpression {
 	/**
-	 * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getInitExpression() <em>Init Expression</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInitExpression()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getInitExpression()
+     * @generated
+     * @ordered
+     */
 	protected Expression initExpression;
 
 	/**
-	 * The cached value of the '{@link #getNamedValueDeclaration() <em>Named Value Declaration</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getNamedValueDeclaration() <em>Named Value Declaration</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNamedValueDeclaration()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getNamedValueDeclaration()
+     * @generated
+     * @ordered
+     */
 	protected NamedValueDeclaration namedValueDeclaration;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected NamedValueWithOptionalInitExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION;
-	}
+        return ActionsPackage.Literals.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Expression getInitExpression() {
-		return initExpression;
-	}
+        if (initExpression != null && initExpression.eIsProxy()) {
+            InternalEObject oldInitExpression = (InternalEObject)initExpression;
+            initExpression = (Expression)eResolveProxy(oldInitExpression);
+            if (initExpression != oldInitExpression) {
+                InternalEObject newInitExpression = (InternalEObject)initExpression;
+                NotificationChain msgs =  oldInitExpression.eInverseRemove(this, ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR, Expression.class, null);
+                if (newInitExpression.eInternalContainer() == null) {
+                    msgs =  newInitExpression.eInverseAdd(this, ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR, Expression.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION, oldInitExpression, initExpression));
+            }
+        }
+        return initExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Expression basicGetInitExpression() {
+        return initExpression;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetInitExpression(Expression newInitExpression, NotificationChain msgs) {
-		Expression oldInitExpression = initExpression;
-		initExpression = newInitExpression;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION, oldInitExpression, newInitExpression);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        Expression oldInitExpression = initExpression;
+        initExpression = newInitExpression;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION, oldInitExpression, newInitExpression);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setInitExpression(Expression newInitExpression) {
-		if (newInitExpression != initExpression) {
-			NotificationChain msgs = null;
-			if (initExpression != null)
-				msgs = ((InternalEObject)initExpression).eInverseRemove(this, ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR, Expression.class, msgs);
-			if (newInitExpression != null)
-				msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR, Expression.class, msgs);
-			msgs = basicSetInitExpression(newInitExpression, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION, newInitExpression, newInitExpression));
-	}
+        if (newInitExpression != initExpression) {
+            NotificationChain msgs = null;
+            if (initExpression != null)
+                msgs = ((InternalEObject)initExpression).eInverseRemove(this, ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR, Expression.class, msgs);
+            if (newInitExpression != null)
+                msgs = ((InternalEObject)newInitExpression).eInverseAdd(this, ExpressionsPackage.EXPRESSION__INIT_EXPRESSION_FOR, Expression.class, msgs);
+            msgs = basicSetInitExpression(newInitExpression, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION, newInitExpression, newInitExpression));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NamedValueDeclaration getNamedValueDeclaration() {
-		if (namedValueDeclaration != null && namedValueDeclaration.eIsProxy()) {
-			InternalEObject oldNamedValueDeclaration = (InternalEObject)namedValueDeclaration;
-			namedValueDeclaration = (NamedValueDeclaration)eResolveProxy(oldNamedValueDeclaration);
-			if (namedValueDeclaration != oldNamedValueDeclaration) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION, oldNamedValueDeclaration, namedValueDeclaration));
-			}
-		}
-		return namedValueDeclaration;
-	}
+        if (namedValueDeclaration != null && namedValueDeclaration.eIsProxy()) {
+            InternalEObject oldNamedValueDeclaration = (InternalEObject)namedValueDeclaration;
+            namedValueDeclaration = (NamedValueDeclaration)eResolveProxy(oldNamedValueDeclaration);
+            if (namedValueDeclaration != oldNamedValueDeclaration) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION, oldNamedValueDeclaration, namedValueDeclaration));
+            }
+        }
+        return namedValueDeclaration;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NamedValueDeclaration basicGetNamedValueDeclaration() {
-		return namedValueDeclaration;
-	}
+        return namedValueDeclaration;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetNamedValueDeclaration(NamedValueDeclaration newNamedValueDeclaration, NotificationChain msgs) {
-		NamedValueDeclaration oldNamedValueDeclaration = namedValueDeclaration;
-		namedValueDeclaration = newNamedValueDeclaration;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION, oldNamedValueDeclaration, newNamedValueDeclaration);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        NamedValueDeclaration oldNamedValueDeclaration = namedValueDeclaration;
+        namedValueDeclaration = newNamedValueDeclaration;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION, oldNamedValueDeclaration, newNamedValueDeclaration);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setNamedValueDeclaration(NamedValueDeclaration newNamedValueDeclaration) {
-		if (newNamedValueDeclaration != namedValueDeclaration) {
-			NotificationChain msgs = null;
-			if (namedValueDeclaration != null)
-				msgs = ((InternalEObject)namedValueDeclaration).eInverseRemove(this, ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE, NamedValueDeclaration.class, msgs);
-			if (newNamedValueDeclaration != null)
-				msgs = ((InternalEObject)newNamedValueDeclaration).eInverseAdd(this, ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE, NamedValueDeclaration.class, msgs);
-			msgs = basicSetNamedValueDeclaration(newNamedValueDeclaration, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION, newNamedValueDeclaration, newNamedValueDeclaration));
-	}
+        if (newNamedValueDeclaration != namedValueDeclaration) {
+            NotificationChain msgs = null;
+            if (namedValueDeclaration != null)
+                msgs = ((InternalEObject)namedValueDeclaration).eInverseRemove(this, ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE, NamedValueDeclaration.class, msgs);
+            if (newNamedValueDeclaration != null)
+                msgs = ((InternalEObject)newNamedValueDeclaration).eInverseAdd(this, ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE, NamedValueDeclaration.class, msgs);
+            msgs = basicSetNamedValueDeclaration(newNamedValueDeclaration, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION, newNamedValueDeclaration, newNamedValueDeclaration));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
-				if (initExpression != null)
-					msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION, null, msgs);
-				return basicSetInitExpression((Expression)otherEnd, msgs);
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
-				if (namedValueDeclaration != null)
-					msgs = ((InternalEObject)namedValueDeclaration).eInverseRemove(this, ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE, NamedValueDeclaration.class, msgs);
-				return basicSetNamedValueDeclaration((NamedValueDeclaration)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
+                if (initExpression != null)
+                    msgs = ((InternalEObject)initExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION, null, msgs);
+                return basicSetInitExpression((Expression)otherEnd, msgs);
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
+                if (namedValueDeclaration != null)
+                    msgs = ((InternalEObject)namedValueDeclaration).eInverseRemove(this, ActionsPackage.NAMED_VALUE_DECLARATION__NAMED_VALUE, NamedValueDeclaration.class, msgs);
+                return basicSetNamedValueDeclaration((NamedValueDeclaration)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
-				return basicSetInitExpression(null, msgs);
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
-				return basicSetNamedValueDeclaration(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
+                return basicSetInitExpression(null, msgs);
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
+                return basicSetNamedValueDeclaration(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
-				return getInitExpression();
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
-				if (resolve) return getNamedValueDeclaration();
-				return basicGetNamedValueDeclaration();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
+                if (resolve) return getInitExpression();
+                return basicGetInitExpression();
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
+                if (resolve) return getNamedValueDeclaration();
+                return basicGetNamedValueDeclaration();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
-				setInitExpression((Expression)newValue);
-				return;
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
-				setNamedValueDeclaration((NamedValueDeclaration)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
+                setInitExpression((Expression)newValue);
+                return;
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
+                setNamedValueDeclaration((NamedValueDeclaration)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
-				setInitExpression((Expression)null);
-				return;
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
-				setNamedValueDeclaration((NamedValueDeclaration)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
+                setInitExpression((Expression)null);
+                return;
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
+                setNamedValueDeclaration((NamedValueDeclaration)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
-				return initExpression != null;
-			case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
-				return namedValueDeclaration != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__INIT_EXPRESSION:
+                return initExpression != null;
+            case ActionsPackage.NAMED_VALUE_WITH_OPTIONAL_INIT_EXPRESSION__NAMED_VALUE_DECLARATION:
+                return namedValueDeclaration != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //NamedValueWithOptionalInitExpressionImpl

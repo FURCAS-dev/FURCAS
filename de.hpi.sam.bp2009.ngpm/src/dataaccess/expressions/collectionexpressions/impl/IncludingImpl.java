@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class IncludingImpl extends CollectionExpressionWithArgumentImpl implements Including {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IncludingImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return CollectionexpressionsPackage.Literals.INCLUDING;
-	}
+        return CollectionexpressionsPackage.Literals.INCLUDING;
+    }
 
 } //IncludingImpl

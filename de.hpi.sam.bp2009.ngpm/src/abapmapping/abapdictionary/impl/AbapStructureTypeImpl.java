@@ -33,104 +33,104 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  */
 public class AbapStructureTypeImpl extends AbapTypeImpl implements AbapStructureType {
 	/**
-	 * The cached value of the '{@link #getFields() <em>Fields</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getFields() <em>Fields</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFields()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getFields()
+     * @generated
+     * @ordered
+     */
 	protected EList<AbapStructureField> fields;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbapStructureTypeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AbapdictionaryPackage.Literals.ABAP_STRUCTURE_TYPE;
-	}
+        return AbapdictionaryPackage.Literals.ABAP_STRUCTURE_TYPE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<AbapStructureField> getFields() {
-		if (fields == null) {
-			fields = new EObjectResolvingEList<AbapStructureField>(AbapStructureField.class, this, AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS);
-		}
-		return fields;
-	}
+        if (fields == null) {
+            fields = new EObjectResolvingEList<AbapStructureField>(AbapStructureField.class, this, AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS);
+        }
+        return fields;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS:
-				return getFields();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS:
+                return getFields();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS:
-				getFields().clear();
-				getFields().addAll((Collection<? extends AbapStructureField>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS:
+                getFields().clear();
+                getFields().addAll((Collection<? extends AbapStructureField>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS:
-				getFields().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS:
+                getFields().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS:
-				return fields != null && !fields.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.ABAP_STRUCTURE_TYPE__FIELDS:
+                return fields != null && !fields.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //AbapStructureTypeImpl

@@ -42,213 +42,213 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class IfElseImpl extends ConditionalStatementImpl implements IfElse {
 	/**
-	 * The cached value of the '{@link #getNestedBlocks() <em>Nested Blocks</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getNestedBlocks() <em>Nested Blocks</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getNestedBlocks()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getNestedBlocks()
+     * @generated
+     * @ordered
+     */
 	protected EList<Block> nestedBlocks;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected IfElseImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.IF_ELSE;
-	}
+        return ActionsPackage.Literals.IF_ELSE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Block> getNestedBlocks() {
-		if (nestedBlocks == null) {
-			nestedBlocks = new EObjectContainmentWithInverseEList<Block>(Block.class, this, ActionsPackage.IF_ELSE__NESTED_BLOCKS, ActionsPackage.BLOCK__OWNING_STATEMENT);
-		}
-		return nestedBlocks;
-	}
+        if (nestedBlocks == null) {
+            nestedBlocks = new EObjectContainmentWithInverseEList.Resolving<Block>(Block.class, this, ActionsPackage.IF_ELSE__NESTED_BLOCKS, ActionsPackage.BLOCK__OWNING_STATEMENT);
+        }
+        return nestedBlocks;
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #getIfBlock() <em>Get If Block</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #getIfBlock() <em>Get If Block</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getIfBlock()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getIfBlock()
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate GET_IF_BLOCK__EINVOCATION_DELEGATE = ((EOperation.Internal)ActionsPackage.Literals.IF_ELSE.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Block getIfBlock() {
-		try {
-			return (Block)GET_IF_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Block)GET_IF_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #getElseBlock() <em>Get Else Block</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #getElseBlock() <em>Get Else Block</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getElseBlock()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getElseBlock()
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate GET_ELSE_BLOCK__EINVOCATION_DELEGATE = ((EOperation.Internal)ActionsPackage.Literals.IF_ELSE.getEOperations().get(1)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Block getElseBlock() {
-		try {
-			return (Block)GET_ELSE_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Block)GET_ELSE_BLOCK__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedBlocks()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getNestedBlocks()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
-				return ((InternalEList<?>)getNestedBlocks()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
+                return ((InternalEList<?>)getNestedBlocks()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
-				return getNestedBlocks();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
+                return getNestedBlocks();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
-				getNestedBlocks().clear();
-				getNestedBlocks().addAll((Collection<? extends Block>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
+                getNestedBlocks().clear();
+                getNestedBlocks().addAll((Collection<? extends Block>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
-				getNestedBlocks().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
+                getNestedBlocks().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
-				return nestedBlocks != null && !nestedBlocks.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.IF_ELSE__NESTED_BLOCKS:
+                return nestedBlocks != null && !nestedBlocks.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == StatementWithNestedBlocks.class) {
-			switch (derivedFeatureID) {
-				case ActionsPackage.IF_ELSE__NESTED_BLOCKS: return ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == StatementWithNestedBlocks.class) {
+            switch (derivedFeatureID) {
+                case ActionsPackage.IF_ELSE__NESTED_BLOCKS: return ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == StatementWithNestedBlocks.class) {
-			switch (baseFeatureID) {
-				case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS: return ActionsPackage.IF_ELSE__NESTED_BLOCKS;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == StatementWithNestedBlocks.class) {
+            switch (baseFeatureID) {
+                case ActionsPackage.STATEMENT_WITH_NESTED_BLOCKS__NESTED_BLOCKS: return ActionsPackage.IF_ELSE__NESTED_BLOCKS;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 } //IfElseImpl

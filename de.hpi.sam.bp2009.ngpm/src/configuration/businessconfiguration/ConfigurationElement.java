@@ -28,19 +28,19 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface ConfigurationElement extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Applicable In Context</b></em>' reference list.
-	 * The list contents are of type {@link configuration.businessconfiguration.ScopingContext}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Applicable In Context</b></em>' reference list.
+     * The list contents are of type {@link configuration.businessconfiguration.ScopingContext}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Applicable In Context</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Applicable In Context</em>' reference list.
-	 * @see configuration.businessconfiguration.BusinessconfigurationPackage#getConfigurationElement_ApplicableInContext()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Applicable In Context</em>' reference list.
+     * @see configuration.businessconfiguration.BusinessconfigurationPackage#getConfigurationElement_ApplicableInContext()
+     * @model
+     * @generated
+     */
 	EList<ScopingContext> getApplicableInContext();
 
 } // ConfigurationElement

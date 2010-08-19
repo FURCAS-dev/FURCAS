@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class RequiredStrategyImpl extends StrategyImpl implements RequiredStrategy {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected RequiredStrategyImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.REQUIRED_STRATEGY;
-	}
+        return AssemblyPackage.Literals.REQUIRED_STRATEGY;
+    }
 
 } //RequiredStrategyImpl

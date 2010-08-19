@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class NeutralStrategyImpl extends StrategyImpl implements NeutralStrategy {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected NeutralStrategyImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.NEUTRAL_STRATEGY;
-	}
+        return AssemblyPackage.Literals.NEUTRAL_STRATEGY;
+    }
 
 } //NeutralStrategyImpl

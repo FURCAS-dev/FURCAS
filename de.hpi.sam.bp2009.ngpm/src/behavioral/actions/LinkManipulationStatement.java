@@ -34,70 +34,70 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface LinkManipulationStatement extends Statement {
 	/**
-	 * Returns the value of the '<em><b>At</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>At</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * An optional position specification which will be ignored for associations with no ordered ends. If not set for an association with ordered ends, a reasonable default will be chosen.
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>At</em>' attribute.
-	 * @see #setAt(int)
-	 * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement_At()
-	 * @model unique="false" ordered="false"
-	 * @generated
-	 */
+     * <!-- begin-model-doc -->
+     * An optional position specification which will be ignored for associations with no ordered ends. If not set for an association with ordered ends, a reasonable default will be chosen.
+     * <!-- end-model-doc -->
+     * @return the value of the '<em>At</em>' attribute.
+     * @see #setAt(int)
+     * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement_At()
+     * @model unique="false" ordered="false"
+     * @generated
+     */
 	int getAt();
 
 	/**
-	 * Sets the value of the '{@link behavioral.actions.LinkManipulationStatement#getAt <em>At</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link behavioral.actions.LinkManipulationStatement#getAt <em>At</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>At</em>' attribute.
-	 * @see #getAt()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>At</em>' attribute.
+     * @see #getAt()
+     * @generated
+     */
 	void setAt(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Association</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Association</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Association</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Association</em>' reference.
-	 * @see #setAssociation(Association)
-	 * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement_Association()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Association</em>' reference.
+     * @see #setAssociation(Association)
+     * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement_Association()
+     * @model required="true"
+     * @generated
+     */
 	Association getAssociation();
 
 	/**
-	 * Sets the value of the '{@link behavioral.actions.LinkManipulationStatement#getAssociation <em>Association</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link behavioral.actions.LinkManipulationStatement#getAssociation <em>Association</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Association</em>' reference.
-	 * @see #getAssociation()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Association</em>' reference.
+     * @see #getAssociation()
+     * @generated
+     */
 	void setAssociation(Association value);
 
 	/**
-	 * Returns the value of the '<em><b>Objects</b></em>' containment reference list.
-	 * The list contents are of type {@link dataaccess.expressions.Expression}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Objects</b></em>' containment reference list.
+     * The list contents are of type {@link dataaccess.expressions.Expression}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Objects</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Objects</em>' containment reference list.
-	 * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement_Objects()
-	 * @model containment="true" lower="2" upper="2"
-	 * @generated
-	 */
+     * @return the value of the '<em>Objects</em>' containment reference list.
+     * @see behavioral.actions.ActionsPackage#getLinkManipulationStatement_Objects()
+     * @model containment="true" resolveProxies="true" lower="2" upper="2"
+     * @generated
+     */
 	EList<Expression> getObjects();
 
 } // LinkManipulationStatement

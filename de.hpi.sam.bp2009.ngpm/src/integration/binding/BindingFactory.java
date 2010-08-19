@@ -18,56 +18,56 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface BindingFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	BindingFactory eINSTANCE = integration.binding.impl.BindingFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Http Get Binding</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Http Get Binding</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Http Get Binding</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Http Get Binding</em>'.
+     * @generated
+     */
 	HttpGetBinding createHttpGetBinding();
 
 	/**
-	 * Returns a new object of class '<em>Http Put Binding</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Http Put Binding</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Http Put Binding</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Http Put Binding</em>'.
+     * @generated
+     */
 	HttpPutBinding createHttpPutBinding();
 
 	/**
-	 * Returns a new object of class '<em>Simple Url Pattern</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Simple Url Pattern</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Simple Url Pattern</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Simple Url Pattern</em>'.
+     * @generated
+     */
 	SimpleUrlPattern createSimpleUrlPattern();
 
 	/**
-	 * Returns a new object of class '<em>Rest Url Pattern</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Rest Url Pattern</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Rest Url Pattern</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Rest Url Pattern</em>'.
+     * @generated
+     */
 	RestUrlPattern createRestUrlPattern();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	BindingPackage getBindingPackage();
 
 } //BindingFactory

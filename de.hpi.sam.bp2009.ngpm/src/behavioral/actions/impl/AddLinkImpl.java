@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class AddLinkImpl extends LinkManipulationStatementImpl implements AddLink {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AddLinkImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.ADD_LINK;
-	}
+        return ActionsPackage.Literals.ADD_LINK;
+    }
 
 } //AddLinkImpl

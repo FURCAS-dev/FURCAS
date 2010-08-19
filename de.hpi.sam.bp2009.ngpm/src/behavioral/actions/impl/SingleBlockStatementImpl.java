@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class SingleBlockStatementImpl extends StatementWithNestedBlocksImpl implements SingleBlockStatement {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SingleBlockStatementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.SINGLE_BLOCK_STATEMENT;
-	}
+        return ActionsPackage.Literals.SINGLE_BLOCK_STATEMENT;
+    }
 
 } //SingleBlockStatementImpl

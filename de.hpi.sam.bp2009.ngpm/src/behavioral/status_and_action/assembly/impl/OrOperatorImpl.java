@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class OrOperatorImpl extends OperatorImpl implements OrOperator {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected OrOperatorImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.OR_OPERATOR;
-	}
+        return AssemblyPackage.Literals.OR_OPERATOR;
+    }
 
 } //OrOperatorImpl

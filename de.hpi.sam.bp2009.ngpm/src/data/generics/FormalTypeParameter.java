@@ -35,75 +35,75 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface FormalTypeParameter extends SapClass {
 	/**
-	 * Returns the value of the '<em><b>Parameter Of</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link data.generics.ClassParameterization#getFormalTypeParameters <em>Formal Type Parameters</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Parameter Of</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link data.generics.ClassParameterization#getFormalTypeParameters <em>Formal Type Parameters</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameter Of</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameter Of</em>' container reference.
-	 * @see #setParameterOf(ClassParameterization)
-	 * @see data.generics.GenericsPackage#getFormalTypeParameter_ParameterOf()
-	 * @see data.generics.ClassParameterization#getFormalTypeParameters
-	 * @model opposite="formalTypeParameters" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Parameter Of</em>' container reference.
+     * @see #setParameterOf(ClassParameterization)
+     * @see data.generics.GenericsPackage#getFormalTypeParameter_ParameterOf()
+     * @see data.generics.ClassParameterization#getFormalTypeParameters
+     * @model opposite="formalTypeParameters" required="true"
+     * @generated
+     */
 	ClassParameterization getParameterOf();
 
 	/**
-	 * Sets the value of the '{@link data.generics.FormalTypeParameter#getParameterOf <em>Parameter Of</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.generics.FormalTypeParameter#getParameterOf <em>Parameter Of</em>}' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parameter Of</em>' container reference.
-	 * @see #getParameterOf()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Parameter Of</em>' container reference.
+     * @see #getParameterOf()
+     * @generated
+     */
 	void setParameterOf(ClassParameterization value);
 
 	/**
-	 * Returns the value of the '<em><b>Type Constraint</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Type Constraint</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type Constraint</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type Constraint</em>' reference.
-	 * @see #setTypeConstraint(SapClass)
-	 * @see data.generics.GenericsPackage#getFormalTypeParameter_TypeConstraint()
-	 * @model
-	 * @generated
-	 */
+     * @return the value of the '<em>Type Constraint</em>' reference.
+     * @see #setTypeConstraint(SapClass)
+     * @see data.generics.GenericsPackage#getFormalTypeParameter_TypeConstraint()
+     * @model
+     * @generated
+     */
 	SapClass getTypeConstraint();
 
 	/**
-	 * Sets the value of the '{@link data.generics.FormalTypeParameter#getTypeConstraint <em>Type Constraint</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.generics.FormalTypeParameter#getTypeConstraint <em>Type Constraint</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type Constraint</em>' reference.
-	 * @see #getTypeConstraint()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Type Constraint</em>' reference.
+     * @see #getTypeConstraint()
+     * @generated
+     */
 	void setTypeConstraint(SapClass value);
 
 	/**
-	 * Returns the value of the '<em><b>Actual Type Parameters</b></em>' reference list.
-	 * The list contents are of type {@link data.generics.ActualTypeParameter}.
-	 * It is bidirectional and its opposite is '{@link data.generics.ActualTypeParameter#getFormalTypeParameter <em>Formal Type Parameter</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Actual Type Parameters</b></em>' reference list.
+     * The list contents are of type {@link data.generics.ActualTypeParameter}.
+     * It is bidirectional and its opposite is '{@link data.generics.ActualTypeParameter#getFormalTypeParameter <em>Formal Type Parameter</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Actual Type Parameters</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actual Type Parameters</em>' reference list.
-	 * @see data.generics.GenericsPackage#getFormalTypeParameter_ActualTypeParameters()
-	 * @see data.generics.ActualTypeParameter#getFormalTypeParameter
-	 * @model opposite="formalTypeParameter"
-	 * @generated
-	 */
+     * @return the value of the '<em>Actual Type Parameters</em>' reference list.
+     * @see data.generics.GenericsPackage#getFormalTypeParameter_ActualTypeParameters()
+     * @see data.generics.ActualTypeParameter#getFormalTypeParameter
+     * @model opposite="formalTypeParameter"
+     * @generated
+     */
 	EList<ActualTypeParameter> getActualTypeParameters();
 
 } // FormalTypeParameter

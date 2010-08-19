@@ -28,20 +28,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface BusinessObject extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
-	 * The list contents are of type {@link behavioral.status_and_action.design.BusinessObjectNode}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Nodes</b></em>' containment reference list.
+     * The list contents are of type {@link behavioral.status_and_action.design.BusinessObjectNode}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Nodes</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Nodes</em>' containment reference list.
-	 * @see behavioral.status_and_action.design.DesignPackage#getBusinessObject_Nodes()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='businessObject'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Nodes</em>' containment reference list.
+     * @see behavioral.status_and_action.design.DesignPackage#getBusinessObject_Nodes()
+     * @model containment="true" resolveProxies="true"
+     *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='businessObject'"
+     * @generated
+     */
 	EList<BusinessObjectNode> getNodes();
 
 } // BusinessObject

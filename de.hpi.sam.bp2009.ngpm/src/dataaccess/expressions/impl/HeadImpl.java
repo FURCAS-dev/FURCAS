@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class HeadImpl extends ObjectBasedExpressionImpl implements Head {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected HeadImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.HEAD;
-	}
+        return ExpressionsPackage.Literals.HEAD;
+    }
 
 } //HeadImpl

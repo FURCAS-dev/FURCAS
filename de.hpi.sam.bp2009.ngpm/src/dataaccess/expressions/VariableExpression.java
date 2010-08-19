@@ -33,29 +33,29 @@ import data.classes.NamedValue;
  */
 public interface VariableExpression extends Expression {
 	/**
-	 * Returns the value of the '<em><b>Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Variable</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variable</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variable</em>' reference.
-	 * @see #setVariable(NamedValue)
-	 * @see dataaccess.expressions.ExpressionsPackage#getVariableExpression_Variable()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Variable</em>' reference.
+     * @see #setVariable(NamedValue)
+     * @see dataaccess.expressions.ExpressionsPackage#getVariableExpression_Variable()
+     * @model required="true"
+     * @generated
+     */
 	NamedValue getVariable();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.expressions.VariableExpression#getVariable <em>Variable</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.expressions.VariableExpression#getVariable <em>Variable</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Variable</em>' reference.
-	 * @see #getVariable()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Variable</em>' reference.
+     * @see #getVariable()
+     * @generated
+     */
 	void setVariable(NamedValue value);
 
 } // VariableExpression

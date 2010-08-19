@@ -36,196 +36,196 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class AbapClassImplementationAnnotationImpl extends EObjectImpl implements AbapClassImplementationAnnotation {
 	/**
-	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getKind()
+     * @generated
+     * @ordered
+     */
 	protected static final AbapClassKind KIND_EDEFAULT = AbapClassKind.BO_AND_ROOT_NODE;
 
 	/**
-	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getKind()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getKind()
+     * @generated
+     * @ordered
+     */
 	protected AbapClassKind kind = KIND_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAbapType() <em>Abap Type</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAbapType() <em>Abap Type</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAbapType()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAbapType()
+     * @generated
+     * @ordered
+     */
 	protected AbapType abapType;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbapClassImplementationAnnotationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AbapmappingPackage.Literals.ABAP_CLASS_IMPLEMENTATION_ANNOTATION;
-	}
+        return AbapmappingPackage.Literals.ABAP_CLASS_IMPLEMENTATION_ANNOTATION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapClassKind getKind() {
-		return kind;
-	}
+        return kind;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setKind(AbapClassKind newKind) {
-		AbapClassKind oldKind = kind;
-		kind = newKind == null ? KIND_EDEFAULT : newKind;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND, oldKind, kind));
-	}
+        AbapClassKind oldKind = kind;
+        kind = newKind == null ? KIND_EDEFAULT : newKind;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND, oldKind, kind));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapType getAbapType() {
-		if (abapType != null && abapType.eIsProxy()) {
-			InternalEObject oldAbapType = (InternalEObject)abapType;
-			abapType = (AbapType)eResolveProxy(oldAbapType);
-			if (abapType != oldAbapType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE, oldAbapType, abapType));
-			}
-		}
-		return abapType;
-	}
+        if (abapType != null && abapType.eIsProxy()) {
+            InternalEObject oldAbapType = (InternalEObject)abapType;
+            abapType = (AbapType)eResolveProxy(oldAbapType);
+            if (abapType != oldAbapType) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE, oldAbapType, abapType));
+            }
+        }
+        return abapType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AbapType basicGetAbapType() {
-		return abapType;
-	}
+        return abapType;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAbapType(AbapType newAbapType) {
-		AbapType oldAbapType = abapType;
-		abapType = newAbapType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE, oldAbapType, abapType));
-	}
+        AbapType oldAbapType = abapType;
+        abapType = newAbapType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE, oldAbapType, abapType));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND:
-				return getKind();
-			case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE:
-				if (resolve) return getAbapType();
-				return basicGetAbapType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND:
+                return getKind();
+            case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE:
+                if (resolve) return getAbapType();
+                return basicGetAbapType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND:
-				setKind((AbapClassKind)newValue);
-				return;
-			case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE:
-				setAbapType((AbapType)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND:
+                setKind((AbapClassKind)newValue);
+                return;
+            case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE:
+                setAbapType((AbapType)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND:
-				setKind(KIND_EDEFAULT);
-				return;
-			case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE:
-				setAbapType((AbapType)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND:
+                setKind(KIND_EDEFAULT);
+                return;
+            case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE:
+                setAbapType((AbapType)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND:
-				return kind != KIND_EDEFAULT;
-			case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE:
-				return abapType != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__KIND:
+                return kind != KIND_EDEFAULT;
+            case AbapmappingPackage.ABAP_CLASS_IMPLEMENTATION_ANNOTATION__ABAP_TYPE:
+                return abapType != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (kind: ");
-		result.append(kind);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (kind: ");
+        result.append(kind);
+        result.append(')');
+        return result.toString();
+    }
 
 } //AbapClassImplementationAnnotationImpl

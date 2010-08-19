@@ -31,183 +31,183 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class ProcesscomponentsSwitch<T> {
 	/**
-	 * The cached model package
-	 * <!-- begin-user-doc -->
+     * The cached model package
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected static ProcesscomponentsPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the switch.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ProcesscomponentsSwitch() {
-		if (modelPackage == null) {
-			modelPackage = ProcesscomponentsPackage.eINSTANCE;
-		}
-	}
+        if (modelPackage == null) {
+            modelPackage = ProcesscomponentsPackage.eINSTANCE;
+        }
+    }
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
+     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+     * @return the first non-null result returned by a <code>caseXXX</code> call.
+     * @generated
+     */
 	public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
-	}
+        return doSwitch(theEObject.eClass(), theEObject);
+    }
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
+     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+     * @return the first non-null result returned by a <code>caseXXX</code> call.
+     * @generated
+     */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
-			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
-		}
-	}
+        if (theEClass.eContainer() == modelPackage) {
+            return doSwitch(theEClass.getClassifierID(), theEObject);
+        }
+        else {
+            List<EClass> eSuperTypes = theEClass.getESuperTypes();
+            return
+                eSuperTypes.isEmpty() ?
+                    defaultCase(theEObject) :
+                    doSwitch(eSuperTypes.get(0), theEObject);
+        }
+    }
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
+     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+     * @return the first non-null result returned by a <code>caseXXX</code> call.
+     * @generated
+     */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-			case ProcesscomponentsPackage.PROCESS_COMPONENT: {
-				ProcessComponent processComponent = (ProcessComponent)theEObject;
-				T result = caseProcessComponent(processComponent);
-				if (result == null) result = casePackageOwner(processComponent);
-				if (result == null) result = caseNamedElement(processComponent);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcesscomponentsPackage.PROCESS_COMPONENT_INSIDE_COMPANY: {
-				ProcessComponentInsideCompany processComponentInsideCompany = (ProcessComponentInsideCompany)theEObject;
-				T result = caseProcessComponentInsideCompany(processComponentInsideCompany);
-				if (result == null) result = caseProcessComponent(processComponentInsideCompany);
-				if (result == null) result = casePackageOwner(processComponentInsideCompany);
-				if (result == null) result = caseNamedElement(processComponentInsideCompany);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ProcesscomponentsPackage.PROCESS_COMPONENT_OUTSIDE_COMPANY: {
-				ProcessComponentOutsideCompany processComponentOutsideCompany = (ProcessComponentOutsideCompany)theEObject;
-				T result = caseProcessComponentOutsideCompany(processComponentOutsideCompany);
-				if (result == null) result = caseProcessComponent(processComponentOutsideCompany);
-				if (result == null) result = casePackageOwner(processComponentOutsideCompany);
-				if (result == null) result = caseNamedElement(processComponentOutsideCompany);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			default: return defaultCase(theEObject);
-		}
-	}
+        switch (classifierID) {
+            case ProcesscomponentsPackage.PROCESS_COMPONENT: {
+                ProcessComponent processComponent = (ProcessComponent)theEObject;
+                T result = caseProcessComponent(processComponent);
+                if (result == null) result = casePackageOwner(processComponent);
+                if (result == null) result = caseNamedElement(processComponent);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case ProcesscomponentsPackage.PROCESS_COMPONENT_INSIDE_COMPANY: {
+                ProcessComponentInsideCompany processComponentInsideCompany = (ProcessComponentInsideCompany)theEObject;
+                T result = caseProcessComponentInsideCompany(processComponentInsideCompany);
+                if (result == null) result = caseProcessComponent(processComponentInsideCompany);
+                if (result == null) result = casePackageOwner(processComponentInsideCompany);
+                if (result == null) result = caseNamedElement(processComponentInsideCompany);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case ProcesscomponentsPackage.PROCESS_COMPONENT_OUTSIDE_COMPANY: {
+                ProcessComponentOutsideCompany processComponentOutsideCompany = (ProcessComponentOutsideCompany)theEObject;
+                T result = caseProcessComponentOutsideCompany(processComponentOutsideCompany);
+                if (result == null) result = caseProcessComponent(processComponentOutsideCompany);
+                if (result == null) result = casePackageOwner(processComponentOutsideCompany);
+                if (result == null) result = caseNamedElement(processComponentOutsideCompany);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            default: return defaultCase(theEObject);
+        }
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Process Component</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Process Component</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Process Component</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Process Component</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseProcessComponent(ProcessComponent object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Process Component Inside Company</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Process Component Inside Company</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Process Component Inside Company</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Process Component Inside Company</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseProcessComponentInsideCompany(ProcessComponentInsideCompany object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Process Component Outside Company</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Process Component Outside Company</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Process Component Outside Company</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Process Component Outside Company</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseProcessComponentOutsideCompany(ProcessComponentOutsideCompany object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T caseNamedElement(NamedElement object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Package Owner</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>Package Owner</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Package Owner</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Package Owner</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
 	public T casePackageOwner(PackageOwner object) {
-		return null;
-	}
+        return null;
+    }
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+     * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
-	 * @generated
-	 */
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+     * @generated
+     */
 	public T defaultCase(EObject object) {
-		return null;
-	}
+        return null;
+    }
 
 } //ProcesscomponentsSwitch

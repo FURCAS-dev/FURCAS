@@ -31,39 +31,39 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface EventProducer extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Subscriptions</b></em>' reference list.
-	 * The list contents are of type {@link behavioral.events.Subscription}.
-	 * It is bidirectional and its opposite is '{@link behavioral.events.Subscription#getProducer <em>Producer</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Subscriptions</b></em>' reference list.
+     * The list contents are of type {@link behavioral.events.Subscription}.
+     * It is bidirectional and its opposite is '{@link behavioral.events.Subscription#getProducer <em>Producer</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subscriptions</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Subscriptions</em>' reference list.
-	 * @see behavioral.events.EventsPackage#getEventProducer_Subscriptions()
-	 * @see behavioral.events.Subscription#getProducer
-	 * @model opposite="producer"
-	 * @generated
-	 */
+     * @return the value of the '<em>Subscriptions</em>' reference list.
+     * @see behavioral.events.EventsPackage#getEventProducer_Subscriptions()
+     * @see behavioral.events.Subscription#getProducer
+     * @model opposite="producer"
+     * @generated
+     */
 	EList<Subscription> getSubscriptions();
 
 	/**
-	 * Returns the value of the '<em><b>Notification Signatures</b></em>' containment reference list.
-	 * The list contents are of type {@link data.classes.MethodSignature}.
-	 * It is bidirectional and its opposite is '{@link data.classes.MethodSignature#getProducer <em>Producer</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Notification Signatures</b></em>' containment reference list.
+     * The list contents are of type {@link data.classes.MethodSignature}.
+     * It is bidirectional and its opposite is '{@link data.classes.MethodSignature#getProducer <em>Producer</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Notification Signatures</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Notification Signatures</em>' containment reference list.
-	 * @see behavioral.events.EventsPackage#getEventProducer_NotificationSignatures()
-	 * @see data.classes.MethodSignature#getProducer
-	 * @model opposite="producer" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Notification Signatures</em>' containment reference list.
+     * @see behavioral.events.EventsPackage#getEventProducer_NotificationSignatures()
+     * @see data.classes.MethodSignature#getProducer
+     * @model opposite="producer" containment="true" resolveProxies="true"
+     * @generated
+     */
 	EList<MethodSignature> getNotificationSignatures();
 
 } // EventProducer

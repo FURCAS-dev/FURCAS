@@ -22,22 +22,22 @@ import persistence.actions.Delete;
  */
 public class DeleteImpl extends StatementWithEntityArgumentImpl implements Delete {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DeleteImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.DELETE;
-	}
+        return ActionsPackage.Literals.DELETE;
+    }
 
 } //DeleteImpl

@@ -18,56 +18,56 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface ActionsFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	ActionsFactory eINSTANCE = persistence.actions.impl.ActionsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Store</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Store</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Store</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Store</em>'.
+     * @generated
+     */
 	Store createStore();
 
 	/**
-	 * Returns a new object of class '<em>Delete</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Delete</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Delete</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Delete</em>'.
+     * @generated
+     */
 	Delete createDelete();
 
 	/**
-	 * Returns a new object of class '<em>Statement With Entity Argument</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Statement With Entity Argument</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Statement With Entity Argument</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Statement With Entity Argument</em>'.
+     * @generated
+     */
 	StatementWithEntityArgument createStatementWithEntityArgument();
 
 	/**
-	 * Returns a new object of class '<em>Rollback</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Rollback</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Rollback</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Rollback</em>'.
+     * @generated
+     */
 	Rollback createRollback();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	ActionsPackage getActionsPackage();
 
 } //ActionsFactory

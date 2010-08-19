@@ -29,29 +29,29 @@ package data.classes;
  */
 public interface LinkManipulationAtPosition extends ExtentModifyingAssociationEndSignatureImplementation {
 	/**
-	 * Returns the value of the '<em><b>At</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>At</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>At</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>At</em>' attribute.
-	 * @see #setAt(int)
-	 * @see data.classes.ClassesPackage#getLinkManipulationAtPosition_At()
-	 * @model unique="false" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>At</em>' attribute.
+     * @see #setAt(int)
+     * @see data.classes.ClassesPackage#getLinkManipulationAtPosition_At()
+     * @model unique="false" ordered="false"
+     * @generated
+     */
 	int getAt();
 
 	/**
-	 * Sets the value of the '{@link data.classes.LinkManipulationAtPosition#getAt <em>At</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link data.classes.LinkManipulationAtPosition#getAt <em>At</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>At</em>' attribute.
-	 * @see #getAt()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>At</em>' attribute.
+     * @see #getAt()
+     * @generated
+     */
 	void setAt(int value);
 
 } // LinkManipulationAtPosition

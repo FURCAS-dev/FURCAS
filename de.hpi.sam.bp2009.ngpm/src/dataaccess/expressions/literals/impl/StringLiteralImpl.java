@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class StringLiteralImpl extends LiteralImpl implements StringLiteral {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StringLiteralImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return LiteralsPackage.Literals.STRING_LITERAL;
-	}
+        return LiteralsPackage.Literals.STRING_LITERAL;
+    }
 
 } //StringLiteralImpl

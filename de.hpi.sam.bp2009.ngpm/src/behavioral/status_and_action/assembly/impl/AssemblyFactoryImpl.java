@@ -24,219 +24,219 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class AssemblyFactoryImpl extends EFactoryImpl implements AssemblyFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static AssemblyFactory init() {
-		try {
-			AssemblyFactory theAssemblyFactory = (AssemblyFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/status_and_action/assembly.ecore"); 
-			if (theAssemblyFactory != null) {
-				return theAssemblyFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new AssemblyFactoryImpl();
-	}
+        try {
+            AssemblyFactory theAssemblyFactory = (AssemblyFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/status_and_action/assembly.ecore"); 
+            if (theAssemblyFactory != null) {
+                return theAssemblyFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new AssemblyFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssemblyFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case AssemblyPackage.STATUS_SCHEMA: return createStatusSchema();
-			case AssemblyPackage.OPERATOR: return createOperator();
-			case AssemblyPackage.ACTION_PROXY: return createActionProxy();
-			case AssemblyPackage.STATUS_VALUE_PROXY: return createStatusValueProxy();
-			case AssemblyPackage.TRANSITION: return createTransition();
-			case AssemblyPackage.SYNCHRONISER: return createSynchroniser();
-			case AssemblyPackage.PRECONDITION: return createPrecondition();
-			case AssemblyPackage.STATUS_VARIABLE_PROXY: return createStatusVariableProxy();
-			case AssemblyPackage.AND_OPERATOR: return createAndOperator();
-			case AssemblyPackage.OR_OPERATOR: return createOrOperator();
-			case AssemblyPackage.REQUIRED_STRATEGY: return createRequiredStrategy();
-			case AssemblyPackage.NEUTRAL_STRATEGY: return createNeutralStrategy();
-			case AssemblyPackage.ENABLING_STRATEGY: return createEnablingStrategy();
-			case AssemblyPackage.INHIBITING_STRATEGY: return createInhibitingStrategy();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case AssemblyPackage.STATUS_SCHEMA: return createStatusSchema();
+            case AssemblyPackage.OPERATOR: return createOperator();
+            case AssemblyPackage.ACTION_PROXY: return createActionProxy();
+            case AssemblyPackage.STATUS_VALUE_PROXY: return createStatusValueProxy();
+            case AssemblyPackage.TRANSITION: return createTransition();
+            case AssemblyPackage.SYNCHRONISER: return createSynchroniser();
+            case AssemblyPackage.PRECONDITION: return createPrecondition();
+            case AssemblyPackage.STATUS_VARIABLE_PROXY: return createStatusVariableProxy();
+            case AssemblyPackage.AND_OPERATOR: return createAndOperator();
+            case AssemblyPackage.OR_OPERATOR: return createOrOperator();
+            case AssemblyPackage.REQUIRED_STRATEGY: return createRequiredStrategy();
+            case AssemblyPackage.NEUTRAL_STRATEGY: return createNeutralStrategy();
+            case AssemblyPackage.ENABLING_STRATEGY: return createEnablingStrategy();
+            case AssemblyPackage.INHIBITING_STRATEGY: return createInhibitingStrategy();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StatusSchema createStatusSchema() {
-		StatusSchemaImpl statusSchema = new StatusSchemaImpl();
-		return statusSchema;
-	}
+        StatusSchemaImpl statusSchema = new StatusSchemaImpl();
+        return statusSchema;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Operator createOperator() {
-		OperatorImpl operator = new OperatorImpl();
-		return operator;
-	}
+        OperatorImpl operator = new OperatorImpl();
+        return operator;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActionProxy createActionProxy() {
-		ActionProxyImpl actionProxy = new ActionProxyImpl();
-		return actionProxy;
-	}
+        ActionProxyImpl actionProxy = new ActionProxyImpl();
+        return actionProxy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StatusValueProxy createStatusValueProxy() {
-		StatusValueProxyImpl statusValueProxy = new StatusValueProxyImpl();
-		return statusValueProxy;
-	}
+        StatusValueProxyImpl statusValueProxy = new StatusValueProxyImpl();
+        return statusValueProxy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Transition createTransition() {
-		TransitionImpl transition = new TransitionImpl();
-		return transition;
-	}
+        TransitionImpl transition = new TransitionImpl();
+        return transition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Synchroniser createSynchroniser() {
-		SynchroniserImpl synchroniser = new SynchroniserImpl();
-		return synchroniser;
-	}
+        SynchroniserImpl synchroniser = new SynchroniserImpl();
+        return synchroniser;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Precondition createPrecondition() {
-		PreconditionImpl precondition = new PreconditionImpl();
-		return precondition;
-	}
+        PreconditionImpl precondition = new PreconditionImpl();
+        return precondition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StatusVariableProxy createStatusVariableProxy() {
-		StatusVariableProxyImpl statusVariableProxy = new StatusVariableProxyImpl();
-		return statusVariableProxy;
-	}
+        StatusVariableProxyImpl statusVariableProxy = new StatusVariableProxyImpl();
+        return statusVariableProxy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AndOperator createAndOperator() {
-		AndOperatorImpl andOperator = new AndOperatorImpl();
-		return andOperator;
-	}
+        AndOperatorImpl andOperator = new AndOperatorImpl();
+        return andOperator;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public OrOperator createOrOperator() {
-		OrOperatorImpl orOperator = new OrOperatorImpl();
-		return orOperator;
-	}
+        OrOperatorImpl orOperator = new OrOperatorImpl();
+        return orOperator;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public RequiredStrategy createRequiredStrategy() {
-		RequiredStrategyImpl requiredStrategy = new RequiredStrategyImpl();
-		return requiredStrategy;
-	}
+        RequiredStrategyImpl requiredStrategy = new RequiredStrategyImpl();
+        return requiredStrategy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NeutralStrategy createNeutralStrategy() {
-		NeutralStrategyImpl neutralStrategy = new NeutralStrategyImpl();
-		return neutralStrategy;
-	}
+        NeutralStrategyImpl neutralStrategy = new NeutralStrategyImpl();
+        return neutralStrategy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EnablingStrategy createEnablingStrategy() {
-		EnablingStrategyImpl enablingStrategy = new EnablingStrategyImpl();
-		return enablingStrategy;
-	}
+        EnablingStrategyImpl enablingStrategy = new EnablingStrategyImpl();
+        return enablingStrategy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public InhibitingStrategy createInhibitingStrategy() {
-		InhibitingStrategyImpl inhibitingStrategy = new InhibitingStrategyImpl();
-		return inhibitingStrategy;
-	}
+        InhibitingStrategyImpl inhibitingStrategy = new InhibitingStrategyImpl();
+        return inhibitingStrategy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssemblyPackage getAssemblyPackage() {
-		return (AssemblyPackage)getEPackage();
-	}
+        return (AssemblyPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static AssemblyPackage getPackage() {
-		return AssemblyPackage.eINSTANCE;
-	}
+        return AssemblyPackage.eINSTANCE;
+    }
 
 } //AssemblyFactoryImpl

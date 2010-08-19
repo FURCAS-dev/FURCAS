@@ -24,76 +24,76 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class BusinesstasksFactoryImpl extends EFactoryImpl implements BusinesstasksFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static BusinesstasksFactory init() {
-		try {
-			BusinesstasksFactory theBusinesstasksFactory = (BusinesstasksFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/businesstasks.ecore"); 
-			if (theBusinesstasksFactory != null) {
-				return theBusinesstasksFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new BusinesstasksFactoryImpl();
-	}
+        try {
+            BusinesstasksFactory theBusinesstasksFactory = (BusinesstasksFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/businesstasks.ecore"); 
+            if (theBusinesstasksFactory != null) {
+                return theBusinesstasksFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new BusinesstasksFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BusinesstasksFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case BusinesstasksPackage.TASK_AGENT: return createTaskAgent();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case BusinesstasksPackage.TASK_AGENT: return createTaskAgent();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TaskAgent createTaskAgent() {
-		TaskAgentImpl taskAgent = new TaskAgentImpl();
-		return taskAgent;
-	}
+        TaskAgentImpl taskAgent = new TaskAgentImpl();
+        return taskAgent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public BusinesstasksPackage getBusinesstasksPackage() {
-		return (BusinesstasksPackage)getEPackage();
-	}
+        return (BusinesstasksPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static BusinesstasksPackage getPackage() {
-		return BusinesstasksPackage.eINSTANCE;
-	}
+        return BusinesstasksPackage.eINSTANCE;
+    }
 
 } //BusinesstasksFactoryImpl

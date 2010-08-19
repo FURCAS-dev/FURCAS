@@ -24,120 +24,120 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class CollectionexpressionsFactoryImpl extends EFactoryImpl implements CollectionexpressionsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static CollectionexpressionsFactory init() {
-		try {
-			CollectionexpressionsFactory theCollectionexpressionsFactory = (CollectionexpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/expressions/collectionexpressions.ecore"); 
-			if (theCollectionexpressionsFactory != null) {
-				return theCollectionexpressionsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new CollectionexpressionsFactoryImpl();
-	}
+        try {
+            CollectionexpressionsFactory theCollectionexpressionsFactory = (CollectionexpressionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/expressions/collectionexpressions.ecore"); 
+            if (theCollectionexpressionsFactory != null) {
+                return theCollectionexpressionsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new CollectionexpressionsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CollectionexpressionsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case CollectionexpressionsPackage.INCLUDING: return createIncluding();
-			case CollectionexpressionsPackage.EXCLUDING: return createExcluding();
-			case CollectionexpressionsPackage.INCLUDING_AT: return createIncludingAt();
-			case CollectionexpressionsPackage.ITERATE: return createIterate();
-			case CollectionexpressionsPackage.EXCLUDING_AT: return createExcludingAt();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case CollectionexpressionsPackage.INCLUDING: return createIncluding();
+            case CollectionexpressionsPackage.EXCLUDING: return createExcluding();
+            case CollectionexpressionsPackage.INCLUDING_AT: return createIncludingAt();
+            case CollectionexpressionsPackage.ITERATE: return createIterate();
+            case CollectionexpressionsPackage.EXCLUDING_AT: return createExcludingAt();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Including createIncluding() {
-		IncludingImpl including = new IncludingImpl();
-		return including;
-	}
+        IncludingImpl including = new IncludingImpl();
+        return including;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Excluding createExcluding() {
-		ExcludingImpl excluding = new ExcludingImpl();
-		return excluding;
-	}
+        ExcludingImpl excluding = new ExcludingImpl();
+        return excluding;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public IncludingAt createIncludingAt() {
-		IncludingAtImpl includingAt = new IncludingAtImpl();
-		return includingAt;
-	}
+        IncludingAtImpl includingAt = new IncludingAtImpl();
+        return includingAt;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Iterate createIterate() {
-		IterateImpl iterate = new IterateImpl();
-		return iterate;
-	}
+        IterateImpl iterate = new IterateImpl();
+        return iterate;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExcludingAt createExcludingAt() {
-		ExcludingAtImpl excludingAt = new ExcludingAtImpl();
-		return excludingAt;
-	}
+        ExcludingAtImpl excludingAt = new ExcludingAtImpl();
+        return excludingAt;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CollectionexpressionsPackage getCollectionexpressionsPackage() {
-		return (CollectionexpressionsPackage)getEPackage();
-	}
+        return (CollectionexpressionsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static CollectionexpressionsPackage getPackage() {
-		return CollectionexpressionsPackage.eINSTANCE;
-	}
+        return CollectionexpressionsPackage.eINSTANCE;
+    }
 
 } //CollectionexpressionsFactoryImpl

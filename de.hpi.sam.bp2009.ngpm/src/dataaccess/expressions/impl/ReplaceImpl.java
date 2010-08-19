@@ -42,198 +42,222 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ReplaceImpl extends ObjectBasedExpressionImpl implements Replace {
 	/**
-	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSteps()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSteps()
+     * @generated
+     * @ordered
+     */
 	protected EList<NavigationStep> steps;
 
 	/**
-	 * The cached value of the '{@link #getWith() <em>With</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getWith() <em>With</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getWith()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getWith()
+     * @generated
+     * @ordered
+     */
 	protected Expression with;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ReplaceImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.REPLACE;
-	}
+        return ExpressionsPackage.Literals.REPLACE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<NavigationStep> getSteps() {
-		if (steps == null) {
-			steps = new EObjectContainmentWithInverseEList<NavigationStep>(NavigationStep.class, this, ExpressionsPackage.REPLACE__STEPS, ExpressionsPackage.NAVIGATION_STEP__REPLACE);
-		}
-		return steps;
-	}
+        if (steps == null) {
+            steps = new EObjectContainmentWithInverseEList.Resolving<NavigationStep>(NavigationStep.class, this, ExpressionsPackage.REPLACE__STEPS, ExpressionsPackage.NAVIGATION_STEP__REPLACE);
+        }
+        return steps;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Expression getWith() {
-		return with;
-	}
+        if (with != null && with.eIsProxy()) {
+            InternalEObject oldWith = (InternalEObject)with;
+            with = (Expression)eResolveProxy(oldWith);
+            if (with != oldWith) {
+                InternalEObject newWith = (InternalEObject)with;
+                NotificationChain msgs = oldWith.eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.REPLACE__WITH, null, null);
+                if (newWith.eInternalContainer() == null) {
+                    msgs = newWith.eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.REPLACE__WITH, null, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExpressionsPackage.REPLACE__WITH, oldWith, with));
+            }
+        }
+        return with;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Expression basicGetWith() {
+        return with;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetWith(Expression newWith, NotificationChain msgs) {
-		Expression oldWith = with;
-		with = newWith;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.REPLACE__WITH, oldWith, newWith);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        Expression oldWith = with;
+        with = newWith;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.REPLACE__WITH, oldWith, newWith);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setWith(Expression newWith) {
-		if (newWith != with) {
-			NotificationChain msgs = null;
-			if (with != null)
-				msgs = ((InternalEObject)with).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.REPLACE__WITH, null, msgs);
-			if (newWith != null)
-				msgs = ((InternalEObject)newWith).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.REPLACE__WITH, null, msgs);
-			msgs = basicSetWith(newWith, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.REPLACE__WITH, newWith, newWith));
-	}
+        if (newWith != with) {
+            NotificationChain msgs = null;
+            if (with != null)
+                msgs = ((InternalEObject)with).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.REPLACE__WITH, null, msgs);
+            if (newWith != null)
+                msgs = ((InternalEObject)newWith).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.REPLACE__WITH, null, msgs);
+            msgs = basicSetWith(newWith, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.REPLACE__WITH, newWith, newWith));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.REPLACE__STEPS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSteps()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REPLACE__STEPS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getSteps()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ExpressionsPackage.REPLACE__STEPS:
-				return ((InternalEList<?>)getSteps()).basicRemove(otherEnd, msgs);
-			case ExpressionsPackage.REPLACE__WITH:
-				return basicSetWith(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REPLACE__STEPS:
+                return ((InternalEList<?>)getSteps()).basicRemove(otherEnd, msgs);
+            case ExpressionsPackage.REPLACE__WITH:
+                return basicSetWith(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ExpressionsPackage.REPLACE__STEPS:
-				return getSteps();
-			case ExpressionsPackage.REPLACE__WITH:
-				return getWith();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REPLACE__STEPS:
+                return getSteps();
+            case ExpressionsPackage.REPLACE__WITH:
+                if (resolve) return getWith();
+                return basicGetWith();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ExpressionsPackage.REPLACE__STEPS:
-				getSteps().clear();
-				getSteps().addAll((Collection<? extends NavigationStep>)newValue);
-				return;
-			case ExpressionsPackage.REPLACE__WITH:
-				setWith((Expression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REPLACE__STEPS:
+                getSteps().clear();
+                getSteps().addAll((Collection<? extends NavigationStep>)newValue);
+                return;
+            case ExpressionsPackage.REPLACE__WITH:
+                setWith((Expression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.REPLACE__STEPS:
-				getSteps().clear();
-				return;
-			case ExpressionsPackage.REPLACE__WITH:
-				setWith((Expression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REPLACE__STEPS:
+                getSteps().clear();
+                return;
+            case ExpressionsPackage.REPLACE__WITH:
+                setWith((Expression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ExpressionsPackage.REPLACE__STEPS:
-				return steps != null && !steps.isEmpty();
-			case ExpressionsPackage.REPLACE__WITH:
-				return with != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ExpressionsPackage.REPLACE__STEPS:
+                return steps != null && !steps.isEmpty();
+            case ExpressionsPackage.REPLACE__WITH:
+                return with != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ReplaceImpl

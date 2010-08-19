@@ -41,185 +41,185 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class CodeImpl extends DataElementImpl implements Code {
 	/**
-	 * The default value of the '{@link #isExtensible() <em>Extensible</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isExtensible() <em>Extensible</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isExtensible()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isExtensible()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean EXTENSIBLE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isExtensible() <em>Extensible</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isExtensible() <em>Extensible</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isExtensible()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isExtensible()
+     * @generated
+     * @ordered
+     */
 	protected boolean extensible = EXTENSIBLE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValues()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getValues()
+     * @generated
+     * @ordered
+     */
 	protected EList<CodeValue> values;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CodeImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AbapdictionaryPackage.Literals.CODE;
-	}
+        return AbapdictionaryPackage.Literals.CODE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isExtensible() {
-		return extensible;
-	}
+        return extensible;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setExtensible(boolean newExtensible) {
-		boolean oldExtensible = extensible;
-		extensible = newExtensible;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AbapdictionaryPackage.CODE__EXTENSIBLE, oldExtensible, extensible));
-	}
+        boolean oldExtensible = extensible;
+        extensible = newExtensible;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AbapdictionaryPackage.CODE__EXTENSIBLE, oldExtensible, extensible));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<CodeValue> getValues() {
-		if (values == null) {
-			values = new EObjectContainmentEList<CodeValue>(CodeValue.class, this, AbapdictionaryPackage.CODE__VALUES);
-		}
-		return values;
-	}
+        if (values == null) {
+            values = new EObjectContainmentEList.Resolving<CodeValue>(CodeValue.class, this, AbapdictionaryPackage.CODE__VALUES);
+        }
+        return values;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case AbapdictionaryPackage.CODE__VALUES:
-				return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.CODE__VALUES:
+                return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AbapdictionaryPackage.CODE__EXTENSIBLE:
-				return isExtensible();
-			case AbapdictionaryPackage.CODE__VALUES:
-				return getValues();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.CODE__EXTENSIBLE:
+                return isExtensible();
+            case AbapdictionaryPackage.CODE__VALUES:
+                return getValues();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AbapdictionaryPackage.CODE__EXTENSIBLE:
-				setExtensible((Boolean)newValue);
-				return;
-			case AbapdictionaryPackage.CODE__VALUES:
-				getValues().clear();
-				getValues().addAll((Collection<? extends CodeValue>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.CODE__EXTENSIBLE:
+                setExtensible((Boolean)newValue);
+                return;
+            case AbapdictionaryPackage.CODE__VALUES:
+                getValues().clear();
+                getValues().addAll((Collection<? extends CodeValue>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AbapdictionaryPackage.CODE__EXTENSIBLE:
-				setExtensible(EXTENSIBLE_EDEFAULT);
-				return;
-			case AbapdictionaryPackage.CODE__VALUES:
-				getValues().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.CODE__EXTENSIBLE:
+                setExtensible(EXTENSIBLE_EDEFAULT);
+                return;
+            case AbapdictionaryPackage.CODE__VALUES:
+                getValues().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AbapdictionaryPackage.CODE__EXTENSIBLE:
-				return extensible != EXTENSIBLE_EDEFAULT;
-			case AbapdictionaryPackage.CODE__VALUES:
-				return values != null && !values.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case AbapdictionaryPackage.CODE__EXTENSIBLE:
+                return extensible != EXTENSIBLE_EDEFAULT;
+            case AbapdictionaryPackage.CODE__VALUES:
+                return values != null && !values.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (extensible: ");
-		result.append(extensible);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (extensible: ");
+        result.append(extensible);
+        result.append(')');
+        return result.toString();
+    }
 
 } //CodeImpl

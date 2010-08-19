@@ -44,348 +44,359 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class TypeAdapterImpl extends SignatureOwnerImpl implements TypeAdapter {
 	/**
-	 * The cached value of the '{@link #getTo() <em>To</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTo() <em>To</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTo()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTo()
+     * @generated
+     * @ordered
+     */
 	protected SapClass to;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected TypeAdapterImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.TYPE_ADAPTER;
-	}
+        return ClassesPackage.Literals.TYPE_ADAPTER;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass getTo() {
-		if (to != null && to.eIsProxy()) {
-			InternalEObject oldTo = (InternalEObject)to;
-			to = (SapClass)eResolveProxy(oldTo);
-			if (to != oldTo) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.TYPE_ADAPTER__TO, oldTo, to));
-			}
-		}
-		return to;
-	}
+        if (to != null && to.eIsProxy()) {
+            InternalEObject oldTo = (InternalEObject)to;
+            to = (SapClass)eResolveProxy(oldTo);
+            if (to != oldTo) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.TYPE_ADAPTER__TO, oldTo, to));
+            }
+        }
+        return to;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass basicGetTo() {
-		return to;
-	}
+        return to;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetTo(SapClass newTo, NotificationChain msgs) {
-		SapClass oldTo = to;
-		to = newTo;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.TYPE_ADAPTER__TO, oldTo, newTo);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        SapClass oldTo = to;
+        to = newTo;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.TYPE_ADAPTER__TO, oldTo, newTo);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTo(SapClass newTo) {
-		if (newTo != to) {
-			NotificationChain msgs = null;
-			if (to != null)
-				msgs = ((InternalEObject)to).eInverseRemove(this, ClassesPackage.SAP_CLASS__ADAPTED_BY, SapClass.class, msgs);
-			if (newTo != null)
-				msgs = ((InternalEObject)newTo).eInverseAdd(this, ClassesPackage.SAP_CLASS__ADAPTED_BY, SapClass.class, msgs);
-			msgs = basicSetTo(newTo, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.TYPE_ADAPTER__TO, newTo, newTo));
-	}
+        if (newTo != to) {
+            NotificationChain msgs = null;
+            if (to != null)
+                msgs = ((InternalEObject)to).eInverseRemove(this, ClassesPackage.SAP_CLASS__ADAPTED_BY, SapClass.class, msgs);
+            if (newTo != null)
+                msgs = ((InternalEObject)newTo).eInverseAdd(this, ClassesPackage.SAP_CLASS__ADAPTED_BY, SapClass.class, msgs);
+            msgs = basicSetTo(newTo, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.TYPE_ADAPTER__TO, newTo, newTo));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass getAdapted() {
-		if (eContainerFeatureID() != ClassesPackage.TYPE_ADAPTER__ADAPTED) return null;
-		return (SapClass)eContainer();
-	}
+        if (eContainerFeatureID() != ClassesPackage.TYPE_ADAPTER__ADAPTED) return null;
+        return (SapClass)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SapClass basicGetAdapted() {
+        if (eContainerFeatureID() != ClassesPackage.TYPE_ADAPTER__ADAPTED) return null;
+        return (SapClass)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetAdapted(SapClass newAdapted, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newAdapted, ClassesPackage.TYPE_ADAPTER__ADAPTED, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newAdapted, ClassesPackage.TYPE_ADAPTER__ADAPTED, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAdapted(SapClass newAdapted) {
-		if (newAdapted != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.TYPE_ADAPTER__ADAPTED && newAdapted != null)) {
-			if (EcoreUtil.isAncestor(this, newAdapted))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newAdapted != null)
-				msgs = ((InternalEObject)newAdapted).eInverseAdd(this, ClassesPackage.SAP_CLASS__ADAPTERS, SapClass.class, msgs);
-			msgs = basicSetAdapted(newAdapted, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.TYPE_ADAPTER__ADAPTED, newAdapted, newAdapted));
-	}
+        if (newAdapted != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.TYPE_ADAPTER__ADAPTED && newAdapted != null)) {
+            if (EcoreUtil.isAncestor(this, newAdapted))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newAdapted != null)
+                msgs = ((InternalEObject)newAdapted).eInverseAdd(this, ClassesPackage.SAP_CLASS__ADAPTERS, SapClass.class, msgs);
+            msgs = basicSetAdapted(newAdapted, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.TYPE_ADAPTER__ADAPTED, newAdapted, newAdapted));
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #conformsTo(data.classes.SapClass) <em>Conforms To</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #conformsTo(data.classes.SapClass) <em>Conforms To</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #conformsTo(data.classes.SapClass)
-	 * @generated
-	 * @ordered
-	 */
+     * @see #conformsTo(data.classes.SapClass)
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_SAP_CLASS__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_ADAPTER.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean conformsTo(SapClass type) {
-		try {
-			return (Boolean)CONFORMS_TO_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{type}));
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Boolean)CONFORMS_TO_SAP_CLASS__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{type}));
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.SapClass, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Conforms To Excluding</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #conformsToExcluding(data.classes.SapClass, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList) <em>Conforms To Excluding</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #conformsToExcluding(data.classes.SapClass, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
+     * @see #conformsToExcluding(data.classes.SapClass, org.eclipse.emf.common.util.EList, org.eclipse.emf.common.util.EList)
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_ADAPTER.getEOperations().get(1)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean conformsToExcluding(SapClass type, EList<SapClass> excludingConforming, EList<SapClass> excludingTo) {
-		try {
-			return (Boolean)CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Boolean)CONFORMS_TO_EXCLUDING_SAP_CLASS_ELIST_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(3, new Object[]{type, excludingConforming, excludingTo}));
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #allSignatures() <em>All Signatures</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #allSignatures() <em>All Signatures</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #allSignatures()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #allSignatures()
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate ALL_SIGNATURES__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_ADAPTER.getEOperations().get(2)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<MethodSignature> allSignatures() {
-		try {
-			return (EList<MethodSignature>)ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (EList<MethodSignature>)ALL_SIGNATURES__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #allSignaturesExcluding(org.eclipse.emf.common.util.EList) <em>All Signatures Excluding</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #allSignaturesExcluding(org.eclipse.emf.common.util.EList) <em>All Signatures Excluding</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #allSignaturesExcluding(org.eclipse.emf.common.util.EList)
-	 * @generated
-	 * @ordered
-	 */
+     * @see #allSignaturesExcluding(org.eclipse.emf.common.util.EList)
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.TYPE_ADAPTER.getEOperations().get(3)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<MethodSignature> allSignaturesExcluding(EList<SapClass> excluding) {
-		try {
-			return (EList<MethodSignature>)ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (EList<MethodSignature>)ALL_SIGNATURES_EXCLUDING_ELIST__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{excluding}));
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.TYPE_ADAPTER__TO:
-				if (to != null)
-					msgs = ((InternalEObject)to).eInverseRemove(this, ClassesPackage.SAP_CLASS__ADAPTED_BY, SapClass.class, msgs);
-				return basicSetTo((SapClass)otherEnd, msgs);
-			case ClassesPackage.TYPE_ADAPTER__ADAPTED:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetAdapted((SapClass)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.TYPE_ADAPTER__TO:
+                if (to != null)
+                    msgs = ((InternalEObject)to).eInverseRemove(this, ClassesPackage.SAP_CLASS__ADAPTED_BY, SapClass.class, msgs);
+                return basicSetTo((SapClass)otherEnd, msgs);
+            case ClassesPackage.TYPE_ADAPTER__ADAPTED:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetAdapted((SapClass)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.TYPE_ADAPTER__TO:
-				return basicSetTo(null, msgs);
-			case ClassesPackage.TYPE_ADAPTER__ADAPTED:
-				return basicSetAdapted(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.TYPE_ADAPTER__TO:
+                return basicSetTo(null, msgs);
+            case ClassesPackage.TYPE_ADAPTER__ADAPTED:
+                return basicSetAdapted(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case ClassesPackage.TYPE_ADAPTER__ADAPTED:
-				return eInternalContainer().eInverseRemove(this, ClassesPackage.SAP_CLASS__ADAPTERS, SapClass.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case ClassesPackage.TYPE_ADAPTER__ADAPTED:
+                return eInternalContainer().eInverseRemove(this, ClassesPackage.SAP_CLASS__ADAPTERS, SapClass.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassesPackage.TYPE_ADAPTER__TO:
-				if (resolve) return getTo();
-				return basicGetTo();
-			case ClassesPackage.TYPE_ADAPTER__ADAPTED:
-				return getAdapted();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClassesPackage.TYPE_ADAPTER__TO:
+                if (resolve) return getTo();
+                return basicGetTo();
+            case ClassesPackage.TYPE_ADAPTER__ADAPTED:
+                if (resolve) return getAdapted();
+                return basicGetAdapted();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassesPackage.TYPE_ADAPTER__TO:
-				setTo((SapClass)newValue);
-				return;
-			case ClassesPackage.TYPE_ADAPTER__ADAPTED:
-				setAdapted((SapClass)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClassesPackage.TYPE_ADAPTER__TO:
+                setTo((SapClass)newValue);
+                return;
+            case ClassesPackage.TYPE_ADAPTER__ADAPTED:
+                setAdapted((SapClass)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.TYPE_ADAPTER__TO:
-				setTo((SapClass)null);
-				return;
-			case ClassesPackage.TYPE_ADAPTER__ADAPTED:
-				setAdapted((SapClass)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.TYPE_ADAPTER__TO:
+                setTo((SapClass)null);
+                return;
+            case ClassesPackage.TYPE_ADAPTER__ADAPTED:
+                setAdapted((SapClass)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.TYPE_ADAPTER__TO:
-				return to != null;
-			case ClassesPackage.TYPE_ADAPTER__ADAPTED:
-				return getAdapted() != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.TYPE_ADAPTER__TO:
+                return to != null;
+            case ClassesPackage.TYPE_ADAPTER__ADAPTED:
+                return basicGetAdapted() != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //TypeAdapterImpl

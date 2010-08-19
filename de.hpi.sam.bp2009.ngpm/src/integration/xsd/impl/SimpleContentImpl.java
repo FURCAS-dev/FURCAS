@@ -34,173 +34,173 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  */
 public class SimpleContentImpl extends AbstractContentImpl implements SimpleContent {
 	/**
-	 * The default value of the '{@link #getBase() <em>Base</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getBase() <em>Base</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBase()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBase()
+     * @generated
+     * @ordered
+     */
 	protected static final String BASE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getBase() <em>Base</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getBase() <em>Base</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getBase()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getBase()
+     * @generated
+     * @ordered
+     */
 	protected String base = BASE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEnumVals() <em>Enum Vals</em>}' attribute list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getEnumVals() <em>Enum Vals</em>}' attribute list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEnumVals()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getEnumVals()
+     * @generated
+     * @ordered
+     */
 	protected EList<String> enumVals;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SimpleContentImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return XsdPackage.Literals.SIMPLE_CONTENT;
-	}
+        return XsdPackage.Literals.SIMPLE_CONTENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getBase() {
-		return base;
-	}
+        return base;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setBase(String newBase) {
-		String oldBase = base;
-		base = newBase;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.SIMPLE_CONTENT__BASE, oldBase, base));
-	}
+        String oldBase = base;
+        base = newBase;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.SIMPLE_CONTENT__BASE, oldBase, base));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<String> getEnumVals() {
-		if (enumVals == null) {
-			enumVals = new EDataTypeEList<String>(String.class, this, XsdPackage.SIMPLE_CONTENT__ENUM_VALS);
-		}
-		return enumVals;
-	}
+        if (enumVals == null) {
+            enumVals = new EDataTypeEList<String>(String.class, this, XsdPackage.SIMPLE_CONTENT__ENUM_VALS);
+        }
+        return enumVals;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case XsdPackage.SIMPLE_CONTENT__BASE:
-				return getBase();
-			case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
-				return getEnumVals();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case XsdPackage.SIMPLE_CONTENT__BASE:
+                return getBase();
+            case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
+                return getEnumVals();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case XsdPackage.SIMPLE_CONTENT__BASE:
-				setBase((String)newValue);
-				return;
-			case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
-				getEnumVals().clear();
-				getEnumVals().addAll((Collection<? extends String>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case XsdPackage.SIMPLE_CONTENT__BASE:
+                setBase((String)newValue);
+                return;
+            case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
+                getEnumVals().clear();
+                getEnumVals().addAll((Collection<? extends String>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case XsdPackage.SIMPLE_CONTENT__BASE:
-				setBase(BASE_EDEFAULT);
-				return;
-			case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
-				getEnumVals().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case XsdPackage.SIMPLE_CONTENT__BASE:
+                setBase(BASE_EDEFAULT);
+                return;
+            case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
+                getEnumVals().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case XsdPackage.SIMPLE_CONTENT__BASE:
-				return BASE_EDEFAULT == null ? base != null : !BASE_EDEFAULT.equals(base);
-			case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
-				return enumVals != null && !enumVals.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case XsdPackage.SIMPLE_CONTENT__BASE:
+                return BASE_EDEFAULT == null ? base != null : !BASE_EDEFAULT.equals(base);
+            case XsdPackage.SIMPLE_CONTENT__ENUM_VALS:
+                return enumVals != null && !enumVals.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (base: ");
-		result.append(base);
-		result.append(", enumVals: ");
-		result.append(enumVals);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (base: ");
+        result.append(base);
+        result.append(", enumVals: ");
+        result.append(enumVals);
+        result.append(')');
+        return result.toString();
+    }
 
 } //SimpleContentImpl

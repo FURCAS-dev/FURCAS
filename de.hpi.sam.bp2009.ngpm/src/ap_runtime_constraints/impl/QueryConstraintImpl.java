@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class QueryConstraintImpl extends EObjectImpl implements QueryConstraint {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected QueryConstraintImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return Ap_runtime_constraintsPackage.Literals.QUERY_CONSTRAINT;
-	}
+        return Ap_runtime_constraintsPackage.Literals.QUERY_CONSTRAINT;
+    }
 
 } //QueryConstraintImpl

@@ -44,238 +44,238 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class AbstractStatusVariableImpl extends NamedElementImpl implements AbstractStatusVariable {
 	/**
-	 * The default value of the '{@link #isIsAgent() <em>Is Agent</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isIsAgent() <em>Is Agent</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsAgent()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsAgent()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean IS_AGENT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsAgent() <em>Is Agent</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isIsAgent() <em>Is Agent</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsAgent()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsAgent()
+     * @generated
+     * @ordered
+     */
 	protected boolean isAgent = IS_AGENT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isIsStateGuarded() <em>Is State Guarded</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isIsStateGuarded() <em>Is State Guarded</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsStateGuarded()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsStateGuarded()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean IS_STATE_GUARDED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsStateGuarded() <em>Is State Guarded</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isIsStateGuarded() <em>Is State Guarded</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsStateGuarded()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsStateGuarded()
+     * @generated
+     * @ordered
+     */
 	protected boolean isStateGuarded = IS_STATE_GUARDED_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValues()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getValues()
+     * @generated
+     * @ordered
+     */
 	protected EList<AbstractStatusValue> values;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbstractStatusVariableImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return DesignPackage.Literals.ABSTRACT_STATUS_VARIABLE;
-	}
+        return DesignPackage.Literals.ABSTRACT_STATUS_VARIABLE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isIsAgent() {
-		return isAgent;
-	}
+        return isAgent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setIsAgent(boolean newIsAgent) {
-		boolean oldIsAgent = isAgent;
-		isAgent = newIsAgent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT, oldIsAgent, isAgent));
-	}
+        boolean oldIsAgent = isAgent;
+        isAgent = newIsAgent;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT, oldIsAgent, isAgent));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isIsStateGuarded() {
-		return isStateGuarded;
-	}
+        return isStateGuarded;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setIsStateGuarded(boolean newIsStateGuarded) {
-		boolean oldIsStateGuarded = isStateGuarded;
-		isStateGuarded = newIsStateGuarded;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED, oldIsStateGuarded, isStateGuarded));
-	}
+        boolean oldIsStateGuarded = isStateGuarded;
+        isStateGuarded = newIsStateGuarded;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED, oldIsStateGuarded, isStateGuarded));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<AbstractStatusValue> getValues() {
-		if (values == null) {
-			values = new EObjectContainmentEList<AbstractStatusValue>(AbstractStatusValue.class, this, DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES);
-		}
-		return values;
-	}
+        if (values == null) {
+            values = new EObjectContainmentEList.Resolving<AbstractStatusValue>(AbstractStatusValue.class, this, DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES);
+        }
+        return values;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
-				return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
+                return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT:
-				return isIsAgent();
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED:
-				return isIsStateGuarded();
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
-				return getValues();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT:
+                return isIsAgent();
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED:
+                return isIsStateGuarded();
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
+                return getValues();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT:
-				setIsAgent((Boolean)newValue);
-				return;
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED:
-				setIsStateGuarded((Boolean)newValue);
-				return;
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
-				getValues().clear();
-				getValues().addAll((Collection<? extends AbstractStatusValue>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT:
+                setIsAgent((Boolean)newValue);
+                return;
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED:
+                setIsStateGuarded((Boolean)newValue);
+                return;
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
+                getValues().clear();
+                getValues().addAll((Collection<? extends AbstractStatusValue>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT:
-				setIsAgent(IS_AGENT_EDEFAULT);
-				return;
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED:
-				setIsStateGuarded(IS_STATE_GUARDED_EDEFAULT);
-				return;
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
-				getValues().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT:
+                setIsAgent(IS_AGENT_EDEFAULT);
+                return;
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED:
+                setIsStateGuarded(IS_STATE_GUARDED_EDEFAULT);
+                return;
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
+                getValues().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT:
-				return isAgent != IS_AGENT_EDEFAULT;
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED:
-				return isStateGuarded != IS_STATE_GUARDED_EDEFAULT;
-			case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
-				return values != null && !values.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_AGENT:
+                return isAgent != IS_AGENT_EDEFAULT;
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__IS_STATE_GUARDED:
+                return isStateGuarded != IS_STATE_GUARDED_EDEFAULT;
+            case DesignPackage.ABSTRACT_STATUS_VARIABLE__VALUES:
+                return values != null && !values.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isAgent: ");
-		result.append(isAgent);
-		result.append(", isStateGuarded: ");
-		result.append(isStateGuarded);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (isAgent: ");
+        result.append(isAgent);
+        result.append(", isStateGuarded: ");
+        result.append(isStateGuarded);
+        result.append(')');
+        return result.toString();
+    }
 
 } //AbstractStatusVariableImpl

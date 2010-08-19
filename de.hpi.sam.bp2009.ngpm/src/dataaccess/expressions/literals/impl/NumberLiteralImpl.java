@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class NumberLiteralImpl extends LiteralImpl implements NumberLiteral {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected NumberLiteralImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return LiteralsPackage.Literals.NUMBER_LITERAL;
-	}
+        return LiteralsPackage.Literals.NUMBER_LITERAL;
+    }
 
 } //NumberLiteralImpl

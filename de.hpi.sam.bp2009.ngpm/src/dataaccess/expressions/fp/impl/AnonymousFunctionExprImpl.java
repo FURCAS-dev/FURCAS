@@ -31,46 +31,46 @@ import org.eclipse.emf.ecore.EOperation;
  */
 public class AnonymousFunctionExprImpl extends ExpressionImpl implements AnonymousFunctionExpr {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AnonymousFunctionExprImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return FpPackage.Literals.ANONYMOUS_FUNCTION_EXPR;
-	}
+        return FpPackage.Literals.ANONYMOUS_FUNCTION_EXPR;
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #getImplementation() <em>Get Implementation</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #getImplementation() <em>Get Implementation</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImplementation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getImplementation()
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate GET_IMPLEMENTATION__EINVOCATION_DELEGATE = ((EOperation.Internal)FpPackage.Literals.ANONYMOUS_FUNCTION_EXPR.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public FunctionSignatureImplementation getImplementation() {
-		try {
-			return (FunctionSignatureImplementation)GET_IMPLEMENTATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (FunctionSignatureImplementation)GET_IMPLEMENTATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 } //AnonymousFunctionExprImpl

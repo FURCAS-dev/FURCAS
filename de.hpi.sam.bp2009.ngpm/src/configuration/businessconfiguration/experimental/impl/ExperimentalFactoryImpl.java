@@ -24,98 +24,98 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class ExperimentalFactoryImpl extends EFactoryImpl implements ExperimentalFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ExperimentalFactory init() {
-		try {
-			ExperimentalFactory theExperimentalFactory = (ExperimentalFactory)EPackage.Registry.INSTANCE.getEFactory("http:///configuration/businessconfiguration/experimental.ecore"); 
-			if (theExperimentalFactory != null) {
-				return theExperimentalFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new ExperimentalFactoryImpl();
-	}
+        try {
+            ExperimentalFactory theExperimentalFactory = (ExperimentalFactory)EPackage.Registry.INSTANCE.getEFactory("http:///configuration/businessconfiguration/experimental.ecore"); 
+            if (theExperimentalFactory != null) {
+                return theExperimentalFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new ExperimentalFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExperimentalFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ExperimentalPackage.PACKAGE_USE: return createPackageUse();
-			case ExperimentalPackage.CONFIGURATION_ENTITY: return createConfigurationEntity();
-			case ExperimentalPackage.CONFIGURATION_SETTING: return createConfigurationSetting();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case ExperimentalPackage.PACKAGE_USE: return createPackageUse();
+            case ExperimentalPackage.CONFIGURATION_ENTITY: return createConfigurationEntity();
+            case ExperimentalPackage.CONFIGURATION_SETTING: return createConfigurationSetting();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PackageUse createPackageUse() {
-		PackageUseImpl packageUse = new PackageUseImpl();
-		return packageUse;
-	}
+        PackageUseImpl packageUse = new PackageUseImpl();
+        return packageUse;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ConfigurationEntity createConfigurationEntity() {
-		ConfigurationEntityImpl configurationEntity = new ConfigurationEntityImpl();
-		return configurationEntity;
-	}
+        ConfigurationEntityImpl configurationEntity = new ConfigurationEntityImpl();
+        return configurationEntity;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ConfigurationSetting createConfigurationSetting() {
-		ConfigurationSettingImpl configurationSetting = new ConfigurationSettingImpl();
-		return configurationSetting;
-	}
+        ConfigurationSettingImpl configurationSetting = new ConfigurationSettingImpl();
+        return configurationSetting;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ExperimentalPackage getExperimentalPackage() {
-		return (ExperimentalPackage)getEPackage();
-	}
+        return (ExperimentalPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static ExperimentalPackage getPackage() {
-		return ExperimentalPackage.eINSTANCE;
-	}
+        return ExperimentalPackage.eINSTANCE;
+    }
 
 } //ExperimentalFactoryImpl

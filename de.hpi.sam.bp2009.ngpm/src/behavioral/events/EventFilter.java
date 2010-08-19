@@ -49,58 +49,58 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface EventFilter extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Subscription</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link behavioral.events.Subscription#getFilters <em>Filters</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Subscription</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link behavioral.events.Subscription#getFilters <em>Filters</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subscription</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Subscription</em>' container reference.
-	 * @see #setSubscription(Subscription)
-	 * @see behavioral.events.EventsPackage#getEventFilter_Subscription()
-	 * @see behavioral.events.Subscription#getFilters
-	 * @model opposite="filters" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Subscription</em>' container reference.
+     * @see #setSubscription(Subscription)
+     * @see behavioral.events.EventsPackage#getEventFilter_Subscription()
+     * @see behavioral.events.Subscription#getFilters
+     * @model opposite="filters" required="true"
+     * @generated
+     */
 	Subscription getSubscription();
 
 	/**
-	 * Sets the value of the '{@link behavioral.events.EventFilter#getSubscription <em>Subscription</em>}' container reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link behavioral.events.EventFilter#getSubscription <em>Subscription</em>}' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Subscription</em>' container reference.
-	 * @see #getSubscription()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Subscription</em>' container reference.
+     * @see #getSubscription()
+     * @generated
+     */
 	void setSubscription(Subscription value);
 
 	/**
-	 * Returns the value of the '<em><b>Test</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Test</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Test</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Test</em>' containment reference.
-	 * @see #setTest(Block)
-	 * @see behavioral.events.EventsPackage#getEventFilter_Test()
-	 * @model containment="true" required="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='filter'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Test</em>' containment reference.
+     * @see #setTest(Block)
+     * @see behavioral.events.EventsPackage#getEventFilter_Test()
+     * @model containment="true" resolveProxies="true" required="true"
+     *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='filter'"
+     * @generated
+     */
 	Block getTest();
 
 	/**
-	 * Sets the value of the '{@link behavioral.events.EventFilter#getTest <em>Test</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link behavioral.events.EventFilter#getTest <em>Test</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Test</em>' containment reference.
-	 * @see #getTest()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Test</em>' containment reference.
+     * @see #getTest()
+     * @generated
+     */
 	void setTest(Block value);
 
 } // EventFilter

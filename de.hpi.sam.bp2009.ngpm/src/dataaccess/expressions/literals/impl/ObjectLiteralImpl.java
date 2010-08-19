@@ -50,201 +50,201 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ObjectLiteralImpl extends ExpressionImpl implements ObjectLiteral {
 	/**
-	 * The cached value of the '{@link #getValueClass() <em>Value Class</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getValueClass() <em>Value Class</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValueClass()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getValueClass()
+     * @generated
+     * @ordered
+     */
 	protected SapClass valueClass;
 
 	/**
-	 * The cached value of the '{@link #getPropertyValues() <em>Property Values</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPropertyValues() <em>Property Values</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPropertyValues()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPropertyValues()
+     * @generated
+     * @ordered
+     */
 	protected EList<ValueInit> propertyValues;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ObjectLiteralImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return LiteralsPackage.Literals.OBJECT_LITERAL;
-	}
+        return LiteralsPackage.Literals.OBJECT_LITERAL;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass getValueClass() {
-		if (valueClass != null && valueClass.eIsProxy()) {
-			InternalEObject oldValueClass = (InternalEObject)valueClass;
-			valueClass = (SapClass)eResolveProxy(oldValueClass);
-			if (valueClass != oldValueClass) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS, oldValueClass, valueClass));
-			}
-		}
-		return valueClass;
-	}
+        if (valueClass != null && valueClass.eIsProxy()) {
+            InternalEObject oldValueClass = (InternalEObject)valueClass;
+            valueClass = (SapClass)eResolveProxy(oldValueClass);
+            if (valueClass != oldValueClass) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS, oldValueClass, valueClass));
+            }
+        }
+        return valueClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass basicGetValueClass() {
-		return valueClass;
-	}
+        return valueClass;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setValueClass(SapClass newValueClass) {
-		SapClass oldValueClass = valueClass;
-		valueClass = newValueClass;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS, oldValueClass, valueClass));
-	}
+        SapClass oldValueClass = valueClass;
+        valueClass = newValueClass;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS, oldValueClass, valueClass));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ValueInit> getPropertyValues() {
-		if (propertyValues == null) {
-			propertyValues = new EObjectContainmentEList<ValueInit>(ValueInit.class, this, LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES);
-		}
-		return propertyValues;
-	}
+        if (propertyValues == null) {
+            propertyValues = new EObjectContainmentEList.Resolving<ValueInit>(ValueInit.class, this, LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES);
+        }
+        return propertyValues;
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #isEqualTo(dataaccess.expressions.literals.ObjectLiteral) <em>Is Equal To</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #isEqualTo(dataaccess.expressions.literals.ObjectLiteral) <em>Is Equal To</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isEqualTo(dataaccess.expressions.literals.ObjectLiteral)
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isEqualTo(dataaccess.expressions.literals.ObjectLiteral)
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate IS_EQUAL_TO_OBJECT_LITERAL__EINVOCATION_DELEGATE = ((EOperation.Internal)LiteralsPackage.Literals.OBJECT_LITERAL.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isEqualTo(ObjectLiteral o) {
-		try {
-			return (Boolean)IS_EQUAL_TO_OBJECT_LITERAL__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{o}));
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Boolean)IS_EQUAL_TO_OBJECT_LITERAL__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{o}));
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
-				return ((InternalEList<?>)getPropertyValues()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
+                return ((InternalEList<?>)getPropertyValues()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS:
-				if (resolve) return getValueClass();
-				return basicGetValueClass();
-			case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
-				return getPropertyValues();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS:
+                if (resolve) return getValueClass();
+                return basicGetValueClass();
+            case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
+                return getPropertyValues();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS:
-				setValueClass((SapClass)newValue);
-				return;
-			case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
-				getPropertyValues().clear();
-				getPropertyValues().addAll((Collection<? extends ValueInit>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS:
+                setValueClass((SapClass)newValue);
+                return;
+            case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
+                getPropertyValues().clear();
+                getPropertyValues().addAll((Collection<? extends ValueInit>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS:
-				setValueClass((SapClass)null);
-				return;
-			case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
-				getPropertyValues().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS:
+                setValueClass((SapClass)null);
+                return;
+            case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
+                getPropertyValues().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS:
-				return valueClass != null;
-			case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
-				return propertyValues != null && !propertyValues.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case LiteralsPackage.OBJECT_LITERAL__VALUE_CLASS:
+                return valueClass != null;
+            case LiteralsPackage.OBJECT_LITERAL__PROPERTY_VALUES:
+                return propertyValues != null && !propertyValues.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //ObjectLiteralImpl

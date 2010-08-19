@@ -24,22 +24,22 @@ import persistence.actions.Rollback;
  */
 public class RollbackImpl extends StatementImpl implements Rollback {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected RollbackImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.ROLLBACK;
-	}
+        return ActionsPackage.Literals.ROLLBACK;
+    }
 
 } //RollbackImpl

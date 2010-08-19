@@ -34,31 +34,31 @@ package dataaccess.expressions;
  */
 public interface FunctionCallExpression extends SignatureCallExpression {
 	/**
-	 * Returns the value of the '<em><b>Called Block</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getBlockOfFunctionCallExpression <em>Block Of Function Call Expression</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Called Block</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link dataaccess.expressions.Expression#getBlockOfFunctionCallExpression <em>Block Of Function Call Expression</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Called Block</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Called Block</em>' containment reference.
-	 * @see #setCalledBlock(Expression)
-	 * @see dataaccess.expressions.ExpressionsPackage#getFunctionCallExpression_CalledBlock()
-	 * @see dataaccess.expressions.Expression#getBlockOfFunctionCallExpression
-	 * @model opposite="blockOfFunctionCallExpression" containment="true" required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Called Block</em>' containment reference.
+     * @see #setCalledBlock(Expression)
+     * @see dataaccess.expressions.ExpressionsPackage#getFunctionCallExpression_CalledBlock()
+     * @see dataaccess.expressions.Expression#getBlockOfFunctionCallExpression
+     * @model opposite="blockOfFunctionCallExpression" containment="true" resolveProxies="true" required="true"
+     * @generated
+     */
 	Expression getCalledBlock();
 
 	/**
-	 * Sets the value of the '{@link dataaccess.expressions.FunctionCallExpression#getCalledBlock <em>Called Block</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link dataaccess.expressions.FunctionCallExpression#getCalledBlock <em>Called Block</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Called Block</em>' containment reference.
-	 * @see #getCalledBlock()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Called Block</em>' containment reference.
+     * @see #getCalledBlock()
+     * @generated
+     */
 	void setCalledBlock(Expression value);
 
 } // FunctionCallExpression

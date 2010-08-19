@@ -24,109 +24,109 @@ import persistence.actions.*;
  */
 public class ActionsFactoryImpl extends EFactoryImpl implements ActionsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ActionsFactory init() {
-		try {
-			ActionsFactory theActionsFactory = (ActionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///persistence/actions.ecore"); 
-			if (theActionsFactory != null) {
-				return theActionsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new ActionsFactoryImpl();
-	}
+        try {
+            ActionsFactory theActionsFactory = (ActionsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///persistence/actions.ecore"); 
+            if (theActionsFactory != null) {
+                return theActionsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new ActionsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActionsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ActionsPackage.STORE: return createStore();
-			case ActionsPackage.DELETE: return createDelete();
-			case ActionsPackage.STATEMENT_WITH_ENTITY_ARGUMENT: return createStatementWithEntityArgument();
-			case ActionsPackage.ROLLBACK: return createRollback();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case ActionsPackage.STORE: return createStore();
+            case ActionsPackage.DELETE: return createDelete();
+            case ActionsPackage.STATEMENT_WITH_ENTITY_ARGUMENT: return createStatementWithEntityArgument();
+            case ActionsPackage.ROLLBACK: return createRollback();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Store createStore() {
-		StoreImpl store = new StoreImpl();
-		return store;
-	}
+        StoreImpl store = new StoreImpl();
+        return store;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Delete createDelete() {
-		DeleteImpl delete = new DeleteImpl();
-		return delete;
-	}
+        DeleteImpl delete = new DeleteImpl();
+        return delete;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public StatementWithEntityArgument createStatementWithEntityArgument() {
-		StatementWithEntityArgumentImpl statementWithEntityArgument = new StatementWithEntityArgumentImpl();
-		return statementWithEntityArgument;
-	}
+        StatementWithEntityArgumentImpl statementWithEntityArgument = new StatementWithEntityArgumentImpl();
+        return statementWithEntityArgument;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Rollback createRollback() {
-		RollbackImpl rollback = new RollbackImpl();
-		return rollback;
-	}
+        RollbackImpl rollback = new RollbackImpl();
+        return rollback;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ActionsPackage getActionsPackage() {
-		return (ActionsPackage)getEPackage();
-	}
+        return (ActionsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static ActionsPackage getPackage() {
-		return ActionsPackage.eINSTANCE;
-	}
+        return ActionsPackage.eINSTANCE;
+    }
 
 } //ActionsFactoryImpl

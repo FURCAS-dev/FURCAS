@@ -24,22 +24,22 @@ import persistence.expressions.ExpressionsPackage;
  */
 public class CommitImpl extends ExpressionImpl implements Commit {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected CommitImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.COMMIT;
-	}
+        return ExpressionsPackage.Literals.COMMIT;
+    }
 
 } //CommitImpl

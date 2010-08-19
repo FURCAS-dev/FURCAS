@@ -33,181 +33,181 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class AssociationEndSignatureImplementationImpl extends SignatureImplementationImpl implements AssociationEndSignatureImplementation {
 	/**
-	 * The cached value of the '{@link #getEnd() <em>End</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getEnd() <em>End</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEnd()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getEnd()
+     * @generated
+     * @ordered
+     */
 	protected AssociationEnd end;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AssociationEndSignatureImplementationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION;
-	}
+        return ClassesPackage.Literals.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssociationEnd getEnd() {
-		if (end != null && end.eIsProxy()) {
-			InternalEObject oldEnd = (InternalEObject)end;
-			end = (AssociationEnd)eResolveProxy(oldEnd);
-			if (end != oldEnd) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END, oldEnd, end));
-			}
-		}
-		return end;
-	}
+        if (end != null && end.eIsProxy()) {
+            InternalEObject oldEnd = (InternalEObject)end;
+            end = (AssociationEnd)eResolveProxy(oldEnd);
+            if (end != oldEnd) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END, oldEnd, end));
+            }
+        }
+        return end;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AssociationEnd basicGetEnd() {
-		return end;
-	}
+        return end;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetEnd(AssociationEnd newEnd, NotificationChain msgs) {
-		AssociationEnd oldEnd = end;
-		end = newEnd;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END, oldEnd, newEnd);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        AssociationEnd oldEnd = end;
+        end = newEnd;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END, oldEnd, newEnd);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setEnd(AssociationEnd newEnd) {
-		if (newEnd != end) {
-			NotificationChain msgs = null;
-			if (end != null)
-				msgs = ((InternalEObject)end).eInverseRemove(this, ClassesPackage.ASSOCIATION_END__SIGNATURE_IMPLEMENTATIONS, AssociationEnd.class, msgs);
-			if (newEnd != null)
-				msgs = ((InternalEObject)newEnd).eInverseAdd(this, ClassesPackage.ASSOCIATION_END__SIGNATURE_IMPLEMENTATIONS, AssociationEnd.class, msgs);
-			msgs = basicSetEnd(newEnd, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END, newEnd, newEnd));
-	}
+        if (newEnd != end) {
+            NotificationChain msgs = null;
+            if (end != null)
+                msgs = ((InternalEObject)end).eInverseRemove(this, ClassesPackage.ASSOCIATION_END__SIGNATURE_IMPLEMENTATIONS, AssociationEnd.class, msgs);
+            if (newEnd != null)
+                msgs = ((InternalEObject)newEnd).eInverseAdd(this, ClassesPackage.ASSOCIATION_END__SIGNATURE_IMPLEMENTATIONS, AssociationEnd.class, msgs);
+            msgs = basicSetEnd(newEnd, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END, newEnd, newEnd));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
-				if (end != null)
-					msgs = ((InternalEObject)end).eInverseRemove(this, ClassesPackage.ASSOCIATION_END__SIGNATURE_IMPLEMENTATIONS, AssociationEnd.class, msgs);
-				return basicSetEnd((AssociationEnd)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
+                if (end != null)
+                    msgs = ((InternalEObject)end).eInverseRemove(this, ClassesPackage.ASSOCIATION_END__SIGNATURE_IMPLEMENTATIONS, AssociationEnd.class, msgs);
+                return basicSetEnd((AssociationEnd)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
-				return basicSetEnd(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
+                return basicSetEnd(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
-				if (resolve) return getEnd();
-				return basicGetEnd();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
+                if (resolve) return getEnd();
+                return basicGetEnd();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
-				setEnd((AssociationEnd)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
+                setEnd((AssociationEnd)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
-				setEnd((AssociationEnd)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
+                setEnd((AssociationEnd)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
-				return end != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.ASSOCIATION_END_SIGNATURE_IMPLEMENTATION__END:
+                return end != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //AssociationEndSignatureImplementationImpl

@@ -38,133 +38,133 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class PackageOwnerImpl extends NamedElementImpl implements PackageOwner {
 	/**
-	 * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getOwnedPackages() <em>Owned Packages</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedPackages()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getOwnedPackages()
+     * @generated
+     * @ordered
+     */
 	protected EList<modelmanagement.Package> ownedPackages;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PackageOwnerImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelmanagementPackage.Literals.PACKAGE_OWNER;
-	}
+        return ModelmanagementPackage.Literals.PACKAGE_OWNER;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<modelmanagement.Package> getOwnedPackages() {
-		if (ownedPackages == null) {
-			ownedPackages = new EObjectContainmentWithInverseEList<modelmanagement.Package>(modelmanagement.Package.class, this, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, ModelmanagementPackage.PACKAGE__OWNER);
-		}
-		return ownedPackages;
-	}
+        if (ownedPackages == null) {
+            ownedPackages = new EObjectContainmentWithInverseEList.Resolving<modelmanagement.Package>(modelmanagement.Package.class, this, ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES, ModelmanagementPackage.PACKAGE__OWNER);
+        }
+        return ownedPackages;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedPackages()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedPackages()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
+                return ((InternalEList<?>)getOwnedPackages()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				return getOwnedPackages();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
+                return getOwnedPackages();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				getOwnedPackages().clear();
-				getOwnedPackages().addAll((Collection<? extends modelmanagement.Package>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
+                getOwnedPackages().clear();
+                getOwnedPackages().addAll((Collection<? extends modelmanagement.Package>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				getOwnedPackages().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
+                getOwnedPackages().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
-				return ownedPackages != null && !ownedPackages.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ModelmanagementPackage.PACKAGE_OWNER__OWNED_PACKAGES:
+                return ownedPackages != null && !ownedPackages.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //PackageOwnerImpl

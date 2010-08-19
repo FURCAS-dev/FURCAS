@@ -30,116 +30,116 @@ import org.eclipse.emf.ecore.EReference;
  */
 public interface TemplatesPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc -->
+     * The package name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNAME = "templates";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc -->
+     * The package namespace URI.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_URI = "http:///ui/templates.ecore";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc -->
+     * The package namespace name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_PREFIX = "ui.templates";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	TemplatesPackage eINSTANCE = ui.templates.impl.TemplatesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link ui.templates.impl.StringTemplateImpl <em>String Template</em>}' class.
-	 * <!-- begin-user-doc -->
+     * The meta object id for the '{@link ui.templates.impl.StringTemplateImpl <em>String Template</em>}' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see ui.templates.impl.StringTemplateImpl
-	 * @see ui.templates.impl.TemplatesPackageImpl#getStringTemplate()
-	 * @generated
-	 */
+     * @see ui.templates.impl.StringTemplateImpl
+     * @see ui.templates.impl.TemplatesPackageImpl#getStringTemplate()
+     * @generated
+     */
 	int STRING_TEMPLATE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Implements </b></em>' container reference.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Implements </b></em>' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int STRING_TEMPLATE__IMPLEMENTS_ = ClassesPackage.FUNCTION_SIGNATURE_IMPLEMENTATION__IMPLEMENTS_;
 
 	/**
-	 * The feature id for the '<em><b>Function Signature</b></em>' container reference.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Function Signature</b></em>' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int STRING_TEMPLATE__FUNCTION_SIGNATURE = ClassesPackage.FUNCTION_SIGNATURE_IMPLEMENTATION__FUNCTION_SIGNATURE;
 
 	/**
-	 * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int STRING_TEMPLATE__EXPRESSIONS = ClassesPackage.FUNCTION_SIGNATURE_IMPLEMENTATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>String Template</em>' class.
-	 * <!-- begin-user-doc -->
+     * The number of structural features of the '<em>String Template</em>' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int STRING_TEMPLATE_FEATURE_COUNT = ClassesPackage.FUNCTION_SIGNATURE_IMPLEMENTATION_FEATURE_COUNT + 1;
 
 
 	/**
-	 * Returns the meta object for class '{@link ui.templates.StringTemplate <em>String Template</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for class '{@link ui.templates.StringTemplate <em>String Template</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String Template</em>'.
-	 * @see ui.templates.StringTemplate
-	 * @generated
-	 */
+     * @return the meta object for class '<em>String Template</em>'.
+     * @see ui.templates.StringTemplate
+     * @generated
+     */
 	EClass getStringTemplate();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link ui.templates.StringTemplate#getExpressions <em>Expressions</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the containment reference list '{@link ui.templates.StringTemplate#getExpressions <em>Expressions</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Expressions</em>'.
-	 * @see ui.templates.StringTemplate#getExpressions()
-	 * @see #getStringTemplate()
-	 * @generated
-	 */
+     * @return the meta object for the containment reference list '<em>Expressions</em>'.
+     * @see ui.templates.StringTemplate#getExpressions()
+     * @see #getStringTemplate()
+     * @generated
+     */
 	EReference getStringTemplate_Expressions();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc -->
+     * Returns the factory that creates the instances of the model.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the factory that creates the instances of the model.
-	 * @generated
-	 */
+     * @return the factory that creates the instances of the model.
+     * @generated
+     */
 	TemplatesFactory getTemplatesFactory();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
 	 *   <li>each class,</li>
@@ -148,25 +148,25 @@ public interface TemplatesPackage extends EPackage {
 	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link ui.templates.impl.StringTemplateImpl <em>String Template</em>}' class.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link ui.templates.impl.StringTemplateImpl <em>String Template</em>}' class.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see ui.templates.impl.StringTemplateImpl
-		 * @see ui.templates.impl.TemplatesPackageImpl#getStringTemplate()
-		 * @generated
-		 */
+         * @see ui.templates.impl.StringTemplateImpl
+         * @see ui.templates.impl.TemplatesPackageImpl#getStringTemplate()
+         * @generated
+         */
 		EClass STRING_TEMPLATE = eINSTANCE.getStringTemplate();
 
 		/**
-		 * The meta object literal for the '<em><b>Expressions</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Expressions</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference STRING_TEMPLATE__EXPRESSIONS = eINSTANCE.getStringTemplate_Expressions();
 
 	}

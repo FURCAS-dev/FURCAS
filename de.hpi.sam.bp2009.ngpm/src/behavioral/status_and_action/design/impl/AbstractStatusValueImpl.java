@@ -34,243 +34,243 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class AbstractStatusValueImpl extends NamedElementImpl implements AbstractStatusValue {
 	/**
-	 * The default value of the '{@link #isIsInitial() <em>Is Initial</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isIsInitial() <em>Is Initial</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsInitial()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsInitial()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean IS_INITIAL_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsInitial() <em>Is Initial</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isIsInitial() <em>Is Initial</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsInitial()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsInitial()
+     * @generated
+     * @ordered
+     */
 	protected boolean isInitial = IS_INITIAL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isIsInhibiting() <em>Is Inhibiting</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isIsInhibiting() <em>Is Inhibiting</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsInhibiting()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsInhibiting()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean IS_INHIBITING_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsInhibiting() <em>Is Inhibiting</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isIsInhibiting() <em>Is Inhibiting</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsInhibiting()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsInhibiting()
+     * @generated
+     * @ordered
+     */
 	protected boolean isInhibiting = IS_INHIBITING_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isIsStateGuarded() <em>Is State Guarded</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isIsStateGuarded() <em>Is State Guarded</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsStateGuarded()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsStateGuarded()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean IS_STATE_GUARDED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsStateGuarded() <em>Is State Guarded</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isIsStateGuarded() <em>Is State Guarded</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsStateGuarded()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsStateGuarded()
+     * @generated
+     * @ordered
+     */
 	protected boolean isStateGuarded = IS_STATE_GUARDED_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbstractStatusValueImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return DesignPackage.Literals.ABSTRACT_STATUS_VALUE;
-	}
+        return DesignPackage.Literals.ABSTRACT_STATUS_VALUE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isIsInitial() {
-		return isInitial;
-	}
+        return isInitial;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setIsInitial(boolean newIsInitial) {
-		boolean oldIsInitial = isInitial;
-		isInitial = newIsInitial;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL, oldIsInitial, isInitial));
-	}
+        boolean oldIsInitial = isInitial;
+        isInitial = newIsInitial;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL, oldIsInitial, isInitial));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isIsInhibiting() {
-		return isInhibiting;
-	}
+        return isInhibiting;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setIsInhibiting(boolean newIsInhibiting) {
-		boolean oldIsInhibiting = isInhibiting;
-		isInhibiting = newIsInhibiting;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING, oldIsInhibiting, isInhibiting));
-	}
+        boolean oldIsInhibiting = isInhibiting;
+        isInhibiting = newIsInhibiting;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING, oldIsInhibiting, isInhibiting));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isIsStateGuarded() {
-		return isStateGuarded;
-	}
+        return isStateGuarded;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setIsStateGuarded(boolean newIsStateGuarded) {
-		boolean oldIsStateGuarded = isStateGuarded;
-		isStateGuarded = newIsStateGuarded;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED, oldIsStateGuarded, isStateGuarded));
-	}
+        boolean oldIsStateGuarded = isStateGuarded;
+        isStateGuarded = newIsStateGuarded;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED, oldIsStateGuarded, isStateGuarded));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL:
-				return isIsInitial();
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING:
-				return isIsInhibiting();
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED:
-				return isIsStateGuarded();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL:
+                return isIsInitial();
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING:
+                return isIsInhibiting();
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED:
+                return isIsStateGuarded();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL:
-				setIsInitial((Boolean)newValue);
-				return;
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING:
-				setIsInhibiting((Boolean)newValue);
-				return;
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED:
-				setIsStateGuarded((Boolean)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL:
+                setIsInitial((Boolean)newValue);
+                return;
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING:
+                setIsInhibiting((Boolean)newValue);
+                return;
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED:
+                setIsStateGuarded((Boolean)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL:
-				setIsInitial(IS_INITIAL_EDEFAULT);
-				return;
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING:
-				setIsInhibiting(IS_INHIBITING_EDEFAULT);
-				return;
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED:
-				setIsStateGuarded(IS_STATE_GUARDED_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL:
+                setIsInitial(IS_INITIAL_EDEFAULT);
+                return;
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING:
+                setIsInhibiting(IS_INHIBITING_EDEFAULT);
+                return;
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED:
+                setIsStateGuarded(IS_STATE_GUARDED_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL:
-				return isInitial != IS_INITIAL_EDEFAULT;
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING:
-				return isInhibiting != IS_INHIBITING_EDEFAULT;
-			case DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED:
-				return isStateGuarded != IS_STATE_GUARDED_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INITIAL:
+                return isInitial != IS_INITIAL_EDEFAULT;
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_INHIBITING:
+                return isInhibiting != IS_INHIBITING_EDEFAULT;
+            case DesignPackage.ABSTRACT_STATUS_VALUE__IS_STATE_GUARDED:
+                return isStateGuarded != IS_STATE_GUARDED_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isInitial: ");
-		result.append(isInitial);
-		result.append(", isInhibiting: ");
-		result.append(isInhibiting);
-		result.append(", isStateGuarded: ");
-		result.append(isStateGuarded);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (isInitial: ");
+        result.append(isInitial);
+        result.append(", isInhibiting: ");
+        result.append(isInhibiting);
+        result.append(", isStateGuarded: ");
+        result.append(isStateGuarded);
+        result.append(')');
+        return result.toString();
+    }
 
 } //AbstractStatusValueImpl

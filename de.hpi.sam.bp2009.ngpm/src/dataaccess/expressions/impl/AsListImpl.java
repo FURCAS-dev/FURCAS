@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class AsListImpl extends ObjectBasedExpressionImpl implements AsList {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AsListImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.AS_LIST;
-	}
+        return ExpressionsPackage.Literals.AS_LIST;
+    }
 
 } //AsListImpl

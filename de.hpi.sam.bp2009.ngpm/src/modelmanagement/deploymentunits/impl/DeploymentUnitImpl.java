@@ -40,118 +40,118 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class DeploymentUnitImpl extends PackageOwnerImpl implements DeploymentUnit {
 	/**
-	 * The cached value of the '{@link #getPcsInsideCompany() <em>Pcs Inside Company</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPcsInsideCompany() <em>Pcs Inside Company</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPcsInsideCompany()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPcsInsideCompany()
+     * @generated
+     * @ordered
+     */
 	protected EList<ProcessComponent> pcsInsideCompany;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DeploymentUnitImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return DeploymentunitsPackage.Literals.DEPLOYMENT_UNIT;
-	}
+        return DeploymentunitsPackage.Literals.DEPLOYMENT_UNIT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ProcessComponent> getPcsInsideCompany() {
-		if (pcsInsideCompany == null) {
-			pcsInsideCompany = new EObjectContainmentEList<ProcessComponent>(ProcessComponent.class, this, DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY);
-		}
-		return pcsInsideCompany;
-	}
+        if (pcsInsideCompany == null) {
+            pcsInsideCompany = new EObjectContainmentEList.Resolving<ProcessComponent>(ProcessComponent.class, this, DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY);
+        }
+        return pcsInsideCompany;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
-				return ((InternalEList<?>)getPcsInsideCompany()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
+                return ((InternalEList<?>)getPcsInsideCompany()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
-				return getPcsInsideCompany();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
+                return getPcsInsideCompany();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
-				getPcsInsideCompany().clear();
-				getPcsInsideCompany().addAll((Collection<? extends ProcessComponent>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
+                getPcsInsideCompany().clear();
+                getPcsInsideCompany().addAll((Collection<? extends ProcessComponent>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
-				getPcsInsideCompany().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
+                getPcsInsideCompany().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
-				return pcsInsideCompany != null && !pcsInsideCompany.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case DeploymentunitsPackage.DEPLOYMENT_UNIT__PCS_INSIDE_COMPANY:
+                return pcsInsideCompany != null && !pcsInsideCompany.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //DeploymentUnitImpl

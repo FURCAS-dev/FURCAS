@@ -55,570 +55,616 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class MethodSignatureImpl extends SignatureImpl implements MethodSignature {
 	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDescription() <em>Description</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDescription()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDescription()
+     * @generated
+     * @ordered
+     */
 	protected TranslatableText description;
 
 	/**
-	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImplementation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getImplementation()
+     * @generated
+     * @ordered
+     */
 	protected SignatureImplementation implementation;
 
 	/**
-	 * The cached value of the '{@link #getConverter() <em>Converter</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getConverter() <em>Converter</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConverter()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getConverter()
+     * @generated
+     * @ordered
+     */
 	protected ConverterBetweenParametrizations converter;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected MethodSignatureImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.METHOD_SIGNATURE;
-	}
+        return ClassesPackage.Literals.METHOD_SIGNATURE;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getName() {
-		return name;
-	}
+        return name;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__NAME, oldName, name));
-	}
+        String oldName = name;
+        name = newName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__NAME, oldName, name));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public TranslatableText getDescription() {
-		return description;
-	}
+        return description;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetDescription(TranslatableText newDescription, NotificationChain msgs) {
-		TranslatableText oldDescription = description;
-		description = newDescription;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__DESCRIPTION, oldDescription, newDescription);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        TranslatableText oldDescription = description;
+        description = newDescription;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__DESCRIPTION, oldDescription, newDescription);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDescription(TranslatableText newDescription) {
-		if (newDescription != description) {
-			NotificationChain msgs = null;
-			if (description != null)
-				msgs = ((InternalEObject)description).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.METHOD_SIGNATURE__DESCRIPTION, null, msgs);
-			if (newDescription != null)
-				msgs = ((InternalEObject)newDescription).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.METHOD_SIGNATURE__DESCRIPTION, null, msgs);
-			msgs = basicSetDescription(newDescription, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__DESCRIPTION, newDescription, newDescription));
-	}
+        if (newDescription != description) {
+            NotificationChain msgs = null;
+            if (description != null)
+                msgs = ((InternalEObject)description).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.METHOD_SIGNATURE__DESCRIPTION, null, msgs);
+            if (newDescription != null)
+                msgs = ((InternalEObject)newDescription).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.METHOD_SIGNATURE__DESCRIPTION, null, msgs);
+            msgs = basicSetDescription(newDescription, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__DESCRIPTION, newDescription, newDescription));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EventProducer getProducer() {
-		if (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__PRODUCER) return null;
-		return (EventProducer)eContainer();
-	}
+        if (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__PRODUCER) return null;
+        return (EventProducer)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EventProducer basicGetProducer() {
+        if (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__PRODUCER) return null;
+        return (EventProducer)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetProducer(EventProducer newProducer, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newProducer, ClassesPackage.METHOD_SIGNATURE__PRODUCER, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newProducer, ClassesPackage.METHOD_SIGNATURE__PRODUCER, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setProducer(EventProducer newProducer) {
-		if (newProducer != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__PRODUCER && newProducer != null)) {
-			if (EcoreUtil.isAncestor(this, newProducer))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newProducer != null)
-				msgs = ((InternalEObject)newProducer).eInverseAdd(this, EventsPackage.EVENT_PRODUCER__NOTIFICATION_SIGNATURES, EventProducer.class, msgs);
-			msgs = basicSetProducer(newProducer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__PRODUCER, newProducer, newProducer));
-	}
+        if (newProducer != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__PRODUCER && newProducer != null)) {
+            if (EcoreUtil.isAncestor(this, newProducer))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newProducer != null)
+                msgs = ((InternalEObject)newProducer).eInverseAdd(this, EventsPackage.EVENT_PRODUCER__NOTIFICATION_SIGNATURES, EventProducer.class, msgs);
+            msgs = basicSetProducer(newProducer, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__PRODUCER, newProducer, newProducer));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SignatureImplementation getImplementation() {
-		return implementation;
-	}
+        if (implementation != null && implementation.eIsProxy()) {
+            InternalEObject oldImplementation = (InternalEObject)implementation;
+            implementation = (SignatureImplementation)eResolveProxy(oldImplementation);
+            if (implementation != oldImplementation) {
+                InternalEObject newImplementation = (InternalEObject)implementation;
+                NotificationChain msgs =  oldImplementation.eInverseRemove(this, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, SignatureImplementation.class, null);
+                if (newImplementation.eInternalContainer() == null) {
+                    msgs =  newImplementation.eInverseAdd(this, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, SignatureImplementation.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, oldImplementation, implementation));
+            }
+        }
+        return implementation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SignatureImplementation basicGetImplementation() {
+        return implementation;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetImplementation(SignatureImplementation newImplementation, NotificationChain msgs) {
-		SignatureImplementation oldImplementation = implementation;
-		implementation = newImplementation;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, oldImplementation, newImplementation);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        SignatureImplementation oldImplementation = implementation;
+        implementation = newImplementation;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, oldImplementation, newImplementation);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementation(SignatureImplementation newImplementation) {
-		if (newImplementation != implementation) {
-			NotificationChain msgs = null;
-			if (implementation != null)
-				msgs = ((InternalEObject)implementation).eInverseRemove(this, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, SignatureImplementation.class, msgs);
-			if (newImplementation != null)
-				msgs = ((InternalEObject)newImplementation).eInverseAdd(this, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, SignatureImplementation.class, msgs);
-			msgs = basicSetImplementation(newImplementation, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, newImplementation, newImplementation));
-	}
+        if (newImplementation != implementation) {
+            NotificationChain msgs = null;
+            if (implementation != null)
+                msgs = ((InternalEObject)implementation).eInverseRemove(this, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, SignatureImplementation.class, msgs);
+            if (newImplementation != null)
+                msgs = ((InternalEObject)newImplementation).eInverseAdd(this, ClassesPackage.SIGNATURE_IMPLEMENTATION__IMPLEMENTS_, SignatureImplementation.class, msgs);
+            msgs = basicSetImplementation(newImplementation, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, newImplementation, newImplementation));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SignatureOwner getOwner() {
-		if (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__OWNER) return null;
-		return (SignatureOwner)eContainer();
-	}
+        if (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__OWNER) return null;
+        return (SignatureOwner)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SignatureOwner basicGetOwner() {
+        if (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__OWNER) return null;
+        return (SignatureOwner)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetOwner(SignatureOwner newOwner, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOwner, ClassesPackage.METHOD_SIGNATURE__OWNER, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newOwner, ClassesPackage.METHOD_SIGNATURE__OWNER, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setOwner(SignatureOwner newOwner) {
-		if (newOwner != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__OWNER && newOwner != null)) {
-			if (EcoreUtil.isAncestor(this, newOwner))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOwner != null)
-				msgs = ((InternalEObject)newOwner).eInverseAdd(this, ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES, SignatureOwner.class, msgs);
-			msgs = basicSetOwner(newOwner, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__OWNER, newOwner, newOwner));
-	}
+        if (newOwner != eInternalContainer() || (eContainerFeatureID() != ClassesPackage.METHOD_SIGNATURE__OWNER && newOwner != null)) {
+            if (EcoreUtil.isAncestor(this, newOwner))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newOwner != null)
+                msgs = ((InternalEObject)newOwner).eInverseAdd(this, ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES, SignatureOwner.class, msgs);
+            msgs = basicSetOwner(newOwner, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__OWNER, newOwner, newOwner));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ConverterBetweenParametrizations getConverter() {
-		if (converter != null && converter.eIsProxy()) {
-			InternalEObject oldConverter = (InternalEObject)converter;
-			converter = (ConverterBetweenParametrizations)eResolveProxy(oldConverter);
-			if (converter != oldConverter) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.METHOD_SIGNATURE__CONVERTER, oldConverter, converter));
-			}
-		}
-		return converter;
-	}
+        if (converter != null && converter.eIsProxy()) {
+            InternalEObject oldConverter = (InternalEObject)converter;
+            converter = (ConverterBetweenParametrizations)eResolveProxy(oldConverter);
+            if (converter != oldConverter) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ClassesPackage.METHOD_SIGNATURE__CONVERTER, oldConverter, converter));
+            }
+        }
+        return converter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ConverterBetweenParametrizations basicGetConverter() {
-		return converter;
-	}
+        return converter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetConverter(ConverterBetweenParametrizations newConverter, NotificationChain msgs) {
-		ConverterBetweenParametrizations oldConverter = converter;
-		converter = newConverter;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__CONVERTER, oldConverter, newConverter);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        ConverterBetweenParametrizations oldConverter = converter;
+        converter = newConverter;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__CONVERTER, oldConverter, newConverter);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setConverter(ConverterBetweenParametrizations newConverter) {
-		if (newConverter != converter) {
-			NotificationChain msgs = null;
-			if (converter != null)
-				msgs = ((InternalEObject)converter).eInverseRemove(this, ClassesPackage.CONVERTER_BETWEEN_PARAMETRIZATIONS__CONVERSION_METHOD, ConverterBetweenParametrizations.class, msgs);
-			if (newConverter != null)
-				msgs = ((InternalEObject)newConverter).eInverseAdd(this, ClassesPackage.CONVERTER_BETWEEN_PARAMETRIZATIONS__CONVERSION_METHOD, ConverterBetweenParametrizations.class, msgs);
-			msgs = basicSetConverter(newConverter, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__CONVERTER, newConverter, newConverter));
-	}
+        if (newConverter != converter) {
+            NotificationChain msgs = null;
+            if (converter != null)
+                msgs = ((InternalEObject)converter).eInverseRemove(this, ClassesPackage.CONVERTER_BETWEEN_PARAMETRIZATIONS__CONVERSION_METHOD, ConverterBetweenParametrizations.class, msgs);
+            if (newConverter != null)
+                msgs = ((InternalEObject)newConverter).eInverseAdd(this, ClassesPackage.CONVERTER_BETWEEN_PARAMETRIZATIONS__CONVERSION_METHOD, ConverterBetweenParametrizations.class, msgs);
+            msgs = basicSetConverter(newConverter, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.METHOD_SIGNATURE__CONVERTER, newConverter, newConverter));
+    }
 
 	/**
-	 * The cached invocation delegate for the '{@link #isAbstract() <em>Is Abstract</em>}' operation.
-	 * <!-- begin-user-doc -->
+     * The cached invocation delegate for the '{@link #isAbstract() <em>Is Abstract</em>}' operation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isAbstract()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isAbstract()
+     * @generated
+     * @ordered
+     */
 	protected static final EOperation.Internal.InvocationDelegate IS_ABSTRACT__EINVOCATION_DELEGATE = ((EOperation.Internal)ClassesPackage.Literals.METHOD_SIGNATURE.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isAbstract() {
-		try {
-			return (Boolean)IS_ABSTRACT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
-	}
+        try {
+            return (Boolean)IS_ABSTRACT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+        }
+        catch (InvocationTargetException ite) {
+            throw new WrappedException(ite);
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetProducer((EventProducer)otherEnd, msgs);
-			case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
-				if (implementation != null)
-					msgs = ((InternalEObject)implementation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, null, msgs);
-				return basicSetImplementation((SignatureImplementation)otherEnd, msgs);
-			case ClassesPackage.METHOD_SIGNATURE__OWNER:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOwner((SignatureOwner)otherEnd, msgs);
-			case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
-				if (converter != null)
-					msgs = ((InternalEObject)converter).eInverseRemove(this, ClassesPackage.CONVERTER_BETWEEN_PARAMETRIZATIONS__CONVERSION_METHOD, ConverterBetweenParametrizations.class, msgs);
-				return basicSetConverter((ConverterBetweenParametrizations)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetProducer((EventProducer)otherEnd, msgs);
+            case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
+                if (implementation != null)
+                    msgs = ((InternalEObject)implementation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION, null, msgs);
+                return basicSetImplementation((SignatureImplementation)otherEnd, msgs);
+            case ClassesPackage.METHOD_SIGNATURE__OWNER:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetOwner((SignatureOwner)otherEnd, msgs);
+            case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
+                if (converter != null)
+                    msgs = ((InternalEObject)converter).eInverseRemove(this, ClassesPackage.CONVERTER_BETWEEN_PARAMETRIZATIONS__CONVERSION_METHOD, ConverterBetweenParametrizations.class, msgs);
+                return basicSetConverter((ConverterBetweenParametrizations)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
-				return basicSetDescription(null, msgs);
-			case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
-				return basicSetProducer(null, msgs);
-			case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
-				return basicSetImplementation(null, msgs);
-			case ClassesPackage.METHOD_SIGNATURE__OWNER:
-				return basicSetOwner(null, msgs);
-			case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
-				return basicSetConverter(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
+                return basicSetDescription(null, msgs);
+            case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
+                return basicSetProducer(null, msgs);
+            case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
+                return basicSetImplementation(null, msgs);
+            case ClassesPackage.METHOD_SIGNATURE__OWNER:
+                return basicSetOwner(null, msgs);
+            case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
+                return basicSetConverter(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
-				return eInternalContainer().eInverseRemove(this, EventsPackage.EVENT_PRODUCER__NOTIFICATION_SIGNATURES, EventProducer.class, msgs);
-			case ClassesPackage.METHOD_SIGNATURE__OWNER:
-				return eInternalContainer().eInverseRemove(this, ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES, SignatureOwner.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
+                return eInternalContainer().eInverseRemove(this, EventsPackage.EVENT_PRODUCER__NOTIFICATION_SIGNATURES, EventProducer.class, msgs);
+            case ClassesPackage.METHOD_SIGNATURE__OWNER:
+                return eInternalContainer().eInverseRemove(this, ClassesPackage.SIGNATURE_OWNER__OWNED_SIGNATURES, SignatureOwner.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassesPackage.METHOD_SIGNATURE__NAME:
-				return getName();
-			case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
-				return getDescription();
-			case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
-				return getProducer();
-			case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
-				return getImplementation();
-			case ClassesPackage.METHOD_SIGNATURE__OWNER:
-				return getOwner();
-			case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
-				if (resolve) return getConverter();
-				return basicGetConverter();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClassesPackage.METHOD_SIGNATURE__NAME:
+                return getName();
+            case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
+                return getDescription();
+            case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
+                if (resolve) return getProducer();
+                return basicGetProducer();
+            case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
+                if (resolve) return getImplementation();
+                return basicGetImplementation();
+            case ClassesPackage.METHOD_SIGNATURE__OWNER:
+                if (resolve) return getOwner();
+                return basicGetOwner();
+            case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
+                if (resolve) return getConverter();
+                return basicGetConverter();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassesPackage.METHOD_SIGNATURE__NAME:
-				setName((String)newValue);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
-				setDescription((TranslatableText)newValue);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
-				setProducer((EventProducer)newValue);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
-				setImplementation((SignatureImplementation)newValue);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__OWNER:
-				setOwner((SignatureOwner)newValue);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
-				setConverter((ConverterBetweenParametrizations)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClassesPackage.METHOD_SIGNATURE__NAME:
+                setName((String)newValue);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
+                setDescription((TranslatableText)newValue);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
+                setProducer((EventProducer)newValue);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
+                setImplementation((SignatureImplementation)newValue);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__OWNER:
+                setOwner((SignatureOwner)newValue);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
+                setConverter((ConverterBetweenParametrizations)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.METHOD_SIGNATURE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
-				setDescription((TranslatableText)null);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
-				setProducer((EventProducer)null);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
-				setImplementation((SignatureImplementation)null);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__OWNER:
-				setOwner((SignatureOwner)null);
-				return;
-			case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
-				setConverter((ConverterBetweenParametrizations)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.METHOD_SIGNATURE__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
+                setDescription((TranslatableText)null);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
+                setProducer((EventProducer)null);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
+                setImplementation((SignatureImplementation)null);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__OWNER:
+                setOwner((SignatureOwner)null);
+                return;
+            case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
+                setConverter((ConverterBetweenParametrizations)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.METHOD_SIGNATURE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
-				return description != null;
-			case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
-				return getProducer() != null;
-			case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
-				return implementation != null;
-			case ClassesPackage.METHOD_SIGNATURE__OWNER:
-				return getOwner() != null;
-			case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
-				return converter != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.METHOD_SIGNATURE__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION:
+                return description != null;
+            case ClassesPackage.METHOD_SIGNATURE__PRODUCER:
+                return basicGetProducer() != null;
+            case ClassesPackage.METHOD_SIGNATURE__IMPLEMENTATION:
+                return implementation != null;
+            case ClassesPackage.METHOD_SIGNATURE__OWNER:
+                return basicGetOwner() != null;
+            case ClassesPackage.METHOD_SIGNATURE__CONVERTER:
+                return converter != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == NamedElement.class) {
-			switch (derivedFeatureID) {
-				case ClassesPackage.METHOD_SIGNATURE__NAME: return ModelmanagementPackage.NAMED_ELEMENT__NAME;
-				case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION: return ModelmanagementPackage.NAMED_ELEMENT__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-	}
+        if (baseClass == NamedElement.class) {
+            switch (derivedFeatureID) {
+                case ClassesPackage.METHOD_SIGNATURE__NAME: return ModelmanagementPackage.NAMED_ELEMENT__NAME;
+                case ClassesPackage.METHOD_SIGNATURE__DESCRIPTION: return ModelmanagementPackage.NAMED_ELEMENT__DESCRIPTION;
+                default: return -1;
+            }
+        }
+        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == NamedElement.class) {
-			switch (baseFeatureID) {
-				case ModelmanagementPackage.NAMED_ELEMENT__NAME: return ClassesPackage.METHOD_SIGNATURE__NAME;
-				case ModelmanagementPackage.NAMED_ELEMENT__DESCRIPTION: return ClassesPackage.METHOD_SIGNATURE__DESCRIPTION;
-				default: return -1;
-			}
-		}
-		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-	}
+        if (baseClass == NamedElement.class) {
+            switch (baseFeatureID) {
+                case ModelmanagementPackage.NAMED_ELEMENT__NAME: return ClassesPackage.METHOD_SIGNATURE__NAME;
+                case ModelmanagementPackage.NAMED_ELEMENT__DESCRIPTION: return ClassesPackage.METHOD_SIGNATURE__DESCRIPTION;
+                default: return -1;
+            }
+        }
+        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (name: ");
+        result.append(name);
+        result.append(')');
+        return result.toString();
+    }
 
 } //MethodSignatureImpl

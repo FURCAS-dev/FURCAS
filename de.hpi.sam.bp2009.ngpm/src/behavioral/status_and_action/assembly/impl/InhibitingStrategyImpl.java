@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class InhibitingStrategyImpl extends StrategyImpl implements InhibitingStrategy {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected InhibitingStrategyImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.INHIBITING_STRATEGY;
-	}
+        return AssemblyPackage.Literals.INHIBITING_STRATEGY;
+    }
 
 } //InhibitingStrategyImpl

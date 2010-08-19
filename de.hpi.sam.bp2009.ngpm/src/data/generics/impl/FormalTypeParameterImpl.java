@@ -48,263 +48,274 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class FormalTypeParameterImpl extends SapClassImpl implements FormalTypeParameter {
 	/**
-	 * The cached value of the '{@link #getTypeConstraint() <em>Type Constraint</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTypeConstraint() <em>Type Constraint</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTypeConstraint()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTypeConstraint()
+     * @generated
+     * @ordered
+     */
 	protected SapClass typeConstraint;
 
 	/**
-	 * The cached value of the '{@link #getActualTypeParameters() <em>Actual Type Parameters</em>}' reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getActualTypeParameters() <em>Actual Type Parameters</em>}' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getActualTypeParameters()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getActualTypeParameters()
+     * @generated
+     * @ordered
+     */
 	protected EList<ActualTypeParameter> actualTypeParameters;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected FormalTypeParameterImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return GenericsPackage.Literals.FORMAL_TYPE_PARAMETER;
-	}
+        return GenericsPackage.Literals.FORMAL_TYPE_PARAMETER;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ClassParameterization getParameterOf() {
-		if (eContainerFeatureID() != GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF) return null;
-		return (ClassParameterization)eContainer();
-	}
+        if (eContainerFeatureID() != GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF) return null;
+        return (ClassParameterization)eContainer();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ClassParameterization basicGetParameterOf() {
+        if (eContainerFeatureID() != GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF) return null;
+        return (ClassParameterization)eInternalContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetParameterOf(ClassParameterization newParameterOf, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newParameterOf, GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF, msgs);
-		return msgs;
-	}
+        msgs = eBasicSetContainer((InternalEObject)newParameterOf, GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF, msgs);
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setParameterOf(ClassParameterization newParameterOf) {
-		if (newParameterOf != eInternalContainer() || (eContainerFeatureID() != GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF && newParameterOf != null)) {
-			if (EcoreUtil.isAncestor(this, newParameterOf))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newParameterOf != null)
-				msgs = ((InternalEObject)newParameterOf).eInverseAdd(this, GenericsPackage.CLASS_PARAMETERIZATION__FORMAL_TYPE_PARAMETERS, ClassParameterization.class, msgs);
-			msgs = basicSetParameterOf(newParameterOf, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF, newParameterOf, newParameterOf));
-	}
+        if (newParameterOf != eInternalContainer() || (eContainerFeatureID() != GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF && newParameterOf != null)) {
+            if (EcoreUtil.isAncestor(this, newParameterOf))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newParameterOf != null)
+                msgs = ((InternalEObject)newParameterOf).eInverseAdd(this, GenericsPackage.CLASS_PARAMETERIZATION__FORMAL_TYPE_PARAMETERS, ClassParameterization.class, msgs);
+            msgs = basicSetParameterOf(newParameterOf, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF, newParameterOf, newParameterOf));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass getTypeConstraint() {
-		if (typeConstraint != null && typeConstraint.eIsProxy()) {
-			InternalEObject oldTypeConstraint = (InternalEObject)typeConstraint;
-			typeConstraint = (SapClass)eResolveProxy(oldTypeConstraint);
-			if (typeConstraint != oldTypeConstraint) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT, oldTypeConstraint, typeConstraint));
-			}
-		}
-		return typeConstraint;
-	}
+        if (typeConstraint != null && typeConstraint.eIsProxy()) {
+            InternalEObject oldTypeConstraint = (InternalEObject)typeConstraint;
+            typeConstraint = (SapClass)eResolveProxy(oldTypeConstraint);
+            if (typeConstraint != oldTypeConstraint) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT, oldTypeConstraint, typeConstraint));
+            }
+        }
+        return typeConstraint;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public SapClass basicGetTypeConstraint() {
-		return typeConstraint;
-	}
+        return typeConstraint;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTypeConstraint(SapClass newTypeConstraint) {
-		SapClass oldTypeConstraint = typeConstraint;
-		typeConstraint = newTypeConstraint;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT, oldTypeConstraint, typeConstraint));
-	}
+        SapClass oldTypeConstraint = typeConstraint;
+        typeConstraint = newTypeConstraint;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT, oldTypeConstraint, typeConstraint));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<ActualTypeParameter> getActualTypeParameters() {
-		if (actualTypeParameters == null) {
-			actualTypeParameters = new EObjectWithInverseResolvingEList<ActualTypeParameter>(ActualTypeParameter.class, this, GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS, GenericsPackage.ACTUAL_TYPE_PARAMETER__FORMAL_TYPE_PARAMETER);
-		}
-		return actualTypeParameters;
-	}
+        if (actualTypeParameters == null) {
+            actualTypeParameters = new EObjectWithInverseResolvingEList<ActualTypeParameter>(ActualTypeParameter.class, this, GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS, GenericsPackage.ACTUAL_TYPE_PARAMETER__FORMAL_TYPE_PARAMETER);
+        }
+        return actualTypeParameters;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetParameterOf((ClassParameterization)otherEnd, msgs);
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getActualTypeParameters()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
+                if (eInternalContainer() != null)
+                    msgs = eBasicRemoveFromContainer(msgs);
+                return basicSetParameterOf((ClassParameterization)otherEnd, msgs);
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
+                return ((InternalEList<InternalEObject>)(InternalEList<?>)getActualTypeParameters()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
-				return basicSetParameterOf(null, msgs);
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
-				return ((InternalEList<?>)getActualTypeParameters()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
+                return basicSetParameterOf(null, msgs);
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
+                return ((InternalEList<?>)getActualTypeParameters()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
-				return eInternalContainer().eInverseRemove(this, GenericsPackage.CLASS_PARAMETERIZATION__FORMAL_TYPE_PARAMETERS, ClassParameterization.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
+        switch (eContainerFeatureID()) {
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
+                return eInternalContainer().eInverseRemove(this, GenericsPackage.CLASS_PARAMETERIZATION__FORMAL_TYPE_PARAMETERS, ClassParameterization.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
-				return getParameterOf();
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT:
-				if (resolve) return getTypeConstraint();
-				return basicGetTypeConstraint();
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
-				return getActualTypeParameters();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
+                if (resolve) return getParameterOf();
+                return basicGetParameterOf();
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT:
+                if (resolve) return getTypeConstraint();
+                return basicGetTypeConstraint();
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
+                return getActualTypeParameters();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
-				setParameterOf((ClassParameterization)newValue);
-				return;
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT:
-				setTypeConstraint((SapClass)newValue);
-				return;
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
-				getActualTypeParameters().clear();
-				getActualTypeParameters().addAll((Collection<? extends ActualTypeParameter>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
+                setParameterOf((ClassParameterization)newValue);
+                return;
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT:
+                setTypeConstraint((SapClass)newValue);
+                return;
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
+                getActualTypeParameters().clear();
+                getActualTypeParameters().addAll((Collection<? extends ActualTypeParameter>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
-				setParameterOf((ClassParameterization)null);
-				return;
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT:
-				setTypeConstraint((SapClass)null);
-				return;
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
-				getActualTypeParameters().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
+                setParameterOf((ClassParameterization)null);
+                return;
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT:
+                setTypeConstraint((SapClass)null);
+                return;
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
+                getActualTypeParameters().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
-				return getParameterOf() != null;
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT:
-				return typeConstraint != null;
-			case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
-				return actualTypeParameters != null && !actualTypeParameters.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__PARAMETER_OF:
+                return basicGetParameterOf() != null;
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__TYPE_CONSTRAINT:
+                return typeConstraint != null;
+            case GenericsPackage.FORMAL_TYPE_PARAMETER__ACTUAL_TYPE_PARAMETERS:
+                return actualTypeParameters != null && !actualTypeParameters.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //FormalTypeParameterImpl

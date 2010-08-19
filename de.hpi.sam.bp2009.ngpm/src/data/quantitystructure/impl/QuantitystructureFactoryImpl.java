@@ -24,76 +24,76 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class QuantitystructureFactoryImpl extends EFactoryImpl implements QuantitystructureFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static QuantitystructureFactory init() {
-		try {
-			QuantitystructureFactory theQuantitystructureFactory = (QuantitystructureFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/quantitystructure.ecore"); 
-			if (theQuantitystructureFactory != null) {
-				return theQuantitystructureFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new QuantitystructureFactoryImpl();
-	}
+        try {
+            QuantitystructureFactory theQuantitystructureFactory = (QuantitystructureFactory)EPackage.Registry.INSTANCE.getEFactory("http:///data/quantitystructure.ecore"); 
+            if (theQuantitystructureFactory != null) {
+                return theQuantitystructureFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new QuantitystructureFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QuantitystructureFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case QuantitystructurePackage.DUMMY: return createDummy();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case QuantitystructurePackage.DUMMY: return createDummy();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Dummy createDummy() {
-		DummyImpl dummy = new DummyImpl();
-		return dummy;
-	}
+        DummyImpl dummy = new DummyImpl();
+        return dummy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public QuantitystructurePackage getQuantitystructurePackage() {
-		return (QuantitystructurePackage)getEPackage();
-	}
+        return (QuantitystructurePackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static QuantitystructurePackage getPackage() {
-		return QuantitystructurePackage.eINSTANCE;
-	}
+        return QuantitystructurePackage.eINSTANCE;
+    }
 
 } //QuantitystructureFactoryImpl

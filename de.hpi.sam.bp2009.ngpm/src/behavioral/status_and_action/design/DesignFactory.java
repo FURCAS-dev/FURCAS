@@ -18,65 +18,65 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface DesignFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	DesignFactory eINSTANCE = behavioral.status_and_action.design.impl.DesignFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Business Object</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Business Object</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Business Object</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Business Object</em>'.
+     * @generated
+     */
 	BusinessObject createBusinessObject();
 
 	/**
-	 * Returns a new object of class '<em>Business Object Node</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Business Object Node</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Business Object Node</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Business Object Node</em>'.
+     * @generated
+     */
 	BusinessObjectNode createBusinessObjectNode();
 
 	/**
-	 * Returns a new object of class '<em>Status Variable</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Status Variable</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Status Variable</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Status Variable</em>'.
+     * @generated
+     */
 	StatusVariable createStatusVariable();
 
 	/**
-	 * Returns a new object of class '<em>Status Value</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Status Value</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Status Value</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Status Value</em>'.
+     * @generated
+     */
 	StatusValue createStatusValue();
 
 	/**
-	 * Returns a new object of class '<em>Action</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Action</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Action</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Action</em>'.
+     * @generated
+     */
 	Action createAction();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	DesignPackage getDesignPackage();
 
 } //DesignFactory

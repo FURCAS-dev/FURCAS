@@ -24,120 +24,120 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class AnalyticsFactoryImpl extends EFactoryImpl implements AnalyticsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static AnalyticsFactory init() {
-		try {
-			AnalyticsFactory theAnalyticsFactory = (AnalyticsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/analytics.ecore"); 
-			if (theAnalyticsFactory != null) {
-				return theAnalyticsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new AnalyticsFactoryImpl();
-	}
+        try {
+            AnalyticsFactory theAnalyticsFactory = (AnalyticsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///dataaccess/analytics.ecore"); 
+            if (theAnalyticsFactory != null) {
+                return theAnalyticsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new AnalyticsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AnalyticsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case AnalyticsPackage.DIMENSION: return createDimension();
-			case AnalyticsPackage.CELL_SET: return createCellSet();
-			case AnalyticsPackage.DIMENSION_EXPRESSION: return createDimensionExpression();
-			case AnalyticsPackage.GROUP_BY: return createGroupBy();
-			case AnalyticsPackage.DIMENSION_DEFINITION: return createDimensionDefinition();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case AnalyticsPackage.DIMENSION: return createDimension();
+            case AnalyticsPackage.CELL_SET: return createCellSet();
+            case AnalyticsPackage.DIMENSION_EXPRESSION: return createDimensionExpression();
+            case AnalyticsPackage.GROUP_BY: return createGroupBy();
+            case AnalyticsPackage.DIMENSION_DEFINITION: return createDimensionDefinition();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Dimension createDimension() {
-		DimensionImpl dimension = new DimensionImpl();
-		return dimension;
-	}
+        DimensionImpl dimension = new DimensionImpl();
+        return dimension;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public CellSet createCellSet() {
-		CellSetImpl cellSet = new CellSetImpl();
-		return cellSet;
-	}
+        CellSetImpl cellSet = new CellSetImpl();
+        return cellSet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DimensionExpression createDimensionExpression() {
-		DimensionExpressionImpl dimensionExpression = new DimensionExpressionImpl();
-		return dimensionExpression;
-	}
+        DimensionExpressionImpl dimensionExpression = new DimensionExpressionImpl();
+        return dimensionExpression;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public GroupBy createGroupBy() {
-		GroupByImpl groupBy = new GroupByImpl();
-		return groupBy;
-	}
+        GroupByImpl groupBy = new GroupByImpl();
+        return groupBy;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public DimensionDefinition createDimensionDefinition() {
-		DimensionDefinitionImpl dimensionDefinition = new DimensionDefinitionImpl();
-		return dimensionDefinition;
-	}
+        DimensionDefinitionImpl dimensionDefinition = new DimensionDefinitionImpl();
+        return dimensionDefinition;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public AnalyticsPackage getAnalyticsPackage() {
-		return (AnalyticsPackage)getEPackage();
-	}
+        return (AnalyticsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static AnalyticsPackage getPackage() {
-		return AnalyticsPackage.eINSTANCE;
-	}
+        return AnalyticsPackage.eINSTANCE;
+    }
 
 } //AnalyticsFactoryImpl

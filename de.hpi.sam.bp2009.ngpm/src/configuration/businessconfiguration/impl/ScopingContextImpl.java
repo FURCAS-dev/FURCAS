@@ -24,22 +24,22 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class ScopingContextImpl extends EObjectImpl implements ScopingContext {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ScopingContextImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return BusinessconfigurationPackage.Literals.SCOPING_CONTEXT;
-	}
+        return BusinessconfigurationPackage.Literals.SCOPING_CONTEXT;
+    }
 
 } //ScopingContextImpl

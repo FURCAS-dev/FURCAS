@@ -28,45 +28,45 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Code extends DataElement {
 	/**
-	 * Returns the value of the '<em><b>Extensible</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Extensible</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Extensible</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Extensible</em>' attribute.
-	 * @see #setExtensible(boolean)
-	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getCode_Extensible()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Extensible</em>' attribute.
+     * @see #setExtensible(boolean)
+     * @see abapmapping.abapdictionary.AbapdictionaryPackage#getCode_Extensible()
+     * @model unique="false" required="true" ordered="false"
+     * @generated
+     */
 	boolean isExtensible();
 
 	/**
-	 * Sets the value of the '{@link abapmapping.abapdictionary.Code#isExtensible <em>Extensible</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link abapmapping.abapdictionary.Code#isExtensible <em>Extensible</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Extensible</em>' attribute.
-	 * @see #isExtensible()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Extensible</em>' attribute.
+     * @see #isExtensible()
+     * @generated
+     */
 	void setExtensible(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Values</b></em>' containment reference list.
-	 * The list contents are of type {@link abapmapping.abapdictionary.CodeValue}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Values</b></em>' containment reference list.
+     * The list contents are of type {@link abapmapping.abapdictionary.CodeValue}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Values</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Values</em>' containment reference list.
-	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getCode_Values()
-	 * @model containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Values</em>' containment reference list.
+     * @see abapmapping.abapdictionary.AbapdictionaryPackage#getCode_Values()
+     * @model containment="true" resolveProxies="true"
+     * @generated
+     */
 	EList<CodeValue> getValues();
 
 } // Code

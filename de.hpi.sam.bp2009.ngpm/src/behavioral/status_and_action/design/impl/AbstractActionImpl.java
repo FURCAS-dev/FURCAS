@@ -33,190 +33,190 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class AbstractActionImpl extends NamedElementImpl implements AbstractAction {
 	/**
-	 * The default value of the '{@link #isIsAgent() <em>Is Agent</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isIsAgent() <em>Is Agent</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsAgent()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsAgent()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean IS_AGENT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsAgent() <em>Is Agent</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isIsAgent() <em>Is Agent</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsAgent()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsAgent()
+     * @generated
+     * @ordered
+     */
 	protected boolean isAgent = IS_AGENT_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isIsPreconditionFixed() <em>Is Precondition Fixed</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #isIsPreconditionFixed() <em>Is Precondition Fixed</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsPreconditionFixed()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsPreconditionFixed()
+     * @generated
+     * @ordered
+     */
 	protected static final boolean IS_PRECONDITION_FIXED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsPreconditionFixed() <em>Is Precondition Fixed</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #isIsPreconditionFixed() <em>Is Precondition Fixed</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsPreconditionFixed()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #isIsPreconditionFixed()
+     * @generated
+     * @ordered
+     */
 	protected boolean isPreconditionFixed = IS_PRECONDITION_FIXED_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected AbstractActionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return DesignPackage.Literals.ABSTRACT_ACTION;
-	}
+        return DesignPackage.Literals.ABSTRACT_ACTION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isIsAgent() {
-		return isAgent;
-	}
+        return isAgent;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setIsAgent(boolean newIsAgent) {
-		boolean oldIsAgent = isAgent;
-		isAgent = newIsAgent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_ACTION__IS_AGENT, oldIsAgent, isAgent));
-	}
+        boolean oldIsAgent = isAgent;
+        isAgent = newIsAgent;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_ACTION__IS_AGENT, oldIsAgent, isAgent));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public boolean isIsPreconditionFixed() {
-		return isPreconditionFixed;
-	}
+        return isPreconditionFixed;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setIsPreconditionFixed(boolean newIsPreconditionFixed) {
-		boolean oldIsPreconditionFixed = isPreconditionFixed;
-		isPreconditionFixed = newIsPreconditionFixed;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED, oldIsPreconditionFixed, isPreconditionFixed));
-	}
+        boolean oldIsPreconditionFixed = isPreconditionFixed;
+        isPreconditionFixed = newIsPreconditionFixed;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED, oldIsPreconditionFixed, isPreconditionFixed));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_ACTION__IS_AGENT:
-				return isIsAgent();
-			case DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED:
-				return isIsPreconditionFixed();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_ACTION__IS_AGENT:
+                return isIsAgent();
+            case DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED:
+                return isIsPreconditionFixed();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_ACTION__IS_AGENT:
-				setIsAgent((Boolean)newValue);
-				return;
-			case DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED:
-				setIsPreconditionFixed((Boolean)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_ACTION__IS_AGENT:
+                setIsAgent((Boolean)newValue);
+                return;
+            case DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED:
+                setIsPreconditionFixed((Boolean)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_ACTION__IS_AGENT:
-				setIsAgent(IS_AGENT_EDEFAULT);
-				return;
-			case DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED:
-				setIsPreconditionFixed(IS_PRECONDITION_FIXED_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_ACTION__IS_AGENT:
+                setIsAgent(IS_AGENT_EDEFAULT);
+                return;
+            case DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED:
+                setIsPreconditionFixed(IS_PRECONDITION_FIXED_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case DesignPackage.ABSTRACT_ACTION__IS_AGENT:
-				return isAgent != IS_AGENT_EDEFAULT;
-			case DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED:
-				return isPreconditionFixed != IS_PRECONDITION_FIXED_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case DesignPackage.ABSTRACT_ACTION__IS_AGENT:
+                return isAgent != IS_AGENT_EDEFAULT;
+            case DesignPackage.ABSTRACT_ACTION__IS_PRECONDITION_FIXED:
+                return isPreconditionFixed != IS_PRECONDITION_FIXED_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (isAgent: ");
-		result.append(isAgent);
-		result.append(", isPreconditionFixed: ");
-		result.append(isPreconditionFixed);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (isAgent: ");
+        result.append(isAgent);
+        result.append(", isPreconditionFixed: ");
+        result.append(isPreconditionFixed);
+        result.append(')');
+        return result.toString();
+    }
 
 } //AbstractActionImpl

@@ -18,38 +18,38 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface EventsFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	EventsFactory eINSTANCE = behavioral.events.impl.EventsFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Subscription</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Subscription</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Subscription</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Subscription</em>'.
+     * @generated
+     */
 	Subscription createSubscription();
 
 	/**
-	 * Returns a new object of class '<em>Event Filter</em>'.
-	 * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Event Filter</em>'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Event Filter</em>'.
-	 * @generated
-	 */
+     * @return a new object of class '<em>Event Filter</em>'.
+     * @generated
+     */
 	EventFilter createEventFilter();
 
 	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
+     * @return the package supported by this factory.
+     * @generated
+     */
 	EventsPackage getEventsPackage();
 
 } //EventsFactory

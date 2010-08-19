@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class SynchroniserImpl extends ConnectorImpl implements Synchroniser {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected SynchroniserImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AssemblyPackage.Literals.SYNCHRONISER;
-	}
+        return AssemblyPackage.Literals.SYNCHRONISER;
+    }
 
 } //SynchroniserImpl

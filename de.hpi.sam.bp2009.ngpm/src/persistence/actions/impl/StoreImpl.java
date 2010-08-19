@@ -22,22 +22,22 @@ import persistence.actions.Store;
  */
 public class StoreImpl extends StatementWithEntityArgumentImpl implements Store {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected StoreImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.STORE;
-	}
+        return ActionsPackage.Literals.STORE;
+    }
 
 } //StoreImpl

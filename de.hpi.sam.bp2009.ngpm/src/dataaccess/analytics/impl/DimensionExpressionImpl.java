@@ -41,291 +41,339 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class DimensionExpressionImpl extends ExpressionImpl implements DimensionExpression {
 	/**
-	 * The cached value of the '{@link #getCellSet() <em>Cell Set</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getCellSet() <em>Cell Set</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCellSet()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getCellSet()
+     * @generated
+     * @ordered
+     */
 	protected Expression cellSet;
 
 	/**
-	 * The cached value of the '{@link #getDimensionParameter() <em>Dimension Parameter</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getDimensionParameter() <em>Dimension Parameter</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDimensionParameter()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getDimensionParameter()
+     * @generated
+     * @ordered
+     */
 	protected Parameter dimensionParameter;
 
 	/**
-	 * The cached value of the '{@link #getFacts() <em>Facts</em>}' containment reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getFacts() <em>Facts</em>}' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFacts()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getFacts()
+     * @generated
+     * @ordered
+     */
 	protected Expression facts;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected DimensionExpressionImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return AnalyticsPackage.Literals.DIMENSION_EXPRESSION;
-	}
+        return AnalyticsPackage.Literals.DIMENSION_EXPRESSION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Expression getCellSet() {
-		return cellSet;
-	}
+        if (cellSet != null && cellSet.eIsProxy()) {
+            InternalEObject oldCellSet = (InternalEObject)cellSet;
+            cellSet = (Expression)eResolveProxy(oldCellSet);
+            if (cellSet != oldCellSet) {
+                InternalEObject newCellSet = (InternalEObject)cellSet;
+                NotificationChain msgs =  oldCellSet.eInverseRemove(this, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, Expression.class, null);
+                if (newCellSet.eInternalContainer() == null) {
+                    msgs =  newCellSet.eInverseAdd(this, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, oldCellSet, cellSet));
+            }
+        }
+        return cellSet;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Expression basicGetCellSet() {
+        return cellSet;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetCellSet(Expression newCellSet, NotificationChain msgs) {
-		Expression oldCellSet = cellSet;
-		cellSet = newCellSet;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, oldCellSet, newCellSet);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        Expression oldCellSet = cellSet;
+        cellSet = newCellSet;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, oldCellSet, newCellSet);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setCellSet(Expression newCellSet) {
-		if (newCellSet != cellSet) {
-			NotificationChain msgs = null;
-			if (cellSet != null)
-				msgs = ((InternalEObject)cellSet).eInverseRemove(this, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
-			if (newCellSet != null)
-				msgs = ((InternalEObject)newCellSet).eInverseAdd(this, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
-			msgs = basicSetCellSet(newCellSet, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, newCellSet, newCellSet));
-	}
+        if (newCellSet != cellSet) {
+            NotificationChain msgs = null;
+            if (cellSet != null)
+                msgs = ((InternalEObject)cellSet).eInverseRemove(this, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
+            if (newCellSet != null)
+                msgs = ((InternalEObject)newCellSet).eInverseAdd(this, ExpressionsPackage.EXPRESSION__CELL_SET_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
+            msgs = basicSetCellSet(newCellSet, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, newCellSet, newCellSet));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Parameter getDimensionParameter() {
-		if (dimensionParameter != null && dimensionParameter.eIsProxy()) {
-			InternalEObject oldDimensionParameter = (InternalEObject)dimensionParameter;
-			dimensionParameter = (Parameter)eResolveProxy(oldDimensionParameter);
-			if (dimensionParameter != oldDimensionParameter) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER, oldDimensionParameter, dimensionParameter));
-			}
-		}
-		return dimensionParameter;
-	}
+        if (dimensionParameter != null && dimensionParameter.eIsProxy()) {
+            InternalEObject oldDimensionParameter = (InternalEObject)dimensionParameter;
+            dimensionParameter = (Parameter)eResolveProxy(oldDimensionParameter);
+            if (dimensionParameter != oldDimensionParameter) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER, oldDimensionParameter, dimensionParameter));
+            }
+        }
+        return dimensionParameter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Parameter basicGetDimensionParameter() {
-		return dimensionParameter;
-	}
+        return dimensionParameter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setDimensionParameter(Parameter newDimensionParameter) {
-		Parameter oldDimensionParameter = dimensionParameter;
-		dimensionParameter = newDimensionParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER, oldDimensionParameter, dimensionParameter));
-	}
+        Parameter oldDimensionParameter = dimensionParameter;
+        dimensionParameter = newDimensionParameter;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER, oldDimensionParameter, dimensionParameter));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Expression getFacts() {
-		return facts;
-	}
+        if (facts != null && facts.eIsProxy()) {
+            InternalEObject oldFacts = (InternalEObject)facts;
+            facts = (Expression)eResolveProxy(oldFacts);
+            if (facts != oldFacts) {
+                InternalEObject newFacts = (InternalEObject)facts;
+                NotificationChain msgs =  oldFacts.eInverseRemove(this, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, Expression.class, null);
+                if (newFacts.eInternalContainer() == null) {
+                    msgs =  newFacts.eInverseAdd(this, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
+                }
+                if (msgs != null) msgs.dispatch();
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, oldFacts, facts));
+            }
+        }
+        return facts;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Expression basicGetFacts() {
+        return facts;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public NotificationChain basicSetFacts(Expression newFacts, NotificationChain msgs) {
-		Expression oldFacts = facts;
-		facts = newFacts;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, oldFacts, newFacts);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
+        Expression oldFacts = facts;
+        facts = newFacts;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, oldFacts, newFacts);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setFacts(Expression newFacts) {
-		if (newFacts != facts) {
-			NotificationChain msgs = null;
-			if (facts != null)
-				msgs = ((InternalEObject)facts).eInverseRemove(this, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
-			if (newFacts != null)
-				msgs = ((InternalEObject)newFacts).eInverseAdd(this, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
-			msgs = basicSetFacts(newFacts, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, newFacts, newFacts));
-	}
+        if (newFacts != facts) {
+            NotificationChain msgs = null;
+            if (facts != null)
+                msgs = ((InternalEObject)facts).eInverseRemove(this, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
+            if (newFacts != null)
+                msgs = ((InternalEObject)newFacts).eInverseAdd(this, ExpressionsPackage.EXPRESSION__FACTS_OF_DIMENSION_EXPRESSION, Expression.class, msgs);
+            msgs = basicSetFacts(newFacts, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, newFacts, newFacts));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
-				if (cellSet != null)
-					msgs = ((InternalEObject)cellSet).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, null, msgs);
-				return basicSetCellSet((Expression)otherEnd, msgs);
-			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
-				if (facts != null)
-					msgs = ((InternalEObject)facts).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, null, msgs);
-				return basicSetFacts((Expression)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
+                if (cellSet != null)
+                    msgs = ((InternalEObject)cellSet).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET, null, msgs);
+                return basicSetCellSet((Expression)otherEnd, msgs);
+            case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
+                if (facts != null)
+                    msgs = ((InternalEObject)facts).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyticsPackage.DIMENSION_EXPRESSION__FACTS, null, msgs);
+                return basicSetFacts((Expression)otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
-				return basicSetCellSet(null, msgs);
-			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
-				return basicSetFacts(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
+                return basicSetCellSet(null, msgs);
+            case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
+                return basicSetFacts(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
-				return getCellSet();
-			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
-				if (resolve) return getDimensionParameter();
-				return basicGetDimensionParameter();
-			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
-				return getFacts();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
+                if (resolve) return getCellSet();
+                return basicGetCellSet();
+            case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
+                if (resolve) return getDimensionParameter();
+                return basicGetDimensionParameter();
+            case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
+                if (resolve) return getFacts();
+                return basicGetFacts();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
-				setCellSet((Expression)newValue);
-				return;
-			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
-				setDimensionParameter((Parameter)newValue);
-				return;
-			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
-				setFacts((Expression)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
+                setCellSet((Expression)newValue);
+                return;
+            case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
+                setDimensionParameter((Parameter)newValue);
+                return;
+            case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
+                setFacts((Expression)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
-				setCellSet((Expression)null);
-				return;
-			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
-				setDimensionParameter((Parameter)null);
-				return;
-			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
-				setFacts((Expression)null);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
+                setCellSet((Expression)null);
+                return;
+            case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
+                setDimensionParameter((Parameter)null);
+                return;
+            case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
+                setFacts((Expression)null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
-				return cellSet != null;
-			case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
-				return dimensionParameter != null;
-			case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
-				return facts != null;
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case AnalyticsPackage.DIMENSION_EXPRESSION__CELL_SET:
+                return cellSet != null;
+            case AnalyticsPackage.DIMENSION_EXPRESSION__DIMENSION_PARAMETER:
+                return dimensionParameter != null;
+            case AnalyticsPackage.DIMENSION_EXPRESSION__FACTS:
+                return facts != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } //DimensionExpressionImpl

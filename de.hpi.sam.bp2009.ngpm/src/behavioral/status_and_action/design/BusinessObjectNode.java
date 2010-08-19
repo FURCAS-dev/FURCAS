@@ -29,37 +29,37 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface BusinessObjectNode extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-	 * The list contents are of type {@link behavioral.status_and_action.design.StatusVariable}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
+     * The list contents are of type {@link behavioral.status_and_action.design.StatusVariable}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variables</em>' containment reference list.
-	 * @see behavioral.status_and_action.design.DesignPackage#getBusinessObjectNode_Variables()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='node'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Variables</em>' containment reference list.
+     * @see behavioral.status_and_action.design.DesignPackage#getBusinessObjectNode_Variables()
+     * @model containment="true" resolveProxies="true"
+     *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='node'"
+     * @generated
+     */
 	EList<StatusVariable> getVariables();
 
 	/**
-	 * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
-	 * The list contents are of type {@link behavioral.status_and_action.design.Action}.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Actions</b></em>' containment reference list.
+     * The list contents are of type {@link behavioral.status_and_action.design.Action}.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Actions</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Actions</em>' containment reference list.
-	 * @see behavioral.status_and_action.design.DesignPackage#getBusinessObjectNode_Actions()
-	 * @model containment="true"
-	 *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='node'"
-	 * @generated
-	 */
+     * @return the value of the '<em>Actions</em>' containment reference list.
+     * @see behavioral.status_and_action.design.DesignPackage#getBusinessObjectNode_Actions()
+     * @model containment="true" resolveProxies="true"
+     *        annotation="http://schema.omg.org/spec/MOF/2.0/emof.xml Property.oppositeRoleName='node'"
+     * @generated
+     */
 	EList<Action> getActions();
 
 } // BusinessObjectNode

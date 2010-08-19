@@ -32,190 +32,190 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class PlatformSpecificImplementationImpl extends EObjectImpl implements PlatformSpecificImplementation {
 	/**
-	 * The default value of the '{@link #getTargetPlatform() <em>Target Platform</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getTargetPlatform() <em>Target Platform</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetPlatform()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTargetPlatform()
+     * @generated
+     * @ordered
+     */
 	protected static final String TARGET_PLATFORM_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getTargetPlatform() <em>Target Platform</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getTargetPlatform() <em>Target Platform</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTargetPlatform()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getTargetPlatform()
+     * @generated
+     * @ordered
+     */
 	protected String targetPlatform = TARGET_PLATFORM_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImplementation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getImplementation()
+     * @generated
+     * @ordered
+     */
 	protected static final String IMPLEMENTATION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImplementation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getImplementation()
+     * @generated
+     * @ordered
+     */
 	protected String implementation = IMPLEMENTATION_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected PlatformSpecificImplementationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.PLATFORM_SPECIFIC_IMPLEMENTATION;
-	}
+        return ClassesPackage.Literals.PLATFORM_SPECIFIC_IMPLEMENTATION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getTargetPlatform() {
-		return targetPlatform;
-	}
+        return targetPlatform;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setTargetPlatform(String newTargetPlatform) {
-		String oldTargetPlatform = targetPlatform;
-		targetPlatform = newTargetPlatform;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM, oldTargetPlatform, targetPlatform));
-	}
+        String oldTargetPlatform = targetPlatform;
+        targetPlatform = newTargetPlatform;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM, oldTargetPlatform, targetPlatform));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getImplementation() {
-		return implementation;
-	}
+        return implementation;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setImplementation(String newImplementation) {
-		String oldImplementation = implementation;
-		implementation = newImplementation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION, oldImplementation, implementation));
-	}
+        String oldImplementation = implementation;
+        implementation = newImplementation;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION, oldImplementation, implementation));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM:
-				return getTargetPlatform();
-			case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION:
-				return getImplementation();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM:
+                return getTargetPlatform();
+            case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION:
+                return getImplementation();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM:
-				setTargetPlatform((String)newValue);
-				return;
-			case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION:
-				setImplementation((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM:
+                setTargetPlatform((String)newValue);
+                return;
+            case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION:
+                setImplementation((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM:
-				setTargetPlatform(TARGET_PLATFORM_EDEFAULT);
-				return;
-			case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION:
-				setImplementation(IMPLEMENTATION_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM:
+                setTargetPlatform(TARGET_PLATFORM_EDEFAULT);
+                return;
+            case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION:
+                setImplementation(IMPLEMENTATION_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM:
-				return TARGET_PLATFORM_EDEFAULT == null ? targetPlatform != null : !TARGET_PLATFORM_EDEFAULT.equals(targetPlatform);
-			case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION:
-				return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__TARGET_PLATFORM:
+                return TARGET_PLATFORM_EDEFAULT == null ? targetPlatform != null : !TARGET_PLATFORM_EDEFAULT.equals(targetPlatform);
+            case ClassesPackage.PLATFORM_SPECIFIC_IMPLEMENTATION__IMPLEMENTATION:
+                return IMPLEMENTATION_EDEFAULT == null ? implementation != null : !IMPLEMENTATION_EDEFAULT.equals(implementation);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (targetPlatform: ");
-		result.append(targetPlatform);
-		result.append(", implementation: ");
-		result.append(implementation);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (targetPlatform: ");
+        result.append(targetPlatform);
+        result.append(", implementation: ");
+        result.append(implementation);
+        result.append(')');
+        return result.toString();
+    }
 
 } //PlatformSpecificImplementationImpl

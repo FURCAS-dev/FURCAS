@@ -31,190 +31,190 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class NotationImpl extends NamedElementImpl implements Notation {
 	/**
-	 * The default value of the '{@link #getPublicDec() <em>Public Dec</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getPublicDec() <em>Public Dec</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPublicDec()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPublicDec()
+     * @generated
+     * @ordered
+     */
 	protected static final String PUBLIC_DEC_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPublicDec() <em>Public Dec</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getPublicDec() <em>Public Dec</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPublicDec()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getPublicDec()
+     * @generated
+     * @ordered
+     */
 	protected String publicDec = PUBLIC_DEC_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSystemDec() <em>System Dec</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getSystemDec() <em>System Dec</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSystemDec()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSystemDec()
+     * @generated
+     * @ordered
+     */
 	protected static final String SYSTEM_DEC_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSystemDec() <em>System Dec</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getSystemDec() <em>System Dec</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSystemDec()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getSystemDec()
+     * @generated
+     * @ordered
+     */
 	protected String systemDec = SYSTEM_DEC_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected NotationImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return XsdPackage.Literals.NOTATION;
-	}
+        return XsdPackage.Literals.NOTATION;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getPublicDec() {
-		return publicDec;
-	}
+        return publicDec;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setPublicDec(String newPublicDec) {
-		String oldPublicDec = publicDec;
-		publicDec = newPublicDec;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.NOTATION__PUBLIC_DEC, oldPublicDec, publicDec));
-	}
+        String oldPublicDec = publicDec;
+        publicDec = newPublicDec;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.NOTATION__PUBLIC_DEC, oldPublicDec, publicDec));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public String getSystemDec() {
-		return systemDec;
-	}
+        return systemDec;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setSystemDec(String newSystemDec) {
-		String oldSystemDec = systemDec;
-		systemDec = newSystemDec;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.NOTATION__SYSTEM_DEC, oldSystemDec, systemDec));
-	}
+        String oldSystemDec = systemDec;
+        systemDec = newSystemDec;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, XsdPackage.NOTATION__SYSTEM_DEC, oldSystemDec, systemDec));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case XsdPackage.NOTATION__PUBLIC_DEC:
-				return getPublicDec();
-			case XsdPackage.NOTATION__SYSTEM_DEC:
-				return getSystemDec();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case XsdPackage.NOTATION__PUBLIC_DEC:
+                return getPublicDec();
+            case XsdPackage.NOTATION__SYSTEM_DEC:
+                return getSystemDec();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case XsdPackage.NOTATION__PUBLIC_DEC:
-				setPublicDec((String)newValue);
-				return;
-			case XsdPackage.NOTATION__SYSTEM_DEC:
-				setSystemDec((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case XsdPackage.NOTATION__PUBLIC_DEC:
+                setPublicDec((String)newValue);
+                return;
+            case XsdPackage.NOTATION__SYSTEM_DEC:
+                setSystemDec((String)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case XsdPackage.NOTATION__PUBLIC_DEC:
-				setPublicDec(PUBLIC_DEC_EDEFAULT);
-				return;
-			case XsdPackage.NOTATION__SYSTEM_DEC:
-				setSystemDec(SYSTEM_DEC_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case XsdPackage.NOTATION__PUBLIC_DEC:
+                setPublicDec(PUBLIC_DEC_EDEFAULT);
+                return;
+            case XsdPackage.NOTATION__SYSTEM_DEC:
+                setSystemDec(SYSTEM_DEC_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case XsdPackage.NOTATION__PUBLIC_DEC:
-				return PUBLIC_DEC_EDEFAULT == null ? publicDec != null : !PUBLIC_DEC_EDEFAULT.equals(publicDec);
-			case XsdPackage.NOTATION__SYSTEM_DEC:
-				return SYSTEM_DEC_EDEFAULT == null ? systemDec != null : !SYSTEM_DEC_EDEFAULT.equals(systemDec);
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case XsdPackage.NOTATION__PUBLIC_DEC:
+                return PUBLIC_DEC_EDEFAULT == null ? publicDec != null : !PUBLIC_DEC_EDEFAULT.equals(publicDec);
+            case XsdPackage.NOTATION__SYSTEM_DEC:
+                return SYSTEM_DEC_EDEFAULT == null ? systemDec != null : !SYSTEM_DEC_EDEFAULT.equals(systemDec);
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (publicDec: ");
-		result.append(publicDec);
-		result.append(", systemDec: ");
-		result.append(systemDec);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (publicDec: ");
+        result.append(publicDec);
+        result.append(", systemDec: ");
+        result.append(systemDec);
+        result.append(')');
+        return result.toString();
+    }
 
 } //NotationImpl

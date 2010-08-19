@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class LinkSettingImpl extends ExtentModifyingAssociationEndSignatureImplementationImpl implements LinkSetting {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected LinkSettingImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ClassesPackage.Literals.LINK_SETTING;
-	}
+        return ClassesPackage.Literals.LINK_SETTING;
+    }
 
 } //LinkSettingImpl

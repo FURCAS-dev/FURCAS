@@ -45,244 +45,244 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public abstract class LinkManipulationStatementImpl extends StatementImpl implements LinkManipulationStatement {
 	/**
-	 * The default value of the '{@link #getAt() <em>At</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The default value of the '{@link #getAt() <em>At</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAt()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAt()
+     * @generated
+     * @ordered
+     */
 	protected static final int AT_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getAt() <em>At</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAt() <em>At</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAt()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAt()
+     * @generated
+     * @ordered
+     */
 	protected int at = AT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAssociation() <em>Association</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAssociation() <em>Association</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAssociation()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getAssociation()
+     * @generated
+     * @ordered
+     */
 	protected Association association;
 
 	/**
-	 * The cached value of the '{@link #getObjects() <em>Objects</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getObjects() <em>Objects</em>}' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getObjects()
-	 * @generated
-	 * @ordered
-	 */
+     * @see #getObjects()
+     * @generated
+     * @ordered
+     */
 	protected EList<Expression> objects;
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected LinkManipulationStatementImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ActionsPackage.Literals.LINK_MANIPULATION_STATEMENT;
-	}
+        return ActionsPackage.Literals.LINK_MANIPULATION_STATEMENT;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public int getAt() {
-		return at;
-	}
+        return at;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAt(int newAt) {
-		int oldAt = at;
-		at = newAt;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.LINK_MANIPULATION_STATEMENT__AT, oldAt, at));
-	}
+        int oldAt = at;
+        at = newAt;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.LINK_MANIPULATION_STATEMENT__AT, oldAt, at));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Association getAssociation() {
-		if (association != null && association.eIsProxy()) {
-			InternalEObject oldAssociation = (InternalEObject)association;
-			association = (Association)eResolveProxy(oldAssociation);
-			if (association != oldAssociation) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION, oldAssociation, association));
-			}
-		}
-		return association;
-	}
+        if (association != null && association.eIsProxy()) {
+            InternalEObject oldAssociation = (InternalEObject)association;
+            association = (Association)eResolveProxy(oldAssociation);
+            if (association != oldAssociation) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION, oldAssociation, association));
+            }
+        }
+        return association;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Association basicGetAssociation() {
-		return association;
-	}
+        return association;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public void setAssociation(Association newAssociation) {
-		Association oldAssociation = association;
-		association = newAssociation;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION, oldAssociation, association));
-	}
+        Association oldAssociation = association;
+        association = newAssociation;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION, oldAssociation, association));
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EList<Expression> getObjects() {
-		if (objects == null) {
-			objects = new EObjectContainmentEList<Expression>(Expression.class, this, ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS);
-		}
-		return objects;
-	}
+        if (objects == null) {
+            objects = new EObjectContainmentEList.Resolving<Expression>(Expression.class, this, ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS);
+        }
+        return objects;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
-				return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+        switch (featureID) {
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
+                return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__AT:
-				return getAt();
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION:
-				if (resolve) return getAssociation();
-				return basicGetAssociation();
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
-				return getObjects();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        switch (featureID) {
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__AT:
+                return getAt();
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION:
+                if (resolve) return getAssociation();
+                return basicGetAssociation();
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
+                return getObjects();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__AT:
-				setAt((Integer)newValue);
-				return;
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION:
-				setAssociation((Association)newValue);
-				return;
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
-				getObjects().clear();
-				getObjects().addAll((Collection<? extends Expression>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        switch (featureID) {
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__AT:
+                setAt((Integer)newValue);
+                return;
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION:
+                setAssociation((Association)newValue);
+                return;
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
+                getObjects().clear();
+                getObjects().addAll((Collection<? extends Expression>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__AT:
-				setAt(AT_EDEFAULT);
-				return;
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION:
-				setAssociation((Association)null);
-				return;
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
-				getObjects().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__AT:
+                setAt(AT_EDEFAULT);
+                return;
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION:
+                setAssociation((Association)null);
+                return;
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
+                getObjects().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__AT:
-				return at != AT_EDEFAULT;
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION:
-				return association != null;
-			case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
-				return objects != null && !objects.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        switch (featureID) {
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__AT:
+                return at != AT_EDEFAULT;
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__ASSOCIATION:
+                return association != null;
+            case ActionsPackage.LINK_MANIPULATION_STATEMENT__OBJECTS:
+                return objects != null && !objects.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (at: ");
-		result.append(at);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (at: ");
+        result.append(at);
+        result.append(')');
+        return result.toString();
+    }
 
 } //LinkManipulationStatementImpl

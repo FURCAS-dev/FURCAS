@@ -28,21 +28,21 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface SignatureOwner extends NamedElement {
 	/**
-	 * Returns the value of the '<em><b>Owned Signatures</b></em>' containment reference list.
-	 * The list contents are of type {@link data.classes.MethodSignature}.
-	 * It is bidirectional and its opposite is '{@link data.classes.MethodSignature#getOwner <em>Owner</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Owned Signatures</b></em>' containment reference list.
+     * The list contents are of type {@link data.classes.MethodSignature}.
+     * It is bidirectional and its opposite is '{@link data.classes.MethodSignature#getOwner <em>Owner</em>}'.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Signatures</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Owned Signatures</em>' containment reference list.
-	 * @see data.classes.ClassesPackage#getSignatureOwner_OwnedSignatures()
-	 * @see data.classes.MethodSignature#getOwner
-	 * @model opposite="owner" containment="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Owned Signatures</em>' containment reference list.
+     * @see data.classes.ClassesPackage#getSignatureOwner_OwnedSignatures()
+     * @see data.classes.MethodSignature#getOwner
+     * @model opposite="owner" containment="true" resolveProxies="true"
+     * @generated
+     */
 	EList<MethodSignature> getOwnedSignatures();
 
 } // SignatureOwner

@@ -24,87 +24,87 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static EventsFactory init() {
-		try {
-			EventsFactory theEventsFactory = (EventsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/events.ecore"); 
-			if (theEventsFactory != null) {
-				return theEventsFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new EventsFactoryImpl();
-	}
+        try {
+            EventsFactory theEventsFactory = (EventsFactory)EPackage.Registry.INSTANCE.getEFactory("http:///behavioral/events.ecore"); 
+            if (theEventsFactory != null) {
+                return theEventsFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new EventsFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EventsFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case EventsPackage.SUBSCRIPTION: return createSubscription();
-			case EventsPackage.EVENT_FILTER: return createEventFilter();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case EventsPackage.SUBSCRIPTION: return createSubscription();
+            case EventsPackage.EVENT_FILTER: return createEventFilter();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Subscription createSubscription() {
-		SubscriptionImpl subscription = new SubscriptionImpl();
-		return subscription;
-	}
+        SubscriptionImpl subscription = new SubscriptionImpl();
+        return subscription;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EventFilter createEventFilter() {
-		EventFilterImpl eventFilter = new EventFilterImpl();
-		return eventFilter;
-	}
+        EventFilterImpl eventFilter = new EventFilterImpl();
+        return eventFilter;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public EventsPackage getEventsPackage() {
-		return (EventsPackage)getEPackage();
-	}
+        return (EventsPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static EventsPackage getPackage() {
-		return EventsPackage.eINSTANCE;
-	}
+        return EventsPackage.eINSTANCE;
+    }
 
 } //EventsFactoryImpl

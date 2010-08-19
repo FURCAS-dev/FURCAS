@@ -28,109 +28,109 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class ModelmanagementFactoryImpl extends EFactoryImpl implements ModelmanagementFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public static ModelmanagementFactory init() {
-		try {
-			ModelmanagementFactory theModelmanagementFactory = (ModelmanagementFactory)EPackage.Registry.INSTANCE.getEFactory("http:///modelmanagement.ecore"); 
-			if (theModelmanagementFactory != null) {
-				return theModelmanagementFactory;
-			}
-		}
-		catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new ModelmanagementFactoryImpl();
-	}
+        try {
+            ModelmanagementFactory theModelmanagementFactory = (ModelmanagementFactory)EPackage.Registry.INSTANCE.getEFactory("http:///modelmanagement.ecore"); 
+            if (theModelmanagementFactory != null) {
+                return theModelmanagementFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new ModelmanagementFactoryImpl();
+    }
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ModelmanagementFactoryImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-			case ModelmanagementPackage.PACKAGE: return createPackage();
-			case ModelmanagementPackage.APPLICATION: return createApplication();
-			case ModelmanagementPackage.PACKAGE_OWNER: return createPackageOwner();
-			case ModelmanagementPackage.MODULE: return createModule();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-		}
-	}
+        switch (eClass.getClassifierID()) {
+            case ModelmanagementPackage.PACKAGE: return createPackage();
+            case ModelmanagementPackage.APPLICATION: return createApplication();
+            case ModelmanagementPackage.PACKAGE_OWNER: return createPackageOwner();
+            case ModelmanagementPackage.MODULE: return createModule();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public modelmanagement.Package createPackage() {
-		PackageImpl package_ = new PackageImpl();
-		return package_;
-	}
+        PackageImpl package_ = new PackageImpl();
+        return package_;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Application createApplication() {
-		ApplicationImpl application = new ApplicationImpl();
-		return application;
-	}
+        ApplicationImpl application = new ApplicationImpl();
+        return application;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public PackageOwner createPackageOwner() {
-		PackageOwnerImpl packageOwner = new PackageOwnerImpl();
-		return packageOwner;
-	}
+        PackageOwnerImpl packageOwner = new PackageOwnerImpl();
+        return packageOwner;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public Module createModule() {
-		ModuleImpl module = new ModuleImpl();
-		return module;
-	}
+        ModuleImpl module = new ModuleImpl();
+        return module;
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	public ModelmanagementPackage getModelmanagementPackage() {
-		return (ModelmanagementPackage)getEPackage();
-	}
+        return (ModelmanagementPackage)getEPackage();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
+     * @deprecated
+     * @generated
+     */
 	@Deprecated
 	public static ModelmanagementPackage getPackage() {
-		return ModelmanagementPackage.eINSTANCE;
-	}
+        return ModelmanagementPackage.eINSTANCE;
+    }
 
 } //ModelmanagementFactoryImpl

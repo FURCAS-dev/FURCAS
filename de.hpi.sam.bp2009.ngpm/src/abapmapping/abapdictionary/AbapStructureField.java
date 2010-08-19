@@ -27,55 +27,55 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface AbapStructureField extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureField_Name()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(String)
+     * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureField_Name()
+     * @model unique="false" required="true" ordered="false"
+     * @generated
+     */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link abapmapping.abapdictionary.AbapStructureField#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link abapmapping.abapdictionary.AbapStructureField#getName <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
+     * @generated
+     */
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Type</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(AbapType)
-	 * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureField_Type()
-	 * @model required="true"
-	 * @generated
-	 */
+     * @return the value of the '<em>Type</em>' reference.
+     * @see #setType(AbapType)
+     * @see abapmapping.abapdictionary.AbapdictionaryPackage#getAbapStructureField_Type()
+     * @model required="true"
+     * @generated
+     */
 	AbapType getType();
 
 	/**
-	 * Sets the value of the '{@link abapmapping.abapdictionary.AbapStructureField#getType <em>Type</em>}' reference.
-	 * <!-- begin-user-doc -->
+     * Sets the value of the '{@link abapmapping.abapdictionary.AbapStructureField#getType <em>Type</em>}' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
-	 * @generated
-	 */
+     * @param value the new value of the '<em>Type</em>' reference.
+     * @see #getType()
+     * @generated
+     */
 	void setType(AbapType value);
 
 } // AbapStructureField

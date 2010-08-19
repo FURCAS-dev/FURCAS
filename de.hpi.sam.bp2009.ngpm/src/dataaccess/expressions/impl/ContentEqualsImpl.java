@@ -22,22 +22,22 @@ import org.eclipse.emf.ecore.EClass;
  */
 public class ContentEqualsImpl extends EqualsImpl implements ContentEquals {
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	protected ContentEqualsImpl() {
-		super();
-	}
+        super();
+    }
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpressionsPackage.Literals.CONTENT_EQUALS;
-	}
+        return ExpressionsPackage.Literals.CONTENT_EQUALS;
+    }
 
 } //ContentEqualsImpl

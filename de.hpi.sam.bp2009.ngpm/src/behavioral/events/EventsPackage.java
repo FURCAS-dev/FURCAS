@@ -54,294 +54,294 @@ import org.eclipse.emf.ecore.EReference;
  */
 public interface EventsPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc -->
+     * The package name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNAME = "events";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc -->
+     * The package namespace URI.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_URI = "http:///behavioral/events.ecore";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc -->
+     * The package namespace name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_PREFIX = "behavioral.events";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	EventsPackage eINSTANCE = behavioral.events.impl.EventsPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link behavioral.events.impl.SubscriptionImpl <em>Subscription</em>}' class.
-	 * <!-- begin-user-doc -->
+     * The meta object id for the '{@link behavioral.events.impl.SubscriptionImpl <em>Subscription</em>}' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see behavioral.events.impl.SubscriptionImpl
-	 * @see behavioral.events.impl.EventsPackageImpl#getSubscription()
-	 * @generated
-	 */
+     * @see behavioral.events.impl.SubscriptionImpl
+     * @see behavioral.events.impl.EventsPackageImpl#getSubscription()
+     * @generated
+     */
 	int SUBSCRIPTION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int SUBSCRIPTION__NAME = ModelmanagementPackage.NAMED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Description</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Description</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int SUBSCRIPTION__DESCRIPTION = ModelmanagementPackage.NAMED_ELEMENT__DESCRIPTION;
 
 	/**
-	 * The feature id for the '<em><b>Producer</b></em>' reference.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Producer</b></em>' reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int SUBSCRIPTION__PRODUCER = ModelmanagementPackage.NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Filters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Filters</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int SUBSCRIPTION__FILTERS = ModelmanagementPackage.NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Subscribing Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Subscribing Class</b></em>' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int SUBSCRIPTION__SUBSCRIBING_CLASS = ModelmanagementPackage.NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Subscription</em>' class.
-	 * <!-- begin-user-doc -->
+     * The number of structural features of the '<em>Subscription</em>' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int SUBSCRIPTION_FEATURE_COUNT = ModelmanagementPackage.NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link behavioral.events.impl.EventProducerImpl <em>Event Producer</em>}' class.
-	 * <!-- begin-user-doc -->
+     * The meta object id for the '{@link behavioral.events.impl.EventProducerImpl <em>Event Producer</em>}' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see behavioral.events.impl.EventProducerImpl
-	 * @see behavioral.events.impl.EventsPackageImpl#getEventProducer()
-	 * @generated
-	 */
+     * @see behavioral.events.impl.EventProducerImpl
+     * @see behavioral.events.impl.EventsPackageImpl#getEventProducer()
+     * @generated
+     */
 	int EVENT_PRODUCER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Subscriptions</b></em>' reference list.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Subscriptions</b></em>' reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int EVENT_PRODUCER__SUBSCRIPTIONS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Notification Signatures</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Notification Signatures</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int EVENT_PRODUCER__NOTIFICATION_SIGNATURES = 1;
 
 	/**
-	 * The number of structural features of the '<em>Event Producer</em>' class.
-	 * <!-- begin-user-doc -->
+     * The number of structural features of the '<em>Event Producer</em>' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int EVENT_PRODUCER_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link behavioral.events.impl.EventFilterImpl <em>Event Filter</em>}' class.
-	 * <!-- begin-user-doc -->
+     * The meta object id for the '{@link behavioral.events.impl.EventFilterImpl <em>Event Filter</em>}' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see behavioral.events.impl.EventFilterImpl
-	 * @see behavioral.events.impl.EventsPackageImpl#getEventFilter()
-	 * @generated
-	 */
+     * @see behavioral.events.impl.EventFilterImpl
+     * @see behavioral.events.impl.EventsPackageImpl#getEventFilter()
+     * @generated
+     */
 	int EVENT_FILTER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Subscription</b></em>' container reference.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Subscription</b></em>' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int EVENT_FILTER__SUBSCRIPTION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Test</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Test</b></em>' containment reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int EVENT_FILTER__TEST = 1;
 
 	/**
-	 * The number of structural features of the '<em>Event Filter</em>' class.
-	 * <!-- begin-user-doc -->
+     * The number of structural features of the '<em>Event Filter</em>' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int EVENT_FILTER_FEATURE_COUNT = 2;
 
 
 	/**
-	 * Returns the meta object for class '{@link behavioral.events.Subscription <em>Subscription</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for class '{@link behavioral.events.Subscription <em>Subscription</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Subscription</em>'.
-	 * @see behavioral.events.Subscription
-	 * @generated
-	 */
+     * @return the meta object for class '<em>Subscription</em>'.
+     * @see behavioral.events.Subscription
+     * @generated
+     */
 	EClass getSubscription();
 
 	/**
-	 * Returns the meta object for the reference '{@link behavioral.events.Subscription#getProducer <em>Producer</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the reference '{@link behavioral.events.Subscription#getProducer <em>Producer</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Producer</em>'.
-	 * @see behavioral.events.Subscription#getProducer()
-	 * @see #getSubscription()
-	 * @generated
-	 */
+     * @return the meta object for the reference '<em>Producer</em>'.
+     * @see behavioral.events.Subscription#getProducer()
+     * @see #getSubscription()
+     * @generated
+     */
 	EReference getSubscription_Producer();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link behavioral.events.Subscription#getFilters <em>Filters</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the containment reference list '{@link behavioral.events.Subscription#getFilters <em>Filters</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Filters</em>'.
-	 * @see behavioral.events.Subscription#getFilters()
-	 * @see #getSubscription()
-	 * @generated
-	 */
+     * @return the meta object for the containment reference list '<em>Filters</em>'.
+     * @see behavioral.events.Subscription#getFilters()
+     * @see #getSubscription()
+     * @generated
+     */
 	EReference getSubscription_Filters();
 
 	/**
-	 * Returns the meta object for the container reference '{@link behavioral.events.Subscription#getSubscribingClass <em>Subscribing Class</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the container reference '{@link behavioral.events.Subscription#getSubscribingClass <em>Subscribing Class</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Subscribing Class</em>'.
-	 * @see behavioral.events.Subscription#getSubscribingClass()
-	 * @see #getSubscription()
-	 * @generated
-	 */
+     * @return the meta object for the container reference '<em>Subscribing Class</em>'.
+     * @see behavioral.events.Subscription#getSubscribingClass()
+     * @see #getSubscription()
+     * @generated
+     */
 	EReference getSubscription_SubscribingClass();
 
 	/**
-	 * Returns the meta object for class '{@link behavioral.events.EventProducer <em>Event Producer</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for class '{@link behavioral.events.EventProducer <em>Event Producer</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Event Producer</em>'.
-	 * @see behavioral.events.EventProducer
-	 * @generated
-	 */
+     * @return the meta object for class '<em>Event Producer</em>'.
+     * @see behavioral.events.EventProducer
+     * @generated
+     */
 	EClass getEventProducer();
 
 	/**
-	 * Returns the meta object for the reference list '{@link behavioral.events.EventProducer#getSubscriptions <em>Subscriptions</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the reference list '{@link behavioral.events.EventProducer#getSubscriptions <em>Subscriptions</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Subscriptions</em>'.
-	 * @see behavioral.events.EventProducer#getSubscriptions()
-	 * @see #getEventProducer()
-	 * @generated
-	 */
+     * @return the meta object for the reference list '<em>Subscriptions</em>'.
+     * @see behavioral.events.EventProducer#getSubscriptions()
+     * @see #getEventProducer()
+     * @generated
+     */
 	EReference getEventProducer_Subscriptions();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link behavioral.events.EventProducer#getNotificationSignatures <em>Notification Signatures</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the containment reference list '{@link behavioral.events.EventProducer#getNotificationSignatures <em>Notification Signatures</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Notification Signatures</em>'.
-	 * @see behavioral.events.EventProducer#getNotificationSignatures()
-	 * @see #getEventProducer()
-	 * @generated
-	 */
+     * @return the meta object for the containment reference list '<em>Notification Signatures</em>'.
+     * @see behavioral.events.EventProducer#getNotificationSignatures()
+     * @see #getEventProducer()
+     * @generated
+     */
 	EReference getEventProducer_NotificationSignatures();
 
 	/**
-	 * Returns the meta object for class '{@link behavioral.events.EventFilter <em>Event Filter</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for class '{@link behavioral.events.EventFilter <em>Event Filter</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Event Filter</em>'.
-	 * @see behavioral.events.EventFilter
-	 * @generated
-	 */
+     * @return the meta object for class '<em>Event Filter</em>'.
+     * @see behavioral.events.EventFilter
+     * @generated
+     */
 	EClass getEventFilter();
 
 	/**
-	 * Returns the meta object for the container reference '{@link behavioral.events.EventFilter#getSubscription <em>Subscription</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the container reference '{@link behavioral.events.EventFilter#getSubscription <em>Subscription</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Subscription</em>'.
-	 * @see behavioral.events.EventFilter#getSubscription()
-	 * @see #getEventFilter()
-	 * @generated
-	 */
+     * @return the meta object for the container reference '<em>Subscription</em>'.
+     * @see behavioral.events.EventFilter#getSubscription()
+     * @see #getEventFilter()
+     * @generated
+     */
 	EReference getEventFilter_Subscription();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link behavioral.events.EventFilter#getTest <em>Test</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the containment reference '{@link behavioral.events.EventFilter#getTest <em>Test</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Test</em>'.
-	 * @see behavioral.events.EventFilter#getTest()
-	 * @see #getEventFilter()
-	 * @generated
-	 */
+     * @return the meta object for the containment reference '<em>Test</em>'.
+     * @see behavioral.events.EventFilter#getTest()
+     * @see #getEventFilter()
+     * @generated
+     */
 	EReference getEventFilter_Test();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc -->
+     * Returns the factory that creates the instances of the model.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the factory that creates the instances of the model.
-	 * @generated
-	 */
+     * @return the factory that creates the instances of the model.
+     * @generated
+     */
 	EventsFactory getEventsFactory();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
 	 *   <li>each class,</li>
@@ -350,93 +350,93 @@ public interface EventsPackage extends EPackage {
 	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link behavioral.events.impl.SubscriptionImpl <em>Subscription</em>}' class.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link behavioral.events.impl.SubscriptionImpl <em>Subscription</em>}' class.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see behavioral.events.impl.SubscriptionImpl
-		 * @see behavioral.events.impl.EventsPackageImpl#getSubscription()
-		 * @generated
-		 */
+         * @see behavioral.events.impl.SubscriptionImpl
+         * @see behavioral.events.impl.EventsPackageImpl#getSubscription()
+         * @generated
+         */
 		EClass SUBSCRIPTION = eINSTANCE.getSubscription();
 
 		/**
-		 * The meta object literal for the '<em><b>Producer</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Producer</b></em>' reference feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference SUBSCRIPTION__PRODUCER = eINSTANCE.getSubscription_Producer();
 
 		/**
-		 * The meta object literal for the '<em><b>Filters</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Filters</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference SUBSCRIPTION__FILTERS = eINSTANCE.getSubscription_Filters();
 
 		/**
-		 * The meta object literal for the '<em><b>Subscribing Class</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Subscribing Class</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference SUBSCRIPTION__SUBSCRIBING_CLASS = eINSTANCE.getSubscription_SubscribingClass();
 
 		/**
-		 * The meta object literal for the '{@link behavioral.events.impl.EventProducerImpl <em>Event Producer</em>}' class.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link behavioral.events.impl.EventProducerImpl <em>Event Producer</em>}' class.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see behavioral.events.impl.EventProducerImpl
-		 * @see behavioral.events.impl.EventsPackageImpl#getEventProducer()
-		 * @generated
-		 */
+         * @see behavioral.events.impl.EventProducerImpl
+         * @see behavioral.events.impl.EventsPackageImpl#getEventProducer()
+         * @generated
+         */
 		EClass EVENT_PRODUCER = eINSTANCE.getEventProducer();
 
 		/**
-		 * The meta object literal for the '<em><b>Subscriptions</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Subscriptions</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference EVENT_PRODUCER__SUBSCRIPTIONS = eINSTANCE.getEventProducer_Subscriptions();
 
 		/**
-		 * The meta object literal for the '<em><b>Notification Signatures</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Notification Signatures</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference EVENT_PRODUCER__NOTIFICATION_SIGNATURES = eINSTANCE.getEventProducer_NotificationSignatures();
 
 		/**
-		 * The meta object literal for the '{@link behavioral.events.impl.EventFilterImpl <em>Event Filter</em>}' class.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link behavioral.events.impl.EventFilterImpl <em>Event Filter</em>}' class.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see behavioral.events.impl.EventFilterImpl
-		 * @see behavioral.events.impl.EventsPackageImpl#getEventFilter()
-		 * @generated
-		 */
+         * @see behavioral.events.impl.EventFilterImpl
+         * @see behavioral.events.impl.EventsPackageImpl#getEventFilter()
+         * @generated
+         */
 		EClass EVENT_FILTER = eINSTANCE.getEventFilter();
 
 		/**
-		 * The meta object literal for the '<em><b>Subscription</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Subscription</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference EVENT_FILTER__SUBSCRIPTION = eINSTANCE.getEventFilter_Subscription();
 
 		/**
-		 * The meta object literal for the '<em><b>Test</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Test</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference EVENT_FILTER__TEST = eINSTANCE.getEventFilter_Test();
 
 	}

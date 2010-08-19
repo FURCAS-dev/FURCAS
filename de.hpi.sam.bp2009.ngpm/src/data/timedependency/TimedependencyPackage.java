@@ -38,178 +38,178 @@ import org.eclipse.emf.ecore.EReference;
  */
 public interface TimedependencyPackage extends EPackage {
 	/**
-	 * The package name.
-	 * <!-- begin-user-doc -->
+     * The package name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNAME = "timedependency";
 
 	/**
-	 * The package namespace URI.
-	 * <!-- begin-user-doc -->
+     * The package namespace URI.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_URI = "http:///data/timedependency.ecore";
 
 	/**
-	 * The package namespace name.
-	 * <!-- begin-user-doc -->
+     * The package namespace name.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	String eNS_PREFIX = "data.timedependency";
 
 	/**
-	 * The singleton instance of the package.
-	 * <!-- begin-user-doc -->
+     * The singleton instance of the package.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	TimedependencyPackage eINSTANCE = data.timedependency.impl.TimedependencyPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link data.timedependency.impl.TimeDependencyImpl <em>Time Dependency</em>}' class.
-	 * <!-- begin-user-doc -->
+     * The meta object id for the '{@link data.timedependency.impl.TimeDependencyImpl <em>Time Dependency</em>}' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see data.timedependency.impl.TimeDependencyImpl
-	 * @see data.timedependency.impl.TimedependencyPackageImpl#getTimeDependency()
-	 * @generated
-	 */
+     * @see data.timedependency.impl.TimeDependencyImpl
+     * @see data.timedependency.impl.TimedependencyPackageImpl#getTimeDependency()
+     * @generated
+     */
 	int TIME_DEPENDENCY = 0;
 
 	/**
-	 * The feature id for the '<em><b>Record Cutoff In Milliseconds</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Record Cutoff In Milliseconds</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int TIME_DEPENDENCY__RECORD_CUTOFF_IN_MILLISECONDS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Can Change Past</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Can Change Past</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int TIME_DEPENDENCY__CAN_CHANGE_PAST = 1;
 
 	/**
-	 * The feature id for the '<em><b>Timespan</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Timespan</b></em>' attribute.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int TIME_DEPENDENCY__TIMESPAN = 2;
 
 	/**
-	 * The feature id for the '<em><b>The Class</b></em>' container reference.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>The Class</b></em>' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int TIME_DEPENDENCY__THE_CLASS = 3;
 
 	/**
-	 * The feature id for the '<em><b>Association</b></em>' container reference.
-	 * <!-- begin-user-doc -->
+     * The feature id for the '<em><b>Association</b></em>' container reference.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int TIME_DEPENDENCY__ASSOCIATION = 4;
 
 	/**
-	 * The number of structural features of the '<em>Time Dependency</em>' class.
-	 * <!-- begin-user-doc -->
+     * The number of structural features of the '<em>Time Dependency</em>' class.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
+     * @generated
+     * @ordered
+     */
 	int TIME_DEPENDENCY_FEATURE_COUNT = 5;
 
 
 	/**
-	 * Returns the meta object for class '{@link data.timedependency.TimeDependency <em>Time Dependency</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for class '{@link data.timedependency.TimeDependency <em>Time Dependency</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Time Dependency</em>'.
-	 * @see data.timedependency.TimeDependency
-	 * @generated
-	 */
+     * @return the meta object for class '<em>Time Dependency</em>'.
+     * @see data.timedependency.TimeDependency
+     * @generated
+     */
 	EClass getTimeDependency();
 
 	/**
-	 * Returns the meta object for the attribute '{@link data.timedependency.TimeDependency#getRecordCutoffInMilliseconds <em>Record Cutoff In Milliseconds</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the attribute '{@link data.timedependency.TimeDependency#getRecordCutoffInMilliseconds <em>Record Cutoff In Milliseconds</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Record Cutoff In Milliseconds</em>'.
-	 * @see data.timedependency.TimeDependency#getRecordCutoffInMilliseconds()
-	 * @see #getTimeDependency()
-	 * @generated
-	 */
+     * @return the meta object for the attribute '<em>Record Cutoff In Milliseconds</em>'.
+     * @see data.timedependency.TimeDependency#getRecordCutoffInMilliseconds()
+     * @see #getTimeDependency()
+     * @generated
+     */
 	EAttribute getTimeDependency_RecordCutoffInMilliseconds();
 
 	/**
-	 * Returns the meta object for the attribute '{@link data.timedependency.TimeDependency#isCanChangePast <em>Can Change Past</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the attribute '{@link data.timedependency.TimeDependency#isCanChangePast <em>Can Change Past</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Can Change Past</em>'.
-	 * @see data.timedependency.TimeDependency#isCanChangePast()
-	 * @see #getTimeDependency()
-	 * @generated
-	 */
+     * @return the meta object for the attribute '<em>Can Change Past</em>'.
+     * @see data.timedependency.TimeDependency#isCanChangePast()
+     * @see #getTimeDependency()
+     * @generated
+     */
 	EAttribute getTimeDependency_CanChangePast();
 
 	/**
-	 * Returns the meta object for the attribute '{@link data.timedependency.TimeDependency#isTimespan <em>Timespan</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the attribute '{@link data.timedependency.TimeDependency#isTimespan <em>Timespan</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Timespan</em>'.
-	 * @see data.timedependency.TimeDependency#isTimespan()
-	 * @see #getTimeDependency()
-	 * @generated
-	 */
+     * @return the meta object for the attribute '<em>Timespan</em>'.
+     * @see data.timedependency.TimeDependency#isTimespan()
+     * @see #getTimeDependency()
+     * @generated
+     */
 	EAttribute getTimeDependency_Timespan();
 
 	/**
-	 * Returns the meta object for the container reference '{@link data.timedependency.TimeDependency#getTheClass <em>The Class</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the container reference '{@link data.timedependency.TimeDependency#getTheClass <em>The Class</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>The Class</em>'.
-	 * @see data.timedependency.TimeDependency#getTheClass()
-	 * @see #getTimeDependency()
-	 * @generated
-	 */
+     * @return the meta object for the container reference '<em>The Class</em>'.
+     * @see data.timedependency.TimeDependency#getTheClass()
+     * @see #getTimeDependency()
+     * @generated
+     */
 	EReference getTimeDependency_TheClass();
 
 	/**
-	 * Returns the meta object for the container reference '{@link data.timedependency.TimeDependency#getAssociation <em>Association</em>}'.
-	 * <!-- begin-user-doc -->
+     * Returns the meta object for the container reference '{@link data.timedependency.TimeDependency#getAssociation <em>Association</em>}'.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Association</em>'.
-	 * @see data.timedependency.TimeDependency#getAssociation()
-	 * @see #getTimeDependency()
-	 * @generated
-	 */
+     * @return the meta object for the container reference '<em>Association</em>'.
+     * @see data.timedependency.TimeDependency#getAssociation()
+     * @see #getTimeDependency()
+     * @generated
+     */
 	EReference getTimeDependency_Association();
 
 	/**
-	 * Returns the factory that creates the instances of the model.
-	 * <!-- begin-user-doc -->
+     * Returns the factory that creates the instances of the model.
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the factory that creates the instances of the model.
-	 * @generated
-	 */
+     * @return the factory that creates the instances of the model.
+     * @generated
+     */
 	TimedependencyFactory getTimedependencyFactory();
 
 	/**
-	 * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
 	 *   <li>each class,</li>
@@ -218,57 +218,57 @@ public interface TimedependencyPackage extends EPackage {
 	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
+     * @generated
+     */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link data.timedependency.impl.TimeDependencyImpl <em>Time Dependency</em>}' class.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '{@link data.timedependency.impl.TimeDependencyImpl <em>Time Dependency</em>}' class.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see data.timedependency.impl.TimeDependencyImpl
-		 * @see data.timedependency.impl.TimedependencyPackageImpl#getTimeDependency()
-		 * @generated
-		 */
+         * @see data.timedependency.impl.TimeDependencyImpl
+         * @see data.timedependency.impl.TimedependencyPackageImpl#getTimeDependency()
+         * @generated
+         */
 		EClass TIME_DEPENDENCY = eINSTANCE.getTimeDependency();
 
 		/**
-		 * The meta object literal for the '<em><b>Record Cutoff In Milliseconds</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Record Cutoff In Milliseconds</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EAttribute TIME_DEPENDENCY__RECORD_CUTOFF_IN_MILLISECONDS = eINSTANCE.getTimeDependency_RecordCutoffInMilliseconds();
 
 		/**
-		 * The meta object literal for the '<em><b>Can Change Past</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Can Change Past</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EAttribute TIME_DEPENDENCY__CAN_CHANGE_PAST = eINSTANCE.getTimeDependency_CanChangePast();
 
 		/**
-		 * The meta object literal for the '<em><b>Timespan</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Timespan</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EAttribute TIME_DEPENDENCY__TIMESPAN = eINSTANCE.getTimeDependency_Timespan();
 
 		/**
-		 * The meta object literal for the '<em><b>The Class</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>The Class</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference TIME_DEPENDENCY__THE_CLASS = eINSTANCE.getTimeDependency_TheClass();
 
 		/**
-		 * The meta object literal for the '<em><b>Association</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
+         * The meta object literal for the '<em><b>Association</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @generated
-		 */
+         * @generated
+         */
 		EReference TIME_DEPENDENCY__ASSOCIATION = eINSTANCE.getTimeDependency_Association();
 
 	}
