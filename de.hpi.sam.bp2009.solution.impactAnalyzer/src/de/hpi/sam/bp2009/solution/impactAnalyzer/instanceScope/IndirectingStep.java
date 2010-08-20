@@ -32,18 +32,20 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
     private final List<Object> currentlyEvaluatingEqualsForParameters = new ArrayList<Object>();
     private final SemanticIdentity semanticIdentity;
 
+    private static class IndirectingStepThreadLocal extends ThreadLocal<Set<EObject>> {
+        @Override
+        protected Set<EObject> initialValue() {
+            return new HashSet<EObject>();
+        }
+    }
+    
     /**
      * The set of objects for which {@link #navigate(Set, Map, Notification)} is currently being evaluated on
      * this step instance, keyed by the current thread by means of using a {@link ThreadLocal}. This is used to avoid
      * endless recursions. Navigating the same thing again starting from the same object wouldn't contribute new things.
      * So in that case, an empty set will be returned.
      */
-    private final ThreadLocal<Set<EObject>> currentlyEvaluatingNavigateFor = new ThreadLocal<Set<EObject>>() {
-	@Override
-	protected Set<EObject> initialValue() {
-	    return new HashSet<EObject>();
-	}
-    };
+    private final ThreadLocal<Set<EObject>> currentlyEvaluatingNavigateFor = new IndirectingStepThreadLocal();
 
     public IndirectingStep(OCLExpression expr) {
 	super(null, null, expr);
