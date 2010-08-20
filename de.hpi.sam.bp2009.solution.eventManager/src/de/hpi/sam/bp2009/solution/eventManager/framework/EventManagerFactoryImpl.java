@@ -61,7 +61,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return new EventManagerFactoryImpl();
     }
 
-    @Override
     public EventManager getEventManagerFor(ResourceSet set) {
         EventManager cached = setToManager.get(set)==null?null:setToManager.get(set);
         if(cached!=null){
@@ -72,96 +71,82 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return eventManager;
     }
 
-    @Override
     public EventManager createEventManagerFor(ResourceSet set) {
         EventManager eventManager = new de.hpi.sam.bp2009.solution.eventManager.framework.EventManagerTableBased(set);
         return eventManager;
     }
 
-    @Override
     public EventTypeFilter createEventTypeFilter(int eventType) {
         EventTypeFilter eventTypeFilter = new EventTypeFilter(eventType);
         return eventTypeFilter;
     }
 
-    @Override
     public NotFilter createNotFilter(EventFilter filter) {
         NotFilter notFilter = new NotFilter(filter);
         return notFilter;
     }
 
-    @Override
     public ClassFilter createClassFilter(EClass clazz) {
         ClassFilter classFilter = new ClassFilter(clazz, /* negated */ false);
         return classFilter;
     }
 
-    @Override
     public ClassFilterIncludingSubclasses createClassFilterIncludingSubclasses(EClass clazz) {
         ClassFilterIncludingSubclasses classFilter = new ClassFilterIncludingSubclasses(clazz, /* negated */ false);
         return classFilter;
     }
 
-    @Override
     public AttributeFilter createAttributeFilter(EAttribute attribute) {
         AttributeFilter attributeFilter = new AttributeFilter(attribute);
         return attributeFilter;
     }
 
-    @Override
     public AssociationFilter createAssociationFilter(EReference reference) {
         AssociationFilter associationFilter = new AssociationFilter(reference);
         return associationFilter;
     }
 
-    @Override
     public OldValueClassFilterIncludingSubclasses createOldValueClassFilterIncludingSubclasses(EClass cls) {
         OldValueClassFilterIncludingSubclasses oldValueClassFilter = new OldValueClassFilterIncludingSubclasses(cls, /* negated */ false);
         return oldValueClassFilter;
     }
-    @Override
+    
     public OldValueClassFilter createOldValueClassFilter(EClass cls) {
         OldValueClassFilter oldValueClassFilter = new OldValueClassFilter(cls, /* negated */ false);
         return oldValueClassFilter;
     }
 
-    @Override
     public NewValueClassFilterIncludingSubclasses createNewValueClassFilterIncludingSubclasses(EClass cls) {
         NewValueClassFilterIncludingSubclasses newValueClassFilter = new NewValueClassFilterIncludingSubclasses(cls, /* negated */ false);
         return newValueClassFilter;
     }
-    @Override
+
     public NewValueClassFilter createNewValueClassFilter(EClass cls) {
         NewValueClassFilter newValueClassFilter = new NewValueClassFilter(cls, /* negated */ false);
         return newValueClassFilter;
     }
 
-    @Override
     public ContainmentFilter createContainmentFilter() {
         ContainmentFilter containmentFilter = ContainmentFilter.INSTANCE;
         return containmentFilter;
     }
    
-    @Override
     public AndFilter createAndFilterFor(EventFilter... eventFilters) {
         AndFilter and = new AndFilter(eventFilters);
         return and;
     }
 
-    @Override
     public OrFilter createOrFilterFor(EventFilter... eventFilters) {
         OrFilter or = new OrFilter(eventFilters);
         return or;
     }
 
-    @Override
     public EventFilter createFilterForElementInsertionOrDeletion(EClass cls) {
         NewValueClassFilterIncludingSubclasses nv = createNewValueClassFilterIncludingSubclasses(cls);
         OldValueClassFilterIncludingSubclasses ov = createOldValueClassFilterIncludingSubclasses(cls);
         return createAndFilterFor(createOrFilterFor(nv, ov), createContainmentFilter());
     }
 
-    @Override
     public EventFilter createFilterForElementInsertion(EClass cls) {
         NewValueClassFilterIncludingSubclasses nv = createNewValueClassFilterIncludingSubclasses(cls);
         // Figure out what the containing Reference is
@@ -179,7 +164,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
 
     }
 
-    @Override
     public EventFilter createFilterForEAttribute(EClass eClass, EAttribute referredProperty) {
         StructuralFeatureFilter sf = null;
         sf = createAttributeFilter(referredProperty);
@@ -188,7 +172,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return createAndFilterFor(sf, cf);
     }
 
-    @Override
     public EventFilter createFilterForEReference(EClass eClass, EReference referredProperty) {
         StructuralFeatureFilter sf = null;
         sf = createAssociationFilter(referredProperty);
@@ -196,7 +179,6 @@ public class EventManagerFactoryImpl implements EventManagerFactory {
         return createAndFilterFor(sf, cf);
     }
 
-    @Override
     public Collection<Notification> createNotificationForComposites(Notification event) {
         Statistics.getInstance().begin("createNotificationForComposites", event);
         Set<Notification> result = new HashSet<Notification>();

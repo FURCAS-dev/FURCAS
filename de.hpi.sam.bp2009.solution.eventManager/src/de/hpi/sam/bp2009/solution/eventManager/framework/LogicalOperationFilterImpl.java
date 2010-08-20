@@ -15,7 +15,6 @@ abstract public class LogicalOperationFilterImpl extends EventFilter implements 
     /**
      * Returns a read-only collection containing the filters
      */
-    @Override
     public Set<EventFilter> getOperands() {
         return Collections.unmodifiableSet(filters);
     }

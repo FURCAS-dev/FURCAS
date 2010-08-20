@@ -68,12 +68,10 @@ public class EventManagerTableBased implements EventManager {
         set.eAdapters().add(adapter);
         this.resourceSet= new WeakReference<ResourceSet>(set);
     }
-    @Override
     public ResourceSet getResourceSet() {
         return resourceSet.get();
     }
     
-    @Override
     public void setActive(boolean active) {
         this.active = active;
     }
@@ -83,7 +81,6 @@ public class EventManagerTableBased implements EventManager {
     /*
      * @see EventRegistry#registerListener(ChangeListener, MoinEventFilter)
      */
-    @Override
     public void subscribe(
             de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter eventFilterTree, Adapter listener) {
         register(listener, eventFilterTree, ListenerTypeEnum.postChange);
@@ -312,7 +309,6 @@ public class EventManagerTableBased implements EventManager {
         return null;
     }
 
-    @Override
     public void handleEMFEvent(Notification notification) {
         if (active) {
             if (!notifierByListener.isEmpty()) {
@@ -323,7 +319,6 @@ public class EventManagerTableBased implements EventManager {
         }
     }
 
-    @Override
     public boolean unsubscribe(Adapter caller) {
         deregister(caller);
         return true;
