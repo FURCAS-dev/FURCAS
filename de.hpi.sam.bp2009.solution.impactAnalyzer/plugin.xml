@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.4"?>
-<plugin>
-   <extension-point id="de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.navigationStepDebugHelper" name="Helper for Debugging NavigationSteps" schema="schema/de.hpi.sam.bp2009.solution.impactAnalyzer.debug.navigationStepDebugHelper.exsd"/>
-
-</plugin>

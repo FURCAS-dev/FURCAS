@@ -22,7 +22,8 @@ Require-Bundle: de.hpi.sam.bp2009.ngpm,
  org.eclipse.core.runtime,
  de.hpi.sam.bp2009.solution.oclToAst,
  org.eclipse.emf.query.index,
- com.sap.ocl.oppositefinder.query2
+ com.sap.ocl.oppositefinder.query2,
+ de.hpi.sam.bp2009.solution.testutils
 Import-Package: company,
  company.impl
 Bundle-ClassPath: lib/bb.jar,
@@ -30,6 +31,3 @@ Bundle-ClassPath: lib/bb.jar,
  lib/mt-13.jar,
  lib/commons-cli-1.2.jar,
  .
-Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model,
- de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications,
- de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl

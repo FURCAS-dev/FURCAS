@@ -87,13 +87,11 @@ public abstract class CompositeNavigationStep extends AbstractNavigationStep imp
 	return steps;
     }
 
-    @Override
     public void beforeHashCodeChange(NavigationStep step, int token) {
         fireBeforeHashCodeChange(token);
         cachedXorOfStepHashCodes ^= step.hashCode();
     }
     
-    @Override
     public void afterHashCodeChange(NavigationStep step, int token) {
         cachedXorOfStepHashCodes ^= step.hashCode();
         fireAfterHashCodeChange(token);

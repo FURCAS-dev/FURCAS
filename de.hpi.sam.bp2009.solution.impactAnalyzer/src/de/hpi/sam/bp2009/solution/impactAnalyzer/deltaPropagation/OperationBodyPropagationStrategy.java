@@ -16,7 +16,6 @@ public class OperationBodyPropagationStrategy implements DeltaPropagationStrateg
         this.mapper = mapper;
     }
 
-    @Override
     public Collection<Pair<OCLExpression, Collection<Object>>> mapDelta(OCLExpression e, Collection<Object> delta) {
         HashSet<Pair<OCLExpression, Collection<Object>>> result = new HashSet<Pair<OCLExpression, Collection<Object>>>();
         for (OperationCallExp oce : mapper.getCallsOf(e)) {

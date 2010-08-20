@@ -37,7 +37,6 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	super(/* sourceType */ null, /* targetType */ null, debugInfo, compactSteps(steps, debugInfo));
 	setSourceType(getSteps()[0].getSourceType());
 	getSteps()[0].addSourceTypeChangeListener(new SourceTypeChangeListener() {
-	    @Override
 	    public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
 		assert stepForWhichSourceTypeChanged == getSteps()[0];
 		setSourceType(stepForWhichSourceTypeChanged.getSourceType());
@@ -45,7 +44,6 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	});
 	setTargetType(getSteps()[getSteps().length-1].getTargetType());
 	getSteps()[getSteps().length-1].addTargetTypeChangeListener(new TargetTypeChangeListener() {
-	    @Override
 	    public void targetTypeChanged(NavigationStep stepForWhichTargetTypeChanged) {
 		assert stepForWhichTargetTypeChanged == getSteps()[getSteps().length-1];
 		setTargetType(stepForWhichTargetTypeChanged.getTargetType());
@@ -58,7 +56,6 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	    final NavigationStep step = getSteps()[i];
 	    if (!isAlwaysEmpty()) {
 		step.addAlwaysEmptyChangeListener(new AlwaysEmptyChangeListener() {
-		    @Override
 		    public void alwaysEmptyChanged(NavigationStep stepForWhichAlwaysEmptyChanged) {
 			setAlwaysEmpty();
 		    }
@@ -67,7 +64,6 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	    if (step.getSourceType() == null && i>0) {
 		final int pos = i;
 		step.addSourceTypeChangeListener(new SourceTypeChangeListener() {
-		    @Override
 		    public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
 			assert stepForWhichSourceTypeChanged == step;
 			if (!AbstractNavigationStep.haveIntersectingSubclassTree(getSteps()[pos-1].getTargetType(), step.getSourceType())) {
@@ -79,7 +75,6 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	    if (step.getTargetType() == null && i<getSteps().length-1) {
 		final int pos = i;
 		step.addTargetTypeChangeListener(new TargetTypeChangeListener() {
-		    @Override
 		    public void targetTypeChanged(NavigationStep stepForWhichTargetTypeChanged) {
 			assert stepForWhichTargetTypeChanged == step;
 			if (!AbstractNavigationStep.haveIntersectingSubclassTree(getSteps()[pos-1].getTargetType(), step.getTargetType())) {

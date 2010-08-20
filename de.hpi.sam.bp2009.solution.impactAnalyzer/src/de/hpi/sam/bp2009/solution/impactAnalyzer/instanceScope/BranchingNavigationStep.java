@@ -44,7 +44,6 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
             for (NavigationStep step : getSteps()) {
                 if (!step.isAlwaysEmpty()) {
                     step.addAlwaysEmptyChangeListener(new AlwaysEmptyChangeListener() {
-                        @Override
                         public void alwaysEmptyChanged(NavigationStep stepForWhichAlwaysEmptyChanged) {
                             if (areAllStepsAlwaysEmpty()) {
                                 setAlwaysEmpty();
@@ -53,7 +52,6 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
                     });
                     if (step.getSourceType() == null) {
                         step.addSourceTypeChangeListener(new SourceTypeChangeListener() {
-                            @Override
                             public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
                                 // if source type is set where it was previously not set, check if that step
                                 // can be removed
@@ -72,7 +70,6 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
                     }
                     if (step.getTargetType() == null) {
                         step.addTargetTypeChangeListener(new TargetTypeChangeListener() {
-                            @Override
                             public void targetTypeChanged(NavigationStep stepForWhichTargetTypeChanged) {
                                 // if source type is set where it was previously not set, check if that step
                                 // can be removed

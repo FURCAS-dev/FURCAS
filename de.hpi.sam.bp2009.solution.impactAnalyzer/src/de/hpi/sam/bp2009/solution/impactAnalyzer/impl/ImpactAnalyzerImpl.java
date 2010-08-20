@@ -65,13 +65,11 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         this.oppositeEndFinder = oppositeEndFinder;
     }
 
-    @Override
     public EventFilter createFilterForExpression(boolean notifyNewContextElements) {
         filtersyn = new FilterSynthesisImpl(expression, notifyNewContextElements);
         return filtersyn.getSynthesisedFilter();
     }
 
-    @Override
     public Collection<EObject> getContextObjects(Notification event) {
         if (instanceScopeAnalysis == null) {
             if (filtersyn == null) {

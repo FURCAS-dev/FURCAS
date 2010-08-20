@@ -143,7 +143,6 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * By default, many expression types which, e.g., result in a primitive result, return an {@link EmptyResultNavigationStep}
      * which is what this default implementation does.
      */
-    @Override
     public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
         return new EmptyResultNavigationStep((OCLExpression) getExpression());
     }
