@@ -1,0 +1,38 @@
+package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ShrinkedResourceProvider;
+
+
+public class BenchmarkNotificationPreparer {
+
+    public static Collection<RawNotification> prepareRealWorldReplayNotification(String eventTraceFixturePath){
+    	return new RealWorldReplayNotificationProducer().produce(eventTraceFixturePath);
+    }
+
+    public static Collection<NotificationForModelList> prepareModelSizeVariationNotification(
+            String eventTraceFixturePath, String modelFixturePath){
+	ArrayList<NotificationForModelList> result = new ArrayList<NotificationForModelList>();
+
+	Resource fullSizeModel = NotificationResourceLoader.loadModel(modelFixturePath);
+	ShrinkedResourceProvider resourceProvider = new ShrinkedResourceProvider(fullSizeModel);
+	resourceProvider.runShrinkingProcess();
+
+	for(Resource model : resourceProvider.getAllResourcesFromLargeToSmall()){
+	    System.out.println("\t\t\tCreate notifications for resource: " + model.getURI().toString());
+
+	    Collection<RawNotification> notiList = new RealWorldReplayNotificationProducer().produce(eventTraceFixturePath);
+	    System.out.println("\t\t\t\t " + notiList.size() + " created");
+
+	    result.add(new NotificationForModelList(model, (List<RawNotification>)notiList));
+	}
+
+	return result;
+    }
+
+}
