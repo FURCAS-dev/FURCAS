@@ -1,18 +1,25 @@
 package com.sap.runlet.interpreter.test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query.index.update.IndexUpdater;
+import org.eclipse.emf.query.index.update.ResourceIndexer;
+import org.eclipse.emf.query.index.update.UpdateCommand;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -84,50 +91,44 @@ import dataaccess.expressions.literals.StringLiteral;
  */
 public class TestBasicExpressions extends TestCase {
     private enum Accessors { GETTER, SETTER, ADDER, REMOVER };
-    private static boolean indexConstructed = false;
+    private static boolean indexCreated = false;
 
     @Before
     public void setUp() throws CoreException {
-        if (!indexConstructed) {
-            final Object monitor = new Object();
-            IProject project = Activator.getStdlibProject();
-            project.build(IncrementalProjectBuilder.CLEAN_BUILD, new IProgressMonitor() {
-                @Override
-                public void worked(int work) {}
-                @Override
-                public void subTask(String name) {}
-                @Override
-                public void setTaskName(String name) {}
-                @Override
-                public void setCanceled(boolean value) {}
-                @Override
-                public boolean isCanceled() {
-                    return false;
-                }
-                @Override
-                public void internalWorked(double work) {}
-                @Override
-                public void done() {
-                    synchronized(monitor) {
-                        indexConstructed = true;
-                        monitor.notifyAll();
-                    }
-                }
-                @Override
-                public void beginTask(String name, int totalWork) {}
-            });
-            synchronized(monitor) {
-                try {
-                    if (!indexConstructed) {
-                        monitor.wait();
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+        if (!indexCreated) {
+            updateIndex(new ResourceSetImpl());
+            indexCreated = true;
         }
     }
-    
+
+    private void updateIndex(final ResourceSet resourceSet) {
+        IndexFactory.getInstance().executeUpdateCommand(new UpdateCommand() {
+            public void preCommitAction(IndexUpdater updater) {
+            }
+            public void postCommitAction() {
+            }
+
+            public void execute(IndexUpdater updater) {
+                final ResourceIndexer indexer = new ResourceIndexer();
+                List<String> uris = new ArrayList<String>();
+                for (String packUri : EPackage.Registry.INSTANCE.keySet()) {
+                    uris.add(packUri);
+                }
+                for (String packUri : uris) {
+                    try {
+                        indexer.resourceChanged(updater, EPackage.Registry.INSTANCE.getEPackage(packUri).eResource());
+                    } catch (Exception e) {
+                        System.err.println("Error indexing uri: " + packUri); //$NON-NLS-1$
+                        e.printStackTrace();
+                    }
+                }
+                indexer.resourceChanged(updater, resourceSet.getResource(URI.createURI(
+                        "platform:/resource/de.hpi.sam.bp2009.solution.testutils/src/de/hpi/sam/bp2009/solution/impactAnalyzer/benchmark/preparation/notifications/fixtures/models/NgpmModel.xmi"),
+                        /* loadOnDemand */ true));
+            }
+        });
+    }
+     
     @Test
     public void testStringLiteral() {
 	IProject project = Activator.getStdlibProject();
