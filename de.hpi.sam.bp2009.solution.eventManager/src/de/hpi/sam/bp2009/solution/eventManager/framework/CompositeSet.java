@@ -68,7 +68,6 @@ public class CompositeSet<E> extends AbstractSet<E> {
             private int nextSet = 0;
             private Iterator<E> iter = nextIter();
             
-            @Override
             public boolean hasNext() {
                 return iter != null && iter.hasNext();
             }
@@ -81,7 +80,6 @@ public class CompositeSet<E> extends AbstractSet<E> {
                 return result;
             }
             
-            @Override
             public E next() {
                 E result = iter.next();
                 if (!iter.hasNext()) {
@@ -90,7 +88,6 @@ public class CompositeSet<E> extends AbstractSet<E> {
                 return result;
             }
             
-            @Override
             public void remove() {
                 throw new UnsupportedOperationException("Read-only iterator on composite set");
             }

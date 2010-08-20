@@ -6,7 +6,7 @@ Bundle-Version: 1.0.0
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Fragment-Host: de.hpi.sam.bp2009.solution.eventManager
 Export-Package: de.hpi.sam.bp2009.solution.eventManager.tests
 Require-Bundle: org.eclipse.core.runtime,
