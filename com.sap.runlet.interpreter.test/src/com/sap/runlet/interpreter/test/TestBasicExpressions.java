@@ -7,9 +7,14 @@ import java.util.Map;
 import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.junit.Before;
+import org.junit.Test;
 
 import behavioral.actions.ActionsFactory;
 import behavioral.actions.AddLink;
@@ -79,7 +84,51 @@ import dataaccess.expressions.literals.StringLiteral;
  */
 public class TestBasicExpressions extends TestCase {
     private enum Accessors { GETTER, SETTER, ADDER, REMOVER };
+    private static boolean indexConstructed = false;
+
+    @Before
+    public void setUp() throws CoreException {
+        if (!indexConstructed) {
+            final Object monitor = new Object();
+            IProject project = Activator.getStdlibProject();
+            project.build(IncrementalProjectBuilder.CLEAN_BUILD, new IProgressMonitor() {
+                @Override
+                public void worked(int work) {}
+                @Override
+                public void subTask(String name) {}
+                @Override
+                public void setTaskName(String name) {}
+                @Override
+                public void setCanceled(boolean value) {}
+                @Override
+                public boolean isCanceled() {
+                    return false;
+                }
+                @Override
+                public void internalWorked(double work) {}
+                @Override
+                public void done() {
+                    synchronized(monitor) {
+                        indexConstructed = true;
+                        monitor.notifyAll();
+                    }
+                }
+                @Override
+                public void beginTask(String name, int totalWork) {}
+            });
+            synchronized(monitor) {
+                try {
+                    if (!indexConstructed) {
+                        monitor.wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     
+    @Test
     public void testStringLiteral() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -99,6 +148,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
 
+    @Test
     public void testNumberLiterals() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -117,6 +167,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
     
+    @Test
     public void testNumberAdd() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -155,6 +206,7 @@ public class TestBasicExpressions extends TestCase {
      * }.invoke();
      * </pre>
      */
+    @Test
     public void testSimpleVariableAssignmentInBlock() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -205,6 +257,7 @@ public class TestBasicExpressions extends TestCase {
      * 
      * an exception is thrown because the variable a is not in scope
      */
+    @Test
     public void testUseOfVariableBeforeDeclaration() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -258,6 +311,7 @@ public class TestBasicExpressions extends TestCase {
      * </pre>
      * 
      */
+    @Test
     public void testRecursiveFunctionCall() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -345,6 +399,7 @@ public class TestBasicExpressions extends TestCase {
      * </pre>
      * 
      */
+    @Test
     public void testVariableScoping() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -438,6 +493,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
 
+    @Test
     public void testPolymorphicMethodInvocation() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -528,6 +584,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
     
+    @Test
     public void testSimpleLinks() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -576,6 +633,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
 	
+    @Test
     public void testTwoLinks() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -642,6 +700,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
 	
+    @Test
     public void testSimpleFunctionFromMethod() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -680,6 +739,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
 
+    @Test
     public void testMultiObjectMethodInvocation() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -828,6 +888,7 @@ public class TestBasicExpressions extends TestCase {
      * attribute for <tt>region</tt>. Furthermore, the <tt>SalesOrderItem</tt> has an
      * association to <tt>Product</tt> which has an attribute <tt>category</tt>.
      */
+    @Test
     public void testSimpleCellSetExpression() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -1300,6 +1361,7 @@ public class TestBasicExpressions extends TestCase {
 	return itemParameterValue;
     }
     
+    @Test
     public void testAssociationEndSignatureImplementations() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -1481,6 +1543,7 @@ public class TestBasicExpressions extends TestCase {
 	return mce;
     }
     
+    @Test
     public void testForeach() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -1556,6 +1619,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
 
+    @Test
     public void testExcluding() {
 	IProject project = Activator.getStdlibProject();
 	try {
@@ -1758,6 +1822,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
     
+    @Test
     public void testExcludingAt() {
 	assertEquals( 4, sumWithExcludingAt(/* up to */ 4, /* times */ 1, new int[] { 2 }, 2, /* unique */ false));
 	assertEquals( 6, sumWithExcludingAt(/* up to */ 4, /* times */ 1, new int[] { 2 }, 3, /* unique */ false));
