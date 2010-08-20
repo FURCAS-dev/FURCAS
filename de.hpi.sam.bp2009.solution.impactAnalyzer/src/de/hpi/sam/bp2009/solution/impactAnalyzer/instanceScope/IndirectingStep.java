@@ -38,7 +38,7 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
             return new HashSet<EObject>();
         }
     }
-    
+
     /**
      * The set of objects for which {@link #navigate(Set, Map, Notification)} is currently being evaluated on
      * this step instance, keyed by the current thread by means of using a {@link ThreadLocal}. This is used to avoid
@@ -161,10 +161,14 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 	if (currentlyEvaluatingNavigateFor.get().contains(fromObject) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
-	    currentlyEvaluatingNavigateFor.get().add(fromObject);
-	    Set<AnnotatedEObject> set = Collections.singleton(fromObject);
-	    result = actualStep.navigate(set, cache, changeEvent);
-	    currentlyEvaluatingNavigateFor.get().remove(fromObject);
+	    try{
+		currentlyEvaluatingNavigateFor.get().add(fromObject);
+    	    	Set<AnnotatedEObject> set = Collections.singleton(fromObject);
+    	    	result = actualStep.navigate(set, cache, changeEvent);
+	    }finally{
+		boolean removedSuccessfully = currentlyEvaluatingNavigateFor.get().remove(fromObject);
+		assert removedSuccessfully == true;
+	    }
 	}
 	return result;
     }
