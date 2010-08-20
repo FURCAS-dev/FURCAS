@@ -120,7 +120,6 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 	actualStep.addHashCodeChangeListener(this);
 	if (actualStep.getSourceType() == null) {
             actualStep.addSourceTypeChangeListener(new SourceTypeChangeListener() {
-                @Override
                 public void sourceTypeChanged(NavigationStep stepForWhichSourceTypeChanged) {
                     setSourceType(stepForWhichSourceTypeChanged.getSourceType());
                 }
@@ -130,7 +129,6 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
         }
         if (actualStep.getTargetType() == null) {
             actualStep.addTargetTypeChangeListener(new TargetTypeChangeListener() {
-                @Override
                 public void targetTypeChanged(NavigationStep stepForWhichTargetTypeChanged) {
                     setTargetType(stepForWhichTargetTypeChanged.getTargetType());
                 }
@@ -142,7 +140,6 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 	    setAlwaysEmpty();
 	} else {
 	    this.actualStep.addAlwaysEmptyChangeListener(new AlwaysEmptyChangeListener() {
-		@Override
 		public void alwaysEmptyChanged(NavigationStep stepForWhichAlwaysEmptyChanged) {
 		    assert stepForWhichAlwaysEmptyChanged == IndirectingStep.this.actualStep;
 		    setAlwaysEmpty();
@@ -228,7 +225,6 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 	}
     }
 
-    @Override
     public synchronized void beforeHashCodeChange(NavigationStep step, int token) {
         if (token > maxTokenSeen) {
             maxTokenSeen = token;
@@ -236,7 +232,6 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
         }
     }
 
-    @Override
     public synchronized void afterHashCodeChange(NavigationStep step, int token) {
         if (token > maxTokenSeen) {
             maxTokenSeen = token;

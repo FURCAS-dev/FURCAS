@@ -15,7 +15,6 @@ public class IteratorSourcePropagationStrategy extends DeltaPropagationStrategyW
         super(loopExp, evaluator);
     }
 
-    @Override
     public Collection<Pair<OCLExpression, Collection<Object>>> mapDelta(OCLExpression sourceOfIterator, Collection<Object> delta) {
         return PartialEvaluator.getResultCollectionFromSingleDelta(getPropagatesTo(), OclHelper.flatten(
                 getEvaluator().evaluate(null, (CallExp) getPropagatesTo(), delta)));

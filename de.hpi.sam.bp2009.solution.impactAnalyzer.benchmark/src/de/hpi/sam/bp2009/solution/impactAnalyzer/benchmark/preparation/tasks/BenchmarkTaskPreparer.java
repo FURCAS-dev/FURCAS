@@ -4,6 +4,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.PathOptions;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.BenchmarkNotificationPreparer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationForModelList;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.BenchmarkOCLPreparer;
@@ -24,7 +25,8 @@ public class BenchmarkTaskPreparer {
     	System.out.println("\t\t " + expressionList.size() + " successfully prepared");
 
     	System.out.println("\t Prepare Notifications");
-    	Collection<NotificationForModelList> notificationForModelList = BenchmarkNotificationPreparer.prepareModelSizeVariationNotification();
+    	Collection<NotificationForModelList> notificationForModelList = BenchmarkNotificationPreparer.prepareModelSizeVariationNotification(
+    	        PathOptions.getEventTraceFixturePath(), PathOptions.getModelFixturePath());
     	System.out.println("\t\t " + notificationForModelList.size() + " successfully prepared");
 
     	System.out.println("\t Prepare Benchmark Tasks:");

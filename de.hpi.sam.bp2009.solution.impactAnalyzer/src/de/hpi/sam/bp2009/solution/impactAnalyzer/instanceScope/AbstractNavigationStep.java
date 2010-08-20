@@ -156,7 +156,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         return this.sourceType;
     }
 
-    @Override
     public void addAlwaysEmptyChangeListener(AlwaysEmptyChangeListener listener) {
 	if(this.alwaysEmptyChangeListeners == null){
 	    this.alwaysEmptyChangeListeners = new ArrayList<AlwaysEmptyChangeListener>(1);
@@ -164,7 +163,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         alwaysEmptyChangeListeners.add(listener);
     }
 
-    @Override
     public void addSourceTypeChangeListener(SourceTypeChangeListener listener) {
 	if(this.sourceTypeChangeListeners == null){
 	    this.sourceTypeChangeListeners = new ArrayList<SourceTypeChangeListener>(1);
@@ -172,7 +170,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         sourceTypeChangeListeners.add(listener);
     }
 
-    @Override
     public void addTargetTypeChangeListener(TargetTypeChangeListener listener) {
 	if(this.targetTypeChangeListeners == null){
 	    this.targetTypeChangeListeners = new ArrayList<TargetTypeChangeListener>(1);
@@ -180,7 +177,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	targetTypeChangeListeners.add(listener);
     }
     
-    @Override
     public void addHashCodeChangeListener(HashCodeChangeListener listener) {
         if (this.hashCodeChangeListeners == null) {
             this.hashCodeChangeListeners = new ArrayList<HashCodeChangeListener>(1);
@@ -234,7 +230,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         }
     }
 
-    @Override
     public void addExpressionForWhichThisIsNavigationStep(OCLExpression oclExpression) {
         debugInfo.add(oclExpression);
     }
@@ -247,7 +242,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         return resultObjectsCounter;
     }
 
-    @Override
     public Set<OCLExpression> getDebugInfo() {
         return debugInfo;
     }
@@ -326,7 +320,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * Breaks down the navigation from the <tt>from</tt> set to the individual elements in <tt>from</tt> and
      * manages the type checks.
      */
-    @Override
     public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
         incrementNavigateCounter(from);
 
@@ -370,7 +363,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      *
      * @return always <tt>false</tt>
      */
-    @Override
     public boolean isAbsolute() {
         return false;
     }
@@ -379,7 +371,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * By default it is expected that steps return non-empty sets in some cases.
      * @return always <tt>false</tt>
      */
-    @Override
     public boolean isAlwaysEmpty() {
         return alwaysEmpty;
     }

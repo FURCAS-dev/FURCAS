@@ -284,12 +284,10 @@ public class PathCache implements HashCodeChangeListener {
         return result;
     }
     
-    @Override
     public void beforeHashCodeChange(NavigationStep step, int token) {
         allNavigationSteps.remove(step.getSemanticIdentity());
     }
 
-    @Override
     public void afterHashCodeChange(NavigationStep step, int token) {
         allNavigationSteps.put(step.getSemanticIdentity(), step);
     }

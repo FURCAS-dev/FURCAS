@@ -12,7 +12,6 @@ public class IdentityPropagationStrategy extends DeltaPropagationStrategyWithTar
         super(propagatesTo);
     }
 
-    @Override
     public Collection<Pair<OCLExpression, Collection<Object>>> mapDelta(OCLExpression e, Collection<Object> delta) {
         return PartialEvaluator.getResultCollectionFromSingleDelta(getPropagatesTo(), delta);
     }

@@ -78,97 +78,78 @@ public class AnnotatedEObject implements EObject{
         return eObject;
     }
     
-    @Override
     public TreeIterator<EObject> eAllContents() {
         return eObject.eAllContents();
     }
 
-    @Override
     public EClass eClass() {
         return eObject.eClass();
     }
 
-    @Override
     public EObject eContainer() {
         return eObject.eContainer();
     }
 
-    @Override
     public EStructuralFeature eContainingFeature() {
         return eObject.eContainingFeature();
     }
 
-    @Override
     public EReference eContainmentFeature() {
         return eObject.eContainmentFeature();
     }
 
-    @Override
     public EList<EObject> eContents() {
         return eObject.eContents();
     }
 
-    @Override
     public EList<EObject> eCrossReferences() {
         return eObject.eCrossReferences();
     }
 
-    @Override
     public Object eGet(EStructuralFeature feature) {
         return eObject.eGet(feature);
     }
 
-    @Override
     public Object eGet(EStructuralFeature feature, boolean resolve) {
         return eObject.eGet(feature, resolve);
     }
 
-    @Override
     public Object eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
         return eObject.eInvoke(operation, arguments);
     }
 
-    @Override
     public boolean eIsProxy() {
         return eObject.eIsProxy();
     }
 
-    @Override
     public boolean eIsSet(EStructuralFeature feature) {
         return eObject.eIsSet(feature);
     }
 
-    @Override
     public Resource eResource() {
         return eObject.eResource();
     }
 
-    @Override
     public void eSet(EStructuralFeature feature, Object newValue) {
         eObject.eSet(feature, newValue);
     }
 
-    @Override
     public void eUnset(EStructuralFeature feature) {
         eObject.eUnset(feature);        
     }
 
-    @Override
     public EList<Adapter> eAdapters() {
         return eObject.eAdapters();
     }
 
-    @Override
     public boolean eDeliver() {
         return eObject.eDeliver();
     }
 
-    @Override
     public void eNotify(Notification notification) {
         eObject.eNotify(notification);
     }
 
-    @Override
     public void eSetDeliver(boolean deliver) {
         eObject.eSetDeliver(deliver);
     }
