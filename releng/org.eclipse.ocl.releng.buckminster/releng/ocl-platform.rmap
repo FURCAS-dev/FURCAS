@@ -8,7 +8,7 @@
   <rm:locator searchPathRef="platform"/>
   <rm:searchPath name="local.releng">
     <rm:provider componentTypes="buckminster" readerType="local" mutable="false">
-      <rm:uri format="{0}/{1}">
+      <rm:uri format="{0}/org.eclipse.mdt/org.eclipse.ocl/releng/{1}">
         <bc:propertyRef key="checkout.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
