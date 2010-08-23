@@ -54,6 +54,17 @@ public class QuickOclParseAndEvalTest extends TestCase
     oclHelper.setContext(ClassesPackage.eINSTANCE.getParameter());
   }
 
+    /**
+     * Testing if an iterate's accumulator expression is really evaluated even when the iterate is applied to an empty collection
+     */
+    @Test
+    public void testParseAndEvaluateOclExpressionAccumulatorForIterateOnEmptyCollection() throws ParserException {
+        OCLExpression expression4 = oclHelper
+                .createQuery("let s:Set(Integer)=Set{} in s->iterate(i:Integer; acc:Integer=1 | acc+1)");
+        Object result4 = ocl.evaluate(param, expression4);
+        assertEquals(1, result4);
+    }
+
   /**
    * Testing if shadowing a variable by an iterator leads to incorrect results because the shadowed
    * variable is overwritten by the iterator values
