@@ -14,6 +14,12 @@
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature" readerType="cvs" mutable="false">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/releng/{1}-feature">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature" readerType="cvs" mutable="false">
       <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/coordinated/{1}-feature">
         <bc:propertyRef key="cvs.modeling.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
