@@ -7,6 +7,7 @@ import junit.framework.TestCase;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
+import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCL.Helper;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -53,6 +54,18 @@ public class QuickOclParseAndEvalTest extends TestCase
     oclHelper = ocl.createOCLHelper();
     oclHelper.setContext(ClassesPackage.eINSTANCE.getParameter());
   }
+
+    /**
+     * Testing if two iterator variables appear as such
+     */
+    @Test
+    public void testParseAndEvaluateOclExpressionForAllWithTwoIterators() throws ParserException {
+        OCLExpression expression4 = oclHelper
+                .createQuery("Set{1, 2, 3}->forAll(i, j | i+j <> 7)");
+        assertEquals(2, ((LoopExp) expression4).getIterator().size());
+        Object result4 = ocl.evaluate(param, expression4);
+        assertEquals(true, result4);
+    }
 
     /**
      * Testing if an iterate's accumulator expression is really evaluated even when the iterate is applied to an empty collection
