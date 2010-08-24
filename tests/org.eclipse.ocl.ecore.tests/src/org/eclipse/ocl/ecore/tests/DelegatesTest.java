@@ -9,11 +9,11 @@
  * 
  * Contributors:
  *  C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
- * 	E.D.Willink - Bug 306079
+ * 	E.D.Willink - Bug 306079, 322159
  * 
  * </copyright>
  *
- * $Id: DelegatesTest.java,v 1.3 2010/04/25 06:50:15 ewillink Exp $
+ * $Id: DelegatesTest.java,v 1.4 2010/08/24 16:16:55 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
 
@@ -22,6 +22,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import noreflectioncompany.NoreflectioncompanyPackage;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -59,13 +61,15 @@ import org.eclipse.osgi.util.NLS;
 import company.CompanyPackage;
 
 
+
 /**
  * Tests for the OCL delegate implementations.
  */
 @SuppressWarnings("nls")
 public class DelegatesTest extends AbstractTestSuite
 {
-	protected static final String COMPANY_XMI = "/model/Company.xmi";
+	protected static final String COMPANY_XMI = "/model/Company.xmi";	
+	protected static final String NO_REFLECTION_COMPANY_XMI = "/model/NoReflectionCompany.xmi";
 	protected static final String MODEL_WITH_ERRORS_XMI = "/model/ModelWithErrors.xmi";
 
 	public Resource testResource;
@@ -110,8 +114,10 @@ public class DelegatesTest extends AbstractTestSuite
 				new OCLValidationDelegateFactory.Global());
 			resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
 				"xmi", new EcoreResourceFactoryImpl());		
-			EPackage.Registry.INSTANCE.remove(CompanyPackage.eNS_URI);	// Reference and nullify the side effect of the reference
+			EPackage.Registry.INSTANCE.remove(CompanyPackage.eNS_URI);	// Reference and nullify the side effect of the reference			
 			resourceSet.getPackageRegistry().remove(CompanyPackage.eNS_URI);	// In case previous test failed
+			EPackage.Registry.INSTANCE.remove(NoreflectioncompanyPackage.eNS_URI);	// Reference and nullify the side effect of the reference
+			resourceSet.getPackageRegistry().remove(NoreflectioncompanyPackage.eNS_URI);	// In case previous test failed
 		}
 
 		// Install a DelegateResourceSetAdapter to supervise local registries and resource post-loading
@@ -190,6 +196,7 @@ public class DelegatesTest extends AbstractTestSuite
 	protected void initPackageRegistrations() {
 		if (!eclipseIsRunning) {
 			resourceSet.getPackageRegistry().put(CompanyPackage.eNS_URI, CompanyPackage.eINSTANCE);
+			resourceSet.getPackageRegistry().put(NoreflectioncompanyPackage.eNS_URI, NoreflectioncompanyPackage.eINSTANCE);
 		}
 	}
 
@@ -372,6 +379,10 @@ public class DelegatesTest extends AbstractTestSuite
 		doTest_constraintValidation(COMPANY_XMI);
 	}
 
+	public void test_constraintValidation_withoutReflection() {
+		doTest_constraintValidation(NO_REFLECTION_COMPANY_XMI);
+	}
+
 	public void test_constraintValidation_registered() {
 		initPackageRegistrations();
 		doTest_constraintValidation(COMPANY_XMI);
@@ -402,6 +413,14 @@ public class DelegatesTest extends AbstractTestSuite
 	public void test_invariantValidation_registered() {
 		initPackageRegistrations();
 		doTest_invariantValidation(COMPANY_XMI, true);
+	}
+
+	public void test_invariantValidation_withoutReflection() {
+		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true);
+	}
+	public void test_invariantValidation_withoutReflection_registered() {
+		initPackageRegistrations();
+		doTest_invariantValidation(NO_REFLECTION_COMPANY_XMI, true);
 	}
 
 	public void test_operationDefinedWithoutBody() {
