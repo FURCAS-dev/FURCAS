@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.13 2010/02/27 13:27:36 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.14 2010/08/24 16:17:06 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -258,6 +258,8 @@ public class OCLMessages {
 	public static String ValidationResultIsInvalid_ERROR_;	
 	public static String ValidationResultIsNull_ERROR_;	
 	public static String ValidationResultIsNotBoolean_ERROR_;
+	
+	public static String NoOperationReflection_WARNING_;
 	
 	private static IMessages messagesImpl;
 	
