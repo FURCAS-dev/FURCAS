@@ -1,30 +1,20 @@
 /**
  * <copyright>
- * 
- * Copyright (c) 2010 E.D.Willink and others.
- * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- *   C.Damus, K.Hussey, E.D.Willink - Initial API and implementation
- * 
  * </copyright>
  *
- * $Id: EmployeeImpl.java,v 1.3 2010/08/24 16:16:55 ewillink Exp $
+ * $Id: EmployeeImpl.java,v 1.1 2010/08/24 16:16:55 ewillink Exp $
  */
-package company.impl;
-
-import company.Company;
-import company.CompanyPackage;
-import company.Employee;
-
-import company.util.CompanyValidator;
+package noreflectioncompany.impl;
 
 import java.lang.reflect.InvocationTargetException;
 
 import java.util.Map;
+
+import noreflectioncompany.Company;
+import noreflectioncompany.Employee;
+import noreflectioncompany.NoreflectioncompanyPackage;
+
+import noreflectioncompany.util.NoreflectioncompanyValidator;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -52,13 +42,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link company.impl.EmployeeImpl#getName <em>Name</em>}</li>
- *   <li>{@link company.impl.EmployeeImpl#getManager <em>Manager</em>}</li>
- *   <li>{@link company.impl.EmployeeImpl#getCompany <em>Company</em>}</li>
- *   <li>{@link company.impl.EmployeeImpl#getDirectReports <em>Direct Reports</em>}</li>
- *   <li>{@link company.impl.EmployeeImpl#getAllReports <em>All Reports</em>}</li>
- *   <li>{@link company.impl.EmployeeImpl#getReportingChain <em>Reporting Chain</em>}</li>
- *   <li>{@link company.impl.EmployeeImpl#isHasNameAsAttribute <em>Has Name As Attribute</em>}</li>
+ *   <li>{@link noreflectioncompany.impl.EmployeeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link noreflectioncompany.impl.EmployeeImpl#getManager <em>Manager</em>}</li>
+ *   <li>{@link noreflectioncompany.impl.EmployeeImpl#getCompany <em>Company</em>}</li>
+ *   <li>{@link noreflectioncompany.impl.EmployeeImpl#getDirectReports <em>Direct Reports</em>}</li>
+ *   <li>{@link noreflectioncompany.impl.EmployeeImpl#getAllReports <em>All Reports</em>}</li>
+ *   <li>{@link noreflectioncompany.impl.EmployeeImpl#getReportingChain <em>Reporting Chain</em>}</li>
+ *   <li>{@link noreflectioncompany.impl.EmployeeImpl#isHasNameAsAttribute <em>Has Name As Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,7 +93,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate DIRECT_REPORTS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.EMPLOYEE__DIRECT_REPORTS).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate DIRECT_REPORTS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)NoreflectioncompanyPackage.Literals.EMPLOYEE__DIRECT_REPORTS).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getAllReports() <em>All Reports</em>}' reference list.
@@ -113,7 +103,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate ALL_REPORTS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.EMPLOYEE__ALL_REPORTS).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate ALL_REPORTS__ESETTING_DELEGATE = ((EStructuralFeature.Internal)NoreflectioncompanyPackage.Literals.EMPLOYEE__ALL_REPORTS).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #getReportingChain() <em>Reporting Chain</em>}' reference list.
@@ -123,7 +113,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate REPORTING_CHAIN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.EMPLOYEE__REPORTING_CHAIN).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate REPORTING_CHAIN__ESETTING_DELEGATE = ((EStructuralFeature.Internal)NoreflectioncompanyPackage.Literals.EMPLOYEE__REPORTING_CHAIN).getSettingDelegate();
 
 	/**
 	 * The cached setting delegate for the '{@link #isHasNameAsAttribute() <em>Has Name As Attribute</em>}' attribute.
@@ -133,7 +123,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature.Internal.SettingDelegate HAS_NAME_AS_ATTRIBUTE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.EMPLOYEE__HAS_NAME_AS_ATTRIBUTE).getSettingDelegate();
+	protected EStructuralFeature.Internal.SettingDelegate HAS_NAME_AS_ATTRIBUTE__ESETTING_DELEGATE = ((EStructuralFeature.Internal)NoreflectioncompanyPackage.Literals.EMPLOYEE__HAS_NAME_AS_ATTRIBUTE).getSettingDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -151,7 +141,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CompanyPackage.Literals.EMPLOYEE;
+		return NoreflectioncompanyPackage.Literals.EMPLOYEE;
 	}
 
 	/**
@@ -172,7 +162,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.EMPLOYEE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, NoreflectioncompanyPackage.EMPLOYEE__NAME, oldName, name));
 	}
 
 	/**
@@ -186,7 +176,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 			manager = (Employee)eResolveProxy(oldManager);
 			if (manager != oldManager) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CompanyPackage.EMPLOYEE__MANAGER, oldManager, manager));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NoreflectioncompanyPackage.EMPLOYEE__MANAGER, oldManager, manager));
 			}
 		}
 		return manager;
@@ -210,7 +200,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 		Employee oldManager = manager;
 		manager = newManager;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.EMPLOYEE__MANAGER, oldManager, manager));
+			eNotify(new ENotificationImpl(this, Notification.SET, NoreflectioncompanyPackage.EMPLOYEE__MANAGER, oldManager, manager));
 	}
 
 	/**
@@ -219,7 +209,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 */
 	public Company getCompany() {
-		if (eContainerFeatureID() != CompanyPackage.EMPLOYEE__COMPANY) return null;
+		if (eContainerFeatureID() != NoreflectioncompanyPackage.EMPLOYEE__COMPANY) return null;
 		return (Company)eContainer();
 	}
 
@@ -229,7 +219,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 */
 	public NotificationChain basicSetCompany(Company newCompany, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newCompany, CompanyPackage.EMPLOYEE__COMPANY, msgs);
+		msgs = eBasicSetContainer((InternalEObject)newCompany, NoreflectioncompanyPackage.EMPLOYEE__COMPANY, msgs);
 		return msgs;
 	}
 
@@ -239,19 +229,19 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 */
 	public void setCompany(Company newCompany) {
-		if (newCompany != eInternalContainer() || (eContainerFeatureID() != CompanyPackage.EMPLOYEE__COMPANY && newCompany != null)) {
+		if (newCompany != eInternalContainer() || (eContainerFeatureID() != NoreflectioncompanyPackage.EMPLOYEE__COMPANY && newCompany != null)) {
 			if (EcoreUtil.isAncestor(this, newCompany))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newCompany != null)
-				msgs = ((InternalEObject)newCompany).eInverseAdd(this, CompanyPackage.COMPANY__EMPLOYEES, Company.class, msgs);
+				msgs = ((InternalEObject)newCompany).eInverseAdd(this, NoreflectioncompanyPackage.COMPANY__EMPLOYEES, Company.class, msgs);
 			msgs = basicSetCompany(newCompany, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CompanyPackage.EMPLOYEE__COMPANY, newCompany, newCompany));
+			eNotify(new ENotificationImpl(this, Notification.SET, NoreflectioncompanyPackage.EMPLOYEE__COMPANY, newCompany, newCompany));
 	}
 
 	/**
@@ -294,14 +284,14 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #reportsTo(company.Employee) <em>Reports To</em>}' operation.
+	 * The cached invocation delegate for the '{@link #reportsTo(noreflectioncompany.Employee) <em>Reports To</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #reportsTo(company.Employee)
+	 * @see #reportsTo(noreflectioncompany.Employee)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate REPORTS_TO_EMPLOYEE__EINVOCATION_DELEGATE = ((EOperation.Internal)CompanyPackage.Literals.EMPLOYEE___REPORTS_TO__EMPLOYEE).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate REPORTS_TO_EMPLOYEE__EINVOCATION_DELEGATE = ((EOperation.Internal)NoreflectioncompanyPackage.Literals.EMPLOYEE.getEOperations().get(0)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -334,17 +324,17 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 */
 	public boolean noManagerImpliesDirectReports(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return
-			CompanyValidator.validate
-				(CompanyPackage.Literals.EMPLOYEE,
+			NoreflectioncompanyValidator.validate
+				(NoreflectioncompanyPackage.Literals.EMPLOYEE,
 				 this,
 				 diagnostics,
 				 context,
 				 "http://www.eclipse.org/emf/2002/Ecore/OCL", //$NON-NLS-1$
-				 CompanyPackage.Literals.EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP,
+				 NoreflectioncompanyPackage.Literals.EMPLOYEE.getEOperations().get(1),
 				 NO_MANAGER_IMPLIES_DIRECT_REPORTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
 				 Diagnostic.ERROR,
-				 CompanyValidator.DIAGNOSTIC_SOURCE,
-				 CompanyValidator.EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS);
+				 NoreflectioncompanyValidator.DIAGNOSTIC_SOURCE,
+				 NoreflectioncompanyValidator.EMPLOYEE__NO_MANAGER_IMPLIES_DIRECT_REPORTS);
 	}
 
 	/**
@@ -355,7 +345,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate HAS_NAME_AS_OPERATION__EINVOCATION_DELEGATE = ((EOperation.Internal)CompanyPackage.Literals.EMPLOYEE___HAS_NAME_AS_OPERATION).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate HAS_NAME_AS_OPERATION__EINVOCATION_DELEGATE = ((EOperation.Internal)NoreflectioncompanyPackage.Literals.EMPLOYEE.getEOperations().get(2)).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -379,7 +369,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CompanyPackage.EMPLOYEE__COMPANY:
+			case NoreflectioncompanyPackage.EMPLOYEE__COMPANY:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
 				return basicSetCompany((Company)otherEnd, msgs);
@@ -395,7 +385,7 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case CompanyPackage.EMPLOYEE__COMPANY:
+			case NoreflectioncompanyPackage.EMPLOYEE__COMPANY:
 				return basicSetCompany(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -409,8 +399,8 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case CompanyPackage.EMPLOYEE__COMPANY:
-				return eInternalContainer().eInverseRemove(this, CompanyPackage.COMPANY__EMPLOYEES, Company.class, msgs);
+			case NoreflectioncompanyPackage.EMPLOYEE__COMPANY:
+				return eInternalContainer().eInverseRemove(this, NoreflectioncompanyPackage.COMPANY__EMPLOYEES, Company.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -423,20 +413,20 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CompanyPackage.EMPLOYEE__NAME:
+			case NoreflectioncompanyPackage.EMPLOYEE__NAME:
 				return getName();
-			case CompanyPackage.EMPLOYEE__MANAGER:
+			case NoreflectioncompanyPackage.EMPLOYEE__MANAGER:
 				if (resolve) return getManager();
 				return basicGetManager();
-			case CompanyPackage.EMPLOYEE__COMPANY:
+			case NoreflectioncompanyPackage.EMPLOYEE__COMPANY:
 				return getCompany();
-			case CompanyPackage.EMPLOYEE__DIRECT_REPORTS:
+			case NoreflectioncompanyPackage.EMPLOYEE__DIRECT_REPORTS:
 				return getDirectReports();
-			case CompanyPackage.EMPLOYEE__ALL_REPORTS:
+			case NoreflectioncompanyPackage.EMPLOYEE__ALL_REPORTS:
 				return getAllReports();
-			case CompanyPackage.EMPLOYEE__REPORTING_CHAIN:
+			case NoreflectioncompanyPackage.EMPLOYEE__REPORTING_CHAIN:
 				return getReportingChain();
-			case CompanyPackage.EMPLOYEE__HAS_NAME_AS_ATTRIBUTE:
+			case NoreflectioncompanyPackage.EMPLOYEE__HAS_NAME_AS_ATTRIBUTE:
 				return isHasNameAsAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -450,13 +440,13 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CompanyPackage.EMPLOYEE__NAME:
+			case NoreflectioncompanyPackage.EMPLOYEE__NAME:
 				setName((String)newValue);
 				return;
-			case CompanyPackage.EMPLOYEE__MANAGER:
+			case NoreflectioncompanyPackage.EMPLOYEE__MANAGER:
 				setManager((Employee)newValue);
 				return;
-			case CompanyPackage.EMPLOYEE__COMPANY:
+			case NoreflectioncompanyPackage.EMPLOYEE__COMPANY:
 				setCompany((Company)newValue);
 				return;
 		}
@@ -471,13 +461,13 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CompanyPackage.EMPLOYEE__NAME:
+			case NoreflectioncompanyPackage.EMPLOYEE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case CompanyPackage.EMPLOYEE__MANAGER:
+			case NoreflectioncompanyPackage.EMPLOYEE__MANAGER:
 				setManager((Employee)null);
 				return;
-			case CompanyPackage.EMPLOYEE__COMPANY:
+			case NoreflectioncompanyPackage.EMPLOYEE__COMPANY:
 				setCompany((Company)null);
 				return;
 		}
@@ -492,41 +482,22 @@ public class EmployeeImpl extends EObjectImpl implements Employee {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CompanyPackage.EMPLOYEE__NAME:
+			case NoreflectioncompanyPackage.EMPLOYEE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case CompanyPackage.EMPLOYEE__MANAGER:
+			case NoreflectioncompanyPackage.EMPLOYEE__MANAGER:
 				return manager != null;
-			case CompanyPackage.EMPLOYEE__COMPANY:
+			case NoreflectioncompanyPackage.EMPLOYEE__COMPANY:
 				return getCompany() != null;
-			case CompanyPackage.EMPLOYEE__DIRECT_REPORTS:
+			case NoreflectioncompanyPackage.EMPLOYEE__DIRECT_REPORTS:
 				return DIRECT_REPORTS__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case CompanyPackage.EMPLOYEE__ALL_REPORTS:
+			case NoreflectioncompanyPackage.EMPLOYEE__ALL_REPORTS:
 				return ALL_REPORTS__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case CompanyPackage.EMPLOYEE__REPORTING_CHAIN:
+			case NoreflectioncompanyPackage.EMPLOYEE__REPORTING_CHAIN:
 				return REPORTING_CHAIN__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
-			case CompanyPackage.EMPLOYEE__HAS_NAME_AS_ATTRIBUTE:
+			case NoreflectioncompanyPackage.EMPLOYEE__HAS_NAME_AS_ATTRIBUTE:
 				return HAS_NAME_AS_ATTRIBUTE__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	@SuppressWarnings("unchecked")
-	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
-			case CompanyPackage.EMPLOYEE___REPORTS_TO__EMPLOYEE:
-				return reportsTo((Employee)arguments.get(0));
-			case CompanyPackage.EMPLOYEE___NO_MANAGER_IMPLIES_DIRECT_REPORTS__DIAGNOSTICCHAIN_MAP:
-				return noManagerImpliesDirectReports((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-			case CompanyPackage.EMPLOYEE___HAS_NAME_AS_OPERATION:
-				return hasNameAsOperation();
-		}
-		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

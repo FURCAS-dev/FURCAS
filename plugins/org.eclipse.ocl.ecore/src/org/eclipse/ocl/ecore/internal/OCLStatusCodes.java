@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLStatusCodes.java,v 1.2 2007/02/14 14:45:45 cdamus Exp $
+ * $Id: OCLStatusCodes.java,v 1.3 2010/08/24 16:17:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -38,4 +38,5 @@ public final class OCLStatusCodes {
 	public static final int USERMODELSUPPORT_MISSING_CLASS = 21;
 	public static final int USERMODELSUPPORT_UNRESOLVED_NSURI = 22;
 	public static final int USERMODELSUPPORT_FACTORY_FAILED = 23;
+	public static final int USERMODELSUPPORT_NO_OPERATION_REFLECTION = 24;
 }
