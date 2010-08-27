@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query.index.ui.IndexFactory;
@@ -228,7 +229,7 @@ public class TestBasicExpressions extends TestCase {
 	    varDecl.setNamedValue(a);
 	    block.getStatements().add(varDecl);
 	    
-	    VariableExpression aExp = createVariableExpression(resourceSet, a);
+	    VariableExpression aExp = createVariableExpression(a);
 	    Return ret = ActionsFactory.eINSTANCE.createReturn();
 	    ret.setArgument(aExp);
 	    block.getStatements().add(ret);
@@ -276,7 +277,7 @@ public class TestBasicExpressions extends TestCase {
 	    a.setName("a");
 	    a.setInitExpression(nl);
 	    
-	    VariableExpression aExp = createVariableExpression(resourceSet, a);
+	    VariableExpression aExp = createVariableExpression(a);
 	    Return ret = ActionsFactory.eINSTANCE.createReturn();
 	    ret.setArgument(aExp);
 	    block.getStatements().add(ret);
@@ -329,7 +330,7 @@ public class TestBasicExpressions extends TestCase {
 	    funcSig.getInput().add(i);
 	    funcSig.setOutput(i.getType());
 	    funcSig.setImplementation(block);
-	    VariableExpression iExp = createVariableExpression(resourceSet, i);
+	    VariableExpression iExp = createVariableExpression(i);
 	    IfElse ifElse = ActionsFactory.eINSTANCE.createIfElse();
 	    MethodCallExpression iGreaterZero = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
 	    iGreaterZero.setObject(iExp);
@@ -341,7 +342,7 @@ public class TestBasicExpressions extends TestCase {
 	    Block ifBranch = ActionsFactory.eINSTANCE.createBlock();
 	    MethodCallExpression iMinusOne = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
 	    // need to create another copy of iExp because ObjectBasedExpressions own their reference object
-	    iExp = createVariableExpression(resourceSet, i);
+	    iExp = createVariableExpression(i);
 	    iMinusOne.setObject(iExp);
 	    MethodSignature minus = MetamodelUtils.findMethod(resourceSet, "Number", "minus");
 	    iMinusOne.setMethodSignature(minus);
@@ -351,7 +352,7 @@ public class TestBasicExpressions extends TestCase {
 	    
 	    MethodCallExpression iPlusRecursion = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
 	    // need to create another copy of iExp because ObjectBasedExpressions own their reference object
-	    iExp = createVariableExpression(resourceSet, i);
+	    iExp = createVariableExpression(i);
 	    iPlusRecursion.setObject(iExp);
 	    MethodSignature plus = MetamodelUtils.findMethod(resourceSet, "Number", "plus");
 	    iPlusRecursion.setMethodSignature(plus);
@@ -423,7 +424,7 @@ public class TestBasicExpressions extends TestCase {
 	    funcSig.getInput().add(i);
 	    funcSig.setOutput(i.getType());
 	    funcSig.setImplementation(block);
-	    VariableExpression iExp = createVariableExpression(resourceSet, i);
+	    VariableExpression iExp = createVariableExpression(i);
 	    IfElse ifElse = ActionsFactory.eINSTANCE.createIfElse();
 	    MethodCallExpression iGreaterZero = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
 	    iGreaterZero.setObject(iExp);
@@ -444,24 +445,24 @@ public class TestBasicExpressions extends TestCase {
 	    Variable b = ActionsFactory.eINSTANCE.createVariable();
 	    b.setName("b");
 	    // need to create another copy of iExp because ObjectBasedExpressions own their reference object
-	    iExp = createVariableExpression(resourceSet, i);
+	    iExp = createVariableExpression(i);
 	    b.setInitExpression(iExp);
 	    bDecl.setNamedValue(b);
 	    ifBranch.getStatements().add(bDecl);
 	    
 	    MethodCallExpression iMinusA = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
 	    // need to create another copy of iExp because ObjectBasedExpressions own their reference object
-	    iExp = createVariableExpression(resourceSet, i);
+	    iExp = createVariableExpression(i);
 	    iMinusA.setObject(iExp);
 	    MethodSignature minus = MetamodelUtils.findMethod(resourceSet, "Number", "minus");
 	    iMinusA.setMethodSignature(minus);
-	    VariableExpression innerAExp = createVariableExpression(resourceSet, innerA);
+	    VariableExpression innerAExp = createVariableExpression(innerA);
 	    iMinusA.getParameters().add(innerAExp);
 	    FunctionCallExpression recursion = MetamodelUtils.createFunctionCallExpression(resourceSet, funcSig);
 	    recursion.getParameters().add(iMinusA);
 	    
 	    MethodCallExpression bPlusRecursion = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
-	    VariableExpression bExp = createVariableExpression(resourceSet, b);
+	    VariableExpression bExp = createVariableExpression(b);
 	    bPlusRecursion.setObject(bExp);
 	    MethodSignature plus = MetamodelUtils.findMethod(resourceSet, "Number", "plus");
 	    bPlusRecursion.setMethodSignature(plus);
@@ -473,7 +474,7 @@ public class TestBasicExpressions extends TestCase {
 	    
 	    Block elseBranch = ActionsFactory.eINSTANCE.createBlock();
 	    Return retElse = ActionsFactory.eINSTANCE.createReturn();
-	    VariableExpression aExp = createVariableExpression(resourceSet, a);
+	    VariableExpression aExp = createVariableExpression(a);
 	    retElse.setArgument(aExp);
 	    elseBranch.getStatements().add(retElse);
 
@@ -500,7 +501,7 @@ public class TestBasicExpressions extends TestCase {
 	try {
 	    project.open(/* progress monitor */null);
 	    ResourceSet resourceSet = Activator.createResourceSet(project);
-	    SapClass c1 = createClass(resourceSet, "C1");
+	    SapClass c1 = createClass("C1");
 	    MethodSignature s1 = ClassesFactory.eINSTANCE.createMethodSignature();
 	    s1.setName("s1");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
@@ -513,7 +514,7 @@ public class TestBasicExpressions extends TestCase {
 	    s1ImplReturn.setArgument(MetamodelUtils.createNumberLiteral(resourceSet, "12345"));
 	    s1Impl.getStatements().add(s1ImplReturn);
 	    c1.getOwnedSignatures().add(s1);
-	    SapClass c2 = createClass(resourceSet, "C2");
+	    SapClass c2 = createClass("C2");
 	    MethodSignature s2 = ClassesFactory.eINSTANCE.createMethodSignature();
 	    s2.setName("s2");
 	    s2.setOutput(numberTD);
@@ -536,7 +537,7 @@ public class TestBasicExpressions extends TestCase {
 	    adapterSig.setOutput(numberTD);
 	    adapter.getOwnedSignatures().add(adapterSig);
 
-	    SapClass c3 = createClass(resourceSet, "C3");
+	    SapClass c3 = createClass("C3");
 	    MethodSignature s3 = ClassesFactory.eINSTANCE.createMethodSignature();
 	    s3.setName("s3");
 	    s3.setOutput(numberTD);
@@ -591,7 +592,7 @@ public class TestBasicExpressions extends TestCase {
 	try {
 	    project.open(/* progress monitor */null);
 	    ResourceSet resourceSet = Activator.createResourceSet(project);
-	    SapClass c1 = createClass(resourceSet, "C1");
+	    SapClass c1 = createClass("C1");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
 	    Association c1ToNumber = MetamodelUtils.createAssociation(resourceSet, c1, 0, -1,
 		    				       /* navigable */ false, numberClass, 0, 1, /* navigable */ true);
@@ -608,14 +609,15 @@ public class TestBasicExpressions extends TestCase {
 	    block.getStatements().add(varDecl);
 	    AddLink addLink = ActionsFactory.eINSTANCE.createAddLink();
 	    addLink.setAssociation(c1ToNumber);
-	    VariableExpression aRef = createVariableExpression(resourceSet, a);
+	    addLink.setAt(-1);
+	    VariableExpression aRef = createVariableExpression(a);
 	    addLink.getObjects().add(aRef);
 	    addLink.getObjects().add(MetamodelUtils.createNumberLiteral(resourceSet, "42"));
 	    block.getStatements().add(addLink);
 	    Return ret = ActionsFactory.eINSTANCE.createReturn();
 	    AssociationEndNavigationExpression aene = ExpressionsFactory.eINSTANCE.createAssociationEndNavigationExpression();
 	    aene.setToEnd(c1ToNumber.getEnds().get(1));
-	    VariableExpression aRef2 = createVariableExpression(resourceSet, a);
+	    VariableExpression aRef2 = createVariableExpression(a);
 	    aene.setObject(aRef2);
 	    ret.setArgument(aene);
 	    block.getStatements().add(ret);
@@ -640,7 +642,7 @@ public class TestBasicExpressions extends TestCase {
 	try {
 	    project.open(/* progress monitor */null);
 	    ResourceSet resourceSet = Activator.createResourceSet(project);
-	    SapClass c1 = createClass(resourceSet, "C1");
+	    SapClass c1 = createClass("C1");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
 	    Association c1ToNumber = ClassesFactory.eINSTANCE.createAssociation();
 	    AssociationEnd c1End = ClassesFactory.eINSTANCE.createAssociationEnd();
@@ -667,20 +669,22 @@ public class TestBasicExpressions extends TestCase {
 	    block.getStatements().add(varDecl);
 	    AddLink addLink = ActionsFactory.eINSTANCE.createAddLink();
 	    addLink.setAssociation(c1ToNumber);
-	    VariableExpression aRef = createVariableExpression(resourceSet, a);
+	    addLink.setAt(-1);
+	    VariableExpression aRef = createVariableExpression(a);
 	    addLink.getObjects().add(aRef);
 	    addLink.getObjects().add(MetamodelUtils.createNumberLiteral(resourceSet, "42"));
 	    block.getStatements().add(addLink);
 	    AddLink addLink2 = ActionsFactory.eINSTANCE.createAddLink();
 	    addLink2.setAssociation(c1ToNumber);
-	    VariableExpression aRef2 = createVariableExpression(resourceSet, a);
+	    addLink2.setAt(-1);
+	    VariableExpression aRef2 = createVariableExpression(a);
 	    addLink2.getObjects().add(aRef2);
 	    addLink2.getObjects().add(MetamodelUtils.createNumberLiteral(resourceSet, "43"));
 	    block.getStatements().add(addLink2);
 	    Return ret = ActionsFactory.eINSTANCE.createReturn();
 	    AssociationEndNavigationExpression aene = ExpressionsFactory.eINSTANCE.createAssociationEndNavigationExpression();
 	    aene.setToEnd(numberEnd);
-	    VariableExpression aRef3 = createVariableExpression(resourceSet, a);
+	    VariableExpression aRef3 = createVariableExpression(a);
 	    aene.setObject(aRef3);
 	    ret.setArgument(aene);
 	    block.getStatements().add(ret);
@@ -746,7 +750,7 @@ public class TestBasicExpressions extends TestCase {
 	try {
 	    project.open(/* progress monitor */null);
 	    ResourceSet resourceSet = Activator.createResourceSet(project);
-	    SapClass c1 = createClass(resourceSet, "C1");
+	    SapClass c1 = createClass("C1");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
 	    Association c1ToNumber = ClassesFactory.eINSTANCE.createAssociation();
 	    AssociationEnd c1End = ClassesFactory.eINSTANCE.createAssociationEnd();
@@ -773,20 +777,22 @@ public class TestBasicExpressions extends TestCase {
 	    block.getStatements().add(varDecl);
 	    AddLink addLink = ActionsFactory.eINSTANCE.createAddLink();
 	    addLink.setAssociation(c1ToNumber);
-	    VariableExpression aRef = createVariableExpression(resourceSet, a);
+	    addLink.setAt(-1);
+	    VariableExpression aRef = createVariableExpression(a);
 	    addLink.getObjects().add(aRef);
 	    addLink.getObjects().add(MetamodelUtils.createNumberLiteral(resourceSet, "42"));
 	    block.getStatements().add(addLink);
 	    AddLink addLink2 = ActionsFactory.eINSTANCE.createAddLink();
 	    addLink2.setAssociation(c1ToNumber);
-	    VariableExpression aRef2 = createVariableExpression(resourceSet, a);
+	    addLink2.setAt(-1);
+	    VariableExpression aRef2 = createVariableExpression(a);
 	    addLink2.getObjects().add(aRef2);
 	    addLink2.getObjects().add(MetamodelUtils.createNumberLiteral(resourceSet, "43"));
 	    block.getStatements().add(addLink2);
 	    Return ret = ActionsFactory.eINSTANCE.createReturn();
 	    AssociationEndNavigationExpression aene = ExpressionsFactory.eINSTANCE.createAssociationEndNavigationExpression();
 	    aene.setToEnd(numberEnd);
-	    VariableExpression aRef3 = createVariableExpression(resourceSet, a);
+	    VariableExpression aRef3 = createVariableExpression(a);
 	    aene.setObject(aRef3);
 	    ret.setArgument(aene);
 	    block.getStatements().add(ret);
@@ -813,7 +819,7 @@ public class TestBasicExpressions extends TestCase {
 	}
     }
 
-    private SapClass createClass(ResourceSet resourceSet, String name) {
+    private SapClass createClass(String name) {
 	SapClass c1 = ClassesFactory.eINSTANCE.createSapClass();
 	c1.setName(name);
 	return c1;
@@ -857,6 +863,7 @@ public class TestBasicExpressions extends TestCase {
 		param.setName("value");
 		sig.getInput().add(param);
 		LinkAddition adderImpl = ClassesFactory.eINSTANCE.createLinkAddition();
+		adderImpl.setAt(-1);
 		adderImpl.setEnd(end);
 		adderImpl.setImplements_(sig);
 		break;
@@ -867,6 +874,7 @@ public class TestBasicExpressions extends TestCase {
 		param.setName("value");
 		sig.getInput().add(param);
 		LinkRemoval removerImpl = ClassesFactory.eINSTANCE.createLinkRemoval();
+		removerImpl.setAt(-1);
 		removerImpl.setEnd(end);
 		removerImpl.setImplements_(sig);
 		break;
@@ -897,7 +905,7 @@ public class TestBasicExpressions extends TestCase {
 	    ResourceSet resourceSet = Activator.createResourceSet(project);
 	    
 	    // set up data structures
-	    SapClass salesOrderItem = createClass(resourceSet, "SalesOrderItem");
+	    SapClass salesOrderItem = createClass("SalesOrderItem");
 	    SapClass numberClass = MetamodelUtils.findClass(resourceSet, "Number");
 	    Association salesOrderItemToPrice = MetamodelUtils.createAssociation(resourceSet, salesOrderItem, "salesOrderItemsWithPrice", 0,
 		    -1, /* nav */ false, /* comp */ false, /* ordered */ false,
@@ -907,7 +915,7 @@ public class TestBasicExpressions extends TestCase {
 		    salesOrderItemToPrice.getEnds().get(1),
 		    new Accessors[] { Accessors.GETTER, Accessors.SETTER });
 	     */
-	    SapClass product = createClass(resourceSet, "Product");
+	    SapClass product = createClass("Product");
 	    Association salesOrderItemToProduct = MetamodelUtils.createAssociation(resourceSet, salesOrderItem, "salesOrderItems", 0,
 		    -1, /* nav */ false, /* comp */ false, /* ordered */ false,
 		    /* unique */ false, product, "product", 1, 1, /* nav */ true, /* comp */ false, /* ordered */ false, /* unique */ false);
@@ -916,7 +924,7 @@ public class TestBasicExpressions extends TestCase {
 		    salesOrderItemToProduct.getEnds().get(1),
 		    new Accessors[] { Accessors.GETTER, Accessors.SETTER });
 	     */
-	    SapClass salesOrder = createClass(resourceSet, "SalesOrder");
+	    SapClass salesOrder = createClass("SalesOrder");
 	    Association salesOrderToSalesOrderItems = MetamodelUtils.createAssociation(resourceSet, salesOrder, "salesOrder",
 		    1, 1, /* nav */ true, /* comp */ true, /* ordered */ false, /* unique */ false,
 		    salesOrderItem, "items", 0, -1, /* nav */ true, /* comp */ false, /* ordered */ false,
@@ -926,7 +934,7 @@ public class TestBasicExpressions extends TestCase {
 		    salesOrderToSalesOrderItems.getEnds().get(1),
 		    new Accessors[] { Accessors.GETTER, Accessors.ADDER, Accessors.REMOVER });
 	     */
-	    SapClass customer = createClass(resourceSet, "Customer");
+	    SapClass customer = createClass("Customer");
 	    Association salesOrderToCustomer = MetamodelUtils.createAssociation(resourceSet, salesOrder, "salesOrders",
 		    0, -1, /* nav */ true, /* comp */ false, /* ordered */ false, /* unique */ false,
 		    customer, "customer", 1, 1, /* nav */ true, /* comp */ false, /* ordered */ false,
@@ -962,19 +970,23 @@ public class TestBasicExpressions extends TestCase {
 	    
 	    FunctionSignature sig = ClassesFactory.eINSTANCE.createFunctionSignature();
 	    sig.setImplementation(cellSet);
-	    /* Note: resourceSetecting a CellSet with its FunctionSignature triggers an event handler
+	    /* TODO: connecting a CellSet with its FunctionSignature in the MOIN version triggers an event handler
 	       which creates all input arguments for the signature because in the grammar/mapping
-	       for the concrete syntax this currently cannot be described. 
-	    Parameter factsParam = ClassesFactory.eINSTANCE.createParameter();
-	    factsParam.setName("facts");
-	    sig.getInput().add(factsParam);
-	    Parameter sigDimensionParam1 = ClassesFactory.eINSTANCE.createParameter();
-	    sigDimensionParam1.setName("productCategory"); // parameter type inferred by TypedElement.getType()
-	    sig.getInput().add(sigDimensionParam1);
-	    Parameter sigDimensionParam2 = ClassesFactory.eINSTANCE.createParameter();
-	    sigDimensionParam1.setName("customerRegion"); // parameter type inferred by TypedElement.getType()
-	    sig.getInput().add(sigDimensionParam2);
-	    */
+	       for the concrete syntax this currently cannot be described. For EMF, this event handler hasn't
+	       yet been activated. If this should be required again in the EMF version, comment out the following
+	       block:
+	     */
+            {
+                Parameter factsParam = ClassesFactory.eINSTANCE.createParameter();
+                factsParam.setName("facts");
+                sig.getInput().add(factsParam);
+                Parameter sigDimensionParam1 = ClassesFactory.eINSTANCE.createParameter();
+                sigDimensionParam1.setName("productCategory"); // parameter type inferred by TypedElement.getType()
+                sig.getInput().add(sigDimensionParam1);
+                Parameter sigDimensionParam2 = ClassesFactory.eINSTANCE.createParameter();
+                sigDimensionParam2.setName("customerRegion"); // parameter type inferred by TypedElement.getType()
+                sig.getInput().add(sigDimensionParam2);
+            }
 	    sig.setOutput(cellSet.getAggregationFunction().getOutput());
 	    
 	    // evaluate a cell set expression
@@ -1062,7 +1074,7 @@ public class TestBasicExpressions extends TestCase {
 	//     result = soi;
 	Assignment assignment = ActionsFactory.eINSTANCE.createAssignment();
 	assignment.setAssignTo(result);
-	VariableExpression soiAccess = createVariableExpression(resourceSet, soi);
+	VariableExpression soiAccess = createVariableExpression(soi);
 	assignment.setArgument(soiAccess);
 	impl.getStatements().add(assignment);
 	
@@ -1099,7 +1111,7 @@ public class TestBasicExpressions extends TestCase {
 	createCodeToAddSalesOrderItemToResult(resourceSet, impl, result, soi);
 	
 	//     return result;
-	VariableExpression resultAccess = createVariableExpression(resourceSet, result);
+	VariableExpression resultAccess = createVariableExpression(result);
 	Return ret = ActionsFactory.eINSTANCE.createReturn();
 	ret.setArgument(resultAccess);
 	impl.getStatements().add(ret);
@@ -1129,7 +1141,8 @@ public class TestBasicExpressions extends TestCase {
 	//     c.setRegion("Americas");
 	AddLink addLink = ActionsFactory.eINSTANCE.createAddLink();
 	addLink.setAssociation(customerToRegion);
-	VariableExpression cAccess = createVariableExpression(resourceSet, c);
+	addLink.setAt(-1);
+	VariableExpression cAccess = createVariableExpression(c);
 	addLink.getObjects().add(cAccess);
 	addLink.getObjects().add(MetamodelUtils.createStringLiteral(resourceSet, customerRegion));
 	impl.getStatements().add(addLink);
@@ -1137,9 +1150,10 @@ public class TestBasicExpressions extends TestCase {
 	//     so.setCustomer(c);
 	addLink = ActionsFactory.eINSTANCE.createAddLink();
 	addLink.setAssociation(salesOrderToCustomer);
-	VariableExpression soAccess = createVariableExpression(resourceSet, so);
+	addLink.setAt(-1);
+	VariableExpression soAccess = createVariableExpression(so);
 	addLink.getObjects().add(soAccess);
-	cAccess = createVariableExpression(resourceSet, c);
+	cAccess = createVariableExpression(c);
 	addLink.getObjects().add(cAccess);
 	impl.getStatements().add(addLink);
     }
@@ -1156,9 +1170,9 @@ public class TestBasicExpressions extends TestCase {
 	assignment = ActionsFactory.eINSTANCE.createAssignment();
 	assignment.setAssignTo(result);
 	Including including = CollectionexpressionsFactory.eINSTANCE.createIncluding();
-	VariableExpression resultAccess = createVariableExpression(resourceSet, result);
+	VariableExpression resultAccess = createVariableExpression(result);
 	including.setSource(resultAccess);
-	soiAccess = createVariableExpression(resourceSet, soi);
+	soiAccess = createVariableExpression(soi);
 	including.setArgument(soiAccess);
 	assignment.setArgument(including);
 	impl.getStatements().add(assignment);
@@ -1192,7 +1206,8 @@ public class TestBasicExpressions extends TestCase {
 	//     soi.setPrice(12345);
 	addLink = ActionsFactory.eINSTANCE.createAddLink();
 	addLink.setAssociation(salesOrderItemToPrice);
-	VariableExpression soiAccess = createVariableExpression(resourceSet, soi);
+	addLink.setAt(-1);
+	VariableExpression soiAccess = createVariableExpression(soi);
 	addLink.getObjects().add(soiAccess);
 	addLink.getObjects().add(MetamodelUtils.createNumberLiteral(resourceSet, price));
 	blockToAddStatementsTo.getStatements().add(addLink);
@@ -1203,7 +1218,8 @@ public class TestBasicExpressions extends TestCase {
 	//     p.setCategory("Toys");
 	addLink = ActionsFactory.eINSTANCE.createAddLink();
 	addLink.setAssociation(productToCategory);
-	VariableExpression pAccess = createVariableExpression(resourceSet, p);
+	addLink.setAt(-1);
+	VariableExpression pAccess = createVariableExpression(p);
 	addLink.getObjects().add(pAccess);
 	addLink.getObjects().add(MetamodelUtils.createStringLiteral(resourceSet, productCategory));
 	blockToAddStatementsTo.getStatements().add(addLink);
@@ -1211,18 +1227,20 @@ public class TestBasicExpressions extends TestCase {
 	//     soi.setProduct(p);
 	addLink = ActionsFactory.eINSTANCE.createAddLink();
 	addLink.setAssociation(salesOrderItemToProduct);
-	soiAccess = createVariableExpression(resourceSet, soi);
+	addLink.setAt(-1);
+	soiAccess = createVariableExpression(soi);
 	addLink.getObjects().add(soiAccess);
-	pAccess = createVariableExpression(resourceSet, p);
+	pAccess = createVariableExpression(p);
 	addLink.getObjects().add(pAccess);
 	blockToAddStatementsTo.getStatements().add(addLink);
 	
 	//     soi.setSalesOrder(so);
 	addLink = ActionsFactory.eINSTANCE.createAddLink();
 	addLink.setAssociation(salesOrderToSalesOrderItems);
-	soAccess = createVariableExpression(resourceSet, so);
+	addLink.setAt(-1);
+	soAccess = createVariableExpression(so);
 	addLink.getObjects().add(soAccess);
-	soiAccess = createVariableExpression(resourceSet, soi);
+	soiAccess = createVariableExpression(soi);
 	addLink.getObjects().add(soiAccess);
 	blockToAddStatementsTo.getStatements().add(addLink);
     }
@@ -1252,7 +1270,7 @@ public class TestBasicExpressions extends TestCase {
 	valueFunctionSignature.setImplementation(valueFunction);
 	AssociationEndNavigationExpression navigateToPrice =
 	ExpressionsFactory.eINSTANCE.createAssociationEndNavigationExpression();
-	VariableExpression itemParameterValue = createVariableExpression(resourceSet, valueFunctionParam);
+	VariableExpression itemParameterValue = createVariableExpression(valueFunctionParam);
 	navigateToPrice.setObject(itemParameterValue);
 	navigateToPrice.setToEnd(salesOrderItemToPrice.getEnds().get(1));
 	Return valueFunctionReturn = ActionsFactory.eINSTANCE.createReturn();
@@ -1275,16 +1293,16 @@ public class TestBasicExpressions extends TestCase {
 	iterator.setName("i");
 	iterator.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinitionExactlyOne(resourceSet, MetamodelUtils.findClass(resourceSet, "Number")));
 	iterate.getIterators().add(iterator);
-	VariableExpression paramReference = createVariableExpression(resourceSet, aggregationFunctionParam);
+	VariableExpression paramReference = createVariableExpression(aggregationFunctionParam);
 	iterate.setSource(paramReference);
 	Constant accumulator = ActionsFactory.eINSTANCE.createConstant();
 	accumulator.setName("acc");
 	accumulator.setInitExpression(MetamodelUtils.createNumberLiteral(resourceSet, "0"));
 	iterate.setAccumulator(accumulator);
 	MethodCallExpression add = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
-	VariableExpression accAccess = createVariableExpression(resourceSet, accumulator);
+	VariableExpression accAccess = createVariableExpression(accumulator);
 	add.setObject(accAccess);
-	VariableExpression iteratorAccess = createVariableExpression(resourceSet, iterator);
+	VariableExpression iteratorAccess = createVariableExpression(iterator);
 	add.getParameters().add(iteratorAccess);
 	add.setMethodSignature(MetamodelUtils.findMethod(resourceSet, "Number", "plus"));
 	iterate.setIteratorExpression(add);
@@ -1308,8 +1326,7 @@ public class TestBasicExpressions extends TestCase {
 	categoryDimensionSignature.getInput().add(categoryDimensionFunctionParam);
 	categoryDimensionSignature.setOutput(productToCategory.getEnds().get(1).getType());
 	categoryDimensionSignature.setImplementation(categoryDimensionFunction);
-	VariableExpression categoryDimensionFunctionParamAccess = createVariableExpression(resourceSet,
-		categoryDimensionFunctionParam);
+	VariableExpression categoryDimensionFunctionParamAccess = createVariableExpression(categoryDimensionFunctionParam);
 	AssociationEndNavigationExpression getProduct = ExpressionsFactory.eINSTANCE.createAssociationEndNavigationExpression();
 	getProduct.setObject(categoryDimensionFunctionParamAccess);
 	getProduct.setToEnd(salesOrderItemToProduct.getEnds().get(1));
@@ -1334,8 +1351,7 @@ public class TestBasicExpressions extends TestCase {
 	regionDimensionSignature.getInput().add(regionDimensionFunctionParam);
 	regionDimensionSignature.setOutput(customerToRegion.getEnds().get(1).getType());
 	regionDimensionSignature.setImplementation(regionDimensionFunction);
-	VariableExpression regionDimensionFunctionParamAccess = createVariableExpression(resourceSet,
-		regionDimensionFunctionParam);
+	VariableExpression regionDimensionFunctionParamAccess = createVariableExpression(regionDimensionFunctionParam);
 	AssociationEndNavigationExpression getSalesOrder = ExpressionsFactory.eINSTANCE.createAssociationEndNavigationExpression();
 	getSalesOrder.setObject(regionDimensionFunctionParamAccess);
 	getSalesOrder.setToEnd(salesOrderToSalesOrderItems.getEnds().get(0));
@@ -1355,8 +1371,7 @@ public class TestBasicExpressions extends TestCase {
 	return cellSet;
     }
 
-    private VariableExpression createVariableExpression(ResourceSet resourceSet,
-	    NamedValue variable) {
+    private VariableExpression createVariableExpression(NamedValue variable) {
 	VariableExpression itemParameterValue = ExpressionsFactory.eINSTANCE.createVariableExpression();
 	itemParameterValue.setVariable(variable);
 	return itemParameterValue;
@@ -1368,17 +1383,21 @@ public class TestBasicExpressions extends TestCase {
 	try {
 	    project.open(/* progress monitor */null);
 	    ResourceSet resourceSet = Activator.createResourceSet(project);
+	    Resource resource = resourceSet.createResource(URI.createURI("http://testAssociationEndSignatureImplementations"));
 	    
 	    // set up data structures
-	    SapClass salesOrderItem = createClass(resourceSet, "SalesOrderItem");
-	    SapClass product = createClass(resourceSet, "Product");
+	    SapClass salesOrderItem = createClass("SalesOrderItem");
+	    resource.getContents().add(salesOrderItem);
+	    SapClass product = createClass("Product");
+            resource.getContents().add(product);
 	    Association salesOrderItemToProduct = MetamodelUtils.createAssociation(resourceSet, salesOrderItem, "salesOrderItems", 0,
 		    -1, /* nav */ false, /* comp */ true, /* ordered */ false,
 		    /* unique */ false, product, "product", 1, 1, /* nav */ true, /* comp */ false, /* ordered */ false, /* unique */ false);
 	    Map<Accessors, MethodSignature> productAccessors = exposeAssociationEnd(resourceSet,
 		    salesOrderItemToProduct.getEnds().get(1),
 		    new Accessors[] { Accessors.GETTER, Accessors.SETTER });
-	    SapClass salesOrder = createClass(resourceSet, "SalesOrder");
+	    SapClass salesOrder = createClass("SalesOrder");
+            resource.getContents().add(salesOrder);
 	    Association salesOrderToSalesOrderItems = MetamodelUtils.createAssociation(resourceSet, salesOrder, "salesOrder",
 		    1, 1, /* nav */ true, /* comp */ true, /* ordered */ false, /* unique */ false,
 		    salesOrderItem, "items", 0, -1, /* nav */ true, /* comp */ false, /* ordered */ true,
@@ -1386,7 +1405,8 @@ public class TestBasicExpressions extends TestCase {
 	    Map<Accessors, MethodSignature> itemsAccessors = exposeAssociationEnd(resourceSet,
 		    salesOrderToSalesOrderItems.getEnds().get(1),
 		    new Accessors[] { Accessors.GETTER, Accessors.ADDER, Accessors.REMOVER });
-	    SapClass customer = createClass(resourceSet, "Customer");
+	    SapClass customer = createClass("Customer");
+            resource.getContents().add(customer);
 	    Association salesOrderToCustomer = MetamodelUtils.createAssociation(resourceSet, salesOrder, "salesOrders",
 		    0, -1, /* nav */ true, /* comp */ false, /* ordered */ false, /* unique */ false,
 		    customer, "customer", 1, 1, /* nav */ true, /* comp */ false, /* ordered */ false,
@@ -1407,6 +1427,7 @@ public class TestBasicExpressions extends TestCase {
 	    // define a function that uses setter/getter/adder/remover to establish an
 	    // object graph when executed, and from that determines a value
 	    FunctionSignature sig = ClassesFactory.eINSTANCE.createFunctionSignature();
+            resource.getContents().add(sig);
 	    sig.setOutput(MetamodelUtils.createClassTypeDefinition(resourceSet, salesOrderItem, 0, -1));
 	    Block impl = ActionsFactory.eINSTANCE.createBlock();
 	    sig.setImplementation(impl);
@@ -1456,40 +1477,37 @@ public class TestBasicExpressions extends TestCase {
 		    salesOrderToCustomer, impl, so, c, "EMEA");
 	    // item #1
 	    impl.getStatements().add(assignNewToVariable(resourceSet, salesOrderItem, soi));
-	    createCodeToInvokeMethod(resourceSet, itemsAccessors.get(Accessors.ADDER), so, soi, impl);
+	    createCodeToInvokeMethod(itemsAccessors.get(Accessors.ADDER), so, soi, impl);
 	    impl.getStatements().add(assignNewToVariable(resourceSet, product, p));
-	    createCodeToInvokeMethod(resourceSet, productAccessors.get(Accessors.SETTER), soi, p, impl);
-	    createCodeToInvokeMethod(resourceSet, categoryAccessors.get(Accessors.SETTER),
-		    createVariableExpression(resourceSet, p),
-		    MetamodelUtils.createStringLiteral(resourceSet, "TheCategory1"), impl);
+	    createCodeToInvokeMethod(productAccessors.get(Accessors.SETTER), soi, p, impl);
+	    createCodeToInvokeMethod(categoryAccessors.get(Accessors.SETTER), createVariableExpression(p),
+		    MetamodelUtils.createStringLiteral(resourceSet, "TheCategory1"),
+		    impl);
 
 	    // item #2
 	    impl.getStatements().add(assignNewToVariable(resourceSet, salesOrderItem, soi));
-	    createCodeToInvokeMethod(resourceSet, itemsAccessors.get(Accessors.ADDER), so, soi, impl);
+	    createCodeToInvokeMethod(itemsAccessors.get(Accessors.ADDER), so, soi, impl);
 	    impl.getStatements().add(assignNewToVariable(resourceSet, product, p));
-	    createCodeToInvokeMethod(resourceSet, productAccessors.get(Accessors.SETTER), soi, p, impl);
-	    createCodeToInvokeMethod(resourceSet, categoryAccessors.get(Accessors.SETTER),
-		    createVariableExpression(resourceSet, p),
-		    MetamodelUtils.createStringLiteral(resourceSet, "TheCategory2"), impl);
+	    createCodeToInvokeMethod(productAccessors.get(Accessors.SETTER), soi, p, impl);
+	    createCodeToInvokeMethod(categoryAccessors.get(Accessors.SETTER), createVariableExpression(p),
+		    MetamodelUtils.createStringLiteral(resourceSet, "TheCategory2"),
+		    impl);
 
 	    // item #3
 	    impl.getStatements().add(assignNewToVariable(resourceSet, salesOrderItem, soi));
-	    createCodeToInvokeMethod(resourceSet, itemsAccessors.get(Accessors.ADDER), so, soi, impl);
+	    createCodeToInvokeMethod(itemsAccessors.get(Accessors.ADDER), so, soi, impl);
 	    impl.getStatements().add(assignNewToVariable(resourceSet, product, p));
-	    createCodeToInvokeMethod(resourceSet, productAccessors.get(Accessors.SETTER), soi, p, impl);
-	    createCodeToInvokeMethod(resourceSet, categoryAccessors.get(Accessors.SETTER),
-		    createVariableExpression(resourceSet, p),
-		    MetamodelUtils.createStringLiteral(resourceSet, "TheCategory3"), impl);
+	    createCodeToInvokeMethod(productAccessors.get(Accessors.SETTER), soi, p, impl);
+	    createCodeToInvokeMethod(categoryAccessors.get(Accessors.SETTER), createVariableExpression(p),
+		    MetamodelUtils.createStringLiteral(resourceSet, "TheCategory3"),
+		    impl);
 	    
 	    // remove item #3 again
-	    createCodeToInvokeMethod(resourceSet, itemsAccessors.get(Accessors.REMOVER), so, soi, impl);
+	    createCodeToInvokeMethod(itemsAccessors.get(Accessors.REMOVER), so, soi, impl);
 	    
 	    // now assemble the return expression that uses getters to navigate throughout the graph
 	    Return ret = ActionsFactory.eINSTANCE.createReturn();
-	    ret.setArgument(createMethodCallExpression(resourceSet, categoryAccessors.get(Accessors.GETTER),
-		    createMethodCallExpression(resourceSet, productAccessors.get(Accessors.GETTER),
-		    createMethodCallExpression(resourceSet, itemsAccessors.get(Accessors.GETTER),
-			    createVariableExpression(resourceSet, so)))));
+	    ret.setArgument(createMethodCallExpression(categoryAccessors.get(Accessors.GETTER), createMethodCallExpression(productAccessors.get(Accessors.GETTER), createMethodCallExpression(itemsAccessors.get(Accessors.GETTER), createVariableExpression(so)))));
 	    impl.getStatements().add(ret);
 	    FunctionCallExpression fce = MetamodelUtils.createFunctionCallExpression(resourceSet, sig);
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> evalResult = new RunletInterpreter(resourceSet, new RunletInMemoryRepository(com.sap.runlet.interpreter.Activator.getDefault().getModelAdapter())).evaluate(fce); // multi-valued because
@@ -1509,11 +1527,11 @@ public class TestBasicExpressions extends TestCase {
      * by <tt>on</tt>, passing the value bound to the variable identified by <tt>arg</tt>. The
      * resulting statement is appended to <tt>impl</tt>'s statement sequence.
      */
-    private void createCodeToInvokeMethod(ResourceSet resourceSet,
-	    MethodSignature method, Variable on, Variable arg, Block impl) {
-	Expression onExp = createVariableExpression(resourceSet, on);
-	Expression argExp = createVariableExpression(resourceSet, arg);
-	createCodeToInvokeMethod(resourceSet, method, onExp, argExp, impl);
+    private void createCodeToInvokeMethod(MethodSignature method,
+	    Variable on, Variable arg, Block impl) {
+	Expression onExp = createVariableExpression(on);
+	Expression argExp = createVariableExpression(arg);
+	createCodeToInvokeMethod(method, onExp, argExp, impl);
     }
 
     /**
@@ -1521,9 +1539,9 @@ public class TestBasicExpressions extends TestCase {
      * evaluates, passing the value to which <tt>argExp</tt> evaluates. The
      * resulting statement is appended to <tt>impl</tt>'s statement sequence.
      */
-    private void createCodeToInvokeMethod(ResourceSet resourceSet, MethodSignature method,
-	    Expression onExp, Expression argExp, Block impl) {
-	MethodCallExpression mce = createMethodCallExpression(resourceSet, method, onExp, argExp);
+    private void createCodeToInvokeMethod(MethodSignature method, Expression onExp,
+	    Expression argExp, Block impl) {
+	MethodCallExpression mce = createMethodCallExpression(method, onExp, argExp);
 	ExpressionStatement es = ActionsFactory.eINSTANCE.createExpressionStatement();
 	es.setExpression(mce);
 	impl.getStatements().add(es);
@@ -1533,8 +1551,8 @@ public class TestBasicExpressions extends TestCase {
      * Creates and returns a method call expression. If argument expressions (<tt>argExp</tt>)
      * are provided, they are added to the expression's parameter list.
      */
-    private MethodCallExpression createMethodCallExpression(ResourceSet resourceSet,
-	    MethodSignature method, Expression onExp, Expression... argExps) {
+    private MethodCallExpression createMethodCallExpression(MethodSignature method,
+	    Expression onExp, Expression... argExps) {
 	MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
 	mce.setObject(onExp);
 	mce.setMethodSignature(method);
@@ -1579,7 +1597,7 @@ public class TestBasicExpressions extends TestCase {
 	    //    arr = arr->including(3);
 	    for (int i=1; i<=count; i++) {
 		Including incl = CollectionexpressionsFactory.eINSTANCE.createIncluding();
-		incl.setSource(createVariableExpression(resourceSet, arr));
+		incl.setSource(createVariableExpression(arr));
 		incl.setArgument(MetamodelUtils.createNumberLiteral(resourceSet, ""+i));
 		Assignment assignment = ActionsFactory.eINSTANCE.createAssignment();
 		assignment.setArgument(incl);
@@ -1589,7 +1607,7 @@ public class TestBasicExpressions extends TestCase {
 	    //   foreach (Number i:arr) {
 	    Foreach foreach = ActionsFactory.eINSTANCE.createForeach();
 	    impl.getStatements().add(foreach);
-	    foreach.setCollection(createVariableExpression(resourceSet, arr));
+	    foreach.setCollection(createVariableExpression(arr));
 	    behavioral.actions.Iterator iter = ActionsFactory.eINSTANCE.createIterator();
 	    iter.setName("i");
 	    iter.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinitionExactlyOne(resourceSet, MetamodelUtils.findClass(resourceSet, "Number")));
@@ -1598,9 +1616,9 @@ public class TestBasicExpressions extends TestCase {
 	    foreach.getNestedBlocks().add(foreachBlock);
 	    //     result = result.plus(i);
 	    MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
-	    mce.setObject(createVariableExpression(resourceSet, result));
+	    mce.setObject(createVariableExpression(result));
 	    mce.setMethodSignature(MetamodelUtils.findMethod(resourceSet, "Number", "plus"));
-	    mce.getParameters().add(createVariableExpression(resourceSet, iter));
+	    mce.getParameters().add(createVariableExpression(iter));
 	    Assignment assignmentToResult = ActionsFactory.eINSTANCE.createAssignment();
 	    assignmentToResult.setArgument(mce);
 	    assignmentToResult.setAssignTo(result);
@@ -1608,7 +1626,7 @@ public class TestBasicExpressions extends TestCase {
 	    //   }
 	    //   return result;
 	    Return ret = ActionsFactory.eINSTANCE.createReturn();
-	    ret.setArgument(createVariableExpression(resourceSet, result));
+	    ret.setArgument(createVariableExpression(result));
 	    impl.getStatements().add(ret);
 	    // }
 	    
@@ -1655,7 +1673,7 @@ public class TestBasicExpressions extends TestCase {
 	    //    arr = arr->including(3);
 	    for (int i=1; i<=count; i++) {
 		Including incl = CollectionexpressionsFactory.eINSTANCE.createIncluding();
-		incl.setSource(createVariableExpression(resourceSet, arr));
+		incl.setSource(createVariableExpression(arr));
 		incl.setArgument(MetamodelUtils.createNumberLiteral(resourceSet, ""+i));
 		Assignment assignment = ActionsFactory.eINSTANCE.createAssignment();
 		assignment.setArgument(incl);
@@ -1664,7 +1682,7 @@ public class TestBasicExpressions extends TestCase {
 	    }
 	    //   arr = arr->excluding(2);
 	    Excluding excl = CollectionexpressionsFactory.eINSTANCE.createExcluding();
-	    excl.setSource(createVariableExpression(resourceSet, arr));
+	    excl.setSource(createVariableExpression(arr));
 	    excl.setArgument(MetamodelUtils.createNumberLiteral(resourceSet, "2"));
 	    Assignment assignment = ActionsFactory.eINSTANCE.createAssignment();
 	    assignment.setArgument(excl);
@@ -1674,7 +1692,7 @@ public class TestBasicExpressions extends TestCase {
 	    //   foreach (Number i:arr) {
 	    Foreach foreach = ActionsFactory.eINSTANCE.createForeach();
 	    impl.getStatements().add(foreach);
-	    foreach.setCollection(createVariableExpression(resourceSet, arr));
+	    foreach.setCollection(createVariableExpression(arr));
 	    behavioral.actions.Iterator iter = ActionsFactory.eINSTANCE.createIterator();
 	    iter.setName("i");
 	    iter.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinitionExactlyOne(resourceSet, MetamodelUtils.findClass(resourceSet, "Number")));
@@ -1683,9 +1701,9 @@ public class TestBasicExpressions extends TestCase {
 	    foreach.getNestedBlocks().add(foreachBlock);
 	    //     result = result.plus(i);
 	    MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
-	    mce.setObject(createVariableExpression(resourceSet, result));
+	    mce.setObject(createVariableExpression(result));
 	    mce.setMethodSignature(MetamodelUtils.findMethod(resourceSet, "Number", "plus"));
-	    mce.getParameters().add(createVariableExpression(resourceSet, iter));
+	    mce.getParameters().add(createVariableExpression(iter));
 	    Assignment assignmentToResult = ActionsFactory.eINSTANCE.createAssignment();
 	    assignmentToResult.setArgument(mce);
 	    assignmentToResult.setAssignTo(result);
@@ -1693,7 +1711,7 @@ public class TestBasicExpressions extends TestCase {
 	    //   }
 	    //   return result;
 	    Return ret = ActionsFactory.eINSTANCE.createReturn();
-	    ret.setArgument(createVariableExpression(resourceSet, result));
+	    ret.setArgument(createVariableExpression(result));
 	    impl.getStatements().add(ret);
 	    // }
 	    
@@ -1749,7 +1767,7 @@ public class TestBasicExpressions extends TestCase {
 	    for (int i=0; i<count; i++) {
 		for (int t = 0; t < times; t++) {
 		    Including incl = CollectionexpressionsFactory.eINSTANCE.createIncluding();
-		    incl.setSource(createVariableExpression(resourceSet, arr));
+		    incl.setSource(createVariableExpression(arr));
 		    incl.setArgument(MetamodelUtils.createNumberLiteral(resourceSet, "" + i));
 		    Assignment assignment = ActionsFactory.eINSTANCE.createAssignment();
 		    assignment.setArgument(incl);
@@ -1771,7 +1789,7 @@ public class TestBasicExpressions extends TestCase {
 	    //    toExclude = toExclude->including(toExclude[toExclude.length-1]);
 	    for (int excl:toExclude) {
 		Including incl = CollectionexpressionsFactory.eINSTANCE.createIncluding();
-		incl.setSource(createVariableExpression(resourceSet, toExcludeVar));
+		incl.setSource(createVariableExpression(toExcludeVar));
 		incl.setArgument(MetamodelUtils.createNumberLiteral(resourceSet, ""+excl));
 		Assignment assignment = ActionsFactory.eINSTANCE.createAssignment();
 		assignment.setArgument(incl);
@@ -1781,8 +1799,8 @@ public class TestBasicExpressions extends TestCase {
 	    
 	    //   arr = arr->excludingAt(toExclude, at);
 	    ExcludingAt excl = CollectionexpressionsFactory.eINSTANCE.createExcludingAt();
-	    excl.setSource(createVariableExpression(resourceSet, arr));
-	    excl.setArgument(createVariableExpression(resourceSet, toExcludeVar));
+	    excl.setSource(createVariableExpression(arr));
+	    excl.setArgument(createVariableExpression(toExcludeVar));
 	    excl.setAt(at);
 	    Assignment assignment = ActionsFactory.eINSTANCE.createAssignment();
 	    assignment.setArgument(excl);
@@ -1792,7 +1810,7 @@ public class TestBasicExpressions extends TestCase {
 	    //   foreach (Number i:arr) {
 	    Foreach foreach = ActionsFactory.eINSTANCE.createForeach();
 	    impl.getStatements().add(foreach);
-	    foreach.setCollection(createVariableExpression(resourceSet, arr));
+	    foreach.setCollection(createVariableExpression(arr));
 	    behavioral.actions.Iterator iter = ActionsFactory.eINSTANCE.createIterator();
 	    iter.setName("i");
 	    iter.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinitionExactlyOne(resourceSet, MetamodelUtils.findClass(resourceSet, "Number")));
@@ -1801,9 +1819,9 @@ public class TestBasicExpressions extends TestCase {
 	    foreach.getNestedBlocks().add(foreachBlock);
 	    //     result = result.plus(i);
 	    MethodCallExpression mce = ExpressionsFactory.eINSTANCE.createMethodCallExpression();
-	    mce.setObject(createVariableExpression(resourceSet, result));
+	    mce.setObject(createVariableExpression(result));
 	    mce.setMethodSignature(MetamodelUtils.findMethod(resourceSet, "Number", "plus"));
-	    mce.getParameters().add(createVariableExpression(resourceSet, iter));
+	    mce.getParameters().add(createVariableExpression(iter));
 	    Assignment assignmentToResult = ActionsFactory.eINSTANCE.createAssignment();
 	    assignmentToResult.setArgument(mce);
 	    assignmentToResult.setAssignTo(result);
@@ -1811,7 +1829,7 @@ public class TestBasicExpressions extends TestCase {
 	    //   }
 	    //   return result;
 	    Return ret = ActionsFactory.eINSTANCE.createReturn();
-	    ret.setArgument(createVariableExpression(resourceSet, result));
+	    ret.setArgument(createVariableExpression(result));
 	    impl.getStatements().add(ret);
 	    // }
 	    
