@@ -97,6 +97,61 @@ public class OclIaTest extends BaseDepartmentTest {
     }
 
     @Test
+    public void testResultUseInIterate() {
+        OCLExpression expression = (OCLExpression) parse(
+                "context data::classes::SapClass inv testMoveWithoutImpact:\n" +
+                "Sequence{1, 2, 3}->iterate(i; result:Set(data::classes::SapClass)=Set{self} | result.ownedSignatures.output.oclAsType(data::classes::ClassTypeDefinition).clazz)",
+                this.cp).iterator().next().getSpecification().getBodyExpression();
+        this.cp.eResource().getContents().add(expression);
+        SapClass c1 = ClassesFactory.eINSTANCE.createSapClass();
+        c1.setName("c1");
+        SapClass c2 = ClassesFactory.eINSTANCE.createSapClass();
+        c2.setName("c2");
+        SapClass c3 = ClassesFactory.eINSTANCE.createSapClass();
+        c3.setName("c3");
+        SapClass c4 = ClassesFactory.eINSTANCE.createSapClass();
+        c4.setName("c4");
+        SapClass c5 = ClassesFactory.eINSTANCE.createSapClass();
+        c5.setName("c5");
+        SapClass c6 = ClassesFactory.eINSTANCE.createSapClass();
+        c6.setName("c6");
+
+        connectWithMethodOutput(c1, c2);
+        connectWithMethodOutput(c2, c3);
+        connectWithMethodOutput(c3, c4);
+        connectWithMethodOutput(c4, c5);
+
+        this.cp.eResource().getContents().add(c1);
+        this.cp.eResource().getContents().add(c2);
+        this.cp.eResource().getContents().add(c3);
+        this.cp.eResource().getContents().add(c4);
+        this.cp.eResource().getContents().add(c5);
+        final Notification[] noti = new Notification[1];
+        Adapter adapter = new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                noti[0] = msg;
+            }
+        };
+        c5.eAdapters().add(adapter);
+        connectWithMethodOutput(c5, c6);
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression, ClassesPackage.eINSTANCE
+                .getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti[0]);
+        assertEquals(5, impact.size()); // expecting all c1..c6 to be impacted
+        assertFalse(impact.contains(c6));
+    }
+
+    private void connectWithMethodOutput(SapClass c1, SapClass c2) {
+        MethodSignature m1 = ClassesFactory.eINSTANCE.createMethodSignature();
+        m1.setName("m1");
+        ClassTypeDefinition ctd1 = ClassesFactory.eINSTANCE.createClassTypeDefinition();
+        ctd1.setClazz(c2);
+        m1.setOutput(ctd1);
+        c1.getOwnedSignatures().add(m1);
+    }
+
+    @Test
     public void testMoveWithoutImpact() {
         OCLExpression expression = (OCLExpression) parse(
                 "context data::classes::SapClass inv testMoveWithoutImpact:\n" + "self.ownedSignatures->at(3).name = 'm3'",
