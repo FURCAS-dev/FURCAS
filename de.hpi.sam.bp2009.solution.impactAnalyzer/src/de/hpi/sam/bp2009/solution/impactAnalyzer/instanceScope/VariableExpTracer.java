@@ -133,21 +133,28 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
     }
 
     private NavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+        // the init expression can't reference the result variable, therefore no recursive reference may occur here:
 	NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath(
 	        (OCLExpression) getVariableDeclaration().getInitExpression(),
 	        context,
 	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+	// the body expression, however, may reference the result variable; computing the body's navigation step graph
+	// may therefore recursively look up the navigation step graph for the result variable. We therefore need to
+	// enter a placeholder into the cache before we start computing the navigation step graph for the body expression:
+        IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression(), getTupleLiteralPartNamesToLookFor());
 	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
 	        (OCLExpression) ((IterateExp) getVariableDeclaration().eContainer()).getBody(),
 	        context,
 	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
-	return pathCache.navigationStepForBranch(
+	NavigationStep actualStepForIterateResultVariableExp = pathCache.navigationStepForBranch(
 		getInnermostElementType(getExpression().getType()),
 	        context,
 	        getExpression(),
 	        getTupleLiteralPartNamesToLookFor(),
 	        stepForInitExpression,
 	        stepForBodyExpression);
+	indirectingStep.setActualStep(actualStepForIterateResultVariableExp);
+	return indirectingStep;
     }
 
     private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
