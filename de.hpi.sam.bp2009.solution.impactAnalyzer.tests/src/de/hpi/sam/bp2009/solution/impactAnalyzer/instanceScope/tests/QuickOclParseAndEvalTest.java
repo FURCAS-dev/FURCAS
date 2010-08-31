@@ -56,6 +56,37 @@ public class QuickOclParseAndEvalTest extends TestCase
   }
 
     /**
+     * Ensure that "or" and "and" do shortcut evaluation for invalid arguments
+     */
+    @Test
+    public void testParseAndEvaluateOclExpressionWithInvalidInBooleanShortcutEval() throws ParserException {
+        OCLExpression expression4 = oclHelper.createQuery("false and invalid");
+        Object result4 = ocl.evaluate(null, expression4);
+        assertEquals(false, result4);
+        OCLExpression expression5 = oclHelper.createQuery("true or invalid");
+        Object result5 = ocl.evaluate(null, expression5);
+        assertEquals(true, result5);
+        OCLExpression expression6 = oclHelper.createQuery("(invalid or true).oclIsInvalid()");
+        Object result6 = ocl.evaluate(null, expression6);
+        assertEquals(true, result6);
+        OCLExpression expression7 = oclHelper.createQuery("(invalid and false).oclIsInvalid()");
+        Object result7 = ocl.evaluate(null, expression7);
+        assertEquals(true, result7);
+    }
+
+  /**
+   * Testing if a let-expression evaluates to OclInvalid if the initExpression evaluates to OclInvalid although
+   * the variable is not used in the "in" expression.
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionWithInvalidLetInitExpression() throws ParserException {
+      OCLExpression expression4 = oclHelper
+              .createQuery("let x:Integer=self.name.size() in 1+2");
+      Object result4 = ocl.evaluate(null, expression4);
+      assertEquals(3, result4);
+  }
+
+    /**
      * Testing if two iterator variables appear as such
      */
     @Test
