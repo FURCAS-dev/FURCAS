@@ -2,14 +2,12 @@ package com.sap.ocl.oppositefinder.query2.test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -24,7 +22,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.ocl.oppositefinder.query2.DefaultQueryContextProvider;
-import com.sap.ocl.oppositefinder.query2.Query2OppositeEndFinder;
 import company.CompanyFactory;
 import company.CompanyPackage;
 import company.Department;
@@ -32,8 +29,7 @@ import company.Division;
 import company.Freelance;
 import company.Student;
 
-public class TestQuery2OppositeEndFinder extends TestCase {
-    private Query2OppositeEndFinder oppositeEndFinder = Query2OppositeEndFinder.getInstance();
+public class FailingQuery2Test extends TestCase {
     private ResourceSet rs;
     private Resource r;
     private Division div1;
@@ -65,13 +61,6 @@ public class TestQuery2OppositeEndFinder extends TestCase {
     }
     
     @Test
-    public void testAllInstancesForAbstractBaseClass() {
-        Set<EObject> allEmployees = oppositeEndFinder.getAllInstancesSeeing(CompanyPackage.eINSTANCE.getEmployee(), div1);
-        assertTrue(allEmployees.contains(student));
-        assertTrue(allEmployees.contains(freelance));
-    }
-    
-    @Test
     public void testFindOppositeEnds() {
         List<EStructuralFeature> ends = new ArrayList<EStructuralFeature>();
         findOppositeEnds(CompanyPackage.eINSTANCE.getDepartment(), "department2division", ends);
@@ -99,11 +88,11 @@ public class TestQuery2OppositeEndFinder extends TestCase {
             }
             final ResultSet result = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance()).execute(
                     "select oppositeParent from "+ //$NON-NLS-1$
-                            "[http://www.eclipse.org/emf/2002/Ecore#//EReference] as oppositeParent, " + //$NON-NLS-1$
                             "[http://www.eclipse.org/emf/2002/Ecore#//EAnnotation] as annotation, " + //$NON-NLS-1$
                             "[http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry] as detail, " + //$NON-NLS-1$
                             "[http://www.eclipse.org/emf/2002/Ecore#//EClassifier] as classifier in elements {" + //$NON-NLS-1$
-                            allClassifierSupertypeUris + "} " + //$NON-NLS-1$
+                            allClassifierSupertypeUris + "}, " + //$NON-NLS-1$
+                            "[http://www.eclipse.org/emf/2002/Ecore#//EReference] as oppositeParent " + //$NON-NLS-1$
                             "where oppositeParent.eAnnotations = annotation " + //$NON-NLS-1$
                             "where annotation.details = detail " + //$NON-NLS-1$
                             "where detail.key = 'Property.oppositeRoleName'" + //$NON-NLS-1$
