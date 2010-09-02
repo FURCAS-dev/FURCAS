@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,7 +20,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
     /**
      * Constructs a non-{@link NavigationStep#isAbsolute() absolute} navigation step that computes all instances of
      * <tt>targetType</tt> and all its direct and indirect subtypes, if the <tt>fromObject</tt> passed to
-     * {@link #navigate(Set, Map, Notification)} conforms to the <tt>sourceType</tt>. Otherwise, an empty set is returned. The consideration of
+     * {@link #navigate(Set, TracebackCache, Notification)} conforms to the <tt>sourceType</tt>. Otherwise, an empty set is returned. The consideration of
      * the <tt>fromObject</tt> is the reason why if constructed with this constructor an object of this class is not absolute.
      * 
      * @param debugInfo
@@ -39,7 +38,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
 
     
     @Override
-    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances((Notifier) changeEvent.getNotifier(), getTargetType(),
                 oppositeEndFinder)) {

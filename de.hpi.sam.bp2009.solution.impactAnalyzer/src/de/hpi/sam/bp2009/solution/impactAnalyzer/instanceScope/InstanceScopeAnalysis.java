@@ -514,7 +514,7 @@ public class InstanceScopeAnalysis {
         NavigationStep step = getNavigationStepsToSelfForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(),
                 context);
         Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
-        Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
+        TracebackCache cache = new TracebackCache();
         Set<AnnotatedEObject> result = step.navigate(sourceElementAsSet, cache, changeEvent);
         return result;
     }

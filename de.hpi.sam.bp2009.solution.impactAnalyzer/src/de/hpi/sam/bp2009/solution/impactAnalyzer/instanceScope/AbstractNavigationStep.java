@@ -27,9 +27,9 @@ import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
 /**
  * Abstract implementation of the {@link NavigationStep} interface. Provides fields for source and target type and performs the
- * necessary type checks in {@link #navigate(Set, Map, Notification)}. Furthermore, does the unfolding of the <code>from</code>
- * argument to {@link #navigate(Set, Map, Notification)} and dispatches for individual objects to the
- * {@link #navigate(AnnotatedEObject, Map, Notification)} operation to be implemented by all subclasses. Furthermore, generaly
+ * necessary type checks in {@link #navigate(Set, TracebackCache, Notification)}. Furthermore, does the unfolding of the <code>from</code>
+ * argument to {@link #navigate(Set, TracebackCache, Notification)} and dispatches for individual objects to the
+ * {@link #navigate(AnnotatedEObject, TracebackCache, Notification)} operation to be implemented by all subclasses. Furthermore, generaly
  * bookkeeping facilities are implemented here, such as counting cache misses, managing an {@link #id ID} and maintaining for
  * which {@link OCLExpression}s this is the corresponding navigation step (see {@link #debugInfo}).
  * <p>
@@ -40,7 +40,7 @@ import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
  *
  * A default {@link #hashCode} and {@link #equals} implementation is provided based on the <em>behavior</em> of this step.
  * Navigation steps are only allowed to call themselves equal to another step if for all <code>from</code> objects their
- * {@link #navigate(AnnotatedEObject, Map, Notification)} operation returns equal results for an equal model state and the same
+ * {@link #navigate(AnnotatedEObject, TracebackCache, Notification)} operation returns equal results for an equal model state and the same
  * original change {@link Notification notification}.<p>
  *
  * Subclasses have to make sure that any modification to equals/hashCode-related parts of the object's state
@@ -323,7 +323,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      *            keys are lists of which the first element (index 0) is the {@link NavigationStep}, the second element (index 1)
      *            the from-object (of type {@link AnnotatedEObject}) for which to look up any previously computed results.
      */
-    public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
+    public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, TracebackCache cache, Notification changeEvent) {
         incrementNavigateCounter(from);
 
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>(from.size());
@@ -346,17 +346,16 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         return result;
     }
 
-    private Collection<AnnotatedEObject> getFromCacheOrNavigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
+    private Collection<AnnotatedEObject> getFromCacheOrNavigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
         Set<AnnotatedEObject> result;
         List<Object> cacheKey = new BasicEList<Object>();
         cacheKey.add(this);
         cacheKey.add(fromObject);
 
-        result = cache.get(cacheKey);
+        result = cache.get(this, fromObject);
         if (result == null) {
-            cacheMisses++;
-            result = navigate(fromObject , cache, changeEvent);
-            cache.put(cacheKey, result);
+            result = navigate(fromObject, cache, changeEvent);
+            cache.put(this, fromObject, result);
         }
         return result;
     }
@@ -392,7 +391,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     }
 
     protected abstract Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject,
-            Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent);
+            TracebackCache cache, Notification changeEvent);
 
     @Override
     public String toString() {

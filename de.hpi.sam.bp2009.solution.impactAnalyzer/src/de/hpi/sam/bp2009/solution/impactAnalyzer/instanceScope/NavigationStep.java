@@ -2,8 +2,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.swing.event.ChangeListener;
@@ -49,12 +47,12 @@ public interface NavigationStep extends SemanticComparable {
      *            keys are lists of which the first element (index 0) is the {@link NavigationStep}, the second element (index 1)
      *            the from-object (of type {@link AnnotatedEObject}) for which to look up any previously computed results.
      */
-    public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache,
+    public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, TracebackCache cache,
             Notification changeEvent);
 
     /**
      * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is passed to
-     * {@link #navigate(Set, Map, Notification)}. Those must return <tt>true</tt> here. Examples are navigation steps returning
+     * {@link #navigate(Set, TracebackCache, Notification)}. Those must return <tt>true</tt> here. Examples are navigation steps returning
      * all instances of a given type and the step always returning the empty set.
      */
     boolean isAbsolute();

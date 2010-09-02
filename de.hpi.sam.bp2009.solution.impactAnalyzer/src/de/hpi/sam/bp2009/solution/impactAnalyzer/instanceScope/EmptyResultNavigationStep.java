@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,7 +22,7 @@ public class EmptyResultNavigationStep extends AbsoluteNavigationStep {
 
 	@Override
 	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject,
-			Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
+			TracebackCache cache, Notification changeEvent) {
 		return Collections.emptySet();
 	}
 }
