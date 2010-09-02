@@ -13,11 +13,9 @@ public abstract class SemanticIdentity {
 	int result = 0;
 	if (!currentlyEvaluatingHashCode) {
 	    currentlyEvaluatingHashCode = true;
-
 	    result = calculateHashCode();
 	}
 	currentlyEvaluatingHashCode = false;
-
 	return result;
     }
 
