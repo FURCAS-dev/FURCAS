@@ -55,6 +55,22 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	return getVariableDeclaration().getName().equals(EcoreEnvironment.SELF_VARIABLE_NAME);
     }
 
+    /**
+     * The step produced will be invoked with the value for the variable. This knowledge can be helpful when trying to perform
+     * partial evaluations. Variables have an {@link OCLExpression} as their scope. For example, a let-variable has the
+     * {@link LetExp#getIn() in} expression as its static scope. Additionally, scopes are dynamically instantiated during
+     * expression evaluation. For example, during evaluation of an {@link IterateExp}, the body expression forms the static scope
+     * for the {@link IterateExp#getResult() result variable}. During each iteration, a new dynamic scope is created and the same
+     * static result variable may have a different value in each dynamic scope. It is important to understand that the navigation
+     * step learns about the value of the variable only in one particular dynamic scope.
+     * <p>
+     * 
+     * Dynamic scopes are identified by the {@link OCLExpression} object forming the static scope, combined with a unique
+     * identifier, implemented as a simple counter.<p>
+     * 
+     * It is also important to understand that variables of a collection type cannot have their value fully inferred by the
+     * traceback process as only single elements are visited during the trace.
+     */
     @Override
     public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	NavigationStep result;
@@ -68,10 +84,11 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	    result = tracebackLetVariable(context, pathCache, filterSynthesizer);
 	} else if (isOperationParameter()) {
 	    result = tracebackOperationParameter(context, pathCache, filterSynthesizer);
-	} else
+	} else {
 	    throw new RuntimeException("Unknown variable expression that is neither an iterator variable "
 		    + "nor an iterate result variable nor an operation parameter nor a let variable nor self: "
 		    + getExpression().getReferredVariable().getName());
+	}
 	return result;
     }
 
@@ -166,17 +183,14 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 
     private NavigationStep tracebackSelf(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
 	NavigationStep result;
-
 	// all operation bodies must have been reached through at least one call; all calls are
 	// recorded in the filter synthesizer's cache. Therefore, we can determine the relationship
 	// between body and EOperation.
 	Set<OperationCallExp> filterSynthesizerCallCache = filterSynthesizer.getCallsOf(getRootExpression());
 	EOperation op = null;
-
 	if(!filterSynthesizerCallCache.isEmpty()){
 	    op = filterSynthesizerCallCache.iterator().next().getReferredOperation();
 	}
-
 	if (op != null) {
 	    // in an operation, self needs to be traced back to all source expressions of
 	    // calls to that operation
