@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.Variable;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
@@ -54,6 +57,10 @@ public class TracebackCache {
     
     public void put(NavigationStep step, AnnotatedEObject from, Set<AnnotatedEObject> result) {
         navigateCache.put(new Pair<NavigationStep, AnnotatedEObject>(step, from), result);
+    }
+
+    public void setVariableValue(Variable<EClassifier, EParameter> variable, AnnotatedEObject fromObject) {
+        // TODO implement TracebackCache.setVariableValue(...)
     }
 
 }

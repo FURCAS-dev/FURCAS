@@ -92,27 +92,27 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	return result;
     }
 
-    private NavigationStep tracebackOperationParameter(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-	OCLExpression rootExpression = getRootExpression();
-
+    private VariableDefiningNavigationStep tracebackOperationParameter(EClass context, PathCache pathCache,
+            FilterSynthesisImpl filterSynthesizer) {
+        OCLExpression rootExpression = getRootExpression();
 	// all operation bodies must have been reached through at least one call; all calls are
 	// recorded in the filter synthesizer's cache. Therefore, we can determine the relationship
 	// between body and EOperation.
 	EOperation op = filterSynthesizer.getCallsOf(rootExpression).iterator().next().getReferredOperation();
-
 	int pos = getParameterPosition(op);
 	List<NavigationStep> stepsPerCall = new ArrayList<NavigationStep>();
-	IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression(), getTupleLiteralPartNamesToLookFor());
+	VariableDefiningNavigationStep indirectingStep = pathCache.createVariableDefiningNavigationStep(
+	        getExpression().getReferredVariable(), getExpression(), getTupleLiteralPartNamesToLookFor());
 	// As new operation calls change the set of OperationCallExp returned here for existing operations,
 	// the PathCache cannot trivially be re-used across expression registrations. We would have to
 	// invalidate all cache entries that depend on this step. Or we add steps produced for new calls to this
 	// step as the calls get added; but that may require a re-assessment of the isAlwaysEmpty() calls.
 	// This may not pay off.
 	for (OperationCallExp call : filterSynthesizer.getCallsOf(rootExpression)) {
-	    OCLExpression argumentExpression = (OCLExpression) call.getArgument().get(pos);
-	    stepsPerCall.add(pathCache.getOrCreateNavigationPath(argumentExpression, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
-	}
-
+            OCLExpression argumentExpression = (OCLExpression) call.getArgument().get(pos);
+            stepsPerCall.add(pathCache.getOrCreateNavigationPath(argumentExpression, context, filterSynthesizer,
+                    getTupleLiteralPartNamesToLookFor()));
+        }
 	indirectingStep.setActualStep(pathCache.navigationStepForBranch(
 		getInnermostElementType(getExpression().getType()),
 	        context,
@@ -143,13 +143,15 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	return pos;
     }
 
-    private NavigationStep tracebackLetVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-	return pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration().getInitExpression(),
-	        context,
-	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+    private VariableDefiningNavigationStep tracebackLetVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+        VariableDefiningNavigationStep result = pathCache.createVariableDefiningNavigationStep(getExpression()
+                .getReferredVariable(), getExpression(), getTupleLiteralPartNamesToLookFor());
+        result.setActualStep(pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration().getInitExpression(),
+                context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
+        return result;
     }
 
-    private NavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    private VariableDefiningNavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
         // the init expression can't reference the result variable, therefore no recursive reference may occur here:
 	NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath(
 	        (OCLExpression) getVariableDeclaration().getInitExpression(),
@@ -158,7 +160,8 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	// the body expression, however, may reference the result variable; computing the body's navigation step graph
 	// may therefore recursively look up the navigation step graph for the result variable. We therefore need to
 	// enter a placeholder into the cache before we start computing the navigation step graph for the body expression:
-        IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression(), getTupleLiteralPartNamesToLookFor());
+	VariableDefiningNavigationStep indirectingStep = pathCache.createVariableDefiningNavigationStep(
+	        getExpression().getReferredVariable(), getExpression(), getTupleLiteralPartNamesToLookFor());
 	NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
 	        (OCLExpression) ((IterateExp) getVariableDeclaration().eContainer()).getBody(),
 	        context,
@@ -174,15 +177,18 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	return indirectingStep;
     }
 
-    private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-	return pathCache.getOrCreateNavigationPath(
-	        (OCLExpression) ((LoopExp) getVariableDeclaration().eContainer()).getSource(),
-	        context,
-	        filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+    private VariableDefiningNavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache,
+            FilterSynthesisImpl filterSynthesizer) {
+        VariableDefiningNavigationStep result = pathCache.createVariableDefiningNavigationStep(getExpression()
+                .getReferredVariable(), getExpression(), getTupleLiteralPartNamesToLookFor());
+        result.setActualStep(pathCache.getOrCreateNavigationPath(
+                (OCLExpression) ((LoopExp) getVariableDeclaration().eContainer()).getSource(), context, filterSynthesizer,
+                getTupleLiteralPartNamesToLookFor()));
+        return result;
     }
 
-    private NavigationStep tracebackSelf(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-	NavigationStep result;
+    private VariableDefiningNavigationStep tracebackSelf(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+        VariableDefiningNavigationStep result;
 	// all operation bodies must have been reached through at least one call; all calls are
 	// recorded in the filter synthesizer's cache. Therefore, we can determine the relationship
 	// between body and EOperation.
@@ -195,7 +201,8 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	    // in an operation, self needs to be traced back to all source expressions of
 	    // calls to that operation
 	    Collection<OperationCallExp> calls = filterSynthesizer.getCallsOf(getRootExpression());
-	    IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression(), getTupleLiteralPartNamesToLookFor());
+	    VariableDefiningNavigationStep indirectingStep = pathCache.createVariableDefiningNavigationStep(
+	            getExpression().getReferredVariable(), getExpression(), getTupleLiteralPartNamesToLookFor());
 	    List<NavigationStep> stepsForCalls = new ArrayList<NavigationStep>();
 	    for (OperationCallExp call : calls) {
 		OCLExpression callSource = (OCLExpression) call.getSource();
@@ -213,10 +220,12 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 	    result = indirectingStep;
 	} else {
 	    // self occurred outside of an operation; it evaluates to s for s being the context
-	    result = new IdentityNavigationStep(
+            result = pathCache.createVariableDefiningNavigationStep(getExpression().getReferredVariable(), getExpression(),
+                    getTupleLiteralPartNamesToLookFor());
+            result.setActualStep(new IdentityNavigationStep(
 	            (EClass) getExpression().getType(),
 	            (EClass) getExpression().getType(),
-		    getExpression());
+		    getExpression()));
 	}
 	return result;
     }

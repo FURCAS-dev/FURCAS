@@ -47,61 +47,59 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
      */
     private final ThreadLocal<Set<EObject>> currentlyEvaluatingNavigateFor = new IndirectingStepThreadLocal();
 
-    public IndirectingStep(OCLExpression expr) {
-	super(null, null, expr);
-
+    public IndirectingStep(OCLExpression debugInfo) {
+	super(null, null, debugInfo);
 	semanticIdentity = new IndirectingStepSemanticIdentity();
     }
 
-    public class IndirectingStepSemanticIdentity extends SemanticIdentity{
-    @Override
-    public synchronized boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || hashCode() != o.hashCode()) {
-            return false;
-        }
-	for (int i=currentlyEvaluatingEqualsForParameters.size()-1; i>=0; i--) {
-	    if (currentlyEvaluatingEqualsForParameters.get(i) == o) {
+    public class IndirectingStepSemanticIdentity extends SemanticIdentity {
+        @Override
+        public synchronized boolean equals(Object o) {
+            if (this == o) {
                 return true;
-	    }
-        }
-        boolean result;
-        currentlyEvaluatingEqualsForParameters.add(o);
-        if (actualStep == null) {
-            result = false; // not identical; could be set to something different later
-        } else {
-            if (o instanceof IndirectingStep) {
-                result = actualStep.equals(((IndirectingStep) o).getActualStep());
-            } else {
-                result = false;
             }
+            if (o == null || hashCode() != o.hashCode()) {
+                return false;
+            }
+            for (int i = currentlyEvaluatingEqualsForParameters.size() - 1; i >= 0; i--) {
+                if (currentlyEvaluatingEqualsForParameters.get(i) == o) {
+                    return true;
+                }
+            }
+            boolean result;
+            currentlyEvaluatingEqualsForParameters.add(o);
+            if (actualStep == null) {
+                result = false; // not identical; could be set to something different later
+            } else {
+                if (o instanceof IndirectingStep) {
+                    result = actualStep.equals(((IndirectingStep) o).getActualStep());
+                } else {
+                    result = false;
+                }
+            }
+            currentlyEvaluatingEqualsForParameters.remove(currentlyEvaluatingEqualsForParameters.size() - 1);
+            return result;
         }
-        currentlyEvaluatingEqualsForParameters.remove(currentlyEvaluatingEqualsForParameters.size()-1);
-	return result;
-    }
 
-    @Override
-    protected synchronized int calculateHashCode() {
-	int result;
-	if (currentlyEvaluatingHashCode) {
-	    result = 0;
-        } else {
-        if (actualStep == null) {
-            result = getStep().hashCode();
-        } else {
-            result = hashCode;
+        @Override
+        protected synchronized int calculateHashCode() {
+            int result;
+            if (currentlyEvaluatingHashCode) {
+                result = 0;
+            } else {
+                if (actualStep == null) {
+                    result = getStep().hashCode();
+                } else {
+                    result = hashCode;
+                }
+            }
+            return result;
         }
+
+        @Override
+        public NavigationStep getStep() {
+            return IndirectingStep.this;
         }
-
-	return result;
-    }
-
-    @Override
-    public NavigationStep getStep() {
-	return IndirectingStep.this;
-    }
     }
 
     @SuppressWarnings("unused")
