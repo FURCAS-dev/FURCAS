@@ -217,28 +217,46 @@ public class DefaultOppositeEndFinder implements OppositeEndFinder {
      * @param target
      *            must be a non-<code>null</code> {@link EObject}
      */
-    public Object navigateOppositePropertyWithForwardScope(EStructuralFeature property, EObject target) {
+    public Collection<EObject> navigateOppositePropertyWithForwardScope(EStructuralFeature property, EObject target) {
 	return navigateOppositePropertyWithSymmetricScope(property, target);
     }
 
-    public Object navigateOppositePropertyWithBackwardScope(EStructuralFeature property, EObject target) {
+    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EStructuralFeature property, EObject target) {
         return navigateOppositePropertyWithSymmetricScope(property, target);
     }
 
-    private Object navigateOppositePropertyWithSymmetricScope(EStructuralFeature property, Object target) {
-        Collection<Object> result = null;
-        EObject eTarget = (EObject) target;
-        ECrossReferenceAdapter crossReferenceAdapter = getCrossReferenceAdapter(eTarget);
-        if (crossReferenceAdapter != null) {
-            result = CollectionUtil.createNewBag();
-            Collection<Setting> settings = crossReferenceAdapter.getInverseReferences(eTarget);
-            for (Setting setting : settings) {
-        	if (setting.getEStructuralFeature() == property) {
-        	    result.add(setting.getEObject());
-        	}
+    private Collection<EObject> navigateOppositePropertyWithSymmetricScope(EStructuralFeature property, EObject target) {
+        Collection<EObject> result = null;
+        if (property instanceof EReference && ((EReference) property).isContainment()) {
+            EObject resultCandidate = ((EObject) target).eContainer();
+            if (resultCandidate != null) {
+                // first check if the container is assignment-compatible to the property's owning type:
+                if (((EClass) property.eContainer()).isSuperTypeOf(resultCandidate.eClass())) {
+                    Object propertyValue = resultCandidate.eGet(property);
+                    if (propertyValue == target
+                            || (propertyValue instanceof Collection<?> && ((Collection<?>) propertyValue).contains(target))) {
+                        result = Collections.singleton(resultCandidate);
+                    }
+                }
             }
         } else {
-            logger.warning("Trying to reverse-navigate reference of "+target+" without ECrossReferenceAdapter attached");
+            if (property instanceof EReference && ((EReference) property).isContainment()) {
+                result = Collections.singleton(target.eContainer());
+            } else {
+                ECrossReferenceAdapter crossReferenceAdapter = getCrossReferenceAdapter(target);
+                if (crossReferenceAdapter != null) {
+                    result = CollectionUtil.createNewBag();
+                    Collection<Setting> settings = crossReferenceAdapter.getInverseReferences(target);
+                    for (Setting setting : settings) {
+                        if (setting.getEStructuralFeature() == property) {
+                            result.add(setting.getEObject());
+                        }
+                    }
+                } else {
+                    logger.warning("Trying to reverse-navigate reference of " + target
+                            + " without ECrossReferenceAdapter attached");
+                }
+            }
         }
         return result;
     }

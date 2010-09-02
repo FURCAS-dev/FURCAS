@@ -7,11 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
-import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
@@ -287,9 +285,9 @@ public class PathCache implements HashCodeChangeListener {
         return result;
     }
     
-    public VariableDefiningNavigationStep createVariableDefiningNavigationStep(Variable<EClassifier, EParameter> variable, OCLExpression expr,
+    public VariableDefiningNavigationStep createVariableDefiningNavigationStep(VariableExp variableExp, OCLExpression expr,
             String[] tupleLiteralPartNamesToLookFor) {
-        VariableDefiningNavigationStep result = new VariableDefiningNavigationStep(variable, expr);
+        VariableDefiningNavigationStep result = new VariableDefiningNavigationStep(variableExp, getOppositeEndFinder());
         put(expr, tupleLiteralPartNamesToLookFor, result);
         return result;
     }
