@@ -84,8 +84,10 @@ public class TracebackCache {
 
     public void setVariableValue(VariableExp variable, AnnotatedEObject fromObject,
             OppositeEndFinder oppositeEndFinder) {
-        variableValues.put(new Pair<Variable<EClassifier, EParameter>, DynamicVariableScope>(variable.getReferredVariable(),
-                new DynamicVariableScope(getStaticScope(variable, oppositeEndFinder), evaluationId++)), fromObject);
+        org.eclipse.ocl.expressions.OCLExpression<EClassifier> staticScope = getStaticScope(variable, oppositeEndFinder);
+        DynamicVariableScope dynamicScope = new DynamicVariableScope(staticScope, evaluationId++);
+        variableValues.put(new Pair<Variable<EClassifier, EParameter>, DynamicVariableScope>(
+                variable.getReferredVariable(), dynamicScope), fromObject);
     }
 
     private org.eclipse.ocl.expressions.OCLExpression<EClassifier> getStaticScope(VariableExp variableExp,
