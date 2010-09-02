@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -348,12 +347,9 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 
     private Collection<AnnotatedEObject> getFromCacheOrNavigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
         Set<AnnotatedEObject> result;
-        List<Object> cacheKey = new BasicEList<Object>();
-        cacheKey.add(this);
-        cacheKey.add(fromObject);
-
         result = cache.get(this, fromObject);
         if (result == null) {
+            cacheMisses++;
             result = navigate(fromObject, cache, changeEvent);
             cache.put(this, fromObject, result);
         }

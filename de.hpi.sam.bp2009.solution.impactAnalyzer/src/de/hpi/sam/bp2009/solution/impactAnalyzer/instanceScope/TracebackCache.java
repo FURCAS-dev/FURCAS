@@ -38,11 +38,9 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
  */
 public class TracebackCache {
     private Map<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>> navigateCache;
-    private int cacheMisses;
     
     public TracebackCache() {
         navigateCache = new HashMap<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>>();
-        cacheMisses = 0;
     }
     
     /**
@@ -51,9 +49,6 @@ public class TracebackCache {
      */
     public Set<AnnotatedEObject> get(NavigationStep step, AnnotatedEObject from) {
         Set<AnnotatedEObject> result = navigateCache.get(new Pair<NavigationStep, AnnotatedEObject>(step, from));
-        if (result == null) {
-            cacheMisses++;
-        }
         return result;
     }
     
@@ -61,8 +56,4 @@ public class TracebackCache {
         navigateCache.put(new Pair<NavigationStep, AnnotatedEObject>(step, from), result);
     }
 
-    int getCacheMisses() {
-        return cacheMisses;
-    }
-    
 }
