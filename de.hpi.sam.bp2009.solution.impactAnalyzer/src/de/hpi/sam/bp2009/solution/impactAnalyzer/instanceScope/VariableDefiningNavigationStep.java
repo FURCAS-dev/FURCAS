@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,23 +20,38 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  *
  */
 public class VariableDefiningNavigationStep extends IndirectingStep {
+    /**
+     * An expression using a variable whose value will be set when {@link #navigate} is called with a value
+     * for this expression; or <code>null</code> in case the variable has a collection type and hence the
+     * {@link #navigate} call identifies only one out of potentially many collection elements. In the latter
+     * case, we don't set a value for the variable in the cache because we don't know for sure that no other
+     * elements will be part of the collection.
+     */
     private final VariableExp variableExp;
     private final OppositeEndFinder oppositeEndFinder;
 
     public VariableDefiningNavigationStep(VariableExp variableExp, OppositeEndFinder oppositeEndFinder) {
         super(variableExp);
-        this.variableExp = variableExp;
+        if (!Collection.class.isAssignableFrom(variableExp.getReferredVariable().getType().getInstanceClass())) {
+            this.variableExp = variableExp;
+        } else {
+            // collection type; fromObject would only be one of possibly many elements; don't set variable value
+            this.variableExp = null;
+        }
         this.oppositeEndFinder = oppositeEndFinder;
     }
 
     @Override
     public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
-        return "(" + variableExp.getReferredVariable().getName() + ":=...) " + super.contentToString(visited, indent);
+        return (variableExp == null ? "" : "(" + variableExp.getReferredVariable().getName() + ":=...) ") +
+               super.contentToString(visited, indent);
     }
 
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
-        cache.setVariableValue(variableExp, fromObject, oppositeEndFinder);
+        if (variableExp != null) {
+            cache.setVariableValue(variableExp, fromObject, oppositeEndFinder);
+        }
         return super.navigate(fromObject, cache, changeEvent);
     }
     
