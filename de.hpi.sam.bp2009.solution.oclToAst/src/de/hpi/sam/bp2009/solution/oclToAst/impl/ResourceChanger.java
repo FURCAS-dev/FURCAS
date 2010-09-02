@@ -412,7 +412,7 @@ class ResourceChanger
             variable.setType(newType);
         }
         /*
-         * varaible
+         * variable
          */
         return super.handleVariable(variable, initResult);
 
