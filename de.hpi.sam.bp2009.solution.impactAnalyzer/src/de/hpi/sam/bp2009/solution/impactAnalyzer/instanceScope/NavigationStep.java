@@ -44,6 +44,11 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticComparable;
  * insert it again with the new hash code after the change. See also {@link HashCodeChangeListener}.
  */
 public interface NavigationStep extends SemanticComparable {
+    /**
+     * @param cache
+     *            keys are lists of which the first element (index 0) is the {@link NavigationStep}, the second element (index 1)
+     *            the from-object (of type {@link AnnotatedEObject}) for which to look up any previously computed results.
+     */
     public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache,
             Notification changeEvent);
 

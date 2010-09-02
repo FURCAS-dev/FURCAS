@@ -181,10 +181,9 @@ public class InstanceScopeAnalysis {
                 // don't know which one takes longer
                 if (!hasNoEffectOnOverallExpression(event, attributeOrAssociationEndCall, sourceElement)) {
                     if (sourceElement != null) {
-                        Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
                         // the source element may have been deleted already by subsequent events; at this point,
                         // this makes it impossible to trace the change event back to a context; all we have is
-                        result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), cache, event));
+                        result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), event));
                     }
                 }
             }
@@ -511,10 +510,11 @@ public class InstanceScopeAnalysis {
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
      */
     private Set<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
-            EClass context, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
+            EClass context, Notification changeEvent) {
         NavigationStep step = getNavigationStepsToSelfForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(),
                 context);
         Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
+        Map<List<Object>, Set<AnnotatedEObject>> cache = new HashMap<List<Object>, Set<AnnotatedEObject>>();
         Set<AnnotatedEObject> result = step.navigate(sourceElementAsSet, cache, changeEvent);
         return result;
     }

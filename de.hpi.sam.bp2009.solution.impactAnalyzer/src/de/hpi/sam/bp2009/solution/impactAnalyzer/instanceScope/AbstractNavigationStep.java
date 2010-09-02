@@ -315,10 +315,13 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         navigateCounter++;
     }
 
-
     /**
-     * Breaks down the navigation from the <tt>from</tt> set to the individual elements in <tt>from</tt> and
-     * manages the type checks.
+     * Breaks down the navigation from the <tt>from</tt> set to the individual elements in <tt>from</tt> and manages the type
+     * checks.
+     * 
+     * @param cache
+     *            keys are lists of which the first element (index 0) is the {@link NavigationStep}, the second element (index 1)
+     *            the from-object (of type {@link AnnotatedEObject}) for which to look up any previously computed results.
      */
     public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
         incrementNavigateCounter(from);
