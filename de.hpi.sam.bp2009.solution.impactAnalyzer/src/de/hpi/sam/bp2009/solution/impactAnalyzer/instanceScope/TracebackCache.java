@@ -1,16 +1,27 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.expressions.ExpressionsPackage;
 import org.eclipse.ocl.expressions.Variable;
 
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 /**
@@ -40,10 +51,22 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
  *
  */
 public class TracebackCache {
-    private Map<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>> navigateCache;
+    /**
+     * Cached values of {@link NavigationStep#navigate(Set, TracebackCache, org.eclipse.emf.common.notify.Notification)} calls,
+     * keyed by the step and the <code>fromObject</code> from which navigation was computed, caching the prior results.
+     */
+    private final Map<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>> navigateCache;
     
-    public TracebackCache() {
+    private final Map<Pair<Variable<EClassifier, EParameter>, DynamicVariableScope>, Object> variableValues;
+    
+    private final OperationBodyToCallMapper operationBodyToCallMapper;
+    
+    private int evaluationId;
+    
+    public TracebackCache(OperationBodyToCallMapper operationBodyToCallMapper) {
         navigateCache = new HashMap<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>>();
+        variableValues = new HashMap<Pair<Variable<EClassifier, EParameter>, DynamicVariableScope>, Object>();
+        this.operationBodyToCallMapper = operationBodyToCallMapper;
     }
     
     /**
@@ -59,8 +82,60 @@ public class TracebackCache {
         navigateCache.put(new Pair<NavigationStep, AnnotatedEObject>(step, from), result);
     }
 
-    public void setVariableValue(Variable<EClassifier, EParameter> variable, AnnotatedEObject fromObject) {
-        // TODO implement TracebackCache.setVariableValue(...)
+    public void setVariableValue(VariableExp variable, AnnotatedEObject fromObject,
+            OppositeEndFinder oppositeEndFinder) {
+        variableValues.put(new Pair<Variable<EClassifier, EParameter>, DynamicVariableScope>(variable.getReferredVariable(),
+                new DynamicVariableScope(getStaticScope(variable, oppositeEndFinder), evaluationId++)), fromObject);
     }
 
+    private org.eclipse.ocl.expressions.OCLExpression<EClassifier> getStaticScope(VariableExp variableExp,
+            OppositeEndFinder oppositeEndFinder) {
+        Variable<EClassifier, EParameter> variable = variableExp.getReferredVariable();
+        org.eclipse.ocl.expressions.OCLExpression<EClassifier> result = null;
+        // let variable?
+        Collection<EObject> letExpression = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                ExpressionsPackage.eINSTANCE.getLetExp_Variable(), variable);
+        if (letExpression != null && !letExpression.isEmpty()) {
+            result = ((LetExp) letExpression.iterator().next()).getIn();
+        } else {
+            // iterator variable of a LoopExp?
+            Collection<EObject> loopExpressionOfIterator = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                    ExpressionsPackage.eINSTANCE.getLoopExp_Iterator(), variable);
+            if (loopExpressionOfIterator != null && !loopExpressionOfIterator.isEmpty()) {
+                result = ((LoopExp) loopExpressionOfIterator.iterator().next()).getBody();
+            } else {
+                // result variable of an IterateExp?
+                Collection<EObject> loopExpressionOfResult = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                        ExpressionsPackage.eINSTANCE.getIterateExp_Result(), variable);
+                if (loopExpressionOfResult != null && !loopExpressionOfResult.isEmpty()) {
+                    result = ((IterateExp) loopExpressionOfResult.iterator().next()).getBody();
+                } else {
+                    if (variable.getName().equals("self")) {
+                        OCLExpression root = OclHelper.getRootExpression(variableExp);
+                        result = root; 
+                    } else {
+                        // must be operation parameter:
+                        OCLExpression operationBody = OclHelper.getRootExpression(variableExp);
+                        EOperation o = operationBodyToCallMapper.getCallsOf(operationBody).iterator().next()
+                                .getReferredOperation();
+                        boolean found = false;
+                        for (EParameter param : o.getEParameters()) {
+                            if (param.getName().equals(variableExp.getReferredVariable().getName())) {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (found) {
+                            result = OclHelper.getRootExpression(variableExp);
+                        }
+                    }
+                }
+            }
+        }
+        if (result == null) {
+            throw new RuntimeException("Can't determine static scope of variable "+variable);
+        }
+        return result;
+    }
 }
+

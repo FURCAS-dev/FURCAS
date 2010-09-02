@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -42,12 +43,12 @@ public class AllInstanceCallCountingOppositeEndFinder implements OppositeEndFind
     }
 
     @Override
-    public Object navigateOppositePropertyWithForwardScope(EStructuralFeature property, EObject target) {
+    public Collection<EObject> navigateOppositePropertyWithForwardScope(EStructuralFeature property, EObject target) {
 	return delegate.navigateOppositePropertyWithForwardScope(property, target);
     }
 
     @Override
-    public Object navigateOppositePropertyWithBackwardScope(EStructuralFeature property, EObject target) {
+    public Collection<EObject> navigateOppositePropertyWithBackwardScope(EStructuralFeature property, EObject target) {
 	return delegate.navigateOppositePropertyWithBackwardScope(property, target);
     }
 

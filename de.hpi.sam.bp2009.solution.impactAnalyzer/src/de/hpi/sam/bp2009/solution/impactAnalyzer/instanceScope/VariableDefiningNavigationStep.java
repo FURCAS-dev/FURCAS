@@ -4,10 +4,9 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
+
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
@@ -20,21 +19,23 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  *
  */
 public class VariableDefiningNavigationStep extends IndirectingStep {
-    private final Variable<EClassifier, EParameter> variable;
+    private final VariableExp variableExp;
+    private final OppositeEndFinder oppositeEndFinder;
 
-    public VariableDefiningNavigationStep(Variable<EClassifier, EParameter> variable, OCLExpression debugInfo) {
-        super(debugInfo);
-        this.variable = variable;
+    public VariableDefiningNavigationStep(VariableExp variableExp, OppositeEndFinder oppositeEndFinder) {
+        super(variableExp);
+        this.variableExp = variableExp;
+        this.oppositeEndFinder = oppositeEndFinder;
     }
 
     @Override
     public String contentToString(Map<NavigationStep, Integer> visited, int indent) {
-        return "(" + variable.getName() + ":=...) " + super.contentToString(visited, indent);
+        return "(" + variableExp.getReferredVariable().getName() + ":=...) " + super.contentToString(visited, indent);
     }
 
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
-        cache.setVariableValue(variable, fromObject);
+        cache.setVariableValue(variableExp, fromObject, oppositeEndFinder);
         return super.navigate(fromObject, cache, changeEvent);
     }
     
