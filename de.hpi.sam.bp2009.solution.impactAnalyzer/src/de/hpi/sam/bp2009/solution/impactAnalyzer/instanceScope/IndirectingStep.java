@@ -40,7 +40,7 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
     }
 
     /**
-     * The set of objects for which {@link #navigate(Set, Map, Notification)} is currently being evaluated on
+     * The set of objects for which {@link #navigate(Set, TracebackCache, Notification)} is currently being evaluated on
      * this step instance, keyed by the current thread by means of using a {@link ThreadLocal}. This is used to avoid
      * endless recursions. Navigating the same thing again starting from the same object wouldn't contribute new things.
      * So in that case, an empty set will be returned.
@@ -153,7 +153,7 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
     }
 
     @Override
-    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
 	Set<AnnotatedEObject> result;
 	if (currentlyEvaluatingNavigateFor.get().contains(fromObject) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();

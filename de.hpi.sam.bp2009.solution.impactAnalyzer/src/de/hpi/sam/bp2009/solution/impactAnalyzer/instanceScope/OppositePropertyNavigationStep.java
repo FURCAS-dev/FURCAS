@@ -2,7 +2,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -65,7 +64,7 @@ public class OppositePropertyNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache,
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache,
 	    Notification changeEvent) {
 	Collection<EObject> result = new HashSet<EObject>();
 	Set<AnnotatedEObject> returnValue = new HashSet<AnnotatedEObject>();

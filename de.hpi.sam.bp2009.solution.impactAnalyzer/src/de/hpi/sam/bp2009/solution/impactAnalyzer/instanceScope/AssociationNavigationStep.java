@@ -2,12 +2,10 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -59,18 +57,8 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
-        // check if we can satisfy the request from the cache
-        List<Object> cacheLookup = new BasicEList<Object>();
-        cacheLookup.add(this);
-        cacheLookup.add(fromObject);
-        if (cache.containsKey(cacheLookup)) {
-	    return cache.get(cacheLookup);
-	}
-
-        // cache lookup was unsuccessful -> perform the navigation
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
-
         // we have a "normal" EReference
         Object ref = fromObject.eGet(toEnd);
         if (toEnd.isMany()) {
@@ -90,9 +78,6 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
                 result.add(annotateEObject(fromObject, (EObject) ref));
             }
         }
-
-        // update the cache
-        cache.put(cacheLookup, result);
         return result;
     }
 

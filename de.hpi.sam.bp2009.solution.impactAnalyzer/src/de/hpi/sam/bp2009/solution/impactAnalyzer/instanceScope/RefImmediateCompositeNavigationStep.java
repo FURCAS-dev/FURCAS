@@ -1,8 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -18,7 +16,7 @@ public class RefImmediateCompositeNavigationStep extends AbstractNavigationStep 
 	}
 
 	@Override
-	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
+	protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
 		Set<AnnotatedEObject> result = Collections.singleton(annotateEObject(fromObject, 
 		        fromObject.eContainer()));
 		return result;

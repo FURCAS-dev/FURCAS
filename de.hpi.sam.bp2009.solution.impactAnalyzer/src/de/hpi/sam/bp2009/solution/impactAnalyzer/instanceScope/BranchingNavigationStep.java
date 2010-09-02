@@ -220,7 +220,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
     }
 
     @Override
-    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, Map<List<Object>, Set<AnnotatedEObject>> cache, Notification changeEvent) {
+    protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         for (NavigationStep singleStep : getSteps()) {
             Set<AnnotatedEObject> fromSet = Collections.singleton(fromObject);
