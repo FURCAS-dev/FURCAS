@@ -145,7 +145,6 @@ public class OCLWithHiddenOpposites extends OCL {
      * @return the new <code>OCL</code>
      */
     public static OCL newInstance(EcoreEnvironmentFactoryWithHiddenOpposites envFactory, Resource resource) {
-
 	return new OCLWithHiddenOpposites(envFactory, resource);
     }
 
