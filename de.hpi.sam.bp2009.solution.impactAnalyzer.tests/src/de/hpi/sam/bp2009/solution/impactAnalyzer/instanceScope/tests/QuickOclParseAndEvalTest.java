@@ -188,6 +188,31 @@ public class QuickOclParseAndEvalTest extends TestCase
    * returns a valid result
    */
   @Test
+  public void testParseAndEvaluateOclExpressionWithIncludingNullInSequence() throws ParserException
+  {
+    OCLExpression expression5 = oclHelper.createQuery("Sequence{1}->including(null)");
+    Object result5 = ocl.evaluate(param, expression5);
+    assertEquals(2, ((Collection<?>) result5).size());
+    assertTrue(((Collection<?>) result5).contains(null));
+  }
+
+  /**
+   * Ensures that an OclInvalid value does not pass a select filter, yet the select iterator
+   * returns a valid result
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionWithSizeOverSequenceContainingNull() throws ParserException
+  {
+    OCLExpression expression5 = oclHelper.createQuery("Sequence{1}->including(null)->size()");
+    Object result5 = ocl.evaluate(param, expression5);
+    assertEquals(2, result5);
+  }
+
+  /**
+   * Ensures that an OclInvalid value does not pass a select filter, yet the select iterator
+   * returns a valid result
+   */
+  @Test
   public void testParseAndEvaluateOclExpressionWithCollectOverOclInvalid() throws ParserException
   {
     OCLExpression expression5 = oclHelper.createQuery("Set{self, invalid}->collect(i | i)");
