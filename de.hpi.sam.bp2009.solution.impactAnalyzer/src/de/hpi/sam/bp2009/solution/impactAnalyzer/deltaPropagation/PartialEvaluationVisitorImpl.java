@@ -148,12 +148,20 @@ public class PartialEvaluationVisitorImpl
     }
 
     @Override
+    public PartialEcoreEvaluationEnvironment getEvaluationEnvironment() {
+        return (PartialEcoreEvaluationEnvironment) super.getEvaluationEnvironment();
+    }
+
+    @Override
     public Object visitVariableExp(VariableExp<EClassifier, EParameter> v) {
         if (v == sourceExpression) {
             sourceExpression = null;
             return valueOfSourceExpression;
         }
-        return super.visitVariableExp(v);
+        // evaluate the variable in the current environment, using a special getValueOf(...) operation that
+        // accepts the VariableExp so as to better be able to annotate an exception in case the variable is
+        // unknown
+        return getEvaluationEnvironment().getValueOf(v);
     }
 
     @SuppressWarnings("unchecked")

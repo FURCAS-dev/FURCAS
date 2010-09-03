@@ -1,14 +1,29 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.expressions.ExpressionsPackage;
+
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 
 /**
  * Represents a request to (re-)evaluate the <code>unused</code> function which for an {@link OCLExpression} tries to
@@ -26,6 +41,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundE
 public class UnusedEvaluationRequest {
     private final Map<Variable, Object> knownVariableValues;
     private final Variable unknownVariable;
+    private final OCLExpression variableScope;
     private final OCLExpression expressionToCheckIfUnused;
     private final OCLExpression rootExpression;
     
@@ -64,9 +80,11 @@ public class UnusedEvaluationRequest {
     }
     
     public UnusedEvaluationRequest(Map<Variable, Object> knownVariableValues, Variable unknownVariable,
+            OCLExpression variableScope,
             OCLExpression expressionToCheckIfUnused, OCLExpression rootExpression) {
         this.knownVariableValues = knownVariableValues;
         this.unknownVariable = unknownVariable;
+        this.variableScope = variableScope;
         this.expressionToCheckIfUnused = expressionToCheckIfUnused;
         this.rootExpression = rootExpression;
     }
@@ -83,7 +101,8 @@ public class UnusedEvaluationRequest {
         return unknownVariable;
     }
     
-    public EvaluationResult evaluate(Object valueForFormerlyUnknownVariable) {
+    public EvaluationResult evaluate(Object valueForFormerlyUnknownVariable, OppositeEndFinder oppositeEndFinder,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
         EvaluationResult result;
         Map<Variable, Object> newKnownVariables = new HashMap<Variable, Object>(knownVariableValues);
         newKnownVariables.put(unknownVariable, valueForFormerlyUnknownVariable);
@@ -92,10 +111,69 @@ public class UnusedEvaluationRequest {
             result = new EvaluationResult(unused, /* no next request; evaluation was successful */ null);
         } catch (ValueNotFoundException e) {
             UnusedEvaluationRequest nextRequest = new UnusedEvaluationRequest(newKnownVariables, (Variable) e.getVariableExp()
-                    .getReferredVariable(), expressionToCheckIfUnused, rootExpression);
+                    .getReferredVariable(),
+                    getStaticScope((VariableExp) e.getVariableExp(), oppositeEndFinder, operationBodyToCallMapper),
+                    expressionToCheckIfUnused, rootExpression);
             result = new EvaluationResult(false, nextRequest);
         }
         return result;
+    }
+
+    /**
+     * Returns the static scope of the {@link #unknownVariable unknown variable} of this evaluation request.
+     */
+    public OCLExpression getVariableScope() {
+        return variableScope;
+    }
+
+    private static OCLExpression getStaticScope(VariableExp variableExp,
+            OppositeEndFinder oppositeEndFinder, OperationBodyToCallMapper operationBodyToCallMapper) {
+        Variable variable = (Variable) variableExp.getReferredVariable();
+        org.eclipse.ocl.expressions.OCLExpression<EClassifier> result = null;
+        // let variable?
+        Collection<EObject> letExpression = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                ExpressionsPackage.eINSTANCE.getLetExp_Variable(), variable);
+        if (letExpression != null && !letExpression.isEmpty()) {
+            result = ((LetExp) letExpression.iterator().next()).getIn();
+        } else {
+            // iterator variable of a LoopExp?
+            Collection<EObject> loopExpressionOfIterator = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                    ExpressionsPackage.eINSTANCE.getLoopExp_Iterator(), variable);
+            if (loopExpressionOfIterator != null && !loopExpressionOfIterator.isEmpty()) {
+                result = ((LoopExp) loopExpressionOfIterator.iterator().next()).getBody();
+            } else {
+                // result variable of an IterateExp?
+                Collection<EObject> loopExpressionOfResult = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                        ExpressionsPackage.eINSTANCE.getIterateExp_Result(), variable);
+                if (loopExpressionOfResult != null && !loopExpressionOfResult.isEmpty()) {
+                    result = ((IterateExp) loopExpressionOfResult.iterator().next()).getBody();
+                } else {
+                    if (variable.getName().equals(Environment.SELF_VARIABLE_NAME)) {
+                        OCLExpression root = OclHelper.getRootExpression(variableExp);
+                        result = root; 
+                    } else {
+                        // must be operation parameter:
+                        OCLExpression operationBody = OclHelper.getRootExpression(variableExp);
+                        EOperation o = operationBodyToCallMapper.getCallsOf(operationBody).iterator().next()
+                                .getReferredOperation();
+                        boolean found = false;
+                        for (EParameter param : o.getEParameters()) {
+                            if (param.getName().equals(variableExp.getReferredVariable().getName())) {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (found) {
+                            result = OclHelper.getRootExpression(variableExp);
+                        }
+                    }
+                }
+            }
+        }
+        if (result == null) {
+            throw new RuntimeException("Can't determine static scope of variable "+variable);
+        }
+        return (OCLExpression) result;
     }
 
     private boolean computeUnknown(OCLExpression expressionToCheckIfUnused2, OCLExpression expressionToCheckIfUnused3,
