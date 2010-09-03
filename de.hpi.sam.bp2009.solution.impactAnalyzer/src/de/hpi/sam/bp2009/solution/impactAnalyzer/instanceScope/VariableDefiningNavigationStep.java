@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -50,7 +51,12 @@ public class VariableDefiningNavigationStep extends IndirectingStep {
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
         if (variableExp != null) {
-            cache.setVariableValue(variableExp, fromObject, oppositeEndFinder);
+            if (cache.setVariableValueAndCheckIfUnused(variableExp, fromObject, oppositeEndFinder)) {
+                // A stored UnusedEvaluationRequest got triggered and successfully inferred that a subexpression
+                // through which the change got propagated is unused. Therefore, for no context object does the
+                // original change affect the OCL expression's value. Return an empty set.
+                return Collections.emptySet();
+            }
         }
         return super.navigate(fromObject, cache, changeEvent);
     }

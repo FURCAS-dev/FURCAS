@@ -37,6 +37,8 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
  * {@link CallExp#getSource() source} expression can be provided, cutting short the evaluation of this source
  * expression. For this, it uses an adapted OCL evaluation environment.
  * 
+ * TODO need to be able to accept a set of variable definitions for the starting scope that are added to the initial evaluation environment on the OCL instance being used
+ * 
  * @author Axel Uhl
  * 
  */

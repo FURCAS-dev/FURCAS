@@ -7,9 +7,11 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.expressions.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOppositesImpl;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
@@ -38,6 +40,14 @@ public class PartialEcoreEvaluationEnvironment extends EvaluationEnvironmentWith
     public Object getValueOf(String name) {
         if (!map.containsKey(name)) {
             throw new ValueNotFoundException(name);
+        }
+        return map.get(name);
+    }
+
+    public Object getValueOf(VariableExp<EClassifier, EParameter> v) {
+        String name = v.getReferredVariable().getName();
+        if (!map.containsKey(name)) {
+            throw new ValueNotFoundException(name, v);
         }
         return map.get(name);
     }

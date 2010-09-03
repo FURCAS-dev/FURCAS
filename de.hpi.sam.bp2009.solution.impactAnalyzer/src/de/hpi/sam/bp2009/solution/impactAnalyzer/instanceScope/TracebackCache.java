@@ -1,54 +1,73 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EParameter;
-import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
-import org.eclipse.ocl.expressions.ExpressionsPackage;
-import org.eclipse.ocl.expressions.Variable;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.UnusedEvaluationRequest.EvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 /**
- * During the navigation of a {@link NavigationStep} tree, starting from an {@link EObject},
- * navigation steps may be reached several times with the same {@link EObject} at hand. To
- * avoid endless recursion and to accelerate the computation, an object of this class is
- * passed through an evaluation of a {@link NavigationStep} tree.<p>
+ * During the navigation of a {@link NavigationStep} tree, starting from an {@link EObject}, navigation steps may be reached
+ * several times with the same {@link EObject} at hand. To avoid endless recursion and to accelerate the computation, an object of
+ * this class is passed through an evaluation of a {@link NavigationStep} tree.
+ * <p>
  * 
- * In addition to remembering traceback navigation results, this cache also stores variable
- * values inferred during the traceback. Those can be used for partial evaluations, e.g., when
- * trying to determine if a subexpression may be reached at all based on the current variable
- * values. Variable values are keyed by their dynamic scopes. The static scope for a variable
- * in OCL is always an {@link OCLExpression} with its containment hierarchy. The dynamic scope
- * is the "invocation" instance of such a dynamic scope. For one static scope there may be many
- * dynamic scopes for the evaluation of a single expression on a single context element. For
- * example, during the evaluation of an <code>-&gt;iterate(...)</code> expression, the result
- * variable has the body expression as its static scope; for each iteration, a new dynamic scope
- * is created for the result variable. The navigation step used for the result variable traces
- * back using a {@link BranchingNavigationStep} which walks to the result variable's init
- * expression as well as to the body of the <code>iterate</code> expression. For the latter,
- * this ends up in a new dynamic scope for the result variable.<p>
+ * In addition to remembering traceback navigation results, this cache also stores variable values inferred during the traceback.
+ * Those can be used for partial evaluations, e.g., when trying to determine if a subexpression may be reached at all based on the
+ * current variable values.
+ * <p>
  * 
- * Dynamic scopes are identified by combining a simple increasing numeric ID with the static scope
- * expression.<p>
+ * Variable values are valid only in a scope, called a "dynamic scope." While syntactically the variable's static scope is limited
+ * to a certain {@link OCLExpression}, e.g., the {@link LetExp#getIn() in} expression of a
+ * <code>let<code> expression for the variable defined by the <code>let</code> expression, the same expression may be evaluated
+ * several times during the evaluation of some other expression. Each evaluation of the static scope expression represents a
+ * dynamic scope for the variables whose static scope is being evaluated.
+ * <p>
+ * 
+ * When the <code>unused</code> function is trying a partial evaluation and is missing a variable to complete the evaluation, we
+ * check if the missing variable is a <code>let</code> variable. If not, the <code>unused</code> evaluation request is stored in
+ * this cache together with the values of all variables known at that time, as well as the unknown variable that caused the
+ * evaluation to fail. If the missing variable <em>is</em> a <code>let</code> variable, we also try to evaluate the corresponding
+ * {@link Variable#getInitExpression() initialization expression}. If that fails too, we store a nested <code>unused</code>
+ * evaluation request which has as its unknown variable the one from the <code>let</code> variable's initialization expression. If
+ * that variable's value is inferred, the initialization expression is evaluated again. If successful (either deferred or
+ * immediately), this triggers the inner request which will then have its unknown <code>let</code> variable set to the result of
+ * evaluating the initialization expression.
+ * <p>
+ * 
+ * When during traceback a variable's value is inferred, the <code>unused</code> evaluations that have this variable as their
+ * unknown variable can be given another try, based on the variable values remembered, as well as the freshly-inferred value for
+ * the variable whose value was formerly unknown. If the evaluation succeeds and proves that the expression for which
+ * <code>unused</code> was evaluated is actually not used, the traceback can be stopped immediately and simply return an empty
+ * set. If the evaluation fails again for another variable with unknown value, the procedure is repeated: the freshly-inferred
+ * value is added to the known variable values for the <code>unused</code> evaluation request, and the variable whose value now is
+ * unknown is remembered with the request such that when <em>it's</em> value is inferred by the traceback procedure, the
+ * <code>unused</code> evaluation can be attempted again.
+ * <p>
+ * 
+ * When the traceback function leaves an expression that is the static scope of an unknown variable, the corresponding
+ * <code>unused</code> evaluation requests are canceled because we cannot hope for the traceback process to ever infer it anymore.
+ * Which scopes are left when moving from one expression to the next can be a bit tricky. For example, when jumping from an
+ * iterator variable expression to the {@link LoopExp}'s source expression, all kinds of in-between expressions that are containers to
+ * the iterator variable expression are left as well. Therefore, the common container of the from/to expressions needs to be
+ * determined, and all variables whose static scope is any of from, or any of from's direct or transitive containers that
+ * are still contained (directly or transitively) in the common container of from/to, are considered out of scope.<p>
  * 
  * @author Axel Uhl (D043530)
- *
+ * 
  */
 public class TracebackCache {
     /**
@@ -57,15 +76,20 @@ public class TracebackCache {
      */
     private final Map<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>> navigateCache;
     
-    private final Map<Pair<Variable<EClassifier, EParameter>, DynamicVariableScope>, Object> variableValues;
+    /**
+     * During performing a traceback, the algorithm checks whether expressions affected by the original change
+     * may be unused. When such an unused-check hits a {@link VariableExp} the value of which can't be determined
+     * because the variable's value has not yet been inferred, the unused-check initially fails. This map stores
+     * the requests that failed and whose unknown variable is still in the scope of the expression currently visited by the
+     * traceback process.
+     */
+    private final Map<Variable, Set<UnusedEvaluationRequest>> unusedEvaluationRequests;
     
     private final OperationBodyToCallMapper operationBodyToCallMapper;
     
-    private int evaluationId;
-    
     public TracebackCache(OperationBodyToCallMapper operationBodyToCallMapper) {
         navigateCache = new HashMap<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>>();
-        variableValues = new HashMap<Pair<Variable<EClassifier, EParameter>, DynamicVariableScope>, Object>();
+        unusedEvaluationRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
         this.operationBodyToCallMapper = operationBodyToCallMapper;
     }
     
@@ -82,60 +106,62 @@ public class TracebackCache {
         navigateCache.put(new Pair<NavigationStep, AnnotatedEObject>(step, from), result);
     }
 
-    public void setVariableValue(VariableExp variable, AnnotatedEObject fromObject,
-            OppositeEndFinder oppositeEndFinder) {
-        org.eclipse.ocl.expressions.OCLExpression<EClassifier> staticScope = getStaticScope(variable, oppositeEndFinder);
-        DynamicVariableScope dynamicScope = new DynamicVariableScope(staticScope, evaluationId++);
-        variableValues.put(new Pair<Variable<EClassifier, EParameter>, DynamicVariableScope>(
-                variable.getReferredVariable(), dynamicScope), fromObject);
+    /**
+     * Remove all entries in {@link #unusedEvaluationRequests} whose variables are no longer in scope by navigating from the
+     * <code>from</code> expression to the <code>to</code> expression.
+     * <p>
+     * 
+     * When the traceback function leaves an expression that is the static scope of an unknown variable, the corresponding
+     * <code>unused</code> evaluation requests are canceled because we cannot hope for the traceback process to ever infer it
+     * anymore. Which scopes are left when moving from one expression to the next can be a bit tricky. For example, when jumping
+     * from an iterator variable expression to the {@link LoopExp}'s source expression, all kinds of in-between expressions that
+     * are containers to the iterator variable expression are left as well. Therefore, the common container of the from/to
+     * expressions needs to be determined, and all variables whose static scope is any of from, or any of from's direct or
+     * transitive containers that are still contained (directly or transitively) in the common container of from/to, are
+     * considered out of scope.
+     * <p>
+     */
+    public void scopeChange(Set<OCLExpression> leaving, OCLExpression entering) {
+        // TODO implement TracebackCache.scopeChange
     }
 
-    private org.eclipse.ocl.expressions.OCLExpression<EClassifier> getStaticScope(VariableExp variableExp,
+    /**
+     * When the traceback process has inferred a variable value because it reached a {@link VariableExp} of a non-collection
+     * variable, it calls this method. This may trigger the re-evaluation of those {@link UnusedEvaluationRequest} requests whose
+     * unknown variable's value just became known by this. This method re-evaluates those requests. Those that don't succeed in
+     * their evaluation produce a subsequent {@link UnusedEvaluationRequest} which is entered into
+     * {@link #unusedEvaluationRequests} while removing the unsuccessful request. Those that succeed have either shown that the
+     * subexpression they were investigating was unused. If this happens for any of the requests triggered by a call to this
+     * method, this method returns <code>true</code>. Or the request couldn't prove that the subexpression was unused. In this
+     * case, the request is simply removed from {@link #unusedEvaluationRequests}.
+     * 
+     * @return <code>true</code>, if the inferred variable value lead to the successful evaluation of any of the stored
+     *         {@link UnusedEvaluationRequest}s such that it proved that the expression where the change occurred is not used;
+     *         <code>false</code> otherwise.
+     */
+    public boolean setVariableValueAndCheckIfUnused(VariableExp variable, AnnotatedEObject fromObject,
             OppositeEndFinder oppositeEndFinder) {
-        Variable<EClassifier, EParameter> variable = variableExp.getReferredVariable();
-        org.eclipse.ocl.expressions.OCLExpression<EClassifier> result = null;
-        // let variable?
-        Collection<EObject> letExpression = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                ExpressionsPackage.eINSTANCE.getLetExp_Variable(), variable);
-        if (letExpression != null && !letExpression.isEmpty()) {
-            result = ((LetExp) letExpression.iterator().next()).getIn();
-        } else {
-            // iterator variable of a LoopExp?
-            Collection<EObject> loopExpressionOfIterator = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                    ExpressionsPackage.eINSTANCE.getLoopExp_Iterator(), variable);
-            if (loopExpressionOfIterator != null && !loopExpressionOfIterator.isEmpty()) {
-                result = ((LoopExp) loopExpressionOfIterator.iterator().next()).getBody();
-            } else {
-                // result variable of an IterateExp?
-                Collection<EObject> loopExpressionOfResult = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                        ExpressionsPackage.eINSTANCE.getIterateExp_Result(), variable);
-                if (loopExpressionOfResult != null && !loopExpressionOfResult.isEmpty()) {
-                    result = ((IterateExp) loopExpressionOfResult.iterator().next()).getBody();
+        boolean result = false;
+        Set<UnusedEvaluationRequest> requests = unusedEvaluationRequests.remove(variable);
+        Map<Variable, Set<UnusedEvaluationRequest>> newRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
+        if (requests != null) {
+            for (UnusedEvaluationRequest request : requests) {
+                EvaluationResult evalResult = request.evaluate(fromObject, oppositeEndFinder, operationBodyToCallMapper);
+                if (!evalResult.wasSuccessful()) {
+                    Variable newUnknownVariable = evalResult.getNextEvaluationRequest().getUnknownVariable();
+                    Set<UnusedEvaluationRequest> newSet = newRequests.get(newUnknownVariable);
+                    if (newSet == null) {
+                        newSet = new HashSet<UnusedEvaluationRequest>();
+                        newRequests.put(newUnknownVariable, newSet);
+                    }
+                    newSet.add(evalResult.getNextEvaluationRequest());
                 } else {
-                    if (variable.getName().equals("self")) {
-                        OCLExpression root = OclHelper.getRootExpression(variableExp);
-                        result = root; 
-                    } else {
-                        // must be operation parameter:
-                        OCLExpression operationBody = OclHelper.getRootExpression(variableExp);
-                        EOperation o = operationBodyToCallMapper.getCallsOf(operationBody).iterator().next()
-                                .getReferredOperation();
-                        boolean found = false;
-                        for (EParameter param : o.getEParameters()) {
-                            if (param.getName().equals(variableExp.getReferredVariable().getName())) {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (found) {
-                            result = OclHelper.getRootExpression(variableExp);
-                        }
+                    if (evalResult.isUnused()) {
+                        result = true;
                     }
                 }
             }
-        }
-        if (result == null) {
-            throw new RuntimeException("Can't determine static scope of variable "+variable);
+            unusedEvaluationRequests.putAll(newRequests);
         }
         return result;
     }
