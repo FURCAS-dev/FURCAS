@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IteratorExp;
@@ -113,6 +114,17 @@ public class PartialEvaluator {
      */
     public Object evaluate(Object context, CallExp e, Object valueOfSourceExpression) {
         factory.setExpressionValue((OCLExpression) e.getSource(), valueOfSourceExpression);
+        return ocl.evaluate(context, e);
+    }
+
+    /**
+     * Performs a normal OCL evaluation of expression <code>c</code>. If the context object is not currently known, it's ok to
+     * pass <code>null</code> for <code>context</code>. The evaluation may fail with a {@link ValueNotFoundException} in case a
+     * variable that is accessed hasn't been defined yet. The <code>e</code> expression may therefore be some subexpression of a
+     * containing expression. To set variable values for the initial evaluation scope, use {@link #getOcl()}.
+     * {@link OCL#getEvaluationEnvironment()}.{@link EvaluationEnvironment#add(String, Object)}.
+     */
+    public Object evaluate(Object context, OCLExpression e) {
         return ocl.evaluate(context, e);
     }
     

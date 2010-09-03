@@ -5,10 +5,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.IterateExp;
@@ -21,6 +23,7 @@ import org.eclipse.ocl.expressions.ExpressionsPackage;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
@@ -42,8 +45,8 @@ public class UnusedEvaluationRequest {
     private final Map<Variable, Object> knownVariableValues;
     private final Variable unknownVariable;
     private final OCLExpression variableScope;
-    private final OCLExpression expressionToCheckIfUnused;
-    private final OCLExpression rootExpression;
+    protected final OCLExpression expressionToCheckIfUnused;
+    protected final OCLExpression rootExpression;
     
     /**
      * The result of an attempt to evaluate an {@link UnusedEvaluationRequest}. If {@link #wasSuccessful() successful},
@@ -126,7 +129,7 @@ public class UnusedEvaluationRequest {
         return variableScope;
     }
 
-    private static OCLExpression getStaticScope(VariableExp variableExp,
+    protected static OCLExpression getStaticScope(VariableExp variableExp,
             OppositeEndFinder oppositeEndFinder, OperationBodyToCallMapper operationBodyToCallMapper) {
         Variable variable = (Variable) variableExp.getReferredVariable();
         org.eclipse.ocl.expressions.OCLExpression<EClassifier> result = null;
@@ -176,6 +179,17 @@ public class UnusedEvaluationRequest {
         return (OCLExpression) result;
     }
 
+    /**
+     * Adds the known variable values provided in <code>newKnownVariables</code> to the partial evaluator's initial OCL evaluation
+     * environment.
+     */
+    protected void setVariables(PartialEvaluator p, Map<Variable, Object> newKnownVariables) {
+        EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> env = p.getOcl().getEvaluationEnvironment();
+        for (Map.Entry<Variable, Object> entry : newKnownVariables.entrySet()) {
+            env.add(entry.getKey().getName(), entry.getValue());
+        }
+    }
+    
     private boolean computeUnused(OCLExpression expressionToCheckIfUnused2, OCLExpression expressionToCheckIfUnused3,
             Map<Variable, Object> newKnownVariables) {
         // TODO implement UnusedEvaluationRequest.computeUnknown
