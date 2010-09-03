@@ -11,9 +11,10 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralPart;
 
+import com.sap.emf.ocl.util.OclHelper;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 
 public abstract class AbstractTracer<T extends EObject> implements Tracer {
     private T expression;

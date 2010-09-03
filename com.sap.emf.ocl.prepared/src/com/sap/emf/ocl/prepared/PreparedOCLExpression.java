@@ -5,9 +5,24 @@ import java.util.List;
 
 import org.eclipse.ocl.ecore.BooleanLiteralExp;
 import org.eclipse.ocl.ecore.EcorePackage;
+import org.eclipse.ocl.ecore.EnumLiteralExp;
+import org.eclipse.ocl.ecore.IntegerLiteralExp;
 import org.eclipse.ocl.ecore.LiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.RealLiteralExp;
+import org.eclipse.ocl.ecore.StringLiteralExp;
+
+import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.ocl.prepared.parameters.BooleanParameter;
+import com.sap.emf.ocl.prepared.parameters.EnumParameter;
+import com.sap.emf.ocl.prepared.parameters.IntegerParameter;
+import com.sap.emf.ocl.prepared.parameters.Parameter;
+import com.sap.emf.ocl.prepared.parameters.RealParameter;
+import com.sap.emf.ocl.prepared.parameters.StringParameter;
+import com.sap.emf.ocl.util.OclHelper;
 
 /**
  * Similar to a JDBC prepared statement, where parameters can be set to specific values before executing it,
@@ -24,6 +39,8 @@ import org.eclipse.ocl.ecore.OCLExpression;
 public class PreparedOCLExpression {
     private final OCLExpression expression;
     private List<Parameter> params;
+    private OppositeEndFinder oppositeEndFinder;
+    private EcoreEnvironmentFactoryWithHiddenOpposites environmentFactory;
     
     public PreparedOCLExpression(OCLExpression expression, LiteralExp... params) {
         for (LiteralExp param : params) {
@@ -39,6 +56,18 @@ public class PreparedOCLExpression {
         }
     }
     
+    public PreparedOCLExpression(EcoreEnvironmentFactoryWithHiddenOpposites environmentFactory,
+            OCLExpression expression, LiteralExp... params) {
+        this(expression, params);
+        this.environmentFactory = environmentFactory;
+    }
+    
+    public PreparedOCLExpression(OppositeEndFinder oppositeEndFinder,
+            OCLExpression expression, LiteralExp... params) {
+        this(expression, params);
+        this.oppositeEndFinder = oppositeEndFinder;
+    }
+    
     /**
      * Factory method that creates the appropriate {@link Parameter} implementation instance
      * for the parameterizable literal expression <code>param</code>.
@@ -48,6 +77,18 @@ public class PreparedOCLExpression {
         switch (param.eClass().getClassifierID()) {
         case EcorePackage.BOOLEAN_LITERAL_EXP:
             result = new BooleanParameter((BooleanLiteralExp) param);
+            break;
+        case EcorePackage.INTEGER_LITERAL_EXP:
+            result = new IntegerParameter((IntegerLiteralExp) param);
+            break;
+        case EcorePackage.REAL_LITERAL_EXP:
+            result = new RealParameter((RealLiteralExp) param);
+            break;
+        case EcorePackage.STRING_LITERAL_EXP:
+            result = new StringParameter((StringLiteralExp) param);
+            break;
+        case EcorePackage.ENUM_LITERAL_EXP:
+            result = new EnumParameter((EnumLiteralExp) param);
             break;
         default:
             throw new RuntimeException("Unknown literal expression type "+param.getClass().getName());
@@ -68,7 +109,14 @@ public class PreparedOCLExpression {
     }
 
     private OCL getOCL() {
-        // TODO Auto-generated method stub
-        return null;
+        if (oppositeEndFinder != null) {
+            return OCLWithHiddenOpposites.newInstance(oppositeEndFinder);
+        } else {
+            if (environmentFactory != null) {
+                return OCLWithHiddenOpposites.newInstance(environmentFactory);
+            } else {
+                return OCLWithHiddenOpposites.newInstance();
+            }
+        }
     }
 }

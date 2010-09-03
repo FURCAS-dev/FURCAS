@@ -1,4 +1,4 @@
-package com.sap.emf.ocl.prepared;
+package com.sap.emf.ocl.util;
 
 import java.util.Collection;
 import java.util.Collections;
