@@ -85,11 +85,18 @@ public class TracebackCache {
      */
     private final Map<Variable, Set<UnusedEvaluationRequest>> unusedEvaluationRequests;
     
+    /**
+     * All expressions managed in {@link #unusedEvaluationRequests} are also entered and removed synchronously here.
+     * The key used in this map is obtained by asking for {@link UnusedEvaluationRequest#getVariableScope()}.
+     */
+    private final Map<OCLExpression, Set<UnusedEvaluationRequest>> unusedEvaluationRequestsByStaticScope;
+    
     private final OperationBodyToCallMapper operationBodyToCallMapper;
     
     public TracebackCache(OperationBodyToCallMapper operationBodyToCallMapper) {
         navigateCache = new HashMap<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>>();
         unusedEvaluationRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
+        unusedEvaluationRequestsByStaticScope = new HashMap<OCLExpression, Set<UnusedEvaluationRequest>>();
         this.operationBodyToCallMapper = operationBodyToCallMapper;
     }
     
@@ -107,8 +114,8 @@ public class TracebackCache {
     }
 
     /**
-     * Remove all entries in {@link #unusedEvaluationRequests} whose variables are no longer in scope by navigating from the
-     * <code>from</code> expression to the <code>to</code> expression.
+     * Remove all entries in {@link #unusedEvaluationRequests} and {@link #unusedEvaluationRequestsByStaticScope} whose variables
+     * are no longer in scope by navigating from the <code>from</code> expression to the <code>to</code> expression.
      * <p>
      * 
      * When the traceback function leaves an expression that is the static scope of an unknown variable, the corresponding
@@ -120,9 +127,25 @@ public class TracebackCache {
      * transitive containers that are still contained (directly or transitively) in the common container of from/to, are
      * considered out of scope.
      * <p>
+     * 
+     * @param entering may be <code>null</code>
      */
     public void scopeChange(Set<OCLExpression> leaving, OCLExpression entering) {
-        // TODO implement TracebackCache.scopeChange
+        for (OCLExpression s : leaving) {
+            removeUnusedEvaluationRequestsWithVariableInScope(s);
+        }
+        if (entering != null) {
+            removeUnusedEvaluationRequestsWithVariableInScope(entering);
+        }
+    }
+
+    private void removeUnusedEvaluationRequestsWithVariableInScope(OCLExpression s) {
+        Set<UnusedEvaluationRequest> requestsToRemove = unusedEvaluationRequestsByStaticScope.remove(s);
+        if (requestsToRemove != null) {
+            for (UnusedEvaluationRequest request : requestsToRemove) {
+                removeUnusedEvaluationRequestFromMapByVariable(request);
+            }
+        }
     }
 
     /**
@@ -143,27 +166,63 @@ public class TracebackCache {
             OppositeEndFinder oppositeEndFinder) {
         boolean result = false;
         Set<UnusedEvaluationRequest> requests = unusedEvaluationRequests.remove(variable);
-        Map<Variable, Set<UnusedEvaluationRequest>> newRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
+        Set<UnusedEvaluationRequest> newRequests = new HashSet<UnusedEvaluationRequest>();
         if (requests != null) {
             for (UnusedEvaluationRequest request : requests) {
                 EvaluationResult evalResult = request.evaluate(fromObject, oppositeEndFinder, operationBodyToCallMapper);
                 if (!evalResult.wasSuccessful()) {
-                    Variable newUnknownVariable = evalResult.getNextEvaluationRequest().getUnknownVariable();
-                    Set<UnusedEvaluationRequest> newSet = newRequests.get(newUnknownVariable);
-                    if (newSet == null) {
-                        newSet = new HashSet<UnusedEvaluationRequest>();
-                        newRequests.put(newUnknownVariable, newSet);
-                    }
-                    newSet.add(evalResult.getNextEvaluationRequest());
+                    newRequests.add(evalResult.getNextEvaluationRequest());
                 } else {
                     if (evalResult.isUnused()) {
                         result = true;
                     }
                 }
+                removeUnusedEvaluationRequestFromMapByScope(request);
             }
-            unusedEvaluationRequests.putAll(newRequests);
+            for (UnusedEvaluationRequest newRequest : newRequests) {
+                addUnusedNavigationRequest(newRequest);
+            }
         }
         return result;
+    }
+
+    private void removeUnusedEvaluationRequestFromMapByScope(UnusedEvaluationRequest request) {
+        Set<UnusedEvaluationRequest> requestsByScope = unusedEvaluationRequestsByStaticScope.get(request.getVariableScope());
+        requestsByScope.remove(request);
+        if (requestsByScope.isEmpty()) {
+            unusedEvaluationRequestsByStaticScope.remove(request.getVariableScope());
+        }
+    }
+
+    private void removeUnusedEvaluationRequestFromMapByVariable(UnusedEvaluationRequest request) {
+        Set<UnusedEvaluationRequest> requestsByVariable = unusedEvaluationRequests.get(request.getUnknownVariable());
+        requestsByVariable.remove(request);
+        if (requestsByVariable.isEmpty()) {
+            unusedEvaluationRequests.remove(request.getUnknownVariable());
+        }
+    }
+
+    private void addUnusedNavigationRequest(UnusedEvaluationRequest newRequest) {
+        addUnusedEvaluationRequestByVariable(newRequest);
+        addUnusedEvaluationRequestByScope(newRequest);
+    }
+
+    private void addUnusedEvaluationRequestByScope(UnusedEvaluationRequest newRequest) {
+        Set<UnusedEvaluationRequest> s2 = unusedEvaluationRequestsByStaticScope.get(newRequest.getVariableScope());
+        if (s2 == null) {
+            s2 = new HashSet<UnusedEvaluationRequest>();
+            unusedEvaluationRequestsByStaticScope.put(newRequest.getVariableScope(), s2);
+        }
+        s2.add(newRequest);
+    }
+
+    private void addUnusedEvaluationRequestByVariable(UnusedEvaluationRequest newRequest) {
+        Set<UnusedEvaluationRequest> s1 = unusedEvaluationRequests.get(newRequest.getUnknownVariable());
+        if (s1 == null) {
+            s1 = new HashSet<UnusedEvaluationRequest>();
+            unusedEvaluationRequests.put(newRequest.getUnknownVariable(), s1);
+        }
+        s1.add(newRequest);
     }
 }
 
