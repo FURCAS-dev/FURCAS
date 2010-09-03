@@ -116,7 +116,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.ocl.ecore.EcorePackage;
+//import org.eclipse.ocl.ecore.EcorePackage;
 import com.sap.furcas.metamodel.TCS.*;
 
 /**
@@ -3571,7 +3571,7 @@ public class TCSPackageImpl extends EPackageImpl implements TCSPackage {
 
 		// Obtain other dependent packages
 		org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		org.eclipse.ocl.ecore.EcorePackage theEcorePackage = (org.eclipse.ocl.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 

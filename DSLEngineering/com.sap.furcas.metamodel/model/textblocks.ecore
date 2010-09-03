@@ -37,7 +37,6 @@
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="forEachContext" upperBound="-1"
         eType="#//ForEachContext" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="___Alive" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="cachedString" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractToken" abstract="true" eSuperTypes="#//DocumentNode">

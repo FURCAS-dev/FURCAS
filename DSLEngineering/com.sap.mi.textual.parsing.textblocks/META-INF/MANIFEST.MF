@@ -8,7 +8,8 @@ Require-Bundle: org.eclipse.core.runtime,
  com.sap.mi.textual.parsing,
  com.sap.mi.textual.common,
  com.sap.mi.textual.tcs.util,
- com.sap.furcas.metamodel
+ com.sap.furcas.metamodel,
+ org.eclipse.ocl.ecore
 Export-Package: 
  com.sap.mi.textual.parsing.textblocks,
  com.sap.mi.textual.parsing.textblocks.observer,

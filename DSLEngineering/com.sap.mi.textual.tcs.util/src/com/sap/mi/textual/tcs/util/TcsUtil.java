@@ -27,12 +27,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.query.index.query.IndexQueryFactory;
-import org.eclipse.emf.query.index.query.QueryCommand;
-import org.eclipse.emf.query.index.query.QueryExecutor;
-import org.eclipse.emf.query.index.query.ResourceQuery;
-import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
-import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
 import org.eclipse.emf.query2.QueryProcessorFactory;
@@ -83,6 +77,8 @@ import com.sap.furcas.metamodel.TCS.Token;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.mi.textual.common.util.EcoreHelper;
+import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
 
 
 /**
@@ -1238,38 +1234,10 @@ public class TcsUtil {
 				.getDefault()
 				.createQueryProcessor(getIndex(resourceSet));
 
-		QueryContext context = getQueryContext(resourceSet);
+		QueryContext context = EcoreHelper.getQueryContext(resourceSet);
 		return queryProcessor.execute(query, context);
 	}
 	
-	/**
-     * Constructs a query context that contains all of <tt>rs</tt>'s resources and all
-     * metamodel resources
-     */
-    public static QueryContext getQueryContext(final ResourceSet rs) {
-        return new QueryContext() {
-                public URI[] getResourceScope() {
-                        final List<URI> result = new ArrayList<URI>();
-                        IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
-                                public void execute(QueryExecutor queryExecutor) {
-                                        ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
-                                        for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
-                                                result.add(desc.getURI());
-                                        }
-                                        for (Resource r:rs.getResources()) {
-                                            result.add(r.getURI());
-                                        }
-                                }
-                        });
-                        return result.toArray(new URI[0]);
-                }
-
-                public ResourceSet getResourceSet() {
-                        return rs;
-                }
-        };
-    }
-
 	private static org.eclipse.emf.query.index.Index getIndex(ResourceSet resourceSet) {
 		// TODO Auto-generated method stub
 		return null;
@@ -1884,8 +1852,8 @@ public class TcsUtil {
 
 			ResourceSet con = getResourceSetFromEObject(element);
 
-			AdapterJMIHelper oclHelper = new AdapterJMIHelper(element
-					.refOutermostPackage(), con, con.getJmiHelper(), null, null);
+			AdapterJMIHelper oclHelper = new AdapterJMIHelper(EcoreHelper.getOutermostPackage(element)
+						, con, null, null);
 
 			// propName is never used in findElementWithOCLQuery
 			expectedValue = oclHelper.findElementWithOCLQuery(element, null,

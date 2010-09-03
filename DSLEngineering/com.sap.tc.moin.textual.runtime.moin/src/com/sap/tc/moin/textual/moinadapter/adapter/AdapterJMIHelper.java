@@ -99,8 +99,7 @@ public class AdapterJMIHelper {
 	//private static final String QUERY_PARAM_NAME = "\\?";
 	private final Set<CRI> additionalCRIScope;
 
-	public AdapterJMIHelper(RefPackage root, Connection connection,
-			JmiHelper jmiHelper, Collection<PRI> explicitReferenceScope, Collection<CRI> additionalCRIScope) {
+	public AdapterJMIHelper(RefPackage root, Connection connection, Collection<PRI> explicitReferenceScope, Collection<CRI> additionalCRIScope) {
 		super();
 		this.root = root;
 		this.jmiHelper = jmiHelper;

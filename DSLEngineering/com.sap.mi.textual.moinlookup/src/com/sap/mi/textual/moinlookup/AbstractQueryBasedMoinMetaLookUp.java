@@ -18,6 +18,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.ResultSet;
 
 
 
@@ -26,6 +29,7 @@ import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
+import com.sap.mi.textual.common.util.EcoreHelper;
 
 
 
@@ -141,7 +145,7 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
         List<EClassifier> resultList = new ArrayList<EClassifier>();
         for (Iterator<EClassifier> iterator = classifiers.iterator(); iterator.hasNext();) {
             EClassifier classifier = iterator.next();
-            List<String> otherQualifiedName = classifier.getQualifiedName();
+            List<String> otherQualifiedName = EcoreHelper.getQualifiedName(classifier);
             if (otherQualifiedName.equals(qualifiedNameOfType)) {
                 resultList.add(classifier);
             }
@@ -159,12 +163,12 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
   
         List<EClassifier> result = null;
 
-        MQLResultSet resultSet = executeQuery(query);
+        ResultSet resultSet = executeQuery(query);
 
         result = new ArrayList<EClassifier>(resultSet.getSize());
 
         for (int i = 0; i < resultSet.getSize(); i++) {
-            URI mri = resultSet.getMri(i, "instance");
+            URI mri = resultSet.getUri(i, "instance");
             EObject object = connection.getEObject(mri, true);
             if (object != null) {
                 EClassifier classifier = (EClassifier) object;
@@ -193,20 +197,20 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
     	 String query = "select aeReturn from \"" + MOF14_CONTAINER_NAME + "\"#" + "Model::AssociationEnd as aeReturn, " +
     	 "\"" + MOF14_CONTAINER_NAME + "\"#" + "Model::AssociationEnd as ae, " +
     	 "\"" + MOF14_CONTAINER_NAME + "\"#" + "Model::Association as assoc, " +
-         "\"" + ( (EObject) type ).get___Mri( ) + "\" as t " +
+         "\"" + EcoreUtil.getID( (EObject) type ) + "\" as t " +
          " where ae.\"type\" = t" +
          " where aeReturn.name = '" + otherEndName + "'" +
          " where aeReturn.container = assoc" +
          " where ae.container = assoc";// +
     	 //" where ae <> aeReturn";
 
-    	 MQLResultSet resultSet = executeQuery(query);             
+    	 ResultSet resultSet = executeQuery(query);             
 
     	 EReference result = null;
     	 if (resultSet.getSize() == 1) {
-    	     EObject object = resultSet.getRefObject(0, "aeReturn");
+    	     URI object = resultSet.getUri(0, "aeReturn");
     	     if (object != null) {
-    	         result = ((EReference) object);
+    	         result = (EReference) connection.getEObject(object, true);
     	     }
     	 }
 
@@ -219,9 +223,9 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractEcoreLook
 	 * @return
 	 * @throws MetaModelLookupException 
 	 */
-	private MQLResultSet executeQuery(String query) throws MetaModelLookupException {
+	private ResultSet executeQuery(String query) throws MetaModelLookupException {
 	    try {
-	        MQLProcessor processor = connection.getMQLProcessor();
+	        QueryProcessor processor = connection.getMQLProcessor();
 	        Set<URI> tempPris = getQueryPRIs();
 	        
 	        // TODO remove this again or fix otherwise: enforce loading of MOF ROM/OCL partitions
