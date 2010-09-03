@@ -1,4 +1,4 @@
-package com.sap.emf.ocl.prepared;
+package com.sap.emf.ocl.prepared.parameters;
 
 import org.eclipse.ocl.ecore.RealLiteralExp;
 

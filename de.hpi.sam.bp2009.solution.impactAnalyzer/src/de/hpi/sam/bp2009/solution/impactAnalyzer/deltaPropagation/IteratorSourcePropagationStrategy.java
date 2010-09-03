@@ -6,7 +6,8 @@ import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
+import com.sap.emf.ocl.util.OclHelper;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 public class IteratorSourcePropagationStrategy extends DeltaPropagationStrategyWithTargetExpressionAndPartialEvaluator {

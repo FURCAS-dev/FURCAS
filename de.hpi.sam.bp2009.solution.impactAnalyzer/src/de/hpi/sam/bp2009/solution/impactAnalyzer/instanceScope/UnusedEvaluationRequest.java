@@ -22,11 +22,11 @@ import org.eclipse.ocl.ecore.VariableExp;
 import org.eclipse.ocl.expressions.ExpressionsPackage;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.ocl.util.OclHelper;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OclHelper;
 
 /**
  * Represents a request to (re-)evaluate the <code>unused</code> function which for an {@link OCLExpression} tries to

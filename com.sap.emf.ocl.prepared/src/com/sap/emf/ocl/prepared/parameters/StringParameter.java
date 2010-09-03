@@ -1,11 +1,11 @@
-package com.sap.emf.ocl.prepared;
+package com.sap.emf.ocl.prepared.parameters;
 
 import org.eclipse.ocl.ecore.StringLiteralExp;
 
-public class StrngParameter implements Parameter {
+public class StringParameter implements Parameter {
     private StringLiteralExp param;
 
-    public StrngParameter(StringLiteralExp param) {
+    public StringParameter(StringLiteralExp param) {
         this.param = param;
     }
 
