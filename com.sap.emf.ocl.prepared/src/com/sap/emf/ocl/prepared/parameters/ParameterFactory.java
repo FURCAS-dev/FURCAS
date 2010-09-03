@@ -6,5 +6,5 @@ import org.eclipse.ocl.expressions.LiteralExp;
 public interface ParameterFactory {
     static final ParameterFactory INSTANCE = new ParameterFactoryImpl();
     
-    Parameter getParameterFor(LiteralExp<EClassifier> literalExp);
+    Parameter<?> getParameterFor(LiteralExp<EClassifier> literalExp);
 }

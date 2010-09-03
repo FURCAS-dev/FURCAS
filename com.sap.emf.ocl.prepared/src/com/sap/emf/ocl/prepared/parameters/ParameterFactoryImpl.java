@@ -14,8 +14,8 @@ public class ParameterFactoryImpl implements ParameterFactory {
      * Factory method that creates the appropriate {@link Parameter} implementation instance
      * for the parameterizable literal expression <code>param</code>.
      */
-    public Parameter getParameterFor(LiteralExp<EClassifier> param) {
-        Parameter result;
+    public Parameter<?> getParameterFor(LiteralExp<EClassifier> param) {
+        Parameter<?> result;
         switch (param.eClass().getClassifierID()) {
         case EcorePackage.BOOLEAN_LITERAL_EXP:
             result = new BooleanParameter((BooleanLiteralExp) param);

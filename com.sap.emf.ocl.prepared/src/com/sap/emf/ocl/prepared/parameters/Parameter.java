@@ -13,7 +13,8 @@ import com.sap.emf.ocl.prepared.PreparedOCLExpression;
  * @author Axel Uhl (D043530)
  * 
  */
-public interface Parameter {
-    void set(Object object);
+public interface Parameter<T> {
+    void set(T object);
     LiteralExp<EClassifier> getLiteralExp();
+    T get();
 }
