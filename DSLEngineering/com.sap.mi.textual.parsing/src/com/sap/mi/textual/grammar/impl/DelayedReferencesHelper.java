@@ -38,6 +38,7 @@ import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
@@ -145,8 +146,8 @@ public class DelayedReferencesHelper {
 								&& reference.getModelElement().equals(
 										fec.getSourceModelElement())) {
 							// delete element and fec
-							fec.getResultModelElement().refDelete();
-							fec.refDelete();
+							EcoreUtil.delete(fec.getResultModelElement(), true);
+							EcoreUtil.delete(fec, true);
 						}
 					}
 				}
@@ -220,8 +221,8 @@ public class DelayedReferencesHelper {
 										// this result but
 										// is not in the foreach anymore thus
 										// delete element and fec
-										fec.getResultModelElement().refDelete();
-										fec.refDelete();
+										EcoreUtil.delete(fec.getResultModelElement(), true);
+										EcoreUtil.delete(fec, true);
 									} else {
 										for (EObject ce : fec
 												.getContextElement()) {
@@ -231,10 +232,10 @@ public class DelayedReferencesHelper {
 												// thus we need to check if the
 												// type fits
 												if (fec.getResultModelElement() == null) {
-													fec.refDelete();
+													EcoreUtil.delete(fec, true);
 												} else {
 													if (fec.getResultModelElement()
-															.refMetaObject()
+															.eClass()
 															.equals(tmpl
 																	.getMetaReference())) {
 														// we can reuse the
@@ -253,9 +254,8 @@ public class DelayedReferencesHelper {
 																.put((EObject) next,
 																		fec.getResultModelElement());
 													} else {
-														fec.getResultModelElement()
-																.refDelete();
-														fec.refDelete();
+														EcoreUtil.delete(fec.getResultModelElement(), true);
+														EcoreUtil.delete(fec, true);
 														break;
 													}
 												}
@@ -517,8 +517,7 @@ public class DelayedReferencesHelper {
 			}
 		}
 		if (!forEachContextExists) {
-			ForEachContext newContext = (ForEachContext) rs.getClass(
-					ForEachContext.CLASS_DESCRIPTOR).refCreateInstance();
+			ForEachContext newContext = (ForEachContext) TextblocksFactory.eINSTANCE.createForEachContext();
 			newContext.setForeachPedicatePropertyInit(sequenceElement);
 			newContext.setSourceModelElement(sourceModelElement);
 			newContext.getContextElement().add(currentForEachElement);
@@ -639,18 +638,25 @@ public class DelayedReferencesHelper {
 
 					context = getQueryScope(mappingQueryScope);
 					result = queryProcessor.execute(query, context);
-					eObjectsURIs = result.getUris("template");
-
-					if (eObjectsURIs.length > 1) {
-						template = (com.sap.furcas.metamodel.TCS.Template) rs.getEObject(eObjectsURIs[1], false);
-					} else if (eObjectsURIs.length == 1) {
-						template = (Template) rs.getEObject(eObjectsURIs[0], false);
-					}
+					template = getTemplate(result, rs, template);
 				}
 
 			}
 		}
 
+		return template;
+	}
+
+	private Template getTemplate(ResultSet result, ResourceSet rs,
+			Template template) {
+		URI[] eObjectsURIs;
+		eObjectsURIs = result.getUris("template");
+
+		if (eObjectsURIs.length > 1) {
+			template = (com.sap.furcas.metamodel.TCS.Template) rs.getEObject(eObjectsURIs[1], false);
+		} else if (eObjectsURIs.length == 1) {
+			template = (Template) rs.getEObject(eObjectsURIs[0], false);
+		}
 		return template;
 	}
 

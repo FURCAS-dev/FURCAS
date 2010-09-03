@@ -7,12 +7,19 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query.index.query.QueryResult;
+import org.eclipse.emf.query.index.ui.IndexFactory;
+import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
+import org.eclipse.emf.query2.ResultSet;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.Template;
@@ -63,30 +70,32 @@ public class ContextAndForeachHelper {
      *         other common generalization exists
      */
     public static EObject getCommonBaseClassForContextTag(ConcreteSyntax cs, String contextTag, EClass elementClass) {
-        MQLProcessor mql = cs.eResource().getResourceSet().getMQLProcessor();
-        MQLResultSet templatesClasses;
+        QueryProcessor mql = QueryProcessorFactory.getDefault().createQueryProcessor(IndexFactory.getInstance());
+        ResourceSet rs = elementClass.eResource().getResourceSet();
+		QueryContext context = EcoreHelper.getQueryContext(rs);
+        ResultSet templatesClasses;
         if (contextTag==null || contextTag.length()==0) {
             templatesClasses = mql.execute("select me from Model::Classifier as me,"+
         	    	"TCS::ContextTemplate as ct,"+
-        	    	"\"" + ((EObject) cs).get___Mri() + "\" as cs "+
+        	    	"\"" + EcoreUtil.getID(((EObject) cs)) + "\" as cs "+
         	    	"where ct.concreteSyntax=cs "+
         	    	"where ct.metaReference=me "+
         	    	"where ct.contextTags=null "+
-        		"where ct.isContext=true");
+        		"where ct.isContext=true", context);
         } else {
             templatesClasses = mql.execute("select me from Model::Classifier as me,"+
         		"TCS::ContextTemplate as ct,"+
         		"TCS::ContextTags as tags,"+
-        		"\"" + ((EObject) cs).get___Mri() + "\" as cs "+
+        		"\"" + EcoreUtil.getID(((EObject) cs)) + "\" as cs "+
         		"where ct.concreteSyntax=cs "+
         		"where ct.metaReference=me "+
         		"where ct.contextTags=tags "+
         		"where ct.isContext=true "+
-        		"where tags.tags='"+contextTag+"'");
+        		"where tags.tags='"+contextTag+"'", context);
         }
         Set<EClass> metaReferences = new HashSet<EClass>();
-        for (EObject ro : templatesClasses.getEObjects("me")) {
-            metaReferences.add((EClass) ro);
+        for (URI uri : templatesClasses.getUris("me")) {
+            metaReferences.add((EClass) rs.getEObject(uri, true));
         }
         boolean needReflectElement = false;
         EClass commonGeneralization = null;

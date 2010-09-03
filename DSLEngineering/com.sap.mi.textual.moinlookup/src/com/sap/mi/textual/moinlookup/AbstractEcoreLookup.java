@@ -8,19 +8,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.naming.NameNotFoundException;
-
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
@@ -46,19 +43,15 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
         ETypedElement returnElement = null;
         
         EClassifier classifier = getClassifier(reference);
-        try {
-            if (classifier != null && (classifier instanceof EClass) ) {
-            
-                EModelElement me = EcoreHelper.lookupElementExtended((EClassifier) classifier, name); // throws exception or not?
-                if (me != null) {
-                    if (me instanceof EStructuralFeature) {
-                        returnElement = (EStructuralFeature) me;
-                    } 
-                }
-            }
-        } catch (NameNotFoundException e) {
-            // may still be unexposed associationend
-        }
+        if (classifier != null && (classifier instanceof EClass) ) {
+		
+		    EModelElement me = EcoreHelper.lookupElementExtended((EClassifier) classifier, name); // throws exception or not?
+		    if (me != null) {
+		        if (me instanceof EStructuralFeature) {
+		            returnElement = (EStructuralFeature) me;
+		        } 
+		    }
+		}
         if (classifier != null && returnElement == null && ((EObject)classifier).eResource() != null) {
 			// may be an AssociationEnd that is not exposed
 			// first get all supertypes of the classifier
@@ -67,7 +60,7 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
 				if (associationEnd.getName().equals(name)) {
 					if (returnElement != null) {
 						throw new MetaModelLookupException("Ambiguous feature detected, name: " + name
-								+ " for classifier: " + classifier.getQualifiedName());
+								+ " for classifier: " + EcoreHelper.getQualifiedName(classifier));
 					} else {
 						returnElement = associationEnd.getEOpposite();
 					}
@@ -89,20 +82,16 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
     protected EDataType getStructureField(ResolvedNameAndReferenceBean<EObject> reference, String featureName) throws MetaModelLookupException  {
         EDataType returnFeature = null;
         
-        try {
-            EClassifier classifier = getClassifier(reference);
-            if (classifier != null  && (classifier instanceof EDataType)) {
-                
-                EModelElement me = classifier.lookupElementExtended(featureName); // throws exception or not?
-                if (me != null) {
-                    if (me instanceof EDataType) {
-                        returnFeature = (EDataType) me;
-                    } 
-                }
-            }
-        } catch (NameNotFoundException e) {
-            // return null
-        }
+        EClassifier classifier = getClassifier(reference);
+		if (classifier != null  && (classifier instanceof EDataType)) {
+		    
+		    EModelElement me = EcoreHelper.lookupElementExtended(classifier, featureName); // throws exception or not?
+		    if (me != null) {
+		        if (me instanceof EDataType) {
+		            returnFeature = (EDataType) me;
+		        } 
+		    }
+		}
         return returnFeature;
     }
     
@@ -136,7 +125,11 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
 
     public boolean isAbstract(ResolvedNameAndReferenceBean<EObject> referedElement) throws MetaModelLookupException {
         EClassifier classi = getClassifier(referedElement);
-        return classi.isAbstract();
+        if(classi instanceof EClass) {
+        	return ((EClass) classi).isAbstract();
+        } else {
+        	return false;
+        }
     }
     
     /* (non-Javadoc)
@@ -170,7 +163,7 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
                 // try Association
                 EDataType strucField = getStructureField(referedElementPart, featureNamePart);
                 if (strucField != null) {
-                    resultType = strucField.getType();
+                    resultType = strucField;
 //                    featureClassNameList = strucField.getType().getQualifiedName();
                 }
             }
@@ -196,7 +189,7 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
      */
     public MultiplicityBean getMultiplicity(ResolvedNameAndReferenceBean<EObject> referedElement, String featureName) throws MetaModelLookupException {
        
-        EReference mofMult = null;
+    	EStructuralFeature mofMult = null;
      // could be feature, association, or StructureField, so try each in turn
         // could be feature, association, or StructureField, so try each in turn
         String[] path = featureName.split("\\.");
@@ -206,29 +199,24 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
             String featureNamePart = path[i];
             ETypedElement feature = getTypedElement(referedElementPart, featureNamePart);
             if (feature != null) {
-            	if(feature instanceof EReference) {
-//            		mofMult = ((EReference) feature).getMultiplicity();
-            		mofMult.setLowerBound(((EReference) feature).getLowerBound());
-            		mofMult.setUpperBound(((EReference) feature).getUpperBound());
-            	} else if (feature instanceof EStructuralFeature) {
-//            		mofMult = ((EStructuralFeature) feature).getMultiplicity();
+            	if(feature instanceof EStructuralFeature) {
+            		mofMult = ((EStructuralFeature) feature);
             		mofMult.setLowerBound(((EStructuralFeature) feature).getLowerBound());
             		mofMult.setUpperBound(((EStructuralFeature) feature).getUpperBound());
-            		
             	}
             	referedElementPart = getBean(feature.getEType());
             } 
             
-            if (mofMult == null) {
-                // try Association
-                EReference assoEnd = getAssociationEnd(referedElementPart, featureNamePart);
-                if (assoEnd != null) {
-//                    mofMult = assoEnd.getMultiplicity();
-                	mofMult.setLowerBound(assoEnd.getLowerBound());
-            		mofMult.setUpperBound(assoEnd.getUpperBound());
-                    referedElementPart = getBean(assoEnd.getEType());
-                }
-            }
+//            if (mofMult == null) {
+//                // try Association
+//                EReference assoEnd = getAssociationEnd(referedElementPart, featureNamePart);
+//                if (assoEnd != null) {
+////                    mofMult = assoEnd.getMultiplicity();
+//                	mofMult.setLowerBound(assoEnd.getLowerBound());
+//            		mofMult.setUpperBound(assoEnd.getUpperBound());
+//                    referedElementPart = getBean(assoEnd.getEType());
+//                }
+//            }
             
             
             if (mofMult != null) {
@@ -245,7 +233,7 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
                     bean = new MultiplicityBean();
                     bean.setLowerBound(1);
                     bean.setUpperBound(1);
-                    referedElementPart = getBean(strucField.getType());
+                    referedElementPart = getBean(strucField);
                 }
             }
         }
@@ -292,7 +280,7 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
             return null;
         } else {
             // TODO use wrapper instead of mere bean
-            return new ResolvedNameAndReferenceBean<EObject>(refObject.getQualifiedName(), refObject);
+            return new ResolvedNameAndReferenceBean<EObject>(EcoreHelper.getQualifiedName(refObject), refObject);
         }
     }
     
@@ -307,8 +295,10 @@ public abstract class AbstractEcoreLookup  implements IMetaModelLookup<EObject> 
 			throw new MetaModelLookupException("The given name ("+reference.getNames()+") does not resolve to an EnumerationType");
 		}
 		EEnum enumeration = (EEnum)classifier;
-		List<String> literals = new ArrayList<String>(enumeration.getLabels().size());
-		literals.addAll(enumeration.getLabels());
+		List<String> literals = new ArrayList<String>(enumeration.getELiterals().size());
+		for (EEnumLiteral literal : enumeration.getELiterals()) {
+			literals.add(literal.getLiteral());
+		}
 		return literals;
 	}
 
