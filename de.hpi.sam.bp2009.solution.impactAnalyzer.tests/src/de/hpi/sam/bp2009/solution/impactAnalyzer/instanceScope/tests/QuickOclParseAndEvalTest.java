@@ -4,7 +4,12 @@ import java.util.Collection;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.LoopExp;
@@ -16,6 +21,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
+import company.CompanyFactory;
+import company.CompanyPackage;
 
 import data.classes.ClassTypeDefinition;
 import data.classes.ClassesFactory;
@@ -53,6 +60,28 @@ public class QuickOclParseAndEvalTest extends TestCase
     ocl = OCLWithHiddenOpposites.newInstance();
     oclHelper = ocl.createOCLHelper();
     oclHelper.setContext(ClassesPackage.eINSTANCE.getParameter());
+  }
+
+  /**
+   * Check if invalid can be passed into an operation as argument
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionWithInvalidInOperationArgument() throws ParserException {
+      EClass cl = CompanyPackage.eINSTANCE.getDepartment();
+      EOperation op = EcoreFactory.eINSTANCE.createEOperation();
+      op.setName("myOp");
+      op.setEType(EcorePackage.eINSTANCE.getEBoolean());
+      EParameter param = EcoreFactory.eINSTANCE.createEParameter();
+      param.setName("humba");
+      param.setEType(org.eclipse.emf.ecore.EcorePackage.eINSTANCE.getEClassifier());
+      op.getEParameters().add(param);
+      cl.getEOperations().add(op);
+      oclHelper.setOperationContext(cl, op);
+      oclHelper.createBodyCondition("humba.oclIsInvalid()");
+      oclHelper.setContext(cl);
+      OCLExpression expression4 = oclHelper.createQuery("self.myOp(invalid)");
+      Object result4 = ocl.evaluate(CompanyFactory.eINSTANCE.createDepartment(), expression4);
+      assertEquals(true, result4);
   }
 
     /**
