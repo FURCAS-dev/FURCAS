@@ -107,7 +107,7 @@ public class UnusedEvaluationRequest {
         Map<Variable, Object> newKnownVariables = new HashMap<Variable, Object>(knownVariableValues);
         newKnownVariables.put(unknownVariable, valueForFormerlyUnknownVariable);
         try {
-            boolean unused = computeUnknown(expressionToCheckIfUnused, expressionToCheckIfUnused, newKnownVariables);
+            boolean unused = computeUnused(expressionToCheckIfUnused, expressionToCheckIfUnused, newKnownVariables);
             result = new EvaluationResult(unused, /* no next request; evaluation was successful */ null);
         } catch (ValueNotFoundException e) {
             UnusedEvaluationRequest nextRequest = new UnusedEvaluationRequest(newKnownVariables, (Variable) e.getVariableExp()
@@ -176,7 +176,7 @@ public class UnusedEvaluationRequest {
         return (OCLExpression) result;
     }
 
-    private boolean computeUnknown(OCLExpression expressionToCheckIfUnused2, OCLExpression expressionToCheckIfUnused3,
+    private boolean computeUnused(OCLExpression expressionToCheckIfUnused2, OCLExpression expressionToCheckIfUnused3,
             Map<Variable, Object> newKnownVariables) {
         // TODO implement UnusedEvaluationRequest.computeUnknown
         return false;
