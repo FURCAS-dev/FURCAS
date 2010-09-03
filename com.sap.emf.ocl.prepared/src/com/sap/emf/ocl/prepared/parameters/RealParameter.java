@@ -2,7 +2,7 @@ package com.sap.emf.ocl.prepared.parameters;
 
 import org.eclipse.ocl.ecore.RealLiteralExp;
 
-public class RealParameter implements Parameter {
+public class RealParameter implements Parameter<Double> {
     private RealLiteralExp param;
 
     public RealParameter(RealLiteralExp param) {
@@ -10,7 +10,7 @@ public class RealParameter implements Parameter {
     }
 
     @Override
-    public void set(Object object) {
+    public void set(Double object) {
         setReal((Double) object);
     }
 
@@ -20,5 +20,9 @@ public class RealParameter implements Parameter {
 
     public RealLiteralExp getLiteralExp() {
         return param;
+    }
+
+    public Double get() {
+        return param.getRealSymbol();
     }
 }

@@ -27,47 +27,45 @@ import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
  * @author Axel Uhl (D043530)
  *
  */
-public class ParameterFinder extends AbstractVisitorWithHiddenOpposites<Set<Parameter>> {
+public class ParameterFinder extends AbstractVisitorWithHiddenOpposites<Map<Object, Parameter<?>>> {
     private Set<Object> parameterValuesToFindInLiterals;
-    private Map<Object, Parameter> parameterForFoundValues;
     private ParameterFactory paramFactory = ParameterFactory.INSTANCE;
 
     public ParameterFinder(Object... parameterValuesToFindInLiterals) {
-        super(new HashSet<Parameter>());
-        this.parameterForFoundValues = new HashMap<Object, Parameter>();
+        super(new HashMap<Object, Parameter<?>>());
         this.parameterValuesToFindInLiterals = new HashSet<Object>(Arrays.asList(parameterValuesToFindInLiterals));
     }
     
     @Override
-    public Set<Parameter> visitIntegerLiteralExp(IntegerLiteralExp<EClassifier> literalExp) {
+    public Map<Object, Parameter<?>> visitIntegerLiteralExp(IntegerLiteralExp<EClassifier> literalExp) {
         Integer symbol = literalExp.getIntegerSymbol();
         lookupSymbolAndEnterInfoResultIfMatch(literalExp, symbol);
         return super.visitIntegerLiteralExp(literalExp);
     }
 
     @Override
-    public Set<Parameter> visitRealLiteralExp(RealLiteralExp<EClassifier> literalExp) {
+    public Map<Object, Parameter<?>> visitRealLiteralExp(RealLiteralExp<EClassifier> literalExp) {
         Double symbol = literalExp.getRealSymbol();
         lookupSymbolAndEnterInfoResultIfMatch(literalExp, symbol);
         return super.visitRealLiteralExp(literalExp);
     }
 
     @Override
-    public Set<Parameter> visitStringLiteralExp(StringLiteralExp<EClassifier> literalExp) {
+    public Map<Object, Parameter<?>> visitStringLiteralExp(StringLiteralExp<EClassifier> literalExp) {
         String symbol = literalExp.getStringSymbol();
         lookupSymbolAndEnterInfoResultIfMatch(literalExp, symbol);
         return super.visitStringLiteralExp(literalExp);
     }
 
     @Override
-    public Set<Parameter> visitBooleanLiteralExp(BooleanLiteralExp<EClassifier> literalExp) {
+    public Map<Object, Parameter<?>> visitBooleanLiteralExp(BooleanLiteralExp<EClassifier> literalExp) {
         Boolean symbol = literalExp.getBooleanSymbol();
         lookupSymbolAndEnterInfoResultIfMatch(literalExp, symbol);
         return super.visitBooleanLiteralExp(literalExp);
     }
 
     @Override
-    public Set<Parameter> visitEnumLiteralExp(EnumLiteralExp<EClassifier, EEnumLiteral> literalExp) {
+    public Map<Object, Parameter<?>> visitEnumLiteralExp(EnumLiteralExp<EClassifier, EEnumLiteral> literalExp) {
         EEnumLiteral symbol = literalExp.getReferredEnumLiteral();
         lookupSymbolAndEnterInfoResultIfMatch(literalExp, symbol);
         return super.visitEnumLiteralExp(literalExp);
@@ -75,12 +73,20 @@ public class ParameterFinder extends AbstractVisitorWithHiddenOpposites<Set<Para
 
     private void lookupSymbolAndEnterInfoResultIfMatch(LiteralExp<EClassifier> literalExp, Object symbol) {
         if (parameterValuesToFindInLiterals.contains(symbol)) {
-            if (parameterForFoundValues.containsKey(symbol)) {
+            if (result.containsKey(symbol)) {
                 throw new DuplicateParameterValueException(
-                        parameterForFoundValues.get(symbol),
+                        result.get(symbol),
                         literalExp);
             }
-            result.add(paramFactory.getParameterFor(literalExp));
+            result.put(symbol, paramFactory.getParameterFor(literalExp));
         }
+    }
+    
+    public Map<Object, Parameter<?>> visit(OCLExpression e) {
+        Map<Object, Parameter<?>> resultCandidate = safeVisit(e);
+        if (result.size() < parameterValuesToFindInLiterals.size()) {
+            throw new ParameterNotFoundException(e, parameterValuesToFindInLiterals, result.keySet());
+        }
+        return resultCandidate;
     }
 }

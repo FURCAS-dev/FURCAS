@@ -2,7 +2,7 @@ package com.sap.emf.ocl.prepared.parameters;
 
 import org.eclipse.ocl.ecore.IntegerLiteralExp;
 
-public class IntegerParameter implements Parameter {
+public class IntegerParameter implements Parameter<Integer> {
     private IntegerLiteralExp param;
 
     public IntegerParameter(IntegerLiteralExp param) {
@@ -10,7 +10,7 @@ public class IntegerParameter implements Parameter {
     }
 
     @Override
-    public void set(Object object) {
+    public void set(Integer object) {
         setInteger((Integer) object);
     }
 
@@ -20,5 +20,9 @@ public class IntegerParameter implements Parameter {
 
     public IntegerLiteralExp getLiteralExp() {
         return param;
+    }
+
+    public Integer get() {
+        return param.getIntegerSymbol();
     }
 }

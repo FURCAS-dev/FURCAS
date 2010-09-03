@@ -2,7 +2,7 @@ package com.sap.emf.ocl.prepared.parameters;
 
 import org.eclipse.ocl.ecore.StringLiteralExp;
 
-public class StringParameter implements Parameter {
+public class StringParameter implements Parameter<String> {
     private StringLiteralExp param;
 
     public StringParameter(StringLiteralExp param) {
@@ -10,7 +10,7 @@ public class StringParameter implements Parameter {
     }
 
     @Override
-    public void set(Object object) {
+    public void set(String object) {
         setString((String) object);
     }
 
@@ -20,5 +20,9 @@ public class StringParameter implements Parameter {
 
     public StringLiteralExp getLiteralExp() {
         return param;
+    }
+
+    public String get() {
+        return param.getStringSymbol();
     }
 }
