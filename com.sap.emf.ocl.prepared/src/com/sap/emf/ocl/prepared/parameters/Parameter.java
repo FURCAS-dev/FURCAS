@@ -1,5 +1,8 @@
 package com.sap.emf.ocl.prepared.parameters;
 
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.ocl.expressions.LiteralExp;
+
 import com.sap.emf.ocl.prepared.PreparedOCLExpression;
 
 /**
@@ -12,4 +15,5 @@ import com.sap.emf.ocl.prepared.PreparedOCLExpression;
  */
 public interface Parameter {
     void set(Object object);
+    LiteralExp<EClassifier> getLiteralExp();
 }

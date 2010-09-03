@@ -10,12 +10,15 @@ public class EnumParameter implements Parameter {
         this.param = param;
     }
 
-    @Override
     public void set(Object object) {
         setLiteral((EEnumLiteral) object);
     }
 
     private void setLiteral(EEnumLiteral value) {
         param.setReferredEnumLiteral(value);
+    }
+
+    public EnumLiteralExp getLiteralExp() {
+        return param;
     }
 }

@@ -9,12 +9,15 @@ public class BooleanParameter implements Parameter {
         this.param = param;
     }
 
-    @Override
     public void set(Object object) {
         setBoolean((Boolean) object);
     }
 
     private void setBoolean(boolean b) {
         param.setBooleanSymbol(b);
+    }
+
+    public BooleanLiteralExp getLiteralExp() {
+        return param;
     }
 }

@@ -17,4 +17,8 @@ public class StringParameter implements Parameter {
     private void setString(String s) {
         param.setStringSymbol(s);
     }
+
+    public StringLiteralExp getLiteralExp() {
+        return param;
+    }
 }
