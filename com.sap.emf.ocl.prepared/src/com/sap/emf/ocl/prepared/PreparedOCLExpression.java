@@ -3,25 +3,15 @@ package com.sap.emf.ocl.prepared;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.ocl.ecore.BooleanLiteralExp;
-import org.eclipse.ocl.ecore.EcorePackage;
-import org.eclipse.ocl.ecore.EnumLiteralExp;
-import org.eclipse.ocl.ecore.IntegerLiteralExp;
 import org.eclipse.ocl.ecore.LiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.RealLiteralExp;
-import org.eclipse.ocl.ecore.StringLiteralExp;
 
 import com.sap.emf.ocl.hiddenopposites.EcoreEnvironmentFactoryWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
-import com.sap.emf.ocl.prepared.parameters.BooleanParameter;
-import com.sap.emf.ocl.prepared.parameters.EnumParameter;
-import com.sap.emf.ocl.prepared.parameters.IntegerParameter;
 import com.sap.emf.ocl.prepared.parameters.Parameter;
-import com.sap.emf.ocl.prepared.parameters.RealParameter;
-import com.sap.emf.ocl.prepared.parameters.StringParameter;
+import com.sap.emf.ocl.prepared.parameters.ParameterFactory;
 import com.sap.emf.ocl.util.OclHelper;
 
 /**
@@ -51,8 +41,9 @@ public class PreparedOCLExpression {
         }
         this.expression = expression;
         this.params = new ArrayList<Parameter>(params.length);
+        ParameterFactory factory = ParameterFactory.INSTANCE;
         for (LiteralExp param : params) {
-            this.params.add(getParameterFor(param));
+            this.params.add(factory.getParameterFor(param));
         }
     }
     
@@ -68,34 +59,6 @@ public class PreparedOCLExpression {
         this.oppositeEndFinder = oppositeEndFinder;
     }
     
-    /**
-     * Factory method that creates the appropriate {@link Parameter} implementation instance
-     * for the parameterizable literal expression <code>param</code>.
-     */
-    private Parameter getParameterFor(LiteralExp param) {
-        Parameter result;
-        switch (param.eClass().getClassifierID()) {
-        case EcorePackage.BOOLEAN_LITERAL_EXP:
-            result = new BooleanParameter((BooleanLiteralExp) param);
-            break;
-        case EcorePackage.INTEGER_LITERAL_EXP:
-            result = new IntegerParameter((IntegerLiteralExp) param);
-            break;
-        case EcorePackage.REAL_LITERAL_EXP:
-            result = new RealParameter((RealLiteralExp) param);
-            break;
-        case EcorePackage.STRING_LITERAL_EXP:
-            result = new StringParameter((StringLiteralExp) param);
-            break;
-        case EcorePackage.ENUM_LITERAL_EXP:
-            result = new EnumParameter((EnumLiteralExp) param);
-            break;
-        default:
-            throw new RuntimeException("Unknown literal expression type "+param.getClass().getName());
-        }
-        return result;
-    }
-
     public synchronized Object evaluate(Object context, Object... values) {
         if (values.length != params.size()) {
             throw new RuntimeException("Number of parameters does not match. Expected "+params.size()+

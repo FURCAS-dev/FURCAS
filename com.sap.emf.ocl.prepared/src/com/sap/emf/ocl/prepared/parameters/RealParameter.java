@@ -17,4 +17,8 @@ public class RealParameter implements Parameter {
     private void setReal(double r) {
         param.setRealSymbol(r);
     }
+
+    public RealLiteralExp getLiteralExp() {
+        return param;
+    }
 }

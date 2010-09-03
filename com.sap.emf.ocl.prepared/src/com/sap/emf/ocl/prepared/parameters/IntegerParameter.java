@@ -17,4 +17,8 @@ public class IntegerParameter implements Parameter {
     private void setInteger(int i) {
         param.setIntegerSymbol(i);
     }
+
+    public IntegerLiteralExp getLiteralExp() {
+        return param;
+    }
 }
