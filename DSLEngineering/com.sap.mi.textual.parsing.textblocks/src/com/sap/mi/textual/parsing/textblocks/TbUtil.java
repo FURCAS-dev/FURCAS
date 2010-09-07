@@ -2,10 +2,8 @@ package com.sap.mi.textual.parsing.textblocks;
 
 import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getParentBlock;
 
-import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +11,8 @@ import java.util.Stack;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ContextTags;
@@ -28,6 +28,7 @@ import com.sap.furcas.metamodel.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.OmittedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.grammar.impl.ContextBuilder;
@@ -118,56 +119,65 @@ public class TbUtil {
      * 			is set to false this may be <code>null</code>;
      * @return the copied version of <code>rootBlock</code>
      */
-    public static DocumentNode createNewCopy(DocumentNode node, Version newVersion, boolean manifestValues, ShortPrettyPrinter shortPrettyPrinter) {
-	ResourceSet conn = ((EObject) node).get___Connection();
-	DeepCopyResultSet result = conn.deepCopy(Collections.singleton((EObject) node),
-		new TextBlockDeepCopyPolicyHandler(node.getVersion()), false);
-	// iterate and set and connect versions to each other
-	for (EObject copy : result.getCopiedElements()) {
-	    if(copy instanceof DocumentNode) {
-                DocumentNode original = (DocumentNode) conn.getElement(result
-                        .getInverseMriMappingTable().get(
-                                ((EObject) copy).get___Mri()));
-                DocumentNode copiedNode = ((DocumentNode) copy);
-                copiedNode.setVersion(newVersion);
-                if (manifestValues) {
-                    if (copiedNode instanceof LexedToken) {
-                        ((LexedToken) copiedNode)
-                                .setValue(shortPrettyPrinter
-                                        .resynchronizeToEditableState((AbstractToken) copiedNode));
-                    }
-                }
-                // as the original already had a reference to its other
-                // versions these would be duplicated, therefore clear this
-                // association before referencing again
-                // TODO this could be improved if deepCopy would allow separate
-                // handling of specific references
-                // Collection<DocumentNode> referencingNodes =
-                // ((TextblocksPackage)
-                // copiedNode
-                // .refImmediatePackage())
-                // .getDocumentNodeHasDocumentNodeVersions().getDocumentNode(
-                // copiedNode);
-                // TODO: this is only need because obviously deepCopy also
-                // duplicates references from "outside"
-                // to elements that are being copied, this leads to duplicated
-                // version references if
-                // // referenceVersions is called
-                // for (DocumentNode referencingNode : new
-                // ArrayList<DocumentNode>(
-                // referencingNodes)) {
-                // referencingNode.getOtherVersions().remove(copiedNode);
-                // }
-                // copiedNode.getOtherVersions().clear();
-                referenceVersions(original, copiedNode);
-                // per default assign to the same partition
-            }
-	}
-	DocumentNode newCopy = (DocumentNode) result.getMappingTable().get(node).getMappingTarget();
-	((EObject) node).get___Partition().assignElementIncludingChildren(newCopy);
+	public static DocumentNode createNewCopy(DocumentNode node,
+			Version newVersion, boolean manifestValues,
+			ShortPrettyPrinter shortPrettyPrinter) {
+		final Map<EObject, EObject> copiedElements = new HashMap<EObject, EObject>();
+		Copier copier = new EcoreUtil.Copier(true, true) {
 
-	return newCopy;
-    }
+			/**
+		 * 
+		 */
+			private static final long serialVersionUID = 1L;
+
+			public EObject copy(EObject eObject) {
+				EObject copied = super.copy(eObject);
+				copiedElements.put(eObject, copied);
+				return copied;
+			}
+		};
+		DocumentNode newCopy = (DocumentNode) copier.copy(node);
+		copier.copyReferences();
+		newCopy.setVersion(newVersion);
+		if (manifestValues) {
+			if (newCopy instanceof LexedToken) {
+				((LexedToken) newCopy).setValue(shortPrettyPrinter
+						.resynchronizeToEditableState((AbstractToken) newCopy));
+			}
+		}
+		// as the original already had a reference to its other
+		// versions these would be duplicated, therefore clear this
+		// association before referencing again
+		// TODO this could be improved if deepCopy would allow separate
+		// handling of specific references
+		// Collection<DocumentNode> referencingNodes =
+		// ((TextblocksPackage)
+		// copiedNode
+		// .refImmediatePackage())
+		// .getDocumentNodeHasDocumentNodeVersions().getDocumentNode(
+		// copiedNode);
+		// TODO: this is only need because obviously deepCopy also
+		// duplicates references from "outside"
+		// to elements that are being copied, this leads to duplicated
+		// version references if
+		// // referenceVersions is called
+		// for (DocumentNode referencingNode : new
+		// ArrayList<DocumentNode>(
+		// referencingNodes)) {
+		// referencingNode.getOtherVersions().remove(copiedNode);
+		// }
+		// copiedNode.getOtherVersions().clear();
+		for (EObject original : copiedElements.keySet()) {
+			referenceVersions((DocumentNode) original, 
+					(DocumentNode) copiedElements.get(original));
+		}
+		
+		// per default assign to the same partition
+
+		((EObject) node).eResource().getContents().add(newCopy);
+
+		return newCopy;
+	}
 
     /**
      * References the versions of <code>n1</code> and <code>n2</code> with each other. Also
@@ -212,44 +222,6 @@ public class TbUtil {
 	}
 
     }
-
-    /**
-     * this is the deep copy policy for textblock versions Only the given
-     * <code>versionToBeCopied</code> is copied, all other elements and document node versions
-     * will not be copied but only referenced by the copied version
-     *
-     * @author C5106462
-     *
-     */
-    private static class TextBlockDeepCopyPolicyHandler implements DeepCopyPolicyHandler {
-	private final Version versionToBeCopied;
-
-	public TextBlockDeepCopyPolicyHandler(Version versionToBeCopied) {
-	    this.versionToBeCopied = versionToBeCopied;
-	}
-
-	private final DeepCopyPolicy fullPolicy = new DeepCopyPolicy(
-		DeepCopyPolicyOption.FULL_COPY, null);
-	private final DeepCopyPolicy refPolicy = new DeepCopyPolicy(DeepCopyPolicyOption.REF_COPY,
-		null);
-
-	@Override
-		public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement,
-				DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
-			if (sourceElement instanceof DocumentNode) {
-				DocumentNode node = (DocumentNode) sourceElement;
-				if (node.getVersion() != null
-						&& node.getVersion().equals(versionToBeCopied)) {
-					return fullPolicy;
-				}
-			} else if(sourceElement instanceof ForEachContext) {
-			    return fullPolicy;
-			}
-
-			return refPolicy;
-
-		}
-	}
 
     /**
      * Helper function that returns teh sublist without the leading bos and trailing eos tokens.
@@ -323,12 +295,7 @@ public class TbUtil {
      * @return true, if RefObject was deleted, false otherwise
      */
     public static boolean isDeleted(EObject o) {
-	try {
-	    o.refMofId();
-	} catch (InvalidObjectException e) {
-	    return true;
-	}
-
+    	//TODO how can one identify an object that has been deleted in EMF?
 	return false;
     }
 
@@ -395,8 +362,7 @@ public class TbUtil {
     public static EObject getCreatedElement(TextBlock parentBlock) {
 	for (EObject ro : parentBlock.getCorrespondingModelElements()) {
 	    if (parentBlock.getType() != null && parentBlock.getType().getParseRule() != null) {
-		if (ro.refIsInstanceOf(parentBlock.getType().getParseRule().getMetaReference(),
-			false)) {
+		if (ro.eClass().equals(parentBlock.getType().getParseRule().getMetaReference())) {
 		    return ro;
 		}
 	    }
@@ -420,7 +386,7 @@ public class TbUtil {
 	while (parentBlock != null) {
 	    if (parentBlock.getType() != null) {
 		Template template = parentBlock.getType().getParseRule();
-		if ((template instanceof ContextTemplate && ((ContextTemplate) template).isContext())) {
+		if ((template instanceof ContextTemplate && ((ContextTemplate) template).isIsContext())) {
 		    contextStack.push(parentBlock);
 		}
 	    }
@@ -536,7 +502,7 @@ public class TbUtil {
                 }
             }
             if(!forEachContextExists) {
-                ForEachContext newContext = (ForEachContext) connection.getClass(ForEachContext.CLASS_DESCRIPTOR).refCreateInstance();
+                ForEachContext newContext = (ForEachContext) TextblocksFactory.eINSTANCE.createForEachContext();
                 newContext.setForeachPedicatePropertyInit(sequenceElement);
                 newContext.setSourceModelElement(sourceModelElement);
                 newContext.getContextElement().add(currentForEachElement);

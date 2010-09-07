@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getStartColumn <em>Start Column</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getEndRow <em>End Row</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getEndColumn <em>End Column</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getAbsoluteOffset <em>Absolute Offset</em>}</li>
  * </ul>
  * </p>
  *
@@ -221,6 +222,32 @@ public interface DocumentNode extends EObject {
 	void setEndColumn(int value);
 
 	/**
+	 * Returns the value of the '<em><b>Absolute Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Absolute Offset</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Absolute Offset</em>' attribute.
+	 * @see #setAbsoluteOffset(int)
+	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getDocumentNode_AbsoluteOffset()
+	 * @model
+	 * @generated
+	 */
+	int getAbsoluteOffset();
+
+	/**
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getAbsoluteOffset <em>Absolute Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Absolute Offset</em>' attribute.
+	 * @see #getAbsoluteOffset()
+	 * @generated
+	 */
+	void setAbsoluteOffset(int value);
+
+	/**
 	 * Returns the value of the '<em><b>Children Changed</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -273,26 +300,28 @@ public interface DocumentNode extends EObject {
 	void setRelexingNeeded(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Parent</b></em>' reference.
+	 * Returns the value of the '<em><b>Parent</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parent</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parent</em>' reference.
+	 * @return the value of the '<em>Parent</em>' container reference.
 	 * @see #setParent(TextBlock)
 	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getDocumentNode_Parent()
-	 * @model
+	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes
+	 * @model opposite="subNodes" transient="false"
 	 * @generated
 	 */
 	TextBlock getParent();
 
 	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}' reference.
+	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parent</em>' reference.
+	 * @param value the new value of the '<em>Parent</em>' container reference.
 	 * @see #getParent()
 	 * @generated
 	 */

@@ -55,6 +55,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getStartColumn <em>Start Column</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getEndRow <em>End Row</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getEndColumn <em>End Column</em>}</li>
+ *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.DocumentNodeImpl#getAbsoluteOffset <em>Absolute Offset</em>}</li>
  * </ul>
  * </p>
  *
@@ -120,16 +121,6 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	 * @ordered
 	 */
 	protected boolean relexingNeeded = RELEXING_NEEDED_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getParent()
-	 * @generated
-	 * @ordered
-	 */
-	protected TextBlock parent;
 
 	/**
 	 * The cached value of the '{@link #getCorrespondingModelElements() <em>Corresponding Model Elements</em>}' reference list.
@@ -312,6 +303,26 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	protected int endColumn = END_COLUMN_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getAbsoluteOffset() <em>Absolute Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAbsoluteOffset()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ABSOLUTE_OFFSET_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getAbsoluteOffset() <em>Absolute Offset</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAbsoluteOffset()
+	 * @generated
+	 * @ordered
+	 */
+	protected int absoluteOffset = ABSOLUTE_OFFSET_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -473,6 +484,71 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getAbsoluteOffset() {
+		return absoluteOffset;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAbsoluteOffset(int newAbsoluteOffset) {
+		int oldAbsoluteOffset = absoluteOffset;
+		absoluteOffset = newAbsoluteOffset;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET, oldAbsoluteOffset, absoluteOffset));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TextblocksPackage.DOCUMENT_NODE__PARENT:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetParent((TextBlock)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TextblocksPackage.DOCUMENT_NODE__PARENT:
+				return basicSetParent(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case TextblocksPackage.DOCUMENT_NODE__PARENT:
+				return eInternalContainer().eInverseRemove(this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextBlock.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean isChildrenChanged() {
 		return childrenChanged;
 	}
@@ -516,15 +592,8 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	 * @generated
 	 */
 	public TextBlock getParent() {
-		if (parent != null && parent.eIsProxy()) {
-			InternalEObject oldParent = (InternalEObject)parent;
-			parent = (TextBlock)eResolveProxy(oldParent);
-			if (parent != oldParent) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, TextblocksPackage.DOCUMENT_NODE__PARENT, oldParent, parent));
-			}
-		}
-		return parent;
+		if (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT) return null;
+		return (TextBlock)eContainer();
 	}
 
 	/**
@@ -532,8 +601,9 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TextBlock basicGetParent() {
-		return parent;
+	public NotificationChain basicSetParent(TextBlock newParent, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newParent, TextblocksPackage.DOCUMENT_NODE__PARENT, msgs);
+		return msgs;
 	}
 
 	/**
@@ -542,10 +612,19 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 	 * @generated
 	 */
 	public void setParent(TextBlock newParent) {
-		TextBlock oldParent = parent;
-		parent = newParent;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__PARENT, oldParent, parent));
+		if (newParent != eInternalContainer() || (eContainerFeatureID() != TextblocksPackage.DOCUMENT_NODE__PARENT && newParent != null)) {
+			if (EcoreUtil.isAncestor(this, newParent))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newParent != null)
+				msgs = ((InternalEObject)newParent).eInverseAdd(this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextBlock.class, msgs);
+			msgs = basicSetParent(newParent, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.DOCUMENT_NODE__PARENT, newParent, newParent));
 	}
 
 	/**
@@ -667,8 +746,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 			case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
 				return isRelexingNeeded();
 			case TextblocksPackage.DOCUMENT_NODE__PARENT:
-				if (resolve) return getParent();
-				return basicGetParent();
+				return getParent();
 			case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
 				return getCorrespondingModelElements();
 			case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
@@ -692,6 +770,8 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 				return getEndRow();
 			case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
 				return getEndColumn();
+			case TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET:
+				return getAbsoluteOffset();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -753,6 +833,9 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 			case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
 				setEndColumn((Integer)newValue);
 				return;
+			case TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET:
+				setAbsoluteOffset((Integer)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -810,6 +893,9 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 			case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
 				setEndColumn(END_COLUMN_EDEFAULT);
 				return;
+			case TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET:
+				setAbsoluteOffset(ABSOLUTE_OFFSET_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -829,7 +915,7 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 			case TextblocksPackage.DOCUMENT_NODE__RELEXING_NEEDED:
 				return relexingNeeded != RELEXING_NEEDED_EDEFAULT;
 			case TextblocksPackage.DOCUMENT_NODE__PARENT:
-				return parent != null;
+				return getParent() != null;
 			case TextblocksPackage.DOCUMENT_NODE__CORRESPONDING_MODEL_ELEMENTS:
 				return correspondingModelElements != null && !correspondingModelElements.isEmpty();
 			case TextblocksPackage.DOCUMENT_NODE__REFERENCED_ELEMENTS:
@@ -852,6 +938,8 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 				return endRow != END_ROW_EDEFAULT;
 			case TextblocksPackage.DOCUMENT_NODE__END_COLUMN:
 				return endColumn != END_COLUMN_EDEFAULT;
+			case TextblocksPackage.DOCUMENT_NODE__ABSOLUTE_OFFSET:
+				return absoluteOffset != ABSOLUTE_OFFSET_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -886,6 +974,8 @@ public abstract class DocumentNodeImpl extends EObjectImpl implements DocumentNo
 		result.append(endRow);
 		result.append(", endColumn: ");
 		result.append(endColumn);
+		result.append(", absoluteOffset: ");
+		result.append(absoluteOffset);
 		result.append(')');
 		return result.toString();
 	}

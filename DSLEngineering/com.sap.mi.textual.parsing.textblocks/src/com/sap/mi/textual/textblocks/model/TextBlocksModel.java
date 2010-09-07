@@ -14,18 +14,15 @@ import static com.sap.mi.textual.textblocks.model.TbReplacingHelper.getGapBlanks
 import static com.sap.mi.textual.textblocks.model.TbReplacingHelper.modifyTokenOnOverlap;
 import static com.sap.mi.textual.textblocks.model.TbReplacingHelper.updateBlockCachedString;
 
-import java.io.InvalidObjectException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.Bostoken;
@@ -36,7 +33,6 @@ import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.parsing.textblocks.CoverageBean;
-import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
@@ -56,6 +52,8 @@ public class TextBlocksModel {
 	private final ShortPrettyPrinter shortPrettyPrinter;
 
         private boolean usecache = false;
+
+	private final EditingDomain editingDomain;
     
     	public boolean isUsecache() {
             return usecache;
@@ -69,16 +67,20 @@ public class TextBlocksModel {
 	 * @param rootBlock2
 	 * @param modelAdapter 
 	 */
-	public TextBlocksModel(TextBlock rootBlock2, IModelElementInvestigator modelAdapter) {
-		this(rootBlock2, Version.REFERENCE, modelAdapter);
+	public TextBlocksModel(TextBlock rootBlock2,
+			IModelElementInvestigator modelAdapter, EditingDomain editingDomain) {
+		this(rootBlock2, Version.REFERENCE, modelAdapter, editingDomain);
 	}
-	
+
 	/**
 	 * @param rootBlock2
-	 * @param modelAdapter 
+	 * @param modelAdapter
+	 * @param editingDomain
 	 */
-	public TextBlocksModel(TextBlock rootBlock2, Version activeVersion, IModelElementInvestigator modelAdapter) {
+	public TextBlocksModel(TextBlock rootBlock2, Version activeVersion,
+			IModelElementInvestigator modelAdapter, EditingDomain editingDomain) {
 		this.activeVersion = activeVersion;
+		this.editingDomain = editingDomain;
 		navigator = new VersionedTextBlockNavigator(activeVersion);
 		setRootTextBlock(rootBlock2);
 		shortPrettyPrinter = new ShortPrettyPrinter(modelAdapter);
@@ -143,12 +145,7 @@ public class TextBlocksModel {
 	 * @return length of the whole text
 	 */
 	public int getLength() {
-		try {
-		    return rootBlock.getLength();
-		} catch (InvalidObjectException ioe) {
-			throw new RuntimeException(
-					"TextBlock ModelElement or Partition has been deleted", ioe);
-		}
+		return rootBlock.getLength();
 	}
 
 	/*
@@ -369,45 +366,42 @@ public class TextBlocksModel {
 	 */
 	public void replace(final int replacedRegionOffset, final int replacedRegionLength,
 			final String newText) {
-	        final ResourceSet conn = rootBlock.get___Connection();
-	        conn.getCommandStack().execute(new Command(conn, "Replace Region"){
+	        final ResourceSet conn = rootBlock.eResource().getResourceSet();
+		editingDomain.getCommandStack().execute(
+				new AbstractCommand("Replace region: offset: "
+						+ replacedRegionOffset + ", length: "
+						+ replacedRegionLength + " with value: \"" + newText
+						+ "\"") {
+				@Override
+				public void execute() {
+					TextBlock workingcopy = (TextBlock) TbReplacingHelper
+		                    .getOrCreateWorkingCopy(rootBlock);
+		            setRootTextBlock(workingcopy);
+//		            if (ParsingTextblocksActivator.getDefault() != null) {
+//		                ParsingTextblocksActivator.getDefault().enableMoinLogging(
+//		                        workingcopy.get___Connection());
+//		            }
+		            replace(workingcopy, replacedRegionOffset,
+		                    replacedRegionLength, newText);
+//		            if (ParsingTextblocksActivator.getDefault() != null) {
+//		                ParsingTextblocksActivator.getDefault().disableMoinLogging(
+//		                        workingcopy.get___Connection());
+//		            }
+				}
 
-                @Override
-                public boolean canExecute() {
-                    return true;
-                }
+					@Override
+					public void redo() {
+						// TODO Auto-generated method stub
 
-                @Override
-                public void doExecute() {
-                    TextBlock workingcopy = (TextBlock) TbReplacingHelper
-                            .getOrCreateWorkingCopy(rootBlock);
-                    setRootTextBlock(workingcopy);
-                    if (ParsingTextblocksActivator.getDefault() != null) {
-                        ParsingTextblocksActivator.getDefault().enableMoinLogging(
-                                workingcopy.get___Connection());
-                    }
-                    replace(workingcopy, replacedRegionOffset,
-                            replacedRegionLength, newText);
-                    if (ParsingTextblocksActivator.getDefault() != null) {
-                        ParsingTextblocksActivator.getDefault().disableMoinLogging(
-                                workingcopy.get___Connection());
-                    }
-                }
+					}
 
-                @Override
-                public Collection<EOperation> getAffectedPartitions() {
-                    PRI pri = ((EObject) rootBlock).get___Partition().getPri();
-                    EOperation editOperation = new EOperation(PartitionOperation.Operation.EDIT, pri);
-                    return Collections.singleton(editOperation);
-                }
-                
-            });
+		});
 	}
 
 	
 	public void doShortPrettyPrintToEditableVersion() {
-	    	final ResourceSet conn = rootBlock.get___Connection();
-	        conn.getCommandStack().execute(new Command(conn, "Pretty Print Short"){
+		editingDomain.getCommandStack().execute(
+				new AbstractCommand("Pretty Print Short") {
 
                 @Override
                 public boolean canExecute() {
@@ -415,9 +409,12 @@ public class TextBlocksModel {
                 }
 
                 @Override
-                public void doExecute() {
+					public void execute() {
         	    AbstractToken tok = getStartToken();
-        	    while(tok != null && !(tok instanceof Eostoken) && tok.is___Alive()) {
+						while (tok != null && !(tok instanceof Eostoken)
+						/*
+						 *  * && tok. is___Alive ()
+						 */) {
         		if(tok instanceof LexedToken){
         		    String newValue = shortPrettyPrinter.resynchronizeToEditableState(tok);
         		    //TODO check what to do with the empty string case!
@@ -437,12 +434,12 @@ public class TextBlocksModel {
         	    }
                 }
 
-                @Override
-                public Collection<PartitionOperation> getAffectedPartitions() {
-                    PRI pri = rootBlock.get___Partition().getPri();
-                    PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
-                    return Collections.singleton(editOperation);
-                }
+				@Override
+				public void redo() {
+					// TODO Auto-generated method stub
+					
+				}
+
             }); 
 
 	}
@@ -637,7 +634,7 @@ public class TextBlocksModel {
         }
         for (Iterator<TextBlock> iterator = toBeDeleted.iterator(); iterator.hasNext();) {
             TextBlock block = iterator.next();
-            block.refDelete();
+			EcoreUtil.delete(block);
         }
 
     }
@@ -674,7 +671,7 @@ public class TextBlocksModel {
         }
         for (Iterator<AbstractToken> iterator = toBeDeleted.iterator(); iterator.hasNext();) {
             AbstractToken abstractToken = iterator.next();
-            abstractToken.refDelete();
+			EcoreUtil.delete(abstractToken);
         }
         
     }

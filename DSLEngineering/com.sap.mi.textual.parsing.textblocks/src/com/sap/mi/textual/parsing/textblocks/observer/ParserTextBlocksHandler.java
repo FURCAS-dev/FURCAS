@@ -5,15 +5,22 @@ import static com.sap.mi.textual.parsing.textblocks.TbUtil.getNewestVersion;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.ResultSet;
+import org.eclipse.emf.query2.TypeScopeProvider;
 
 import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.TCS.InjectorAction;
@@ -27,6 +34,7 @@ import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.mi.textual.common.util.EcoreHelper;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.IParsingObserver;
@@ -73,11 +81,11 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 
 	private Map<String, Template> templateCache  = new HashMap<String, Template>();
 
-	private QueryScopeProvider metamodelContainerQueryScope;
+	private QueryContext metamodelContainerQueryScope;
 
-	private final Collection<PRI> mappingDefinitionPartitions;
+	private final Set<URI> mappingDefinitionPartitions;
 
-	private final Collection<CRI> additionalCRIScope;
+	private final Set<URI> queryScope;
 
 
 	/**
@@ -88,25 +96,25 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 * @param moinConnection
 	 * @param metamodelCri 
 	 * @param mappingDefinitionPartitions
-	 * @param additionalScope Additional PRIS from where to lookup elements.
+	 * @param additionalScope Additional URIS from where to lookup elements.
 	 * @param additionalCRIScope Additional CRIS from where to lookup elements.
 	 */
 	public ParserTextBlocksHandler(ITextBlocksTokenStream input,
-			ResourceSet moinConnection, CRI metamodelCri,
-			Collection<PRI> mappingDefinitionPartitions,
-			Collection<PRI> additionalScope, Collection<CRI> additionalCRIScope) {
+			ResourceSet moinConnection, URI metamodelCri,
+			Set<URI> mappingDefinitionPartitions,
+			Set<URI> additionalScope, Set<URI> additionalCRIScope) {
 		this.connection = moinConnection;
 		this.mappingDefinitionPartitions = mappingDefinitionPartitions;
-		this.additionalCRIScope = new ArrayList<CRI>();
+		this.queryScope = new HashSet<URI>();
 		if (additionalCRIScope != null) {
-			this.additionalCRIScope.addAll(additionalCRIScope);
+			this.queryScope.addAll(additionalCRIScope);
 		}
-		this.additionalCRIScope.add(metamodelCri);
-		this.metamodelContainerQueryScope = connection.getMQLProcessor()
-				.getInclusiveQueryScopeProvider(
-						additionalScope != null ? additionalScope
-								.toArray(new PRI[] {}) : null,
-						this.additionalCRIScope.toArray(new CRI[] {}));
+		this.queryScope.add(metamodelCri);
+		if(additionalScope != null) {
+			this.queryScope.addAll(additionalScope);
+		}
+		this.metamodelContainerQueryScope = EcoreHelper.getQueryContext(moinConnection,
+						this.queryScope);
 		this.input = input;
 		this.traverser = new TextBlockTraverser();
 	}
@@ -197,23 +205,23 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                         + createdElement.get(createdElement.size() - 1) + "'";
                 // get clazz by name
                 // TODO query fully qualified name!
-                MQLResultSet result = connection.getMQLProcessor().execute(
-                        queryClass, metamodelContainerQueryScope);
-                EObject[] refObjects = result.getRefObjects("class");
+                ResultSet result = EcoreHelper.executeQuery(queryClass, connection,
+                         metamodelContainerQueryScope);
+                URI[] eObjects = result.getUris("class");
                 EClassifier clazz = null;
-                if (refObjects.length > 1) {
+                if (eObjects.length > 1) {
                     // throw new RuntimeException("Ambigous templates found for: " +
                     // createdElement + " mode=" + mode);
-                    clazz = (EClassifier) refObjects[1];
-                } else if (refObjects.length == 1) {
-                    clazz = (EClassifier) refObjects[0];
+                    clazz = (EClassifier) connection.getEObject(eObjects[1], true);
+                } else if (eObjects.length == 1) {
+                    clazz = (EClassifier) connection.getEObject(eObjects[0], true);
                 }
                 if (clazz != null) {
                     String query = "select template \n"
                             + "from \"demo.sap.com/tcsmeta\"#"
                             + "TCS::ClassTemplate as template, \n"
                             + "\""
-                            + ((EObject) clazz).get___Mri()
+                            + EcoreUtil.getID(clazz)
                             + "\" as class "
                             + " where template.metaReference = class where template.mode = ";
                     if (mode != null) {
@@ -224,19 +232,19 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     QueryScopeProvider mappingQueryScope = connection
                             .getMQLProcessor().getInclusiveQueryScopeProvider(
                                     mappingDefinitionPartitions
-                                            .toArray(new PRI[] {}),
+                                            .toArray(new URI[] {}),
                                     metamodelContainerQueryScope
                                             .getContainerScope());
                     result = connection.getMQLProcessor().execute(query,
                             mappingQueryScope);
-                    refObjects = result.getRefObjects("template");
-                    if (refObjects.length > 1) {
+                    eObjects = result.getRefObjects("template");
+                    if (eObjects.length > 1) {
                         // throw new
                         // RuntimeException("Ambigous templates found for: " +
                         // createdElement + " mode=" + mode);
-                        template = (Template) refObjects[1];
-                    } else if (refObjects.length == 1) {
-                        template = (Template) refObjects[0];
+                        template = (Template) eObjects[1];
+                    } else if (eObjects.length == 1) {
+                        template = (Template) eObjects[0];
                     }
                     if (template == null) {
                         // maybe operatorTemplate?
@@ -248,15 +256,15 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                                 + " where template.metaReference = class";
     
                         result = connection.getMQLProcessor().execute(query, mappingQueryScope);
-                        refObjects = result.getRefObjects("template");
+                        eObjects = result.getRefObjects("template");
     
-                        if (refObjects.length > 1) {
+                        if (eObjects.length > 1) {
                             // throw new
                             // RuntimeException("Ambigous templates found for: " +
                             // createdElement + " mode=" + mode);
-                            template = (Template) refObjects[1];
-                        } else if (refObjects.length == 1) {
-                            template = (Template) refObjects[0];
+                            template = (Template) eObjects[1];
+                        } else if (eObjects.length == 1) {
+                            template = (Template) eObjects[0];
                         }
                     }
                     if (template != null) {
@@ -415,15 +423,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	@Override
 	public void notifyEnterSequenceElement(String mofid) {
 		SequenceElement sequenceElement = null;
-		for (PRI mappingDefinitionPartition : mappingDefinitionPartitions) {
+		for (URI mappingDefinitionPartition : mappingDefinitionPartitions) {
 			sequenceElement =(SequenceElement) connection
-				.getElement(connection.getSession().getMoin().createMri(
-						mappingDefinitionPartition.getDataAreaDescriptor().getFacilityId(),
-						mappingDefinitionPartition.getDataAreaDescriptor().getDataAreaName(),
-						mappingDefinitionPartition.getContainerName(),
-						mappingDefinitionPartition.getPartitionName(),
-						mofid
-						));
+				.getEObject(URI.createURI(mofid), true);
 			if(sequenceElement != null) {
 				break;
 			}
@@ -649,12 +651,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	private TextBlock getTextBlockForElementAt(EObject element, ANTLR3LocationToken referenceToken) {
 		TextBlock tb = null;
-		DocumentNodeReferencesCorrespondingModelElement assoc = ((EObject) element)
-				.get___Connection().getPackage(
-						TextblocksPackage.PACKAGE_DESCRIPTOR)
-				.getDocumentNodeReferencesCorrespondingModelElement();
-		Collection<DocumentNode> nodes = assoc
-		.getDocumentNode(element);
+		//TODO use hidden opposites to navigate to element from TextBlock
+		Collection<DocumentNode> nodes = org.eclipse.emf.query2.EcoreHelper.getInstance()
+			.reverseNavigate(element, element.eClass().get, scope, rs)
 
 		for (Iterator<DocumentNode> iterator = nodes.iterator(); iterator.hasNext();) {
 		    DocumentNode node = iterator.next();

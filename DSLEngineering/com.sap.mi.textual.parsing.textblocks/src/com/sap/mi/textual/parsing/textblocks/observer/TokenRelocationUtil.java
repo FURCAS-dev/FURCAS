@@ -16,6 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
@@ -253,7 +255,7 @@ public class TokenRelocationUtil {
                 
                 //TODO check if textblock is allowed to be deleted, since maybe tokens may need to be added to it later?
                 if (getSubNodesSize(textBlock) == 0) {
-                    textBlock.refDelete(); // do not delete parents, as they might get children added to later on during process
+                    EcoreUtil.delete(textBlock); // do not delete parents, as they might get children added to later on during process
                 } else {
                     /* basically we removed some subset of tokens from this textblock, 
                      * what is left is another arbitrary subset of absolute or relative tokens or subblocks.

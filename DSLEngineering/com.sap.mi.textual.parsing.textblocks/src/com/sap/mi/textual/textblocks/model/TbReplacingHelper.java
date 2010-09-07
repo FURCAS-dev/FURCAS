@@ -14,7 +14,7 @@ import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.textblocks.TextblocksFactory;
 import com.sap.furcas.metamodel.textblocks.Version;
 import com.sap.mi.textual.parsing.textblocks.CoverageBean;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
@@ -79,8 +79,7 @@ public class TbReplacingHelper {
 	    // TODO this might have to be changed if the textblock elements
 	    // should be assignable
 	    // to a custom partition
-	    ((EObject) node).get___Partition()
-	    	.assignElementIncludingChildren(previousVersion);
+		((EObject) node).eResource().getContents().add(previousVersion);
 	    
 	    return previousVersion;
 	}
@@ -134,8 +133,7 @@ public class TbReplacingHelper {
      * @param replacedRegionOffset
      */
     public static void createInitialToken(TextBlock target, String newText) {
-        TextblocksPackage pkg = (TextblocksPackage) target.refImmediatePackage();
-        LexedToken newToken = (LexedToken) pkg.getLexedToken().refCreateInstance();
+		LexedToken newToken = TextblocksFactory.eINSTANCE.createLexedToken();
 //      make the same version as the rootBlock
         newToken.setVersion(target.getVersion());
 

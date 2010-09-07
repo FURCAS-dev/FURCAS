@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
@@ -35,7 +37,7 @@ public class TbChangeUtil {
 		DocumentNode currentVersion =  getNewestVersion(rootBlock);
 		for (DocumentNode oldVersion : new ArrayList<DocumentNode>(
 				currentVersion.getOtherVersions())) {
-			oldVersion.refDelete();
+			EcoreUtil.delete(oldVersion);
 		}
 		if(currentVersion instanceof TextBlock) {
 			for (DocumentNode subNode : TbNavigationUtil.getSubNodes((TextBlock) currentVersion)) {
@@ -58,7 +60,7 @@ public class TbChangeUtil {
 		for (DocumentNode otherVersion : new ArrayList<DocumentNode>(
 				currentVersion.getOtherVersions())) {
 			if(isNewer(otherVersion.getVersion(), revertToVersion)) {
-				otherVersion.refDelete();
+				EcoreUtil.delete(otherVersion);
 			}
 		}
 		if(currentVersion instanceof TextBlock) {
@@ -98,7 +100,7 @@ public class TbChangeUtil {
 	 * @param currentVersion
 	 */
 	public static void makeReferenceVersion(DocumentNode currentVersion) {
-		currentVersion.setVersion(VersionEnum.REFERENCE);
+		currentVersion.setVersion(Version.REFERENCE);
 		currentVersion.setRelexingNeeded(false);
 		if(currentVersion instanceof TextBlock) {
 			for (DocumentNode subNode : TbNavigationUtil.getSubNodes((TextBlock) currentVersion)) {
@@ -341,7 +343,7 @@ public class TbChangeUtil {
 	public static void removeNode(DocumentNode node) {
 		if (node != null) {
 			TextBlock parent = getParentBlock(node);
-			node.refDelete();
+			EcoreUtil.delete(node);
 			removeTextBlockIfEmpty(parent);
 		}
 	}
@@ -359,7 +361,7 @@ public class TbChangeUtil {
 		if (textblock != null) {
 			if (getSubNodesSize(textblock) == 0) {
 				TextBlock parent = textblock.getParent();
-				textblock.refDelete();
+				EcoreUtil.delete(textblock);
 				removeTextBlockIfEmpty(parent);
 			}
 		}
