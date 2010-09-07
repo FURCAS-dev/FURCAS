@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.query.IndexQueryFactory;
 import org.eclipse.emf.query.index.query.QueryCommand;
 import org.eclipse.emf.query.index.query.QueryExecutor;
@@ -32,6 +33,7 @@ import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -89,12 +91,16 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 			ResourceSet rs = new ResourceSetImpl();
 			String parameter = event.getParameter("runDirty");
 			if (Boolean.valueOf(parameter)){
-				IEditorPart editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-				if (editor instanceof IEditingDomainProvider) {
-					IEditingDomainProvider provider = (IEditingDomainProvider) editor;
-					rs = provider.getEditingDomain().getResourceSet();
+				IEditorReference[] editorReferences = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getEditorReferences();
+				if(editorReferences!=null) {
+					for (int i = 0; i < editorReferences.length; i++) {
+						IEditorPart editor = editorReferences[i].getEditor(false);
+						if (editor instanceof IEditingDomainProvider) {
+							IEditingDomainProvider provider = (IEditingDomainProvider) editor;
+							rs = provider.getEditingDomain().getResourceSet();
+						}
+					}
 				}
-				
 			}
 			if (element instanceof URI) {
 				final NamedQuery query = (NamedQuery) rs.getEObject(uri, true);
@@ -113,13 +119,15 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 				@Override
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					monitor.beginTask("Running query...", IProgressMonitor.UNKNOWN);
+					
 					Query transform = QueryTransformer.transform(query.getQuery());
 					long start = System.currentTimeMillis();
-					final ResultSet result = new QueryProcessorImpl(IndexFactory.getInstance()).execute(transform, getQueryContext(rs));
+					Index indexFactory = IndexFactory.getInstance();
+					QueryProcessorImpl queryProcessor = new QueryProcessorImpl(indexFactory);
+					final ResultSet result = queryProcessor.execute(transform, getQueryContext(rs));
 					final long duration = System.currentTimeMillis() - start;
 					monitor.done();
 					setInputToView(result, duration, rs);
-
 				}
 			});
 		} catch (Exception e) {
@@ -129,7 +137,6 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 
 	private void setInputToView(final ResultSet result, final long duration, ResourceSet rs) {
 		UIJob uiJob = new UIJob("update query view") {
-
 			@Override
 			public IStatus runInUIThread(IProgressMonitor monitor) {
 				monitor.beginTask("Opening result view...", IProgressMonitor.UNKNOWN);
@@ -139,7 +146,6 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 							"org.eclipse.emf.query2.tools.ui.queryresultview");
 					queryResultView.setInput(result, duration);
 				} catch (PartInitException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				monitor.done();
