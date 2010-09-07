@@ -36,7 +36,7 @@
             name="Run Query">
       </command>
       <command
-            id="org.eclipse.emf.query2.tools.ui.runQuery"
+            id="org.eclipse.emf.query2.tools.ui.runQueryWithDirtyIndex"
             name="Run Query With Dirty State">
          <commandParameter
                id="runDirty"
@@ -98,6 +98,32 @@
             </with>
          </activeWhen>
       </handler>
+      <handler
+            class="org.eclipse.emf.query2.internal.ui.handlers.RunQuery"
+            commandId="org.eclipse.emf.query2.tools.ui.runQueryWithDirtyIndex">
+         <activeWhen>
+            <with
+                  variable="selection">
+               <or>
+                  <and>
+                     <iterate
+                           ifEmpty="false"
+                           operator="and">
+                        <instanceof
+                              value="org.eclipse.emf.query2.internal.ui.QueryView$QueryItem">
+                        </instanceof>
+                     </iterate>
+                     <count
+                           value="1">
+                     </count>
+                  </and>
+                  <instanceof
+                        value="org.eclipse.jface.text.ITextSelection">
+                  </instanceof>
+               </or>
+            </with>
+         </activeWhen>
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -114,13 +140,9 @@
                icon="icons/run.gif"
                label="Run Query"
                style="push">
-            <parameter
-                  name="runDirty"
-                  value="false">
-            </parameter>
          </command>
          <command
-               commandId="org.eclipse.emf.query2.tools.ui.runQuery"
+               commandId="org.eclipse.emf.query2.tools.ui.runQueryWithDirtyIndex"
                icon="icons/runDirty.gif"
                label="Run Query on Dirty State"
                style="push">
@@ -218,6 +240,21 @@
                id="org.eclipse.ui.views.ContentOutline">
          </viewShortcut>
       </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.eclipse.emf.query2.tools.ui.runQuery"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="F6">
+      </key>
+      <key
+            commandId="org.eclipse.emf.query2.tools.ui.runQueryWithDirtyIndex"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="Ctrl+F5">
+      </key>
    </extension>
  
 
