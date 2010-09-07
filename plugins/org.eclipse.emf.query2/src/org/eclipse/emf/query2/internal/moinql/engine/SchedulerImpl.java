@@ -1800,9 +1800,11 @@ final public class SchedulerImpl implements Scheduler {
 
 			// calculate the dependent scope starting with the trueDirtyScope of the other side
 			//            Set<PRI> dependentScope = this.calculateDependentScope( connectedNode.trueDirtyScope, connectedNode.atomicEntry, assocEndOfConnectedNode, connectingEdge.assocPredicate.getAssocMRI( ) );
-			Set<URI> dependentScope = this.calculateDependentScope(connectedNode.trueDirtyScope, connectedNode.atomicEntry,
-					connectingEdge.assocPredicate.getAssocMRI());
+			Set<URI> dependentScope = this.calculateDependentScope(connectedNode.trueDirtyScope, connectedNode.atomicEntry,connectingEdge.assocPredicate.getAssocMRI());
 
+			Set<URI> targetScope = originalTargetNode.atomicEntry.getScope();
+			dependentScope = this.mqlAuxServices.intersectScopes(targetScope, true, dependentScope, true);
+			
 			// calculate union with result scope
 			resultScope = this.mqlAuxServices.unionScopes(resultScope, true, dependentScope, true);
 		}
@@ -1841,7 +1843,8 @@ final public class SchedulerImpl implements Scheduler {
 			Resource mp = (this.emfHelper.getResource(pri));
 
 			// walk over all elements in the partition
-			for (EObject element : this.emfHelper.getElementsInResource(mp)) {
+			List<EObject> elementsInResource = this.emfHelper.getElementsInResource(mp);
+			for (EObject element : elementsInResource) {
 
 				// an element is only relevant if there is no fixed set, or
 				// if there is a fixed set, the element is contained in it
@@ -1860,12 +1863,7 @@ final public class SchedulerImpl implements Scheduler {
 
 					// if the instance is also type correct, check for links
 					if (isOfType) {
-						// we need to identify the association/attribute and its end
-						//                        EndAndMetaObject endAndMetaObject = workspaceSet.getEndAndMetaObjectPool( ).getEndAndMetaObject( assocEndNumber, associationOrAttribute );
-
 						// obtain all the model elements connected to the element within the association
-						// NOTE: this operation potentially loads the partitions and thus may be expensive
-						//                        JmiList<CorePartitionable> connectedElements = workspaceSet.getLogicalLinkManager( ).getElementsForEndAndMetaobject( this.conn, endAndMetaObject, (CorePartitionable) element );
 						Object referencedObject = element.eGet(associationOrAttribute);
 
 						List<EObject> connectedElements = null;
@@ -1884,10 +1882,7 @@ final public class SchedulerImpl implements Scheduler {
 							EObject connectedElement = connectedElements.get(i);
 							// get the partition
 							URI dependentPRI = connectedElement.eResource().getURI();
-							// add it if not null and if the PRI belongs to the right facility
-							//                            if ( dependentPRI != null && dependentPRI.getDataAreaDescriptor( ).getFacilityId( ).equals( facilityID ) ) {
 							dependentScope.add(dependentPRI);
-							//                            }
 						}
 					}
 				}
