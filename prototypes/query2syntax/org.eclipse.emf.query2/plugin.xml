@@ -6,10 +6,11 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://www.eclipse.org/emf/query2/Query" 
-       class = "org.eclipse.emf.query2.query.QueryPackage"
+       class = "org.eclipse.emf.query2.syntax.query.QueryPackage"
        genModel = "org/eclipse/emf/query2/Query.genmodel" /> 
 	
   </extension>
+
 
 
 

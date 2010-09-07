@@ -26,14 +26,13 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.ide.IDE;
-import org.eclipse.xtext.concurrent.IUnitOfWork;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
+import org.eclipse.xtext.resource.DefaultLocationInFileProvider;
+import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.core.DefaultLocationInFileProvider;
-import org.eclipse.xtext.ui.core.ILocationInFileProvider;
-import org.eclipse.xtext.ui.core.editor.ReadonlyArchiveStorage;
-import org.eclipse.xtext.ui.core.editor.ReadonlyFileStorage;
-import org.eclipse.xtext.ui.core.editor.XtextEditor;
-import org.eclipse.xtext.ui.core.editor.XtextReadonlyEditorInput;
+import org.eclipse.xtext.ui.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.XtextReadonlyEditorInput;
+import org.eclipse.xtext.util.TextLocation;
 
 public class OpenQueryInEditor extends AbstractHandler {
 
@@ -64,7 +63,7 @@ public class OpenQueryInEditor extends AbstractHandler {
 				openEditor = IDE.openEditor(page, file);
 			} else if (uri.isArchive()) {
 				// TODO don't fall back to java.io
-				IEditorInput input = new XtextReadonlyEditorInput(new ReadonlyArchiveStorage(uri));
+				IEditorInput input = new XtextReadonlyEditorInput(file);
 				openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(uri.lastSegment())
 						.getId());
 			} else {
@@ -74,9 +73,7 @@ public class OpenQueryInEditor extends AbstractHandler {
 				URI urlAsUri = URI.createURI(url.toString());
 				String path = urlAsUri.toFileString();
 				if (path != null) {
-					File ioFile = new File(path);
-					// TODO don't fall back to java.io
-					IEditorInput input = new XtextReadonlyEditorInput(new ReadonlyFileStorage(ioFile, uri));
+					IEditorInput input = new XtextReadonlyEditorInput(file);
 					openEditor = IDE.openEditor(page, input, PlatformUI.getWorkbench().getEditorRegistry().getDefaultEditor(
 							uri.lastSegment()).getId());
 				}
@@ -93,7 +90,7 @@ public class OpenQueryInEditor extends AbstractHandler {
 					@Override
 					public void process(XtextResource resource) throws Exception {
 						EObject object = resource.getEObject(uri.fragment());
-						Region region = locationProvider.getLocation(object);
+						TextLocation region = locationProvider.getLocation(object);
 						edit.selectAndReveal(region.getOffset(), region.getLength());
 					}
 				});

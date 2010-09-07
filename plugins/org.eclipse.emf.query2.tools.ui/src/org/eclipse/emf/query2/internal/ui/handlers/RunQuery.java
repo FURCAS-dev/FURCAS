@@ -25,8 +25,8 @@ import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
 import org.eclipse.emf.query2.internal.ui.QueryResultView;
-import org.eclipse.emf.query2.query.NamedQuery;
-import org.eclipse.emf.query2.transformation.QueryTransformer;
+import org.eclipse.emf.query2.syntax.query.NamedQuery;
+import org.eclipse.emf.query2.syntax.transformation.QueryTransformer;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.text.ITextSelection;
@@ -38,14 +38,14 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.progress.UIJob;
-import org.eclipse.xtext.concurrent.IUnitOfWork;
+import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parsetree.AbstractNode;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
 import org.eclipse.xtext.parsetree.ParseTreeUtil;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.core.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 
 public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 
@@ -143,7 +143,7 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 				QueryResultView queryResultView;
 				try {
 					queryResultView = (QueryResultView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(
-							"org.eclipse.emf.query2.tools.ui.queryresultview");
+							"org.eclipse.emf.query2.syntax.tools.ui.queryresultview");
 					queryResultView.setInput(result, duration);
 				} catch (PartInitException e) {
 					e.printStackTrace();

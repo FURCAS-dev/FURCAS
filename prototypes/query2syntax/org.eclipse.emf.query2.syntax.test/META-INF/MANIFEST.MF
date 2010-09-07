@@ -8,5 +8,5 @@ Require-Bundle: org.junit4,
  org.eclipse.emf.query2.syntax;bundle-version="1.0.0",
  org.eclipse.emf.ecore;bundle-version="2.5.0",
  org.eclipse.emf.mwe.utils;bundle-version="0.7.2",
- com.google.guice;bundle-version="1.0.1",
- org.eclipse.xtext;bundle-version="0.7.2"
+ org.eclipse.xtext;bundle-version="0.7.2",
+ org.eclipse.emf.query2;bundle-version="1.0.0"

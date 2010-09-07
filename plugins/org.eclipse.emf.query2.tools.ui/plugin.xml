@@ -4,14 +4,14 @@
    <extension
          point="org.eclipse.ui.views">
       <view
-            class="org.eclipse.emf.query2.internal.ui.QueryResultView"
-            id="org.eclipse.emf.query2.tools.ui.queryresultview"
+            class="org.eclipse.emf.query2.syntax.internal.ui.QueryResultView"
+            id="org.eclipse.emf.query2.syntax.tools.ui.queryresultview"
             name="Query Result View"
             restorable="true">
       </view>
        <view
-            class="org.eclipse.emf.query2.internal.ui.QueryView"
-            id="org.eclipse.emf.query2.tools.ui.queryview"
+            class="org.eclipse.emf.query2.syntax.internal.ui.QueryView"
+            id="org.eclipse.emf.query2.syntax.tools.ui.queryview"
             name="Query View"
             restorable="true">
       </view>
@@ -19,11 +19,11 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            id="org.eclipse.emf.query2.tools.ui.popup.openInEditor"
+            id="org.eclipse.emf.query2.syntax.tools.ui.popup.openInEditor"
             name="Open In Editor">
       </command>
       <command
-            id="org.eclipse.emf.query2.tools.ui.refreshQueryView"
+            id="org.eclipse.emf.query2.syntax.tools.ui.refreshQueryView"
             name="Refresh Query View">
          <commandParameter
                id="refreshDirty"
@@ -32,11 +32,11 @@
          </commandParameter>
       </command>
       <command
-            id="org.eclipse.emf.query2.tools.ui.runQuery"
+            id="org.eclipse.emf.query2.syntax.tools.ui.runQuery"
             name="Run Query">
       </command>
       <command
-            id="org.eclipse.emf.query2.tools.ui.runQueryWithDirtyIndex"
+            id="org.eclipse.emf.query2.syntax.tools.ui.runQueryWithDirtyIndex"
             name="Run Query With Dirty State">
          <commandParameter
                id="runDirty"
@@ -48,8 +48,8 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.emf.query2.internal.ui.handlers.OpenQueryInEditor"
-            commandId="org.eclipse.emf.query2.tools.ui.popup.openInEditor">
+            class="org.eclipse.emf.query2.syntax.internal.ui.handlers.OpenQueryInEditor"
+            commandId="org.eclipse.emf.query2.syntax.tools.ui.popup.openInEditor">
          <activeWhen>
             <with
                   variable="selection">
@@ -58,7 +58,7 @@
                         ifEmpty="false"
                         operator="and">
                      <instanceof
-                           value="org.eclipse.emf.query2.internal.ui.QueryView$QueryItem">
+                           value="org.eclipse.emf.query2.syntax.internal.ui.QueryView$QueryItem">
                      </instanceof>
                   </iterate>
                   <count
@@ -69,12 +69,12 @@
          </activeWhen>
       </handler>
       <handler
-            class="org.eclipse.emf.query2.internal.ui.handlers.RefreshQueryView"
-            commandId="org.eclipse.emf.query2.tools.ui.refreshQueryView">
+            class="org.eclipse.emf.query2.syntax.internal.ui.handlers.RefreshQueryView"
+            commandId="org.eclipse.emf.query2.syntax.tools.ui.refreshQueryView">
       </handler>
       <handler
-            class="org.eclipse.emf.query2.internal.ui.handlers.RunQuery"
-            commandId="org.eclipse.emf.query2.tools.ui.runQuery">
+            class="org.eclipse.emf.query2.syntax.internal.ui.handlers.RunQuery"
+            commandId="org.eclipse.emf.query2.syntax.tools.ui.runQuery">
          <activeWhen>
             <with
                   variable="selection">
@@ -84,7 +84,7 @@
                            ifEmpty="false"
                            operator="and">
                         <instanceof
-                              value="org.eclipse.emf.query2.internal.ui.QueryView$QueryItem">
+                              value="org.eclipse.emf.query2.syntax.internal.ui.QueryView$QueryItem">
                         </instanceof>
                      </iterate>
                      <count
@@ -99,8 +99,8 @@
          </activeWhen>
       </handler>
       <handler
-            class="org.eclipse.emf.query2.internal.ui.handlers.RunQuery"
-            commandId="org.eclipse.emf.query2.tools.ui.runQueryWithDirtyIndex">
+            class="org.eclipse.emf.query2.syntax.internal.ui.handlers.RunQuery"
+            commandId="org.eclipse.emf.query2.syntax.tools.ui.runQueryWithDirtyIndex">
          <activeWhen>
             <with
                   variable="selection">
@@ -110,7 +110,7 @@
                            ifEmpty="false"
                            operator="and">
                         <instanceof
-                              value="org.eclipse.emf.query2.internal.ui.QueryView$QueryItem">
+                              value="org.eclipse.emf.query2.syntax.internal.ui.QueryView$QueryItem">
                         </instanceof>
                      </iterate>
                      <count
@@ -128,21 +128,21 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.eclipse.emf.query2.tools.ui.queryview">
+            locationURI="popup:org.eclipse.emf.query2.syntax.tools.ui.queryview">
          <command
-               commandId="org.eclipse.emf.query2.tools.ui.popup.openInEditor"
+               commandId="org.eclipse.emf.query2.syntax.tools.ui.popup.openInEditor"
                icon="icons/file.gif"
                label="Open In Editor"
                style="push">
          </command>
          <command
-               commandId="org.eclipse.emf.query2.tools.ui.runQuery"
+               commandId="org.eclipse.emf.query2.syntax.tools.ui.runQuery"
                icon="icons/run.gif"
                label="Run Query"
                style="push">
          </command>
          <command
-               commandId="org.eclipse.emf.query2.tools.ui.runQueryWithDirtyIndex"
+               commandId="org.eclipse.emf.query2.syntax.tools.ui.runQueryWithDirtyIndex"
                icon="icons/runDirty.gif"
                label="Run Query on Dirty State"
                style="push">
@@ -153,9 +153,9 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="toolbar:org.eclipse.emf.query2.tools.ui.queryview">
+            locationURI="toolbar:org.eclipse.emf.query2.syntax.tools.ui.queryview">
          <command
-               commandId="org.eclipse.emf.query2.tools.ui.refreshQueryView"
+               commandId="org.eclipse.emf.query2.syntax.tools.ui.refreshQueryView"
                icon="icons/refresh.gif"
                label="Refresh"
                style="push">
@@ -165,7 +165,7 @@
             </parameter>
          </command>
          <command
-               commandId="org.eclipse.emf.query2.tools.ui.refreshQueryView"
+               commandId="org.eclipse.emf.query2.syntax.tools.ui.refreshQueryView"
                icon="icons/refreshDirty.gif"
                label="Refresh dirty"
                style="push"
@@ -179,7 +179,7 @@
       <menuContribution
             locationURI="popup:#TextEditorContext?after=group.open">
          <command
-               commandId="org.eclipse.emf.query2.tools.ui.runQuery"
+               commandId="org.eclipse.emf.query2.syntax.tools.ui.runQuery"
                icon="icons/run.gif"
                label="Run Query"
                style="push"
@@ -187,7 +187,7 @@
             <visibleWhen
                   checkEnabled="false">
                <reference
-                     definitionId="org.eclipse.emf.query2.Query.Editor.opened">
+                     definitionId="org.eclipse.emf.query2.syntax.Query.Editor.opened">
                </reference>
             </visibleWhen>
          </command>
@@ -196,25 +196,25 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="org.eclipse.emf.query2.internal.ui.QueryPerspectiveFactory"
+            class="org.eclipse.emf.query2.syntax.internal.ui.QueryPerspectiveFactory"
             icon="icons/magnifying-glass.gif"
-            id="org.eclipse.emf.query2.tools.ui.queryperspective"
+            id="org.eclipse.emf.query2.syntax.tools.ui.queryperspective"
             name="Query">
       </perspective>
    </extension>
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
-            targetID="org.eclipse.emf.query2.tools.ui.queryperspective">
+            targetID="org.eclipse.emf.query2.syntax.tools.ui.queryperspective">
          <view
-               id="org.eclipse.emf.query2.tools.ui.queryview"
+               id="org.eclipse.emf.query2.syntax.tools.ui.queryview"
                minimized="false"
                ratio="0.25"
                relationship="left"
                relative="org.eclipse.ui.editorss">
          </view>
          <view
-               id="org.eclipse.emf.query2.tools.ui.queryresultview"
+               id="org.eclipse.emf.query2.syntax.tools.ui.queryresultview"
                minimized="false"
                ratio="0.7"
                relationship="bottom"
@@ -231,10 +231,10 @@
                id="org.eclipse.jdt.ui.JavaPerspective">
          </perspectiveShortcut>
          <viewShortcut
-               id="org.eclipse.emf.query2.tools.ui.queryview">
+               id="org.eclipse.emf.query2.syntax.tools.ui.queryview">
          </viewShortcut>
          <viewShortcut
-               id="org.eclipse.emf.query2.tools.ui.queryresultview">
+               id="org.eclipse.emf.query2.syntax.tools.ui.queryresultview">
          </viewShortcut>
          <viewShortcut
                id="org.eclipse.ui.views.ContentOutline">
@@ -244,13 +244,13 @@
    <extension
          point="org.eclipse.ui.bindings">
       <key
-            commandId="org.eclipse.emf.query2.tools.ui.runQuery"
+            commandId="org.eclipse.emf.query2.syntax.tools.ui.runQuery"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="F6">
       </key>
       <key
-            commandId="org.eclipse.emf.query2.tools.ui.runQueryWithDirtyIndex"
+            commandId="org.eclipse.emf.query2.syntax.tools.ui.runQueryWithDirtyIndex"
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="Ctrl+F5">

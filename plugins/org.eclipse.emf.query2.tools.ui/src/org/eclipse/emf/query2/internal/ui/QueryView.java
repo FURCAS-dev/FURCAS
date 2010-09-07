@@ -19,12 +19,12 @@ import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
-import org.eclipse.emf.query2.query.FromEntry;
-import org.eclipse.emf.query2.query.MQLquery;
-import org.eclipse.emf.query2.query.QueryFactory;
-import org.eclipse.emf.query2.query.QueryPackage;
-import org.eclipse.emf.query2.query.SelectEntry;
-import org.eclipse.emf.query2.transformation.QueryTransformer;
+import org.eclipse.emf.query2.syntax.query.FromEntry;
+import org.eclipse.emf.query2.syntax.query.MQLquery;
+import org.eclipse.emf.query2.syntax.query.QueryFactory;
+import org.eclipse.emf.query2.syntax.query.QueryPackage;
+import org.eclipse.emf.query2.syntax.query.SelectEntry;
+import org.eclipse.emf.query2.syntax.transformation.QueryTransformer;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -43,7 +43,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.xtext.concurrent.IUnitOfWork;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.core.editor.XtextEditor;
+import org.eclipse.xtext.ui.editor.XtextEditor;
 
 public class QueryView extends ViewPart implements ISelectionProvider {
 
