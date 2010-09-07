@@ -46,7 +46,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getParentAltChoices <em>Parent Alt Choices</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getElementsInContext <em>Elements In Context</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getForEachContext <em>For Each Context</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#is___Alive <em>Alive</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl#getCachedString <em>Cached String</em>}</li>
  * </ul>
  * </p>
@@ -65,14 +64,14 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	protected TextblockDefinition type;
 
 	/**
-	 * The cached value of the '{@link #getSubNodes() <em>Sub Nodes</em>}' reference list.
+	 * The cached value of the '{@link #getSubNodes() <em>Sub Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSubNodes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TextBlock> subNodes;
+	protected EList<DocumentNode> subNodes;
 
 	/**
 	 * The cached value of the '{@link #getParentAltChoices() <em>Parent Alt Choices</em>}' attribute list.
@@ -103,26 +102,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * @ordered
 	 */
 	protected EList<ForEachContext> forEachContext;
-
-	/**
-	 * The default value of the '{@link #is___Alive() <em>Alive</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #is___Alive()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean _ALIVE_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #is___Alive() <em>Alive</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #is___Alive()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean ___Alive = _ALIVE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCachedString() <em>Cached String</em>}' attribute.
@@ -190,9 +169,24 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TextBlock> getSubNodes() {
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubNodes()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<DocumentNode> getSubNodes() {
 		if (subNodes == null) {
-			subNodes = new EObjectResolvingEList<TextBlock>(TextBlock.class, this, TextblocksPackage.TEXT_BLOCK__SUB_NODES);
+			subNodes = new EObjectContainmentWithInverseEList<DocumentNode>(DocumentNode.class, this, TextblocksPackage.TEXT_BLOCK__SUB_NODES, TextblocksPackage.DOCUMENT_NODE__PARENT);
 		}
 		return subNodes;
 	}
@@ -287,27 +281,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean is___Alive() {
-		return ___Alive;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void set___Alive(boolean new___Alive) {
-		boolean old___Alive = ___Alive;
-		___Alive = new___Alive;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TextblocksPackage.TEXT_BLOCK__ALIVE, old___Alive, ___Alive));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getCachedString() {
 		return cachedString;
 	}
@@ -332,6 +305,8 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
+				return ((InternalEList<?>)getSubNodes()).basicRemove(otherEnd, msgs);
 			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
 				return ((InternalEList<?>)getForEachContext()).basicRemove(otherEnd, msgs);
 		}
@@ -357,8 +332,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 				return getElementsInContext();
 			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
 				return getForEachContext();
-			case TextblocksPackage.TEXT_BLOCK__ALIVE:
-				return is___Alive();
 			case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
 				return getCachedString();
 		}
@@ -379,7 +352,7 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 				return;
 			case TextblocksPackage.TEXT_BLOCK__SUB_NODES:
 				getSubNodes().clear();
-				getSubNodes().addAll((Collection<? extends TextBlock>)newValue);
+				getSubNodes().addAll((Collection<? extends DocumentNode>)newValue);
 				return;
 			case TextblocksPackage.TEXT_BLOCK__PARENT_ALT_CHOICES:
 				getParentAltChoices().clear();
@@ -392,9 +365,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
 				getForEachContext().clear();
 				getForEachContext().addAll((Collection<? extends ForEachContext>)newValue);
-				return;
-			case TextblocksPackage.TEXT_BLOCK__ALIVE:
-				set___Alive((Boolean)newValue);
 				return;
 			case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
 				setCachedString((String)newValue);
@@ -426,9 +396,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
 				getForEachContext().clear();
 				return;
-			case TextblocksPackage.TEXT_BLOCK__ALIVE:
-				set___Alive(_ALIVE_EDEFAULT);
-				return;
 			case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
 				setCachedString(CACHED_STRING_EDEFAULT);
 				return;
@@ -454,8 +421,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 				return elementsInContext != null && !elementsInContext.isEmpty();
 			case TextblocksPackage.TEXT_BLOCK__FOR_EACH_CONTEXT:
 				return forEachContext != null && !forEachContext.isEmpty();
-			case TextblocksPackage.TEXT_BLOCK__ALIVE:
-				return ___Alive != _ALIVE_EDEFAULT;
 			case TextblocksPackage.TEXT_BLOCK__CACHED_STRING:
 				return CACHED_STRING_EDEFAULT == null ? cachedString != null : !CACHED_STRING_EDEFAULT.equals(cachedString);
 		}
@@ -474,8 +439,6 @@ public abstract class TextBlockImpl extends DocumentNodeImpl implements TextBloc
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (parentAltChoices: ");
 		result.append(parentAltChoices);
-		result.append(", ___Alive: ");
-		result.append(___Alive);
 		result.append(", cachedString: ");
 		result.append(cachedString);
 		result.append(')');

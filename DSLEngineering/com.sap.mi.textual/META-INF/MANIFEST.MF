@@ -9,10 +9,11 @@ Export-Package: com.sap.mi.textual.grammar.impl.tcs.t2m,
  com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules,
  com.sap.mi.textual.grammar.impl.tcs.t2m.validation,
  com.sap.mi.textual.util
-Require-Bundle: com.sap.mi.textual.common;visibility:=reexport,
+Require-Bundle: com.sap.furcas.metamodel,
+ com.sap.mi.textual.common;visibility:=reexport,
  com.sap.mi.textual.parsing;visibility:=reexport,
  com.sap.mi.textual.ecorelookup,
- com.sap.furcas.metamodel,
- com.sap.mi.textual.tcs.util
+ com.sap.mi.textual.tcs.util,
+ org.eclipse.ocl.ecore;bundle-version="3.0.0"
 Bundle-ClassPath: bin/,
  .

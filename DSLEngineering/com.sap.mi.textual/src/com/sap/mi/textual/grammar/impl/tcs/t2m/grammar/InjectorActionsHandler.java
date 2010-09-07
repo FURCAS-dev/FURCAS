@@ -12,7 +12,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.OCLExpression;
 
@@ -26,6 +25,7 @@ import com.sap.furcas.metamodel.TCS.PrimitivePropertyInit;
 import com.sap.furcas.metamodel.TCS.PropertyInit;
 import com.sap.furcas.metamodel.TCS.PropertyReference;
 import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
@@ -96,7 +96,7 @@ public class InjectorActionsHandler<Type> {
 			return;
 		}
 
-		QualifiedNamedElement propertyOwnerTypeTemplate = syntaxLookup
+		Template propertyOwnerTypeTemplate = syntaxLookup
 				.getEnclosingQualifiedElement(block);
 
 		// get Type of this Property

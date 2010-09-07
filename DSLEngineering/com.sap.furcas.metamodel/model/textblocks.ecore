@@ -30,7 +30,8 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass textblockdefinition.ecore#//TextblockDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subNodes" upperBound="-1"
-        eType="#//TextBlock" transient="true" derived="true"/>
+        eType="#//DocumentNode" transient="true" derived="true" containment="true"
+        eOpposite="#//DocumentNode/parent"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="parentAltChoices" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementsInContext" upperBound="-1"
@@ -48,13 +49,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="OmittedToken" eSuperTypes="#//AbstractToken"/>
   <eClassifiers xsi:type="ecore:EClass" name="LexedToken" eSuperTypes="#//AbstractToken">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnlexedToken" eSuperTypes="#//AbstractToken"/>
   <eClassifiers xsi:type="ecore:EClass" name="DocumentNode" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" eType="#//Version"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="childrenChanged" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="relexingNeeded" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//TextBlock"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//TextBlock"
+        eOpposite="#//TextBlock/subNodes"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="correspondingModelElements"
         upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="referencedElements" upperBound="-1"
@@ -69,6 +72,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endRow" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="endColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="absoluteOffset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Version">
     <eLiterals name="REFERENCE"/>

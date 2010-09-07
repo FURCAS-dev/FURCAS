@@ -248,17 +248,8 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTextBlock____Alive() {
-		return (EAttribute)textBlockEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getTextBlock_CachedString() {
-		return (EAttribute)textBlockEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)textBlockEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -331,6 +322,15 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 	 */
 	public EAttribute getLexedToken_Operator() {
 		return (EAttribute)lexedTokenEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLexedToken_Type() {
+		return (EAttribute)lexedTokenEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -412,6 +412,15 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 	 */
 	public EAttribute getDocumentNode_EndColumn() {
 		return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDocumentNode_AbsoluteOffset() {
+		return (EAttribute)documentNodeEClass.getEStructuralFeatures().get(15);
 	}
 
 	/**
@@ -592,7 +601,6 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 		createEAttribute(textBlockEClass, TEXT_BLOCK__PARENT_ALT_CHOICES);
 		createEReference(textBlockEClass, TEXT_BLOCK__ELEMENTS_IN_CONTEXT);
 		createEReference(textBlockEClass, TEXT_BLOCK__FOR_EACH_CONTEXT);
-		createEAttribute(textBlockEClass, TEXT_BLOCK__ALIVE);
 		createEAttribute(textBlockEClass, TEXT_BLOCK__CACHED_STRING);
 
 		abstractTokenEClass = createEClass(ABSTRACT_TOKEN);
@@ -605,6 +613,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 
 		lexedTokenEClass = createEClass(LEXED_TOKEN);
 		createEAttribute(lexedTokenEClass, LEXED_TOKEN__OPERATOR);
+		createEAttribute(lexedTokenEClass, LEXED_TOKEN__TYPE);
 
 		unlexedTokenEClass = createEClass(UNLEXED_TOKEN);
 
@@ -624,6 +633,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 		createEAttribute(documentNodeEClass, DOCUMENT_NODE__START_COLUMN);
 		createEAttribute(documentNodeEClass, DOCUMENT_NODE__END_ROW);
 		createEAttribute(documentNodeEClass, DOCUMENT_NODE__END_COLUMN);
+		createEAttribute(documentNodeEClass, DOCUMENT_NODE__ABSOLUTE_OFFSET);
 
 		forEachContextEClass = createEClass(FOR_EACH_CONTEXT);
 		createEReference(forEachContextEClass, FOR_EACH_CONTEXT__FOREACH_PEDICATE_PROPERTY_INIT);
@@ -683,11 +693,10 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 		// Initialize classes and features; add operations and parameters
 		initEClass(textBlockEClass, TextBlock.class, "TextBlock", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTextBlock_Type(), theTextblockdefinitionPackage.getTextblockDefinition(), null, "type", null, 0, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTextBlock_SubNodes(), this.getTextBlock(), null, "subNodes", null, 0, -1, TextBlock.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getTextBlock_SubNodes(), this.getDocumentNode(), this.getDocumentNode_Parent(), "subNodes", null, 0, -1, TextBlock.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTextBlock_ParentAltChoices(), ecorePackage.getEInt(), "parentAltChoices", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTextBlock_ElementsInContext(), ecorePackage.getEObject(), null, "elementsInContext", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTextBlock_ForEachContext(), this.getForEachContext(), null, "forEachContext", null, 0, -1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTextBlock____Alive(), theEcorePackage_1.getEBoolean(), "___Alive", null, 0, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTextBlock_CachedString(), theEcorePackage_1.getEString(), "cachedString", null, 0, 1, TextBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(textBlockEClass, this.getTextBlock(), "getSubBlocks", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -706,6 +715,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 
 		initEClass(lexedTokenEClass, LexedToken.class, "LexedToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLexedToken_Operator(), theEcorePackage_1.getEBoolean(), "operator", null, 0, 1, LexedToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLexedToken_Type(), ecorePackage.getEInt(), "type", null, 0, 1, LexedToken.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(unlexedTokenEClass, UnlexedToken.class, "UnlexedToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -713,7 +723,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 		initEAttribute(getDocumentNode_Version(), this.getVersion(), "version", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocumentNode_ChildrenChanged(), ecorePackage.getEBoolean(), "childrenChanged", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocumentNode_RelexingNeeded(), ecorePackage.getEBoolean(), "relexingNeeded", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDocumentNode_Parent(), this.getTextBlock(), null, "parent", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDocumentNode_Parent(), this.getTextBlock(), this.getTextBlock_SubNodes(), "parent", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocumentNode_CorrespondingModelElements(), theEcorePackage_1.getEObject(), null, "correspondingModelElements", null, 0, -1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocumentNode_ReferencedElements(), theEcorePackage_1.getEObject(), null, "referencedElements", null, 0, -1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocumentNode_SequenceElement(), theTCSPackage.getSequenceElement(), null, "sequenceElement", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -725,6 +735,7 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
 		initEAttribute(getDocumentNode_StartColumn(), ecorePackage.getEInt(), "startColumn", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocumentNode_EndRow(), ecorePackage.getEInt(), "endRow", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDocumentNode_EndColumn(), ecorePackage.getEInt(), "endColumn", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDocumentNode_AbsoluteOffset(), ecorePackage.getEInt(), "absoluteOffset", null, 0, 1, DocumentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(forEachContextEClass, ForEachContext.class, "ForEachContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getForEachContext_ForeachPedicatePropertyInit(), theTCSPackage.getForeachPredicatePropertyInit(), null, "foreachPedicatePropertyInit", null, 0, 1, ForEachContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

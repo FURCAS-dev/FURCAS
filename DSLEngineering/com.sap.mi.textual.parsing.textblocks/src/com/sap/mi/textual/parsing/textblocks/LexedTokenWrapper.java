@@ -4,8 +4,6 @@
 package com.sap.mi.textual.parsing.textblocks;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collection;
-import java.util.List;
 
 import org.antlr.runtime.CharStream;
 import org.eclipse.emf.common.notify.Adapter;
@@ -18,9 +16,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.furcas.metamodel.TCS.FunctionCall;
 import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
@@ -257,16 +253,6 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see textblocks.LexedToken#getParentFunctionCall()
-	 */
-	@Override
-	public FunctionCall getParentFunctionCall() throws JmiException {
-
-		return wrappedToken.getParentFunctionCall();
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -274,21 +260,9 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.LexedToken#getSequenceElement()
 	 */
 	@Override
-	public SequenceElement getSequenceElement() throws JmiException {
+	public SequenceElement getSequenceElement() {
 
 		return wrappedToken.getSequenceElement();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see textblocks.LexedToken#setParentFunctionCall(tcs.FunctionCall)
-	 */
-	@Override
-	public void setParentFunctionCall(FunctionCall newValue)
-			throws JmiException {
-		wrappedToken.setParentFunctionCall(newValue);
-
 	}
 
 	/*
@@ -297,8 +271,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.LexedToken#setSequenceElement(tcs.SequenceElement)
 	 */
 	@Override
-	public void setSequenceElement(SequenceElement newValue)
-			throws JmiException {
+	public void setSequenceElement(SequenceElement newValue) {
 		wrappedToken.setSequenceElement(newValue);
 
 	}
@@ -309,7 +282,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#getLookahead()
 	 */
 	@Override
-	public int getLookahead() throws JmiException {
+	public int getLookahead() {
 
 		return wrappedToken.getLookahead();
 	}
@@ -320,7 +293,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#getLookback()
 	 */
 	@Override
-	public int getLookback() throws JmiException {
+	public int getLookback() {
 
 		return wrappedToken.getLookback();
 	}
@@ -331,9 +304,9 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#getParentBlock()
 	 */
 	@Override
-	public TextBlock getParentBlock() throws JmiException {
+	public TextBlock getParent() {
 
-		return wrappedToken.getParentBlock();
+		return wrappedToken.getParent();
 	}
 
 	/*
@@ -342,7 +315,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#getState()
 	 */
 	@Override
-	public int getState() throws JmiException {
+	public int getState() {
 
 		return wrappedToken.getState();
 	}
@@ -353,7 +326,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#getValue()
 	 */
 	@Override
-	public String getValue() throws JmiException {
+	public String getValue() {
 		return wrappedToken.getValue();
 	}
 
@@ -363,7 +336,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#setLookahead(int)
 	 */
 	@Override
-	public void setLookahead(int newValue) throws JmiException {
+	public void setLookahead(int newValue) {
 		wrappedToken.setLookahead(newValue);
 
 	}
@@ -374,7 +347,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#setLookback(int)
 	 */
 	@Override
-	public void setLookback(int newValue) throws JmiException {
+	public void setLookback(int newValue) {
 		wrappedToken.setLookback(newValue);
 
 	}
@@ -385,7 +358,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#setParentBlock(textblocks.TextBlock)
 	 */
 	@Override
-	public void setParentBlock(TextBlock newValue) throws JmiException {
+	public void setParent(TextBlock newValue) {
 		wrappedToken.setParent(newValue);
 
 	}
@@ -396,7 +369,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#setState(int)
 	 */
 	@Override
-	public void setState(int newValue) throws JmiException {
+	public void setState(int newValue) {
 		wrappedToken.setState(newValue);
 
 	}
@@ -407,7 +380,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.AbstractToken#setValue(java.lang.String)
 	 */
 	@Override
-	public void setValue(String newValue) throws JmiException {
+	public void setValue(String newValue) {
 		wrappedToken.setValue(newValue);
 
 	}
@@ -418,7 +391,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getAbsoluteOffset()
 	 */
 	@Override
-	public int getAbsoluteOffset() throws JmiException {
+	public int getAbsoluteOffset() {
 
 		return wrappedToken.getOffset();
 	}
@@ -429,7 +402,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getCorrespondingModelElements()
 	 */
 	@Override
-	public EList<EObject> getCorrespondingModelElements() throws JmiException {
+	public EList<EObject> getCorrespondingModelElements() {
 
 		return wrappedToken.getCorrespondingModelElements();
 	}
@@ -440,7 +413,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getEndRow()
 	 */
 	@Override
-	public int getEndRow() throws JmiException {
+	public int getEndRow() {
 
 		return wrappedToken.getEndRow();
 	}
@@ -451,7 +424,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getLength()
 	 */
 	@Override
-	public int getLength() throws JmiException {
+	public int getLength() {
 
 		return wrappedToken.getLength();
 	}
@@ -462,7 +435,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getOffset()
 	 */
 	@Override
-	public int getOffset() throws JmiException {
+	public int getOffset() {
 
 		return wrappedToken.getOffset();
 	}
@@ -473,7 +446,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getOtherVersions()
 	 */
 	@Override
-	public EList<DocumentNode> getOtherVersions() throws JmiException {
+	public EList<DocumentNode> getOtherVersions() {
 
 		return wrappedToken.getOtherVersions();
 	}
@@ -484,7 +457,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getStartColumn()
 	 */
 	@Override
-	public int getStartColumn() throws JmiException {
+	public int getStartColumn() {
 
 		return wrappedToken.getStartColumn();
 	}
@@ -495,7 +468,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getStartRow()
 	 */
 	@Override
-	public int getStartRow() throws JmiException {
+	public int getStartRow() {
 
 		return wrappedToken.getStartRow();
 	}
@@ -506,7 +479,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#getVersion()
 	 */
 	@Override
-	public Version getVersion() throws JmiException {
+	public Version getVersion() {
 
 		return wrappedToken.getVersion();
 	}
@@ -517,7 +490,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#isChildrenChanged()
 	 */
 	@Override
-	public boolean isChildrenChanged() throws JmiException {
+	public boolean isChildrenChanged() {
 
 		return wrappedToken.isChildrenChanged();
 	}
@@ -528,7 +501,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#isOffsetRelative()
 	 */
 	@Override
-	public boolean isOffsetRelative() throws JmiException {
+	public boolean isOffsetRelative() {
 
 		return wrappedToken.isOffsetRelative();
 	}
@@ -539,7 +512,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#isRelexingNeeded()
 	 */
 	@Override
-	public boolean isRelexingNeeded() throws JmiException {
+	public boolean isRelexingNeeded() {
 
 		return wrappedToken.isRelexingNeeded();
 	}
@@ -550,7 +523,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#setChildrenChanged(boolean)
 	 */
 	@Override
-	public void setChildrenChanged(boolean newValue) throws JmiException {
+	public void setChildrenChanged(boolean newValue) {
 		wrappedToken.setChildrenChanged(newValue);
 
 	}
@@ -561,7 +534,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#setEndRow(int)
 	 */
 	@Override
-	public void setEndRow(int newValue) throws JmiException {
+	public void setEndRow(int newValue) {
 		wrappedToken.setEndRow(newValue);
 
 	}
@@ -572,7 +545,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#setLength(int)
 	 */
 	@Override
-	public void setLength(int newValue) throws JmiException {
+	public void setLength(int newValue) {
 		wrappedToken.setLength(newValue);
 
 	}
@@ -583,7 +556,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#setOffset(int)
 	 */
 	@Override
-	public void setOffset(int newValue) throws JmiException {
+	public void setOffset(int newValue) {
 		wrappedToken.setOffset(newValue);
 
 	}
@@ -594,7 +567,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#setOffsetRelative(boolean)
 	 */
 	@Override
-	public void setOffsetRelative(boolean newValue) throws JmiException {
+	public void setOffsetRelative(boolean newValue) {
 		wrappedToken.setOffsetRelative(newValue);
 
 	}
@@ -605,7 +578,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#setRelexingNeeded(boolean)
 	 */
 	@Override
-	public void setRelexingNeeded(boolean newValue) throws JmiException {
+	public void setRelexingNeeded(boolean newValue) {
 		wrappedToken.setRelexingNeeded(newValue);
 
 	}
@@ -616,7 +589,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#setStartColumn(int)
 	 */
 	@Override
-	public void setStartColumn(int newValue) throws JmiException {
+	public void setStartColumn(int newValue) {
 		wrappedToken.setStartColumn(newValue);
 
 	}
@@ -627,7 +600,7 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#setStartRow(int)
 	 */
 	@Override
-	public void setStartRow(int newValue) throws JmiException {
+	public void setStartRow(int newValue) {
 		wrappedToken.setStartRow(newValue);
 
 	}
@@ -638,183 +611,11 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	 * @see textblocks.DocumentNode#setVersion(textblocks.Version)
 	 */
 	@Override
-	public void setVersion(Version newValue) throws JmiException {
+	public void setVersion(Version newValue) {
 		wrappedToken.setVersion(newValue);
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refClass()
-	 */
-	@Override
-	public RefClass refClass() {
-
-		return wrappedToken.refClass();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refDelete()
-	 */
-	@Override
-	public void refDelete() {
-		wrappedToken.refDelete();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refImmediateComposite()
-	 */
-	@Override
-	public RefFeatured refImmediateComposite() {
-
-		return wrappedToken.refImmediateComposite();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refIsInstanceOf(com.sap.tc.moin.repository.mmi.reflect.RefObject,
-	 *      boolean)
-	 */
-	@Override
-	public boolean refIsInstanceOf(EObject objType, boolean considerSubtypes) {
-
-		return wrappedToken.refIsInstanceOf(objType, considerSubtypes);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefObject#refOutermostComposite()
-	 */
-	@Override
-	public RefFeatured refOutermostComposite() {
-
-		return wrappedToken.refOutermostComposite();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refGetValue(com.sap.tc.moin.repository.mmi.reflect.RefObject)
-	 */
-	@Override
-	public EObject refGetValue(EObject feature) {
-
-		return wrappedToken.refGetValue(feature);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refGetValue(java.lang.String)
-	 */
-	@Override
-	public EObject refGetValue(String featureName) {
-
-		return wrappedToken.refGetValue(featureName);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refInvokeOperation(com.sap.tc.moin.repository.mmi.reflect.RefObject,
-	 *      java.util.List)
-	 */
-	@Override
-	public Object refInvokeOperation(EObject requestedOperation,
-			EList<? extends EObject> args) throws RefException {
-		return wrappedToken.refInvokeOperation(requestedOperation, args);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refInvokeOperation(java.lang.String,
-	 *      java.util.List)
-	 */
-	@Override
-	public EObject refInvokeOperation(String requestedOperation,
-			EList<? extends EObject> args) throws RefException {
-		return wrappedToken.refInvokeOperation(requestedOperation, args);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refSetValue(com.sap.tc.moin.repository.mmi.reflect.RefObject,
-	 *      java.lang.Object)
-	 */
-	@Override
-	public void refSetValue(EObject feature, Object value) {
-		wrappedToken.refSetValue(feature, value);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefFeatured#refSetValue(java.lang.String,
-	 *      java.lang.Object)
-	 */
-	@Override
-	public void refSetValue(String featureName, Object value) {
-		wrappedToken.refSetValue(featureName, value);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefBaseObject#refImmediatePackage()
-	 */
-	@Override
-	public RefPackage refImmediatePackage() {
-		return wrappedToken.refImmediatePackage();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefBaseObject#refMetaObject()
-	 */
-	@Override
-	public RefObject refMetaObject() {
-		return wrappedToken.refMetaObject();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefBaseObject#refMofId()
-	 */
-	@Override
-	public String refMofId() {
-		return wrappedToken.refMofId();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefBaseObject#refOutermostPackage()
-	 */
-	@Override
-	public RefPackage refOutermostPackage() {
-		return wrappedToken.refOutermostPackage();
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sap.tc.moin.repository.mmi.reflect.RefBaseObject#refVerifyConstraints(boolean)
-	 */
-	@Override
-	public Collection<JmiException> refVerifyConstraints(boolean deepVerify) {
-		return wrappedToken.refVerifyConstraints(deepVerify);
-	}
 
 	@Override
 	public CharStream getInputStream() {
@@ -828,54 +629,25 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 
 	}
 
-	@Override
-	public void assign___Partition(ModelPartition mp) {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("not implemented");
-	}
-
-	@Override
-	public void assign___PartitionIncludingChildren(ModelPartition mp) {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("not implemented");
-	}
-
-	
-
-	
-
 	
 	public LexedToken getWrappedToken() {
 	    return wrappedToken;
 	}
 
 	@Override
-	public Collection<EObject> getReferencedElements()
-		throws JmiException {
+	public EList<EObject> getReferencedElements() {
 	    return wrappedToken.getReferencedElements();
 	}
 
     @Override
-    public boolean isOperator() throws JmiException {
+    public boolean isOperator() {
         return wrappedToken.isOperator();
     }
 
     @Override
-    public void setOperator(boolean newValue) throws JmiException {
+    public void setOperator(boolean newValue) {
         wrappedToken.setOperator(newValue);
     }
-
-	@Override
-	public TextBlock getParent() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setParent(TextBlock value) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public EClass eClass() {
@@ -988,6 +760,12 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 
 	@Override
 	public void eNotify(Notification notification) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setAbsoluteOffset(int value) {
 		// TODO Auto-generated method stub
 		
 	}

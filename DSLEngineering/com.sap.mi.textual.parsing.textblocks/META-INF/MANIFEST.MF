@@ -4,12 +4,16 @@ Bundle-Name: Textblocks  Parsing Plug-in
 Bundle-SymbolicName: com.sap.mi.textual.parsing.textblocks;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
-Require-Bundle: org.eclipse.core.runtime,
- com.sap.mi.textual.parsing,
+Require-Bundle: com.sap.furcas.metamodel,
+ org.antlr,
  com.sap.mi.textual.common,
+ org.eclipse.emf.query2;bundle-version="1.0.0",
+ org.eclipse.ocl.ecore,
+ org.eclipse.emf.edit;bundle-version="2.6.0",
+ org.eclipse.core.runtime,
+ com.sap.mi.textual.parsing,
  com.sap.mi.textual.tcs.util,
- com.sap.furcas.metamodel,
- org.eclipse.ocl.ecore
+ com.sap.tc.moin.textual.runtime.emf;bundle-version="1.0.0"
 Export-Package: 
  com.sap.mi.textual.parsing.textblocks,
  com.sap.mi.textual.parsing.textblocks.observer,

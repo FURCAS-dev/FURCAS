@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
@@ -234,7 +235,7 @@ public class TextBlocksAwareModelAdapter extends DefaultTextAwareModelAdapter {
 	}
 
 	@Override
-	public Collection<PRI> getPRIPartitions(ResourceSet conn, String languageId) {
+	public Collection<URI> getPRIPartitions(ResourceSet conn, String languageId) {
 		return TcsUtil.getSyntaxePartitions(conn, languageId);
 	}
     

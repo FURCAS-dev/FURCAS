@@ -25,8 +25,8 @@ public class IllegalTextBlocksStateException extends IllegalStateException {
 
     private String getTextBlockAsString(TextBlock currentTextBlock) {
 	String temp = "";
-	if(!currentTextBlock.is___Alive())
-	    return "<deleted>";
+//	if(!currentTextBlock.is___Alive())
+//	    return "<deleted>";
 	for (DocumentNode node : TbNavigationUtil.getSubNodes(currentTextBlock)) {
 	    if (node instanceof TextBlock) {
 		TextBlock tb = (TextBlock) node;

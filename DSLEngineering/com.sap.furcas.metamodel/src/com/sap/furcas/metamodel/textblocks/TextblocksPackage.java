@@ -98,7 +98,7 @@ public interface TextblocksPackage extends EPackage {
 	int DOCUMENT_NODE__RELEXING_NEEDED = 2;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -206,13 +206,22 @@ public interface TextblocksPackage extends EPackage {
 	int DOCUMENT_NODE__END_COLUMN = 14;
 
 	/**
+	 * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT_NODE__ABSOLUTE_OFFSET = 15;
+
+	/**
 	 * The number of structural features of the '<em>Document Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_NODE_FEATURE_COUNT = 15;
+	int DOCUMENT_NODE_FEATURE_COUNT = 16;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.TextBlockImpl <em>Text Block</em>}' class.
@@ -252,7 +261,7 @@ public interface TextblocksPackage extends EPackage {
 	int TEXT_BLOCK__RELEXING_NEEDED = DOCUMENT_NODE__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -360,6 +369,15 @@ public interface TextblocksPackage extends EPackage {
 	int TEXT_BLOCK__END_COLUMN = DOCUMENT_NODE__END_COLUMN;
 
 	/**
+	 * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEXT_BLOCK__ABSOLUTE_OFFSET = DOCUMENT_NODE__ABSOLUTE_OFFSET;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -369,7 +387,7 @@ public interface TextblocksPackage extends EPackage {
 	int TEXT_BLOCK__TYPE = DOCUMENT_NODE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Sub Nodes</b></em>' reference list.
+	 * The feature id for the '<em><b>Sub Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -405,22 +423,13 @@ public interface TextblocksPackage extends EPackage {
 	int TEXT_BLOCK__FOR_EACH_CONTEXT = DOCUMENT_NODE_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Alive</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEXT_BLOCK__ALIVE = DOCUMENT_NODE_FEATURE_COUNT + 5;
-
-	/**
 	 * The feature id for the '<em><b>Cached String</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK__CACHED_STRING = DOCUMENT_NODE_FEATURE_COUNT + 6;
+	int TEXT_BLOCK__CACHED_STRING = DOCUMENT_NODE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Text Block</em>' class.
@@ -429,7 +438,7 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 7;
+	int TEXT_BLOCK_FEATURE_COUNT = DOCUMENT_NODE_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.AbstractTokenImpl <em>Abstract Token</em>}' class.
@@ -469,7 +478,7 @@ public interface TextblocksPackage extends EPackage {
 	int ABSTRACT_TOKEN__RELEXING_NEEDED = DOCUMENT_NODE__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -577,6 +586,15 @@ public interface TextblocksPackage extends EPackage {
 	int ABSTRACT_TOKEN__END_COLUMN = DOCUMENT_NODE__END_COLUMN;
 
 	/**
+	 * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_TOKEN__ABSOLUTE_OFFSET = DOCUMENT_NODE__ABSOLUTE_OFFSET;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -659,7 +677,7 @@ public interface TextblocksPackage extends EPackage {
 	int OMITTED_TOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -767,6 +785,15 @@ public interface TextblocksPackage extends EPackage {
 	int OMITTED_TOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
 
 	/**
+	 * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OMITTED_TOKEN__ABSOLUTE_OFFSET = ABSTRACT_TOKEN__ABSOLUTE_OFFSET;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -849,7 +876,7 @@ public interface TextblocksPackage extends EPackage {
 	int LEXED_TOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -957,6 +984,15 @@ public interface TextblocksPackage extends EPackage {
 	int LEXED_TOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
 
 	/**
+	 * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEXED_TOKEN__ABSOLUTE_OFFSET = ABSTRACT_TOKEN__ABSOLUTE_OFFSET;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1002,13 +1038,22 @@ public interface TextblocksPackage extends EPackage {
 	int LEXED_TOKEN__OPERATOR = ABSTRACT_TOKEN_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LEXED_TOKEN__TYPE = ABSTRACT_TOKEN_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Lexed Token</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 1;
+	int LEXED_TOKEN_FEATURE_COUNT = ABSTRACT_TOKEN_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link com.sap.furcas.metamodel.textblocks.impl.UnlexedTokenImpl <em>Unlexed Token</em>}' class.
@@ -1048,7 +1093,7 @@ public interface TextblocksPackage extends EPackage {
 	int UNLEXED_TOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1154,6 +1199,15 @@ public interface TextblocksPackage extends EPackage {
 	 * @ordered
 	 */
 	int UNLEXED_TOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
+
+	/**
+	 * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNLEXED_TOKEN__ABSOLUTE_OFFSET = ABSTRACT_TOKEN__ABSOLUTE_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1293,7 +1347,7 @@ public interface TextblocksPackage extends EPackage {
 	int EOSTOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1401,6 +1455,15 @@ public interface TextblocksPackage extends EPackage {
 	int EOSTOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
 
 	/**
+	 * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EOSTOKEN__ABSOLUTE_OFFSET = ABSTRACT_TOKEN__ABSOLUTE_OFFSET;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1483,7 +1546,7 @@ public interface TextblocksPackage extends EPackage {
 	int BOSTOKEN__RELEXING_NEEDED = ABSTRACT_TOKEN__RELEXING_NEEDED;
 
 	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * The feature id for the '<em><b>Parent</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1591,6 +1654,15 @@ public interface TextblocksPackage extends EPackage {
 	int BOSTOKEN__END_COLUMN = ABSTRACT_TOKEN__END_COLUMN;
 
 	/**
+	 * The feature id for the '<em><b>Absolute Offset</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOSTOKEN__ABSOLUTE_OFFSET = ABSTRACT_TOKEN__ABSOLUTE_OFFSET;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1657,10 +1729,10 @@ public interface TextblocksPackage extends EPackage {
 	EClass getTextBlock();
 
 	/**
-	 * Returns the meta object for the reference list '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes <em>Sub Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Sub Nodes</em>'.
+	 * @return the meta object for the containment reference list '<em>Sub Nodes</em>'.
 	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#getSubNodes()
 	 * @see #getTextBlock()
 	 * @generated
@@ -1710,17 +1782,6 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTextBlock_ForEachContext();
-
-	/**
-	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.TextBlock#is___Alive <em>Alive</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Alive</em>'.
-	 * @see com.sap.furcas.metamodel.textblocks.TextBlock#is___Alive()
-	 * @see #getTextBlock()
-	 * @generated
-	 */
-	EAttribute getTextBlock____Alive();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.TextBlock#getCachedString <em>Cached String</em>}'.
@@ -1817,6 +1878,17 @@ public interface TextblocksPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLexedToken_Operator();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.LexedToken#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.LexedToken#getType()
+	 * @see #getLexedToken()
+	 * @generated
+	 */
+	EAttribute getLexedToken_Type();
 
 	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.textblocks.UnlexedToken <em>Unlexed Token</em>}'.
@@ -1916,6 +1988,17 @@ public interface TextblocksPackage extends EPackage {
 	EAttribute getDocumentNode_EndColumn();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getAbsoluteOffset <em>Absolute Offset</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Absolute Offset</em>'.
+	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#getAbsoluteOffset()
+	 * @see #getDocumentNode()
+	 * @generated
+	 */
+	EAttribute getDocumentNode_AbsoluteOffset();
+
+	/**
 	 * Returns the meta object for class '{@link com.sap.furcas.metamodel.textblocks.ForEachContext <em>For Each Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2012,10 +2095,10 @@ public interface TextblocksPackage extends EPackage {
 	EAttribute getDocumentNode_RelexingNeeded();
 
 	/**
-	 * Returns the meta object for the reference '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}'.
+	 * Returns the meta object for the container reference '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Parent</em>'.
+	 * @return the meta object for the container reference '<em>Parent</em>'.
 	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#getParent()
 	 * @see #getDocumentNode()
 	 * @generated
@@ -2120,7 +2203,7 @@ public interface TextblocksPackage extends EPackage {
 		EClass TEXT_BLOCK = eINSTANCE.getTextBlock();
 
 		/**
-		 * The meta object literal for the '<em><b>Sub Nodes</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Sub Nodes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2158,14 +2241,6 @@ public interface TextblocksPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEXT_BLOCK__FOR_EACH_CONTEXT = eINSTANCE.getTextBlock_ForEachContext();
-
-		/**
-		 * The meta object literal for the '<em><b>Alive</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEXT_BLOCK__ALIVE = eINSTANCE.getTextBlock____Alive();
 
 		/**
 		 * The meta object literal for the '<em><b>Cached String</b></em>' attribute feature.
@@ -2246,6 +2321,14 @@ public interface TextblocksPackage extends EPackage {
 		EAttribute LEXED_TOKEN__OPERATOR = eINSTANCE.getLexedToken_Operator();
 
 		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LEXED_TOKEN__TYPE = eINSTANCE.getLexedToken_Type();
+
+		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.textblocks.impl.UnlexedTokenImpl <em>Unlexed Token</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2320,6 +2403,14 @@ public interface TextblocksPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute DOCUMENT_NODE__END_COLUMN = eINSTANCE.getDocumentNode_EndColumn();
+
+		/**
+		 * The meta object literal for the '<em><b>Absolute Offset</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT_NODE__ABSOLUTE_OFFSET = eINSTANCE.getDocumentNode_AbsoluteOffset();
 
 		/**
 		 * The meta object literal for the '{@link com.sap.furcas.metamodel.textblocks.impl.ForEachContextImpl <em>For Each Context</em>}' class.
@@ -2400,7 +2491,7 @@ public interface TextblocksPackage extends EPackage {
 		EAttribute DOCUMENT_NODE__RELEXING_NEEDED = eINSTANCE.getDocumentNode_RelexingNeeded();
 
 		/**
-		 * The meta object literal for the '<em><b>Parent</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Parent</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

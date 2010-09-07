@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getParentAltChoices <em>Parent Alt Choices</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getElementsInContext <em>Elements In Context</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getForEachContext <em>For Each Context</em>}</li>
- *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#is___Alive <em>Alive</em>}</li>
  *   <li>{@link com.sap.furcas.metamodel.textblocks.TextBlock#getCachedString <em>Cached String</em>}</li>
  * </ul>
  * </p>
@@ -61,20 +60,22 @@ public interface TextBlock extends DocumentNode {
 	EList<Template> getAdditionalTemplates();
 
 	/**
-	 * Returns the value of the '<em><b>Sub Nodes</b></em>' reference list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.textblocks.TextBlock}.
+	 * Returns the value of the '<em><b>Sub Nodes</b></em>' containment reference list.
+	 * The list contents are of type {@link com.sap.furcas.metamodel.textblocks.DocumentNode}.
+	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.textblocks.DocumentNode#getParent <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Nodes</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sub Nodes</em>' reference list.
+	 * @return the value of the '<em>Sub Nodes</em>' containment reference list.
 	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getTextBlock_SubNodes()
-	 * @model transient="true" derived="true"
+	 * @see com.sap.furcas.metamodel.textblocks.DocumentNode#getParent
+	 * @model opposite="parent" containment="true" transient="true" derived="true"
 	 * @generated
 	 */
-	EList<TextBlock> getSubNodes();
+	EList<DocumentNode> getSubNodes();
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
@@ -163,32 +164,6 @@ public interface TextBlock extends DocumentNode {
 	 * @generated
 	 */
 	EList<ForEachContext> getForEachContext();
-
-	/**
-	 * Returns the value of the '<em><b>Alive</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Alive</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Alive</em>' attribute.
-	 * @see #set___Alive(boolean)
-	 * @see com.sap.furcas.metamodel.textblocks.TextblocksPackage#getTextBlock____Alive()
-	 * @model
-	 * @generated
-	 */
-	boolean is___Alive();
-
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.textblocks.TextBlock#is___Alive <em>Alive</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Alive</em>' attribute.
-	 * @see #is___Alive()
-	 * @generated
-	 */
-	void set___Alive(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Cached String</b></em>' attribute.

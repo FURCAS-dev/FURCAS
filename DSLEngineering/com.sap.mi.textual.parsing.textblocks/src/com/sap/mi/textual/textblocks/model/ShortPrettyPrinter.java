@@ -1,11 +1,14 @@
 package com.sap.mi.textual.textblocks.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.furcas.metamodel.TCS.AsPArg;
 import com.sap.furcas.metamodel.TCS.FilterPArg;
@@ -19,20 +22,24 @@ import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
+import com.sap.mi.textual.common.util.EcoreHelper;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
 import com.sap.mi.textual.parsing.textblocks.PrettyPrinterUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
 
 public class ShortPrettyPrinter {
 
     private final static boolean doFlyWeight = true;
     private final IModelElementInvestigator investigator;
+	private final OCL ocl;
 
     public ShortPrettyPrinter(IModelElementInvestigator investigator) {
 	this.investigator = investigator;
+	this.ocl = OCL.newInstance();
     }
 
     public void makeFlyweight(TextBlock rootBlock) {
@@ -89,7 +96,8 @@ public class ShortPrettyPrinter {
 	    for (EObject referencedObject : token
 		    .getReferencedElements()) {
 	        if(referencedObject != null &&
-	                referencedObject.refIsInstanceOf(se.getPropertyReference().getStrucfeature().getEType(), true)) {
+	                referencedObject.eClass().equals(se.getPropertyReference().getStrucfeature().getEType())
+	        		|| referencedObject.eClass().getEAllSuperTypes().contains(se.getPropertyReference().getStrucfeature().getEType())) {
         		RefersToPArg refersToArg = TcsUtil.getRefersToPArg(se);
         		try {
         		    if (TcsUtil.getFilterPArg(se) != null) {
@@ -115,10 +123,6 @@ public class ShortPrettyPrinter {
                             Template template = PrettyPrinterUtil.getAsTemplate(asParg);
                             return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
         		} catch (ModelAdapterException e) {
-        		    // element does not have this property
-        		    System.out.println(e);
-        		    continue;
-        		} catch (OclManagerException e) {
         		    // element does not have this property
         		    System.out.println(e);
         		    continue;
@@ -158,57 +162,60 @@ public class ShortPrettyPrinter {
         return PrettyPrinterUtil.printUsingSerializer(newvalue, template);
     }
 
-    private String invertOclQuery(EObject self, LexedToken token,
-	    Property se, String newValue) throws OclManagerException,
-	    ModelAdapterException {
-	// TODO this should actually use the splitted version of query and
-	// filter elements
-	// to be able to invert the query.
-	// this implementation just checks if there are any prefixes or
-	// postfixes that can be removed.
-	FilterPArg filterParg = TcsUtil.getFilterPArg(se);
-	if (filterParg != null && filterParg.getInvert() != null) {
-	    String query = filterParg.getInvert();
+	private String invertOclQuery(EObject self, LexedToken token, Property se,
+			String newValue) throws ModelAdapterException {
+		// TODO this should actually use the splitted version of query and
+		// filter elements
+		// to be able to invert the query.
+		// this implementation just checks if there are any prefixes or
+		// postfixes that can be removed.
+		FilterPArg filterParg = TcsUtil.getFilterPArg(se);
+		if (filterParg != null && filterParg.getInvert() != null) {
+			String query = filterParg.getInvert();
 
-	    LocalContextBuilder lcb = new LocalContextBuilder();
-	    TbUtil.constructContext(token, lcb);
+			LocalContextBuilder lcb = new LocalContextBuilder();
+			TbUtil.constructContext(token, lcb);
 
-	    if (!lcb.getContextStack().isEmpty()
-		    && ContextAndForeachHelper.usesContext(query)) {
-		self = (EObject) lcb.getContextStack().peek().getRealObject();
-	    }
-	    query = MoinHelper.prepareOclQuery(query, token.getValue());
+			if (!lcb.getContextStack().isEmpty()
+					&& ContextAndForeachHelper.usesContext(query)) {
+				self = (EObject) lcb.getContextStack().peek().getRealObject();
+			}
+			query = MoinHelper.prepareOclQuery(query, token.getValue());
 
-	    if (self != null) {
-		EPackage root = self.refOutermostPackage();
-		Collection<EPackage> packagesForLookup = new ArrayList<EPackage>();
-		packagesForLookup.addAll(MoinHelper.getImportedRefPackages(root));
-		packagesForLookup.add(root);
+			if (self != null) {
+				EPackage root = EcoreHelper.getOutermostPackage(self);
+				// Collection<EPackage> packagesForLookup = new
+				// ArrayList<EPackage>();
+				// packagesForLookup.addAll(MoinHelper.getImportedRefPackages(root));
+				// packagesForLookup.add(root);
 
-		if (query != null) {
-		    String name = "short-pretty-printer-temp-reg";
-		    OclFreestyleRegistry freestyleRegistry = token.get___Connection().getOclRegistryService()
-			    .getFreestyleRegistry();
-		    OclExpressionRegistration registration = (OclExpressionRegistration) freestyleRegistry.getRegistration(name);
-		    if (registration != null) {
-			freestyleRegistry.deleteRegistration(name);
-		    }
-		    registration = freestyleRegistry.createExpressionRegistration(name, query, OclRegistrationSeverity.Info,
-			    new String[] { name }, self.eClass(), packagesForLookup.toArray(new EPackage[] {}));
-		    Object result = registration.evaluateExpression(self);
-		    if (result == null) {
-			// maybe create an error marker!
-			return token.getValue();
-		    } else if (result instanceof String) {
-			return (String) result;
-		    } else {
-			throw new ModelAdapterException("Cannot invert OCL query: " + query + " on element " + self);
-		    }
+				if (query != null) {
+					Helper helper = ocl.createOCLHelper();
+					OCLExpression oclExpression;
+					try {
+						oclExpression = helper.createQuery(query);
+						Object result = ocl.evaluate(self, oclExpression);
+						if (result == null) {
+							// maybe create an error marker!
+							return token.getValue();
+						} else if (result instanceof String) {
+							return (String) result;
+						} else {
+							throw new ModelAdapterException(
+									"Cannot invert OCL query: " + query
+											+ " on element " + self);
+						}
+					} catch (ParserException e) {
+						throw new ModelAdapterException(
+								"Cannot invert OCL query: " + query
+										+ " on element " + self, e);
+					}
+
+				}
+			}
 		}
-	    }
+
+		return newValue;
 	}
-	
-	return newValue;
-    }
 
 }

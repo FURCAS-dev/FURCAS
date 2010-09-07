@@ -15,8 +15,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.utilities.TypedElement;
 
 import com.sap.furcas.metamodel.TCS.AsPArg;
 import com.sap.furcas.metamodel.TCS.AutoCreateKind;
