@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ui
-Bundle-SymbolicName: org.eclipse.emf.query2.syntax.tools.ui;singleton:=true
+Bundle-SymbolicName: org.eclipse.emf.query2.tools.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.emf.query2.syntax.internal.ui.Activator
+Bundle-Activator: org.eclipse.emf.query2.internal.ui.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.query2.syntax;bundle-version="1.0.0",
