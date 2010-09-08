@@ -27,6 +27,7 @@ import org.eclipse.emf.query2.WhereComparisonAliases;
 import org.eclipse.emf.query2.WhereComparisonAttrs;
 import org.eclipse.emf.query2.WhereDouble;
 import org.eclipse.emf.query2.WhereEntry;
+import org.eclipse.emf.query2.WhereInt;
 import org.eclipse.emf.query2.WhereLong;
 import org.eclipse.emf.query2.WhereNestedReference;
 import org.eclipse.emf.query2.WhereOr;
@@ -167,7 +168,12 @@ public class QueryTransformer {
 
 			}
 			if (rhs instanceof LongExpression) {
-				return createWhereEntry(lhs, new WhereLong(name, getOperation(object.getOperator()), ((LongExpression) object.getRhs()).getValue()));
+				long longValue = ((LongExpression) object.getRhs()).getValue();
+				if(longValue > Integer.MAX_VALUE) {
+					return createWhereEntry(lhs, new WhereLong(name, getOperation(object.getOperator()), longValue));
+				} else {
+					return createWhereEntry(lhs, new WhereInt(name, getOperation(object.getOperator()), (int) longValue));
+				}
 			}
 			if (rhs instanceof DoubleExpression) {
 				return createWhereEntry(lhs, new WhereDouble(name, getOperation(object.getOperator()), ((DoubleExpression) object)
