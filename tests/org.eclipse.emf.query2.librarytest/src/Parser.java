@@ -59,7 +59,7 @@ public class Parser {
 
 		for (int i = 0; i < cities.length; i++) {
 			String city = cities[i];
-			String pathName = "org.eclipse.emf.query2.librarytest/data/library/" + city + ".xmi";
+			String pathName = "org.eclipse.emf.query2.syntax.librarytest/data/library/" + city + ".xmi";
 			Resource r = getResource(rs, pathName);
 			Library lib = LibraryFactory.eINSTANCE.createLibrary();
 			lib.setLocation(city);
@@ -158,7 +158,7 @@ public class Parser {
 		}
 		lnr.close();
 
-		String pathName = "org.eclipse.emf.query2.librarytest/data/publisher/dpunkt.xmi";
+		String pathName = "org.eclipse.emf.query2.syntax.librarytest/data/publisher/dpunkt.xmi";
 		Resource dpunktRes = getResource(rs, pathName);
 		dpunktRes.getContents().add(dpunkt);
 		return dpunkt;
@@ -168,7 +168,7 @@ public class Parser {
 		Resource r;
 		String c = firstChar.toUpperCase();
 		if ((r = resources.get(c)) == null) {
-			String pathName = "org.eclipse.emf.query2.librarytest/data/person/" + c + ".xmi";
+			String pathName = "org.eclipse.emf.query2.syntax.librarytest/data/person/" + c + ".xmi";
 			r = getResource(rs, pathName);
 			resources.put(c, r);
 		}
