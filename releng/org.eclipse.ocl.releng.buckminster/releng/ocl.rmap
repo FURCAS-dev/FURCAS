@@ -61,6 +61,18 @@
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
+    <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false" resolutionFilter="">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/examples/{1}">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+    <rm:provider componentTypes="eclipse.feature" readerType="cvs" mutable="false" resolutionFilter="">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/examples/{1}-feature">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="cvs_eclipse">
     <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false">
