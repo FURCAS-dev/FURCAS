@@ -5,8 +5,8 @@
   <rm:locator pattern="^org\.eclipse\.ocl\.releng\.buckminster$" searchPathRef="local.releng"/>
   <rm:locator pattern="^org\.eclipse\.emf.*" searchPathRef="emf"/>
   <rm:locator pattern="^org\.eclipse\.uml.*" searchPathRef="uml"/>
-  <rm:locator pattern="^lpg\.runtime\.java$" searchPathRef="orbit"/>
-  <rm:locator searchPathRef="platform"/>
+  <rm:locator searchPathRef="platform" failOnError="false"/>
+  <rm:locator searchPathRef="orbit"/>
   <rm:searchPath name="local.releng">
     <rm:provider componentTypes="buckminster" readerType="local" mutable="false">
       <rm:uri format="{0}/org.eclipse.mdt/org.eclipse.ocl/releng/{1}">
