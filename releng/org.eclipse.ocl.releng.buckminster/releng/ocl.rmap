@@ -69,7 +69,7 @@
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
-    <rm:provider componentTypes="osgi.bundle" readerType="cvs">
+    <rm:provider componentTypes="osgi.bundle" readerType="cvs" mutable="false">
       <rm:uri format="{0},{1}-feature">
         <bc:propertyRef key="cvs.eclipse.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
@@ -77,7 +77,7 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="p2_orbit">
-    <rm:provider componentTypes="osgi.bundle" readerType="p2">
+    <rm:provider componentTypes="osgi.bundle" readerType="p2" mutable="false">
       <rm:uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/repository"/>
     </rm:provider>
   </rm:searchPath>
