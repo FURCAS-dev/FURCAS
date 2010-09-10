@@ -6,21 +6,22 @@ Bundle-SymbolicName: com.sap.mi.textual.epi;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.mi.textual.epi.Activator
 Bundle-Vendor: com.sap.mi.textual
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
+Require-Bundle: com.sap.mi.textual.ecorelookup,
+ org.antlr,
+ com.sap.mi.textual.common,
  org.eclipse.core.resources,
+ com.sap.furcas.metamodel,
+ com.sap.mi.textual.parsing,
  com.sap.mi.textual,
  org.eclipse.ui.ide,
  org.eclipse.jdt.core,
  org.eclipse.emf.ecore,
- com.sap.mi.textual.common,
  org.eclipse.emf.common.ui,
  org.eclipse.emf.ecore.xmi,
- com.sap.mi.textual.ecorelookup,
- com.sap.mi.textual.syntaxmodel.moinadapter,
+ com.sap.mi.textual.syntaxmodel.emfadapter,
  com.sap.ide.cts.parser;bundle-version="1.0.0",
- com.sap.furcas.metamodel;bundle-version="1.0.0",
- com.sap.mi.textual.parsing
+ org.eclipse.ui,
+ org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.mi.textual.epi,
  com.sap.mi.textual.epi.builder,

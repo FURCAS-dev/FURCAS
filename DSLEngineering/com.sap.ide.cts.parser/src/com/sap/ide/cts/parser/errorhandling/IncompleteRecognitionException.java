@@ -2,7 +2,7 @@ package com.sap.ide.cts.parser.errorhandling;
 
 import org.antlr.runtime.RecognitionException;
 
-import textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 public class IncompleteRecognitionException extends RecognitionException {
 

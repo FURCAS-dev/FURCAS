@@ -79,6 +79,7 @@ import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.common.util.EcoreHelper;
 import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
+import com.sap.tc.moin.textual.moinadapter.adapter.MoinModelAdapterDelegate;
 
 
 /**
@@ -445,7 +446,7 @@ public class TcsUtil {
 		ResourceSet c = TcsUtil.getResourceSetFromEObject(operatorList);
 		Resource transientPartition = c
 				.getResource(TRANSIENT_PARTITION_NAME, true);
-		LiteralRef litRef = (LiteralRef) TCSFactory.eINSTANCE.createLiteralRef();
+		LiteralRef litRef = TCSFactory.eINSTANCE.createLiteralRef();
 		transientPartition.getContents().add(litRef);
 		litRef.setReferredLiteral(op.getLiteral());
 		operatorToLiteralRefMap.put(op, litRef);
@@ -1503,7 +1504,7 @@ public class TcsUtil {
 //						return results.iterator().next();
 //					}
 //				} else {
-					return target.eGet((EStructuralFeature) elem);
+					return target.eGet(elem);
 //				}
 			}
 
@@ -1626,7 +1627,7 @@ public class TcsUtil {
 		return results;
 	}
 
-	public static Collection<URI> getSyntaxePartitions(ResourceSet connection,
+	public static Set<URI> getSyntaxePartitions(ResourceSet connection,
 			String languageId) {
 		ConcreteSyntax cs = getSyntaxByName(connection, languageId);
 		if (cs == null) {

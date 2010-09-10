@@ -23,7 +23,6 @@ import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.grammar.impl.TextLocation;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.GenerationReport;
 import com.sap.mi.textual.moinlookup.MoinMetaLookup;
-import com.sun.corba.se.pept.transport.Connection;
 
 
 /**

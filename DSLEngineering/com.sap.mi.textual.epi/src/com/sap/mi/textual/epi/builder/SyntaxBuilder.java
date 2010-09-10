@@ -13,6 +13,8 @@ import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.Constants;
@@ -20,6 +22,7 @@ import com.sap.mi.textual.epi.conf.IProjectMetaRefConf;
 import com.sap.mi.textual.epi.conf.ReferenceScopeBean;
 import com.sap.mi.textual.epi.errors.GrammarGenerationErrorHandler;
 import com.sap.mi.textual.epi.util.EclipseMarkerUtil;
+import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 
 
 
@@ -35,7 +38,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 	class TCSBuildVisitor implements IResourceVisitor {
 		
 		/** The mymonitor. */
-		private IProgressMonitor mymonitor;
+		private final IProgressMonitor mymonitor;
 
 		/**
 		 * Instantiates a new tCS project resource visitor.
@@ -49,6 +52,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 		/* (non-Javadoc)
 		 * @see org.eclipse.core.resources.IResourceVisitor#visit(org.eclipse.core.resources.IResource)
 		 */
+		@Override
 		public boolean visit(IResource resource) {
 			
 			try {
@@ -67,7 +71,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
     class TCSCleanVisitor implements IResourceVisitor {
         
         /** The mymonitor. */
-        private IProgressMonitor mymonitor;
+        private final IProgressMonitor mymonitor;
 
         /**
          * Instantiates a new tCS project resource visitor.
@@ -81,7 +85,8 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
         /* (non-Javadoc)
          * @see org.eclipse.core.resources.IResourceVisitor#visit(org.eclipse.core.resources.IResource)
          */
-        public boolean visit(IResource resource) {
+        @Override
+		public boolean visit(IResource resource) {
             
             try {
                 cleanResource(resource, mymonitor);
@@ -101,7 +106,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 	class TCSProjectDeltaVisitor implements IResourceDeltaVisitor {
 		
 		/** The mymonitor. */
-		private IProgressMonitor mymonitor;
+		private final IProgressMonitor mymonitor;
 
 		/**
 		 * Instantiates a new tCS project delta visitor.
@@ -118,6 +123,7 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 		 * 
 		 * @see org.eclipse.core.resources.IResourceDeltaVisitor#visit(org.eclipse.core.resources.IResourceDelta)
 		 */
+		@Override
 		public boolean visit(IResourceDelta delta) throws CoreException {
             IResource resource = delta.getResource();
             switch (delta.getKind()) {
@@ -156,7 +162,8 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 	 * @see org.eclipse.core.internal.events.InternalBuilder#build(int,
 	 *      java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	@SuppressWarnings("unchecked") // Map is defined without generic in supertype
+	@Override
+	@SuppressWarnings("rawtypes") // Map is defined without generic in supertype
 	protected IProject[] build(int kind, Map args, IProgressMonitor monitor)
 			throws CoreException {
 		if (kind == FULL_BUILD) {
@@ -200,10 +207,10 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 						ReferenceScopeBean refScopeBean = conf.getMetaLookUpForProject(); // may open a connection
 						try {
 						    ResourceSet targetConnection = null;
-						    if(ModelManager.getInstance().isMoinProject(project)) {
-						    	targetConnection = ModelManager.getConnectionManager().createConnection(project);
+						    if(BuildHelper.isModelProject(project)) {
+						    	targetConnection = BuildHelper.getResourceSetForProject(project);
 						    } else {
-						    	targetConnection = ModelManager.getConnectionManager().createTransientConnection();
+						    	targetConnection = new ResourceSetImpl();
 						    }
 						    
 					        String targetpackage = getPackage(file, project);

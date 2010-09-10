@@ -16,8 +16,16 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.mi.textual.common.exceptions.ParserInvokationException;
+import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
@@ -25,8 +33,8 @@ import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.AbstractTCSGrammarGenerator;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.TCSSyntaxContainerBean;
-import com.sap.mi.textual.syntaxmodel.moinadapter.ModelInjectionResult;
-import com.sap.mi.textual.syntaxmodel.moinadapter.TCS2MOINInjectorFacade;
+import com.sap.mi.textual.syntaxmodel.emfadapter.ModelInjectionResult;
+import com.sap.mi.textual.syntaxmodel.emfadapter.TCS2MOINInjectorFacade;
 
 
 
@@ -39,7 +47,7 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 
 	private static final String MAPPING_XMI_POSTFIX = "Mapping.xmi";
 	/** The syntax definition stream. */
-	private InputStream syntaxDefinitionStream;
+	private final InputStream syntaxDefinitionStream;
 
 	/**
 	 * Instantiates a new TCS input stream grammar generator.
@@ -56,7 +64,7 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 	}
 
 
-	private TCSSyntaxContainerBean initMembers(InputStream definitionInputStream, ResourceSet connection, Set<PRI> metamodelPRIs) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException, SyntaxParsingException, ModelAdapterException {
+	private TCSSyntaxContainerBean initMembers(InputStream definitionInputStream, ResourceSet connection, Set<URI> metamodelPRIs) throws InvalidParserImplementationException, IOException, UnknownProductionRuleException, SyntaxParsingException, ModelAdapterException {
 
         // By choosing this injector, we establish the dependency to MOIN.
 	    ModelInjectionResult result = TCS2MOINInjectorFacade.parseSyntaxDefinition(definitionInputStream, connection, metamodelPRIs, null);
@@ -65,7 +73,7 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 		if (errors != null && errors.size() > 0) {
 		    if (result.getSyntax() != null) {
 			// also clean up unfinished syntax
-			result.getSyntax().refDelete();
+		    	EcoreUtil.delete(result.getSyntax(), true);
 		    }
 		    throw new SyntaxParsingException(errors);
 		} 
@@ -90,7 +98,7 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 	 * @see com.sap.mi.textual.grammar.impl.tcs.t2m.AbstractTCSGrammarGenerator#doGetSyntaxDef()
 	 */
 	@Override
-	protected TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet connection, Set<PRI> metamodelPRIs) throws IOException, SyntaxParsingException, ModelAdapterException, ParserInvokationException
+	protected TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet connection, Set<URI> metamodelPRIs) throws IOException, SyntaxParsingException, ModelAdapterException, ParserInvokationException
 	 {
 		try {
             return initMembers(syntaxDefinitionStream, connection, metamodelPRIs);
@@ -108,7 +116,7 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 
 	@Override
 	protected TCSSyntaxContainerBean doGetSyntaxDef(ResourceSet connection,
-			Set<PRI> metamodelPRIs, String languageId)
+			Set<URI> metamodelPRIs, String languageId)
 			throws SyntaxParsingException, IOException, ModelAdapterException,
 			ParserInvokationException {
 		return doGetSyntaxDef(connection, metamodelPRIs);
@@ -125,18 +133,14 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 	 * @param syntax
 	 */
 	public void writeMappingToFile(IProject project, ConcreteSyntax syntax) {
-		ResourceSet connection = ((EObject)syntax).get___Connection();
+		ResourceSet connection = ((EObject)syntax).eResource().getResourceSet();
 		Resource partition = getOrCreateMappingPartition(project, syntax, connection);
-		for (EObject element : connection.getNullPartition().getElements()) {
-			partition.assignElementIncludingChildren(element);
-		}
+//		for (EObject element : connection.getNullPartition().getElements()) {
+//			partition.assignElementIncludingChildren(element);
+//		}
 		try {
-			connection.save();
-		} catch (NullPartitionNotEmptyException e) {
-			Activator.logError(e);
-		} catch (ReferencedTransientElementsException e) {
-			Activator.logError(e);
-		} catch (PartitionsNotSavedException e) {
+			partition.save(null);
+		} catch (IOException e) {
 			Activator.logError(e);
 		}
 	}
@@ -144,13 +148,14 @@ public class TCSInputStreamGrammarGenerator extends AbstractTCSGrammarGenerator 
 
 	private Resource getOrCreateMappingPartition(IProject project,
 			ConcreteSyntax syntax, ResourceSet connection) {
-		IPath partitionRelativePath = project.getFile("mappings/"+syntax.getName() + MAPPING_XMI_POSTFIX).getProjectRelativePath();
-		Resource partition = ModelManager.getPartitionService().getPartition(connection, project, partitionRelativePath);
+		IPath partitionRelativePath = project.getFullPath().append(
+			project.getFile("mappings/"+syntax.getName() + MAPPING_XMI_POSTFIX).getProjectRelativePath());
+		Resource partition = connection.getResource(URI.createPlatformResourceURI(partitionRelativePath.toString(), true), true);
 		if(partition != null) {
-			partition.deleteElements();
+			partition.getContents().clear();
 		} else {
-			partition = ModelManager.getPartitionService().createPartition(connection, project, 
-					partitionRelativePath, syntax);
+			partition = connection.createResource(URI.createPlatformResourceURI(partitionRelativePath.toString(), true));
+			partition.getContents().add(syntax);
 		}
 		return partition;
 	}

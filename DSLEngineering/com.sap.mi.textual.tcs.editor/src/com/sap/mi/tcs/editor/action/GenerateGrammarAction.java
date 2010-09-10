@@ -24,7 +24,7 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.ANTLRGrammarGenerator;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.GenerationReport;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.validation.SyntaxDefinitionValidation;
 import com.sap.mi.textual.moinlookup.MoinMetaLookup;
-import com.sap.mi.textual.syntaxmodel.moinadapter.MOINTCSAdapter;
+import com.sap.mi.textual.syntaxmodel.emfadapter.EMFTCSAdapter;
 
 public class GenerateGrammarAction extends Action {
 
@@ -49,7 +49,7 @@ public class GenerateGrammarAction extends Action {
         ANTLR3GrammarWriter writer = new ANTLR3GrammarWriter();
         ANTLRGrammarGenerator mapper = new ANTLRGrammarGenerator();
         MoinMetaLookup lookup = new  MoinMetaLookup(connection, null);
-        MOINTCSAdapter handler = new MOINTCSAdapter(syntax.get___Connection(), null);
+        EMFTCSAdapter handler = new EMFTCSAdapter(syntax.get___Connection(), null);
         
         TCSSyntaxContainerBean bean = new TCSSyntaxContainerBean();
         bean.setSyntax(syntax);

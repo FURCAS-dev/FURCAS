@@ -6,11 +6,13 @@ import java.util.HashSet;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.Constants;
+import com.sap.mi.textual.epi.builder.BuildHelper;
 import com.sap.mi.textual.epi.util.ExceptionHelper;
 
 
@@ -26,7 +28,7 @@ public final class DeployedMetaProjectConf implements IProjectMetaRefConf {
 
 
 	/** The meta info. */
-	private String containerName;
+	private final String containerName;
 	private final IProject configuredProject;
 
 	/**
@@ -49,6 +51,7 @@ public final class DeployedMetaProjectConf implements IProjectMetaRefConf {
 	/* (non-Javadoc)
 	 * @see com.sap.mi.textual.epi.conf.IProjectMetaRefConf#configureProject(org.eclipse.core.resources.IProject)
 	 */
+	@Override
 	public void configureProject(IProject project) throws CoreException {
 		ProjectPropertiesStorageHelper.setProperty(project, Constants.DEPLOYED_METAMODEL_CONTAINER_NAME_KEY, containerName);
 	}
@@ -57,14 +60,15 @@ public final class DeployedMetaProjectConf implements IProjectMetaRefConf {
 	/* (non-Javadoc)
 	 * @see com.sap.mi.textual.epi.conf.IProjectMetaRefConf#getMetaLookUpForProject()
 	 */
+	@Override
 	public ReferenceScopeBean getMetaLookUpForProject() throws CoreException {
 
 		try {
 			ResourceSet connection = null;
-			if(configuredProject != null && ModelManager.getInstance().isMoinProject(configuredProject)) {
-				connection = ModelManager.getConnectionManager().getDefaultConnection(configuredProject);
+			if(configuredProject != null && BuildHelper.isModelProject(configuredProject)) {
+				connection = BuildHelper.getResourceSetForProject(configuredProject);
 			}else {
-				connection = ConnectionManager.getInstance().createTransientConnection();
+				connection = new ResourceSetImpl();
 			}
 		    HashSet<URI> newPRIs = getPRIs();
 		    return new ReferenceScopeBean(connection, newPRIs);
@@ -80,38 +84,16 @@ public final class DeployedMetaProjectConf implements IProjectMetaRefConf {
      * @throws IOException
      * @throws CoreException 
      */
-    private HashSet<URI> getPRIs() throws IOException, CoreException {
-        HashSet<URI> newPRIs = null;
-        Moin moin = MoinFactory.getMoinInstance();
-        if ("sap.com/tc/moin/mof_1.4".equals(containerName)) {
-          
-            newPRIs = new HashSet<URI>();
-            URI pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm");
-            newPRIs.add(pri);
-            pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/OCL.moinmm");
-            newPRIs.add(pri);
-            pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm");
-            newPRIs.add(pri); 
-            pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/CorbaIdlTypes.moinmm");
-            newPRIs.add(pri); 
-            pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Reflect.moinmm");
-            newPRIs.add(pri); 
-            pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/MOIN.moinmm");
-            newPRIs.add(pri); 
-        } else {
-            MmDeploymentInfo mm = MetamodelManager.getInstance().getDeployedMetamodel(containerName);
-            if (mm != null) {
-                newPRIs = new HashSet<URI>(mm.getPRIs());
-                URI pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm");
-                newPRIs.add(pri);
-                pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm");
-                newPRIs.add(pri); 
-            } else {
-                throw new CoreException(new Status(Status.ERROR, Activator.PLUGIN_ID, "Metamodel Manager could not resolve metamodel: " + containerName + " configured in DSL Engineering nature." ));
-            }
-        }
-        return newPRIs;
-    }
+	private HashSet<URI> getPRIs() throws IOException, CoreException {
+		HashSet<URI> newPRIs = null;
+		newPRIs = new HashSet<URI>();
+		URI pri = URI.createURI("http://www.eclipse.org/emf/2002/Ecore");
+		newPRIs.add(pri);
+		pri = URI.createURI("http://www.eclipse.org/ocl/1.1.0/Ecore");
+		newPRIs.add(pri);
+
+		return newPRIs;
+	}
 
 	/**
 	 * Gets the configuration from project.

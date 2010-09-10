@@ -16,11 +16,11 @@ import org.antlr.runtime.Token;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.ResultSet;
-import org.eclipse.emf.query2.TypeScopeProvider;
 
 import com.sap.furcas.metamodel.TCS.ForeachPredicatePropertyInit;
 import com.sap.furcas.metamodel.TCS.InjectorAction;
@@ -31,7 +31,7 @@ import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.common.util.EcoreHelper;
@@ -72,16 +72,16 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	protected TextBlockTraverser traverser;
 
-	private ITextBlocksTokenStream input;
+	private final ITextBlocksTokenStream input;
 
 	// flag to indicate whether root rule has been entered yet or not. 
 	private int ruleDepth = -1; // -1 initial value means outside root context
 
 	private ResourceSet connection;
 
-	private Map<String, Template> templateCache  = new HashMap<String, Template>();
+	private final Map<String, Template> templateCache  = new HashMap<String, Template>();
 
-	private QueryContext metamodelContainerQueryScope;
+	private final QueryContext metamodelContainerQueryScope;
 
 	private final Set<URI> mappingDefinitionPartitions;
 
@@ -198,6 +198,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
             String templateKey = createdElement.toString()
                     + (mode == null ? "" : ("#" + mode));
             Template template = templateCache.get(templateKey);
+            try {
             if (template == null) {
                 String queryClass = "select class \n"
                         + "from \"sap.com/tc/moin/mof_1.4\"#"
@@ -205,8 +206,10 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                         + createdElement.get(createdElement.size() - 1) + "'";
                 // get clazz by name
                 // TODO query fully qualified name!
-                ResultSet result = EcoreHelper.executeQuery(queryClass, connection,
-                         metamodelContainerQueryScope);
+                ResultSet result;
+				
+				result = EcoreHelper.executeQuery(queryClass, connection,
+					         metamodelContainerQueryScope);
                 URI[] eObjects = result.getUris("class");
                 EClassifier clazz = null;
                 if (eObjects.length > 1) {
@@ -229,42 +232,40 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                     } else {
                         query += "null";
                     }
-                    QueryScopeProvider mappingQueryScope = connection
-                            .getMQLProcessor().getInclusiveQueryScopeProvider(
-                                    mappingDefinitionPartitions
-                                            .toArray(new URI[] {}),
-                                    metamodelContainerQueryScope
-                                            .getContainerScope());
-                    result = connection.getMQLProcessor().execute(query,
-                            mappingQueryScope);
-                    eObjects = result.getRefObjects("template");
+                    Set<URI> templateAndMMUris = new HashSet<URI>(this.queryScope);
+                    templateAndMMUris.addAll(mappingDefinitionPartitions);
+                    QueryContext templateAndMMContext = EcoreHelper.getQueryContext(connection, templateAndMMUris);
+                    result = EcoreHelper.executeQuery(query, connection,
+						templateAndMMContext);
+                    eObjects = result.getUris("template");
                     if (eObjects.length > 1) {
                         // throw new
                         // RuntimeException("Ambigous templates found for: " +
                         // createdElement + " mode=" + mode);
-                        template = (Template) eObjects[1];
+                        template = (Template) connection.getEObject(eObjects[1], true);
                     } else if (eObjects.length == 1) {
-                        template = (Template) eObjects[0];
+                        template = (Template) connection.getEObject(eObjects[0], true);
                     }
                     if (template == null) {
                         // maybe operatorTemplate?
                         query = "select template \n"
                                 + "from \"demo.sap.com/tcsmeta\"#"
                                 + "TCS::OperatorTemplate as template, \n" + "\""
-                                + ((EObject) clazz).get___Mri()
+                                + EcoreUtil.getID(clazz)
                                 + "\" as class "
                                 + " where template.metaReference = class";
     
-                        result = connection.getMQLProcessor().execute(query, mappingQueryScope);
-                        eObjects = result.getRefObjects("template");
+                        result = EcoreHelper.executeQuery(query, connection,
+        						templateAndMMContext);
+                        eObjects = result.getUris("template");
     
                         if (eObjects.length > 1) {
                             // throw new
                             // RuntimeException("Ambigous templates found for: " +
                             // createdElement + " mode=" + mode);
-                            template = (Template) eObjects[1];
+                            template = (Template) connection.getEObject(eObjects[1], true);
                         } else if (eObjects.length == 1) {
-                            template = (Template) eObjects[0];
+                            template = (Template) connection.getEObject(eObjects[0], true);
                         }
                     }
                     if (template != null) {
@@ -281,6 +282,9 @@ public class ParserTextBlocksHandler implements IParsingObserver {
     
                 }
             }
+            } catch (MetaModelLookupException e) {
+				throw new RuntimeException(e);
+			}
             return template;
         }
 
@@ -651,12 +655,13 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	 */
 	private TextBlock getTextBlockForElementAt(EObject element, ANTLR3LocationToken referenceToken) {
 		TextBlock tb = null;
-		//TODO use hidden opposites to navigate to element from TextBlock
-		Collection<DocumentNode> nodes = org.eclipse.emf.query2.EcoreHelper.getInstance()
-			.reverseNavigate(element, element.eClass().get, scope, rs)
+		Collection<EObject> nodes = org.eclipse.emf.query2.EcoreHelper.getInstance()
+			.reverseNavigate(element, 
+				(EReference) EcoreHelper.lookupElementExtended(element.eClass(), "correspondingModelElements"),
+				EcoreHelper.getQueryContext(connection), connection, false);
 
-		for (Iterator<DocumentNode> iterator = nodes.iterator(); iterator.hasNext();) {
-		    DocumentNode node = iterator.next();
+		for (Iterator<EObject> iterator = nodes.iterator(); iterator.hasNext();) {
+		    DocumentNode node = (DocumentNode) iterator.next();
 		    int candidateOffset = TbUtil.getAbsoluteOffset(node);
 
 		    if (referenceToken != null && ((candidateOffset > referenceToken.getStartIndex() ) || (candidateOffset+node.getLength() < referenceToken.getStopIndex()))) {

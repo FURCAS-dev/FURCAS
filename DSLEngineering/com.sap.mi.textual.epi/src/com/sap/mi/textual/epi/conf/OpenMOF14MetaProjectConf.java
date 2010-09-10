@@ -1,17 +1,19 @@
 package com.sap.mi.textual.epi.conf;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 
 import com.sap.mi.textual.epi.Constants;
+import com.sap.mi.textual.epi.builder.BuildHelper;
 import com.sap.mi.textual.epi.util.ExceptionHelper;
 
 
@@ -24,7 +26,7 @@ import com.sap.mi.textual.epi.util.ExceptionHelper;
 public final class OpenMOF14MetaProjectConf implements IProjectMetaRefConf {
 
 	/** The referenced project. */
-	private IProject referencedProject;
+	private final IProject referencedProject;
 
 	/**
 	 * Instantiates a new open mo f14 meta project conf.
@@ -67,6 +69,7 @@ public final class OpenMOF14MetaProjectConf implements IProjectMetaRefConf {
 	/* (non-Javadoc)
 	 * @see com.sap.mi.textual.epi.conf.IProjectMetaRefConf#configureProject(org.eclipse.core.resources.IProject)
 	 */
+	@Override
 	public void configureProject(IProject project) throws CoreException {
 		ProjectPropertiesStorageHelper.setProperty(project, Constants.REFERRED_PROJECT_NAME_KEY, referencedProject.getName());
 
@@ -78,47 +81,47 @@ public final class OpenMOF14MetaProjectConf implements IProjectMetaRefConf {
      * @see
      * com.sap.mi.textual.epi.conf.IProjectMetaRefConf#getMetaLookUpForProject()
      */
-    public ReferenceScopeBean getMetaLookUpForProject() {
-	ResourceSet connection = ConnectionManager.getInstance().getExistingDefaultConnection(referencedProject);
-	if(connection == null) {
-	    if (Display.getCurrent() != null) {
-		//this means we are in the UI thread
-		 final ResourceSet[] conn = new ResourceSet[1];
-			IRunnableWithProgress operation = new IRunnableWithProgress() {
-			    public void run(IProgressMonitor monitor)
-				    throws InterruptedException {
-				// non UI thread
+	@Override
+	public ReferenceScopeBean getMetaLookUpForProject() {
+		ResourceSet connection = BuildHelper
+				.getResourceSetForProject(referencedProject);
+		if (connection == null) {
+			if (Display.getCurrent() != null) {
+				// this means we are in the UI thread
+				final ResourceSet[] conn = new ResourceSet[1];
+				IRunnableWithProgress operation = new IRunnableWithProgress() {
+					@Override
+					public void run(IProgressMonitor monitor)
+							throws InterruptedException {
+						// non UI thread
+						try {
+							referencedProject.open(/* progress monitor */null);
+						} catch (CoreException e) {
+							throw new RuntimeException(e);
+						}
+						conn[0] = BuildHelper
+								.getResourceSetForProject(referencedProject);
+					}
+				};
+				IProgressService ps = PlatformUI.getWorkbench()
+						.getProgressService();
 				try {
-				    referencedProject.open(/* progress monitor */null);
-				} catch (CoreException e) {
-				    throw new RuntimeException(e);
+					ps.busyCursorWhile(operation);
+				} catch (Exception e) {
+					throw new RuntimeException(e);
 				}
-				conn[0] = ConnectionManager.getInstance()
-					.getOrCreateDefaultConnection(referencedProject);
-			    }
-			};
-			IProgressService ps = PlatformUI.getWorkbench().getProgressService();
-			try {
-			    ps.busyCursorWhile(operation);
-			} catch (Exception e) {
-			    throw new RuntimeException(e);
+				connection = conn[0];
+			} else {
+				BuildHelper.getResourceSetForProject(referencedProject);
 			}
-			connection = conn[0];
-	    } else {
-		ConnectionManager.getInstance()
-			.getOrCreateDefaultConnection(referencedProject);
-	    }
-	}
-        IPartitionScopeProvider partitionScopeProvider = PartitionService.getInstance().getPartitionScopeProvider(connection, PartitionScope.VISIBLE);
-        Set<PRI> partitionScope = partitionScopeProvider.getPartitions();
-        HashSet<PRI> newPRIs = new HashSet<PRI>();
-        newPRIs.addAll(partitionScope);
-        Moin moin = MoinFactory.getMoinInstance();
-        PRI pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm");
-        newPRIs.add(pri);
-        pri = moin.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm");
-        newPRIs.add(pri); 
-	return new ReferenceScopeBean(connection, newPRIs);
+		}
+		HashSet<URI> newPRIs = null;
+		newPRIs = new HashSet<URI>();
+		URI pri = URI.createURI("http://www.eclipse.org/emf/2002/Ecore");
+		newPRIs.add(pri);
+		pri = URI.createURI("http://www.eclipse.org/ocl/1.1.0/Ecore");
+		newPRIs.add(pri);
+		return new ReferenceScopeBean(connection, newPRIs);
     }
 
 	/**

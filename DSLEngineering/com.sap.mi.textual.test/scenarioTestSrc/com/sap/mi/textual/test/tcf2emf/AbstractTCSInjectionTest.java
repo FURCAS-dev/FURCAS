@@ -16,9 +16,9 @@ import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.syntaxmodel.moinadapter.ModelInjectionResult;
-import com.sap.mi.textual.syntaxmodel.moinadapter.MoinContext;
-import com.sap.mi.textual.syntaxmodel.moinadapter.TCS2MOINInjectorFacade;
+import com.sap.mi.textual.syntaxmodel.emfadapter.ModelInjectionResult;
+import com.sap.mi.textual.syntaxmodel.emfadapter.MoinContext;
+import com.sap.mi.textual.syntaxmodel.emfadapter.TCS2MOINInjectorFacade;
 import com.sap.tc.moin.repository.Connection;
 
 /**

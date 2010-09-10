@@ -282,7 +282,7 @@ public abstract class AbstractGrammarBasedEditor extends
 					.getTokenStream();
 			textBlocksHandler = new ParserTextBlocksHandler(tokenStream,
 					getWorkingConnection(), getParserFactory()
-							.getMetamodelCri(getWorkingConnection()),
+							.getMetamodelUri(getWorkingConnection()),
 									TcsUtil.getSyntaxePartitions(getWorkingConnection(), getLanguageId()),
 									getAdditionalLookupPRIS(), getAdditionalLookupCRIS());
 			this.parser.setObserver(textBlocksHandler);

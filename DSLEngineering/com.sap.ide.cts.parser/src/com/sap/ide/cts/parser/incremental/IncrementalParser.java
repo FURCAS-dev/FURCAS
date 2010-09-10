@@ -147,7 +147,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 					parserFactory.getLanguageId());
 			ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(
 					tbtokenStream, connection, parserFactory
-							.getMetamodelCri(connection), syntaxPartitions,
+							.getMetamodelUri(connection), syntaxPartitions,
 					parserFactory.getParserLookupScope(connection),
 					additionalCRIScope);
 			// IParsingObserver originalObserver = batchParser.getObserver();
@@ -748,7 +748,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 			resolutionHelper = new MetaModelElementResolutionHelper<RefObject>(
 					new MoinMetaLookup(connection, connection.getSession()
 							.getInnerPartitions(
-									parserFactory.getMetamodelCri(connection))));
+									parserFactory.getMetamodelUri(connection))));
 		}
 		return resolutionHelper;
 	}
