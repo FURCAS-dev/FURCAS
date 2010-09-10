@@ -3,12 +3,12 @@ Bundle-Name: Moinadapter Plug-in
 Bundle-SymbolicName: com.sap.tc.moin.textual.runtime.emf
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.emf,
+ org.eclipse.ui,
  org.eclipse.core.runtime,
- com.sap.tc.moin.ide.facade,
- com.sap.mi.textual.common;bundle-version="1.0.0",
- com.sap.mi.textual.parsing;bundle-version="1.0.0",
- com.sap.tc.moin.libraries.core;bundle-version="2.0.0"
+ com.sap.mi.textual.common,
+ com.sap.mi.textual.parsing
 Bundle-ClassPath: 
  adapter.jar
 Export-Package: 

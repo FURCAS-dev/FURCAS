@@ -15,18 +15,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.exception.MoinBaseRuntimeException;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 /**
  * allows creation of MOIN model elements.
@@ -51,22 +49,22 @@ public class MOINModelAdapter implements IBareModelAdapter {
     
     /**
      * Creates a new ModelAdapter which creates MOIN ModelElements.
-     * The referenceScope will implicitly include the PRI of the root element and the visible PRIs of the connection.
+     * The referenceScope will implicitly include the URI of the root element and the visible URIs of the ResourceSet.
      * 
      * @param root Metamodel root as reference for type creation
-     * @param connection
-     * @param creationScopePri target PRI (if null will not specified) 
+     * @param ResourceSet
+     * @param creationScopePri target URI (if null will not specified) 
      * @param referenceScope (Where to look to resolve references)
-     * @param additionalCRIScope Additional containers for lookup
+     * @param additionalURIScope Additional containers for lookup
      */
-	public MOINModelAdapter(RefPackage root, final Connection connection,
-		/*PRI creationScopePri,*/ Collection<PRI> referenceScope, Collection<CRI> additionalCRIScope) {
+	public MOINModelAdapter(EPackage root, final ResourceSet ResourceSet,
+		/*URI creationScopePri,*/ Set<URI> referenceScope, Set<URI> additionalURIScope) {
 		
-		if (root == null || connection == null ) {
-			throw new IllegalArgumentException("One of the following was null: " + root + ", " + connection );
+		if (root == null || ResourceSet == null ) {
+			throw new IllegalArgumentException("One of the following was null: " + root + ", " + ResourceSet );
 		}
 
-		delegate = new MoinModelAdapterDelegate(root, connection, referenceScope, additionalCRIScope);
+		delegate = new MoinModelAdapterDelegate(root, ResourceSet, referenceScope, additionalURIScope);
 		
 	}
 
@@ -74,6 +72,7 @@ public class MOINModelAdapter implements IBareModelAdapter {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#createElement(java.lang.String)
      */
+	@Override
 	public Object createElement(List<String>typeName) throws ModelAdapterException {
 	    if (typeName == null || typeName.size()==0) {
 	        throw new IllegalArgumentException("typeName was null or empty: " + typeName);
@@ -87,10 +86,6 @@ public class MOINModelAdapter implements IBareModelAdapter {
 	    }
 	    try {
 	        return delegate.createElement(typeName);
-	    } catch (JmiException jmiex) {
-	        throw new ModelAdapterException("JmiException while creating Element of type " + typeName, jmiex);
-	    } catch (MoinBaseRuntimeException jmiex) {
-            throw new ModelAdapterException("MoinBaseRuntimeException while creating Element of type " + typeName, jmiex);
 	    } catch (RuntimeException re) {
             throw new RuntimeException("Exception while creating Element of type " + typeName, re);
         }
@@ -102,7 +97,8 @@ public class MOINModelAdapter implements IBareModelAdapter {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#createEnumLiteral(java.util.List, java.lang.String)
      */
-    public Object createEnumLiteral(List<String> enumName, String name)
+    @Override
+	public Object createEnumLiteral(List<String> enumName, String name)
             throws ModelAdapterException {
         if (enumName == null || enumName.size()==0) {
             throw new IllegalArgumentException("typeName was null or empty: " + enumName);
@@ -117,8 +113,6 @@ public class MOINModelAdapter implements IBareModelAdapter {
         try {
             // In MOF, no need to create instance, they are static
             return delegate.getEnumLiteral(enumName, name);
-        } catch (JmiException jmiex) {
-            throw new ModelAdapterException(jmiex.getMessage(), jmiex);
         } catch (RuntimeException re) {
             throw new RuntimeException("Exception while creating Enum Literal of type " + name, re);
         }
@@ -127,7 +121,8 @@ public class MOINModelAdapter implements IBareModelAdapter {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#get(java.lang.Object, java.lang.String)
      */
-    public Object get(Object modelElementOrProxy, String propertyName)
+    @Override
+	public Object get(Object modelElementOrProxy, String propertyName)
     throws ModelAdapterException {
         Object modelElement = null;
         if(modelElementOrProxy instanceof IModelElementProxy) {
@@ -139,26 +134,24 @@ public class MOINModelAdapter implements IBareModelAdapter {
         if (modelElement == null || propertyName == null) {
             throw new IllegalArgumentException("One of the following was null: " + modelElement + ", " + propertyName);
         }
-        if (modelElement instanceof RefObject) {
-            RefObject refObject = (RefObject) modelElement;
+        if (modelElement instanceof EObject) {
+            EObject EObject = (EObject) modelElement;
 
             try {
         	if(propertyName.contains(".")) {
         	    Object value = null;
         	    for (String part : propertyName.split("\\.")) {
-        		value = delegate.get(refObject, part);
-        		if(value == null || !(value instanceof RefObject)) {
+        		value = delegate.get(EObject, part);
+        		if(value == null || !(value instanceof EObject)) {
         		    break;
         		} else {
-        		    refObject = (RefObject) value;
+        		    EObject = (EObject) value;
         		}
 		    }
         	    return value;
         	} else {
-        	    return delegate.get(refObject, propertyName);
+        	    return delegate.get(EObject, propertyName);
         	}
-            } catch (JmiException jmiex) {
-                throw new ModelAdapterException("JmiException while getting property " + getCutToString(modelElement) + "." + propertyName, jmiex);
             } catch (RuntimeException re) {
                 throw new RuntimeException("Exception while getting property " + getCutToString(modelElement) + "." + propertyName, re);
             }
@@ -177,14 +170,12 @@ public class MOINModelAdapter implements IBareModelAdapter {
             throw new IllegalArgumentException("One of the following was null: " + modelElement + "," + propertyName);
         }
 
-        if (modelElement instanceof RefObject) {
-            RefObject refObject = (RefObject) modelElement;
+        if (modelElement instanceof EObject) {
+            EObject EObject = (EObject) modelElement;
 
 
             try {
-                return delegate.getString(refObject, propertyName);
-            } catch (JmiException jmiex) {
-                throw new ModelAdapterException("JmiException while getting String property " + getCutToString(modelElement) + "." + propertyName, jmiex);
+                return delegate.getString(EObject, propertyName);
             } catch (RuntimeException re) {
                 throw new RuntimeException("Exception while getting String property " + getCutToString(modelElement) + "." + propertyName, re);
             }
@@ -196,24 +187,21 @@ public class MOINModelAdapter implements IBareModelAdapter {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#instanceOf(java.lang.Object, java.lang.String)
      */
-    public boolean instanceOf(Object modelElement, Object metaType)
+    @Override
+	public boolean instanceOf(Object modelElement, Object metaType)
     throws ModelAdapterException {
         if (modelElement == null || metaType == null) {
             throw new IllegalArgumentException("One of the following was null: " + modelElement + "," + metaType);
         }
-        if (! ( modelElement instanceof RefObject) ) {
+        if (! ( modelElement instanceof EObject) ) {
             throw new IllegalArgumentException("Unknown Model Element type " + modelElement.getClass());
         }
-        if( ! (metaType instanceof RefObject) ) {
+        if( ! (metaType instanceof EObject) ) {
             throw new IllegalArgumentException("Unknown meta type " + metaType.getClass());
         }
 
         try {
-            return delegate.instanceOf( (RefObject) modelElement,  (RefObject) metaType);
-        } catch (JmiException jmiex) {
-            throw new ModelAdapterException("JmiException while checking " + getCutToString(modelElement) + " instanceOf " + metaType, jmiex);
-        } catch (MoinBaseRuntimeException jmiex) {
-            throw new ModelAdapterException("MoinBaseRuntimeException while checking " + getCutToString(modelElement) + " instanceOf " + metaType + " : " + jmiex.getMessage(), jmiex);
+            return delegate.instanceOf( (EObject) modelElement,  (EObject) metaType);
         } catch (RuntimeException re) {
             throw new RuntimeException("Exception while checking " + modelElement + " instanceOf " + metaType, re);
         }
@@ -223,7 +211,8 @@ public class MOINModelAdapter implements IBareModelAdapter {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#set(java.lang.Object, java.lang.String, java.lang.Object)
      */
-    public void set(Object modelElement, String propertyName, Object value)
+    @Override
+	public void set(Object modelElement, String propertyName, Object value)
             throws ModelAdapterException {
         if (modelElement == null || propertyName == null) {
             throw new IllegalArgumentException("One of the following was null: " + modelElement + "," + propertyName );
@@ -236,26 +225,21 @@ public class MOINModelAdapter implements IBareModelAdapter {
             StructureTypeMockObject mock = (StructureTypeMockObject) modelElement;
             mock.setField(propertyName, value);
         } else {
-        	RefObject refObject = null;
-			if (modelElement instanceof RefObject) {
-				refObject = (RefObject) modelElement;
+        	EObject EObject = null;
+			if (modelElement instanceof EObject) {
+				EObject = (EObject) modelElement;
 			} else if(modelElement instanceof IModelElementProxy){
-				refObject = (RefObject) ((IModelElementProxy)modelElement).getRealObject();
+				EObject = (EObject) ((IModelElementProxy)modelElement).getRealObject();
 			} else {
 				throw new IllegalArgumentException(
 						"Unknown Model Element type " + modelElement.getClass());
 			}
 
 			try {
-				delegate.set(refObject, propertyName, value);
-			} catch (JmiException jmiex) {
-				throw new ModelAdapterException("JmiException while setting "
-						+ refObject.getClass() + "." + propertyName + " to "
-						+ getCutToString(value) + ":" + jmiex.getClass() + ":"
-						+ jmiex.getMessage(), jmiex);
+				delegate.set(EObject, propertyName, value);
 			} catch (RuntimeException re) {
 				throw new RuntimeException("Exception while setting "
-						+ refObject.getClass() + "." + propertyName + " to "
+						+ EObject.getClass() + "." + propertyName + " to "
 						+ getCutToString(value) + " : " + re.getMessage(), re);
 			}
 
@@ -268,7 +252,8 @@ public class MOINModelAdapter implements IBareModelAdapter {
 	 * @see com.sap.mi.textual.grammar.IModelAdapter#set(java.lang.Object,
 	 *      java.lang.String, java.lang.Object, int)
 	 */
-    public void set(Object modelElement, String propertyName, Object value, int index)
+    @Override
+	public void set(Object modelElement, String propertyName, Object value, int index)
             throws ModelAdapterException {
         if (modelElement == null || propertyName == null) {
             throw new IllegalArgumentException("One of the following was null: " + modelElement + "," + propertyName );
@@ -278,15 +263,13 @@ public class MOINModelAdapter implements IBareModelAdapter {
             return;
         }
         
-        if (modelElement instanceof RefObject) {
-            RefObject refObject = (RefObject) modelElement;
+        if (modelElement instanceof EObject) {
+            EObject EObject = (EObject) modelElement;
 
             try {
-                delegate.set(refObject, propertyName, value, index);
-            } catch (JmiException jmiex) {                
-                throw new ModelAdapterException("JmiException while setting " + refObject.getClass() + "." + propertyName + " to " + getCutToString(value)+ ":" + jmiex.getClass() + ":" +jmiex.getMessage(), jmiex);
+                delegate.set(EObject, propertyName, value, index);
             } catch (RuntimeException re) {
-                throw new RuntimeException("Exception while setting " + refObject.getClass() + "." + propertyName + " to " + getCutToString(value) + " : " + re.getMessage(), re);
+                throw new RuntimeException("Exception while setting " + EObject.getClass() + "." + propertyName + " to " + getCutToString(value) + " : " + re.getMessage(), re);
             }
         } else if (modelElement instanceof StructureTypeMockObject) {
             StructureTypeMockObject mock = (StructureTypeMockObject) modelElement;
@@ -305,31 +288,15 @@ public class MOINModelAdapter implements IBareModelAdapter {
 							+ propertyName);
 		}
 
-		if (modelElement instanceof RefObject) {
-			RefObject refObject = (RefObject) modelElement;
+		if (modelElement instanceof EObject) {
+			EObject EObject = (EObject) modelElement;
 
 			try {
-				delegate.unset(refObject, propertyName, value);
-			} catch (JmiException jmiex) {
-				throw new ModelAdapterException(
-						"JmiException while unsetting "
-								+ refObject
-										.getClass()
-								+ "."
-								+ propertyName
-								+ " to "
-								+ getCutToString(value)
-								+ ":"
-								+ jmiex
-										.getClass()
-								+ ":"
-								+ jmiex
-										.getMessage(),
-						jmiex);
+				delegate.unset(EObject, propertyName, value);
 			} catch (RuntimeException re) {
 				throw new RuntimeException(
 						"Exception while unsetting "
-								+ refObject
+								+ EObject
 										.getClass()
 								+ "."
 								+ propertyName
@@ -354,27 +321,24 @@ public class MOINModelAdapter implements IBareModelAdapter {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#setReference(java.lang.Object, java.lang.String, java.lang.String, java.lang.String, java.lang.Object)
      */
-    public Object setReference(Object sourceModelElement,
+    @Override
+	public Object setReference(Object sourceModelElement,
             String referencePropertyName, List<String> targetType,
             String targetKeyName, Object targetKeyValue)
     throws ModelAdapterException, ReferenceSettingException {
         if (sourceModelElement == null || referencePropertyName == null || targetType == null || targetKeyName == null) {
             throw new IllegalArgumentException("One of the following was null: " + sourceModelElement + "," + referencePropertyName + "," + targetType + "," + targetKeyName);
         }
-        RefObject refObject = null;
-        if (sourceModelElement instanceof RefObject) {
-            refObject = (RefObject) sourceModelElement;
+        EObject EObject = null;
+        if (sourceModelElement instanceof EObject) {
+            EObject = (EObject) sourceModelElement;
         }else if(sourceModelElement instanceof IModelElementProxy){
-        	refObject = (RefObject) ((IModelElementProxy)sourceModelElement).getRealObject();
+        	EObject = (EObject) ((IModelElementProxy)sourceModelElement).getRealObject();
         } else {
             throw new IllegalArgumentException("Unknown Model Element type " + sourceModelElement.getClass());
         }
         try {
-            return delegate.setReference(refObject, referencePropertyName, targetType, targetKeyName, targetKeyValue, null);
-        } catch (JmiException jmiex) {
-            throw new ModelAdapterException("JmiException while setting Reference " + sourceModelElement + "." + referencePropertyName + " to modelelement of type " + MessageUtil.asModelName(targetType) + " with " + targetKeyName + "=" + targetKeyValue, jmiex);
-        } catch (MoinBaseRuntimeException re) {
-            throw new ModelAdapterException("MoinBaseRuntimeException while setting Reference " + sourceModelElement + "." + referencePropertyName + " to modelelement of type " + targetType + " with " + targetKeyName + "=" + targetKeyValue, re);
+            return delegate.setReference(EObject, referencePropertyName, targetType, targetKeyName, targetKeyValue, null);
         } catch (RuntimeException re) {
             throw new RuntimeException("RuntimeException while setting Reference " + sourceModelElement + "." + referencePropertyName + " to modelelement of type " + targetType + " with " + targetKeyName + "=" + targetKeyValue, re);
         }
@@ -385,7 +349,7 @@ public class MOINModelAdapter implements IBareModelAdapter {
     /**
      * @param string
      */
-    public RefObject[] getElementsOfType(String type) {
+    public EObject[] getElementsOfType(String type) {
         try {
             return delegate.getElementsOfType(type); 
         } catch (RuntimeException re) {
@@ -433,10 +397,10 @@ public class MOINModelAdapter implements IBareModelAdapter {
         if (sourceModelElement == null || referencePropertyName == null || oclQuery == null) {
             throw new IllegalArgumentException("One of the following was null: " + sourceModelElement + "," + referencePropertyName + "," + oclQuery );
         }
-        if (sourceModelElement instanceof RefObject) {
-            RefObject refObject = (RefObject) sourceModelElement;
+        if (sourceModelElement instanceof EObject) {
+            EObject EObject = (EObject) sourceModelElement;
 //try {
-            return delegate.setQueriedReference(refObject, referencePropertyName, keyValue, oclQuery, contextObject, currentForeachElement);
+            return delegate.setQueriedReference(EObject, referencePropertyName, keyValue, oclQuery, contextObject, currentForeachElement);
 //catch( MQLException e) {}
             
         } else {
@@ -449,7 +413,7 @@ public class MOINModelAdapter implements IBareModelAdapter {
 	public Collection<?> getPredicateOclReference(Object modelElement,
 			String propertyName, Object keyValue, String oclQuery,
 			Object contextElement) throws ModelAdapterException {
-		return delegate.getOclEvaluation((RefObject)modelElement,propertyName,keyValue,oclQuery,contextElement);
+		return delegate.getOclEvaluation((EObject)modelElement,propertyName,keyValue,oclQuery,contextElement);
 	}
 
 
@@ -483,15 +447,15 @@ public class MOINModelAdapter implements IBareModelAdapter {
             } else {
                 sourceModelElement = sourceModelElementOrProxy;
             }
-            if ( ! ( sourceModelElement instanceof RefObject) ) {
-                throw new IllegalArgumentException("Illegal Model Element type " + sourceModelElement.getClass() + ", RefObject required");
+            if ( ! ( sourceModelElement instanceof EObject) ) {
+                throw new IllegalArgumentException("Illegal Model Element type " + sourceModelElement.getClass() + ", EObject required");
             }
             if (contextObject instanceof IModelElementProxy) {
         	contextObject = ((IModelElementProxy) contextObject).getRealObject();
             }
-            if ( ! (( contextObject instanceof RefObject) || contextObject instanceof Collection<?> ||
+            if ( ! (( contextObject instanceof EObject) || contextObject instanceof Collection<?> ||
         	    isPrimitive(contextObject))) {
-                throw new IllegalArgumentException("Illegal Model Element type " + contextObject.getClass() + ", RefObject required");
+                throw new IllegalArgumentException("Illegal Model Element type " + contextObject.getClass() + ", EObject required");
             } 
             //TODO: @Thibault: Why ???
 //            if ( ! ( contextObject instanceof Namespace) ) { // To be more meaningful, this is a separate case with a separate exception
@@ -500,12 +464,8 @@ public class MOINModelAdapter implements IBareModelAdapter {
             
             
             try {
-                return delegate.setReference((RefObject) sourceModelElement, referencePropertyName, targetType, targetKeyName, targetKeyValue, contextObject);
-            } catch (JmiException jmiex) {
-                throw new ModelAdapterException("JmiException while setting Reference " + sourceModelElement + "." + referencePropertyName + " to modelelement of type " + targetType + " with " + targetKeyName + "=" + targetKeyValue, jmiex);
-            } catch (MoinBaseRuntimeException re) {
-                throw new ModelAdapterException("MoinBaseRuntimeException while setting Reference " + sourceModelElement + "." + referencePropertyName + " to modelelement of type " + targetType + " with " + targetKeyName + "=" + targetKeyValue, re);
-            } catch (RuntimeException re) {
+                return delegate.setReference((EObject) sourceModelElement, referencePropertyName, targetType, targetKeyName, targetKeyValue, contextObject);
+            }  catch (RuntimeException re) {
                 throw new RuntimeException("RuntimeException while setting Reference " + sourceModelElement + "." + referencePropertyName + " to modelelement of type " + targetType + " with " + targetKeyName + "=" + targetKeyValue, re);
             }
 

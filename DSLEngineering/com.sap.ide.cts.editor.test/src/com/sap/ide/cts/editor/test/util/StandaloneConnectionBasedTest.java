@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.BeforeClass;
 
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.syntaxmodel.moinadapter.MoinContext;
+import com.sap.mi.textual.syntaxmodel.emfadapter.MoinContext;
 import com.sap.tc.moin.repository.Connection;
 
 public class StandaloneConnectionBasedTest {

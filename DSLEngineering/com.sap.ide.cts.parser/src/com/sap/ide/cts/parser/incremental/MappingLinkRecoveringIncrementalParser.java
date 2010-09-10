@@ -56,7 +56,7 @@ public class MappingLinkRecoveringIncrementalParser extends IncrementalParser {
             throws TextBlockMappingRecoveringFailedException {
         ParserTextBlocksHandler parserTextBlocksHandler = new ParserTextBlocksHandler(
                 tbtokenStream, connection, parserFactory
-                        .getMetamodelCri(connection), TcsUtil
+                        .getMetamodelUri(connection), TcsUtil
                         .getSyntaxePartitions(connection, parserFactory
                                 .getLanguageId()), parserFactory
                         .getParserLookupScope(connection), additionalCRIScope);

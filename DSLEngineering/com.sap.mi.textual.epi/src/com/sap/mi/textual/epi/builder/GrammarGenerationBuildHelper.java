@@ -1,11 +1,12 @@
 package com.sap.mi.textual.epi.builder;
 
 import java.util.ArrayList;
-import java.util.logging.ErrorManager;
 
-import javax.tools.Tool;
-
-
+import org.antlr.Tool;
+import org.antlr.tool.ANTLRErrorListener;
+import org.antlr.tool.ErrorManager;
+import org.antlr.tool.Message;
+import org.antlr.tool.ToolMessage;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -18,6 +19,7 @@ import com.sap.mi.textual.epi.conf.ReferenceScopeBean;
 import com.sap.mi.textual.epi.errors.GrammarGenerationErrorHandler;
 import com.sap.mi.textual.epi.util.EclipseMarkerUtil;
 import com.sap.mi.textual.epi.util.ToolClassesGenerationHelper;
+import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 
 
 
@@ -100,7 +102,7 @@ public class GrammarGenerationBuildHelper {
 	    String[] args = argList.toArray(new String[argList.size()]);
 	    
 	    // attempt to restore the original listener afterwards, so that other tools are not affected.
-	    ANTLRErrorListener previousListener = ErrorManager.getErrorListener();
+	    ANTLRErrorListener previousListener = org.antlr.tool.ErrorManager.getErrorListener();
 
 		ANTLRErrorListener listener = new MyANTLRErrorListener(errorhandler);
 		    try {
@@ -140,7 +142,7 @@ public class GrammarGenerationBuildHelper {
 	}
 	
 	private static class MyANTLRErrorListener implements ANTLRErrorListener {
-	    private GrammarGenerationErrorHandler errorhandler;
+	    private final GrammarGenerationErrorHandler errorhandler;
         /**
          * @param errorhandler
          */
@@ -148,19 +150,23 @@ public class GrammarGenerationBuildHelper {
 	        this.errorhandler = errorhandler;
 	    }
 
-	    public void error(Message arg0) {
+	    @Override
+		public void error(Message arg0) {
 	        errorhandler.error(arg0);
         }
 
-        public void error(ToolMessage arg0) {
+        @Override
+		public void error(ToolMessage arg0) {
             errorhandler.error(arg0);
         }
 
-        public void info(String arg0) {
+        @Override
+		public void info(String arg0) {
             errorhandler.info(arg0);
         }
 
-        public void warning(Message arg0) {
+        @Override
+		public void warning(Message arg0) {
             errorhandler.warn(arg0);
         }};
 }

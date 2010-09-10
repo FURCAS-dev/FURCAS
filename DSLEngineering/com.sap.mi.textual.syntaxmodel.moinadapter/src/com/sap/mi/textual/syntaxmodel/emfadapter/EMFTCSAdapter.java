@@ -1,87 +1,68 @@
 /**
  * 
  */
-package com.sap.mi.textual.syntaxmodel.moinadapter;
+package com.sap.mi.textual.syntaxmodel.emfadapter;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
-import com.sap.furcas.metamodel.TCS.*;
+import com.sap.furcas.metamodel.TCS.TCSPackage;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
+import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
 
 /**
  * specialized Adapter for TCS Syntaxes
  */
-public class MOINTCSAdapter implements IBareModelAdapter {
+public class EMFTCSAdapter implements IBareModelAdapter {
 
-	private final MOINTCSAdapter adapter;
+	private final MOINModelAdapter adapter;
 	private final ResourceSet connection;
 
 	/**
-	 * @param metamodelPRIs
+	 * @param metamodelURIs
 	 * 
 	 */
-	public MOINTCSAdapter(ResourceSet connection, Set<URI> metamodelPRIs) {
+	public EMFTCSAdapter(ResourceSet connection, Set<URI> metamodelURIs) {
 		super();
 		this.connection = connection;
-		final EPackage rootPackage = connection
-				.getPackage(TCSPackage.PACKAGE_DESCRIPTOR);
+		final EPackage rootPackage = TCSPackage.eINSTANCE;
 		if (rootPackage == null) {
 			throw new IllegalArgumentException(
 					"ResourceSet cannot resolve TCSPackage "
-							+ TCSPackage.PACKAGE_DESCRIPTOR);
+							+ TCSPackage.eINSTANCE);
 		}
-		Set<URI> adapterReferenceScopePRIs;
-		if (metamodelPRIs != null) {
-			adapterReferenceScopePRIs = new HashSet<URI>(
-					metamodelPRIs);
+		Set<URI> adapterReferenceScopeURIs;
+		if (metamodelURIs != null) {
+			adapterReferenceScopeURIs = new HashSet<URI>(
+					metamodelURIs);
 		} else {
-			adapterReferenceScopePRIs = new HashSet<URI>();
+			adapterReferenceScopeURIs = new HashSet<URI>();
 		}
 
-		// since we have a connection, which is not null, and which
-		// could resolve TcsPackage, we can assume Moin is running.
-		Moin moin = MoinContext.getMoin();
 		// For TCS, need the Mof Model as well as the transient
 		// partitions as scope.
-		adapterReferenceScopePRIs
-				.add(moin
-						.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm"));
-		adapterReferenceScopePRIs
-				.add(moin
-						.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm"));
+		adapterReferenceScopeURIs
+				.add(URI.createURI("http://www.eclipse.org/emf/2002/Ecore"));
+		
 
-		Collection<Resource> transpartitions = connection
-				.getTransientPartitions();
-		for (Iterator<Resource> iterator = transpartitions
-				.iterator(); iterator.hasNext();) {
-			Resource modelPartition = iterator
-					.next();
-			URI pri = modelPartition.getPri();
-			adapterReferenceScopePRIs.add(pri);
-		}
-
-		adapter = new MOINTCSAdapter(rootPackage, connection,
-				adapterReferenceScopePRIs,  null);
+		adapter = new MOINModelAdapter(rootPackage, connection,
+				adapterReferenceScopeURIs,  null);
 	}
 
 	public void close() {
-		connection.close();
+		//connection.close();
 	}
 
 	/*

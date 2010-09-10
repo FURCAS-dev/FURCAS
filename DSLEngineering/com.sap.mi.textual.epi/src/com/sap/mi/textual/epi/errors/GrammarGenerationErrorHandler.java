@@ -1,5 +1,6 @@
 package com.sap.mi.textual.epi.errors;
 
+import org.antlr.tool.Message;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 
@@ -13,7 +14,7 @@ public class GrammarGenerationErrorHandler {
 
 	
 	/** The file. */
-	private IFile file;
+	private final IFile file;
 
 	/**
 	 * Instantiates a new grammar generation error handler.

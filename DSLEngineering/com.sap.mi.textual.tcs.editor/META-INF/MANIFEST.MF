@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.ui,
  com.sap.mi.textual.common,
  org.eclipse.ui.navigator,
  com.sap.mi.textual,
- com.sap.mi.textual.syntaxmodel.moinadapter
+ com.sap.mi.textual.syntaxmodel.emfadapter
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.mi.tcs.editor,
  com.sap.mi.tcs.editor.tree,

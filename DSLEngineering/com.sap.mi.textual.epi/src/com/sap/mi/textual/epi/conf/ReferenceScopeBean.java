@@ -5,6 +5,9 @@ package com.sap.mi.textual.epi.conf;
 
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 
 
 /**
@@ -12,8 +15,8 @@ import java.util.Set;
  */
 public class ReferenceScopeBean {
 
-    private ResourceSet connection;
-    private Set<URI> referencePRIs;
+    private final ResourceSet connection;
+    private final Set<URI> referencePRIs;
     /**
      * @param connection
      * @param referencePRIs

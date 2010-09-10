@@ -8,9 +8,9 @@ import java.util.Collection;
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.TokenStream;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
 import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -37,7 +37,7 @@ public interface ParserFactory<P extends ObservableInjectingParser,
     
     public ITextBlocksTokenStream createIncrementalTokenStream(IncrementalLexer incrementalLexer);
     
-    public URI getMetamodelCri(ResourceSet connection);
+    public URI getMetamodelUri(ResourceSet connection);
     
     public EPackage getMetamodelPackage(ResourceSet connection);
     

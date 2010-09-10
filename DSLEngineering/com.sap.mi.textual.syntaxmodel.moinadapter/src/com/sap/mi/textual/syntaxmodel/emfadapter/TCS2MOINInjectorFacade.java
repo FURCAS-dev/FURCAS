@@ -6,14 +6,14 @@
  * @version $Revision: 810 $
  * @author: $Author: c5107456 $
  *******************************************************************************/
-package com.sap.mi.textual.syntaxmodel.moinadapter;
+package com.sap.mi.textual.syntaxmodel.emfadapter;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
 import com.sap.mi.textual.grammar.ModelParsingResult;
 import com.sap.mi.textual.grammar.ParserFacade;
@@ -72,13 +72,13 @@ public class TCS2MOINInjectorFacade {
 			UnknownProductionRuleException {
 		// use a model Handler that is implemented in EMF and only handles TCS
 		// models
-		MOINTCSAdapter handler = null;
+		EMFTCSAdapter handler = null;
 		ModelParsingResult result;
 		try {
 			DefaultTextAwareModelAdapter handlerWrapper;
 			if (connection != null) {
-				if (connection.isAlive()) {
-					handler = new MOINTCSAdapter(connection, metamodelPRIs);
+				if (true /*connection.isAlive()*/) {
+					handler = new EMFTCSAdapter(connection, metamodelPRIs);
 					handlerWrapper = new DefaultTextAwareModelAdapter(handler);
 				} else {
 					throw new IllegalArgumentException(

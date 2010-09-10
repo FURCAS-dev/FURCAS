@@ -6,7 +6,7 @@
  * @version $Revision: 858 $
  * @author: $Author: c5107456 $
  *******************************************************************************/
-package com.sap.mi.textual.syntaxmodel.moinadapter;
+package com.sap.mi.textual.syntaxmodel.emfadapter;
 
 import java.util.Set;
 
@@ -20,14 +20,14 @@ import com.sap.mi.textual.grammar.ModelParsingResult;
  */
 public class ModelInjectionResult {
 
-	private ModelParsingResult result;
-	private MOINTCSAdapter handler;
+	private final ModelParsingResult result;
+	private final EMFTCSAdapter handler;
 
 	/**
 	 * @param handler
 	 * @param result
 	 */
-	ModelInjectionResult(MOINTCSAdapter handler, ModelParsingResult result) {
+	ModelInjectionResult(EMFTCSAdapter handler, ModelParsingResult result) {
 		this.handler = handler;
 		this.result = result;
 	}

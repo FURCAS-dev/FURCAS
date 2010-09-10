@@ -1,13 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Moinadapter Plug-in
-Bundle-SymbolicName: com.sap.mi.textual.syntaxmodel.moinadapter;singleton:=true
+Bundle-SymbolicName: com.sap.mi.textual.syntaxmodel.emfadapter;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
-Require-Bundle: org.eclipse.core.runtime,
+Require-Bundle: com.sap.furcas.metamodel,
+ org.eclipse.core.runtime,
+ com.sap.tc.moin.textual.runtime.emf;bundle-version="1.0.0",
  com.sap.mi.textual.common,
  com.sap.mi.textual.grammar.parser,
- com.sap.mi.textual.parsing,
- com.sap.furcas.metamodel
-Export-Package: com.sap.mi.textual.syntaxmodel.moinadapter
+ com.sap.mi.textual.parsing
+Export-Package: com.sap.mi.textual.syntaxmodel.emfadapter
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

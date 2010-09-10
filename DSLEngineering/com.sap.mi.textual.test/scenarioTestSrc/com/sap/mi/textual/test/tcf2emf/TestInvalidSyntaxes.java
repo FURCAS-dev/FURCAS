@@ -10,8 +10,8 @@ import org.junit.Test;
 
 import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.syntaxmodel.moinadapter.ModelInjectionResult;
-import com.sap.mi.textual.syntaxmodel.moinadapter.TCS2MOINInjectorFacade;
+import com.sap.mi.textual.syntaxmodel.emfadapter.ModelInjectionResult;
+import com.sap.mi.textual.syntaxmodel.emfadapter.TCS2MOINInjectorFacade;
 import com.sap.tc.moin.repository.Connection;
 
 

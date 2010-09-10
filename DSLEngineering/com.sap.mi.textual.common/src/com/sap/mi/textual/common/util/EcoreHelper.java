@@ -48,10 +48,12 @@ public class EcoreHelper {
 	 */
 	public static QueryContext getQueryContext(final ResourceSet rs) {
 	    return new QueryContext() {
-	            public URI[] getResourceScope() {
+	            @Override
+				public URI[] getResourceScope() {
 	                    final List<URI> result = new ArrayList<URI>();
 	                    IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
-	                            public void execute(QueryExecutor queryExecutor) {
+	                            @Override
+								public void execute(QueryExecutor queryExecutor) {
 	                                    ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
 	                                    for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
 	                                            result.add(desc.getURI());
@@ -64,7 +66,8 @@ public class EcoreHelper {
 	                    return result.toArray(new URI[0]);
 	            }
 	
-	            public ResourceSet getResourceSet() {
+	            @Override
+				public ResourceSet getResourceSet() {
 	                    return rs;
 	            }
 	    };
@@ -75,10 +78,12 @@ public class EcoreHelper {
 	 */
 	public static QueryContext getQueryContext(final ResourceSet rs, final Set<URI> resources) {
 	    return new QueryContext() {
-	            public URI[] getResourceScope() {
+	            @Override
+				public URI[] getResourceScope() {
 	                    final List<URI> result = new ArrayList<URI>();
 	                    IndexFactory.getInstance().executeQueryCommand(new QueryCommand() {
-	                            public void execute(QueryExecutor queryExecutor) {
+	                            @Override
+								public void execute(QueryExecutor queryExecutor) {
 	                                    ResourceQuery<ResourceDescriptor> resourceQuery = IndexQueryFactory.createResourceQuery();
 	                                    for (ResourceDescriptor desc : queryExecutor.execute(resourceQuery)) {
 	                                            result.add(desc.getURI());
@@ -89,7 +94,8 @@ public class EcoreHelper {
 	                    return result.toArray(new URI[0]);
 	            }
 	
-	            public ResourceSet getResourceSet() {
+	            @Override
+				public ResourceSet getResourceSet() {
 	                    return rs;
 	            }
 	    };
@@ -173,6 +179,12 @@ public class EcoreHelper {
 	public static EClass getEObjectElement(ResourceSet resourceSet) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public static boolean isInstanceOf(EObject refObject, EObject metaType,
+			boolean b) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

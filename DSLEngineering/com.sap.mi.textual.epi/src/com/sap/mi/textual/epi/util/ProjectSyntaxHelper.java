@@ -25,8 +25,8 @@ import com.sap.mi.textual.epi.conf.DeployedMetaProjectConf;
 import com.sap.mi.textual.epi.conf.IProjectMetaRefConf;
 import com.sap.mi.textual.epi.conf.ProjectMetaRefConfFactory;
 import com.sap.mi.textual.grammar.*;
-import com.sap.mi.textual.syntaxmodel.moinadapter.ModelInjectionResult;
-import com.sap.mi.textual.syntaxmodel.moinadapter.TCS2MOINInjectorFacade;
+import com.sap.mi.textual.syntaxmodel.emfadapter.ModelInjectionResult;
+import com.sap.mi.textual.syntaxmodel.emfadapter.TCS2MOINInjectorFacade;
 
 /**
  * 
