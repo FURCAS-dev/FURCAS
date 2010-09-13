@@ -69,6 +69,7 @@ public class MappingEvaluationVisitor extends EvaluationVisitorWithHiddenOpposit
         if(couldBeMapped()){
             if(oc.getOperationCode() == PredefinedType.ALL_INSTANCES){
                 Set<EObject> contextObjects = new HashSet<EObject>();
+                // TODO clarify how this should work during partial evaluation where VariableExp should be used instead of variable name
                 Object self = getEvaluationEnvironment().getValueOf(EcoreEnvironment.SELF_VARIABLE_NAME);
                 if (self != null && self instanceof EObject) {
                     contextObjects.add((EObject) self);
