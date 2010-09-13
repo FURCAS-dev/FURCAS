@@ -5,6 +5,17 @@ import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.expressions.VariableExp;
 
+/**
+ * Thrown when during (partial) OCL evaluation the value of a yet undefined variable is requested
+ * from the {@link EvaluationEnvironment}. Normally, this exception is expected to occur only when
+ * the {@link PartialEvaluator} together with a {@link PartialEcoreEvaluationEnvironment} is used.
+ * In this case, the {@link VariableExp} is remembered together with the variable name. Only in case
+ * of an ill-defined configuration would it be possible that the {@link VariableExp} is not set and
+ * that only the variable name is set.
+ * 
+ * @author Axel Uhl (D043530)
+ *
+ */
 public class ValueNotFoundException extends RuntimeException {
     private static final long serialVersionUID = -7891419750697209233L;
     private final String variableName;

@@ -118,17 +118,18 @@ public class TracebackCache {
      * are no longer in scope by navigating from the <code>from</code> expression to the <code>to</code> expression.
      * <p>
      * 
-     * When the traceback function leaves an expression that is the static scope of an unknown variable, the corresponding
-     * <code>unused</code> evaluation requests are canceled because we cannot hope for the traceback process to ever infer it
-     * anymore. Which scopes are left when moving from one expression to the next can be a bit tricky. For example, when jumping
-     * from an iterator variable expression to the {@link LoopExp}'s source expression, all kinds of in-between expressions that
-     * are containers to the iterator variable expression are left as well. Therefore, the common container of the from/to
-     * expressions needs to be determined, and all variables whose static scope is any of from, or any of from's direct or
-     * transitive containers that are still contained (directly or transitively) in the common container of from/to, are
-     * considered out of scope.
+     * When the <code>traceback</code> or <code>unused</code> function leaves an expression that is the static scope of an unknown
+     * variable, the corresponding <code>unused</code> evaluation requests are canceled because we cannot hope for the traceback
+     * process to ever infer it anymore. Which scopes are left when moving from one expression to the next can be a bit tricky.
+     * For example, when jumping from an iterator variable expression to the {@link LoopExp}'s source expression, all kinds of
+     * in-between expressions that are containers to the iterator variable expression are left as well. Therefore, the common
+     * container of the <code>from</code>/<code>to</code> expressions needs to be determined, and all variables whose static scope
+     * is any of <code>from</code>, or any of <code>from</code>'s direct or transitive containers that are still contained
+     * (directly or transitively) in the common container of <code>from</code>/<code>to</code>, are considered out of scope.
      * <p>
      * 
-     * @param entering may be <code>null</code>
+     * @param entering
+     *            may be <code>null</code>
      */
     public void scopeChange(Set<OCLExpression> leaving, OCLExpression entering) {
         for (OCLExpression s : leaving) {
