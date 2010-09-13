@@ -20,6 +20,8 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 
+import com.sap.emf.ocl.util.OclHelper;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 
 public class VariableExpTracer extends AbstractTracer<VariableExp> {
@@ -231,7 +233,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         } else if (isIteratorVariable()) {
             parent = commonCompositionParent((OCLExpression) ((LoopExp) getVariableDeclaration().eContainer()).getSource());
         } else if (isIterateResultVariable()) {
-            // FIXME which scopes are left when tracing back an IterateResulrVariable?
+            // FIXME which scopes are left when tracing back an IterateResultVariable?
             OCLExpression parent2;
 
             parent = commonCompositionParent((OCLExpression) getVariableDeclaration().getInitExpression());
@@ -241,6 +243,8 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             result.addAll(scopeCreatingExpressions(parent2));
 
             return result;
+        } else if (isOperationParameter()) {
+            parent = OclHelper.getRootExpression(getExpression());
         } else {
             return Collections.emptySet();
         }
