@@ -1,7 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import java.util.Set;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EParameter;
