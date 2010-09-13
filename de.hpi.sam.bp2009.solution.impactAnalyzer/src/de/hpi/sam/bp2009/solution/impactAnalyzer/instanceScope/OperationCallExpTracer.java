@@ -11,7 +11,7 @@ import org.eclipse.ocl.ecore.TypeExp;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -54,7 +54,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         NavigationStep result;
 
         OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
@@ -64,7 +64,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
             // of recurring
             IndirectingStep bodyStep = pathCache.createIndirectingStepFor(getExpression(), getTupleLiteralPartNamesToLookFor());
             // an OCL-specified operation; trace back using the body expression
-            NavigationStep actualStep = pathCache.getOrCreateNavigationPath(body, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+            NavigationStep actualStep = pathCache.getOrCreateNavigationPath(body, context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
             bodyStep.setActualStep(actualStep);
             result = bodyStep;
         } else {
@@ -76,7 +76,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                     IdentityNavigationStep identityStep = new IdentityNavigationStep((EClass) getExpression().getType(), (EClass) type,
                             getExpression());
                     NavigationStep sourceStep = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(),
-                            context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+                            context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
                     result = pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(), identityStep, sourceStep);
                 } else {
                     throw new RuntimeException("What else could be the argument of oclAsType if not a TypeExp? "
@@ -85,7 +85,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
             } else if (sourcePassThroughStdLibOpNames.contains(opName)) {
                 // FIXME handle product
                 NavigationStep sourcePath = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression()
-                        .getSource(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+                        .getSource(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
                 if (argumentPassThroughStdLibOpNames.contains(opName)) {
                     int paramPos = 0;
                     if (opName.equals(PredefinedType.INSERT_AT_NAME)) {
@@ -94,7 +94,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                         paramPos = 1;
                     }
                     OCLExpression argument = (OCLExpression) (getExpression().getArgument()).get(paramPos);
-                    NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(argument, context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+                    NavigationStep argumentPath = pathCache.getOrCreateNavigationPath(argument, context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
                     result = pathCache.navigationStepForBranch(
                             getInnermostElementType(getExpression().getType()),
                             context,
@@ -120,7 +120,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                 // source or argument values into their result
             }
         }
-        applyScopesOnNavigationStep(result);
+        applyScopesOnNavigationStep(result, operationBodyToCallMapper);
         return result;
     }
     

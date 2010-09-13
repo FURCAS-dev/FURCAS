@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class IterateExpTracer extends AbstractTracer<IterateExp> {
     public IterateExpTracer(IterateExp expression, String[] tuplePartNames) {
@@ -12,10 +12,10 @@ public class IterateExpTracer extends AbstractTracer<IterateExp> {
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         NavigationStep result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getBody(), context,
-                filterSynthesizer, getTupleLiteralPartNamesToLookFor());
-        applyScopesOnNavigationStep(result);
+                operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
+        applyScopesOnNavigationStep(result, operationBodyToCallMapper);
         return result;
     }
 

@@ -5,7 +5,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 
 public class OppositePropertyCallExpTracer extends  AbstractTracer<OppositePropertyCallExp> {
@@ -15,14 +15,14 @@ public class OppositePropertyCallExpTracer extends  AbstractTracer<OppositePrope
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         // reverse traversal of a reverted reference is traversing the original reference itself
         NavigationStep result = new AssociationNavigationStep(
                 getInnermostElementType(getExpression().getType()),
                 getInnermostElementType(getExpression().getSource().getType()),
                 (EReference)getExpression().getReferredOppositeProperty(),
                 getExpression());
-        applyScopesOnNavigationStep(result);
+        applyScopesOnNavigationStep(result, operationBodyToCallMapper);
         return result;
     }
 
