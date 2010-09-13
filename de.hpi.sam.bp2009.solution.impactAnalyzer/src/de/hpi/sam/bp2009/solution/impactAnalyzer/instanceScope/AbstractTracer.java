@@ -185,4 +185,46 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         step.setEnteringScope(calculateEnteringScope());
         step.setLeavingScopes(calculateLeavingScopes());
     }
+    
+    /**
+     * This method returns all scope creating {@link OCLExpression}s in the containment hierarchy between the given origin and the given parent.
+     * @param origin The {@link OCLExpression} used as the origin of the search.
+     * @param parent The {@link OCLExpression} that is the parent of the origin.
+     * @return A {@link Set} of {@link OCLExpression}s containing all scope creating expressions in the containment hierarchy between origin and parent.
+     */
+    protected static Set<OCLExpression> scopeCreatingExpressions(OCLExpression origin, OCLExpression parent) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    /**
+     * This method is a shortcut for {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression)} that uses {@link AbstractTracer#getExpression()} as the origin.
+     * See {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression)} for description.
+     * @param parent
+     * @return
+     */
+    protected Set<OCLExpression> scopeCreatingExpressions(OCLExpression parent){
+        return scopeCreatingExpressions((OCLExpression)getExpression(), parent);
+    }
+
+    /**
+     * This method finds the common composition parent of the two given {@link OCLExpression}s.
+     * @param first The first {@link OCLExpression}.
+     * @param second The second {@link OCLExpression}.
+     * @return The common composition parent or null, in case there is none.
+     */
+    protected static OCLExpression commonCompositionParent(OCLExpression first, OCLExpression second) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    /**
+     * This method is a shortcut for {@link AbstractTracer#commonCompositionParent(OCLExpression, OCLExpression)} that uses {@link AbstractTracer#getExpression()} as the origin.
+     * See {@link AbstractTracer#commonCompositionParent(OCLExpression, OCLExpression)} for description.
+     * @param second
+     * @return
+     */
+    protected OCLExpression commonCompositionParent(OCLExpression second){
+        return commonCompositionParent((OCLExpression) getExpression(), second);
+    }
 }
