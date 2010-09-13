@@ -61,6 +61,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         } else
 	    throw new RuntimeException(
                     "Unhandled subclass of EStructuralFeature. Revisit PropertyCallExpTracer to implement specific behaviour.");
+        applyScopesOnNavigationStep(result);
         return result;
     }
 

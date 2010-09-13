@@ -78,6 +78,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * {@link AbstractNavigationStep#fireBeforeHashCodeChange(int)} to generate a new token.
      */
     private static int maxToken = 0;
+    
+    private Set<OCLExpression> leavingScopes = Collections.emptySet();
+    
+    private OCLExpression enteringScope = null;
 
     public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
         this.sourceType = sourceType;
@@ -323,6 +327,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      *            the from-object (of type {@link AnnotatedEObject}) for which to look up any previously computed results.
      */
     public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, TracebackCache cache, Notification changeEvent) {
+        // TODO check if changing the scope before the navigation procedure is correct
+        // especially the creation of unusedRequests may interfere with this
+        cache.scopeChange(getLeavingScopes(), getEnteringScope());
+        
         incrementNavigateCounter(from);
 
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>(from.size());
@@ -489,5 +497,24 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 
     public SemanticIdentity getSemanticIdentity() {
 	return semanticIdentity;
+    }
+    
+    public Set<OCLExpression> getLeavingScopes(){
+        return leavingScopes;
+    }
+    
+    public void setLeavingScopes(Set<OCLExpression> leavingScopes){
+        this.leavingScopes = new HashSet<OCLExpression>();
+        for(OCLExpression scope : leavingScopes){
+            this.leavingScopes.add(scope);
+        }
+    }
+    
+    public OCLExpression getEnteringScope(){
+        return enteringScope;
+    }
+    
+    public void setEnteringScope(OCLExpression enteringScope){
+        this.enteringScope = enteringScope;
     }
 }

@@ -30,6 +30,7 @@ public class TupleLiteralExpTracer extends AbstractTracer<TupleLiteralExp> {
         if (result == null) {
             result = super.traceback(context, pathCache, filterSynthesizer); // create an empty step
         }
+        applyScopesOnNavigationStep(result);
         return result;
     }
 }

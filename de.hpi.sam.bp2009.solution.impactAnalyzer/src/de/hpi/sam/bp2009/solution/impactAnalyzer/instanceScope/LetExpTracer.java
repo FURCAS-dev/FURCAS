@@ -15,7 +15,14 @@ public class LetExpTracer extends AbstractTracer<LetExp> {
 
 	@Override
 	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-		return pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getIn(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+		NavigationStep result = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getIn(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
+		applyScopesOnNavigationStep(result);
+		return result;
 	}
-
+	
+	@Override
+	protected OCLExpression calculateEnteringScope() {
+	    // tracing back a LetExp always leads to a traceback of the in expression, which opens a new scope
+	    return (OCLExpression) getExpression().getIn();
+	}
 }

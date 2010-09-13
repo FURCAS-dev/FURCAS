@@ -1,5 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Collections;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -145,7 +148,9 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * which is what this default implementation does.
      */
     public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-        return new EmptyResultNavigationStep((OCLExpression) getExpression());
+        NavigationStep result = new EmptyResultNavigationStep((OCLExpression) getExpression());
+        applyScopesOnNavigationStep(result);
+        return result;
     }
 
     /**
@@ -158,5 +163,26 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
 
         return (EClass) type;
 
+    }
+    
+    /**
+     * Calculates which scopes the {@link NavigationStep} this {@link Tracer} creates will leave when navigated.
+     * @return the set of {@link OCLExpression}s representing the scopes the created {@link NavigationStep} will leave when navigated.
+     */
+    protected Set<OCLExpression> calculateLeavingScopes(){
+        return Collections.emptySet();
+    }
+    
+    /**
+     * Calculates the scope the {@link NavigationStep} this {@link Tracer} creates will enter when navigated.
+     * @return the {@link OCLExpression} representing the scope the created {@link NavigationStep} will enter when navigated.
+     */
+    protected OCLExpression calculateEnteringScope(){
+        return null;
+    }
+    
+    protected void applyScopesOnNavigationStep(NavigationStep step){
+        step.setEnteringScope(calculateEnteringScope());
+        step.setLeavingScopes(calculateLeavingScopes());
     }
 }
