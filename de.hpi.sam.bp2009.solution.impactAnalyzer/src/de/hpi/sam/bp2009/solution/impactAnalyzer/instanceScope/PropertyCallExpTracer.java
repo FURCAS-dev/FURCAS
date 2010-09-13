@@ -9,7 +9,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleType;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     public PropertyCallExpTracer(PropertyCallExp expression, String[] tuplePartNames) {
@@ -17,7 +17,7 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         /*
          * In ECore AssociationEndCallExp and AttributeCallExp are both mapped to PropertyCallExp. That's why we need to check
          * what the PropertyCall refers to and create different NavigationSteps for each case.
@@ -55,24 +55,24 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
         EStructuralFeature refProp = getExpression().getReferredProperty();
 
         if (refProp instanceof EReference) {
-            result = handleAssociationCall(context, pathCache, filterSynthesizer);
+            result = handleAssociationCall(context, pathCache, operationBodyToCallMapper);
         } else if (refProp instanceof EAttribute) {
-            result = handleAttributeCall(context, pathCache, filterSynthesizer);
+            result = handleAttributeCall(context, pathCache, operationBodyToCallMapper);
         } else
 	    throw new RuntimeException(
                     "Unhandled subclass of EStructuralFeature. Revisit PropertyCallExpTracer to implement specific behaviour.");
-        applyScopesOnNavigationStep(result);
+        applyScopesOnNavigationStep(result, operationBodyToCallMapper);
         return result;
     }
 
-    private NavigationStep handleAssociationCall(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    private NavigationStep handleAssociationCall(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         OCLExpression sourceExp = (OCLExpression) getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
 
         if (sourceType instanceof TupleType)
-	    return getNavigationStepForTuplePartAccess(context, pathCache, filterSynthesizer, sourceExp);
+	    return getNavigationStepForTuplePartAccess(context, pathCache, operationBodyToCallMapper, sourceExp);
 	else {
-            NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer,
+            NavigationStep sourceStep = pathCache.getOrCreateNavigationPath(sourceExp, context, operationBodyToCallMapper,
                     getTupleLiteralPartNamesToLookFor());
             EReference forwardRef = (EReference) getExpression().getReferredProperty();
             NavigationStep reverseTraversal;
@@ -96,21 +96,21 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
     }
 
     private NavigationStep getNavigationStepForTuplePartAccess(EClass context, PathCache pathCache,
-            FilterSynthesisImpl filterSynthesizer, OCLExpression sourceExp) {
+            OperationBodyToCallMapper operationBodyToCallMapper, OCLExpression sourceExp) {
         String referredAttributeName = getExpression().getReferredProperty().getName();
-        return pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(), context, filterSynthesizer,
+        return pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(), context, operationBodyToCallMapper,
                 getExtendedListOfTuplePartNames(referredAttributeName));
     }
 
-    private NavigationStep handleAttributeCall(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    private NavigationStep handleAttributeCall(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         OCLExpression sourceExp = (OCLExpression) getExpression().getSource();
         EClassifier sourceType = sourceExp.getType();
         if (sourceType instanceof TupleType)
-	    return getNavigationStepForTuplePartAccess(context, pathCache, filterSynthesizer, sourceExp);
+	    return getNavigationStepForTuplePartAccess(context, pathCache, operationBodyToCallMapper, sourceExp);
 	else
 	    return pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(),
                     new RefImmediateCompositeNavigationStep((EClass) getExpression().getType(), (EClass) sourceType,
-                            getExpression()), pathCache.getOrCreateNavigationPath(sourceExp, context, filterSynthesizer,
+                            getExpression()), pathCache.getOrCreateNavigationPath(sourceExp, context, operationBodyToCallMapper,
                             getTupleLiteralPartNamesToLookFor()));
     }
 }

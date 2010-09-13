@@ -9,7 +9,7 @@ import org.eclipse.ocl.expressions.Variable;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
     public IteratorExpTracer(IteratorExp expression, String[] tuplePartNames) {
@@ -17,13 +17,13 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         NavigationStep result;
         String name = getExpression().getName();
         int opCode = OCLStandardLibraryUtil.getOperationCode(name);
         if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.SORTED_BY
                 || opCode == PredefinedType.ANY) {
-            result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(), context, filterSynthesizer,
+            result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getSource(), context, operationBodyToCallMapper,
                     getTupleLiteralPartNamesToLookFor());
             if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.ANY) {
                 // evaluate predicate before checking how it goes on
@@ -34,13 +34,13 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
                                 getExpression(), pathCache), result);
             }
         } else if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED) {
-            result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getBody(), context, filterSynthesizer,
+            result = pathCache.getOrCreateNavigationPath((OCLExpression) getExpression().getBody(), context, operationBodyToCallMapper,
                     getTupleLiteralPartNamesToLookFor());
         } else {
             // boolean or other non-class-type-result iterator
             result = new EmptyResultNavigationStep(getExpression());
         }
-        applyScopesOnNavigationStep(result);
+        applyScopesOnNavigationStep(result, operationBodyToCallMapper);
         return result;
     }
     

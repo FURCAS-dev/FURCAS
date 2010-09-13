@@ -12,7 +12,7 @@ import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.expressions.CollectionLiteralPart;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExp> {
     public CollectionLiteralExpTracer(CollectionLiteralExp expression, String[] tuplePartNames) {
@@ -20,7 +20,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
     }
 
     @Override
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         EList<CollectionLiteralPart<EClassifier>> parts = (EList<CollectionLiteralPart<EClassifier>>) getExpression().getPart();
         List<NavigationStep> steps = new ArrayList<NavigationStep>();
         NavigationStep result;
@@ -29,7 +29,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
             CollectionLiteralPart<EClassifier> part = i.next();
             if (part instanceof CollectionItem) {
                 steps.add(pathCache.getOrCreateNavigationPath((OCLExpression) ((CollectionItem) part)
-                        .getItem(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor()));
+                        .getItem(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor()));
             }
         }
         if (getExpression().getPart().size() > 0){
@@ -40,7 +40,7 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
             //the collection was empty, like "Set{}"
             result = new EmptyResultNavigationStep(getExpression());
         }
-        applyScopesOnNavigationStep(result);
+        applyScopesOnNavigationStep(result, operationBodyToCallMapper);
         return result;
     }
 

@@ -4,7 +4,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 
 
@@ -14,9 +14,9 @@ public class LetExpTracer extends AbstractTracer<LetExp> {
 	}
 
 	@Override
-	public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
-		NavigationStep result = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getIn(), context, filterSynthesizer, getTupleLiteralPartNamesToLookFor());
-		applyScopesOnNavigationStep(result);
+	public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
+		NavigationStep result = pathCache.getOrCreateNavigationPath((OCLExpression)getExpression().getIn(), context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
+		applyScopesOnNavigationStep(result, operationBodyToCallMapper);
 		return result;
 	}
 	

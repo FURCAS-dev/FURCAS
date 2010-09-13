@@ -5,7 +5,7 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 
 
@@ -37,5 +37,5 @@ public interface Tracer {
      *            thereby makes it possible to limit the analysis of operation bodies by the scope of those calls actually
      *            invoking the operation in the context of the outermost expression.
      */
-    NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer);
+    NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper filterSynthesizer);
 }

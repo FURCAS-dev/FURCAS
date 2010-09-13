@@ -16,7 +16,7 @@ import org.eclipse.ocl.ecore.TupleLiteralPart;
 
 import com.sap.emf.ocl.util.OclHelper;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public abstract class AbstractTracer<T extends EObject> implements Tracer {
@@ -147,9 +147,9 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * By default, many expression types which, e.g., result in a primitive result, return an {@link EmptyResultNavigationStep}
      * which is what this default implementation does.
      */
-    public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
+    public NavigationStep traceback(EClass context, PathCache pathCache, OperationBodyToCallMapper operationBodyToCallMapper) {
         NavigationStep result = new EmptyResultNavigationStep((OCLExpression) getExpression());
-        applyScopesOnNavigationStep(result);
+        applyScopesOnNavigationStep(result, operationBodyToCallMapper);
         return result;
     }
 
@@ -167,9 +167,10 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     
     /**
      * Calculates which scopes the {@link NavigationStep} this {@link Tracer} creates will leave when navigated.
+     * @param operationBodyToCallMapper TODO
      * @return the set of {@link OCLExpression}s representing the scopes the created {@link NavigationStep} will leave when navigated.
      */
-    protected Set<OCLExpression> calculateLeavingScopes(){
+    protected Set<OCLExpression> calculateLeavingScopes(OperationBodyToCallMapper operationBodyToCallMapper){
         return Collections.emptySet();
     }
     
@@ -181,9 +182,9 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         return null;
     }
     
-    protected void applyScopesOnNavigationStep(NavigationStep step){
+    protected void applyScopesOnNavigationStep(NavigationStep step, OperationBodyToCallMapper operationBodyToCallMapper){
         step.setEnteringScope(calculateEnteringScope());
-        step.setLeavingScopes(calculateLeavingScopes());
+        step.setLeavingScopes(calculateLeavingScopes(operationBodyToCallMapper));
     }
     
     /**

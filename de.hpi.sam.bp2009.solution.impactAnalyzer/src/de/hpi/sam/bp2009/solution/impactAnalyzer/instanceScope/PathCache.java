@@ -13,7 +13,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
@@ -120,11 +120,11 @@ public class PathCache implements HashCodeChangeListener {
     }
 
     public NavigationStep getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context,
-            FilterSynthesisImpl filterSynthesizer, String[] tupleLiteralNamesToLookFor) {
+            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
         NavigationStep result = getPathForNode(sourceExpression, tupleLiteralNamesToLookFor);
         if (result == null) {
             result = InstanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor).traceback(context, this,
-                    filterSynthesizer);
+                    operationBodyToCallMapper);
             NavigationStep existingEqualStep = allNavigationSteps.get(result);
             if (existingEqualStep != null) {
                 result = existingEqualStep;
