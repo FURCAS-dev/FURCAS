@@ -1,10 +1,10 @@
-Damit wir nicht vergessen, was wir noch so geplant haben.
-Falls die Stichpunkte nicht aussagekräftig genug sind, bitte um die nötigen Erklärungen ergänzen.
+To avoid forgetting our future plans, I wrote them down here.
+If you think these notes are to short or not expressive enough, feel free to add descriptions on your own.
 
-- Berechnung der leaving scopes
-- unused Berechnung implementieren
-- Factory für nested UnusedEvaluationRequests
-- unused Berechnung abkürzen (äquivalent zu NavigationSteps)
-- partial evaluator kann Sonderbehandlung für let expressions/variablen machen -> Wert der LetVariable evtl. schon via traceback() ermittelt
+- calculation of leaving scopes
+- implementation of the unused() function
+- implementation of a factory for UnusedEvaluationRequest (and the nested ones)
+- create a shortcut structure for the unused calculation similar to the NavigationSteps used for traceback
+- the partial evaluator may be able to treat let variables in a special way as their value might have been inferred by the traceback() function already
 - consider shortcut evaluation of Boolean operations (and, or): source/argument of and()/or() is unused if
   argument/source, respectively, is false/true, respectively
