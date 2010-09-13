@@ -1,0 +1,8 @@
+Damit wir nicht vergessen, was wir noch so geplant haben.
+Falls die Stichpunkte nicht aussagekräftig genug sind, bitte um die nötigen Erklärungen ergänzen.
+
+- Berechnung der leaving scopes
+- unused Berechnung implementieren
+- Factory für nested UnusedEvaluationRequests
+- unused Berechnung abkürzen (äquivalent zu NavigationSteps)
+- partial evaluator kann Sonderbehandlung für let expressions/variablen machen -> Wert der LetVariable evtl. schon via traceback() ermittelt
