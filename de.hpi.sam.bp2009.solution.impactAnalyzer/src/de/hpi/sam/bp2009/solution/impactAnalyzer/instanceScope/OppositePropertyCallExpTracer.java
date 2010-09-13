@@ -17,11 +17,13 @@ public class OppositePropertyCallExpTracer extends  AbstractTracer<OppositePrope
     @Override
     public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
         // reverse traversal of a reverted reference is traversing the original reference itself
-        return new AssociationNavigationStep(
+        NavigationStep result = new AssociationNavigationStep(
                 getInnermostElementType(getExpression().getType()),
                 getInnermostElementType(getExpression().getSource().getType()),
                 (EReference)getExpression().getReferredOppositeProperty(),
                 getExpression());
+        applyScopesOnNavigationStep(result);
+        return result;
     }
 
 }

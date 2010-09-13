@@ -23,6 +23,8 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
     public NavigationStep traceback(EClass context, PathCache pathCache, FilterSynthesisImpl filterSynthesizer) {
         EList<CollectionLiteralPart<EClassifier>> parts = (EList<CollectionLiteralPart<EClassifier>>) getExpression().getPart();
         List<NavigationStep> steps = new ArrayList<NavigationStep>();
+        NavigationStep result;
+        
         for (Iterator<CollectionLiteralPart<EClassifier>> i = parts.iterator(); i.hasNext();) {
             CollectionLiteralPart<EClassifier> part = i.next();
             if (part instanceof CollectionItem) {
@@ -32,13 +34,14 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
         }
         if (getExpression().getPart().size() > 0){
             EClass innermostType = getInnermostElementType(getExpression().getType());
-            return pathCache.navigationStepForBranch(innermostType, context, getExpression(),
+            result = pathCache.navigationStepForBranch(innermostType, context, getExpression(),
                     getTupleLiteralPartNamesToLookFor(), steps.toArray(new NavigationStep[0]));
         } else {
             //the collection was empty, like "Set{}"
-            return new EmptyResultNavigationStep(getExpression());
+            result = new EmptyResultNavigationStep(getExpression());
         }
-        
+        applyScopesOnNavigationStep(result);
+        return result;
     }
 
 }

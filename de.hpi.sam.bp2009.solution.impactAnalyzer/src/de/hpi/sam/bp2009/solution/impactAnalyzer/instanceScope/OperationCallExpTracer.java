@@ -120,7 +120,18 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
                 // source or argument values into their result
             }
         }
+        applyScopesOnNavigationStep(result);
         return result;
     }
-
+    
+    @Override
+    protected OCLExpression calculateEnteringScope() {
+        OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
+        if (body != null){
+            // an OCL-specified operation, the body creates a new scope
+            return body;
+        }
+        // FIXME do standard OCL operations alter the scope?
+        return null;
+    }
 }

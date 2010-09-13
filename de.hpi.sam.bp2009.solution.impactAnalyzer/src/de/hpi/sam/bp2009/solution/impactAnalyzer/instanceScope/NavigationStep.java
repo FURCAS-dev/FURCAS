@@ -111,5 +111,29 @@ public interface NavigationStep extends SemanticComparable {
      * added here will be returned in the set resulting from {@link #getDebugInfo()}.
      */
     void addExpressionForWhichThisIsNavigationStep(OCLExpression oclExpression);
+    
+    /**
+     * Returns the scopes, this navigation step will leave when navigated. Scopes are given in form of {@link OCLExpression}s.
+     * @return the set of {@link OCLExpression}s that represents the scopes left by navigating this step.
+     */
+    Set<OCLExpression> getLeavingScopes();
+    
+    /**
+     * Sets the set of scopes, this navigation step will leave when navigated. Scopes are given in form of {@link OCLExpression}s.
+     * @param leavingScopes the set of {@link OCLExpression}s that represents the scopes left by navigating this step. 
+     */
+    void setLeavingScopes(Set<OCLExpression> leavingScopes);
+    
+    /**
+     * Returns the scope, this navigation step will enter when navigated. It is given as an {@link OCLExpression}.
+     * @return the {@link OCLExpression} representing the scope entered by navigating this step.
+     */
+    OCLExpression getEnteringScope();
+    
+    /**
+     * Sets the scope, this navigation step will enter when navigated. It is given as an {@link OCLExpression}.
+     * @param enteringScope the {@link OCLExpression} representing the scope entered by navigating this step.
+     */
+    void setEnteringScope(OCLExpression enteringScope);
 
 }

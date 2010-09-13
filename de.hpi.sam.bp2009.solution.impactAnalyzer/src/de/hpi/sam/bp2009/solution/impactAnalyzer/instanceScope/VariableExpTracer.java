@@ -89,6 +89,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
 		    + "nor an iterate result variable nor an operation parameter nor a let variable nor self: "
 		    + getExpression().getReferredVariable().getName());
 	}
+	applyScopesOnNavigationStep(result);
 	return result;
     }
 
