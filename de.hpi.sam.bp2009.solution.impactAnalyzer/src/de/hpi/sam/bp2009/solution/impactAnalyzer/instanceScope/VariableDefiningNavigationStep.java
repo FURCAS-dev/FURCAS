@@ -15,7 +15,10 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 /**
  * Remembers the <code>fromObject</code> as the value for a particular {@link #variable} in the {@link TracebackCache}
  * for the current dynamic scope, then executes the {@link IndirectingStep#getActualStep() nested step} passed to
- * the constructor.
+ * the constructor. If the variable has a collection type, this step behaves like a normal {@link IndirectingStep}
+ * because the <code>fromObject</code> passed to {@link #navigate(AnnotatedEObject, TracebackCache, Notification)}
+ * would only be one of potentially many elements constituting the variable's value, and hence we wouldn't know
+ * the full value of the variable. In this case, the {@link #variableExp} is set to <code>null</code>.
  * 
  * @author Axel Uhl (D043530)
  *
