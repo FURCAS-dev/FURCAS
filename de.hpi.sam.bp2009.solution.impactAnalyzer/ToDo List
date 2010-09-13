@@ -6,3 +6,5 @@ Falls die Stichpunkte nicht aussagekräftig genug sind, bitte um die nötigen Erkl
 - Factory für nested UnusedEvaluationRequests
 - unused Berechnung abkürzen (äquivalent zu NavigationSteps)
 - partial evaluator kann Sonderbehandlung für let expressions/variablen machen -> Wert der LetVariable evtl. schon via traceback() ermittelt
+- consider shortcut evaluation of Boolean operations (and, or): source/argument of and()/or() is unused if
+  argument/source, respectively, is false/true, respectively
