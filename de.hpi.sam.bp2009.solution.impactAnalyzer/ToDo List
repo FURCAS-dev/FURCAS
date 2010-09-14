@@ -8,3 +8,8 @@ If you think these notes are to short or not expressive enough, feel free to add
 - the partial evaluator may be able to treat let variables in a special way as their value might have been inferred by the traceback() function already
 - consider shortcut evaluation of Boolean operations (and, or): source/argument of and()/or() is unused if
   argument/source, respectively, is false/true, respectively
+- cache results of unused(...) computations in TracebackCache; this will avoid redundant computations, e.g.,
+  when a traceback run descends down the composition hierarchy of a series of CallExp, going from the
+  CallExp to the contained source expression; when applying the composition rule to the source expression,
+  the next thing to check is unused(...) for the CallExp again which traceback should have done and hence
+  cached just before descending into the source expression.
