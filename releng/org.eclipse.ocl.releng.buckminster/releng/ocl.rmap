@@ -4,6 +4,7 @@
   <rm:property key="cvs.eclipse.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse"/>
   <rm:locator pattern="^lpg\.runtime\.java$" searchPathRef="p2_orbit" failOnError="false"/>
   <rm:locator pattern="^org\.eclipse\.ocl.*$" searchPathRef="cvs_ocl"/>
+  <rm:locator pattern="^org\.eclipse\.uml2\.uml\.resources$" searchPathRef="cvs_uml"/>
   <rm:locator pattern="^org\.eclipse\.test$" searchPathRef="cvs_eclipse"/>
   <rm:locator pattern="^org\.eclipse\.ant\.optional\.junit$" searchPathRef="cvs_eclipse"/>
   <rm:searchPath name="cvs_ocl">
@@ -69,6 +70,14 @@
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature" readerType="cvs" mutable="false" resolutionFilter="">
       <rm:uri format="{0},org.eclipse.mdt/org.eclipse.ocl/examples/{1}-feature">
+        <bc:propertyRef key="cvs.modeling.repository.location"/>
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="cvs_uml">
+    <rm:provider componentTypes="osgi.bundle" readerType="cvs" source="false" mutable="false" resolutionFilter="">
+      <rm:uri format="{0},org.eclipse.mdt/org.eclipse.uml2/plugins/{1}">
         <bc:propertyRef key="cvs.modeling.repository.location"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
