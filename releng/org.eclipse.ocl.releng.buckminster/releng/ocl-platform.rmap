@@ -24,7 +24,7 @@
   </rm:searchPath>
   <rm:searchPath name="uml">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/mdt/uml2/updates/interim">
+      <rm:uri format="{0}/modeling/mdt/updates/interim">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
