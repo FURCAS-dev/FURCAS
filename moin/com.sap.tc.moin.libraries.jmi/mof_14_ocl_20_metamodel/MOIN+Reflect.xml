@@ -1,7 +1,0 @@
-<?xml version = '1.0' encoding = 'ISO-8859-1' ?>
-<XMI xmi.version = '1.1'>
- <XMI.header>
-  <XMI.import href = 'MOIN.xml' />
-  <XMI.import href = 'Reflect.xml' />
- </XMI.header>
-</XMI>

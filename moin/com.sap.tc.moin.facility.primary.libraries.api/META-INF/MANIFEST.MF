@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: com.sap.tc.moin.facility.primary.libraries.api;singleton:=true
-Bundle-Version: 2.0.0.qualifier
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Export-Package: com.sap.tc.moin.facility.primary,.
-Require-Bundle: com.sap.tc.moin.libraries.api

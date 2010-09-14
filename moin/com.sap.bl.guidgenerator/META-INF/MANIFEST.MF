@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Guidgenerator
-Bundle-SymbolicName: com.sap.bl.guidgenerator
-Bundle-Version: 2.0.0.qualifier
-Bundle-Vendor: SAP
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: com.sap.guid

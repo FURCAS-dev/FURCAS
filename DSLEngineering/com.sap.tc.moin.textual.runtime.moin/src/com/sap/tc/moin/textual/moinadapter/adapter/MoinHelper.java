@@ -4,34 +4,31 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.util.ContextAndForeachHelper;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.model.Aliases;
-import com.sap.tc.moin.repository.mmi.model.Import;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
 
 public class MoinHelper {
 	private static final String OCL_SELF = "self";
 	private static final String QUERY_PARAM_NAME = "\\?";
 
     /**
-     * Finds all {@link RefPackage}s that are imported by the given root.
+     * Finds all {@link EPackage}s that are imported by the given root.
      * 
      * @param root
      * @return
      */
-	public static Collection<? extends RefPackage> getImportedRefPackages(
-			RefPackage root) {
-		Collection<RefPackage> packages = new ArrayList<RefPackage>();
-		List<ModelElement> contents = (root.refMetaObject()).getContents();
+	public static Collection<? extends EPackage> getImportedRefPackages(
+			EPackage root) {
+		Collection<EPackage> packages = new ArrayList<EPackage>();
+		List<EModelElement> contents = (root.refMetaObject()).getContents();
 		// if (contents != null) { // possible with mock objects
-		for (ModelElement element : contents) {
+		for (EModelElement element : contents) {
 			if (element instanceof Import) {
 				if (((Import) element).isClustered()) {
 					packages.add(root.refPackage(((Import) element)
@@ -39,7 +36,7 @@ public class MoinHelper {
 				} else {
 					packages.add(root.get___Connection().getJmiHelper()
 							.getRefPackageForMofPackage(
-									(MofPackage) ((Import) element)
+									(EPackage) ((Import) element)
 											.getImportedNamespace()));
 				}
 			}
@@ -48,18 +45,18 @@ public class MoinHelper {
 		return packages;
 	}
 	
-	public static Collection<MofPackage> getImportedMofPackages(
-                MofPackage root) {
-            Collection<MofPackage> packages = new ArrayList<MofPackage>();
-            List<ModelElement> contents = root.getContents();
+	public static Collection<EPackage> getImportedMofPackages(
+                EPackage root) {
+            Collection<EPackage> packages = new ArrayList<EPackage>();
+            List<EModelElement> contents = root.getContents();
             // if (contents != null) { // possible with mock objects
-            for (ModelElement element : contents) {
+            for (EModelElement element : contents) {
                     if (element instanceof Import) {
                             if (((Import) element).isClustered()) {
-                                    packages.add((MofPackage) ((Import) element)
+                                    packages.add((EPackage) ((Import) element)
                                                     .getImportedNamespace());
                             } else {
-                                    packages.add((MofPackage) ((Import) element).getImportedNamespace());
+                                    packages.add((EPackage) ((Import) element).getImportedNamespace());
                             }
                     }
             }
@@ -105,34 +102,34 @@ public class MoinHelper {
 	}
 
 	/**
-	 * Retrieves the {@link MofClass} for Reflect::Element using the given
+	 * Retrieves the {@link EClass} for Reflect::Element using the given
 	 * connection.
 	 * 
 	 * @param connection
-	 * @return {@link MofClass} for Reflect::Element
+	 * @return {@link EClass} for Reflect::Element
 	 */
-	public static MofClass getReflectElement(Connection connection) {
-		MQLResultSet resultSet = connection
+	public static EClass getReflectElement(ResourceSet connection) {
+		ResultSet resultSet = connection
 				.getMQLProcessor()
 				.execute(
 						"select instance from \""
 								+ "PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Reflect.moinmm"
 								+ "#45ED2E29000DEAF733A545E62844AF3FC5E44767\" as instance");
-		return (MofClass) resultSet.getRefObjects("instance")[0];
+		return (EClass) resultSet.getRefObjects("instance")[0];
 	}
 
-	    public static RefPackage getOutermostPackageThroughClusteredImports(
-		    Connection conn, RefBaseObject refObject) {
-		RefPackage result = refObject.refOutermostPackage();
-		RefPackage candidate = result;
+	    public static EPackage getOutermostPackageThroughClusteredImports(
+		    ResourceSet conn, EObject refObject) {
+		EPackage result = refObject.refOutermostPackage();
+		EPackage candidate = result;
 		while (candidate != null) {
 		    // ascend the clustered imports in the metamodel
-		    MofPackage p = candidate.refMetaObject();
+		    EPackage p = candidate.refMetaObject();
 		    candidate = null;
 		    Aliases a = conn.getAssociation(Aliases.ASSOCIATION_DESCRIPTOR);
 		    for (Import i : a.getImporter(p)) {
 			if (i.isClustered()) {
-			    MofPackage importer = (MofPackage) i.getContainer();
+			    EPackage importer = (EPackage) i.getContainer();
 			    candidate = conn.getJmiHelper().getRefPackageForMofPackage(
 				    importer);
 			    result = candidate;
@@ -143,18 +140,18 @@ public class MoinHelper {
 		return result;
 	    }
 
-	    public static RefPackage getOutermostPackageThroughClusteredImportsFromMofClass(
-		    Connection conn, MofClass mofClass) {
-		RefPackage result = conn.getJmiHelper().getRefClassForMofClass(mofClass).refOutermostPackage();
-		RefPackage candidate = result;
+	    public static EPackage getOutermostPackageThroughClusteredImportsFromMofClass(
+		    ResourceSet conn, EClass mofClass) {
+		EPackage result = conn.getJmiHelper().getRefClassForMofClass(mofClass).refOutermostPackage();
+		EPackage candidate = result;
 		while (candidate != null) {
 		    // ascend the clustered imports in the metamodel
-		    MofPackage p = candidate.refMetaObject();
+		    EPackage p = candidate.refMetaObject();
 		    candidate = null;
 		    Aliases a = conn.getAssociation(Aliases.ASSOCIATION_DESCRIPTOR);
 		    for (Import i : a.getImporter(p)) {
 			if (i.isClustered()) {
-			    MofPackage importer = (MofPackage) i.getContainer();
+			    EPackage importer = (EPackage) i.getContainer();
 			    candidate = conn.getJmiHelper().getRefPackageForMofPackage(
 				    importer);
 			    result = candidate;
