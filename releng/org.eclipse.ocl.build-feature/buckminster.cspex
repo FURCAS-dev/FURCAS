@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cs:cspecExtension
-	xmlns:com="http://www.eclipse.org/buckminster/Common-1.0"
-	xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
+<cs:cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0" xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
 
 	<cs:dependencies>
 		<cs:dependency name="org.eclipse.ocl.releng.buckminster" componentType="buckminster" />
@@ -37,8 +35,7 @@
 				<cs:property key="targets" value="package.ius" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="content.ius"
-					value="org.eclipse.ocl.all.sdk.feature.group" />
+				<cs:property key="content.ius" value="org.eclipse.ocl.all.sdk.feature.group" />
 				<cs:property key="package.name" value="mdt-ocl-SDK" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -54,8 +51,7 @@
 				<cs:property key="targets" value="package.ius" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="content.ius"
-					value="org.eclipse.ocl.core.sdk.feature.group" />
+				<cs:property key="content.ius" value="org.eclipse.ocl.core.sdk.feature.group" />
 				<cs:property key="package.name" value="mdt-ocl-CoreSDK" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -71,8 +67,7 @@
 				<cs:property key="targets" value="package.ius" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="content.ius"
-					value="org.eclipse.ocl.examples.feature.group" />
+				<cs:property key="content.ius" value="org.eclipse.ocl.examples.feature.group" />
 				<cs:property key="package.name" value="mdt-ocl-Examples" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -88,8 +83,7 @@
 				<cs:property key="targets" value="package.ius" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="content.ius"
-					value="org.eclipse.ocl.feature.group, org.eclipse.ocl.uml.feature.group" />				
+				<cs:property key="content.ius" value="org.eclipse.ocl.all.group"/>
 				<cs:property key="package.name" value="mdt-ocl-Runtime" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -114,7 +108,7 @@
 			<cs:attribute name="package.mdt-ocl-SDK" />
 			<cs:attribute name="package.mdt-ocl-CoreSDK" />
 			<cs:attribute name="package.mdt-ocl-Examples" />
-			<cs:attribute name="package.mdt-ocl-Runtime" />			
+			<cs:attribute name="package.mdt-ocl-Runtime" />
 		</cs:public>
 	</cs:groups>
 </cs:cspecExtension>
