@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: com.sap.tc.moin.libraries.spi;singleton:=true
-Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Export-Package: com.sap.tc.moin.repository.spi.ps.errorhandler,com.sap.tc.moin.repository.spi.ps,com.sap.tc.moin.repository.spi.s2x.serializer,com.sap.tc.moin.repository.spi.ps.parser,.,com.sap.tc.moin.repository.spi.ps.serializer
-Require-Bundle: com.sap.tc.moin.libraries.api

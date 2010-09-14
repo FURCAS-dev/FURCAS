@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
-Bundle-SymbolicName: com.sap.tc.moin.jmi;singleton:=true
-Bundle-Version: 2.0.0.qualifier
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Export-Package: javax.jmi.corbaidltypes,javax.jmi.model,javax.jmi.primitivetypes,com.sap.tc.moin.repository.core.generator.jmi.javamodel,javax.jmi.xmi,com.sap.tc.moin.repository.core.jmifitting,.,javax.jmi.reflect,com.sap.tc.moin.repository.core.generator.jmi
-Require-Bundle: com.sap.tc.moin.libraries.base,com.sap.tc.moin.libraries.spi,com.sap.tc.moin.libraries.spi.internal,com.sap.tc.moin.libraries.api,com.sap.tc.moin.friends.api,com.sap.tc.moin.libraries.core,com.sap.tc.moin.libraries.jmi
