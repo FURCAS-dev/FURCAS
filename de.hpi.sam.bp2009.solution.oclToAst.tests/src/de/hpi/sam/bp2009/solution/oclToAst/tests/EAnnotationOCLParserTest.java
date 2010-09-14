@@ -14,13 +14,14 @@ import java.util.Map.Entry;
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,13 +32,16 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.query2.EcoreHelper;
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.IntegerLiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.delegate.DelegateEPackageAdapter;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.junit.Ignore;
+import org.junit.Test;
 
 import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 import company.CompanyFactory;
@@ -123,8 +127,9 @@ public class EAnnotationOCLParserTest extends TestCase {
         anno.getDetails().put("someKey", "self.noTokens>4");
         placeC.getEAnnotations().add(anno);
 
-        getFixture().convertOclAnnotation(placeC);
-        assertTrue(placeC.getEAnnotation(Environment.OCL_NAMESPACE_URI).getContents().get(0) instanceof OperationCallExp);		
+        getFixture().convertOclAnnotation(placeC);        
+        assertTrue(placeC.getEAnnotation(Environment.OCL_NAMESPACE_URI).getContents().get(0) instanceof Constraint);
+        assertTrue(((Constraint)placeC.getEAnnotation(Environment.OCL_NAMESPACE_URI).getContents().get(0)).getSpecification().getBodyExpression() instanceof OperationCallExp);
     }
 
     public void testInvocationDelegate_AST_Usage(){
@@ -150,7 +155,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         String v = String.copyValueOf(value.getValue().toCharArray());
         value.setValue("null");
         int result = dep.calcExpenses();
-        assertTrue("Expected budget: 1100, got: " + result , result == 1100);
+        assertEquals("Expected budget: 1100, got: " + result , 1100, result);
         value.setValue(v);
         EAnnotation anno = null;
         anno = CompanyPackage.eINSTANCE.getDepartment().getEAnnotation(Environment.OCL_NAMESPACE_URI);
@@ -160,7 +165,7 @@ public class EAnnotationOCLParserTest extends TestCase {
         Entry<String, String> val = CompanyPackage.eINSTANCE.getDepartment().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0);
         String content = String.copyValueOf(val.getValue().toCharArray());
         val.setValue("null");
-        expr = (OCLExpression) anno.getContents().get(0);
+        expr = (OCLExpression) ((Constraint)anno.getContents().get(0)).getSpecification().getBodyExpression();
         //expected Expression: 
         // not (self.boss.oclIsTypeOf(Freelance))
         assertTrue("No parsed ast found, probably annotation converting failed.", expr != null);
@@ -188,11 +193,13 @@ public class EAnnotationOCLParserTest extends TestCase {
         getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
         OCL ocl = OCLWithHiddenOpposites.newInstance();
         //change the annotation string value to proof usage of already parsed ast.
-        CompanyPackage.eINSTANCE.getDepartment_Budget().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0).setValue("0");
+        CompanyPackage.eINSTANCE.getDepartment_Budget().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI).getDetails().get(0).setValue("-2");
         OCLExpression expr = SettingBehavior.INSTANCE.getFeatureBody(ocl, CompanyPackage.eINSTANCE.getDepartment_Budget());
         assertTrue("Constraint defining the initial value of department.budget could not be parsed.", expr instanceof IntegerLiteralExp);
+        Object result = ocl.evaluate(dep, expr);
+        assertTrue(result instanceof Integer);
         assertTrue("The parsed AST was not used.\n" +
-                "Expected value: 10000, got: " + expr.toString(), "10000".equals(expr.toString()));
+                "Expected value: 10000, got: " + result.toString(), ((Integer)result).equals(new Integer(10000)));
         //remove annotation, that was only added for test case
         EcoreUtil.remove(CompanyPackage.eINSTANCE.getDepartment_Budget().getEAnnotation(OCLDelegateDomain.OCL_DELEGATE_URI));
     }
@@ -214,6 +221,28 @@ public class EAnnotationOCLParserTest extends TestCase {
         // the expression "not (self.boss.oclIsTypeOf(Freelance))" is validated and should be violated
         assertFalse("The NotBossFreelance constraint should be violated.", CompanyValidator.INSTANCE.validateDepartment_NotBossFreelance(dep, Diagnostician.INSTANCE.createDefaultDiagnostic(dep), context));
     }
+    
+    public void testHiddenOpposite_AST_Usage(){
+        Department dep = CompanyFactory.eINSTANCE.createDepartment();
+        Division div = CompanyFactory.eINSTANCE.createDivision();
+        div.setName("div1");
+        div.getDepartment().add(dep);
+        dep.setName("dep1");
+        
+        getFixture().traversalConvertOclAnnotations(CompanyPackage.eINSTANCE);
+        Map<Object, Object> context = new HashMap<Object, Object>();
+        context.put(Environment.SELF_VARIABLE_NAME, CompanyPackage.eINSTANCE.getDepartment());
+        // the expression "self.department2division->notEmpty()" is validated and should be valid
+        BasicDiagnostic diagnostic = Diagnostician.INSTANCE.createDefaultDiagnostic(dep);
+        
+        DelegateEPackageAdapter adap = DelegateEPackageAdapter.getAdapter(CompanyPackage.eINSTANCE);
+        OCLDelegateDomain delDom = (OCLDelegateDomain) adap.getDelegateDomain(OCLDelegateDomain.OCL_DELEGATE_URI);
+        // setting new ocl instance to enable evaluating of hidden opposites
+        delDom.setOCL(OCLWithHiddenOpposites.newInstance());
+
+        assertTrue("The departmentMustHaveDivision constraint is violated.", CompanyValidator.INSTANCE.validateDepartment_departmentMustHaveDivision(dep, diagnostic, context));
+        assertEquals(diagnostic.toString(), Diagnostic.OK, diagnostic.getSeverity());
+    }
 
     /**
      * Tests the '{@link de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser#convertOclAnnotation(org.eclipse.emf.ecore.EModelElement) <em>Convert Ocl Annotation</em>}' operation.
@@ -225,10 +254,7 @@ public class EAnnotationOCLParserTest extends TestCase {
 
         EOperation operation = EcoreFactory.eINSTANCE.createEOperation();
         operation.setName("doSomething");	
-        EParameter parameter = EcoreFactory.eINSTANCE.createEParameter();
-        parameter.setName("noTokens");
-        parameter.setEType(EcorePackage.eINSTANCE.getEInt());
-        operation.getEParameters().add(parameter);
+        operation.setEType(EcorePackage.eINSTANCE.getEInt());
 
         aClass.getEOperations().add(operation);
         EAnnotation anno= EcoreFactory.eINSTANCE.createEAnnotation();
@@ -236,9 +262,19 @@ public class EAnnotationOCLParserTest extends TestCase {
         anno.getDetails().put("body", "4");
         operation.getEAnnotations().add(anno);
         getFixture().convertOclAnnotation(operation);
-        assertTrue(operation.getEAnnotation(Environment.OCL_NAMESPACE_URI).getContents().get(0) instanceof IntegerLiteralExp);
+        
+        //change ocl expression string to ensure usage of already parsed ast
+        anno.getDetails().get(0).setValue("null");
+        EAnnotation annotation = operation.getEAnnotation(Environment.OCL_NAMESPACE_URI);
+        annotation.getContents();
+        OCLExpression expr = (OCLExpression) ((Constraint)operation.getEAnnotation(Environment.OCL_NAMESPACE_URI).getContents().get(0)).getSpecification().getBodyExpression();
+        assertTrue(expr instanceof IntegerLiteralExp);
+        OCL ocl = OCLWithHiddenOpposites.newInstance();
+        Object result = ocl.evaluate(operation, expr);
+        assertTrue("Expected value: '4', got: " + result.toString(), "4".equals(result.toString()));
     }
     
+    @Test
     @Ignore
     public void testRunAnnotationsParserOnMdrsMetamodel() {
         String uri = "file://c:/Documents%20and%20Settings/D043530/emfmdrs-workspace/com.sap.mdrs.ecore/model/mdrs.ecore";
