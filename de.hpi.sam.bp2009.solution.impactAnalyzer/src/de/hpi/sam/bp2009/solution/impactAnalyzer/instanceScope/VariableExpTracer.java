@@ -249,7 +249,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         } else if (isOperationParameter() || (isSelf() && getOperationOfWhichRootExpressionIsTheBody(operationBodyToCallMapper) != null)) {
             // for operation parameters or self inside an operation body, traceback continues with the call expression,
             // leaving all scopes
-            parent = getRootExpression();
+            parent = getRootExpression(); // FIXME the root expression is also left
         } else {
             return Collections.emptySet();
         }
