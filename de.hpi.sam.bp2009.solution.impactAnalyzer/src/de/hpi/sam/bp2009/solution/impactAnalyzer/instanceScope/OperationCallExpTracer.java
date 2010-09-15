@@ -131,7 +131,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
             // an OCL-specified operation, the body creates a new scope
             return body;
         }
-        // FIXME do standard OCL operations alter the scope?
+        // standard OCL operations do not alter the scope as we cannot trace into their implementation
         return null;
     }
 }
