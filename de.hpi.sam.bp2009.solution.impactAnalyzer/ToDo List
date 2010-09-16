@@ -5,7 +5,6 @@ If you think these notes are to short or not expressive enough, feel free to add
 - implementation of the unused() function
 - implementation of a factory for UnusedEvaluationRequest (and the nested ones)
 - create a shortcut structure for the unused calculation similar to the NavigationSteps used for traceback
-- the partial evaluator may be able to treat let variables in a special way as their value might have been inferred by the traceback() function already
 - consider shortcut evaluation of Boolean operations (and, or): source/argument of and()/or() is unused if
   argument/source, respectively, is false/true, respectively
 - cache results of unused(...) computations in TracebackCache; this will avoid redundant computations, e.g.,
@@ -13,3 +12,8 @@ If you think these notes are to short or not expressive enough, feel free to add
   CallExp to the contained source expression; when applying the composition rule to the source expression,
   the next thing to check is unused(...) for the CallExp again which traceback should have done and hence
   cached just before descending into the source expression.
+- the partial evaluator may be able to treat let variables in a special way as their value might have been inferred
+  by the traceback() function already
+- Keep in mind that variable values may be inferred which will be required by a partial evaluation for unused,
+  but for which so far no callback (UnusedEvaluationRequest) has been recorded. How is the variable value inferred
+  propagated to the partial evaluation?

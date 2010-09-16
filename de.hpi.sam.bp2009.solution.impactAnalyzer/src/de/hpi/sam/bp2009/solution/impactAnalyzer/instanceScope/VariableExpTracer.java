@@ -24,6 +24,29 @@ import com.sap.emf.ocl.util.OclHelper;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
+/**
+ * Computes a {@link NavigationStep} for a {@link VariableExp} which, given an element constituting a value the variable
+ * shall assume, infers a set of elements which, when used as the value of the outermost expression's <code>self</code> variable,
+ * may lead the variable considered here to assume the expected value.<p>
+ * 
+ * OCL knows occurrences of different "stereotypes" of variables, depending on where/how the variable is defined:
+ * <ul>
+ *   <li>a <code>self</code> variable occurring within the body of an operation</li>
+ *   <li>a <code>self</code> variable occurring outside the body of an operation</li>
+ *   <li>an operation's formal parameter</li>
+ *   <li>an iterator variable</li>
+ *   <li>the result variable of an {@link IterateExp}</li>
+ *   <li>the variable assigned by a {@link LetExp}</li>
+ * </ul>
+ * 
+ * In all cases, traceback continues with the expression defining the possible values that the variable may assume. In all
+ * cases, this leaves the scope in which the variable is visible. This becomes important when considering how variable values
+ * travel through the computation of the <code>unused</code> function, trying to prove for each expression visited by traceback,
+ * whether or not it is used, given what is known about variable values.
+ * 
+ * @author Axel Uhl (D043530)
+ *
+ */
 // TODO refactor into several subclasses, one for each is... case, and let tracer factory in InstanceScopeAnalysis.createTracer choose the appropriate one
 public class VariableExpTracer extends AbstractTracer<VariableExp> {
     public VariableExpTracer(VariableExp expression, String[] tuplePartNames) {
