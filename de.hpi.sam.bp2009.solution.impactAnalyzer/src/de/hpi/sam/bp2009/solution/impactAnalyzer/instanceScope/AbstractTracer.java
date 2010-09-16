@@ -20,7 +20,6 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralPart;
 import org.eclipse.ocl.ecore.Variable;
-import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.util.OclHelper;
 
@@ -177,64 +176,50 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * Calculates which scopes the {@link NavigationStep} this {@link Tracer} creates will leave when navigated.
      * @return the set of {@link OCLExpression}s representing the scopes the created {@link NavigationStep} will leave when navigated.
      */
-    protected Set<OCLExpression> calculateLeavingScopes(OperationBodyToCallMapper operationBodyToCallMapper){
+    protected Set<Variable> calculateLeavingScopes(OperationBodyToCallMapper operationBodyToCallMapper){
         return Collections.emptySet();
     }
     
     /**
      * Calculates the scopes the {@link NavigationStep} this {@link Tracer} creates will enter when navigated.
+     * @param operationBodyToCallMapper TODO
      * @return the {@link OCLExpression}s representing the scope the created {@link NavigationStep} will enter when navigated. Always
      * non-<code>null</code>, but possibly empty
      */
-    protected Set<OCLExpression> calculateEnteringScope() {
+    protected Set<Variable> calculateEnteringScope(OperationBodyToCallMapper operationBodyToCallMapper) {
         return Collections.emptySet();
     }
     
     protected void applyScopesOnNavigationStep(NavigationStep step, OperationBodyToCallMapper operationBodyToCallMapper){
-        step.addEnteringScopes(calculateEnteringScope());
+        step.addEnteringScopes(calculateEnteringScope(operationBodyToCallMapper));
         step.addLeavingScopes(calculateLeavingScopes(operationBodyToCallMapper));
     }
 
     /**
-     * This method returns all scope creating {@link OCLExpression}s in the containment hierarchy between the given origin and the
-     * given parent.
+     * This method returns all variables introduced by <code>parent</code> or any contained expression along the containment
+     * hierarchy, down to <code>origin</code>.
      * 
      * @param origin
      *            The {@link OCLExpression} used as the origin of the search.
      * @param parent
      *            The {@link OCLExpression} that is a immediate or transitive containment parent of the origin (see
      *            {@link EObject#eContainer()})
-     * @param inclusive
-     *            if <code>true</code> and <code>parent</code> is a scope-defining expression (e.g., the body of an operation),
-     *            then <code>parent</code> will be added to the result; otherwise, parent is not considered for addition to the
-     *            result.
      * @return A {@link Set} of {@link OCLExpression}s containing all scope creating expressions in the containment hierarchy
      *         between origin and parent.
      */
-    protected static Set<OCLExpression> scopeCreatingExpressions(OCLExpression origin, OCLExpression parent, boolean inclusive,
-            OperationBodyToCallMapper operationBodyToCallMapper) {
+    protected Set<Variable> variablesIntroducedBetween(OCLExpression origin, OCLExpression parent, OperationBodyToCallMapper operationBodyToCallMapper) {
         EObject e = origin;
-        Set<OCLExpression> result = new HashSet<OCLExpression>();
-        while ((inclusive && e != parent) || (!inclusive && e.eContainer() == parent)) {
-            if (e instanceof OCLExpression && isScopeCreatingExpression((OCLExpression) e, operationBodyToCallMapper)) {
-                result.add((OCLExpression) e);
+        Set<Variable> result = new HashSet<Variable>();
+        while (e != parent) {
+            if (e instanceof OCLExpression) {
+                result.addAll(getVariablesScopedByExpression((OCLExpression) e, operationBodyToCallMapper));
             }
             e = e.eContainer();
         }
         return result;
     }
     
-    /**
-     * Returns <code>true</code> if and only if <code>e</code> is the static scope for one or more variables that are
-     * visible inside <code>e</code>'s containment tree (including <code>e</code> itself, so <code>e</code> could be
-     * a {@link VariableExp} referring to such a variable) and not visible outside. For example, the {@link LoopExp#getBody() body}
-     * of a loop expression is the scope for the loop's iterator variables.
-     */
-    private static boolean isScopeCreatingExpression(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
-        return !getVariablesScopedByExpression(e, operationBodyToCallMapper).isEmpty();
-    }
-
-    private static Set<Variable> getVariablesScopedByExpression(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
+    protected Set<Variable> getVariablesScopedByExpression(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
         EObject container = e.eContainer();
         Set<Variable> result = new HashSet<Variable>();
         if (container instanceof LoopExp && ((LoopExp) container).getBody() == e) {
@@ -261,20 +246,25 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         }
         return result;
     }
+    
+    protected Set<Variable> getAllVariablesInScope(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
+        Set<Variable> result = new HashSet<Variable>();
+        for (EObject cursor = e; cursor != null; cursor = cursor.eContainer()) {
+            if (cursor instanceof OCLExpression) {
+                result.addAll(getVariablesScopedByExpression(e, operationBodyToCallMapper));
+            }
+        }
+        return result;
+    }
 
     /**
-     * This method is a shortcut for {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression, boolean, OperationBodyToCallMapper)} that uses {@link AbstractTracer#getExpression()} as the origin.
-     * See {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression, boolean, OperationBodyToCallMapper)} for description.
+     * This method is a shortcut for {@link AbstractTracer#variablesIntroducedBetween(OCLExpression, OCLExpression, OperationBodyToCallMapper)} that uses {@link AbstractTracer#getExpression()} as the origin.
+     * See {@link AbstractTracer#variablesIntroducedBetween(OCLExpression, OCLExpression, OperationBodyToCallMapper)} for description.
      * @param parent
-     * @param inclusive
-     *            if <code>true</code> and <code>parent</code> is a scope-defining expression (e.g., the body of an operation),
-     *            then <code>parent</code> will be added to the result; otherwise, parent is not considered for addition to the
-     *            result.
      * @return a non-<code>null</code> set, possibly empty
      */
-    protected Set<OCLExpression> scopeCreatingExpressions(OCLExpression parent, boolean inclusive,
-            OperationBodyToCallMapper operationBodyToCallMapper) {
-        return scopeCreatingExpressions((OCLExpression)getExpression(), parent, inclusive, operationBodyToCallMapper);
+    protected Set<Variable> getVariablesIntroducedBetweenHereAnd(OCLExpression parent, OperationBodyToCallMapper operationBodyToCallMapper) {
+        return variablesIntroducedBetween((OCLExpression)getExpression(), parent, operationBodyToCallMapper);
     }
 
     /**

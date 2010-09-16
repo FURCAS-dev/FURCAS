@@ -1,11 +1,14 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.Variable;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
@@ -23,8 +26,14 @@ public class IterateExpTracer extends AbstractTracer<IterateExp> {
     }
 
     @Override
-    protected Set<OCLExpression> calculateEnteringScope() {
-        // IterateExpressions are traced back by tracing back their body, which opens a new scope
-        return Collections.singleton((OCLExpression) getExpression().getBody());
+    protected Set<Variable> calculateEnteringScope(OperationBodyToCallMapper operationBodyToCallMapper) {
+        // IterateExpressions are traced back by tracing back their body, which opens a new scope where result
+        // variable and iterator variables are in scope
+        Set<Variable> result = new HashSet<Variable>();
+        for (org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> v : getExpression().getIterator()) {
+            result.add((Variable) v);
+        }
+        result.add((Variable) getExpression().getResult());
+        return result;
     }
 }

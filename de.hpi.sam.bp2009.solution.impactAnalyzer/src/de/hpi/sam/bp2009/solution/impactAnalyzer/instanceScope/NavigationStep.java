@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.Variable;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticComparable;
@@ -111,32 +112,41 @@ public interface NavigationStep extends SemanticComparable {
      * added here will be returned in the set resulting from {@link #getDebugInfo()}.
      */
     void addExpressionForWhichThisIsNavigationStep(OCLExpression oclExpression);
-    
-    /**
-     * Returns the scopes, this navigation step will leave when navigated. Scopes are given in form of {@link OCLExpression}s.
-     * @return the set of {@link OCLExpression}s that represents the scopes left by navigating this step.
-     */
-    Set<OCLExpression> getLeavingScopes();
-    
-    /**
-     * Sets the set of scopes, this navigation step will leave when navigated. Scopes are given in form of {@link OCLExpression}s.
-     * @param leavingScopes the set of {@link OCLExpression}s that represents the scopes left by navigating this step. 
-     */
-    void addLeavingScopes(Set<OCLExpression> leavingScopes);
-    
-    /**
-     * Returns the scope, this navigation step will enter when navigated. It is given as an {@link OCLExpression}.
-     * @return the {@link OCLExpression} representing the scope entered by navigating this step.
-     */
-    Set<OCLExpression> getEnteringScope();
 
     /**
-     * Sets the set of scopes this navigation step will enter when navigated. It is given as an
-     * <code>Set&gt;{@link OCLExpression}&gt;</code>.
+     * Returns the variables that fall out of scope when navigating this step. Scopes are given in form of {@link Variable}s. Note
+     * that variables leaving scope can immediately come into scope again, thus occurring in the results of
+     * {@link #getLeavingScopes()} as well as {@link #getEnteringScopes()}. It just means that the variable shows up in a new
+     * <em>dynamic</em> scope.
+     * 
+     * @return the set of {@link Variable}s that represents the scopes left by navigating this step.
+     */
+    Set<Variable> getLeavingScopes();
+
+    /**
+     * Adds variables to the set of variables leaving scope when navigating this step. Scopes are given in form of
+     * {@link Variable}s. Note that variables leaving scope can immediately come into scope again, thus occurring in the results
+     * of {@link #getLeavingScopes()} as well as {@link #getEnteringScopes()}. It just means that the variable shows up in a new
+     * <em>dynamic</em> scope.
+     * 
+     * @param leavingScopes
+     *            the set of {@link Variable}s that fall out of scope by navigating this step.
+     */
+    void addLeavingScopes(Set<Variable> leavingScopes);
+    
+    /**
+     * Returns the variables that come into scope when this navigation step is navigated. It is given as an {@link Variable}.
+     * @return the {@link Variable}s coming entering scope by navigating this step.
+     */
+    Set<Variable> getEnteringScopes();
+
+    /**
+     * Sets the set of variables that come into scope when this navigation step is navigated. It is given as an
+     * <code>Set&gt;{@link |Variable}&gt;</code>.
      * 
      * @param enteringScope
-     *            the set of {@link OCLExpression}s representing the scope entered by navigating this step.
+     *            the set of {@link Variable}s representing the variables getting into scope by navigating this step.
      */
-    void addEnteringScopes(Set<OCLExpression> enteringScope);
+    void addEnteringScopes(Set<Variable> enteringScope);
 
 }

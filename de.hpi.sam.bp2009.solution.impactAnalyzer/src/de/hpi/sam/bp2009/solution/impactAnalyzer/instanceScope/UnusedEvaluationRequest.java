@@ -42,6 +42,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
  *
  */
 public class UnusedEvaluationRequest {
+    // TODO should not hold the variable values but only the dynamic scope IDs for all the variables in scope for the expression
     private final Map<Variable, Object> knownVariableValues;
     private final Variable unknownVariable;
     private final OCLExpression variableScope;

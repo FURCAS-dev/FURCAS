@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
@@ -8,7 +9,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.expressions.Variable;
+import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.util.OCLStandardLibraryUtil;
 import org.eclipse.ocl.utilities.PredefinedType;
 
@@ -30,7 +31,7 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
                     getTupleLiteralPartNamesToLookFor());
             if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.ANY) {
                 // evaluate predicate before checking how it goes on
-                Variable<EClassifier, EParameter> varDecl = getExpression().getIterator().get(0);
+                org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> varDecl = getExpression().getIterator().get(0);
                 EClass iteratorType = getInnermostElementType(varDecl.getType());
                 result = pathCache.navigationStepFromSequence(getExpression(), getTupleLiteralPartNamesToLookFor(),
                         new PredicateCheckNavigationStep(getInnermostElementType(getExpression().getType()), iteratorType,
@@ -48,13 +49,20 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
     }
     
     @Override
-    protected Set<OCLExpression> calculateEnteringScope() {
+    protected Set<Variable> calculateEnteringScope(OperationBodyToCallMapper operationBodyToCallMapper) {
+        Set<Variable> result;
         // which scope is entered depends on the specific operation
         int opCode = OCLStandardLibraryUtil.getOperationCode(getExpression().getName());
         if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED){
-            // collect and collect nested are traced back by tracing back their body expression, which opens a new scope
-            return Collections.singleton((OCLExpression) getExpression().getBody());
+            // collect and collect nested are traced back by tracing back their body expression, which opens a new scope;
+            // all iterator variables enter scope
+            result = new HashSet<Variable>();
+            for (org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> v : getExpression().getIterator()) {
+                result.add((Variable) v);
+            }
+        } else {
+            result = Collections.emptySet();
         }
-        return Collections.emptySet();
+        return result;
     }
 }

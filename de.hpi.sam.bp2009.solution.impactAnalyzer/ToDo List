@@ -14,10 +14,6 @@ If you think these notes are to short or not expressive enough, feel free to add
   cached just before descending into the source expression.
 - the partial evaluator may be able to treat let variables in a special way as their value might have been inferred
   by the traceback() function already
-- Keep in mind that variable values may be inferred which will be required by a partial evaluation for unused,
-  but for which so far no callback (UnusedEvaluationRequest) has been recorded. How is the variable value inferred
-  propagated to the partial evaluation?
-  
 - What could be really bad: when delving from an OperationCallExp into an operation body, new dynamic scopes will be created
   for all variables that are again in scope when while tracing the body a self/parameter VariableExp is visited. This
   will make it impossible to relate variable values inferred after popping back up through a self/parameter usage
