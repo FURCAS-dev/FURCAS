@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -125,13 +126,13 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     }
     
     @Override
-    protected OCLExpression calculateEnteringScope() {
+    protected Set<OCLExpression> calculateEnteringScope() {
         OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
         if (body != null){
             // an OCL-specified operation, the body creates a new scope
-            return body;
+            return Collections.singleton(body);
         }
         // standard OCL operations do not alter the scope as we cannot trace into their implementation
-        return null;
+        return Collections.emptySet();
     }
 }

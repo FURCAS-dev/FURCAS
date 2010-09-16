@@ -128,20 +128,29 @@ public class TracebackCache {
      * (directly or transitively) in the common container of <code>from</code>/<code>to</code>, are considered out of scope.
      * <p>
      * 
+     * @param leaving
+     *            must not be <code>null</code>
      * @param entering
-     *            may be <code>null</code>
+     *            must not be <code>null</code>
      */
-    public void scopeChange(Set<OCLExpression> leaving, OCLExpression entering) {
+    public void scopeChange(Set<OCLExpression> leaving, Set<OCLExpression> entering) {
         for (OCLExpression s : leaving) {
             removeUnusedEvaluationRequestsWithVariableInScope(s);
         }
-        if (entering != null) {
-            removeUnusedEvaluationRequestsWithVariableInScope(entering);
+        removeUnusedEvaluationRequestsWithVariableInScope(entering);
+    }
+
+    /**
+     * @param scopes must not be <code>null</code>
+     */
+    private void removeUnusedEvaluationRequestsWithVariableInScope(Set<OCLExpression> scopes) {
+        for (OCLExpression scope : scopes) {
+            removeUnusedEvaluationRequestsWithVariableInScope(scope);
         }
     }
 
-    private void removeUnusedEvaluationRequestsWithVariableInScope(OCLExpression s) {
-        Set<UnusedEvaluationRequest> requestsToRemove = unusedEvaluationRequestsByStaticScope.remove(s);
+    private void removeUnusedEvaluationRequestsWithVariableInScope(OCLExpression scope) {
+        Set<UnusedEvaluationRequest> requestsToRemove = unusedEvaluationRequestsByStaticScope.remove(scope);
         if (requestsToRemove != null) {
             for (UnusedEvaluationRequest request : requestsToRemove) {
                 removeUnusedEvaluationRequestFromMapByVariable(request);

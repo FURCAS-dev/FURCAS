@@ -175,15 +175,16 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     }
     
     /**
-     * Calculates the scope the {@link NavigationStep} this {@link Tracer} creates will enter when navigated.
-     * @return the {@link OCLExpression} representing the scope the created {@link NavigationStep} will enter when navigated.
+     * Calculates the scopes the {@link NavigationStep} this {@link Tracer} creates will enter when navigated.
+     * @return the {@link OCLExpression}s representing the scope the created {@link NavigationStep} will enter when navigated. Always
+     * non-<code>null</code>, but possibly empty
      */
-    protected OCLExpression calculateEnteringScope(){
-        return null;
+    protected Set<OCLExpression> calculateEnteringScope() {
+        return Collections.emptySet();
     }
     
     protected void applyScopesOnNavigationStep(NavigationStep step, OperationBodyToCallMapper operationBodyToCallMapper){
-        step.setEnteringScope(calculateEnteringScope());
+        step.setEnteringScopes(calculateEnteringScope());
         step.setLeavingScopes(calculateLeavingScopes(operationBodyToCallMapper));
     }
     
@@ -194,15 +195,15 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * @return A {@link Set} of {@link OCLExpression}s containing all scope creating expressions in the containment hierarchy between origin and parent.
      */
     protected static Set<OCLExpression> scopeCreatingExpressions(OCLExpression origin, OCLExpression parent) {
-        // TODO Auto-generated method stub
-        return null;
+        // TODO implement AbstractTracer.scopeCreatingExpressions
+        return Collections.emptySet();
     }
     
     /**
      * This method is a shortcut for {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression)} that uses {@link AbstractTracer#getExpression()} as the origin.
      * See {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression)} for description.
      * @param parent
-     * @return
+     * @return a non-<code>null</code> set, possibly empty
      */
     protected Set<OCLExpression> scopeCreatingExpressions(OCLExpression parent){
         return scopeCreatingExpressions((OCLExpression)getExpression(), parent);
@@ -215,7 +216,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * @return The common composition parent or null, in case there is none.
      */
     protected static OCLExpression commonCompositionParent(OCLExpression first, OCLExpression second) {
-        // TODO Auto-generated method stub
+        // TODO implement AbstractTracer.commonCompositionParent
         return null;
     }
     

@@ -1,5 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Collections;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -20,8 +23,8 @@ public class IterateExpTracer extends AbstractTracer<IterateExp> {
     }
 
     @Override
-    protected OCLExpression calculateEnteringScope() {
+    protected Set<OCLExpression> calculateEnteringScope() {
         // IterateExpressions are traced back by tracing back their body, which opens a new scope
-        return (OCLExpression) getExpression().getBody();
+        return Collections.singleton((OCLExpression) getExpression().getBody());
     }
 }

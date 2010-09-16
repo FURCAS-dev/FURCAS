@@ -1,5 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Collections;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EParameter;
@@ -45,13 +48,13 @@ public class IteratorExpTracer extends AbstractTracer<IteratorExp> {
     }
     
     @Override
-    protected OCLExpression calculateEnteringScope() {
+    protected Set<OCLExpression> calculateEnteringScope() {
         // which scope is entered depends on the specific operation
         int opCode = OCLStandardLibraryUtil.getOperationCode(getExpression().getName());
         if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED){
             // collect and collect nested are traced back by tracing back their body expression, which opens a new scope
-            return (OCLExpression) getExpression().getBody();
+            return Collections.singleton((OCLExpression) getExpression().getBody());
         }
-        return null;
+        return Collections.emptySet();
     }
 }

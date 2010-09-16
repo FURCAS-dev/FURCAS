@@ -1,5 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Collections;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -21,8 +24,8 @@ public class LetExpTracer extends AbstractTracer<LetExp> {
 	}
 	
 	@Override
-	protected OCLExpression calculateEnteringScope() {
+	protected Set<OCLExpression> calculateEnteringScope() {
 	    // tracing back a LetExp always leads to a traceback of the in expression, which opens a new scope
-	    return (OCLExpression) getExpression().getIn();
+	    return Collections.singleton((OCLExpression) getExpression().getIn());
 	}
 }
