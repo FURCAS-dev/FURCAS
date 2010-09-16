@@ -7,15 +7,19 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionRange;
 import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralPart;
+import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.util.OclHelper;
@@ -227,14 +231,34 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * of a loop expression is the scope for the loop's iterator variables.
      */
     private static boolean isScopeCreatingExpression(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
+        return !getVariablesScopedByExpression(e, operationBodyToCallMapper).isEmpty();
+    }
+
+    private static Set<Variable> getVariablesScopedByExpression(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
         EObject container = e.eContainer();
-        boolean result = 
-         // body of a loop expression:
-            (container instanceof LoopExp && ((LoopExp) container).getBody() == e)
-         // in-expression of a let-expression:
-         || (container instanceof LetExp && ((LetExp) container).getIn() == e)
-         // body of an operation
-         || (e instanceof OCLExpression && !operationBodyToCallMapper.getCallsOf((OCLExpression) e).isEmpty());
+        Set<Variable> result = new HashSet<Variable>();
+        if (container instanceof LoopExp && ((LoopExp) container).getBody() == e) {
+            // body of a loop expression
+            for (org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> v : ((LoopExp) container).getIterator()) {
+                result.add((Variable) v);
+            }
+            if (container instanceof IterateExp) {
+                Variable resultVariable = (Variable) ((IterateExp) container).getResult();
+                if (resultVariable != null) {
+                    result.add(resultVariable);
+                }
+            }
+        } else if (container instanceof LetExp && ((LetExp) container).getIn() == e) {
+            // in-expression of a let-expression
+            result.add((Variable) ((LetExp) container).getVariable());
+        } else {
+            Set<OperationCallExp> calls = operationBodyToCallMapper.getCallsOf(e);
+            if (!calls.isEmpty()) {
+                // body of an operation
+                result.addAll(operationBodyToCallMapper.getSelfVariablesUsedInBody(e));
+                result.addAll(operationBodyToCallMapper.getParameterVariablesUsedInBody(e));
+            }
+        }
         return result;
     }
 

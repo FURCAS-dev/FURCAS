@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
@@ -18,15 +19,16 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.ecore.NavigationCallExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.expressions.VariableExp;
-import org.eclipse.ocl.parser.OCLParsersym;
 import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
@@ -70,6 +72,9 @@ implements OperationBodyToCallMapper {
     private final Map<EReference, Set<NavigationCallExp>> associationEndCallExpressions = new HashMap<EReference, Set<NavigationCallExp>>();
     private final Set<OCLExpression> visitedExpressions = new HashSet<OCLExpression>();
     private final Map<EClassifier, Set<OperationCallExp>> allInstancesCalls = new HashMap<EClassifier, Set<OperationCallExp>>();
+    private final Stack<OCLExpression> visitedOperationBodyStack = new Stack<OCLExpression>();
+    private final Map<OCLExpression, Set<Variable>> selfVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
+    private final Map<OCLExpression, Set<Variable>> parameterVariablesUsedInBody = new HashMap<OCLExpression, Set<Variable>>();
  
     /**
      * @param expression The {@link OCLExpression} the filter should be created for. 
@@ -144,7 +149,6 @@ implements OperationBodyToCallMapper {
     
     @Override
     public EPackage handleOperationCallExp(org.eclipse.ocl.expressions.OperationCallExp<EClassifier, EOperation> opCallExp, EPackage sourceResult, List<EPackage> qualifierResults) {
-        
         if (opCallExp.getReferredOperation().getName().equals(PredefinedType.ALL_INSTANCES_NAME) ) {
             EClass cls = null;
             org.eclipse.ocl.expressions.OCLExpression<EClassifier> source = opCallExp.getSource();
@@ -163,7 +167,7 @@ implements OperationBodyToCallMapper {
             set.add((OperationCallExp) opCallExp);
         } else {
             if (opCallExp.getOperationCode() > 0){
-                //std. library operation nothing to do
+                // standard library operation: nothing to do
             } else {
                 // handle self defined operation
                 // TODO this is only required to obtain the operation body from our proprietary annotation URI. Could use InvocationBehavior.getOperationBody later
@@ -173,11 +177,17 @@ implements OperationBodyToCallMapper {
                     Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
                     if (analyzedCallsToBody == null) {
                         analyzedCallsToBody = new HashSet<OperationCallExp>();
-                        // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
+                        // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now.
+                        // Important: add opCallExp before visiting the body; during analyzing the body we may need to know
+                        // the call/body relationship, e.g., for self and param analysis as well as error reporting
+                        analyzedCallsToBody.add((OperationCallExp) opCallExp);
                         visitedOperationBodies.put(body, analyzedCallsToBody);
+                        visitedOperationBodyStack.push(body);
                         walk(body);
+                        visitedOperationBodyStack.pop();
+                    } else {
+                        analyzedCallsToBody.add((OperationCallExp) opCallExp);
                     }
-                    analyzedCallsToBody.add((OperationCallExp) opCallExp);
                 }
             }
         }
@@ -186,9 +196,35 @@ implements OperationBodyToCallMapper {
 
     @Override
     public EPackage visitVariableExp(VariableExp<EClassifier, EParameter> var) {
-        if (notifyNewContextElements && var.getName().equals(OCLParsersym.orderedTerminalSymbols[OCLParsersym.TK_self])) {
-            EClass cls = (EClass) var.getType();
-            filters.add(createFilterForElementInsertionOrDeletion(cls));
+        EOperation operation = null;
+        if (!visitedOperationBodyStack.isEmpty()) {
+            OCLExpression body = visitedOperationBodyStack.peek();
+            operation = visitedOperationBodies.get(body).iterator().next().getReferredOperation();
+            if (var.getName().equals(Environment.SELF_VARIABLE_NAME)) {
+                Set<Variable> selfSet = selfVariablesUsedInBody.get(body);
+                if (selfSet == null) {
+                    selfSet = new HashSet<Variable>();
+                    selfVariablesUsedInBody.put(body, selfSet);
+                }
+                selfSet.add((Variable) var.getReferredVariable());
+            } else {
+                for (EParameter param : operation.getEParameters()) {
+                    if (var.getName().equals(param.getName())) {
+                        Set<Variable> paramSet = parameterVariablesUsedInBody.get(body);
+                        if (paramSet == null) {
+                            paramSet = new HashSet<Variable>();
+                            parameterVariablesUsedInBody.put(body, paramSet);
+                        }
+                        paramSet.add((Variable) var.getReferredVariable());
+                        break;
+                    }
+                }
+            }
+        } else {
+            if (notifyNewContextElements && var.getName().equals(Environment.SELF_VARIABLE_NAME)) {
+                EClass cls = (EClass) var.getType();
+                filters.add(createFilterForElementInsertionOrDeletion(cls));
+            }
         }
         return result;
     }
@@ -283,6 +319,22 @@ implements OperationBodyToCallMapper {
             visitedExpressions.add(expression);
             safeVisit(expression);   
         }
+    }
+
+    public Set<Variable> getSelfVariablesUsedInBody(OCLExpression body) {
+        Set<Variable> result = selfVariablesUsedInBody.get(body);
+        if (result == null) {
+            result = Collections.emptySet();
+        }
+        return result;
+    }
+
+    public Set<Variable> getParameterVariablesUsedInBody(OCLExpression body) {
+        Set<Variable> result = parameterVariablesUsedInBody.get(body);
+        if (result == null) {
+            result = Collections.emptySet();
+        }
+        return result;
     }
 
 } //FilterSynthesisImpl
