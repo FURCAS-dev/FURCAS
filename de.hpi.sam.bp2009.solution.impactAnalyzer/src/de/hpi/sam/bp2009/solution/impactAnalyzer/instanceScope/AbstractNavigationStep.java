@@ -79,9 +79,9 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      */
     private static int maxToken = 0;
     
-    private Set<OCLExpression> leavingScopes = Collections.emptySet();
+    private Set<OCLExpression> leavingScopes = new HashSet<OCLExpression>();
     
-    private Set<OCLExpression> enteringScopes = Collections.emptySet();
+    private Set<OCLExpression> enteringScopes = new HashSet<OCLExpression>();
 
     public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
         this.sourceType = sourceType;
@@ -503,22 +503,22 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * step is navigated.
      */
     public Set<OCLExpression> getLeavingScopes(){
-        return leavingScopes;
+        return Collections.unmodifiableSet(leavingScopes);
     }
     
-    public void setLeavingScopes(Set<OCLExpression> leavingScopes){
-        this.leavingScopes = leavingScopes;
+    public void addLeavingScopes(Set<OCLExpression> leavingScopes){
+        this.leavingScopes.addAll(leavingScopes);
     }
     
     public Set<OCLExpression> getEnteringScope(){
-        return enteringScopes;
+        return Collections.unmodifiableSet(enteringScopes);
     }
     
     /**
      * @return always non-<code>null</code>, but possibly empty set of expressions that form scopes that are entered when this
      * step is navigated.
      */
-    public void setEnteringScopes(Set<OCLExpression> enteringScope){
-        this.enteringScopes = enteringScope;
+    public void addEnteringScopes(Set<OCLExpression> enteringScope){
+        this.enteringScopes.addAll(enteringScope);
     }
 }
