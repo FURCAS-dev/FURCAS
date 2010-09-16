@@ -17,3 +17,29 @@ If you think these notes are to short or not expressive enough, feel free to add
 - Keep in mind that variable values may be inferred which will be required by a partial evaluation for unused,
   but for which so far no callback (UnusedEvaluationRequest) has been recorded. How is the variable value inferred
   propagated to the partial evaluation?
+  
+- What could be really bad: when delving from an OperationCallExp into an operation body, new dynamic scopes will be created
+  for all variables that are again in scope when while tracing the body a self/parameter VariableExp is visited. This
+  will make it impossible to relate variable values inferred after popping back up through a self/parameter usage
+  to any parked UnusedEvaluationRequest in the calling expression. Example:
+  
+  	let x=... in
+  		x.op()->select(i | if x.a > 3 then
+  							 i.b
+  						   else
+  						     i.c
+  						   endif)
+  	
+  Let's assume the change event affects i.b. We'll try to partially evaluate x.a>3 to see if i.b may have been
+  unused. We're missing x. So we continue with traceback which leads us to the source expression of the select
+  iterator (x.op()). This lets traceback continue with op's body expression. Let's assume that traceback then
+  hits a "self" variable inside op's body. This throws processing back up to the "x" source expression of the
+  x.op() call. At this point, traceback infers the value for x. This could actually trigger the UnusedEvaluationRequest
+  parked for x.a>3 and would lead to successful partial evaluation of the expression which may prove unusedness
+  of the i.b expression, therefore pruning the traceback tree currently visited.
+  
+  But this may get us back into a similar problem we were facing with considering the actual call hierarchy for
+  limiting the number of OperationCallExp to consider when traceback was currently visiting an operation's body
+  only because it was tracing one particular known call. It led to the problem that caching the navigation step
+  results would have to have used the actual call hierarchy as part of the key which ended up in a combinatorial
+  explosion of different keys, leading to what seemed to be NP-like effort.
