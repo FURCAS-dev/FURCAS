@@ -121,7 +121,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             // the step enters into all scopes in which the argument expression in the operation call is nested,
             // starting from the root expression for the argument expression:
             stepForCall.addEnteringScopes(AbstractTracer.scopeCreatingExpressions(argumentExpression,
-                    OclHelper.getRootExpression(argumentExpression), /* inclusive */ true));
+                    OclHelper.getRootExpression(argumentExpression), /* inclusive */ true, operationBodyToCallMapper));
             stepsPerCall.add(stepForCall);
         }
         indirectingStep.setActualStep(pathCache.navigationStepForBranch(getInnermostElementType(getExpression().getType()),
@@ -207,7 +207,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
                 // the step enters into all scopes in which the source expression in the operation call is nested,
                 // starting from the root expression for the source expression:
                 stepForCall.addEnteringScopes(AbstractTracer.scopeCreatingExpressions(callSource,
-                        OclHelper.getRootExpression(callSource), /* inclusive */ true));
+                        OclHelper.getRootExpression(callSource), /* inclusive */ true, operationBodyToCallMapper));
                 stepsForCalls.add(stepForCall);
             }
             // the branching navigation step must not be cached or looked up in a cache because its
@@ -246,18 +246,18 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         Set<OCLExpression> result;
         if (isLetVariable()) {
             result = scopeCreatingExpressions(commonCompositionParent((OCLExpression) getVariableDeclaration().getInitExpression()),
-                    /* inclusive */ false);
+                    /* inclusive */ false, operationBodyToCallMapper);
         } else if (isIteratorVariable()) {
             result = scopeCreatingExpressions(commonCompositionParent((OCLExpression) ((LoopExp) getVariableDeclaration().eContainer()).getSource()),
-                    /* inclusive */ false);
+                    /* inclusive */ false, operationBodyToCallMapper);
         } else if (isIterateResultVariable()) {
             OCLExpression parent = commonCompositionParent((OCLExpression) ((IterateExp) getVariableDeclaration().eContainer()).getBody());
-            result = scopeCreatingExpressions(parent, /* inclusive */ true);
+            result = scopeCreatingExpressions(parent, /* inclusive */ true, operationBodyToCallMapper);
             return result;
         } else if (isOperationParameter() || (isSelf() && getOperationOfWhichRootExpressionIsTheBody(operationBodyToCallMapper) != null)) {
             // for operation parameters or self inside an operation body, traceback continues with the call expression,
             // leaving all scopes
-            result = scopeCreatingExpressions(getRootExpression(), /* inclusive */ true);
+            result = scopeCreatingExpressions(getRootExpression(), /* inclusive */ true, operationBodyToCallMapper);
         } else {
             result = Collections.emptySet();
         }

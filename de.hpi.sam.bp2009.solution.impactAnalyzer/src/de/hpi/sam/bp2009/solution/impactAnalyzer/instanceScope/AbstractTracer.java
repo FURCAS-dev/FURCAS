@@ -11,9 +11,12 @@ import org.eclipse.ocl.ecore.CollectionItem;
 import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.CollectionRange;
 import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralPart;
+import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.util.OclHelper;
 
@@ -195,7 +198,8 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * @param origin
      *            The {@link OCLExpression} used as the origin of the search.
      * @param parent
-     *            The {@link OCLExpression} that is the parent of the origin.
+     *            The {@link OCLExpression} that is a immediate or transitive containment parent of the origin (see
+     *            {@link EObject#eContainer()})
      * @param inclusive
      *            if <code>true</code> and <code>parent</code> is a scope-defining expression (e.g., the body of an operation),
      *            then <code>parent</code> will be added to the result; otherwise, parent is not considered for addition to the
@@ -203,14 +207,40 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * @return A {@link Set} of {@link OCLExpression}s containing all scope creating expressions in the containment hierarchy
      *         between origin and parent.
      */
-    protected static Set<OCLExpression> scopeCreatingExpressions(OCLExpression origin, OCLExpression parent, boolean inclusive) {
-        // TODO implement AbstractTracer.scopeCreatingExpressions
-        return Collections.emptySet();
+    protected static Set<OCLExpression> scopeCreatingExpressions(OCLExpression origin, OCLExpression parent, boolean inclusive,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
+        EObject e = origin;
+        Set<OCLExpression> result = new HashSet<OCLExpression>();
+        while ((inclusive && e != parent) || (!inclusive && e.eContainer() == parent)) {
+            if (e instanceof OCLExpression && isScopeCreatingExpression((OCLExpression) e, operationBodyToCallMapper)) {
+                result.add((OCLExpression) e);
+            }
+            e = e.eContainer();
+        }
+        return result;
     }
     
     /**
-     * This method is a shortcut for {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression, boolean)} that uses {@link AbstractTracer#getExpression()} as the origin.
-     * See {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression, boolean)} for description.
+     * Returns <code>true</code> if and only if <code>e</code> is the static scope for one or more variables that are
+     * visible inside <code>e</code>'s containment tree (including <code>e</code> itself, so <code>e</code> could be
+     * a {@link VariableExp} referring to such a variable) and not visible outside. For example, the {@link LoopExp#getBody() body}
+     * of a loop expression is the scope for the loop's iterator variables.
+     */
+    private static boolean isScopeCreatingExpression(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
+        EObject container = e.eContainer();
+        boolean result = 
+         // body of a loop expression:
+            (container instanceof LoopExp && ((LoopExp) container).getBody() == e)
+         // in-expression of a let-expression:
+         || (container instanceof LetExp && ((LetExp) container).getIn() == e)
+         // body of an operation
+         || (e instanceof OCLExpression && !operationBodyToCallMapper.getCallsOf((OCLExpression) e).isEmpty());
+        return result;
+    }
+
+    /**
+     * This method is a shortcut for {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression, boolean, OperationBodyToCallMapper)} that uses {@link AbstractTracer#getExpression()} as the origin.
+     * See {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression, boolean, OperationBodyToCallMapper)} for description.
      * @param parent
      * @param inclusive
      *            if <code>true</code> and <code>parent</code> is a scope-defining expression (e.g., the body of an operation),
@@ -218,8 +248,9 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      *            result.
      * @return a non-<code>null</code> set, possibly empty
      */
-    protected Set<OCLExpression> scopeCreatingExpressions(OCLExpression parent, boolean inclusive){
-        return scopeCreatingExpressions((OCLExpression)getExpression(), parent, inclusive);
+    protected Set<OCLExpression> scopeCreatingExpressions(OCLExpression parent, boolean inclusive,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
+        return scopeCreatingExpressions((OCLExpression)getExpression(), parent, inclusive, operationBodyToCallMapper);
     }
 
     /**
