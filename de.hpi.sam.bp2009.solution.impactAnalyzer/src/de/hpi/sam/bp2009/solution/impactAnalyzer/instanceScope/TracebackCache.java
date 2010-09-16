@@ -91,12 +91,33 @@ public class TracebackCache {
      */
     private final Map<OCLExpression, Set<UnusedEvaluationRequest>> unusedEvaluationRequestsByStaticScope;
     
+    /**
+     * The variables that are in scope for the expression currently being visited by the traceback process.
+     */
+    private final Set<Variable> variablesInScope;
+    
+    /**
+     * For each variable that was in scope at any time during a traceback run, this map records the current dynamic scope
+     * as a linearly increasing counter for each variable. These numeric scope IDs can be used to look up variable values
+     * inferred during the traceback process by a {@link VariableDefiningNavigationStep} in the {@link #knownVariableValues} map.
+     */
+    private final Map<Variable, Integer> dynamicScopes;
+    
+    /**
+     * Records variable values inferred by {@link VariableDefiningNavigationStep}s during the traceback process,
+     * together with the dynamic scope IDs that also appear as the values in {@link #dynamicScopes}.
+     */
+    private final Map<Pair<Variable, Integer>, Object> knownVariableValues;
+    
     private final OperationBodyToCallMapper operationBodyToCallMapper;
     
     public TracebackCache(OperationBodyToCallMapper operationBodyToCallMapper) {
         navigateCache = new HashMap<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>>();
         unusedEvaluationRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
         unusedEvaluationRequestsByStaticScope = new HashMap<OCLExpression, Set<UnusedEvaluationRequest>>();
+        variablesInScope = new HashSet<Variable>();
+        dynamicScopes = new HashMap<Variable, Integer>();
+        knownVariableValues = new HashMap<Pair<Variable, Integer>, Object>();
         this.operationBodyToCallMapper = operationBodyToCallMapper;
     }
     
@@ -114,48 +135,44 @@ public class TracebackCache {
     }
 
     /**
-     * Remove all entries in {@link #unusedEvaluationRequests} and {@link #unusedEvaluationRequestsByStaticScope} whose variables
-     * are no longer in scope by navigating from the <code>from</code> expression to the <code>to</code> expression.
-     * <p>
-     * 
-     * When the <code>traceback</code> or <code>unused</code> function leaves an expression that is the static scope of an unknown
-     * variable, the corresponding <code>unused</code> evaluation requests are canceled because we cannot hope for the traceback
-     * process to ever infer it anymore. Which scopes are left when moving from one expression to the next can be a bit tricky.
-     * For example, when jumping from an iterator variable expression to the {@link LoopExp}'s source expression, all kinds of
-     * in-between expressions that are containers to the iterator variable expression are left as well. Therefore, the common
-     * container of the <code>from</code>/<code>to</code> expressions needs to be determined, and all variables whose static scope
-     * is any of <code>from</code>, or any of <code>from</code>'s direct or transitive containers that are still contained
-     * (directly or transitively) in the common container of <code>from</code>/<code>to</code>, are considered out of scope.
-     * <p>
+     * Updates {@link #variablesInScope} and {@link #dynamicScopes} by removing all variables that leave scope,
+     * then adding all variables entering scope to {@link #variablesInScope}. For all variables entering scope,
+     * their dynamic scope ID in {@link #dynamicScopes} is incremented (if there already was one contained)
+     * or initialized to 0 (if non was contained yet, meaning the variable enters scope for the first time).
      * 
      * @param leaving
      *            must not be <code>null</code>
      * @param entering
      *            must not be <code>null</code>
      */
-    public void scopeChange(Set<OCLExpression> leaving, Set<OCLExpression> entering) {
-        for (OCLExpression s : leaving) {
-            removeUnusedEvaluationRequestsWithVariableInScope(s);
+    public void scopeChange(Set<Variable> leaving, Set<Variable> entering) {
+        variablesInScope.removeAll(leaving);
+        variablesInScope.addAll(entering);
+        for (Variable v : entering) {
+            Integer dynamicScopeID = dynamicScopes.get(v);
+            if (dynamicScopeID == null) {
+                dynamicScopeID = 0;
+            } else {
+                dynamicScopeID++;
+            }
+            dynamicScopes.put(v, dynamicScopeID);
         }
-        removeUnusedEvaluationRequestsWithVariableInScope(entering);
     }
-
+    
     /**
-     * @param scopes must not be <code>null</code>
+     * Based on the current dynamic scopes {see {@link #dynamicScopes}) for all variables currently in scope
+     * (see {@link #variablesInScope}) for which their value for the current dynamic scope is known, puts
+     * an entry into the resulting map associating the value known with the variable. 
      */
-    private void removeUnusedEvaluationRequestsWithVariableInScope(Set<OCLExpression> scopes) {
-        for (OCLExpression scope : scopes) {
-            removeUnusedEvaluationRequestsWithVariableInScope(scope);
-        }
-    }
-
-    private void removeUnusedEvaluationRequestsWithVariableInScope(OCLExpression scope) {
-        Set<UnusedEvaluationRequest> requestsToRemove = unusedEvaluationRequestsByStaticScope.remove(scope);
-        if (requestsToRemove != null) {
-            for (UnusedEvaluationRequest request : requestsToRemove) {
-                removeUnusedEvaluationRequestFromMapByVariable(request);
+    public Map<Variable, Object> getKnownValuesOfVariablesInCurrentScope() {
+        Map<Variable, Object> result = new HashMap<Variable, Object>();
+        for (Variable variableInScope : variablesInScope) {
+            Pair<Variable, Integer> scope = new Pair<Variable, Integer>(variableInScope, dynamicScopes.get(variableInScope));
+            if (knownVariableValues.containsKey(scope)) { // allow for null values!
+                result.put(variableInScope, knownVariableValues.get(scope));
             }
         }
+        return result;
     }
 
     /**
@@ -201,14 +218,6 @@ public class TracebackCache {
         requestsByScope.remove(request);
         if (requestsByScope.isEmpty()) {
             unusedEvaluationRequestsByStaticScope.remove(request.getVariableScope());
-        }
-    }
-
-    private void removeUnusedEvaluationRequestFromMapByVariable(UnusedEvaluationRequest request) {
-        Set<UnusedEvaluationRequest> requestsByVariable = unusedEvaluationRequests.get(request.getUnknownVariable());
-        requestsByVariable.remove(request);
-        if (requestsByVariable.isEmpty()) {
-            unusedEvaluationRequests.remove(request.getUnknownVariable());
         }
     }
 

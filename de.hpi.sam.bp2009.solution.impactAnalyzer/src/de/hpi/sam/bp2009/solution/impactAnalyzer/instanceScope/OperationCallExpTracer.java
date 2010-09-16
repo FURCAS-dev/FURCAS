@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.impl.TypeExpImpl;
 import org.eclipse.ocl.utilities.PredefinedType;
 
@@ -126,13 +127,21 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     }
     
     @Override
-    protected Set<OCLExpression> calculateEnteringScope() {
+    protected Set<Variable> calculateEnteringScope(OperationBodyToCallMapper operationBodyToCallMapper) {
         OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(getExpression().getReferredOperation(), "body");
         if (body != null){
             // an OCL-specified operation, the body creates a new scope
-            return Collections.singleton(body);
+            return getVariablesScopedByExpression(body, operationBodyToCallMapper);
         }
         // standard OCL operations do not alter the scope as we cannot trace into their implementation
         return Collections.emptySet();
+    }
+
+    /**
+     * When tracing into the called operation's body, all variables currently in scope are left.
+     */
+    @Override
+    protected Set<Variable> calculateLeavingScopes(OperationBodyToCallMapper operationBodyToCallMapper) {
+        return getAllVariablesInScope(getExpression(), operationBodyToCallMapper);
     }
 }

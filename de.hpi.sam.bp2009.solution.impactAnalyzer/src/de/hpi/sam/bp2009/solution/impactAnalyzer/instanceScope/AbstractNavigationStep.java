@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.Variable;
 
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.util.OclHelper;
@@ -79,9 +80,9 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      */
     private static int maxToken = 0;
     
-    private Set<OCLExpression> leavingScopes = new HashSet<OCLExpression>();
+    private Set<Variable> leavingScopes = new HashSet<Variable>();
     
-    private Set<OCLExpression> enteringScopes = new HashSet<OCLExpression>();
+    private Set<Variable> enteringScopes = new HashSet<Variable>();
 
     public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
         this.sourceType = sourceType;
@@ -330,7 +331,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         // TODO check if changing the scope before the navigation procedure is correct
         // especially the creation of unusedRequests may interfere with this; this should probably happen only
         // when constructing a new TracebackCache copy for recursive calls triggered by the actual navigate implementation
-        cache.scopeChange(getLeavingScopes(), getEnteringScope());
+        cache.scopeChange(getLeavingScopes(), getEnteringScopes());
         incrementNavigateCounter(from);
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>(from.size());
         if (isAbsolute()) {
@@ -502,15 +503,15 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * @return always non-<code>null</code>, but possibly empty set of expressions that form scopes that are left when this
      * step is navigated.
      */
-    public Set<OCLExpression> getLeavingScopes(){
+    public Set<Variable> getLeavingScopes(){
         return Collections.unmodifiableSet(leavingScopes);
     }
     
-    public void addLeavingScopes(Set<OCLExpression> leavingScopes){
+    public void addLeavingScopes(Set<Variable> leavingScopes){
         this.leavingScopes.addAll(leavingScopes);
     }
     
-    public Set<OCLExpression> getEnteringScope(){
+    public Set<Variable> getEnteringScopes(){
         return Collections.unmodifiableSet(enteringScopes);
     }
     
@@ -518,7 +519,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      * @return always non-<code>null</code>, but possibly empty set of expressions that form scopes that are entered when this
      * step is navigated.
      */
-    public void addEnteringScopes(Set<OCLExpression> enteringScope){
+    public void addEnteringScopes(Set<Variable> enteringScope){
         this.enteringScopes.addAll(enteringScope);
     }
 }
