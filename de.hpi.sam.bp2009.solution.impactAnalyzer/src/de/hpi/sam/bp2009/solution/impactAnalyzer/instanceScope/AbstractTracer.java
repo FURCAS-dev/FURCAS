@@ -167,7 +167,6 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     
     /**
      * Calculates which scopes the {@link NavigationStep} this {@link Tracer} creates will leave when navigated.
-     * @param operationBodyToCallMapper TODO
      * @return the set of {@link OCLExpression}s representing the scopes the created {@link NavigationStep} will leave when navigated.
      */
     protected Set<OCLExpression> calculateLeavingScopes(OperationBodyToCallMapper operationBodyToCallMapper){
@@ -184,8 +183,8 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     }
     
     protected void applyScopesOnNavigationStep(NavigationStep step, OperationBodyToCallMapper operationBodyToCallMapper){
-        step.setEnteringScopes(calculateEnteringScope());
-        step.setLeavingScopes(calculateLeavingScopes(operationBodyToCallMapper));
+        step.addEnteringScopes(calculateEnteringScope());
+        step.addLeavingScopes(calculateLeavingScopes(operationBodyToCallMapper));
     }
     
     /**
