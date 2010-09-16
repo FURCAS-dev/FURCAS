@@ -128,12 +128,15 @@ public interface NavigationStep extends SemanticComparable {
      * Returns the scope, this navigation step will enter when navigated. It is given as an {@link OCLExpression}.
      * @return the {@link OCLExpression} representing the scope entered by navigating this step.
      */
-    OCLExpression getEnteringScope();
-    
+    Set<OCLExpression> getEnteringScope();
+
     /**
-     * Sets the scope, this navigation step will enter when navigated. It is given as an {@link OCLExpression}.
-     * @param enteringScope the {@link OCLExpression} representing the scope entered by navigating this step.
+     * Sets the set of scopes this navigation step will enter when navigated. It is given as an
+     * <code>Set&gt;{@link OCLExpression}&gt;</code>.
+     * 
+     * @param enteringScope
+     *            the set of {@link OCLExpression}s representing the scope entered by navigating this step.
      */
-    void setEnteringScope(OCLExpression enteringScope);
+    void setEnteringScopes(Set<OCLExpression> enteringScope);
 
 }

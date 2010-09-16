@@ -113,8 +113,10 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         // This may not pay off.
         for (OperationCallExp call : operationBodyToCallMapper.getCallsOf(rootExpression)) {
             OCLExpression argumentExpression = (OCLExpression) call.getArgument().get(pos);
-            stepsPerCall.add(pathCache.getOrCreateNavigationPath(argumentExpression, context, operationBodyToCallMapper,
-                    getTupleLiteralPartNamesToLookFor()));
+            NavigationStep stepForCall = pathCache.getOrCreateNavigationPath(argumentExpression, context, operationBodyToCallMapper,
+                    getTupleLiteralPartNamesToLookFor());
+            // TODO stepForCall.setEnteringScope(TODO);
+            stepsPerCall.add(stepForCall);
         }
         indirectingStep.setActualStep(pathCache.navigationStepForBranch(getInnermostElementType(getExpression().getType()),
                 context, getExpression(), getTupleLiteralPartNamesToLookFor(), stepsPerCall.toArray(new NavigationStep[0])));
@@ -194,8 +196,10 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             List<NavigationStep> stepsForCalls = new ArrayList<NavigationStep>();
             for (OperationCallExp call : calls) {
                 OCLExpression callSource = (OCLExpression) call.getSource();
-                stepsForCalls.add(pathCache.getOrCreateNavigationPath(callSource, context, operationBodyToCallMapper,
-                        getTupleLiteralPartNamesToLookFor()));
+                NavigationStep stepForCall = pathCache.getOrCreateNavigationPath(callSource, context, operationBodyToCallMapper,
+                        getTupleLiteralPartNamesToLookFor());
+                // TODO stepForCall.setEnteringScope(TODO);
+                stepsForCalls.add(stepForCall);
             }
             // the branching navigation step must not be cached or looked up in a cache because its
             // associated expression is the same as the one used for the IndirectingStep created and cached

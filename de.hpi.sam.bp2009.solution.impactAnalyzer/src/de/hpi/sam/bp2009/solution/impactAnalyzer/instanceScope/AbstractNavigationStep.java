@@ -81,7 +81,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     
     private Set<OCLExpression> leavingScopes = Collections.emptySet();
     
-    private OCLExpression enteringScope = null;
+    private Set<OCLExpression> enteringScopes = Collections.emptySet();
 
     public AbstractNavigationStep(EClass sourceType, EClass targetType, OCLExpression debugInfo) {
         this.sourceType = sourceType;
@@ -328,11 +328,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      */
     public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, TracebackCache cache, Notification changeEvent) {
         // TODO check if changing the scope before the navigation procedure is correct
-        // especially the creation of unusedRequests may interfere with this
+        // especially the creation of unusedRequests may interfere with this; this should probably happen only
+        // when constructing a new TracebackCache copy for recursive calls triggered by the actual navigate implementation
         cache.scopeChange(getLeavingScopes(), getEnteringScope());
-        
         incrementNavigateCounter(from);
-
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>(from.size());
         if (isAbsolute()) {
             from = Collections.singleton(null);
@@ -499,22 +498,27 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	return semanticIdentity;
     }
     
+    /**
+     * @return always non-<code>null</code>, but possibly empty set of expressions that form scopes that are left when this
+     * step is navigated.
+     */
     public Set<OCLExpression> getLeavingScopes(){
         return leavingScopes;
     }
     
     public void setLeavingScopes(Set<OCLExpression> leavingScopes){
-        this.leavingScopes = new HashSet<OCLExpression>();
-        for(OCLExpression scope : leavingScopes){
-            this.leavingScopes.add(scope);
-        }
+        this.leavingScopes = leavingScopes;
     }
     
-    public OCLExpression getEnteringScope(){
-        return enteringScope;
+    public Set<OCLExpression> getEnteringScope(){
+        return enteringScopes;
     }
     
-    public void setEnteringScope(OCLExpression enteringScope){
-        this.enteringScope = enteringScope;
+    /**
+     * @return always non-<code>null</code>, but possibly empty set of expressions that form scopes that are entered when this
+     * step is navigated.
+     */
+    public void setEnteringScopes(Set<OCLExpression> enteringScope){
+        this.enteringScopes = enteringScope;
     }
 }
