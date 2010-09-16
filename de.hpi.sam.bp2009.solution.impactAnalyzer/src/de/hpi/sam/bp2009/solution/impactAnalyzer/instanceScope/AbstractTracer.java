@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
@@ -186,37 +187,66 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         step.addEnteringScopes(calculateEnteringScope());
         step.addLeavingScopes(calculateLeavingScopes(operationBodyToCallMapper));
     }
-    
+
     /**
-     * This method returns all scope creating {@link OCLExpression}s in the containment hierarchy between the given origin and the given parent.
-     * @param origin The {@link OCLExpression} used as the origin of the search.
-     * @param parent The {@link OCLExpression} that is the parent of the origin.
-     * @return A {@link Set} of {@link OCLExpression}s containing all scope creating expressions in the containment hierarchy between origin and parent.
+     * This method returns all scope creating {@link OCLExpression}s in the containment hierarchy between the given origin and the
+     * given parent.
+     * 
+     * @param origin
+     *            The {@link OCLExpression} used as the origin of the search.
+     * @param parent
+     *            The {@link OCLExpression} that is the parent of the origin.
+     * @param inclusive
+     *            if <code>true</code> and <code>parent</code> is a scope-defining expression (e.g., the body of an operation),
+     *            then <code>parent</code> will be added to the result; otherwise, parent is not considered for addition to the
+     *            result.
+     * @return A {@link Set} of {@link OCLExpression}s containing all scope creating expressions in the containment hierarchy
+     *         between origin and parent.
      */
-    protected static Set<OCLExpression> scopeCreatingExpressions(OCLExpression origin, OCLExpression parent) {
+    protected static Set<OCLExpression> scopeCreatingExpressions(OCLExpression origin, OCLExpression parent, boolean inclusive) {
         // TODO implement AbstractTracer.scopeCreatingExpressions
         return Collections.emptySet();
     }
     
     /**
-     * This method is a shortcut for {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression)} that uses {@link AbstractTracer#getExpression()} as the origin.
-     * See {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression)} for description.
+     * This method is a shortcut for {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression, boolean)} that uses {@link AbstractTracer#getExpression()} as the origin.
+     * See {@link AbstractTracer#scopeCreatingExpressions(OCLExpression, OCLExpression, boolean)} for description.
      * @param parent
+     * @param inclusive
+     *            if <code>true</code> and <code>parent</code> is a scope-defining expression (e.g., the body of an operation),
+     *            then <code>parent</code> will be added to the result; otherwise, parent is not considered for addition to the
+     *            result.
      * @return a non-<code>null</code> set, possibly empty
      */
-    protected Set<OCLExpression> scopeCreatingExpressions(OCLExpression parent){
-        return scopeCreatingExpressions((OCLExpression)getExpression(), parent);
+    protected Set<OCLExpression> scopeCreatingExpressions(OCLExpression parent, boolean inclusive){
+        return scopeCreatingExpressions((OCLExpression)getExpression(), parent, inclusive);
     }
 
     /**
-     * This method finds the common composition parent of the two given {@link OCLExpression}s.
+     * This method finds the common composition parent of the two given {@link OCLExpression}s. If the two expressions
+     * don't have a common container, <code>null</code> is returned.
+     * 
      * @param first The first {@link OCLExpression}.
      * @param second The second {@link OCLExpression}.
      * @return The common composition parent or null, in case there is none.
      */
     protected static OCLExpression commonCompositionParent(OCLExpression first, OCLExpression second) {
-        // TODO implement AbstractTracer.commonCompositionParent
-        return null;
+        Set<OCLExpression> firstsContainersIncludingFirst = new HashSet<OCLExpression>();
+        EObject firstsContainer = first;
+        while (firstsContainer != null && firstsContainer instanceof OCLExpression) {
+            firstsContainersIncludingFirst.add((OCLExpression) firstsContainer);
+            firstsContainer = firstsContainer.eContainer();
+        }
+        EObject secondsContainer = second;
+        OCLExpression result = null;
+        while (result == null && secondsContainer != null && secondsContainer instanceof OCLExpression) {
+            if (firstsContainersIncludingFirst.contains(secondsContainer)) {
+                result = (OCLExpression) secondsContainer;
+            } else {
+                secondsContainer = secondsContainer.eContainer();
+            }
+        }
+        return result;
     }
     
     /**
