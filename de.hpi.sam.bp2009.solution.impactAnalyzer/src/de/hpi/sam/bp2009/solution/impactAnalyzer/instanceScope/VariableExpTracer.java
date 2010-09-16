@@ -20,8 +20,11 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 
+import com.sap.emf.ocl.util.OclHelper;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
+// TODO refactor into several subclasses, one for each is... case, and let tracer factory in InstanceScopeAnalysis.createTracer choose the appropriate one
 public class VariableExpTracer extends AbstractTracer<VariableExp> {
     public VariableExpTracer(VariableExp expression, String[] tuplePartNames) {
         super(expression, tuplePartNames);
@@ -115,7 +118,10 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             OCLExpression argumentExpression = (OCLExpression) call.getArgument().get(pos);
             NavigationStep stepForCall = pathCache.getOrCreateNavigationPath(argumentExpression, context, operationBodyToCallMapper,
                     getTupleLiteralPartNamesToLookFor());
-            // TODO stepForCall.setEnteringScope(TODO);
+            // the step enters into all scopes in which the argument expression in the operation call is nested,
+            // starting from the root expression for the argument expression:
+            stepForCall.addEnteringScopes(AbstractTracer.scopeCreatingExpressions(argumentExpression,
+                    OclHelper.getRootExpression(argumentExpression)));
             stepsPerCall.add(stepForCall);
         }
         indirectingStep.setActualStep(pathCache.navigationStepForBranch(getInnermostElementType(getExpression().getType()),
@@ -198,7 +204,10 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
                 OCLExpression callSource = (OCLExpression) call.getSource();
                 NavigationStep stepForCall = pathCache.getOrCreateNavigationPath(callSource, context, operationBodyToCallMapper,
                         getTupleLiteralPartNamesToLookFor());
-                // TODO stepForCall.setEnteringScope(TODO);
+                // the step enters into all scopes in which the source expression in the operation call is nested,
+                // starting from the root expression for the source expression:
+                stepForCall.addEnteringScopes(AbstractTracer.scopeCreatingExpressions(callSource,
+                        OclHelper.getRootExpression(callSource)));
                 stepsForCalls.add(stepForCall);
             }
             // the branching navigation step must not be cached or looked up in a cache because its
