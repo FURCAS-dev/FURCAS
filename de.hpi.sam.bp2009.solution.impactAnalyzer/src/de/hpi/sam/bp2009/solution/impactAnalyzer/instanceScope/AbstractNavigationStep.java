@@ -344,9 +344,11 @@ public abstract class AbstractNavigationStep implements NavigationStep {
             for (AnnotatedEObject fromObject : from) {
                 // for absolute steps, don't do the source type check and invoke just once, passing null for "from"
                 if (isAbsolute() || AbstractTracer.doesTypeMatch(getSourceType(), fromObject)) {
-                    // use a copy of the TracebackCache because for each fromObject, different variable scopes and values may result
+                    // use a copy of the TracebackCache if there are several objects in "from"
+                    // because for each fromObject, different variable scopes and values may result
+                    boolean copyCache = from.size() > 1;
                     for (AnnotatedEObject singleResult : getFromCacheOrNavigate(fromObject,
-                            cache.copyWithClonedVariablesInScope(), changeEvent)) {
+                            copyCache ? cache.copyWithClonedVariablesInScope() : cache, changeEvent)) {
                         if (AbstractTracer.doesTypeMatch(getTargetType(), singleResult)) {
                             result.add(singleResult);
                         }
