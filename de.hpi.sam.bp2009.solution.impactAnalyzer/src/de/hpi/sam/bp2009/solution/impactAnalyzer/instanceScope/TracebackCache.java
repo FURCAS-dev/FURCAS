@@ -14,6 +14,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.UnusedEvaluationRequest.EvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
@@ -86,12 +87,6 @@ public class TracebackCache {
     private final Map<Variable, Set<UnusedEvaluationRequest>> unusedEvaluationRequests;
     
     /**
-     * All expressions managed in {@link #unusedEvaluationRequests} are also entered and removed synchronously here.
-     * The key used in this map is obtained by asking for {@link UnusedEvaluationRequest#getVariableScope()}.
-     */
-    private final Map<OCLExpression, Set<UnusedEvaluationRequest>> unusedEvaluationRequestsByStaticScope;
-    
-    /**
      * The variables that are in scope for the expression currently being visited by the traceback process.
      */
     private final Set<Variable> variablesInScope;
@@ -114,7 +109,6 @@ public class TracebackCache {
     public TracebackCache(OperationBodyToCallMapper operationBodyToCallMapper) {
         navigateCache = new HashMap<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>>();
         unusedEvaluationRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
-        unusedEvaluationRequestsByStaticScope = new HashMap<OCLExpression, Set<UnusedEvaluationRequest>>();
         variablesInScope = new HashSet<Variable>();
         dynamicScopes = new HashMap<Variable, Integer>();
         knownVariableValues = new HashMap<Pair<Variable, Integer>, Object>();
@@ -176,6 +170,22 @@ public class TracebackCache {
     }
 
     /**
+     * Looks up the variables given as keys in <code>dynamicVariableScopes</code> in {@link #knownVariableValues}. For those
+     * found, it creates an entry in the result map. The method returns a new, modifiable non-<code>null</code> map which,
+     * however, may be empty if no variable value in the dynamic scope requested was found.
+     */
+    public Map<Variable, Object> getKnownVariableValues(Map<Variable, Integer> dynamicVariableScopes) {
+        Map<Variable, Object> result = new HashMap<Variable, Object>();
+        for (Map.Entry<Variable, Integer> entry : dynamicVariableScopes.entrySet()) {
+            Pair<Variable, Integer> key = new Pair<Variable, Integer>(entry.getKey(), entry.getValue());
+            if (knownVariableValues.containsKey(key)) {
+                result.put(entry.getKey(), knownVariableValues.get(key));
+            }
+        }
+        return result;
+    }
+
+    /**
      * When the traceback process has inferred a variable value because it reached a {@link VariableExp} of a non-collection
      * variable, it calls this method. This may trigger the re-evaluation of those {@link UnusedEvaluationRequest} requests whose
      * unknown variable's value just became known by this. This method re-evaluates those requests. Those that don't succeed in
@@ -196,7 +206,7 @@ public class TracebackCache {
         Set<UnusedEvaluationRequest> newRequests = new HashSet<UnusedEvaluationRequest>();
         if (requests != null) {
             for (UnusedEvaluationRequest request : requests) {
-                EvaluationResult evalResult = request.evaluate(fromObject, oppositeEndFinder, operationBodyToCallMapper);
+                EvaluationResult evalResult = request.evaluate(fromObject, oppositeEndFinder, operationBodyToCallMapper, this);
                 if (!evalResult.wasSuccessful()) {
                     newRequests.add(evalResult.getNextEvaluationRequest());
                 } else {
@@ -204,35 +214,22 @@ public class TracebackCache {
                         result = true;
                     }
                 }
-                removeUnusedEvaluationRequestFromMapByScope(request);
             }
             for (UnusedEvaluationRequest newRequest : newRequests) {
-                addUnusedNavigationRequest(newRequest);
+                addUnusedEvaluationRequestByVariable(newRequest);
             }
         }
         return result;
     }
-
-    private void removeUnusedEvaluationRequestFromMapByScope(UnusedEvaluationRequest request) {
-        Set<UnusedEvaluationRequest> requestsByScope = unusedEvaluationRequestsByStaticScope.get(request.getVariableScope());
-        requestsByScope.remove(request);
-        if (requestsByScope.isEmpty()) {
-            unusedEvaluationRequestsByStaticScope.remove(request.getVariableScope());
-        }
-    }
-
-    private void addUnusedNavigationRequest(UnusedEvaluationRequest newRequest) {
-        addUnusedEvaluationRequestByVariable(newRequest);
-        addUnusedEvaluationRequestByScope(newRequest);
-    }
-
-    private void addUnusedEvaluationRequestByScope(UnusedEvaluationRequest newRequest) {
-        Set<UnusedEvaluationRequest> s2 = unusedEvaluationRequestsByStaticScope.get(newRequest.getVariableScope());
-        if (s2 == null) {
-            s2 = new HashSet<UnusedEvaluationRequest>();
-            unusedEvaluationRequestsByStaticScope.put(newRequest.getVariableScope(), s2);
-        }
-        s2.add(newRequest);
+    
+    /**
+     * Uses the {@link PartialEvaluator} to evaluate an expression using the current dynamic variable scopes as defined
+     * by {@link #dynamicScopes}. If evaluation fails for a missing variable value, an {@link UnusedEvaluationRequest}
+     * is created for the expression, remembering all dynamic scope IDs of all variables currently in scope.
+     */
+    public Object evaluate(OCLExpression e) {
+        // TODO implement TracebackCache.evaluate
+        return null;
     }
 
     private void addUnusedEvaluationRequestByVariable(UnusedEvaluationRequest newRequest) {
