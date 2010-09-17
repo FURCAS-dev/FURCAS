@@ -358,6 +358,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         result = cache.get(this, fromObject);
         if (result == null) {
             cacheMisses++;
+            // TODO add unused check here. Look up in TracebackCache; if not found, compute; if true, return empty collection; else continue
             result = navigate(fromObject, cache, changeEvent);
             cache.put(this, fromObject, result);
         }
