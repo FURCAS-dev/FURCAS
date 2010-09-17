@@ -329,12 +329,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      *            the from-object (of type {@link AnnotatedEObject}) for which to look up any previously computed results.
      */
     public Set<AnnotatedEObject> navigate(Set<AnnotatedEObject> from, TracebackCache cache, Notification changeEvent) {
-        // TODO check if changing the scope before the navigation procedure is correct
-        // especially the creation of unusedRequests may interfere with this; this should probably happen only
-        // when constructing a new TracebackCache copy for recursive calls triggered by the actual navigate implementation
-        if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
-            cache.scopeChange(getLeavingScopes(), getEnteringScopes());
-        }
         incrementNavigateCounter(from);
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>(from.size());
         if (isAbsolute()) {
@@ -366,6 +360,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         if (result == null) {
             cacheMisses++;
             if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                cache.scopeChange(getLeavingScopes(), getEnteringScopes());
                 // TODO add unused check here. Look up in TracebackCache; if not found, compute; if true, return empty collection; else continue
             }
             result = navigate(fromObject, cache, changeEvent);

@@ -238,6 +238,13 @@ public class TracebackCache {
     public boolean setVariableValueAndCheckIfUnused(VariableExp variable, AnnotatedEObject fromObject,
             OppositeEndFinder oppositeEndFinder) {
         boolean result = false;
+        Pair<Variable, Integer> scopeKey = new Pair<Variable, Integer>((Variable) variable.getReferredVariable(),
+                dynamicScopes.get(variable.getReferredVariable()));
+        if (knownVariableValues.containsKey(scopeKey)) {
+            throw new RuntimeException("Internel error: inferred two different values for the same variable in the same dynamic scope: "+
+                    variable.getReferredVariable()+"="+fromObject+" vs. "+variable.getReferredVariable()+"="+knownVariableValues.get(scopeKey));
+        }
+        knownVariableValues.put(scopeKey, fromObject);
         Set<UnusedEvaluationRequest> requests = unusedEvaluationRequests.remove(variable);
         Set<UnusedEvaluationRequest> newRequests = new HashSet<UnusedEvaluationRequest>();
         if (requests != null) {
