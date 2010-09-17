@@ -21,6 +21,7 @@ import org.eclipse.ocl.ecore.Variable;
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.util.OclHelper;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -331,7 +332,9 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         // TODO check if changing the scope before the navigation procedure is correct
         // especially the creation of unusedRequests may interfere with this; this should probably happen only
         // when constructing a new TracebackCache copy for recursive calls triggered by the actual navigate implementation
-        cache.scopeChange(getLeavingScopes(), getEnteringScopes());
+        if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+            cache.scopeChange(getLeavingScopes(), getEnteringScopes());
+        }
         incrementNavigateCounter(from);
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>(from.size());
         if (isAbsolute()) {
@@ -341,7 +344,9 @@ public abstract class AbstractNavigationStep implements NavigationStep {
             for (AnnotatedEObject fromObject : from) {
                 // for absolute steps, don't do the source type check and invoke just once, passing null for "from"
                 if (isAbsolute() || AbstractTracer.doesTypeMatch(getSourceType(), fromObject)) {
-                    for (AnnotatedEObject singleResult : getFromCacheOrNavigate(fromObject, cache, changeEvent)) {
+                    // use a copy of the TracebackCache because for each fromObject, different variable scopes and values may result
+                    for (AnnotatedEObject singleResult : getFromCacheOrNavigate(fromObject,
+                            cache.copyWithClonedVariablesInScope(), changeEvent)) {
                         if (AbstractTracer.doesTypeMatch(getTargetType(), singleResult)) {
                             result.add(singleResult);
                         }
@@ -358,7 +363,9 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         result = cache.get(this, fromObject);
         if (result == null) {
             cacheMisses++;
-            // TODO add unused check here. Look up in TracebackCache; if not found, compute; if true, return empty collection; else continue
+            if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                // TODO add unused check here. Look up in TracebackCache; if not found, compute; if true, return empty collection; else continue
+            }
             result = navigate(fromObject, cache, changeEvent);
             cache.put(this, fromObject, result);
         }
