@@ -219,7 +219,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         return result;
     }
     
-    protected Set<Variable> getVariablesScopedByExpression(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
+    protected static Set<Variable> getVariablesScopedByExpression(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
         EObject container = e.eContainer();
         Set<Variable> result = new HashSet<Variable>();
         if (container instanceof LoopExp && ((LoopExp) container).getBody() == e) {
@@ -247,7 +247,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         return result;
     }
     
-    protected Set<Variable> getAllVariablesInScope(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
+    protected static Set<Variable> getAllVariablesInScope(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
         Set<Variable> result = new HashSet<Variable>();
         for (EObject cursor = e; cursor != null; cursor = cursor.eContainer()) {
             if (cursor instanceof OCLExpression) {

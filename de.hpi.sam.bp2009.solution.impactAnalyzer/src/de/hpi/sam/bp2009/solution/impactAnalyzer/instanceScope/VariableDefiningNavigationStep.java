@@ -10,6 +10,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 /**
@@ -53,7 +54,7 @@ public class VariableDefiningNavigationStep extends IndirectingStep {
 
     @Override
     protected Set<AnnotatedEObject> navigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
-        if (variableExp != null) {
+        if (OptimizationActivation.getOption().isUnusedDetectionActive() && variableExp != null) {
             if (cache.setVariableValueAndCheckIfUnused(variableExp, fromObject, oppositeEndFinder)) {
                 // A stored UnusedEvaluationRequest got triggered and successfully inferred that a subexpression
                 // through which the change got propagated is unused. Therefore, for no context object does the

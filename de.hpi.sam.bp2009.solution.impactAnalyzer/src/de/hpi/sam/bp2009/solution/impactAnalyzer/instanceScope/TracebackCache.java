@@ -14,6 +14,8 @@ import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.UnusedEvaluationRequest.EvaluationResult;
@@ -105,16 +107,50 @@ public class TracebackCache {
     private final Map<Pair<Variable, Integer>, Object> knownVariableValues;
     
     private final OperationBodyToCallMapper operationBodyToCallMapper;
-    
-    public TracebackCache(OperationBodyToCallMapper operationBodyToCallMapper) {
+
+    /**
+     * @param initialScope
+     *            the expression where traceback starts, defining the initial set of variables that are in scope;
+     *            {@link #variablesInScope} is initialized from here, using
+     *            {@link AbstractTracer#getAllVariablesInScope(OCLExpression, OperationBodyToCallMapper)}.
+     */
+    public TracebackCache(OperationBodyToCallMapper operationBodyToCallMapper, OCLExpression initialScope) {
         navigateCache = new HashMap<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>>();
-        unusedEvaluationRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
-        variablesInScope = new HashSet<Variable>();
-        dynamicScopes = new HashMap<Variable, Integer>();
-        knownVariableValues = new HashMap<Pair<Variable, Integer>, Object>();
+        if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+            unusedEvaluationRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
+            variablesInScope = AbstractTracer.getAllVariablesInScope(initialScope, operationBodyToCallMapper);
+            dynamicScopes = new HashMap<Variable, Integer>();
+            for (Variable v : variablesInScope) {
+                dynamicScopes.put(v, 0);
+            }
+            knownVariableValues = new HashMap<Pair<Variable, Integer>, Object>();
+        } else {
+            unusedEvaluationRequests = null;
+            variablesInScope = null;
+            dynamicScopes = null;
+            knownVariableValues = null;
+        }
         this.operationBodyToCallMapper = operationBodyToCallMapper;
     }
     
+    /**
+     * Creates a new copy of this cache with all the same components, except for {@link #variablesInScope}, {@link #dynamicScopes},
+     * {@link #knownVariableValues} and {@link #unusedEvaluationRequests} of which the cache returned contains cloned copies.
+     * This allows the cache returned to manipulate the variable scopes and values independently of this cache. When a variable
+     * value is inferred for the copy (see {@link #setVariableValueAndCheckIfUnused(VariableExp, AnnotatedEObject, OppositeEndFinder)},
+     * this cache won't be affected.<p>
+     * 
+     * Note, that all other components, particularly {@link #navigateCache} are copied as is.
+     */
+    private TracebackCache(TracebackCache tracebackCache) {
+        this.navigateCache = tracebackCache.navigateCache;
+        this.operationBodyToCallMapper = tracebackCache.operationBodyToCallMapper;
+        this.dynamicScopes = new HashMap<Variable, Integer>(tracebackCache.dynamicScopes);
+        this.unusedEvaluationRequests = new HashMap<Variable, Set<UnusedEvaluationRequest>>(tracebackCache.unusedEvaluationRequests);
+        this.variablesInScope = new HashSet<Variable>(tracebackCache.variablesInScope);
+        this.knownVariableValues = new HashMap<Pair<Variable, Integer>, Object>(tracebackCache.knownVariableValues);
+    }
+
     /**
      * Looks up a previously {@link #put entered} result for the <code>step</code> where navigation
      * started at the <code>from</code> object. If not found, <code>null</code> is returned.
@@ -239,6 +275,26 @@ public class TracebackCache {
             unusedEvaluationRequests.put(newRequest.getUnknownVariable(), s1);
         }
         s1.add(newRequest);
+    }
+
+    /**
+     * Creates a new copy of this cache with all the same components, except for {@link #variablesInScope}, {@link #dynamicScopes},
+     * {@link #knownVariableValues} and {@link #unusedEvaluationRequests} of which the cache returned contains cloned copies.
+     * This allows the cache returned to manipulate the variable scopes and values independently of this cache. When a variable
+     * value is inferred for the copy (see {@link #setVariableValueAndCheckIfUnused(VariableExp, AnnotatedEObject, OppositeEndFinder)},
+     * this cache won't be affected.<p>
+     * 
+     * Note, that all other components, particularly {@link #navigateCache} are copied as is.<p>
+     * 
+     * If the "unused" detection is switched off (see {@link ActivationOption#isUnusedDetectionActive()}, this cache will be
+     * returned.
+     */
+    public TracebackCache copyWithClonedVariablesInScope() {
+        if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+            return new TracebackCache(this);
+        } else {
+            return this;
+        }
     }
 }
 

@@ -514,7 +514,7 @@ public class InstanceScopeAnalysis {
         NavigationStep step = getNavigationStepsToSelfForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(),
                 context);
         Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
-        TracebackCache cache = new TracebackCache(filterSynthesizer);
+        TracebackCache cache = new TracebackCache(filterSynthesizer, attributeOrAssociationEndCall);
         Set<AnnotatedEObject> result = step.navigate(sourceElementAsSet, cache, changeEvent);
         return result;
     }

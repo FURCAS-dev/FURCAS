@@ -7,10 +7,11 @@ public class ActivationOption {
     // Level 2 Optimizations
     private boolean isDeltaPropagationActive = true;
     private boolean isInstanceScopeActive = true;
+    private boolean isUnusedDetectionActive = true;
 
     private final String optionDescription;
 
-    public ActivationOption(boolean isImpactAnalysisActive, boolean isDeltaPropagationActive, String description) {
+    public ActivationOption(boolean isImpactAnalysisActive, boolean isDeltaPropagationActive, boolean isUnusedDetectionActive, String description) {
 	this.isImpactAnalysisActive = isImpactAnalysisActive;
 	this.isDeltaPropagationActive = isDeltaPropagationActive;
 	this.optionDescription = description;
@@ -40,6 +41,14 @@ public class ActivationOption {
 	return isInstanceScopeActive;
     }
 
+    public boolean isUnusedDetectionActive() {
+        return isUnusedDetectionActive;
+    }
+
+    public void setUnusedDetectionActive(boolean isUnusedDetectionActive) {
+        this.isUnusedDetectionActive = isUnusedDetectionActive;
+    }
+
     public String getActivationString() {
 	StringBuffer activationInformation = new StringBuffer();
 	activationInformation.append("[IA=");
@@ -53,6 +62,10 @@ public class ActivationOption {
 	activationInformation.append("[DP=");
 	activationInformation.append(isDeltaPropagationActive);
 	activationInformation.append("]");
+
+        activationInformation.append("[UD=");
+        activationInformation.append(isUnusedDetectionActive);
+        activationInformation.append("]");
 
 	return activationInformation.toString();
     }
