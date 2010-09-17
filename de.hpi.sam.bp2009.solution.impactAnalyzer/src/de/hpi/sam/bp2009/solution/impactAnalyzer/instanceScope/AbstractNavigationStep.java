@@ -528,14 +528,14 @@ public abstract class AbstractNavigationStep implements NavigationStep {
         this.leavingScopes.addAll(leavingScopes);
     }
     
-    public Set<Variable> getEnteringScopes(){
-        return Collections.unmodifiableSet(enteringScopes);
-    }
-    
     /**
      * @return always non-<code>null</code>, but possibly empty set of expressions that form scopes that are entered when this
      * step is navigated.
      */
+    public Set<Variable> getEnteringScopes(){
+        return Collections.unmodifiableSet(enteringScopes);
+    }
+    
     public void addEnteringScopes(Set<Variable> enteringScope){
         this.enteringScopes.addAll(enteringScope);
     }
