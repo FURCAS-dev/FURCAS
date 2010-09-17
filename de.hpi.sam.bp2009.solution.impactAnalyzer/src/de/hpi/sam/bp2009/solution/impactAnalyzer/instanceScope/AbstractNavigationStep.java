@@ -363,6 +363,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
             cacheMisses++;
             boolean unused = false; // if the unused detection is switched on, perform the unused computation for this step
             if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                // TODO move unused cache access into the "script evaluations" which combine scope transformations and unused evaluations
                 EvaluationResult unusedResult = cache.getCachedUnusedResult(this, fromObject);
                 if (unusedResult != null && unusedResult.wasSuccessful() && unusedResult.isUnused()) {
                     result = Collections.emptySet();
