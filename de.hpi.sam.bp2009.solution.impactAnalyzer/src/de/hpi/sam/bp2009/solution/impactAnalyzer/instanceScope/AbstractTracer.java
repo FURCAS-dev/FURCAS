@@ -191,6 +191,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     }
     
     protected void applyScopesOnNavigationStep(NavigationStep step, OperationBodyToCallMapper operationBodyToCallMapper){
+        // TODO not only remember the variable scope changes but also record which unused checks need to be performed with the old/new scopes
         step.addEnteringScopes(calculateEnteringScope(operationBodyToCallMapper));
         step.addLeavingScopes(calculateLeavingScopes(operationBodyToCallMapper));
     }
