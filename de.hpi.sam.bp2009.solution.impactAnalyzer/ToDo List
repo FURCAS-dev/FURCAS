@@ -1,7 +1,6 @@
 To avoid forgetting our future plans, I wrote them down here.
 If you think these notes are to short or not expressive enough, feel free to add descriptions on your own.
 
-- calculation of leaving scopes
 - implementation of the unused() function
 - implementation of a factory for UnusedEvaluationRequest (and the nested ones)
 - create a shortcut structure for the unused calculation similar to the NavigationSteps used for traceback
@@ -39,3 +38,21 @@ If you think these notes are to short or not expressive enough, feel free to add
   only because it was tracing one particular known call. It led to the problem that caching the navigation step
   results would have to have used the actual call hierarchy as part of the key which ended up in a combinatorial
   explosion of different keys, leading to what seemed to be NP-like effort.
+- As the Tracers add the leaving/entering scopes to the NavigationSteps, they must also add a "script" for
+  performing the necessary unused computations. 
+
+If navigation steps are compressed manifestations of multiple traceback steps as described in the paper,
+  each traceback step could have changed the variable scope and may have required an unused check. This means
+  that there is not a single before/after dynamic scope combination and that the unused cache lookup can be
+  performed using the "before" dynamic scope combination; instead, the various unused checks that a single
+  NavigationStep has to be performed need to be performed with different transformations in dynamic scope.
+  The tracers will have to record the interleaving of unused-checks to be performed and the variable scope
+  changes that happen in between. The variable scope changes are not of interest to the actual traceback
+  functionality. However, after each (implicit, because combined into one) traceback step there is an
+  unused check chain spawned off, after the variable scope changes implied by the single (implied)
+  traceback step have been applied. As the chain of unused computations also navigates along the expression
+  tree ("orthogonal" to the traceback AST navigation direction), more variable scope changes may need to be
+  performed, after each such unused navigation. Interestingly, these scope changes need to be reverted/"popped"
+  when returning from the unused computation back to the traceback evaluation. But the UnusedEvaluationRequests
+  produced while on the "unused fork" will have recorded the dynamic scope IDs of the variables that were in
+  scope when the partial evaluation was requested.

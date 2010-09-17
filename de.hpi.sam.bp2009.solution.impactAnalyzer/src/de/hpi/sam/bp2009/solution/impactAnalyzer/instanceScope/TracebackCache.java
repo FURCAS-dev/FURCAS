@@ -303,5 +303,16 @@ public class TracebackCache {
             return this;
         }
     }
+
+    /**
+     * Checks if for the current 
+     * @param abstractNavigationStep
+     * @param fromObject
+     * @return
+     */
+    public EvaluationResult getCachedUnusedResult(AbstractNavigationStep abstractNavigationStep, AnnotatedEObject fromObject) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
 

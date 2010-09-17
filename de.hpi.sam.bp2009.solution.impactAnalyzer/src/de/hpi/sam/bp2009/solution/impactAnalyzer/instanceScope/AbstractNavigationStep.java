@@ -22,6 +22,7 @@ import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.util.OclHelper;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.UnusedEvaluationRequest.EvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -356,14 +357,24 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 
     private Collection<AnnotatedEObject> getFromCacheOrNavigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
         Set<AnnotatedEObject> result;
+        // TODO do the dynamic variable scopes need to become part of the cache key?
         result = cache.get(this, fromObject);
         if (result == null) {
             cacheMisses++;
+            boolean unused = false; // if the unused detection is switched on, perform the unused computation for this step
             if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
-                cache.scopeChange(getLeavingScopes(), getEnteringScopes());
-                // TODO add unused check here. Look up in TracebackCache; if not found, compute; if true, return empty collection; else continue
+                EvaluationResult unusedResult = cache.getCachedUnusedResult(this, fromObject);
+                if (unusedResult != null && unusedResult.wasSuccessful() && unusedResult.isUnused()) {
+                    result = Collections.emptySet();
+                    unused = true;
+                } else {
+                    // TODO add unused checks here which need to interleave with the scope changes along the way taken by the NavigationStep as it traverses the expression tree, conceptually in several individual steps
+                    cache.scopeChange(getLeavingScopes(), getEnteringScopes()); 
+                }
             }
-            result = navigate(fromObject, cache, changeEvent);
+            if (!unused) {
+                result = navigate(fromObject, cache, changeEvent);
+            }
             cache.put(this, fromObject, result);
         }
         return result;
