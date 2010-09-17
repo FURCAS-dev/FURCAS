@@ -2,6 +2,9 @@ To avoid forgetting our future plans, I wrote them down here.
 If you think these notes are to short or not expressive enough, feel free to add descriptions on your own.
 
 - implementation of the unused() function
+- since navigation steps might get reused (e.g. the body of an operation call) applying the scopes directly on these steps
+  will not work because there might be the scopes of the previous usage applied. Therefore building a wrapper around
+  navigation steps that handles the scopes and unused calculations seems necessary. 
 - implementation of a factory for UnusedEvaluationRequest (and the nested ones)
 - create a shortcut structure for the unused calculation similar to the NavigationSteps used for traceback
 - consider shortcut evaluation of Boolean operations (and, or): source/argument of and()/or() is unused if
