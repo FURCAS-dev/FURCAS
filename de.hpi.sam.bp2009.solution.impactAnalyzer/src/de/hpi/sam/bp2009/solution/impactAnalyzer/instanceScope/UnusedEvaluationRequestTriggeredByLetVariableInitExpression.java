@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
-import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
@@ -30,17 +29,17 @@ public class UnusedEvaluationRequestTriggeredByLetVariableInitExpression extends
     
     public UnusedEvaluationRequestTriggeredByLetVariableInitExpression(OCLExpression initExpression,
             UnusedEvaluationRequest nestedRequest,
-            Map<Variable, Object> knownVariableValues,
-            Variable unknownVariable, OCLExpression variableScope, OCLExpression expressionToCheckIfUnused,
-            OCLExpression rootExpression) {
-        super(knownVariableValues, unknownVariable, variableScope, expressionToCheckIfUnused, rootExpression);
+            Variable unknownVariable,
+            OCLExpression expressionToCheckIfUnused, OCLExpression rootExpression, Map<Variable, Integer> dynamicVariableScopes,
+            TracebackCache cache) {
+        super(unknownVariable, expressionToCheckIfUnused, rootExpression, dynamicVariableScopes, cache);
         this.initExpression = initExpression;
         this.nestedRequest = nestedRequest;
     }
 
     @Override
     public EvaluationResult evaluate(Object valueForFormerlyUnknownVariable, OppositeEndFinder oppositeEndFinder,
-            OperationBodyToCallMapper operationBodyToCallMapper) {
+            OperationBodyToCallMapper operationBodyToCallMapper, TracebackCache cache) {
         EvaluationResult result;
         Map<Variable, Object> newKnownVariables = new HashMap<Variable, Object>(getKnownVariableValues());
         newKnownVariables.put(getUnknownVariable(), valueForFormerlyUnknownVariable);
@@ -49,11 +48,10 @@ public class UnusedEvaluationRequestTriggeredByLetVariableInitExpression extends
         setVariables(p, newKnownVariables);
         try {
             Object letVariableValue = p.evaluate(/*context*/ null, initExpression);
-            result = nestedRequest.evaluate(letVariableValue, oppositeEndFinder, operationBodyToCallMapper);
+            result = nestedRequest.evaluate(letVariableValue, oppositeEndFinder, operationBodyToCallMapper, cache);
         } catch (ValueNotFoundException e) {
-            UnusedEvaluationRequest nextRequest = new UnusedEvaluationRequest(newKnownVariables, (Variable) e.getVariableExp()
-                    .getReferredVariable(), getStaticScope((VariableExp) e.getVariableExp(), oppositeEndFinder,
-                    operationBodyToCallMapper), expressionToCheckIfUnused, rootExpression);
+            UnusedEvaluationRequest nextRequest = new UnusedEvaluationRequest((Variable) e.getVariableExp()
+                    .getReferredVariable(), expressionToCheckIfUnused, rootExpression, getDynamicVariableScopes(), cache);
             result = new EvaluationResult(false, nextRequest);
         }
         return result;

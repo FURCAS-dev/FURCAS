@@ -1,8 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
@@ -43,11 +41,11 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
  */
 public class UnusedEvaluationRequest {
     // TODO should not hold the variable values but only the dynamic scope IDs for all the variables in scope for the expression
-    private final Map<Variable, Object> knownVariableValues;
+    private final Map<Variable, Integer> dynamicVariableScopes;
     private final Variable unknownVariable;
-    private final OCLExpression variableScope;
     protected final OCLExpression expressionToCheckIfUnused;
     protected final OCLExpression rootExpression;
+    private final TracebackCache cache;
     
     /**
      * The result of an attempt to evaluate an {@link UnusedEvaluationRequest}. If {@link #wasSuccessful() successful},
@@ -83,22 +81,22 @@ public class UnusedEvaluationRequest {
         }
     }
     
-    public UnusedEvaluationRequest(Map<Variable, Object> knownVariableValues, Variable unknownVariable,
-            OCLExpression variableScope,
-            OCLExpression expressionToCheckIfUnused, OCLExpression rootExpression) {
-        this.knownVariableValues = knownVariableValues;
+    public UnusedEvaluationRequest(Variable unknownVariable, OCLExpression expressionToCheckIfUnused,
+            OCLExpression rootExpression,
+            Map<Variable, Integer> dynamicVariableScopes, TracebackCache cache) {
         this.unknownVariable = unknownVariable;
-        this.variableScope = variableScope;
         this.expressionToCheckIfUnused = expressionToCheckIfUnused;
         this.rootExpression = rootExpression;
+        this.dynamicVariableScopes = dynamicVariableScopes;
+        this.cache = cache;
     }
     
     /**
      * Returns an unmodifiable version of the mapping of variables and their known values to be used for evaluating
-     * the <code>unused</code> function.
+     * the <code>unused</code> function. Returns a new, modifiable map.
      */
-    public Map<Variable, Object> getKnownVariableValues() {
-        return Collections.unmodifiableMap(knownVariableValues);
+    protected Map<Variable, Object> getKnownVariableValues() {
+        return cache.getKnownVariableValues(dynamicVariableScopes);
     }
 
     public Variable getUnknownVariable() {
@@ -106,28 +104,21 @@ public class UnusedEvaluationRequest {
     }
     
     public EvaluationResult evaluate(Object valueForFormerlyUnknownVariable, OppositeEndFinder oppositeEndFinder,
-            OperationBodyToCallMapper operationBodyToCallMapper) {
+            OperationBodyToCallMapper operationBodyToCallMapper, TracebackCache cache) {
         EvaluationResult result;
-        Map<Variable, Object> newKnownVariables = new HashMap<Variable, Object>(knownVariableValues);
+        Map<Variable, Object> newKnownVariables = getKnownVariableValues();
         newKnownVariables.put(unknownVariable, valueForFormerlyUnknownVariable);
         try {
             boolean unused = computeUnused(expressionToCheckIfUnused, expressionToCheckIfUnused, newKnownVariables);
             result = new EvaluationResult(unused, /* no next request; evaluation was successful */ null);
         } catch (ValueNotFoundException e) {
-            UnusedEvaluationRequest nextRequest = new UnusedEvaluationRequest(newKnownVariables, (Variable) e.getVariableExp()
-                    .getReferredVariable(),
-                    getStaticScope((VariableExp) e.getVariableExp(), oppositeEndFinder, operationBodyToCallMapper),
-                    expressionToCheckIfUnused, rootExpression);
+            UnusedEvaluationRequest nextRequest = new UnusedEvaluationRequest((Variable) e.getVariableExp()
+                    .getReferredVariable(), expressionToCheckIfUnused,
+                    rootExpression,
+                    dynamicVariableScopes, cache);
             result = new EvaluationResult(false, nextRequest);
         }
         return result;
-    }
-
-    /**
-     * Returns the static scope of the {@link #unknownVariable unknown variable} of this evaluation request.
-     */
-    public OCLExpression getVariableScope() {
-        return variableScope;
     }
 
     protected static OCLExpression getStaticScope(VariableExp variableExp,
@@ -195,5 +186,9 @@ public class UnusedEvaluationRequest {
             Map<Variable, Object> newKnownVariables) {
         // TODO implement UnusedEvaluationRequest.computeUnknown
         return false;
+    }
+
+    protected Map<Variable, Integer> getDynamicVariableScopes() {
+        return dynamicVariableScopes;
     }
 }
