@@ -251,7 +251,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         Set<Variable> result = new HashSet<Variable>();
         for (EObject cursor = e; cursor != null; cursor = cursor.eContainer()) {
             if (cursor instanceof OCLExpression) {
-                result.addAll(getVariablesScopedByExpression(e, operationBodyToCallMapper));
+                result.addAll(getVariablesScopedByExpression((OCLExpression) cursor, operationBodyToCallMapper));
             }
         }
         return result;
