@@ -1,21 +1,28 @@
 To avoid forgetting our future plans, I wrote them down here.
-If you think these notes are to short or not expressive enough, feel free to add descriptions on your own.
+If you think these notes are too short or not expressive enough, feel free to add descriptions on your own.
 
 - implementation of the unused() function
+
 - since navigation steps might get reused (e.g. the body of an operation call) applying the scopes directly on these steps
   will not work because there might be the scopes of the previous usage applied. Therefore building a wrapper around
   navigation steps that handles the scopes and unused calculations seems necessary. 
+  
 - implementation of a factory for UnusedEvaluationRequest (and the nested ones)
+
 - create a shortcut structure for the unused calculation similar to the NavigationSteps used for traceback
+
 - consider shortcut evaluation of Boolean operations (and, or): source/argument of and()/or() is unused if
   argument/source, respectively, is false/true, respectively
+  
 - cache results of unused(...) computations in TracebackCache; this will avoid redundant computations, e.g.,
   when a traceback run descends down the composition hierarchy of a series of CallExp, going from the
   CallExp to the contained source expression; when applying the composition rule to the source expression,
   the next thing to check is unused(...) for the CallExp again which traceback should have done and hence
   cached just before descending into the source expression.
+  
 - the partial evaluator may be able to treat let variables in a special way as their value might have been inferred
   by the traceback() function already
+  
 - What could be really bad: when delving from an OperationCallExp into an operation body, new dynamic scopes will be created
   for all variables that are again in scope when while tracing the body a self/parameter VariableExp is visited. This
   will make it impossible to relate variable values inferred after popping back up through a self/parameter usage
@@ -41,14 +48,15 @@ If you think these notes are to short or not expressive enough, feel free to add
   only because it was tracing one particular known call. It led to the problem that caching the navigation step
   results would have to have used the actual call hierarchy as part of the key which ended up in a combinatorial
   explosion of different keys, leading to what seemed to be NP-like effort.
+  
 - As the Tracers add the leaving/entering scopes to the NavigationSteps, they must also add a "script" for
   performing the necessary unused computations. 
 
-If navigation steps are compressed manifestations of multiple traceback steps as described in the paper,
+- If navigation steps are compressed manifestations of multiple traceback steps as described in the paper,
   each traceback step could have changed the variable scope and may have required an unused check. This means
   that there is not a single before/after dynamic scope combination and that the unused cache lookup can be
   performed using the "before" dynamic scope combination; instead, the various unused checks that a single
-  NavigationStep has to be performed need to be performed with different transformations in dynamic scope.
+  NavigationStep has to perform need to be performed with different transformations in dynamic scope.
   The tracers will have to record the interleaving of unused-checks to be performed and the variable scope
   changes that happen in between. The variable scope changes are not of interest to the actual traceback
   functionality. However, after each (implicit, because combined into one) traceback step there is an
