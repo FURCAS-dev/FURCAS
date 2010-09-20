@@ -67,3 +67,13 @@ If you think these notes are too short or not expressive enough, feel free to ad
   when returning from the unused computation back to the traceback evaluation. But the UnusedEvaluationRequests
   produced while on the "unused fork" will have recorded the dynamic scope IDs of the variables that were in
   scope when the partial evaluation was requested.
+  
+- Question: can we be sure that a scope transformation performed in an unused sequence leads to the same
+  dynamic scope IDs that will be reached by subsequent traceback scope changes? For example, if the unused
+  chain travels up in the operation call hierarchy, multiple call expressions may be visited, transitively
+  leading to an operation that later may be reached on another path in the regular traceback chain. The
+  traceback chain may have performed a different set of dynamic scope transformations. A linear counter
+  for each variable may not be enough for a correct identification of dynamic scopes. In other words: when
+  should the spawned unused checks and the trunk traceback really "independently" produce equal dynamic scope
+  IDs? Can we ever reliably assume that two paths as different as traceback and unused may use a numbering
+  scheme for the dynamic variable scopes that maps equal scopes to equal IDs?
