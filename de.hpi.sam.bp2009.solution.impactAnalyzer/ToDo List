@@ -23,6 +23,8 @@ If you think these notes are too short or not expressive enough, feel free to ad
 - the partial evaluator may be able to treat let variables in a special way as their value might have been inferred
   by the traceback() function already
   
+- scope transitions during the unused calculations can be reduced if a scope is entered and left during the same transition
+  
 - What could be really bad: when delving from an OperationCallExp into an operation body, new dynamic scopes will be created
   for all variables that are again in scope when while tracing the body a self/parameter VariableExp is visited. This
   will make it impossible to relate variable values inferred after popping back up through a self/parameter usage
