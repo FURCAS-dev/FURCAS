@@ -79,3 +79,10 @@ If you think these notes are too short or not expressive enough, feel free to ad
   should the spawned unused checks and the trunk traceback really "independently" produce equal dynamic scope
   IDs? Can we ever reliably assume that two paths as different as traceback and unused may use a numbering
   scheme for the dynamic variable scopes that maps equal scopes to equal IDs?
+
+- Caching of NavigationStep results in the face of parked UnusedEvaluationRequests: if a navigate leads to
+  new UnusedEvaluationRequests being created and scheduled, this contributes to the state used during the
+  evaluation of subsequent traceback steps; these subsequent steps could infer a variable value for which
+  an UnusedEvaluationRequest was previously scheduled, which then gets triggered and proves unusedness which
+  enters an empty result set into the cache. Another evaluation for the same fromObject may currently lead to
+  a cache hit, although the set of UnusedEvaluationRequests may not necessarily be the same in this context.
