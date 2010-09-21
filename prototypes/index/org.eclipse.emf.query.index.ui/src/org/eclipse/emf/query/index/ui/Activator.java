@@ -44,7 +44,8 @@ public class Activator extends AbstractUIPlugin {
 				return Status.OK_STATUS;
 			}
 		};
-		job.setUser(true);
+		job.setSystem(false);
+		job.setUser(false);
 		job.schedule();
 		plugin = this;
 	}
