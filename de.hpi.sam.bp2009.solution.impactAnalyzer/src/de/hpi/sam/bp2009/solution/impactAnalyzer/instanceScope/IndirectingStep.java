@@ -158,6 +158,10 @@ public class IndirectingStep extends AbstractNavigationStep implements HashCodeC
 	} else {
 	    try{
 		currentlyEvaluatingNavigateFor.get().add(fromObject);
+		// TODO call navigate of specialized class with the single from object if actualStep instance of
+		// AbstractNavigationStep to reduce type checking. Therefore, check if step is already cached is
+		// necessary and if not cached, an unused check should be executed and if the step is unused a further
+		// navigate is not necessary.
     	    	Set<AnnotatedEObject> set = Collections.singleton(fromObject);
     	    	result = actualStep.navigate(set, cache, changeEvent);
 	    }finally{
