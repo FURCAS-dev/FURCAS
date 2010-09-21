@@ -66,6 +66,18 @@ public class QuickOclParseAndEvalTest extends TestCase
    * Check if invalid can be passed into an operation as argument
    */
   @Test
+  public void testParseAndEvaluateOclExpressionWithMixOfPrimitiveAndObjectTypesInCollectionLiteral() throws ParserException {
+      OCLExpression expression4 = oclHelper.createQuery("Set{1, 2, self}->select(i | i.oclIsKindOf(Integer))");
+      Object result4 = ocl.evaluate(CompanyFactory.eINSTANCE.createDepartment(), expression4);
+      assertTrue(result4 instanceof Collection);
+      assertTrue(((Collection<?>) result4).contains(1));
+      assertTrue(((Collection<?>) result4).contains(2));
+  }
+
+  /**
+   * Check if invalid can be passed into an operation as argument
+   */
+  @Test
   public void testParseAndEvaluateOclExpressionWithInvalidInOperationArgument() throws ParserException {
       EClass cl = CompanyPackage.eINSTANCE.getDepartment();
       EOperation op = EcoreFactory.eINSTANCE.createEOperation();
