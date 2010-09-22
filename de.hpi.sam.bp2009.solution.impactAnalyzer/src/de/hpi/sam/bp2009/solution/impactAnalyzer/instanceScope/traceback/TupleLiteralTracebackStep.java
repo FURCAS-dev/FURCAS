@@ -7,7 +7,7 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.TracebackCache;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class TupleLiteralTracebackStep extends AbstractTracebackStep {
@@ -19,7 +19,7 @@ public class TupleLiteralTracebackStep extends AbstractTracebackStep {
 
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            Set<UnusedEvaluationRequest> pendingUnusedEvalRequests, TracebackCache tracebackCache) {
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache) {
         // TODO implement AbstractTracebackStep#performSubsequentTraceback()
         return null;
     }
