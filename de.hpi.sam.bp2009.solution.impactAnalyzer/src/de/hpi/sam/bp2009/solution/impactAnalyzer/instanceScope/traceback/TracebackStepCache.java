@@ -21,31 +21,31 @@ public class TracebackStepCache extends AbstractPathCache<TracebackStep> {
         TracebackStep result;
         switch (sourceExpression.eClass().getClassifierID()) {
         case EcorePackage.COLLECTION_LITERAL_EXP:
-            result = new CollectionLiteralTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new CollectionLiteralTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.IF_EXP:
-            result = new IfTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new IfTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.ITERATE_EXP:
-            result = new IterateTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new IterateTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.ITERATOR_EXP:
-            result = new IteratorTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new IteratorTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.LET_EXP:
-            result = new LetTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new LetTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.OPERATION_CALL_EXP:
-            result = new OperationCallTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new OperationCallTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.PROPERTY_CALL_EXP:
-            result = new PropertyCallTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new PropertyCallTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.TUPLE_LITERAL_EXP:
-            result = new TupleLiteralTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new TupleLiteralTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.VARIABLE_EXP:
-            result = new VariableTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new VariableTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.INTEGER_LITERAL_EXP:
         case EcorePackage.UNLIMITED_NATURAL_LITERAL_EXP:
@@ -55,7 +55,7 @@ public class TracebackStepCache extends AbstractPathCache<TracebackStep> {
         case EcorePackage.BOOLEAN_LITERAL_EXP:
         case EcorePackage.NULL_LITERAL_EXP:
         case EcorePackage.INVALID_LITERAL_EXP:
-            result = new EmptyTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            result = new EmptyTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         default:
             throw new RuntimeException("Unknown OCL expression type "+sourceExpression.eClass().getName()+" of expression "+
