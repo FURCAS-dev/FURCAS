@@ -26,6 +26,13 @@ public class IfTracebackStep extends AbstractTracebackStep {
                 tupleLiteralNamesToLookFor, tracebackStepCache);
     }
 
+    /**
+     * When a {@link IfExp} is traced back, it calls the {@link TracebackStep#traceback(AnnotatedEObject, Set, TracebackCache)}
+     * function for its then-expression and its else-expression, forwarding the <code>source</code> object, the (possibly
+     * modified) <code>pendingUnusedEvalRequests</code> and the <code>tracebackCache</code>.
+     * 
+     * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, TracebackCache)
+     */
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache) {
