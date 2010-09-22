@@ -81,9 +81,18 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         
     }
 
-    protected Set<Variable> getVariablesChangingScope(OCLExpression sourceExpression, OCLExpression targetExpression) {
-        // TODO Implement IfTracebackStep.getVariablesChangingScope(...)
-        return null;
+    protected Set<Variable> getVariablesChangingScope(OCLExpression sourceExpression, OCLExpression targetExpression, OperationBodyToCallMapper operationBodyToCallMapper) {
+        Set<Variable> result;
+        OCLExpression commonCompositionParent = commonCompositionParent(sourceExpression, targetExpression);
+        if (commonCompositionParent == null) {
+            result = new HashSet<Variable>();
+            result.addAll(getAllVariablesInScope(sourceExpression, operationBodyToCallMapper));
+            result.addAll(getAllVariablesInScope(targetExpression, operationBodyToCallMapper));
+        } else {
+            result = variablesIntroducedBetween(sourceExpression, commonCompositionParent, operationBodyToCallMapper);
+            result.addAll(variablesIntroducedBetween(targetExpression, commonCompositionParent, operationBodyToCallMapper));
+        }
+        return result;
     }
 
     /**
@@ -103,12 +112,12 @@ public abstract class AbstractTracebackStep implements TracebackStep {
             OperationBodyToCallMapper operationBodyToCallMapper) {
         EObject e = origin;
         Set<Variable> result = new HashSet<Variable>();
-        while (e != parent) {
+        do {
             if (e instanceof OCLExpression) {
                 result.addAll(getVariablesScopedByExpression((OCLExpression) e, operationBodyToCallMapper));
             }
             e = e.eContainer();
-        }
+        } while (e != parent);
         return result;
     }
     
@@ -140,6 +149,10 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         return result;
     }
     
+    /**
+     * Starting from <code>e</code> and ascending its containment hierarchy, adds to the resulting set all variables that are scoped by
+     * any of the expressions visited.
+     */
     protected static Set<Variable> getAllVariablesInScope(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
         Set<Variable> result = new HashSet<Variable>();
         for (EObject cursor = e; cursor != null; cursor = cursor.eContainer()) {
@@ -158,7 +171,7 @@ public abstract class AbstractTracebackStep implements TracebackStep {
      * @param second The second {@link OCLExpression}.
      * @return The common composition parent or null, in case there is none.
      */
-    protected static OCLExpression commonCompositionParent(OCLExpression first, OCLExpression second) {
+    private static OCLExpression commonCompositionParent(OCLExpression first, OCLExpression second) {
         Set<OCLExpression> firstsContainersIncludingFirst = new HashSet<OCLExpression>();
         EObject firstsContainer = first;
         while (firstsContainer != null && firstsContainer instanceof OCLExpression) {
@@ -182,6 +195,6 @@ public abstract class AbstractTracebackStep implements TracebackStep {
             String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         return new TracebackStepAndScopeChange(tracebackStepCache.getOrCreateNavigationPath(targetExpression, context,
                 operationBodyToCallMapper, tupleLiteralNamesToLookFor), getVariablesChangingScope(sourceExpression,
-                targetExpression));
+                targetExpression, operationBodyToCallMapper));
     }
 }
