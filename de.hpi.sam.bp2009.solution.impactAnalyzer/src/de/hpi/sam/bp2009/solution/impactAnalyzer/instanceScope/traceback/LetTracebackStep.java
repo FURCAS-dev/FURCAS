@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
-import java.util.HashMap;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
@@ -14,16 +13,13 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class LetTracebackStep extends AbstractTracebackStep {
 
-    private static final String IN_EXPRESSION_STEP = "inExpressionStep";
+    private final TracebackStep inExpressionStep;
 
     public LetTracebackStep(LetExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         
-        TracebackStep inExpressionStep = tracebackStepCache.createStep((OCLExpression) ((LetExp) sourceExpression).getIn(),
+        inExpressionStep = tracebackStepCache.createStep((OCLExpression) ((LetExp) sourceExpression).getIn(),
                 context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
-        
-        nextSteps = new HashMap<String, TracebackStep>();
-        nextSteps.put(IN_EXPRESSION_STEP, inExpressionStep);
     }
 
     /**
@@ -36,7 +32,6 @@ public class LetTracebackStep extends AbstractTracebackStep {
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             Set<UnusedEvaluationRequest> pendingUnusedEvalRequests, TracebackCache tracebackCache) {
-        TracebackStep nextStep = nextSteps.get(IN_EXPRESSION_STEP);
-        return nextStep.traceback(source, pendingUnusedEvalRequests, tracebackCache);
+        return inExpressionStep.traceback(source, pendingUnusedEvalRequests, tracebackCache);
     }
 }
