@@ -8,6 +8,8 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.Variable;
 
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 
 public class UnusedEvaluationRequestSet {
@@ -110,8 +112,43 @@ public class UnusedEvaluationRequestSet {
      * evaluation fails due to an unknown variable, the request is returned in the
      * {@link UnusedEvaluationResult#getNewRequestSet() new request set} keyed by the now unknown variable.
      */
-    public UnusedEvaluationResult setVariable(Variable variable, EObject value) {
-        // TODO Implement UnusedEvaluationRequestSet.setVariable(...)
-        return null;
+    public UnusedEvaluationResult setVariable(Variable variable, EObject value, OppositeEndFinder oppositeEndFinder) {
+        UnusedEvaluationResult result = null;
+        // enter variable value into those requests that have a slot for it
+        for (Set<UnusedEvaluationRequest> set : requests.values()) {
+            for (UnusedEvaluationRequest request : set) {
+                request.setInferredVariableValue(variable, value);
+            }
+        }
+        // now re-evaluate those that previously failed because variable was unknown
+        Set<UnusedEvaluationRequest> triggered = requests.get(variable);
+        if (triggered != null) {
+            Map<Variable, Set<UnusedEvaluationRequest>> newRequestSet = new HashMap<Variable, Set<UnusedEvaluationRequest>>(requests);
+            newRequestSet.remove(variable);
+            for (UnusedEvaluationRequest request : triggered) {
+                try {
+                    if (request.evaluate(oppositeEndFinder)) {
+                        result = new UnusedEvaluationResult(/* provedUnused */ true, /* newRequestSet */ null);
+                        break;
+                    }
+                    // else, simply don't add the resolved request anymore because it was unable to prove unused
+                } catch (ValueNotFoundException vnfe) {
+                    // re-add the request, but this time for the now unknown variable
+                    Variable unknownVariable = (Variable) vnfe.getVariableExp().getReferredVariable();
+                    Set<UnusedEvaluationRequest> newSet = newRequestSet.get(unknownVariable);
+                    if (newSet == null) {
+                        newSet = new HashSet<UnusedEvaluationRequest>();
+                        newRequestSet.put(unknownVariable, newSet);
+                    }
+                    newSet.add(request);
+                }
+            }
+            if (result == null) {
+                result = new UnusedEvaluationResult(/* provedUnused */ false, new UnusedEvaluationRequestSet(newRequestSet));
+            }
+        } else {
+            result = new UnusedEvaluationResult(/* provedUnused */ false, this);
+        }
+        return result;
     }
 }

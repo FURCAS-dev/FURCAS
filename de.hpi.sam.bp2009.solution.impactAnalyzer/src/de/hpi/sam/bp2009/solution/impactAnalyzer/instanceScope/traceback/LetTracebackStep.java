@@ -13,13 +13,12 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class LetTracebackStep extends AbstractTracebackStep {
 
-    private final TracebackStep inExpressionStep;
+    private final TracebackStepAndScopeChange inExpressionStep;
 
     public LetTracebackStep(LetExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        
-        inExpressionStep = tracebackStepCache.createStep((OCLExpression) ((LetExp) sourceExpression).getIn(),
-                context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+        inExpressionStep = createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) ((LetExp) sourceExpression).getIn(),
+                context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
     }
 
     /**
