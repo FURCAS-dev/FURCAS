@@ -1,8 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -13,8 +11,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public abstract class AbstractTracebackStep implements TracebackStep {
-    
-    protected Map<String, TracebackStep> nextSteps = Collections.emptyMap();
     
     protected Set<AnnotatedEObject> traceback(Set<AnnotatedEObject> sources, Set<UnusedEvaluationRequest> pendingUnusedEvalRequests,
             TracebackCache cache) {
