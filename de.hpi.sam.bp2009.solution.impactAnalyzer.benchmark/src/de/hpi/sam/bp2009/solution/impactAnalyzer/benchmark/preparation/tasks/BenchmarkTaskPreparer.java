@@ -32,8 +32,8 @@ public class BenchmarkTaskPreparer {
     	System.out.println("\t Prepare Benchmark Tasks:");
 
     	Collection<ActivationOption> optionList = new ArrayList<ActivationOption>();
-    	optionList.add(new ActivationOption(true, true, false, "All optimizations activated"));
-    	optionList.add(new ActivationOption(true, false, false, "Without delta propagation"));
+    	optionList.add(new ActivationOption(true, true, false, false, "All optimizations activated"));
+    	optionList.add(new ActivationOption(true, false, false, false, "Without delta propagation"));
 
     	return new BenchmarkTaskStepwiseBuilder(expressionList, notificationForModelList, optionList);
      }

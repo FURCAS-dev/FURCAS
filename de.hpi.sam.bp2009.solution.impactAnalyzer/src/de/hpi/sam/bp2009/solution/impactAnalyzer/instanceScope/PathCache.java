@@ -8,14 +8,11 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
-import org.eclipse.ocl.ecore.TupleLiteralExp;
-import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 /**
  * The instance scope analysis's goal is to compute {@link NavigationStep} objects for each {@link AttributeCallExp} and
@@ -36,59 +33,15 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
  * only has to happen once per life-time of an {@link OCLExpression<EClassifier>} during a session.
  * 
  */
-public class PathCache implements HashCodeChangeListener {
-    /**
-     * Keys are OCL expressions for which a navigation path is cached, together with a list of tuple part names to be collected
-     * during construction of that step. Only if this list is equal during construction then the step can be re-used. Example:
-     * <p>
-     * 
-     * <pre>
-     *     let a:Tuple{x1:X=self.myX1, x2:X=self.myX2} in
-     *     Set{a.x1, a.x2}->collect(x | x.name)
-     * </pre>
-     * 
-     * If this expression is analyzed for an attribute change event of an <tt>X.name</tt>, the iterator variable <tt>x</tt> is
-     * traced back to the collect's source expression which is the collection literal. A branching step is created with one branch
-     * for each of its literal parts. Both parts access a tuple part, one the <tt>x1</tt> part, the other the <tt>x2</tt> part of
-     * the same tuple. For <tt>a.x1</tt> the tracer pushes "x1" onto the "stack" and constructs a tracer for the <tt>a</tt> source
-     * expression. The {@link VariableExpTracer} finds the let expression and constructs the navigation path for the variable's
-     * init expression. This, however, is the same {@link TupleLiteralExp} that will be found when tracing back the <tt>a</tt> in
-     * <tt>a.x2</tt>. However, the first time the {@link TupleLiteralExpTracer} is constructed, it needs to descend into the
-     * <tt>x1</tt> part's init expression whereas for the <tt>a.x2</tt> it needs to descend into <tt>x2</tt>'s init expression.
-     * <p>
-     * 
-     * This shows that a navigation path can only be re-used if the request for its construction has an equal list of tuple
-     * literal part names on the "stack" as the one cached.
-     * <p>
-     * 
-     * The <tt>List<String></tt> element of the key pair may be <tt>null</tt>. It <em>must</em> be <tt>null</tt> instead of
-     * passing an empty list to avoid ambiguities.
-     */
-    private final Map<Pair<OCLExpression, List<String>>, NavigationStep> subexpressionToPath = new HashMap<Pair<OCLExpression, List<String>>, NavigationStep>();
-
+public class PathCache extends AbstractPathCache<NavigationStep> implements HashCodeChangeListener {
     /**
      * Contains all distinct steps contained in {@link #subexpressionToPath}. Can be used to look up semantically equal steps in
      * order not to create redundant steps. Values are identical to keys per entry.
      */
     private final Map<SemanticIdentity, NavigationStep> allNavigationSteps = new HashMap<SemanticIdentity, NavigationStep>();
 
-    /**
-     * Can be used for certain metamodel queries such as finding all subclasses, but as well during an <code>allInstances</code>
-     * query.
-     */
-    private final OppositeEndFinder oppositeEndFinder;
-
     public PathCache(OppositeEndFinder oppositeEndFinder) {
-        this.oppositeEndFinder = oppositeEndFinder;
-    }
-
-    public OppositeEndFinder getOppositeEndFinder() {
-        return oppositeEndFinder;
-    }
-
-    public NavigationStep getPathForNode(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor) {
-        return subexpressionToPath.get(new Pair<OCLExpression, List<String>>(subexpression,
-                getTupleLiteralPartNamesToLookForAsList(tupleLiteralPartNamesToLookFor)));
+        super(oppositeEndFinder);
     }
 
     /**
@@ -100,39 +53,12 @@ public class PathCache implements HashCodeChangeListener {
      * this path cache registers as listener for a change in the step's always-empty setting. If any of these change events are
      * received, the respective step is re-hashed into {@link #allNavigationSteps}.
      */
-    private void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, NavigationStep path) {
-        List<String> tupleLiteralPartNamesToLookForAsList = getTupleLiteralPartNamesToLookForAsList(tupleLiteralPartNamesToLookFor);
-        subexpressionToPath.put(new Pair<OCLExpression, List<String>>(subexpression, tupleLiteralPartNamesToLookForAsList), path);
+    protected void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, NavigationStep path) {
+        super.put(subexpression, tupleLiteralPartNamesToLookFor, path);
         if (!allNavigationSteps.containsKey(path.getSemanticIdentity())) {
             allNavigationSteps.put(path.getSemanticIdentity(), path);
             path.addHashCodeChangeListener(this);
         }
-    }
-
-    private static List<String> getTupleLiteralPartNamesToLookForAsList(String[] tupleLiteralPartNamesToLookFor) {
-        List<String> tupleLiteralPartNamesToLookForAsList;
-        if (tupleLiteralPartNamesToLookFor == null || tupleLiteralPartNamesToLookFor.length == 0) {
-            tupleLiteralPartNamesToLookForAsList = null;
-        } else {
-            tupleLiteralPartNamesToLookForAsList = Arrays.asList(tupleLiteralPartNamesToLookFor);
-        }
-        return tupleLiteralPartNamesToLookForAsList;
-    }
-
-    public NavigationStep getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
-        NavigationStep result = getPathForNode(sourceExpression, tupleLiteralNamesToLookFor);
-        if (result == null) {
-            result = InstanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor).traceback(context, this,
-                    operationBodyToCallMapper);
-            NavigationStep existingEqualStep = allNavigationSteps.get(result);
-            if (existingEqualStep != null) {
-                result = existingEqualStep;
-                result.addExpressionForWhichThisIsNavigationStep(sourceExpression);
-            }
-            put(sourceExpression, tupleLiteralNamesToLookFor, result);
-        }
-        return result;
     }
 
     /**
@@ -289,18 +215,24 @@ public class PathCache implements HashCodeChangeListener {
         return result;
     }
 
-    public VariableDefiningNavigationStep createVariableDefiningNavigationStep(VariableExp variableExp, OCLExpression expr,
-            String[] tupleLiteralPartNamesToLookFor) {
-        VariableDefiningNavigationStep result = new VariableDefiningNavigationStep(variableExp, getOppositeEndFinder());
-        put(expr, tupleLiteralPartNamesToLookFor, result);
-        return result;
-    }
-
     public void beforeHashCodeChange(NavigationStep step, int token) {
         allNavigationSteps.remove(step.getSemanticIdentity());
     }
 
     public void afterHashCodeChange(NavigationStep step, int token) {
         allNavigationSteps.put(step.getSemanticIdentity(), step);
+    }
+
+    @Override
+    protected NavigationStep createStep(OCLExpression sourceExpression, EClass context,
+            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
+        NavigationStep result = InstanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor).traceback(context, this,
+                operationBodyToCallMapper);
+        NavigationStep existingEqualStep = allNavigationSteps.get(result);
+        if (existingEqualStep != null) {
+            result = existingEqualStep;
+            result.addExpressionForWhichThisIsNavigationStep(sourceExpression);
+        }
+        return result;
     }
 }

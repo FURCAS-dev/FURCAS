@@ -21,8 +21,6 @@ import org.eclipse.ocl.ecore.Variable;
 import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.util.OclHelper;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.UnusedEvaluationRequest.EvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -341,9 +339,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
                 if (isAbsolute() || AbstractTracer.doesTypeMatch(getSourceType(), fromObject)) {
                     // use a copy of the TracebackCache if there are several objects in "from"
                     // because for each fromObject, different variable scopes and values may result
-                    boolean copyCache = from.size() > 1;
-                    for (AnnotatedEObject singleResult : getFromCacheOrNavigate(fromObject,
-                            copyCache ? cache.copyWithClonedVariablesInScope() : cache, changeEvent)) {
+                    for (AnnotatedEObject singleResult : getFromCacheOrNavigate(fromObject, cache, changeEvent)) {
                         if (AbstractTracer.doesTypeMatch(getTargetType(), singleResult)) {
                             result.add(singleResult);
                         }
@@ -357,25 +353,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 
     private Collection<AnnotatedEObject> getFromCacheOrNavigate(AnnotatedEObject fromObject, TracebackCache cache, Notification changeEvent) {
         Set<AnnotatedEObject> result;
-        // TODO do the dynamic variable scopes need to become part of the cache key?
         result = cache.get(this, fromObject);
         if (result == null) {
             cacheMisses++;
-            boolean unused = false; // if the unused detection is switched on, perform the unused computation for this step
-            if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
-                // TODO move unused cache access into the "script evaluations" which combine scope transformations and unused evaluations
-                EvaluationResult unusedResult = cache.getCachedUnusedResult(this, fromObject);
-                if (unusedResult != null && unusedResult.wasSuccessful() && unusedResult.isUnused()) {
-                    result = Collections.emptySet();
-                    unused = true;
-                } else {
-                    // TODO add unused checks here which need to interleave with the scope changes along the way taken by the NavigationStep as it traverses the expression tree, conceptually in several individual steps
-                    cache.scopeChange(getLeavingScopes(), getEnteringScopes()); 
-                }
-            }
-            if (!unused) {
-                result = navigate(fromObject, cache, changeEvent);
-            }
+            result = navigate(fromObject, cache, changeEvent);
             cache.put(this, fromObject, result);
         }
         return result;
