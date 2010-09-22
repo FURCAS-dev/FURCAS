@@ -119,7 +119,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         return result;
     }
 
-    private VariableDefiningNavigationStep tracebackOperationParameter(EClass context, PathCache pathCache,
+    private NavigationStep tracebackOperationParameter(EClass context, PathCache pathCache,
             OperationBodyToCallMapper operationBodyToCallMapper) {
         OCLExpression rootExpression = getRootExpression();
         // all operation bodies must have been reached through at least one call; all calls are
@@ -128,8 +128,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         EOperation op = operationBodyToCallMapper.getCallsOf(rootExpression).iterator().next().getReferredOperation();
         int pos = getParameterPosition(op);
         List<NavigationStep> stepsPerCall = new ArrayList<NavigationStep>();
-        VariableDefiningNavigationStep indirectingStep = pathCache.createVariableDefiningNavigationStep(getExpression(),
-                getExpression(), getTupleLiteralPartNamesToLookFor());
+        IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression(), getTupleLiteralPartNamesToLookFor());
         // As new operation calls change the set of OperationCallExp returned here for existing operations,
         // the PathCache cannot trivially be re-used across expression registrations. We would have to
         // invalidate all cache entries that depend on this step. Or we add steps produced for new calls to this
@@ -172,16 +171,14 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         return pos;
     }
 
-    private VariableDefiningNavigationStep tracebackLetVariable(EClass context, PathCache pathCache,
+    private NavigationStep tracebackLetVariable(EClass context, PathCache pathCache,
             OperationBodyToCallMapper operationBodyToCallMapper) {
-        VariableDefiningNavigationStep result = pathCache.createVariableDefiningNavigationStep(getExpression(), getExpression(),
-                getTupleLiteralPartNamesToLookFor());
-        result.setActualStep(pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration().getInitExpression(),
-                context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor()));
+        NavigationStep result = pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration().getInitExpression(),
+                context, operationBodyToCallMapper, getTupleLiteralPartNamesToLookFor());
         return result;
     }
 
-    private VariableDefiningNavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache,
+    private NavigationStep tracebackIterateResultVariable(EClass context, PathCache pathCache,
             OperationBodyToCallMapper operationBodyToCallMapper) {
         // the init expression can't reference the result variable, therefore no recursive reference may occur here:
         NavigationStep stepForInitExpression = pathCache.getOrCreateNavigationPath((OCLExpression) getVariableDeclaration()
@@ -189,7 +186,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         // the body expression, however, may reference the result variable; computing the body's navigation step graph
         // may therefore recursively look up the navigation step graph for the result variable. We therefore need to
         // enter a placeholder into the cache before we start computing the navigation step graph for the body expression:
-        VariableDefiningNavigationStep indirectingStep = pathCache.createVariableDefiningNavigationStep(getExpression(),
+        IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(
                 getExpression(), getTupleLiteralPartNamesToLookFor());
         NavigationStep stepForBodyExpression = pathCache.getOrCreateNavigationPath(
                 (OCLExpression) ((IterateExp) getVariableDeclaration().eContainer()).getBody(), context, operationBodyToCallMapper,
@@ -201,25 +198,23 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
         return indirectingStep;
     }
 
-    private VariableDefiningNavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache,
+    private NavigationStep tracebackIteratorVariable(EClass context, PathCache pathCache,
             OperationBodyToCallMapper operationBodyToCallMapper) {
-        VariableDefiningNavigationStep result = pathCache.createVariableDefiningNavigationStep(getExpression(), getExpression(),
-                getTupleLiteralPartNamesToLookFor());
-        result.setActualStep(pathCache.getOrCreateNavigationPath(
+        NavigationStep result = pathCache.getOrCreateNavigationPath(
                 (OCLExpression) ((LoopExp) getVariableDeclaration().eContainer()).getSource(), context, operationBodyToCallMapper,
-                getTupleLiteralPartNamesToLookFor()));
+                getTupleLiteralPartNamesToLookFor());
         return result;
     }
 
-    private VariableDefiningNavigationStep tracebackSelf(EClass context, PathCache pathCache,
+    private NavigationStep tracebackSelf(EClass context, PathCache pathCache,
             OperationBodyToCallMapper operationBodyToCallMapper) {
-        VariableDefiningNavigationStep result;
+        IndirectingStep result;
         EOperation op = getOperationOfWhichRootExpressionIsTheBody(operationBodyToCallMapper);
         if (op != null) {
             // in an operation, self needs to be traced back to all source expressions of
             // calls to that operation
             Collection<OperationCallExp> calls = operationBodyToCallMapper.getCallsOf(getRootExpression());
-            VariableDefiningNavigationStep indirectingStep = pathCache.createVariableDefiningNavigationStep(getExpression(),
+            IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(
                     getExpression(), getTupleLiteralPartNamesToLookFor());
             List<NavigationStep> stepsForCalls = new ArrayList<NavigationStep>();
             for (OperationCallExp call : calls) {
@@ -241,7 +236,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExp> {
             result = indirectingStep;
         } else {
             // self occurred outside of an operation; it evaluates to s for s being the context
-            result = pathCache.createVariableDefiningNavigationStep(getExpression(), getExpression(),
+            result = pathCache.createIndirectingStepFor(getExpression(),
                     getTupleLiteralPartNamesToLookFor());
             result.setActualStep(new IdentityNavigationStep((EClass) getExpression().getType(), (EClass) getExpression()
                     .getType(), getExpression()));

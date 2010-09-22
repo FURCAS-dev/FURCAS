@@ -5,7 +5,7 @@ public class OptimizationActivation {
 	private static final ThreadLocal<ActivationOption> activeOption = new ThreadLocal<ActivationOption>() {
 		@Override
         protected ActivationOption initialValue() {
-          	 return new ActivationOption(true, true, true, "All optimizations activated");
+          	 return new ActivationOption(true, true, true, false, "All optimizations activated");
         };
 	};
 

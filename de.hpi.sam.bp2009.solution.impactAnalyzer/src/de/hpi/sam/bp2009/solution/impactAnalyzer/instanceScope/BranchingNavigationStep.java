@@ -225,8 +225,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
         for (NavigationStep singleStep : getSteps()) {
             Set<AnnotatedEObject> fromSet = Collections.singleton(fromObject);
             // create a copy of the TracebackCache with separate variablesInScope copy because each branch may traverse scopes differently
-            TracebackCache cacheCopyForBranch = cache.copyWithClonedVariablesInScope();
-            result.addAll(singleStep.navigate(fromSet, cacheCopyForBranch, changeEvent));
+            result.addAll(singleStep.navigate(fromSet, cache, changeEvent));
         }
         return result;
     }

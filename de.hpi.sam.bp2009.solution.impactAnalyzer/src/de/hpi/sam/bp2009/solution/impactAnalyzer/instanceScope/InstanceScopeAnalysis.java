@@ -61,11 +61,11 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * from the one it returned before the change event occurred. An instance of this class manages the analysis for all expression
  * occuring within one root OCL expression, including the expressions reachable in operation body expressions where the operation
  * may be called directly of indirectly by the root expression.
- * 
+ *
  */
 public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
-    // private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
+//    private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
     private final Map<OCLExpression, NavigationStep> expressionToStep;
     private final PathCache pathCache;
     private final FilterSynthesisImpl filterSynthesizer;
@@ -81,7 +81,7 @@ public class InstanceScopeAnalysis {
      * implemented by the <code>oppositeEndFinder</code>'s
      * {@link OppositeEndFinder#getAllInstancesSeeing(EClass, org.eclipse.emf.common.notify.Notifier)} method, the elements
      * returned can "see" <code>container</code>.
-     * 
+     *
      * @param cls
      *            the overall context type for the entire expression; this context type defines the type for <tt>self</tt> if used
      *            outside of operation bodies.
@@ -95,11 +95,9 @@ public class InstanceScopeAnalysis {
     /**
      * Factory method that creates an instance of some {@link Tracer}-implementing class specific to the type of the OCL
      * <tt>expression</tt>.
-     * 
-     * @param caller
-     *            the calling tracer from which the list of tuple part names to look for are copied unchanged to the new tracer
-     *            created by this operation. May be <tt>null</tt> in which case the new tracer does not look for any tuple literal
-     *            parts initially.
+     * @param caller the calling tracer from which the list of tuple part names to look for are copied
+     * unchanged to the new tracer created by this operation. May be <tt>null</tt> in which case the
+     * new tracer does not look for any tuple literal parts initially.
      */
     protected static Tracer createTracer(OCLExpression expression, String[] tuplePartNames) {
         // Using the class loader is another option, but that would create implicit naming conventions.
@@ -152,18 +150,16 @@ public class InstanceScopeAnalysis {
      * @param oppositeEndFinder
      *            used during partial evaluation and for metamodel queries, e.g., finding opposite role names, or finding all
      *            subclasses of a class; as well as for obtaining all instances of a type while performing an
-     *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where {@link Tracer}s can
-     *            retrieve it using {@link PathCache#getOppositeEndFinder()}.
+     *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where
+     *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
      */
-    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer,
-            OppositeEndFinder oppositeEndFinder) {
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder) {
         if (exprContext == null) {
-            throw new IllegalArgumentException(
-                    "exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
-        }
+	    throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
+	}
         if (expression == null || filterSynthesizer == null) {
-            throw new IllegalArgumentException("Arguments must not be null");
-        }
+	    throw new IllegalArgumentException("Arguments must not be null");
+	}
         expressionToStep = new HashMap<OCLExpression, NavigationStep>();
         context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
@@ -200,23 +196,19 @@ public class InstanceScopeAnalysis {
     }
 
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
-            AnnotatedEObject sourceElement) {
-        if (OptimizationActivation.getOption().isDeltaPropagationActive()) {
-            PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder);
-            Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement
-                    .getAnnotatedObject());
-            PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder);
-            Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement
-                    .getAnnotatedObject());
-            return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue,
-                    filterSynthesizer);
-        } else {
-            return false;
-        }
+            AnnotatedEObject sourceElement){
+	if(OptimizationActivation.getOption().isDeltaPropagationActive()){
+	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder);
+	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
+	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder);
+	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
+	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
+	}else{
+	    return false;
+	}
     }
 
     private final PartialEvaluator partialEvaluatorForAllInstancesDeltaPropagation = new PartialEvaluator();
-
     private Collection<EObject> handleLifeCycleEvent(Notification event) {
         Collection<EObject> result = new HashSet<EObject>();
         Boolean addEvent = NotificationHelper.isAddEvent(event);
@@ -280,10 +272,10 @@ public class InstanceScopeAnalysis {
      * the expression value didn't change based on the change event. If any of the events is an event of different type or the
      * attribute is not of primitive type or its value is not compared to a constant, <tt>false</tt> is returned.
      * <p>
-     * 
+     *
      * Note that further performance improvements are conceivable but not yet implemented. For example, the attribute call
      * expression may be used in a <tt>let</tt>-expression and then the variable may be compared to a primitive literal.
-     * 
+     *
      * @param replacementFor__TEMP__
      *            as a special case, expressions can contain the special string literal "__TEMP__" (see
      *            GlobalDelayedReferenceResolver.TEMPORARY_QUERY_PARAM_REPLACEMENT). Those will be replaced by the value of a
@@ -294,14 +286,13 @@ public class InstanceScopeAnalysis {
     public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(Notification changeEvent,
             String replacementFor__TEMP__) {
         if (!NotificationHelper.isAttributeValueChangeEvent(changeEvent)) {
-            return false;
-        }
+	    return false;
+	}
         Set<? extends NavigationCallExp> calls = getAttributeOrAssociationEndCalls(changeEvent);
         if (calls.size() == 0) {
             // this is likely to be dead code because if the filter synthesis works correctly,
             // we always reevaluate the expressions containing the changed attribute once an attributeValueChange occurs
-            System.err.println("Could niot find any attribute or association end calls for the attribute value change event : "
-                    + changeEvent);
+            System.err.println("Could niot find any attribute or association end calls for the attribute value change event : " + changeEvent);
             return false; // probably an allInstances-triggered element creation/deletion event
         }
         for (NavigationCallExp ace : calls) {
@@ -329,12 +320,12 @@ public class InstanceScopeAnalysis {
                     if (otherArgument != null && otherArgument instanceof PrimitiveLiteralExp) {
                         if (doesComparisonResultChange(changeEvent, (PrimitiveLiteralExp) otherArgument, replacementFor__TEMP__,
                                 op.getReferredOperation().getName(), attributeIsParameter)) {
-                            return false;
-                        }
+			    return false;
+			}
                     } else {
-                        // attribute not used in comparison operation; we assume a change
+			// attribute not used in comparison operation; we assume a change
                         return false;
-                    }
+		    }
                 }
             }
 
@@ -364,8 +355,8 @@ public class InstanceScopeAnalysis {
             } else if (otherArgument instanceof RealLiteralExp) {
                 value = ((RealLiteralExp) otherArgument).getRealSymbol();
             } else {
-                throw new RuntimeException("Internal error. Unknown OCL primitive literal expression " + otherArgument);
-            }
+		throw new RuntimeException("Internal error. Unknown OCL primitive literal expression " + otherArgument);
+	    }
             int oldComparison = (attributeIsParameter ? ((Comparable<Object>) value).compareTo(avce.getOldValue())
                     : ((Comparable<Object>) avce.getOldValue()).compareTo(value));
             int newComparison = (attributeIsParameter ? ((Comparable<Object>) value).compareTo(avce.getNewValue())
@@ -413,8 +404,8 @@ public class InstanceScopeAnalysis {
     }
 
     /**
-     * @return the overall context type for the entire expression; this context type defines the type for <tt>self</tt> if used
-     *         outside of operation bodies.
+     * @return the overall context type for the entire expression; this context type defines
+     *         the type for <tt>self</tt> if used outside of operation bodies.
      */
     private EClass getContext() {
         return context;
@@ -423,7 +414,7 @@ public class InstanceScopeAnalysis {
     /**
      * Looks up <tt>exp</tt> in {@link #expressionToStep}. If not found, the respective {@link Tracer} is created and used to
      * compute and then cache the required {@link NavigationStep}.
-     * 
+     *
      * @param context
      *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
@@ -431,7 +422,7 @@ public class InstanceScopeAnalysis {
     private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
         NavigationStep result = expressionToStep.get(exp);
         if (result == null) {
-            result = pathCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */null);
+            result = pathCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null);
             expressionToStep.put(exp, result);
         }
         return result;
@@ -452,8 +443,7 @@ public class InstanceScopeAnalysis {
      *         cannot be resolved (anymore). This is still an open issue. See the to-do marker below. In all other cases, the
      *         source element on which the event occured, is returned.
      */
-    private Collection<AnnotatedEObject> getSourceElement(Notification changeEvent,
-            NavigationCallExp attributeOrAssociationEndCall) {
+    private Collection<AnnotatedEObject> getSourceElement(Notification changeEvent, NavigationCallExp attributeOrAssociationEndCall) {
         assert NotificationHelper.isAttributeValueChangeEvent(changeEvent)
                 || NotificationHelper.isLinkLifeCycleEvent(changeEvent);
         EClassifier sourceType = attributeOrAssociationEndCall.getSource().getType();
@@ -469,13 +459,14 @@ public class InstanceScopeAnalysis {
             // the old and new object(s) are the source(s) of the opposite property call expression
             for (Object o : getSourceElementsForOppositePropertyCallExp(changeEvent)) {
                 if (sourceType.isInstance(o)) {
-                    result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>\nat object: " + o));
+                    result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>\nat object: "
+                            + o));
                 }
             }
         } else {
-            throw new RuntimeException("Can only handle PropertyCallExp and OppositePropertyCallExp expression types, not "
-                    + attributeOrAssociationEndCall.getClass().getName());
-        }
+	    throw new RuntimeException("Can only handle PropertyCallExp and OppositePropertyCallExp expression types, not "+
+                    attributeOrAssociationEndCall.getClass().getName());
+	}
         return result;
     }
 
@@ -514,7 +505,6 @@ public class InstanceScopeAnalysis {
      * the source expression may not necessarily evaluate to <tt>sourceElement</tt>. However, there are no other {@link RefObject}
      * elements that are not part of the result and for which the source expression evaluates to <tt>sourceElement</tt>. This
      * means, all contexts for which the source expression evaluates to <tt>sourceElement</tt> are guaranteed to be found.
-     * 
      * @param context
      *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
@@ -522,14 +512,14 @@ public class InstanceScopeAnalysis {
     private Set<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
             EClass context, Notification changeEvent) {
         Set<AnnotatedEObject> result;
-        if (OptimizationActivation.getOption().isTracebackStepIAActive()) {
+        if (OptimizationActivation.getOption().isTracebackStepISAActive()) {
             // TODO build the TracebackStepTree and initiate the context calculation
             result = Collections.emptySet();
         } else {
             NavigationStep step = getNavigationStepsToSelfForExpression(
                     (OCLExpression) attributeOrAssociationEndCall.getSource(), context);
             Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
-            TracebackCache cache = new TracebackCache(filterSynthesizer, attributeOrAssociationEndCall);
+            TracebackCache cache = new TracebackCache(attributeOrAssociationEndCall);
             result = step.navigate(sourceElementAsSet, cache, changeEvent);
         }
         return result;
