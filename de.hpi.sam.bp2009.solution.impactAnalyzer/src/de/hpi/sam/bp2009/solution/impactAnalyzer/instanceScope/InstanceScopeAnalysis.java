@@ -53,6 +53,8 @@ import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStep;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStepCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 /**
@@ -65,9 +67,10 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  */
 public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
-//    private final AssociationEndAndAttributeCallFinder associationEndAndAttributeCallFinder;
     private final Map<OCLExpression, NavigationStep> expressionToStep;
+    private final Map<OCLExpression, TracebackStep> expressionToTracebackStep;
     private final PathCache pathCache;
+    private final TracebackStepCache tracebackStepCache;
     private final FilterSynthesisImpl filterSynthesizer;
     private final EClass context;
     private final OppositeEndFinder oppositeEndFinder;
@@ -160,11 +163,20 @@ public class InstanceScopeAnalysis {
         if (expression == null || filterSynthesizer == null) {
 	    throw new IllegalArgumentException("Arguments must not be null");
 	}
-        expressionToStep = new HashMap<OCLExpression, NavigationStep>();
         context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
         this.oppositeEndFinder = oppositeEndFinder;
-        pathCache = new PathCache(oppositeEndFinder);
+        if (OptimizationActivation.getOption().isTracebackStepISAActive()) {
+            tracebackStepCache = new TracebackStepCache(oppositeEndFinder);
+            expressionToTracebackStep = new HashMap<OCLExpression, TracebackStep>();
+            pathCache = null;
+            expressionToStep = null;
+        } else {
+            pathCache = new PathCache(oppositeEndFinder);
+            expressionToStep = new HashMap<OCLExpression, NavigationStep>();
+            tracebackStepCache = null;
+            expressionToTracebackStep = null;
+        }
     }
 
     public Collection<EObject> getContextObjects(Notification event) {
@@ -429,6 +441,23 @@ public class InstanceScopeAnalysis {
     }
 
     /**
+     * Looks up <tt>exp</tt> in {@link #expressionToStep}. If not found, the respective {@link Tracer} is created and used to
+     * compute and then cache the required {@link NavigationStep}.
+     *
+     * @param context
+     *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
+     *            defines the type for <tt>self</tt> if used outside of operation bodies.
+     */
+    private TracebackStep getTracebackStepForExpression(OCLExpression exp, EClass context) {
+        TracebackStep result = expressionToTracebackStep.get(exp);
+        if (result == null) {
+            result = tracebackStepCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null);
+            expressionToTracebackStep.put(exp, result);
+        }
+        return result;
+    }
+
+    /**
      * @param changeEvent
      *            either an {@link AttributeValueChangeEvent} or a {@link LinkChangeEvent}.
      * @param attributeOrAssociationEndCall
@@ -513,8 +542,9 @@ public class InstanceScopeAnalysis {
             EClass context, Notification changeEvent) {
         Set<AnnotatedEObject> result;
         if (OptimizationActivation.getOption().isTracebackStepISAActive()) {
-            // TODO build the TracebackStepTree and initiate the context calculation
-            result = Collections.emptySet();
+            TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
+            TracebackCache cache = new TracebackCache(attributeOrAssociationEndCall);
+            result = step.traceback(sourceElement, cache);
         } else {
             NavigationStep step = getNavigationStepsToSelfForExpression(
                     (OCLExpression) attributeOrAssociationEndCall.getSource(), context);
