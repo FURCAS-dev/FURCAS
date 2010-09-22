@@ -1,12 +1,15 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.PropertyCallExp;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
@@ -77,7 +80,7 @@ public abstract class AbstractPathCache<StepType> {
         return oppositeEndFinder;
     }
 
-    public StepType getPathForNode(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor) {
+    public StepType getPathForNode(OCLExpression subexpression, Stack<String> tupleLiteralPartNamesToLookFor) {
         return subexpressionToPath.get(new Pair<OCLExpression, List<String>>(subexpression,
                 getTupleLiteralPartNamesToLookForAsList(tupleLiteralPartNamesToLookFor)));
     }
@@ -91,23 +94,27 @@ public abstract class AbstractPathCache<StepType> {
      * this path cache registers as listener for a change in the step's always-empty setting. If any of these change events are
      * received, the respective step is re-hashed into {@link #allSteps}.
      */
-    public void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, StepType path) {
+    public void put(OCLExpression subexpression, Stack<String> tupleLiteralPartNamesToLookFor, StepType path) {
         List<String> tupleLiteralPartNamesToLookForAsList = getTupleLiteralPartNamesToLookForAsList(tupleLiteralPartNamesToLookFor);
         subexpressionToPath.put(new Pair<OCLExpression, List<String>>(subexpression, tupleLiteralPartNamesToLookForAsList), path);
     }
 
-    private static List<String> getTupleLiteralPartNamesToLookForAsList(String[] tupleLiteralPartNamesToLookFor) {
+    private static List<String> getTupleLiteralPartNamesToLookForAsList(Stack<String> tupleLiteralPartNamesToLookFor) {
         List<String> tupleLiteralPartNamesToLookForAsList;
-        if (tupleLiteralPartNamesToLookFor == null || tupleLiteralPartNamesToLookFor.length == 0) {
+        if (tupleLiteralPartNamesToLookFor == null || tupleLiteralPartNamesToLookFor.size() == 0) {
             tupleLiteralPartNamesToLookForAsList = null;
         } else {
-            tupleLiteralPartNamesToLookForAsList = Arrays.asList(tupleLiteralPartNamesToLookFor);
+            tupleLiteralPartNamesToLookForAsList = new ArrayList<String>();
+            Iterator<String> it = tupleLiteralPartNamesToLookFor.listIterator();
+            while(it.hasNext()){
+                tupleLiteralPartNamesToLookForAsList.add(it.next());
+            }
         }
         return tupleLiteralPartNamesToLookForAsList;
     }
 
     public StepType getOrCreateNavigationPath(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
         StepType result = getPathForNode(sourceExpression, tupleLiteralNamesToLookFor);
         if (result == null) {
             result = createStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
@@ -117,6 +124,6 @@ public abstract class AbstractPathCache<StepType> {
     }
 
     protected abstract StepType createStep(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor);
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor);
 
 }

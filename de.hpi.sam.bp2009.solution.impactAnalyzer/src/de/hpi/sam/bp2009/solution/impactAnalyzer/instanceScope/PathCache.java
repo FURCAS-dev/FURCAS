@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -53,7 +54,7 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      * this path cache registers as listener for a change in the step's always-empty setting. If any of these change events are
      * received, the respective step is re-hashed into {@link #allNavigationSteps}.
      */
-    public void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, NavigationStep path) {
+    public void put(OCLExpression subexpression, Stack<String> tupleLiteralPartNamesToLookFor, NavigationStep path) {
         super.put(subexpression, tupleLiteralPartNamesToLookFor, path);
         if (!allNavigationSteps.containsKey(path.getSemanticIdentity())) {
             allNavigationSteps.put(path.getSemanticIdentity(), path);
@@ -80,7 +81,7 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      *            is called multiple times on the same object for the same expression, then the steps have to have equal semantics
      *            because subsequent calls will pull the result from the cache if available instead of creating a new one.
      */
-    protected NavigationStep navigationStepFromSequence(OCLExpression expression, String[] tupleLiteralPartNamesToLookFor,
+    protected NavigationStep navigationStepFromSequence(OCLExpression expression, Stack<String> tupleLiteralPartNamesToLookFor,
             NavigationStep... steps) {
         // caching here is not harmful because all known usages so far don't create an IndirectingStep for the same expression
         // but immediately return the NavigationStepSequence step returned by this operation
@@ -122,7 +123,7 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      * contains only one step, that step is returned without constructing a {@link BranchingNavigationStep} around it.
      */
     protected NavigationStep navigationStepForBranch(EClass sourceType, EClass targetType, OCLExpression expression,
-            String[] tupleLiteralPartNamesToLookFor, NavigationStep... steps) {
+            Stack<String> tupleLiteralPartNamesToLookFor, NavigationStep... steps) {
         NavigationStep result;
         if (steps.length == 1) {
             result = steps[0];
@@ -209,7 +210,7 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      * @param tupleLiteralPartNamesToLookFor
      *            TODO
      */
-    public IndirectingStep createIndirectingStepFor(OCLExpression expr, String[] tupleLiteralPartNamesToLookFor) {
+    public IndirectingStep createIndirectingStepFor(OCLExpression expr, Stack<String> tupleLiteralPartNamesToLookFor) {
         IndirectingStep result = new IndirectingStep(expr);
         put(expr, tupleLiteralPartNamesToLookFor, result);
         return result;
@@ -225,7 +226,7 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
 
     @Override
     protected NavigationStep createStep(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
         NavigationStep result = InstanceScopeAnalysis.createTracer(sourceExpression, tupleLiteralNamesToLookFor).traceback(context, this,
                 operationBodyToCallMapper);
         NavigationStep existingEqualStep = allNavigationSteps.get(result);

@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.LetExp;
@@ -11,7 +12,7 @@ import org.eclipse.ocl.ecore.Variable;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class LetExpTracer extends AbstractTracer<LetExp> {
-    public LetExpTracer(LetExp expression, String[] tuplePartNames) {
+    public LetExpTracer(LetExp expression, Stack<String> tuplePartNames) {
         super(expression, tuplePartNames);
     }
 

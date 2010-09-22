@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -15,7 +16,7 @@ import org.eclipse.ocl.expressions.CollectionLiteralPart;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExp> {
-    public CollectionLiteralExpTracer(CollectionLiteralExp expression, String[] tuplePartNames) {
+    public CollectionLiteralExpTracer(CollectionLiteralExp expression, Stack<String> tuplePartNames) {
         super(expression, tuplePartNames);
     }
 

@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -13,7 +14,7 @@ import org.eclipse.ocl.ecore.Variable;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class IterateExpTracer extends AbstractTracer<IterateExp> {
-    public IterateExpTracer(IterateExp expression, String[] tuplePartNames) {
+    public IterateExpTracer(IterateExp expression, Stack<String> tuplePartNames) {
         super(expression, tuplePartNames);
     }
 

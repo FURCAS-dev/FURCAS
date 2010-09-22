@@ -1,5 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Stack;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -10,7 +12,7 @@ import org.eclipse.ocl.expressions.TupleLiteralPart;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class TupleLiteralExpTracer extends AbstractTracer<TupleLiteralExp> {
-    public TupleLiteralExpTracer(TupleLiteralExp expression, String[] tuplePartNames) {
+    public TupleLiteralExpTracer(TupleLiteralExp expression, Stack<String> tuplePartNames) {
         super(expression, tuplePartNames);
     }
 

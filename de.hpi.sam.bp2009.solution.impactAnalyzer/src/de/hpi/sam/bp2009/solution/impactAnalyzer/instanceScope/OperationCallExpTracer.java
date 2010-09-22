@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -50,7 +51,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExp> {
     // TODO this is only required to obtain the operation body from our proprietary annotation URI. Could use InvocationBehavior.getOperationBody later
     private final EAnnotationOCLParser annotationParser;
     
-    public OperationCallExpTracer(OperationCallExp expression, String[] tuplePartNames) {
+    public OperationCallExpTracer(OperationCallExp expression, Stack<String> tuplePartNames) {
         super(expression, tuplePartNames);
         annotationParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
     }

@@ -1,5 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Stack;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
@@ -10,7 +12,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class OppositePropertyCallExpTracer extends  AbstractTracer<OppositePropertyCallExp> {
 
-    protected OppositePropertyCallExpTracer(OppositePropertyCallExp expression, String[] tuplePartNames) {
+    protected OppositePropertyCallExpTracer(OppositePropertyCallExp expression, Stack<String> tuplePartNames) {
         super(expression, tuplePartNames);
     }
 

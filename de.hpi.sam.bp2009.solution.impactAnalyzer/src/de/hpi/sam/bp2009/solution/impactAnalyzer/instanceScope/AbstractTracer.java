@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -28,7 +29,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public abstract class AbstractTracer<T extends EObject> implements Tracer {
     private T expression;
-    final private String[] tuplePartNames;
+    final private Stack<String> tuplePartNames;
 
     /**
      * Creates a tracer with a <tt>null</tt> {@link #tuplePartNames} array, meaninig that this tracer is not looking for
@@ -38,14 +39,14 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      *            the OCL expression for which this tracer shall determine a navigation step
      */
     protected AbstractTracer(T expression) {
-        this(expression, (String[]) /* tuplePartNames */null);
+        this(expression, (Stack<String>)/* tuplePartNames */null);
     }
 
     /**
      * Specifies an explicit list of tuple part names to look for. Useful in combination with
      * {@link #getListOfTuplePartNamesWithFoundRemoved()}.
      */
-    protected AbstractTracer(T expression, String[] tuplePartNames) {
+    protected AbstractTracer(T expression, Stack<String> tuplePartNames) {
         this.expression = expression;
         this.tuplePartNames = tuplePartNames;
     }
@@ -67,26 +68,33 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
     }
 
     protected boolean isLookingForTuplePart() {
-        return tuplePartNames != null && tuplePartNames.length > 0;
+        return tuplePartNames != null && tuplePartNames.size() > 0;
     }
 
     protected String getTuplePartNameLookedFor() {
-        return tuplePartNames[0];
+        return tuplePartNames.peek();
     }
-
-    private static String[] getExtendedListOfTuplePartNames(String[] oldTuplePartNames, String toAdd) {
-        String[] result;
-        if (oldTuplePartNames == null || oldTuplePartNames.length == 0) {
-            result = new String[1];
+  
+    private static Stack<String> getExtendedListOfTuplePartNames(Stack<String> oldTuplePartNames, String toAdd) {
+        Stack<String> result;
+        if (oldTuplePartNames == null || oldTuplePartNames.size() == 0) {
+            result = new Stack<String>();
         } else {
-            result = new String[oldTuplePartNames.length + 1];
-            System.arraycopy(oldTuplePartNames, 0, result, 1, oldTuplePartNames.length);
+            Object clone = oldTuplePartNames.clone();
+            if(clone instanceof Stack<?>){
+                @SuppressWarnings("unchecked")
+                Stack<String> x = (Stack<String>) clone;
+                result = x;
+                
+            }else{
+                throw new ClassCastException("Cloning an instance of Stack<String> didn't return an instance of the same type.");
+            }
         }
-        result[0] = toAdd;
+        result.add(toAdd);
         return result;
     }
 
-    public String[] getExtendedListOfTuplePartNames(String toAdd) {
+    public Stack<String> getExtendedListOfTuplePartNames(String toAdd) {
         return getExtendedListOfTuplePartNames(tuplePartNames, toAdd);
     }
 
@@ -94,18 +102,25 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
      * Returns {@link #tuplePartNames} with the first element at index 0 removed. If {@link #tuplePartNames} is <tt>null</tt> or
      * contains one or no element, <tt>null</tt> is returned.
      */
-    protected String[] getListOfTuplePartNamesWithFoundRemoved() {
-        String[] result;
-        if (tuplePartNames == null || tuplePartNames.length <= 1) {
+    protected Stack<String> getListOfTuplePartNamesWithFoundRemoved() {
+        Stack<String> result;
+        if (tuplePartNames == null || tuplePartNames.size() <= 1) {
             result = null;
         } else {
-            result = new String[tuplePartNames.length - 1];
-            System.arraycopy(tuplePartNames, 1, result, 0, result.length);
+            Object clone = tuplePartNames.clone();
+            if (clone instanceof Stack<?>){
+                @SuppressWarnings("unchecked")
+                Stack<String> x = (Stack<String>) clone;
+                result = x;
+                result.pop();
+            }else{
+                throw new ClassCastException("Cloning an instance of Stack<String> didn't return an instance of the same type.");
+            }
         }
         return result;
     }
 
-    public String[] getTupleLiteralPartNamesToLookFor() {
+    public Stack<String> getTupleLiteralPartNamesToLookFor() {
         return tuplePartNames;
     }
 

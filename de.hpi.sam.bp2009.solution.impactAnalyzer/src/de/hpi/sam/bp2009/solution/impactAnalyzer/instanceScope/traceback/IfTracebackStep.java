@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.IfExp;
@@ -17,7 +18,7 @@ public class IfTracebackStep extends AbstractTracebackStep {
     private final TracebackStepAndScopeChange elseStep;
 
     public IfTracebackStep(IfExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
-            String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+            Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         OCLExpression thenExpression = (OCLExpression) sourceExpression.getThenExpression();
         thenStep = createTracebackStepAndScopeChange(sourceExpression, thenExpression, context, operationBodyToCallMapper,
                 tupleLiteralNamesToLookFor, tracebackStepCache);

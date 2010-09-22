@@ -1,5 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Stack;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -12,7 +14,7 @@ import org.eclipse.ocl.ecore.TupleType;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
-    public PropertyCallExpTracer(PropertyCallExp expression, String[] tuplePartNames) {
+    public PropertyCallExpTracer(PropertyCallExp expression, Stack<String> tuplePartNames) {
         super(expression, tuplePartNames);
     }
 
