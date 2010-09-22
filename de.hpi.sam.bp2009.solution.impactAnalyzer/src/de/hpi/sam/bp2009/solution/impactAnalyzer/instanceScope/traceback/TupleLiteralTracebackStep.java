@@ -8,7 +8,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 public class TupleLiteralTracebackStep extends AbstractTracebackStep {
 
     public TupleLiteralTracebackStep(OCLExpression sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
+            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         // TODO Auto-generated constructor stub
     }
 

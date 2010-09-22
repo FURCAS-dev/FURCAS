@@ -8,7 +8,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 public class LetTracebackStep extends AbstractTracebackStep {
 
     public LetTracebackStep(OCLExpression sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
-            String[] tupleLiteralNamesToLookFor) {
+            String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         // TODO Auto-generated constructor stub
     }
 
