@@ -19,6 +19,7 @@ public class IfTracebackStep extends AbstractTracebackStep {
 
     public IfTracebackStep(IfExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+        super(sourceExpression);
         OCLExpression thenExpression = (OCLExpression) sourceExpression.getThenExpression();
         thenStep = createTracebackStepAndScopeChange(sourceExpression, thenExpression, context, operationBodyToCallMapper,
                 tupleLiteralNamesToLookFor, tracebackStepCache);

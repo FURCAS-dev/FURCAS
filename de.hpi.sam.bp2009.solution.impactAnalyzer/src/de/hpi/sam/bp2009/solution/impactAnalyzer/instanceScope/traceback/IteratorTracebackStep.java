@@ -1,64 +1,138 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
+import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.Stack;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.ecore.IteratorExp;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.util.OCLStandardLibraryUtil;
+import org.eclipse.ocl.utilities.PredefinedType;
 
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.TracebackCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class IteratorTracebackStep extends AbstractTracebackStep {
-
-    private final TracebackStepAndScopeChange subSequentStep;
+    private enum Strategy { EMPTY, MAP, PASSTHROUGH };
+    private final Strategy strategy;
+    private final TracebackStepAndScopeChange step;
+    private final IteratorExp predicateExpressionToCheck;
+    private final boolean acceptIfPredicateTrue;
+    private final OppositeEndFinder oppositeEndFinder;
 
     public IteratorTracebackStep(IteratorExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        String iteratorExpName = sourceExpression.getName();
-        if ("select".equals(iteratorExpName) || "reject".equals(iteratorExpName) || "sortedBy".equals(iteratorExpName)
-                || "any".equals(iteratorExpName)) {
-            OCLExpression source = (OCLExpression) sourceExpression.getSource();
-            subSequentStep = createTracebackStepAndScopeChange(sourceExpression, source, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
-        } else {
-            if ("collect".equals(iteratorExpName) || "collectNested".equals(iteratorExpName)) {
-                OCLExpression body = (OCLExpression) sourceExpression.getBody();
-                subSequentStep = createTracebackStepAndScopeChange(sourceExpression, body, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
+        super(sourceExpression);
+        String name = sourceExpression.getName();
+        int opCode = OCLStandardLibraryUtil.getOperationCode(name);
+        if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.SORTED_BY
+                || opCode == PredefinedType.ANY) {
+            strategy = Strategy.PASSTHROUGH;
+            step = createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) sourceExpression.getSource(), context,
+                    operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
+            if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.ANY) {
+                // evaluate predicate before checking how it goes on
+                org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> varDecl = sourceExpression.getIterator().get(0);
+                requiredType = getInnermostElementType(varDecl.getType());
+                if (opCode == PredefinedType.SELECT || opCode == PredefinedType.ANY) {
+                    acceptIfPredicateTrue = true;
+                } else {
+                    acceptIfPredicateTrue = false;
+                }
+                predicateExpressionToCheck = sourceExpression;
+                oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
             } else {
-                // iterator with boolean result
-                subSequentStep = null;
+                requiredType = null;
+                predicateExpressionToCheck = null;
+                acceptIfPredicateTrue = false;
+                oppositeEndFinder = null;
             }
+        } else if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED) {
+            strategy = Strategy.MAP;
+            requiredType = null;
+            predicateExpressionToCheck = null;
+            acceptIfPredicateTrue = false;
+            step = createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) sourceExpression.getBody(), context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
+            oppositeEndFinder = null;
+        } else {
+            // boolean or other non-class-type-result iterator
+            strategy = Strategy.EMPTY;
+            requiredType = null;
+            predicateExpressionToCheck = null;
+            acceptIfPredicateTrue = false;
+            step = null;
+            oppositeEndFinder = null;
         }
     }
 
-    /**
-     * When a {@link IteratorExp} is traced back, it calls the
-     * {@link TracebackStep#traceback(AnnotatedEObject, Set, TracebackCache)} function for its source-expression, when the
-     * iterator name equals 'select', 'reject', 'any' or 'sortedBy', forwarding the <code>source</code> object, the (possibly
-     * modified) <code>pendingUnusedEvalRequests</code> and the <code>tracebackCache</code>.
-     * 
-     * When the iterator name equals either 'collect' or 'collectNested', the {@link IteratorExp} is traced back by calling the
-     * {@link TracebackStep#traceback(AnnotatedEObject, Set, TracebackCache)} function for its body-expression, forwarding the
-     * <code>source</code> object, the (possibly modified) <code>pendingUnusedEvalRequests</code> and the
-     * <code>tracebackCache</code>.
-     * 
-     * In all other cases an empty set is returned.
-     * 
-     * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, TracebackCache)
-     */
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache) {
-        if (subSequentStep == null) {
-            // iterator with boolean result
+        Notification atPre = null; // FIXME needs to be passed as argument
+        switch (strategy) {
+        case EMPTY:
             return Collections.emptySet();
-        } else {
-            return subSequentStep.traceback(source, pendingUnusedEvalRequests, tracebackCache);
+        case MAP:
+            return step.traceback(source, pendingUnusedEvalRequests, tracebackCache);
+        case PASSTHROUGH:
+            Set<EObject> sourceValue = new LinkedHashSet<EObject>(1);
+            sourceValue.add(source.getAnnotatedObject());
+            boolean passedPredicate = evaluatePredicate(sourceValue, atPre);
+            if (passedPredicate) {
+                return step.traceback(source, pendingUnusedEvalRequests, tracebackCache);
+            } else {
+                return Collections.emptySet();
+            }
+        default:
+            throw new RuntimeException("Internal error: unknown traceback strategy "+strategy);
         }
+    }
+
+    private Boolean evaluatePredicate(Collection<EObject> sourceObjects, Notification atPre) {
+        // evaluate whether the source object would have passed the iterator's body before the change
+        Boolean resultPre = acceptIfPredicateTrue;
+        if (!(atPre == null)) {
+            PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder);
+            try {
+                Object result = evalPre.evaluate(null, predicateExpressionToCheck, sourceObjects);
+                resultPre = sourceObjects.contains(result);
+            } catch (ValueNotFoundException vnfe) {
+                // be conservative about undefined situations
+                resultPre = acceptIfPredicateTrue;
+            } catch (ClassCastException cce) {
+                throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
+            }
+        }
+        // evaluate whether the source object passes the iterator's body after the change
+
+        PartialEvaluator evalPost = new PartialEvaluator();
+        Boolean resultPost;
+        try {
+            Object result = evalPost.evaluate(null, predicateExpressionToCheck, sourceObjects);
+            resultPost = sourceObjects.contains(result) ;
+        } catch (ValueNotFoundException vnfe) {
+            // be conservative about undefined situations
+            resultPost = acceptIfPredicateTrue;
+        } catch (ClassCastException cce) {
+            throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
+        }
+        // if the source object fulfills the condition before or after the change event
+        // or accesses an undefined variable before or after the change event
+        // it passes this navigation step
+        return resultPre == acceptIfPredicateTrue || resultPost == acceptIfPredicateTrue;
     }
 
 }

@@ -15,6 +15,7 @@ public class TupleLiteralTracebackStep extends AbstractTracebackStep {
 
     public TupleLiteralTracebackStep(TupleLiteralExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+        super(sourceExpression);
         // TODO Auto-generated constructor stub
     }
 

@@ -20,6 +20,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep {
 
     public PropertyCallTracebackStep(PropertyCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+        super(sourceExpression);
         nextSteps = new HashSet<TracebackStep>();
         if (((PropertyCallExp)sourceExpression).getSource().getType() instanceof TupleType){
             

@@ -22,7 +22,7 @@ public class CollectionLiteralTracebackStep extends AbstractTracebackStep {
 
     public CollectionLiteralTracebackStep(OCLExpression sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-
+        super(sourceExpression);
         subSequentSteps = new HashSet<TracebackStepAndScopeChange>();
         for (CollectionLiteralPart<EClassifier> part : ((CollectionLiteralExp) sourceExpression).getPart()) {
             if (part instanceof CollectionItem) {

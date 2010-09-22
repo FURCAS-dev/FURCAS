@@ -13,29 +13,19 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class IterateTracebackStep extends AbstractTracebackStep {
-
-    private final TracebackStepAndScopeChange bodyExpressionStep;
+    private final TracebackStepAndScopeChange step;
 
     public IterateTracebackStep(IterateExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-
-        OCLExpression bodyExpression = (OCLExpression) sourceExpression.getBody();
-        bodyExpressionStep = createTracebackStepAndScopeChange(sourceExpression, bodyExpression, context,
+        super(sourceExpression);
+        step = createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) sourceExpression.getBody(), context,
                 operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
     }
 
-    /**
-     * When a {@link IterateExp} is traced back, it calls the
-     * {@link TracebackStep#traceback(AnnotatedEObject, Set, TracebackCache)} function for its body-expression, forwarding the
-     * <code>source</code> object, the (possibly modified) <code>pendingUnusedEvalRequests</code> and the
-     * <code>tracebackCache</code>.
-     * 
-     * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, TracebackCache)
-     */
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache) {
-        return bodyExpressionStep.traceback(source, pendingUnusedEvalRequests, tracebackCache);
+        return step.traceback(source, pendingUnusedEvalRequests, tracebackCache);
     }
 
 }

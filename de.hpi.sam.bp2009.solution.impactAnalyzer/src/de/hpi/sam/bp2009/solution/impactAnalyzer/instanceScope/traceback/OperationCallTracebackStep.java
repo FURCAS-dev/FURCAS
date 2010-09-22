@@ -15,6 +15,7 @@ public class OperationCallTracebackStep extends AbstractTracebackStep {
 
     public OperationCallTracebackStep(OperationCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+        super(sourceExpression);
         // TODO Auto-generated constructor stub
     }
 
