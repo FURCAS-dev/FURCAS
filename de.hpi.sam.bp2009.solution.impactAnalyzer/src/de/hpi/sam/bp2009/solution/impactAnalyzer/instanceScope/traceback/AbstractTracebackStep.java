@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -8,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LoopExp;
@@ -15,13 +17,19 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.TracebackCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public abstract class AbstractTracebackStep implements TracebackStep {
+    /**
+     * If set to a non-<code>null</code> class, this step asserts that if the source objects passed to its
+     * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache)} or
+     * {@link #traceback(Set, UnusedEvaluationRequestSet, TracebackCache)} operation are not compatible to that
+     * type, then the result set will be empty.
+     */
+    protected EClass requiredType;
     
     /**
      * Encapsulates the scope change that has to happen before invoking a subsequent traceback step.
@@ -44,8 +52,16 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         }
     }
     
-    
-    
+    /**
+     * If the expression's type for which this traceback step is constructed is class-like, {@link #requiredType} is
+     * set to the expression's type.
+     */
+    public AbstractTracebackStep(OCLExpression sourceExpression) {
+        if (sourceExpression.getType() instanceof EClass) {
+            requiredType = (EClass) sourceExpression.getType();
+        }
+    }
+
     protected Set<AnnotatedEObject> traceback(Set<AnnotatedEObject> sources, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             TracebackCache cache) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
@@ -57,12 +73,13 @@ public abstract class AbstractTracebackStep implements TracebackStep {
 
     public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             TracebackCache tracebackCache) {
-        // TODO refine TracebackStep#traceback()        
-        if(OptimizationActivation.getOption().isUnusedDetectionActive()){
-            performUnusedDetection();
+        Set<AnnotatedEObject> result;
+        if (requiredType != null && !requiredType.isInstance(source.getAnnotatedObject())) {
+            result = Collections.emptySet();
+        } else {
+            result = performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache);
         }
-        performScopeTransition();
-        return performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache);
+        return result;
     }
 
     /**
@@ -72,15 +89,6 @@ public abstract class AbstractTracebackStep implements TracebackStep {
     protected abstract Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache);
 
-    protected void performScopeTransition() {
-        // TODO implement AbstractTracebackStep#performScopeTransition()
-        
-    }
-
-    protected void performUnusedDetection() {
-        // TODO implement AbstractTracebackStep#performUnusedDetection()
-        
-    }
 
     protected Set<Variable> getVariablesChangingScope(OCLExpression sourceExpression, OCLExpression targetExpression,
             OperationBodyToCallMapper operationBodyToCallMapper) {
@@ -198,5 +206,15 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         return new TracebackStepAndScopeChange(tracebackStepCache.getOrCreateNavigationPath(targetExpression, context,
                 operationBodyToCallMapper, tupleLiteralNamesToLookFor), getVariablesChangingScope(sourceExpression,
                 targetExpression, operationBodyToCallMapper));
+    }
+
+    /**
+     * We assume a collection, possibly nested, that eventually has elements of a class-like type inside.
+     */
+    protected EClass getInnermostElementType(EClassifier type) {
+        while (!(type instanceof EClass) && type instanceof CollectionType) {
+            type = ((CollectionType) type).getElementType();
+        }
+        return (EClass) type;
     }
 }
