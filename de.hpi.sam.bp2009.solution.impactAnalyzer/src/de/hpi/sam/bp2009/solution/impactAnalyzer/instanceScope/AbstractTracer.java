@@ -167,9 +167,7 @@ public abstract class AbstractTracer<T extends EObject> implements Tracer {
         while (!(type instanceof EClass) && type instanceof CollectionType) {
             type = ((CollectionType) type).getElementType();
         }
-
         return (EClass) type;
-
     }
     
     /**
