@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class AbstractTracebackStep implements TracebackStep {
     public Set<AnnotatedEObject> traceback(AnnotatedEObject source, Set<UnusedEvaluationRequest> pendingUnusedEvalRequests,
             TracebackCache cache) {
         // TODO implement TracebackStep#traceback()
-        return null;
+        return Collections.emptySet();
     }
 
 }
