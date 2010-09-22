@@ -16,7 +16,7 @@ public class LetTracebackStep extends AbstractTracebackStep {
 
     private static final String IN_EXPRESSION_STEP = "inExpressionStep";
 
-    public LetTracebackStep(OCLExpression sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
+    public LetTracebackStep(LetExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         
         TracebackStep inExpressionStep = tracebackStepCache.createStep((OCLExpression) ((LetExp) sourceExpression).getIn(),
