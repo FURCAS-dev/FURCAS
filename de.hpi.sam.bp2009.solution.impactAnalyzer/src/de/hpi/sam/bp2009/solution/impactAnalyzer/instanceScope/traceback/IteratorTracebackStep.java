@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.Collections;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.IteratorExp;
@@ -17,8 +18,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
     private final TracebackStepAndScopeChange subSequentStep;
 
     public IteratorTracebackStep(IteratorExp sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor,
-            TracebackStepCache tracebackStepCache) {
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         String iteratorExpName = sourceExpression.getName();
         if ("select".equals(iteratorExpName) || "reject".equals(iteratorExpName) || "sortedBy".equals(iteratorExpName)
                 || "any".equals(iteratorExpName)) {

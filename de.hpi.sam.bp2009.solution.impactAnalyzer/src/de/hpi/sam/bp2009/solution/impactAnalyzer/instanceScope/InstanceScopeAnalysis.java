@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Stack;
 import java.util.logging.Logger;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -103,7 +104,7 @@ public class InstanceScopeAnalysis {
      * unchanged to the new tracer created by this operation. May be <tt>null</tt> in which case the
      * new tracer does not look for any tuple literal parts initially.
      */
-    protected static Tracer createTracer(OCLExpression expression, String[] tuplePartNames) {
+    protected static Tracer createTracer(OCLExpression expression, Stack<String> tuplePartNames) {
         // Using the class loader is another option, but that would create implicit naming conventions.
         // Thats why we do the mapping "manually".
         switch (expression.eClass().getClassifierID()) {

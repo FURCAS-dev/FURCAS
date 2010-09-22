@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -193,7 +194,7 @@ public abstract class AbstractTracebackStep implements TracebackStep {
     
     protected TracebackStepAndScopeChange createTracebackStepAndScopeChange(OCLExpression sourceExpression,
             OCLExpression targetExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
-            String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+            Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         return new TracebackStepAndScopeChange(tracebackStepCache.getOrCreateNavigationPath(targetExpression, context,
                 operationBodyToCallMapper, tupleLiteralNamesToLookFor), getVariablesChangingScope(sourceExpression,
                 targetExpression, operationBodyToCallMapper));

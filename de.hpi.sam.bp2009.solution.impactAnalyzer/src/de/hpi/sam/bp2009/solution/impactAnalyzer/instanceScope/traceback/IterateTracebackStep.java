@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.IterateExp;
@@ -16,7 +17,7 @@ public class IterateTracebackStep extends AbstractTracebackStep {
     private final TracebackStepAndScopeChange bodyExpressionStep;
 
     public IterateTracebackStep(IterateExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
-            String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+            Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
 
         OCLExpression bodyExpression = (OCLExpression) sourceExpression.getBody();
         bodyExpressionStep = createTracebackStepAndScopeChange(sourceExpression, bodyExpression, context,

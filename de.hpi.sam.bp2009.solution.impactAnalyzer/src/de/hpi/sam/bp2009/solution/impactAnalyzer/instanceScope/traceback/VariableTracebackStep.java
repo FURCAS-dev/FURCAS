@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -55,7 +56,7 @@ public class VariableTracebackStep extends AbstractTracebackStep {
     private final OppositeEndFinder oppositeEndFinder;
 
     public VariableTracebackStep(VariableExp sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         variable = (Variable) sourceExpression.getReferredVariable();
         // enter step into cache already to let it be found during recursive lookups
@@ -117,7 +118,7 @@ public class VariableTracebackStep extends AbstractTracebackStep {
     }
 
     private Set<TracebackStepAndScopeChange> tracebackOperationParameter(VariableExp variableExp, EClass context,
-            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
+            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
         Set<TracebackStepAndScopeChange> result = new HashSet<TracebackStepAndScopeChange>();
         OCLExpression rootExpression = getRootExpression(variableExp);
         // all operation bodies must have been reached through at least one call; all calls are
@@ -161,7 +162,7 @@ public class VariableTracebackStep extends AbstractTracebackStep {
     }
 
     private Set<TracebackStepAndScopeChange> tracebackLetVariable(VariableExp variableExpression, EClass context,
-            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
+            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
         OCLExpression initExpression = (OCLExpression) variable.getInitExpression();
         TracebackStepAndScopeChange step = createTracebackStepAndScopeChange(variableExpression, initExpression, context,
                 operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
@@ -169,7 +170,7 @@ public class VariableTracebackStep extends AbstractTracebackStep {
     }
 
     private Set<TracebackStepAndScopeChange> tracebackIterateResultVariable(VariableExp variableExp, EClass context,
-            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
+            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
         // the init expression can't reference the result variable, therefore no recursive reference may occur here:
         TracebackStepAndScopeChange stepForInitExpression = createTracebackStepAndScopeChange(variableExp, (OCLExpression) variable
                 .getInitExpression(), context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
@@ -186,7 +187,7 @@ public class VariableTracebackStep extends AbstractTracebackStep {
     }
 
     private Set<TracebackStepAndScopeChange> tracebackIteratorVariable(VariableExp variableExp, EClass context,
-            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
+            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
         TracebackStepAndScopeChange result = createTracebackStepAndScopeChange(
                 variableExp, (OCLExpression) ((LoopExp) variableExp.eContainer()).getSource(), context, operationBodyToCallMapper,
                 tupleLiteralNamesToLookFor, tracebackStepCache);
@@ -194,7 +195,7 @@ public class VariableTracebackStep extends AbstractTracebackStep {
     }
 
     private Set<TracebackStepAndScopeChange> tracebackSelf(VariableExp variableExp, EClass context,
-            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, String[] tupleLiteralNamesToLookFor) {
+            TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
         Set<TracebackStepAndScopeChange> result;
         OCLExpression rootExpression = getRootExpression(variableExp);
         EOperation op = getOperationOfWhichRootExpressionIsTheBody(rootExpression, operationBodyToCallMapper);

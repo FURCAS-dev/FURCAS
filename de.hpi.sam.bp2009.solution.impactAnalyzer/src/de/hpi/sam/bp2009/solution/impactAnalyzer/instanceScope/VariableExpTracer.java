@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -47,7 +48,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
  */
 // TODO refactor into several subclasses, one for each is... case, and let tracer factory in InstanceScopeAnalysis.createTracer choose the appropriate one
 public class VariableExpTracer extends AbstractTracer<VariableExp> {
-    public VariableExpTracer(VariableExp expression, String[] tuplePartNames) {
+    public VariableExpTracer(VariableExp expression, Stack<String> tuplePartNames) {
         super(expression, tuplePartNames);
     }
 

@@ -1,5 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 
+import java.util.Stack;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -7,7 +9,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
 public class IfExpTracer extends AbstractTracer<IfExp> {
-	public IfExpTracer(IfExp expression, String[] tuplePartNames) {
+	public IfExpTracer(IfExp expression, Stack<String> tuplePartNames) {
 		super(expression, tuplePartNames);
 	}
 
