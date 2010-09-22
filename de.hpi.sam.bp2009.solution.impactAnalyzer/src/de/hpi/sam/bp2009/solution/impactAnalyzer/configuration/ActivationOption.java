@@ -7,6 +7,7 @@ public class ActivationOption {
     // Level 2 Optimizations
     private boolean isDeltaPropagationActive = true;
     private boolean isInstanceScopeActive = true;
+    private boolean isTracebackStepISAActive = true; // if set to false, NavigationStep method will be used
     private boolean isUnusedDetectionActive = true;
 
     private final String optionDescription;
@@ -24,7 +25,7 @@ public class ActivationOption {
     public boolean isImpactAnalysisActive() {
 	return isImpactAnalysisActive;
     }
-
+    
     public void setDeltaPropagationActive(boolean isDeltaPropagationActive) {
 	this.isDeltaPropagationActive = isDeltaPropagationActive;
     }
@@ -41,6 +42,14 @@ public class ActivationOption {
 	return isInstanceScopeActive;
     }
 
+    public void setTracebackStepIAActive(boolean isTracebackStepISAActive){
+        this.isTracebackStepISAActive = isTracebackStepISAActive;
+    }
+    
+    public boolean isTracebackStepIAActive(){
+        return isTracebackStepISAActive;
+    }
+    
     public boolean isUnusedDetectionActive() {
         return isUnusedDetectionActive;
     }
@@ -57,6 +66,10 @@ public class ActivationOption {
 
 	activationInformation.append("[IS=");
 	activationInformation.append(isInstanceScopeActive);
+	activationInformation.append("]");
+	
+	activationInformation.append("[TM=");
+	activationInformation.append(isTracebackStepISAActive);
 	activationInformation.append("]");
 
 	activationInformation.append("[DP=");
