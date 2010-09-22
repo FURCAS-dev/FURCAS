@@ -26,7 +26,7 @@ public abstract class AbstractTracebackStep implements TracebackStep {
      * Encapsulates the scope change that has to happen before invoking a subsequent traceback step.
      * @author Axel Uhl (D043530)
      */
-    protected static class TracebackStepAndScopeChange {
+    protected static class TracebackStepAndScopeChange implements TracebackStep {
         private final TracebackStep step;
         private final Set<Variable> variablesThatLeaveOrEnterScopeWhenCallingStep;
         
@@ -81,7 +81,8 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         
     }
 
-    protected Set<Variable> getVariablesChangingScope(OCLExpression sourceExpression, OCLExpression targetExpression, OperationBodyToCallMapper operationBodyToCallMapper) {
+    protected Set<Variable> getVariablesChangingScope(OCLExpression sourceExpression, OCLExpression targetExpression,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
         Set<Variable> result;
         OCLExpression commonCompositionParent = commonCompositionParent(sourceExpression, targetExpression);
         if (commonCompositionParent == null) {

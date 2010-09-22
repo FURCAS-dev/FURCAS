@@ -91,7 +91,7 @@ public abstract class AbstractPathCache<StepType> {
      * this path cache registers as listener for a change in the step's always-empty setting. If any of these change events are
      * received, the respective step is re-hashed into {@link #allSteps}.
      */
-    protected void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, StepType path) {
+    public void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, StepType path) {
         List<String> tupleLiteralPartNamesToLookForAsList = getTupleLiteralPartNamesToLookForAsList(tupleLiteralPartNamesToLookFor);
         subexpressionToPath.put(new Pair<OCLExpression, List<String>>(subexpression, tupleLiteralPartNamesToLookForAsList), path);
     }

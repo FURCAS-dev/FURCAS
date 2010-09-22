@@ -53,7 +53,7 @@ public class PathCache extends AbstractPathCache<NavigationStep> implements Hash
      * this path cache registers as listener for a change in the step's always-empty setting. If any of these change events are
      * received, the respective step is re-hashed into {@link #allNavigationSteps}.
      */
-    protected void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, NavigationStep path) {
+    public void put(OCLExpression subexpression, String[] tupleLiteralPartNamesToLookFor, NavigationStep path) {
         super.put(subexpression, tupleLiteralPartNamesToLookFor, path);
         if (!allNavigationSteps.containsKey(path.getSemanticIdentity())) {
             allNavigationSteps.put(path.getSemanticIdentity(), path);
