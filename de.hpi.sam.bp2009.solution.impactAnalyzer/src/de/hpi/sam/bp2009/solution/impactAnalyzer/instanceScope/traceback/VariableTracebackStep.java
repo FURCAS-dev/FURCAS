@@ -179,7 +179,7 @@ public class VariableTracebackStep extends BranchingTracebackStep {
         // may therefore recursively look up the navigation step graph for the result variable. We therefore need to
         // enter a placeholder into the cache before we start computing the navigation step graph for the body expression:
         TracebackStepAndScopeChange stepForBodyExpression = createTracebackStepAndScopeChange(variableExp,
-                (OCLExpression) ((IterateExp) variableExp.eContainer()).getBody(), context,
+                (OCLExpression) ((IterateExp) variableExp.getReferredVariable().eContainer()).getBody(), context,
                 operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
         HashSet<TracebackStepAndScopeChange> result = new HashSet<TracebackStepAndScopeChange>();
         result.add(stepForBodyExpression);
@@ -190,7 +190,7 @@ public class VariableTracebackStep extends BranchingTracebackStep {
     private Set<TracebackStepAndScopeChange> tracebackIteratorVariable(VariableExp variableExp, EClass context,
             TracebackStepCache tracebackStepCache, OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor) {
         TracebackStepAndScopeChange result = createTracebackStepAndScopeChange(
-                variableExp, (OCLExpression) ((LoopExp) variableExp.eContainer()).getSource(), context, operationBodyToCallMapper,
+                variableExp, (OCLExpression) ((LoopExp) variableExp.getReferredVariable().eContainer()).getSource(), context, operationBodyToCallMapper,
                 tupleLiteralNamesToLookFor, tracebackStepCache);
         return Collections.singleton(result);
     }
