@@ -49,7 +49,7 @@ public class UnusedEvaluationRequest {
         this.inferredVariableValues = inferredVariableValues;
         this.slots = slots;
     }
-
+    
     /**
      * If this request holds {@link #slots slots} for any of the variables in <code>slotsToRemove</code>, a new request
      * is created in which all those slots are removed. For the remaining slots, the {@link #inferredVariableValues inferred variable values}
@@ -78,6 +78,60 @@ public class UnusedEvaluationRequest {
         return result;
     }
     
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((expression == null) ? 0 : expression.hashCode());
+        result = prime * result + ((inferredVariableValues == null) ? 0 : inferredVariableValues.hashCode());
+        result = prime * result + ((resultIndicatingUnused == null) ? 0 : resultIndicatingUnused.hashCode());
+        result = prime * result + ((slots == null) ? 0 : slots.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof UnusedEvaluationRequest)) {
+            return false;
+        }
+        UnusedEvaluationRequest other = (UnusedEvaluationRequest) obj;
+        if (expression == null) {
+            if (other.expression != null) {
+                return false;
+            }
+        } else if (!expression.equals(other.expression)) {
+            return false;
+        }
+        if (inferredVariableValues == null) {
+            if (other.inferredVariableValues != null) {
+                return false;
+            }
+        } else if (!inferredVariableValues.equals(other.inferredVariableValues)) {
+            return false;
+        }
+        if (resultIndicatingUnused == null) {
+            if (other.resultIndicatingUnused != null) {
+                return false;
+            }
+        } else if (!resultIndicatingUnused.equals(other.resultIndicatingUnused)) {
+            return false;
+        }
+        if (slots == null) {
+            if (other.slots != null) {
+                return false;
+            }
+        } else if (!slots.equals(other.slots)) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Sets the value for a variable just inferred. If this request doesn't have a slot for the variable whose
      * value was inferred, the request is not updated by this call.
