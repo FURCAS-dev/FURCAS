@@ -10,12 +10,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CollectionType;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.Variable;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
@@ -65,13 +67,23 @@ public abstract class AbstractTracebackStep implements TracebackStep {
             return step.traceback(source, reducedUnusedEvaluationRequestSet, tracebackCache, changeEvent);
         }
     }
-    
+
     /**
-     * If the expression's type for which this traceback step is constructed is class-like, {@link #requiredType} is
-     * set to the expression's type.
+     * If the expression's type for which this traceback step is constructed is class-like, {@link #requiredType} is set to the
+     * expression's type.
+     * 
+     * @param tupleLiteralNamesToLookFor
+     *            if a tuple part is being sought, the expression type will be a tuple type; in this case, extract the sought
+     *            part's type as the {@link #requiredType}.
      */
-    public AbstractTracebackStep(OCLExpression sourceExpression) {
-        requiredType = getInnermostElementType(sourceExpression.getType());
+    public AbstractTracebackStep(OCLExpression sourceExpression, Stack<String> tupleLiteralNamesToLookFor) {
+        if (tupleLiteralNamesToLookFor == null || tupleLiteralNamesToLookFor.isEmpty()) {
+            requiredType = getInnermostElementType(sourceExpression.getType());
+        } else {
+            TupleType tt = (TupleType) sourceExpression.getType();
+            EStructuralFeature part = tt.getEStructuralFeature(tupleLiteralNamesToLookFor.peek());
+            requiredType = getInnermostElementType(part.getEType());
+        }
     }
 
     public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,

@@ -15,7 +15,7 @@ public class TupleLiteralTracebackStep extends BranchingTracebackStep {
 
     public TupleLiteralTracebackStep(TupleLiteralExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression);
+        super(sourceExpression, tupleLiteralNamesToLookFor);
         if (tupleLiteralNamesToLookFor != null && !tupleLiteralNamesToLookFor.isEmpty()) {
             String partName = tupleLiteralNamesToLookFor.peek();
             for (TupleLiteralPart<EClassifier, EStructuralFeature> part : sourceExpression.getPart()) {

@@ -26,7 +26,7 @@ public class OppositePropertyCallTracebackStep extends AbstractTracebackStep imp
     public OppositePropertyCallTracebackStep(OppositePropertyCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
             TracebackStepCache tracebackStepCache) {
-        super(sourceExpression);
+        super(sourceExpression, tupleLiteralNamesToLookFor);
         OCLExpression source = (OCLExpression) sourceExpression.getSource();
         reference = sourceExpression.getReferredOppositeProperty();
         nextStep = createTracebackStepAndScopeChange(sourceExpression, source, context, operationBodyToCallMapper,

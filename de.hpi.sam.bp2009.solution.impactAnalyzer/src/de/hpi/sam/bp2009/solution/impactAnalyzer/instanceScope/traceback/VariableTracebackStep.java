@@ -57,7 +57,7 @@ public class VariableTracebackStep extends BranchingTracebackStep {
     public VariableTracebackStep(VariableExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
             TracebackStepCache tracebackStepCache) {
-        super(sourceExpression);
+        super(sourceExpression, tupleLiteralNamesToLookFor);
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         variable = (Variable) sourceExpression.getReferredVariable();
         // enter step into cache already to let it be found during recursive lookups

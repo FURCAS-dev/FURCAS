@@ -62,7 +62,7 @@ public class OperationCallTracebackStep extends BranchingTracebackStep {
     public OperationCallTracebackStep(OperationCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
             TracebackStepCache tracebackStepCache) {
-        super(sourceExpression);
+        super(sourceExpression, tupleLiteralNamesToLookFor);
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         // important to enter this step before recursive lookups may occur:
         tracebackStepCache.put(sourceExpression, tupleLiteralNamesToLookFor, this);
