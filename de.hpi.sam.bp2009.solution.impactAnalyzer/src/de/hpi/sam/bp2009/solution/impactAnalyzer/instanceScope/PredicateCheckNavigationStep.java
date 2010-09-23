@@ -141,7 +141,15 @@ public class PredicateCheckNavigationStep extends AbstractNavigationStep {
         Boolean resultPost;
         try {
             Object result = evalPost.evaluate(null, (CallExp) exp, sourceObjects);
-            resultPost = sourceObjects.contains(result) ;
+            if (result instanceof Collection<?>) {
+                if (((Collection<?>) result).isEmpty()) {
+                    resultPost = false;
+                } else {
+                    resultPost = sourceObjects.contains(((Collection<?>) result).iterator().next());
+                }
+            } else {
+                resultPost = sourceObjects.contains(result);
+            }
         } catch (ValueNotFoundException vnfe) {
             // be conservative about undefined situations
             resultPost = positive;
