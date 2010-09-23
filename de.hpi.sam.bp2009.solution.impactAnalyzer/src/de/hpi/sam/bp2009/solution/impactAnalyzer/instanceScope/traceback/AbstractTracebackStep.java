@@ -77,10 +77,16 @@ public abstract class AbstractTracebackStep implements TracebackStep {
      *            part's type as the {@link #requiredType}.
      */
     public AbstractTracebackStep(OCLExpression sourceExpression, Stack<String> tupleLiteralNamesToLookFor) {
+        EClassifier type = sourceExpression.getType();
+        requiredType = getInnermostTypeConsideringTupleLiteralsLookedFor(tupleLiteralNamesToLookFor, type);
+    }
+
+    protected EClass getInnermostTypeConsideringTupleLiteralsLookedFor(Stack<String> tupleLiteralNamesToLookFor, EClassifier type) {
+        EClass result;
         if (tupleLiteralNamesToLookFor == null || tupleLiteralNamesToLookFor.isEmpty()) {
-            requiredType = getInnermostClass(sourceExpression.getType());
+            result = getInnermostClass(type);
         } else {
-            EClassifier currentType = getInnermostElementType(sourceExpression.getType());
+            EClassifier currentType = getInnermostElementType(type);
             int i=tupleLiteralNamesToLookFor.size()-1;
             while (i>=0) {
                 TupleType tt = (TupleType) currentType;
@@ -88,8 +94,9 @@ public abstract class AbstractTracebackStep implements TracebackStep {
                 currentType = getInnermostClass(part.getEType());
                 i--;
             }
-            requiredType = (EClass) currentType;
+            result = (EClass) currentType;
         }
+        return result;
     }
 
     public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
