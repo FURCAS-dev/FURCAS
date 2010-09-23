@@ -22,8 +22,8 @@ public class ImpactAnalyzerAllTests extends TestSuite {
 
     public static Test suite() {
         TestSuite suite = new ImpactAnalyzerAllTests("Impact Analyzer Tests");
-        if (System.getProperty("tracebackStepIA", "false").equalsIgnoreCase("true")) {
-            OptimizationActivation.getOption().setTracebackStepISAActive(true);
+        if (System.getProperty("navigationStepIA", "false").equalsIgnoreCase("true")) {
+            OptimizationActivation.getOption().setTracebackStepISAActive(false);
         }
         suite.addTestSuite(OclIaTest.class);
         suite.addTestSuite(RevPathComputationTest.class);

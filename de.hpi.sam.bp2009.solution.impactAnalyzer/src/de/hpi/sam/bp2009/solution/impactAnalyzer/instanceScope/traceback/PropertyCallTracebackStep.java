@@ -120,7 +120,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep {
             break;
         case HIDDEN_OPPOSITE:
             Collection<EObject> opposite = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
-                    sourceExpression.getReferredProperty(), source);
+                    sourceExpression.getReferredProperty(), source.getAnnotatedObject());
             for (EObject eo : opposite) {
                 result.addAll(nextStep.traceback(new AnnotatedEObject(eo), pendingUnusedEvalRequests, tracebackCache, changeEvent));
             }
