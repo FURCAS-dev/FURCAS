@@ -235,4 +235,15 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         }
         return (EClass) type;
     }
+
+    protected Stack<String> cloneWithTypeCheck(Stack<String> tupleLiteralNamesToLookFor) {
+        Object clone = tupleLiteralNamesToLookFor.clone();
+        if (clone instanceof Stack<?>) {
+            @SuppressWarnings("unchecked")
+            Stack<String> newTupleStack = (Stack<String>) clone;
+            return newTupleStack;
+        } else {
+            throw new ClassCastException("Cloning an instance of Stack<String> didn't return an instance of the same type.");
+        }
+    }
 }
