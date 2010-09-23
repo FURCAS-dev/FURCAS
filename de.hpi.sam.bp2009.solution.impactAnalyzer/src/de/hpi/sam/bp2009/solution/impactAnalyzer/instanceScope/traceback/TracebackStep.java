@@ -41,9 +41,13 @@ public interface TracebackStep {
      *            the original change to be unused, an empty set will result from this call.
      * @param tracebackCache
      *            cache in which previous results of
-     *            {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)} executions can be found
-     * @param changeEvent TODO
-     * @return
+     *            {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)}
+     *            executions can be found
+     * @param changeEvent
+     *            the original change event; used for performing pre/post evaluations
+     * @return the set of objects (with optional annotation explaining the derivation path of each object) for which, when used as
+     *         context for the overall expression, the OCL (sub-)expression for which this step is responsible may evaluate to
+     *         <code>source</code>.
      */
     public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent);
