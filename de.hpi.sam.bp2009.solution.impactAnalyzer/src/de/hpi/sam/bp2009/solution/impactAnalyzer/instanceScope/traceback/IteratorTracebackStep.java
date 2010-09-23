@@ -80,19 +80,19 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
 
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache) {
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache, Notification changeEvent) {
         Notification atPre = null; // FIXME needs to be passed as argument
         switch (strategy) {
         case EMPTY:
             return Collections.emptySet();
         case MAP:
-            return step.traceback(source, pendingUnusedEvalRequests, tracebackCache);
+            return step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
         case PASSTHROUGH:
             Set<EObject> sourceValue = new LinkedHashSet<EObject>(1);
             sourceValue.add(source.getAnnotatedObject());
             boolean passedPredicate = evaluatePredicate(sourceValue, atPre);
             if (passedPredicate) {
-                return step.traceback(source, pendingUnusedEvalRequests, tracebackCache);
+                return step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
             } else {
                 return Collections.emptySet();
             }

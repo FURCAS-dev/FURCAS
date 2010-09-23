@@ -93,7 +93,7 @@ public class InstanceScopeAnalysis {
      * @param oppositeEndFinder
      *            used to determine all instances
      */
-    protected static Set<EObject> getAllPossibleContextInstances(Notifier context, EClass cls, OppositeEndFinder oppositeEndFinder) {
+    public static Set<EObject> getAllPossibleContextInstances(Notifier context, EClass cls, OppositeEndFinder oppositeEndFinder) {
         return oppositeEndFinder.getAllInstancesSeeing(cls, context);
     }
 
@@ -547,7 +547,7 @@ public class InstanceScopeAnalysis {
             TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
             TracebackCache cache = new TracebackCache(attributeOrAssociationEndCall);
             UnusedEvaluationRequestSet requests = new UnusedEvaluationRequestSet();
-            result = step.traceback(sourceElement, requests, cache);
+            result = step.traceback(sourceElement, requests, cache, changeEvent);
         } else {
             NavigationStep step = getNavigationStepsToSelfForExpression(
                     (OCLExpression) attributeOrAssociationEndCall.getSource(), context);

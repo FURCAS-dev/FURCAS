@@ -1,30 +1,36 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
+import java.util.HashSet;
 import java.util.Set;
-import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.ocl.ecore.TupleLiteralExp;
+import org.eclipse.ocl.ecore.OCLExpression;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.TracebackCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
-public class TupleLiteralTracebackStep extends AbstractTracebackStep {
+public class BranchingTracebackStep extends AbstractTracebackStep {
 
-    public TupleLiteralTracebackStep(TupleLiteralExp sourceExpression, EClass context,
-            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+    private final Set<TracebackStepAndScopeChange> steps;
+
+    public BranchingTracebackStep(OCLExpression sourceExpression) {
         super(sourceExpression);
-        // TODO Auto-generated constructor stub
+        steps = new HashSet<TracebackStepAndScopeChange>();
     }
 
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache, Notification changeEvent) {
-        // TODO implement AbstractTracebackStep#performSubsequentTraceback()
-        return null;
+        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+        for (TracebackStepAndScopeChange step : steps) {
+            result.addAll(step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent));
+        }
+        return result;
+    }
+
+    protected Set<TracebackStepAndScopeChange> getSteps() {
+        return steps;
     }
 
 }

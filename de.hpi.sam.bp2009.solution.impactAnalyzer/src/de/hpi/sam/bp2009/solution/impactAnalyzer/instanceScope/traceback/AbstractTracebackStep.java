@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -25,8 +26,8 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 public abstract class AbstractTracebackStep implements TracebackStep {
     /**
      * If set to a non-<code>null</code> class, this step asserts that if the source objects passed to its
-     * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache)} or
-     * {@link #traceback(Set, UnusedEvaluationRequestSet, TracebackCache)} operation are not compatible to that
+     * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} or
+     * {@link #traceback(Set, UnusedEvaluationRequestSet, TracebackCache, Notification)} operation are not compatible to that
      * type, then the result set will be empty.
      */
     protected EClass requiredType;
@@ -45,10 +46,10 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         }
         
         public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
-                TracebackCache tracebackCache) {
+                TracebackCache tracebackCache, Notification changeEvent) {
             UnusedEvaluationRequestSet reducedUnusedEvaluationRequestSet = pendingUnusedEvalRequests
                     .createReducedSet(variablesThatLeaveOrEnterScopeWhenCallingStep);
-            return step.traceback(source, reducedUnusedEvaluationRequestSet, tracebackCache);
+            return step.traceback(source, reducedUnusedEvaluationRequestSet, tracebackCache, changeEvent);
         }
     }
     
@@ -57,37 +58,36 @@ public abstract class AbstractTracebackStep implements TracebackStep {
      * set to the expression's type.
      */
     public AbstractTracebackStep(OCLExpression sourceExpression) {
-        if (sourceExpression.getType() instanceof EClass) {
-            requiredType = (EClass) sourceExpression.getType();
-        }
+        requiredType = getInnermostElementType(sourceExpression.getType());
     }
 
     protected Set<AnnotatedEObject> traceback(Set<AnnotatedEObject> sources, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
-            TracebackCache cache) {
+            TracebackCache cache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         for (AnnotatedEObject source : sources) {
-            result.addAll(traceback(source, pendingUnusedEvalRequests, cache));
+            result.addAll(traceback(source, pendingUnusedEvalRequests, cache, changeEvent));
         }
         return result;
     }
 
     public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
-            TracebackCache tracebackCache) {
+            TracebackCache tracebackCache, Notification changeEvent) {
         Set<AnnotatedEObject> result;
         if (requiredType != null && !requiredType.isInstance(source.getAnnotatedObject())) {
             result = Collections.emptySet();
         } else {
-            result = performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache);
+            result = performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
         }
         return result;
     }
 
     /**
-     * This method is used to invoke the {@link TracebackStep#traceback(AnnotatedEObject, Set, TracebackCache)} method on all necessary subsequent {@link TracebackStep}s and return their results.
+     * This method is used to invoke the {@link TracebackStep#traceback(AnnotatedEObject, Set, TracebackCache, Notification)} method on all necessary subsequent {@link TracebackStep}s and return their results.
      * Which subsequent steps are necessary depends on the respective <code>source</code> {@link OCLExpression} the {@link TracebackStep} was created for.
+     * @param changeEvent TODO
      */
     protected abstract Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache);
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache, Notification changeEvent);
 
 
     protected Set<Variable> getVariablesChangingScope(OCLExpression sourceExpression, OCLExpression targetExpression,

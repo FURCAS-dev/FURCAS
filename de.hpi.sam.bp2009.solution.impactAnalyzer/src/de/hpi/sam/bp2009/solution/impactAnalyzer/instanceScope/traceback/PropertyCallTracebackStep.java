@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -23,10 +24,12 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 public class PropertyCallTracebackStep extends AbstractTracebackStep {
-
+    private enum Strategy { TUPLE, OPPOSITE_MANY, OPPOSITE_SINGLE, CONTAINMENT, HIDDEN_OPPOSITE };
     private final TracebackStepAndScopeChange nextStep;
     private final PropertyCallExp sourceExpression;
+    private final EReference oppositeReference;
     private final OppositeEndFinder oppositeEndFinder;
+    private final Strategy strategy;
 
     public PropertyCallTracebackStep(PropertyCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
@@ -35,56 +38,91 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep {
         this.sourceExpression = sourceExpression;
         this.oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         OCLExpression source = (OCLExpression) sourceExpression.getSource();
+        Stack<String> tupleLiteralNames;
         if (source.getType() instanceof TupleType) {
-            Stack<String> clone = cloneWithTypeCheck(tupleLiteralNamesToLookFor);
-            clone.push(source.getName());
+            tupleLiteralNames = cloneWithTypeCheck(tupleLiteralNamesToLookFor);
+            tupleLiteralNames.push(source.getName());
+        } else {
+            tupleLiteralNames = tupleLiteralNamesToLookFor;
         }
-        // TODO context change necessary?
+        if (sourceExpression.getReferredProperty() instanceof EReference) {
+            oppositeReference = ((EReference) sourceExpression.getReferredProperty()).getEOpposite();
+        } else {
+            oppositeReference = null;
+        }
         nextStep = createTracebackStepAndScopeChange(sourceExpression, source, context, operationBodyToCallMapper,
-                tupleLiteralNamesToLookFor, tracebackStepCache);
+                tupleLiteralNames, tracebackStepCache);
+        strategy = determineStrategy();
+    }
 
+    private Strategy determineStrategy() {
+        Strategy result;
+        EStructuralFeature feature = sourceExpression.getReferredProperty();
+        if (sourceExpression.getSource().getType() instanceof TupleType) {
+            result = Strategy.TUPLE;
+        } else if (feature instanceof EAttribute){
+            // From the comment of EAttribute:
+            // "The {@link #getEType() type} of an attribute must always be a data type; this method provides access to it."
+            // Together with the validation rules for EAttributes this ensures that attributes only have data types
+            // as their types. Therefore, they can never have EObjects as their values.
+            throw new IllegalArgumentException("An EAttribute should never be reached while traceback.");
+        } else if (feature instanceof EReference) {
+            EReference ref = (EReference) feature;
+            if (ref.getEOpposite() != null){
+                if (ref.isMany()){
+                    result = Strategy.OPPOSITE_MANY;
+                } else {
+                    result = Strategy.OPPOSITE_SINGLE;
+                }
+            } else if (ref.isContainment()) {
+                result = Strategy.CONTAINMENT;
+            } else {
+                result = Strategy.HIDDEN_OPPOSITE;
+            }
+        } else {
+            throw new RuntimeException("Don't know what type of feature this is: "+feature);
+        }
+        return result;
     }
 
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache) {
-        
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
-        if (sourceExpression.getSource().getType() instanceof TupleType) {
-            result.addAll(nextStep.traceback(source, pendingUnusedEvalRequests, tracebackCache));
-        } else {
-            EStructuralFeature feature = sourceExpression.getReferredProperty();
-            if (feature instanceof EAttribute){
-                // TODO ensure that an EAttribute could never be reached.
-                throw new IllegalArgumentException("An EAttribute should never be reached while traceback.");
-            } else if (feature instanceof EReference) {
-                EReference ref = (EReference) feature;
-                if (ref.getEOpposite() != null){
-                    if (ref.isMany()){
-                        Object o = source.eGet(ref);
-                        if (o instanceof EList<?>){
-                            @SuppressWarnings("unchecked")
-                            EList<EObject>refObjects = (EList<EObject>) source.eGet(ref);
-                            for (EObject obj : refObjects){
-                                result.addAll(nextStep.traceback(new AnnotatedEObject(obj), pendingUnusedEvalRequests, tracebackCache));
-                            }
-                        }
-                    } else {
-                        AnnotatedEObject o = new AnnotatedEObject((EObject) source.eGet(ref));
-                        result.addAll(nextStep.traceback(o, pendingUnusedEvalRequests, tracebackCache));
-                    }
-                } else if (ref.isContainment()){
-                    AnnotatedEObject container = new AnnotatedEObject(source.eContainer());
-                    result.addAll(nextStep.traceback(container, pendingUnusedEvalRequests, tracebackCache));
-                } else {
-                    Collection<EObject> opposite = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(ref, source);
-                    // TODO context has changed. Must PendingUnusedEvalRequests be changed for each object?
-                    for (EObject o : opposite){
-                        result.addAll(nextStep.traceback(new AnnotatedEObject(o), pendingUnusedEvalRequests, tracebackCache));
-                    }
+        switch (strategy) {
+        case TUPLE:
+            result.addAll(nextStep.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent));
+            break;
+        case OPPOSITE_MANY:
+            Object o = source.eGet(oppositeReference);
+            if (o instanceof EList<?>) {
+                @SuppressWarnings("unchecked")
+                EList<EObject> refObjects = (EList<EObject>) o;
+                for (EObject obj : refObjects) {
+                    result.addAll(nextStep.traceback(new AnnotatedEObject(obj), pendingUnusedEvalRequests, tracebackCache, changeEvent));
                 }
             }
-        }        
+            break;
+        case OPPOSITE_SINGLE:
+            EObject oSingle = (EObject) source.eGet(oppositeReference);
+            if (oSingle != null) {
+                result.addAll(nextStep.traceback(new AnnotatedEObject(oSingle), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+            }
+            break;
+        case CONTAINMENT:
+            EObject container = source.eContainer();
+            if (container != null) {
+                result.addAll(nextStep.traceback(new AnnotatedEObject(container), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+            }
+            break;
+        case HIDDEN_OPPOSITE:
+            Collection<EObject> opposite = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
+                    sourceExpression.getReferredProperty(), source);
+            for (EObject eo : opposite) {
+                result.addAll(nextStep.traceback(new AnnotatedEObject(eo), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+            }
+            break;
+        }
         return result;
     }
 
