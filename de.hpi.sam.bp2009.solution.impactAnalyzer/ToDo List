@@ -88,3 +88,5 @@ If you think these notes are too short or not expressive enough, feel free to ad
   a cache hit, although the set of UnusedEvaluationRequests may not necessarily be the same in this context.
   
 - Annotate the AnnotatedEObjects again in the TracebackStep approach
+
+- We need to populate the tracebackCache with traceback results and perform a lookup in it
