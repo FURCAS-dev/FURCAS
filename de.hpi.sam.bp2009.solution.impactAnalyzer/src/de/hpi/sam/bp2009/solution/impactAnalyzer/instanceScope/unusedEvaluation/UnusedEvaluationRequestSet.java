@@ -54,6 +54,36 @@ public class UnusedEvaluationRequestSet {
         this.requests = requests;
     }
     
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((requests == null) ? 0 : requests.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof UnusedEvaluationRequestSet)) {
+            return false;
+        }
+        UnusedEvaluationRequestSet other = (UnusedEvaluationRequestSet) obj;
+        if (requests == null) {
+            if (other.requests != null) {
+                return false;
+            }
+        } else if (!requests.equals(other.requests)) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Computes a new set of {@link UnusedEvaluationRequest}s by copying all those {@link #requests requests}
      * not keyed by a variable that entered or left scope. Those requests whose unknown variable left or entered
