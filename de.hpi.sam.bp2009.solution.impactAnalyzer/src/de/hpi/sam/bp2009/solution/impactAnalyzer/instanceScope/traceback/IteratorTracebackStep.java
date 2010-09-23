@@ -120,30 +120,31 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
                     throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
                 }
             }
-            // evaluate whether the source object passes the iterator's body after the change
-
-            PartialEvaluator evalPost = new PartialEvaluator(oppositeEndFinder);
-            boolean resultPost;
-            try {
-                Object result = evalPost.evaluate(null, predicateExpressionToCheck, sourceObjects);
-                if (result instanceof Collection<?>) {
-                    if (((Collection<?>) result).isEmpty()) {
-                        resultPost = false;
+            boolean resultPost = acceptIfPredicateTrue;
+            if (resultPre != acceptIfPredicateTrue) {
+                // evaluate whether the source object passes the iterator's body after the change
+                PartialEvaluator evalPost = new PartialEvaluator(oppositeEndFinder);
+                try {
+                    Object result = evalPost.evaluate(null, predicateExpressionToCheck, sourceObjects);
+                    if (result instanceof Collection<?>) {
+                        if (((Collection<?>) result).isEmpty()) {
+                            resultPost = false;
+                        } else {
+                            resultPost = sourceObjects.contains(((Collection<?>) result).iterator().next());
+                        }
                     } else {
-                        resultPost = sourceObjects.contains(((Collection<?>) result).iterator().next());
+                        resultPost = sourceObjects.contains(result);
                     }
-                } else {
-                    resultPost = sourceObjects.contains(result);
+                } catch (ValueNotFoundException vnfe) {
+                    // be conservative about undefined situations
+                    resultPost = acceptIfPredicateTrue;
+                } catch (ClassCastException cce) {
+                    throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
                 }
-            } catch (ValueNotFoundException vnfe) {
-                // be conservative about undefined situations
-                resultPost = acceptIfPredicateTrue;
-            } catch (ClassCastException cce) {
-                throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
+                // if the source object fulfills the condition before or after the change event
+                // or accesses an undefined variable before or after the change event
+                // it passes this navigation step
             }
-            // if the source object fulfills the condition before or after the change event
-            // or accesses an undefined variable before or after the change event
-            // it passes this navigation step
             return resultPre == acceptIfPredicateTrue || resultPost == acceptIfPredicateTrue;
         }
     }

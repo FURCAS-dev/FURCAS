@@ -7,7 +7,7 @@ public class ActivationOption {
     // Level 2 Optimizations
     private boolean isDeltaPropagationActive = true;
     private boolean isInstanceScopeActive = true;
-    private boolean isTracebackStepISAActive = false; // if set to false, NavigationStep method will be used
+    private boolean isTracebackStepISAActive = true; // if set to false, NavigationStep method will be used
     private boolean isUnusedDetectionActive = true;
 
     private final String optionDescription;
