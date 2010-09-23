@@ -60,9 +60,10 @@ public class PropertyCallExpTracer extends AbstractTracer<PropertyCallExp> {
             result = handleAssociationCall(context, pathCache, operationBodyToCallMapper);
         } else if (refProp instanceof EAttribute) {
             result = handleAttributeCall(context, pathCache, operationBodyToCallMapper);
-        } else
+        } else {
 	    throw new RuntimeException(
                     "Unhandled subclass of EStructuralFeature. Revisit PropertyCallExpTracer to implement specific behaviour.");
+        }
         applyScopesOnNavigationStep(result, operationBodyToCallMapper);
         return result;
     }
