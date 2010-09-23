@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -43,7 +44,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * step learns about the value of the variable only in one particular dynamic scope.
  * <p>
  */
-public class VariableTracebackStep extends AbstractTracebackStep {
+public class VariableTracebackStep extends BranchingTracebackStep {
     /**
      * Tells if this step, when executed, will return the <code>fromObject</code> unmodified. This is the case if
      * the variable expression refers to a <code>self</code> variable outside of an operation body. If set to <code>true</code>,
@@ -51,7 +52,6 @@ public class VariableTracebackStep extends AbstractTracebackStep {
      */
     private boolean identity = false;
     
-    private final Set<TracebackStepAndScopeChange> steps;
     private final Variable variable;
     private final OppositeEndFinder oppositeEndFinder;
 
@@ -64,15 +64,15 @@ public class VariableTracebackStep extends AbstractTracebackStep {
         // enter step into cache already to let it be found during recursive lookups
         tracebackStepCache.put(sourceExpression, tupleLiteralNamesToLookFor, this);
         if (isSelf()) {
-            steps = tracebackSelf(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            getSteps().addAll(tracebackSelf(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor));
         } else if (isIteratorVariable()) {
-            steps = tracebackIteratorVariable(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            getSteps().addAll(tracebackIteratorVariable(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor));
         } else if (isIterateResultVariable()) {
-            steps = tracebackIterateResultVariable(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            getSteps().addAll(tracebackIterateResultVariable(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor));
         } else if (isLetVariable()) {
-            steps = tracebackLetVariable(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            getSteps().addAll(tracebackLetVariable(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor));
         } else if (isOperationParameter()) {
-            steps = tracebackOperationParameter(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor);
+            getSteps().addAll(tracebackOperationParameter(sourceExpression, context, tracebackStepCache, operationBodyToCallMapper, tupleLiteralNamesToLookFor));
         } else {
             throw new RuntimeException("Unknown variable expression that is neither an iterator variable "
                     + "nor an iterate result variable nor an operation parameter nor a let variable nor self: "
@@ -82,17 +82,17 @@ public class VariableTracebackStep extends AbstractTracebackStep {
 
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache) {
-        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache, Notification changeEvent) {
+        Set<AnnotatedEObject> result;
         UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(), oppositeEndFinder);
         if (!unusedResult.hasProvenUnused()) {
             if (identity) {
-                result.add(source);
+                result = Collections.singleton(source);
             } else {
-                for (TracebackStepAndScopeChange step : steps) {
-                    result.addAll(step.traceback(source, unusedResult.getNewRequestSet(), tracebackCache));
-                }
+                result = super.performSubsequentTraceback(source, unusedResult.getNewRequestSet(), tracebackCache, changeEvent);
             }
+        } else {
+            result = Collections.emptySet();
         }
         return result;
     }
@@ -215,7 +215,7 @@ public class VariableTracebackStep extends AbstractTracebackStep {
         } else {
             // self occurred outside of an operation; it evaluates to s for s being the context
             identity = true;
-            result = null;
+            result = Collections.emptySet();
         }
         return result;
     }
