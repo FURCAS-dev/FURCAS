@@ -39,8 +39,12 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep {
         OCLExpression source = (OCLExpression) sourceExpression.getSource();
         Stack<String> tupleLiteralNames;
         if (source.getType() instanceof TupleType) {
-            tupleLiteralNames = cloneWithTypeCheck(tupleLiteralNamesToLookFor);
-            tupleLiteralNames.push(source.getName());
+            if (tupleLiteralNamesToLookFor == null) {
+                tupleLiteralNames = new Stack<String>();
+            } else {
+                tupleLiteralNames = cloneWithTypeCheck(tupleLiteralNamesToLookFor);
+            }
+            tupleLiteralNames.push(sourceExpression.getReferredProperty().getName());
         } else {
             tupleLiteralNames = tupleLiteralNamesToLookFor;
         }
