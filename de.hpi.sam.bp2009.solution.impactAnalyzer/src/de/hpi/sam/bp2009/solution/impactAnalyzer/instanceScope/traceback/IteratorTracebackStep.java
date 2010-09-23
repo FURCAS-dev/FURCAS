@@ -45,8 +45,8 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
             if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.ANY) {
                 // evaluate predicate before checking how it goes on
                 org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> varDecl = sourceExpression.getIterator().get(0);
-                // TODO what about tuple types here?
-                requiredType = getInnermostClass(varDecl.getType());
+                requiredType = getInnermostTypeConsideringTupleLiteralsLookedFor(tupleLiteralNamesToLookFor,
+                        varDecl.getType());
                 if (opCode == PredefinedType.SELECT || opCode == PredefinedType.ANY) {
                     acceptIfPredicateTrue = true;
                 } else {
@@ -80,8 +80,9 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
 
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        Notification atPre = null; // FIXME needs to be passed as argument
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests,
+            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache,
+            Notification changeEvent) {
         switch (strategy) {
         case EMPTY:
             return Collections.emptySet();
@@ -90,7 +91,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
         case PASSTHROUGH:
             Set<EObject> sourceValue = new LinkedHashSet<EObject>(1);
             sourceValue.add(source.getAnnotatedObject());
-            boolean passedPredicate = evaluatePredicate(sourceValue, atPre);
+            boolean passedPredicate = evaluatePredicate(sourceValue, changeEvent);
             if (passedPredicate) {
                 return step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
             } else {
@@ -107,7 +108,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
         } else {
             // evaluate whether the source object would have passed the iterator's body before the change
             boolean resultPre = acceptIfPredicateTrue;
-            if (!(atPre == null)) {
+            if (atPre != null) {
                 PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder);
                 try {
                     Object result = evalPre.evaluate(null, predicateExpressionToCheck, sourceObjects);
@@ -121,11 +122,19 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
             }
             // evaluate whether the source object passes the iterator's body after the change
 
-            PartialEvaluator evalPost = new PartialEvaluator();
+            PartialEvaluator evalPost = new PartialEvaluator(oppositeEndFinder);
             boolean resultPost;
             try {
                 Object result = evalPost.evaluate(null, predicateExpressionToCheck, sourceObjects);
-                resultPost = sourceObjects.contains(result);
+                if (result instanceof Collection<?>) {
+                    if (((Collection<?>) result).isEmpty()) {
+                        resultPost = false;
+                    } else {
+                        resultPost = sourceObjects.contains(((Collection<?>) result).iterator().next());
+                    }
+                } else {
+                    resultPost = sourceObjects.contains(result);
+                }
             } catch (ValueNotFoundException vnfe) {
                 // be conservative about undefined situations
                 resultPost = acceptIfPredicateTrue;
