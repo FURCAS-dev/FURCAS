@@ -22,7 +22,7 @@ public class LetTracebackStep extends BranchingTracebackStep {
 
     public LetTracebackStep(LetExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression);
+        super(sourceExpression, tupleLiteralNamesToLookFor);
         getSteps().add(createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) ((LetExp) sourceExpression).getIn(),
                 context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache));
     }

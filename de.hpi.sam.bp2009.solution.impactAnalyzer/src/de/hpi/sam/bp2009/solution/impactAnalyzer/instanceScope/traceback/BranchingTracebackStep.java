@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -13,8 +14,8 @@ public class BranchingTracebackStep extends AbstractTracebackStep {
 
     private final Set<TracebackStepAndScopeChange> steps;
 
-    public BranchingTracebackStep(OCLExpression sourceExpression) {
-        super(sourceExpression);
+    public BranchingTracebackStep(OCLExpression sourceExpression, Stack<String> tupleLiteralNamesToLookFor) {
+        super(sourceExpression, tupleLiteralNamesToLookFor);
         steps = new HashSet<TracebackStepAndScopeChange>();
     }
 
