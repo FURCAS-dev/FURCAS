@@ -68,7 +68,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep {
         } else if (feature instanceof EReference) {
             EReference ref = (EReference) feature;
             if (ref.getEOpposite() != null){
-                if (ref.isMany()){
+                if (ref.getEOpposite().isMany()){
                     result = Strategy.OPPOSITE_MANY;
                 } else {
                     result = Strategy.OPPOSITE_SINGLE;

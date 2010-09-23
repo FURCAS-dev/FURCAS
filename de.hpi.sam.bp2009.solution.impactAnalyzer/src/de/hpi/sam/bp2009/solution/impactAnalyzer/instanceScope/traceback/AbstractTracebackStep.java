@@ -227,16 +227,24 @@ public abstract class AbstractTracebackStep implements TracebackStep {
     }
 
     /**
-     * We assume a collection, possibly nested, that eventually has elements of a class-like type inside.
+     * We assume a collection, possibly nested, that eventually has elements of a class-like type inside. If the innermost
+     * type is not an {@link EClass}, <code>null</code> is returned.
      */
     protected EClass getInnermostElementType(EClassifier type) {
+        EClass result = null;
         while (!(type instanceof EClass) && type instanceof CollectionType) {
             type = ((CollectionType) type).getElementType();
         }
-        return (EClass) type;
+        if (type instanceof EClass) {
+            result = (EClass) type;
+        }
+        return result;
     }
 
     protected Stack<String> cloneWithTypeCheck(Stack<String> tupleLiteralNamesToLookFor) {
+        if (tupleLiteralNamesToLookFor == null) {
+            return null;
+        }
         Object clone = tupleLiteralNamesToLookFor.clone();
         if (clone instanceof Stack<?>) {
             @SuppressWarnings("unchecked")
