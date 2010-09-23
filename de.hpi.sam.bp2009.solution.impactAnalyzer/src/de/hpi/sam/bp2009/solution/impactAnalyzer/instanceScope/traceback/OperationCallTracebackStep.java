@@ -17,7 +17,6 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.TracebackCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
@@ -122,7 +121,7 @@ public class OperationCallTracebackStep extends BranchingTracebackStep {
 
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache, Notification changeEvent) {
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         Set<AnnotatedEObject> result;
         if (allInstancesClass != null) {
             result = new HashSet<AnnotatedEObject>();

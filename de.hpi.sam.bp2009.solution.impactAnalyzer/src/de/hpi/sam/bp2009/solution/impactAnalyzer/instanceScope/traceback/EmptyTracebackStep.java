@@ -17,7 +17,6 @@ import org.eclipse.ocl.ecore.StringLiteralExp;
 import org.eclipse.ocl.ecore.UnlimitedNaturalLiteralExp;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.TracebackCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
@@ -33,11 +32,11 @@ public class EmptyTracebackStep extends AbstractTracebackStep {
      * {@link RealLiteralExp} or an {@link EnumLiteralExp} or a {@link BooleanLiteralExp} or a {@link NullLiteralExp} or an
      * {@link InvalidLiteralExp} is traced back, an empty set is returned.
      * 
-     * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, TracebackCache, Notification)
+     * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)
      */
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache, Notification changeEvent) {
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         return Collections.emptySet();
     }
 

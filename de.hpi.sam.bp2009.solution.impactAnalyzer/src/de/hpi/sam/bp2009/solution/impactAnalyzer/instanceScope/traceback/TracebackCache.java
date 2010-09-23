@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
+package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +10,10 @@ import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.NavigationStep;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Triple;
 
 /**
  * During the navigation of a {@link NavigationStep} tree, starting from an {@link EObject}, navigation steps may be reached
@@ -68,23 +70,27 @@ public class TracebackCache {
      * Cached values of {@link NavigationStep#navigate(Set, TracebackCache, org.eclipse.emf.common.notify.Notification)} calls,
      * keyed by the step and the <code>fromObject</code> from which navigation was computed, caching the prior results.
      */
-    private final Map<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>> navigateCache;
+    private final Map<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, Set<AnnotatedEObject>> navigateCache;
     
     public TracebackCache() {
-        navigateCache = new HashMap<Pair<NavigationStep, AnnotatedEObject>, Set<AnnotatedEObject>>();
+        navigateCache = new HashMap<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, Set<AnnotatedEObject>>();
     }
     
     /**
      * Looks up a previously {@link #put entered} result for the <code>step</code> where navigation
      * started at the <code>from</code> object. If not found, <code>null</code> is returned.
      */
-    public Set<AnnotatedEObject> get(NavigationStep step, AnnotatedEObject from) {
-        Set<AnnotatedEObject> result = navigateCache.get(new Pair<NavigationStep, AnnotatedEObject>(step, from));
+    public Set<AnnotatedEObject> get(TracebackStep step, AnnotatedEObject from,
+            UnusedEvaluationRequestSet pendingUnusedEvaluationRequests) {
+        Set<AnnotatedEObject> result = navigateCache.get(new Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>(
+                step, from, pendingUnusedEvaluationRequests));
         return result;
     }
     
-    public void put(NavigationStep step, AnnotatedEObject from, Set<AnnotatedEObject> result) {
-        navigateCache.put(new Pair<NavigationStep, AnnotatedEObject>(step, from), result);
+    public void put(TracebackStep step, AnnotatedEObject from, UnusedEvaluationRequestSet pendingUnusedEvaluationRequests,
+            Set<AnnotatedEObject> result) {
+        navigateCache.put(new Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>(step, from,
+                pendingUnusedEvaluationRequests), result);
     }
 }
 
