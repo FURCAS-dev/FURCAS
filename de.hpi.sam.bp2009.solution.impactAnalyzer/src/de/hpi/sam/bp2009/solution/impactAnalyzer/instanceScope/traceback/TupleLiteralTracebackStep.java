@@ -25,6 +25,7 @@ public class TupleLiteralTracebackStep extends BranchingTracebackStep {
                     getSteps().add(
                             createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) part.getValue(), context,
                                     operationBodyToCallMapper, clonedTupleLiteralNamesToLookFor, tracebackStepCache));
+                    requiredType = getInnermostElementType(part.getValue().getType());
                     break;
                 }
             }
