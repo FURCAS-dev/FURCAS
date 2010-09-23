@@ -545,14 +545,15 @@ public class InstanceScopeAnalysis {
         Set<AnnotatedEObject> result;
         if (OptimizationActivation.getOption().isTracebackStepISAActive()) {
             TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
-            TracebackCache cache = new TracebackCache(attributeOrAssociationEndCall);
+            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cache =
+                new de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache();
             UnusedEvaluationRequestSet requests = new UnusedEvaluationRequestSet();
             result = step.traceback(sourceElement, requests, cache, changeEvent);
         } else {
             NavigationStep step = getNavigationStepsToSelfForExpression(
                     (OCLExpression) attributeOrAssociationEndCall.getSource(), context);
             Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
-            TracebackCache cache = new TracebackCache(attributeOrAssociationEndCall);
+            TracebackCache cache = new TracebackCache();
             result = step.navigate(sourceElementAsSet, cache, changeEvent);
         }
         return result;

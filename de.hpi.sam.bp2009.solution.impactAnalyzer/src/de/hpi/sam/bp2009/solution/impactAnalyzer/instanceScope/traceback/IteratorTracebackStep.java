@@ -21,7 +21,6 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.TracebackCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
@@ -80,7 +79,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
 
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache, Notification changeEvent) {
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         Notification atPre = null; // FIXME needs to be passed as argument
         switch (strategy) {
         case EMPTY:

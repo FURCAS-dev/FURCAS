@@ -6,7 +6,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.VariableExp;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.TracebackCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
@@ -15,7 +14,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * {@link TracebackStepCache#createStep(org.eclipse.ocl.ecore.OCLExpression, org.eclipse.emf.ecore.EClass, de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper, java.util.Stack)}
  * . For each (sub-)expression visited in the OCL AST, such a step is created. The constructors try to perform as much
  * pre-computation as possible so that when executing the step with its
- * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} method, as little effort as possible needs to
+ * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)} method, as little effort as possible needs to
  * be spent.
  * <p>
  * 
@@ -42,11 +41,11 @@ public interface TracebackStep {
      *            the original change to be unused, an empty set will result from this call.
      * @param tracebackCache
      *            cache in which previous results of
-     *            {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} executions can be found
+     *            {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)} executions can be found
      * @param changeEvent TODO
      * @return
      */
     public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
-            TracebackCache tracebackCache, Notification changeEvent);
+            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent);
 
 }

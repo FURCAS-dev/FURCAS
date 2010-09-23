@@ -19,18 +19,31 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.TracebackCache;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 public abstract class AbstractTracebackStep implements TracebackStep {
     /**
      * If set to a non-<code>null</code> class, this step asserts that if the source objects passed to its
-     * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} or
-     * {@link #traceback(Set, UnusedEvaluationRequestSet, TracebackCache, Notification)} operation are not compatible to that
+     * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)} or
+     * {@link #traceback(Set, UnusedEvaluationRequestSet, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)} operation are not compatible to that
      * type, then the result set will be empty.
      */
     protected EClass requiredType;
+    
+    /**
+     * To avoid endless recursions, a step remembers for which combinations of <code>source</code> objects and
+     * {@link UnusedEvaluationRequestSet}s it is currently executing. If any of those combinations is to be evaluated
+     * again while already being evaluated by the current thread, an empty set is returned.
+     */
+    private static class IndirectingStepThreadLocal extends ThreadLocal<Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>> {
+        @Override
+        protected Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>> initialValue() {
+            return new HashSet<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>();
+        }
+    }
+    private final ThreadLocal<Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>> currentlyEvaluatingNavigateFor = new IndirectingStepThreadLocal();
     
     /**
      * Encapsulates the scope change that has to happen before invoking a subsequent traceback step.
@@ -46,7 +59,7 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         }
         
         public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
-                TracebackCache tracebackCache, Notification changeEvent) {
+                de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
             UnusedEvaluationRequestSet reducedUnusedEvaluationRequestSet = pendingUnusedEvalRequests
                     .createReducedSet(variablesThatLeaveOrEnterScopeWhenCallingStep);
             return step.traceback(source, reducedUnusedEvaluationRequestSet, tracebackCache, changeEvent);
@@ -61,33 +74,38 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         requiredType = getInnermostElementType(sourceExpression.getType());
     }
 
-    protected Set<AnnotatedEObject> traceback(Set<AnnotatedEObject> sources, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
-            TracebackCache cache, Notification changeEvent) {
-        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
-        for (AnnotatedEObject source : sources) {
-            result.addAll(traceback(source, pendingUnusedEvalRequests, cache, changeEvent));
-        }
-        return result;
-    }
-
     public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
-            TracebackCache tracebackCache, Notification changeEvent) {
+            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         Set<AnnotatedEObject> result;
-        if (requiredType != null && !requiredType.isInstance(source.getAnnotatedObject())) {
+        Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key = new Pair<AnnotatedEObject, UnusedEvaluationRequestSet>(source, pendingUnusedEvalRequests);
+        if (currentlyEvaluatingNavigateFor.get().contains(key)) {
             result = Collections.emptySet();
         } else {
-            result = performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+            try {
+                currentlyEvaluatingNavigateFor.get().add(key);
+                result = tracebackCache.get(this, source, pendingUnusedEvalRequests);
+                if (result == null) {
+                    if (requiredType != null && !requiredType.isInstance(source.getAnnotatedObject())) {
+                        result = Collections.emptySet();
+                    } else {
+                        result = performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+                    }
+                    tracebackCache.put(this, source, pendingUnusedEvalRequests, result);
+                }
+            } finally {
+                currentlyEvaluatingNavigateFor.get().remove(key);
+            }
         }
         return result;
     }
 
     /**
-     * This method is used to invoke the {@link TracebackStep#traceback(AnnotatedEObject, Set, TracebackCache, Notification)} method on all necessary subsequent {@link TracebackStep}s and return their results.
+     * This method is used to invoke the {@link TracebackStep#traceback(AnnotatedEObject, Set, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)} method on all necessary subsequent {@link TracebackStep}s and return their results.
      * Which subsequent steps are necessary depends on the respective <code>source</code> {@link OCLExpression} the {@link TracebackStep} was created for.
      * @param changeEvent TODO
      */
     protected abstract Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, TracebackCache tracebackCache, Notification changeEvent);
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent);
 
 
     protected Set<Variable> getVariablesChangingScope(OCLExpression sourceExpression, OCLExpression targetExpression,
@@ -127,7 +145,7 @@ public abstract class AbstractTracebackStep implements TracebackStep {
                 result.addAll(getVariablesScopedByExpression((OCLExpression) e, operationBodyToCallMapper));
             }
             e = e.eContainer();
-        } while (e != parent);
+        } while (e != null && e != parent);
         return result;
     }
     
