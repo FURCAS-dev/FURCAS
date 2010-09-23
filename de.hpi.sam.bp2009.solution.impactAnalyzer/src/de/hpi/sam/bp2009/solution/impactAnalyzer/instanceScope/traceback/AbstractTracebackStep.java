@@ -127,7 +127,6 @@ public abstract class AbstractTracebackStep implements TracebackStep {
     /**
      * This method is used to invoke the {@link TracebackStep#traceback(AnnotatedEObject, Set, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)} method on all necessary subsequent {@link TracebackStep}s and return their results.
      * Which subsequent steps are necessary depends on the respective <code>source</code> {@link OCLExpression} the {@link TracebackStep} was created for.
-     * @param changeEvent TODO
      */
     protected abstract Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent);
