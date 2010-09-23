@@ -6,7 +6,7 @@
  * @version $Revision: 859 $
  * @author: $Author: c5107456 $
  *******************************************************************************/
-package com.sap.tc.moin.textual.moinadapter.adapter;
+package com.sap.tc.moin.textual.emfadapter.adapter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +18,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -67,19 +67,6 @@ public class MoinModelAdapterDelegate {
         }
         return clazz;
     }
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     * @throws ModelAdapterException
-     * @deprecated
-     */
-    @Deprecated
-	public Object createEnumLiteral(String arg0) {
-        // TODO: delete this method, deprecated
-        throw new RuntimeException("Not implemented yet");
-    }
     
     /**
      * @param enumName
@@ -88,7 +75,7 @@ public class MoinModelAdapterDelegate {
      * @throws ModelAdapterException 
      */
     public Object getEnumLiteral(List<String> enumName, String name) throws ModelAdapterException {
-        EEnum enumLiteral = jmiHelperDelegate.getEnumLiteral(enumName, name);
+        EEnumLiteral enumLiteral = jmiHelperDelegate.getEnumLiteral(enumName, name);
         return enumLiteral;
     }
 
@@ -302,7 +289,9 @@ public class MoinModelAdapterDelegate {
 
 
                 if (instanceOf(loopCandidateModelElement, referenceType)) {
-                    Object candidateFeatureValue = loopCandidateModelElement.refGetValue(targetKeyName);
+					Object candidateFeatureValue = loopCandidateModelElement
+							.eGet(loopCandidateModelElement.eClass()
+									.getEStructuralFeature(targetKeyName));
 
                     if (candidateFeatureValue != null && candidateFeatureValue.equals(targetKeyValue)) {
                         if (result == null) {

@@ -78,8 +78,8 @@ import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.common.util.EcoreHelper;
-import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
-import com.sap.tc.moin.textual.moinadapter.adapter.MoinModelAdapterDelegate;
+import com.sap.tc.moin.textual.emfadapter.adapter.AdapterJMIHelper;
+import com.sap.tc.moin.textual.emfadapter.adapter.MoinModelAdapterDelegate;
 
 
 /**

@@ -67,10 +67,10 @@ public class IncrementalReferenceEvaluationRegistry {
 	if (!registeredSytaxes.contains(cs)) {
 	    parsersBySyntax.put(cs, parser);
 	    Collection<EPackage> packagesForLookup = new ArrayList<EPackage>();
-	    packagesForLookup.addAll(MoinHelper.getImportedRefPackages(outermostPackageOfMetamodel));
+	    packagesForLookup.addAll(AdapterEcoreHelper.getImportedRefPackages(outermostPackageOfMetamodel));
 	    packagesForLookup.add(outermostPackageOfMetamodel);
 
-	    EClass elementClass = MoinHelper.getReflectElement(connection);
+	    EClass elementClass = AdapterEcoreHelper.getReflectElement(connection);
 
 	    String mqlQuery = "select instance \n" + "from TCS::InjectorAction as instance";
 
@@ -187,7 +187,7 @@ public class IncrementalReferenceEvaluationRegistry {
 	    // now replace any #context parts within the query with self
 	    // and use the context element type for registration if it is
 	    // used here,
-	    query = MoinHelper.prepareOclQuery(query, null);
+	    query = AdapterEcoreHelper.prepareOclQuery(query, null);
 	    if (query != null) {
 		ref.setQueryElement(injectorAction);
 		ref.setGenericReference(true);
@@ -254,7 +254,7 @@ public class IncrementalReferenceEvaluationRegistry {
 	    }
 	    EObject parsingContext = ContextAndForeachHelper.getParsingContext(connection, mofIdToOclQueryPairs.get(mofId),
 		    template, packagesForLookup, elementClass);
-	    String preparedQuery = MoinHelper.prepareOclQuery(mofIdToOclQueryPairs.get(mofId), null);
+	    String preparedQuery = AdapterEcoreHelper.prepareOclQuery(mofIdToOclQueryPairs.get(mofId), null);
 	    registration = connection.getOclRegistryService().getFreestyleRegistry().createExpressionRegistration(
 		    oclRegistrationName, preparedQuery, OclRegistrationSeverity.Info, new String[] { "TCS Property Init" },
 		    parsingContext, packagesForLookup.toArray(new EPackage[] {}));
@@ -289,7 +289,7 @@ public class IncrementalReferenceEvaluationRegistry {
 			    packagesForLookup, elementClass);
 		    DelayedReference ref = new DelayedReference(null, null, null, property.getPropertyReference()
 			    .getStrucfeature().getName(), null, null, query, false, null);
-		    query = MoinHelper.prepareOclQuery(query, GlobalDelayedReferenceResolver.TEMPORARY_QUERY_PARAM_REPLACEMENT);
+		    query = AdapterEcoreHelper.prepareOclQuery(query, GlobalDelayedReferenceResolver.TEMPORARY_QUERY_PARAM_REPLACEMENT);
 		    if (query != null) {
 			ref.setQueryElement(property);
 			ref.setGenericReference(true);

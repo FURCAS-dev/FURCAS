@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sap.tc.moin.textual.moinadapter.adapter;
+package com.sap.tc.moin.textual.emfadapter.adapter;
 
 import java.util.Iterator;
 import java.util.List;

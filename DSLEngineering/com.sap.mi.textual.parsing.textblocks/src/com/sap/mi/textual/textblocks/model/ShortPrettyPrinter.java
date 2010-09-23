@@ -29,7 +29,7 @@ import com.sap.mi.textual.parsing.textblocks.PrettyPrinterUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
+import com.sap.tc.moin.textual.emfadapter.adapter.AdapterEcoreHelper;
 
 public class ShortPrettyPrinter {
 
@@ -180,7 +180,7 @@ public class ShortPrettyPrinter {
 					&& ContextAndForeachHelper.usesContext(query)) {
 				self = (EObject) lcb.getContextStack().peek().getRealObject();
 			}
-			query = MoinHelper.prepareOclQuery(query, token.getValue());
+			query = AdapterEcoreHelper.prepareOclQuery(query, token.getValue());
 
 			if (self != null) {
 				EPackage root = EcoreHelper.getOutermostPackage(self);

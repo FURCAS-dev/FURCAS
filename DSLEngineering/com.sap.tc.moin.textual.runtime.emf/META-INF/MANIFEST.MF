@@ -5,14 +5,18 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf,
+ org.eclipse.emf.query.index;bundle-version="1.0.0",
+ org.eclipse.ocl.ecore;bundle-version="3.0.0",
  org.eclipse.ui,
+ org.eclipse.emf.query2;bundle-version="1.0.0",
+ org.eclipse.emf.query.index.ui;bundle-version="1.0.0",
  org.eclipse.core.runtime,
  com.sap.mi.textual.common,
  com.sap.mi.textual.parsing
 Bundle-ClassPath: 
  adapter.jar
 Export-Package: 
- com.sap.tc.moin.textual.moinadapter.adapter;
+ com.sap.tc.moin.textual.emfadapter.adapter;
   uses:="com.sap.tc.moin.repository,
    javax.jmi.reflect,
    com.sap.mi.textual.grammar,
