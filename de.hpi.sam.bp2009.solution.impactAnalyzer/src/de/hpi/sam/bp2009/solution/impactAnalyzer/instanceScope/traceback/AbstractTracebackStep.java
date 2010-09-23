@@ -78,11 +78,17 @@ public abstract class AbstractTracebackStep implements TracebackStep {
      */
     public AbstractTracebackStep(OCLExpression sourceExpression, Stack<String> tupleLiteralNamesToLookFor) {
         if (tupleLiteralNamesToLookFor == null || tupleLiteralNamesToLookFor.isEmpty()) {
-            requiredType = getInnermostElementType(sourceExpression.getType());
+            requiredType = getInnermostClass(sourceExpression.getType());
         } else {
-            TupleType tt = (TupleType) sourceExpression.getType();
-            EStructuralFeature part = tt.getEStructuralFeature(tupleLiteralNamesToLookFor.peek());
-            requiredType = getInnermostElementType(part.getEType());
+            EClassifier currentType = getInnermostElementType(sourceExpression.getType());
+            int i=tupleLiteralNamesToLookFor.size()-1;
+            while (i>=0) {
+                TupleType tt = (TupleType) currentType;
+                EStructuralFeature part = tt.getEStructuralFeature(tupleLiteralNamesToLookFor.get(i));
+                currentType = getInnermostClass(part.getEType());
+                i--;
+            }
+            requiredType = (EClass) currentType;
         }
     }
 
@@ -242,7 +248,7 @@ public abstract class AbstractTracebackStep implements TracebackStep {
      * We assume a collection, possibly nested, that eventually has elements of a class-like type inside. If the innermost
      * type is not an {@link EClass}, <code>null</code> is returned.
      */
-    protected EClass getInnermostElementType(EClassifier type) {
+    protected EClass getInnermostClass(EClassifier type) {
         EClass result = null;
         while (!(type instanceof EClass) && type instanceof CollectionType) {
             type = ((CollectionType) type).getElementType();
@@ -251,6 +257,17 @@ public abstract class AbstractTracebackStep implements TracebackStep {
             result = (EClass) type;
         }
         return result;
+    }
+
+    /**
+     * We assume a collection, possibly nested, that eventually has elements of a class-like type inside. If the innermost
+     * type is not an {@link EClass}, <code>null</code> is returned.
+     */
+    protected EClassifier getInnermostElementType(EClassifier type) {
+        while (!(type instanceof EClass) && type instanceof CollectionType) {
+            type = ((CollectionType) type).getElementType();
+        }
+        return type;
     }
 
     protected Stack<String> cloneWithTypeCheck(Stack<String> tupleLiteralNamesToLookFor) {

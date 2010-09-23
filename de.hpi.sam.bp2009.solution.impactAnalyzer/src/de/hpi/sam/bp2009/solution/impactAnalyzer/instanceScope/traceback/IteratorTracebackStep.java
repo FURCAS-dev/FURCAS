@@ -45,7 +45,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
             if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.ANY) {
                 // evaluate predicate before checking how it goes on
                 org.eclipse.ocl.expressions.Variable<EClassifier, EParameter> varDecl = sourceExpression.getIterator().get(0);
-                requiredType = getInnermostElementType(varDecl.getType());
+                requiredType = getInnermostClass(varDecl.getType());
                 if (opCode == PredefinedType.SELECT || opCode == PredefinedType.ANY) {
                     acceptIfPredicateTrue = true;
                 } else {
