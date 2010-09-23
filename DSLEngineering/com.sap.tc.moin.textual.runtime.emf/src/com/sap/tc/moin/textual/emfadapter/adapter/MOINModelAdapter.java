@@ -6,7 +6,7 @@
  * @version $Revision: 859 $
  * @author: $Author: c5107456 $
  *******************************************************************************/
-package com.sap.tc.moin.textual.moinadapter.adapter;
+package com.sap.tc.moin.textual.emfadapter.adapter;
 
 import java.util.Collection;
 import java.util.HashSet;

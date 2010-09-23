@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -32,7 +33,24 @@ import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 public class EcoreHelper {
 
 	public static EModelElement lookupElementExtended(EClassifier classifier, String name) {
-		// TODO Auto-generated method stub
+		for (EObject elem : classifier.eContents()) {
+			if(elem instanceof ENamedElement) {
+				if( name.equals(((ENamedElement) elem).getName()) ) {
+					return (EModelElement) elem;
+				}
+			}
+		}
+		if(classifier instanceof EClass) {
+			for (EClass superType : ((EClass) classifier).getEAllSuperTypes()) {
+				for (EObject elem : superType.eContents()) {
+					if(elem instanceof ENamedElement) {
+						if( name.equals(((ENamedElement) elem).getName()) ) {
+							return (EModelElement) elem;
+						}
+					}
+				}
+			}
+		}
 		return null;
 	}
 
@@ -185,6 +203,25 @@ public class EcoreHelper {
 			boolean b) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public static EModelElement findElementByQualifiedName(List<String> qname,
+			EPackage pack) {
+		EModelElement result = pack;
+		if(result != null) {
+			for (int i = 0; i < qname.size(); i++) {
+				String name = qname.get(i);
+				EList<EObject> contents = result.eContents();
+				for (EObject eObj : contents) {
+					if(eObj instanceof ENamedElement &&
+							((ENamedElement) eObj).getName().equals(name)) {
+						result = (EModelElement) eObj;
+						continue;
+					}
+				}
+			}
+		}
+		return result;
 	}
 
 }

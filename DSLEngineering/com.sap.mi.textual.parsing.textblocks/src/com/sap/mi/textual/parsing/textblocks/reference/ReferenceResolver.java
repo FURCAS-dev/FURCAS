@@ -59,7 +59,7 @@ public class ReferenceResolver {
 
 	@Override
 	public void doExecute() {
-	    EPackage outermostPackage = MoinHelper.getOutermostPackageThroughClusteredImports(getConnection(),
+	    EPackage outermostPackage = AdapterEcoreHelper.getOutermostPackageThroughClusteredImports(getConnection(),
 		    (EObject) ref.getModelElement());
 	    reEvaluateUnresolvedRef(getConnection(), outermostPackage, ref, (TextBlock) ref.getTextBlock());
 	}

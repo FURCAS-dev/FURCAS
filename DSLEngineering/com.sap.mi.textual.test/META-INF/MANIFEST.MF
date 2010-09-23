@@ -25,7 +25,6 @@ Require-Bundle: com.sap.mi.textual.common,
  org.eclipse.core.runtime,
  com.sap.bl.guidgenerator,
  com.sap.mi.textual.moin.standalone,
- com.sap.mi.textual.tcs.util;bundle-version="1.0.0",
- com.sap.ide.cts.editor.test;bundle-version="1.0.0"
+ com.sap.mi.textual.tcs.util;bundle-version="1.0.0"
 Bundle-ClassPath: scenariotestTemp/,
  .

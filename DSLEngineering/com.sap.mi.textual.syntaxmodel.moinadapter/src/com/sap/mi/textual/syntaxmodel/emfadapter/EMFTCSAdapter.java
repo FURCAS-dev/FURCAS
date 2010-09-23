@@ -19,7 +19,7 @@ import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+import com.sap.tc.moin.textual.emfadapter.adapter.MOINModelAdapter;
 
 
 /**

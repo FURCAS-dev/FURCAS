@@ -28,7 +28,7 @@ import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+import com.sap.tc.moin.textual.emfadapter.adapter.MOINModelAdapter;
 
 
 public abstract class AbstractParserFactory<P extends ObservableInjectingParser, L extends Lexer>
