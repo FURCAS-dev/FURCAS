@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.LetExp;
 import org.eclipse.ocl.ecore.LoopExp;
@@ -20,8 +21,11 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.Variable;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet.UnusedEvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
@@ -62,8 +66,8 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         
         public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
                 de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-            UnusedEvaluationRequestSet reducedUnusedEvaluationRequestSet = pendingUnusedEvalRequests
-                    .createReducedSet(variablesThatLeaveOrEnterScopeWhenCallingStep);
+            UnusedEvaluationRequestSet reducedUnusedEvaluationRequestSet = pendingUnusedEvalRequests == null ? null
+                    : pendingUnusedEvalRequests.createReducedSet(variablesThatLeaveOrEnterScopeWhenCallingStep);
             return step.traceback(source, reducedUnusedEvaluationRequestSet, tracebackCache, changeEvent);
         }
     }
@@ -79,6 +83,68 @@ public abstract class AbstractTracebackStep implements TracebackStep {
     protected AbstractTracebackStep(OCLExpression sourceExpression, Stack<String> tupleLiteralNamesToLookFor) {
         EClassifier type = sourceExpression.getType();
         requiredType = getInnermostTypeConsideringTupleLiteralsLookedFor(tupleLiteralNamesToLookFor, type);
+        determineUnusedEvaluationRequests(sourceExpression);
+    }
+
+    /**
+     * There are a few rules for determining, whether a sub-expression is unused under a given set of variable values.
+     * <ul>
+     * <li><b>Unused branch in {@link IfExp}</b>: The {@link IfExp#getThenExpression() then}-expression of an {@link IfExp} is
+     * unused if the {@link IfExp#getCondition() condition} of that {@link IfExp} evaluates to <code>false</code>. Analogously,
+     * the {@link IfExp#getElseExpression() else}-expression of an {@link IfExp} is unused if the {@link IfExp#getCondition()
+     * condition} of that {@link IfExp} evaluates to <code>true</code>.</li>
+     * 
+     * <li><b>Unused {@link LetExp let} declaration</b>: the {@link Variable#getInitExpression() initialization expression} for a
+     * <code>let</code>-variable is unused if all {@link VariableExp} expressions referring to that variable are unused within the
+     * {@link LetExp#getIn() in}-expression.</li>
+     * 
+     * <li><b>Unused {@link OperationCallExp#getArgument() argument} expression of an operation call</b>: the argument of an
+     * operation call is unused if all {@link VariableExp} expression in the operation body referring to the corresponding formal
+     * parameter are unused.</li>
+     * 
+     * <li><b>Unused body of loop over empty collection</b>: The body expression of any {@link LoopExp} expression won't be used
+     * if the {@link LoopExp#getSource() source} of the loop expression evaluates to an empty collection.</li>
+     * 
+     * <li><b>Unused element of ordered collection literal in conjunction with <code>-&gt;at(...)</code></b>: When the
+     * <code>-&gt;at(...)</code> standard library operation is applied to an ordered collection literal and it is possible to
+     * evaluate the argument of the <code>at</code> call, all literal items at other positions than the one identified by the
+     * argument are unused.</li>
+     * 
+     * <li><b>Composition rule</b>: An expression is unused if its {@link EObject#eContainer() containing expression} is unused.</li>
+     * </ul>
+     * 
+     * Eventually, unused checks perform one or more {@link PartialEvaluator (partial) evaluations} of expressions which are
+     * reached by navigation across the OCL expression's AST, starting from the expression whose "unusedness" is to be proven.
+     * Similar to the scope changes implied by the AST navigations during
+     * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)}, these navigations leave and
+     * enter dynamic variable scopes. Once a variable's scope is left or a new one entered, we currently don't assume that the
+     * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} calculation will be able
+     * reliably perform dynamic scope matching. Therefore, we don't expect to be able to infer a variable's value anymore, once
+     * its dynamic scope has been left or (re-)entered.
+     * <p>
+     * 
+     * Therefore, this method produces {@link UnusedEvaluationRequest}s which hold slots only for variables that remained in scope
+     * during the AST navigation from the <code>sourceExpression</code> to the expression to be evaluated during the "unused"
+     * check. They are stored in the {@link TracebackStep} whose expression's unusedness they shall prove. When a step is executed
+     * by invoking its {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} method,
+     * these requests are {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder) evaluated}.
+     * using {@link UnusedEvaluationRequestSet#evaluate(Set, com.sap.emf.ocl.hiddenopposites.OppositeEndFinder)}. If this proves
+     * that the expression is unused, an empty set can be returned right away. Otherwise, the follow-up
+     * {@link UnusedEvaluationRequestSet} delivered via {@link UnusedEvaluationResult#getNewRequestSet()} is merged with the one
+     * passed to {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)}.
+     * <p>
+     * 
+     * It may happen that a <code>let</code>-variable is unknown during a partial evaluation attempt but that its initialization
+     * expression can successfully be evaluated with the variable values inferred. In this case, the <code>let</code>-variable is
+     * <em>indirectly inferred</em>. Similarly, a formal operation parameter may be unknown while trying to prove that it or
+     * another formal parameter is unused. However, these types of unused checks for formal operation parameters may be performed
+     * based on the "Unused {@link OperationCallExp#getArgument() argument} expression of an operation call" rule. In this case,
+     * the argument expressions are known and an attempt can be made to evaluate them. If such an evaluation succeeds, the
+     * evaluation result represents the inferred value of the corresponding formal parameter.
+     */
+    private void determineUnusedEvaluationRequests(OCLExpression sourceExpression) {
+        // TODO Implement AbstractTracebackStep.determineUnusedEvaluationRequests(...)
+        
     }
 
     protected EClass getInnermostTypeConsideringTupleLiteralsLookedFor(Stack<String> tupleLiteralNamesToLookFor, EClassifier type) {

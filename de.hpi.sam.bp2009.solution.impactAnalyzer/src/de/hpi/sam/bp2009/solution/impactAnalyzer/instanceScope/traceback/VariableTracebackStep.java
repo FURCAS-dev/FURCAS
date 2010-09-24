@@ -81,17 +81,33 @@ public class VariableTracebackStep extends BranchingTracebackStep {
 
     @Override
     protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
-            UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests,
+            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache,
+            Notification changeEvent) {
         Set<AnnotatedEObject> result;
-        UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(), oppositeEndFinder);
-        if (!unusedResult.hasProvenUnused()) {
-            if (identity) {
-                result = Collections.singleton(source);
+        if (pendingUnusedEvalRequests != null) {
+            UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(),
+                    oppositeEndFinder);
+            if (unusedResult.hasProvenUnused()) {
+                result = Collections.emptySet();
             } else {
-                result = super.performSubsequentTraceback(source, unusedResult.getNewRequestSet(), tracebackCache, changeEvent);
+                result = perform(source, unusedResult.getNewRequestSet(), tracebackCache, changeEvent);
             }
         } else {
-            result = Collections.emptySet();
+            result = perform(source, null, tracebackCache, changeEvent);
+        }
+        return result;
+    }
+
+    private Set<AnnotatedEObject> perform(AnnotatedEObject source,
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests,
+            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
+        Set<AnnotatedEObject> result;
+        if (identity) {
+            result = Collections.singleton(source);
+        } else {
+            result = super.performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache,
+                    changeEvent);
         }
         return result;
     }

@@ -56,7 +56,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStepCache;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
 /**
@@ -547,8 +546,7 @@ public class InstanceScopeAnalysis {
             TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cache =
                 new de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache();
-            UnusedEvaluationRequestSet requests = new UnusedEvaluationRequestSet();
-            result = step.traceback(sourceElement, requests, cache, changeEvent);
+            result = step.traceback(sourceElement, /* pending unused evaluation requests */ null, cache, changeEvent);
         } else {
             NavigationStep step = getNavigationStepsToSelfForExpression(
                     (OCLExpression) attributeOrAssociationEndCall.getSource(), context);
