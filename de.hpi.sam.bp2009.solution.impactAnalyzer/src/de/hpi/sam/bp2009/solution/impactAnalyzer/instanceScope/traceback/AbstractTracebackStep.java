@@ -76,7 +76,7 @@ public abstract class AbstractTracebackStep implements TracebackStep {
      *            if a tuple part is being sought, the expression type will be a tuple type; in this case, extract the sought
      *            part's type as the {@link #requiredType}.
      */
-    public AbstractTracebackStep(OCLExpression sourceExpression, Stack<String> tupleLiteralNamesToLookFor) {
+    protected AbstractTracebackStep(OCLExpression sourceExpression, Stack<String> tupleLiteralNamesToLookFor) {
         EClassifier type = sourceExpression.getType();
         requiredType = getInnermostTypeConsideringTupleLiteralsLookedFor(tupleLiteralNamesToLookFor, type);
     }
