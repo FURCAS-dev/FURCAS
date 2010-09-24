@@ -51,31 +51,41 @@ public class UnusedEvaluationRequest {
     }
     
     /**
-     * If this request holds {@link #slots slots} for any of the variables in <code>slotsToRemove</code>, a new request
-     * is created in which all those slots are removed. For the remaining slots, the {@link #inferredVariableValues inferred variable values}
+     * If this request holds {@link #slots slots} for any of the variables in <code>slotsToRemove</code>, a new request is created
+     * in which all those slots are removed. For the remaining slots, the {@link #inferredVariableValues inferred variable values}
      * are copied from this request. If none of this request's slots are to be removed, this request is returned unchanged.
      */
     public UnusedEvaluationRequest getRequestWithSlotsRemoved(Set<Variable> slotsToRemove) {
         UnusedEvaluationRequest result;
         Set<Variable> remainingSlots = new HashSet<Variable>(slots);
+        // iterate this way because we assume slotsToRemove.size() >> slots.size()
         for (Iterator<Variable> i=remainingSlots.iterator(); i.hasNext(); ) {
             Variable v = i.next();
             if (slotsToRemove.contains(v)) {
                 i.remove();
             }
         }
-        if (remainingSlots.size() < slots.size()) {
+        if (remainingSlots.size() < slots.size()) { // it changed
             Map<Variable, Object> remainingInferredVariableValues = new HashMap<Variable, Object>();
             for (Map.Entry<Variable, Object> e : inferredVariableValues.entrySet()) {
                 if (remainingSlots.contains(e.getKey())) {
                     remainingInferredVariableValues.put(e.getKey(), e.getValue());
                 }
             }
-            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, remainingInferredVariableValues, remainingSlots);
+            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, remainingInferredVariableValues,
+                    remainingSlots);
         } else {
             result = this;
         }
         return result;
+    }
+    
+    public boolean hasOneOrMoreSlots() {
+        return slots != null && slots.size() > 0;
+    }
+    
+    public boolean hasSlotFor(Variable v) {
+        return slots != null && slots.contains(v);
     }
     
     @Override
@@ -136,15 +146,21 @@ public class UnusedEvaluationRequest {
      * Sets the value for a variable just inferred. If this request doesn't have a slot for the variable whose
      * value was inferred, the request is not updated by this call.
      */
-    void setInferredVariableValue(Variable variable, Object value) {
+    UnusedEvaluationRequest setInferredVariableValue(Variable variable, Object value) {
+        UnusedEvaluationRequest result;
         if (slots.contains(variable)) {
             if (inferredVariableValues.containsKey(variable)) {
                 throw new RuntimeException("Internal error: inferred two different values for variable "+variable+
                         " in what should have been the same dynamic scope: "+
                         inferredVariableValues.get(variable)+" vs. "+value);
             }
-            inferredVariableValues.put(variable, value);
+            Map<Variable, Object> newInferredVariableValues = new HashMap<Variable, Object>(inferredVariableValues);
+            newInferredVariableValues.put(variable, value);
+            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, newInferredVariableValues, slots);
+        } else {
+            result = this;
         }
+        return result;
     }
 
     /**

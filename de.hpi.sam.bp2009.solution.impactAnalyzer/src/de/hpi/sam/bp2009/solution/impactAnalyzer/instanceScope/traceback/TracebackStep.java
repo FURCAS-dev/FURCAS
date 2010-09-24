@@ -38,7 +38,8 @@ public interface TracebackStep {
      *            When tracing back a {@link VariableExp} expression, this infers a value for the variable referred to by the
      *            expression. This may trigger a previously delayed "unused" evaluation to be triggered. Those triggerable
      *            "unused" evaluation requests are passed using this parameter. When triggering one of them proves the location of
-     *            the original change to be unused, an empty set will result from this call.
+     *            the original change to be unused, an empty set will result from this call. May be <code>null</code>, having the
+     *            same effect as passing a set that contains no requests.
      * @param tracebackCache
      *            cache in which previous results of
      *            {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)}
