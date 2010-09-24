@@ -20,11 +20,11 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
-public class EmptyTracebackStep extends AbstractTracebackStep {
+public class EmptyTracebackStep extends AbstractTracebackStep<OCLExpression> {
 
     public EmptyTracebackStep(OCLExpression sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor);
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
     }
 
     /**

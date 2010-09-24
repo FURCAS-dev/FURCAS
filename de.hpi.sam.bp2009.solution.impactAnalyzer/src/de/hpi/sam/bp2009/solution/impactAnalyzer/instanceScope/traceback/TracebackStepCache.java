@@ -3,6 +3,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 import java.util.Stack;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.ocl.ecore.CollectionLiteralExp;
 import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IterateExp;
@@ -33,7 +34,7 @@ public class TracebackStepCache extends AbstractPathCache<TracebackStep> {
         TracebackStep result;
         switch (sourceExpression.eClass().getClassifierID()) {
         case EcorePackage.COLLECTION_LITERAL_EXP:
-            result = new CollectionLiteralTracebackStep(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
+            result = new CollectionLiteralTracebackStep((CollectionLiteralExp) sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);
             break;
         case EcorePackage.IF_EXP:
             result = new IfTracebackStep((IfExp) sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, this);

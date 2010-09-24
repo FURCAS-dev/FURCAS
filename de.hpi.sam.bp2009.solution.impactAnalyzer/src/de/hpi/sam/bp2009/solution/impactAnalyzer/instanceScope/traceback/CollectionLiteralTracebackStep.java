@@ -22,10 +22,10 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * 
  * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)
  */
-public class CollectionLiteralTracebackStep extends BranchingTracebackStep {
-    public CollectionLiteralTracebackStep(OCLExpression sourceExpression, EClass context,
+public class CollectionLiteralTracebackStep extends BranchingTracebackStep<CollectionLiteralExp> {
+    public CollectionLiteralTracebackStep(CollectionLiteralExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor);
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
         for (CollectionLiteralPart<EClassifier> part : ((CollectionLiteralExp) sourceExpression).getPart()) {
             if (part instanceof CollectionItem) {
                 OCLExpression item = (OCLExpression) ((CollectionItem) part).getItem();

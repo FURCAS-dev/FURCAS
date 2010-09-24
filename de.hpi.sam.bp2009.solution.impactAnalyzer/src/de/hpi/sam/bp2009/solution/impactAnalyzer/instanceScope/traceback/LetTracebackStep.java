@@ -18,11 +18,11 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * 
  * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)
  */
-public class LetTracebackStep extends BranchingTracebackStep {
+public class LetTracebackStep extends BranchingTracebackStep<LetExp> {
 
     public LetTracebackStep(LetExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor);
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
         getSteps().add(createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) ((LetExp) sourceExpression).getIn(),
                 context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache));
     }

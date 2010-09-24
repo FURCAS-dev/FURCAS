@@ -11,11 +11,11 @@ import org.eclipse.ocl.expressions.TupleLiteralPart;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 
-public class TupleLiteralTracebackStep extends BranchingTracebackStep {
+public class TupleLiteralTracebackStep extends BranchingTracebackStep<TupleLiteralExp> {
 
     public TupleLiteralTracebackStep(TupleLiteralExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor);
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
         if (tupleLiteralNamesToLookFor != null && !tupleLiteralNamesToLookFor.isEmpty()) {
             String partName = tupleLiteralNamesToLookFor.peek();
             for (TupleLiteralPart<EClassifier, EStructuralFeature> part : sourceExpression.getPart()) {

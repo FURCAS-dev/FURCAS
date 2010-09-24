@@ -22,7 +22,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
-public class OperationCallTracebackStep extends BranchingTracebackStep {
+public class OperationCallTracebackStep extends BranchingTracebackStep<OperationCallExp> {
     private static final Set<String> sourcePassThroughStdLibOpNames;
     private static final Set<String> argumentPassThroughStdLibOpNames;
     static {
@@ -62,7 +62,7 @@ public class OperationCallTracebackStep extends BranchingTracebackStep {
     public OperationCallTracebackStep(OperationCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
             TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor);
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         // important to enter this step before recursive lookups may occur:
         tracebackStepCache.put(sourceExpression, tupleLiteralNamesToLookFor, this);

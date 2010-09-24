@@ -17,7 +17,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
-public class OppositePropertyCallTracebackStep extends AbstractTracebackStep implements TracebackStep {
+public class OppositePropertyCallTracebackStep extends AbstractTracebackStep<OppositePropertyCallExp> implements TracebackStep {
 
     private final TracebackStepAndScopeChange nextStep;
     private final boolean isMany;
@@ -26,7 +26,7 @@ public class OppositePropertyCallTracebackStep extends AbstractTracebackStep imp
     public OppositePropertyCallTracebackStep(OppositePropertyCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
             TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor);
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
         OCLExpression source = (OCLExpression) sourceExpression.getSource();
         reference = sourceExpression.getReferredOppositeProperty();
         nextStep = createTracebackStepAndScopeChange(sourceExpression, source, context, operationBodyToCallMapper,
