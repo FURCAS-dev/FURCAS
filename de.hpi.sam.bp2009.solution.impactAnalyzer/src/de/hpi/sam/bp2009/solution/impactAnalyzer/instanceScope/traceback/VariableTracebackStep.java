@@ -43,7 +43,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  * step learns about the value of the variable only in one particular dynamic scope.
  * <p>
  */
-public class VariableTracebackStep extends BranchingTracebackStep {
+public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
     /**
      * Tells if this step, when executed, will return the <code>fromObject</code> unmodified. This is the case if
      * the variable expression refers to a <code>self</code> variable outside of an operation body. If set to <code>true</code>,
@@ -57,7 +57,7 @@ public class VariableTracebackStep extends BranchingTracebackStep {
     public VariableTracebackStep(VariableExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
             TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor);
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         variable = (Variable) sourceExpression.getReferredVariable();
         // enter step into cache already to let it be found during recursive lookups

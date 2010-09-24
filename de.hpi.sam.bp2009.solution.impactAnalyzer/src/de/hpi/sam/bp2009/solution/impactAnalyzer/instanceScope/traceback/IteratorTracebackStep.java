@@ -24,17 +24,17 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
-public class IteratorTracebackStep extends AbstractTracebackStep {
+public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
     private enum Strategy { EMPTY, MAP, PASSTHROUGH };
     private final Strategy strategy;
     private final TracebackStepAndScopeChange step;
-    private final IteratorExp predicateExpressionToCheck;
+    private final boolean checkPredicate;
     private final boolean acceptIfPredicateTrue;
     private final OppositeEndFinder oppositeEndFinder;
 
     public IteratorTracebackStep(IteratorExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor);
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
         String name = sourceExpression.getName();
         int opCode = OCLStandardLibraryUtil.getOperationCode(name);
         if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.SORTED_BY
@@ -52,18 +52,18 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
                 } else {
                     acceptIfPredicateTrue = false;
                 }
-                predicateExpressionToCheck = sourceExpression;
+                checkPredicate = true;
                 oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
             } else {
                 requiredType = null;
-                predicateExpressionToCheck = null;
+                checkPredicate = false;
                 acceptIfPredicateTrue = false;
                 oppositeEndFinder = null;
             }
         } else if (opCode == PredefinedType.COLLECT || opCode == PredefinedType.COLLECT_NESTED) {
             strategy = Strategy.MAP;
             requiredType = null;
-            predicateExpressionToCheck = null;
+            checkPredicate = false;
             acceptIfPredicateTrue = false;
             step = createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) sourceExpression.getBody(), context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
             oppositeEndFinder = null;
@@ -71,7 +71,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
             // boolean or other non-class-type-result iterator
             strategy = Strategy.EMPTY;
             requiredType = null;
-            predicateExpressionToCheck = null;
+            checkPredicate = false;
             acceptIfPredicateTrue = false;
             step = null;
             oppositeEndFinder = null;
@@ -91,7 +91,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
         case PASSTHROUGH:
             Set<EObject> sourceValue = new LinkedHashSet<EObject>(1);
             sourceValue.add(source.getAnnotatedObject());
-            boolean passedPredicate = evaluatePredicate(sourceValue, changeEvent);
+            boolean passedPredicate = !checkPredicate || evaluatePredicate(sourceValue, changeEvent);
             if (passedPredicate) {
                 return step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
             } else {
@@ -103,50 +103,46 @@ public class IteratorTracebackStep extends AbstractTracebackStep {
     }
 
     private boolean evaluatePredicate(Collection<EObject> sourceObjects, Notification atPre) {
-        if (predicateExpressionToCheck == null) {
-            return true;
-        } else {
-            // evaluate whether the source object would have passed the iterator's body before the change
-            boolean resultPre = acceptIfPredicateTrue;
-            if (atPre != null) {
-                PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder);
-                try {
-                    Object result = evalPre.evaluate(null, predicateExpressionToCheck, sourceObjects);
-                    resultPre = sourceObjects.contains(result);
-                } catch (ValueNotFoundException vnfe) {
-                    // be conservative about undefined situations
-                    resultPre = acceptIfPredicateTrue;
-                } catch (ClassCastException cce) {
-                    throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
-                }
+        // evaluate whether the source object would have passed the iterator's body before the change
+        boolean resultPre = acceptIfPredicateTrue;
+        if (atPre != null) {
+            PartialEvaluator evalPre = new PartialEvaluator(atPre, oppositeEndFinder);
+            try {
+                Object result = evalPre.evaluate(null, getExpression(), sourceObjects);
+                resultPre = sourceObjects.contains(result);
+            } catch (ValueNotFoundException vnfe) {
+                // be conservative about undefined situations
+                resultPre = acceptIfPredicateTrue;
+            } catch (ClassCastException cce) {
+                throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
             }
-            boolean resultPost = acceptIfPredicateTrue;
-            if (resultPre != acceptIfPredicateTrue) {
-                // evaluate whether the source object passes the iterator's body after the change
-                PartialEvaluator evalPost = new PartialEvaluator(oppositeEndFinder);
-                try {
-                    Object result = evalPost.evaluate(null, predicateExpressionToCheck, sourceObjects);
-                    if (result instanceof Collection<?>) {
-                        if (((Collection<?>) result).isEmpty()) {
-                            resultPost = false;
-                        } else {
-                            resultPost = sourceObjects.contains(((Collection<?>) result).iterator().next());
-                        }
-                    } else {
-                        resultPost = sourceObjects.contains(result);
-                    }
-                } catch (ValueNotFoundException vnfe) {
-                    // be conservative about undefined situations
-                    resultPost = acceptIfPredicateTrue;
-                } catch (ClassCastException cce) {
-                    throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
-                }
-                // if the source object fulfills the condition before or after the change event
-                // or accesses an undefined variable before or after the change event
-                // it passes this navigation step
-            }
-            return resultPre == acceptIfPredicateTrue || resultPost == acceptIfPredicateTrue;
         }
+        boolean resultPost = acceptIfPredicateTrue;
+        if (resultPre != acceptIfPredicateTrue) {
+            // evaluate whether the source object passes the iterator's body after the change
+            PartialEvaluator evalPost = new PartialEvaluator(oppositeEndFinder);
+            try {
+                Object result = evalPost.evaluate(null, getExpression(), sourceObjects);
+                if (result instanceof Collection<?>) {
+                    if (((Collection<?>) result).isEmpty()) {
+                        resultPost = false;
+                    } else {
+                        resultPost = sourceObjects.contains(((Collection<?>) result).iterator().next());
+                    }
+                } else {
+                    resultPost = sourceObjects.contains(result);
+                }
+            } catch (ValueNotFoundException vnfe) {
+                // be conservative about undefined situations
+                resultPost = acceptIfPredicateTrue;
+            } catch (ClassCastException cce) {
+                throw new RuntimeException("The result of the iterator expression's body is not of type Boolean.");
+            }
+            // if the source object fulfills the condition before or after the change event
+            // or accesses an undefined variable before or after the change event
+            // it passes this navigation step
+        }
+        return resultPre == acceptIfPredicateTrue || resultPost == acceptIfPredicateTrue;
     }
 
 }

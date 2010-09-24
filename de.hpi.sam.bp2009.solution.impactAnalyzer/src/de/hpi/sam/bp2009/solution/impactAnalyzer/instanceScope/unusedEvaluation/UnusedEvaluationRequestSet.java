@@ -185,27 +185,33 @@ public class UnusedEvaluationRequestSet {
      * return <code>false</code>. If any request's evaluation failed for an unknown variable, the request will be added to a new
      * {@link UnusedEvaluationRequestSet} which is part of this method's result (see
      * {@link UnusedEvaluationResult#getNewRequestSet()}), keyed by the unknown {@link Variable}.
+     * 
+     * @param requestsToEvaluate
+     *            may be <code>null</code> which will immediately cause the result to be a combination of <code>false</code> and a
+     *            new, empty {@link UnusedEvaluationRequestSet}.
      */
     public static UnusedEvaluationResult evaluate(Set<UnusedEvaluationRequest> requestsToEvaluate,
             OppositeEndFinder oppositeEndFinder) {
         UnusedEvaluationResult result = null;
         Map<Variable, Set<UnusedEvaluationRequest>> newRequestSet = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
-        for (UnusedEvaluationRequest request : requestsToEvaluate) {
-            try {
-                if (request.evaluate(oppositeEndFinder)) {
-                    result = new UnusedEvaluationResult(/* provedUnused */ true, /* newRequestSet */ null);
-                    break;
+        if (requestsToEvaluate != null) {
+            for (UnusedEvaluationRequest request : requestsToEvaluate) {
+                try {
+                    if (request.evaluate(oppositeEndFinder)) {
+                        result = new UnusedEvaluationResult(/* provedUnused */true, /* newRequestSet */null);
+                        break;
+                    }
+                    // else, simply don't add the resolved request anymore because it was unable to prove unused
+                } catch (ValueNotFoundException vnfe) {
+                    // re-add the request, but this time for the now unknown variable
+                    Variable unknownVariable = (Variable) vnfe.getVariableExp().getReferredVariable();
+                    Set<UnusedEvaluationRequest> newSet = newRequestSet.get(unknownVariable);
+                    if (newSet == null) {
+                        newSet = new HashSet<UnusedEvaluationRequest>();
+                        newRequestSet.put(unknownVariable, newSet);
+                    }
+                    newSet.add(request);
                 }
-                // else, simply don't add the resolved request anymore because it was unable to prove unused
-            } catch (ValueNotFoundException vnfe) {
-                // re-add the request, but this time for the now unknown variable
-                Variable unknownVariable = (Variable) vnfe.getVariableExp().getReferredVariable();
-                Set<UnusedEvaluationRequest> newSet = newRequestSet.get(unknownVariable);
-                if (newSet == null) {
-                    newSet = new HashSet<UnusedEvaluationRequest>();
-                    newRequestSet.put(unknownVariable, newSet);
-                }
-                newSet.add(request);
             }
         }
         if (result == null) {

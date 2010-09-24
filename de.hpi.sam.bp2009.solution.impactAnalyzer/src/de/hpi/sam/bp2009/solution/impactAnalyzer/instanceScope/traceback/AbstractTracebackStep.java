@@ -21,6 +21,8 @@ import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.Variable;
 
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequest;
@@ -29,7 +31,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
-public abstract class AbstractTracebackStep implements TracebackStep {
+public abstract class AbstractTracebackStep<E extends OCLExpression> implements TracebackStep {
     /**
      * If set to a non-<code>null</code> class, this step asserts that if the source objects passed to its
      * {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)} or
@@ -37,6 +39,21 @@ public abstract class AbstractTracebackStep implements TracebackStep {
      * type, then the result set will be empty.
      */
     protected EClass requiredType;
+    
+    /**
+     * The OCL expression for which this is the traceback step
+     */
+    private final E expression;
+    
+    /**
+     * Descriptions of the partial evaluations to perform when executing this step, in order to try to prove that the
+     * {@link #expression} is unused by the particular change currently being traced back.
+     * 
+     * @see #determineUnusedEvaluationRequests()
+     */
+    private final Set<UnusedEvaluationRequest> unusedEvaluationRequests;
+    
+    private final OppositeEndFinder oppositeEndFinder;
     
     /**
      * To avoid endless recursions, a step remembers for which combinations of <code>source</code> objects and
@@ -50,7 +67,7 @@ public abstract class AbstractTracebackStep implements TracebackStep {
         }
     }
     private final ThreadLocal<Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>> currentlyEvaluatingNavigateFor = new IndirectingStepThreadLocal();
-    
+
     /**
      * Encapsulates the scope change that has to happen before invoking a subsequent traceback step.
      * @author Axel Uhl (D043530)
@@ -75,15 +92,17 @@ public abstract class AbstractTracebackStep implements TracebackStep {
     /**
      * If the expression's type for which this traceback step is constructed is class-like, {@link #requiredType} is set to the
      * expression's type.
-     * 
      * @param tupleLiteralNamesToLookFor
      *            if a tuple part is being sought, the expression type will be a tuple type; in this case, extract the sought
      *            part's type as the {@link #requiredType}.
+     * @param oppositeEndFinder TODO
      */
-    protected AbstractTracebackStep(OCLExpression sourceExpression, Stack<String> tupleLiteralNamesToLookFor) {
+    protected AbstractTracebackStep(E sourceExpression, Stack<String> tupleLiteralNamesToLookFor, OppositeEndFinder oppositeEndFinder) {
+        this.expression = sourceExpression;
+        this.oppositeEndFinder = oppositeEndFinder;
         EClassifier type = sourceExpression.getType();
         requiredType = getInnermostTypeConsideringTupleLiteralsLookedFor(tupleLiteralNamesToLookFor, type);
-        determineUnusedEvaluationRequests(sourceExpression);
+        unusedEvaluationRequests = determineUnusedEvaluationRequests();
     }
 
     /**
@@ -141,10 +160,92 @@ public abstract class AbstractTracebackStep implements TracebackStep {
      * based on the "Unused {@link OperationCallExp#getArgument() argument} expression of an operation call" rule. In this case,
      * the argument expressions are known and an attempt can be made to evaluate them. If such an evaluation succeeds, the
      * evaluation result represents the inferred value of the corresponding formal parameter.
+     * 
+     * @return the set of evaluation requests with which to try to prove unusedness of the {@link #expression}
      */
-    private void determineUnusedEvaluationRequests(OCLExpression sourceExpression) {
-        // TODO Implement AbstractTracebackStep.determineUnusedEvaluationRequests(...)
-        
+    private Set<UnusedEvaluationRequest> determineUnusedEvaluationRequests() {
+        Set<UnusedEvaluationRequest> result = new HashSet<UnusedEvaluationRequest>();
+        UnusedEvaluationRequest thenClauseRequest = getThenClauseUnusedCheckRequest();
+        if (thenClauseRequest != null) {
+            result.add(thenClauseRequest);
+        } else {
+            UnusedEvaluationRequest elseClauseRequest = getElseClauseUnusedCheckRequest();
+            if (elseClauseRequest != null) {
+                result.add(elseClauseRequest);
+            } else {
+                UnusedEvaluationRequest loopBodyRequest = getLoopBodyUnusedCheckRequest();
+                if (loopBodyRequest != null) {
+                    result.add(loopBodyRequest);
+                } else {
+                    Set<UnusedEvaluationRequest> letVariableInitRequests = getLetVariableInitUnusedCheckRequests();
+                    if (letVariableInitRequests != null) {
+                        result.addAll(letVariableInitRequests);
+                    } else {
+                        Set<UnusedEvaluationRequest> operationArgumentRequests = getOperationArgumentUnusedCheckRequests();
+                        if (operationArgumentRequests != null) {
+                            result.addAll(operationArgumentRequests);
+                        } else {
+                            UnusedEvaluationRequest collectionLiteralWithAtRequest = getCollectionLiteralWithAtUnusedCheckRequest();
+                            if (collectionLiteralWithAtRequest != null) {
+                                result.add(collectionLiteralWithAtRequest);
+                            } else {
+                                Set<UnusedEvaluationRequest> compositeParentRequests = getCompositeParentUnusedCheckRequests();
+                                if (compositeParentRequests != null) {
+                                    result.addAll(compositeParentRequests);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (result.size() > 0) {
+            return result;
+        } else {
+            return null;
+        }
+    }
+
+    private Set<UnusedEvaluationRequest> getCompositeParentUnusedCheckRequests() {
+        // TODO Implement AbstractTracebackStep.getCompositeParentUnusedCheckRequests(...)
+        return null;
+    }
+
+    private UnusedEvaluationRequest getCollectionLiteralWithAtUnusedCheckRequest() {
+        // TODO Implement AbstractTracebackStep.getCollectionLiteralWithAtUnusedCheckRequest(...)
+        return null;
+    }
+
+    private Set<UnusedEvaluationRequest> getOperationArgumentUnusedCheckRequests() {
+        // TODO Implement AbstractTracebackStep.getOperationArgumentUnusedCheckRequests(...)
+        return null;
+    }
+
+    private Set<UnusedEvaluationRequest> getLetVariableInitUnusedCheckRequests() {
+        // TODO Implement AbstractTracebackStep.getLetVariableInitUnusedCheckRequests(...)
+        return null;
+    }
+
+    private UnusedEvaluationRequest getLoopBodyUnusedCheckRequest() {
+        // TODO Implement AbstractTracebackStep.getLoopBodyUnusedCheckRequest(...)
+        return null;
+    }
+
+    private UnusedEvaluationRequest getElseClauseUnusedCheckRequest() {
+        // TODO Implement AbstractTracebackStep.getElseClauseUnusedCheckRequest(...)
+        return null;
+    }
+
+    private UnusedEvaluationRequest getThenClauseUnusedCheckRequest() {
+        // TODO Implement AbstractTracebackStep.getThenClauseUnusedCheckRequest(...)
+        return null;
+    }
+
+    /**
+     * @return the expression for which this step is responsible
+     */
+    public E getExpression() {
+        return expression;
     }
 
     protected EClass getInnermostTypeConsideringTupleLiteralsLookedFor(Stack<String> tupleLiteralNamesToLookFor, EClassifier type) {
@@ -179,7 +280,18 @@ public abstract class AbstractTracebackStep implements TracebackStep {
                     if (requiredType != null && !requiredType.isInstance(source.getAnnotatedObject())) {
                         result = Collections.emptySet();
                     } else {
-                        result = performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+                        // try to prove unusedness with the unused rules recorded for this step; if that fails,
+                        // merge the unused evaluation requests that failed for unknown variables
+                        // with the ones passed in pendingUnusedEvalRequests and carry on
+                        UnusedEvaluationResult unusedEvaluationResult = UnusedEvaluationRequestSet.evaluate(
+                                unusedEvaluationRequests, oppositeEndFinder);
+                        if (unusedEvaluationResult.hasProvenUnused()) {
+                            result = Collections.emptySet();
+                        } else {
+                            result = performSubsequentTraceback(source,
+                                    unusedEvaluationResult.getNewRequestSet().merge(pendingUnusedEvalRequests), tracebackCache,
+                                    changeEvent);
+                        }
                     }
                     tracebackCache.put(this, source, pendingUnusedEvalRequests, result);
                 }
