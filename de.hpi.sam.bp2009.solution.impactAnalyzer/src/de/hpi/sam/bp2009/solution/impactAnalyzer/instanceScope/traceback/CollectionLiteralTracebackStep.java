@@ -25,7 +25,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 public class CollectionLiteralTracebackStep extends BranchingTracebackStep<CollectionLiteralExp> {
     public CollectionLiteralTracebackStep(CollectionLiteralExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper);
         for (CollectionLiteralPart<EClassifier> part : ((CollectionLiteralExp) sourceExpression).getPart()) {
             if (part instanceof CollectionItem) {
                 OCLExpression item = (OCLExpression) ((CollectionItem) part).getItem();

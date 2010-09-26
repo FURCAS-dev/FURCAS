@@ -9,6 +9,7 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 
@@ -16,8 +17,8 @@ public class BranchingTracebackStep<E extends OCLExpression> extends AbstractTra
 
     private final Set<TracebackStepAndScopeChange> steps;
 
-    public BranchingTracebackStep(E sourceExpression, Stack<String> tupleLiteralNamesToLookFor, OppositeEndFinder oppositeEndFinder) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, oppositeEndFinder);
+    public BranchingTracebackStep(E sourceExpression, Stack<String> tupleLiteralNamesToLookFor, OppositeEndFinder oppositeEndFinder, OperationBodyToCallMapper operationBodyToCallMapper) {
+        super(sourceExpression, tupleLiteralNamesToLookFor, oppositeEndFinder, operationBodyToCallMapper);
         steps = new HashSet<TracebackStepAndScopeChange>();
     }
 

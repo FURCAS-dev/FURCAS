@@ -33,6 +33,7 @@ import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.AbstractVisitorWithHiddenOpposites;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
+import com.sap.emf.ocl.util.OclHelper;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
@@ -200,13 +201,9 @@ implements OperationBodyToCallMapper {
         if (!visitedOperationBodyStack.isEmpty()) {
             OCLExpression body = visitedOperationBodyStack.peek();
             operation = visitedOperationBodies.get(body).iterator().next().getReferredOperation();
+            // TODO also record non-operation self variables because they are always in scope for outermost expression
             if (var.getName().equals(Environment.SELF_VARIABLE_NAME)) {
-                Set<Variable> selfSet = selfVariablesUsedInBody.get(body);
-                if (selfSet == null) {
-                    selfSet = new HashSet<Variable>();
-                    selfVariablesUsedInBody.put(body, selfSet);
-                }
-                selfSet.add((Variable) var.getReferredVariable());
+                addSelfUsageForBody(var, body);
             } else {
                 for (EParameter param : operation.getEParameters()) {
                     if (var.getName().equals(param.getName())) {
@@ -221,12 +218,25 @@ implements OperationBodyToCallMapper {
                 }
             }
         } else {
+            if (var.getName().equals(Environment.SELF_VARIABLE_NAME)) {
+                // self used outside of operation body; associate with root expression as "body"
+                addSelfUsageForBody(var, OclHelper.getRootExpression(var));
+            }
             if (notifyNewContextElements && var.getName().equals(Environment.SELF_VARIABLE_NAME)) {
                 EClass cls = (EClass) var.getType();
                 filters.add(createFilterForElementInsertionOrDeletion(cls));
             }
         }
         return result;
+    }
+
+    private void addSelfUsageForBody(VariableExp<EClassifier, EParameter> var, OCLExpression body) {
+        Set<Variable> selfSet = selfVariablesUsedInBody.get(body);
+        if (selfSet == null) {
+            selfSet = new HashSet<Variable>();
+            selfVariablesUsedInBody.put(body, selfSet);
+        }
+        selfSet.add((Variable) var.getReferredVariable());
     }
 
     /**

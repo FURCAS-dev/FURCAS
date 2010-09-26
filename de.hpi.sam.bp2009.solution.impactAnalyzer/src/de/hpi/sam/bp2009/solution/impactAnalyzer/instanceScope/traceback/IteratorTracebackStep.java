@@ -34,7 +34,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
 
     public IteratorTracebackStep(IteratorExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper);
         String name = sourceExpression.getName();
         int opCode = OCLStandardLibraryUtil.getOperationCode(name);
         if (opCode == PredefinedType.SELECT || opCode == PredefinedType.REJECT || opCode == PredefinedType.SORTED_BY

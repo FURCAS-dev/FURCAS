@@ -57,7 +57,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
     public VariableTracebackStep(VariableExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
             TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper);
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         variable = (Variable) sourceExpression.getReferredVariable();
         // enter step into cache already to let it be found during recursive lookups
@@ -85,9 +85,13 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache,
             Notification changeEvent) {
         Set<AnnotatedEObject> result;
-        if (pendingUnusedEvalRequests != null) {
+        // don't assign collection-type variables because having inferred one value of the collection doesn't
+        // tell us the complete variable value; simple example that would fail otherwise:
+        // "v->size()" would evaluate to 1 instead of whatever the size of the full collection would have been.
+        if (pendingUnusedEvalRequests != null && !(Collection.class.isAssignableFrom(
+                variable.getType().getInstanceClass()))) {
             UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(),
-                    oppositeEndFinder);
+                    oppositeEndFinder, tracebackCache);
             if (unusedResult.hasProvenUnused()) {
                 result = Collections.emptySet();
             } else {

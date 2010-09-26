@@ -32,8 +32,10 @@ public class BenchmarkTaskPreparer {
     	System.out.println("\t Prepare Benchmark Tasks:");
 
     	Collection<ActivationOption> optionList = new ArrayList<ActivationOption>();
-    	optionList.add(new ActivationOption(true, true, false, false, "All optimizations activated"));
-    	optionList.add(new ActivationOption(true, false, false, false, "Without delta propagation"));
+    	optionList.add(new ActivationOption(true, true, true, true, "All optimizations activated, TracebackSteps"));
+    	optionList.add(new ActivationOption(true, false, true, true, "Without delta propagation, TracebackSteps"));
+        optionList.add(new ActivationOption(true, true, false, true, "Without unused checks, TracebackSteps"));
+        optionList.add(new ActivationOption(true, true, false, false, "Without unused checks, NavigationSteps"));
 
     	return new BenchmarkTaskStepwiseBuilder(expressionList, notificationForModelList, optionList);
      }

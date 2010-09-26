@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.EcorePackage;
 import org.eclipse.ocl.ecore.IfExp;
 import org.eclipse.ocl.ecore.IterateExp;
 import org.eclipse.ocl.ecore.LetExp;
@@ -20,9 +22,12 @@ import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.TupleType;
 import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+import com.sap.emf.ocl.util.OclHelper;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequest;
@@ -49,7 +54,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * Descriptions of the partial evaluations to perform when executing this step, in order to try to prove that the
      * {@link #expression} is unused by the particular change currently being traced back.
      * 
-     * @see #determineUnusedEvaluationRequests()
+     * @see #determineUnusedEvaluationRequests(OCLExpression, OperationBodyToCallMapper)
      */
     private final Set<UnusedEvaluationRequest> unusedEvaluationRequests;
     
@@ -83,9 +88,25 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         
         public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
                 de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-            UnusedEvaluationRequestSet reducedUnusedEvaluationRequestSet = pendingUnusedEvalRequests == null ? null
-                    : pendingUnusedEvalRequests.createReducedSet(variablesThatLeaveOrEnterScopeWhenCallingStep);
+            UnusedEvaluationRequestSet reducedUnusedEvaluationRequestSet;
+            if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                reducedUnusedEvaluationRequestSet = pendingUnusedEvalRequests == null ? null
+                        : pendingUnusedEvalRequests.createReducedSet(variablesThatLeaveOrEnterScopeWhenCallingStep);
+            } else {
+                reducedUnusedEvaluationRequestSet = null;
+            }
             return step.traceback(source, reducedUnusedEvaluationRequestSet, tracebackCache, changeEvent);
+        }
+        
+        public String toString() {
+            StringBuilder result = new StringBuilder("Unscope ");
+            for (Variable v : variablesThatLeaveOrEnterScopeWhenCallingStep) {
+                result.append(v.getName());
+                result.append(", ");
+            }
+            result.append("then perform ");
+            result.append(step);
+            return result.toString();
         }
     }
 
@@ -95,14 +116,17 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * @param tupleLiteralNamesToLookFor
      *            if a tuple part is being sought, the expression type will be a tuple type; in this case, extract the sought
      *            part's type as the {@link #requiredType}.
-     * @param oppositeEndFinder TODO
      */
-    protected AbstractTracebackStep(E sourceExpression, Stack<String> tupleLiteralNamesToLookFor, OppositeEndFinder oppositeEndFinder) {
+    protected AbstractTracebackStep(E sourceExpression, Stack<String> tupleLiteralNamesToLookFor, OppositeEndFinder oppositeEndFinder, OperationBodyToCallMapper operationBodyToCallMapper) {
         this.expression = sourceExpression;
         this.oppositeEndFinder = oppositeEndFinder;
         EClassifier type = sourceExpression.getType();
         requiredType = getInnermostTypeConsideringTupleLiteralsLookedFor(tupleLiteralNamesToLookFor, type);
-        unusedEvaluationRequests = determineUnusedEvaluationRequests();
+        if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+            unusedEvaluationRequests = determineUnusedEvaluationRequests(getExpression(), operationBodyToCallMapper);
+        } else {
+            unusedEvaluationRequests = null;
+        }
     }
 
     /**
@@ -147,7 +171,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * check. They are stored in the {@link TracebackStep} whose expression's unusedness they shall prove. When a step is executed
      * by invoking its {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} method,
      * these requests are {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder) evaluated}.
-     * using {@link UnusedEvaluationRequestSet#evaluate(Set, com.sap.emf.ocl.hiddenopposites.OppositeEndFinder)}. If this proves
+     * using {@link UnusedEvaluationRequestSet#evaluate(Set, com.sap.emf.ocl.hiddenopposites.OppositeEndFinder, TracebackCache)}. If this proves
      * that the expression is unused, an empty set can be returned right away. Otherwise, the follow-up
      * {@link UnusedEvaluationRequestSet} delivered via {@link UnusedEvaluationResult#getNewRequestSet()} is merged with the one
      * passed to {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)}.
@@ -160,45 +184,54 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * based on the "Unused {@link OperationCallExp#getArgument() argument} expression of an operation call" rule. In this case,
      * the argument expressions are known and an attempt can be made to evaluate them. If such an evaluation succeeds, the
      * evaluation result represents the inferred value of the corresponding formal parameter.
-     * 
      * @return the set of evaluation requests with which to try to prove unusedness of the {@link #expression}
      */
-    private Set<UnusedEvaluationRequest> determineUnusedEvaluationRequests() {
+    private Set<UnusedEvaluationRequest> determineUnusedEvaluationRequests(OCLExpression e,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
         Set<UnusedEvaluationRequest> result = new HashSet<UnusedEvaluationRequest>();
-        UnusedEvaluationRequest thenClauseRequest = getThenClauseUnusedCheckRequest();
+        OCLExpression root = OclHelper.getRootExpression(e);
+        Set<Variable> variablesInScope = getAllVariablesInScope(e, operationBodyToCallMapper);
+        return determineUnusedEvaluationRequests(e, root, variablesInScope, operationBodyToCallMapper, result);
+    }
+
+    /**
+     * @param upTo during following the composition rule, ascends up to this expression and no further
+     * @return <code>result</code>
+     */
+    private Set<UnusedEvaluationRequest> determineUnusedEvaluationRequests(OCLExpression e, OCLExpression upTo,
+            Set<Variable> variablesInScope, OperationBodyToCallMapper operationBodyToCallMapper, Set<UnusedEvaluationRequest> result) {
+        UnusedEvaluationRequest thenClauseRequest = getThenClauseUnusedCheckRequest(e, variablesInScope, operationBodyToCallMapper);
         if (thenClauseRequest != null) {
             result.add(thenClauseRequest);
         } else {
-            UnusedEvaluationRequest elseClauseRequest = getElseClauseUnusedCheckRequest();
+            UnusedEvaluationRequest elseClauseRequest = getElseClauseUnusedCheckRequest(e, variablesInScope, operationBodyToCallMapper);
             if (elseClauseRequest != null) {
                 result.add(elseClauseRequest);
             } else {
-                UnusedEvaluationRequest loopBodyRequest = getLoopBodyUnusedCheckRequest();
+                UnusedEvaluationRequest loopBodyRequest = getLoopBodyUnusedCheckRequest(e, variablesInScope, operationBodyToCallMapper);
                 if (loopBodyRequest != null) {
                     result.add(loopBodyRequest);
                 } else {
-                    Set<UnusedEvaluationRequest> letVariableInitRequests = getLetVariableInitUnusedCheckRequests();
+                    Set<UnusedEvaluationRequest> letVariableInitRequests = getLetVariableInitUnusedCheckRequests(e, variablesInScope, operationBodyToCallMapper, oppositeEndFinder);
                     if (letVariableInitRequests != null) {
                         result.addAll(letVariableInitRequests);
                     } else {
-                        Set<UnusedEvaluationRequest> operationArgumentRequests = getOperationArgumentUnusedCheckRequests();
+                        Set<UnusedEvaluationRequest> operationArgumentRequests = getOperationArgumentUnusedCheckRequests(e, variablesInScope, operationBodyToCallMapper);
                         if (operationArgumentRequests != null) {
                             result.addAll(operationArgumentRequests);
                         } else {
-                            UnusedEvaluationRequest collectionLiteralWithAtRequest = getCollectionLiteralWithAtUnusedCheckRequest();
+                            UnusedEvaluationRequest collectionLiteralWithAtRequest = getCollectionLiteralWithAtUnusedCheckRequest(e, variablesInScope, operationBodyToCallMapper);
                             if (collectionLiteralWithAtRequest != null) {
                                 result.add(collectionLiteralWithAtRequest);
-                            } else {
-                                Set<UnusedEvaluationRequest> compositeParentRequests = getCompositeParentUnusedCheckRequests();
-                                if (compositeParentRequests != null) {
-                                    result.addAll(compositeParentRequests);
-                                }
                             }
                         }
                     }
                 }
             }
         }
+        Set<UnusedEvaluationRequest> compositeParentRequests = getCompositeParentUnusedCheckRequests(e, upTo,
+                variablesInScope, new HashSet<UnusedEvaluationRequest>(), operationBodyToCallMapper);
+        result.addAll(compositeParentRequests);
         if (result.size() > 0) {
             return result;
         } else {
@@ -206,39 +239,102 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         }
     }
 
-    private Set<UnusedEvaluationRequest> getCompositeParentUnusedCheckRequests() {
-        // TODO Implement AbstractTracebackStep.getCompositeParentUnusedCheckRequests(...)
-        return null;
+    /**
+     * @param e the expression for which to investigate unusedness
+     * @param upTo during following the composition rule, ascends up to this expression and no further
+     * @param result a set to which to add the results and which to return
+     * @return <code>requestsToAddTo</code>
+     */
+    private Set<UnusedEvaluationRequest> getCompositeParentUnusedCheckRequests(OCLExpression e, OCLExpression upTo,
+            Set<Variable> variablesInScope, Set<UnusedEvaluationRequest> result, OperationBodyToCallMapper operationBodyToCallMapper) {
+        EObject container = e.eContainer();
+        while (container != null && !(container instanceof OCLExpression)) {
+            container = container.eContainer();
+        }
+        if (container != null && container instanceof OCLExpression) {
+            Set<Variable> variablesLeavingScope = getVariablesScopedByExpression(e, operationBodyToCallMapper);
+            Set<Variable> remainingVariablesInScope = new HashSet<Variable>(variablesInScope);
+            remainingVariablesInScope.removeAll(variablesLeavingScope);
+            determineUnusedEvaluationRequests((OCLExpression) container, upTo, remainingVariablesInScope,
+                    operationBodyToCallMapper, result);
+        }
+        return result;
     }
 
-    private UnusedEvaluationRequest getCollectionLiteralWithAtUnusedCheckRequest() {
+    private UnusedEvaluationRequest getCollectionLiteralWithAtUnusedCheckRequest(OCLExpression e, Set<Variable> variablesInScope,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
         // TODO Implement AbstractTracebackStep.getCollectionLiteralWithAtUnusedCheckRequest(...)
         return null;
     }
 
-    private Set<UnusedEvaluationRequest> getOperationArgumentUnusedCheckRequests() {
+    private Set<UnusedEvaluationRequest> getOperationArgumentUnusedCheckRequests(OCLExpression e, Set<Variable> variablesInScope,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
         // TODO Implement AbstractTracebackStep.getOperationArgumentUnusedCheckRequests(...)
         return null;
     }
 
-    private Set<UnusedEvaluationRequest> getLetVariableInitUnusedCheckRequests() {
-        // TODO Implement AbstractTracebackStep.getLetVariableInitUnusedCheckRequests(...)
-        return null;
+    private Set<UnusedEvaluationRequest> getLetVariableInitUnusedCheckRequests(OCLExpression e, Set<Variable> variablesInScope,
+            OperationBodyToCallMapper operationBodyToCallMapper, OppositeEndFinder oppositeEndFinder) {
+        Set<UnusedEvaluationRequest> result = new HashSet<UnusedEvaluationRequest>();
+        EObject container = e.eContainer();
+        if (container != null && container instanceof Variable && ((Variable) container).getInitExpression() == e) {
+            EObject letCandidate = container.eContainer();
+            if (letCandidate instanceof LetExp && ((LetExp) letCandidate).getIn() == e) {
+                Collection<EObject> variableExps = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(EcorePackage.eINSTANCE.getVariableExp().getEStructuralFeature(
+                        EcorePackage.VARIABLE_EXP__REFERRED_VARIABLE), container);
+                for (EObject ve : variableExps) {
+                    VariableExp variableExp = (VariableExp) ve;
+                    Set<Variable> variableScopeChange = getVariablesChangingScope(e, variableExp, operationBodyToCallMapper);
+                    Set<Variable> newScope = new HashSet<Variable>(variablesInScope);
+                    newScope.removeAll(variableScopeChange);
+                    determineUnusedEvaluationRequests(variableExp,
+                            /* up to */ (OCLExpression) ((LetExp) letCandidate).getIn(),
+                            newScope, operationBodyToCallMapper, result);
+                }
+            }
+        }
+        return result;
     }
 
-    private UnusedEvaluationRequest getLoopBodyUnusedCheckRequest() {
-        // TODO Implement AbstractTracebackStep.getLoopBodyUnusedCheckRequest(...)
-        return null;
+    private UnusedEvaluationRequest getLoopBodyUnusedCheckRequest(OCLExpression e, Set<Variable> variablesInScope,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
+        UnusedEvaluationRequest result = null;
+        EObject container = e.eContainer();
+        if (container instanceof LoopExp && ((LoopExp) container).getBody() == e) {
+            Set<Variable> variablesInScopeReducedByIteratorsAndResult = new HashSet<Variable>(variablesInScope);
+            variablesInScopeReducedByIteratorsAndResult.removeAll(((LoopExp) container).getIterator());
+            if (container instanceof IterateExp) {
+                Variable resultVariable = (Variable) ((IterateExp) container).getResult();
+                if (resultVariable != null) {
+                    variablesInScopeReducedByIteratorsAndResult.remove(resultVariable);
+                }
+            }
+            result = new UnusedEvaluationRequest((OCLExpression) ((LoopExp) container).getSource(),
+                    /* unused if */ null /* meaning empty */, null, variablesInScopeReducedByIteratorsAndResult);
+        }
+        return result;
     }
 
-    private UnusedEvaluationRequest getElseClauseUnusedCheckRequest() {
-        // TODO Implement AbstractTracebackStep.getElseClauseUnusedCheckRequest(...)
-        return null;
+    private UnusedEvaluationRequest getElseClauseUnusedCheckRequest(OCLExpression e, Set<Variable> variablesInScope,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
+        UnusedEvaluationRequest result = null;
+        EObject container = e.eContainer();
+        if (container instanceof IfExp && ((IfExp) container).getElseExpression() == e) {
+            result = new UnusedEvaluationRequest((OCLExpression) ((IfExp) container).getCondition(), /* unused if */ true, null,
+                    variablesInScope);
+        }
+        return result;
     }
 
-    private UnusedEvaluationRequest getThenClauseUnusedCheckRequest() {
-        // TODO Implement AbstractTracebackStep.getThenClauseUnusedCheckRequest(...)
-        return null;
+    private UnusedEvaluationRequest getThenClauseUnusedCheckRequest(OCLExpression e, Set<Variable> variablesInScope,
+            OperationBodyToCallMapper operationBodyToCallMapper) {
+        UnusedEvaluationRequest result = null;
+        EObject container = e.eContainer();
+        if (container instanceof IfExp && ((IfExp) container).getThenExpression() == e) {
+            result = new UnusedEvaluationRequest((OCLExpression) ((IfExp) container).getCondition(), /* unused if */ false, null,
+                    variablesInScope);
+        }
+        return result;
     }
 
     /**
@@ -280,17 +376,21 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                     if (requiredType != null && !requiredType.isInstance(source.getAnnotatedObject())) {
                         result = Collections.emptySet();
                     } else {
-                        // try to prove unusedness with the unused rules recorded for this step; if that fails,
-                        // merge the unused evaluation requests that failed for unknown variables
-                        // with the ones passed in pendingUnusedEvalRequests and carry on
-                        UnusedEvaluationResult unusedEvaluationResult = UnusedEvaluationRequestSet.evaluate(
-                                unusedEvaluationRequests, oppositeEndFinder);
-                        if (unusedEvaluationResult.hasProvenUnused()) {
-                            result = Collections.emptySet();
+                        if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                            // try to prove unusedness with the unused rules recorded for this step; if that fails,
+                            // merge the unused evaluation requests that failed for unknown variables
+                            // with the ones passed in pendingUnusedEvalRequests and carry on
+                            UnusedEvaluationResult unusedEvaluationResult = UnusedEvaluationRequestSet.evaluate(
+                                    unusedEvaluationRequests, oppositeEndFinder, tracebackCache);
+                            if (unusedEvaluationResult.hasProvenUnused()) {
+                                result = Collections.emptySet();
+                            } else {
+                                result = performSubsequentTraceback(source,
+                                        unusedEvaluationResult.getNewRequestSet() == null ? null : unusedEvaluationResult
+                                                .getNewRequestSet().merge(pendingUnusedEvalRequests), tracebackCache, changeEvent);
+                            }
                         } else {
-                            result = performSubsequentTraceback(source,
-                                    unusedEvaluationResult.getNewRequestSet().merge(pendingUnusedEvalRequests), tracebackCache,
-                                    changeEvent);
+                            result = performSubsequentTraceback(source, null, tracebackCache, changeEvent);
                         }
                     }
                     tracebackCache.put(this, source, pendingUnusedEvalRequests, result);
@@ -310,7 +410,10 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent);
 
 
-    protected Set<Variable> getVariablesChangingScope(OCLExpression sourceExpression, OCLExpression targetExpression,
+    /**
+     * @return a new set that the caller therefore may modify at will without causing any harm
+     */
+    private Set<Variable> getVariablesChangingScope(OCLExpression sourceExpression, OCLExpression targetExpression,
             OperationBodyToCallMapper operationBodyToCallMapper) {
         Set<Variable> result;
         OCLExpression commonCompositionParent = commonCompositionParent(sourceExpression, targetExpression);
@@ -326,28 +429,30 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     }
 
     /**
-     * This method returns all variables introduced by <code>parent</code> or any of its containment children, down to and
-     * including <code>origin</code>.
+     * This method returns all variables introduced by <code>origin</code> or any of its containers, up to but excluding
+     * <code>parent</code>. For example, if <code>parent</code> is the <code>in</code>-expression of a {@link LetExp} in which a
+     * {@link LoopExp} is nested whose {@link LoopExp#getBody() body} contains <code>origin</code>, then the
+     * {@link LoopExp#getIterator() iterator variables} will be part of the result, but the <code>let</code>-variable to which the
+     * <code>in</code>-expression belongs will not be because it is immediately scoped by <code>parent</code>.
      * 
      * @param origin
      *            The {@link OCLExpression} used as the origin of the search.
      * @param parent
      *            The {@link OCLExpression} that is an immediate or transitive containment parent of the origin (see
-     *            {@link EObject#eContainer()}). Variables immediately scoped by <code>parent</code> are included in the
-     *            result.
+     *            {@link EObject#eContainer()}). Variables immediately scoped by <code>parent</code> are included in the result.
      * @return A {@link Set} of {@link OCLExpression}s containing all scope creating expressions in the containment hierarchy
-     *         between origin and parent.
+     *         between origin and parent. The set returned is new and may be modified by the caller without causing any harm.
      */
     private Set<Variable> variablesIntroducedBetween(OCLExpression origin, OCLExpression parent,
             OperationBodyToCallMapper operationBodyToCallMapper) {
         EObject e = origin;
         Set<Variable> result = new HashSet<Variable>();
-        do {
+        while (e != null && e != parent) {
             if (e instanceof OCLExpression) {
                 result.addAll(getVariablesScopedByExpression((OCLExpression) e, operationBodyToCallMapper));
             }
             e = e.eContainer();
-        } while (e != null && e != parent);
+        }
         return result;
     }
     
@@ -374,6 +479,8 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                 // body of an operation
                 result.addAll(operationBodyToCallMapper.getSelfVariablesUsedInBody(e));
                 result.addAll(operationBodyToCallMapper.getParameterVariablesUsedInBody(e));
+            } else if (e == OclHelper.getRootExpression(e)) {
+                result.addAll(operationBodyToCallMapper.getSelfVariablesUsedInBody(e));
             }
         }
         return result;
@@ -382,6 +489,8 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     /**
      * Starting from <code>e</code> and ascending its containment hierarchy, adds to the resulting set all variables that are scoped by
      * any of the expressions visited.
+     * 
+     * @return a new set that the client may modify at will without doing any harm
      */
     protected static Set<Variable> getAllVariablesInScope(OCLExpression e, OperationBodyToCallMapper operationBodyToCallMapper) {
         Set<Variable> result = new HashSet<Variable>();

@@ -33,7 +33,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
     public PropertyCallTracebackStep(PropertyCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
             TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper);
         this.sourceExpression = sourceExpression;
         this.oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         OCLExpression source = (OCLExpression) sourceExpression.getSource();
