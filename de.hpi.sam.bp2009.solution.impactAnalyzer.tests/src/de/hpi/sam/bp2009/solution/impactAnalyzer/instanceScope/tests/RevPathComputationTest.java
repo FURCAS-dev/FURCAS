@@ -90,13 +90,13 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         d1.setName("d1");
         d1.setBudget(10000);
         final Department d2 = CompanyFactory.eINSTANCE.createDepartment();
-        d1.setName("d2");
+        d2.setName("d2");
         d2.setBudget(10000);
         final Department d3 = CompanyFactory.eINSTANCE.createDepartment();
-        d1.setName("d3");
+        d3.setName("d3");
         d3.setBudget(10000);
         final Department d4 = CompanyFactory.eINSTANCE.createDepartment();
-        d1.setName("d4");
+        d4.setName("d4");
         d4.setBudget(10000);
         d1.getSubDepartment().add(d2);
         d2.getSubDepartment().add(d3);
