@@ -84,6 +84,31 @@ public class RevPathComputationTest extends BaseDepartmentTest {
     }
 
     @Test
+    public void testAnalysisOfASimpleRecursiveOperation() {
+        // construct something like "new HumbaClass1().m()"
+        final Department d1 = CompanyFactory.eINSTANCE.createDepartment();
+        d1.setName("d1");
+        d1.setBudget(10000);
+        final Department d2 = CompanyFactory.eINSTANCE.createDepartment();
+        d1.setName("d2");
+        d2.setBudget(10000);
+        final Department d3 = CompanyFactory.eINSTANCE.createDepartment();
+        d1.setName("d3");
+        d3.setBudget(10000);
+        final Department d4 = CompanyFactory.eINSTANCE.createDepartment();
+        d1.setName("d4");
+        d4.setBudget(10000);
+        d1.getSubDepartment().add(d2);
+        d2.getSubDepartment().add(d3);
+        d2.getSubDepartment().add(d4);
+        this.comp.eResource().getContents().add(d1);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(d4, departmentBudget,
+                d4.getBudget(), d4.getBudget()+1000);
+        Collection<EObject> instances = computeAffectedInstances(this.getSumBudgetLimitAST(), noti);
+        compareInstances(instances, new EObject[] { d1, d2, d4 });
+    }
+
+    @Test
     public void testBossHighestSalaryEmployeeSalaryChange() {
 
         // context Department inv BossHighestSalary:

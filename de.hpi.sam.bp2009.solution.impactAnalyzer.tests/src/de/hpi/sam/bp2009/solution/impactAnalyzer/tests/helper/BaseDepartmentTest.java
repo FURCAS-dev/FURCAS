@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.ocl.OCLInput;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.Constraint;
@@ -201,6 +202,8 @@ public class BaseDepartmentTest extends TestCase {
             + "inv employeeInSameDepartmentAsIntern: \n" + "self.employer = self.intern.employer";
 
     public final String checkForBob = "context Employee inv checkForBob: Employee.allInstances()->select(e:Employee | e.name = 'Bob')->asOrderedSet()->first().oclAsType(Employee).name = 'Bob'";
+    
+    public final String sumBudgetLimit = "context company::Department inv: self.sumBudget() < 10000";
 
     /*
      * OCLExpression representing the constrains above
@@ -238,6 +241,8 @@ public class BaseDepartmentTest extends TestCase {
     public ExpressionInOCL checkForBobAST = null;
 
     public ExpressionInOCL simpleAllInstancesAST = null;
+    
+    public ExpressionInOCL sumBudgetLimitAST = null;
     
     /*
      * for easy access to the model
@@ -326,6 +331,10 @@ public class BaseDepartmentTest extends TestCase {
 
     protected ExpressionInOCL getBossIsOldestAST() {
         return getAST("bossIsOldest");
+    }
+    
+    protected ExpressionInOCL getSumBudgetLimitAST() {
+        return getAST("sumBudgetLimit");
     }
 
     protected ExpressionInOCL getBossHighestSalaryAST() {
@@ -422,7 +431,6 @@ public class BaseDepartmentTest extends TestCase {
      * This method fetches some meta object form the model which are used to create ModelChangeEvents later on
      */
     private void buildModel() {
-
         this.comp = company.CompanyPackage.eINSTANCE;
         this.division = this.comp.getDivision();
         this.divisionBudget = (EAttribute) this.division.getEStructuralFeature("budget");
@@ -446,6 +454,7 @@ public class BaseDepartmentTest extends TestCase {
         this.student = this.comp.getStudent();
         this.freelanceAssignment = (EAttribute) this.freelance.getEStructuralFeature("assignment");
         this.rs = new ResourceSetImpl();
+        this.rs.eAdapters().add(new ECrossReferenceAdapter());
         this.rs.getResources().add(this.comp.eResource());
     }
 

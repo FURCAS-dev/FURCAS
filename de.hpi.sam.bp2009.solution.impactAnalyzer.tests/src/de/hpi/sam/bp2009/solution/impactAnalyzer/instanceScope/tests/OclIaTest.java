@@ -95,6 +95,7 @@ public class OclIaTest extends BaseDepartmentTest {
         this.rs = null;
         this.cp = null;
     }
+    
 
     @Test
     public void testResultUseInIterate() {
@@ -749,6 +750,27 @@ public class OclIaTest extends BaseDepartmentTest {
         impact = ia.getContextObjects(noti);
         assertTrue(impact.size() >= 2); // we don't know the exact size because of all the other test elements created for fixture
         assertTrue(impact.contains(c1) && impact.contains(c2));
+    }
+
+    @Test
+    public void testSimpleUnusedCheckWithIfConditionAlwaysFalse() {
+        Resource r = this.cp.eResource();
+        OCLExpression exp = (OCLExpression) parse("context data::classes::SapClass inv testSimpleUnusedCheckWithIfClause:\n"+
+                "if false then self.valueType else true endif", this.cp).iterator().next()
+                .getSpecification().getBodyExpression();
+        r.getContents().add(exp);
+
+        final SapClass cl1 = ClassesFactory.eINSTANCE.createSapClass();
+        cl1.setValueType(false);
+        r.getContents().add(cl1);
+
+        EAttribute att = (EAttribute) cl1.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__VALUE_TYPE);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(cl1, att, false, true);
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti);
+
+        // expecting no impact because the then clause affected by the change is unused
+        assertEquals(0, impact.size());
     }
 
 }
