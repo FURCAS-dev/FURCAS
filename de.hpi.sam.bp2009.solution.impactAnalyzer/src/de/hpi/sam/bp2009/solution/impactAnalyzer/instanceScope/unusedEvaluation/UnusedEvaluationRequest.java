@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -12,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationEnvironment;
+import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
 
@@ -42,12 +44,28 @@ public class UnusedEvaluationRequest {
     private final Set<Variable> slots;
     private final OCLExpression expression;
     private final Object resultIndicatingUnused;
+    private final int hashCode;
 
-    public UnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused, Map<Variable, Object> inferredVariableValues, Set<Variable> slots) {
+    /**
+     * @param expression
+     *            the expression to evaluate
+     * @param resultIndicatingUnused
+     *            if <code>expression</code> evaluates to this result, this request will return <code>true</code> from its
+     *            {@link #evaluate(OppositeEndFinder)} method; as a special case, <code>null</code> will be considered "equal"
+     *            to an empty collection as the result of evaluating <code>expression</code>
+     * @param inferredVariableValues
+     *            may be <code>null</code>. In this case, a new {@link Map} is created internally.
+     * @param slots
+     *            the variables currently within their dynamic scope such that, when a value is inferred for such a variable, it
+     *            is correct to assign it for use in evaluating <code>expression</code> in this request
+     */
+    public UnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
+            Map<Variable, Object> inferredVariableValues, Set<Variable> slots) {
         this.expression = expression;
         this.resultIndicatingUnused = resultIndicatingUnused;
-        this.inferredVariableValues = inferredVariableValues;
+        this.inferredVariableValues = inferredVariableValues == null ? new HashMap<Variable, Object>() : inferredVariableValues;
         this.slots = slots;
+        this.hashCode = computeHashCode();
     }
     
     /**
@@ -57,25 +75,29 @@ public class UnusedEvaluationRequest {
      */
     public UnusedEvaluationRequest getRequestWithSlotsRemoved(Set<Variable> slotsToRemove) {
         UnusedEvaluationRequest result;
-        Set<Variable> remainingSlots = new HashSet<Variable>(slots);
-        // iterate this way because we assume slotsToRemove.size() >> slots.size()
-        for (Iterator<Variable> i=remainingSlots.iterator(); i.hasNext(); ) {
-            Variable v = i.next();
-            if (slotsToRemove.contains(v)) {
-                i.remove();
-            }
-        }
-        if (remainingSlots.size() < slots.size()) { // it changed
-            Map<Variable, Object> remainingInferredVariableValues = new HashMap<Variable, Object>();
-            for (Map.Entry<Variable, Object> e : inferredVariableValues.entrySet()) {
-                if (remainingSlots.contains(e.getKey())) {
-                    remainingInferredVariableValues.put(e.getKey(), e.getValue());
+        if (slotsToRemove == null || slotsToRemove.isEmpty()) {
+            result = this;
+        } else {
+            Set<Variable> remainingSlots = new HashSet<Variable>(slots);
+            // iterate this way because we assume slotsToRemove.size() >> slots.size()
+            for (Iterator<Variable> i = remainingSlots.iterator(); i.hasNext();) {
+                Variable v = i.next();
+                if (slotsToRemove.contains(v)) {
+                    i.remove();
                 }
             }
-            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, remainingInferredVariableValues,
-                    remainingSlots);
-        } else {
-            result = this;
+            if (remainingSlots.size() < slots.size()) { // it changed
+                Map<Variable, Object> remainingInferredVariableValues = new HashMap<Variable, Object>();
+                for (Map.Entry<Variable, Object> e : inferredVariableValues.entrySet()) {
+                    if (remainingSlots.contains(e.getKey())) {
+                        remainingInferredVariableValues.put(e.getKey(), e.getValue());
+                    }
+                }
+                result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, remainingInferredVariableValues,
+                        remainingSlots);
+            } else {
+                result = this;
+            }
         }
         return result;
     }
@@ -87,9 +109,14 @@ public class UnusedEvaluationRequest {
     public boolean hasSlotFor(Variable v) {
         return slots != null && slots.contains(v);
     }
-    
+
     @Override
     public int hashCode() {
+        return hashCode;
+    }
+    
+    private int computeHashCode() {
+        // TODO collate requests with different "self" representations differing only in which "self"-copy has been inferred
         final int prime = 31;
         int result = 1;
         result = prime * result + ((expression == null) ? 0 : expression.hashCode());
@@ -101,6 +128,7 @@ public class UnusedEvaluationRequest {
 
     @Override
     public boolean equals(Object obj) {
+        // TODO collate requests with different "self" representations differing only in which "self"-copy has been inferred
         if (this == obj) {
             return true;
         }
@@ -171,12 +199,43 @@ public class UnusedEvaluationRequest {
      */
     public boolean evaluate(OppositeEndFinder oppositeEndFinder) throws ValueNotFoundException {
         PartialEvaluator evaluator = new PartialEvaluator(oppositeEndFinder);
-        EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> env = evaluator.getOcl().getEvaluationEnvironment();
+        EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> env = evaluator.getOcl()
+                .getEvaluationEnvironment();
+        Object context = null;
         for (Map.Entry<Variable, Object> e : inferredVariableValues.entrySet()) {
-            env.add(e.getKey().getName(), e.getValue());
+            // if "self" then use as context variable; this will set self in evaluator
+            if (e.getKey().getName().equals(EcoreEnvironment.SELF_VARIABLE_NAME)) {
+                context = e.getValue();
+            } else {
+                env.add(e.getKey().getName(), e.getValue());
+            }
         }
-        Object result = evaluator.evaluate(/* context */ null, expression);
+        Object result = evaluator.evaluate(context, expression);
         return ((result == null && resultIndicatingUnused == null) ||
-                (result != null && result.equals(resultIndicatingUnused)));
+                (result != null &&
+                        // asking for empty collection is encoded by asking for null
+                        (result instanceof Collection<?> && resultIndicatingUnused == null && ((Collection<?>) result).isEmpty()) ||
+                        result.equals(resultIndicatingUnused)));
+    }
+    
+    public String toString() {
+        StringBuilder result = new StringBuilder("[" + expression + " = "+resultIndicatingUnused + "] with variables [");
+        boolean first = true;
+        for (Variable slot : slots) {
+            if (!first) {
+                result.append(",");
+            } else {
+                first = false;
+            }
+            result.append(slot.getName());
+            result.append("=");
+            if (inferredVariableValues.containsKey(slot)) {
+                result.append(inferredVariableValues.get(slot));
+            } else {
+                result.append("?");
+            }
+        }
+        result.append("]");
+        return result.toString();
     }
 }

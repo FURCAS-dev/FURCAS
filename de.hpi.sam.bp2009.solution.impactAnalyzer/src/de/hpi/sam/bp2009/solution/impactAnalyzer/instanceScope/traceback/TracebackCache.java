@@ -10,7 +10,9 @@ import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.NavigationStep;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Triple;
@@ -72,8 +74,16 @@ public class TracebackCache {
      */
     private final Map<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, Set<AnnotatedEObject>> navigateCache;
     
+    /**
+     * Caches the results of {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder evaluating}
+     * an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling for which unknown
+     * variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness to be proven.
+     */
+    private final Map<UnusedEvaluationRequest, Object> unusedEvaluationCache;
+    
     public TracebackCache() {
         navigateCache = new HashMap<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, Set<AnnotatedEObject>>();
+        unusedEvaluationCache = new HashMap<UnusedEvaluationRequest, Object>();
     }
     
     /**
@@ -91,6 +101,24 @@ public class TracebackCache {
             Set<AnnotatedEObject> result) {
         navigateCache.put(new Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>(step, from,
                 pendingUnusedEvaluationRequests), result);
+    }
+
+    /**
+     * Caches the results of {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder evaluating}
+     * an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling for which unknown
+     * variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness to be proven.
+     */
+    public Object getCachedEvaluationResult(UnusedEvaluationRequest request) {
+        return unusedEvaluationCache.get(request);
+    }
+
+    /**
+     * Caches the results of {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder evaluating}
+     * an {@link UnusedEvaluationRequest}. The result may either be a {@link ValueNotFoundException} telling for which unknown
+     * variable the request failed, or a {@link Boolean} telling if the evaluation caused unusedness to be proven.
+     */
+    public void cacheEvaluationResult(UnusedEvaluationRequest request, Object evaluationResult) {
+        unusedEvaluationCache.put(request, evaluationResult);
     }
 }
 

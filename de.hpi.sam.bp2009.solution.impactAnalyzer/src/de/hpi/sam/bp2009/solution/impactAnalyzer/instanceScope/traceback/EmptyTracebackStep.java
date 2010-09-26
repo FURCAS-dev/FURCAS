@@ -24,7 +24,7 @@ public class EmptyTracebackStep extends AbstractTracebackStep<OCLExpression> {
 
     public EmptyTracebackStep(OCLExpression sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper);
     }
 
     /**

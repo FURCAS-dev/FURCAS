@@ -42,6 +42,7 @@ import dataaccess.expressions.literals.StringLiteral;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 
 public class OclIaTest extends BaseDepartmentTest {
@@ -769,8 +770,40 @@ public class OclIaTest extends BaseDepartmentTest {
         ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass());
         Collection<EObject> impact = ia.getContextObjects(noti);
 
-        // expecting no impact because the then clause affected by the change is unused
-        assertEquals(0, impact.size());
+        if (OptimizationActivation.getOption().isTracebackStepISAActive() && OptimizationActivation.getOption().isUnusedDetectionActive()) {
+            // expecting no impact because the then clause affected by the change is unused
+            assertEquals(0, impact.size());
+        } else {
+            assertEquals(1, impact.size());
+            assertEquals(cl1, impact.iterator().next());
+        }
+    }
+
+    @Test
+    public void testSimpleUnusedCheckWithIteratorSourceAlwaysEmpty() {
+        Resource r = this.cp.eResource();
+        // the idea: while self.valueType changes for cl1, self.adapters is always empty for the changed object
+        OCLExpression exp = (OCLExpression) parse("context data::classes::SapClass inv testSimpleUnusedCheckWithIfClause:\n"+
+                "self.adapters->select(a | a.to.valueType = self.valueType)", this.cp).iterator().next()
+                .getSpecification().getBodyExpression();
+        r.getContents().add(exp);
+
+        final SapClass cl1 = ClassesFactory.eINSTANCE.createSapClass();
+        cl1.setValueType(false);
+        r.getContents().add(cl1);
+
+        EAttribute att = (EAttribute) cl1.eClass().getEStructuralFeature(ClassesPackage.SAP_CLASS__VALUE_TYPE);
+        Notification noti = NotificationHelper.createAttributeChangeNotification(cl1, att, false, true);
+        ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, ClassesPackage.eINSTANCE.getSapClass());
+        Collection<EObject> impact = ia.getContextObjects(noti);
+
+        if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+            // expecting no impact because the then clause affected by the change is unused
+            assertEquals(0, impact.size());
+        } else {
+            assertEquals(1, impact.size());
+            assertEquals(cl1, impact.iterator().next());
+        }
     }
 
 }

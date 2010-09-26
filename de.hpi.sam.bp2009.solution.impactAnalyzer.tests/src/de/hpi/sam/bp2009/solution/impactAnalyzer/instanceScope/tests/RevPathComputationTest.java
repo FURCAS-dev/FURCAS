@@ -31,6 +31,7 @@ import company.Student;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.tests.helper.BaseDepartmentTest;
 
 /**
@@ -654,7 +655,11 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         noti = NotificationHelper.createAttributeChangeNotification(this.secretary, this.employeeAge, this.secretary
                 .getAge(), this.secretary.getAge()+1);
         instances = computeAffectedInstances(this.getSecretaryOlderThanBossAST(), noti);
-        compareInstances(instances, new EObject[] { this.director, this.secretary });
+        if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+            compareInstances(instances, new EObject[] {} ); // change is in unused if-branch
+        } else {
+            compareInstances(instances, new EObject[] { this.director, this.secretary });
+        }
     }
 
     @Test

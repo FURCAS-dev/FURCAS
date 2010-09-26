@@ -21,7 +21,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 public class IfTracebackStep extends BranchingTracebackStep<IfExp> {
     public IfTracebackStep(IfExp sourceExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
-        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder());
+        super(sourceExpression, tupleLiteralNamesToLookFor, tracebackStepCache.getOppositeEndFinder(), operationBodyToCallMapper);
         OCLExpression thenExpression = (OCLExpression) sourceExpression.getThenExpression();
         getSteps().add(createTracebackStepAndScopeChange(sourceExpression, thenExpression, context, operationBodyToCallMapper,
                 tupleLiteralNamesToLookFor, tracebackStepCache));
