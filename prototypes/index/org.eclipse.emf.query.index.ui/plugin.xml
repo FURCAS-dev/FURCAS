@@ -42,5 +42,10 @@
          </action>
       </objectContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="org.eclipse.emf.query.index.ui.IndexingIntitializer"></startup>
+   </extension>
 
 </plugin>
