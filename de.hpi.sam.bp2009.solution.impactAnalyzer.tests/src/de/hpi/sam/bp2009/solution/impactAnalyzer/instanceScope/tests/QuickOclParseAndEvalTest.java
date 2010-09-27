@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.SemanticException;
 import org.eclipse.ocl.ecore.LoopExp;
@@ -60,6 +61,19 @@ public class QuickOclParseAndEvalTest extends TestCase
     ocl = OCLWithHiddenOpposites.newInstance();
     oclHelper = ocl.createOCLHelper();
     oclHelper.setContext(ClassesPackage.eINSTANCE.getParameter());
+  }
+
+  /**
+   * Check what happens when last value of a range is invalid instead of an Integer. Interestingly, this aborts the whole
+   * evaluation and even "bypasses" a trailing oclIsInvalid().
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionWithInvalidAsLastPartOfRange() throws ParserException {
+      oclHelper.setContext(CompanyPackage.eINSTANCE.getDepartment());
+      OCLExpression expression4 = oclHelper.createQuery("(Sequence{1..(self.parentDepartment.subDepartment->size())}->select(i | i>0)).oclIsInvalid()");
+      Object result4 = ocl.evaluate(CompanyFactory.eINSTANCE.createDepartment(), expression4);
+      assertTrue(result4 instanceof DynamicEObjectImpl);
+      assertEquals("OclInvalid_Class", ((DynamicEObjectImpl) result4).eClass().getName());
   }
 
   /**
