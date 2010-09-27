@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.util;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -25,7 +24,10 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
 public class AnnotatedEObject implements EObject{
     private final String annotation;
     private final EObject eObject;
-    
+    public final static String NOT_IN_DEBUG_MODE_MESSAGE = "To enable annotations, set the system property de.hpi.sam.bp2009.solution.impactAnalyzer.debug to true, "
+        + "e.g., by using the VM argument -Dde.hpi.sam.bp2009.solution.impactAnalyzer.debug=true";
+    public final static boolean IS_IN_DEBUG_MODE = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug");
+
     public boolean equals(Object o) {
         if (o instanceof AnnotatedEObject) {
             return eObject.equals(((AnnotatedEObject) o).eObject);
@@ -47,27 +49,6 @@ public class AnnotatedEObject implements EObject{
     public AnnotatedEObject(EObject annotatedObject, String annotation){
         this.eObject = annotatedObject;
         this.annotation = annotation;
-    }
-    /**
-     * Constructor of the {@link AnnotatedEObject}.
-     * 
-     * @param annotatedObject the EObject to annotate
-     * @param annotation an annotationString, assumed to be "" if omitted
-     * @param stackToCopy a stack of EStructuralFeatures that identify the tuple literals used up to this point of the OCL Expression, assumed to be an empty stack if omitted
-     */
-    public AnnotatedEObject(EObject annotatedObject){
-        this(annotatedObject, "");
-    }
-
-    /**
-     * Constructor of the {@link AnnotatedEObject}.
-     * 
-     * @param annotatedObject the EObject to annotate
-     * @param annotation an annotationString, assumed to be "" if omitted
-     * @param stackToCopy a stack of EStructuralFeatures that identify the tuple literals used up to this point of the OCL Expression, assumed to be an empty stack if omitted
-     */
-    public AnnotatedEObject(EObject annotatedObject, Stack<String> stackToCopy){
-        this(annotatedObject, "");
     }
     
     public String getAnnotation(){
