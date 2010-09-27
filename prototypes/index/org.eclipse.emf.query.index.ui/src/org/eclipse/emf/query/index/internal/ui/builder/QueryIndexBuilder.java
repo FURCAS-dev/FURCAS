@@ -13,8 +13,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.Resource.Factory.Registry;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
@@ -109,9 +111,16 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 	}
 
 	private void indexFile(final IResource resource) {
-		final Set<String> extensions = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().keySet();
+		Registry instance = Resource.Factory.Registry.INSTANCE;
+		//Put the XMI extension in the extension factory map.
+		instance.getExtensionToFactoryMap().put("xmi", new  XMIResourceFactoryImpl());
+		
+		final Set<String> extensions = instance.getExtensionToFactoryMap().keySet();
+		
 		String fileExtension = resource.getFileExtension();
-		if ("xmi".equals(fileExtension) || "xml".equals(fileExtension) || extensions.contains(fileExtension)) {
+		//Only index those files which are in the extension factory map.In this case we have
+		//put the XMI in the extension factory map.
+		if (extensions.contains(fileExtension)) {
 			IndexFactory.getInstance().executeUpdateCommand(new UpdateCommandAdapter() {
 
 				@Override
