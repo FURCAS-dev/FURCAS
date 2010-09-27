@@ -90,13 +90,13 @@ fi
 ##############################################################################################
 
 # define where to do all the work; start with a fresh folder each time
-writableBuildRoot="${WORKSPACE}/build"
+writableBuildRoot="/home/data/httpd/download-staging.priv/modeling/mdt/ocl"
 if [[ -d ${writableBuildRoot} ]]; then rm -fr ${writableBuildRoot}; fi
 
 # define required folders
 downloadsDir="${writableBuildRoot}/downloads"
-#signingDir="${writableBuildRoot}/signing"
-signingDir=/home/data/httpd/download-staging.priv/modeling/mdt/ocl
+signingDir="${writableBuildRoot}/signing"
+#signingDir=/home/data/httpd/download-staging.priv/modeling/mdt/ocl
 
 # long form (default if omitted)
 #   buildDir="${writableBuildRoot}/${projectid//.//}/downloads/drops/${version}/${buildType}${buildTimestamp}"
