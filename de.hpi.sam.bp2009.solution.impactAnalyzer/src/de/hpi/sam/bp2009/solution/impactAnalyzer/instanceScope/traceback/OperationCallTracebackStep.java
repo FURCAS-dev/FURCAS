@@ -127,7 +127,7 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
             result = new HashSet<AnnotatedEObject>();
             for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances((Notifier) changeEvent.getNotifier(), allInstancesClass,
                     oppositeEndFinder)) {
-                result.add(new AnnotatedEObject(roi));
+                result.add(annotateEObject(source, roi));
             }
             return result;
             

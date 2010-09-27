@@ -2,7 +2,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.Stack;
 
@@ -87,13 +86,12 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         case EMPTY:
             return Collections.emptySet();
         case MAP:
-            return step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+            return annotate(step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent));
         case PASSTHROUGH:
-            Set<EObject> sourceValue = new LinkedHashSet<EObject>(1);
-            sourceValue.add(source.getAnnotatedObject());
+            Set<EObject> sourceValue = Collections.singleton(source.getAnnotatedObject());
             boolean passedPredicate = !checkPredicate || evaluatePredicate(sourceValue, changeEvent);
             if (passedPredicate) {
-                return step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+                return annotate(step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent));
             } else {
                 return Collections.emptySet();
             }

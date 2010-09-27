@@ -27,7 +27,7 @@ public class BranchingTracebackStep<E extends OCLExpression> extends AbstractTra
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         for (TracebackStepAndScopeChange step : steps) {
-            result.addAll(step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent));
+            result.addAll(annotate(step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent)));
         }
         return result;
     }

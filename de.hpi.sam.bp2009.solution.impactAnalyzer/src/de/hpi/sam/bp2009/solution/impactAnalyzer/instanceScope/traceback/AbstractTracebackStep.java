@@ -74,6 +74,12 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     private final ThreadLocal<Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>> currentlyEvaluatingNavigateFor = new IndirectingStepThreadLocal();
 
     /**
+     * Used in "debug" mode, storing this step's annotation string to be used in {@link AnnotatedEObject}s to explain how
+     * a result was inferred.
+     */
+    private final String annotation;
+
+    /**
      * Encapsulates the scope change that has to happen before invoking a subsequent traceback step.
      * @author Axel Uhl (D043530)
      */
@@ -127,6 +133,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         } else {
             unusedEvaluationRequests = null;
         }
+        annotation = getVerboseDebugInfo(operationBodyToCallMapper);
     }
 
     /**
@@ -576,4 +583,75 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
             throw new ClassCastException("Cloning an instance of Stack<String> didn't return an instance of the same type.");
         }
     }
+
+    private String getAnnotation() {
+        return annotation;
+    }
+
+    /**
+     * Constructs a human-readable description of the OCL expression used as debug info for this
+     * navigation step. This includes traveling up to the root expression in which the debug info
+     * expression is embedded.
+     */
+    private String getVerboseDebugInfo(OperationBodyToCallMapper operationBodyToCallMapper) {
+        try {
+            if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
+                StringBuilder result = new StringBuilder();
+                result.append("Step's expressions: ");
+                result.append(getExpression());
+                result.append("\n ===== in expression =====\n");
+                // TODO highlight getDebugInfo() expression in root expression
+                OCLExpression root = OclHelper.getRootExpression(getExpression());
+                result.append(root);
+                Set<OperationCallExp> calls = operationBodyToCallMapper.getCallsOf(root);
+                result.append(!calls.isEmpty() ? "\n ===== which is the body of operation "
+                        + calls.iterator().next().getReferredOperation().getName() + " ====="
+                        : "");
+                result.append("\n");
+                return result.toString();
+            } else {
+                return AnnotatedEObject.NOT_IN_DEBUG_MODE_MESSAGE;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Annotates a navigation from <code>fromObject</code> to <code>next</code> by taking over <code>fromObject</code>'s annotation,
+     * adding a description of this step and telling at which object the navigation arrived. In case we're not in
+     * {@link AnnotatedEObject#IS_IN_DEBUG_MODE debug mode}, a default message (see {@link AnnotatedEObject#NOT_IN_DEBUG_MODE_MESSAGE})
+     * is used instead to save memory.
+     */
+    protected AnnotatedEObject annotateEObject(AnnotatedEObject fromObject,
+            EObject next) {
+        if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
+            return new AnnotatedEObject(next, fromObject.getAnnotation()+
+                "\n------------- tracing back through ---------------\n"+
+                getAnnotation()+
+                "\narriving at object: "+next);
+        } else {
+            return new AnnotatedEObject(next, AnnotatedEObject.NOT_IN_DEBUG_MODE_MESSAGE);
+        }
+    }
+
+    /**
+     * If in {@link AnnotatedEObject#IS_IN_DEBUG_MODE debug mode}, 
+     * @param result
+     * @param newResults
+     */
+    protected Set<AnnotatedEObject> annotate(Set<AnnotatedEObject> newResults) {
+        if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
+            Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+            for (AnnotatedEObject newResult : newResults) {
+                result.add(new AnnotatedEObject(newResult.getAnnotatedObject(), getAnnotation()+
+                        "\n------------- tracing back through ---------------\n"+
+                        getAnnotation()));
+            }
+            return result;
+        } else {
+            return newResults;
+        }
+    }
+
 }
