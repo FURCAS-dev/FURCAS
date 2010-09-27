@@ -24,7 +24,7 @@
    </url>
 
    <includes
-         id="org.eclipse.ocl.all.sdk"
+         id="org.eclipse.ocl.master"
          version="0.0.0"/>
 
 </feature>
