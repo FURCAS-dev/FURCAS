@@ -154,9 +154,10 @@ public class AnnotatedEObject implements EObject {
         if (comment != null && comment.length() > 0) {
             result.append(" ==== using step ====\n");
             result.append(comment);
+            result.append('\n');
         }
         if (from == null || from.getAnnotatedObject() != objectReached) {
-            result.append("\n ==== arriving at ====\n");
+            result.append(" ==== arriving at ====\n");
         }
         result.append(objectReached);
         return result.toString();

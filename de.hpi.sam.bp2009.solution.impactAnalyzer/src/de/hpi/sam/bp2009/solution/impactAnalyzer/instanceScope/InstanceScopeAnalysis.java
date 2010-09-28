@@ -482,15 +482,13 @@ public class InstanceScopeAnalysis {
         // also see the ASCII arts in AssociationEndCallExpTracer.traceback
         if (attributeOrAssociationEndCall instanceof PropertyCallExp) {
             if (sourceType.isInstance(changeEvent.getNotifier())) {
-                result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>\nat object: "
-                        + changeEvent.getNotifier()));
+                result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>"));
             }
         } else if (attributeOrAssociationEndCall instanceof OppositePropertyCallExp) {
             // the old and new object(s) are the source(s) of the opposite property call expression
             for (Object o : getSourceElementsForOppositePropertyCallExp(changeEvent)) {
                 if (sourceType.isInstance(o)) {
-                    result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>\nat object: "
-                            + o));
+                    result.add(new AnnotatedEObject((EObject) changeEvent.getNotifier(), "<start>"));
                 }
             }
         } else {

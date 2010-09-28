@@ -94,7 +94,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
         Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         switch (strategy) {
         case TUPLE:
-            result.addAll(annotate(nextStep.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent)));
+            result.addAll(nextStep.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent));
             break;
         case OPPOSITE_MANY:
             Object o = source.eGet(oppositeReference);
@@ -102,27 +102,27 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
                 @SuppressWarnings("unchecked")
                 EList<EObject> refObjects = (EList<EObject>) o;
                 for (EObject obj : refObjects) {
-                    result.addAll(annotate(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent)));
+                    result.addAll(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent));
                 }
             }
             break;
         case OPPOSITE_SINGLE:
             EObject oSingle = (EObject) source.eGet(oppositeReference);
             if (oSingle != null) {
-                result.addAll(annotate(nextStep.traceback(annotateEObject(source, oSingle), pendingUnusedEvalRequests, tracebackCache, changeEvent)));
+                result.addAll(nextStep.traceback(annotateEObject(source, oSingle), pendingUnusedEvalRequests, tracebackCache, changeEvent));
             }
             break;
         case CONTAINMENT:
             EObject container = source.eContainer();
             if (container != null) {
-                result.addAll(annotate(nextStep.traceback(annotateEObject(source, container), pendingUnusedEvalRequests, tracebackCache, changeEvent)));
+                result.addAll(nextStep.traceback(annotateEObject(source, container), pendingUnusedEvalRequests, tracebackCache, changeEvent));
             }
             break;
         case HIDDEN_OPPOSITE:
             Collection<EObject> opposite = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
                     sourceExpression.getReferredProperty(), source.getAnnotatedObject());
             for (EObject eo : opposite) {
-                result.addAll(annotate(nextStep.traceback(annotateEObject(source, eo), pendingUnusedEvalRequests, tracebackCache, changeEvent)));
+                result.addAll(nextStep.traceback(annotateEObject(source, eo), pendingUnusedEvalRequests, tracebackCache, changeEvent));
             }
             break;
         }
