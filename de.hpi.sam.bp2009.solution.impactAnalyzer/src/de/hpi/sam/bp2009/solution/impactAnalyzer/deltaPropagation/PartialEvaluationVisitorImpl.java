@@ -51,6 +51,7 @@ import org.eclipse.ocl.expressions.UnspecifiedValueExp;
 import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.ocl.util.CollectionUtil;
+import org.eclipse.ocl.utilities.PredefinedType;
 
 import com.sap.emf.ocl.hiddenopposites.EvaluationEnvironmentWithHiddenOpposites;
 import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallExp;
@@ -116,6 +117,39 @@ public class PartialEvaluationVisitorImpl
         if (oc == sourceExpression) {
             sourceExpression = null;
             return valueOfSourceExpression;
+        } else {
+            int opCode = oc.getOperationCode();
+            if (opCode == PredefinedType.AT) {
+                OCLExpression<EClassifier> source = oc.getSource();
+                List<OCLExpression<EClassifier>> args = oc.getArgument();
+                // evaluate source
+                Object sourceVal = source.accept(getVisitor());
+                if (sourceVal == getInvalid() || ((Collection<?>) sourceVal).isEmpty()) {
+                    // then we know there's going to be an IndexOutOfBoundsException thrown in CollectionUtil.at; skip the
+                    // evaluation of the argument expression which could only raise a ValueNotFoundException in case a variable
+                    // is accessed that is not defined; but it wouldn't change the result which always will be invalid for
+                    // an empty collection.
+                    return getInvalid();
+                }
+                // evaluate argument
+                OCLExpression<EClassifier> arg = args.get(0);
+                if (isUndefined(sourceVal)) {
+                    return getInvalid();
+                }
+                @SuppressWarnings("unchecked")
+                Collection<Object> sourceColl = (Collection<Object>) sourceVal;
+                // bug 183144: inputting OclInvalid should result in OclInvalid
+                Object argVal = arg.accept(getVisitor());
+                if (argVal == getInvalid()) {
+                    return argVal;
+                }
+                // OrderedSet, Sequence::at(Integer)
+                if (!(argVal instanceof Integer)) {
+                        return getInvalid();
+                }
+                int indexVal = ((Integer) argVal).intValue();
+                return CollectionUtil.at(sourceColl, indexVal);
+            }
         }
         return super.visitOperationCallExp(oc);
     }
