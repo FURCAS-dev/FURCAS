@@ -611,7 +611,6 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                 result.append(!calls.isEmpty() ? "\n ===== which is the body of operation "
                         + calls.iterator().next().getReferredOperation().getName() + " ====="
                         : "");
-                result.append("\n");
                 return result.toString();
             } else {
                 return AnnotatedEObject.NOT_IN_DEBUG_MODE_MESSAGE;
@@ -637,15 +636,30 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     }
 
     /**
-     * If in {@link AnnotatedEObject#IS_IN_DEBUG_MODE debug mode}, 
-     * @param result
-     * @param newResults
+     * Annotates a non-navigation where <code>object</code> is forwarded unchanged from this step to another. The result is an
+     * {@link AnnotatedEObject} with its from-object and reached object both being set to <code>object</code>, adding a
+     * description of this step and telling at which object the navigation arrived. In case we're not in
+     * {@link AnnotatedEObject#IS_IN_DEBUG_MODE debug mode}, a default message (see
+     * {@link AnnotatedEObject#NOT_IN_DEBUG_MODE_MESSAGE}) is used instead to save memory.
      */
-    protected Set<AnnotatedEObject> annotate(Set<AnnotatedEObject> newResults) {
+    protected AnnotatedEObject annotateEObject(AnnotatedEObject object) {
+        if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
+            return new AnnotatedEObject(object.getAnnotatedObject(), object, getAnnotation());
+        } else {
+            return object;
+        }
+    }
+
+    /**
+     * If in {@link AnnotatedEObject#IS_IN_DEBUG_MODE debug mode}, creates a new {@link AnnotatedEObject} for each
+     * one in <code>newResults</code>, assuming that there is no "from" object; as an alibi "from" object, the
+     * annotated objects from <code>newResults</code> are used.
+     */
+    protected Set<AnnotatedEObject> annotate(AnnotatedEObject fromObject, Set<AnnotatedEObject> newResults) {
         if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
             Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
             for (AnnotatedEObject newResult : newResults) {
-                result.add(new AnnotatedEObject(newResult.getAnnotatedObject(), newResult, getAnnotation()));
+                result.add(new AnnotatedEObject(newResult.getAnnotatedObject(), fromObject, getAnnotation()));
             }
             return result;
         } else {

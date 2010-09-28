@@ -86,12 +86,12 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
         case EMPTY:
             return Collections.emptySet();
         case MAP:
-            return annotate(step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent));
+            return step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
         case PASSTHROUGH:
             Set<EObject> sourceValue = Collections.singleton(source.getAnnotatedObject());
             boolean passedPredicate = !checkPredicate || evaluatePredicate(sourceValue, changeEvent);
             if (passedPredicate) {
-                return annotate(step.traceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent));
+                return step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
             } else {
                 return Collections.emptySet();
             }

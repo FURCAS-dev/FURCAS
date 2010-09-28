@@ -44,13 +44,13 @@ public class OppositePropertyCallTracebackStep extends AbstractTracebackStep<Opp
                 @SuppressWarnings("unchecked")
                 EList<EObject> refObjects = (EList<EObject>) o;
                 for (EObject obj : refObjects) {
-                    result.addAll(annotate(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent)));
+                    result.addAll(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent));
                 }
             }
         } else {
             AnnotatedEObject oSingle = annotateEObject(source, (EObject) source.eGet(reference));
             if (oSingle != null) {
-                result.addAll(annotate(nextStep.traceback(oSingle, pendingUnusedEvalRequests, tracebackCache, changeEvent)));
+                result.addAll(nextStep.traceback(oSingle, pendingUnusedEvalRequests, tracebackCache, changeEvent));
             }
         }
         return result;
