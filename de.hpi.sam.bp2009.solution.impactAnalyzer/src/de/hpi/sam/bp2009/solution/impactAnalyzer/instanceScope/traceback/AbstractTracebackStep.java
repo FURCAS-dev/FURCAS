@@ -34,6 +34,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet.UnusedEvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.HighlightingToStringVisitor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 public abstract class AbstractTracebackStep<E extends OCLExpression> implements TracebackStep {
@@ -597,12 +598,15 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         try {
             if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
                 StringBuilder result = new StringBuilder();
-                result.append("Step's expressions: ");
+                result.append(" ==== ");
+                result.append(getClass().getSimpleName());
+                result.append(" for expression ====\n ");
                 result.append(getExpression());
-                result.append("\n ===== in expression =====\n");
-                // TODO highlight getDebugInfo() expression in root expression
                 OCLExpression root = OclHelper.getRootExpression(getExpression());
-                result.append(root);
+                if (root != getExpression()) {
+                    result.append("\n ==== in expression =====\n");
+                    result.append(root.accept(HighlightingToStringVisitor.getInstance(root, getExpression())));
+                }
                 Set<OperationCallExp> calls = operationBodyToCallMapper.getCallsOf(root);
                 result.append(!calls.isEmpty() ? "\n ===== which is the body of operation "
                         + calls.iterator().next().getReferredOperation().getName() + " ====="
@@ -626,10 +630,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     protected AnnotatedEObject annotateEObject(AnnotatedEObject fromObject,
             EObject next) {
         if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
-            return new AnnotatedEObject(next, fromObject.getAnnotation()+
-                "\n------------- tracing back through ---------------\n"+
-                getAnnotation()+
-                "\narriving at object: "+next);
+            return new AnnotatedEObject(next, fromObject, getAnnotation());
         } else {
             return new AnnotatedEObject(next, AnnotatedEObject.NOT_IN_DEBUG_MODE_MESSAGE);
         }
@@ -644,9 +645,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
             Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
             for (AnnotatedEObject newResult : newResults) {
-                result.add(new AnnotatedEObject(newResult.getAnnotatedObject(), getAnnotation()+
-                        "\n------------- tracing back through ---------------\n"+
-                        getAnnotation()));
+                result.add(new AnnotatedEObject(newResult.getAnnotatedObject(), newResult, getAnnotation()));
             }
             return result;
         } else {

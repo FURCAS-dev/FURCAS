@@ -66,10 +66,6 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private String annotation;
     private final SemanticIdentity semanticIdentity;
 
-    private final static String NOT_IN_DEBUG_MODE_MESSAGE = "To enable annotations, set the system property de.hpi.sam.bp2009.solution.impactAnalyzer.debug to true, "
-        + "e.g., by using the VM argument -Dde.hpi.sam.bp2009.solution.impactAnalyzer.debug=true";
-    private final static boolean IS_IN_DEBUG_MODE = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug");
-
     /**
      * The navigateCounter counts how many times the navigate method of this NavigationStep is called
      */
@@ -252,17 +248,14 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 
     protected AnnotatedEObject annotateEObject(AnnotatedEObject fromObject,
             EObject next) {
-        if (IS_IN_DEBUG_MODE) {
-            return new AnnotatedEObject(next, fromObject.getAnnotation()+
-                "\n------------- tracing back through ---------------\n"+
-                getAnnotation()+
-                "\narriving at object: "+next);
+        if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
+            return new AnnotatedEObject(next, fromObject, getAnnotation());
         } else {
-            return new AnnotatedEObject(next, NOT_IN_DEBUG_MODE_MESSAGE);
+            return new AnnotatedEObject(next, AnnotatedEObject.NOT_IN_DEBUG_MODE_MESSAGE);
         }
     }
 
-    protected String getAnnotation() {
+    private String getAnnotation() {
         if (annotation == null) {
             annotation = getVerboseDebugInfo();
         }
@@ -276,7 +269,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
      */
     private String getVerboseDebugInfo() {
         try {
-            if (IS_IN_DEBUG_MODE) {
+            if (AnnotatedEObject.IS_IN_DEBUG_MODE) {
                 StringBuilder result = new StringBuilder();
                 result.append("Step's expressions: ");
                 for (OCLExpression debugInfo : getDebugInfo()) {
@@ -291,7 +284,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
                 }
                 return result.toString();
             } else {
-                return NOT_IN_DEBUG_MODE_MESSAGE;
+                return AnnotatedEObject.NOT_IN_DEBUG_MODE_MESSAGE;
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
