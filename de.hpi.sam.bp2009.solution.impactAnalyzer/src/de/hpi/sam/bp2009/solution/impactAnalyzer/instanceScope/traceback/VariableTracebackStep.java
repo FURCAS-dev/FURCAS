@@ -32,6 +32,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet.UnusedEvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 
 /**
  * The step produced will be invoked with the value for the variable. This knowledge can be helpful when trying to perform
@@ -80,11 +81,11 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
     }
 
     @Override
-    protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache,
             Notification changeEvent) {
-        Set<AnnotatedEObject> result;
+        OperationCallExpKeyedSet<AnnotatedEObject> result;
         // don't assign collection-type variables because having inferred one value of the collection doesn't
         // tell us the complete variable value; simple example that would fail otherwise:
         // "v->size()" would evaluate to 1 instead of whatever the size of the full collection would have been.
@@ -93,7 +94,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
             UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(),
                     oppositeEndFinder, tracebackCache);
             if (unusedResult.hasProvenUnused()) {
-                result = Collections.emptySet();
+                result = OperationCallExpKeyedSet.emptySet();
             } else {
                 result = perform(source, unusedResult.getNewRequestSet(), tracebackCache, changeEvent);
             }
@@ -103,12 +104,13 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
         return result;
     }
 
-    private Set<AnnotatedEObject> perform(AnnotatedEObject source,
+    private OperationCallExpKeyedSet<AnnotatedEObject> perform(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        Set<AnnotatedEObject> result;
+        OperationCallExpKeyedSet<AnnotatedEObject> result;
         if (identity) {
-            result = Collections.singleton(source);
+            result = new OperationCallExpKeyedSet<AnnotatedEObject>();
+            result.add(source);
         } else {
             result = super.performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache,
                     changeEvent);
@@ -154,8 +156,12 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
         // This may not pay off.
         for (OperationCallExp call : operationBodyToCallMapper.getCallsOf(rootExpression)) {
             OCLExpression argumentExpression = (OCLExpression) call.getArgument().get(pos);
-            TracebackStepAndScopeChange stepWithScopeChange = createTracebackStepAndScopeChange(variableExp,
-                    argumentExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
+            // record in this step's getSteps() that the stepForCall belongs to call so that results are keyed
+            // by OperationCallExp objects and an OperationCallTracebackStep can extract the results specific to its call fast;
+            // this is done by passing "call" to createTracebackStepAndScopeChange which records it in the
+            // TracebackStepAndScopeChange object so that when it gets used, it'll store the call as key for the results
+            TracebackStepAndScopeChangeWithOperationCallExp stepWithScopeChange = createTracebackStepAndScopeChange(variableExp,
+                    argumentExpression, call, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
             result.add(stepWithScopeChange);
         }
         return result;
@@ -227,8 +233,12 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
             Collection<OperationCallExp> calls = operationBodyToCallMapper.getCallsOf(rootExpression);
             for (OperationCallExp call : calls) {
                 OCLExpression callSource = (OCLExpression) call.getSource();
-                TracebackStepAndScopeChange stepForCall = createTracebackStepAndScopeChange(variableExp, callSource, context,
-                        operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
+                // record in this step's getSteps() that the stepForCall belongs to call so that results are keyed
+                // by OperationCallExp objects and an OperationCallTracebackStep can extract the results specific to its call fast;
+                // this is done by passing "call" to createTracebackStepAndScopeChange which records it in the
+                // TracebackStepAndScopeChange object so that when it gets used, it'll store the call as key for the results
+                TracebackStepAndScopeChangeWithOperationCallExp stepForCall = createTracebackStepAndScopeChange(variableExp,
+                        callSource, call, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache);
                 result.add(stepForCall);
             }
         } else {

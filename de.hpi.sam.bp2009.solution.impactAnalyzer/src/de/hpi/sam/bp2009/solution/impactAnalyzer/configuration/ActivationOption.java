@@ -44,7 +44,18 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.Traceba
  * is incurred for evaluating sub-expressions (such as an <code>if</code>-expression's condition, as exemplified above). For
  * smaller models, performance seem to be on-par for both settings of this switch. We hope to prove that for certain cases where
  * we see really bad performance without this option being used, using it would significantly shrink the number of elements
- * considered to potentially have changed.</li>
+ * considered to potentially have changed. This option can only be selected, if {@link #isTracebackStepISAActive()}
+ * is <code>true</code>.</li>
+ * 
+ * <li><b>operationCallSelectionActive</b> (see {@link #isOperationCallSelectionActive()} and
+ * {@link #setOperationCallSelectionActive(boolean)}: Activates a performance improvement measure which aims to minimize
+ * the {@link OperationCallExp} considered when tracing back through a <code>self</code> or parameter variable inside an
+ * operation body. Without this measure, all results obtained from tracing back through all possible calls to the
+ * operation considered will be used. With the measure activated, while all results will be computed and cached,
+ * only those specific to the call considered will be used further on. This makes the results crisper and smaller but
+ * may consume a little more performance during evaluation time because results need to be keyed by {@link OperationCallExp}
+ * expressions, causing more data structures to be maintained. This option can only be selected, if {@link #isTracebackStepISAActive()}
+ * is <code>true</code>.</li>
  * </ul>
  * 
  */
@@ -53,14 +64,16 @@ public class ActivationOption {
     private boolean isDeltaPropagationActive = true;
     private boolean isTracebackStepISAActive = true; // if set to false, NavigationStep method will be used
     private boolean isUnusedDetectionActive = true;
+    private boolean isOperationCallSelectionActive = true;
 
     private final String optionDescription;
 
     public ActivationOption(boolean isDeltaPropagationActive, boolean isUnusedDetectionActive, boolean isTracebackStepISAActive,
-            String description) {
+            boolean isOperationCallSelectionActive, String description) {
 	this.isDeltaPropagationActive = isDeltaPropagationActive;
 	this.isUnusedDetectionActive = isUnusedDetectionActive;
 	this.isTracebackStepISAActive = isTracebackStepISAActive;
+	this.isOperationCallSelectionActive = isOperationCallSelectionActive;
 	this.optionDescription = description;
     }
 
@@ -86,6 +99,14 @@ public class ActivationOption {
 
     public void setUnusedDetectionActive(boolean isUnusedDetectionActive) {
         this.isUnusedDetectionActive = isUnusedDetectionActive;
+    }
+
+    public boolean isOperationCallSelectionActive() {
+        return isOperationCallSelectionActive;
+    }
+    
+    public void setOperationCallSelectionActive(boolean isOperationCallSelectionActive) {
+        this.isOperationCallSelectionActive = isOperationCallSelectionActive;
     }
 
     public String getActivationString() {

@@ -15,6 +15,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.NavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequest;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Triple;
 
 /**
@@ -72,7 +73,7 @@ public class TracebackCache {
      * Cached values of {@link NavigationStep#navigate(Set, TracebackCache, org.eclipse.emf.common.notify.Notification)} calls,
      * keyed by the step and the <code>fromObject</code> from which navigation was computed, caching the prior results.
      */
-    private final Map<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, Set<AnnotatedEObject>> navigateCache;
+    private final Map<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, OperationCallExpKeyedSet<AnnotatedEObject>> navigateCache;
     
     /**
      * Caches the results of {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder evaluating}
@@ -82,7 +83,7 @@ public class TracebackCache {
     private final Map<UnusedEvaluationRequest, Object> unusedEvaluationCache;
     
     public TracebackCache() {
-        navigateCache = new HashMap<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, Set<AnnotatedEObject>>();
+        navigateCache = new HashMap<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, OperationCallExpKeyedSet<AnnotatedEObject>>();
         unusedEvaluationCache = new HashMap<UnusedEvaluationRequest, Object>();
     }
     
@@ -90,15 +91,15 @@ public class TracebackCache {
      * Looks up a previously {@link #put entered} result for the <code>step</code> where navigation
      * started at the <code>from</code> object. If not found, <code>null</code> is returned.
      */
-    public Set<AnnotatedEObject> get(TracebackStep step, AnnotatedEObject from,
+    public OperationCallExpKeyedSet<AnnotatedEObject> get(TracebackStep step, AnnotatedEObject from,
             UnusedEvaluationRequestSet pendingUnusedEvaluationRequests) {
-        Set<AnnotatedEObject> result = navigateCache.get(new Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>(
+        OperationCallExpKeyedSet<AnnotatedEObject> result = navigateCache.get(new Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>(
                 step, from, pendingUnusedEvaluationRequests));
         return result;
     }
     
     public void put(TracebackStep step, AnnotatedEObject from, UnusedEvaluationRequestSet pendingUnusedEvaluationRequests,
-            Set<AnnotatedEObject> result) {
+            OperationCallExpKeyedSet<AnnotatedEObject> result) {
         navigateCache.put(new Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>(step, from,
                 pendingUnusedEvaluationRequests), result);
     }

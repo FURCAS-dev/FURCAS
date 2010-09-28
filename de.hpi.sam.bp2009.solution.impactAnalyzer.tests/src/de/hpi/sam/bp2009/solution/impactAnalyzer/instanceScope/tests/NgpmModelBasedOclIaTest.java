@@ -1,17 +1,25 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.tests;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import junit.framework.TestCase;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Test;
 
+import data.classes.ClassTypeDefinition;
+import data.classes.ClassesFactory;
 import data.classes.ClassesPackage;
+import data.classes.MethodSignature;
+import data.classes.SapClass;
+import dataaccess.expressions.ExpressionsPackage;
+import dataaccess.expressions.MethodCallExpression;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ModelCloner;
@@ -19,6 +27,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notificat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifications.RawNotification;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 
 public class NgpmModelBasedOclIaTest extends TestCase {
     Resource ngpmModel = null;
@@ -51,6 +60,151 @@ public class NgpmModelBasedOclIaTest extends TestCase {
 	assertNotNull(impact);
     }
 
+    @Test
+    public void testAllSignaturesDependencyOnChangingSomethingOnStringClass() {
+        final OCLExpression exp = (OCLExpression) OclIaTest
+                .parse("context SapClass inv: " + "self.allSignatures()",
+                        ClassesPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
+        final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass());
+        final boolean[] result = new boolean[1];
+        string.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                Collection<EObject> impact = ia.getContextObjects(msg);
+                result[0] = impact.size() == 2 && impact.contains(string);
+            }
+        });
+        string.getOwnedSignatures().add(ClassesFactory.eINSTANCE.createMethodSignature());
+        assertTrue(result[0]);
+    }
+
+    @Test
+    public void testExpensiveAllSignaturesExpressionAddingMethodSignatureToString() {
+        final OCLExpression exp = (OCLExpression) OclIaTest
+                .parse("context MethodCallExpression inv: " +
+                        "self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()",
+                        ExpressionsPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
+        final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass());
+        final boolean[] result = new boolean[1];
+        string.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                Collection<EObject> impact = ia.getContextObjects(msg);
+                if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+                    result[0] = impact.size() > 5 && impact.size() < 10;
+                    if (!result[0]) {
+                        System.err.println("Expected between 5 and 10 impacted MethodCallExpressions only for calls on string but found "
+                                + impact.size());
+                    }
+                } else {
+                    result[0] = impact.size() > 50 && impact.size() < 100;
+                    if (!result[0]) {
+                        System.err.println("Expected between 50 and 100 impacted MethodCallExpressions but found only "
+                                + impact.size());
+                    }
+                }
+                Iterator<EObject> ii = impact.iterator(); 
+                while (result[0] && ii.hasNext()) {
+                    EObject n = ii.next();
+                    result[0] = result[0] && (n instanceof MethodCallExpression);
+                    if (!result[0]) {
+                        System.err.println("Found an impacted object that was not, as expected, a MethodCallExpression: "+n);
+                    }
+                    if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+                        // can enforce result type only if selective operation call traceback is active
+                        // because traceback visits OperationCallExp of getType() that are
+                        // not actually used and therefore returns a true superset; activate the following check if crisp
+                        // operation call
+                        // checking is performed
+                        result[0] = result[0]
+                                && (((ClassTypeDefinition) (((MethodCallExpression) n).getObject().getType().getInnermost()))
+                                        .getClazz().conformsTo(string));
+                        if (!result[0]) {
+                            System.err
+                                    .println("Found an impacted MethodCallExpression that is not called on an object of type String but on "
+                                            + (((ClassTypeDefinition) (((MethodCallExpression) n).getObject().getType().getInnermost()))
+                                                    .getClazz().getName())+": "+((MethodCallExpression) n).getMethodSignature().getName());
+                        }
+                    }
+                }
+            }
+        });
+        string.getOwnedSignatures().add(ClassesFactory.eINSTANCE.createMethodSignature());
+        assertTrue(result[0]);
+    }
+
+    @Test
+    public void testUnusedForAdaptedSignaturesExpressionNullingClazzReferenceOnCTD() {
+        final OCLExpression exp = (OCLExpression) OclIaTest
+                .parse("context SapClass inv: " +
+                        "self.adaptedSignatures()",
+                        ClassesPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
+        final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
+        final MethodSignature append = (MethodSignature) ngpmModel.getEObject("E01F04667A9220905D0911DFA13BFF380A1CE22F");
+        final ClassTypeDefinition appendOutputCTD = (ClassTypeDefinition) append.getOutput();
+        assertEquals(string, appendOutputCTD.getClazz());
+        assertEquals("append", append.getName());
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass());
+        final boolean[] result = new boolean[1];
+        appendOutputCTD.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                Collection<EObject> impact = ia.getContextObjects(msg);
+                if (OptimizationActivation.getOption().isTracebackStepISAActive() && OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                    result[0] = impact.size() == 0;
+                    if (!result[0]) {
+                        System.err.println("Expected unused check to find out that change has no impact but IA said "+impact.size()+
+                                " objects were impacted");
+                    }
+                } else {
+                    result[0] = impact.size() == 2; // String and the formal type parameter "T extends String" in the generics test
+                    if (!result[0]) {
+                        System.err.println("Expected two impacted classes (String and T) but found "+impact.size());
+                    }
+                }
+            }
+        });
+        appendOutputCTD.setClazz(null);
+        assertTrue(result[0]);
+    }
+
+    @Test
+    public void testUnusedForAllSignaturesExpressionNullingClazzReferenceOnCTD() {
+        final OCLExpression exp = (OCLExpression) OclIaTest
+                .parse("context MethodCallExpression inv: " +
+                        "self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()",
+                        ExpressionsPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
+        final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
+        final MethodSignature append = (MethodSignature) ngpmModel.getEObject("E01F04667A9220905D0911DFA13BFF380A1CE22F");
+        final ClassTypeDefinition appendOutputCTD = (ClassTypeDefinition) append.getOutput();
+        assertEquals(string, appendOutputCTD.getClazz());
+        assertEquals("append", append.getName());
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass());
+        final boolean[] result = new boolean[1];
+        appendOutputCTD.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                Collection<EObject> impact = ia.getContextObjects(msg);
+                if (OptimizationActivation.getOption().isTracebackStepISAActive() && OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                    result[0] = impact.size() > 5 && impact.size() < 10;
+                    if (!result[0]) {
+                        System.err.println("Expected unused check to find between 5 and 10 changed but IA said "+impact.size()+
+                                " objects were impacted");
+                    }
+                } else {
+                    result[0] = impact.size() > 50;
+                    if (!result[0]) {
+                        System.err.println("Expected more than 50 method calls to be impacted without unused check but found only "+
+                                impact.size());
+                    }
+                }
+            }
+        });
+        appendOutputCTD.setClazz(null);
+        assertTrue(result[0]);
+    }
 
     private Notification getNotification(int id, Resource model){
          Resource clonedModel = ModelCloner.cloneResource(model, String.valueOf(Math.random()));

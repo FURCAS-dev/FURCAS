@@ -210,13 +210,13 @@ public class InstanceScopeAnalysis {
 
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
             AnnotatedEObject sourceElement){
-	if(OptimizationActivation.getOption().isDeltaPropagationActive()){
+	if(OptimizationActivation.getOption().isDeltaPropagationActive()) {
 	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder);
 	    Object newValue = partialEvaluatorAtPost.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    return partialEvaluatorAtPost.hasNoEffectOnOverallExpression(attributeOrAssociationEndCall, oldValue, newValue, filterSynthesizer);
-	}else{
+	} else {
 	    return false;
 	}
     }

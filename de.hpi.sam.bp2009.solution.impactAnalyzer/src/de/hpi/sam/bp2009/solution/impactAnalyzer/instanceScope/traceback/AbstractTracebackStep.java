@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
@@ -35,6 +34,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet.UnusedEvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.HighlightingToStringVisitor;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 
 public abstract class AbstractTracebackStep<E extends OCLExpression> implements TracebackStep {
@@ -93,7 +93,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
             this.variablesThatLeaveOrEnterScopeWhenCallingStep = variablesThatLeaveOrEnterScopeWhenCallingStep;
         }
         
-        public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
+        public OperationCallExpKeyedSet<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
                 de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
             UnusedEvaluationRequestSet reducedUnusedEvaluationRequestSet;
             if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
@@ -115,6 +115,48 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
             result.append(step);
             return result.toString();
         }
+    }
+    
+    /**
+     * When executed using the {@link #traceback(AnnotatedEObject, UnusedEvaluationRequestSet, TracebackCache, Notification)} method,
+     * results will be keyed with {@link #callToWhichResultsAreSpecific} because the {@link TracebackStep} encapsulated by this object
+     * navigates back to the specified call expression, and there either to the source or an argument expression.
+     * 
+     * @see OperationCallExpKeyedSet
+     * @author Axel Uhl (D043530)
+     *
+     */
+    protected static class TracebackStepAndScopeChangeWithOperationCallExp extends TracebackStepAndScopeChange {
+        private final OperationCallExp callToWhichResultsAreSpecific;
+
+        /**
+         * Remembers <code>call</code> as the only operation call through which 
+         * @param orCreateNavigationPath
+         * @param variablesChangingScope
+         * @param callToWhichResultsAreSpecific
+         */
+        public TracebackStepAndScopeChangeWithOperationCallExp(TracebackStep step, Set<Variable> variablesChangingScope,
+                OperationCallExp callToWhichResultsAreSpecific) {
+            super(step, variablesChangingScope);
+            this.callToWhichResultsAreSpecific = callToWhichResultsAreSpecific;
+        }
+
+        public OperationCallExpKeyedSet<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
+                de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache,
+                Notification changeEvent) {
+            OperationCallExpKeyedSet<AnnotatedEObject> resultsForSourceOrArgument = super.traceback(source, pendingUnusedEvalRequests,
+                    tracebackCache, changeEvent);
+            OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>();
+            result.putAll(callToWhichResultsAreSpecific, resultsForSourceOrArgument);
+            return result;
+        }
+
+        public String toString() {
+            StringBuilder result = new StringBuilder(super.toString());
+            result.append(", then filter for results specific to OperationCallExp ");
+            result.append(callToWhichResultsAreSpecific);
+            return result.toString();
+        }        
     }
 
     /**
@@ -370,19 +412,19 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         return result;
     }
 
-    public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
+    public OperationCallExpKeyedSet<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        Set<AnnotatedEObject> result;
+        OperationCallExpKeyedSet<AnnotatedEObject> result;
         Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key = new Pair<AnnotatedEObject, UnusedEvaluationRequestSet>(source, pendingUnusedEvalRequests);
         if (currentlyEvaluatingNavigateFor.get().contains(key)) {
-            result = Collections.emptySet();
+            result = OperationCallExpKeyedSet.emptySet();
         } else {
             try {
                 currentlyEvaluatingNavigateFor.get().add(key);
                 result = tracebackCache.get(this, source, pendingUnusedEvalRequests);
                 if (result == null) {
                     if (requiredType != null && !requiredType.isInstance(source.getAnnotatedObject())) {
-                        result = Collections.emptySet();
+                        result = OperationCallExpKeyedSet.emptySet();
                     } else {
                         if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
                             // try to prove unusedness with the unused rules recorded for this step; if that fails,
@@ -391,7 +433,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                             UnusedEvaluationResult unusedEvaluationResult = UnusedEvaluationRequestSet.evaluate(
                                     unusedEvaluationRequests, oppositeEndFinder, tracebackCache);
                             if (unusedEvaluationResult.hasProvenUnused()) {
-                                result = Collections.emptySet();
+                                result = OperationCallExpKeyedSet.emptySet();
                             } else {
                                 result = performSubsequentTraceback(source,
                                         unusedEvaluationResult.getNewRequestSet() == null ? null : unusedEvaluationResult
@@ -414,7 +456,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * This method is used to invoke the {@link TracebackStep#traceback(AnnotatedEObject, Set, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)} method on all necessary subsequent {@link TracebackStep}s and return their results.
      * Which subsequent steps are necessary depends on the respective <code>source</code> {@link OCLExpression} the {@link TracebackStep} was created for.
      */
-    protected abstract Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected abstract OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent);
 
 
@@ -537,12 +579,32 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         return result;
     }
     
+    /**
+     * Creates a new {@link TracebackStepAndScopeChange}} object. Fetches from the cache or produces the {@link TracebackStep}}
+     * and computes the variable scope changes (see {@link #getVariablesChangingScope(OCLExpression, OCLExpression, OperationBodyToCallMapper)}.
+     * The results of these two operations are used for the {@link TracebackStepAndScopeChange} constructor.
+     */
     protected TracebackStepAndScopeChange createTracebackStepAndScopeChange(OCLExpression sourceExpression,
             OCLExpression targetExpression, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
             Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
         return new TracebackStepAndScopeChange(tracebackStepCache.getOrCreateNavigationPath(targetExpression, context,
                 operationBodyToCallMapper, tupleLiteralNamesToLookFor), getVariablesChangingScope(sourceExpression,
                 targetExpression, operationBodyToCallMapper));
+    }
+
+    /**
+     * Creates a new {@link TracebackStepAndScopeChange}} object, remembering an {@link OperationCallExp} to which the
+     * results produced by this step are specific. The results produced by the step returned will all be keyed
+     * by the <code>call</code>. Fetches from the cache or produces the {@link TracebackStep}}
+     * and computes the variable scope changes (see {@link #getVariablesChangingScope(OCLExpression, OCLExpression, OperationBodyToCallMapper)}.
+     * The results of these two operations are used for the {@link TracebackStepAndScopeChange} constructor.
+     */
+    protected TracebackStepAndScopeChangeWithOperationCallExp createTracebackStepAndScopeChange(OCLExpression sourceExpression,
+            OCLExpression targetExpression, OperationCallExp call, EClass context, OperationBodyToCallMapper operationBodyToCallMapper,
+            Stack<String> tupleLiteralNamesToLookFor, TracebackStepCache tracebackStepCache) {
+        return new TracebackStepAndScopeChangeWithOperationCallExp(tracebackStepCache.getOrCreateNavigationPath(targetExpression, context,
+                operationBodyToCallMapper, tupleLiteralNamesToLookFor), getVariablesChangingScope(sourceExpression,
+                targetExpression, operationBodyToCallMapper), call);
     }
 
     /**

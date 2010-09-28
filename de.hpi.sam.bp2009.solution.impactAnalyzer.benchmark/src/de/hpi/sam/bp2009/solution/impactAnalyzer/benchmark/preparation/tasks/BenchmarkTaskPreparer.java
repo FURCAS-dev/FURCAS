@@ -32,10 +32,20 @@ public class BenchmarkTaskPreparer {
     	System.out.println("\t Prepare Benchmark Tasks:");
 
     	Collection<ActivationOption> optionList = new ArrayList<ActivationOption>();
-    	optionList.add(new ActivationOption(true, true, true, "All optimizations activated, TracebackSteps"));
-    	optionList.add(new ActivationOption(false, true, true, "Without delta propagation, TracebackSteps"));
-        optionList.add(new ActivationOption(true, false, true, "Without unused checks, TracebackSteps"));
-        optionList.add(new ActivationOption(true, false, false, "Without unused checks, NavigationSteps"));
+    	
+    	// TracebackStep
+    	optionList.add(new ActivationOption(true, true, true, true, "All optimizations activated, TracebackSteps"));
+    	optionList.add(new ActivationOption(false, true, true, true, "Without delta propagation, TracebackSteps"));
+        optionList.add(new ActivationOption(true, false, true, true, "Without unused checks, TracebackSteps"));
+        optionList.add(new ActivationOption(true, true, true, false, "Without OperationCallExp selection, TracebackSteps"));
+        optionList.add(new ActivationOption(false, false, true, true, "Without delta propagation, without unused checks, TracebackSteps"));
+        optionList.add(new ActivationOption(true, false, true, false, "Without unused checks, without OperationCallExp selection, TracebackSteps"));
+        optionList.add(new ActivationOption(false, true, true, false, "Without delta propagation, without OperationCallExp selection, TracebackSteps"));
+        optionList.add(new ActivationOption(false, false, true, false, "Without unused checks, without delta propagation, without OperationCallExp selection, TracebackSteps"));
+        
+        // NavigationStep
+        optionList.add(new ActivationOption(true, true, false, false, "With delta propagation, NavigationSteps"));
+        optionList.add(new ActivationOption(false, true, false, true, "Without delta propagation, NavigationSteps"));
 
     	return new BenchmarkTaskStepwiseBuilder(expressionList, notificationForModelList, optionList);
      }

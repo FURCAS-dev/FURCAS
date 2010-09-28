@@ -19,6 +19,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -59,6 +60,24 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
     private final EClass allInstancesClass;
     private final OppositeEndFinder oppositeEndFinder;
 
+    /**
+     * Set to <code>true</code> for operations whose body is specified again in OCL. For such operations, this step will trace
+     * back using the body expression. Except for <code>allInstances()</code> cases this will lead back to <code>self</code> or
+     * operation parameters for which then all calls to the operation will be investigated.
+     * <p>
+     * 
+     * While it would be nice to restrict this traceback to the single call currently under investigation, we so far haven't found
+     * a way to combine this with the caching technique used. We would have to record the complete call stack as part of the cache
+     * key, leading to a combinatorial explosion of cache keys and therefore to almost zero cache hits.<p>
+     * 
+     * Instead, we compute the results for all calls but key them by the {@link OperationCallExp} through which the traceback
+     * of <code>self</code> or any parameter variables went so that later we can filter for those whose call we're actually
+     * interested in.<p>
+     * 
+     * However, this applies only for operations whose body is specified in OCL. Therefore this flag.
+     */
+    private final boolean filterResultsByCall;
+
     public OperationCallTracebackStep(OperationCallExp sourceExpression, EClass context,
             OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
             TracebackStepCache tracebackStepCache) {
@@ -66,44 +85,25 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
         oppositeEndFinder = tracebackStepCache.getOppositeEndFinder();
         // important to enter this step before recursive lookups may occur:
         tracebackStepCache.put(sourceExpression, tupleLiteralNamesToLookFor, this);
-        // TODO this is only required to obtain the operation body from our proprietary annotation URI. Could use InvocationBehavior.getOperationBody later
-        EAnnotationOCLParser annotationParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
-        OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(sourceExpression.getReferredOperation(), "body");
+        OCLExpression body = getOperationBody(sourceExpression);
         if (body != null) {
+            allInstancesClass = null;
+            filterResultsByCall = true;
             // an OCL-specified operation; trace back using the body expression
             getSteps().add(
                     createTracebackStepAndScopeChange(sourceExpression, body, context, operationBodyToCallMapper,
                             tupleLiteralNamesToLookFor, tracebackStepCache));
-            allInstancesClass = null;
         } else {
+            filterResultsByCall = false;
             String opName = sourceExpression.getReferredOperation().getName();
             if (opName.equals(PredefinedType.OCL_AS_TYPE_NAME)) {
                 allInstancesClass = null;
-                OCLExpression argument = (OCLExpression) (sourceExpression.getArgument()).get(0);
-                if (argument instanceof TypeExp) {
-                    // trace the source expression of the cast
-                    getSteps().add(createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) sourceExpression.getSource(),
-                            context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache));
-                } else {
-                    throw new RuntimeException("What else could be the argument of oclAsType if not a TypeExp? "
-                            + (argument.eClass()).getName());
-                }
+                handleOclAsType(sourceExpression, context, operationBodyToCallMapper, tupleLiteralNamesToLookFor,
+                        tracebackStepCache);
             } else if (sourcePassThroughStdLibOpNames.contains(opName)) {
                 allInstancesClass = null;
-                // FIXME handle product
-                getSteps().add(createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) sourceExpression.getSource(),
-                        context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache));
-                if (argumentPassThroughStdLibOpNames.contains(opName)) {
-                    int paramPos = 0;
-                    if (opName.equals(PredefinedType.INSERT_AT_NAME)) {
-                        // "insertAt" takes two arguments, the index and the object to add.
-                        // The OCL spec says the index comes first, so getting the first argument makes no sense in this case.
-                        paramPos = 1;
-                    }
-                    OCLExpression argument = (OCLExpression) (sourceExpression.getArgument()).get(paramPos);
-                    getSteps().add(createTracebackStepAndScopeChange(sourceExpression, argument,
-                            context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache));
-                }
+                handleSourcePassThroughOperation(sourceExpression, context, operationBodyToCallMapper,
+                        tupleLiteralNamesToLookFor, tracebackStepCache, opName);
             } else if (opName.equals(PredefinedType.ALL_INSTANCES_NAME)) {
                 // the object from where to trace back later in the navigate method may not
                 // conform to the type on which allInstances() is invoked here; for example, the
@@ -119,12 +119,52 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
         }
     }
 
+    private void handleSourcePassThroughOperation(OperationCallExp sourceExpression, EClass context,
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
+            TracebackStepCache tracebackStepCache, String opName) {
+        // FIXME handle product
+        getSteps().add(createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) sourceExpression.getSource(),
+                context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache));
+        if (argumentPassThroughStdLibOpNames.contains(opName)) {
+            int paramPos = 0;
+            if (opName.equals(PredefinedType.INSERT_AT_NAME)) {
+                // "insertAt" takes two arguments, the index and the object to add.
+                // The OCL spec says the index comes first, so getting the first argument makes no sense in this case.
+                paramPos = 1;
+            }
+            OCLExpression argument = (OCLExpression) (sourceExpression.getArgument()).get(paramPos);
+            getSteps().add(createTracebackStepAndScopeChange(sourceExpression, argument,
+                    context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache));
+        }
+    }
+
+    private void handleOclAsType(OperationCallExp sourceExpression, EClass context,
+            OperationBodyToCallMapper operationBodyToCallMapper, Stack<String> tupleLiteralNamesToLookFor,
+            TracebackStepCache tracebackStepCache) {
+        OCLExpression argument = (OCLExpression) (sourceExpression.getArgument()).get(0);
+        if (argument instanceof TypeExp) {
+            // trace the source expression of the cast
+            getSteps().add(createTracebackStepAndScopeChange(sourceExpression, (OCLExpression) sourceExpression.getSource(),
+                    context, operationBodyToCallMapper, tupleLiteralNamesToLookFor, tracebackStepCache));
+        } else {
+            throw new RuntimeException("What else could be the argument of oclAsType if not a TypeExp? "
+                    + (argument.eClass()).getName());
+        }
+    }
+
+    private OCLExpression getOperationBody(OperationCallExp sourceExpression) {
+        // TODO this is only required to obtain the operation body from our proprietary annotation URI. Could use InvocationBehavior.getOperationBody later
+        EAnnotationOCLParser annotationParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
+        OCLExpression body = annotationParser.getExpressionFromAnnotationsOf(sourceExpression.getReferredOperation(), "body");
+        return body;
+    }
+
     @Override
-    protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        Set<AnnotatedEObject> result;
+        OperationCallExpKeyedSet<AnnotatedEObject> result;
         if (allInstancesClass != null) {
-            result = new HashSet<AnnotatedEObject>();
+            result = new OperationCallExpKeyedSet<AnnotatedEObject>();
             for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances((Notifier) changeEvent.getNotifier(), allInstancesClass,
                     oppositeEndFinder)) {
                 result.add(annotateEObject(source, roi));
@@ -132,7 +172,13 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
             return result;
             
         } else {
-            result = super.performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+            OperationCallExpKeyedSet<AnnotatedEObject> preResult = (OperationCallExpKeyedSet<AnnotatedEObject>) super
+                    .performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+            if (filterResultsByCall) {
+                result = preResult.getCombinedResultsFor(getExpression());
+            } else {
+                result = preResult;
+            }
         }
         return result;
     }
