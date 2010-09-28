@@ -5,7 +5,7 @@
       version="3.1.0.qualifier"
       provider-name="%providerName">
 
-   <description url="http://www.eclipse.org/modeling/mdt/ocl/3_0">
+   <description url="http://www.eclipse.org/modeling/mdt/ocl">
       %description
    </description>
 
@@ -22,8 +22,8 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/3_0/updates/"/>
-      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/3_0/updates/"/>
+      <update label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/updates/"/>
+      <discovery label="%updateSiteName" url="http://download.eclipse.org/modeling/mdt/ocl/updates/"/>
    </url>
 
    <requires>
