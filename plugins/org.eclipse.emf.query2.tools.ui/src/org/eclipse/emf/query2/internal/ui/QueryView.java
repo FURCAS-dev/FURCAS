@@ -39,6 +39,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.xtext.concurrent.IUnitOfWork;
@@ -114,7 +116,10 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 
 		@Override
 		public Object getParent(Object element) {
-			return ((QueryItem) element).getContainer();
+			if(element instanceof QueryItem){
+				return ((QueryItem) element).getContainer();
+			}
+			return null;
 		}
 
 		@Override
@@ -194,18 +199,20 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 		if (!includeDirty){
 		rs[0] = new ResourceSetImpl();
 		}else {
-			IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			IEditorPart activeEditor = activePage.getActiveEditor();
 			if (activeEditor instanceof XtextEditor) {
-				XtextEditor xtextEditor = (XtextEditor) activeEditor;
-				xtextEditor.getDocument().readOnly(new IUnitOfWork.Void<XtextResource>() {
-
-					@Override
-					public void process(XtextResource state) throws Exception {
-						rs[0] = state.getResourceSet();
-					}
-					
-				});
+				getResourceSetFromXTextEditor(rs, activeEditor);
 				
+			}else{ //Get the resourceset from the XText editor
+				//Get all the editors and check for the XText editor
+				IEditorReference[] editorReferences = activePage.getEditorReferences();
+				for (int i = 0; i < editorReferences.length; i++) {
+					IEditorPart editor = editorReferences[i].getEditor(true);
+					if(editor instanceof XtextEditor){
+						getResourceSetFromXTextEditor(rs, editor);
+					}
+				}
 			}
 		}
 		Query transform = QueryTransformer.transform(query);
@@ -226,6 +233,20 @@ public class QueryView extends ViewPart implements ISelectionProvider {
 		}
 		
 		return result.values();
+	}
+	// Create a XTextResource and ovverides the process() method to retrieve the needed
+	// resource set.
+	private void getResourceSetFromXTextEditor(final ResourceSet[] rs,
+			IEditorPart activeEditor) {
+		XtextEditor xtextEditor = (XtextEditor) activeEditor;
+		xtextEditor.getDocument().readOnly(new IUnitOfWork.Void<XtextResource>() {
+
+			@Override
+			public void process(XtextResource state) throws Exception {
+				rs[0] = state.getResourceSet();
+			}
+			
+		});
 	}
 	
 	public void refresh(boolean includeDirty) {
