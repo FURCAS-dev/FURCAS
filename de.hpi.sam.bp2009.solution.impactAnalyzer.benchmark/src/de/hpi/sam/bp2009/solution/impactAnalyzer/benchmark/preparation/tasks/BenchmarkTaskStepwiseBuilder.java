@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -128,8 +129,9 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 
     /**
      * TODO: extract print description files into its own class
+     * @throws IOException 
      */
-    public void printDescriptionFiles(){
+    public void printDescriptionFiles() throws IOException{
 	System.out.println("Write description files...");
 	writeExpressionDescription();
 	writeOptionDescription();
@@ -137,7 +139,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	System.out.println("Finished writing description files...");
     }
 
-    private void writeExpressionDescription() {
+    private void writeExpressionDescription() throws IOException {
 	ResultDescriptionWriter writer = new ResultDescriptionWriter("oclDescription.data");
 
 	int oclId = 0;
@@ -152,7 +154,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	writer.close();
     }
 
-    private void writeOptionDescription(){
+    private void writeOptionDescription() throws IOException{
 	ResultDescriptionWriter writer = new ResultDescriptionWriter("optionDescription.data");
 
 	int optionId = 0;
@@ -168,7 +170,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	writer.close();
     }
 
-    private void writeNotificationAndModelDescription(){
+    private void writeNotificationAndModelDescription() throws IOException{
 	ResultDescriptionWriter writer = new ResultDescriptionWriter("modelDescription.data");
 
 	boolean firstIteration = true;
@@ -190,7 +192,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	writer.close();
     }
 
-    private void writeNotificationDescription(NotificationForModelList notification) {
+    private void writeNotificationDescription(NotificationForModelList notification) throws IOException {
 	ResultDescriptionWriter writer = new ResultDescriptionWriter("notificationDescription.data");
 
 	int notificationId = 0;

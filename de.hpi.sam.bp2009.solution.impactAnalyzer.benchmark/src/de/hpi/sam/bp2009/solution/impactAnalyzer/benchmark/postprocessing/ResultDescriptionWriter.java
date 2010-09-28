@@ -10,10 +10,10 @@ public class ResultDescriptionWriter extends Writer{
 	private boolean withHeadline = true;
 	private int lineOffset = 1;
 
-	public ResultDescriptionWriter(String fileName) {
-		super(new File(PathOptions.getOutputPath()).getParent().toString() + File.separator + fileName, false);
+	public ResultDescriptionWriter(String fileName) throws IOException {
+		super(new File(PathOptions.getOutputPath()).getCanonicalFile().getParent().toString() + File.separator + fileName, false);
 
-		System.out.println("\t Write description file: " + new File(PathOptions.getOutputPath()).getParent().toString() + File.separator + fileName);
+		System.out.println("\t Write description file: " + new File(PathOptions.getOutputPath()).getCanonicalFile().getParent().toString() + File.separator + fileName);
 	}
 
     public void writeDescriptionLine(Map<String, Object> descriptionMap) {
