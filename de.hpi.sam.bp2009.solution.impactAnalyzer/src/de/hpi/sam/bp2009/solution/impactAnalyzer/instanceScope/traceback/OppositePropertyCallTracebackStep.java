@@ -1,7 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -16,6 +14,7 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 
 public class OppositePropertyCallTracebackStep extends AbstractTracebackStep<OppositePropertyCallExp> implements TracebackStep {
 
@@ -35,9 +34,9 @@ public class OppositePropertyCallTracebackStep extends AbstractTracebackStep<Opp
     }
 
     @Override
-    protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+        OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>();
         Object o = source.eGet(reference);
         if (isMany) {
             if (o instanceof EList<?>) {

@@ -12,6 +12,7 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 
 public class BranchingTracebackStep<E extends OCLExpression> extends AbstractTracebackStep<E> {
 
@@ -23,9 +24,9 @@ public class BranchingTracebackStep<E extends OCLExpression> extends AbstractTra
     }
 
     @Override
-    protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+        OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>();
         for (TracebackStepAndScopeChange step : steps) {
             result.addAll(step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent));
         }

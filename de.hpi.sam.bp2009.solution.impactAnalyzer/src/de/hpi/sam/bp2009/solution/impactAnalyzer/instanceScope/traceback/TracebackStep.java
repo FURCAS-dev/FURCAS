@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
-import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -8,6 +7,7 @@ import org.eclipse.ocl.ecore.VariableExp;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 
 /**
  * Objects of classes implementing this interface are constructed by
@@ -48,9 +48,14 @@ public interface TracebackStep {
      *            the original change event; used for performing pre/post evaluations
      * @return the set of objects (with optional annotation explaining the derivation path of each object) for which, when used as
      *         context for the overall expression, the OCL (sub-)expression for which this step is responsible may evaluate to
-     *         <code>source</code>.
+     *         <code>source</code>. The resulting objects may additionally be keyed by {@link OperationCallExp} expressions in case
+     *         their inference left an operation body through a <code>self</code> or parameter variable. These keys are
+     *         removed again in the {@link OperationCallTracebackStep}, keying the results specific to the call being traced
+     *         by the <code>null</code> key. All object reached without leaving an operation body through a <code>self</code>
+     *         or parameter variable are also keyed by the <code>null</code> key.
      */
-    public Set<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
+    public OperationCallExpKeyedSet<AnnotatedEObject> traceback(AnnotatedEObject source,
+            UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent);
 
 }

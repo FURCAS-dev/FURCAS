@@ -1,6 +1,5 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
-import java.util.Collections;
 import java.util.Set;
 import java.util.Stack;
 
@@ -19,6 +18,7 @@ import org.eclipse.ocl.ecore.UnlimitedNaturalLiteralExp;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 
 public class EmptyTracebackStep extends AbstractTracebackStep<OCLExpression> {
 
@@ -35,9 +35,9 @@ public class EmptyTracebackStep extends AbstractTracebackStep<OCLExpression> {
      * @see AbstractTracebackStep#performSubsequentTraceback(AnnotatedEObject, Set, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache, Notification)
      */
     @Override
-    protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        return Collections.emptySet();
+        return OperationCallExpKeyedSet.emptySet();
     }
 
 }

@@ -1,8 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -21,6 +19,7 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.OperationBodyToCallMapper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 
 public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCallExp> {
     private enum Strategy { TUPLE, OPPOSITE_MANY, OPPOSITE_SINGLE, CONTAINMENT, HIDDEN_OPPOSITE };
@@ -89,9 +88,9 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
     }
 
     @Override
-    protected Set<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
+        OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>();
         switch (strategy) {
         case TUPLE:
             result.addAll(nextStep.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent));
