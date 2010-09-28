@@ -9,4 +9,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.BenchmarkProcessor"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="--warmups 100 --measures 100 --output /tmp/result.data"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx4096m -Xms4096m -server"/>
 </launchConfiguration>
