@@ -64,6 +64,18 @@ public class QuickOclParseAndEvalTest extends TestCase
   }
 
   /**
+   * Check what happens when ->at(...) argument is out of bounds
+   */
+  @Test
+  public void testParseAndEvaluateOclExpressionWithOutOfBoundsAtArgument() throws ParserException {
+      oclHelper.setContext(CompanyPackage.eINSTANCE.getDepartment());
+      OCLExpression expression4 = oclHelper.createQuery("Sequence{1..2}->at(3)");
+      Object result4 = ocl.evaluate(CompanyFactory.eINSTANCE.createDepartment(), expression4);
+      assertTrue(result4 instanceof DynamicEObjectImpl);
+      assertEquals("OclInvalid_Class", ((DynamicEObjectImpl) result4).eClass().getName());
+  }
+
+  /**
    * Check what happens when last value of a range is invalid instead of an Integer. Interestingly, this aborts the whole
    * evaluation and even "bypasses" a trailing oclIsInvalid().
    */
