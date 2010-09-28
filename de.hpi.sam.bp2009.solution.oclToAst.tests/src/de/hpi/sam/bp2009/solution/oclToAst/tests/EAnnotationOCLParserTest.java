@@ -37,7 +37,6 @@ import org.eclipse.ocl.ecore.IntegerLiteralExp;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.OperationCallExp;
-import org.eclipse.ocl.ecore.delegate.DelegateEPackageAdapter;
 import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
 import org.eclipse.ocl.ecore.delegate.SettingBehavior;
 import org.junit.Ignore;
@@ -235,10 +234,11 @@ public class EAnnotationOCLParserTest extends TestCase {
         // the expression "self.department2division->notEmpty()" is validated and should be valid
         BasicDiagnostic diagnostic = Diagnostician.INSTANCE.createDefaultDiagnostic(dep);
         
-        DelegateEPackageAdapter adap = DelegateEPackageAdapter.getAdapter(CompanyPackage.eINSTANCE);
-        OCLDelegateDomain delDom = (OCLDelegateDomain) adap.getDelegateDomain(OCLDelegateDomain.OCL_DELEGATE_URI);
+        //DelegateEPackageAdapter adap = DelegateEPackageAdapter.getAdapter(CompanyPackage.eINSTANCE);
+        // FIXME the following delDom.setOCL(...) API doesn't exist on the trunk!
+        //OCLDelegateDomain delDom = (OCLDelegateDomain) adap.getDelegateDomain(OCLDelegateDomain.OCL_DELEGATE_URI);
         // setting new ocl instance to enable evaluating of hidden opposites
-        delDom.setOCL(OCLWithHiddenOpposites.newInstance());
+        //delDom.setOCL(OCLWithHiddenOpposites.newInstance());
 
         assertTrue("The departmentMustHaveDivision constraint is violated.", CompanyValidator.INSTANCE.validateDepartment_departmentMustHaveDivision(dep, diagnostic, context));
         assertEquals(diagnostic.toString(), Diagnostic.OK, diagnostic.getSeverity());
