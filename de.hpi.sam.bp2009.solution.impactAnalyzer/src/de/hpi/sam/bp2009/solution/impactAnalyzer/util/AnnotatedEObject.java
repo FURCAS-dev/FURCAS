@@ -21,122 +21,144 @@ import org.eclipse.ocl.ecore.TupleLiteralExp;
  * @author martin.hanysz
  *
  */
-public class AnnotatedEObject implements EObject{
-    private final String annotation;
-    private final EObject eObject;
+public class AnnotatedEObject implements EObject {
+    private final String comment;
+    private final EObject objectReached;
+    private final AnnotatedEObject from;
     public final static String NOT_IN_DEBUG_MODE_MESSAGE = "To enable annotations, set the system property de.hpi.sam.bp2009.solution.impactAnalyzer.debug to true, "
         + "e.g., by using the VM argument -Dde.hpi.sam.bp2009.solution.impactAnalyzer.debug=true";
     public final static boolean IS_IN_DEBUG_MODE = Boolean.getBoolean("de.hpi.sam.bp2009.solution.impactAnalyzer.debug");
 
     public boolean equals(Object o) {
         if (o instanceof AnnotatedEObject) {
-            return eObject.equals(((AnnotatedEObject) o).eObject);
+            return objectReached.equals(((AnnotatedEObject) o).objectReached);
         } else {
             return super.equals(o);
         }
     }
     
     public int hashCode() {
-        return eObject.hashCode();
+        return objectReached.hashCode();
     }
     
     /**
      * Constructor of the {@link AnnotatedEObject}.
      * 
-     * @param annotatedObject the EObject to annotate
-     * @param annotation an annotationString, assumed to be "" if omitted
+     * @param objectReached the EObject to annotate
+     * @param comment an annotationString
      */
-    public AnnotatedEObject(EObject annotatedObject, String annotation){
-        this.eObject = annotatedObject;
-        this.annotation = annotation;
+    public AnnotatedEObject(EObject objectReached, String comment){
+        this.objectReached = objectReached;
+        this.comment = comment;
+        this.from = null;
     }
     
-    public String getAnnotation(){
-        return annotation;
+    public AnnotatedEObject(EObject objectReached, AnnotatedEObject from, String comment) {
+        this.from = from;
+        this.comment = comment;
+        this.objectReached = objectReached;
+    }
+
+    public String getComment() {
+        return comment;
     }
     
-    public EObject getAnnotatedObject(){
-        return eObject;
+    public EObject getAnnotatedObject() {
+        return objectReached;
     }
     
     public TreeIterator<EObject> eAllContents() {
-        return eObject.eAllContents();
+        return objectReached.eAllContents();
     }
 
     public EClass eClass() {
-        return eObject.eClass();
+        return objectReached.eClass();
     }
 
     public EObject eContainer() {
-        return eObject.eContainer();
+        return objectReached.eContainer();
     }
 
     public EStructuralFeature eContainingFeature() {
-        return eObject.eContainingFeature();
+        return objectReached.eContainingFeature();
     }
 
     public EReference eContainmentFeature() {
-        return eObject.eContainmentFeature();
+        return objectReached.eContainmentFeature();
     }
 
     public EList<EObject> eContents() {
-        return eObject.eContents();
+        return objectReached.eContents();
     }
 
     public EList<EObject> eCrossReferences() {
-        return eObject.eCrossReferences();
+        return objectReached.eCrossReferences();
     }
 
     public Object eGet(EStructuralFeature feature) {
-        return eObject.eGet(feature);
+        return objectReached.eGet(feature);
     }
 
     public Object eGet(EStructuralFeature feature, boolean resolve) {
-        return eObject.eGet(feature, resolve);
+        return objectReached.eGet(feature, resolve);
     }
 
     public Object eInvoke(EOperation operation, EList<?> arguments) throws InvocationTargetException {
-        return eObject.eInvoke(operation, arguments);
+        return objectReached.eInvoke(operation, arguments);
     }
 
     public boolean eIsProxy() {
-        return eObject.eIsProxy();
+        return objectReached.eIsProxy();
     }
 
     public boolean eIsSet(EStructuralFeature feature) {
-        return eObject.eIsSet(feature);
+        return objectReached.eIsSet(feature);
     }
 
     public Resource eResource() {
-        return eObject.eResource();
+        return objectReached.eResource();
     }
 
     public void eSet(EStructuralFeature feature, Object newValue) {
-        eObject.eSet(feature, newValue);
+        objectReached.eSet(feature, newValue);
     }
 
     public void eUnset(EStructuralFeature feature) {
-        eObject.eUnset(feature);        
+        objectReached.eUnset(feature);        
     }
 
     public EList<Adapter> eAdapters() {
-        return eObject.eAdapters();
+        return objectReached.eAdapters();
     }
 
     public boolean eDeliver() {
-        return eObject.eDeliver();
+        return objectReached.eDeliver();
     }
 
     public void eNotify(Notification notification) {
-        eObject.eNotify(notification);
+        objectReached.eNotify(notification);
     }
 
     public void eSetDeliver(boolean deliver) {
-        eObject.eSetDeliver(deliver);
+        objectReached.eSetDeliver(deliver);
     }
     
     @Override
     public String toString() {
-        return super.toString() + " (annotatedObject: " + eObject.toString() + ") (annotation: " + annotation + ")";
+        StringBuilder result = new StringBuilder();
+        if (from != null) {
+            result.append(" ==== from === \n");
+            result.append(from.getAnnotatedObject());
+            result.append('\n');
+        }
+        if (comment != null && comment.length() > 0) {
+            result.append(" ==== using step ====\n");
+            result.append(comment);
+        }
+        if (from == null || from.getAnnotatedObject() != objectReached) {
+            result.append("\n ==== arriving at ====\n");
+        }
+        result.append(objectReached);
+        return result.toString();
     }
 }
