@@ -12,7 +12,7 @@ public class PathOptions {
     public static void setOutputPath(String outputPath) {
 	File f = new File(outputPath);
 	if(f.exists() && f.isDirectory()){
-	    PathOptions.outputPath = outputPath + File.pathSeparator + "result.data";
+	    PathOptions.outputPath = outputPath + File.separator + "result.data";
 	}else{
 	    PathOptions.outputPath = outputPath;
 	}
