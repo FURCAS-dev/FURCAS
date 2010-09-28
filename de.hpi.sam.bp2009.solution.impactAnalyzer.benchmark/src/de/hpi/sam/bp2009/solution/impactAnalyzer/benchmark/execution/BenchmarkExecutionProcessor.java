@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.execution;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -24,11 +25,11 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
  */
 public class BenchmarkExecutionProcessor {
 
-    public static void processBenchmarks(BenchmarkTaskStepwiseBuilder builder, boolean stepwise) {
+    public static void processBenchmarks(BenchmarkTaskStepwiseBuilder builder, boolean stepwise) throws IOException {
 	BenchmarkExecutionProcessor.processAll(new StandardBenchmarkExecutor(), builder, stepwise);
     }
 
-    public static void processAll(BenchmarkExecutor executor, BenchmarkTaskStepwiseBuilder builder, boolean stepwise) {
+    public static void processAll(BenchmarkExecutor executor, BenchmarkTaskStepwiseBuilder builder, boolean stepwise) throws IOException {
 	BenchmarkResultWriter writer = new BenchmarkResultWriter();
 
 	System.out.println("");
@@ -70,11 +71,11 @@ public class BenchmarkExecutionProcessor {
 	System.out.print("\n");
     }
 
-    public static void processBenchmarksInParallel(BenchmarkTaskStepwiseBuilder builder, boolean stepwise, int numberOfParallelJobs) {
+    public static void processBenchmarksInParallel(BenchmarkTaskStepwiseBuilder builder, boolean stepwise, int numberOfParallelJobs) throws IOException {
 	BenchmarkExecutionProcessor.processAllInParallel(new StandardBenchmarkExecutor(), builder, stepwise, numberOfParallelJobs);
     }
 
-    public static void processAllInParallel(BenchmarkExecutor executor, BenchmarkTaskStepwiseBuilder builder, boolean stepwise, int numberOfParallelJobs) {
+    public static void processAllInParallel(BenchmarkExecutor executor, BenchmarkTaskStepwiseBuilder builder, boolean stepwise, int numberOfParallelJobs) throws IOException {
 	System.out.println("Start Processing");
 
 	BenchmarkResultWriter writer = new BenchmarkResultWriter();
@@ -115,7 +116,7 @@ public class BenchmarkExecutionProcessor {
 	}
     }
 
-    private static void dumpExceptions(BenchmarkExecutor executor) {
+    private static void dumpExceptions(BenchmarkExecutor executor) throws IOException {
 
 	System.out.println(((StandardBenchmarkExecutor) executor).getNotExecutedDueToException().size()
 		+ " tasks ended with exceptions");

@@ -1,5 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark;
 
+import java.io.IOException;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.HelpFormatter;
@@ -33,7 +35,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks.Ben
 
 public class BenchmarkProcessor {
     //FIXME: Implement code for starting benchmark program
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NumberFormatException, IOException {
 	try {
 	    Options options = new Options();
 
@@ -124,7 +126,7 @@ public class BenchmarkProcessor {
     	}
 
 
-    	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs, boolean delayPreparation, String dumpFilePath, boolean verbose, String eventTraceFile, String modelFile) {
+    	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs, boolean delayPreparation, String dumpFilePath, boolean verbose, String eventTraceFile, String modelFile) throws IOException {
     	    	System.out.println("Impact Analysis Benchmark started with " + warmUps + " warm-ups and " + measures + " measures per benchmark task");
 
     	    	ProcessingOptions.setNumberOfWarmUps(warmUps);

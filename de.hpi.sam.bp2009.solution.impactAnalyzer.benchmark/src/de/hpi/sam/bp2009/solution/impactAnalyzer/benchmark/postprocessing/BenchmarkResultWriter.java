@@ -12,7 +12,7 @@ public class BenchmarkResultWriter extends Writer {
 	private boolean withHeadline = true;
 	private int lineOffset = 1;
 
-	public BenchmarkResultWriter() {
+	public BenchmarkResultWriter() throws IOException {
 		super(PathOptions.getOutputPath(), false);
 	}
 

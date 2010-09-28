@@ -8,7 +8,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.PathOptions;
 
 public class ExceptionDumpWriter extends Writer {
 
-    public ExceptionDumpWriter() {
+    public ExceptionDumpWriter() throws IOException {
     	super(PathOptions.getExceptionDumpFilePath(), false);
     }
 
