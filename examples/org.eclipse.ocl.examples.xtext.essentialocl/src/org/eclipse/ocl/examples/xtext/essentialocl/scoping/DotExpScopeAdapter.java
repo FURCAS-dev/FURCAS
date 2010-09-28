@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: DotExpScopeAdapter.java,v 1.6 2010/05/29 15:31:44 ewillink Exp $
+ * $Id: DotExpScopeAdapter.java,v 1.7 2010/09/28 16:28:37 ewillink Exp $
  */
 package org.eclipse.ocl.examples.xtext.essentialocl.scoping;
 
@@ -73,6 +73,7 @@ public class DotExpScopeAdapter extends OperatorExpScopeAdapter<InfixExpCS>
 					environmentView.require(
 						BaseCSTPackage.Literals.TYPE_CS,
 						EssentialOCLCSTPackage.Literals.VARIABLE_CS,
+						BaseCSTPackage.Literals.PARAMETER_CS,
 						BaseCSTPackage.Literals.STRUCTURAL_FEATURE_CS);			
 				}
 				else {		// This is not the left-most source e.g. preamble.source.arg
