@@ -31,7 +31,7 @@
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="xtext">
-    <rm:provider>
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/modeling/tmf/updates">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
