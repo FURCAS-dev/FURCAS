@@ -10,21 +10,19 @@ import junit.textui.TestRunner;
  */
 public class OclToAstTests extends TestSuite {
 
-    public static void main(String[] args) {
-        TestRunner.run(suite());
-    }
+	public static void main(String[] args) {
+		TestRunner.run(suite());
+	}
 
-    public static Test suite() {
-        TestSuite suite = new OclToAstTests("oclToAst Tests");
-        //$JUnit-BEGIN$
-        suite.addTestSuite(EAnnotationOCLParserTest.class);
-        suite.addTestSuite(TestEcoreHelper.class);
-        //$JUnit-END$
-        return suite;
-    }
+	public static Test suite() {
+		TestSuite suite = new OclToAstTests("oclToAst Tests");
+		suite.addTestSuite(EAnnotationOCLParserTest.class);
+		suite.addTestSuite(TestEcoreHelper.class);
+		return suite;
+	}
 
-    public OclToAstTests(String name) {
-        super(name);
-    }
+	public OclToAstTests(String name) {
+		super(name);
+	}
 
 } //OclToAstTests
