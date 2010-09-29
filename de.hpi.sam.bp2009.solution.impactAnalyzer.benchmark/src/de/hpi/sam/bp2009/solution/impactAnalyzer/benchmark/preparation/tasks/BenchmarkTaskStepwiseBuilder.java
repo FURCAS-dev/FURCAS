@@ -40,6 +40,8 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
     private OCLExpressionWithContext currentExpression;
     private NotificationForModelList currentNotification;
 
+    private int iterations = 0;
+
     public BenchmarkTaskStepwiseBuilder(Collection<OCLExpressionWithContext> expressionList,
 	    Collection<NotificationForModelList> notificationForModelList, Collection<ActivationOption> activiationOptionList) {
 	this.expressionList = expressionList;
@@ -63,6 +65,8 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
     }
 
     synchronized private void iterate() {
+	iterations++;
+
 	if (notificationIterator.hasNext()) {
 	    currentNotification = notificationIterator.next();
 	    ids.incrementModel();
@@ -129,7 +133,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 
     /**
      * TODO: extract print description files into its own class
-     * @throws IOException 
+     * @throws IOException
      */
     public void printDescriptionFiles() throws IOException{
 	System.out.println("Write description files...");
@@ -340,9 +344,8 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
     }
 
     @Override
-    public int size() {
-	// TODO Auto-generated method stub
-	return 0;
+    public synchronized int size() {
+	return (expressionList.size() * notificationForModelList.size() * activiationOptionList.size()) - iterations;
     }
 
     @Override

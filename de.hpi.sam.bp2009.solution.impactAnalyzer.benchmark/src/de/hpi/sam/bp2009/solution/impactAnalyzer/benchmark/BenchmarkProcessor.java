@@ -43,7 +43,7 @@ public class BenchmarkProcessor {
 	    options.addOption("m", "measures", true, "Number of measurements per benchmark task (required)");
 	    options.addOption("o", "output", true, "Output file destination (required)");
 	    options.addOption("j", "jobs", true, "Number of parallel jobs for benchmarking. Default is 1");
-	    options.addOption("d", "delayprep",true, "Delay preparation of benchmark task (true/false)");
+	    options.addOption("d", "delayprep",true, "Delay preparation of benchmark task (true[default]/false)");
 	    options.addOption("e", "excdump", true, "An exception dump file will be written to the specified path");
 	    options.addOption("ob", "outbuffer", true, "Buffer size of output stream");
 
@@ -65,7 +65,7 @@ public class BenchmarkProcessor {
 		formatter.printHelp( "Impact Analysis Benchmark Environment v0.1", options );
 	    }else{
 	    int numberOfJobs = cmd.hasOption("j") ? Integer.parseInt(cmd.getOptionValue("j")) : 1;
-	    boolean delayPreparation = cmd.hasOption("d") ? Boolean.parseBoolean(cmd.getOptionValue("d")) : false;
+	    boolean delayPreparation = cmd.hasOption("d") ? Boolean.parseBoolean(cmd.getOptionValue("d")) : true;
 
 
 	    String modelFile = "";
@@ -74,9 +74,9 @@ public class BenchmarkProcessor {
 	    	printAvailableEventFixtures();
 	    	printAvailableModelFixtures();
 	    }else{
-	    	if(!cmd.hasOption("tp") || !NotificationResourceLoader.getFilenamesOfEventFixtures().contains(cmd.getOptionValue("tp"))){
+	    	if(!cmd.hasOption("tp")){
 	    		System.out.println("You started benchmarks without specifying a correct event trace fixture explicitly.");
-	    		printAvailableEventFixtures();
+	    		//printAvailableEventFixtures();
 
 	    		eventTraceFile = "modifyElementaryTypesEventTrace.trace";
 	    	}else{
@@ -85,9 +85,9 @@ public class BenchmarkProcessor {
 	    	System.out.println("Choosing fixture: " + eventTraceFile);
 	    	System.out.println("");
 
-	    	if(!cmd.hasOption("mp") || !NotificationResourceLoader.getFilenamesOfModelFixture().contains(cmd.getOptionValue("mp"))){
+	    	if(!cmd.hasOption("mp")){
 	    		System.out.println("You started benchmarks without specifying a correct model fixture explicitly.");
-	    		printAvailableModelFixtures();
+	    		//printAvailableModelFixtures();
 
 	    		modelFile = "NgpmModel.xmi";
 	    	}else{
