@@ -46,12 +46,12 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 
     private Collection<EObject> result = null;
     private Collection<Object> evaluationResult = null;
-    private Collection<EObject> allInstances = null;
 
     private final ArrayList<Collection<EObject>> allResults = new ArrayList<Collection<EObject>>();
 
     private final OCLExpressionWithContext expression;
     private final OppositeEndFinder oppositeEndFinder;
+    private AllInstanceEvaluationMeasurement allInstanceMeasurement;
 
     public ModelSizeVariationBenchmarkTask(OCLExpressionWithContext expression, RawNotification notification, ImpactAnalyzer imp, String oclId, String notificationId, String benchmarkTaskId, String optionId, String modelId, OppositeEndFinder oppositeEndFinder) {
     	this.expression = expression;
@@ -88,58 +88,14 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
     		}
     	}
 
-    	setOcl(OCLWithHiddenOpposites.newInstance(oppositeEndFinder));
+    	setOcl(OCLWithHiddenOpposites.newInstance(getOppositeEndFinder()));
 
 	if(expression.getOclWithPackage() != null){
 	    setOcl(OCLWithHiddenOpposites.newInstance( ((EcoreEnvironmentFactoryWithHiddenOpposites) getOcl().getEnvironment().getFactory()).
 		    createPackageContext(getOcl().getEnvironment(), expression.getOclWithPackage().getPackage())));
 	}
 
-	//Prerun to be sure that index is initialized
-	oppositeEndFinder.getAllInstancesSeenBy(expression.getContext(), model);
-
-	long beforeAllInstances = System.nanoTime();
-	allInstances = oppositeEndFinder.getAllInstancesSeenBy(expression.getContext(), model);
-	long afterAllInstances = System.nanoTime();
-
-	additionalInformation.put("allInstanceExecTime", String.valueOf(afterAllInstances - beforeAllInstances));
-	additionalInformation.put("noAllInstances", String.valueOf(allInstances.size()));
-
-	//Only do this when activating. More runs are far too expensive.
-	Collection<Object> allInstancesEvaluationResult = new LinkedList<Object>();
-
-
-	((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).resetAll();
-	long timeToEvaluate = 0;
-	long timeToEvaluateWithoutInvalidResults = 0;
-	for(EObject affectedElement : allInstances){
-	    //Prerun in order to eliminate caching effects
-	    getOcl().evaluate(affectedElement, expression.getExpression());
-
-	    long before = System.nanoTime();
-	    Object result = getOcl().evaluate(affectedElement, expression.getExpression());
-	    long after = System.nanoTime();
-	    allInstancesEvaluationResult.add(result);
-	    timeToEvaluate = timeToEvaluate + (after - before);
-	    if(result == null || !result.equals(OCLStandardLibraryImpl.INSTANCE.getInvalid())){
-		timeToEvaluateWithoutInvalidResults = timeToEvaluateWithoutInvalidResults + (after - before);
-	    }
-	}
-	int allInstancesCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getAllInstancesCalled();
-	additionalInformation.put("noAllInstanceEvalAllInstanceCalls", String.valueOf(allInstancesCalls));
-
-	int findOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getFindOppositeEndsCalled();
-	additionalInformation.put("noAllInstanceFindOppositeEndsCalls", String.valueOf(findOppositeEndsCalls));
-
-	int getAllOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getGetAllOppositeEndsCalled();
-	additionalInformation.put("noAllInstanceGetAllOppositeEndsCalls", String.valueOf(getAllOppositeEndsCalls));
-	((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).resetAll();
-
-
-	additionalInformation.put("allInstanceEvalTime", String.valueOf(new Long(timeToEvaluate)));
-	additionalInformation.put("allInstanceEvalTimeWoInvalid", String.valueOf(new Long(timeToEvaluateWithoutInvalidResults)));
-
-	additionalInformation.put("allInstanceNoInvalidEvals", String.valueOf(getNoOfInvalidEvaluations(allInstancesEvaluationResult)));
+	additionalInformation.putAll(allInstanceMeasurement.getAdditionalInformation());
 
 	boolean eventFilterMatches = false;
 	if (notification != null && filter != null) {
@@ -179,15 +135,12 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	    throw new RuntimeException("notification cannot be created");
 	}
 
-    	((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).resetAll();
+    	((AllInstanceCallCountingOppositeEndFinder)getOppositeEndFinder()).resetAll();
     }
 
     @Override
     public Collection<EObject> call() throws Exception {
 	result = ia.getContextObjects(notification);
-
-	System.out.println(result.size());
-
 	return result;
     }
 
@@ -203,16 +156,16 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	assert result != null;
 	assert evaluationResult != null;
 
-	int allInstancesCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getAllInstancesCalled();
+	int allInstancesCalls = ((AllInstanceCallCountingOppositeEndFinder)getOppositeEndFinder()).getAllInstancesCalled();
 	additionalMeasurementInformation.put("noIaAllInstanceCalls", String.valueOf(allInstancesCalls));
 
-	int findOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getFindOppositeEndsCalled();
+	int findOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)getOppositeEndFinder()).getFindOppositeEndsCalled();
 	additionalMeasurementInformation.put("noIaFindOppositeEndsCalls", String.valueOf(findOppositeEndsCalls));
 
-	int getAllOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).getGetAllOppositeEndsCalled();
+	int getAllOppositeEndsCalls = ((AllInstanceCallCountingOppositeEndFinder)getOppositeEndFinder()).getGetAllOppositeEndsCalled();
 	additionalMeasurementInformation.put("noIaGetAllOppositeEndsCalls", String.valueOf(getAllOppositeEndsCalls));
 
-	((AllInstanceCallCountingOppositeEndFinder)oppositeEndFinder).resetAll();
+	((AllInstanceCallCountingOppositeEndFinder)getOppositeEndFinder()).resetAll();
 
 	additionalMeasurementInformation.put("noContextObjects", String.valueOf(result.size()));
 
@@ -401,4 +354,11 @@ public class ModelSizeVariationBenchmarkTask implements BenchmarkTask{
 	    return modelForIaAccuracyDetermination;
 	}
 
+	public OppositeEndFinder getOppositeEndFinder() {
+	    return oppositeEndFinder;
+	}
+
+	public void setAllInstanceEvaluationMeasurement(AllInstanceEvaluationMeasurement measurement) {
+	    this.allInstanceMeasurement = measurement;
+	}
 }

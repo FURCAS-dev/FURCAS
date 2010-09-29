@@ -1,13 +1,17 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.tasks;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
+
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.model.ModelCloner;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 
@@ -16,6 +20,8 @@ public class ModelSizeVariationBenchmarkTaskContainer extends BenchmarkTaskConta
 	private final Resource modelToClone;
 	private final String containerId;
 	private final ActivationOption option;
+
+	private final HashMap<OCLExpressionWithContext, AllInstanceEvaluationMeasurement> allInstanceMeasureCache = new HashMap<OCLExpressionWithContext, AllInstanceEvaluationMeasurement>();
 
 	public ModelSizeVariationBenchmarkTaskContainer(Resource modelToClone, ActivationOption option, String containerId){
 		this.modelToClone = modelToClone;
@@ -27,6 +33,8 @@ public class ModelSizeVariationBenchmarkTaskContainer extends BenchmarkTaskConta
 	public void beforeBenchmark() {
 		cloneModelAndAttachToBenchmarkTasks();
 		OptimizationActivation.setOption(option);
+
+		measureAllInstancesAndAttachToBenchmarkTasks();
 	}
 
 	private void cloneModelAndAttachToBenchmarkTasks() {
@@ -36,6 +44,28 @@ public class ModelSizeVariationBenchmarkTaskContainer extends BenchmarkTaskConta
 	    for(BenchmarkTask task : this){
 	    	((ModelSizeVariationBenchmarkTask)task).setModel(clonedModel);
 	    	((ModelSizeVariationBenchmarkTask)task).setModelForIaAccuracyDetermination(clonedModelBeforeChange);
+	    }
+	}
+
+	private void measureAllInstancesAndAttachToBenchmarkTasks(){
+	    BenchmarkTask firstTask = this.element();
+
+	    // Model and OppositeEndFinder is the same for all benchmark tasks in one container
+	    Resource model = ((ModelSizeVariationBenchmarkTask)firstTask).getModel();
+	    OppositeEndFinder oppositeEndFinder = ((ModelSizeVariationBenchmarkTask)firstTask).getOppositeEndFinder();
+
+	    for(BenchmarkTask task : this){
+	    	OCLExpressionWithContext expression = ((ModelSizeVariationBenchmarkTask)task).getExpression();
+
+	    	if(allInstanceMeasureCache.containsKey(expression)){
+	    	    ((ModelSizeVariationBenchmarkTask)task).setAllInstanceEvaluationMeasurement(allInstanceMeasureCache.get(expression));
+	    	}else{
+	    	    AllInstanceEvaluationMeasurement measurement = new AllInstanceEvaluationMeasurement(oppositeEndFinder, model, expression);
+	    	    measurement.measureAllInstances();
+
+	    	    allInstanceMeasureCache.put(expression, measurement);
+	    	    ((ModelSizeVariationBenchmarkTask)task).setAllInstanceEvaluationMeasurement(measurement);
+	    	}
 	    }
 	}
 
