@@ -712,6 +712,7 @@ public class CompanyValidator extends EObjectValidator {
         if (result || diagnostics != null) result &= validate_EveryKeyUnique(division, diagnostics, context);
         if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(division, diagnostics, context);
         if (result || diagnostics != null) result &= validateDivision_nasty(division, diagnostics, context);
+        if (result || diagnostics != null) result &= validateDivision_limitEmployeesOfTheMonth(division, diagnostics, context);
         return result;
     }
 
@@ -740,6 +741,35 @@ public class CompanyValidator extends EObjectValidator {
                  "http://de.hpi.sam.bp2009.OCL",
                  "nasty",
                  DIVISION__NASTY__EEXPRESSION,
+                 Diagnostic.ERROR,
+                 DIAGNOSTIC_SOURCE,
+                 0);
+    }
+
+    /**
+     * The cached validation expression for the limitEmployeesOfTheMonth constraint of '<em>Division</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected static final String DIVISION__LIMIT_EMPLOYEES_OF_THE_MONTH__EEXPRESSION = "self.employeesOfTheMonth->size() <= self.department->size()";
+
+    /**
+     * Validates the limitEmployeesOfTheMonth constraint of '<em>Division</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateDivision_limitEmployeesOfTheMonth(Division division, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return
+            validate
+                (CompanyPackage.Literals.DIVISION,
+                 division,
+                 diagnostics,
+                 context,
+                 "http://de.hpi.sam.bp2009.OCL",
+                 "limitEmployeesOfTheMonth",
+                 DIVISION__LIMIT_EMPLOYEES_OF_THE_MONTH__EEXPRESSION,
                  Diagnostic.ERROR,
                  DIAGNOSTIC_SOURCE,
                  0);

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link company.Department#getBoss <em>Boss</em>}</li>
  *   <li>{@link company.Department#getSubDepartment <em>Sub Department</em>}</li>
  *   <li>{@link company.Department#getParentDepartment <em>Parent Department</em>}</li>
+ *   <li>{@link company.Department#getEmployeeOfTheMonth <em>Employee Of The Month</em>}</li>
  * </ul>
  * </p>
  *
@@ -202,6 +203,22 @@ public interface Department extends EObject {
      * @generated
      */
         void setParentDepartment(Department value);
+
+/**
+     * Returns the value of the '<em><b>Employee Of The Month</b></em>' reference list.
+     * The list contents are of type {@link company.Employee}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Employee Of The Month</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Employee Of The Month</em>' reference list.
+     * @see company.CompanyPackage#getDepartment_EmployeeOfTheMonth()
+     * @model
+     * @generated
+     */
+    EList<Employee> getEmployeeOfTheMonth();
 
 /**
      * <!-- begin-user-doc -->

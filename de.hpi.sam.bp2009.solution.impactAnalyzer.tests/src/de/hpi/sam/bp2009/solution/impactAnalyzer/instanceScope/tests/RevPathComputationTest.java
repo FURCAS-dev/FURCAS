@@ -919,6 +919,35 @@ public class RevPathComputationTest extends BaseDepartmentTest {
         System.out.println("--------------------------------------------------\n");
 
     }
+    
+    @Test
+    public void testDerivedPropertyHandlingIndirect(){
+        System.out.println("Testing derivedPropertyHandling\n");
+        Notification noti;
+        Collection<EObject> instances;
+        
+        // Make e1 the employee of the month of div by making him the employee of the month of dep1.
+        // That should influence the derived property Department.employeesOfTheMonth but this feature isn't implemented by default.
+        // TODO implement a derived Property Notifier and apply it here to generate an impact via some sort of follow up notification.
+        noti = NotificationHelper.createReferenceAddNotification(this.dep1, this.departmentEmployeeOfTheMonth, this.e1);
+        instances = computeAffectedInstances(this.getLimitEmployeesOfTheMonthAST(), noti);
+        compareInstances(instances, new EObject[] {});
+
+    }
+    
+    @Test
+    public void testDerivedPropertyHandlingDirect(){
+        Notification noti;
+        
+        // Make e1 the employee of the month of div by directly manipulating the derived property.
+        // Since the derived property is unmodifiable, this should return null.
+        noti = NotificationHelper.createReferenceAddNotification(this.div, this.divisionEmployeesOfTheMonth, this.e1);
+        assertTrue(noti == null);
+        
+        System.out.println("--------------------------------------------------\n");
+    }
+
+
 
     // @Test
     // public void testDepartmentAlwaysInDivision(){

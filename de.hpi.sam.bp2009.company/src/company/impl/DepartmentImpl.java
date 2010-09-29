@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -40,6 +41,7 @@ import company.Employee;
  *   <li>{@link company.impl.DepartmentImpl#getBoss <em>Boss</em>}</li>
  *   <li>{@link company.impl.DepartmentImpl#getSubDepartment <em>Sub Department</em>}</li>
  *   <li>{@link company.impl.DepartmentImpl#getParentDepartment <em>Parent Department</em>}</li>
+ *   <li>{@link company.impl.DepartmentImpl#getEmployeeOfTheMonth <em>Employee Of The Month</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,6 +137,16 @@ public class DepartmentImpl extends EObjectImpl implements Department {
      * @ordered
      */
         protected EList<Department> subDepartment;
+
+                                /**
+     * The cached value of the '{@link #getEmployeeOfTheMonth() <em>Employee Of The Month</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEmployeeOfTheMonth()
+     * @generated
+     * @ordered
+     */
+    protected EList<Employee> employeeOfTheMonth;
 
                                 /**
      * <!-- begin-user-doc -->
@@ -327,6 +339,18 @@ public class DepartmentImpl extends EObjectImpl implements Department {
     }
 
 /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<Employee> getEmployeeOfTheMonth() {
+        if (employeeOfTheMonth == null) {
+            employeeOfTheMonth = new EObjectResolvingEList<Employee>(Employee.class, this, CompanyPackage.DEPARTMENT__EMPLOYEE_OF_THE_MONTH);
+        }
+        return employeeOfTheMonth;
+    }
+
+/**
      * The cached invocation delegate for the '{@link #calcExpenses() <em>Calc Expenses</em>}' operation.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -455,6 +479,8 @@ public class DepartmentImpl extends EObjectImpl implements Department {
                 return getSubDepartment();
             case CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT:
                 return getParentDepartment();
+            case CompanyPackage.DEPARTMENT__EMPLOYEE_OF_THE_MONTH:
+                return getEmployeeOfTheMonth();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -491,6 +517,10 @@ public class DepartmentImpl extends EObjectImpl implements Department {
             case CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT:
                 setParentDepartment((Department)newValue);
                 return;
+            case CompanyPackage.DEPARTMENT__EMPLOYEE_OF_THE_MONTH:
+                getEmployeeOfTheMonth().clear();
+                getEmployeeOfTheMonth().addAll((Collection<? extends Employee>)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -524,6 +554,9 @@ public class DepartmentImpl extends EObjectImpl implements Department {
             case CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT:
                 setParentDepartment((Department)null);
                 return;
+            case CompanyPackage.DEPARTMENT__EMPLOYEE_OF_THE_MONTH:
+                getEmployeeOfTheMonth().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -550,6 +583,8 @@ public class DepartmentImpl extends EObjectImpl implements Department {
                 return subDepartment != null && !subDepartment.isEmpty();
             case CompanyPackage.DEPARTMENT__PARENT_DEPARTMENT:
                 return getParentDepartment() != null;
+            case CompanyPackage.DEPARTMENT__EMPLOYEE_OF_THE_MONTH:
+                return employeeOfTheMonth != null && !employeeOfTheMonth.isEmpty();
         }
         return super.eIsSet(featureID);
     }

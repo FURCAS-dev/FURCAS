@@ -300,6 +300,15 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDepartment_EmployeeOfTheMonth() {
+        return (EReference)departmentEClass.getEStructuralFeatures().get(7);
+    }
+
+/**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getFreelance() {
         return freelanceEClass;
     }
@@ -363,6 +372,15 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getDivision_EmployeesOfTheMonth() {
+        return (EReference)divisionEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getStudent() {
         return studentEClass;
     }
@@ -413,6 +431,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         createEReference(departmentEClass, DEPARTMENT__BOSS);
         createEReference(departmentEClass, DEPARTMENT__SUB_DEPARTMENT);
         createEReference(departmentEClass, DEPARTMENT__PARENT_DEPARTMENT);
+        createEReference(departmentEClass, DEPARTMENT__EMPLOYEE_OF_THE_MONTH);
 
         freelanceEClass = createEClass(FREELANCE);
         createEAttribute(freelanceEClass, FREELANCE__ASSIGNMENT);
@@ -422,6 +441,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         createEReference(divisionEClass, DIVISION__DEPARTMENT);
         createEReference(divisionEClass, DIVISION__DIRECTOR);
         createEAttribute(divisionEClass, DIVISION__BUDGET);
+        createEReference(divisionEClass, DIVISION__EMPLOYEES_OF_THE_MONTH);
 
         studentEClass = createEClass(STUDENT);
     }
@@ -479,6 +499,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         initEReference(getDepartment_Boss(), this.getEmployee(), this.getEmployee_Managed(), "boss", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDepartment_SubDepartment(), this.getDepartment(), this.getDepartment_ParentDepartment(), "subDepartment", null, 0, -1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDepartment_ParentDepartment(), this.getDepartment(), this.getDepartment_SubDepartment(), "parentDepartment", null, 0, 1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDepartment_EmployeeOfTheMonth(), this.getEmployee(), null, "employeeOfTheMonth", null, 0, -1, Department.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         addEOperation(departmentEClass, thePrimitivetypesPackage.getInteger(), "calcExpenses", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -492,6 +513,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
         initEReference(getDivision_Department(), this.getDepartment(), null, "department", null, 0, -1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDivision_Director(), this.getEmployee(), this.getEmployee_Directed(), "director", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getDivision_Budget(), thePrimitivetypesPackage.getInteger(), "budget", null, 0, 1, Division.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDivision_EmployeesOfTheMonth(), this.getEmployee(), null, "employeesOfTheMonth", null, 0, -1, Division.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(studentEClass, Student.class, "Student", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -547,8 +569,8 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
           (divisionEClass, 
            source, 
            new String[] {
-             "constraints", "nasty"
-           });				
+             "constraints", "nasty limitEmployeesOfTheMonth"
+           });					
         addAnnotation
           (studentEClass, 
            source, 
@@ -613,8 +635,15 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
           (divisionEClass, 
            source, 
            new String[] {
-             "nasty", "self.department->collect(d| \r\nd.employee->including(d.boss)).salary->sum() < budget"
+             "nasty", "self.department->collect(d| \r\nd.employee->including(d.boss)).salary->sum() < budget",
+             "limitEmployeesOfTheMonth", "self.employeesOfTheMonth->size() <= self.department->size()"
            });				
+        addAnnotation
+          (getDivision_EmployeesOfTheMonth(), 
+           source, 
+           new String[] {
+             "derive", "self.department.employeeOfTheMonth"
+           });		
         addAnnotation
           (studentEClass, 
            source, 
@@ -636,7 +665,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
            source, 
            new String[] {
              "Property.oppositeRoleName", "student2employee"
-           });											
+           });												
     }
 
     /**
@@ -658,7 +687,7 @@ public class CompanyPackageImpl extends EPackageImpl implements CompanyPackage {
            source, 
            new String[] {
              "Property.oppositeRoleName", "department2division"
-           });		
+           });			
     }
 
 } //CompanyPackageImpl
