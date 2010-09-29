@@ -17,6 +17,7 @@ png("/tmp/plotScatterModelSize.png", width=1200, height=800)
 xyplot(allInstancesEvalAndExecTime + iaEvalAndExecTime ~ modelSize | optionId, type=c("p", "r"),
 xlab = "Number of model elements (model size)",
 ylab = ylabEvalTime)
+# flush:
 dev.off()
 
 png("/tmp/plotScatterOclId.png", width=1200, height=800)
@@ -26,6 +27,9 @@ ylab = ylabEvalTime)
 dev.off()
 
 png("/tmp/plotScatterNotificationId.png", width=1200, height=800)
+# each optionId gives a new coordinate system next to each other
+# each "+" argument gives a new colored plot within each coordinate system
+# use I(a+b) to plot a sum
 xyplot(allInstancesEvalAndExecTime + iaEvalAndExecTime ~ notificationId | optionId, type=c("p", "r"),
 xlab = "Different model change notifications",
 ylab = ylabEvalTime)
@@ -37,6 +41,7 @@ xlab = "Number of all instances of context of OCL Expression"
 ylab = ylabEvalTime)
 dev.off()
 
+# compute mean value of all numerical columns, grouped by (modelSize, optionId)
 aggregatedResult = aggregate(strippedResult, by=list(modelSize, optionId), FUN=mean)
 detach(strippedResult)
 attach(aggregatedResult)
