@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link company.impl.DivisionImpl#getDepartment <em>Department</em>}</li>
  *   <li>{@link company.impl.DivisionImpl#getDirector <em>Director</em>}</li>
  *   <li>{@link company.impl.DivisionImpl#getBudget <em>Budget</em>}</li>
+ *   <li>{@link company.impl.DivisionImpl#getEmployeesOfTheMonth <em>Employees Of The Month</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,6 +102,16 @@ public class DivisionImpl extends EObjectImpl implements Division {
      * @ordered
      */
     protected int budget = BUDGET_EDEFAULT;
+
+    /**
+     * The cached setting delegate for the '{@link #getEmployeesOfTheMonth() <em>Employees Of The Month</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getEmployeesOfTheMonth()
+     * @generated
+     * @ordered
+     */
+    protected EStructuralFeature.Internal.SettingDelegate EMPLOYEES_OF_THE_MONTH__ESETTING_DELEGATE = ((EStructuralFeature.Internal)CompanyPackage.Literals.DIVISION__EMPLOYEES_OF_THE_MONTH).getSettingDelegate();
 
     /**
      * <!-- begin-user-doc -->
@@ -219,6 +231,16 @@ public class DivisionImpl extends EObjectImpl implements Division {
 
 				/**
      * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    public EList<Employee> getEmployeesOfTheMonth() {
+        return (EList<Employee>)EMPLOYEES_OF_THE_MONTH__ESETTING_DELEGATE.dynamicGet(this, null, 0, true, false);
+    }
+
+                /**
+     * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
      * @generated
      */
@@ -265,6 +287,8 @@ public class DivisionImpl extends EObjectImpl implements Division {
                 return getDirector();
             case CompanyPackage.DIVISION__BUDGET:
                 return getBudget();
+            case CompanyPackage.DIVISION__EMPLOYEES_OF_THE_MONTH:
+                return getEmployeesOfTheMonth();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -335,6 +359,8 @@ public class DivisionImpl extends EObjectImpl implements Division {
                 return director != null;
             case CompanyPackage.DIVISION__BUDGET:
                 return budget != BUDGET_EDEFAULT;
+            case CompanyPackage.DIVISION__EMPLOYEES_OF_THE_MONTH:
+                return EMPLOYEES_OF_THE_MONTH__ESETTING_DELEGATE.dynamicIsSet(this, null, 0);
         }
         return super.eIsSet(featureID);
     }

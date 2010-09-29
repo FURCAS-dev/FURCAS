@@ -144,7 +144,13 @@ public class BaseDepartmentTest extends TestCase {
      */
     public final String nastyConstraint = "context Division \n" + "inv nasty: \n" + "self.department->collect(d| \n"
             + "d.employee->including(d.boss)).salary->sum() < budget";
-
+    
+    /**
+     * A division is allowed a maximum number of employees of the month equal to its number of departments.
+     * If a department has no employee of the month, another on can have two.
+     */
+    public final String limitEmployeesOfTheMonth = "context Division \n" + "inv limitEmployeesOfTheMonth: \n" + "self.employeesOfTheMonth->size() <= self.department->size()";
+    
     /**
      * Only directors are allowed to have a secretary
      */
@@ -225,6 +231,8 @@ public class BaseDepartmentTest extends TestCase {
     public ExpressionInOCL expensesRestrictionAST = null;
 
     public ExpressionInOCL nastyConstraintAST = null;
+    
+    public ExpressionInOCL limitEmployeesOfTheMonthAST = null;
 
     public ExpressionInOCL divisionBossSecretaryAST = null;
 
@@ -268,6 +276,8 @@ public class BaseDepartmentTest extends TestCase {
     protected EAttribute employeeSalary = null;
 
     protected EReference employeeSecretary = null;
+    
+    protected EAttribute employeeIsSecretary = null;
 
     protected EClass freelance = null;
 
@@ -276,6 +286,10 @@ public class BaseDepartmentTest extends TestCase {
     protected EAttribute freelanceAssignment = null;
 
     protected EReference departmentRef = null;
+    
+    protected EReference departmentEmployeeOfTheMonth = null;
+    
+    protected EReference divisionEmployeesOfTheMonth = null;
 
     protected EReference bossRef = null;
 
@@ -349,6 +363,10 @@ public class BaseDepartmentTest extends TestCase {
         return getAST("nastyConstraint");
     }
 
+    protected ExpressionInOCL getLimitEmployeesOfTheMonthAST() {
+        return getAST("limitEmployeesOfTheMonth");
+    }
+    
     protected ExpressionInOCL getDivisionBossSecretaryAST() {
         return getAST("divisionBossSecretary");
     }
@@ -441,6 +459,8 @@ public class BaseDepartmentTest extends TestCase {
         this.bossRef = (EReference) this.department.getEStructuralFeature("boss");
         this.employeeRef = (EReference) this.department.getEStructuralFeature("employee");
         this.departmentRef = (EReference) this.division.getEStructuralFeature("department");
+        this.departmentEmployeeOfTheMonth = (EReference) this.department.getEStructuralFeature("employeeOfTheMonth");
+        this.divisionEmployeesOfTheMonth = (EReference) this.division.getEStructuralFeature("employeesOfTheMonth");
         this.employee = this.comp.getEmployee();
         this.employeeName = (EAttribute) this.employee.getEStructuralFeature("name");
         this.employeeAge = (EAttribute) this.employee.getEStructuralFeature("age");
@@ -580,6 +600,8 @@ public class BaseDepartmentTest extends TestCase {
         this.student = null;
         this.freelanceAssignment = null;
         this.departmentRef = null;
+        this.departmentEmployeeOfTheMonth = null;
+        this.divisionEmployeesOfTheMonth = null;
         this.bossRef = null;
         this.managedRef = null;
         this.employerRef = null;

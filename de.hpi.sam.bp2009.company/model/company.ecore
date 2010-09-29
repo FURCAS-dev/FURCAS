@@ -40,12 +40,6 @@
         <details key="Property.oppositeRoleName" value="student2employee"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSecretary" eType="ecore:EDataType primitivetypes.ecore#//Boolean"
-        derived="true">
-      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="derived" value="if self.secretary = oclIsUndefined() and self.employer.employee->select(e | e.secretary = self)->size() > 0 then true else false endif"/>
-      </eAnnotations>
-    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Department">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
@@ -57,10 +51,9 @@
       <details key="BudgetRestriction" value="self.calcExpenses() &lt;= self.budget"/>
       <details key="MaxJuniorsWarning" value="if self.maxJuniors > 1&#xD;&#xA;then&#xD;&#xA;self.employee->select(e|e.age &lt; 25)->size()&#xD;&#xA;&lt;self.maxJuniors - 1&#xD;&#xA;else&#xD;&#xA;true&#xD;&#xA;endif"/>
       <details key="departmentMustHaveDivision" value="self.department2division->notEmpty()"/>
-      <details key="derivedPropertyHandling" value="self.employee->size() > self.getNumberOfSecretaries()"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="NotBossFreelance OldEmployee MaxJuniors BossHighestSalary boss10YearsOlderThanJunior BudgetRestriction MaxJuniorsWarning departmentMustHaveDivision derivedPropertyHandling"/>
+      <details key="constraints" value="NotBossFreelance OldEmployee MaxJuniors BossHighestSalary boss10YearsOlderThanJunior BudgetRestriction MaxJuniorsWarning departmentMustHaveDivision"/>
     </eAnnotations>
     <eOperations name="calcExpenses" eType="ecore:EDataType primitivetypes.ecore#//Integer">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
@@ -70,11 +63,6 @@
     <eOperations name="sumBudget" eType="ecore:EDataType primitivetypes.ecore#//Integer">
       <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
         <details key="body" value="if self.subDepartment->size() >= 1 then&#xD;&#xA;&#x9;self.subDepartment->iterate(department; return : Integer = 0 | return + department.sumBudget()) + self.budget&#xD;&#xA;else&#xD;&#xA;&#x9;self.budget&#xD;&#xA;endif "/>
-      </eAnnotations>
-    </eOperations>
-    <eOperations name="getNumberOfSecretaries" eType="ecore:EDataType primitivetypes.ecore#//Integer">
-      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
-        <details key="body" value="self.employee->select(e | e.isSecretary)->size()"/>
       </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
@@ -88,6 +76,8 @@
         eType="#//Department" containment="true" resolveProxies="false" eOpposite="#//Department/parentDepartment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parentDepartment" eType="#//Department"
         resolveProxies="false" eOpposite="#//Department/subDepartment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employeeOfTheMonth" unique="false"
+        upperBound="-1" eType="#//Employee"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Freelance" eSuperTypes="#//Employee">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
@@ -103,9 +93,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="Division">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
       <details key="nasty" value="self.department->collect(d| &#xD;&#xA;d.employee->including(d.boss)).salary->sum() &lt; budget"/>
+      <details key="limitEmployeesOfTheMonth" value="self.employeesOfTheMonth->size() &lt;= self.department->size()"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="nasty"/>
+      <details key="constraints" value="nasty limitEmployeesOfTheMonth"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType primitivetypes.ecore#//String"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="department" upperBound="-1"
@@ -117,6 +108,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="director" eType="#//Employee"
         containment="true" resolveProxies="false" eOpposite="#//Employee/directed"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="budget" eType="ecore:EDataType primitivetypes.ecore#//Integer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="employeesOfTheMonth" upperBound="-1"
+        eType="#//Employee" changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://de.hpi.sam.bp2009.OCL">
+        <details key="derive" value="self.department.employeeOfTheMonth"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Student" eSuperTypes="#//Employee">
     <eAnnotations source="http://de.hpi.sam.bp2009.OCL">

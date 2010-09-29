@@ -225,13 +225,22 @@ public interface CompanyPackage extends EPackage {
         int DEPARTMENT__PARENT_DEPARTMENT = 6;
 
 /**
+     * The feature id for the '<em><b>Employee Of The Month</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DEPARTMENT__EMPLOYEE_OF_THE_MONTH = 7;
+
+/**
      * The number of structural features of the '<em>Department</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DEPARTMENT_FEATURE_COUNT = 7;
+    int DEPARTMENT_FEATURE_COUNT = 8;
 
     /**
      * The meta object id for the '{@link company.impl.FreelanceImpl <em>Freelance</em>}' class.
@@ -380,13 +389,22 @@ public interface CompanyPackage extends EPackage {
     int DIVISION__BUDGET = 3;
 
     /**
+     * The feature id for the '<em><b>Employees Of The Month</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int DIVISION__EMPLOYEES_OF_THE_MONTH = 4;
+
+    /**
      * The number of structural features of the '<em>Division</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int DIVISION_FEATURE_COUNT = 4;
+    int DIVISION_FEATURE_COUNT = 5;
 
     /**
      * The meta object id for the '{@link company.impl.StudentImpl <em>Student</em>}' class.
@@ -666,6 +684,17 @@ public interface CompanyPackage extends EPackage {
         EReference getDepartment_ParentDepartment();
 
 /**
+     * Returns the meta object for the reference list '{@link company.Department#getEmployeeOfTheMonth <em>Employee Of The Month</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Employee Of The Month</em>'.
+     * @see company.Department#getEmployeeOfTheMonth()
+     * @see #getDepartment()
+     * @generated
+     */
+    EReference getDepartment_EmployeeOfTheMonth();
+
+/**
      * Returns the meta object for class '{@link company.Freelance <em>Freelance</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -739,6 +768,17 @@ public interface CompanyPackage extends EPackage {
      * @generated
      */
     EAttribute getDivision_Budget();
+
+    /**
+     * Returns the meta object for the reference list '{@link company.Division#getEmployeesOfTheMonth <em>Employees Of The Month</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Employees Of The Month</em>'.
+     * @see company.Division#getEmployeesOfTheMonth()
+     * @see #getDivision()
+     * @generated
+     */
+    EReference getDivision_EmployeesOfTheMonth();
 
     /**
      * Returns the meta object for class '{@link company.Student <em>Student</em>}'.
@@ -913,6 +953,14 @@ public interface CompanyPackage extends EPackage {
                 EReference DEPARTMENT__PARENT_DEPARTMENT = eINSTANCE.getDepartment_ParentDepartment();
 
         /**
+         * The meta object literal for the '<em><b>Employee Of The Month</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DEPARTMENT__EMPLOYEE_OF_THE_MONTH = eINSTANCE.getDepartment_EmployeeOfTheMonth();
+
+        /**
          * The meta object literal for the '{@link company.impl.FreelanceImpl <em>Freelance</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -971,6 +1019,14 @@ public interface CompanyPackage extends EPackage {
          * @generated
          */
         EAttribute DIVISION__BUDGET = eINSTANCE.getDivision_Budget();
+
+        /**
+         * The meta object literal for the '<em><b>Employees Of The Month</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference DIVISION__EMPLOYEES_OF_THE_MONTH = eINSTANCE.getDivision_EmployeesOfTheMonth();
 
         /**
          * The meta object literal for the '{@link company.impl.StudentImpl <em>Student</em>}' class.
