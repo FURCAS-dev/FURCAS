@@ -19,6 +19,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLEx
  *
  * @author
  */
+@SuppressWarnings("restriction")
 public class AllInstanceEvaluationMeasurement {
 
     // Model for which a all instance call is measured
