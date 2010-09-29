@@ -28,6 +28,7 @@ public class NotificationResourceLoader {
         ResourceSetImpl resultRS;
         resultRS = new ResourceSetImpl();
         resultRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
+        // TODO register ECrossReferenceAdapter only after model shrinking process has finished and before OCL evaluation starts
         ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
         resultRS.eAdapters().add(adapter);
 
