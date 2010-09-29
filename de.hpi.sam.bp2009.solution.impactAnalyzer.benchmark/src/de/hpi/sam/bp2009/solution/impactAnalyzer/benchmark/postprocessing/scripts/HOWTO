@@ -1,0 +1,31 @@
+How to run the R scripts within this folder
+===========================================
+
+Setup
+-----
+- Install R Environment (http://www.r-project.org/)
+- Open Console/Terminal
+- Make sure that you have web access via console. 
+  (You may have to set a proxy by "export http_proxy=http://proxy.wdf.sap.corp:8080/")
+- Open the R console by executing R or R.exe
+- Install R packages which are needed in order to run the R scripts within this folder.
+  Therefore execute the following lines within the R console: 
+   
+  install.packages("rgl")
+  install.packages("DAAG")
+  install.packages("outliers")
+  install.packages("lattice")
+  install.packages("epicalc")
+  
+  
+Run scripts
+-----------
+- Navigate to the folder of the result.data file
+	e.g. cd /tmp/results/
+- Open the R console by executing R or R.exe
+- Load the result data by executing the following line:
+	source("loadAndPrepareResultData.R")
+- Now run any other script within this folder
+
+
+
