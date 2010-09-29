@@ -7,13 +7,17 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Fragment-Host:  de.hpi.sam.bp2009.solution.oclToAst
 Export-Package: de.hpi.sam.bp2009.solution.oclToAst.tests
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
+ de.hpi.sam.bp2009.solution.oclToAst;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.junit4,
- de.hpi.sam.bp2009.company,
- de.hpi.sam.bp2009.solution.testutils,
- de.hpi.sam.petriNet
+ org.junit;visibility:=reexport,
+ org.eclipse.ocl,
+ de.hpi.sam.petriNet,
+ org.eclipse.emf.query2,
+ org.eclipse.ocl.ecore,
+ de.hpi.sam.bp2009.solution.scopeProvider,
+ com.sap.ocl.oppositefinder.query2,
+ com.sap.emf.ocl.hiddenopposites,
+ de.hpi.sam.bp2009.solution.queryContextScopeProvider
 Bundle-ActivationPolicy: lazy
