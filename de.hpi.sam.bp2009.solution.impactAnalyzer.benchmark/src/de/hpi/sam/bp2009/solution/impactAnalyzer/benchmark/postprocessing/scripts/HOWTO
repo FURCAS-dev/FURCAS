@@ -27,7 +27,6 @@ Run scripts
 - Open the R console by executing R or R.exe
 - Load the result data by executing the following line:
 	source("loadAndPrepareResultData.R")
-- Now run any other script within this folder
-
-
-
+- Now run any other script within this folder by using
+    source("<scriptName>", print.eval=TRUE)
+  The print.eval is important because otherwise the diagram files won't be created
