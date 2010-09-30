@@ -164,7 +164,7 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         OperationCallExpKeyedSet<AnnotatedEObject> result;
         if (allInstancesClass != null) {
-            result = new OperationCallExpKeyedSet<AnnotatedEObject>();
+            result = new OperationCallExpKeyedSet<AnnotatedEObject>(tracebackCache.getConfiguration().isOperationCallSelectionActive());
             for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances((Notifier) changeEvent.getNotifier(), allInstancesClass,
                     oppositeEndFinder)) {
                 result.add(annotateEObject(source, roi));

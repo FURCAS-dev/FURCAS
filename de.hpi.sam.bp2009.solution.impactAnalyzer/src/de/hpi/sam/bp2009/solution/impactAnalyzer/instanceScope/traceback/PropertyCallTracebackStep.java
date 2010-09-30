@@ -90,7 +90,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
     @Override
     protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>();
+        OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>(tracebackCache.getConfiguration().isOperationCallSelectionActive());
         switch (strategy) {
         case TUPLE:
             result.addAll(nextStep.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent));

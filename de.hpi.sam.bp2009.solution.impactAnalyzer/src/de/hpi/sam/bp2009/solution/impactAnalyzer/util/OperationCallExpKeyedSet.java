@@ -10,8 +10,6 @@ import java.util.Set;
 
 import org.eclipse.ocl.ecore.OperationCallExp;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
-
 /**
  * Recursively keys sets of elements by {@link OperationCallExp} elements and implements the {@link Set} interface. The
  * {@link Set} view on this collection is the projection of transitively combining unique elements from the tree of keyed element.
@@ -42,11 +40,16 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
     
     private final Set<E> set;
     
-    @SuppressWarnings("rawtypes")
-    private final static OperationCallExpKeyedSet<?> EMPTY_SET = new OperationCallExpKeyedSet(true);
+    private final boolean keyByOperation;
     
-    public OperationCallExpKeyedSet() {
-        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+    @SuppressWarnings("rawtypes")
+    private final static OperationCallExpKeyedSet<?> EMPTY_SET_KEYED_BY_OPERATION = new OperationCallExpKeyedSet(true, true);
+    @SuppressWarnings("rawtypes")
+    private final static OperationCallExpKeyedSet<?> EMPTY_SET_NOT_KEYED_BY_OPERATION = new OperationCallExpKeyedSet(true, false);
+    
+    public OperationCallExpKeyedSet(boolean keyByOperation) {
+        this.keyByOperation = keyByOperation;
+        if (keyByOperation) {
             map = new HashMap<OperationCallExp, OperationCallExpKeyedSet<E>>();
             nullSet = new HashSet<E>();
         } else {
@@ -56,8 +59,9 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
         set = new HashSet<E>();
     }
 
-    public OperationCallExpKeyedSet(Collection<? extends E> c) {
-        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+    public OperationCallExpKeyedSet(Collection<? extends E> c, boolean keyByOperation) {
+        this.keyByOperation = keyByOperation;
+        if (keyByOperation) {
             map = new HashMap<OperationCallExp, OperationCallExpKeyedSet<E>>(Math.max((int) (c.size() / .75f) + 1, 16));
             nullSet = new HashSet<E>(c);
         } else {
@@ -68,8 +72,9 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
         addAll(c);
     }
 
-    public OperationCallExpKeyedSet(int initialCapacity, float loadFactor) {
-        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+    public OperationCallExpKeyedSet(int initialCapacity, float loadFactor, boolean keyByOperation) {
+        this.keyByOperation = keyByOperation;
+        if (keyByOperation) {
             map = new HashMap<OperationCallExp, OperationCallExpKeyedSet<E>>(initialCapacity, loadFactor);
             nullSet = new HashSet<E>(initialCapacity, loadFactor);
         } else {
@@ -79,8 +84,9 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
         set = new HashSet<E>(initialCapacity, loadFactor);
     }
 
-    public OperationCallExpKeyedSet(int initialCapacity) {
-        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+    public OperationCallExpKeyedSet(int initialCapacity, boolean keyByOperation) {
+        this.keyByOperation = keyByOperation;
+        if (keyByOperation) {
             map = new HashMap<OperationCallExp, OperationCallExpKeyedSet<E>>(initialCapacity);
             nullSet = new HashSet<E>(initialCapacity);
         } else {
@@ -93,8 +99,9 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
     /**
      * Used only for creating the empty set
      */
-    private OperationCallExpKeyedSet(boolean b) {
-        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+    private OperationCallExpKeyedSet(boolean b, boolean keyByOperation) {
+        this.keyByOperation = keyByOperation;
+        if (keyByOperation) {
             map = Collections.emptyMap();
             nullSet = Collections.emptySet();
         } else {
@@ -136,14 +143,14 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
     }
     
     public boolean put(OperationCallExp oce, E e) {
-        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+        if (keyByOperation) {
             Set<E> s;
             if (oce == null) {
                 s = nullSet;
             } else {
                 s = map.get(oce);
                 if (s == null) {
-                    OperationCallExpKeyedSet<E> s2 = new OperationCallExpKeyedSet<E>();
+                    OperationCallExpKeyedSet<E> s2 = new OperationCallExpKeyedSet<E>(keyByOperation);
                     map.put(oce, s2);
                     s = s2;
                 }
@@ -154,14 +161,14 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
     }
 
     public boolean putAll(OperationCallExp oce, Collection<? extends E> e) {
-        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+        if (keyByOperation) {
             Set<E> s;
             if (oce == null) {
                 s = nullSet;
             } else {
                 s = map.get(oce);
                 if (s == null) {
-                    OperationCallExpKeyedSet<E> s2 = new OperationCallExpKeyedSet<E>();
+                    OperationCallExpKeyedSet<E> s2 = new OperationCallExpKeyedSet<E>(keyByOperation);
                     map.put(oce, s2);
                     s = s2;
                 }
@@ -172,11 +179,11 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
     }
     
     public boolean addAll(OperationCallExpKeyedSet<E> other) {
-        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+        if (keyByOperation) {
             for (OperationCallExp key : other.map.keySet()) {
                 OperationCallExpKeyedSet<E> s = map.get(key);
                 if (s == null) {
-                    s = new OperationCallExpKeyedSet<E>();
+                    s = new OperationCallExpKeyedSet<E>(keyByOperation);
                     map.put(key, s);
                 }
                 s.addAll(other.get(key));
@@ -199,12 +206,12 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
     }
 
     private OperationCallExpKeyedSet<E> get(Object key) {
-        if (!OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+        if (!keyByOperation) {
             throw new RuntimeException("get(key) not supported on OperatoinCallExpKeyedSet if operation call selection is not activated. "+
                     "See ActivationOption.isOperationCallSelectionActive().");
         }
         if (key == null) {
-            return new OperationCallExpKeyedSet<E>(nullSet);
+            return new OperationCallExpKeyedSet<E>(nullSet, keyByOperation);
         } else {
             return map.get(key);
         }
@@ -212,8 +219,8 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
 
     public OperationCallExpKeyedSet<E> getCombinedResultsFor(OperationCallExp oce) {
         OperationCallExpKeyedSet<E> result;
-        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
-            result = new OperationCallExpKeyedSet<E>();
+        if (keyByOperation) {
+            result = new OperationCallExpKeyedSet<E>(keyByOperation);
             Set<E> resultForOce = get(oce);
             if (resultForOce != null) {
                 result.addAll(resultForOce);
@@ -226,8 +233,12 @@ public class OperationCallExpKeyedSet<E> implements Set<E> {
     }
     
     @SuppressWarnings("unchecked")
-    public static OperationCallExpKeyedSet<AnnotatedEObject> emptySet() {
-        return (OperationCallExpKeyedSet<AnnotatedEObject>) EMPTY_SET;
+    public static OperationCallExpKeyedSet<AnnotatedEObject> emptySet(boolean keyByOperation) {
+        if (keyByOperation) {
+            return (OperationCallExpKeyedSet<AnnotatedEObject>) EMPTY_SET_KEYED_BY_OPERATION;
+        } else {
+            return (OperationCallExpKeyedSet<AnnotatedEObject>) EMPTY_SET_NOT_KEYED_BY_OPERATION;
+        }
     }
 
     public boolean remove(Object o) {

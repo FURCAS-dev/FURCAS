@@ -94,7 +94,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
             UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(),
                     oppositeEndFinder, tracebackCache);
             if (unusedResult.hasProvenUnused()) {
-                result = OperationCallExpKeyedSet.emptySet();
+                result = OperationCallExpKeyedSet.emptySet(tracebackCache.getConfiguration().isOperationCallSelectionActive());
             } else {
                 result = perform(source, unusedResult.getNewRequestSet(), tracebackCache, changeEvent);
             }
@@ -109,7 +109,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         OperationCallExpKeyedSet<AnnotatedEObject> result;
         if (identity) {
-            result = new OperationCallExpKeyedSet<AnnotatedEObject>();
+            result = new OperationCallExpKeyedSet<AnnotatedEObject>(tracebackCache.getConfiguration().isOperationCallSelectionActive());
             result.add(source);
         } else {
             result = super.performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache,
