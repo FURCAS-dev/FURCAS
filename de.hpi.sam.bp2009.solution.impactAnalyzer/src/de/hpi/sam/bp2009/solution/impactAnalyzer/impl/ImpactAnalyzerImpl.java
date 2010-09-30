@@ -23,8 +23,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     private final OCLExpression expression;
     private FilterSynthesisImpl filtersyn;
     private InstanceScopeAnalysis instanceScopeAnalysis;
-    private boolean needToInferContextType;
-    private EClass context;
+    private final EClass context;
     private final OppositeEndFinder oppositeEndFinder;
 
     /**
@@ -51,7 +50,12 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      */
     public ImpactAnalyzerImpl(OCLExpression expression, OppositeEndFinder oppositeEndFinder) {
         this.expression = expression;
-        needToInferContextType = true;
+        this.context = expression.accept(new ContextTypeRetriever());
+        if (this.context == null) {
+            throw new IllegalArgumentException("Expression "+expression+" does not contain a \"self\" variable reference. "+
+                    "Therefore, its context type cannot be inferred and needs to be provided explicitly. Consider using "+
+                    getClass().getName()+"(OCLExpression, EClass, OppositeEndFinder) instead.");
+        }
         this.oppositeEndFinder = oppositeEndFinder;
     }
 
@@ -60,7 +64,6 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      */
     public ImpactAnalyzerImpl(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder) {
         this.expression = expression;
-        needToInferContextType = false;
         this.context = context;
         this.oppositeEndFinder = oppositeEndFinder;
     }
@@ -74,10 +77,6 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
         if (instanceScopeAnalysis == null) {
             if (filtersyn == null) {
                 createFilterForExpression(true);
-            }
-            if (needToInferContextType) {
-                context = expression.accept(new ContextTypeRetriever());
-                needToInferContextType = false;
             }
             instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder);
         }
