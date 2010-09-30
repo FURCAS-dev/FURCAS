@@ -426,7 +426,8 @@ public class FilterSynthesisTest extends BaseDepartmentTest {
             }
         };
         EventManager eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
-        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) getSimpleAllInstancesAST().getBodyExpression())
+        EventFilter filter = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer((OCLExpression) getSimpleAllInstancesAST().getBodyExpression(),
+                CompanyPackage.eINSTANCE.getEmployee())
                 .createFilterForExpression(/* notifyNewContextElements */ false);
         eventManager.subscribe(filter, listener);
         
