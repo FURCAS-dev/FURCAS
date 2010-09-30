@@ -1,4 +1,5 @@
 require(epicalc)
+# Pick only every second model size
 result = result[result$modelId %% 2 == 0, ]
 
 result$iaExecAndEvalTime = result$executionTime + result$evaluationTimeAfter
