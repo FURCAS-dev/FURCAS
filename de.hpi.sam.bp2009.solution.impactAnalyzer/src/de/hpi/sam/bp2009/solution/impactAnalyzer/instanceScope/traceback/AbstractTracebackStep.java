@@ -62,19 +62,6 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
     private final OppositeEndFinder oppositeEndFinder;
     
     /**
-     * To avoid endless recursions, a step remembers for which combinations of <code>source</code> objects and
-     * {@link UnusedEvaluationRequestSet}s it is currently executing. If any of those combinations is to be evaluated
-     * again while already being evaluated by the current thread, an empty set is returned.
-     */
-    private static class IndirectingStepThreadLocal extends ThreadLocal<Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>> {
-        @Override
-        protected Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>> initialValue() {
-            return new HashSet<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>();
-        }
-    }
-    private final ThreadLocal<Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>> currentlyEvaluatingNavigateFor = new IndirectingStepThreadLocal();
-
-    /**
      * Used in "debug" mode, storing this step's annotation string to be used in {@link AnnotatedEObject}s to explain how
      * a result was inferred.
      */
@@ -96,7 +83,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
         public OperationCallExpKeyedSet<AnnotatedEObject> traceback(AnnotatedEObject source, UnusedEvaluationRequestSet pendingUnusedEvalRequests,
                 de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
             UnusedEvaluationRequestSet reducedUnusedEvaluationRequestSet;
-            if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+            if (tracebackCache.getConfiguration().isUnusedDetectionActive()) {
                 reducedUnusedEvaluationRequestSet = pendingUnusedEvalRequests == null ? null
                         : pendingUnusedEvalRequests.createReducedSet(variablesThatLeaveOrEnterScopeWhenCallingStep);
             } else {
@@ -146,7 +133,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                 Notification changeEvent) {
             OperationCallExpKeyedSet<AnnotatedEObject> resultsForSourceOrArgument = super.traceback(source, pendingUnusedEvalRequests,
                     tracebackCache, changeEvent);
-            OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>();
+            OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>(tracebackCache.getConfiguration().isOperationCallSelectionActive());
             result.putAll(callToWhichResultsAreSpecific, resultsForSourceOrArgument);
             return result;
         }
@@ -416,24 +403,24 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         OperationCallExpKeyedSet<AnnotatedEObject> result;
         Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key = new Pair<AnnotatedEObject, UnusedEvaluationRequestSet>(source, pendingUnusedEvalRequests);
-        if (currentlyEvaluatingNavigateFor.get().contains(key)) {
-            result = OperationCallExpKeyedSet.emptySet();
+        if (tracebackCache.isCurrentlyEvaluatingFor(this, key)) {
+            result = OperationCallExpKeyedSet.emptySet(tracebackCache.getConfiguration().isOperationCallSelectionActive());
         } else {
             try {
-                currentlyEvaluatingNavigateFor.get().add(key);
+                tracebackCache.startEvaluationFor(this, key);
                 result = tracebackCache.get(this, source, pendingUnusedEvalRequests);
                 if (result == null) {
                     if (requiredType != null && !requiredType.isInstance(source.getAnnotatedObject())) {
-                        result = OperationCallExpKeyedSet.emptySet();
+                        result = OperationCallExpKeyedSet.emptySet(tracebackCache.getConfiguration().isOperationCallSelectionActive());
                     } else {
-                        if (OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                        if (tracebackCache.getConfiguration().isUnusedDetectionActive()) {
                             // try to prove unusedness with the unused rules recorded for this step; if that fails,
                             // merge the unused evaluation requests that failed for unknown variables
                             // with the ones passed in pendingUnusedEvalRequests and carry on
                             UnusedEvaluationResult unusedEvaluationResult = UnusedEvaluationRequestSet.evaluate(
                                     unusedEvaluationRequests, oppositeEndFinder, tracebackCache);
                             if (unusedEvaluationResult.hasProvenUnused()) {
-                                result = OperationCallExpKeyedSet.emptySet();
+                                result = OperationCallExpKeyedSet.emptySet(tracebackCache.getConfiguration().isOperationCallSelectionActive());
                             } else {
                                 result = performSubsequentTraceback(source,
                                         unusedEvaluationResult.getNewRequestSet() == null ? null : unusedEvaluationResult
@@ -446,7 +433,7 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                     tracebackCache.put(this, source, pendingUnusedEvalRequests, result);
                 }
             } finally {
-                currentlyEvaluatingNavigateFor.get().remove(key);
+                tracebackCache.finishedEvaluationFor(this, key);
             }
         }
         return result;

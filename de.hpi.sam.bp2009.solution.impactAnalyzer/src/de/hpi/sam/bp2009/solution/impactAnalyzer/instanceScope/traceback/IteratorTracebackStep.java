@@ -85,7 +85,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             Notification changeEvent) {
         switch (strategy) {
         case EMPTY:
-            return OperationCallExpKeyedSet.emptySet();
+            return OperationCallExpKeyedSet.emptySet(tracebackCache.getConfiguration().isOperationCallSelectionActive());
         case MAP:
             return step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
         case PASSTHROUGH:
@@ -94,7 +94,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             if (passedPredicate) {
                 return step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
             } else {
-                return OperationCallExpKeyedSet.emptySet();
+                return OperationCallExpKeyedSet.emptySet(tracebackCache.getConfiguration().isOperationCallSelectionActive());
             }
         default:
             throw new RuntimeException("Internal error: unknown traceback strategy "+strategy);

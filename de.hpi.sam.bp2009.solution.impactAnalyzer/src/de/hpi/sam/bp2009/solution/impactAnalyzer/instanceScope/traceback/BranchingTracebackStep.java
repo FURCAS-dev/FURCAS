@@ -26,7 +26,7 @@ public class BranchingTracebackStep<E extends OCLExpression> extends AbstractTra
     @Override
     protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>();
+        OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>(tracebackCache.getConfiguration().isOperationCallSelectionActive());
         for (TracebackStepAndScopeChange step : steps) {
             result.addAll(step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent));
         }

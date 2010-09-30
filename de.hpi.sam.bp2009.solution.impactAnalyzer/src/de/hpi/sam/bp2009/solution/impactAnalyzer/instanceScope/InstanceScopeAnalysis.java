@@ -542,8 +542,8 @@ public class InstanceScopeAnalysis {
         Set<AnnotatedEObject> result;
         if (OptimizationActivation.getOption().isTracebackStepISAActive()) {
             TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
-            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cache =
-                new de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache();
+            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cache = new de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache(
+                    OptimizationActivation.getOption());
             result = step.traceback(sourceElement, /* pending unused evaluation requests */ null, cache, changeEvent);
         } else {
             NavigationStep step = getNavigationStepsToSelfForExpression(
