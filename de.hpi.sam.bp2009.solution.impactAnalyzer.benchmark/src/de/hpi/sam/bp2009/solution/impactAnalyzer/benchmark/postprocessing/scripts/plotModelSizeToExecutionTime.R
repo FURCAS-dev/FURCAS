@@ -1,6 +1,6 @@
 require(outliers)
 require(lattice)
-results = read.table("/tmp/result.data", header=TRUE)
+#results = read.table("result.data", header=TRUE)
 
 length(results$executionTime)
 
