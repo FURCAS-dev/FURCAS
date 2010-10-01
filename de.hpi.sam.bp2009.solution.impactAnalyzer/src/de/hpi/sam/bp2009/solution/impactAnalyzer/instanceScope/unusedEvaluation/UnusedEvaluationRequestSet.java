@@ -96,7 +96,7 @@ public class UnusedEvaluationRequestSet {
      * 
      * For all remaining requests, we remove the slots for any variable contained in <code>variablesThatLeavOrEnterScope</code>.
      */
-    public UnusedEvaluationRequestSet createReducedSet(Set<Variable> variablesThatLeaveOrEnterScope) {
+    public UnusedEvaluationRequestSet createReducedSet(Set<Variable> variablesThatLeaveOrEnterScope, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
         UnusedEvaluationRequestSet result = this;
         if (!requests.isEmpty() && !variablesThatLeaveOrEnterScope.isEmpty()) {
             boolean changed = false;
@@ -113,7 +113,7 @@ public class UnusedEvaluationRequestSet {
                 boolean setChanged = false;
                 Set<UnusedEvaluationRequest> newSet = new HashSet<UnusedEvaluationRequest>();
                 for (UnusedEvaluationRequest request : e.getValue()) {
-                    UnusedEvaluationRequest newRequest = request.getRequestWithSlotsRemoved(variablesThatLeaveOrEnterScope);
+                    UnusedEvaluationRequest newRequest = request.getRequestWithSlotsRemoved(variablesThatLeaveOrEnterScope, unusedEvaluationRequestFactory);
                     if (newRequest != request) {
                         changed = true;
                         setChanged = true;
@@ -162,7 +162,8 @@ public class UnusedEvaluationRequestSet {
             Set<UnusedEvaluationRequest> set = new HashSet<UnusedEvaluationRequest>();
             boolean setChanged = false;
             for (UnusedEvaluationRequest request : e.getValue()) {
-                UnusedEvaluationRequest clonedRequest = request.setInferredVariableValue(variable, value);
+                UnusedEvaluationRequest clonedRequest = request.setInferredVariableValue(variable, value,
+                        tracebackCache.getUnusedEvaluationRequestFactory());
                 set.add(clonedRequest);
                 if (clonedRequest != request) {
                     changed = true;

@@ -8,10 +8,14 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.junit.Test;
+
+import com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites;
 
 import data.classes.ClassTypeDefinition;
 import data.classes.ClassesFactory;
@@ -86,52 +90,67 @@ public class NgpmModelBasedOclIaTest extends TestCase {
                         "self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()",
                         ExpressionsPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
         final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
+        final MethodCallExpression callOnStringTypedExpression = (MethodCallExpression) ngpmModel.getEObject("E02C978BFD3F74805D0811DF8A6AFF380A1CE22F");
+        final EList<MethodSignature> oldValue = ((ClassTypeDefinition) callOnStringTypedExpression.getObject().getType().getInnermost()).getClazz().allSignatures();
         final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass());
         final boolean[] result = new boolean[1];
         string.eAdapters().add(new AdapterImpl() {
             @Override
             public void notifyChanged(Notification msg) {
                 Collection<EObject> impact = ia.getContextObjects(msg);
-                if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
-                    result[0] = impact.size() > 5 && impact.size() < 10;
-                    if (!result[0]) {
-                        System.err.println("Expected between 5 and 10 impacted MethodCallExpressions only for calls on string but found "
-                                + impact.size());
-                    }
+                result[0] = impact.contains(callOnStringTypedExpression);
+                if (!result[0]) {
+                    System.err
+                            .println("Expecting a method call on a string-typed expression to be impacted by adding a signature to String");
                 } else {
-                    result[0] = impact.size() > 50 && impact.size() < 100;
-                    if (!result[0]) {
-                        System.err.println("Expected between 50 and 100 impacted MethodCallExpressions but found only "
-                                + impact.size());
-                    }
-                }
-                Iterator<EObject> ii = impact.iterator(); 
-                while (result[0] && ii.hasNext()) {
-                    EObject n = ii.next();
-                    result[0] = result[0] && (n instanceof MethodCallExpression);
-                    if (!result[0]) {
-                        System.err.println("Found an impacted object that was not, as expected, a MethodCallExpression: "+n);
-                    }
                     if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
-                        // can enforce result type only if selective operation call traceback is active
-                        // because traceback visits OperationCallExp of getType() that are
-                        // not actually used and therefore returns a true superset; activate the following check if crisp
-                        // operation call
-                        // checking is performed
-                        result[0] = result[0]
-                                && (((ClassTypeDefinition) (((MethodCallExpression) n).getObject().getType().getInnermost()))
-                                        .getClazz().conformsTo(string));
+                        result[0] = impact.size() > 5 && impact.size() < 10;
                         if (!result[0]) {
                             System.err
-                                    .println("Found an impacted MethodCallExpression that is not called on an object of type String but on "
-                                            + (((ClassTypeDefinition) (((MethodCallExpression) n).getObject().getType().getInnermost()))
-                                                    .getClazz().getName())+": "+((MethodCallExpression) n).getMethodSignature().getName());
+                                    .println("Expected between 5 and 10 impacted MethodCallExpressions only for calls on string but found "
+                                            + impact.size());
+                        }
+                    } else {
+                        result[0] = impact.size() > 50 && impact.size() < 100;
+                        if (!result[0]) {
+                            System.err.println("Expected between 50 and 100 impacted MethodCallExpressions but found only "
+                                    + impact.size());
+                        }
+                    }
+                    Iterator<EObject> ii = impact.iterator();
+                    while (result[0] && ii.hasNext()) {
+                        EObject n = ii.next();
+                        result[0] = result[0] && (n instanceof MethodCallExpression);
+                        if (!result[0]) {
+                            System.err
+                                    .println("Found an impacted object that was not, as expected, a MethodCallExpression: " + n);
+                        }
+                        if (OptimizationActivation.getOption().isOperationCallSelectionActive()) {
+                            // can enforce result type only if selective operation call traceback is active
+                            // because traceback visits OperationCallExp of getType() that are
+                            // not actually used and therefore returns a true superset; activate the following check if crisp
+                            // operation call
+                            // checking is performed
+                            result[0] = result[0]
+                                    && (((ClassTypeDefinition) (((MethodCallExpression) n).getObject().getType().getInnermost()))
+                                            .getClazz().conformsTo(string));
+                            if (!result[0]) {
+                                System.err
+                                        .println("Found an impacted MethodCallExpression that is not called on an object of type String but on "
+                                                + (((ClassTypeDefinition) (((MethodCallExpression) n).getObject().getType()
+                                                        .getInnermost())).getClazz().getName())
+                                                + ": "
+                                                + ((MethodCallExpression) n).getMethodSignature().getName());
+                            }
                         }
                     }
                 }
             }
         });
         string.getOwnedSignatures().add(ClassesFactory.eINSTANCE.createMethodSignature());
+        EList<MethodSignature> newValue = ((ClassTypeDefinition) callOnStringTypedExpression.getObject().getType().getInnermost()).getClazz().allSignatures();
+        assertFalse("Expecting a method call on a string-typed expression to be impacted by adding a signature to String",
+                newValue.equals(oldValue));
         assertTrue(result[0]);
     }
 
@@ -177,6 +196,10 @@ public class NgpmModelBasedOclIaTest extends TestCase {
                         "self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()",
                         ExpressionsPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
         final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
+        // would have to be a call on the output of append()
+        final MethodCallExpression callOnAppendCallResult = (MethodCallExpression) ngpmModel.getEObject("E012BF1E3D01FCF05D0E11DF9483DFF10A1CE22F");
+        callOnAppendCallResult.getObject().setOwnedTypeDefinition(null); // force append's output type definition to be used in call's getType()
+        final Object oldValue = OCLWithHiddenOpposites.newInstance().evaluate(callOnAppendCallResult, exp);
         final MethodSignature append = (MethodSignature) ngpmModel.getEObject("E01F04667A9220905D0911DFA13BFF380A1CE22F");
         final ClassTypeDefinition appendOutputCTD = (ClassTypeDefinition) append.getOutput();
         assertEquals(string, appendOutputCTD.getClazz());
@@ -187,22 +210,35 @@ public class NgpmModelBasedOclIaTest extends TestCase {
             @Override
             public void notifyChanged(Notification msg) {
                 Collection<EObject> impact = ia.getContextObjects(msg);
-                if (OptimizationActivation.getOption().isTracebackStepISAActive() && OptimizationActivation.getOption().isUnusedDetectionActive()) {
-                    result[0] = impact.size() > 5 && impact.size() < 10;
-                    if (!result[0]) {
-                        System.err.println("Expected unused check to find between 5 and 10 changed but IA said "+impact.size()+
-                                " objects were impacted");
-                    }
+                if (!impact.contains(callOnAppendCallResult)) {
+                    System.err.println("Expecting a method call on a string-typed expression to be impacted by adding a signature to String");
+                    result[0] = false;
                 } else {
-                    result[0] = impact.size() > 50;
-                    if (!result[0]) {
-                        System.err.println("Expected more than 50 method calls to be impacted without unused check but found only "+
-                                impact.size());
+                    if (OptimizationActivation.getOption().isTracebackStepISAActive()
+                            && OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                        result[0] = impact.size() > 5 && impact.size() < 10;
+                        if (!result[0]) {
+                            System.err.println("Expected unused check to find between 5 and 10 changed but IA said "
+                                    + impact.size() + " objects were impacted");
+                        }
+                    } else {
+                        result[0] = impact.size() > 50;
+                        if (!result[0]) {
+                            System.err
+                                    .println("Expected more than 50 method calls to be impacted without unused check but found only "
+                                            + impact.size());
+                        }
                     }
                 }
             }
         });
         appendOutputCTD.setClazz(null);
+        assertFalse(oldValue instanceof DynamicEObjectImpl);
+        assertNull("Expecting a method call on the result of String.append() with no ownedTypeDefinition on that call to me impacted "+
+                "by setting String.append()'s output type definition's clazz to null",
+                ((ClassTypeDefinition) callOnAppendCallResult.getObject().getType().getInnermost()).getClazz());
+        Object invalid = com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites.newInstance().evaluate(callOnAppendCallResult, exp);
+        assertFalse(invalid.equals(oldValue));
         assertTrue(result[0]);
     }
 
