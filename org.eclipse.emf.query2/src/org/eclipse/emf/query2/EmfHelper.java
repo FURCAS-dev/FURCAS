@@ -93,7 +93,7 @@ public class EmfHelper {
 					Resource[] array = rs.getResources().toArray(new Resource[rs.getResources().size()]);
 					for (int i = 0; i < array.length; i++) {
 						Resource r = array[i];
-						if (r.isLoaded() /* && (!r.isTrackingModification() || r.isModified()) */) {
+						if (r.isLoaded() && (!r.isTrackingModification() || r.isModified()) ) {
 							rd.resourceChanged(updater, r);
 						}
 					}
