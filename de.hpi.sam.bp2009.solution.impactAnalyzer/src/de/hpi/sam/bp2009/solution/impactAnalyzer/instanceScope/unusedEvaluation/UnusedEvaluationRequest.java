@@ -1,6 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -26,7 +27,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundE
  * A largely immutable request to perform a (partial) evaluation (see also {@link PartialEvaluator}) of an {@link OCLExpression},
  * comparing the result with a given expected result. If the result compares equal, this indicates that the subexpression where
  * the change occurred is not used, leading the traceback process to returning an empty set. The only modification allowed to
- * a request is setting an inferred variable's value (see {@link #setInferredVariableValue(Variable, Object)}.
+ * a request is setting an inferred variable's value (see {@link #setInferredVariableValue(Variable, Object, UnusedEvaluationRequestFactory)}.
  * <p>
  * 
  * The request holds a number of <em>slots</em> for variable values inferred during the traceback process. If a new variable value
@@ -44,9 +45,51 @@ public class UnusedEvaluationRequest {
     private final Set<Variable> slots;
     private final OCLExpression expression;
     private final Object resultIndicatingUnused;
-    private final int hashCode;
+    private final SemanticIdentity semanticIdentity;
+    
+    /**
+     * Defines "logical" equals/hashCode as opposed to enclosing class which has default, identity-based equals/hashCode.
+     * See also {@link UnusedEvaluationRequestFactory}.
+     * 
+     * @author Axel Uhl (D043530)
+     *
+     */
+    class SemanticIdentity extends AbstractUnusedEvaluationRequestValue {
+        protected final int hashCode;
+        
+        public SemanticIdentity() {
+            hashCode = computeHashCode();
+        }
+        
+        @Override
+        public int hashCode() {
+            return hashCode;
+        }
+        
+        public Map<Variable, Object> getInferredVariableValues() {
+            return inferredVariableValues;
+        }
+
+        public Set<Variable> getSlots() {
+            return slots;
+        }
+
+        public OCLExpression getExpression() {
+            return expression;
+        }
+
+        public Object getResultIndicatingUnused() {
+            return resultIndicatingUnused;
+        }
+    }
+        
 
     /**
+     * Must not be called from anywhere except {@link UnusedEvaluationRequestFactory#getUnusedEvaluationRequest(OCLExpression, Object, Map, Set)}
+     * because resulting instances need to be <em>managed</em> as their equality and hash code fall back to their identity. Hence,
+     * equal objects in a given scope must be guaranteed to be identical. Such a scope is defined by the use of a
+     * {@link UnusedEvaluationRequestFactory}.
+     * 
      * @param expression
      *            the expression to evaluate
      * @param resultIndicatingUnused
@@ -59,13 +102,21 @@ public class UnusedEvaluationRequest {
      *            the variables currently within their dynamic scope such that, when a value is inferred for such a variable, it
      *            is correct to assign it for use in evaluating <code>expression</code> in this request
      */
-    public UnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
+    UnusedEvaluationRequest(OCLExpression expression, Object resultIndicatingUnused,
             Map<Variable, Object> inferredVariableValues, Set<Variable> slots) {
         this.expression = expression;
         this.resultIndicatingUnused = resultIndicatingUnused;
-        this.inferredVariableValues = inferredVariableValues == null ? new HashMap<Variable, Object>() : inferredVariableValues;
+        if (inferredVariableValues == null) {
+            this.inferredVariableValues = Collections.emptyMap();
+        } else {
+            this.inferredVariableValues = inferredVariableValues;
+        }
         this.slots = slots;
-        this.hashCode = computeHashCode();
+        this.semanticIdentity = new SemanticIdentity();
+    }
+    
+    SemanticIdentity getSemanticIdentity() {
+        return semanticIdentity;
     }
     
     /**
@@ -73,7 +124,7 @@ public class UnusedEvaluationRequest {
      * in which all those slots are removed. For the remaining slots, the {@link #inferredVariableValues inferred variable values}
      * are copied from this request. If none of this request's slots are to be removed, this request is returned unchanged.
      */
-    public UnusedEvaluationRequest getRequestWithSlotsRemoved(Set<Variable> slotsToRemove) {
+    UnusedEvaluationRequest getRequestWithSlotsRemoved(Set<Variable> slotsToRemove, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
         UnusedEvaluationRequest result;
         if (slotsToRemove == null || slotsToRemove.isEmpty()) {
             result = this;
@@ -93,8 +144,8 @@ public class UnusedEvaluationRequest {
                         remainingInferredVariableValues.put(e.getKey(), e.getValue());
                     }
                 }
-                result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, remainingInferredVariableValues,
-                        remainingSlots);
+                result = unusedEvaluationRequestFactory.getUnusedEvaluationRequest(expression, resultIndicatingUnused,
+                        remainingInferredVariableValues, remainingSlots);
             } else {
                 result = this;
             }
@@ -110,71 +161,11 @@ public class UnusedEvaluationRequest {
         return slots != null && slots.contains(v);
     }
 
-    @Override
-    public int hashCode() {
-        return hashCode;
-    }
-    
-    private int computeHashCode() {
-        // TODO collate requests with different "self" representations differing only in which "self"-copy has been inferred
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((expression == null) ? 0 : expression.hashCode());
-        result = prime * result + ((inferredVariableValues == null) ? 0 : inferredVariableValues.hashCode());
-        result = prime * result + ((resultIndicatingUnused == null) ? 0 : resultIndicatingUnused.hashCode());
-        result = prime * result + ((slots == null) ? 0 : slots.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        // TODO collate requests with different "self" representations differing only in which "self"-copy has been inferred
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof UnusedEvaluationRequest)) {
-            return false;
-        }
-        UnusedEvaluationRequest other = (UnusedEvaluationRequest) obj;
-        if (expression == null) {
-            if (other.expression != null) {
-                return false;
-            }
-        } else if (!expression.equals(other.expression)) {
-            return false;
-        }
-        if (inferredVariableValues == null) {
-            if (other.inferredVariableValues != null) {
-                return false;
-            }
-        } else if (!inferredVariableValues.equals(other.inferredVariableValues)) {
-            return false;
-        }
-        if (resultIndicatingUnused == null) {
-            if (other.resultIndicatingUnused != null) {
-                return false;
-            }
-        } else if (!resultIndicatingUnused.equals(other.resultIndicatingUnused)) {
-            return false;
-        }
-        if (slots == null) {
-            if (other.slots != null) {
-                return false;
-            }
-        } else if (!slots.equals(other.slots)) {
-            return false;
-        }
-        return true;
-    }
-
     /**
      * Sets the value for a variable just inferred. If this request doesn't have a slot for the variable whose
      * value was inferred, the request is not updated by this call.
      */
-    UnusedEvaluationRequest setInferredVariableValue(Variable variable, Object value) {
+    UnusedEvaluationRequest setInferredVariableValue(Variable variable, Object value, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
         UnusedEvaluationRequest result;
         if (slots.contains(variable)) {
             if (inferredVariableValues.containsKey(variable)) {
@@ -184,7 +175,8 @@ public class UnusedEvaluationRequest {
             }
             Map<Variable, Object> newInferredVariableValues = new HashMap<Variable, Object>(inferredVariableValues);
             newInferredVariableValues.put(variable, value);
-            result = new UnusedEvaluationRequest(expression, resultIndicatingUnused, newInferredVariableValues, slots);
+            result = unusedEvaluationRequestFactory.getUnusedEvaluationRequest(expression, resultIndicatingUnused,
+                    newInferredVariableValues, slots);
         } else {
             result = this;
         }

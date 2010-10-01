@@ -15,6 +15,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundException;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.NavigationStep;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequest;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
@@ -93,11 +94,14 @@ public class TracebackCache {
      * again while already being evaluated by the current thread, an empty set is returned.
      */
     private final Map<TracebackStep, Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>> currentlyEvaluatingTracebackFor;
+
+    private final UnusedEvaluationRequestFactory unusedEvaluationRequestFactory;
     
-    public TracebackCache(ActivationOption configuration) {
+    public TracebackCache(ActivationOption configuration, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
         navigateCache = new HashMap<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, OperationCallExpKeyedSet<AnnotatedEObject>>();
         unusedEvaluationCache = new HashMap<UnusedEvaluationRequest, Object>();
         this.configuration = configuration;
+        this.unusedEvaluationRequestFactory = unusedEvaluationRequestFactory;
         currentlyEvaluatingTracebackFor = new HashMap<TracebackStep, Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>>();
     }
     
@@ -162,6 +166,10 @@ public class TracebackCache {
      */
     public void cacheEvaluationResult(UnusedEvaluationRequest request, Object evaluationResult) {
         unusedEvaluationCache.put(request, evaluationResult);
+    }
+
+    public UnusedEvaluationRequestFactory getUnusedEvaluationRequestFactory() {
+        return unusedEvaluationRequestFactory;
     }
 }
 

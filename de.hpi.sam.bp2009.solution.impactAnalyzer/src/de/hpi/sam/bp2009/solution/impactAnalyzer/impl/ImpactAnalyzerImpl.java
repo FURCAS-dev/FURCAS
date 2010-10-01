@@ -12,6 +12,7 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnalysis;
 
@@ -25,6 +26,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     private InstanceScopeAnalysis instanceScopeAnalysis;
     private final EClass context;
     private final OppositeEndFinder oppositeEndFinder;
+    private final ActivationOption configuration;
 
     /**
      * Creates a new impact analyzer for the OCL expression given. For event filter synthesis (see
@@ -34,21 +36,21 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
      * <code>self</code> occurrences and picking their type.
      * <p>
      *
-     * Should you conveniently have the context type available, consider using {@link #ImpactAnalyzerImpl(OCLExpression, EClass)}
+     * Should you conveniently have the context type available, consider using {@link #ImpactAnalyzerImpl(OCLExpression, EClass, ActivationOption)}
      * instead.
      */
-    public ImpactAnalyzerImpl(OCLExpression expression) {
-        this(expression, DefaultOppositeEndFinder.getInstance());
+    public ImpactAnalyzerImpl(OCLExpression expression, ActivationOption configuration) {
+        this(expression, DefaultOppositeEndFinder.getInstance(), configuration);
     }
 
-    public ImpactAnalyzerImpl(OCLExpression expression, EClass context) {
-        this(expression, context, DefaultOppositeEndFinder.getInstance());
+    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, ActivationOption configuration) {
+        this(expression, context, DefaultOppositeEndFinder.getInstance(), configuration);
     }
 
     /**
      * @param oppositeEndFinder used during partial navigation and for metamodel queries
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, OppositeEndFinder oppositeEndFinder) {
+    public ImpactAnalyzerImpl(OCLExpression expression, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         this.expression = expression;
         this.context = expression.accept(new ContextTypeRetriever());
         if (this.context == null) {
@@ -57,15 +59,17 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
                     getClass().getName()+"(OCLExpression, EClass, OppositeEndFinder) instead.");
         }
         this.oppositeEndFinder = oppositeEndFinder;
+        this.configuration = configuration;
     }
 
     /**
      * @param oppositeEndFinder used during partial navigation and for metamodel queries
      */
-    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder) {
+    public ImpactAnalyzerImpl(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         this.expression = expression;
         this.context = context;
         this.oppositeEndFinder = oppositeEndFinder;
+        this.configuration = configuration;
     }
 
     public EventFilter createFilterForExpression(boolean notifyNewContextElements) {
@@ -78,7 +82,7 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
             if (filtersyn == null) {
                 createFilterForExpression(true);
             }
-            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder);
+            instanceScopeAnalysis = new InstanceScopeAnalysis(expression, context, filtersyn, oppositeEndFinder, configuration);
         }
         return instanceScopeAnalysis.getContextObjects(event);
     }

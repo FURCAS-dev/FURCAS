@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl;
 
 
@@ -28,7 +29,7 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl {
      * Modified version of the {@link ImpactAnalyzerImpl} to benchmark time consumption
      */
     public ModifiedImpactAnalyzerImpl(OCLExpression exp, EClass context) {
-        super(exp, context);
+        super(exp, context, OptimizationActivation.getOption());
     }
 
     public ModifiedImpactAnalyzerResultImpl IAResult = new ModifiedImpactAnalyzerResultImpl();

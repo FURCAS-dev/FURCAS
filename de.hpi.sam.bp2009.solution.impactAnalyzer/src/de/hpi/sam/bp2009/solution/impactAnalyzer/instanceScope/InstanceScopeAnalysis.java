@@ -3,11 +3,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 import java.util.logging.Logger;
@@ -51,6 +49,7 @@ import com.sap.emf.ocl.oclwithhiddenopposites.expressions.OppositePropertyCallEx
 import com.sap.emf.ocl.util.OclHelper;
 
 import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
@@ -68,13 +67,12 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
  */
 public class InstanceScopeAnalysis {
     private final Logger logger = Logger.getLogger(InstanceScopeAnalysis.class.getName());
-    private final Map<OCLExpression, NavigationStep> expressionToStep;
-    private final Map<OCLExpression, TracebackStep> expressionToTracebackStep;
     private final PathCache pathCache;
     private final TracebackStepCache tracebackStepCache;
     private final FilterSynthesisImpl filterSynthesizer;
     private final EClass context;
     private final OppositeEndFinder oppositeEndFinder;
+    private final ActivationOption configuration;
 
     private static final Set<String> comparisonOpNames = new HashSet<String>(Arrays.asList(new String[] {
             PredefinedType.EQUAL_NAME, PredefinedType.LESS_THAN_NAME, PredefinedType.LESS_THAN_EQUAL_NAME,
@@ -157,7 +155,7 @@ public class InstanceScopeAnalysis {
      *            {@link AllInstancesNavigationStep}. It is handed to the {@link PathCache} object from where
      *            {@link Tracer}s can retrieve it using {@link PathCache#getOppositeEndFinder()}.
      */
-    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder) {
+    public InstanceScopeAnalysis(OCLExpression expression, EClass exprContext, FilterSynthesisImpl filterSynthesizer, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         if (exprContext == null) {
 	    throw new IllegalArgumentException("exprContext must not be null. Maybe no context type specified to ImpactAnalyzerImpl constructor, and no self-expression found to infer it?");
 	}
@@ -167,16 +165,13 @@ public class InstanceScopeAnalysis {
         context = exprContext;
         this.filterSynthesizer = filterSynthesizer;
         this.oppositeEndFinder = oppositeEndFinder;
-        if (OptimizationActivation.getOption().isTracebackStepISAActive()) {
+        this.configuration = configuration;
+        if (configuration.isTracebackStepISAActive()) {
             tracebackStepCache = new TracebackStepCache(oppositeEndFinder);
-            expressionToTracebackStep = new HashMap<OCLExpression, TracebackStep>();
             pathCache = null;
-            expressionToStep = null;
         } else {
             pathCache = new PathCache(oppositeEndFinder);
-            expressionToStep = new HashMap<OCLExpression, NavigationStep>();
             tracebackStepCache = null;
-            expressionToTracebackStep = null;
         }
     }
 
@@ -433,11 +428,7 @@ public class InstanceScopeAnalysis {
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
      */
     private NavigationStep getNavigationStepsToSelfForExpression(OCLExpression exp, EClass context) {
-        NavigationStep result = expressionToStep.get(exp);
-        if (result == null) {
-            result = pathCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null);
-            expressionToStep.put(exp, result);
-        }
+        NavigationStep result = pathCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null);
         return result;
     }
 
@@ -450,11 +441,8 @@ public class InstanceScopeAnalysis {
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
      */
     private TracebackStep getTracebackStepForExpression(OCLExpression exp, EClass context) {
-        TracebackStep result = expressionToTracebackStep.get(exp);
-        if (result == null) {
-            result = tracebackStepCache.getOrCreateNavigationPath(exp, context, filterSynthesizer, /* tupleLiteralNamesToLookFor */ null);
-            expressionToTracebackStep.put(exp, result);
-        }
+        TracebackStep result = tracebackStepCache.getOrCreateNavigationPath(exp, context, filterSynthesizer,
+                                                                            /* tupleLiteralNamesToLookFor */ null);
         return result;
     }
 
@@ -540,10 +528,10 @@ public class InstanceScopeAnalysis {
     private Set<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
             EClass context, Notification changeEvent) {
         Set<AnnotatedEObject> result;
-        if (OptimizationActivation.getOption().isTracebackStepISAActive()) {
+        if (configuration.isTracebackStepISAActive()) {
             TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cache = new de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache(
-                    OptimizationActivation.getOption());
+                    OptimizationActivation.getOption(), tracebackStepCache.getUnusedEvaluationRequestFactory());
             result = step.traceback(sourceElement, /* pending unused evaluation requests */ null, cache, changeEvent);
         } else {
             NavigationStep step = getNavigationStepsToSelfForExpression(
