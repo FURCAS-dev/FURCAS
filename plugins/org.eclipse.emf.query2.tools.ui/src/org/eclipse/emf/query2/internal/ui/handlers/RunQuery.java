@@ -10,6 +10,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -22,6 +23,8 @@ import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
 import org.eclipse.emf.query2.internal.ui.QueryResultView;
@@ -119,12 +122,13 @@ public class RunQuery extends org.eclipse.core.commands.AbstractHandler {
 				@Override
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					monitor.beginTask("Running query...", IProgressMonitor.UNKNOWN);
-					
+					//converts the XText Query into AST
 					Query transform = QueryTransformer.transform(query.getQuery());
 					long start = System.currentTimeMillis();
 					Index indexFactory = IndexFactory.getInstance();
-					QueryProcessorImpl queryProcessor = new QueryProcessorImpl(indexFactory);
-					final ResultSet result = queryProcessor.execute(transform, getQueryContext(rs));
+					QueryProcessor queryProcessor = QueryProcessorFactory.getDefault().createQueryProcessor(indexFactory);
+					QueryContext queryContext = getQueryContext(rs);
+					final ResultSet result = queryProcessor.execute(transform, queryContext);
 					final long duration = System.currentTimeMillis() - start;
 					monitor.done();
 					setInputToView(result, duration, rs);
