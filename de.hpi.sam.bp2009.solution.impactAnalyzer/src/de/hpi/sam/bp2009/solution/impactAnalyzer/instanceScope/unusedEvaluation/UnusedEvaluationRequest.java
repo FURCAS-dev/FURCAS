@@ -190,7 +190,11 @@ public class UnusedEvaluationRequest {
      * Tries a partial evaluation of the {@link #expression} by setting the variable values inferred so far
      * (see {@link #inferredVariableValues}) in the evaluation environment. If this succeeds, the result is compared
      * to {@link #resultIndicatingUnused}. If successful, <code>true</code> is returned. If evaluation fails for an
-     * unknown variable, the {@link ValueNotFoundException} is simply passed through.
+     * unknown variable, the {@link ValueNotFoundException} is simply passed through.<p>
+     * 
+     * Callers should call {@link #checkValuePresendForAllRequiredVariables()} before to see if it makes sense
+     * at all to attempt an evaluation or if a {@link ValueNotFoundException} would inevitably result. This
+     * saves the effort for a failing partial evaluation.
      */
     public boolean evaluate(OppositeEndFinder oppositeEndFinder) throws ValueNotFoundException {
         checkValuePresendForAllRequiredVariables();
@@ -215,16 +219,16 @@ public class UnusedEvaluationRequest {
     }
     
     /**
-     * Throws a {@link ValueNotFoundException} if any of the variables inevitably required by the {@link #expression} are not
-     * (yet) defined and thus saves a fruitless evaluation cycle.
+     * Returns a {@link ValueNotFoundException} if any of the variables inevitably required by the {@link #expression} are not
+     * (yet) defined and thus saves a fruitless evaluation cycle, <code>null</code> otherwise.
      */
-    private void checkValuePresendForAllRequiredVariables() throws ValueNotFoundException {
+    ValueNotFoundException checkValuePresendForAllRequiredVariables() {
         for (VariableExp inevitableVariableUse : inevitableVariableUsages) {
             if (!inferredVariableValues.containsKey(inevitableVariableUse.getReferredVariable())) {
-                UnusedEvaluationRequestSet.attemptsResultingInVariableNotFound--; // these ones are not evil because they don't cause an evaluation run
-                throw new ValueNotFoundException(inevitableVariableUse.getReferredVariable().getName(), inevitableVariableUse);
+                return new ValueNotFoundException(inevitableVariableUse.getReferredVariable().getName(), inevitableVariableUse);
             }
         }
+        return null;
     }
     
     public String toString() {

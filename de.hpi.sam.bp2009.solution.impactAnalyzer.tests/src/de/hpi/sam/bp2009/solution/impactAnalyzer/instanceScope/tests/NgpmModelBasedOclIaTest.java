@@ -32,7 +32,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notificat
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionFromClassTcsPicker;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.OCLExpressionWithContext;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 
 public class NgpmModelBasedOclIaTest extends TestCase {
     Resource ngpmModel = null;
@@ -53,9 +52,6 @@ public class NgpmModelBasedOclIaTest extends TestCase {
 	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getNestedTypeDefinition());
 	Collection<EObject> impact = ia.getContextObjects(notification);
 	assertEquals(impact.size(), 0);
-	System.out.println("false: "+UnusedEvaluationRequestSet.attemptsResultingInFalse+" true: "+
-	        UnusedEvaluationRequestSet.attemptsResultingInTrue+" exception: "+
-	        UnusedEvaluationRequestSet.attemptsResultingInVariableNotFound);
     }
 
     public void testExpressionWithLargeNavigationStepGraph(){
@@ -66,9 +62,6 @@ public class NgpmModelBasedOclIaTest extends TestCase {
 	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expr.getExpression(), expr.getContext());
 	Collection<EObject> impact = ia.getContextObjects(notification);
 	assertNotNull(impact);
-        System.out.println("false: "+UnusedEvaluationRequestSet.attemptsResultingInFalse+" true: "+
-                UnusedEvaluationRequestSet.attemptsResultingInTrue+" exception: "+
-                UnusedEvaluationRequestSet.attemptsResultingInVariableNotFound);
     }
 
     @Test
@@ -88,9 +81,6 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         });
         string.getOwnedSignatures().add(ClassesFactory.eINSTANCE.createMethodSignature());
         assertTrue(result[0]);
-        System.out.println("false: "+UnusedEvaluationRequestSet.attemptsResultingInFalse+" true: "+
-                UnusedEvaluationRequestSet.attemptsResultingInTrue+" exception: "+
-                UnusedEvaluationRequestSet.attemptsResultingInVariableNotFound);
     }
 
     @Test
@@ -162,9 +152,6 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         assertFalse("Expecting a method call on a string-typed expression to be impacted by adding a signature to String",
                 newValue.equals(oldValue));
         assertTrue(result[0]);
-        System.out.println("false: "+UnusedEvaluationRequestSet.attemptsResultingInFalse+" true: "+
-                UnusedEvaluationRequestSet.attemptsResultingInTrue+" exception: "+
-                UnusedEvaluationRequestSet.attemptsResultingInVariableNotFound);
     }
 
     @Test
@@ -200,9 +187,6 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         });
         appendOutputCTD.setClazz(null);
         assertTrue(result[0]);
-        System.out.println("false: "+UnusedEvaluationRequestSet.attemptsResultingInFalse+" true: "+
-                UnusedEvaluationRequestSet.attemptsResultingInTrue+" exception: "+
-                UnusedEvaluationRequestSet.attemptsResultingInVariableNotFound);
     }
 
     @Test
@@ -256,9 +240,6 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         Object invalid = com.sap.emf.ocl.hiddenopposites.OCLWithHiddenOpposites.newInstance().evaluate(callOnAppendCallResult, exp);
         assertFalse(invalid.equals(oldValue));
         assertTrue(result[0]);
-        System.out.println("false: "+UnusedEvaluationRequestSet.attemptsResultingInFalse+" true: "+
-                UnusedEvaluationRequestSet.attemptsResultingInTrue+" exception: "+
-                UnusedEvaluationRequestSet.attemptsResultingInVariableNotFound);
     }
 
     private Notification getNotification(int id, Resource model){
