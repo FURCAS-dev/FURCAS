@@ -17,6 +17,7 @@ import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
 
 import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
@@ -46,6 +47,7 @@ public class UnusedEvaluationRequest {
     private final OCLExpression expression;
     private final Object resultIndicatingUnused;
     private final SemanticIdentity semanticIdentity;
+    private final Set<VariableExp> inevitableVariableUsages;
     
     /**
      * Defines "logical" equals/hashCode as opposed to enclosing class which has default, identity-based equals/hashCode.
@@ -113,6 +115,7 @@ public class UnusedEvaluationRequest {
         }
         this.slots = slots;
         this.semanticIdentity = new SemanticIdentity();
+        this.inevitableVariableUsages = expression.accept(new FindAlwaysUsedVariablesVisitor());
     }
     
     SemanticIdentity getSemanticIdentity() {
@@ -190,6 +193,7 @@ public class UnusedEvaluationRequest {
      * unknown variable, the {@link ValueNotFoundException} is simply passed through.
      */
     public boolean evaluate(OppositeEndFinder oppositeEndFinder) throws ValueNotFoundException {
+        checkValuePresendForAllRequiredVariables();
         PartialEvaluator evaluator = new PartialEvaluator(oppositeEndFinder);
         EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> env = evaluator.getOcl()
                 .getEvaluationEnvironment();
@@ -208,6 +212,19 @@ public class UnusedEvaluationRequest {
                         // asking for empty collection is encoded by asking for null
                         (result instanceof Collection<?> && resultIndicatingUnused == null && ((Collection<?>) result).isEmpty()) ||
                         result.equals(resultIndicatingUnused)));
+    }
+    
+    /**
+     * Throws a {@link ValueNotFoundException} if any of the variables inevitably required by the {@link #expression} are not
+     * (yet) defined and thus saves a fruitless evaluation cycle.
+     */
+    private void checkValuePresendForAllRequiredVariables() throws ValueNotFoundException {
+        for (VariableExp inevitableVariableUse : inevitableVariableUsages) {
+            if (!inferredVariableValues.containsKey(inevitableVariableUse.getReferredVariable())) {
+                UnusedEvaluationRequestSet.attemptsResultingInVariableNotFound--; // these ones are not evil because they don't cause an evaluation run
+                throw new ValueNotFoundException(inevitableVariableUse.getReferredVariable().getName(), inevitableVariableUse);
+            }
+        }
     }
     
     public String toString() {
