@@ -220,5 +220,11 @@ public interface QueryProcessor {
 	 *            abort
 	 */
 	void setMaxResultSetSize(int maxResultSetSize);
+	
+	public void turnOnOptimizationDuringScheduling();
+	
+	public void turnOffOptimizationForPartitionsDuringScheduling();
+	
+	public void turnOffOptimizationForElementsDuringScheduling();
 
 }
