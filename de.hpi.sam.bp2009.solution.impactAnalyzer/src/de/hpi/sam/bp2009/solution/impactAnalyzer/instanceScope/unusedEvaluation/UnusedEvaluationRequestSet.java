@@ -190,11 +190,6 @@ public class UnusedEvaluationRequestSet {
         return result;
     }
 
-    // TODO remove these debugging counters again
-    public static int attemptsResultingInTrue = 0;
-    public static int attemptsResultingInFalse = 0;
-    public static int attemptsResultingInVariableNotFound = 0;
-
     /**
      * Evaluates the <code>requestsToEvaluate</code>. If any of them returns <code>true</code> from its
      * {@link UnusedEvaluationRequest#evaluate(OppositeEndFinder)} method, a result will be returned that returns
@@ -216,15 +211,17 @@ public class UnusedEvaluationRequestSet {
             for (UnusedEvaluationRequest request : requestsToEvaluate) {
                 Object evaluationResult = tracebackCache.getCachedEvaluationResult(request);
                 if (evaluationResult == null) {
-                    try {
-                        evaluationResult = request.evaluate(oppositeEndFinder);
-                    } catch (ValueNotFoundException vnfe) {
-                        evaluationResult = vnfe;
+                    evaluationResult = request.checkValuePresendForAllRequiredVariables();
+                    if (evaluationResult == null) { // all inevitably required variables defined
+                        try {
+                            evaluationResult = request.evaluate(oppositeEndFinder);
+                        } catch (ValueNotFoundException vnfe) {
+                            evaluationResult = vnfe;
+                        }
                     }
                     tracebackCache.cacheEvaluationResult(request, evaluationResult);
                 }
                 if (evaluationResult instanceof ValueNotFoundException) {
-                    attemptsResultingInVariableNotFound++;
                     // re-add the request, but this time for the now unknown variable
                     Variable unknownVariable = (Variable) ((ValueNotFoundException) evaluationResult).getVariableExp()
                             .getReferredVariable();
@@ -237,12 +234,10 @@ public class UnusedEvaluationRequestSet {
                 } else {
                     // must be boolean, indicating result of successful evaluation
                     if ((Boolean) evaluationResult) {
-                        attemptsResultingInTrue++;
                         result = new UnusedEvaluationResult(/* provedUnused */true, /* newRequestSet */null);
                         break;
                     } else {
                         //  else, simply don't add the resolved request anymore because it was unable to prove unused
-                        attemptsResultingInFalse++;
                     }
                 }
             }
