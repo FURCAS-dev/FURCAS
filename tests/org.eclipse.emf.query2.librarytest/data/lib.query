@@ -1,7 +1,7 @@
 import "http://eclipse.org/modeling/emf/query/1.0.0"  
 AllBooks : from Book withoutsubtypes as b select b 
 
-PagesByTitle: from Manuscript as m select m.pages where m.title = 'Linux Made Easy' 
+PagesByTitle: from Manuscript as m select m.pages where m.title = 'Linux Made Easy'
 
 PagesAndTitleByAuthor: 
 	from Manuscript as m, Person as p

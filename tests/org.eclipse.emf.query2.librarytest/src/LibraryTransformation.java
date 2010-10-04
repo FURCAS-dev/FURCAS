@@ -12,6 +12,7 @@ import org.eclipse.emf.query.index.query.ResourceQuery;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
 import org.eclipse.emf.query2.syntax.query.Model;
@@ -58,7 +59,7 @@ public class LibraryTransformation extends QueryTestCase {
 			System.out.println(transform.toString().trim());
 			
 			long start = System.nanoTime();
-			ResultSet execute = new QueryProcessorImpl(getDefaultIndexStore()).execute(transform, getQueryContext(rs));
+			ResultSet execute = QueryProcessorFactory.getDefault().createQueryProcessor(getDefaultIndexStore()).execute(transform, getQueryContext(rs));
 			long end = System.nanoTime();
 
 			System.out.println(execute);
