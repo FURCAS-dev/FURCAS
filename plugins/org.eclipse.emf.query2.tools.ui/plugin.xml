@@ -38,10 +38,10 @@
       <command
             id="org.eclipse.emf.query2.syntax.tools.ui.runQueryWithDirtyIndex"
             name="Run Query With Dirty State">
-         <commandParameter
-               id="runDirty"
-               name="Run Dirty"
-               optional="true">
+            <commandParameter
+                  id="runDirty"
+                  name="Run Dirty"
+                  optional="true">
          </commandParameter>
       </command>
    </extension>
@@ -144,7 +144,7 @@
          <command
                commandId="org.eclipse.emf.query2.syntax.tools.ui.runQueryWithDirtyIndex"
                icon="icons/runDirty.gif"
-               label="Run Query on Dirty State"
+               label="Run Query On Dirty State"
                style="push">
             <parameter
                   name="runDirty"
@@ -254,7 +254,12 @@
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="Ctrl+F5">
+         <parameter
+               id="runDirty"
+               value="true">
+         </parameter>
       </key>
+      
    </extension>
  
 
