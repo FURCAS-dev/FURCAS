@@ -22,6 +22,7 @@ import com.sap.emf.ocl.hiddenopposites.DefaultOppositeEndFinder;
 import com.sap.emf.ocl.util.OclHelper;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.HighlightingToStringVisitor;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.SemanticIdentity;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 
@@ -274,13 +275,14 @@ public abstract class AbstractNavigationStep implements NavigationStep {
                 result.append("Step's expressions: ");
                 for (OCLExpression debugInfo : getDebugInfo()) {
                     result.append(debugInfo);
-                    result.append("\n ===== in expression =====\n");
-                    // TODO highlight getDebugInfo() expression in root expression
-                    result.append(OclHelper.getRootExpression(debugInfo));
+                    OCLExpression root = OclHelper.getRootExpression(debugInfo);
+                    if (root != debugInfo) {
+                        result.append("\n ==== in expression =====\n");
+                        result.append(root.accept(HighlightingToStringVisitor.getInstance(root, debugInfo)));
+                    }
                     result.append(((getDefines(OclHelper.getRootExpression(debugInfo)) != null) ? "\n ===== which is the body of operation "
                             + getDefines(OclHelper.getRootExpression(debugInfo)).getName() + " ====="
                             : ""));
-                    result.append("\n");
                 }
                 return result.toString();
             } else {

@@ -25,6 +25,7 @@ public class ImpactAnalyzerAllTests extends TestSuite {
         if (System.getProperty("navigationStepIA", "false").equalsIgnoreCase("true")) {
             OptimizationActivation.getOption().setTracebackStepISAActive(false);
             OptimizationActivation.getOption().setUnusedDetectionActive(false);
+            OptimizationActivation.getOption().setOperationCallSelectionActive(false);
         }
         suite.addTestSuite(OclIaTest.class);
         suite.addTestSuite(RevPathComputationTest.class);
