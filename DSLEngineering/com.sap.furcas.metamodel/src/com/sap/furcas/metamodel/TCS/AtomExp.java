@@ -26,84 +26,84 @@ package com.sap.furcas.metamodel.TCS;
  * @generated
  */
 public interface AtomExp extends LocatedElement {
-	/**
-	 * Returns the value of the '<em><b>And Exp</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.TCS.AndExp#getExpressions <em>Expressions</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>And Exp</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>And Exp</em>' container reference.
-	 * @see #setAndExp(AndExp)
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getAtomExp_AndExp()
-	 * @see com.sap.furcas.metamodel.TCS.AndExp#getExpressions
-	 * @model opposite="expressions" required="true" transient="false" ordered="false"
-	 * @generated
-	 */
-	AndExp getAndExp();
+        /**
+         * Returns the value of the '<em><b>And Exp</b></em>' container reference.
+         * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.TCS.AndExp#getExpressions <em>Expressions</em>}'.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>And Exp</em>' container reference isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>And Exp</em>' container reference.
+         * @see #setAndExp(AndExp)
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getAtomExp_AndExp()
+         * @see com.sap.furcas.metamodel.TCS.AndExp#getExpressions
+         * @model opposite="expressions" required="true" transient="false" ordered="false"
+         * @generated
+         */
+        AndExp getAndExp();
 
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.AtomExp#getAndExp <em>And Exp</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>And Exp</em>' container reference.
-	 * @see #getAndExp()
-	 * @generated
-	 */
-	void setAndExp(AndExp value);
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.AtomExp#getAndExp <em>And Exp</em>}' container reference.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>And Exp</em>' container reference.
+         * @see #getAndExp()
+         * @generated
+         */
+        void setAndExp(AndExp value);
 
-	/**
-	 * Returns the value of the '<em><b>Property Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Name</em>' attribute.
-	 * @see #setPropertyName(String)
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getAtomExp_PropertyName()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
-	String getPropertyName();
+        /**
+         * Returns the value of the '<em><b>Property Name</b></em>' attribute.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Property Name</em>' attribute isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Property Name</em>' attribute.
+         * @see #setPropertyName(String)
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getAtomExp_PropertyName()
+         * @model unique="false" required="true" ordered="false"
+         * @generated
+         */
+        String getPropertyName();
 
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.AtomExp#getPropertyName <em>Property Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Property Name</em>' attribute.
-	 * @see #getPropertyName()
-	 * @generated
-	 */
-	void setPropertyName(String value);
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.AtomExp#getPropertyName <em>Property Name</em>}' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>Property Name</em>' attribute.
+         * @see #getPropertyName()
+         * @generated
+         */
+        void setPropertyName(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Property Reference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property Reference</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Reference</em>' reference.
-	 * @see #setPropertyReference(PropertyReference)
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getAtomExp_PropertyReference()
-	 * @model
-	 * @generated
-	 */
-	PropertyReference getPropertyReference();
+        /**
+         * Returns the value of the '<em><b>Property Reference</b></em>' reference.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Property Reference</em>' reference isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Property Reference</em>' reference.
+         * @see #setPropertyReference(PropertyReference)
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getAtomExp_PropertyReference()
+         * @model
+         * @generated
+         */
+        PropertyReference getPropertyReference();
 
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.AtomExp#getPropertyReference <em>Property Reference</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Property Reference</em>' reference.
-	 * @see #getPropertyReference()
-	 * @generated
-	 */
-	void setPropertyReference(PropertyReference value);
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.AtomExp#getPropertyReference <em>Property Reference</em>}' reference.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>Property Reference</em>' reference.
+         * @see #getPropertyReference()
+         * @generated
+         */
+        void setPropertyReference(PropertyReference value);
 
 } // AtomExp

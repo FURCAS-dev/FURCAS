@@ -26,48 +26,48 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Property extends SequenceElement {
-	/**
-	 * Returns the value of the '<em><b>Property Args</b></em>' containment reference list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.TCS.PropertyArg}.
-	 * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.TCS.PropertyArg#getProperty <em>Property</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property Args</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Args</em>' containment reference list.
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getProperty_PropertyArgs()
-	 * @see com.sap.furcas.metamodel.TCS.PropertyArg#getProperty
-	 * @model opposite="property" containment="true"
-	 * @generated
-	 */
-	EList<PropertyArg> getPropertyArgs();
+        /**
+         * Returns the value of the '<em><b>Property Args</b></em>' containment reference list.
+         * The list contents are of type {@link com.sap.furcas.metamodel.TCS.PropertyArg}.
+         * It is bidirectional and its opposite is '{@link com.sap.furcas.metamodel.TCS.PropertyArg#getProperty <em>Property</em>}'.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Property Args</em>' containment reference list isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Property Args</em>' containment reference list.
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getProperty_PropertyArgs()
+         * @see com.sap.furcas.metamodel.TCS.PropertyArg#getProperty
+         * @model opposite="property" containment="true"
+         * @generated
+         */
+        EList<PropertyArg> getPropertyArgs();
 
-	/**
-	 * Returns the value of the '<em><b>Property Reference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Property Reference</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Property Reference</em>' reference.
-	 * @see #setPropertyReference(PropertyReference)
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getProperty_PropertyReference()
-	 * @model required="true"
-	 * @generated
-	 */
-	PropertyReference getPropertyReference();
+        /**
+         * Returns the value of the '<em><b>Property Reference</b></em>' reference.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Property Reference</em>' reference isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Property Reference</em>' reference.
+         * @see #setPropertyReference(PropertyReference)
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getProperty_PropertyReference()
+         * @model required="true"
+         * @generated
+         */
+        PropertyReference getPropertyReference();
 
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.Property#getPropertyReference <em>Property Reference</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Property Reference</em>' reference.
-	 * @see #getPropertyReference()
-	 * @generated
-	 */
-	void setPropertyReference(PropertyReference value);
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.Property#getPropertyReference <em>Property Reference</em>}' reference.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>Property Reference</em>' reference.
+         * @see #getPropertyReference()
+         * @generated
+         */
+        void setPropertyReference(PropertyReference value);
 
 } // Property

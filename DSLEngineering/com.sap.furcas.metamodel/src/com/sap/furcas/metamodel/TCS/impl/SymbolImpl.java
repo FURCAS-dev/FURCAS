@@ -32,121 +32,121 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * @generated
  */
 public class SymbolImpl extends LiteralImpl implements Symbol {
-	/**
-	 * The cached value of the '{@link #getSpaces() <em>Spaces</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSpaces()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<SpaceKind> spaces;
+        /**
+         * The cached value of the '{@link #getSpaces() <em>Spaces</em>}' attribute list.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see #getSpaces()
+         * @generated
+         * @ordered
+         */
+        protected EList<SpaceKind> spaces;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SymbolImpl() {
-		super();
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected SymbolImpl() {
+                super();
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return TCSPackage.Literals.SYMBOL;
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        protected EClass eStaticClass() {
+                return TCSPackage.Literals.SYMBOL;
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<SpaceKind> getSpaces() {
-		if (spaces == null) {
-			spaces = new EDataTypeEList<SpaceKind>(SpaceKind.class, this, TCSPackage.SYMBOL__SPACES);
-		}
-		return spaces;
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        public EList<SpaceKind> getSpaces() {
+                if (spaces == null) {
+                        spaces = new EDataTypeEList<SpaceKind>(SpaceKind.class, this, TCSPackage.SYMBOL__SPACES);
+                }
+                return spaces;
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case TCSPackage.SYMBOL__SPACES:
-				return getSpaces();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        public Object eGet(int featureID, boolean resolve, boolean coreType) {
+                switch (featureID) {
+                        case TCSPackage.SYMBOL__SPACES:
+                                return getSpaces();
+                }
+                return super.eGet(featureID, resolve, coreType);
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case TCSPackage.SYMBOL__SPACES:
-				getSpaces().clear();
-				getSpaces().addAll((Collection<? extends SpaceKind>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @SuppressWarnings("unchecked")
+        @Override
+        public void eSet(int featureID, Object newValue) {
+                switch (featureID) {
+                        case TCSPackage.SYMBOL__SPACES:
+                                getSpaces().clear();
+                                getSpaces().addAll((Collection<? extends SpaceKind>)newValue);
+                                return;
+                }
+                super.eSet(featureID, newValue);
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case TCSPackage.SYMBOL__SPACES:
-				getSpaces().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        public void eUnset(int featureID) {
+                switch (featureID) {
+                        case TCSPackage.SYMBOL__SPACES:
+                                getSpaces().clear();
+                                return;
+                }
+                super.eUnset(featureID);
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case TCSPackage.SYMBOL__SPACES:
-				return spaces != null && !spaces.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        public boolean eIsSet(int featureID) {
+                switch (featureID) {
+                        case TCSPackage.SYMBOL__SPACES:
+                                return spaces != null && !spaces.isEmpty();
+                }
+                return super.eIsSet(featureID);
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        public String toString() {
+                if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (spaces: ");
-		result.append(spaces);
-		result.append(')');
-		return result.toString();
-	}
+                StringBuffer result = new StringBuffer(super.toString());
+                result.append(" (spaces: ");
+                result.append(spaces);
+                result.append(')');
+                return result.toString();
+        }
 
 } //SymbolImpl

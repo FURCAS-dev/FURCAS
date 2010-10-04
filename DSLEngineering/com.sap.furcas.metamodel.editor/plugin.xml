@@ -15,9 +15,9 @@
             id="org.eclipse.emf.ecore.Wizard.category.ID"
             name="%_UI_Wizard_category"/>
       <wizard
-            id="TCS.presentation.TCSModelWizardID"
+            id="com.sap.furcas.metamodel.TCS.presentation.TCSModelWizardID"
             name="%_UI_TCSModelWizard_label"
-            class="TCS.presentation.TCSModelWizard"
+            class="com.sap.furcas.metamodel.TCS.presentation.TCSModelWizard"
             category="org.eclipse.emf.ecore.Wizard.category.ID"
             icon="icons/full/obj16/TCSModelFile.gif">
          <description>%_UI_TCSModelWizard_description</description>
@@ -27,12 +27,64 @@
 
    <extension point="org.eclipse.ui.editors">
       <editor
-            id="TCS.presentation.TCSEditorID"
+            id="com.sap.furcas.metamodel.TCS.presentation.TCSEditorID"
             name="%_UI_TCSEditor_label"
             icon="icons/full/obj16/TCSModelFile.gif"
             extensions="tcs"
-            class="TCS.presentation.TCSEditor"
-            contributorClass="TCS.presentation.TCSActionBarContributor">
+            class="com.sap.furcas.metamodel.TCS.presentation.TCSEditor"
+            contributorClass="com.sap.furcas.metamodel.TCS.presentation.TCSActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="com.sap.furcas.metamodel.textblocks.presentation.TextblocksModelWizardID"
+            name="%_UI_TextblocksModelWizard_label"
+            class="com.sap.furcas.metamodel.textblocks.presentation.TextblocksModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TextblocksModelFile.gif">
+         <description>%_UI_TextblocksModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="com.sap.furcas.metamodel.textblocks.presentation.TextblocksEditorID"
+            name="%_UI_TextblocksEditor_label"
+            icon="icons/full/obj16/TextblocksModelFile.gif"
+            extensions="textblocks"
+            class="com.sap.furcas.metamodel.textblocks.presentation.TextblocksEditor"
+            contributorClass="com.sap.furcas.metamodel.textblocks.presentation.TextblocksActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionModelWizardID"
+            name="%_UI_TextblockdefinitionModelWizard_label"
+            class="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TextblockdefinitionModelFile.gif">
+         <description>%_UI_TextblockdefinitionModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionEditorID"
+            name="%_UI_TextblockdefinitionEditor_label"
+            icon="icons/full/obj16/TextblockdefinitionModelFile.gif"
+            extensions="textblockdefinition"
+            class="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionEditor"
+            contributorClass="com.sap.furcas.metamodel.textblockdefinition.presentation.TextblockdefinitionActionBarContributor">
       </editor>
    </extension>
 

@@ -17,30 +17,30 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface TextblockdefinitionFactory extends EFactory {
-	/**
-	 * The singleton instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	TextblockdefinitionFactory eINSTANCE = com.sap.furcas.metamodel.textblockdefinition.impl.TextblockdefinitionFactoryImpl.init();
+        /**
+         * The singleton instance of the factory.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        TextblockdefinitionFactory eINSTANCE = com.sap.furcas.metamodel.textblockdefinition.impl.TextblockdefinitionFactoryImpl.init();
 
-	/**
-	 * Returns a new object of class '<em>Textblock Definition</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Textblock Definition</em>'.
-	 * @generated
-	 */
-	TextblockDefinition createTextblockDefinition();
+        /**
+         * Returns a new object of class '<em>Textblock Definition</em>'.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @return a new object of class '<em>Textblock Definition</em>'.
+         * @generated
+         */
+        TextblockDefinition createTextblockDefinition();
 
-	/**
-	 * Returns the package supported by this factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the package supported by this factory.
-	 * @generated
-	 */
-	TextblockdefinitionPackage getTextblockdefinitionPackage();
+        /**
+         * Returns the package supported by this factory.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @return the package supported by this factory.
+         * @generated
+         */
+        TextblockdefinitionPackage getTextblockdefinitionPackage();
 
 } //TextblockdefinitionFactory
