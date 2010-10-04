@@ -8,9 +8,8 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.ui.IStartup;
 /**
  * Starts the indexing of the projects with indexing nature on IDE startup
- * @author I054564
- *
  */
+
 public class IndexingIntitializer implements IStartup {
 
 	@Override
@@ -25,7 +24,6 @@ public class IndexingIntitializer implements IStartup {
 					}
 				}
 			} catch (CoreException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
