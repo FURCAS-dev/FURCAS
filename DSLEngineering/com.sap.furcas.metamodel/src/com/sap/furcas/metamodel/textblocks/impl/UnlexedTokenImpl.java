@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class UnlexedTokenImpl extends AbstractTokenImpl implements UnlexedToken {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected UnlexedTokenImpl() {
-		super();
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected UnlexedTokenImpl() {
+                super();
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return TextblocksPackage.Literals.UNLEXED_TOKEN;
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        protected EClass eStaticClass() {
+                return TextblocksPackage.Literals.UNLEXED_TOKEN;
+        }
 
 } //UnlexedTokenImpl

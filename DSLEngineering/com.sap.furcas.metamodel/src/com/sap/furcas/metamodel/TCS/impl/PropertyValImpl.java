@@ -9,13 +9,7 @@ package com.sap.furcas.metamodel.TCS.impl;
 import com.sap.furcas.metamodel.TCS.PropertyVal;
 import com.sap.furcas.metamodel.TCS.TCSPackage;
 
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,23 +21,23 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * @generated
  */
 public class PropertyValImpl extends ValueImpl implements PropertyVal {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PropertyValImpl() {
-		super();
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected PropertyValImpl() {
+                super();
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return TCSPackage.Literals.PROPERTY_VAL;
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        protected EClass eStaticClass() {
+                return TCSPackage.Literals.PROPERTY_VAL;
+        }
 
 } //PropertyValImpl

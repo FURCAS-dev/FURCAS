@@ -25,22 +25,22 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Symbol extends Literal {
-	/**
-	 * Returns the value of the '<em><b>Spaces</b></em>' attribute list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.TCS.SpaceKind}.
-	 * The literals are from the enumeration {@link com.sap.furcas.metamodel.TCS.SpaceKind}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Spaces</em>' attribute list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Spaces</em>' attribute list.
-	 * @see com.sap.furcas.metamodel.TCS.SpaceKind
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getSymbol_Spaces()
-	 * @model unique="false" ordered="false"
-	 * @generated
-	 */
-	EList<SpaceKind> getSpaces();
+        /**
+         * Returns the value of the '<em><b>Spaces</b></em>' attribute list.
+         * The list contents are of type {@link com.sap.furcas.metamodel.TCS.SpaceKind}.
+         * The literals are from the enumeration {@link com.sap.furcas.metamodel.TCS.SpaceKind}.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Spaces</em>' attribute list isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Spaces</em>' attribute list.
+         * @see com.sap.furcas.metamodel.TCS.SpaceKind
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getSymbol_Spaces()
+         * @model unique="false" ordered="false"
+         * @generated
+         */
+        EList<SpaceKind> getSpaces();
 
 } // Symbol

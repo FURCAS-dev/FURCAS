@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class PartialPArgImpl extends PropertyArgImpl implements PartialPArg {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PartialPArgImpl() {
-		super();
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected PartialPArgImpl() {
+                super();
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return TCSPackage.Literals.PARTIAL_PARG;
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        protected EClass eStaticClass() {
+                return TCSPackage.Literals.PARTIAL_PARG;
+        }
 
 } //PartialPArgImpl

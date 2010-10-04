@@ -21,23 +21,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class BostokenImpl extends AbstractTokenImpl implements Bostoken {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected BostokenImpl() {
-		super();
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected BostokenImpl() {
+                super();
+        }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return TextblocksPackage.Literals.BOSTOKEN;
-	}
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        @Override
+        protected EClass eStaticClass() {
+                return TextblocksPackage.Literals.BOSTOKEN;
+        }
 
 } //BostokenImpl
