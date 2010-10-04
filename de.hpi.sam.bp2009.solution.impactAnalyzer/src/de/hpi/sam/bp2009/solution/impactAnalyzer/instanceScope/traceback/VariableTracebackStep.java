@@ -34,6 +34,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet.UnusedEvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 
 /**
  * The step produced will be invoked with the value for the variable. This knowledge can be helpful when trying to perform
@@ -82,11 +83,11 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
     }
 
     @Override
-    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache,
             Notification changeEvent) {
-        OperationCallExpKeyedSet<AnnotatedEObject> result;
+        OperationCallExpKeyedSet result;
         // don't assign collection-type variables because having inferred one value of the collection doesn't
         // tell us the complete variable value; simple example that would fail otherwise:
         // "v->size()" would evaluate to 1 instead of whatever the size of the full collection would have been.
@@ -95,7 +96,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
             UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(),
                     oppositeEndFinder, tracebackCache);
             if (unusedResult.hasProvenUnused()) {
-                result = OperationCallExpKeyedSet.emptySet(tracebackCache.getConfiguration().isOperationCallSelectionActive());
+                result = OperationCallExpKeyedSetImpl.emptySet();
             } else {
                 result = perform(source, unusedResult.getNewRequestSet(), tracebackCache, changeEvent);
             }
@@ -105,13 +106,12 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
         return result;
     }
 
-    private OperationCallExpKeyedSet<AnnotatedEObject> perform(AnnotatedEObject source,
+    private OperationCallExpKeyedSet perform(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        OperationCallExpKeyedSet<AnnotatedEObject> result;
+        OperationCallExpKeyedSet result;
         if (identity) {
-            result = new OperationCallExpKeyedSet<AnnotatedEObject>(tracebackCache.getConfiguration().isOperationCallSelectionActive());
-            result.add(source);
+            result = new OperationCallExpKeyedSetImpl(source);
         } else {
             result = super.performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache,
                     changeEvent);

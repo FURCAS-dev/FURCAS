@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -182,7 +181,6 @@ public class InstanceScopeAnalysis {
         } else {
             resultCollection = new HashSet<EObject>();
         }
-        Set<AnnotatedEObject> result = new HashSet<AnnotatedEObject>();
         for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
             for (AnnotatedEObject sourceElement : getSourceElement(event, attributeOrAssociationEndCall)) {
                 // TODO contemplate parallel execution of hasNoEffectOnOverallExpression and self which both may take long and we
@@ -191,14 +189,12 @@ public class InstanceScopeAnalysis {
                     if (sourceElement != null) {
                         // the source element may have been deleted already by subsequent events; at this point,
                         // this makes it impossible to trace the change event back to a context; all we have is
-                        result.addAll(self(attributeOrAssociationEndCall, sourceElement, getContext(), event));
+                        for (AnnotatedEObject r : self(attributeOrAssociationEndCall, sourceElement, getContext(), event)) {
+                            resultCollection.add(r.getAnnotatedObject());
+                        }
                     }
                 }
             }
-        }
-        Iterator<AnnotatedEObject> it = result.iterator();
-        while (it.hasNext()) {
-            resultCollection.add(it.next().getAnnotatedObject());
         }
         return resultCollection;
     }
@@ -525,9 +521,9 @@ public class InstanceScopeAnalysis {
      *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
      */
-    private Set<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
+    private Iterable<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
             EClass context, Notification changeEvent) {
-        Set<AnnotatedEObject> result;
+        Iterable<AnnotatedEObject> result;
         if (configuration.isTracebackStepISAActive()) {
             TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cache = new de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache(

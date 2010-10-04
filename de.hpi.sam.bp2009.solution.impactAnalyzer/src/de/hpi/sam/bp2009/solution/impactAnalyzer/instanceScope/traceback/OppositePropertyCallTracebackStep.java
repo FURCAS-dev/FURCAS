@@ -1,5 +1,7 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -16,6 +18,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 
 public class OppositePropertyCallTracebackStep extends AbstractTracebackStep<OppositePropertyCallExp> implements TracebackStep {
 
@@ -35,22 +38,28 @@ public class OppositePropertyCallTracebackStep extends AbstractTracebackStep<Opp
     }
 
     @Override
-    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>(tracebackCache.getConfiguration().isOperationCallSelectionActive());
+        OperationCallExpKeyedSet result;
+        List<OperationCallExpKeyedSet> resultList = new LinkedList<OperationCallExpKeyedSet>();
         Object o = source.eGet(reference);
         if (isMany) {
             if (o instanceof EList<?>) {
                 @SuppressWarnings("unchecked")
                 EList<EObject> refObjects = (EList<EObject>) o;
                 for (EObject obj : refObjects) {
-                    result.addAll(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+                    resultList.add(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent));
                 }
+                result = new OperationCallExpKeyedSetImpl(resultList);
+            } else {
+                result = OperationCallExpKeyedSetImpl.emptySet();
             }
         } else {
             AnnotatedEObject oSingle = annotateEObject(source, (EObject) source.eGet(reference));
             if (oSingle != null) {
-                result.addAll(nextStep.traceback(oSingle, pendingUnusedEvalRequests, tracebackCache, changeEvent));
+                result = nextStep.traceback(oSingle, pendingUnusedEvalRequests, tracebackCache, changeEvent);
+            } else {
+                result = OperationCallExpKeyedSetImpl.emptySet();
             }
         }
         return result;

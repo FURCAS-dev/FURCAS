@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.hpi.sam.bp2009.solution.eventManager.framework.CompositeSet;
+import de.hpi.sam.bp2009.solution.eventManager.CompositeCollection;
 
 
 public class CompositeSetTest extends TestCase {
@@ -33,7 +33,7 @@ public class CompositeSetTest extends TestCase {
     @Test
     public void testEmpty() {
         @SuppressWarnings("unchecked")
-        CompositeSet<Integer> cs = new CompositeSet<Integer>();
+        CompositeCollection<Integer> cs = new CompositeCollection<Integer>();
         assertTrue(cs.isEmpty());
         assertEquals(0, cs.size());
     }
@@ -41,7 +41,7 @@ public class CompositeSetTest extends TestCase {
     @Test
     public void testSimpleSet() {
         @SuppressWarnings("unchecked")
-        CompositeSet<Integer> cs = new CompositeSet<Integer>(firstSet);
+        CompositeCollection<Integer> cs = new CompositeCollection<Integer>(firstSet);
         assertFalse(cs.isEmpty());
         assertEquals(firstSet.size(), cs.size());
         assertTrue(firstSet.containsAll(cs));
@@ -52,7 +52,7 @@ public class CompositeSetTest extends TestCase {
     @Test
     public void testTwoSets() {
         @SuppressWarnings("unchecked")
-        CompositeSet<Integer> cs = new CompositeSet<Integer>(firstSet, secondSet);
+        CompositeCollection<Integer> cs = new CompositeCollection<Integer>(firstSet, secondSet);
         assertFalse(cs.isEmpty());
         assertEquals(firstSet.size()+secondSet.size(), cs.size());
         assertTrue(cs.containsAll(firstSet));
@@ -64,7 +64,7 @@ public class CompositeSetTest extends TestCase {
     @Test
     public void testIntermittentEmptySets() {
         @SuppressWarnings("unchecked")
-        CompositeSet<Integer> cs = new CompositeSet<Integer>(emptySet, firstSet, emptySet, secondSet, emptySet);
+        CompositeCollection<Integer> cs = new CompositeCollection<Integer>(emptySet, firstSet, emptySet, secondSet, emptySet);
         assertFalse(cs.isEmpty());
         assertEquals(firstSet.size()+secondSet.size(), cs.size());
         assertTrue(cs.containsAll(firstSet));
@@ -73,7 +73,7 @@ public class CompositeSetTest extends TestCase {
         assertContainsAll(cs, secondSet);
     }
     
-    private <T> void assertContainsAll(CompositeSet<T> cs, Collection<T> other) {
+    private <T> void assertContainsAll(CompositeCollection<T> cs, Collection<T> other) {
         Set<T> notFound = new HashSet<T>(other);
         for (T t : cs) {
             notFound.remove(t);

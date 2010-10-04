@@ -77,7 +77,7 @@ public class TracebackCache {
      * Cached values of {@link NavigationStep#navigate(Set, TracebackCache, org.eclipse.emf.common.notify.Notification)} calls,
      * keyed by the step and the <code>fromObject</code> from which navigation was computed, caching the prior results.
      */
-    private final Map<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, OperationCallExpKeyedSet<AnnotatedEObject>> navigateCache;
+    private final Map<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, OperationCallExpKeyedSet> navigateCache;
     
     /**
      * Caches the results of {@link UnusedEvaluationRequest#evaluate(com.sap.emf.ocl.hiddenopposites.OppositeEndFinder evaluating}
@@ -98,7 +98,7 @@ public class TracebackCache {
     private final UnusedEvaluationRequestFactory unusedEvaluationRequestFactory;
     
     public TracebackCache(ActivationOption configuration, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
-        navigateCache = new HashMap<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, OperationCallExpKeyedSet<AnnotatedEObject>>();
+        navigateCache = new HashMap<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, OperationCallExpKeyedSet>();
         unusedEvaluationCache = new HashMap<UnusedEvaluationRequest, Object>();
         this.configuration = configuration;
         this.unusedEvaluationRequestFactory = unusedEvaluationRequestFactory;
@@ -137,15 +137,15 @@ public class TracebackCache {
      * Looks up a previously {@link #put entered} result for the <code>step</code> where navigation
      * started at the <code>from</code> object. If not found, <code>null</code> is returned.
      */
-    public OperationCallExpKeyedSet<AnnotatedEObject> get(TracebackStep step, AnnotatedEObject from,
+    public OperationCallExpKeyedSet get(TracebackStep step, AnnotatedEObject from,
             UnusedEvaluationRequestSet pendingUnusedEvaluationRequests) {
-        OperationCallExpKeyedSet<AnnotatedEObject> result = navigateCache.get(new Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>(
+        OperationCallExpKeyedSet result = navigateCache.get(new Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>(
                 step, from, pendingUnusedEvaluationRequests));
         return result;
     }
     
     public void put(TracebackStep step, AnnotatedEObject from, UnusedEvaluationRequestSet pendingUnusedEvaluationRequests,
-            OperationCallExpKeyedSet<AnnotatedEObject> result) {
+            OperationCallExpKeyedSet result) {
         navigateCache.put(new Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>(step, from,
                 pendingUnusedEvaluationRequests), result);
     }

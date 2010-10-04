@@ -13,6 +13,7 @@ import javax.swing.event.ChangeEvent;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import de.hpi.sam.bp2009.solution.eventManager.CompositeSet;
 import de.hpi.sam.bp2009.solution.eventManager.filters.EventFilter;
 
 
