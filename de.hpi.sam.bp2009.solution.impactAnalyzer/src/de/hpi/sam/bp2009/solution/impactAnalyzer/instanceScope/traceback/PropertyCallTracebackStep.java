@@ -1,6 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -21,6 +23,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 
 public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCallExp> {
     private enum Strategy { TUPLE, OPPOSITE_MANY, OPPOSITE_SINGLE, CONTAINMENT, HIDDEN_OPPOSITE };
@@ -89,40 +92,46 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
     }
 
     @Override
-    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        OperationCallExpKeyedSet<AnnotatedEObject> result = new OperationCallExpKeyedSet<AnnotatedEObject>(tracebackCache.getConfiguration().isOperationCallSelectionActive());
+        OperationCallExpKeyedSet result = OperationCallExpKeyedSetImpl.emptySet();
         switch (strategy) {
         case TUPLE:
-            result.addAll(nextStep.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+            result = nextStep.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
             break;
         case OPPOSITE_MANY:
             Object o = source.eGet(oppositeReference);
             if (o instanceof EList<?>) {
                 @SuppressWarnings("unchecked")
                 EList<EObject> refObjects = (EList<EObject>) o;
+                Set<OperationCallExpKeyedSet> resultSets = new HashSet<OperationCallExpKeyedSet>();
                 for (EObject obj : refObjects) {
-                    result.addAll(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+                    resultSets.add(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent));
                 }
+                result = new OperationCallExpKeyedSetImpl(resultSets);
             }
             break;
         case OPPOSITE_SINGLE:
             EObject oSingle = (EObject) source.eGet(oppositeReference);
             if (oSingle != null) {
-                result.addAll(nextStep.traceback(annotateEObject(source, oSingle), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+                result = nextStep.traceback(annotateEObject(source, oSingle), pendingUnusedEvalRequests, tracebackCache, changeEvent);
             }
             break;
         case CONTAINMENT:
             EObject container = source.eContainer();
             if (container != null) {
-                result.addAll(nextStep.traceback(annotateEObject(source, container), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+                result = nextStep.traceback(annotateEObject(source, container), pendingUnusedEvalRequests, tracebackCache, changeEvent);
             }
             break;
         case HIDDEN_OPPOSITE:
             Collection<EObject> opposite = oppositeEndFinder.navigateOppositePropertyWithBackwardScope(
                     sourceExpression.getReferredProperty(), source.getAnnotatedObject());
-            for (EObject eo : opposite) {
-                result.addAll(nextStep.traceback(annotateEObject(source, eo), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+            if (opposite != null && !opposite.isEmpty()) {
+                Set<OperationCallExpKeyedSet> resultSets = new HashSet<OperationCallExpKeyedSet>();
+                for (EObject eo : opposite) {
+                    resultSets.add(nextStep.traceback(annotateEObject(source, eo), pendingUnusedEvalRequests, tracebackCache, changeEvent));
+                }
+                result = new OperationCallExpKeyedSetImpl(resultSets);
             }
             break;
         }

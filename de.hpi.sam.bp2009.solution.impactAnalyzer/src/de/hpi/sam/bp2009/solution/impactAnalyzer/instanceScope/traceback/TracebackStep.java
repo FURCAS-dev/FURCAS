@@ -54,7 +54,7 @@ public interface TracebackStep {
      *         by the <code>null</code> key. All object reached without leaving an operation body through a <code>self</code>
      *         or parameter variable are also keyed by the <code>null</code> key.
      */
-    public OperationCallExpKeyedSet<AnnotatedEObject> traceback(AnnotatedEObject source,
+    public OperationCallExpKeyedSet traceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests,
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent);
 

@@ -21,6 +21,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -161,22 +162,23 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
     }
 
     @Override
-    protected OperationCallExpKeyedSet<AnnotatedEObject> performSubsequentTraceback(AnnotatedEObject source,
+    protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        OperationCallExpKeyedSet<AnnotatedEObject> result;
+        OperationCallExpKeyedSet result;
         if (allInstancesClass != null) {
-            result = new OperationCallExpKeyedSet<AnnotatedEObject>(tracebackCache.getConfiguration().isOperationCallSelectionActive());
+            Set<AnnotatedEObject> preResult = new HashSet<AnnotatedEObject>();
             for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances((Notifier) changeEvent.getNotifier(), allInstancesClass,
                     oppositeEndFinder)) {
-                result.add(annotateEObject(source, roi));
+                preResult.add(annotateEObject(source, roi));
             }
-            return result;
+            OperationCallExpKeyedSetImpl postResult = new OperationCallExpKeyedSetImpl(preResult);
+            result = postResult;
             
         } else {
-            OperationCallExpKeyedSet<AnnotatedEObject> preResult = (OperationCallExpKeyedSet<AnnotatedEObject>) super
+            OperationCallExpKeyedSet preResult = (OperationCallExpKeyedSet) super
                     .performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
             if (filterResultsByCall) {
-                result = preResult.getCombinedResultsFor(getExpression());
+                result = new OperationCallExpKeyedSetImpl(preResult.getCombinedResultsFor(getExpression()));
             } else {
                 result = preResult;
             }
