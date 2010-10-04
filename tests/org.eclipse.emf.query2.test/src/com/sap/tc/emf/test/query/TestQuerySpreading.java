@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query2.QueryContext;
+import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.TypeScopeProvider;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
@@ -61,9 +63,9 @@ public class TestQuerySpreading extends QueryTestCase {
 		this.testClient = new DefaultTestClientImpl();
 	}
 
-	private QueryProcessorImpl getMQLProcessor() {
+	private QueryProcessor getMQLProcessor() {
 
-		return new QueryProcessorImpl(index);
+		return QueryProcessorFactory.getDefault().createQueryProcessor(index);
 	}
 
 	private QueryContext getQueryContext(final TypeScopeProvider scopeProvider) {
@@ -86,7 +88,7 @@ public class TestQuerySpreading extends QueryTestCase {
 	@Test
 	public void testDominantMixedSubdominantDirty() throws Exception {
 
-		QueryProcessorImpl mql = this.getMQLProcessor();
+		QueryProcessor mql = this.getMQLProcessor();
 
 		Resource mixedDirty_NonDirty = this.testClient.getOrCreateResourceStable("mixedDirty_nonDirty.xmi");
 		Resource mixedDirty_Dirty = this.testClient.getOrCreateResourceStable("mixedDirty_dirty.xmi");

@@ -24,6 +24,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
+import org.eclipse.emf.query.index.internal.impl.GlobalTables;
+import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromFixedSet;
 import org.eclipse.emf.query2.FromType;
@@ -32,6 +34,7 @@ import org.eclipse.emf.query2.Operation;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.SelectAlias;
 import org.eclipse.emf.query2.SelectAttrs;
@@ -49,6 +52,7 @@ import org.eclipse.emf.query2.test.mm.Company.Department;
 import org.eclipse.emf.query2.test.mm.Company.Division;
 import org.eclipse.emf.query2.test.mm.Company.Employee;
 import org.eclipse.emf.query2.test.mm.Company.Freelance;
+import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -127,7 +131,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 	private QueryProcessor getMQLProcessor() {
 
-		return new QueryProcessorImpl(index);
+		return QueryProcessorFactory.getDefault().createQueryProcessor(index);
 	}
 
 	private ResultSet executeQuery(Object query, QueryContext context) {
@@ -298,6 +302,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 	 */
 	@Test
 	public void employeesUnder40_ast() {
+		
+		
 
 		URI employeeUri = EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE);
 
@@ -339,6 +345,62 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		// execute the query
 		this.employeesUnder40_check(query);
 	}
+//	@Test
+//	public void testDirtyReindexProblem(){
+//		String query = "select em, em.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] withoutsubtypes as em "
+//		+ " where for em(age < 40)";
+//
+//		
+//		
+//		// execute the query
+//		this.employeesUnder40_check(query);
+//		
+//		boris.setAge(41);
+//		assertTrue(boris.eResource().isModified());
+//		this.employeesUnder40_check_dirty(query);
+//		
+//
+//	}
+	
+	@Test
+	public void checkBackWardNavigation(){
+		String query1="select em,em.name,dep.name from [" + EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em ," +
+			"from [" + EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep"
+		+ " where em.managed=dep";
+		
+		
+		
+		String query = "select em,em.name,dep.name " + " from ["
+		+ EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em, " + " ["
+		+ EcoreUtil.getURI(CompanyPackage.Literals.DEPARTMENT) + "] as dep"
+		+ "  where em.managed = dep ";
+		
+//		
+//		String query = "select em,em.name" + " from ["
+//		+ EcoreUtil.getURI(CompanyPackage.Literals.EMPLOYEE) + "] as em ";
+		
+		
+		
+		
+		
+		
+		TypeScopeProvider queryScopeProvider = this.getMQLProcessor().getInclusivePartitionScopeProvider(this.globalPartitionScope);
+		QueryContext queryContext = this.getQueryContext(queryScopeProvider);
+		ResultSet resultSet = this.executeQuery(query, queryContext);
+
+		// verify the result set
+		URI[] resultEmployees = resultSet.getUris("dep");
+		Set<EObject> resultEmployeesSet = new HashSet<EObject>();
+		for (URI uri : resultEmployees) {
+			resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri, true));
+		}
+		assertTrue(resultEmployeesSet.contains(this.meinolfDivision1Departments));
+		
+		Writer writer = new StringWriter();
+		resultSet.asCSV(writer);
+		assertEquals(resultSet.toString(), writer.toString());
+
+	}
 
 	/**
 	 * Return the elements (MRIs) and names of all employees (but not those who
@@ -366,6 +428,8 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		for (URI uri : resultEmployees) {
 			resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri, true));
 		}
+		
+		
 		assertTrue(resultEmployeesSet.contains(this.meinolfDivision1Departments));
 		assertTrue(resultEmployeesSet.contains(this.boris));
 		assertTrue(resultEmployeesSet.contains(this.stefan));
@@ -373,6 +437,26 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		resultSet.asCSV(writer);
 		assertEquals(resultSet.toString(), writer.toString());
 	}
+	
+//	private void employeesUnder40_check_dirty(Object preparedQuery) {
+//
+//		TypeScopeProvider queryScopeProvider = this.getMQLProcessor().getInclusivePartitionScopeProvider(this.globalPartitionScope);
+//		QueryContext queryContext = this.getQueryContext(queryScopeProvider);
+//		ResultSet resultSet = this.executeQuery(preparedQuery, queryContext);
+//
+//		// verify the result set
+//		URI[] resultEmployees = resultSet.getUris("em");
+//		Set<EObject> resultEmployeesSet = new HashSet<EObject>();
+//		for (URI uri : resultEmployees) {
+//			resultEmployeesSet.add(queryContext.getResourceSet().getEObject(uri, true));
+//		}
+//		assertTrue(resultEmployeesSet.contains(this.meinolfDivision1Departments));
+//		assertFalse(resultEmployeesSet.contains(this.boris));
+//		assertTrue(resultEmployeesSet.contains(this.stefan));
+//		Writer writer = new StringWriter();
+//		resultSet.asCSV(writer);
+//		assertEquals(resultSet.toString(), writer.toString());
+//	}
 
 	@Test
 	public void employeesWithoutBosses() {
@@ -390,6 +474,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 
 		TypeScopeProvider queryScopeProvider = this.getMQLProcessor().getInclusivePartitionScopeProvider(this.globalPartitionScope);
 		ResultSet resultSet1 = this.executeQuery(preparedQuery1, this.getQueryContext(queryScopeProvider));
+		
 		ResultSet resultSet2 = this.executeQuery(preparedQuery2, this.getQueryContext(queryScopeProvider));
 
 		assertEquals(resultSet1.getSize(), resultSet2.getSize());
@@ -1041,7 +1126,7 @@ public class TestSuiteCompanyQueryTests extends QueryTestCase {
 		assertEquals(resultSet.getAttribute(3, "em", "name"), "Meinolf");
 		assertEquals(resultSet.getAttribute(4, "em", "name"), "Simon");
 		assertEquals(resultSet.getAttribute(5, "em", "name"), "Stefan");
-
+		
 	}
 
 	@Test

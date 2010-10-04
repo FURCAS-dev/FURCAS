@@ -18,6 +18,7 @@ import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryFormatException;
 import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
 import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
@@ -97,7 +98,7 @@ public class TestSuiteNegativeQueryTests extends QueryTestCase {
 
 	private QueryProcessor getMQLProcessor() {
 
-		return new QueryProcessorImpl(index);
+		return QueryProcessorFactory.getDefault().createQueryProcessor(index);
 	}
 
 	private QueryContext getQueryContext() {

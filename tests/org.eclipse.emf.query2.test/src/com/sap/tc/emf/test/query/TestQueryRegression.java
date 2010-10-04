@@ -22,6 +22,7 @@ import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryFormatException;
 import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.TypeScopeProvider;
 import org.eclipse.emf.query2.internal.moinql.controller.QueryProcessorImpl;
@@ -78,7 +79,7 @@ public class TestQueryRegression extends QueryTestCase {
 
 	private QueryProcessor getMQLProcessor() {
 
-		return new QueryProcessorImpl(index);
+		return QueryProcessorFactory.getDefault().createQueryProcessor(index);
 	}
 
 	@Test

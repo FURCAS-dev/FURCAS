@@ -34,6 +34,7 @@ import org.eclipse.emf.query2.Operation;
 import org.eclipse.emf.query2.Query;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.QueryProcessor;
+import org.eclipse.emf.query2.QueryProcessorFactory;
 import org.eclipse.emf.query2.ResultSet;
 import org.eclipse.emf.query2.SelectAlias;
 import org.eclipse.emf.query2.SelectAttrs;
@@ -2830,9 +2831,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		QueryProcessor mql = this.getMQLProcessor();
 
 		if (this.withOptimization) {
-			((QueryProcessorImpl) mql).turnOnOptimizationDuringScheduling();
+			mql.turnOnOptimizationDuringScheduling();
 		} else {
-			((QueryProcessorImpl) mql).turnOffOptimizationForElementsDuringScheduling();
+			mql.turnOffOptimizationForElementsDuringScheduling();
 		}
 
 		long timeStamp = System.currentTimeMillis();
@@ -2859,9 +2860,9 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		QueryProcessor mql = this.getMQLProcessor();
 
 		if (this.withOptimization) {
-			((QueryProcessorImpl) mql).turnOnOptimizationDuringScheduling();
+			mql.turnOnOptimizationDuringScheduling();
 		} else {
-			((QueryProcessorImpl) mql).turnOffOptimizationForElementsDuringScheduling();
+			mql.turnOffOptimizationForElementsDuringScheduling();
 		}
 
 		long timeStamp = System.currentTimeMillis();
@@ -3158,7 +3159,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 	private QueryProcessor getMQLProcessor() {
 
-		return new QueryProcessorImpl(index);
+		return QueryProcessorFactory.getDefault().createQueryProcessor(index);
 	}
 
 	private QueryContext getQueryContext() {
