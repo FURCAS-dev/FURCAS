@@ -92,7 +92,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
         final MethodCallExpression callOnStringTypedExpression = (MethodCallExpression) ngpmModel.getEObject("E02C978BFD3F74805D0811DF8A6AFF380A1CE22F");
         final EList<MethodSignature> oldValue = ((ClassTypeDefinition) callOnStringTypedExpression.getObject().getType().getInnermost()).getClazz().allSignatures();
-        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass());
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp);
         final boolean[] result = new boolean[1];
         string.eAdapters().add(new AdapterImpl() {
             @Override
@@ -204,7 +204,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
         final ClassTypeDefinition appendOutputCTD = (ClassTypeDefinition) append.getOutput();
         assertEquals(string, appendOutputCTD.getClazz());
         assertEquals("append", append.getName());
-        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp, data.classes.ClassesPackage.eINSTANCE.getSapClass());
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp);
         final boolean[] result = new boolean[1];
         appendOutputCTD.eAdapters().add(new AdapterImpl() {
             @Override

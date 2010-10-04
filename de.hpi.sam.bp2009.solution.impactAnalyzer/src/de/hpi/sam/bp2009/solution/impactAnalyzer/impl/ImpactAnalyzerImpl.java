@@ -68,6 +68,11 @@ public class ImpactAnalyzerImpl implements ImpactAnalyzer {
     public ImpactAnalyzerImpl(OCLExpression expression, EClass context, OppositeEndFinder oppositeEndFinder, ActivationOption configuration) {
         this.expression = expression;
         this.context = context;
+        EClass inferredContext = expression.accept(new ContextTypeRetriever());
+        if (inferredContext != null && inferredContext != context) {
+            throw new IllegalArgumentException("Redundant, incorrect context type specification. Expression has "+inferredContext+
+                    " as context type, but explicitly-provided context type was "+context);
+        }
         this.oppositeEndFinder = oppositeEndFinder;
         this.configuration = configuration;
     }
