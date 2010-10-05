@@ -1,12 +1,12 @@
 package com.sap.mi.textual.parsing.textblocks;
 
+import org.eclipse.emf.ecore.EEnum;
 import org.junit.Before;
 
-import textblocks.Bostoken;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 
 /**
  * Base class for TextBlock related test cases. Sets up a common fixture model
@@ -207,22 +207,22 @@ public class UtilFixtureBase extends TextBlockTest {
 	 * Initialize the model elements versions.
 	 */
 	private void initFixtureVersions() {
-		main.setVersion(VersionEnum.REFERENCE);
-		bos.setVersion(VersionEnum.REFERENCE);
-		left.setVersion(VersionEnum.REFERENCE);
-		leftLeft.setVersion(VersionEnum.REFERENCE);
-		lexed1.setVersion(VersionEnum.REFERENCE);
-		lexed2.setVersion(VersionEnum.REFERENCE);
-		middle.setVersion(VersionEnum.REFERENCE);
-		lexed3.setVersion(VersionEnum.REFERENCE);
-		subBlock1.setVersion(VersionEnum.REFERENCE);
-		subBlock2.setVersion(VersionEnum.REFERENCE);
-		subBlock3.setVersion(VersionEnum.REFERENCE);
-		subBlock4.setVersion(VersionEnum.REFERENCE);
-		subToken.setVersion(VersionEnum.REFERENCE);
-		right.setVersion(VersionEnum.REFERENCE);
-		lexed4.setVersion(VersionEnum.REFERENCE);
-		eos.setVersion(VersionEnum.REFERENCE);
+		main.setVersion(EEnum.REFERENCE);
+		bos.setVersion(EEnum.REFERENCE);
+		left.setVersion(EEnum.REFERENCE);
+		leftLeft.setVersion(EEnum.REFERENCE);
+		lexed1.setVersion(EEnum.REFERENCE);
+		lexed2.setVersion(EEnum.REFERENCE);
+		middle.setVersion(EEnum.REFERENCE);
+		lexed3.setVersion(EEnum.REFERENCE);
+		subBlock1.setVersion(EEnum.REFERENCE);
+		subBlock2.setVersion(EEnum.REFERENCE);
+		subBlock3.setVersion(EEnum.REFERENCE);
+		subBlock4.setVersion(EEnum.REFERENCE);
+		subToken.setVersion(EEnum.REFERENCE);
+		right.setVersion(EEnum.REFERENCE);
+		lexed4.setVersion(EEnum.REFERENCE);
+		eos.setVersion(EEnum.REFERENCE);
 	}
 	
  

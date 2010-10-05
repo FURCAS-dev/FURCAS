@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.Annotation;
@@ -19,17 +20,14 @@ import org.eclipse.ui.internal.Workbench;
 import org.junit.After;
 import org.junit.Before;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.EditorUtil;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.test.util.FixtureBasedTest;
-import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 
 /**
@@ -67,7 +65,7 @@ public class CtsEditorTest extends FixtureBasedTest {
 		return list;
 	}
 
-	protected AbstractGrammarBasedEditor openEditor(RefObject refObject) {
+	protected AbstractGrammarBasedEditor openEditor(EObject refObject) {
 		try {
 		    AbstractGrammarBasedEditor editor = (AbstractGrammarBasedEditor) ModelManagerUI
 		    		.getEditorManager().openEditor(refObject, null, null);

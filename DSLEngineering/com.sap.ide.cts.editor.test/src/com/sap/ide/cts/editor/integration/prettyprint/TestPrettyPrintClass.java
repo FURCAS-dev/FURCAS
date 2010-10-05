@@ -1,18 +1,14 @@
 package com.sap.ide.cts.editor.integration.prettyprint;
 
 import static org.junit.Assert.assertNotNull;
-import ngpm.NgpmPackage;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import textblocks.TextBlock;
-
 import com.sap.ap.cts.monet.parser.ClassParserFactory;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
 import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;

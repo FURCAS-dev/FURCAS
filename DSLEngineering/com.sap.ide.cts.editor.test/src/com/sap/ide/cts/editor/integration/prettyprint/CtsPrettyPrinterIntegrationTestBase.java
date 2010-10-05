@@ -1,14 +1,13 @@
 package com.sap.ide.cts.editor.integration.prettyprint;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 import java.io.InputStream;
 
 import org.junit.Before;
 
-import tcs.ConcreteSyntax;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementFactory;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementMoinFactory;
 import com.sap.ide.cts.editor.test.util.FixtureBasedTest;

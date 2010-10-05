@@ -5,14 +5,13 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EEnum;
 import org.junit.Before;
 import org.junit.Test;
 
-import textblocks.DocumentNode;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
@@ -261,7 +260,7 @@ public class TestTextBlocksModel extends UtilFixtureBase {
 
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals(false, TbUtil.isDeleted(lexed1));
@@ -326,7 +325,7 @@ public class TestTextBlocksModel extends UtilFixtureBase {
 	public void testReplaceAllShortStringPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("aaaaa", lexed1.getValue());
@@ -398,7 +397,7 @@ public class TestTextBlocksModel extends UtilFixtureBase {
 	public void testReplaceAllLongStringPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("aaaaa", lexed1.getValue());
@@ -468,7 +467,7 @@ public class TestTextBlocksModel extends UtilFixtureBase {
 	public void testReplaceMiddleEmptyPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("+", subToken.getValue());
@@ -543,7 +542,7 @@ public class TestTextBlocksModel extends UtilFixtureBase {
 	public void testReplaceMiddleShortStringPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("bbbbcccc", lexed3.getValue());
@@ -620,7 +619,7 @@ public class TestTextBlocksModel extends UtilFixtureBase {
 	public void testReplaceMiddleLongStringPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("aaaaa", lexed1.getValue());
@@ -699,7 +698,7 @@ public class TestTextBlocksModel extends UtilFixtureBase {
 	public void testReplaceAddToEndPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("ddddd", lexed4.getValue());

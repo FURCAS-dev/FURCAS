@@ -1,6 +1,12 @@
 package com.sap.ide.cts.editor.copy;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,10 +14,16 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import localization.TranslatableText;
 import modelmanagement.Package;
-import ngpm.NgpmPackage;
 
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.FeatureMap.Internal.Wrapper;
 import org.junit.Test;
 
 import com.sap.ap.cts.monet.deepcopy.RunletModelCopyStrategy;
@@ -19,66 +31,7 @@ import com.sap.ap.metamodel.utils.MetamodelUtils;
 import com.sap.ide.cts.editor.deepcopy.DeepCopyHelper;
 import com.sap.ide.cts.editor.deepcopy.GenericModelCopyStrategy;
 import com.sap.ide.cts.editor.test.util.FixtureBasedTest;
-import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.fwk.PartitionService;
-import com.sap.mi.gfw.mm.graphics.GraphicsPackage;
-import com.sap.mi.gfw.mm.pictograms.Diagram;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.DeepCopyError;
-import com.sap.tc.moin.repository.DeepCopyMap;
-import com.sap.tc.moin.repository.DeepCopyMappingEntry;
-import com.sap.tc.moin.repository.DeepCopyPolicy;
-import com.sap.tc.moin.repository.DeepCopyPolicyHandler;
-import com.sap.tc.moin.repository.DeepCopyResultSet;
-import com.sap.tc.moin.repository.LRI;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.PartitionsNotSavedException;
-import com.sap.tc.moin.repository.ReferencedTransientElementsException;
-import com.sap.tc.moin.repository.DeepCopyError.DeepCopyErrorType;
-import com.sap.tc.moin.repository.DeepCopyPolicy.DeepCopyPolicyOption;
-import com.sap.tc.moin.repository.core.ConnectionWrapper;
-import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.mmi.descriptors.StructureFieldContainer;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Contains;
-import com.sap.tc.moin.repository.mmi.model.ModelPackage;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.spi.core.Wrapper;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.Assoc0Composite;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.Assoc0x1;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.Assoc0xRefElement;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.Assoc1Composite;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.Assoc1xRefElement;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.Assoc2x1;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.Assoc2xRefElement;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.Assoc3x1;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.EnumTpEnum;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.GeneratedmetamodelPackage;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.StructInStructTp;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.StructTp;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.TestClass0;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.TestClass1;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.TestClass2;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.TestClass3;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.TestSubClass0;
-import com.sap.tc.moin.repository.test.query.generatedmetamodel.TestSubClass1;
-import com.sap.tc.moin.testcases.case004.A4;
-import com.sap.tc.moin.testcases.case004.B4;
-import com.sap.tc.moin.testcases.case019.B19;
-import com.sap.tc.moin.testcases.case019.serializationcallback.B19Serialization;
-import com.sap.tc.moin.testcases.case019.translatabletexts.A19TranslatableTextFragment;
-import com.sap.tc.moin.testcases.case019.translatabletexts.TranslatabletextsPackage;
-import com.sap.tc.moin.testcasesfoundation.case001f.A1f;
-import com.sap.tc.moin.testcasesfoundation.case004f.ButtonTextF;
-import com.sap.tc.moin.testcasesfoundation.case004f.Case004fPackage;
-import com.sap.tc.moin.textverticalization.TextverticalizationPackage;
-import com.sap.tc.moin.textverticalization.TranslatableText;
-import com.sap.tc.moin.textverticalization.TranslatableTextFragment;
+
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -86,32 +39,32 @@ import data.classes.SapClass;
 
 public class TestDeepCopy extends FixtureBasedTest {
 
-    private SapClass createNewClass(String className, ModelPartition partition) {
+    private SapClass createNewClass(String className, Resource partition) {
 	NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
 	final SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(partition);
 	clazz.setName(className);
 	return clazz;
     }
 
-    private SapClass createNewClassWithPackage(String className, ModelPartition partition) {
+    private SapClass createNewClassWithPackage(String className, Resource partition) {
 	NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
 	final SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(partition);
 	clazz.setName(className);
 
 	final Package pkg = (Package) rootPkg.getModelmanagement().getPackage().refCreateInstanceInPartition(partition);
 	pkg.setName(className + "Package");
-	clazz.setPackage(pkg);
+	clazz.setPackage_(pkg);
 	return clazz;
     }
 
-    private ModelPartition createNewPartition(String partitionName, Connection co) {
-	final ModelPartition partition = ModelManager.getPartitionService().createPartition(co, getProject(),
+    private Resource createNewPartition(String partitionName, ResourceSet co) {
+	final Resource partition = ModelManager.getPartitionService().createPartition(co, getProject(),
 		new Path("src/" + partitionName + ".types"), null);
 	return partition;
     }
 
-    private ModelPartition getOrCreatePartition(String partitionName, Connection co) {
-	ModelPartition part = ModelManager.getPartitionService().getPartition(connection, getProject(),
+    private Resource getOrCreatePartition(String partitionName, ResourceSet co) {
+	Resource part = ModelManager.getPartitionService().getPartition(connection, getProject(),
 		new Path("src/" + partitionName + ".types"));
 	if (part == null) {
 	    return createNewPartition(partitionName, co);
@@ -122,8 +75,8 @@ public class TestDeepCopy extends FixtureBasedTest {
 
     @Test
     public void lookupRepartitionedElement() throws Exception {
-	ModelPartition transPartition = connection.getOrCreateTransientPartition("ReparTransTestPartition");
-	ModelPartition partition = createNewPartition("ReparTestPartition", connection);
+	Resource transPartition = connection.getOrCreateTransientPartition("ReparTransTestPartition");
+	Resource partition = createNewPartition("ReparTestPartition", connection);
 
 	SapClass clazz = createNewClass("RepartitionTestClass", transPartition);
 	LRI lri = clazz.get___Mri().getLri();
@@ -140,13 +93,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 
     @Test
     public void testLinkToCompositeParent() throws Exception {
-	ModelPartition transPartition = connection.getOrCreateTransientPartition("TestLinkedPartition");
+	Resource transPartition = connection.getOrCreateTransientPartition("TestLinkedPartition");
 	SapClass clazz = createNewClassWithPackage("TestLinkedClass", transPartition);
 
 	RunletModelCopyStrategy strategy = new RunletModelCopyStrategy();
 
 	// 1# Copy and link
-	DeepCopyResultSet result1 = connection.deepCopy(Collections.singleton((RefObject) clazz), strategy, false);
+	DeepCopyResultSet result1 = connection.deepCopy(Collections.singleton((EObject) clazz), strategy, false);
 
 	assertEquals(1, result1.getCopiedElements().size());
 	DeepCopyMappingEntry entry1 = result1.getMappingTable().get(clazz);
@@ -156,7 +109,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	DeepCopyHelper.linkToCompositeParent(connection, clazz, copy1);
 
 	// 2# Copy and link
-	DeepCopyResultSet result2 = connection.deepCopy(Collections.singleton((RefObject) clazz), strategy, false);
+	DeepCopyResultSet result2 = connection.deepCopy(Collections.singleton((EObject) clazz), strategy, false);
 
 	assertEquals(1, result2.getCopiedElements().size());
 	DeepCopyMappingEntry entry2 = result2.getMappingTable().get(clazz);
@@ -181,14 +134,14 @@ public class TestDeepCopy extends FixtureBasedTest {
 	assertEquals(pkg, DeepCopyHelper.getCompositeParent(connection, copy1));
 	assertEquals(pkg, DeepCopyHelper.getCompositeParent(connection, copy2));
 
-	Collection<RefObject> children = DeepCopyHelper.getCompositeChildrenImmediate(connection, pkg);
+	Collection<EObject> children = DeepCopyHelper.getCompositeChildrenImmediate(connection, pkg);
 	assertEquals(3, children.size());
 	assertTrue(children.containsAll(Arrays.asList(clazz, copy1, copy2)));
 
-	Collection<RefObject> linked2Pkg = DeepCopyHelper.getAllLinkedElements(connection, pkg);
-	Collection<RefObject> linked2Copy1 = DeepCopyHelper.getAllLinkedElements(connection, copy1);
-	Collection<RefObject> linked2Copy2 = DeepCopyHelper.getAllLinkedElements(connection, copy2);
-	Collection<RefObject> linked2Clazz = DeepCopyHelper.getAllLinkedElements(connection, clazz);
+	Collection<EObject> linked2Pkg = DeepCopyHelper.getAllLinkedElements(connection, pkg);
+	Collection<EObject> linked2Copy1 = DeepCopyHelper.getAllLinkedElements(connection, copy1);
+	Collection<EObject> linked2Copy2 = DeepCopyHelper.getAllLinkedElements(connection, copy2);
+	Collection<EObject> linked2Clazz = DeepCopyHelper.getAllLinkedElements(connection, clazz);
 
 	assertEquals(0, linked2Pkg.size());
 	assertEquals(1, linked2Copy1.size());
@@ -200,13 +153,13 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testLinkToCompositeParentAcrossPartitionsAndConnections() throws Exception {
 	// Create source
-	ModelPartition sourcePartition = createNewPartition("TestLinkedAcrossPartition", connection);
+	Resource sourcePartition = createNewPartition("TestLinkedAcrossPartition", connection);
 	SapClass clazz = createNewClassWithPackage("TestLinkedAcrossClass", sourcePartition);
 	connection.save();
 
 	// Simulate that the snapshotting uses a different connection
-	Connection targetCon = createConnection();
-	RefObject clazzInTarget = (RefObject) targetCon.getElement(clazz.get___Mri());
+	ResourceSet targetCon = createConnection();
+	EObject clazzInTarget = (EObject) targetCon.getElement(clazz.get___Mri());
 	RunletModelCopyStrategy strategy = new RunletModelCopyStrategy();
 
 	// 1# Copy, move and link
@@ -217,7 +170,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	DeepCopyMappingEntry entry1 = result1.getMappingTable().get(clazzInTarget);
 	SapClass copy1 = (SapClass) entry1.getMappingTarget();
 
-	ModelPartition copy1Partition = createNewPartition("copy1Partition", targetCon);
+	Resource copy1Partition = createNewPartition("copy1Partition", targetCon);
 	copy1.assign___Partition(copy1Partition);
 
 	assertTrue(strategy.prepareLinkingToCompositeParent("testOne", clazzInTarget, copy1));
@@ -233,7 +186,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	DeepCopyMappingEntry entry2 = result2.getMappingTable().get(clazzInTarget);
 	SapClass copy2 = (SapClass) entry2.getMappingTarget();
 
-	ModelPartition copy2Partition = createNewPartition("copy2Partition", targetCon);
+	Resource copy2Partition = createNewPartition("copy2Partition", targetCon);
 	copy2.assign___Partition(copy2Partition);
 
 	assertTrue(strategy.prepareLinkingToCompositeParent("testTwo", clazzInTarget, copy2));
@@ -257,14 +210,14 @@ public class TestDeepCopy extends FixtureBasedTest {
 	assertEquals(pkg, DeepCopyHelper.getCompositeParent(connection, copy1));
 	assertEquals(pkg, DeepCopyHelper.getCompositeParent(connection, copy2));
 
-	Collection<RefObject> children = DeepCopyHelper.getCompositeChildrenImmediate(connection, pkg);
+	Collection<EObject> children = DeepCopyHelper.getCompositeChildrenImmediate(connection, pkg);
 	assertEquals(3, children.size());
 	assertTrue(children.containsAll(Arrays.asList(clazz, copy1, copy2)));
 
-	Collection<RefObject> linked2Pkg = DeepCopyHelper.getAllLinkedElements(connection, pkg);
-	Collection<RefObject> linked2Copy1 = DeepCopyHelper.getAllLinkedElements(connection, copy1);
-	Collection<RefObject> linked2Copy2 = DeepCopyHelper.getAllLinkedElements(connection, copy2);
-	Collection<RefObject> linked2Clazz = DeepCopyHelper.getAllLinkedElements(connection, clazz);
+	Collection<EObject> linked2Pkg = DeepCopyHelper.getAllLinkedElements(connection, pkg);
+	Collection<EObject> linked2Copy1 = DeepCopyHelper.getAllLinkedElements(connection, copy1);
+	Collection<EObject> linked2Copy2 = DeepCopyHelper.getAllLinkedElements(connection, copy2);
+	Collection<EObject> linked2Clazz = DeepCopyHelper.getAllLinkedElements(connection, clazz);
 
 	assertEquals(0, linked2Pkg.size());
 	assertEquals(1, linked2Copy1.size());
@@ -282,7 +235,7 @@ public class TestDeepCopy extends FixtureBasedTest {
      */
     @Test
     public void testCopyRetainsOrder() {
-	ModelPartition transPartition = connection.getOrCreateTransientPartition("TestPartition");
+	Resource transPartition = connection.getOrCreateTransientPartition("TestPartition");
 	SapClass c1 = createNewClass("TestC1", transPartition);
 	SapClass c2 = createNewClass("TestC2", transPartition);
 
@@ -305,7 +258,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	// Get a policy for testing
 	GenericModelCopyStrategy strategy = new GenericModelCopyStrategy() {
 	    @Override
-	    protected DeepCopyPolicy getMetaModelSpecificMapping(RefObject sourceElement, DeepCopyMap copyMap) {
+	    protected DeepCopyPolicy getMetaModelSpecificMapping(EObject sourceElement, DeepCopyMap copyMap) {
 		// Move up in the composition hierarchy
 		if (sourceElement instanceof Association) {
 		    return new DeepCopyPolicy(DeepCopyPolicyOption.FULL_COPY, null);
@@ -335,7 +288,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	    final AssociationEnd originalSecond, final DeepCopyPolicyHandler pol, final Boolean includeExternalCompositeParents) {
 
 	// Test: Order maintained when starting on parent
-	DeepCopyResultSet result1 = connection.deepCopy(Collections.singleton((RefObject) a), pol,
+	DeepCopyResultSet result1 = connection.deepCopy(Collections.singleton((EObject) a), pol,
 		includeExternalCompositeParents);
 	DeepCopyMappingEntry copyEntry1 = result1.getMappingTable().get(a);
 	Association copyOfA = (Association) copyEntry1.getMappingTarget();
@@ -344,7 +297,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	assertEquals("Second End in place", originalSecond.getName(), copyOfA.getEnds().get(1).getName());
 
 	// Test: Order maintained when starting on FIRST child
-	DeepCopyResultSet result2 = connection.deepCopy(Collections.singleton((RefObject) originalFirst), pol,
+	DeepCopyResultSet result2 = connection.deepCopy(Collections.singleton((EObject) originalFirst), pol,
 		includeExternalCompositeParents);
 	DeepCopyMappingEntry copyEntry2 = result2.getMappingTable().get(a);
 	assertEquals(copyEntry2.getModifiedPolicy().getDeepCopyPolicyOption(), DeepCopyPolicyOption.FULL_COPY);
@@ -355,7 +308,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	assertEquals("Second End in place", originalSecond.getName(), AOfFirst.getEnds().get(1).getName());
 
 	// Test: Order maintained when starting on SECOND child
-	DeepCopyResultSet result3 = connection.deepCopy(Collections.singleton((RefObject) originalSecond), pol,
+	DeepCopyResultSet result3 = connection.deepCopy(Collections.singleton((EObject) originalSecond), pol,
 		includeExternalCompositeParents);
 	DeepCopyMappingEntry copyEntry3 = result3.getMappingTable().get(a);
 	assertEquals(copyEntry3.getModifiedPolicy().getDeepCopyPolicyOption(), DeepCopyPolicyOption.FULL_COPY);
@@ -372,7 +325,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testIdentity() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 
@@ -381,15 +334,15 @@ public class TestDeepCopy extends FixtureBasedTest {
 	tc0.setAttrDouble0(0);
 	tc0.setAttrString0("TestClass0Inst0attrString0");
 
-	List<RefObject> list1 = new ArrayList<RefObject>();
+	List<EObject> list1 = new ArrayList<EObject>();
 	list1.add(tc0);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(list1, null, true);
-	Collection<RefObject> copiedElements = resultSet.getCopiedElements();
+	Collection<EObject> copiedElements = resultSet.getCopiedElements();
 
 	boolean containsTc0 = false;
 
-	for (RefObject copy : copiedElements) {
+	for (EObject copy : copiedElements) {
 	    assertFalse(copy.equals(tc0));
 	    assertTrue(((TestClass0) copy).getAttrString0() == "TestClass0Inst0attrString0");
 	    if (copy.refGetValue("name") == "TestClass0Inst0") {
@@ -405,7 +358,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testObjectValuedAttributes() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 
@@ -433,15 +386,15 @@ public class TestDeepCopy extends FixtureBasedTest {
 	tc0ov0.setAttrObjectValued1(tc0ov0ov1);
 	tc0ov0.setAttrObjectValued2(tc0ov0ov2);
 
-	List<RefObject> list1 = new ArrayList<RefObject>();
+	List<EObject> list1 = new ArrayList<EObject>();
 	list1.add(tc0);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(list1, null, true);
-	Collection<RefObject> copiedElements = resultSet.getCopiedElements();
+	Collection<EObject> copiedElements = resultSet.getCopiedElements();
 
 	boolean containsTc0 = false;
 
-	for (RefObject copy : copiedElements) {
+	for (EObject copy : copiedElements) {
 	    if (copy instanceof TestClass0 && ((TestClass0) copy).getName().equals("TestClass0Inst0")) {
 		assertTrue(((TestClass0) copy).getAttrObjectValued0().getAttrObjectValued2().getName() == "TestClass0Inst0attrObjValued0attrObjValued2");
 		containsTc0 = true;
@@ -474,19 +427,19 @@ public class TestDeepCopy extends FixtureBasedTest {
 	b4_02.setOnePrimitive("b4_02");
 	manyBs.add(b4_02);
 
-	List<RefObject> list1 = new ArrayList<RefObject>();
+	List<EObject> list1 = new ArrayList<EObject>();
 	list1.add(a4Empty);
 	list1.add(a4with2Attributes);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(list1, null, true);
-	Collection<RefObject> copiedElements = resultSet.getCopiedElements();
+	Collection<EObject> copiedElements = resultSet.getCopiedElements();
 
 	boolean foundA4Empty = false;
 	boolean foundA4with2Attributes = false;
 	boolean foundA4Attributes = false;
 
 	assert (copiedElements.size() == 4);
-	for (RefObject copy : copiedElements) {
+	for (EObject copy : copiedElements) {
 	    if (copy instanceof A4) {
 		A4 copiedA4 = ((A4) copy);
 		String a4Name = copiedA4.getOnePrimitive();
@@ -532,13 +485,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 	f.getReference2x0().add(b); // should be copied, i.e. bCopy should also
 				    // be referenced by f
 
-	DeepCopyResultSet resultSet = connection.deepCopy(Collections.singletonList((RefObject) a), null, true);
-	Collection<RefObject> copiedElements = resultSet.getCopiedElements();
+	DeepCopyResultSet resultSet = connection.deepCopy(Collections.singletonList((EObject) a), null, true);
+	Collection<EObject> copiedElements = resultSet.getCopiedElements();
 
 	assertEquals(4, copiedElements.size());
 
 	TestClass0 aCopy = null;
-	for (RefObject copy : copiedElements) {
+	for (EObject copy : copiedElements) {
 	    if (copy.refGetValue("name").equals("a")) {
 		aCopy = (TestClass0) copy;
 		break;
@@ -586,7 +539,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testEnumerationAttributes() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 
@@ -594,15 +547,15 @@ public class TestDeepCopy extends FixtureBasedTest {
 
 	tc0.setAttrEnum(EnumTpEnum.LABEL7);
 
-	List<RefObject> list1 = new ArrayList<RefObject>();
+	List<EObject> list1 = new ArrayList<EObject>();
 	list1.add(tc0);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(list1, null, true);
-	Collection<RefObject> copiedElements = resultSet.getCopiedElements();
+	Collection<EObject> copiedElements = resultSet.getCopiedElements();
 
 	boolean containsTc0 = false;
 
-	for (RefObject copy : copiedElements) {
+	for (EObject copy : copiedElements) {
 	    assertTrue(((TestClass0) copy).getAttrEnum().equals(EnumTpEnum.LABEL7));
 	    if (copy.refGetValue("name") == "TestClass0Inst0") {
 		containsTc0 = true;
@@ -619,7 +572,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	StructureFieldContainer<StructInStructTp> contStructInStructTp = new StructureFieldContainer<StructInStructTp>();
 	StructureFieldContainer<StructTp> contStructTp = new StructureFieldContainer<StructTp>();
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 
@@ -633,15 +586,15 @@ public class TestDeepCopy extends FixtureBasedTest {
 	StructTp structureTypedAttr = gpackage1.createStructTp(contStructTp);
 	tc0.setAttrStruct(structureTypedAttr);
 
-	List<RefObject> list1 = new ArrayList<RefObject>();
+	List<EObject> list1 = new ArrayList<EObject>();
 	list1.add(tc0);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(list1, null, true);
-	Collection<RefObject> copiedElements = resultSet.getCopiedElements();
+	Collection<EObject> copiedElements = resultSet.getCopiedElements();
 
 	boolean containsTc0 = false;
 
-	for (RefObject copy : copiedElements) {
+	for (EObject copy : copiedElements) {
 	    assertTrue(((TestClass0) copy).getAttrStruct().getField1() == 42);
 	    assertTrue(((TestClass0) copy).getAttrStruct().getField3().getField1() == 23);
 	    if (copy.refGetValue("name") == "TestClass0Inst0") {
@@ -655,7 +608,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testMultiValuedAttributes() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 
@@ -667,15 +620,15 @@ public class TestDeepCopy extends FixtureBasedTest {
 	mv0.add("TestClass0Inst0attrStringMv0value1");
 	mv0.add("TestClass0Inst0attrStringMv0value2");
 
-	List<RefObject> list1 = new ArrayList<RefObject>();
+	List<EObject> list1 = new ArrayList<EObject>();
 	list1.add(tc0);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(list1, null, true);
-	Collection<RefObject> copiedElements = resultSet.getCopiedElements();
+	Collection<EObject> copiedElements = resultSet.getCopiedElements();
 
 	boolean containsTc0 = false;
 
-	for (RefObject copy : copiedElements) {
+	for (EObject copy : copiedElements) {
 	    assertTrue(((TestClass0) copy).getAttrStringMultiValued0().containsAll(mv0));
 	    if (copy.refGetValue("name") == "TestClass0Inst0") {
 		containsTc0 = true;
@@ -693,7 +646,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testCompositeChildren() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -706,14 +659,14 @@ public class TestDeepCopy extends FixtureBasedTest {
 	ass0comp.add(tc0, tc0child1);
 	ass0comp.add(tc0, tc0child2);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(elementsToBeCopied, null, true);
 
 	boolean containsTc0 = false;
 
-	for (RefObject copy : resultSet.getCopiedElements()) {
+	for (EObject copy : resultSet.getCopiedElements()) {
 	    if (((TestClass0) copy).getName().equals("tc0")) {
 		containsTc0 = true;
 		Collection<TestClass0> children = ((TestClass0) copy).getReference0Composite();
@@ -736,7 +689,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testDirectLinks() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -754,7 +707,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc1xRefElement ass1xRef = gpackage1.getAssoc1xRefElement();
 	ass1xRef.add(tc1, tc3);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0);
 	elementsToBeCopied.add(tc1);
 
@@ -763,7 +716,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	boolean containsTc2 = resultSet.getMappingTable().containsKey(tc2);
 	boolean containsTc3 = resultSet.getMappingTable().containsKey(tc3);
 
-	for (RefObject copiedObject : resultSet.getCopiedElements()) {
+	for (EObject copiedObject : resultSet.getCopiedElements()) {
 	    String name = (String) copiedObject.refGetValue("name");
 	    if (name == "tc0") {
 		assertTrue(((TestClass0) copiedObject).getReference0xRefElement().contains(tc2));
@@ -776,7 +729,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testFalselySetReverseAssociations() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc01 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc01.setName("tc01");
@@ -786,13 +739,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc0xRefElement ass0xRef = gpackage1.getAssoc0xRefElement();
 	ass0xRef.add(tc01, tc02);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc02);
 	elementsToBeCopied.add(tc01);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(elementsToBeCopied, null, true);
 
-	for (RefObject copiedObject : resultSet.getCopiedElements()) {
+	for (EObject copiedObject : resultSet.getCopiedElements()) {
 	    String name = (String) copiedObject.refGetValue("name");
 	    if (name == "tc01") {
 		assertTrue(resultSet.getCopiedElements().containsAll(((TestClass0) copiedObject).getReference0xRefElement()));
@@ -808,7 +761,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testRemoveCompositeChild() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -821,7 +774,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	ass0comp.add(tc0, tc0child1);
 	ass0comp.add(tc0, tc0child2);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0);
 
 	/*
@@ -829,7 +782,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	 */
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
 		DeepCopyPolicy resultPolicy = null;
 		if (sourceElement instanceof TestClass0) {
@@ -847,7 +800,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 
 	DeepCopyResultSet resultSet = connection.deepCopy(elementsToBeCopied, testHandler1, true);
 
-	for (RefObject copy : resultSet.getCopiedElements()) {
+	for (EObject copy : resultSet.getCopiedElements()) {
 	    if ((copy != null) && ((TestClass0) copy).getName().equals("tc0")) {
 		Collection<TestClass0> children = ((TestClass0) copy).getReference0Composite();
 		if (children.iterator().hasNext()) {
@@ -863,7 +816,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testInvalidCustomType() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -874,7 +827,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	TestClass3 tc3 = (TestClass3) gpackage1.getTestClass3().refCreateInstance();
 	tc3.setName("tc3");
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0);
 	elementsToBeCopied.add(tc1);
 	elementsToBeCopied.add(tc2);
@@ -882,11 +835,11 @@ public class TestDeepCopy extends FixtureBasedTest {
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
 		DeepCopyPolicy resultPolicy = null;
 		if (sourceElement instanceof TestClass0) {
-		    GeneratedmetamodelPackage gpackage2 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+		    EPackage gpackage2 = (EPackage) (connection.getPackage(null,
 			    new String[] { "generatedmetamodel" }));
 		    TestClass1 tc1fault = (TestClass1) gpackage2.getTestClass1().refCreateInstance();
 		    tc1fault.setName("tc0_faultyType_tc1");
@@ -913,7 +866,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testCustomHandler() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -924,7 +877,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	TestClass3 tc3 = (TestClass3) gpackage1.getTestClass3().refCreateInstance();
 	tc3.setName("tc3");
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0);
 	elementsToBeCopied.add(tc1);
 	elementsToBeCopied.add(tc2);
@@ -932,9 +885,9 @@ public class TestDeepCopy extends FixtureBasedTest {
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
-		RefObject newObject = sourceElement.refClass().refCreateInstance();
+		EObject newObject = sourceElement.refClass().refCreateInstance();
 		newObject.refSetValue("name", sourceElement.refGetValue("name") + "_copy");
 		return new DeepCopyPolicy(DeepCopyPolicyOption.CUSTOM, newObject);
 	    }
@@ -949,7 +902,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testInvalidMappingModification() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -962,12 +915,12 @@ public class TestDeepCopy extends FixtureBasedTest {
 	ass0xRef.add(tc0, tc1);
 	ass0xRef.add(tc0, tc2);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
 		if (defaultPolicy.getDeepCopyPolicyOption().equals(DeepCopyPolicyOption.FULL_COPY)) {
 		    return new DeepCopyPolicy(DeepCopyPolicyOption.REF_COPY, null);
@@ -987,7 +940,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testWrongAssociationCardinality() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -997,7 +950,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc0x1 ass0x1 = gpackage1.getAssoc0x1();
 	ass0x1.add(tc0, tc1);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc1);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(elementsToBeCopied, null, true);
@@ -1010,7 +963,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testSubClassWithAssociationInheritedFromSuperclass() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestSubClass0 tc0 = (TestSubClass0) gpackage1.getTestSubClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -1020,12 +973,12 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc0xRefElement ass0xRef = gpackage1.getAssoc0xRefElement();
 	ass0xRef.add(tc0, tc1);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(elementsToBeCopied, null, true);
 
-	for (RefObject copy : resultSet.getCopiedElements()) {
+	for (EObject copy : resultSet.getCopiedElements()) {
 	    if (copy instanceof TestClass0) {
 		assertTrue(((TestClass0) copy).getReference0xRefElement().contains(tc1));
 	    }
@@ -1035,7 +988,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testCriticalCase() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0a = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0a.setName("tc0a");
@@ -1056,13 +1009,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 	ass0xRefElement.add(tc0a, tc1d);
 	ass0xRefElement.add(tc0b, tc1c);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0b);
 	elementsToBeCopied.add(tc0a);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
 		// logger.trace(MoinSeverity.DEBUG,
 		// deepCopier.printMappingTable(copyMap));
@@ -1082,7 +1035,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testCompositeInSeed() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0a = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0a.setName("tc0a");
@@ -1095,13 +1048,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 	ass0Comp.add(tc0a, tc0b);
 	ass0Comp.add(tc0b, tc0c);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0a);
 	elementsToBeCopied.add(tc0c);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 		return defaultPolicy;
 	    }
 	};
@@ -1113,7 +1066,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testWrongAssocEndCardinality() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -1123,12 +1076,12 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc0x1 ass0x1 = gpackage1.getAssoc0x1();
 	ass0x1.add(tc0, tc1);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 		return defaultPolicy;
 	    }
 	};
@@ -1144,7 +1097,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testComplexExample() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
 	tc_A.setName("A");
@@ -1184,13 +1137,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc3x1 ass3x1 = gpackage1.getAssoc3x1();
 	ass3x1.add(tc_F, tc_C);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_A);
 	elementsToBeCopied.add(tc_B);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 		return defaultPolicy;
 	    }
 	};
@@ -1222,28 +1175,28 @@ public class TestDeepCopy extends FixtureBasedTest {
 	TestClass1 tc_C_copy = (TestClass1) (resultSet.getMappingTable().get(tc_C).getMappingTarget());
 	TestClass1 tc_D_copy = (TestClass1) (resultSet.getMappingTable().get(tc_D).getMappingTarget());
 
-	assertTrue(((Collection<RefObject>) (tc_A_copy.refGetValue("reference1xRefElement"))).contains(tc_D_copy));
-	assertTrue(((Collection<RefObject>) (tc_B_copy.refGetValue("reference0xRefElement"))).contains(tc_G));
+	assertTrue(((Collection<EObject>) (tc_A_copy.refGetValue("reference1xRefElement"))).contains(tc_D_copy));
+	assertTrue(((Collection<EObject>) (tc_B_copy.refGetValue("reference0xRefElement"))).contains(tc_G));
 
-	assertTrue(((Collection<RefObject>) (tc_A_copy.refGetValue("reference1Composite"))).contains(tc_C_copy));
-	assertTrue(((Collection<RefObject>) (tc_C_copy.refGetValue("reference1Composite"))).contains(tc_D_copy));
+	assertTrue(((Collection<EObject>) (tc_A_copy.refGetValue("reference1Composite"))).contains(tc_C_copy));
+	assertTrue(((Collection<EObject>) (tc_C_copy.refGetValue("reference1Composite"))).contains(tc_D_copy));
     }
 
     @Test
     public void testOverrideMappingEntry() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
 	tc_A.setName("A");
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_A);
 	elementsToBeCopied.add(tc_A);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
 		// logger.trace(MoinSeverity.DEBUG,
 		// deepCopier.printMappingTable(copyMap));
@@ -1269,7 +1222,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testWrappers() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
 	tc_A.setName("A");
@@ -1309,13 +1262,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc3x1 ass3x1 = gpackage1.getAssoc3x1();
 	ass3x1.add(tc_F, tc_C);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_A);
 	elementsToBeCopied.add(tc_B);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
 		// logger.trace(MoinSeverity.DEBUG,
 		// deepCopier.printMappingTable(copyMap));
@@ -1324,11 +1277,11 @@ public class TestDeepCopy extends FixtureBasedTest {
 	};
 
 	DeepCopyResultSet resultSet = connection.deepCopy(elementsToBeCopied, testHandler1, true);
-	Collection<RefObject> copiedElements = resultSet.getCopiedElements();
+	Collection<EObject> copiedElements = resultSet.getCopiedElements();
 
 	boolean containsD = false;
 
-	for (RefObject copy : copiedElements) {
+	for (EObject copy : copiedElements) {
 	    if (copy.refGetValue("name") == "D") {
 		containsD = true;
 	    }
@@ -1341,20 +1294,20 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testUnWrappedElements() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
 	tc_A.setName("A");
 	TestClass0 tc_B = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc_B.setName("B");
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
-	elementsToBeCopied.add((RefObject) ((Wrapper) tc_A).unwrap());
-	elementsToBeCopied.add((RefObject) ((Wrapper) tc_B).unwrap());
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
+	elementsToBeCopied.add((EObject) ((Wrapper) tc_A).unwrap());
+	elementsToBeCopied.add((EObject) ((Wrapper) tc_B).unwrap());
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 		return defaultPolicy;
 	    }
 	};
@@ -1373,28 +1326,28 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testWrappedCustomHandler() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
 	tc_A.setName("A");
 	TestClass0 tc_B = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc_B.setName("B");
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_A);
 	elementsToBeCopied.add(tc_B);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
-		RefObject newObject = sourceElement.refClass().refCreateInstance();
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+		EObject newObject = sourceElement.refClass().refCreateInstance();
 		newObject.refSetValue("name", sourceElement.refGetValue("name") + "_copy");
 		return new DeepCopyPolicy(DeepCopyPolicyOption.CUSTOM, newObject);
 	    }
 	};
 
 	DeepCopyResultSet resultSet = connection.deepCopy(elementsToBeCopied, testHandler1, true);
-	Collection<RefObject> copiedElements = resultSet.getCopiedElements();
+	Collection<EObject> copiedElements = resultSet.getCopiedElements();
 	assertEquals(2, copiedElements.size());
     }
 
@@ -1402,10 +1355,10 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testMultipleConnections() throws Exception {
 
-	Connection connection2 = createConnection();
+	ResourceSet connection2 = createConnection();
 	assertFalse(connection.equals(connection2));
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
 	tc_A.setName("A");
@@ -1445,13 +1398,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc3x1 ass3x1 = gpackage1.getAssoc3x1();
 	ass3x1.add(tc_F, tc_C);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_A);
 	elementsToBeCopied.add(tc_B);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
 		// logger.trace(MoinSeverity.DEBUG,
 		// deepCopier.printMappingTable(copyMap));
@@ -1460,7 +1413,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	    }
 	};
 
-	ModelPartition mp1 = getOrCreatePartition("deepCopy1", connection);
+	Resource mp1 = getOrCreatePartition("deepCopy1", connection);
 
 	mp1.assignElement(tc_A);
 	mp1.assignElement(tc_B);
@@ -1491,11 +1444,11 @@ public class TestDeepCopy extends FixtureBasedTest {
 	TestClass1 tc_D_copy = (TestClass1) (resultSet.getMappingTable().get(tc_D).getMappingTarget());
 
 	// Check internal associations
-	assertTrue(((Collection<RefObject>) (tc_A_copy.refGetValue("reference1xRefElement"))).contains(tc_D_copy));
-	assertTrue(((Collection<RefObject>) (tc_B_copy.refGetValue("reference0xRefElement"))).contains(tc_G));
+	assertTrue(((Collection<EObject>) (tc_A_copy.refGetValue("reference1xRefElement"))).contains(tc_D_copy));
+	assertTrue(((Collection<EObject>) (tc_B_copy.refGetValue("reference0xRefElement"))).contains(tc_G));
 
-	assertTrue(((Collection<RefObject>) (tc_A_copy.refGetValue("reference1Composite"))).contains(tc_C_copy));
-	assertTrue(((Collection<RefObject>) (tc_C_copy.refGetValue("reference1Composite"))).contains(tc_D_copy));
+	assertTrue(((Collection<EObject>) (tc_A_copy.refGetValue("reference1Composite"))).contains(tc_C_copy));
+	assertTrue(((Collection<EObject>) (tc_C_copy.refGetValue("reference1Composite"))).contains(tc_D_copy));
 
 	// Check external associations
 	assertTrue(tc_B.refImmediateComposite().equals(tc_H));
@@ -1508,10 +1461,10 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testExternalComposition() throws Exception {
 
-	Connection connection2 = createConnection();
+	ResourceSet connection2 = createConnection();
 	assertFalse(connection.equals(connection2));
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc_A = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc_A.setName("A");
@@ -1521,17 +1474,17 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc0Composite ass0Comp = gpackage1.getAssoc0Composite();
 	ass0Comp.add(tc_A, tc_B);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_B);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 		return defaultPolicy;
 	    }
 	};
 
-	ModelPartition mp1 = getOrCreatePartition("deepCopy1", connection);
+	Resource mp1 = getOrCreatePartition("deepCopy1", connection);
 
 	mp1.assignElement(tc_A);
 	mp1.assignElement(tc_B);
@@ -1553,11 +1506,11 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testExternalComposition4Mof() throws Exception {
 
-	Connection connection2 = createConnection();
+	ResourceSet connection2 = createConnection();
 	assertFalse(connection.equals(connection2));
 
-	ModelPackage gpackage1 = (ModelPackage) (connection.getPackage(null, new String[] { "Model" }));
-	MofClass tc_A = (MofClass) gpackage1.getMofClass().refCreateInstance();
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null, new String[] { "Model" }));
+	EClass tc_A = (EClass) gpackage1.getEClass().refCreateInstance();
 	tc_A.setName("A");
 	Attribute tc_B = (Attribute) gpackage1.getAttribute().refCreateInstance();
 	tc_B.setName("B");
@@ -1565,18 +1518,18 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Contains ass0Comp = gpackage1.getContains();
 	ass0Comp.add(tc_A, tc_B);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_B);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
 		return defaultPolicy;
 	    }
 	};
 
-	ModelPartition mp1 = getOrCreatePartition("deepCopy1", connection);
+	Resource mp1 = getOrCreatePartition("deepCopy1", connection);
 
 	mp1.assignElement(tc_A);
 	mp1.assignElement(tc_B);
@@ -1587,11 +1540,11 @@ public class TestDeepCopy extends FixtureBasedTest {
 	    DeepCopyResultSet resultSet = connection2.deepCopy(elementsToBeCopied, testHandler1, true);
 	    assertEquals(0, resultSet.getCopyErrors().size());
 	} else {
-	    ModelPackage gpackage2 = (ModelPackage) (connection2.getPackage(null, new String[] { "Model" }));
+	    EPackage gpackage2 = (EPackage) (connection2.getPackage(null, new String[] { "Model" }));
 	    Attribute tc_C = (Attribute) gpackage2.getAttribute().refCreateInstance();
 	    tc_C.setName("C");
 	    Contains ass0Comp2 = gpackage2.getContains();
-	    MofClass tc_Ax = (MofClass) (connection2.getElement(((Partitionable) tc_A).get___Mri()));
+	    EClass tc_Ax = (EClass) (connection2.getElement(((Partitionable) tc_A).get___Mri()));
 	    ass0Comp2.refAddLink(tc_Ax, tc_C);
 	}
 	connection2.revert();
@@ -1602,30 +1555,30 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testExternalComposition4Gfw() throws Exception {
 
-	Connection connection2 = createConnection();
+	ResourceSet connection2 = createConnection();
 	assertFalse(connection.equals(connection2));
 
-	GraphicsPackage gpackage1 = (GraphicsPackage) (connection.getPackage("sap.com/com/sap/moin/mm/gfw",
+	EPackage gpackage1 = (EPackage) (connection.getPackage("sap.com/com/sap/moin/mm/gfw",
 		new String[] { "graphics" }));
 	Diagram gd = (Diagram) gpackage1.getPictograms().getDiagram().refCreateInstance();
-	com.sap.mi.gfw.mm.pictograms.Connection gc =  (com.sap.mi.gfw.mm.pictograms.Connection) gpackage1.getPictograms()
+	com.sap.mi.gfw.mm.pictograms.ResourceSet gc =  (com.sap.mi.gfw.mm.pictograms.ResourceSet) gpackage1.getPictograms()
 		.getConnection().refCreateInstance();
 
 	// DiagramAggregatesConnections ass0Comp = gpackage1.getPictograms(
 	// ).getDiagramAggregatesConnections( );
 	gd.getConnections().add(gc);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(gc);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 		return defaultPolicy;
 	    }
 	};
 
-	ModelPartition mp1 = getOrCreatePartition("deepCopy1", connection);
+	Resource mp1 = getOrCreatePartition("deepCopy1", connection);
 
 	mp1.assignElement(gd);
 	mp1.assignElement(gc);
@@ -1637,7 +1590,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	assertTrue(resultSet.getCopyErrors().isEmpty());
 
 	Diagram gd_copy = (Diagram) (resultSet.getMappingTable().get(gd).getMappingTarget());
-	com.sap.mi.gfw.mm.pictograms.Connection gc_copy = (com.sap.mi.gfw.mm.pictograms.Connection) (resultSet
+	com.sap.mi.gfw.mm.pictograms.ResourceSet gc_copy = (com.sap.mi.gfw.mm.pictograms.ResourceSet) (resultSet
 		.getMappingTable().get(gc).getMappingTarget());
 	assertNotNull(gd_copy);
 	assertNotNull(gc_copy);
@@ -1650,10 +1603,10 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testWriteLockedPartition() throws Exception {
 
-	Connection connection2 = createConnection();
+	ResourceSet connection2 = createConnection();
 	assertFalse(connection.equals(connection2));
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
@@ -1665,8 +1618,8 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc2x1 ass2x1 = gpackage1.getAssoc2x1();
 	ass2x1.add(tc_B, tc_A);
 
-	ModelPartition mp1 = getOrCreatePartition("deepCopy1", connection);
-	ModelPartition mp2 = getOrCreatePartition("deepCopy2", connection);
+	Resource mp1 = getOrCreatePartition("deepCopy1", connection);
+	Resource mp2 = getOrCreatePartition("deepCopy2", connection);
 
 	mp1.assignElement(tc_A);
 	mp2.assignElement(tc_B);
@@ -1681,7 +1634,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 
 	// copy element B; this also changes the link storage on element A, so
 	// there should be an exception of some kind
-	Collection<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	Collection<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_A);
 
 	DeepCopyResultSet resultSet = connection.deepCopy(elementsToBeCopied, null, true);
@@ -1695,7 +1648,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	mp1.delete();
 	mp2.delete();
 
-	for (RefObject obj : resultSet.getCopiedElements()) {
+	for (EObject obj : resultSet.getCopiedElements()) {
 	    obj.refDelete();
 	}
 
@@ -1706,7 +1659,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testRefQuery() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc_B = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc_B.setName("B");
@@ -1718,7 +1671,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	// This is actually working!
 	assertTrue(ass0Comp.getAssoc0CompositeEndA(tc_B).equals(tc_H));
 
-	Collection<RefObject> refRet = ass0Comp.refQuery("assoc0CompositeEndB", tc_B);
+	Collection<EObject> refRet = ass0Comp.refQuery("assoc0CompositeEndB", tc_B);
 	assertSame(1, refRet.size());
 	assertEquals(tc_H, refRet.iterator().next());
 
@@ -1727,10 +1680,10 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testNonVisibleMri() throws Exception {
 
-	Connection connection2 = createConnection();
+	ResourceSet connection2 = createConnection();
 	assertFalse(connection.equals(connection2));
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
 	tc_A.setName("A");
@@ -1741,8 +1694,8 @@ public class TestDeepCopy extends FixtureBasedTest {
 
 	ass1xR.add(tc_A, tc_B);
 
-	ModelPartition mp1 = getOrCreatePartition("deepCopy1", connection);
-	ModelPartition mp2 = getOrCreatePartition("deepCopy2", connection);
+	Resource mp1 = getOrCreatePartition("deepCopy1", connection);
+	Resource mp2 = getOrCreatePartition("deepCopy2", connection);
 
 	mp1.assignElement(tc_A);
 	mp1.assignElement(tc_B);
@@ -1754,7 +1707,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	} catch (PartitionsNotSavedException e) {
 	}
 
-	Collection<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	Collection<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_A);
 
 	DeepCopyResultSet resultSet = connection2.deepCopy(elementsToBeCopied, null, true);
@@ -1771,7 +1724,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testIgnoreCompositeParents() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
 	tc_A.setName("A");
@@ -1788,13 +1741,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc1Composite ass1Comp = gpackage1.getAssoc1Composite();
 	ass1Comp.add(tc_E, tc_A);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_A);
 	elementsToBeCopied.add(tc_B);
 
 	DeepCopyPolicyHandler testHandler1 = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 		return defaultPolicy;
 	    }
 	};
@@ -1809,8 +1762,8 @@ public class TestDeepCopy extends FixtureBasedTest {
 	TestClass1 tc_A_copy = (TestClass1) (resultSet.getMappingTable().get(tc_A).getMappingTarget());
 	TestClass0 tc_B_copy = (TestClass0) (resultSet.getMappingTable().get(tc_B).getMappingTarget());
 
-	assertFalse(((Collection<RefObject>) (tc_E.refGetValue("reference1Composite"))).contains(tc_A_copy));
-	assertFalse(((Collection<RefObject>) (tc_H.refGetValue("reference0Composite"))).contains(tc_B_copy));
+	assertFalse(((Collection<EObject>) (tc_E.refGetValue("reference1Composite"))).contains(tc_A_copy));
+	assertFalse(((Collection<EObject>) (tc_H.refGetValue("reference0Composite"))).contains(tc_B_copy));
     }
 
     /**
@@ -1819,11 +1772,11 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testNonVisibleElements() throws Exception {
 
-	final Connection connectionVar = connection;
-	final Connection connection2 = createConnection();
+	final ResourceSet connectionVar = connection;
+	final ResourceSet connection2 = createConnection();
 	assertFalse(connection.equals(connection2));
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass1 tc_A = (TestClass1) gpackage1.getTestClass1().refCreateInstance();
 	tc_A.setName("A");
@@ -1841,13 +1794,13 @@ public class TestDeepCopy extends FixtureBasedTest {
 	Assoc0Composite ass0Comp = gpackage1.getAssoc0Composite();
 	ass0Comp.add(tc_C, tc_D);
 
-	Collection<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	Collection<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc_A);
 	elementsToBeCopied.add(tc_C);
 
 	DeepCopyPolicyHandler testHandler = new DeepCopyPolicyHandler() {
 
-	    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
 
 		// Check that sourceElements are wrappers in the original
 		// connection!
@@ -1882,8 +1835,8 @@ public class TestDeepCopy extends FixtureBasedTest {
     public void testCompositeAssocs() {
 
 	// Create a mof class and an Attribute
-	ModelPackage modelPackage = (ModelPackage) (connection.getPackage(null, new String[] { "Model" }));
-	MofClass clss = (MofClass) modelPackage.getMofClass().refCreateInstance();
+	EPackage modelPackage = (EPackage) (connection.getPackage(null, new String[] { "Model" }));
+	EClass clss = (EClass) modelPackage.getEClass().refCreateInstance();
 	clss.setName("TestClass");
 	Attribute attr = (Attribute) modelPackage.getAttribute().refCreateInstance();
 	attr.setName("TestAttr");
@@ -1891,7 +1844,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	// Ask for possible composition relationships between Class and
 	// Attribute
 	Collection<com.sap.tc.moin.repository.mmi.model.Association> comps = connection.getJmiHelper().getCompositeAssociations(
-		(MofClass) clss.refMetaObject(), (MofClass) attr.refMetaObject());
+		(EClass) clss.refMetaObject(), (EClass) attr.refMetaObject());
 	assertTrue(comps.size() == 1);
 
 	// Use the obtained association to compose the attribute into the class
@@ -1902,7 +1855,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	}
     }
 
-    private void compose(RefObject parent, RefObject child, com.sap.tc.moin.repository.mmi.model.Association assoc) {
+    private void compose(EObject parent, EObject child, com.sap.tc.moin.repository.mmi.model.Association assoc) {
 
 	com.sap.tc.moin.repository.mmi.model.AssociationEnd ae = connection.getJmiHelper().getCompositeAssociationEnd(assoc);
 	// Note that the composition is done using the connection of actualAssoc
@@ -1918,7 +1871,7 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testDeepCopyUndo() {
 
-	GeneratedmetamodelPackage gpackage1 = (GeneratedmetamodelPackage) (connection.getPackage(null,
+	EPackage gpackage1 = (EPackage) (connection.getPackage(null,
 		new String[] { "generatedmetamodel" }));
 	TestClass0 tc0 = (TestClass0) gpackage1.getTestClass0().refCreateInstance();
 	tc0.setName("tc0");
@@ -1931,7 +1884,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	ass0comp.add(tc0, tc0child1);
 	ass0comp.add(tc0, tc0child2);
 
-	List<RefObject> elementsToBeCopied = new ArrayList<RefObject>();
+	List<EObject> elementsToBeCopied = new ArrayList<EObject>();
 	elementsToBeCopied.add(tc0);
 
 	connection.getCommandStack().clear();
@@ -1942,7 +1895,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 
 	connection.getCommandStack().undo();
 
-	for (RefObject ce : resultSet.getCopiedElements()) {
+	for (EObject ce : resultSet.getCopiedElements()) {
 	    assertFalse(((Partitionable) ce).is___Alive());
 	}
     }
@@ -1950,12 +1903,12 @@ public class TestDeepCopy extends FixtureBasedTest {
     @Test
     public void testDeepCopyWithSave() throws Exception {
 
-	ModelPartition myPartition = getOrCreatePartition("One", connection);
-	MofClass elementToBeCopied = connection.createElementInPartition(MofClass.class, myPartition);
-	DeepCopyResultSet result = connection.deepCopy(Collections.singletonList((RefObject) elementToBeCopied), null, false);
-	Collection<RefObject> copiedElements = result.getCopiedElements();
+	Resource myPartition = getOrCreatePartition("One", connection);
+	EClass elementToBeCopied = connection.createElementInPartition(EClass.class, myPartition);
+	DeepCopyResultSet result = connection.deepCopy(Collections.singletonList((EObject) elementToBeCopied), null, false);
+	Collection<EObject> copiedElements = result.getCopiedElements();
 	assertEquals(1, copiedElements.size());
-	RefObject copiedElement = copiedElements.iterator().next();
+	EObject copiedElement = copiedElements.iterator().next();
 	copiedElement.assign___Partition(myPartition);
 	assertTrue(myPartition.isDirty());
 	connection.save();
@@ -1972,7 +1925,7 @@ public class TestDeepCopy extends FixtureBasedTest {
      */
     @Test
     public void testTranslatableTextFragmentAttributes() {
-	ModelPartition myPartition = getOrCreatePartition("One", connection);
+	Resource myPartition = getOrCreatePartition("One", connection);
 	StructureFieldContainer<TranslatableTextFragment> cont = new StructureFieldContainer<TranslatableTextFragment>();
 	TranslatableTextFragment.Descriptors desc = TranslatableTextFragment.DESCRIPTORS;
 	// create a text with a given transUnitId
@@ -1983,10 +1936,10 @@ public class TestDeepCopy extends FixtureBasedTest {
 	B19Serialization b19Serialization = connection.createElementInPartition(B19Serialization.class, myPartition);
 	b19Serialization.setTestTranslatableTextFragment(text);
 	// deep copy
-	DeepCopyResultSet result = connection.deepCopy(Collections.singletonList((RefObject) b19Serialization), null, false);
-	Collection<RefObject> copiedElements = result.getCopiedElements();
+	DeepCopyResultSet result = connection.deepCopy(Collections.singletonList((EObject) b19Serialization), null, false);
+	Collection<EObject> copiedElements = result.getCopiedElements();
 	assertEquals(1, copiedElements.size());
-	RefObject copiedElement = copiedElements.iterator().next();
+	EObject copiedElement = copiedElements.iterator().next();
 	assertTrue(copiedElement instanceof B19Serialization);
 	B19Serialization b19SerializationCopied = (B19Serialization) copiedElement;
 	// check all fields for equality
@@ -2006,7 +1959,7 @@ public class TestDeepCopy extends FixtureBasedTest {
      */
     @Test
     public void testTranslatableTextAttributes() {
-	ModelPartition myPartition = getOrCreatePartition("One", connection);
+	Resource myPartition = getOrCreatePartition("One", connection);
 	StructureFieldContainer<TranslatableText> cont = new StructureFieldContainer<TranslatableText>();
 	TranslatableText.Descriptors desc = TranslatableText.DESCRIPTORS;
 	// create a text with a given transUnitId
@@ -2016,10 +1969,10 @@ public class TestDeepCopy extends FixtureBasedTest {
 	A1f a1f = connection.createElementInPartition(A1f.class, myPartition);
 	a1f.setTranslatableText(text);
 	// deep copy
-	DeepCopyResultSet result = connection.deepCopy(Collections.singletonList((RefObject) a1f), null, false);
-	Collection<RefObject> copiedElements = result.getCopiedElements();
+	DeepCopyResultSet result = connection.deepCopy(Collections.singletonList((EObject) a1f), null, false);
+	Collection<EObject> copiedElements = result.getCopiedElements();
 	assertEquals(1, copiedElements.size());
-	RefObject copiedElement = copiedElements.iterator().next();
+	EObject copiedElement = copiedElements.iterator().next();
 	assertTrue(copiedElement instanceof A1f);
 	A1f a1fCopied = (A1f) copiedElement;
 	// check all fields for equality
@@ -2040,7 +1993,7 @@ public class TestDeepCopy extends FixtureBasedTest {
      */
     @Test
     public void testTranslatableTextAttributesMulti() {
-	ModelPartition myPartition = getOrCreatePartition("One", connection);
+	Resource myPartition = getOrCreatePartition("One", connection);
 	StructureFieldContainer<TranslatableText> cont = new StructureFieldContainer<TranslatableText>();
 	TranslatableText.Descriptors desc = TranslatableText.DESCRIPTORS;
 	// create button texts with given transUnitIds
@@ -2057,10 +2010,10 @@ public class TestDeepCopy extends FixtureBasedTest {
 	b19.getTranslatableButtons().add(buttonText1);
 	b19.getTranslatableButtons().add(buttonText2);
 	// deep copy
-	DeepCopyResultSet result = connection.deepCopy(Collections.singletonList((RefObject) b19), null, false);
-	Collection<RefObject> copiedElements = result.getCopiedElements();
+	DeepCopyResultSet result = connection.deepCopy(Collections.singletonList((EObject) b19), null, false);
+	Collection<EObject> copiedElements = result.getCopiedElements();
 	assertEquals(1, copiedElements.size());
-	RefObject copiedElement = copiedElements.iterator().next();
+	EObject copiedElement = copiedElements.iterator().next();
 	assertTrue(copiedElement instanceof B19);
 	B19 b19Copied = (B19) copiedElement;
 	// check all fields for equality

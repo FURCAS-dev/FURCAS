@@ -7,22 +7,20 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 
-import textblocks.AbstractToken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.TextblocksPackage;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
 public class GeneratedTextblocksBasedTest extends
 		GeneratedParserAndFactoryBasedTest {
@@ -45,7 +43,7 @@ public class GeneratedTextblocksBasedTest extends
 		tbModel.replace(0, 0, fixtureContents);
 
 		rootBlock = TbVersionUtil.getOtherVersion(rootBlock,
-				VersionEnum.PREVIOUS);
+				EEnum.PREVIOUS);
 
 		List<ParsingError> errorList = facade.dryParse(rootBlock);
 
@@ -109,11 +107,11 @@ public class GeneratedTextblocksBasedTest extends
 
 		AbstractToken bosToken = (AbstractToken) tbPack.getBostoken()
 				.refCreateInstance();
-		bosToken.setVersion(VersionEnum.REFERENCE);
+		bosToken.setVersion(EEnum.REFERENCE);
 		rootBlock.getTokens().add(bosToken);
 		AbstractToken eosToken = (AbstractToken) tbPack.getEostoken()
 				.refCreateInstance();
-		eosToken.setVersion(VersionEnum.REFERENCE);
+		eosToken.setVersion(EEnum.REFERENCE);
 
 		if (contentToken != null) {
 			rootBlock.getTokens().add(contentToken);
@@ -126,7 +124,7 @@ public class GeneratedTextblocksBasedTest extends
 		}
 
 		rootBlock.getTokens().add(eosToken);
-		rootBlock.setVersion(VersionEnum.REFERENCE);
+		rootBlock.setVersion(EEnum.REFERENCE);
 		return rootBlock;
 	}
 
@@ -140,7 +138,7 @@ public class GeneratedTextblocksBasedTest extends
 		contentToken.setLength(content.length());
 		contentToken.setEndColumn(content.length());
 		contentToken.setType(0);
-		contentToken.setVersion(VersionEnum.REFERENCE);
+		contentToken.setVersion(EEnum.REFERENCE);
 		return contentToken;
 	}
 

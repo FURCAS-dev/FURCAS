@@ -1,8 +1,5 @@
 package com.sap.ide.cts.editor.test;
 
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-
 import data.classes.SapClass;
 
 public class RunletEditorTest extends CtsEditorTest {

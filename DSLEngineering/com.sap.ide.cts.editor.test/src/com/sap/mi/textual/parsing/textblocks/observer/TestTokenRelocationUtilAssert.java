@@ -2,10 +2,9 @@ package com.sap.mi.textual.parsing.textblocks.observer;
 
 import org.junit.Test;
 
-import textblocks.Bostoken;
-import textblocks.Eostoken;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 
@@ -53,7 +52,7 @@ public class TestTokenRelocationUtilAssert extends TextBlockTest {
         rootroot.setOffset(5);
         root.setOffset(5);
         root.setOffsetRelative(true);
-        root.setParentBlock(rootroot);
+        root.setParent(rootroot);
         
         TbValidationUtil.assertTextBlockConsistency(root);
         
@@ -155,7 +154,7 @@ public class TestTokenRelocationUtilAssert extends TextBlockTest {
         
         TextBlock root = modelFactory.createTextBlock();
         Bostoken bos = modelFactory.createBostoken();
-        bos.setParentBlock(root);
+        bos.setParent(root);
         TextBlock first = modelFactory.createTextBlock();
         TextBlock middle = modelFactory.createTextBlock();
         TextBlock last = modelFactory.createTextBlock();
@@ -163,7 +162,7 @@ public class TestTokenRelocationUtilAssert extends TextBlockTest {
         setupFourNodeFixtureAbsolute(root, first, middle, last);
         
         Eostoken eos = modelFactory.createEostoken();
-        eos.setParentBlock(root);
+        eos.setParent(root);
         eos.setOffset(70); // not sure whether we should assume this in the test
      // since we include BOS, need to start at offset 0
         root.setOffset(0);
@@ -189,17 +188,17 @@ public class TestTokenRelocationUtilAssert extends TextBlockTest {
         root.setLength(60); // random value to be overwritten
         root.setOffsetRelative(false);
         
-        first.setParentBlock(root);
+        first.setParent(root);
         first.setOffset(10);
         first.setLength(20);
         first.setOffsetRelative(false);
         
-        middle.setParentBlock(root);
+        middle.setParent(root);
         middle.setOffset(30);
         middle.setLength(20);
         middle.setOffsetRelative(false);
         
-        last.setParentBlock(root);
+        last.setParent(root);
         last.setOffset(50);
         last.setLength(20);
         last.setOffsetRelative(false);

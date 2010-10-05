@@ -9,11 +9,10 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-import tcs.Template;
-import textblockdefinition.TextBlockDefinition;
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 
@@ -164,9 +163,9 @@ public class TestTextBlockComparer extends TextBlockTest {
         TextBlock subblock = modelFactory.createTextBlock();
         TextBlock subblock2 = modelFactory.createTextBlock();
         TextBlock subsubblock = modelFactory.createTextBlock();
-        subblock.setParentBlock(block);
-        subblock2.setParentBlock(block);
-        subsubblock.setParentBlock(subblock);
+        subblock.setParent(block);
+        subblock2.setParent(block);
+        subsubblock.setParent(subblock);
         TextBlockComparer traverser = new TextBlockComparer(block, factory);
         
         traverser.enterNextChild(); // in subblock
@@ -224,7 +223,7 @@ public class TestTextBlockComparer extends TextBlockTest {
 			}
 
 			@Override
-			public TextBlockDefinition getTbDef(Template template) {
+			public TextblockDefinition getTbDef(Template template) {
 				// TODO Auto-generated method stub
 				return null;
 			}

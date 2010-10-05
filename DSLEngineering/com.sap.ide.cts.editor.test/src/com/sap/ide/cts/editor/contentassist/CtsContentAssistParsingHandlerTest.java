@@ -8,8 +8,7 @@ import org.antlr.runtime.Token;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
 

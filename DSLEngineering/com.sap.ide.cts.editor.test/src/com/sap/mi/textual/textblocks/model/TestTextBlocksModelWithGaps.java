@@ -2,13 +2,12 @@ package com.sap.mi.textual.textblocks.model;
 
 import static org.junit.Assert.assertEquals;
 
+import org.eclipse.emf.ecore.EEnum;
 import org.junit.Before;
 import org.junit.Test;
 
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
@@ -280,7 +279,7 @@ public class TestTextBlocksModelWithGaps extends UtilFixtureBaseWithGaps {
 
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals(false, TbUtil.isDeleted(lexed1));
@@ -345,7 +344,7 @@ public class TestTextBlocksModelWithGaps extends UtilFixtureBaseWithGaps {
 	public void testReplaceAllShortStringPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("aaaaa", lexed1.getValue());
@@ -416,7 +415,7 @@ public class TestTextBlocksModelWithGaps extends UtilFixtureBaseWithGaps {
 	public void testReplaceAllLongStringPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("aaaaa", lexed1.getValue());
@@ -483,7 +482,7 @@ public class TestTextBlocksModelWithGaps extends UtilFixtureBaseWithGaps {
 	public void testReplaceMiddleEmptyPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("+", subToken.getValue());
@@ -558,7 +557,7 @@ public class TestTextBlocksModelWithGaps extends UtilFixtureBaseWithGaps {
 	public void testReplaceMiddleShortStringPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("bbbbcccc", lexed3.getValue());
@@ -635,7 +634,7 @@ public class TestTextBlocksModelWithGaps extends UtilFixtureBaseWithGaps {
 	public void testReplaceMiddleLongStringPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals("aaaaa", lexed1.getValue());
@@ -714,7 +713,7 @@ public class TestTextBlocksModelWithGaps extends UtilFixtureBaseWithGaps {
 	public void testReplaceAddToEndPreviousVersion() throws Exception {
 		// make used fixture of version PREVIOUS to prevent getWorkingCopy
 		// to create a different version and check deletions, values etc
-		TbChangeUtil.makeVersion(main, VersionEnum.PREVIOUS);
+		TbChangeUtil.makeVersion(main, EEnum.PREVIOUS);
 
 		// should change
 		assertEquals(false, main.isChildrenChanged());

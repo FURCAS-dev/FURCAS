@@ -5,15 +5,14 @@ package com.sap.mi.textual.parsing.textblocks;
 
 import static org.junit.Assert.assertEquals;
 
+import org.eclipse.emf.ecore.EEnum;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import textblocks.Bostoken;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
 
 /**
@@ -24,17 +23,17 @@ public class TestChangeUtil extends UtilFixtureBase {
 	@Test
 	public void testCleanUp() {
 		TextBlock mainCurrent = modelFactory.createTextBlock();
-		mainCurrent.setVersion(VersionEnum.CURRENT);
+		mainCurrent.setVersion(EEnum.CURRENT);
 		mainCurrent.getOtherVersions().add(main);
 		main.getOtherVersions().add(mainCurrent);
 		TextBlock middleCurrent = modelFactory.createTextBlock();
-		middleCurrent.setVersion(VersionEnum.CURRENT);
+		middleCurrent.setVersion(EEnum.CURRENT);
 		Bostoken bosCurrent = modelFactory.createBostoken();
-		bosCurrent.setVersion(VersionEnum.CURRENT);
+		bosCurrent.setVersion(EEnum.CURRENT);
 		Eostoken eosCurrent = modelFactory.createEostoken();
-		eosCurrent.setVersion(VersionEnum.CURRENT);
+		eosCurrent.setVersion(EEnum.CURRENT);
 		LexedToken lexedPrevious = modelFactory.createLexedToken();
-		lexedPrevious.setVersion(VersionEnum.CURRENT);
+		lexedPrevious.setVersion(EEnum.CURRENT);
 
 		mainCurrent.getSubBlocks().add(middleCurrent);
 		middleCurrent.getTokens().add(bosCurrent);
@@ -42,23 +41,23 @@ public class TestChangeUtil extends UtilFixtureBase {
 		middleCurrent.getTokens().add(eosCurrent);
 
 		assertEquals(mainCurrent, TbChangeUtil.cleanUp(main));
-		assertEquals(VersionEnum.REFERENCE, mainCurrent.getVersion());
+		assertEquals(EEnum.REFERENCE, mainCurrent.getVersion());
 		assertEquals(0, mainCurrent.getOtherVersions().size());
 
-		assertEquals(VersionEnum.REFERENCE, middleCurrent.getVersion());
-		assertEquals(VersionEnum.REFERENCE, bosCurrent.getVersion());
-		assertEquals(VersionEnum.REFERENCE, lexedPrevious.getVersion());
-		assertEquals(VersionEnum.REFERENCE, eosCurrent.getVersion());
+		assertEquals(EEnum.REFERENCE, middleCurrent.getVersion());
+		assertEquals(EEnum.REFERENCE, bosCurrent.getVersion());
+		assertEquals(EEnum.REFERENCE, lexedPrevious.getVersion());
+		assertEquals(EEnum.REFERENCE, eosCurrent.getVersion());
 	}
 
 	@Test
 	public void testMakeReferenceVersion() {
-		main.setVersion(VersionEnum.CURRENT);
-		left.setVersion(VersionEnum.PREVIOUS);
-		leftLeft.setVersion(VersionEnum.CURRENT);
-		lexed1.setVersion(VersionEnum.PREVIOUS);
-		middle.setVersion(VersionEnum.CURRENT);
-		eos.setVersion(VersionEnum.PREVIOUS);
+		main.setVersion(EEnum.CURRENT);
+		left.setVersion(EEnum.PREVIOUS);
+		leftLeft.setVersion(EEnum.CURRENT);
+		lexed1.setVersion(EEnum.PREVIOUS);
+		middle.setVersion(EEnum.CURRENT);
+		eos.setVersion(EEnum.PREVIOUS);
 
 		main.setRelexingNeeded(true);
 		left.setRelexingNeeded(true);
@@ -69,12 +68,12 @@ public class TestChangeUtil extends UtilFixtureBase {
 
 		TbChangeUtil.makeReferenceVersion(main);
 
-		assertEquals(VersionEnum.REFERENCE, main.getVersion());
-		assertEquals(VersionEnum.REFERENCE, left.getVersion());
-		assertEquals(VersionEnum.REFERENCE, leftLeft.getVersion());
-		assertEquals(VersionEnum.REFERENCE, lexed1.getVersion());
-		assertEquals(VersionEnum.REFERENCE, middle.getVersion());
-		assertEquals(VersionEnum.REFERENCE, eos.getVersion());
+		assertEquals(EEnum.REFERENCE, main.getVersion());
+		assertEquals(EEnum.REFERENCE, left.getVersion());
+		assertEquals(EEnum.REFERENCE, leftLeft.getVersion());
+		assertEquals(EEnum.REFERENCE, lexed1.getVersion());
+		assertEquals(EEnum.REFERENCE, middle.getVersion());
+		assertEquals(EEnum.REFERENCE, eos.getVersion());
 
 		main.setRelexingNeeded(false);
 		left.setRelexingNeeded(false);
@@ -86,30 +85,30 @@ public class TestChangeUtil extends UtilFixtureBase {
 
 	@Test
 	public void testMakeVersion() {
-		main.setVersion(VersionEnum.CURRENT);
-		left.setVersion(VersionEnum.PREVIOUS);
-		leftLeft.setVersion(VersionEnum.CURRENT);
-		lexed1.setVersion(VersionEnum.PREVIOUS);
-		middle.setVersion(VersionEnum.CURRENT);
-		eos.setVersion(VersionEnum.PREVIOUS);
+		main.setVersion(EEnum.CURRENT);
+		left.setVersion(EEnum.PREVIOUS);
+		leftLeft.setVersion(EEnum.CURRENT);
+		lexed1.setVersion(EEnum.PREVIOUS);
+		middle.setVersion(EEnum.CURRENT);
+		eos.setVersion(EEnum.PREVIOUS);
 
-		TbChangeUtil.makeVersion(main, VersionEnum.REFERENCE);
+		TbChangeUtil.makeVersion(main, EEnum.REFERENCE);
 
-		assertEquals(VersionEnum.REFERENCE, main.getVersion());
-		assertEquals(VersionEnum.REFERENCE, left.getVersion());
-		assertEquals(VersionEnum.REFERENCE, leftLeft.getVersion());
-		assertEquals(VersionEnum.REFERENCE, lexed1.getVersion());
-		assertEquals(VersionEnum.REFERENCE, middle.getVersion());
-		assertEquals(VersionEnum.REFERENCE, eos.getVersion());
+		assertEquals(EEnum.REFERENCE, main.getVersion());
+		assertEquals(EEnum.REFERENCE, left.getVersion());
+		assertEquals(EEnum.REFERENCE, leftLeft.getVersion());
+		assertEquals(EEnum.REFERENCE, lexed1.getVersion());
+		assertEquals(EEnum.REFERENCE, middle.getVersion());
+		assertEquals(EEnum.REFERENCE, eos.getVersion());
 
-		TbChangeUtil.makeVersion(main, VersionEnum.CURRENT);
+		TbChangeUtil.makeVersion(main, EEnum.CURRENT);
 
-		assertEquals(VersionEnum.CURRENT, main.getVersion());
-		assertEquals(VersionEnum.CURRENT, left.getVersion());
-		assertEquals(VersionEnum.CURRENT, leftLeft.getVersion());
-		assertEquals(VersionEnum.CURRENT, lexed1.getVersion());
-		assertEquals(VersionEnum.CURRENT, middle.getVersion());
-		assertEquals(VersionEnum.CURRENT, eos.getVersion());
+		assertEquals(EEnum.CURRENT, main.getVersion());
+		assertEquals(EEnum.CURRENT, left.getVersion());
+		assertEquals(EEnum.CURRENT, leftLeft.getVersion());
+		assertEquals(EEnum.CURRENT, lexed1.getVersion());
+		assertEquals(EEnum.CURRENT, middle.getVersion());
+		assertEquals(EEnum.CURRENT, eos.getVersion());
 	}
 
 	@Test
