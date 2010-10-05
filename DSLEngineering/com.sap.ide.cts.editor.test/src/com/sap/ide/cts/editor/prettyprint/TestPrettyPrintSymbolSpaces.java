@@ -3,7 +3,7 @@ package com.sap.ide.cts.editor.prettyprint;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcs.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 
 public class TestPrettyPrintSymbolSpaces extends CtsPrettyPrinterTestBase {
 

@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.AfterClass;
 
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
@@ -20,8 +22,7 @@ import com.sap.mi.textual.grammar.ParserFacade;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.ObservationDirectivesHelper;
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
+
 
 public class GeneratedParserBasedTest extends ConcreteSyntaxBasedTest {
 
@@ -48,7 +49,7 @@ public class GeneratedParserBasedTest extends ConcreteSyntaxBasedTest {
 
 		ObservationDirectivesHelper.doAddObserverParts = ObservationDirectivesHelper.ALL;
 
-		Set<PRI> priList = MOINTCSMetaConnectionProvider
+		Set<URI> priList = MOINTCSMetaConnectionProvider
 				.getPartitionsOfMetamodel(metamodelId);
 
 		if (lookup == null) {
@@ -58,8 +59,8 @@ public class GeneratedParserBasedTest extends ConcreteSyntaxBasedTest {
 	}
 
 	private static void generateParser(String language,
-			IMetaModelLookup<?> lookup, Connection connection,
-			Set<PRI> partitions) throws FileNotFoundException,
+			IMetaModelLookup<?> lookup, ResourceSet connection,
+			Set<URI> partitions) throws FileNotFoundException,
 			ModelAdapterException, GrammarGenerationException, IOException {
 		generationHelper.generateParserGrammar(language, lookup, connection,
 				partitions);

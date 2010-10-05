@@ -1,18 +1,14 @@
 package com.sap.ide.cts.editor.prettyprint.incremental;
 
 import junit.framework.Assert;
-import ngpm.NgpmPackage;
 
 import org.eclipse.core.runtime.Path;
 import org.junit.Test;
 
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.action.PrettyPrintAction;
-import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;

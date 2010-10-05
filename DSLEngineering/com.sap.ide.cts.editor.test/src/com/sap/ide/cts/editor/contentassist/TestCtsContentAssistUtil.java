@@ -9,7 +9,7 @@ import java.util.Stack;
 import org.junit.Before;
 import org.junit.Test;
 
-import tcs.FunctionCall;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
 
 public class TestCtsContentAssistUtil extends TcsFixtureBase {
 	private CtsContentAssistContext context;

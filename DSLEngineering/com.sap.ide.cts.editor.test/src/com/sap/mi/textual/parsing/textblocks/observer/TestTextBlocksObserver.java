@@ -6,20 +6,19 @@ import static junit.framework.Assert.fail;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import tcs.TcsPackage;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.TCS.TCSPackage;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
 import com.sap.ide.cts.editor.test.util.TestSourceTextBlockCreator;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationTokenImpl;
 import com.sap.mi.textual.parsing.textblocks.UtilFixtureBase;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Partitionable;
 
 public class TestTextBlocksObserver extends UtilFixtureBase {
     
@@ -33,7 +32,7 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
      
         TokenStreamMock stream = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(stream, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
 
@@ -55,7 +54,7 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
         // should leave the textblock as it is.
      
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
 
@@ -82,7 +81,7 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
 
@@ -111,7 +110,7 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
        
@@ -157,13 +156,13 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
        
         TextBlock root = modelFactory.createTextBlock(); // using emtpy block here, not block with BOS, EOS 
         TextBlock subBlock = modelFactory.createTextBlock();
-        subBlock.setParentBlock(root); // first subnode
+        subBlock.setParent(root); // first subnode
         observer.setRootBlock(root);
 
         LexedToken token1 = createToken("test");
@@ -206,7 +205,7 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
 
@@ -243,24 +242,24 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
        
         TextBlock root = modelFactory.createTextBlock(); // using emtpy block here, not block with BOS, EOS 
         root.setLength(14);
         TextBlock subBlock = modelFactory.createTextBlock();
-        subBlock.setParentBlock(root); // first subnode
+        subBlock.setParent(root); // first subnode
         observer.setRootBlock(root);
 
         LexedToken token1 = createToken("test");
-        token1.setParentBlock(root);
+        token1.setParent(root);
         LexedToken token2 = createToken("test2");
         token2.setOffset(4);
-        token2.setParentBlock(root);
+        token2.setParent(root);
         LexedToken token3 = createToken("test3");
         token3.setOffset(9);
-        token3.setParentBlock(root);
+        token3.setParent(root);
         
         observer.notifyEnterRule(emptyList, null); // enter root
         observer.notifyEnterRule(emptyList, null); // enter sub
@@ -294,23 +293,23 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
        
         TextBlock root = modelFactory.createTextBlock(); // using emtpy block here, not block with BOS, EOS 
         TextBlock subBlock = modelFactory.createTextBlock();
-        subBlock.setParentBlock(root); // first subnode
+        subBlock.setParent(root); // first subnode
         observer.setRootBlock(root);
 
         LexedToken token1 = createToken("test");
-        token1.setParentBlock(subBlock);
+        token1.setParent(subBlock);
         LexedToken token2 = createToken("test2");
         token2.setOffset(4);
-        token2.setParentBlock(subBlock);
+        token2.setParent(subBlock);
         LexedToken token3 = createToken("test3");
         token3.setOffset(9);
-        token3.setParentBlock(subBlock);
+        token3.setParent(subBlock);
         
         observer.notifyEnterRule(emptyList, null); // enter root
         
@@ -339,27 +338,27 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
        
         TextBlock root = modelFactory.createTextBlock(); // using emtpy block here, not block with BOS, EOS 
         TextBlock subBlock = modelFactory.createTextBlock();
         subBlock.setLength(9);
-        subBlock.setParentBlock(root); // first subnode
+        subBlock.setParent(root); // first subnode
         observer.setRootBlock(root);
 
         LexedToken token1 = createToken("test");
         token1.setOffsetRelative(true);
-        token1.setParentBlock(subBlock);
+        token1.setParent(subBlock);
         LexedToken token2 = createToken("test2");
         token2.setOffsetRelative(true);
         token2.setOffset(4);
-        token2.setParentBlock(subBlock);
+        token2.setParent(subBlock);
         LexedToken token3 = createToken("test3");
         token3.setOffsetRelative(true);
         token3.setOffset(9);
-        token3.setParentBlock(root); // token already in root!!
+        token3.setParent(root); // token already in root!!
         
         observer.notifyEnterRule(emptyList, null); // enter root
         
@@ -391,27 +390,27 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
        
         TextBlock root = modelFactory.createTextBlock(); // using emtpy block here, not block with BOS, EOS 
         root.setLength(14);
         TextBlock subBlock1 = modelFactory.createTextBlock();
-        subBlock1.setParentBlock(root); // first subnode
+        subBlock1.setParent(root); // first subnode
         subBlock1.setLength(14);
         TextBlock subBlock2 = modelFactory.createTextBlock();
-        subBlock2.setParentBlock(root); // first subnode
+        subBlock2.setParent(root); // first subnode
         observer.setRootBlock(root);
 
         LexedToken token1 = createToken("test");
-        token1.setParentBlock(subBlock1);
+        token1.setParent(subBlock1);
         LexedToken token2 = createToken("test2");
         token2.setOffset(4);
-        token2.setParentBlock(subBlock1);
+        token2.setParent(subBlock1);
         LexedToken token3 = createToken("test3");
         token3.setOffset(9);
-        token3.setParentBlock(subBlock1);
+        token3.setParent(subBlock1);
         
         observer.notifyEnterRule(emptyList, null); // enter root
         observer.notifyEnterRule(emptyList, null); // enter subBlock1
@@ -472,38 +471,38 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
          * ---- token3
          */
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
        
         TextBlock root = modelFactory.createTextBlock(); // using emtpy block here, not block with BOS, EOS 
         root.setLength(14);
         TextBlock subBlock1 = modelFactory.createTextBlock();
-        subBlock1.setParentBlock(root); // first subnode
+        subBlock1.setParent(root); // first subnode
         subBlock1.setLength(14);
         TextBlock subSubBlock1 = modelFactory.createTextBlock();
-        subSubBlock1.setParentBlock(subBlock1);
+        subSubBlock1.setParent(subBlock1);
         subSubBlock1.setLength(14);
         TextBlock subSubSubBlock1 = modelFactory.createTextBlock();
-        subSubSubBlock1.setParentBlock(subSubBlock1); 
+        subSubSubBlock1.setParent(subSubBlock1); 
         subSubSubBlock1.setLength(14);
         
         TextBlock subBlock2 = modelFactory.createTextBlock();
-        subBlock2.setParentBlock(root); // first subnode
+        subBlock2.setParent(root); // first subnode
         subBlock2.setOffset(14);
         TextBlock subSubBlock2 = modelFactory.createTextBlock();
-        subSubBlock2.setParentBlock(subBlock2); // first subnode
+        subSubBlock2.setParent(subBlock2); // first subnode
         subSubBlock2.setOffset(14);
         observer.setRootBlock(root);
 
         LexedToken token1 = createToken("test");
-        token1.setParentBlock(subSubSubBlock1);
+        token1.setParent(subSubSubBlock1);
         LexedToken token2 = createToken("test2");
         token2.setOffset(4);
-        token2.setParentBlock(subSubSubBlock1);
+        token2.setParent(subSubSubBlock1);
         LexedToken token3 = createToken("test3");
         token3.setOffset(9);
-        token3.setParentBlock(subSubSubBlock1);
+        token3.setParent(subSubSubBlock1);
         
         observer.notifyEnterRule(emptyList, null); // enter root
         observer.notifyEnterRule(emptyList, null); // enter subBlock1
@@ -563,25 +562,25 @@ public class TestTextBlocksObserver extends UtilFixtureBase {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
         TokenStreamMock tokenStreamMock = new TokenStreamMock();
-        CRI tcsCRI = ((Partitionable)connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
+        URI tcsCRI = ((EObject)connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR)).get___Mri().getCri();
         ParserTextBlocksHandler observer = new ParserTextBlocksHandler(tokenStreamMock, connection, tcsCRI,
         		TcsUtil.getSyntaxePartitions(connection, "TCS"), null, null);
        
         TextBlock root = modelFactory.createTextBlock(); // using emtpy block here, not block with BOS, EOS 
         root.setLength(9);
         TextBlock subBlock1 = modelFactory.createTextBlock();
-        subBlock1.setParentBlock(root); // first subnode
+        subBlock1.setParent(root); // first subnode
         subBlock1.setLength(5);
         observer.setRootBlock(root);
 
         LexedToken token1 = createToken("test");
-        token1.setParentBlock(root);
+        token1.setParent(root);
         LexedToken space = createToken(" ");
         space.setOffset(4);
-        space.setParentBlock(root);
+        space.setParent(root);
         LexedToken token2 = createToken("test2");
         token2.setOffset(5);
-        token2.setParentBlock(subBlock1);
+        token2.setParent(subBlock1);
         
         observer.notifyEnterRule(emptyList, null); // enter root
         tokenStreamMock.nextToken = token1;

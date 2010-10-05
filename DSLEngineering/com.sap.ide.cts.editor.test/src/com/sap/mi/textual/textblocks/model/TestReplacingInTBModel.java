@@ -5,15 +5,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.eclipse.emf.ecore.EEnum;
 import org.junit.Test;
 
-import textblocks.Bostoken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.LexedToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
+import com.sap.furcas.metamodel.textblocks.Bostoken;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.LexedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 
@@ -21,56 +20,56 @@ public class TestReplacingInTBModel extends TextBlockTest {
     
     private LexedToken createTokenWithWorkingCopy(String value) {
         TextBlock parentBlock = modelFactory.createTextBlock();
-        parentBlock.setVersion(VersionEnum.REFERENCE);
+        parentBlock.setVersion(EEnum.REFERENCE);
         LexedToken testToken = createToken(value);
-        testToken.setParentBlock(parentBlock);
+        testToken.setParent(parentBlock);
         TbUtil.createNewCopy(
-                getOtherVersion(parentBlock, VersionEnum.REFERENCE),
-                VersionEnum.PREVIOUS, false, null);
+                getOtherVersion(parentBlock, EEnum.REFERENCE),
+                EEnum.PREVIOUS, false, null);
         return testToken;
     }
     
     private TextBlock createEmptyTree(boolean withEmptyToken) {
         TextBlock parentBlock = modelFactory.createTextBlock();
-        parentBlock.setVersion(VersionEnum.REFERENCE);
+        parentBlock.setVersion(EEnum.REFERENCE);
         Bostoken bos = modelFactory.createBostoken();
-        bos.setVersion(VersionEnum.REFERENCE);
-        bos.setParentBlock(parentBlock);
+        bos.setVersion(EEnum.REFERENCE);
+        bos.setParent(parentBlock);
 
         if (withEmptyToken) {
             LexedToken testToken = createToken("");
-            testToken.setVersion(VersionEnum.REFERENCE);
-            testToken.setParentBlock(parentBlock);
+            testToken.setVersion(EEnum.REFERENCE);
+            testToken.setParent(parentBlock);
             testToken.setOffset(0);
         }
         Eostoken eos = modelFactory.createEostoken();
-        eos.setVersion(VersionEnum.REFERENCE);
-        eos.setParentBlock(parentBlock);
+        eos.setVersion(EEnum.REFERENCE);
+        eos.setParent(parentBlock);
         eos.setOffset(0);
         parentBlock.setLength(0);
         parentBlock.setCachedString("");
         
         
         TbUtil.createNewCopy(
-                getOtherVersion(parentBlock, VersionEnum.REFERENCE),
-                VersionEnum.PREVIOUS, false, null);
+                getOtherVersion(parentBlock, EEnum.REFERENCE),
+                EEnum.PREVIOUS, false, null);
         return parentBlock;
     }
     
     private TextBlock createSimpleTree(String... values) {
         TextBlock parentBlock = modelFactory.createTextBlock();
-        parentBlock.setVersion(VersionEnum.REFERENCE);
+        parentBlock.setVersion(EEnum.REFERENCE);
         Bostoken bos = modelFactory.createBostoken();
-        bos.setVersion(VersionEnum.REFERENCE);
-        bos.setParentBlock(parentBlock);
+        bos.setVersion(EEnum.REFERENCE);
+        bos.setParent(parentBlock);
         
         String fullString = "";
         int totalLength = 0;
         for (int i = 0; i < values.length; i++) {
             String value = values[i];
             LexedToken testToken = createToken(value);
-            testToken.setVersion(VersionEnum.REFERENCE);
-            testToken.setParentBlock(parentBlock);
+            testToken.setVersion(EEnum.REFERENCE);
+            testToken.setParent(parentBlock);
             testToken.setOffset(totalLength);
             
             totalLength += value.length();
@@ -79,32 +78,32 @@ public class TestReplacingInTBModel extends TextBlockTest {
         
         
         Eostoken eos = modelFactory.createEostoken();
-        eos.setVersion(VersionEnum.REFERENCE);
-        eos.setParentBlock(parentBlock);
+        eos.setVersion(EEnum.REFERENCE);
+        eos.setParent(parentBlock);
         eos.setOffset(totalLength);
         parentBlock.setLength(totalLength);
         parentBlock.setCachedString(fullString);        
         
         TbUtil.createNewCopy(
-                getOtherVersion(parentBlock, VersionEnum.REFERENCE),
-                VersionEnum.PREVIOUS, false, null);
+                getOtherVersion(parentBlock, EEnum.REFERENCE),
+                EEnum.PREVIOUS, false, null);
         return parentBlock;
     }
     
     private TextBlock createSimpleTreeWithGaps(String value) {
         TextBlock parentBlock = modelFactory.createTextBlock();
-        parentBlock.setVersion(VersionEnum.REFERENCE);
+        parentBlock.setVersion(EEnum.REFERENCE);
         Bostoken bos = modelFactory.createBostoken();
-        bos.setVersion(VersionEnum.REFERENCE);
-        bos.setParentBlock(parentBlock);
+        bos.setVersion(EEnum.REFERENCE);
+        bos.setParent(parentBlock);
         
         LexedToken testToken = createToken(value);
-        testToken.setVersion(VersionEnum.REFERENCE);
-        testToken.setParentBlock(parentBlock);
+        testToken.setVersion(EEnum.REFERENCE);
+        testToken.setParent(parentBlock);
         
         Eostoken eos = modelFactory.createEostoken();
-        eos.setVersion(VersionEnum.REFERENCE);
-        eos.setParentBlock(parentBlock);
+        eos.setVersion(EEnum.REFERENCE);
+        eos.setParent(parentBlock);
         
         // create gaps of 5 at start and end
         testToken.setOffset(5);
@@ -113,8 +112,8 @@ public class TestReplacingInTBModel extends TextBlockTest {
         eos.setOffset(value.length() + 10);
         
         TbUtil.createNewCopy(
-                getOtherVersion(parentBlock, VersionEnum.REFERENCE),
-                VersionEnum.PREVIOUS, false, null);
+                getOtherVersion(parentBlock, EEnum.REFERENCE),
+                EEnum.PREVIOUS, false, null);
         return parentBlock;
     }
     
@@ -124,15 +123,15 @@ public class TestReplacingInTBModel extends TextBlockTest {
      */
     private TextBlock createDeepTreeWithGaps(String... values) {
         TextBlock rootBlock = modelFactory.createTextBlock();
-        rootBlock.setVersion(VersionEnum.REFERENCE);
+        rootBlock.setVersion(EEnum.REFERENCE);
         
         Bostoken bos = modelFactory.createBostoken();
-        bos.setVersion(VersionEnum.REFERENCE);
-        bos.setParentBlock(rootBlock);
+        bos.setVersion(EEnum.REFERENCE);
+        bos.setParent(rootBlock);
         
         Eostoken eos = modelFactory.createEostoken();
-        eos.setVersion(VersionEnum.REFERENCE);
-        eos.setParentBlock(rootBlock);
+        eos.setVersion(EEnum.REFERENCE);
+        eos.setParent(rootBlock);
         
         String fullString = "";
         // create gaps of 5 at start and end
@@ -140,15 +139,15 @@ public class TestReplacingInTBModel extends TextBlockTest {
         for (int i = 0; i < values.length; i++) {
             String value = values[i];
             TextBlock parentBlock = modelFactory.createTextBlock();
-            parentBlock.setVersion(VersionEnum.REFERENCE);
-            parentBlock.setParentBlock(rootBlock);
+            parentBlock.setVersion(EEnum.REFERENCE);
+            parentBlock.setParent(rootBlock);
             
             parentBlock.setLength(value.length() + 6); // gap of 3 before and after contents
             parentBlock.setOffset(lastIndex + 2); // gap of 2 before start 
             
             LexedToken testToken = createToken(value);
-            testToken.setVersion(VersionEnum.REFERENCE);
-            testToken.setParentBlock(parentBlock);
+            testToken.setVersion(EEnum.REFERENCE);
+            testToken.setParent(parentBlock);
             testToken.setOffset(3); // absolute offset differs
             testToken.setOffsetRelative(true);
             fullString+="     " + value + "     ";
@@ -160,8 +159,8 @@ public class TestReplacingInTBModel extends TextBlockTest {
         eos.setOffset(lastIndex);
         
         TbUtil.createNewCopy(
-                getOtherVersion(rootBlock, VersionEnum.REFERENCE),
-                VersionEnum.PREVIOUS, false, null);
+                getOtherVersion(rootBlock, EEnum.REFERENCE),
+                EEnum.PREVIOUS, false, null);
 
         return rootBlock;
     }
@@ -173,15 +172,15 @@ public class TestReplacingInTBModel extends TextBlockTest {
      */
     private TextBlock createVeryDeepTreeWithGaps(String... values) {
         TextBlock rootBlock = modelFactory.createTextBlock();
-        rootBlock.setVersion(VersionEnum.REFERENCE);
+        rootBlock.setVersion(EEnum.REFERENCE);
         
         Bostoken bos = modelFactory.createBostoken();
-        bos.setVersion(VersionEnum.REFERENCE);
-        bos.setParentBlock(rootBlock);
+        bos.setVersion(EEnum.REFERENCE);
+        bos.setParent(rootBlock);
         
         Eostoken eos = modelFactory.createEostoken();
-        eos.setVersion(VersionEnum.REFERENCE);
-        eos.setParentBlock(rootBlock);
+        eos.setVersion(EEnum.REFERENCE);
+        eos.setParent(rootBlock);
         
         // create gaps of 6 at start and end
         int lastIndex = 0;
@@ -189,22 +188,22 @@ public class TestReplacingInTBModel extends TextBlockTest {
         for (int i = 0; i < values.length; i++) {
             String value = values[i];
             TextBlock parentBlock = modelFactory.createTextBlock();
-            parentBlock.setVersion(VersionEnum.REFERENCE);
-            parentBlock.setParentBlock(rootBlock);
+            parentBlock.setVersion(EEnum.REFERENCE);
+            parentBlock.setParent(rootBlock);
             parentBlock.setLength(value.length() + 8); // gap of 4 before and after contents
             parentBlock.setOffset(lastIndex + 2); // gap of 2 before start and after end
             parentBlock.setOffsetRelative(true);
             
             TextBlock subParentBlock = modelFactory.createTextBlock();
-            subParentBlock.setVersion(VersionEnum.REFERENCE);
-            subParentBlock.setParentBlock(parentBlock);
+            subParentBlock.setVersion(EEnum.REFERENCE);
+            subParentBlock.setParent(parentBlock);
             subParentBlock.setLength(value.length() + 4); // gap of 2 before and after contents
             subParentBlock.setOffset( 2); // gap of 2 before start and after end
             subParentBlock.setOffsetRelative(true);
             
             LexedToken testToken = createToken(value);
-            testToken.setVersion(VersionEnum.REFERENCE);
-            testToken.setParentBlock(subParentBlock);
+            testToken.setVersion(EEnum.REFERENCE);
+            testToken.setParent(subParentBlock);
             testToken.setOffset(2); // absolute offset differs
             testToken.setOffsetRelative(true);
             
@@ -216,8 +215,8 @@ public class TestReplacingInTBModel extends TextBlockTest {
         eos.setOffset(lastIndex);
         
         TbUtil.createNewCopy(
-                getOtherVersion(rootBlock, VersionEnum.REFERENCE),
-                VersionEnum.PREVIOUS, false, null);
+                getOtherVersion(rootBlock, EEnum.REFERENCE),
+                EEnum.PREVIOUS, false, null);
 
         return rootBlock;
     }
@@ -225,7 +224,7 @@ public class TestReplacingInTBModel extends TextBlockTest {
     private static <Type extends DocumentNode> Type getWorkingCopy(Type node) {
         
         return getOtherVersion(node,
-                VersionEnum.PREVIOUS);
+                EEnum.PREVIOUS);
     }
     
     @Test

@@ -9,18 +9,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
-import tcs.Block;
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.LiteralRef;
-import tcs.PrimitiveTemplate;
-import tcs.TcsPackage;
-import tcs.Template;
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.metamodel.TCS.TCSPackage;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
 import com.sap.ide.cts.editor.test.util.TestSourceTextBlockCreator;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
@@ -31,9 +31,6 @@ import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.repository.Moin;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
 public class TestIncrementalParser extends TextBlockTest {
 
@@ -160,17 +157,17 @@ public class TestIncrementalParser extends TextBlockTest {
 	 * @return
 	 */
 	private IncrementalParserFacade getParserFacade() {
-		TcsPackage tcsPackage = connection
-				.getPackage(TcsPackage.PACKAGE_DESCRIPTOR);
-		Collection<PRI> priList = new ArrayList<PRI>();
+		TCSPackage tcsPackage = connection
+				.getPackage(TCSPackage.PACKAGE_DESCRIPTOR);
+		Collection<URI> priList = new ArrayList<URI>();
 		Moin moin = MOINTCSMetaConnectionProvider.getBuildMoin();
-		PRI pri1 = moin
+		URI pri1 = moin
 				.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/PrimitiveTypes.moinmm");
-		PRI pri2 = moin
+		URI pri2 = moin
 				.createPri("PF.MetaModelDataArea:DCs/demo.sap.com/tcsmeta/_comp/moin/meta/Metamodel.moinmm");
-		PRI pri3 = moin
+		URI pri3 = moin
 				.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Model.moinmm");
-		PRI pri4 = moin
+		URI pri4 = moin
 				.createPri("PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/MOIN.moinmm");
 		priList.add(pri1);
 		priList.add(pri2);

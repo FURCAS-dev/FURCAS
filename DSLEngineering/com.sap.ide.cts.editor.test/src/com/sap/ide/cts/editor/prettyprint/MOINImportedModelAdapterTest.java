@@ -10,23 +10,22 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import tcs.ClassTemplate;
-import tcs.TcsPackage;
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.TCSPackage;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.ide.cts.editor.test.util.ConcreteSyntaxBasedTest;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 
 public class MOINImportedModelAdapterTest extends ConcreteSyntaxBasedTest {
 
 	MOINImportedModelAdapter adapter;
-	TcsPackage pck;
+	TCSPackage pck;
 
 	@Before
 	public void initAdapter() {
 		initMetamodelId("demo.sap.com/tcsmeta");
 		initSyntax(TCSLexer.class.getResourceAsStream("TCS.tcs"));
-		pck = connection.getPackage(TcsPackage.PACKAGE_DESCRIPTOR);
+		pck = connection.getPackage(TCSPackage.PACKAGE_DESCRIPTOR);
 	}
 
 	@Test
@@ -39,7 +38,7 @@ public class MOINImportedModelAdapterTest extends ConcreteSyntaxBasedTest {
 	@Test
 	public void testGetBool() {
 		ClassTemplate main = TcsUtil.getMainClassTemplate(syntax);
-		assertEquals(main.isMain(), MOINImportedModelAdapter.getBool(main,
+		assertEquals(main.isIsMain(), MOINImportedModelAdapter.getBool(main,
 				"isMain"));
 	}
 

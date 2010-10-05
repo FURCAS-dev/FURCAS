@@ -18,14 +18,13 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.After;
 import org.junit.Before;
 
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.fwk.services.local.FileServices;
-import com.sap.mi.fwk.services.local.ZipService;
-import com.sap.tc.moin.repository.Connection;
+
+
+
 
 /**
  * A JUnit 4 compatible, lightweight version of {@link ProjectBasedTest}
@@ -37,7 +36,7 @@ import com.sap.tc.moin.repository.Connection;
 public abstract class ProjectConnectionBasedTest {
 
 	private IProject mProject;
-	private final Set<Connection> mConnections = new HashSet<Connection>();
+	private final Set<ResourceSet> mConnections = new HashSet<ResourceSet>();
 	
 	/**
 	 * Set this to true in your testclass constructor to retrieve inMemory connections only.
@@ -159,10 +158,10 @@ public abstract class ProjectConnectionBasedTest {
 	 * @see #getConnections()
 	 * @see #closeConnections()
 	 */
-	protected Connection createConnection() {
-		final Connection[] con = new Connection[1];
+	protected ResourceSet createConnection() {
+		final ResourceSet[] con = new ResourceSet[1];
 		
-		Job creator = new Job("Create Connection") {
+		Job creator = new Job("Create ResourceSet") {
 		    @Override
 		    protected IStatus run(IProgressMonitor monitor) {
 			con[0] = ConnectionManager.getInstance().createConnection(getProject());
@@ -188,7 +187,7 @@ public abstract class ProjectConnectionBasedTest {
 	 * 
 	 * @see #createConnection()
 	 */
-	protected Set<Connection> getConnections() {
+	protected Set<ResourceSet> getConnections() {
 		return mConnections;
 	}
 	
@@ -200,8 +199,8 @@ public abstract class ProjectConnectionBasedTest {
 	 * @see #createConnection()
 	 */
 	protected void closeConnections() {
-		Set<Connection> connections = getConnections();
-		for (Connection connection : connections) {
+		Set<ResourceSet> connections = getConnections();
+		for (ResourceSet connection : connections) {
 			if (connection != null && connection.isAlive()) {
 				connection.close();
 			}

@@ -17,6 +17,8 @@ import java.util.Set;
 
 import org.antlr.Tool;
 import org.antlr.runtime.Lexer;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
@@ -33,8 +35,6 @@ import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationExceptio
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
 import com.sun.tools.javac.Main;
 
 /**
@@ -252,7 +252,7 @@ public class ParserGenerationTestHelper {
 				generationSourceRoot + File.pathSeparator + "../" + metamodelProjectName
 						+ "/bin" + File.pathSeparator
 						+ getSourceRoot(AbstractParserFactory.class) + File.pathSeparator
-						+ getSourceRoot(Connection.class) + File.pathSeparator
+						+ getSourceRoot(ResourceSet.class) + File.pathSeparator
 						+ getSourceRoot(ANTLRParserFactory.class) + File.pathSeparator
 						+ getSourceRoot(ITokenFactory.class) + File.pathSeparator
 						+ getSourceRoot(RuleNameFinder.class) + File.pathSeparator
@@ -328,8 +328,8 @@ public class ParserGenerationTestHelper {
 	}
 
 	public final void generateParserGrammar(String language,
-			IMetaModelLookup<?> lookup, Connection connection,
-			Set<PRI> partitions) throws FileNotFoundException,
+			IMetaModelLookup<?> lookup, ResourceSet connection,
+			Set<URI> partitions) throws FileNotFoundException,
 			ModelAdapterException, GrammarGenerationException, IOException {
 
 		File grammarFile = getGrammarFile(language);

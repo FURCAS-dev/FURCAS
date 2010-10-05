@@ -4,8 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.io.InputStream;
 
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.test.util.ConcreteSyntaxBasedTest;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
 import com.sap.mi.textual.parsing.textblocks.TextblocksTestHelper;

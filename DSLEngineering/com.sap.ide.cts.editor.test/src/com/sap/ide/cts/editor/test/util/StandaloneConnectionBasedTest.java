@@ -1,11 +1,10 @@
 package com.sap.ide.cts.editor.test.util;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.After;
 import org.junit.BeforeClass;
 
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.syntaxmodel.emfadapter.MoinContext;
-import com.sap.tc.moin.repository.Connection;
 
 public class StandaloneConnectionBasedTest {
 
@@ -13,7 +12,7 @@ public class StandaloneConnectionBasedTest {
 		MoinContext.setMoin(MOINTCSMetaConnectionProvider.getBuildMoin());
 	}
 
-	protected static Connection connection = null;
+	protected static ResourceSet connection = null;
 
 	@BeforeClass
 	public static void setUp() {

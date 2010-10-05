@@ -2,46 +2,45 @@ package com.sap.ide.cts.editor.contentassist;
 
 import java.util.Arrays;
 
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.ModelPackage;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MultiplicityType;
-import com.sap.tc.moin.repository.mmi.model.Reference;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
 
 public class ModelElementMoinFactory implements ModelElementFactory {
 
-	private Connection connection;
-	private ModelPackage rootPkg;
+	private ResourceSet connection;
+	private EPackage rootPkg;
 
-	public ModelElementMoinFactory(Connection connection) {
+	public ModelElementMoinFactory(ResourceSet connection) {
 		this.connection = connection;
-		rootPkg = connection.getPackage(ModelPackage.PACKAGE_DESCRIPTOR);
+		rootPkg = connection.getPackage(EPackage.PACKAGE_DESCRIPTOR);
 	}
 
-	protected Connection getConnection() {
+	protected ResourceSet getConnection() {
 		return connection;
 	}
 
 	@Override
-	public MofClass createMofClass() {
-		return (MofClass) rootPkg.getMofClass().refCreateInstance();
+	public EClass createMofClass() {
+		return (EClass) rootPkg.eClass().refCreateInstance();
 	}
 
 	@Override
-	public Attribute createAttribute() {
-		return (Attribute) rootPkg.getAttribute().refCreateInstance();
+	public EReference createAttribute() {
+		return (EReference) rootPkg.getAttribute().refCreateInstance();
 	}
 
 	@Override
-	public Reference createReference() {
-		return (Reference) rootPkg.getReference().refCreateInstance();
+	public EReference createReference() {
+		return (EReference) rootPkg.getReference().refCreateInstance();
 	}
 
 	@Override
-	public MultiplicityType createMultiplicityType(int lower, int upper,
+	public EReference createMultiplicityType(int lower, int upper,
 			boolean isOrdered, boolean isUnique) {
-		return (MultiplicityType) rootPkg.refCreateStruct("MultiplicityType",
+		return (EReference) rootPkg.refCreateStruct("MultiplicityType",
 				Arrays
 						.asList(new Object[] { lower, upper, isOrdered,
 								isUnique }));
