@@ -1,0 +1,85 @@
+package de.hpi.sam.bp2009.solution.impactAnalyzer.util;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import org.eclipse.ocl.ecore.OperationCallExp;
+
+/**
+ * A simplified implementation of the {@link OperationCallExpKeyedSet} interface which is actually unable to
+ * associate the {@link AnnotatedEObject}s with {@link OperationCallExp} expressions but instead just keeps
+ * the {@link AnnotatedEObject}s as flat sets.
+ * 
+ * @author Axel Uhl (D043530)
+ *
+ */
+public class FlatSet extends HashSet<AnnotatedEObject> implements OperationCallExpKeyedSet {
+    private static final long serialVersionUID = 4506249231724738128L;
+    private static final FlatSet EMPTY_SET = new FlatSet();
+
+    /**
+     * Only used to create the {@link #EMPTY_SET}
+     */
+    private FlatSet() {}
+
+    public FlatSet(Iterable<AnnotatedEObject> c) {
+        for (AnnotatedEObject aeo : c) {
+            add(aeo);
+        }
+    }
+
+    public FlatSet(AnnotatedEObject aeo) {
+        add(aeo);
+    }
+
+    public FlatSet(Collection<OperationCallExpKeyedSet> sets) {
+        for (OperationCallExpKeyedSet set : sets) {
+            for (AnnotatedEObject aeo : set) {
+                add(aeo);
+            }
+        }
+    }
+
+    /**
+     * The combined results is this set itself because it always contains all results for all
+     * operation calls, already combined. The <code>oce</code> parameter is ignored here.
+     */
+    public Iterable<AnnotatedEObject> getCombinedResultsFor(OperationCallExp oce) {
+        return this;
+    }
+
+    /**
+     * The returned iterable's iterator produces a single element with this set contained as iterable value,
+     * or an empty iterable in case this set is empty.
+     */
+    public Iterable<Entry<OperationCallExp, Iterable<AnnotatedEObject>>> entrySet() {
+        Map.Entry<OperationCallExp, Iterable<AnnotatedEObject>> entry = new Map.Entry<OperationCallExp, Iterable<AnnotatedEObject>>() {
+            public OperationCallExp getKey() {
+                return null;
+            }
+
+            public Iterable<AnnotatedEObject> getValue() {
+                return FlatSet.this;
+            }
+
+            public Iterable<AnnotatedEObject> setValue(Iterable<AnnotatedEObject> value) {
+                throw new UnsupportedOperationException("setValue() not supported here");
+            }
+        };
+        Set<Entry<OperationCallExp, Iterable<AnnotatedEObject>>> result;
+        if (isEmpty()) {
+            result = Collections.emptySet();
+        } else {
+            result = Collections.singleton(entry);
+        }
+        return result;
+    }
+
+    public static OperationCallExpKeyedSet emptySet() {
+        return EMPTY_SET;
+    }
+}

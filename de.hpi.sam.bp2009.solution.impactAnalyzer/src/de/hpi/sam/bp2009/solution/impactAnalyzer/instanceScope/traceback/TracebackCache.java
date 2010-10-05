@@ -19,6 +19,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Triple;
 
@@ -97,12 +98,15 @@ public class TracebackCache {
 
     private final UnusedEvaluationRequestFactory unusedEvaluationRequestFactory;
     
+    private final OperationCallExpKeyedSetFactory operationCallExpKeyedSetFactory;
+    
     public TracebackCache(ActivationOption configuration, UnusedEvaluationRequestFactory unusedEvaluationRequestFactory) {
         navigateCache = new HashMap<Triple<TracebackStep, AnnotatedEObject, UnusedEvaluationRequestSet>, OperationCallExpKeyedSet>();
         unusedEvaluationCache = new HashMap<UnusedEvaluationRequest, Object>();
         this.configuration = configuration;
         this.unusedEvaluationRequestFactory = unusedEvaluationRequestFactory;
         currentlyEvaluatingTracebackFor = new HashMap<TracebackStep, Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>>();
+        operationCallExpKeyedSetFactory = new OperationCallExpKeyedSetFactory(configuration.isOperationCallSelectionActive());
     }
     
     public boolean isCurrentlyEvaluatingFor(TracebackStep step, Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key) {
@@ -170,6 +174,10 @@ public class TracebackCache {
 
     public UnusedEvaluationRequestFactory getUnusedEvaluationRequestFactory() {
         return unusedEvaluationRequestFactory;
+    }
+
+    public OperationCallExpKeyedSetFactory getOperationCallExpKeyedSetFactory() {
+        return operationCallExpKeyedSetFactory;
     }
 }
 

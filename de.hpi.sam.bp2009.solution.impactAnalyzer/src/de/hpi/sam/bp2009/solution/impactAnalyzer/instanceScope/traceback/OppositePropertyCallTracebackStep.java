@@ -18,7 +18,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 
 public class OppositePropertyCallTracebackStep extends AbstractTracebackStep<OppositePropertyCallExp> implements TracebackStep {
 
@@ -50,16 +49,16 @@ public class OppositePropertyCallTracebackStep extends AbstractTracebackStep<Opp
                 for (EObject obj : refObjects) {
                     resultList.add(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent));
                 }
-                result = new OperationCallExpKeyedSetImpl(resultList);
+                result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(resultList);
             } else {
-                result = OperationCallExpKeyedSetImpl.emptySet();
+                result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
             }
         } else {
             AnnotatedEObject oSingle = annotateEObject(source, (EObject) source.eGet(reference));
             if (oSingle != null) {
                 result = nextStep.traceback(oSingle, pendingUnusedEvalRequests, tracebackCache, changeEvent);
             } else {
-                result = OperationCallExpKeyedSetImpl.emptySet();
+                result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
             }
         }
         return result;

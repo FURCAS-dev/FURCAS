@@ -24,7 +24,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 
 public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
     private enum Strategy { EMPTY, MAP, PASSTHROUGH };
@@ -87,7 +86,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             Notification changeEvent) {
         switch (strategy) {
         case EMPTY:
-            return OperationCallExpKeyedSetImpl.emptySet();
+            return tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
         case MAP:
             return step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
         case PASSTHROUGH:
@@ -96,7 +95,7 @@ public class IteratorTracebackStep extends AbstractTracebackStep<IteratorExp> {
             if (passedPredicate) {
                 return step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
             } else {
-                return OperationCallExpKeyedSetImpl.emptySet();
+                return tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
             }
         default:
             throw new RuntimeException("Internal error: unknown traceback strategy "+strategy);

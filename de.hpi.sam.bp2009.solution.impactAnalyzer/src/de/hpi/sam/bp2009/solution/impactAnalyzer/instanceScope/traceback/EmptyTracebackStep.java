@@ -20,7 +20,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 
 public class EmptyTracebackStep extends AbstractTracebackStep<OCLExpression> {
 
@@ -39,7 +38,7 @@ public class EmptyTracebackStep extends AbstractTracebackStep<OCLExpression> {
     @Override
     protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        return OperationCallExpKeyedSetImpl.emptySet();
+        return tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
     }
 
 }

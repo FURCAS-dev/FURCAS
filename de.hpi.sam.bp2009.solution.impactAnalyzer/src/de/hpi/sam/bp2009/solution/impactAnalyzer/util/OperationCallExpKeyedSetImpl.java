@@ -27,7 +27,7 @@ public class OperationCallExpKeyedSetImpl implements OperationCallExpKeyedSet {
         map = Collections.emptyMap();
     }
     
-    public OperationCallExpKeyedSetImpl(OperationCallExp oce, Iterable<AnnotatedEObject> c) {
+    OperationCallExpKeyedSetImpl(OperationCallExp oce, Iterable<AnnotatedEObject> c) {
         if (c == null) {
             throw new IllegalArgumentException("Must pass a valid, non-null iterable");
         }
@@ -36,7 +36,7 @@ public class OperationCallExpKeyedSetImpl implements OperationCallExpKeyedSet {
         map = myMap;
     }
 
-    public OperationCallExpKeyedSetImpl(Iterable<AnnotatedEObject> c) {
+    OperationCallExpKeyedSetImpl(Iterable<AnnotatedEObject> c) {
         if (c == null) {
             throw new IllegalArgumentException("Must pass a valid, non-null iterable");
         }
@@ -45,13 +45,13 @@ public class OperationCallExpKeyedSetImpl implements OperationCallExpKeyedSet {
         map = myMap;
     }
     
-    public OperationCallExpKeyedSetImpl(AnnotatedEObject aeo) {
+    OperationCallExpKeyedSetImpl(AnnotatedEObject aeo) {
         Map<OperationCallExp, Iterable<AnnotatedEObject>> myMap = new HashMap<OperationCallExp, Iterable<AnnotatedEObject>>();
         myMap.put(null, Collections.singleton(aeo));
         map = myMap;
     }
     
-    public OperationCallExpKeyedSetImpl(Collection<OperationCallExpKeyedSet> sets) {
+    OperationCallExpKeyedSetImpl(Collection<OperationCallExpKeyedSet> sets) {
         Map<OperationCallExp, Iterable<AnnotatedEObject>> myMap = new HashMap<OperationCallExp, Iterable<AnnotatedEObject>>();
         for (OperationCallExpKeyedSet set : sets) {
             for (Entry<OperationCallExp, ? extends Iterable<AnnotatedEObject>> entry : set.entrySet()) {
@@ -71,7 +71,7 @@ public class OperationCallExpKeyedSetImpl implements OperationCallExpKeyedSet {
         map = myMap;
     }
 
-    public static OperationCallExpKeyedSetImpl emptySet() {
+    static OperationCallExpKeyedSetImpl emptySet() {
         return EMPTY_SET;
     }
     

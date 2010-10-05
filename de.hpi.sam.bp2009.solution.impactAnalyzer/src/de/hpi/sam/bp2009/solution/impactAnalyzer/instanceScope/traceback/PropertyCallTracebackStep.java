@@ -23,7 +23,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 
 public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCallExp> {
     private enum Strategy { TUPLE, OPPOSITE_MANY, OPPOSITE_SINGLE, CONTAINMENT, HIDDEN_OPPOSITE };
@@ -94,7 +93,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
     @Override
     protected OperationCallExpKeyedSet performSubsequentTraceback(AnnotatedEObject source,
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
-        OperationCallExpKeyedSet result = OperationCallExpKeyedSetImpl.emptySet();
+        OperationCallExpKeyedSet result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
         switch (strategy) {
         case TUPLE:
             result = nextStep.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
@@ -108,7 +107,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
                 for (EObject obj : refObjects) {
                     resultSets.add(nextStep.traceback(annotateEObject(source, obj), pendingUnusedEvalRequests, tracebackCache, changeEvent));
                 }
-                result = new OperationCallExpKeyedSetImpl(resultSets);
+                result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(resultSets);
             }
             break;
         case OPPOSITE_SINGLE:
@@ -131,7 +130,7 @@ public class PropertyCallTracebackStep extends AbstractTracebackStep<PropertyCal
                 for (EObject eo : opposite) {
                     resultSets.add(nextStep.traceback(annotateEObject(source, eo), pendingUnusedEvalRequests, tracebackCache, changeEvent));
                 }
-                result = new OperationCallExpKeyedSetImpl(resultSets);
+                result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(resultSets);
             }
             break;
         }
