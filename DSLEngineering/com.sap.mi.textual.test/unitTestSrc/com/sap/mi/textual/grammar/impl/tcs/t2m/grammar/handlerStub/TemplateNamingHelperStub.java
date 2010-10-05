@@ -8,9 +8,9 @@ import java.util.List;
 import tcs.QualifiedNamedElement;
 import tcs.Template;
 
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.tcs.SyntaxLookup;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.util.StringConcatUtil;
 
 /**

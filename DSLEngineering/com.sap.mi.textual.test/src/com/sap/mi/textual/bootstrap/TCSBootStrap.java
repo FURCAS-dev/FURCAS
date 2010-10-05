@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
 import com.sap.ide.cts.editor.test.util.StandaloneMoinLookUp;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.epi.filedefinition.GrammarWritingHelper;
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
 import com.sap.mi.textual.syntaxmodel.emfadapter.MoinContext;

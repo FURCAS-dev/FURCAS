@@ -8,10 +8,10 @@ import tcs.ConcreteSyntax;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorPrintStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 

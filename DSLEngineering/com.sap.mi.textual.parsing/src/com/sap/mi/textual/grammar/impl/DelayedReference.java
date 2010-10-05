@@ -13,9 +13,9 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.common.interfaces.IRuleName;
-import com.sap.mi.textual.common.util.ContextAndForeachHelper;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IRuleName;
+import com.sap.furcas.textual.common.util.ContextAndForeachHelper;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 
 /**

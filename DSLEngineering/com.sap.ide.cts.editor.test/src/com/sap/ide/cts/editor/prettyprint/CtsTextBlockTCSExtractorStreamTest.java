@@ -14,10 +14,10 @@ import textblocks.Eostoken;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+import com.sap.furcas.textual.textblocks.testutils.TextblocksTestHelper;
 import com.sap.ide.cts.editor.test.util.StandaloneConnectionBasedTest;
 import com.sap.mi.tcs.parser.TcsParserFactory;
-import com.sap.mi.textual.parsing.textblocks.TextblocksTestHelper;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
 public class CtsTextBlockTCSExtractorStreamTest extends
 		StandaloneConnectionBasedTest {

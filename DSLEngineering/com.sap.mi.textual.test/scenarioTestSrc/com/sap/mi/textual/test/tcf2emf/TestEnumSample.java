@@ -18,7 +18,7 @@ import tcs.OperatorTemplate;
 import tcs.Template;
 import tcs.Token;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 
 
 public class TestEnumSample extends AbstractTCSInjectionTest {

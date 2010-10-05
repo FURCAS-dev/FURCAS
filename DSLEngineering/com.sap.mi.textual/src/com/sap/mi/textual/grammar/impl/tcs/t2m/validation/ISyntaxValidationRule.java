@@ -9,7 +9,7 @@
 package com.sap.mi.textual.grammar.impl.tcs.t2m.validation;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.SemanticErrorBucket;
 
 

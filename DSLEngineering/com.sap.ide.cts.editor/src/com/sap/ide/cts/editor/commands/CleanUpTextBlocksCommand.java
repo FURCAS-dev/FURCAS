@@ -5,8 +5,8 @@ import java.util.Collections;
 
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.textblocks.TbChangeUtil;
 import com.sap.mi.fwk.ui.ModelAdapterUI;
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.commands.Command;

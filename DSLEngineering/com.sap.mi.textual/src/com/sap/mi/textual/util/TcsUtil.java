@@ -7,16 +7,16 @@ import org.eclipse.emf.common.util.EList;
 
 import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
 import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.NameResolutionFailedException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.tcs.MessageHelper;
+import com.sap.furcas.textual.tcs.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.PropertyInstanceOfConstraint;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.RuleBodyPropertyConstraint;
-import com.sap.mi.textual.tcs.util.MessageHelper;
-import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 
 public class TcsUtil {
 	

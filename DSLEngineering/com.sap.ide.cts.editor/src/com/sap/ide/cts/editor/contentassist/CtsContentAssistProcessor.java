@@ -24,6 +24,8 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
 
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
 import com.sap.ide.cts.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.document.TextBlocksModelStore;
@@ -33,8 +35,6 @@ import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationExceptio
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.DelegationParsingObserver;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.Connection;
 
 public class CtsContentAssistProcessor implements IContentAssistProcessor {

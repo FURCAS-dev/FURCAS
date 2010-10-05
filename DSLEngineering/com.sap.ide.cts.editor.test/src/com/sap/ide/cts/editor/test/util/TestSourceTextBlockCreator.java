@@ -7,7 +7,7 @@ import textblocks.AbstractToken;
 import textblocks.TextBlock;
 import textblocks.VersionEnum;
 
-import com.sap.mi.textual.parsing.textblocks.TestTextBlocksModelElementFactory;
+import com.sap.furcas.textua.aa.TestTextBlocksModelElementFactory;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**

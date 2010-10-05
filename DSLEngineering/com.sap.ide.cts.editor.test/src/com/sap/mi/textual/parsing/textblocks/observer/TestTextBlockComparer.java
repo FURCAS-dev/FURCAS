@@ -14,8 +14,8 @@ import textblockdefinition.TextBlockDefinition;
 import textblocks.AbstractToken;
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
 import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 
 public class TestTextBlockComparer extends TextBlockTest {
     

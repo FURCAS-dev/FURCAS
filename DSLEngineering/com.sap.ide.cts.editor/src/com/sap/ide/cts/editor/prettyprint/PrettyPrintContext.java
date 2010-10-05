@@ -8,7 +8,7 @@ import java.util.Stack;
 import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
-import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.furcas.textual.tcs.TcsUtil;
 
 public class PrettyPrintContext {
 

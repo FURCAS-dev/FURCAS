@@ -11,8 +11,8 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.query2;bundle-version="1.0.0",
  org.eclipse.emf.query.index.ui;bundle-version="1.0.0",
  org.eclipse.core.runtime,
- com.sap.mi.textual.common,
- com.sap.mi.textual.parsing
+ com.sap.furcas.textual,
+ com.sap.mi.textual.parsing;bundle-version="1.0.0"
 Bundle-ClassPath: 
  adapter.jar
 Export-Package: 

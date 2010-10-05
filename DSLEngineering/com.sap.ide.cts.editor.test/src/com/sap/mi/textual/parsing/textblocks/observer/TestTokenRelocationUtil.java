@@ -15,7 +15,7 @@ import textblocks.Eostoken;
 import textblocks.LexedToken;
 import textblocks.TextBlock;
 
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
+import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
 
 /**
  * tests several methods of that util class

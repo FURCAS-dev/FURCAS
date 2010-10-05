@@ -1,14 +1,14 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.mi.textual.parsing.textblocks.TbMarkingUtil.isEOS;
-import static com.sap.mi.textual.parsing.textblocks.TbMarkingUtil.marked;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getNextInSubTree;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getParentBlock;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getSubNodeAt;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getSubNodes;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.isLastInSubTree;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.isToken;
-import static com.sap.mi.textual.parsing.textblocks.TbVersionUtil.getOtherVersion;
+import static com.sap.furcas.textual.textblocks.TbMarkingUtil.isEOS;
+import static com.sap.furcas.textual.textblocks.TbMarkingUtil.marked;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getNextInSubTree;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getParentBlock;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getSubNodeAt;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getSubNodes;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.isLastInSubTree;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.isToken;
+import static com.sap.furcas.textual.textblocks.TbVersionUtil.getOtherVersion;
 
 import java.util.List;
 

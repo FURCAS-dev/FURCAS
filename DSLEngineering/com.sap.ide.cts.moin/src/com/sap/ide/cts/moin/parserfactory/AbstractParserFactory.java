@@ -16,8 +16,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.textual.common.interfaces.IRuleName;
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
-import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.InjectionOptionsBean;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
@@ -27,7 +28,6 @@ import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
 import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.textual.emfadapter.adapter.MOINModelAdapter;
 
 

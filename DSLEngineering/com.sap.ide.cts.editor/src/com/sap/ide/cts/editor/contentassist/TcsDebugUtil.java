@@ -24,7 +24,7 @@ import tcs.Property;
 import tcs.SequenceElement;
 import tcs.Template;
 
-import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 
 public class TcsDebugUtil {

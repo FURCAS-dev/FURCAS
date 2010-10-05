@@ -13,6 +13,8 @@ import org.eclipse.ui.texteditor.AbstractDocumentProvider;
 import textblocks.TextBlock;
 import textblocks.VersionEnum;
 
+import com.sap.furcas.textual.textblocks.TbChangeUtil;
+import com.sap.furcas.textual.textblocks.TbVersionUtil;
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.CtsAnnotationModel;
 import com.sap.ide.cts.editor.FurcasDocumentSetupParticpant;
@@ -20,8 +22,6 @@ import com.sap.ide.cts.editor.commands.CleanUpTextBlocksCommand;
 import com.sap.mi.fwk.ui.ModelAdapterUI;
 import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.mi.fwk.ui.editor.ModelEditorInput;
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
 import com.sap.tc.moin.repository.Partitionable;

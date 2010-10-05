@@ -12,8 +12,8 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.parsing.MofAnyStub;
 import com.sap.mi.textual.test.util.StringListHelper;
 import com.sap.tc.moin.repository.PRI;

@@ -3,13 +3,13 @@
  */
 package com.sap.mi.textual.parsing.textblocks.observer;
 
-import static com.sap.mi.textual.parsing.textblocks.TbChangeUtil.addToBlockAt;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getParentBlock;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getSubNodeAt;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getSubNodes;
-import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getSubNodesSize;
-import static com.sap.mi.textual.parsing.textblocks.TbUtil.getAbsoluteOffset;
-import static com.sap.mi.textual.parsing.textblocks.TbUtil.isAncestorOf;
+import static com.sap.furcas.textual.textblocks.TbChangeUtil.addToBlockAt;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getParentBlock;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getSubNodeAt;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getSubNodes;
+import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getSubNodesSize;
+import static com.sap.furcas.textual.textblocks.TbUtil.getAbsoluteOffset;
+import static com.sap.furcas.textual.textblocks.TbUtil.isAncestorOf;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -22,7 +22,7 @@ import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
+import com.sap.furcas.textual.textblocks.TbValidationUtil;
 
 /**
  * utils class performing the relatively complex relocation task for the ParsingObserver

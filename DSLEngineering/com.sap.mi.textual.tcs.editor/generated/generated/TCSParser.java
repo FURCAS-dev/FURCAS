@@ -15,7 +15,7 @@ import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 public class TCSParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {

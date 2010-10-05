@@ -14,8 +14,8 @@ import tcs.ClassTemplate;
 import tcs.TcsPackage;
 import tcs.Template;
 
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.ide.cts.editor.test.util.ConcreteSyntaxBasedTest;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 
 public class MOINImportedModelAdapterTest extends ConcreteSyntaxBasedTest {
 

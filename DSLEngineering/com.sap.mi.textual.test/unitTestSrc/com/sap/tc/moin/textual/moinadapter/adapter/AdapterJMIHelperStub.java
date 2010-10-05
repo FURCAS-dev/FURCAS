@@ -7,7 +7,7 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.JmiHelper;

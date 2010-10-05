@@ -1,6 +1,6 @@
 package com.sap.mi.textual.grammar.impl;
 
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 
 public interface ContextBuilder {
 

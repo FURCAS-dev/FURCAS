@@ -1,7 +1,5 @@
 package com.sap.mi.textual.parsing.textblocks.observer;
 
-import static com.sap.mi.textual.parsing.textblocks.TbUtil.getNewestVersion;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -31,17 +29,15 @@ import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.common.util.EcoreHelper;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.implementation.ResolvedModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.IParsingObserver;
 import com.sap.mi.textual.grammar.impl.ModelElementProxy;
 import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
 import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
 
 
 /**

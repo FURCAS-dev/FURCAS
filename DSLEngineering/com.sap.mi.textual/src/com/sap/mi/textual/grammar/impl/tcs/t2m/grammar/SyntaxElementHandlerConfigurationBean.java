@@ -3,10 +3,10 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.tcs.MetaModelElementResolutionHelper;
+import com.sap.furcas.textual.tcs.SyntaxLookup;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
 
 /**
  * Bean to reduce the coupling of the constructors.

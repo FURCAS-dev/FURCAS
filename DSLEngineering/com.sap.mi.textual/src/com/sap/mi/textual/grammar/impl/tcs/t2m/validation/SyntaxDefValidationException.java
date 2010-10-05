@@ -1,6 +1,6 @@
 package com.sap.mi.textual.grammar.impl.tcs.t2m.validation;
 
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
 
 
 /**

@@ -9,13 +9,13 @@ import org.junit.Before;
 import tcs.ConcreteSyntax;
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+import com.sap.furcas.textual.textblocks.testutils.TextblocksTestHelper;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementFactory;
 import com.sap.ide.cts.editor.contentassist.TcsModelElementMoinFactory;
 import com.sap.ide.cts.editor.test.util.FixtureBasedTest;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
-import com.sap.mi.textual.parsing.textblocks.TextblocksTestHelper;
-import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
 public class CtsPrettyPrinterIntegrationTestBase extends FixtureBasedTest {
 

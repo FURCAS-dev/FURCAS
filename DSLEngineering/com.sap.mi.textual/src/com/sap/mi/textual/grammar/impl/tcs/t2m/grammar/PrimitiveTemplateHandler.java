@@ -13,14 +13,14 @@ import java.util.Set;
 
 import com.sap.furcas.metamodel.TCS.Keyword;
 import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
-import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.exceptions.NameResolutionFailedException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.tcs.MessageHelper;
+import com.sap.furcas.textual.tcs.MetaModelElementResolutionHelper;
+import com.sap.furcas.textual.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.ClassProductionRule;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.tcs.util.MessageHelper;
-import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
 
 
 /**

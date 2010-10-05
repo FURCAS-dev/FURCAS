@@ -8,9 +8,9 @@ import org.eclipse.jface.text.ITextStore;
 import textblocks.AbstractToken;
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
 import com.sap.ide.cts.editor.CtsActivator;
-import com.sap.mi.textual.grammar.IModelElementInvestigator;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
 /**
  * This is an implementation if {@link ITextStore} which serves as storage
