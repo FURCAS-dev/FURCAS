@@ -18,5 +18,4 @@ package com.sap.furcas.metamodel.TCS;
  * @generated
  */
 public interface PrimitivePropertyInit extends PropertyInit {
-
 } // PrimitivePropertyInit
