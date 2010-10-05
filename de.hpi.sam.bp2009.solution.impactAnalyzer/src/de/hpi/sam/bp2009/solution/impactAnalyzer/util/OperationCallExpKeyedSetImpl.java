@@ -55,24 +55,22 @@ public class OperationCallExpKeyedSetImpl implements OperationCallExpKeyedSet {
         Map<OperationCallExp, Iterable<AnnotatedEObject>> myMap = new HashMap<OperationCallExp, Iterable<AnnotatedEObject>>();
         for (OperationCallExpKeyedSet set : sets) {
             for (Entry<OperationCallExp, ? extends Iterable<AnnotatedEObject>> entry : set.entrySet()) {
-                Set<AnnotatedEObject> mapSet = (Set<AnnotatedEObject>) myMap.get(entry.getKey());
-                if (mapSet == null) {
-                    mapSet = new HashSet<AnnotatedEObject>();
-                    myMap.put(entry.getKey(), mapSet);
-                }
                 Iterable<AnnotatedEObject> entryValue = entry.getValue();
-                for (AnnotatedEObject e : entryValue) {
-                    mapSet.add(e);
+                if (entryValue.iterator().hasNext()) {
+                    Set<AnnotatedEObject> mapSet = (Set<AnnotatedEObject>) myMap.get(entry.getKey());
+                    if (mapSet == null) {
+                        mapSet = new HashSet<AnnotatedEObject>();
+                        myMap.put(entry.getKey(), mapSet);
+                    }
+                    for (AnnotatedEObject e : entryValue) {
+                        mapSet.add(e);
+                    }
                 }
             }
         }
         map = myMap;
     }
 
-    public OperationCallExpKeyedSetImpl(int initialCapacity) {
-        map = new HashMap<OperationCallExp, Iterable<AnnotatedEObject>>(initialCapacity);
-    }
-    
     public static OperationCallExpKeyedSetImpl emptySet() {
         return EMPTY_SET;
     }
@@ -99,16 +97,13 @@ public class OperationCallExpKeyedSetImpl implements OperationCallExpKeyedSet {
         return map.get(key);
     }
 
-    /**
-     * Returns immutable sets.
-     */
     public Iterable<AnnotatedEObject> getCombinedResultsFor(OperationCallExp oce) {
         Iterable<AnnotatedEObject> result;
         Iterable<AnnotatedEObject> resultForOce = get(oce);
         Iterable<AnnotatedEObject> resultForNull = get(null);
-        if (resultForOce == null) {
+        if (resultForOce == null || !resultForOce.iterator().hasNext()) {
             result = resultForNull;
-        } else if (resultForNull == null) {
+        } else if (resultForNull == null || !resultForNull.iterator().hasNext()) {
             result = resultForOce;
         } else {
             Set<AnnotatedEObject> resultSet = new HashSet<AnnotatedEObject>();
@@ -127,7 +122,7 @@ public class OperationCallExpKeyedSetImpl implements OperationCallExpKeyedSet {
     }
     
     public String toString() {
-        StringBuilder result = new StringBuilder('[');
+        StringBuilder result = new StringBuilder("[");
         boolean first = true;
         for (AnnotatedEObject e : this) {
             if (!first) {

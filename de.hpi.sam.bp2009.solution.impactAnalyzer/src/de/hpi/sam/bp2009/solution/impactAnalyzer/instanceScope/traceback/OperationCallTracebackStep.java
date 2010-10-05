@@ -177,7 +177,7 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
         } else {
             OperationCallExpKeyedSet preResult = (OperationCallExpKeyedSet) super
                     .performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
-            if (filterResultsByCall) {
+            if (filterResultsByCall && tracebackCache.getConfiguration().isOperationCallSelectionActive()) {
                 result = new OperationCallExpKeyedSetImpl(preResult.getCombinedResultsFor(getExpression()));
             } else {
                 result = preResult;
