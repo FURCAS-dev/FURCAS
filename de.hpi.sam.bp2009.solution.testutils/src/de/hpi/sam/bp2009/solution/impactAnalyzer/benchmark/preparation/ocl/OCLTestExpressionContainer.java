@@ -111,28 +111,28 @@ public class OCLTestExpressionContainer {
 
         EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.associationEnd.otherEnd().type.unique", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(data::classes::SapClass).formalObjectParameters", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::SapClass inv: self.oclAsType(data::classes::SapClass).formalObjectParameters", data.classes.ClassesPackage.eINSTANCE));
 
                 //template data::classes::Association #property
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::Association inv: self.oclAsType(data::classes::SapClass).package_", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::SapClass inv: self.oclAsType(data::classes::SapClass).package_", data.classes.ClassesPackage.eINSTANCE));
 
                 //template MethodSignature #propertyGetter
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context MethodSignature inv: '.'.concat(self.oclAsType(data::classes::AssociationEnd).name)", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::AssociationEnd inv: '.'.concat(self.oclAsType(data::classes::AssociationEnd).name)", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context MethodSignature inv: self.oclAsType(data::classes::AssociationEnd).type", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::AssociationEnd inv: self.oclAsType(data::classes::AssociationEnd).type", data.classes.ClassesPackage.eINSTANCE));
 
                 //template MethodSignature #propertySetter
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context MethodSignature inv: self.oclAsType(data::classes::AssociationEnd).name.concat('=')", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::AssociationEnd inv: self.oclAsType(data::classes::AssociationEnd).name.concat('=')", data.classes.ClassesPackage.eINSTANCE));
 
                 //template MethodSignature #propertyAdder
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context MethodSignature inv: self.oclAsType(data::classes::AssociationEnd).name.concat('+=')", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::AssociationEnd inv: self.oclAsType(data::classes::AssociationEnd).name.concat('+=')", data.classes.ClassesPackage.eINSTANCE));
 
                 //template MethodSignature #propertyRemover
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context MethodSignature inv: self.oclAsType(data::classes::AssociationEnd).name.concat('-=')", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::AssociationEnd inv: self.oclAsType(data::classes::AssociationEnd).name.concat('-=')", data.classes.ClassesPackage.eINSTANCE));
 
                 //template ClassTypeDefinition #objectCount
 
@@ -229,11 +229,11 @@ public class OCLTestExpressionContainer {
 
                 //template FunctionSignatureTypeDefinition #functionFromMethodExpr
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context FunctionSignatureTypeDefinition inv: self.oclAsType(dataaccess::expressions::fp::FunctionFromMethodExpr).method", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context dataaccess::expressions::fp::FunctionFromMethodExpr inv: self.oclAsType(dataaccess::expressions::fp::FunctionFromMethodExpr).method", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context FunctionSignatureTypeDefinition inv: self.oclAsType(dataaccess::expressions::fp::FunctionFromMethodExpr).object.getType().lowerMultiplicity", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context dataaccess::expressions::fp::FunctionFromMethodExpr inv: self.oclAsType(dataaccess::expressions::fp::FunctionFromMethodExpr).object.getType().lowerMultiplicity", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context FunctionSignatureTypeDefinition inv: self.oclAsType(dataaccess::expressions::fp::FunctionFromMethodExpr).object.getType().upperMultiplicity", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context dataaccess::expressions::fp::FunctionFromMethodExpr inv: self.oclAsType(dataaccess::expressions::fp::FunctionFromMethodExpr).object.getType().upperMultiplicity", data.classes.ClassesPackage.eINSTANCE));
 
                 //template ObjectCreationExpression context
 
@@ -243,7 +243,7 @@ public class OCLTestExpressionContainer {
 
         EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ParameterizedClassInstantiation inv: data::classes::SapClass.allInstances()->select(c |c.isParameterizedClassDefinition())->select(c | c.name = 'xxx')", data.generics.GenericsPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ParameterizedClassInstantiation inv: self.oclAsType(data::classes::SapClass).package_", data.generics.GenericsPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::SapClass inv: self.oclAsType(data::classes::SapClass).package_", data.generics.GenericsPackage.eINSTANCE));
 
                 //template MethodCallExpression #objectCreationExpression
 
@@ -266,9 +266,9 @@ public class OCLTestExpressionContainer {
 
                 //template ClassTypeDefinition #thisInObjectCreationExpression
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(dataaccess::expressions::ObjectCreationExpression).classToInstantiate", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context dataaccess::expressions::ObjectCreationExpression inv: self.oclAsType(dataaccess::expressions::ObjectCreationExpression).classToInstantiate", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(dataaccess::expressions::ObjectCreationExpression).classToInstantiate.formalObjectParameters", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context dataaccess::expressions::ObjectCreationExpression inv: self.oclAsType(dataaccess::expressions::ObjectCreationExpression).classToInstantiate.formalObjectParameters", data.classes.ClassesPackage.eINSTANCE));
 
         EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.ownedObjectParameters", data.classes.ClassesPackage.eINSTANCE));
 
@@ -278,7 +278,7 @@ public class OCLTestExpressionContainer {
 
                 //template ClassTypeDefinition #this
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(data::classes::SapClass).formalObjectParameters", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::SapClass inv: self.oclAsType(data::classes::SapClass).formalObjectParameters", data.classes.ClassesPackage.eINSTANCE));
 
         EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.ownedObjectParameters", data.classes.ClassesPackage.eINSTANCE));
 
@@ -292,7 +292,7 @@ public class OCLTestExpressionContainer {
 
                 //template ClassTypeDefinition #allQuery
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(persistence::expressions::All).ofClass", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context persistence::expressions::All inv: self.oclAsType(persistence::expressions::All).ofClass", data.classes.ClassesPackage.eINSTANCE));
 
         // Begin of COLLECTION EXPRESSIONS
 
@@ -514,51 +514,51 @@ public class OCLTestExpressionContainer {
 
                 //template data::classes::AssociationEnd #oqlQueryResultProperties
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::AssociationEnd inv: 'opposite_of_'.concat(self.oclAsType(behavioral::actions::Iterator).name)", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: 'opposite_of_'.concat(self.oclAsType(behavioral::actions::Iterator).name)", data.classes.ClassesPackage.eINSTANCE));
 
                 //template data::classes::Association #oqlQueryResultProperties
 
         EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::Association inv: 'Query_to_'.concat(self.ends->first().name)", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::Association inv: self.oclAsType(SapClass).package_", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::SapClass inv: self.oclAsType(SapClass).package_", data.classes.ClassesPackage.eINSTANCE));
 
                 //template data::classes::AssociationEnd #oqlQueryResultPropertiesOtherEnd
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::AssociationEnd inv: self.oclAsType(behavioral::actions::Iterator).name", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: self.oclAsType(behavioral::actions::Iterator).name", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::AssociationEnd inv: self.oclAsType(behavioral::actions::Iterator).getType()", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: self.oclAsType(behavioral::actions::Iterator).getType()", data.classes.ClassesPackage.eINSTANCE));
 
                 //template MethodSignature #oqlQueryResultProperties
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context MethodSignature inv: '.'.concat(self.oclAsType(behavioral::actions::Iterator).name)", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: '.'.concat(self.oclAsType(behavioral::actions::Iterator).name)", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context MethodSignature inv: self.oclAsType(behavioral::actions::Iterator).fromClause.fromClauseOfOqlQuery.getType().oclAsType(data::classes::ClassTypeDefinition).clazz", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: self.oclAsType(behavioral::actions::Iterator).fromClause.fromClauseOfOqlQuery.getType().oclAsType(data::classes::ClassTypeDefinition).clazz", data.classes.ClassesPackage.eINSTANCE));
 
         EXPRESSION_LIST.add(new OclExpressionWithPackage( "context MethodSignature inv: self.implementation.oclAsType(LinkTraversal).end.type", data.classes.ClassesPackage.eINSTANCE));
 
                 //template TypeDefinition #oqlQueryResultAssociationEndType abstract;
                 //template ClassTypeDefinition #oqlQueryResultAssociationEndType
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).clazz", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).clazz", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).objectParameters", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).objectParameters", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).lowerMultiplicity", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).lowerMultiplicity", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).upperMultiplicity", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).upperMultiplicity", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).ordered", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).ordered", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).unique", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context behavioral::actions::Iterator inv: self.oclAsType(behavioral::actions::Iterator).getType().oclAsType(data::classes::ClassTypeDefinition).unique", data.classes.ClassesPackage.eINSTANCE));
 
         // Begin of COLLECTION EXPRESSIONS
                 //template ClassTypeDefinition #Snapshot
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(persistence::expressions::Snapshot).object.getType().lowerMultiplicity", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context persistence::expressions::Snapshot inv: self.oclAsType(persistence::expressions::Snapshot).object.getType().lowerMultiplicity", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(persistence::expressions::Snapshot).object.getType().upperMultiplicity", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context persistence::expressions::Snapshot inv: self.oclAsType(persistence::expressions::Snapshot).object.getType().upperMultiplicity", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: self.oclAsType(persistence::expressions::Snapshot).object.getType().ordered", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context persistence::expressions::Snapshot inv: self.oclAsType(persistence::expressions::Snapshot).object.getType().ordered", data.classes.ClassesPackage.eINSTANCE));
 
         EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: data::classes::SapClass.allInstances()->select(c | c.name = 'Snapshot')", data.classes.ClassesPackage.eINSTANCE));
 
@@ -725,7 +725,7 @@ public class OCLTestExpressionContainer {
 
                 //template data::classes::Parameter #dimension
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::Parameter inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::FunctionSignature inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
                                                "                 let ft:TypeDefinition=if f.dimension->notEmpty() then \n"+
                                                "                           f.dimension.cellSet.factsType \n"+
                                                "                         else \n"+
@@ -739,7 +739,7 @@ public class OCLTestExpressionContainer {
 
                 //template ClassTypeDefinition #dimension
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::FunctionSignature inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
                                                "                  let ft:TypeDefinition=if f.dimension->notEmpty() then \n"+
                                                "                           f.dimension.cellSet.factsType \n"+
                                                "                         else \n"+
@@ -751,7 +751,7 @@ public class OCLTestExpressionContainer {
                                                "                       ft.oclAsType(data::classes::ClassTypeDefinition).clazz \n"+
                                                "                   endif", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::FunctionSignature inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
                                                "                  let ft:TypeDefinition=if f.dimension->notEmpty() then \n"+
                                                "                           f.dimension.cellSet.factsType \n"+
                                                "                         else \n"+
@@ -764,7 +764,7 @@ public class OCLTestExpressionContainer {
                                                "                   endif", data.classes.ClassesPackage.eINSTANCE));
 
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::FunctionSignature inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
                                                "                  let ft:TypeDefinition=if f.dimension->notEmpty() then \n"+
                                                "                           f.dimension.cellSet.factsType \n"+
                                                "                         else \n"+
@@ -776,7 +776,7 @@ public class OCLTestExpressionContainer {
                                                "                       1 \n"+
                                                "                   endif", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::FunctionSignature inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
                                                "                  let ft:TypeDefinition=if f.dimension->notEmpty() then \n"+
                                                "                           f.dimension.cellSet.factsType \n"+
                                                "                         else \n"+
@@ -788,7 +788,7 @@ public class OCLTestExpressionContainer {
                                                "                       1 \n"+
                                                "                   endif", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::FunctionSignature inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
                                                "                  let ft:TypeDefinition=if f.dimension->notEmpty() then \n"+
                                                "                           f.dimension.cellSet.factsType \n"+
                                                "                         else \n"+
@@ -800,7 +800,7 @@ public class OCLTestExpressionContainer {
                                                "                       true \n"+
                                                "                   endif", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context ClassTypeDefinition inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::FunctionSignature inv: let f:FunctionSignature=self.oclAsType(data::classes::FunctionSignature) in \n"+
                                                "                  let ft:TypeDefinition=if f.dimension->notEmpty() then \n"+
                                                "                           f.dimension.cellSet.factsType \n"+
                                                "                         else \n"+
@@ -864,7 +864,7 @@ public class OCLTestExpressionContainer {
 
         EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::generics::ParameterizedClassInstantiation inv: data::classes::SapClass.allInstances()->select(c | c.isParameterizedClassDefinition())->select(c | c.name = 'xxx')", data.classes.ClassesPackage.eINSTANCE));
 
-        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::generics::ParameterizedClassInstantiation inv: self.oclAsType(data::classes::SapClass).package_", data.classes.ClassesPackage.eINSTANCE));
+        EXPRESSION_LIST.add(new OclExpressionWithPackage( "context data::classes::SapClass inv: self.oclAsType(data::classes::SapClass).package_", data.classes.ClassesPackage.eINSTANCE));
         //End of classes
 }
 
