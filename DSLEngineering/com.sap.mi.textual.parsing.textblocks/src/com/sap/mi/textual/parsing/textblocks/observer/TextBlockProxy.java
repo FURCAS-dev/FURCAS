@@ -8,7 +8,7 @@ import com.sap.furcas.metamodel.TCS.InjectorAction;
 import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 
 public class TextBlockProxy {
 	

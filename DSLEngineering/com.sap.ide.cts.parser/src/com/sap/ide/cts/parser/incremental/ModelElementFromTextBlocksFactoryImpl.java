@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ModelElementProxy;

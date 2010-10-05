@@ -12,7 +12,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.mi.textual.common.interfaces.IRuleName;
+import com.sap.furcas.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;

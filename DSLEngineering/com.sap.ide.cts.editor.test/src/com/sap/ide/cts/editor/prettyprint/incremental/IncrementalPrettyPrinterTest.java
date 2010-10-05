@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.action.PrettyPrintAction;
 import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 
 import data.classes.Association;

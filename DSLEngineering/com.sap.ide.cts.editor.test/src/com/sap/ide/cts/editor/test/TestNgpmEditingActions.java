@@ -25,6 +25,7 @@ import behavioral.actions.NamedValueDeclaration;
 import behavioral.actions.Return;
 
 import com.sap.ap.cts.monet.parser.ClassParserFactory;
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
@@ -32,7 +33,6 @@ import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
 import com.sap.ide.cts.parser.incremental.IncrementalParsingUtil;
 import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
 import com.sap.tc.moin.repository.Partitionable;

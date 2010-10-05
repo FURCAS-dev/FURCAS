@@ -6,10 +6,10 @@ import java.io.InputStream;
 
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+import com.sap.furcas.textual.textblocks.testutils.TextblocksTestHelper;
 import com.sap.ide.cts.editor.test.util.ConcreteSyntaxBasedTest;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
-import com.sap.mi.textual.parsing.textblocks.TextblocksTestHelper;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
 public class CtsPrettyPrinterTestBase extends ConcreteSyntaxBasedTest {
 

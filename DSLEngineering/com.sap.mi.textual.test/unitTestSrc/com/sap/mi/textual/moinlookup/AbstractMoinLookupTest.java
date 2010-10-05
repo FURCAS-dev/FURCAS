@@ -16,9 +16,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.interfaces.MultiplicityBean;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.interfaces.MultiplicityBean;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.parsing.EnumerationTypeStub;
 import com.sap.mi.textual.parsing.MofAnyStub;
 import com.sap.mi.textual.parsing.MofStructureFieldStub;

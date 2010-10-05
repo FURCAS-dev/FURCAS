@@ -35,9 +35,9 @@ import tcs.SeparatorParg;
 import tcs.Sequence;
 import tcs.Template;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
-import com.sap.mi.textual.common.interfaces.MultiplicityBean;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.interfaces.MultiplicityBean;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.PropertyInstanceOfConstraint;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.PropertyQuantityConstraint;

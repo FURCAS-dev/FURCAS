@@ -23,10 +23,10 @@ import java.util.Set;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
+import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.grammar.IModelAdapter;
 import com.sap.mi.textual.grammar.ModelParsingResult;
 import com.sap.mi.textual.grammar.ParserFacade;

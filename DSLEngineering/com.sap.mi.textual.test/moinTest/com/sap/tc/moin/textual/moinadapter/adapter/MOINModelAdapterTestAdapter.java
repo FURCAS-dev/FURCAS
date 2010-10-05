@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.tc.moin.repository.CRI;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.PRI;

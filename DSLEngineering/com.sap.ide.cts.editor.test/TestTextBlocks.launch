@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.junit.launchconfig">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/com.sap.ide.cts.editor.test/src/com/sap/ide/cts/editor/allsuites/TextBlocksSuite.java"/>
+<listEntry value="/com.sap.furcas.textual.textblocks.test/src/com/sap/furcas/textual/textblocks/testsuites/TextBlocksSuite.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
@@ -10,7 +10,7 @@
 <booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.sap.ide.cts.editor.allsuites.TextBlocksSuite"/>
-<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="com.sap.ide.cts.editor.test"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.sap.furcas.textual.textblocks.testsuites.TextBlocksSuite"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="com.sap.furcas.textual.textblocks.test"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xmx512m -XX:PermSize=150m -XX:+UseParallelGC"/>
 </launchConfiguration>

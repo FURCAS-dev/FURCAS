@@ -30,12 +30,12 @@ import com.sap.furcas.metamodel.TCS.PredicateSemantic;
 import com.sap.furcas.metamodel.TCS.Property;
 import com.sap.furcas.metamodel.TCS.QueryPArg;
 import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IRuleName;
-import com.sap.mi.textual.common.util.ContextAndForeachHelper;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IRuleName;
+import com.sap.furcas.textual.common.util.ContextAndForeachHelper;
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 
 
 /**

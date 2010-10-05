@@ -29,8 +29,8 @@ import tcs.SequenceElement;
 import tcs.SequenceInAlternative;
 import tcs.Template;
 
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
 
 public class TestTcsUtil extends TcsFixtureBase {

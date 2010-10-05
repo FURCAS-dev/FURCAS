@@ -7,7 +7,7 @@ import org.junit.Test;
 import textblocks.Eostoken;
 import textblocks.TextBlock;
 
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
+import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
 
 public class TestTokenRelocationUtilRelocateUsingSubNodes extends TextBlockTest {
     

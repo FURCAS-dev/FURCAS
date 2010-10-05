@@ -20,9 +20,9 @@ import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.DocumentNode;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.textual.textblocks.TbUtil;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
 
 public class LinkHelper implements ILinkHelper {
 

@@ -18,12 +18,12 @@ import java.util.Set;
 import org.antlr.Tool;
 import org.antlr.runtime.Lexer;
 
+import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.epi.filedefinition.GrammarWritingHelper;
 import com.sap.mi.textual.grammar.IModelAdapter;
 import com.sap.mi.textual.grammar.ModelParsingResult;

@@ -28,9 +28,9 @@ import tcs.SequenceElement;
 import tcs.SequenceInAlternative;
 import tcs.Template;
 
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.IParsingObserver;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.ModelPartition;
 

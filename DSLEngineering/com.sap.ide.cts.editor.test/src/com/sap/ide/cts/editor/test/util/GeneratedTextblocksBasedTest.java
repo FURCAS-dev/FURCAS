@@ -16,12 +16,12 @@ import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 import textblocks.VersionEnum;
 
+import com.sap.furcas.textual.textblocks.TbChangeUtil;
+import com.sap.furcas.textual.textblocks.TbVersionUtil;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.ParsingError;
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
 public class GeneratedTextblocksBasedTest extends

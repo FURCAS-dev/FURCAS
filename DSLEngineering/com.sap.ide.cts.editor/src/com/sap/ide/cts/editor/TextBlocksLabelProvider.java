@@ -8,8 +8,8 @@ import org.eclipse.ui.ISharedImages;
 import textblocks.AbstractToken;
 import textblocks.TextBlock;
 
-import com.sap.mi.textual.grammar.IModelElementInvestigator;
-import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
+import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.textual.textblocks.model.ShortPrettyPrinter;
 import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
 import com.sap.tc.moin.repository.mmi.reflect.InvalidNameException;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;

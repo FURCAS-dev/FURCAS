@@ -3,10 +3,10 @@ package com.sap.mi.textual.moinlookup.util;
 import org.eclipse.emf.ecore.EObject;
 
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.textual.tcs.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.moinlookup.MoinMetaLookup;
-import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 
 public class RuleNameFinder implements IRuleName {
 

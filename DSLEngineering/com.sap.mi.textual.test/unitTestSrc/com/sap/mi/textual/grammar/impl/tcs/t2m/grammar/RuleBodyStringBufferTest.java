@@ -14,7 +14,8 @@ import tcs.Alternative;
 import tcs.Sequence;
 import tcs.SequenceElement;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.PropertyQuantityConstraint;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.RuleBodyPropertyConstraint;
@@ -34,7 +35,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.LiteralStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PropertyStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceElementStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceStub;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.test.util.StringListHelper;
 
 /**

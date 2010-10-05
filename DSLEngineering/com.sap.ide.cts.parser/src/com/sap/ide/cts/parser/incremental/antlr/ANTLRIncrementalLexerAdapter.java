@@ -1,7 +1,7 @@
 package com.sap.ide.cts.parser.incremental.antlr;
 
-import static com.sap.mi.textual.parsing.textblocks.TbMarkingUtil.isBOS;
-import static com.sap.mi.textual.parsing.textblocks.TbMarkingUtil.isEOS;
+import static com.sap.furcas.textual.textblocks.TbMarkingUtil.isBOS;
+import static com.sap.furcas.textual.textblocks.TbMarkingUtil.isEOS;
 
 import java.util.LinkedHashMap;
 
@@ -12,16 +12,16 @@ import org.antlr.runtime.TokenSource;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.furcas.textual.textblocks.TbUtil;
+import com.sap.furcas.textual.textblocks.model.ShortPrettyPrinter;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.LexerAdapter;
-import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.grammar.IModelInjector;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationTokenImpl;
 import com.sap.mi.textual.grammar.impl.ModelInjector;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
-import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
 
 
 /**

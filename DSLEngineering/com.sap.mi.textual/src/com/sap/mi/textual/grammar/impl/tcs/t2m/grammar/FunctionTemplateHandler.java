@@ -11,8 +11,8 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 
 import com.sap.furcas.metamodel.TCS.FunctionTemplate;
 import com.sap.furcas.metamodel.TCS.Sequence;
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.FunctionProductionRule;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;

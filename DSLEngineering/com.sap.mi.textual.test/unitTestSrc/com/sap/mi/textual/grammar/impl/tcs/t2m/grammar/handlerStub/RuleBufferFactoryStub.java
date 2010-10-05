@@ -10,7 +10,7 @@ import tcs.Alternative;
 import tcs.Sequence;
 import tcs.SequenceElement;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyBufferFactory;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceElementStub;

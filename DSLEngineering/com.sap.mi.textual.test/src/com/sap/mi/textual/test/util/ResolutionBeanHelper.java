@@ -6,7 +6,7 @@ package com.sap.mi.textual.test.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 

@@ -12,6 +12,7 @@ import tcs.ConcreteSyntax;
 import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
+import com.sap.furcas.textual.textblocks.TbUtil;
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.editor.FurcasDocumentSetupParticpant;
 import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
@@ -19,7 +20,6 @@ import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingBrokenException;
 import com.sap.mi.fwk.ui.editor.ModelEditorInput;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;

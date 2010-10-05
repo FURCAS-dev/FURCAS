@@ -8,8 +8,8 @@ import java.util.List;
 
 import tcs.Property;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.PropertyTypeHandler;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer;
 

@@ -5,9 +5,9 @@ import tcs.ConcreteSyntax;
 import tcs.Template;
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.textblocks.TbChangeUtil;
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**

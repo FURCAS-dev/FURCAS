@@ -19,7 +19,7 @@ import java.util.Set;
 
 import org.antlr.runtime.BaseRecognizer;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.IModelInjector;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;

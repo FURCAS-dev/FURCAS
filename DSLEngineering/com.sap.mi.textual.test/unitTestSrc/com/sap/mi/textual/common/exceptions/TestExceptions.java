@@ -8,6 +8,11 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.sap.furcas.textual.common.exceptions.AbstractToolGenerationException;
+import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.ParserInvokationException;
+import com.sap.furcas.textual.common.exceptions.WrappedException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.validation.SyntaxDefValidationException;
 
 /**

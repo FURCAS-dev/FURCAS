@@ -12,7 +12,7 @@ import java.util.Set;
 
 import org.antlr.runtime.Token;
 
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 
 /**
  * A ModelElementProxy is a class that represents an occurence of a ModelElement

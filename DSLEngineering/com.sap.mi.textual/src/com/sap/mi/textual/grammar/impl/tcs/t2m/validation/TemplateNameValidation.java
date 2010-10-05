@@ -22,11 +22,11 @@ import com.sap.furcas.metamodel.TCS.Operator;
 import com.sap.furcas.metamodel.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.TCS.Template;
-import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.common.exceptions.NameResolutionFailedException;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.tcs.MetaModelElementResolutionHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.SemanticErrorBucket;
-import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
 
 
 

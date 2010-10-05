@@ -1,14 +1,15 @@
 package com.sap.mi.textual.parsing.textblocks;
 
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.impl.ContextBuilder;
 import com.sap.mi.textual.grammar.impl.context.ContextManager;
 import com.sap.mi.textual.parsing.textblocks.observer.Stack;
 
+
 public class LocalContextBuilder implements ContextBuilder {
 
 	private ContextManager contextManager = new ContextManager();
-	private Stack<IModelElementProxy> contextStack = new Stack<IModelElementProxy>();
+	private final Stack<IModelElementProxy> contextStack = new Stack<IModelElementProxy>();
 
 	/*
 	 * (non-Javadoc)
@@ -16,6 +17,7 @@ public class LocalContextBuilder implements ContextBuilder {
 	 * @see com.sap.mi.textual.grammar.impl.ContextBuilder#addToContext(com.sap.mi.textual.grammar.IModelElementProxy,
 	 *      java.lang.String)
 	 */
+	@Override
 	public void addContext(IModelElementProxy element, String... tags) {
 	    IModelElementProxy currentContextElement = null;
 	    if (!contextStack.isEmpty()) {

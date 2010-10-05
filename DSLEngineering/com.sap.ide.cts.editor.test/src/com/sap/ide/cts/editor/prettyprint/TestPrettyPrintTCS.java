@@ -14,8 +14,8 @@ import tcs.SpaceKindEnum;
 import tcs.Symbol;
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.mi.tcs.parser.TcsParserFactory;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;

@@ -9,6 +9,10 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.textual.textblocks.TbMarkingUtil;
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.furcas.textual.textblocks.TbReplacingHelper;
+import com.sap.furcas.textual.textblocks.model.ShortPrettyPrinter;
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.ide.cts.parser.incremental.MappingLinkRecoveringIncrementalParser;
 import com.sap.ide.cts.parser.incremental.TextBlockMappingRecoveringFailedException;
@@ -16,10 +20,6 @@ import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.TbMarkingUtil;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.textblocks.model.ShortPrettyPrinter;
-import com.sap.mi.textual.textblocks.model.TbReplacingHelper;
 
 public class TbRecoverUtil {
 
