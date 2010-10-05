@@ -34,7 +34,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet.UnusedEvaluationResult;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 
 /**
  * The step produced will be invoked with the value for the variable. This knowledge can be helpful when trying to perform
@@ -96,7 +95,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
             UnusedEvaluationResult unusedResult = pendingUnusedEvalRequests.setVariable(variable, source.getAnnotatedObject(),
                     oppositeEndFinder, tracebackCache);
             if (unusedResult.hasProvenUnused()) {
-                result = OperationCallExpKeyedSetImpl.emptySet();
+                result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
             } else {
                 result = perform(source, unusedResult.getNewRequestSet(), tracebackCache, changeEvent);
             }
@@ -111,7 +110,7 @@ public class VariableTracebackStep extends BranchingTracebackStep<VariableExp> {
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         OperationCallExpKeyedSet result;
         if (identity) {
-            result = new OperationCallExpKeyedSetImpl(source);
+            result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(source);
         } else {
             result = super.performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache,
                     changeEvent);

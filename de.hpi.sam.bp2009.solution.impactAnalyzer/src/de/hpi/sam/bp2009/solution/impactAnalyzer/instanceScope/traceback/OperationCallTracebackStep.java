@@ -21,7 +21,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -171,14 +170,14 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
                     oppositeEndFinder)) {
                 preResult.add(annotateEObject(source, roi));
             }
-            OperationCallExpKeyedSetImpl postResult = new OperationCallExpKeyedSetImpl(preResult);
+            OperationCallExpKeyedSet postResult = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(preResult);
             result = postResult;
             
         } else {
             OperationCallExpKeyedSet preResult = (OperationCallExpKeyedSet) super
                     .performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
             if (filterResultsByCall && tracebackCache.getConfiguration().isOperationCallSelectionActive()) {
-                result = new OperationCallExpKeyedSetImpl(preResult.getCombinedResultsFor(getExpression()));
+                result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(preResult.getCombinedResultsFor(getExpression()));
             } else {
                 result = preResult;
             }

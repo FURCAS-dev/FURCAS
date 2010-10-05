@@ -16,7 +16,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetImpl;
 
 public class BranchingTracebackStep<E extends OCLExpression> extends AbstractTracebackStep<E> {
 
@@ -47,11 +46,11 @@ public class BranchingTracebackStep<E extends OCLExpression> extends AbstractTra
             i++;
         }
         if (nonEmptyCount == 0) {
-            result = OperationCallExpKeyedSetImpl.emptySet();
+            result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
         } else if (nonEmptyCount == 1) {
             result = results.get(singleNonEmptyIndex);
         } else {
-            result = new OperationCallExpKeyedSetImpl(results);
+            result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(results);
         }
         return result;
     }
