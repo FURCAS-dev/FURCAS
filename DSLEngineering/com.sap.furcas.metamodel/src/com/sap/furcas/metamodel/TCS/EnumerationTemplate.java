@@ -26,46 +26,46 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface EnumerationTemplate extends Template {
-	/**
-	 * Returns the value of the '<em><b>Automatic</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Automatic</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Automatic</em>' attribute.
-	 * @see #setAutomatic(boolean)
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getEnumerationTemplate_Automatic()
-	 * @model unique="false" required="true" ordered="false"
-	 * @generated
-	 */
-	boolean isAutomatic();
+        /**
+         * Returns the value of the '<em><b>Automatic</b></em>' attribute.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Automatic</em>' attribute isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Automatic</em>' attribute.
+         * @see #setAutomatic(boolean)
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getEnumerationTemplate_Automatic()
+         * @model unique="false" required="true" ordered="false"
+         * @generated
+         */
+        boolean isAutomatic();
 
-	/**
-	 * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.EnumerationTemplate#isAutomatic <em>Automatic</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Automatic</em>' attribute.
-	 * @see #isAutomatic()
-	 * @generated
-	 */
-	void setAutomatic(boolean value);
+        /**
+         * Sets the value of the '{@link com.sap.furcas.metamodel.TCS.EnumerationTemplate#isAutomatic <em>Automatic</em>}' attribute.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @param value the new value of the '<em>Automatic</em>' attribute.
+         * @see #isAutomatic()
+         * @generated
+         */
+        void setAutomatic(boolean value);
 
-	/**
-	 * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
-	 * The list contents are of type {@link com.sap.furcas.metamodel.TCS.EnumLiteralMapping}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Mappings</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Mappings</em>' containment reference list.
-	 * @see com.sap.furcas.metamodel.TCS.TCSPackage#getEnumerationTemplate_Mappings()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<EnumLiteralMapping> getMappings();
+        /**
+         * Returns the value of the '<em><b>Mappings</b></em>' containment reference list.
+         * The list contents are of type {@link com.sap.furcas.metamodel.TCS.EnumLiteralMapping}.
+         * <!-- begin-user-doc -->
+         * <p>
+         * If the meaning of the '<em>Mappings</em>' containment reference list isn't clear,
+         * there really should be more of a description here...
+         * </p>
+         * <!-- end-user-doc -->
+         * @return the value of the '<em>Mappings</em>' containment reference list.
+         * @see com.sap.furcas.metamodel.TCS.TCSPackage#getEnumerationTemplate_Mappings()
+         * @model containment="true"
+         * @generated
+         */
+        EList<EnumLiteralMapping> getMappings();
 
 } // EnumerationTemplate

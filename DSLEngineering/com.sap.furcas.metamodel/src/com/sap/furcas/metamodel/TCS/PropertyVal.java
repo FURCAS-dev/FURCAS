@@ -6,7 +6,6 @@
  */
 package com.sap.furcas.metamodel.TCS;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,5 +18,4 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface PropertyVal extends Value {
-
 } // PropertyVal

@@ -4,16 +4,20 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: com.sap.furcas.metamodel.editor;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
-Bundle-Activator: TCS.presentation.TCSEditorPlugin$Implementation
+Bundle-Activator: com.sap.furcas.metamodel.TCS.presentation.TCSEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: TCS.presentation
+Export-Package: com.sap.furcas.metamodel.TCS.presentation,
+ com.sap.furcas.metamodel.textblockdefinition.presentation,
+ com.sap.furcas.metamodel.textblocks.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  com.sap.furcas.metamodel.edit;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
- org.eclipse.emf.ecore.edit;visibility:=reexport
+ org.eclipse.emf.ecore.edit;visibility:=reexport,
+ org.eclipse.ocl.edit;visibility:=reexport,
+ org.eclipse.ocl.ecore.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
