@@ -763,8 +763,6 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
                 createEcoreAnnotations();
                 // http://de.hpi.sam.bp2009.OCL
                 createDeAnnotations();
-                // de.hpi.sam.bp2009.OCL
-                createDe_1Annotations();
         }
 
         /**
@@ -776,19 +774,20 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
         protected void createEcoreAnnotations() {
                 String source = "http://www.eclipse.org/emf/2002/Ecore";		
                 addAnnotation
+                  (this, 
+                   source, 
+                   new String[] {
+                         "invocationDelegates", "http://de.hpi.sam.bp2009.OCL",
+                         "validationDelegates", "http://de.hpi.sam.bp2009.OCL"
+                   });		
+                addAnnotation
                   (textBlockEClass.getEOperations().get(0), 
                    source, 
                    new String[] {
                          "constraints", "body"
-                   });				
+                   });			
                 addAnnotation
                   (textBlockEClass.getEOperations().get(1), 
-                   source, 
-                   new String[] {
-                         "constraints", "body"
-                   });		
-                addAnnotation
-                  (textBlockEClass.getEOperations().get(2), 
                    source, 
                    new String[] {
                          "constraints", "body"
@@ -802,35 +801,19 @@ public class TextblocksPackageImpl extends EPackageImpl implements TextblocksPac
          * @generated
          */
         protected void createDeAnnotations() {
-                String source = "http://de.hpi.sam.bp2009.OCL";			
+                String source = "http://de.hpi.sam.bp2009.OCL";				
                 addAnnotation
                   (textBlockEClass.getEOperations().get(0), 
                    source, 
                    new String[] {
-                         "body", "self.subNodes->select(n | n.oclIsTypeOf(TextBlock)).oclAsType(OrderedSet(TextBlock))"
-                   });					
-                addAnnotation
-                  (textBlockEClass.getEOperations().get(2), 
-                   source, 
-                   new String[] {
-                         "body", "self.subNodes->select(n | n.oclIsTypeOf(TextBlock)).oclAsType(OrderedSet(TextBlock))"
-                   });
-        }
-
-        /**
-         * Initializes the annotations for <b>de.hpi.sam.bp2009.OCL</b>.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        protected void createDe_1Annotations() {
-                String source = "de.hpi.sam.bp2009.OCL";				
+                         "body", "self.subNodes->select(n | n.oclIsKindOf(TextBlock)).oclAsType(TextBlock)"
+                   });			
                 addAnnotation
                   (textBlockEClass.getEOperations().get(1), 
                    source, 
                    new String[] {
-                         "body", "self.subNodes->select(n | n.oclIsTypeOf(AbstractToken)).oclAsType(OrderedSet(AbstractToken))"
-                   });			
+                         "body", "self.subNodes->select(n | n.oclIsKindOf(AbstractToken)).oclAsType(AbstractToken)"
+                   });
         }
 
 } //TextblocksPackageImpl
