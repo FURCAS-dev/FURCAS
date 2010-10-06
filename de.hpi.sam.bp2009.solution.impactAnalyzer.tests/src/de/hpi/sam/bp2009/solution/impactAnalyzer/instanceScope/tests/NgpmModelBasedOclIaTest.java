@@ -63,6 +63,44 @@ public class NgpmModelBasedOclIaTest extends TestCase {
 	Collection<EObject> impact = ia.getContextObjects(notification);
 	assertNotNull(impact);
     }
+    
+    @Test
+    public void testSuperExpensiveChange() {
+        final OCLExpression exp = (OCLExpression) OclIaTest
+                .parse("context dataaccess::expressions::MethodCallExpression inv: "
+                        + "self.object.getType().getInnermost().oclAsType(classes::ClassTypeDefinition).clazz.allSignatures()->select(s : MethodSignature | s.name='xxx'.concat('-='))",
+                        ClassesPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
+        final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
+        final MethodSignature append = (MethodSignature) ngpmModel.getEObject("E01F04667A9220905D0911DFA13BFF380A1CE22F");
+        final ClassTypeDefinition appendParamCTD = (ClassTypeDefinition) append.getInput().get(0).getOwnedTypeDefinition();
+        assertEquals(string, appendParamCTD.getClazz());
+        assertEquals("append", append.getName());
+        final ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(exp);
+        final boolean[] result = new boolean[1];
+        appendParamCTD.setClazz(null);
+        appendParamCTD.eAdapters().add(new AdapterImpl() {
+            @Override
+            public void notifyChanged(Notification msg) {
+                Collection<EObject> impact = ia.getContextObjects(msg);
+                if (OptimizationActivation.getOption().isTracebackStepISAActive()
+                        && OptimizationActivation.getOption().isUnusedDetectionActive()) {
+                    result[0] = impact.size() == 0;
+                    if (!result[0]) {
+                        System.err.println("Expected unused check to find out that change has no impact but IA said "
+                                + impact.size() + " objects were impacted");
+                    }
+                } else {
+                    result[0] = impact.size() == 2; // String and the formal type parameter "T extends String" in the generics
+                                                    // test
+                    if (!result[0]) {
+                        System.err.println("Expected two impacted classes (String and T) but found " + impact.size());
+                    }
+                }
+            }
+        });
+        appendParamCTD.setClazz(null);
+        assertTrue(result[0]);
+    }
 
     @Test
     public void testAllSignaturesDependencyOnChangingSomethingOnStringClass() {
