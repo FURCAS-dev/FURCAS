@@ -221,6 +221,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	HashMap<String, Object> descriptionMap = new HashMap<String, Object>();
 	descriptionMap.put("id", notificationId);
 	descriptionMap.put("eventType", splits.getEventType());
+	descriptionMap.putAll(splits.getAttributeMap());
 	writer.writeDescriptionLine(descriptionMap);
     }
 
