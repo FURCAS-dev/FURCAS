@@ -225,6 +225,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	for (Map.Entry<String, String> entry : splits.getAttributeMap().entrySet()) {
 	    descriptionMap.put(entry.getKey(), entry.getKey()+"="+entry.getValue());
 	}
+	descriptionMap.put("splitNumber", "splitNumber="+splits.getSplitNumber());
 	writer.writeDescriptionLine(descriptionMap);
     }
 
