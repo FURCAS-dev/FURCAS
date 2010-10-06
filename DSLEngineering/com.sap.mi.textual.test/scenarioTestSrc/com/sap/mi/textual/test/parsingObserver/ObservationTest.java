@@ -19,7 +19,6 @@ import com.sap.mi.textual.grammar.impl.DelegationParsingObserver;
 import com.sap.mi.textual.grammar.parser.TCSLexer;
 import com.sap.mi.textual.grammar.parser.TCSParser;
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.syntaxmodel.emfadapter.MoinContext;
 import com.sap.mi.textual.test.util.StubModelAdapter;
 import com.sap.mi.textual.util.FileReadHelper;
 
