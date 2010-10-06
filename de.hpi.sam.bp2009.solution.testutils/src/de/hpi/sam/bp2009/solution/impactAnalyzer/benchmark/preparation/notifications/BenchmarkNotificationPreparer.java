@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.notifica
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -16,14 +17,19 @@ public class BenchmarkNotificationPreparer {
     }
 
     public static Collection<NotificationForModelList> prepareModelSizeVariationNotification(
-            String eventTraceFixturePath, String modelFixturePath){
+            String eventTraceFixturePath, String modelFixturePath, boolean noShrinking){
 	ArrayList<NotificationForModelList> result = new ArrayList<NotificationForModelList>();
 
 	Resource fullSizeModel = NotificationResourceLoader.loadModel(modelFixturePath);
-	ShrinkedResourceProvider resourceProvider = new ShrinkedResourceProvider(fullSizeModel);
-	resourceProvider.runShrinkingProcess();
-
-	for(Resource model : resourceProvider.getAllResourcesFromLargeToSmall()){
+	List<Resource> resources;
+	if (noShrinking) {
+	    resources = Collections.singletonList(fullSizeModel);
+        } else {
+            ShrinkedResourceProvider resourceProvider = new ShrinkedResourceProvider(fullSizeModel);
+            resourceProvider.runShrinkingProcess();
+            resources = resourceProvider.getAllResourcesFromLargeToSmall();
+        }
+	for(Resource model : resources){
 	    System.out.println("\t\t\tCreate notifications for resource: " + model.getURI().toString());
 
 	    Collection<RawNotification> notiList = new RealWorldReplayNotificationProducer().produce(eventTraceFixturePath);

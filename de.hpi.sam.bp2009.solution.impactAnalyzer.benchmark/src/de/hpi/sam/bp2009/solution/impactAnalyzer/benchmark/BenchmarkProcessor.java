@@ -50,6 +50,8 @@ public class BenchmarkProcessor {
 	    options.addOption("tp", "tracepath", true, "Name of tracefile which shall be replayed");
 	    options.addOption("mp", "modelpath", true, "Name of serialized model file");
 	    options.addOption("sf", "showfiles", false, "Show which trace files and model files are available");
+            options.addOption("ns", "noshrinking", false, "Don't shrink models; just use the one full-size model");
+            options.addOption("i", "oclId", true, "If provided, benchmark only the OCL expression with the given ID");
 
 	    //Default option
 	    //options.addOption("pd", "printdscr", true, "Print separate description files for R reports with mapping from result identifiers to descriptions for OCL Expressions, Notifications and Models");
@@ -59,7 +61,11 @@ public class BenchmarkProcessor {
 
 	    CommandLineParser parser = new PosixParser();
 	    CommandLine cmd = parser.parse(options, args);
-
+	    boolean noShrinking = cmd.hasOption("ns");
+	    Integer oclId = null;
+	    if (cmd.hasOption("i")) {
+	        oclId = Integer.parseInt(cmd.getOptionValue("i"));
+	    }
 	    if(cmd.hasOption("h") || !cmd.hasOption("wu") || !cmd.hasOption("m")||  !cmd.hasOption("o") ){
 		HelpFormatter formatter = new HelpFormatter();
 		formatter.printHelp( "Impact Analysis Benchmark Environment v0.1", options );
@@ -97,7 +103,7 @@ public class BenchmarkProcessor {
     		System.out.println("");
 	    }
 
-	    start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"),  numberOfJobs, delayPreparation, cmd.getOptionValue("e"), cmd.hasOption("v"), eventTraceFile, modelFile);
+	    start(Integer.parseInt(cmd.getOptionValue("wu")),Integer.parseInt(cmd.getOptionValue("m")), cmd.getOptionValue("o"),  numberOfJobs, delayPreparation, cmd.getOptionValue("e"), cmd.hasOption("v"), eventTraceFile, modelFile, noShrinking, oclId);
 	    }
 
 	} catch (ParseException e) {
@@ -126,7 +132,7 @@ public class BenchmarkProcessor {
     	}
 
 
-    	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs, boolean delayPreparation, String dumpFilePath, boolean verbose, String eventTraceFile, String modelFile) throws IOException {
+    	public static void start(int warmUps, int measures, String outputPath, int numberOfJobs, boolean delayPreparation, String dumpFilePath, boolean verbose, String eventTraceFile, String modelFile, boolean noShrinking, Integer oclId) throws IOException {
     	    	System.out.println("Impact Analysis Benchmark started with " + warmUps + " warm-ups and " + measures + " measures per benchmark task");
 
     	    	ProcessingOptions.setNumberOfWarmUps(warmUps);
@@ -143,7 +149,7 @@ public class BenchmarkProcessor {
     	    	PathOptions.setModelFixturePath(modelFile);
     	    	PathOptions.setEventTraceFixturePath(eventTraceFile);
 
-    	    	BenchmarkTaskStepwiseBuilder builder = BenchmarkTaskPreparer.createBenchmarkBuilder();
+    	    	BenchmarkTaskStepwiseBuilder builder = BenchmarkTaskPreparer.createBenchmarkBuilder(noShrinking, oclId);
     	    	builder.printDescriptionFiles();
 			// Preparing
 			// Processing

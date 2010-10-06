@@ -52,7 +52,8 @@ public class BenchmarkEnvironmentTest extends TestCase {
 
     @Test
     public void testRealWorldReplayNotificationProducer(){
-	Collection<OCLExpressionWithContext> expressionList = BenchmarkOCLPreparer.prepareAll();
+	Collection<OCLExpressionWithContext> expressionList = BenchmarkOCLPreparer.prepareAll(
+	        /* oclId */ null /* meaning ALL OCL expressions */);
 
 	Resource fullSizeModel = NotificationResourceLoader.loadModel("NgpmModel.xmi");
 

@@ -66,7 +66,7 @@ public class PerformanceStressTestForEventManager extends TestCase {
     @Before
     public void setUp() {
         rs = new ResourceSetImpl();
-        expressions = BenchmarkOCLPreparer.prepareAll();
+        expressions = BenchmarkOCLPreparer.prepareAll(/* oclId */ null /* meaning ALL OCL expressions */);
         eventManager = EventManagerFactory.eINSTANCE.getEventManagerFor(rs);
         notificationCount = 0;
         subscriptions = 0;
