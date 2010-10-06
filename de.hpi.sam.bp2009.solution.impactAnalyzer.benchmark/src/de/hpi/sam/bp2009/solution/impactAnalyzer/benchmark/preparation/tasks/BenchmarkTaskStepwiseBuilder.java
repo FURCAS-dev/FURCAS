@@ -33,13 +33,13 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 
     private Iterator<OCLExpressionWithContext> expressionIterator;
     private final Iterator<ActivationOption> activationOptionIterator;
-    private Iterator<NotificationForModelList> notificationIterator;
+    private Iterator<NotificationForModelList> modelIterator;
 
     private final BuilderIdentifiers ids = new BuilderIdentifiers();
 
     private ActivationOption currentActivationOption;
     private OCLExpressionWithContext currentExpression;
-    private NotificationForModelList currentNotification;
+    private NotificationForModelList currentModel;
 
     private int iterations = 0;
 
@@ -51,10 +51,12 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 
 	expressionIterator = this.expressionList.iterator();
 	activationOptionIterator = this.activiationOptionList.iterator();
-	notificationIterator = this.notificationForModelList.iterator();
+	modelIterator = this.notificationForModelList.iterator();
 
 	currentExpression = expressionIterator.next();
+        ids.incrementOcl();
 	currentActivationOption = activationOptionIterator.next();
+        ids.incrementOption();
 
 	ids.resetContainer();
 	ids.resetBenchmarkTask();
@@ -62,21 +64,21 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
     }
 
     synchronized public boolean hasNext() {
-	return notificationIterator.hasNext() || expressionIterator.hasNext() || activationOptionIterator.hasNext();
+	return modelIterator.hasNext() || expressionIterator.hasNext() || activationOptionIterator.hasNext();
     }
 
     synchronized private void iterate() {
 	iterations++;
 
-	if (notificationIterator.hasNext()) {
-	    currentNotification = notificationIterator.next();
+	if (modelIterator.hasNext()) {
+	    currentModel = modelIterator.next();
 	    ids.incrementModel();
 	    return;
 	}
 
-	notificationIterator = notificationForModelList.iterator();
+	modelIterator = notificationForModelList.iterator();
 	ids.resetModel();
-	currentNotification = notificationIterator.next();
+	currentModel = modelIterator.next();
 	ids.incrementModel();
 
 	if (expressionIterator.hasNext()) {
@@ -98,7 +100,7 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
     synchronized public BenchmarkTaskContainer next() {
 	iterate();
 
-	return buildBenchmarkContainer(currentActivationOption, currentExpression, currentNotification);
+	return buildBenchmarkContainer(currentActivationOption, currentExpression, currentModel);
     }
 
     synchronized public Queue<BenchmarkTaskContainer> buildAll() {
@@ -233,8 +235,8 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	    OCLExpressionWithContext expression, NotificationForModelList notificationList) {
 
 	OppositeEndFinder oppositeEndFinder = new AllInstanceCallCountingOppositeEndFinder();
-	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(currentExpression.getExpression(),
-		currentExpression.getContext(), oppositeEndFinder);
+	ImpactAnalyzer ia = ImpactAnalyzerFactory.INSTANCE.createImpactAnalyzer(expression.getExpression(),
+		expression.getContext(), oppositeEndFinder);
 
 	Resource model = notificationList.getModel();
 	BenchmarkTaskContainer container = new ModelSizeVariationBenchmarkTaskContainer(model, option, String.valueOf(ids

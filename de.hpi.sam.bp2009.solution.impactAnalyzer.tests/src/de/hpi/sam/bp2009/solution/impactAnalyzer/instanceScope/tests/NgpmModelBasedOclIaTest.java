@@ -68,7 +68,7 @@ public class NgpmModelBasedOclIaTest extends TestCase {
     public void testSuperExpensiveChange() {
         final OCLExpression exp = (OCLExpression) OclIaTest
                 .parse("context dataaccess::expressions::MethodCallExpression inv: "
-                        + "self.object.getType().getInnermost().oclAsType(classes::ClassTypeDefinition).clazz.allSignatures()->select(s : MethodSignature | s.name='xxx'.concat('-='))",
+                        + "self.object.getType().getInnermost().oclAsType(classes::ClassTypeDefinition).clazz.allSignatures()->select(s : MethodSignature | s.name='.'.concat('xxx'))",
                         ClassesPackage.eINSTANCE).iterator().next().getSpecification().getBodyExpression();
         final SapClass string = (SapClass) ngpmModel.getEObject("E0B91841F0303550560511DECC310019D29902CC");
         final MethodSignature append = (MethodSignature) ngpmModel.getEObject("E01F04667A9220905D0911DFA13BFF380A1CE22F");

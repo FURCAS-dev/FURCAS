@@ -1,9 +1,8 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -13,6 +12,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.ocl.ecore.OCLExpression;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.benchmark.preparation.ocl.Tuple.Pair;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 
@@ -25,7 +25,7 @@ import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
 public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 
     @Override
-    public Collection<OCLExpressionWithContext> pickUpExpressions() {
+    public List<OCLExpressionWithContext> pickUpExpressions() {
         return pickUpExpressions(data.classes.ClassesPackage.eINSTANCE,
         	data.constraints.ConstraintsPackage.eINSTANCE, data.documents.DocumentsPackage.eINSTANCE,
         	data.generics.GenericsPackage.eINSTANCE, data.quantitystructure.QuantitystructurePackage.eINSTANCE,
@@ -42,16 +42,14 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
         	persistence.actions.ActionsPackage.eINSTANCE, persistence.expressions.ExpressionsPackage.eINSTANCE);
     }
 
-    public Collection<OCLExpressionWithContext> pickUpExpressions(EPackage... packages){
-	Collection<OCLExpressionWithContext> expressionSet = searchAndParseExpressions(packages).values();
-
-        Collection<OCLExpressionWithContext> result = new ArrayList<OCLExpressionWithContext>();
-        result.addAll(expressionSet);
-        return result;
+    public List<OCLExpressionWithContext> pickUpExpressions(EPackage... packages){
+        List<OCLExpressionWithContext> expressionSet = new ArrayList<OCLExpressionWithContext>(
+                searchAndParseExpressions(packages).values());
+        return expressionSet;
     }
 
-    private Map<String, OCLExpressionWithContext> searchAndParseExpressions(EPackage... ps) {
-	Map<String, OCLExpressionWithContext> allConstraints = new HashMap<String, OCLExpressionWithContext>();
+    private LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext> searchAndParseExpressions(EPackage... ps) {
+        LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext> allConstraints = new LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext>();
 	EAnnotationOCLParser oclParser = OclToAstFactory.eINSTANCE.createEAnnotationOCLParser();
 	for (EPackage pkg : ps) {
 	    oclParser.traversalConvertOclAnnotations(pkg);
@@ -71,8 +69,8 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 	return allConstraints;
     }
 
-    private Map<String, OCLExpressionWithContext> addConstraintToConstraintList(EAnnotation a,
-	    Map<String, OCLExpressionWithContext> allConstraints, EClassifier c) {
+    private LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext> addConstraintToConstraintList(EAnnotation a,
+            LinkedHashMap<Pair<String, EClassifier>, OCLExpressionWithContext> allConstraints, EClassifier c) {
 	if (a == null)
 	    return allConstraints;
 	int index = 0;
@@ -81,8 +79,9 @@ public class OCLExpressionFromModelPicker implements OCLExpressionPicker {
 	    if (e == null) {
 		break;
 	    } else {
-		allConstraints.put(e, new OCLExpressionWithContext((OCLExpression) a.getContents().get(index), (EClass) c));
-	    }
+                allConstraints.put(new Pair<String, EClassifier>(e, c), new OCLExpressionWithContext((OCLExpression) a
+                        .getContents().get(index), (EClass) c));
+            }
 	    index++;
 	}
 
