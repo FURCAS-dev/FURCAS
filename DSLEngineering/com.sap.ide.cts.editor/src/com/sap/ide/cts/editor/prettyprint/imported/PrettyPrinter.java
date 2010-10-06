@@ -67,13 +67,19 @@ import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 import com.sap.furcas.metamodel.TCS.SpaceKind;
 import com.sap.furcas.metamodel.TCS.Symbol;
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.shortprettyprint.PrettyPrinterUtil;
 import com.sap.ide.cts.editor.prettyprint.MOINImportedModelAdapter;
 import com.sap.ide.cts.editor.prettyprint.PrettyPrintContext;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
+<<<<<<< HEAD
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.util.EcoreHelper;
 import com.sap.mi.textual.parsing.textblocks.PrettyPrinterUtil;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+=======
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 
 /**

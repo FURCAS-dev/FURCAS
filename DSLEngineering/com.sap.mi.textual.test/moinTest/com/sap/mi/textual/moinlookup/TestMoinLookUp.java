@@ -16,9 +16,9 @@ import org.junit.Test;
 
 import tcs.TcsPackage;
 
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.ide.cts.editor.test.util.ProjectConnectionBasedTest;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.test.util.MOINContainerNameLookUpFactory;
 import com.sap.mi.textual.test.util.StringListHelper;
 import com.sap.tc.moin.repository.Connection;

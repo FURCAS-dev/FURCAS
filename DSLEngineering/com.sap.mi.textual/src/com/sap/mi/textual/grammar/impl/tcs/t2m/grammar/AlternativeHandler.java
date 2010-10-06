@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 import com.sap.furcas.metamodel.TCS.Alternative;
 import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 
 /**

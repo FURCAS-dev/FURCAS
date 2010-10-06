@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.parsing.MofAnyStub;
 import com.sap.mi.textual.parsing.MofStructureTypeStub;
 import com.sap.tc.moin.repository.mmi.model.Attribute;

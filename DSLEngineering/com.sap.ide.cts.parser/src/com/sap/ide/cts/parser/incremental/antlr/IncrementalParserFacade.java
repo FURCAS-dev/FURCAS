@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.TbVersionUtil;
 import com.sap.ide.cts.parser.incremental.IncrementalParser;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
@@ -23,9 +25,7 @@ import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.ModelInjector;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.grammar.impl.ParsingError;
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 
 
 /**

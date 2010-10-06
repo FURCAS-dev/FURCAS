@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
 
 /**
  * tests the Ecore based lookup class that is used for testing, prerequisite for scenario tests (!).

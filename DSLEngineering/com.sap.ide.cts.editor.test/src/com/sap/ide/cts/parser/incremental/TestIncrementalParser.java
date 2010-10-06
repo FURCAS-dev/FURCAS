@@ -12,6 +12,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.TCS.Block;
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
@@ -21,16 +22,35 @@ import com.sap.furcas.metamodel.TCS.TCSPackage;
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+=======
+import tcs.Block;
+import tcs.ClassTemplate;
+import tcs.ConcreteSyntax;
+import tcs.LiteralRef;
+import tcs.PrimitiveTemplate;
+import tcs.TcsPackage;
+import tcs.Template;
+import textblocks.AbstractToken;
+import textblocks.TextBlock;
+
+import com.sap.furcas.textual.textblocks.TbChangeUtil;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
 import com.sap.ide.cts.editor.test.util.TestSourceTextBlockCreator;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sap.mi.tcs.parser.TcsParserFactory;
 import com.sap.mi.textual.grammar.IModelAdapter;
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
+<<<<<<< HEAD
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
+=======
+import com.sap.tc.moin.repository.Moin;
+import com.sap.tc.moin.repository.PRI;
+import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TestIncrementalParser extends TextBlockTest {
 

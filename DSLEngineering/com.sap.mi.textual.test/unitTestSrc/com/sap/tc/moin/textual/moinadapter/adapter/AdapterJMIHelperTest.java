@@ -14,7 +14,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.parsing.EnumerationTypeStub;
 import com.sap.mi.textual.parsing.MofAnyStub;
 import com.sap.mi.textual.parsing.MofStructureFieldStub;

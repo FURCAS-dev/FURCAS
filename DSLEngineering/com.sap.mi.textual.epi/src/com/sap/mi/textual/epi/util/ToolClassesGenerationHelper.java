@@ -12,8 +12,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.epi.conf.ReferenceScopeBean;
 import com.sap.mi.textual.epi.errors.GrammarGenerationErrorHandler;
 import com.sap.mi.textual.epi.filedefinition.TCSInputStreamGrammarGenerator;

@@ -6,7 +6,7 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
 
 /**
  * Collects all Semantic errors occurring while trying to generate a Grammar 

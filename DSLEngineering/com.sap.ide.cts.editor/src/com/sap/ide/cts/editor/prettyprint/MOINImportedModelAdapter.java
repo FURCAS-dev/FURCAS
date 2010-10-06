@@ -5,11 +5,23 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+<<<<<<< HEAD
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
 import com.sap.mi.textual.tcs.util.TcsUtil;
+=======
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.tc.moin.repository.JmiHelper;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
+import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class MOINImportedModelAdapter {
     

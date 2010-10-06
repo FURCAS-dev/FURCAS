@@ -2,7 +2,7 @@ package com.sap.ide.cts.dialogs;
 
 import tcs.Template;
 
-import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class ChooseConcreteSyntaxDialogElement 

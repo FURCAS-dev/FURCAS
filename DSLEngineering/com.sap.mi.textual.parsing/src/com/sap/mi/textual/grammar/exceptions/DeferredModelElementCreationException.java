@@ -3,7 +3,7 @@
  */
 package com.sap.mi.textual.grammar.exceptions;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 
 /**
  *

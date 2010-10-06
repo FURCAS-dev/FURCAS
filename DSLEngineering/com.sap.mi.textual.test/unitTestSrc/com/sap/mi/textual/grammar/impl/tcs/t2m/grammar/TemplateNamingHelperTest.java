@@ -11,10 +11,10 @@ import org.junit.Test;
 
 import tcs.QualifiedNamedElement;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.NameResolutionFailedException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.FunctionTemplateStub;

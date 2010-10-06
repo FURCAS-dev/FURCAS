@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.IModelElementInvestigator;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 
 /**
  * During an injection, caches lookups within contexts

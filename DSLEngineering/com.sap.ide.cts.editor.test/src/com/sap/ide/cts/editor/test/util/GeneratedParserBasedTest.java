@@ -15,9 +15,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.AfterClass;
 
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.grammar.ParserFacade;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.ObservationDirectivesHelper;

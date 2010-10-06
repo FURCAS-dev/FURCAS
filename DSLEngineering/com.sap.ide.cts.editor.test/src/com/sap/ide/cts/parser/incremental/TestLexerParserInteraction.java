@@ -12,11 +12,26 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.junit.Test;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+=======
+import tcs.TcsPackage;
+import textblocks.AbstractToken;
+import textblocks.Bostoken;
+import textblocks.Eostoken;
+import textblocks.LexedToken;
+import textblocks.TextBlock;
+import textblocks.VersionEnum;
+
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.furcas.textual.textblocks.TbVersionUtil;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+import com.sap.furcas.textual.textblocks.testutils.UtilFixtureBase;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.test.util.TcsTestHelper;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalTokenStream;
@@ -24,14 +39,17 @@ import com.sap.ide.cts.parser.incremental.antlr.ANTLRLexerAdapter;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sap.mi.tcs.parser.TcsParserFactory;
 import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
-import com.sap.mi.textual.parsing.textblocks.UtilFixtureBase;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
 import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
+<<<<<<< HEAD
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
+=======
+import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TestLexerParserInteraction extends UtilFixtureBase {
 

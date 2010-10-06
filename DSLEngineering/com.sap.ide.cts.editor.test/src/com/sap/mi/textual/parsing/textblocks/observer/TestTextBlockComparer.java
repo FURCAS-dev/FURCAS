@@ -9,12 +9,20 @@ import java.util.Collection;
 
 import org.junit.Test;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+=======
+import tcs.Template;
+import textblockdefinition.TextBlockDefinition;
+import textblocks.AbstractToken;
+import textblocks.TextBlock;
+
+import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
-import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 
 public class TestTextBlockComparer extends TextBlockTest {
     

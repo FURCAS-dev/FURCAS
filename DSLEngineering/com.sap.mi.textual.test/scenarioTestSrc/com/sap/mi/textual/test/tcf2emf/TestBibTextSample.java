@@ -27,7 +27,7 @@ import tcs.Symbol;
 import tcs.Template;
 import tcs.Token;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 
 
 public class TestBibTextSample extends AbstractTCSInjectionTest {

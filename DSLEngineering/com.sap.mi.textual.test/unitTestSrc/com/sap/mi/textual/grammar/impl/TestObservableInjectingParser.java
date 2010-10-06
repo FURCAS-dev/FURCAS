@@ -16,9 +16,9 @@ import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.TokenStream;
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.IModelElementInvestigator;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.impl.context.AmbiguousLookupException;
 import com.sap.mi.textual.grammar.impl.context.ContextManager;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.StubTokenStream;

@@ -18,8 +18,9 @@ import org.junit.Test;
 import tcs.ClassTemplate;
 import tcs.Priority;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
@@ -36,7 +37,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorTemplateStub
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PriorityStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceStub;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.test.util.ResolutionBeanHelper;
 import com.sap.mi.textual.test.util.StringListHelper;
 

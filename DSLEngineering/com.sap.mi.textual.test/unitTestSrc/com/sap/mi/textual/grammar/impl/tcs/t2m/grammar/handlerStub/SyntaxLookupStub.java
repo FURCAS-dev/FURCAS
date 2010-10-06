@@ -18,10 +18,10 @@ import tcs.OperatorList;
 import tcs.PrimitiveTemplate;
 import tcs.Template;
 
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PrimitiveTemplateStub;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
 
 /**
  *

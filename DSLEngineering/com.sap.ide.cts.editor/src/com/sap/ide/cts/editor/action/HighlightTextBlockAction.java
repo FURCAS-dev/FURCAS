@@ -10,8 +10,8 @@ import org.eclipse.swt.widgets.Listener;
 import textblocks.AbstractToken;
 import textblocks.TextBlock;
 
+import com.sap.furcas.textual.textblocks.TbUtil;
 import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
 
 public class HighlightTextBlockAction implements Listener {
 

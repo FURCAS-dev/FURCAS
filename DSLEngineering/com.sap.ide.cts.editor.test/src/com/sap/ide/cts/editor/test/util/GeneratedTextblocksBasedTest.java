@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
@@ -21,6 +22,21 @@ import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
+=======
+import textblocks.AbstractToken;
+import textblocks.LexedToken;
+import textblocks.TextBlock;
+import textblocks.TextblocksPackage;
+import textblocks.VersionEnum;
+
+import com.sap.furcas.textual.textblocks.TbChangeUtil;
+import com.sap.furcas.textual.textblocks.TbVersionUtil;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
+import com.sap.mi.textual.grammar.impl.ParsingError;
+import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class GeneratedTextblocksBasedTest extends
 		GeneratedParserAndFactoryBasedTest {

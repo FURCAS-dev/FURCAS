@@ -11,13 +11,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
+import com.sap.furcas.textual.textblocks.TbNavigationUtil;
+import com.sap.furcas.textual.textblocks.TbVersionUtil;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.LexerAdapter;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.ModelInjector;
-import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
-import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 
 
 public class ANTLRLexerAdapter implements LexerAdapter {

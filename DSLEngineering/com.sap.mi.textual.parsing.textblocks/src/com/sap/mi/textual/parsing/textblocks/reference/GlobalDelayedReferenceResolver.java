@@ -16,7 +16,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.mi.textual.common.interfaces.IRuleName;
+import com.sap.furcas.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 

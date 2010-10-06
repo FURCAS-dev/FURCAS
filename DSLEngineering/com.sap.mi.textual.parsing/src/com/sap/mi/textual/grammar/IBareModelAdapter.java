@@ -12,7 +12,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
 import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
 

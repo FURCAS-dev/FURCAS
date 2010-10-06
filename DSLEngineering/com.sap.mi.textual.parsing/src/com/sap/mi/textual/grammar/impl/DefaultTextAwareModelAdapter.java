@@ -12,7 +12,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.IModelAdapter;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
