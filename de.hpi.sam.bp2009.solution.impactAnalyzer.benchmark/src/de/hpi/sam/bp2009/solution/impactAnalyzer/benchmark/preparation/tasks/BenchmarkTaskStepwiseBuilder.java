@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -221,7 +222,9 @@ public class BenchmarkTaskStepwiseBuilder implements Queue<BenchmarkTaskContaine
 	HashMap<String, Object> descriptionMap = new HashMap<String, Object>();
 	descriptionMap.put("id", notificationId);
 	descriptionMap.put("eventType", splits.getEventType());
-	descriptionMap.putAll(splits.getAttributeMap());
+	for (Map.Entry<String, String> entry : splits.getAttributeMap().entrySet()) {
+	    descriptionMap.put(entry.getKey(), entry.getKey()+"="+entry.getValue());
+	}
 	writer.writeDescriptionLine(descriptionMap);
     }
 
