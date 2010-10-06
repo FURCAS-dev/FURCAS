@@ -5,9 +5,8 @@ package com.sap.ide.cts.editor.document;
 
 import org.eclipse.jface.text.ITextStore;
 
-import textblocks.AbstractToken;
-import textblocks.TextBlock;
-
+import com.sap.furcas.metamodel.textblocks.AbstractToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.mi.textual.grammar.IModelElementInvestigator;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;

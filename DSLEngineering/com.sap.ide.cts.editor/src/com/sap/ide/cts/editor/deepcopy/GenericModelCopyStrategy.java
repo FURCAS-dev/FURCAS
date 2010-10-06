@@ -3,32 +3,18 @@ package com.sap.ide.cts.editor.deepcopy;
 import static com.sap.ide.cts.editor.deepcopy.DeepCopyHelper.getAssociationEnds;
 import static com.sap.ide.cts.editor.deepcopy.DeepCopyHelper.getElementsForRefAssociation;
 import static com.sap.ide.cts.editor.deepcopy.DeepCopyHelper.getRefAssociationForEnd;
-import static com.sap.tc.moin.repository.JmiHelper.MULTIPLICITY_BOUND_INFINITE;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import textblocks.DocumentNode;
-import textblocks.TextblocksPackage;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 
-import com.sap.mi.fwk.ui.dnd.DefaultModelTransferTarget;
-import com.sap.mi.fwk.ui.dnd.IModelTransferExtender;
-import com.sap.mi.fwk.ui.dnd.IModelTransferLog;
-import com.sap.mi.fwk.ui.dnd.IModelTransferTarget;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.DeepCopyMap;
-import com.sap.tc.moin.repository.DeepCopyMappingEntry;
-import com.sap.tc.moin.repository.DeepCopyPolicy;
-import com.sap.tc.moin.repository.DeepCopyPolicyHandler;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.DeepCopyPolicy.DeepCopyPolicyOption;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * A strategy combining several deep copy, drag&drop and copy&paste related
@@ -36,7 +22,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * specific behavior.
  * <p>
  * To automatically use your subclass instead of this generic implementation,
- * adapt RefObject and GenericRefObjectNode for your metamodel to
+ * adapt EObject and GenericRefObjectNode for your metamodel to
  * {@link IModelTransferExtender} and {@link IModelTransferTarget}.  
  * </p>
  * 
@@ -57,7 +43,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * 
  */
 public class GenericModelCopyStrategy extends DefaultModelTransferTarget implements DeepCopyPolicyHandler,
-	IModelTransferExtender<RefBaseObject> {
+	IModelTransferExtender<EObject> {
 
     /**
      * Returns the copy policy as defined by this class
@@ -68,8 +54,8 @@ public class GenericModelCopyStrategy extends DefaultModelTransferTarget impleme
     }
 
     @Override
-    public DeepCopyPolicy getDeepCopyingPolicy(RefObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
-	Connection co = sourceElement.get___Connection();
+    public DeepCopyPolicy getDeepCopyingPolicy(EObject sourceElement, DeepCopyPolicy defaultPolicy, DeepCopyMap copyMap) {
+	ResourceSet co = sourceElement.get___Connection();
 
 	// ask subclass
 	DeepCopyPolicy customPolicy = getMetaModelSpecificMapping(sourceElement, copyMap);
@@ -83,15 +69,15 @@ public class GenericModelCopyStrategy extends DefaultModelTransferTarget impleme
 	}
 
 	// for all association ends
-	for (AssociationEnd elemAssocEnd : getAssociationEnds(co, sourceElement)) {
+	for (EReference elemAssocEnd : getAssociationEnds(co, sourceElement)) {
 
 	    // if there is a reference
-	    RefAssociation sourceAssoc = getRefAssociationForEnd(co, elemAssocEnd);
+	    EReference sourceAssoc = getRefAssociationForEnd(co, elemAssocEnd);
 	    if (sourceAssoc != null) {
 
 		// for all linked elements
-		Collection<RefObject> elements = getElementsForRefAssociation(co, sourceAssoc, elemAssocEnd, sourceElement);
-		for (RefObject associatedElement : elements) {
+		Collection<EObject> elements = getElementsForRefAssociation(co, sourceAssoc, elemAssocEnd, sourceElement);
+		for (EObject associatedElement : elements) {
 
 		    // if element has already been visited
 		    if (copyMap.containsKey(associatedElement)) {
@@ -100,7 +86,7 @@ public class GenericModelCopyStrategy extends DefaultModelTransferTarget impleme
 
 			// prevent constraint errors due to fixed upper mulitiplicity
 			if (associatedElementPolicy == DeepCopyPolicyOption.FULL_COPY
-				&& !(elemAssocEnd.otherEnd().getMultiplicity().getUpper() == MULTIPLICITY_BOUND_INFINITE)) {
+				&& !(elemAssocEnd.getEOpposite().getUpperBound() == MULTIPLICITY_BOUND_INFINITE)) {
 
 			    // storage MIGHT indicate how to resolve the error situation
 			    if (co.getJmiHelper().isEndStored(elemAssocEnd.otherEnd())) {
@@ -122,13 +108,13 @@ public class GenericModelCopyStrategy extends DefaultModelTransferTarget impleme
 
     /**
      * Template method for metamodel specific behavior. Called by
-     * {@link GenericModelCopyStrategy#getDeepCopyingPolicy(RefObject, DeepCopyPolicy, DeepCopyMap)}
+     * {@link GenericModelCopyStrategy#getDeepCopyingPolicy(EObject, DeepCopyPolicy, DeepCopyMap)}
      * 
      * @param sourceElement
      * @param copyMap
      * @return
      */
-    protected DeepCopyPolicy getMetaModelSpecificMapping(RefObject sourceElement, DeepCopyMap copyMap) {
+    protected DeepCopyPolicy getMetaModelSpecificMapping(EObject sourceElement, DeepCopyMap copyMap) {
 	return null;
     }
 
@@ -145,7 +131,7 @@ public class GenericModelCopyStrategy extends DefaultModelTransferTarget impleme
      * @param copy
      * @return false if the given copy should NOT be linked
      */
-    public Boolean prepareLinkingToCompositeParent(String identifier, RefBaseObject target, RefBaseObject copy) {
+    public Boolean prepareLinkingToCompositeParent(String identifier, EObject target, EObject copy) {
 	return true;
     }
 
@@ -157,15 +143,15 @@ public class GenericModelCopyStrategy extends DefaultModelTransferTarget impleme
      * </p>
      * <p>
      * The default implementation tries to add the given objects to the given
-     * target as composite children, if this one is a {@link RefObject}. If
+     * target as composite children, if this one is a {@link EObject}. If
      * multiple matching {@link Association associations} are available, the
      * user is asked to choose one.
      * </p>
      * <b>Mind:</b> By default this method does not make use of
-     * {@link #prepareLinkingToCompositeParent(String, RefBaseObject, RefBaseObject)}
+     * {@link #prepareLinkingToCompositeParent(String, EObject, EObject)}
      */
     @Override
-    public Collection<ModelPartition> handleTransfer(Object target, RefBaseObject[] objectsToTransfer, IModelTransferLog log)
+    public Collection<ModelPartition> handleTransfer(Object target, EObject[] objectsToTransfer, IModelTransferLog log)
 	    throws OperationCanceledException {
 	return super.handleTransfer(target, objectsToTransfer, log);
     }
@@ -188,23 +174,23 @@ public class GenericModelCopyStrategy extends DefaultModelTransferTarget impleme
      * @return additional objects to be included in the transfer set
      */
     @Override
-    public RefBaseObject[] getAdditionalObjects(RefBaseObject toExtend, RefBaseObject[] originalObjects) {
-	if (toExtend instanceof RefObject) {
-	    RefObject refObj = (RefObject) toExtend;
-	    Connection con = refObj.get___Connection();
+    public EObject[] getAdditionalObjects(EObject toExtend, EObject[] originalObjects) {
+	if (toExtend instanceof EObject) {
+	    EObject refObj = (EObject) toExtend;
+	    ResourceSet con = refObj.get___Connection();
 	    TextblocksPackage tbPackage = con.getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
 	    Collection<DocumentNode> nodes = tbPackage.getDocumentNodeReferencesCorrespondingModelElement()
 	    	.getDocumentNode(refObj);
 
-	    Collection<RefBaseObject> rootNodes = new ArrayList<RefBaseObject>();
+	    Collection<EObject> rootNodes = new ArrayList<EObject>();
 	    for (DocumentNode node : nodes) {
 		// Only include root TextBlocks
 		if (node.refImmediateComposite() == null) {
 		    rootNodes.add(node);
 		}
 	    }
-	    return rootNodes.toArray(new RefBaseObject[rootNodes.size()]);
+	    return rootNodes.toArray(new EObject[rootNodes.size()]);
 	}
-	return new RefBaseObject[] {};
+	return new EObject[] {};
     }
 }

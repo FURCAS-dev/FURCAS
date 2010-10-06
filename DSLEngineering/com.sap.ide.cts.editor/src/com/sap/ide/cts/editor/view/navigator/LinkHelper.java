@@ -57,7 +57,7 @@ public class LinkHelper implements ILinkHelper {
 			TextBlock parentBlock = null;
 			if (documentNode instanceof AbstractToken) {
 			    parentBlock = ((AbstractToken) documentNode)
-				    .getParentBlock();
+				    .getParent();
 			} else {
 			    parentBlock = (TextBlock) documentNode;
 			}

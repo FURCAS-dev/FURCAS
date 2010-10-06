@@ -11,28 +11,27 @@ import java.util.TreeMap;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import tcs.Alternative;
-import tcs.Block;
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.ConditionalElement;
-import tcs.FunctionCall;
-import tcs.Keyword;
-import tcs.LiteralRef;
-import tcs.OperatorTemplate;
-import tcs.Property;
-import tcs.SeparatorParg;
-import tcs.Sequence;
-import tcs.SequenceElement;
-import tcs.SequenceInAlternative;
-import tcs.Template;
-
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.Block;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.SeparatorPArg;
+import com.sap.furcas.metamodel.TCS.Sequence;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
+import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.IParsingObserver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
 
 /**
  * Parsing Observer, that gathers all information necessary for ContentAssist.
@@ -49,8 +48,8 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	 * 
 	 * @param c
 	 */
-	public static void clearTransientPartition(Connection c) {
-		ModelPartition transientPartition = c
+	public static void clearTransientPartition(ResourceSet c) {
+		Resource transientPartition = c
 				.getOrCreateTransientPartition(TRANSIENT_PARTITION_NAME);
 		transientPartition.deleteElements();
 	}
@@ -237,7 +236,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 				logInfo("pop Sequence");
 				Sequence currentSequence = currentSequenceStack.pop();
 				currentSequenceElementStack.pop();
-				if (currentSequence.getFunctioncontainer() != null) {
+				if (currentSequence.getFunctionContainer() != null) {
 					logInfo("pop parentFunctionCall");
 					currentParentFunctionCallStack.pop();
 				}
@@ -575,7 +574,7 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 		try {
 			Property prop = currentParentPropertyStack.peek();
 			if (prop != null) {
-				SeparatorParg sepArg = TcsUtil.getSeparatorParg(prop);
+				SeparatorPArg sepArg = TcsUtil.getSeparatorPArg(prop);
 				if (sepArg != null) {
 					pushNonEmptySequence(sepArg.getSeparatorSequence());
 				} else {
@@ -630,16 +629,16 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	}
 
 	void pushDummySequence(String dummyKeywordName) {
-		Connection c = TcsUtil.getConnectionFromRefObject(syntax);
-		ModelPartition transientPartition = c
+		ResourceSet c = TcsUtil.getConnectionFromRefObject(syntax);
+		Resource transientPartition = c
 				.getOrCreateTransientPartition(TRANSIENT_PARTITION_NAME);
-		Sequence dummy = (Sequence) c.getClass(tcs.Sequence.CLASS_DESCRIPTOR)
+		Sequence dummy = (Sequence) c.getClass(Sequence.CLASS_DESCRIPTOR)
 				.refCreateInstanceInPartition(transientPartition);
 		LiteralRef litRef = (LiteralRef) c.getClass(
-				tcs.LiteralRef.CLASS_DESCRIPTOR).refCreateInstanceInPartition(
+				LiteralRef.CLASS_DESCRIPTOR).refCreateInstanceInPartition(
 				transientPartition);
 
-		Keyword keyword = (Keyword) c.getClass(tcs.Keyword.CLASS_DESCRIPTOR)
+		Keyword keyword = (Keyword) c.getClass(Keyword.CLASS_DESCRIPTOR)
 				.refCreateInstanceInPartition(transientPartition);
 		keyword.setValue(dummyKeywordName);
 
