@@ -9,6 +9,7 @@ import java.util.Stack;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Token;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
@@ -16,6 +17,7 @@ import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ContextTemplate;
 import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.Bostoken;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
@@ -146,7 +148,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 		TextBlock b = (TextBlock) pack.getTextBlock()
 				.refCreateInstanceInPartition(part);
 		b.setChildrenChanged(false);
-		b.setVersion(VersionEnum.REFERENCE);
+		b.setVersion(EEnum.REFERENCE);
 		b.setRelexingNeeded(false);
 		b.setStartRow(0);
 		b.setStartColumn(0);
@@ -166,7 +168,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 		LexedToken t = (LexedToken) pack.getLexedToken()
 				.refCreateInstanceInPartition(part);
 		t.setChildrenChanged(false);
-		t.setVersion(VersionEnum.REFERENCE);
+		t.setVersion(EEnum.REFERENCE);
 		t.setRelexingNeeded(false);
 		t.setStartRow(0);
 		t.setStartColumn(0);
@@ -190,7 +192,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 		OmittedToken t = (OmittedToken) pack.getOmittedToken()
 				.refCreateInstanceInPartition(part);
 		t.setChildrenChanged(false);
-		t.setVersion(VersionEnum.REFERENCE);
+		t.setVersion(EEnum.REFERENCE);
 		t.setRelexingNeeded(false);
 		t.setStartRow(0);
 		t.setStartColumn(0);
@@ -248,7 +250,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 			}
 			if (template instanceof ClassTemplate)
 			{
-				if (((ClassTemplate) template).isMain())
+				if (((ClassTemplate) template).isIsMain())
 				{
 					addBosToken();
 				}
@@ -297,7 +299,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	{
 		if (template != null)
 		{
-			TextBlockDefinition tbDef = pack.getTextblockdefinition()
+			TextblockDefinition tbDef = pack.getTextblockdefinition()
 					.getTextblockDefinitionReferencesProduction()
 					.getTextBlockDefinition(template).iterator().next();
 			block.setType(tbDef);
@@ -478,7 +480,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	void addBosToken()
 	{
 		Bostoken bos = ANTLRIncrementalLexerAdapter.createBOSToken(pack,
-				VersionEnum.REFERENCE,
+				EEnum.REFERENCE,
 				ANTLRIncrementalLexerAdapter.bosTokenType);
 		addToken(bos);
 	}
@@ -486,7 +488,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 	void addEosToken()
 	{
 		Eostoken eos = ANTLRIncrementalLexerAdapter.createEOSToken(pack,
-				VersionEnum.REFERENCE,
+				EEnum.REFERENCE,
 				ANTLRIncrementalLexerAdapter.eosTokenType);
 		eos.setOffset(curOffset);
 		addToken(eos);
@@ -523,7 +525,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream
 			Template template = this.blockToTemplate.get(rootBlock);
 			if (template instanceof ClassTemplate)
 			{
-				if (((ClassTemplate) template).isMain())
+				if (((ClassTemplate) template).isIsMain())
 				{
 					addEosToken();
 				}

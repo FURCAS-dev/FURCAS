@@ -7,10 +7,10 @@ import java.util.Stack;
 
 import org.antlr.runtime.Token;
 
-import tcs.FunctionCall;
-import tcs.Property;
-import tcs.SequenceElement;
-import tcs.Template;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.Property;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.metamodel.TCS.Template;
 
 public class CtsContentAssistContext {
 	private Stack<FunctionCall> parentFunctionCallStack;

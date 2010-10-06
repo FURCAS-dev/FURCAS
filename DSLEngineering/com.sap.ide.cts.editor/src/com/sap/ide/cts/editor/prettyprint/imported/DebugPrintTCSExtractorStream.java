@@ -1,5 +1,7 @@
 package com.sap.ide.cts.editor.prettyprint.imported;
 
+import org.eclipse.emf.ecore.EObject;
+
 import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.TCS.Template;
 
@@ -109,7 +111,7 @@ public class DebugPrintTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public int startClassTemplateForObject(RefObject object, Template template) {
+	public int startClassTemplateForObject(EObject object, Template template) {
 		int handle = target.startClassTemplateForObject(object, template);
 		print("<START_CLASSTEMPLATE with handle: " + handle + ">");
 		return handle;

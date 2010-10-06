@@ -12,6 +12,7 @@ import java.util.Map;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Parser;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -21,9 +22,8 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContextInformation;
 import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.ide.cts.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.document.TextBlocksModelStore;
@@ -35,7 +35,7 @@ import com.sap.mi.textual.grammar.impl.DelegationParsingObserver;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sap.tc.moin.repository.Connection;
+
 
 public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
@@ -45,9 +45,9 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	private ConcreteSyntax syntax;
 	private Map<List<String>, Map<String, ClassTemplate>> classTemplateMap = null;
 	private CtsContentAssistParsingHandler parsingHandler = null;
-	private Connection connection;
+	private ResourceSet connection;
 
-	public CtsContentAssistProcessor(Connection connection,
+	public CtsContentAssistProcessor(ResourceSet connection,
 			Class<? extends Lexer> lexerClass,
 			Class<? extends Parser> parserClass, String language) {
 		this.language = language;
@@ -381,7 +381,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		return parsingHandler.getFloorContext(line, charPositionInLine);
 	}
 
-	private static ConcreteSyntax getSyntax(Connection connection,
+	private static ConcreteSyntax getSyntax(ResourceSet connection,
 			String language) {
 		List<ConcreteSyntax> syntaxList = TcsUtil
 				.getSyntaxesInConnection(connection);

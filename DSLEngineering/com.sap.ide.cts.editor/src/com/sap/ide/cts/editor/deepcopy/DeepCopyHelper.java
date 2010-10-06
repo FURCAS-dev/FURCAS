@@ -5,18 +5,12 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sap.mi.fwk.ui.ModelAdapterUI;
-import com.sap.mi.fwk.ui.dnd.IModelTransferTarget;
-import com.sap.mi.fwk.ui.dnd.ModelClipboard;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.core.UnresolvableException;
-import com.sap.tc.moin.repository.mmi.model.AggregationKindEnum;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+
 
 public class DeepCopyHelper {
 
@@ -28,25 +22,25 @@ public class DeepCopyHelper {
      * @return the AssociationEnds whose type is equal or a supertype of the
      *         element's type
      */
-    public static Collection<AssociationEnd> getAssociationEnds(Connection co, RefObject element) {
-	return co.getJmiHelper().getAssociationEnds((MofClass) (element.refMetaObject()), true);
+    public static Collection<EReference> getAssociationEnds(ResourceSet co, EObject element) {
+	return co.getJmiHelper().getAssociationEnds((EClass) (element.refMetaObject()), true);
     }
 
     /**
-     * Returns all elements that are linked to a RefObject via a RefAssociation
-     * at an AssociationEnd
+     * Returns all elements that are linked to a EObject via a EReference
+     * at an EReference
      * 
      * @param actualAssoc
      * @param elemAssocEnd
      * @param originalElement
      * @return
      */
-    public static Collection<RefObject> getElementsForRefAssociation(Connection co, RefAssociation actualAssoc,
-	    AssociationEnd elemAssocEnd, RefObject originalElement) {
+    public static Collection<EObject> getElementsForRefAssociation(ResourceSet co, EReference actualAssoc,
+	    EReference elemAssocEnd, EObject originalElement) {
 	try {
-	    Collection<RefObject> links = actualAssoc.refQuery(elemAssocEnd.getName(), originalElement);
-	    Collection<RefObject> result = new ArrayList<RefObject>(links.size());
-	    for (RefObject element : links) {
+	    Collection<EObject> links = actualAssoc.refQuery(elemAssocEnd.getName(), originalElement);
+	    Collection<EObject> result = new ArrayList<EObject>(links.size());
+	    for (EObject element : links) {
 		if (element != null) { // only consider non-dangling links
 		    result.add(element);
 		}
@@ -59,15 +53,15 @@ public class DeepCopyHelper {
     }
 
     /**
-     * Find the non-derived association element for an AssociationEnd.
+     * Find the non-derived association element for an EReference.
      * 
      * @param associationEnd
      * @return
      */
-    public static RefAssociation getRefAssociationForEnd(Connection co, AssociationEnd associationEnd) {
-	RefAssociation associationForElement = null;
+    public static EReference getRefAssociationForEnd(ResourceSet co, EReference associationEnd) {
+	EReference associationForElement = null;
 	if (associationEnd != null) {
-	    Association ass = (Association) associationEnd.getContainer();
+	    EReference ass = (EReference) associationEnd.getContainer();
 	    if (!ass.isDerived()) {
 		associationForElement = co.getJmiHelper().getRefAssociationForAssociation(ass);
 	    }
@@ -76,13 +70,13 @@ public class DeepCopyHelper {
     }
 
     /**
-     * Find the non-derived association element for an Association.
+     * Find the non-derived association element for an EReference.
      * 
      * @param associationEnd
      * @return
      */
-    public static RefAssociation getRefAssociationForAssoc(Connection co, Association ass) {
-	RefAssociation associationForElement = null;
+    public static EReference getRefAssociationForAssoc(ResourceSet co, EReference ass) {
+	EReference associationForElement = null;
 	if (!ass.isDerived()) {
 	    associationForElement = co.getJmiHelper().getRefAssociationForAssociation(ass);
 	}
@@ -90,44 +84,44 @@ public class DeepCopyHelper {
     }
 
     /**
-     * Returns all immediate composite children of a RefObject.
+     * Returns all immediate composite children of a EObject.
      * 
      * @param element
      *            The parent element
-     * @return All immediate composite children of a RefObject
+     * @return All immediate composite children of a EObject
      */
-    public static Collection<RefObject> getCompositeChildrenImmediate(Connection co, RefObject element) {
+    public static Collection<EObject> getCompositeChildrenImmediate(ResourceSet co, EObject element) {
 	return co.getJmiHelper().getCompositeChildren(element, false);
     }
 
     /**
-     * Returns the immediate composite parent of a RefObject.
+     * Returns the immediate composite parent of a EObject.
      * 
      * @param element
      *            The child element
      * @return the immediate composite parent or null if there is not any
      */
-    public static RefObject getCompositeParent(Connection co, RefObject element) {
-	return (RefObject) element.refImmediateComposite();
+    public static EObject getCompositeParent(ResourceSet co, EObject element) {
+	return (EObject) element.refImmediateComposite();
     }
 
     /**
-     * Returns all elements that are linked to a RefObject, but not composite
+     * Returns all elements that are linked to a EObject, but not composite
      * children. Note that dangling links return a null!
      * 
      * @param element
      *            The original element
      * @return All linked elements
      */
-    public static Collection<RefObject> getAllLinkedElements(Connection co, RefObject element) {
-	Set<RefObject> linkedElements = new HashSet<RefObject>();
-	RefAssociation actualAssoc;
-	for (AssociationEnd elemAssocEnd : getAssociationEnds(co, element)) {
+    public static Collection<EObject> getAllLinkedElements(ResourceSet co, EObject element) {
+	Set<EObject> linkedElements = new HashSet<EObject>();
+	EReference actualAssoc;
+	for (EReference elemAssocEnd : getAssociationEnds(co, element)) {
 	    if (!(elemAssocEnd.getAggregation().equals(AggregationKindEnum.COMPOSITE))) {
 		actualAssoc = getRefAssociationForEnd(co, elemAssocEnd);
 		// actualAssoc can be null when derived
 		if (actualAssoc != null) {
-		    Collection<RefObject> elements = getElementsForRefAssociation(co, actualAssoc, elemAssocEnd, element);
+		    Collection<EObject> elements = getElementsForRefAssociation(co, actualAssoc, elemAssocEnd, element);
 		    if (elements != null) {
 			linkedElements.addAll(elements);
 		    }
@@ -145,20 +139,20 @@ public class DeepCopyHelper {
      * order to avoid name clashes within the new formed composite.
      * 
      * @see GenericModelCopyStrategy#prepareLinkingToCompositeParent(String, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject)
-     * @see ModelClipboard#addToCompositeParent(RefObject, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject[], Association, com.sap.mi.fwk.ui.dnd.IModelTransferLog)
+     * @see ModelClipboard#addToCompositeParent(EObject, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject[], EReference, com.sap.mi.fwk.ui.dnd.IModelTransferLog)
      * 
      * @param newRoot
      * @return
      */
-    public static void linkToCompositeParent(Connection co, RefObject source, RefObject copy) {
-	RefObject parent = getCompositeParent(co, source);
+    public static void linkToCompositeParent(ResourceSet co, EObject source, EObject copy) {
+	EObject parent = getCompositeParent(co, source);
 	JmiHelper helper = co.getJmiHelper();
 
-	for (Association assoc : helper.getCompositeAssociations((MofClass) parent.refMetaObject(), (MofClass) source
+	for (EReference assoc : helper.getCompositeAssociations((EClass) parent.refMetaObject(), (EClass) source
 		.refMetaObject())) {
 
-	    RefAssociation refAssoc = getRefAssociationForAssoc(co, assoc);
-	    AssociationEnd compAssocEnd = co.getJmiHelper().getCompositeAssociationEnd(assoc);
+	    EReference refAssoc = getRefAssociationForAssoc(co, assoc);
+	    EReference compAssocEnd = co.getJmiHelper().getCompositeAssociationEnd(assoc);
 
 	    if (helper.isFirstAssociationEnd(assoc, compAssocEnd) && refAssoc.refLinkExists(parent, source)) {
 		refAssoc.refAddLink(parent, copy);
@@ -169,7 +163,7 @@ public class DeepCopyHelper {
 	}
     }
 
-    public static IModelTransferTarget getTransferTarget(RefObject root) {
+    public static IModelTransferTarget getTransferTarget(EObject root) {
 	IModelTransferTarget target = ModelAdapterUI.getInstance().adaptObject(root, IModelTransferTarget.class);
 	if (target == null) {
 	    return new GenericModelCopyStrategy();
