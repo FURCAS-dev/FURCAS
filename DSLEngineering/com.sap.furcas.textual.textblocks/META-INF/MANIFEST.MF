@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Textblocks
+Bundle-SymbolicName: com.sap.furcas.textual.textblocks
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: com.sap.furcas.metamodel;bundle-version="1.0.0",
+ org.eclipse.emf.edit;bundle-version="2.6.0",
+ com.sap.furcas.textual;bundle-version="1.0.0",
+ com.sap.furcas.textual.tcs;bundle-version="1.0.0"

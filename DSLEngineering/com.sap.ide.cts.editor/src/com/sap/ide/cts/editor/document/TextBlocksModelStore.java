@@ -5,11 +5,17 @@ package com.sap.ide.cts.editor.document;
 
 import org.eclipse.jface.text.ITextStore;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+=======
+import textblocks.AbstractToken;
+import textblocks.TextBlock;
+
+import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.textual.textblocks.model.TextBlocksModel;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.CtsActivator;
-import com.sap.mi.textual.grammar.IModelElementInvestigator;
-import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 
 /**
  * This is an implementation if {@link ITextStore} which serves as storage

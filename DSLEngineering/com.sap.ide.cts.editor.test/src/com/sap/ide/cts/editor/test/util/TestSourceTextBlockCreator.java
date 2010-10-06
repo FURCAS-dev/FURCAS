@@ -6,9 +6,14 @@ package com.sap.ide.cts.editor.test.util;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TestTextBlocksModelElementFactory;
+=======
+import com.sap.furcas.textua.aa.TestTextBlocksModelElementFactory;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 /**
  *

@@ -21,7 +21,7 @@ import com.sap.furcas.metamodel.TCS.OperatorList;
 import com.sap.furcas.metamodel.TCS.OperatorTemplate;
 import com.sap.furcas.metamodel.TCS.Priority;
 import com.sap.furcas.metamodel.TCS.PropertyReference;
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.ClassProductionRule;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;

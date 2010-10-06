@@ -3,6 +3,7 @@ package com.sap.ide.cts.editor.contentassist;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 import org.eclipse.emf.ecore.EClassifier;
 
 import com.sap.furcas.metamodel.TCS.Alternative;
@@ -27,6 +28,31 @@ import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.mi.textual.common.util.EcoreHelper;
+=======
+import tcs.Alternative;
+import tcs.AndExp;
+import tcs.AtomExp;
+import tcs.Block;
+import tcs.BooleanPropertyExp;
+import tcs.ClassTemplate;
+import tcs.ConditionalElement;
+import tcs.CustomSeparator;
+import tcs.EqualsExp;
+import tcs.Expression;
+import tcs.FunctionCall;
+import tcs.InjectorActionsBlock;
+import tcs.InstanceOfExp;
+import tcs.IsDefinedExp;
+import tcs.LiteralRef;
+import tcs.OneExp;
+import tcs.OperatorTemplate;
+import tcs.Property;
+import tcs.SequenceElement;
+import tcs.Template;
+
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TcsDebugUtil {
 

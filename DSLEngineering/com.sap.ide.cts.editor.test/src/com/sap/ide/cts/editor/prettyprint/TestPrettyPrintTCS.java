@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.junit.Before;
 import org.junit.Test;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.TCS.ClassTemplate;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.Keyword;
@@ -21,6 +22,23 @@ import com.sap.mi.tcs.parser.TcsParserFactory;
 import com.sap.mi.textual.common.util.EcoreHelper;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 
+=======
+import tcs.ClassTemplate;
+import tcs.ConcreteSyntax;
+import tcs.Keyword;
+import tcs.LiteralRef;
+import tcs.Sequence;
+import tcs.SpaceKindEnum;
+import tcs.Symbol;
+import textblocks.TextBlock;
+
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.mi.tcs.parser.TcsParserFactory;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.NameNotFoundException;
+import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 

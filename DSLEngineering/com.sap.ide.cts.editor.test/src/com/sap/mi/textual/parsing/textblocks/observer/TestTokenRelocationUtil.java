@@ -10,11 +10,20 @@ import java.util.List;
 
 import org.junit.Test;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
+=======
+import textblocks.AbstractToken;
+import textblocks.Eostoken;
+import textblocks.LexedToken;
+import textblocks.TextBlock;
+
+import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 /**
  * tests several methods of that util class

@@ -19,6 +19,7 @@ import tcs.Operator;
 import tcs.OperatorTemplate;
 import tcs.Priority;
 
+import com.sap.furcas.textual.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.SyntaxLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
@@ -30,7 +31,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorTemplateStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PriorityStub;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
 
 /**
  * Tests the operatorHandler class.

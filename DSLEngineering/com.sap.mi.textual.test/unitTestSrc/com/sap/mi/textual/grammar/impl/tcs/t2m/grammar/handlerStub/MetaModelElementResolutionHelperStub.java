@@ -7,10 +7,10 @@ import java.util.List;
 
 import tcs.QualifiedNamedElement;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.NameResolutionFailedException;
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.textual.tcs.MetaModelElementResolutionHelper;
 
 /**
  *

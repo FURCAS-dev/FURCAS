@@ -27,8 +27,8 @@ import tcs.LocatedElement;
 import tcs.TcsPackage;
 import tcs.Template;
 
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.JmiHelper;

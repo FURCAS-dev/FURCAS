@@ -12,7 +12,7 @@ import java.io.InputStream;
 
 import tcs.ConcreteSyntax;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;

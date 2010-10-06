@@ -14,7 +14,8 @@ import org.junit.Test;
 import tcs.InjectorAction;
 import tcs.InjectorActionsBlock;
 
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
@@ -28,7 +29,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PropertyReferenceStu
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceElementStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.TemplateStub;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 /**

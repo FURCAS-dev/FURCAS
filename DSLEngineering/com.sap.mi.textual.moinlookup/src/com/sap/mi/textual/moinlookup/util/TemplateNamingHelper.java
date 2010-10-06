@@ -11,13 +11,13 @@ import com.sap.furcas.metamodel.TCS.FunctionTemplate;
 import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
 import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
 import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.textual.tcs.MetaModelElementResolutionHelper;
+import com.sap.furcas.textual.tcs.SyntaxLookup;
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.common.exceptions.NameResolutionFailedException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.mi.textual.tcs.util.MetaModelElementResolutionHelper;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 
 /**
  * Helps dealing with qualified names in syntaxes. Uses the Metamodel to qualify unqualified names when necessary and possible.

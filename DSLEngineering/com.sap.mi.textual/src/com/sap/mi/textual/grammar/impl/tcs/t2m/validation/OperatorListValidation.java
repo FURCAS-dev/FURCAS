@@ -16,7 +16,7 @@ import java.util.Set;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.OperatorList;
 import com.sap.furcas.metamodel.TCS.Priority;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.SemanticErrorBucket;
 
 

@@ -22,12 +22,12 @@ import com.sap.furcas.metamodel.TCS.LiteralRef;
 import com.sap.furcas.metamodel.TCS.Property;
 import com.sap.furcas.metamodel.TCS.Sequence;
 import com.sap.furcas.metamodel.TCS.SequenceElement;
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
+import com.sap.furcas.textual.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.RuleBodyPropertyConstraint;
 import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.tcs.util.SyntaxLookup;
 import com.sap.mi.textual.util.VarStringBuffer;
 
 

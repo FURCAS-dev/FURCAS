@@ -12,7 +12,8 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.tcs.TcsUtil;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -20,7 +21,6 @@ import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
 import com.sap.mi.textual.grammar.impl.DefaultTextAwareModelAdapter;
 import com.sap.mi.textual.grammar.impl.ModelElementProxy;
-import com.sap.mi.textual.tcs.util.TcsUtil;
 
 
 /**

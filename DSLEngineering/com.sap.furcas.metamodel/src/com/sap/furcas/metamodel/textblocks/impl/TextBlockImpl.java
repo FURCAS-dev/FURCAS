@@ -16,6 +16,7 @@ import com.sap.furcas.metamodel.textblocks.ForEachContext;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.furcas.metamodel.textblocks.TextblocksPackage;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -23,8 +24,10 @@ import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -251,15 +254,38 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
         }
 
         /**
+         * The cached invocation delegate for the '{@link #getSubBlocks() <em>Get Sub Blocks</em>}' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see #getSubBlocks()
+         * @generated
+         * @ordered
+         */
+        protected static final EOperation.Internal.InvocationDelegate GET_SUB_BLOCKS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(0)).getInvocationDelegate();
+
+        /**
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
         public EList<TextBlock> getSubBlocks() {
-                // TODO: implement this method
-                // Ensure that you remove @generated or mark it @generated NOT
-                throw new UnsupportedOperationException();
+                try {
+                        return (EList<TextBlock>)GET_SUB_BLOCKS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+                }
+                catch (InvocationTargetException ite) {
+                        throw new WrappedException(ite);
+                }
         }
+
+        /**
+         * The cached invocation delegate for the '{@link #getTokens() <em>Get Tokens</em>}' operation.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see #getTokens()
+         * @generated
+         * @ordered
+         */
+        protected static final EOperation.Internal.InvocationDelegate GET_TOKENS__EINVOCATION_DELEGATE = ((EOperation.Internal)TextblocksPackage.Literals.TEXT_BLOCK.getEOperations().get(1)).getInvocationDelegate();
 
         /**
          * <!-- begin-user-doc -->
@@ -267,9 +293,12 @@ public class TextBlockImpl extends DocumentNodeImpl implements TextBlock {
          * @generated
          */
         public EList<AbstractToken> getTokens() {
-                // TODO: implement this method
-                // Ensure that you remove @generated or mark it @generated NOT
-                throw new UnsupportedOperationException();
+                try {
+                        return (EList<AbstractToken>)GET_TOKENS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+                }
+                catch (InvocationTargetException ite) {
+                        throw new WrappedException(ite);
+                }
         }
 
         /**

@@ -14,9 +14,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.IModelElementInvestigator;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.impl.context.ContextManager;
 
 /**

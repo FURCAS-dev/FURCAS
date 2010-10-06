@@ -4,8 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.textblocks.TextBlock;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
+=======
+import textblocks.TextBlock;
+
+import com.sap.furcas.textual.textblocks.testutils.TextBlockTest;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TestTokenRelocationUtilRelocateAfterRemoval extends TextBlockTest {
     

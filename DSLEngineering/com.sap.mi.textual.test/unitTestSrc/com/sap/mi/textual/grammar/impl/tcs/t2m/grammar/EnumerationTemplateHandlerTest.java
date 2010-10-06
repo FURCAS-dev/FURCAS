@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import tcs.EnumLiteralMapping;
 
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;

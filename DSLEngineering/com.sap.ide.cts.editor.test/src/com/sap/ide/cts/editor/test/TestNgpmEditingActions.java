@@ -24,14 +24,30 @@ import behavioral.actions.NamedValueDeclaration;
 import behavioral.actions.Return;
 
 import com.sap.ap.cts.monet.parser.ClassParserFactory;
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+=======
+import com.sap.furcas.textual.tcs.TcsUtil;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
 import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
 import com.sap.ide.cts.parser.incremental.IncrementalParsingUtil;
 import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
+<<<<<<< HEAD
 import com.sap.mi.textual.tcs.util.TcsUtil;
+=======
+import com.sap.tc.moin.ocl.ia.Statistics;
+import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
+import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.PartitionsNotSavedException;
+import com.sap.tc.moin.repository.ReferencedTransientElementsException;
+import com.sap.tc.moin.repository.core.ConnectionWrapper;
+import com.sap.tc.moin.repository.core.events.framework.simple.SessionEventManagerSimple;
+import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 import data.classes.Association;
 import data.classes.AssociationEnd;

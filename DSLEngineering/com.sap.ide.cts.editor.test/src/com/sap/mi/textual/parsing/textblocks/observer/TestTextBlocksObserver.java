@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.junit.Ignore;
 import org.junit.Test;
 
+<<<<<<< HEAD
 import com.sap.furcas.metamodel.TCS.TCSPackage;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
@@ -19,6 +20,19 @@ import com.sap.ide.cts.editor.test.util.TestSourceTextBlockCreator;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationTokenImpl;
 import com.sap.mi.textual.parsing.textblocks.UtilFixtureBase;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+=======
+import tcs.TcsPackage;
+import textblocks.LexedToken;
+import textblocks.TextBlock;
+
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.testutils.UtilFixtureBase;
+import com.sap.ide.cts.editor.test.util.TcsTestHelper;
+import com.sap.ide.cts.editor.test.util.TestSourceTextBlockCreator;
+import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationTokenImpl;
+import com.sap.tc.moin.repository.CRI;
+import com.sap.tc.moin.repository.Partitionable;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 public class TestTextBlocksObserver extends UtilFixtureBase {
     

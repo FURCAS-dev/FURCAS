@@ -13,7 +13,7 @@ import org.junit.Test;
 
 import tcs.SequenceInAlternative;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.RuleBodyStringBufferStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.AlternativeStub;

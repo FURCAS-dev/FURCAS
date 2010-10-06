@@ -16,8 +16,8 @@ import org.junit.Test;
 import org.omg.ocl.OclPackage;
 import org.omg.ocl.expressions.OclExpression;
 
+import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.test.util.MOINContainerNameLookUpFactory;
 import com.sap.tc.moin.repository.CRI;
 import com.sap.tc.moin.repository.Connection;

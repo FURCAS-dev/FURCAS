@@ -8,7 +8,8 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EDataType;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+
 
 /**
  * This class serves to cache creation data for MOF Structure types. While

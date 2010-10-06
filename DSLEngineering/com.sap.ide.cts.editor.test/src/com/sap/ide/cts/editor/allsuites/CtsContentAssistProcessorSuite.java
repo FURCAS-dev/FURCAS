@@ -2,6 +2,7 @@ package com.sap.ide.cts.editor.allsuites;
 
 import org.junit.runner.RunWith;
 
+import com.sap.furcas.test.util.ExtSuite;
 import com.sap.ide.cts.editor.contentassist.processor.TestCtsContentAssistProcessorAbstractMainTemplateSimple;
 import com.sap.ide.cts.editor.contentassist.processor.TestCtsContentAssistProcessorAbstractTemplateSimple;
 import com.sap.ide.cts.editor.contentassist.processor.TestCtsContentAssistProcessorAfterIncompleteTokenSimple;
@@ -30,7 +31,6 @@ import com.sap.ide.cts.editor.contentassist.processor.TestCtsContentAssistProces
 import com.sap.ide.cts.editor.contentassist.processor.TestCtsContentAssistProcessorTemplateProposalsSimple;
 import com.sap.ide.cts.editor.contentassist.processor.TestCtsContentAssistProcessorUnlexedTokenPrefixFilterSimple;
 import com.sap.ide.cts.editor.contentassist.processor.TestCtsContentAssistProcessorUnlexedTokenPrefixFilterStartOfFileSimple;
-import com.sap.ide.cts.editor.test.util.ExtSuite;
 
 /**
  * Run only the editor.test.metamodel based content assist processor tests.

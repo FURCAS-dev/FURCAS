@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.IBareModelAdapter;
 import com.sap.mi.textual.grammar.exceptions.DeferredActionResolvingException;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;

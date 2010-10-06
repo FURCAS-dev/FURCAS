@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import org.antlr.runtime.RecognitionException;
 import org.antlr.runtime.Token;
 import org.eclipse.core.runtime.Assert;
+<<<<<<< HEAD
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -32,6 +33,30 @@ import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.IParsingObserver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+=======
+
+import tcs.Alternative;
+import tcs.Block;
+import tcs.ClassTemplate;
+import tcs.ConcreteSyntax;
+import tcs.ConditionalElement;
+import tcs.FunctionCall;
+import tcs.Keyword;
+import tcs.LiteralRef;
+import tcs.OperatorTemplate;
+import tcs.Property;
+import tcs.SeparatorParg;
+import tcs.Sequence;
+import tcs.SequenceElement;
+import tcs.SequenceInAlternative;
+import tcs.Template;
+
+import com.sap.furcas.textual.tcs.TcsUtil;
+import com.sap.mi.textual.grammar.impl.DelayedReference;
+import com.sap.mi.textual.grammar.impl.IParsingObserver;
+import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.ModelPartition;
+>>>>>>> 339c4f6827f2205a0254bfb911d75ecfc4a51698
 
 /**
  * Parsing Observer, that gathers all information necessary for ContentAssist.

@@ -31,11 +31,11 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 import textblocks.AbstractToken;
 
+import com.sap.furcas.textual.textblocks.TbUtil;
 import com.sap.ide.cts.editor.autoedit.ClosingBraceAutoEditStrategy;
 import com.sap.ide.cts.editor.autoedit.CtsAutoEditStrategy;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistProcessor;
 import com.sap.ide.cts.editor.document.CtsDocument;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.tc.moin.repository.Connection;
 
 public class AbstractGrammarBasedViewerConfiguration extends SourceViewerConfiguration {

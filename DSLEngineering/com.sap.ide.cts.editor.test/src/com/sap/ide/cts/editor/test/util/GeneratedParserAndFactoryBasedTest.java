@@ -9,10 +9,10 @@ import java.io.IOException;
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.ecore.EPackage;
 
+import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;

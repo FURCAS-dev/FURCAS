@@ -14,8 +14,8 @@ import org.eclipse.ui.PlatformUI;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
 import com.sap.furcas.metamodel.TCS.Keyword;
-import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.mi.textual.grammar.impl.TextLocation;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.TCSSyntaxContainerBean;

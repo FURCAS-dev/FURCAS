@@ -52,11 +52,11 @@ import org.eclipse.ocl.ecore.OCLExpression;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.common.util.ContextAndForeachHelper;
-import com.sap.mi.textual.common.util.EcoreHelper;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.util.ContextAndForeachHelper;
+import com.sap.furcas.textual.common.util.EcoreHelper;
 import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
 
 /**

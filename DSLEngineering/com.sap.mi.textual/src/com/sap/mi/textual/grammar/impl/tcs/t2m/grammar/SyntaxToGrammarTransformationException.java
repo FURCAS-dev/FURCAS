@@ -6,7 +6,7 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.sap.mi.textual.common.exceptions.AbstractToolGenerationException;
+import com.sap.furcas.textual.common.exceptions.AbstractToolGenerationException;
 import com.sap.mi.textual.grammar.impl.ParsingError;
 
 /**

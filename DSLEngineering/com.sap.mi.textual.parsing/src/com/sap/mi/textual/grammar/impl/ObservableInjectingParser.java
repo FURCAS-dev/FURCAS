@@ -20,9 +20,9 @@ import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
-import com.sap.mi.textual.common.implementation.ResolvedModelElementProxy;
-import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.common.interfaces.IRuleName;
+import com.sap.furcas.textual.common.implementation.ResolvedModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
+import com.sap.furcas.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.IModelInjector;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;

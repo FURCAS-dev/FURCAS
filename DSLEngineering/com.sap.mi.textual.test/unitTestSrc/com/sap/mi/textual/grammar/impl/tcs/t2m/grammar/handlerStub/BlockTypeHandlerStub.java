@@ -8,7 +8,7 @@ import java.util.List;
 
 import tcs.LocatedElement;
 
-import com.sap.mi.textual.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.BlockTypeHandler;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer;
 

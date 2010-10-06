@@ -23,9 +23,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.mi.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.common.exceptions.ParserInvokationException;
-import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.textual.common.exceptions.ParserInvokationException;
+import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
