@@ -19,12 +19,14 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
-
+import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.conf.DeployedMetaProjectConf;
 import com.sap.mi.textual.epi.conf.IProjectMetaRefConf;
 import com.sap.mi.textual.epi.conf.ProjectMetaRefConfFactory;
-import com.sap.mi.textual.grammar.*;
+import com.sap.mi.textual.grammar.ParserFacade;
+import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.syntaxmodel.emfadapter.ModelInjectionResult;
 import com.sap.mi.textual.syntaxmodel.emfadapter.TCS2MOINInjectorFacade;
 
@@ -74,7 +76,7 @@ public class ProjectSyntaxHelper {
 					// this fails during non-plugin Junit-tests
 					DeployedMetaProjectConf conf = new DeployedMetaProjectConf(
 							metaModelContainerName, null);
-					referencePRIs.addAll(conf.getMetaLookUpForProject()
+					referencePRIs.add(conf.getMetaLookUpForProject()
 							.getReferencePRIs());
 
 				} catch (Exception e) {
@@ -110,7 +112,7 @@ public class ProjectSyntaxHelper {
 				IProjectMetaRefConf conf = ProjectMetaRefConfFactory
 						.getConfig(ModelAdapter.getInstance().getProject(
 								connection));
-				referencePRIs.addAll(conf.getMetaLookUpForProject()
+				referencePRIs.add(conf.getMetaLookUpForProject()
 						.getReferencePRIs());
 			} catch (IllegalStateException e) {
 				// no dsl nature
