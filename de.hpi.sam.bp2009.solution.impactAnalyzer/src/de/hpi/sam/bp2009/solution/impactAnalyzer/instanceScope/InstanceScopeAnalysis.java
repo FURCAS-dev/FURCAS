@@ -49,7 +49,6 @@ import com.sap.emf.ocl.util.OclHelper;
 
 import de.hpi.sam.bp2009.solution.eventManager.NotificationHelper;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.ActivationOption;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.configuration.OptimizationActivation;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEvaluator;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.filterSynthesis.FilterSynthesisImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackStep;
@@ -201,7 +200,7 @@ public class InstanceScopeAnalysis {
 
     private boolean hasNoEffectOnOverallExpression(Notification event, NavigationCallExp attributeOrAssociationEndCall,
             AnnotatedEObject sourceElement){
-	if(OptimizationActivation.getOption().isDeltaPropagationActive()) {
+	if(configuration.isDeltaPropagationActive()) {
 	    PartialEvaluator partialEvaluatorAtPre = new PartialEvaluator(event, oppositeEndFinder);
 	    Object oldValue = partialEvaluatorAtPre.evaluate(null, attributeOrAssociationEndCall, sourceElement.getAnnotatedObject());
 	    PartialEvaluator partialEvaluatorAtPost = new PartialEvaluator(oppositeEndFinder);
@@ -527,7 +526,7 @@ public class InstanceScopeAnalysis {
         if (configuration.isTracebackStepISAActive()) {
             TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cache = new de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache(
-                    OptimizationActivation.getOption(), tracebackStepCache.getUnusedEvaluationRequestFactory());
+                    configuration, tracebackStepCache.getUnusedEvaluationRequestFactory());
             result = step.traceback(sourceElement, /* pending unused evaluation requests */ null, cache, changeEvent);
         } else {
             NavigationStep step = getNavigationStepsToSelfForExpression(
