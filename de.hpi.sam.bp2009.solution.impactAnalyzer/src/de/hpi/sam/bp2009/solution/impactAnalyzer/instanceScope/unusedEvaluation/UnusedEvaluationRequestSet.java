@@ -42,7 +42,7 @@ public class UnusedEvaluationRequestSet {
             return "[unused: "+provedUnused+", newRequestSet: "+newRequestSet+"]";
         }
     }
-    
+
     /**
      * Keys requests to evaluate an OCL expression to check whether a changed subexpression is not used.
      * Key is the variable whose value was unknown the last time the expression was to be evaluated.
@@ -50,10 +50,6 @@ public class UnusedEvaluationRequestSet {
      */
     private final Map<Variable, Set<UnusedEvaluationRequest>> requests;
 
-    public UnusedEvaluationRequestSet() {
-        this.requests = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
-    }
-    
     private UnusedEvaluationRequestSet(Map<Variable, Set<UnusedEvaluationRequest>> requests) {
         this.requests = requests;
     }
@@ -207,7 +203,7 @@ public class UnusedEvaluationRequestSet {
         UnusedEvaluationResult result = null;
         Map<Variable, Set<UnusedEvaluationRequest>> newRequestSet = null;
         if (requestsToEvaluate != null) {
-            newRequestSet = new HashMap<Variable, Set<UnusedEvaluationRequest>>();
+            newRequestSet = new HashMap<Variable, Set<UnusedEvaluationRequest>>(2);
             for (UnusedEvaluationRequest request : requestsToEvaluate) {
                 Object evaluationResult = tracebackCache.getCachedEvaluationResult(request);
                 if (evaluationResult == null) {
@@ -243,7 +239,7 @@ public class UnusedEvaluationRequestSet {
             }
         }
         if (result == null) {
-            result = new UnusedEvaluationResult(/* provedUnused */false, newRequestSet == null ? null
+            result = new UnusedEvaluationResult(/* provedUnused */false, newRequestSet == null || newRequestSet.isEmpty() ? null
                     : new UnusedEvaluationRequestSet(newRequestSet));
         }
         return result;
@@ -269,11 +265,15 @@ public class UnusedEvaluationRequestSet {
                     requests);
             for (Map.Entry<Variable, Set<UnusedEvaluationRequest>> e : other.requests.entrySet()) {
                 Set<UnusedEvaluationRequest> set = newRequests.get(e.getKey());
-                if (set == null) {
+                if (set == null || set.isEmpty()) {
                     set = e.getValue();
                 } else {
-                    set = new HashSet<UnusedEvaluationRequest>(set);
-                    set.addAll(e.getValue());
+                    if (!e.getValue().isEmpty()) {
+                        HashSet<UnusedEvaluationRequest> newSet = new HashSet<UnusedEvaluationRequest>(set.size()+1);
+                        newSet.addAll(set);
+                        newSet.addAll(e.getValue());
+                        set = newSet;
+                    }
                 }
                 newRequests.put(e.getKey(), set);
             }

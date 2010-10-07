@@ -15,7 +15,10 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ecore.EcoreEnvironment;
+import org.eclipse.ocl.ecore.IfExp;
+import org.eclipse.ocl.ecore.LoopExp;
 import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
 import org.eclipse.ocl.ecore.Variable;
 import org.eclipse.ocl.ecore.VariableExp;
 
@@ -26,9 +29,12 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundE
 
 /**
  * A largely immutable request to perform a (partial) evaluation (see also {@link PartialEvaluator}) of an {@link OCLExpression},
- * comparing the result with a given expected result. If the result compares equal, this indicates that the subexpression where
- * the change occurred is not used, leading the traceback process to returning an empty set. The only modification allowed to
- * a request is setting an inferred variable's value (see {@link #setInferredVariableValue(Variable, Object, UnusedEvaluationRequestFactory)}.
+ * comparing the result with a given expected result or <code>invalid</code>. If the result compares equal, this indicates that
+ * the subexpression where the change occurred is not used, leading the traceback process to returning an empty set. The only
+ * modification allowed to a request is setting an inferred variable's value (see
+ * {@link #setInferredVariableValue(Variable, Object, UnusedEvaluationRequestFactory)}. Note that this assumes that <code>invalid</code>
+ * means "unused." This is the case for the currently known unused checks, in particular computing the condition of an {@link IfExp},
+ * computing the source of a {@link LoopExp} and computing the argument of an <code>-&gt;at(...)</code> {@link OperationCallExp}.
  * <p>
  * 
  * The request holds a number of <em>slots</em> for variable values inferred during the traceback process. If a new variable value
@@ -198,7 +204,7 @@ public class UnusedEvaluationRequest {
      */
     public boolean evaluate(OppositeEndFinder oppositeEndFinder) throws ValueNotFoundException {
         checkValuePresendForAllRequiredVariables();
-        PartialEvaluator evaluator = new PartialEvaluator(oppositeEndFinder);
+        PartialEvaluatorNoAllInstances evaluator = new PartialEvaluatorNoAllInstances(oppositeEndFinder);
         EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> env = evaluator.getOcl()
                 .getEvaluationEnvironment();
         Object context = null;
@@ -210,8 +216,15 @@ public class UnusedEvaluationRequest {
                 env.add(e.getKey().getName(), e.getValue());
             }
         }
-        Object result = evaluator.evaluate(context, expression);
-        return ((result == null && resultIndicatingUnused == null) ||
+        Object result;
+        try {
+            result = evaluator.evaluate(context, expression);
+        } catch (NoAllInstancesDuringEvaluationForUnusedCheck ex) {
+            result = ex;
+        }
+        return !(result instanceof NoAllInstancesDuringEvaluationForUnusedCheck) &&
+               ((result == null && resultIndicatingUnused == null) ||
+                result == evaluator.getOcl().getEnvironment().getOCLStandardLibrary().getInvalid() ||
                 (result != null &&
                         // asking for empty collection is encoded by asking for null
                         (result instanceof Collection<?> && resultIndicatingUnused == null && ((Collection<?>) result).isEmpty()) ||

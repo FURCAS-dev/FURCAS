@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -60,6 +61,23 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      */
     private final Set<UnusedEvaluationRequest> unusedEvaluationRequests;
     
+    /**
+     * To avoid endless recursions, a step remembers for which combinations of <code>source</code> objects and
+     * {@link UnusedEvaluationRequestSet}s it is currently executing. If any of those combinations is to be evaluated
+     * again while already being evaluated by the current thread, an empty set is returned. It uses the two attributes
+     * {@link #currentlyEvaluatingTracebackFor} and {@link #listOfKeysCurrentlyEvaluatingTracebackFor} for this purpose to
+     * be memory-economic. If not evaluating for any key, both are <code>null</code>. If evaluating for a single key,
+     * that key is stored in {@link #currentlyEvaluatingTracebackFor}. If evaluating for multiple objects,
+     * {@link #currentlyEvaluatingTracebackFor} is <code>null</code>, and {@link #listOfKeysCurrentlyEvaluatingTracebackFor}
+     * holds a collection of keys for which the step is currently evaluating.<p>
+     * 
+     * @see #startEvaluationFor(Pair)
+     * @see #finishedEvaluationFor(Pair)
+     * @see #isCurrentlyEvaluatingFor(Pair)
+     */
+    private Pair<AnnotatedEObject, UnusedEvaluationRequestSet> currentlyEvaluatingTracebackFor;
+    private Collection<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>> listOfKeysCurrentlyEvaluatingTracebackFor;
+
     private final OppositeEndFinder oppositeEndFinder;
     
     /**
@@ -154,7 +172,6 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
      * @param tupleLiteralNamesToLookFor
      *            if a tuple part is being sought, the expression type will be a tuple type; in this case, extract the sought
      *            part's type as the {@link #requiredType}.
-     * @param unusedEvaluationRequestFactory TODO
      */
     protected AbstractTracebackStep(E sourceExpression, Stack<String> tupleLiteralNamesToLookFor,
             OppositeEndFinder oppositeEndFinder, OperationBodyToCallMapper operationBodyToCallMapper,
@@ -409,11 +426,11 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
             de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         OperationCallExpKeyedSet result;
         Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key = new Pair<AnnotatedEObject, UnusedEvaluationRequestSet>(source, pendingUnusedEvalRequests);
-        if (tracebackCache.isCurrentlyEvaluatingFor(this, key)) {
+        if (isCurrentlyEvaluatingFor(key)) {
             result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
         } else {
             try {
-                tracebackCache.startEvaluationFor(this, key);
+                startEvaluationFor(key);
                 result = tracebackCache.get(this, source, pendingUnusedEvalRequests);
                 if (result == null) {
                     if (requiredType != null && !requiredType.isInstance(source.getAnnotatedObject())) {
@@ -439,10 +456,43 @@ public abstract class AbstractTracebackStep<E extends OCLExpression> implements 
                     tracebackCache.put(this, source, pendingUnusedEvalRequests, result);
                 }
             } finally {
-                tracebackCache.finishedEvaluationFor(this, key);
+                finishedEvaluationFor(key);
             }
         }
         return result;
+    }
+
+    private boolean isCurrentlyEvaluatingFor(Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key) {
+        return listOfKeysCurrentlyEvaluatingTracebackFor != null
+                ? listOfKeysCurrentlyEvaluatingTracebackFor.contains(key)
+                : key.equals(currentlyEvaluatingTracebackFor);
+    }
+
+    private void finishedEvaluationFor(Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key) {
+        if (listOfKeysCurrentlyEvaluatingTracebackFor != null) {
+            if (listOfKeysCurrentlyEvaluatingTracebackFor.size() == 1) {
+                listOfKeysCurrentlyEvaluatingTracebackFor = null;
+            } else {
+                listOfKeysCurrentlyEvaluatingTracebackFor.remove(key);
+            }
+        } else {
+            currentlyEvaluatingTracebackFor = null;
+        }
+    }
+
+    private void startEvaluationFor(Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key) {
+        if (listOfKeysCurrentlyEvaluatingTracebackFor != null) {
+            listOfKeysCurrentlyEvaluatingTracebackFor.add(key);
+        } else {
+            if (currentlyEvaluatingTracebackFor == null) {
+                currentlyEvaluatingTracebackFor = key;
+            } else {
+                listOfKeysCurrentlyEvaluatingTracebackFor = new ArrayList<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>();
+                listOfKeysCurrentlyEvaluatingTracebackFor.add(currentlyEvaluatingTracebackFor);
+                currentlyEvaluatingTracebackFor = null;
+                listOfKeysCurrentlyEvaluatingTracebackFor.add(key);
+            }
+        }
     }
 
     /**

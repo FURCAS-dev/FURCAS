@@ -180,6 +180,16 @@ public class InstanceScopeAnalysis {
         } else {
             resultCollection = new HashSet<EObject>();
         }
+        TracebackCache cacheForNavigationSteps;
+        de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cacheForTracebackSteps;
+        if (configuration.isTracebackStepISAActive()) {
+            cacheForTracebackSteps = new de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache(
+                    configuration, tracebackStepCache.getUnusedEvaluationRequestFactory());
+            cacheForNavigationSteps = null;
+        } else {
+            cacheForNavigationSteps = new TracebackCache();
+            cacheForTracebackSteps = null;
+        }
         for (NavigationCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(event)) {
             for (AnnotatedEObject sourceElement : getSourceElement(event, attributeOrAssociationEndCall)) {
                 // TODO contemplate parallel execution of hasNoEffectOnOverallExpression and self which both may take long and we
@@ -188,7 +198,13 @@ public class InstanceScopeAnalysis {
                     if (sourceElement != null) {
                         // the source element may have been deleted already by subsequent events; at this point,
                         // this makes it impossible to trace the change event back to a context; all we have is
-                        for (AnnotatedEObject r : self(attributeOrAssociationEndCall, sourceElement, getContext(), event)) {
+                        Iterable<AnnotatedEObject> selfCandidates;
+                        if (configuration.isTracebackStepISAActive()) {
+                            selfCandidates = selfWithTracebackSteps(attributeOrAssociationEndCall, sourceElement, context, event, cacheForTracebackSteps);
+                        } else {
+                            selfCandidates = selfWithNavigationSteps(attributeOrAssociationEndCall, sourceElement, context, event, cacheForNavigationSteps);
+                        }
+                        for (AnnotatedEObject r : selfCandidates) {
                             resultCollection.add(r.getAnnotatedObject());
                         }
                     }
@@ -515,26 +531,46 @@ public class InstanceScopeAnalysis {
      * estimate which means that for some elements of the result set, when used as element for the global <tt>self</tt> variable,
      * the source expression may not necessarily evaluate to <tt>sourceElement</tt>. However, there are no other {@link RefObject}
      * elements that are not part of the result and for which the source expression evaluates to <tt>sourceElement</tt>. This
-     * means, all contexts for which the source expression evaluates to <tt>sourceElement</tt> are guaranteed to be found.
+     * means, all contexts for which the source expression evaluates to <tt>sourceElement</tt> are guaranteed to be found.<p>
+     *
+     * This implementation variant uses {@link TracebackStep}s.
+     * 
      * @param context
      *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
      *            defines the type for <tt>self</tt> if used outside of operation bodies.
      */
-    private Iterable<AnnotatedEObject> self(NavigationCallExp attributeOrAssociationEndCall, AnnotatedEObject sourceElement,
-            EClass context, Notification changeEvent) {
+    private Iterable<AnnotatedEObject> selfWithNavigationSteps(NavigationCallExp attributeOrAssociationEndCall,
+            AnnotatedEObject sourceElement, EClass context, Notification changeEvent, TracebackCache cache) {
         Iterable<AnnotatedEObject> result;
-        if (configuration.isTracebackStepISAActive()) {
-            TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
-            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cache = new de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache(
-                    configuration, tracebackStepCache.getUnusedEvaluationRequestFactory());
-            result = step.traceback(sourceElement, /* pending unused evaluation requests */ null, cache, changeEvent);
-        } else {
-            NavigationStep step = getNavigationStepsToSelfForExpression(
-                    (OCLExpression) attributeOrAssociationEndCall.getSource(), context);
-            Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
-            TracebackCache cache = new TracebackCache();
-            result = step.navigate(sourceElementAsSet, cache, changeEvent);
-        }
+        NavigationStep step = getNavigationStepsToSelfForExpression(
+                (OCLExpression) attributeOrAssociationEndCall.getSource(), context);
+        Set<AnnotatedEObject> sourceElementAsSet = Collections.singleton(sourceElement);
+        result = step.navigate(sourceElementAsSet, cache, changeEvent);
+        return result;
+    }
+
+    /**
+     * For attribute call expressions or association end call expressions determines for which context elements used for the
+     * global <tt>self</tt> (not to confuse with the <tt>self</tt> value that applies for an operation body and which is set to
+     * the value of the source expression on which the operation is invoked) the property call's
+     * {@link ModelPropertyCallExp#getSource() source expression} may evaluate to <tt>sourceElement</tt>. This is a conservative
+     * estimate which means that for some elements of the result set, when used as element for the global <tt>self</tt> variable,
+     * the source expression may not necessarily evaluate to <tt>sourceElement</tt>. However, there are no other {@link RefObject}
+     * elements that are not part of the result and for which the source expression evaluates to <tt>sourceElement</tt>. This
+     * means, all contexts for which the source expression evaluates to <tt>sourceElement</tt> are guaranteed to be found.<p>
+     *
+     * This implementation variant uses {@link NavigationStep}s.
+     * 
+     * @param context
+     *            the overall context for the entire expression of which <tt>exp</tt> is a subexpression; this context type
+     *            defines the type for <tt>self</tt> if used outside of operation bodies.
+     */
+    private Iterable<AnnotatedEObject> selfWithTracebackSteps(NavigationCallExp attributeOrAssociationEndCall,
+            AnnotatedEObject sourceElement, EClass context, Notification changeEvent,
+            de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache cache) {
+        Iterable<AnnotatedEObject> result;
+        TracebackStep step = getTracebackStepForExpression((OCLExpression) attributeOrAssociationEndCall.getSource(), context);
+        result = step.traceback(sourceElement, /* pending unused evaluation requests */ null, cache, changeEvent);
         return result;
     }
 }
