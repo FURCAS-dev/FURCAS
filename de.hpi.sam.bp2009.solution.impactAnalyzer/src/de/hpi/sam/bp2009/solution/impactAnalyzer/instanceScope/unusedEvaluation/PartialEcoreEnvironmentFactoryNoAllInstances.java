@@ -25,6 +25,14 @@ import com.sap.emf.ocl.hiddenopposites.OppositeEndFinder;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.PartialEcoreEnvironmentFactory;
 
+/**
+ * Uses {@link PartialEvaluationVisitorImplNoAllInstances} as evaluation visitor which throws a
+ * {@link NoAllInstancesDuringEvaluationForUnusedCheck} exception in case <code>allInstances()</code>
+ * is to be evaluated.
+ * 
+ * @author Axel Uhl (D043530)
+ *
+ */
 public class PartialEcoreEnvironmentFactoryNoAllInstances extends PartialEcoreEnvironmentFactory {
     /**
      * Uses a {@link DefaultOppositeEndFinder} for querying hidden opposites
@@ -64,7 +72,7 @@ public class PartialEcoreEnvironmentFactoryNoAllInstances extends PartialEcoreEn
      * source expression special anymore. This prevents incorrect use of the cached value during
      * recursions.
      */
-    public EvaluationVisitor<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> createEvaluationVisitor(
+    public PartialEvaluationVisitorImplNoAllInstances createEvaluationVisitor(
             Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> env,
             EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> evalEnv,
             Map<? extends EClass, ? extends Set<? extends EObject>> extentMap) {
