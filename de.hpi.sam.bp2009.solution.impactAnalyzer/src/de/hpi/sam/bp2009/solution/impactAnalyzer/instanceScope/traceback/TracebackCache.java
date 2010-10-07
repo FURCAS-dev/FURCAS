@@ -1,7 +1,6 @@
 package de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,7 +19,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSetFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Pair;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.Tuple.Triple;
 
 /**
@@ -89,13 +87,6 @@ public class TracebackCache {
     
     private final ActivationOption configuration;
     
-    /**
-     * To avoid endless recursions, a step remembers for which combinations of <code>source</code> objects and
-     * {@link UnusedEvaluationRequestSet}s it is currently executing. If any of those combinations is to be evaluated
-     * again while already being evaluated by the current thread, an empty set is returned.
-     */
-    private final Map<TracebackStep, Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>> currentlyEvaluatingTracebackFor;
-
     private final UnusedEvaluationRequestFactory unusedEvaluationRequestFactory;
     
     private final OperationCallExpKeyedSetFactory operationCallExpKeyedSetFactory;
@@ -105,32 +96,7 @@ public class TracebackCache {
         unusedEvaluationCache = new HashMap<UnusedEvaluationRequest, Object>();
         this.configuration = configuration;
         this.unusedEvaluationRequestFactory = unusedEvaluationRequestFactory;
-        currentlyEvaluatingTracebackFor = new HashMap<TracebackStep, Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>>();
         operationCallExpKeyedSetFactory = new OperationCallExpKeyedSetFactory(configuration.isOperationCallSelectionActive());
-    }
-    
-    public boolean isCurrentlyEvaluatingFor(TracebackStep step, Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key) {
-        Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>> set = currentlyEvaluatingTracebackFor.get(step);
-        return set != null && set.contains(key);
-    }
-    
-    public void startEvaluationFor(TracebackStep step, Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key) {
-        Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>> set = currentlyEvaluatingTracebackFor.get(step);
-        if (set == null) {
-            set = new HashSet<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>>();
-            currentlyEvaluatingTracebackFor.put(step, set);
-        }
-        set.add(key);
-    }
-    
-    public void finishedEvaluationFor(TracebackStep step, Pair<AnnotatedEObject, UnusedEvaluationRequestSet> key) {
-        Set<Pair<AnnotatedEObject, UnusedEvaluationRequestSet>> set = currentlyEvaluatingTracebackFor.get(step);
-        if (set != null) {
-            set.remove(key);
-            if (set.isEmpty()) {
-                currentlyEvaluatingTracebackFor.remove(step);
-            }
-        }
     }
     
     public ActivationOption getConfiguration() {

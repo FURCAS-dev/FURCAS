@@ -740,4 +740,16 @@ public class PartialEvaluationVisitorImpl
         }
     }
 
+    protected org.eclipse.ocl.ecore.OCLExpression getSourceExpression() {
+        return sourceExpression;
+    }
+
+    protected void setSourceExpression(org.eclipse.ocl.ecore.OCLExpression sourceExpression) {
+        this.sourceExpression = sourceExpression;
+    }
+
+    protected Object getValueOfSourceExpression() {
+        return valueOfSourceExpression;
+    }
+
 }

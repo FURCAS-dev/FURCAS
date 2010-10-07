@@ -53,13 +53,16 @@ public class PartialEvaluator {
      * the model based on its current state.
      */
     public PartialEvaluator() {
-        factory = new PartialEcoreEnvironmentFactory();
+        this(new PartialEcoreEnvironmentFactory());
+    }
+    
+    protected PartialEvaluator(PartialEcoreEnvironmentFactory factory) {
+        this.factory = factory;
         initOcl();
     }
 
     public PartialEvaluator(OppositeEndFinder oppositeEndFinder) {
-        factory = new PartialEcoreEnvironmentFactory(oppositeEndFinder);
-        initOcl();
+        this(new PartialEcoreEnvironmentFactory(oppositeEndFinder));
     }
 
     /**
@@ -71,8 +74,7 @@ public class PartialEvaluator {
      * A {@link DefaultOppositeEndFinder} is used for hidden opposite navigation.
      */
     public PartialEvaluator(Notification atPre) {
-        factory = new PartialEcoreEnvironmentFactory(atPre);
-        initOcl();
+        this(new PartialEcoreEnvironmentFactory(atPre));
     }
     
     /**
@@ -82,8 +84,7 @@ public class PartialEvaluator {
      * then <tt>e2</tt> will show in the results although in the current version of the model it would not.<p>
      */
     public PartialEvaluator(Notification atPre, OppositeEndFinder oppositeEndFinder) {
-        factory = new PartialEcoreEnvironmentFactory(atPre, oppositeEndFinder);
-        initOcl();
+        this(new PartialEcoreEnvironmentFactory(atPre, oppositeEndFinder));
     }
     
     private void initOcl() {

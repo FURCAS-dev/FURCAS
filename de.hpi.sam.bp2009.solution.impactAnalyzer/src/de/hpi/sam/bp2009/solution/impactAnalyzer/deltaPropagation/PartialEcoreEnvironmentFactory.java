@@ -105,4 +105,24 @@ public class PartialEcoreEnvironmentFactory extends EcoreEnvironmentFactoryWithH
         this.sourceExpression = sourceExpression;
         this.valueOfSourceExpression = valueOfSourceExpression;
     }
+
+    protected Object getValueOfSourceExpression() {
+        return valueOfSourceExpression;
+    }
+
+    protected OCLExpression getSourceExpression() {
+        return sourceExpression;
+    }
+
+    protected void setSourceExpression(OCLExpression sourceExpression) {
+        this.sourceExpression = sourceExpression;
+    }
+
+    protected void setValueOfSourceExpression(Object valueOfSourceExpression) {
+        this.valueOfSourceExpression = valueOfSourceExpression;
+    }
+
+    protected Notification getAtPre() {
+        return atPre;
+    }
 }
