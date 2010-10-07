@@ -204,6 +204,8 @@ public class UnusedEvaluationRequest {
      */
     public boolean evaluate(OppositeEndFinder oppositeEndFinder) throws ValueNotFoundException {
         checkValuePresendForAllRequiredVariables();
+        // use an evaluator that doesn't even try to perform an allInstances() call because it likely would
+        // cost more than it saves
         PartialEvaluatorNoAllInstances evaluator = new PartialEvaluatorNoAllInstances(oppositeEndFinder);
         EvaluationEnvironment<EClassifier, EOperation, EStructuralFeature, EClass, EObject> env = evaluator.getOcl()
                 .getEvaluationEnvironment();

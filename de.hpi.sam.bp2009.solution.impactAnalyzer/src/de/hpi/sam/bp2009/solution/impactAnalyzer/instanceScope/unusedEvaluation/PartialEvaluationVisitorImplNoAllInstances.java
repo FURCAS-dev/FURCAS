@@ -17,7 +17,6 @@ import org.eclipse.ocl.AbstractEvaluationVisitor;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationHaltedException;
-import org.eclipse.ocl.ecore.CallExp;
 import org.eclipse.ocl.ecore.CallOperationAction;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ocl.ecore.SendSignalAction;
@@ -30,20 +29,9 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.deltaPropagation.ValueNotFoundE
 import de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPlugin;
 
 /**
- * When a {@link ValueNotFoundException} occurs during evaluating an expression, it is not caught, logged and swallowed but
- * forwarded to the caller.
- * <p>
- * 
- * All <tt>visit...</tt> operations check if the expression to evaluate is the {@link #sourceExpression} passed to the
- * constructor. If so, instead of actually evaluating the expression, the {@link #valueOfSourceExpression} object is returned
- * which was also passed to the constructor. This allows for partial evaluation of any {@link CallExp} with a given value for the
- * source expression.
- * <p>
- * 
- * When the {@link #sourceExpression} has once been evaluated it is nulled out so that when due to recursion it is
- * evaluated again, evaluation is based on the current environment and not on the cached {@link #valueOfSourceExpression}.
- * Without this it could happen that, e.g., the value for a <tt>self</tt> {@link org.eclipse.ocl.ecore.VariableExp} is
- * cached but would have to have a different value upon recursive evaluation.
+ * In addition to throwing a {@link ValueNotFoundException} as already done by the superclass,
+ * this implementation also throws a {@link NoAllInstancesDuringEvaluationForUnusedCheck} exception
+ * in case an <code>allInstances()</code> call is to be evaluated.
  * 
  * @author Axel Uhl
  * 
