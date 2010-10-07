@@ -82,19 +82,10 @@ public class NgpmModelBasedOclIaTest extends TestCase {
             @Override
             public void notifyChanged(Notification msg) {
                 Collection<EObject> impact = ia.getContextObjects(msg);
-                if (OptimizationActivation.getOption().isTracebackStepISAActive()
-                        && OptimizationActivation.getOption().isUnusedDetectionActive()) {
-                    result[0] = impact.size() == 0;
-                    if (!result[0]) {
-                        System.err.println("Expected unused check to find out that change has no impact but IA said "
-                                + impact.size() + " objects were impacted");
-                    }
-                } else {
-                    result[0] = impact.size() == 2; // String and the formal type parameter "T extends String" in the generics
-                                                    // test
-                    if (!result[0]) {
-                        System.err.println("Expected two impacted classes (String and T) but found " + impact.size());
-                    }
+                result[0] = impact.size() == 0;
+                if (!result[0]) {
+                    System.err.println("Expected unused check to find out that change has no impact but IA said " + impact.size()
+                            + " objects were impacted");
                 }
             }
         });

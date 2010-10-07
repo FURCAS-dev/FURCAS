@@ -25,7 +25,7 @@ public class ModelCloner {
 		List<Resource> cloneList = new ArrayList<Resource>(amountOfClones);
 		
 		for(int i=0; i < amountOfClones; i++){
-			cloneList.add(cloneResource(resourceToClone, String.valueOf(i), false));
+			cloneList.add(cloneResource(resourceToClone, String.valueOf(i)));
 		}
 		
 		assert(cloneList.size() == amountOfClones);
@@ -34,10 +34,6 @@ public class ModelCloner {
 	}
 	
 	public static Resource cloneResource(Resource resourceToClone, String cloneId){
-		return cloneResource(resourceToClone, cloneId, true);
-	}
-	
-	public static Resource cloneResource(Resource resourceToClone, String cloneId, boolean overwriteFirstId){
 		int resourceSize = 0;
 		TreeIterator<EObject> iterator = resourceToClone.getAllContents();
 		while (iterator.hasNext()) {
@@ -86,6 +82,9 @@ public class ModelCloner {
 			while (iterator.hasNext()) {
 				EObject next = iterator.next();
 				EObject nextClone = cloneIterator.next();
+				if (next.eClass() != nextClone.eClass()) {
+				    throw new RuntimeException("Something went wrong with the iteration order between original and clone");
+				}
 				((XMLResource) clone).setID(nextClone,
 						((XMLResource) resourceToClone).getID(next));
 			}

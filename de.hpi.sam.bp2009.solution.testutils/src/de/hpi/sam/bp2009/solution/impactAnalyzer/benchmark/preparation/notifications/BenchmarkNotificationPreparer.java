@@ -31,10 +31,8 @@ public class BenchmarkNotificationPreparer {
         }
 	for(Resource model : resources){
 	    System.out.println("\t\t\tCreate notifications for resource: " + model.getURI().toString());
-
 	    Collection<RawNotification> notiList = new RealWorldReplayNotificationProducer().produce(eventTraceFixturePath);
 	    System.out.println("\t\t\t\t " + notiList.size() + " created");
-
 	    result.add(new NotificationForModelList(model, (List<RawNotification>)notiList));
 	}
 
