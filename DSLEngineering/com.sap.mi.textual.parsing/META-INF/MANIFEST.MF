@@ -6,11 +6,21 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: 
  bin/,
  .
+<<<<<<< HEAD
 Require-Bundle: org.antlr;bundle-version="3.1.1",
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.textblocks,
  org.eclipse.core.runtime,
  com.sap.furcas.runtime.tcs
+=======
+Require-Bundle: org.eclipse.core.resources;bundle-version="3.4.2",
+ org.eclipse.emf.ecore;bundle-version="2.6.0",
+ org.eclipse.emf.query2;bundle-version="1.0.0",
+ org.eclipse.emf.query.index;bundle-version="1.0.0",
+ org.antlr;bundle-version="3.1.1",
+ com.sap.furcas.metamodel;bundle-version="1.0.0",
+ com.sap.furcas.textual
+>>>>>>> 4e76b43977093d48643328f1ac6eae123e11cb58
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: com.sap.furcas.runtime.parser;
   uses:="org.eclipse.emf.ecore.resource,
