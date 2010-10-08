@@ -7,9 +7,9 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import tcs.AndExp;
-import tcs.AtomExp;
-import tcs.ConditionalElement;
+import com.sap.furcas.metamodel.TCS.AndExp;
+import com.sap.furcas.metamodel.TCS.AtomExp;
+import com.sap.furcas.metamodel.TCS.ConditionalElement;
 
 /**
  *

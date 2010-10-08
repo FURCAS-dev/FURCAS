@@ -2,10 +2,10 @@ package com.sap.ide.cts.parser.incremental.antlr;
 
 import org.antlr.runtime.Lexer;
 
+import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.ide.cts.parser.incremental.IncrementalLexer;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
 
 public abstract class ANTLRParserFactory<P extends ObservableInjectingParser,
 	L extends Lexer> implements ParserFactory<P, L> {

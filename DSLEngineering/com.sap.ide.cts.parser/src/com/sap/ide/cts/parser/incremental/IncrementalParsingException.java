@@ -1,6 +1,6 @@
 package com.sap.ide.cts.parser.incremental;
 
-import com.sap.mi.textual.grammar.exceptions.DeferredModelElementCreationException;
+import com.sap.furcas.runtime.common.exceptions.DeferredModelElementCreationException;
 
 public class IncrementalParsingException extends RuntimeException {
 

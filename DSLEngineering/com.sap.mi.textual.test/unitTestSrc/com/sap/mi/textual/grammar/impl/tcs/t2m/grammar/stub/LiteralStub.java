@@ -5,11 +5,10 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
 import java.util.List;
 
-import tcs.Literal;
-import tcs.LiteralRef;
-import tcs.Operator;
-import tcs.SpaceKind;
-import tcs.Symbol;
+import com.sap.furcas.metamodel.TCS.Literal;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
+import com.sap.furcas.metamodel.TCS.SpaceKind;
+import com.sap.furcas.metamodel.TCS.Symbol;
 
 /**
  *

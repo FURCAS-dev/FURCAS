@@ -16,9 +16,9 @@ import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import com.sap.furcas.builder.ProjectSyntaxHelper;
 import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
-import com.sap.mi.textual.epi.util.ProjectSyntaxHelper;
-import com.sap.mi.textual.grammar.ParserFacade;
+import com.sap.furcas.runtime.parser.ParserFacade;
 
 
 public class TcsTestHelper {

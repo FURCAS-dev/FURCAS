@@ -15,8 +15,8 @@ import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
-import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 public class TCSParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "LPAREN", "RPAREN", "EQ", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "SHARP", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'keywords'", "'mode'", "'auto'", "'importContext'", "'refersTo'", "'multiLine'", "'endNL'", "'forcedLower'", "'nonPrimary'", "'esc'", "'function'", "'storeOpTo'", "'abstract'", "'separator'", "'postfix'", "'false'", "'createAs'", "'token'", "'nbNL'", "'right'", "'instanceOf'", "'symbols'", "'as'", "'startNbNL'", "'query'", "'startNL'", "'partial'", "'start'", "'never'", "'createIn'", "'deep'", "'hex'", "'drop'", "'rightNone'", "'storeRightTo'", "'endOfLine'", "'and'", "'true'", "'forcedUpper'", "'context'", "'main'", "'enumerationTemplate'", "'autoCreate'", "'indentIncr'", "'word'", "'prefix'", "'referenceOnly'", "'part'", "'rightSpace'", "'ifmissing'", "'template'", "'omitted'", "'left'", "'lexer'", "'source'", "'disambiguateV3'", "'disambiguate'", "'lookIn'", "'leftNone'", "'serializer'", "'syntax'", "'k'", "'foreach'", "'value'", "'end'", "'multi'", "'default'", "'addToContext'", "'for'", "'invert'", "'priority'", "'filter'", "'isDefined'", "'primitiveTemplate'", "'operatorTemplate'", "'when'", "'octal'", "'always'", "'one'", "'leftSpace'", "'all'", "'operators'", "'orKeyword'", "'operatored'", "'using'"

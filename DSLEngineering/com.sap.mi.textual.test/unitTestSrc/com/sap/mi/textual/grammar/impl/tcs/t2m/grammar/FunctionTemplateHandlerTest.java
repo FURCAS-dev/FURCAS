@@ -11,13 +11,15 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.FunctionTemplateHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyBufferFactory;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.FunctionProductionRule;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.RuleBufferFactoryStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.FunctionProductionRule;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.FunctionTemplateStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceStub;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 import com.sap.mi.textual.test.util.StringListHelper;
 
 /**

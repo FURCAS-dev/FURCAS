@@ -6,11 +6,10 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcs.LocatedElement;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.BlockTypeHandler;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer;
+import com.sap.furcas.metamodel.TCS.LocatedElement;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.BlockTypeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 
 /**
  *

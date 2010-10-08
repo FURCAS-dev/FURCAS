@@ -5,10 +5,8 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
 import java.util.Collection;
 
-import tcs.OrPattern;
-import tcs.SimplePattern;
-
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.OrPattern;
+import com.sap.furcas.metamodel.TCS.SimplePattern;
 
 /**
  *

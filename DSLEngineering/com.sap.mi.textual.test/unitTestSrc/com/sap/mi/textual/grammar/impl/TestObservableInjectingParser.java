@@ -16,11 +16,12 @@ import org.antlr.runtime.RecognizerSharedState;
 import org.antlr.runtime.TokenStream;
 import org.junit.Test;
 
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.impl.context.AmbiguousLookupException;
-import com.sap.mi.textual.grammar.impl.context.ContextManager;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.parser.impl.context.AmbiguousLookupException;
+import com.sap.furcas.runtime.parser.impl.context.ContextManager;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.StubTokenStream;
 import com.sap.mi.textual.test.util.StringListHelper;
 

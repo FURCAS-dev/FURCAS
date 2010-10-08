@@ -6,9 +6,7 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import tcs.ContextTags;
-
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.ContextTags;
 
 /**
  *

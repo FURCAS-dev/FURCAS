@@ -24,17 +24,17 @@ import com.sap.furcas.metamodel.TCS.SequenceElement;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.furcas.textual.textblocks.TbVersionUtil;
+import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
+import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
+import com.sap.furcas.runtime.textblocks.TbVersionUtil;
 import com.sap.ide.cts.parser.Activator;
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.grammar.impl.ModelElementProxy;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
-import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
 
 public class ReferenceHandlerImpl implements ReferenceHandler {
 

@@ -3,11 +3,7 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import tcs.Sequence;
-import tcs.SequenceElement;
-import tcs.Template;
-
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
 
 /**
  * Stub for the superClass of all concrete SequenceElements. Is abstract in the real metamodel.

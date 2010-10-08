@@ -1,10 +1,5 @@
 package com.sap.ide.cts.parser.incremental;
 
-import static com.sap.furcas.textual.textblocks.TbMarkingUtil.isEOS;
-import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getSubNodeAt;
-import static com.sap.furcas.textual.textblocks.TbNavigationUtil.getSubNodesSize;
-import static com.sap.furcas.textual.textblocks.TbNavigationUtil.nextToken;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -15,51 +10,31 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import tcs.ClassTemplate;
-import tcs.OperatorTemplate;
-import tcs.Property;
-import textblockdefinition.TextBlockDefinition;
-import textblocks.AbstractToken;
-import textblocks.DocumentNode;
-import textblocks.Eostoken;
-import textblocks.OmittedToken;
-import textblocks.TextBlock;
-import textblocks.VersionEnum;
-
-import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
-import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
-import com.sap.furcas.textual.tcs.MetaModelElementResolutionHelper;
-import com.sap.furcas.textual.tcs.SyntaxLookup;
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbChangeUtil;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.furcas.textual.textblocks.TbVersionUtil;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.textblocks.DocumentNode;
+import com.sap.furcas.metamodel.textblocks.Eostoken;
+import com.sap.furcas.metamodel.textblocks.OmittedToken;
+import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parsergenerator.emf.MoinMetaLookup;
+import com.sap.furcas.parsergenerator.emf.util.TemplateNamingHelper;
+import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.parsing.textblocks.ModelElementFromTextBlocksFactory;
+import com.sap.furcas.parsing.textblocks.TextBlockFactory;
+import com.sap.furcas.parsing.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
+import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.ReuseType;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategy.TbBean;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalTokenStream;
 import com.sap.ide.cts.parser.incremental.util.ITarjanTreeContentProvider;
 import com.sap.ide.cts.parser.incremental.util.TarjansLCA;
 import com.sap.ide.cts.parser.incremental.util.TarjansLCA.Node;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.grammar.impl.ParsingError;
-import com.sap.mi.textual.moinlookup.MoinMetaLookup;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
-import com.sap.mi.textual.parsing.textblocks.ModelElementFromTextBlocksFactory;
-import com.sap.mi.textual.parsing.textblocks.TextBlockFactory;
-import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
-import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
-import com.sap.mi.textual.parsing.textblocks.observer.TokenRelocationUtil;
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.tst.ParsingError;
 
 public class IncrementalParser extends IncrementalRecognizer {
 

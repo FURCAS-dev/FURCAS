@@ -97,7 +97,7 @@ public abstract class ProjectConnectionBasedTest {
 			try {
 				prj.refreshLocal(IResource.DEPTH_INFINITE, new SubProgressMonitor(monitor, 10));
 				// force a full refresh 
-				ModelManager.getInstance().refreshFromFileSystem(mProject, new SubProgressMonitor(monitor, 10));
+//				ModelManager.getInstance().refreshFromFileSystem(mProject, new SubProgressMonitor(monitor, 10));
 			} catch (CoreException e) {
 				fail("Failed to refresh project");
 			}

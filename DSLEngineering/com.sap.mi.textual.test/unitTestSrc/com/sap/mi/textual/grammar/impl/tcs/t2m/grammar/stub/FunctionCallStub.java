@@ -3,8 +3,8 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import tcs.FunctionCall;
-import tcs.FunctionTemplate;
+import com.sap.furcas.metamodel.TCS.FunctionCall;
+import com.sap.furcas.metamodel.TCS.FunctionTemplate;
 
 /**
  *

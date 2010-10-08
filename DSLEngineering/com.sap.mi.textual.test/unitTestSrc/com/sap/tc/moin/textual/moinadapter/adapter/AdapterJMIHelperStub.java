@@ -7,15 +7,8 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 
 /**
  *

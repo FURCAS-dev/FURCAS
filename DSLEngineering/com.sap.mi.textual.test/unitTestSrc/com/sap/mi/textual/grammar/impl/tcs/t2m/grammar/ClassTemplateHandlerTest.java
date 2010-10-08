@@ -15,13 +15,17 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.ClassTemplate;
-import tcs.Priority;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.textual.tcs.SyntaxLookup;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ClassTemplateHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyBufferFactory;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.ClassProductionRule;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.runtime.tcs.SyntaxLookup;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
@@ -29,14 +33,11 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.OperatorHandl
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.RuleBufferFactoryStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.SyntaxLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.ClassProductionRule;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.ClassTemplateStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorListStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorTemplateStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PriorityStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceStub;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 import com.sap.mi.textual.test.util.ResolutionBeanHelper;
 import com.sap.mi.textual.test.util.StringListHelper;
 

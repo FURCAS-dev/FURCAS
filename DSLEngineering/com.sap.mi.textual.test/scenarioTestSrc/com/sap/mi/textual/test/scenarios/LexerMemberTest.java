@@ -5,9 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.grammar.ModelParsingResult;
 import com.sap.mi.textual.test.util.EcoreMetaLookUp;
 import com.sap.mi.textual.test.util.StubModelAdapter;
 

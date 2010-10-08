@@ -1,5 +1,5 @@
 /*******************************************************************************
-*
+ *
  *******************************************************************************/
 package com.sap.mi.textual.epi.projectwizard;
 
@@ -21,98 +21,88 @@ import org.eclipse.ui.progress.UIJob;
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.conf.IProjectMetaRefConf;
 
-
 public class TCSProjectsWizard extends Wizard implements INewWizard {
 
-	private TCSProjectsWizardPage page;
-
-	private ISelection selection;
-
+    private TCSProjectsWizardPage page;
+    private ISelection selection;
     private TCSProjectsWizardMetaModelPage page2;
 
-	public TCSProjectsWizard() {
-		super();
-		setNeedsProgressMonitor(true);
-	}
+    public TCSProjectsWizard() {
+	super();
+	setNeedsProgressMonitor(true);
+    }
 
-	@Override
-	public void addPages() {
-		page = new TCSProjectsWizardPage(selection);
-		addPage(page);
-		
-		page2 = new TCSProjectsWizardMetaModelPage(selection);
-        addPage(page2);
+    @Override
+    public void addPages() {
+	page = new TCSProjectsWizardPage(selection);
+	addPage(page);
 
-//      throw new UnsupportedOperationException("Project Wizard does not work yet."); 
-	}
+	page2 = new TCSProjectsWizardMetaModelPage(selection);
+	addPage(page2);
+    }
 
-	@Override
-	public boolean performFinish() {
-	    final ProjectInfo pi = page.getProjectInfo();
+    @Override
+    public boolean performFinish() {
+	final ProjectInfo pi = page.getProjectInfo();
 
-	    if (page2.isValidSelection()) {
+	if (page2.isValidSelection()) {
 
-	        IRunnableWithProgress op = new IRunnableWithProgress() {
-	            public void run(IProgressMonitor monitor) throws InvocationTargetException {
-	                try {
-	                   
-	                    
-	                    doFinish(pi, monitor);
-	                    
+	    IRunnableWithProgress op = new IRunnableWithProgress() {
+		@Override
+		public void run(IProgressMonitor monitor) throws InvocationTargetException {
+		    try {
 
-	                } finally {
-	                    monitor.done();
-	                }
-	            }
-	        };
+			doFinish(pi, monitor);
 
-	        try {
-	            getContainer().run(true, false, op);
-	        } catch (InterruptedException e) {
-	            return false;
-	        } catch (InvocationTargetException e) {
-	            Throwable realException = e.getTargetException();
-	            MessageDialog.openError(getShell(), "Error", realException.getMessage());
-	            return false;
-	        }
-	        return true;
-	    } else {
-	        return false;
+		    } finally {
+			monitor.done();
+		    }
+		}
+	    };
+
+	    try {
+		getContainer().run(true, false, op);
+	    } catch (InterruptedException e) {
+		return false;
+	    } catch (InvocationTargetException e) {
+		Throwable realException = e.getTargetException();
+		MessageDialog.openError(getShell(), "Error", realException.getMessage());
+		return false;
 	    }
+	    return true;
+	} else {
+	    return false;
 	}
+    }
 
-	void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
-	    new UIJob("creating Xtext projects...") {
-			@Override
-			public IStatus runInUIThread(IProgressMonitor monitor) {
-				try {
-				    IProjectMetaRefConf conf = page2.getCurrentlySelectedMMConf();
-				    new ProjectCreator(pi, conf, getShell()).run(monitor);
-					
-				      
-                  
-					
-				} catch (InvocationTargetException e) {
-					Activator.logError(e);
-				} catch (InterruptedException e) {
-				    Activator.logError(e);
-				}
-				return Status.OK_STATUS;
-			}
+    void doFinish(final ProjectInfo pi, IProgressMonitor monitor) {
+	new UIJob("creating FURCAS projects...") {
+	    @Override
+	    public IStatus runInUIThread(IProgressMonitor monitor) {
+		try {
+		    IProjectMetaRefConf conf = page2.getCurrentlySelectedMMConf();
+		    new ProjectCreator(pi, conf, getShell()).run(monitor);
 
-		}.schedule();
+		} catch (InvocationTargetException e) {
+		    Activator.logger.logError("", e);
+		} catch (InterruptedException e) {
+		    Activator.logger.logError("", e);
+		}
+		return Status.OK_STATUS;
+	    }
 
-	}
+	}.schedule();
 
+    }
 
-
-	/**
-	 * We will accept the selection in the workbench to see if we can initialize
-	 * from it.
-	 *
-	 * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
-	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		this.selection = selection;
-	}
+    /**
+     * We will accept the selection in the workbench to see if we can initialize
+     * from it.
+     * 
+     * @see IWorkbenchWizard#init(IWorkbench, IStructuredSelection)
+     */
+    @Override
+    public void init(IWorkbench workbench, IStructuredSelection selection) {
+	this.selection = selection;
+    }
 }

@@ -10,10 +10,11 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
+import com.sap.furcas.utils.exceptions.EclipseExceptionHelper;
+import com.sap.furcas.utils.projects.ReferenceScopeBean;
 import com.sap.mi.textual.epi.Activator;
 import com.sap.mi.textual.epi.Constants;
 import com.sap.mi.textual.epi.builder.BuildHelper;
-import com.sap.mi.textual.epi.util.ExceptionHelper;
 
 
 
@@ -23,8 +24,6 @@ import com.sap.mi.textual.epi.util.ExceptionHelper;
  * @author C5107456
  */
 public final class DeployedMetaProjectConf implements IProjectMetaRefConf {
-
-
 
 
 	/** The meta info. */
@@ -108,7 +107,7 @@ public final class DeployedMetaProjectConf implements IProjectMetaRefConf {
 			IProject project) throws CoreException {
 		String containerName = ProjectPropertiesStorageHelper.getProperty(project, Constants.DEPLOYED_METAMODEL_CONTAINER_NAME_KEY);
 		if (containerName == null) {
-			throw new CoreException(ExceptionHelper.getErrorStatus("Container name not configured for DSL Nature in project " + project.getName()));
+			throw new CoreException(EclipseExceptionHelper.getErrorStatus("Container name not configured for DSL Nature in project " + project.getName(),  Activator.PLUGIN_ID));
 		}
 //		MetaModelInfo metaInfo = MoinIntegrationHelper.getMetaModelInfo(containerName);
 //		if (metaInfo == null) {

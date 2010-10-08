@@ -5,8 +5,7 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
 import java.util.List;
 
-import tcs.OperatorList;
-import tcs.Priority;
+import com.sap.furcas.metamodel.TCS.OperatorList;
 
 /**
  *

@@ -3,9 +3,7 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import tcs.PropertyReference;
-
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
 
 /**
  *

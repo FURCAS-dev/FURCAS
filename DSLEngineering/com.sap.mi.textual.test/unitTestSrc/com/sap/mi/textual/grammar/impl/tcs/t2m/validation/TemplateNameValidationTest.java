@@ -8,7 +8,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.SemanticErrorBucket;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
+import com.sap.furcas.parsergenerator.tcs.t2m.validation.TemplateNameValidation;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.ClassTemplateStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.ConcreteSyntaxStub;

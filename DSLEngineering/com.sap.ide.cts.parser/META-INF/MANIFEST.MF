@@ -7,11 +7,13 @@ Bundle-Activator: com.sap.ide.cts.parser.Activator
 Require-Bundle: com.sap.furcas.metamodel,
  org.antlr,
  org.eclipse.core.runtime,
- com.sap.mi.textual.common,
- com.sap.mi.textual.parsing,
+ com.sap.furcas.runtime.parser,
  com.sap.mi.textual.parsing.textblocks,
- com.sap.mi.textual.ecorelookup,
- com.sap.mi.textual.tcs.util
+ com.sap.furcas.parsergenerator.emf,
+ com.sap.furcas.runtime.common,
+ com.sap.furcas.runtime.tcs,
+ com.sap.furcas.runtime.textblocks,
+ org.eclipse.emf;bundle-version="2.6.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.ide.cts.parser,
  com.sap.ide.cts.parser.errorhandling,

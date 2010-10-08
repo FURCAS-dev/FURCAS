@@ -4,19 +4,6 @@ import java.util.Set;
 
 import junit.framework.Assert;
 
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
-import com.sap.tc.moin.repository.ocl.freestyle.OclFreestyleRegistry;
-import com.sap.tc.moin.repository.ocl.freestyle.OclInvariantRegistration;
-import com.sap.tc.moin.repository.ocl.freestyle.OclRegistration;
-import com.sap.tc.moin.repository.ocl.notification.DeferredConstraintViolationListener;
-import com.sap.tc.moin.repository.ocl.notification.ImmediateConstraintViolationListener;
-import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
-import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
-
 public class OclFreestyleRegistryStub implements OclFreestyleRegistry {
 	
 	public OclExpressionRegistration expresssionReg;

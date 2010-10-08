@@ -14,6 +14,9 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import com.sap.furcas.runtime.parser.impl.context.Context;
+import com.sap.furcas.runtime.parser.impl.context.ContextIterator;
+
 
 /**
  *

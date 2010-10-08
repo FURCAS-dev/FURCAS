@@ -17,30 +17,17 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import tcs.AsParg;
-import tcs.AutoCreateKind;
-import tcs.AutoCreateKindEnum;
-import tcs.AutoCreateParg;
-import tcs.CreateAsParg;
-import tcs.CreateInParg;
-import tcs.ForcedLowerParg;
-import tcs.ImportContextParg;
-import tcs.LookInParg;
-import tcs.ModeParg;
-import tcs.Property;
-import tcs.PropertyArg;
-import tcs.QueryParg;
-import tcs.RefersToParg;
-import tcs.SeparatorParg;
-import tcs.Sequence;
-import tcs.Template;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
-import com.sap.furcas.textual.common.interfaces.MultiplicityBean;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.PropertyInstanceOfConstraint;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.constraints.PropertyQuantityConstraint;
+import com.sap.furcas.metamodel.TCS.AutoCreateKind;
+import com.sap.furcas.metamodel.TCS.PropertyArg;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.PropertyTypeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints.PropertyInstanceOfConstraint;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.constraints.PropertyQuantityConstraint;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
+import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.RuleBodyStringBufferStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.SyntaxLookupStub;
@@ -50,9 +37,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PrimitiveTemplateStu
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PropertyStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.TemplateStub;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 
 /**
  *

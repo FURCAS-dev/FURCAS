@@ -6,13 +6,11 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcs.Alternative;
-import tcs.Sequence;
-import tcs.SequenceElement;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyBufferFactory;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer;
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.SequenceElement;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyBufferFactory;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceElementStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceStub;
 

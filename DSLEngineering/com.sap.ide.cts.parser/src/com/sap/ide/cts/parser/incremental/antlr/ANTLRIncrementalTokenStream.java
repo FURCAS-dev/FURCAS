@@ -8,9 +8,9 @@ import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Token;
 
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
-import com.sap.furcas.textual.textblocks.TbNavigationUtil;
-import com.sap.furcas.textual.textblocks.TbUtil;
-import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.parsing.textblocks.ITextBlocksTokenStream;
+import com.sap.furcas.runtime.textblocks.TbNavigationUtil;
+import com.sap.furcas.runtime.textblocks.TbUtil;
 
 /**
  * This is an ANTLR specific implementation of a token stream that is used to

@@ -7,8 +7,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.impl.TextLocation;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+import com.sap.furcas.runtime.parser.impl.TextLocation;
 
 /**
  *
@@ -16,7 +16,7 @@ import com.sap.mi.textual.grammar.impl.TextLocation;
 public class TextLocationTest {
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.TextLocation#TextLocation(int, int, int, int)}.
+     * Test method for {@link com.sap.furcas.runtime.parser.impl.TextLocation#TextLocation(int, int, int, int)}.
      */
     @Test
     public void testTextLocationIntIntIntInt() {
@@ -45,7 +45,7 @@ public class TextLocationTest {
 
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.TextLocation#TextLocation(java.lang.String)}.
+     * Test method for {@link com.sap.furcas.runtime.parser.impl.TextLocation#TextLocation(java.lang.String)}.
      */
     @Test
     public void testTextLocationStringNull() {
@@ -61,7 +61,7 @@ public class TextLocationTest {
   
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.TextLocation#TextLocationToString()}.
+     * Test method for {@link com.sap.furcas.runtime.parser.impl.TextLocation#TextLocationToString()}.
      */
     @Test
     public void testTextLocationToString() {

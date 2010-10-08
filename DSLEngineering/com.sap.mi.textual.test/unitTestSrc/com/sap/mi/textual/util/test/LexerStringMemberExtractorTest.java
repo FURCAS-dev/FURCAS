@@ -10,8 +10,8 @@ import java.util.Collections;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.util.LexerStringMemberExtractor;
-import com.sap.mi.textual.util.LexerStringMemberExtractor.InvalidLexerStringException;
+import com.sap.furcas.parsergenerator.util.LexerStringMemberExtractor;
+import com.sap.furcas.parsergenerator.util.LexerStringMemberExtractor.InvalidLexerStringException;
 
 /**
  *

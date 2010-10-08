@@ -3,9 +3,9 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import tcs.EnumLiteralMapping;
-import tcs.EnumLiteralVal;
-import tcs.LiteralRef;
+import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.TCS.EnumLiteralVal;
+import com.sap.furcas.metamodel.TCS.LiteralRef;
 
 /**
  *

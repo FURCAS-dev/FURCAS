@@ -6,11 +6,8 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 import java.util.Collection;
 import java.util.List;
 
-import tcs.Alternative;
-import tcs.Sequence;
-import tcs.SequenceInAlternative;
-
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
 
 /**
  *

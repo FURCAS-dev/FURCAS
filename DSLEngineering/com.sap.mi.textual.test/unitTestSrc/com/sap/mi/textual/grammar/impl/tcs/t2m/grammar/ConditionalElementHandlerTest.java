@@ -12,14 +12,15 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.AtomExp;
-import tcs.EnumLiteralVal;
-import tcs.IntegerVal;
-import tcs.NegativeIntegerVal;
-import tcs.StringVal;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.furcas.metamodel.TCS.AtomExp;
+import com.sap.furcas.metamodel.TCS.EnumLiteralVal;
+import com.sap.furcas.metamodel.TCS.IntegerVal;
+import com.sap.furcas.metamodel.TCS.NegativeIntegerVal;
+import com.sap.furcas.metamodel.TCS.StringVal;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ConditionalElementHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.RuleBodyStringBufferStub;
@@ -37,7 +38,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OneExpStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.TemplateStub;
 import com.sap.mi.textual.test.util.StringListHelper;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 
 /**
  * tests the grammar generatio for conditional elements in the Syntax definition

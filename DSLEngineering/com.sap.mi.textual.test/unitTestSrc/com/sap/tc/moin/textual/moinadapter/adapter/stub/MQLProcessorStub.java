@@ -7,17 +7,6 @@ import static org.junit.Assert.fail;
 
 import java.util.Set;
 
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mql.MQLExecutionException;
-import com.sap.tc.moin.repository.mql.MQLFormatException;
-import com.sap.tc.moin.repository.mql.MQLPreparedQuery;
-import com.sap.tc.moin.repository.mql.MQLPreprocessorException;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLQuery;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
-import com.sap.tc.moin.repository.mql.QueryScopeProvider;
-
 /**
  *
  */

@@ -14,10 +14,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.common.interfaces.IModelElementInvestigator;
-import com.sap.furcas.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.impl.context.ContextManager;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.interfaces.IModelElementInvestigator;
+import com.sap.furcas.runtime.common.interfaces.IModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.ModelElementProxy;
+import com.sap.furcas.runtime.parser.impl.context.ContextManager;
 
 /**
  * tests the ContextManager class.

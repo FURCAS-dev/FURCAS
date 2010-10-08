@@ -5,16 +5,14 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
 import static org.junit.Assert.fail;
 
-import java.util.List;
+import org.eclipse.emf.common.util.EList;
 
-import tcs.ContextTags;
-import tcs.Operator;
-import tcs.OperatorList;
-import tcs.OperatorTemplate;
-import tcs.PropertyReference;
-import tcs.Sequence;
-
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.furcas.metamodel.TCS.ContextTags;
+import com.sap.furcas.metamodel.TCS.Operator;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.PropertyReference;
+import com.sap.furcas.metamodel.TCS.Sequence;
 
 /**
  *
@@ -24,7 +22,7 @@ public class OperatorTemplateStub extends TemplateStub implements OperatorTempla
     public boolean isContext, isDeep, isMain, isAbstract, isOperatored;
     public OperatorList operatorList;
     public boolean referenceOnly;
-    private PropertyReference leftSideRef = null;
+    private final PropertyReference leftSideRef = null;
 
     public boolean isContext() {
         return isContext;
@@ -37,7 +35,8 @@ public class OperatorTemplateStub extends TemplateStub implements OperatorTempla
     /* (non-Javadoc)
      * @see TCS.OperatorTemplate#getOperators()
      */
-    public List<Operator> getOperators() {
+    @Override
+    public EList<Operator> getOperators() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -45,6 +44,7 @@ public class OperatorTemplateStub extends TemplateStub implements OperatorTempla
     /* (non-Javadoc)
      * @see TCS.OperatorTemplate#getOtSequence()
      */
+    @Override
     public Sequence getOtSequence() {
         // TODO Auto-generated method stub
         return null;
@@ -55,6 +55,7 @@ public class OperatorTemplateStub extends TemplateStub implements OperatorTempla
     /* (non-Javadoc)
      * @see TCS.OperatorTemplate#setOtSequence(TCS.Sequence)
      */
+    @Override
     public void setOtSequence(Sequence value) {
         // TODO Auto-generated method stub
         

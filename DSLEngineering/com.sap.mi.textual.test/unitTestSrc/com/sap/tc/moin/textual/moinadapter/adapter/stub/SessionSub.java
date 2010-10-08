@@ -2,14 +2,7 @@ package com.sap.tc.moin.textual.moinadapter.adapter.stub;
 
 import java.util.Collection;
 
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.LockManager;
-import com.sap.tc.moin.repository.Moin;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Session;
-import com.sap.tc.moin.repository.cdam.CompoundClientSpec;
-import com.sap.tc.moin.repository.events.EventRegistry;
+import org.eclipse.core.internal.jobs.LockManager;
 
 public class SessionSub implements Session {
 

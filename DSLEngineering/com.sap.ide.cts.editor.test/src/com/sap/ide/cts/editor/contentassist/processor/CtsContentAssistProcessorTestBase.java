@@ -10,6 +10,8 @@ import java.util.List;
 import org.eclipse.jface.text.ITextViewer;
 import org.junit.BeforeClass;
 
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistProcessor;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistUtil;
 import com.sap.ide.cts.editor.contentassist.TcsFixtureBase;
@@ -18,8 +20,6 @@ import com.sap.ide.cts.editor.test.util.GeneratedTextblocksBasedTest;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
 import com.sap.ide.cts.editor.test.util.StringReplacement;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 public abstract class CtsContentAssistProcessorTestBase extends
 		GeneratedTextblocksBasedTest {

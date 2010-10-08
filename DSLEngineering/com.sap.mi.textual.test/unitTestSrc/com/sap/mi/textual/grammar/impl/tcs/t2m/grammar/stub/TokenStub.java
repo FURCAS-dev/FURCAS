@@ -3,10 +3,6 @@
  */
 package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
-import tcs.OrPattern;
-import tcs.Token;
-
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 /**
  *

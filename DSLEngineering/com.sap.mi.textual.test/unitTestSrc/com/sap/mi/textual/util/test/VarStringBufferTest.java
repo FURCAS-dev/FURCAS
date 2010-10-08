@@ -5,7 +5,7 @@ package com.sap.mi.textual.util.test;
 
 import static org.junit.Assert.assertEquals;
 
-import com.sap.mi.textual.util.VarStringBuffer;
+import com.sap.furcas.parsergenerator.util.VarStringBuffer;
 
 /**
  *

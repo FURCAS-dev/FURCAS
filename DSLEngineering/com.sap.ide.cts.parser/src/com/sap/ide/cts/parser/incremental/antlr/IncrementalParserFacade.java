@@ -15,17 +15,18 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xml.type.internal.DataValue.URI;
 
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.furcas.textual.tcs.TcsUtil;
-import com.sap.furcas.textual.textblocks.TbVersionUtil;
+import com.sap.furcas.metamodel.textblocks.Version;
+import com.sap.furcas.parsing.textblocks.observer.ParserTextBlocksHandler;
+import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.runtime.parser.impl.ModelInjector;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
+import com.sap.furcas.runtime.tcs.TcsUtil;
+import com.sap.furcas.textual.textblocks.modifcation.TbVersionUtil;
 import com.sap.ide.cts.parser.incremental.IncrementalParser;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.TextBlockReuseStrategyImpl;
-import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
-import com.sap.mi.textual.grammar.impl.ModelInjector;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.grammar.impl.ParsingError;
-import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
+import com.tst.ParsingError;
 
 
 /**
@@ -240,7 +241,7 @@ public class IncrementalParserFacade {
 		// go back to beginning of stream
 		tbTokenStream.reset();
 		TextBlock previousVersionTb = TbVersionUtil.getOtherVersion(rootBlock,
-				VersionEnum.PREVIOUS);
+				Version.PREVIOUS);
 		incrementalLexer.setSource(previousVersionTb.getTokens().get(0));
 		boolean lexingSuccessful = incrementalLexer.lex(previousVersionTb);
 
@@ -249,7 +250,7 @@ public class IncrementalParserFacade {
 
 	private TextBlock getCurrentVersion(TextBlock rootBlock) {
 		TextBlock currentVersionTb = TbVersionUtil.getOtherVersion(rootBlock,
-				VersionEnum.CURRENT);
+				Version.CURRENT);
 		return currentVersionTb;
 	}
 

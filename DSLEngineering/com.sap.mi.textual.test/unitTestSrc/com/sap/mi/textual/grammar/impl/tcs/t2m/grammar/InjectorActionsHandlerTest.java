@@ -11,11 +11,14 @@ import java.util.Collection;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.InjectorAction;
-import tcs.InjectorActionsBlock;
-
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.textual.tcs.SyntaxLookup;
+import com.sap.furcas.metamodel.TCS.InjectorAction;
+import com.sap.furcas.metamodel.TCS.InjectorActionsBlock;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.InjectorActionsHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SyntaxElementHandlerConfigurationBean;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.tcs.SyntaxLookup;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
@@ -28,8 +31,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PrimitivePropertyIni
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PropertyReferenceStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.SequenceElementStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.TemplateStub;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 /**
  *

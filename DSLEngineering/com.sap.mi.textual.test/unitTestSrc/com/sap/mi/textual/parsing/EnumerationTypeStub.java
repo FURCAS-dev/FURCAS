@@ -5,10 +5,6 @@ package com.sap.mi.textual.parsing;
 
 import java.util.List;
 
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
-
 /**
  * Stub only intended for testing. Only methods used by AbstractListbasedMetaLookup are being stubbed. 
  * Stubbed methods must be tested in MofStubtest.

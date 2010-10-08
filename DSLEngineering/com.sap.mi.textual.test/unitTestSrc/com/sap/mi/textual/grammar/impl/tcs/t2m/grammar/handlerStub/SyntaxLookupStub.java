@@ -11,16 +11,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import tcs.ClassTemplate;
-import tcs.Keyword;
-import tcs.LocatedElement;
-import tcs.OperatorList;
-import tcs.PrimitiveTemplate;
-import tcs.Template;
-
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.furcas.textual.tcs.SyntaxLookup;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.LocatedElement;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.metamodel.TCS.PrimitiveTemplate;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PrimitiveTemplateStub;
 
 /**

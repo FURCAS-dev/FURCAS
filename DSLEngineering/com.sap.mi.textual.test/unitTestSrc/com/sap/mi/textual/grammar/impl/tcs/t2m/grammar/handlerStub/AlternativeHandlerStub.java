@@ -6,10 +6,9 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcs.Alternative;
-
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.AlternativeHandler;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer;
+import com.sap.furcas.metamodel.TCS.Alternative;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer;
 
 /**
  *

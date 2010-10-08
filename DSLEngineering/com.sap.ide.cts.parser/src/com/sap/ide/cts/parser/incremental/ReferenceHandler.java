@@ -5,8 +5,8 @@ import org.eclipse.emf.ecore.EObject;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.LexedToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
-import com.sap.mi.textual.grammar.impl.DelayedReference;
-import com.sap.mi.textual.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.runtime.parser.impl.DelayedReference;
 import com.sap.mi.textual.parsing.textblocks.reference.GlobalDelayedReferenceResolver;
 
 /**

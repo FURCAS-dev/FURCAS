@@ -11,14 +11,13 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.ClassTemplate;
-import tcs.EnumerationTemplate;
-import tcs.Keyword;
-import tcs.OperatorTemplate;
-import tcs.Template;
-import tcs.Token;
-
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.OperatorTemplate;
+import com.sap.furcas.metamodel.TCS.Template;
+import com.sap.furcas.metamodel.TCS.Token;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 
 
 public class TestEnumSample extends AbstractTCSInjectionTest {
@@ -108,7 +107,7 @@ public class TestEnumSample extends AbstractTCSInjectionTest {
 		Set<Keyword> keywords = modelParsingResult.getKeywords();
 		Iterator<Keyword> iterator = keywords.iterator();
 		for (; iterator.hasNext();) {
-			Keyword keyword = (Keyword) iterator.next();
+			Keyword keyword = iterator.next();
 			keywords.add(keyword);
 		}
 		

@@ -8,14 +8,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.furcas.textual.common.util.QualifiedNamesHelper;
-import com.sap.mi.textual.grammar.IBareModelAdapter;
-import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.PRI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
+import com.sap.furcas.runtime.common.interfaces.IBareModelAdapter;
+import com.sap.furcas.runtime.common.util.QualifiedNamesHelper;
+import com.sap.furcas.runtime.parser.IModelAdapter;
+import com.sap.furcas.runtime.parser.antlr3.ANTLR3LocationToken;
+
 
 public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 
@@ -48,6 +50,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 
 	
 
+    @Override
     public Object createElement(List<String> typeName) {
 //        System.out.println("Created" + typeName);
         return model.create(QualifiedNamesHelper.getQualifiedString(typeName));
@@ -55,6 +58,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
     
 
 
+	@Override
 	public Object get(Object ame_, String propertyName) {
 		return ((StubModelElement)ame_).get(propertyName);
 	}
@@ -67,6 +71,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 		return get(ame, propName).toString();
 	}
 
+	@Override
 	public void set(Object ame, String prop, Object value) {
 	    if (prop == null) {
 	        fail("Invalid call to set using null property.");
@@ -77,6 +82,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 		((StubModelElement)ame).set(prop, value);
 	}
 	
+	@Override
 	public void set(Object ame, String prop, Object value, int index) {
 	    if (prop == null) {
 	        fail("Invalid call to set using null property.");
@@ -88,6 +94,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 	}
 
 
+	@Override
 	public Object createEnumLiteral(List<String> names, String name) {
         return model.create(name);
     }
@@ -104,6 +111,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 	    return typeName;
 	}
 
+	@Override
 	public boolean instanceOf(Object instance, Object typeName) {
 
 	    if (instance instanceof StubModelElement) {
@@ -130,6 +138,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
     /* (non-Javadoc)
      * @see com.sap.mi.textual.grammar.IModelAdapter#setReference(java.lang.Object, java.lang.String, java.lang.String, java.lang.String, java.lang.Object)
      */
+	@Override
 	public Object setReference(Object sourceModelElement,
 	        String referencePropertyName, List<String> targetTypeList,
 	        String targetKeyName, Object targetKeyValue)
@@ -248,7 +257,7 @@ public class StubModelAdapter implements IModelAdapter, IBareModelAdapter {
 
 
 	@Override
-	public Collection<PRI> getPRIPartitions(Connection conn, String languageId) {
+	public Collection<Resource> getPRIPartitions(ResourceSet conn, String languageId) {
 		// TODO Auto-generated method stub
 		fail("not implemented yet");
 		return null;

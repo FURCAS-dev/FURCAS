@@ -11,29 +11,25 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.junit.Test;
 
-import tcs.Keyword;
-import tcs.OperatorList;
-import tcs.Symbol;
-import tcs.Template;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
-import com.sap.furcas.textual.tcs.SyntaxLookup;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.runtime.tcs.MetamodelNameResolvingException;
+import com.sap.furcas.runtime.tcs.SyntaxLookup;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.ClassTemplateStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.ConcreteSyntaxStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.LiteralStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorListStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PrimitiveTemplateStub;
-import com.sap.mi.textual.moinlookup.util.MetamodelNameResolvingException;
 
 
 /**

@@ -5,11 +5,6 @@ package com.sap.tc.moin.textual.moinadapter.adapter.stub;
 
 import static org.junit.Assert.fail;
 
-import com.sap.tc.moin.repository.CRI;
-import com.sap.tc.moin.repository.DataAreaDescriptor;
-import com.sap.tc.moin.repository.MRI;
-import com.sap.tc.moin.repository.PRI;
-
 /**
  *
  */

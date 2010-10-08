@@ -11,11 +11,10 @@ import java.io.OutputStream;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.sap.mi.textual.epi.filedefinition.TCSInputStreamGrammarGenerator;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.ObservationDirectivesHelper;
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
+import com.sap.furcas.builder.publ.TCSInputStreamGrammarGenerator;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
 import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.tc.moin.repository.Connection;
+
 
 public class GrammarTest  extends ExtendedGeneratedParserBasedTest {
 

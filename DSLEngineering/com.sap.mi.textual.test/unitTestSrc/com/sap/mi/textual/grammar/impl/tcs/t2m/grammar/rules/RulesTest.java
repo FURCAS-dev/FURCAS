@@ -7,7 +7,12 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.sap.mi.textual.util.VarStringBuffer;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.ClassProductionRule;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.OperatorTemplateProductionRule;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.SimpleProductionRule;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.SymbolProductionRule;
+import com.sap.furcas.parsergenerator.util.VarStringBuffer;
 
 /**
  *
@@ -21,7 +26,7 @@ public class RulesTest {
     private static final String INITSTRING = " @init{";
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.AbstractAntlr3Rule#AbstractAntlr3Rule(java.lang.String)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule#AbstractAntlr3Rule(java.lang.String)}.
      */
     @Test
     public void testAbstractAntlr3Rule() {
@@ -45,7 +50,7 @@ public class RulesTest {
     }
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.AbstractAntlr3Rule#addToSerializationBuffer(com.sap.mi.textual.util.VarStringBuffer)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule#addToSerializationBuffer(com.sap.furcas.parsergenerator.util.VarStringBuffer)}.
      */
     @Test
     public void testClassRule() {
@@ -69,7 +74,7 @@ public class RulesTest {
     }
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.AbstractAntlr3Rule#getLength()}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule#getLength()}.
      */
     @Test
     public void testOperatorTemplateProductionRule() {
@@ -98,7 +103,7 @@ public class RulesTest {
     }
 
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.AbstractAntlr3Rule#addRuleHead(com.sap.mi.textual.util.VarStringBuffer)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule#addRuleHead(com.sap.furcas.parsergenerator.util.VarStringBuffer)}.
      */
     @Test
     public void testSimpleRule() {

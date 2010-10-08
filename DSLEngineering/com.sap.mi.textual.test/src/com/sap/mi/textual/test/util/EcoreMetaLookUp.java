@@ -21,12 +21,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.ui.internal.keys.model.ModelElement;
 
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
-import com.sap.furcas.textual.common.interfaces.MultiplicityBean;
-import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 
 public class EcoreMetaLookUp implements IMetaModelLookup<Object> {
 

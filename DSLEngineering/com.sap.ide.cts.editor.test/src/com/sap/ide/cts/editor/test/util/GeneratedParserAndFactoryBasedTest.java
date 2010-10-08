@@ -9,14 +9,14 @@ import java.io.IOException;
 import org.antlr.runtime.Lexer;
 import org.eclipse.emf.ecore.EPackage;
 
-import com.sap.furcas.textual.common.exceptions.GrammarGenerationException;
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
+import com.sap.furcas.parsergenerator.moin.standalone.MOINTCSMetaConnectionProvider;
+import com.sap.furcas.parsing.textblocks.TextBlocksAwareModelAdapter;
+import com.sap.furcas.runtime.common.exceptions.GrammarGenerationException;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.furcas.runtime.parser.impl.ObservableInjectingParser;
 import com.sap.ide.cts.moin.parserfactory.AbstractParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
-import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
-import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
-import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
-import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 
 public class GeneratedParserAndFactoryBasedTest extends
 		GeneratedParserBasedTest {

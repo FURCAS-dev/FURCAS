@@ -12,9 +12,11 @@ import java.util.List;
 
 import org.junit.Test;
 
-import tcs.EnumLiteralMapping;
-
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.EnumerationTemplateHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyBufferFactory;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
@@ -22,7 +24,6 @@ import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.RuleBufferFac
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.EnumLiteralMappingStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.EnumTemplateStub;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 import com.sap.mi.textual.test.util.StringListHelper;
 
 /**

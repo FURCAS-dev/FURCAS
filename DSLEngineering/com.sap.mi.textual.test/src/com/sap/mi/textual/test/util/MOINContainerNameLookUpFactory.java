@@ -6,13 +6,7 @@ package com.sap.mi.textual.test.util;
 import java.io.IOException;
 import java.util.HashSet;
 
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.fwk.mm.MetamodelManager;
-import com.sap.mi.textual.moinlookup.MoinMetaLookup;
-import com.sap.tc.moin.repository.Moin;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.ide.MoinFactory;
-import com.sap.tc.moin.repository.ide.metamodels.MmDeploymentInfo;
+import com.sap.furcas.parsergenerator.emf.lookup.EcoreMetaLookup;
 
 /**
  *
@@ -27,7 +21,7 @@ public class MOINContainerNameLookUpFactory {
      * @throws IOException 
      * @throws IOException 
      */
-    public static MoinMetaLookup getMOINContainerNameLookUpFactory(String containerName) throws IOException {
+    public static EcoreMetaLookup getMOINContainerNameLookUpFactory(String containerName) throws IOException {
         HashSet<PRI> newPRIs = null;
 
         if ("sap.com/tc/moin/mof_1.4".equals(containerName)) {
@@ -52,7 +46,7 @@ public class MOINContainerNameLookUpFactory {
                 newPRIs = new HashSet<PRI>(mm.getPRIs());
             }
         }
-        MoinMetaLookup lookup = new MoinMetaLookup(ConnectionManager.getInstance().createTransientConnection(), newPRIs);
+        EcoreMetaLookup lookup = new EcoreMetaLookup(ConnectionManager.getInstance().createTransientConnection(), newPRIs);
         return lookup;
     }
 

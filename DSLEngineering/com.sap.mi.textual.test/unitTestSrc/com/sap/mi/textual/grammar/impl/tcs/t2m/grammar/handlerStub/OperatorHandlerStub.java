@@ -6,9 +6,8 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub;
 import java.util.ArrayList;
 import java.util.List;
 
-import tcs.OperatorList;
-
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.OperatorHandler;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.OperatorHandler;
 
 /**
  *

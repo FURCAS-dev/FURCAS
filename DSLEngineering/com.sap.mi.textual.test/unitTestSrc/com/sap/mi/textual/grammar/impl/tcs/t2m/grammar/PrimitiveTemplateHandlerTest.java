@@ -13,18 +13,18 @@ import java.util.List;
 
 import org.junit.Test;
 
-import tcs.Keyword;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.furcas.metamodel.TCS.Keyword;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.PrimitiveTemplateHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.SyntaxLookupStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.TemplateNamingHelperStub;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.LiteralStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PrimitiveTemplateStub;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 import com.sap.mi.textual.test.util.StringListHelper;
 
 /**

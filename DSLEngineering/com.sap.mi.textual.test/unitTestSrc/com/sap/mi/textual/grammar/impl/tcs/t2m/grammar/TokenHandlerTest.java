@@ -12,23 +12,21 @@ import java.util.List;
 
 import org.junit.Test;
 
-import tcs.EndOfLineRule;
-import tcs.Mapping;
-import tcs.MultiLineRule;
-import tcs.OrPattern;
-import tcs.SimplePattern;
-import tcs.StringPattern;
-import tcs.WordRule;
-
+import com.sap.furcas.metamodel.TCS.EndOfLineRule;
+import com.sap.furcas.metamodel.TCS.Mapping;
+import com.sap.furcas.metamodel.TCS.MultiLineRule;
+import com.sap.furcas.metamodel.TCS.SimplePattern;
+import com.sap.furcas.metamodel.TCS.StringPattern;
+import com.sap.furcas.metamodel.TCS.WordRule;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.TokenHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.ANTLR3WriterStub;
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.rules.AbstractAntlr3Rule;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.ClassPatternStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.LocatedElementStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OrPatternStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.RulePatternStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.StringPatternStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.TokenStub;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 /**
  *

@@ -5,8 +5,8 @@ package com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub;
 
 import java.util.List;
 
-import tcs.EnumLiteralMapping;
-import tcs.EnumerationTemplate;
+import com.sap.furcas.metamodel.TCS.EnumLiteralMapping;
+import com.sap.furcas.metamodel.TCS.EnumerationTemplate;
 
 /**
  *

@@ -6,9 +6,9 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.sap.furcas.textual.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
+import com.sap.furcas.runtime.parser.ModelParsingResult;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.grammar.ModelParsingResult;
 import com.sap.mi.textual.test.util.EcoreMetaLookUp;
 import com.sap.mi.textual.test.util.StubModelAdapter;
 import com.sap.mi.textual.test.util.StubModelElement;

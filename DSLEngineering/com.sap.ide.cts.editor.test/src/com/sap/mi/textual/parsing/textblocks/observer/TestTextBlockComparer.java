@@ -14,6 +14,9 @@ import com.sap.furcas.metamodel.TCS.Template;
 import com.sap.furcas.metamodel.textblockdefinition.TextblockDefinition;
 import com.sap.furcas.metamodel.textblocks.AbstractToken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockComparer;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockProxy;
+import com.sap.furcas.parsing.textblocks.observer.TextBlockTraversationContext;
 =======
 import tcs.Template;
 import textblockdefinition.TextBlockDefinition;

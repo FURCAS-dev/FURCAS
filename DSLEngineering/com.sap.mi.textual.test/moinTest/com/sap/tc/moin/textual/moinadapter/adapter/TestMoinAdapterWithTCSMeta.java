@@ -20,21 +20,12 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import tcs.Associativity;
-import tcs.ClassTemplate;
-import tcs.ConcreteSyntax;
-import tcs.LocatedElement;
-import tcs.TcsPackage;
-import tcs.Template;
-
-import com.sap.furcas.textual.common.exceptions.ModelAdapterException;
-import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.textual.grammar.exceptions.ReferenceSettingException;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+import com.sap.furcas.metamodel.TCS.Associativity;
+import com.sap.furcas.metamodel.TCS.ClassTemplate;
+import com.sap.furcas.metamodel.TCS.ConcreteSyntax;
+import com.sap.furcas.metamodel.TCS.LocatedElement;
+import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
+import com.sap.furcas.runtime.common.exceptions.ReferenceSettingException;
 
 /**
  * Tests the moin Model adapter with a Moin in Eclipse connection and the TCS Metamodel.

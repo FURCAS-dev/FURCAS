@@ -7,6 +7,7 @@ import org.junit.Test;
 <<<<<<< HEAD
 import com.sap.furcas.metamodel.textblocks.Eostoken;
 import com.sap.furcas.metamodel.textblocks.TextBlock;
+import com.sap.furcas.parsing.textblocks.observer.TokenRelocationUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 =======
 import textblocks.Eostoken;

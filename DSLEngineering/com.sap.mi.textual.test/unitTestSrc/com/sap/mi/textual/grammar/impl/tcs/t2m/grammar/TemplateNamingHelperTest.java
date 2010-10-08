@@ -9,19 +9,18 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import tcs.QualifiedNamedElement;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.furcas.textual.common.exceptions.NameResolutionFailedException;
-import com.sap.furcas.textual.common.exceptions.SyntaxElementException;
-import com.sap.furcas.textual.common.interfaces.ResolvedNameAndReferenceBean;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.furcas.metamodel.TCS.QualifiedNamedElement;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.common.exceptions.NameResolutionFailedException;
+import com.sap.furcas.runtime.common.exceptions.SyntaxElementException;
+import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
+import com.sap.furcas.runtime.tcs.MetamodelNameResolvingException;
+import com.sap.furcas.runtime.tcs.TemplateNamingHelper;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.MetaModelElementResolutionHelperStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.FunctionTemplateStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.PrimitiveTemplateStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.TemplateStub;
-import com.sap.mi.textual.moinlookup.util.MetamodelNameResolvingException;
-import com.sap.mi.textual.moinlookup.util.TemplateNamingHelper;
 import com.sap.mi.textual.test.util.ResolutionBeanHelper;
 
 /**

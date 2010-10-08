@@ -11,10 +11,11 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import tcs.SequenceInAlternative;
-
-import com.sap.furcas.textual.common.exceptions.MetaModelLookupException;
-import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.furcas.metamodel.TCS.SequenceInAlternative;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.ObservationDirectivesHelper;
+import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
+import com.sap.furcas.runtime.parser.exceptions.SyntaxParsingException;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.handlerStub.RuleBodyStringBufferStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.AlternativeStub;
 
@@ -29,7 +30,7 @@ public class AlternativeHandlerTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -53,7 +54,7 @@ public class AlternativeHandlerTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -81,7 +82,7 @@ public class AlternativeHandlerTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -112,7 +113,7 @@ public class AlternativeHandlerTest {
     }
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */
@@ -145,7 +146,7 @@ public class AlternativeHandlerTest {
     
     
     /**
-     * Test method for {@link com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.RuleBodyStringBuffer)}.
+     * Test method for {@link com.sap.furcas.parsergenerator.tcs.t2m.grammar.AlternativeHandler#addElement(TCS.Alternative, com.sap.furcas.parsergenerator.tcs.t2m.grammar.RuleBodyStringBuffer)}.
      * @throws SyntaxParsingException 
      * @throws MetaModelLookupException 
      */

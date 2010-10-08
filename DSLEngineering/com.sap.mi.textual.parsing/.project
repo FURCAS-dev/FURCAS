@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>com.sap.mi.textual.parsing</name>
+	<name>com.sap.furcas.runtime.parser</name>
 	<comment>@key 32303037303632392D3130303020636F6D2E7361702E6D692E7465787475616C2E70617273696E672F4335313037343536 </comment>
 	<projects>
 	</projects>

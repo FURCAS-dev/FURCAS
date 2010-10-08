@@ -10,10 +10,9 @@ import java.util.List;
 
 import org.junit.Test;
 
-import tcs.OperatorList;
-import tcs.Priority;
-
-import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.SemanticErrorBucket;
+import com.sap.furcas.metamodel.TCS.OperatorList;
+import com.sap.furcas.parsergenerator.tcs.t2m.grammar.SemanticErrorBucket;
+import com.sap.furcas.parsergenerator.tcs.t2m.validation.OperatorListValidation;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.ConcreteSyntaxStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorListStub;
 import com.sap.mi.textual.grammar.impl.tcs.t2m.grammar.stub.OperatorStub;
