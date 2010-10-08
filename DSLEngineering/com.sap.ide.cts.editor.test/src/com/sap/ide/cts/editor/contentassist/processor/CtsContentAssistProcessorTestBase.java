@@ -12,12 +12,12 @@ import org.junit.BeforeClass;
 
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
 import com.sap.furcas.runtime.parser.exceptions.UnknownProductionRuleException;
+import com.sap.furcas.test.base.ParserGenerationTestHelper;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistProcessor;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistUtil;
 import com.sap.ide.cts.editor.contentassist.TcsFixtureBase;
 import com.sap.ide.cts.editor.contentassist.stubs.TextViewerStub;
 import com.sap.ide.cts.editor.test.util.GeneratedTextblocksBasedTest;
-import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
 import com.sap.ide.cts.editor.test.util.StringReplacement;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 

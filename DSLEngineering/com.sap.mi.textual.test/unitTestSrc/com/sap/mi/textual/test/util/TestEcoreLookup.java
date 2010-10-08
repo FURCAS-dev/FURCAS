@@ -3,8 +3,8 @@
  */
 package com.sap.mi.textual.test.util;
 
-import static com.sap.mi.textual.test.util.ResolutionBeanHelper.refE;
-import static com.sap.mi.textual.test.util.StringListHelper.list;
+import static com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper.refE;
+import static com.sap.furcas.parsergenerator.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;

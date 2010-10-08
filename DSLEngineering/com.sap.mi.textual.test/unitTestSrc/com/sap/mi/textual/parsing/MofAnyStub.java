@@ -16,7 +16,7 @@ import javax.xml.stream.events.Namespace;
 import org.eclipse.ocl.ecore.Constraint;
 
 import com.sap.furcas.metamodel.TCS.ScopeKind;
-import com.sap.mi.textual.test.util.StringListHelper;
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
 import com.sap.tc.moin.textual.moinadapter.adapter.stub.PRIStub;
 
 /**

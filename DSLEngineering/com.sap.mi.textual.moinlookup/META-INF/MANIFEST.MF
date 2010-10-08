@@ -11,7 +11,6 @@ Require-Bundle:
  com.sap.furcas.runtime.common,
  com.sap.furcas.runtime.tcs,
  com.sap.furcas.runtime.parser,
- com.sap.furcas.common,
  com.sap.furcas.modeladaptation.emf,
  com.sap.furcas.parser.tcs
 Export-Package: com.sap.furcas.parsergenerator.emf.lookup,

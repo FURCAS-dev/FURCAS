@@ -25,3 +25,4 @@ Require-Bundle: org.antlr;bundle-version="3.1.1",
 Bundle-ClassPath: bin/,
  .
 Bundle-Activator: com.sap.furcas.parsergenerator.Activator
+Bundle-ActivationPolicy: lazy
