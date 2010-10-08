@@ -7,10 +7,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import com.sap.mi.textual.grammar.impl.TestContextManager;
-import com.sap.mi.textual.grammar.impl.TestObservableInjectingParser;
-import com.sap.mi.textual.grammar.impl.TestObservableParser;
-import com.sap.mi.textual.grammar.impl.context.TestContext;
+import com.sap.furcas.parser.impl.context.TestContext;
+import com.sap.furcas.parser.impl.context.TestContextManager;
+import com.sap.furcas.parser.impl.context.TestObservableInjectingParser;
+import com.sap.furcas.parser.impl.context.TestObservableParser;
 import com.sap.mi.textual.test.parsingObserver.ObservationTest;
 
 

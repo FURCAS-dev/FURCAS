@@ -13,7 +13,7 @@ import javax.xml.stream.events.Namespace;
 import org.eclipse.ocl.ecore.Constraint;
 import org.eclipse.ui.internal.keys.model.ModelElement;
 
-import com.sap.mi.textual.test.util.StringListHelper;
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
 
 /**
  * Stub only intended for testing. Only methods used by AbstractListbasedMetaLookup are being stubbed. 

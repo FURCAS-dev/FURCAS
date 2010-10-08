@@ -3,7 +3,7 @@
  */
 package com.sap.mi.textual.moinlookup;
 
-import static com.sap.mi.textual.test.util.StringListHelper.list;
+import static com.sap.furcas.parsergenerator.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -18,6 +18,7 @@ import org.eclipse.ocl.utilities.TypedElement;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.emf.lookup.AbstractEcoreLookup;
+import com.sap.furcas.parsergenerator.testutils.ResolutionBeanHelper;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.MultiplicityBean;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
@@ -25,7 +26,6 @@ import com.sap.mi.textual.parsing.EnumerationTypeStub;
 import com.sap.mi.textual.parsing.MofAnyStub;
 import com.sap.mi.textual.parsing.MofStructureFieldStub;
 import com.sap.mi.textual.parsing.MofStructureTypeStub;
-import com.sap.mi.textual.test.util.ResolutionBeanHelper;
 
 /**
  * Tests the abstract AbstractMoinLookup class by creating a stub subclass and testing that.

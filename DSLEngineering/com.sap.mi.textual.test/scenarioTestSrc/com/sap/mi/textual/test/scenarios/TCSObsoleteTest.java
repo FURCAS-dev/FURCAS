@@ -7,11 +7,11 @@ import java.util.List;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.common.util.QualifiedNamesHelper;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
 import com.sap.mi.textual.test.util.EcoreMetaLookUp;
-import com.sap.mi.textual.test.util.StringListHelper;
 import com.sap.mi.textual.test.util.StubModelAdapter;
 
 /**

@@ -1,4 +1,4 @@
-package com.sap.ide.cts.editor.test.util;
+package com.sap.furcas.test.parsing.base;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -21,9 +21,11 @@ import com.sap.furcas.runtime.common.exceptions.ModelAdapterException;
 import com.sap.furcas.runtime.common.interfaces.IMetaModelLookup;
 import com.sap.furcas.runtime.parser.ParserFacade;
 import com.sap.furcas.runtime.parser.exceptions.InvalidParserImplementationException;
+import com.sap.ide.cts.editor.test.util.ConcreteSyntaxBasedTest;
+import com.sap.ide.cts.editor.test.util.StandaloneMoinLookUp;
 
 
-public class GeneratedParserBasedTest extends ConcreteSyntaxBasedTest {
+public class GeneratedParserBasedTest {
 
 	protected static String language;
 	private static IMetaModelLookup<?> lookup;

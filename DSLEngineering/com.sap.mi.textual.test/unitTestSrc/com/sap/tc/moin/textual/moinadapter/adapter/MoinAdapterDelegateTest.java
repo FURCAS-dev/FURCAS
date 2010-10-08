@@ -3,7 +3,7 @@
  */
 package com.sap.tc.moin.textual.moinadapter.adapter;
 
-import static com.sap.mi.textual.test.util.StringListHelper.list;
+import static com.sap.furcas.parsergenerator.testutils.StringListHelper.list;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

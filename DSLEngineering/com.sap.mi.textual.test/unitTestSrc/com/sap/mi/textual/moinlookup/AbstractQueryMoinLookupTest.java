@@ -14,10 +14,10 @@ import org.eclipse.ocl.utilities.TypedElement;
 import org.junit.Test;
 
 import com.sap.furcas.parsergenerator.emf.lookup.AbstractQueryBasedEcoreLookUp;
+import com.sap.furcas.parsergenerator.testutils.StringListHelper;
 import com.sap.furcas.runtime.common.exceptions.MetaModelLookupException;
 import com.sap.furcas.runtime.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.parsing.MofAnyStub;
-import com.sap.mi.textual.test.util.StringListHelper;
 
 /**
  * Tests the abstract AbstractMoinLookup class by creating a stub subclass and testing that.
