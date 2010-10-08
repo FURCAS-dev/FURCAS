@@ -15,7 +15,10 @@ import de.hpi.sam.bp2009.solution.eventManager.CompositeIterable;
 
 /**
  * Immutable implementation of a data structure keyed by {@link OperationCallExp} expressions where the values
- * are sets of <code>E</code> objects.
+ * are sets of <code>E</code> objects.<p>
+ * 
+ * Implementation invariant: only non-empty iterators are inserted into the map. Therefore, the map contains
+ * no entries whose iterators would not produce any results.
  * 
  * @author Axel Uhl (D043530)
  */
@@ -31,44 +34,52 @@ public class OperationCallExpKeyedSetImpl implements OperationCallExpKeyedSet {
         if (c == null) {
             throw new IllegalArgumentException("Must pass a valid, non-null iterable");
         }
-        Map<OperationCallExp, Iterable<AnnotatedEObject>> myMap = new HashMap<OperationCallExp, Iterable<AnnotatedEObject>>();
-        myMap.put(oce, c);
-        map = myMap;
+        if (c.iterator().hasNext()) {
+            map = Collections.singletonMap(oce, c);
+        } else {
+            map = Collections.emptyMap();
+        }
     }
 
     OperationCallExpKeyedSetImpl(Iterable<AnnotatedEObject> c) {
         if (c == null) {
             throw new IllegalArgumentException("Must pass a valid, non-null iterable");
         }
-        Map<OperationCallExp, Iterable<AnnotatedEObject>> myMap = new HashMap<OperationCallExp, Iterable<AnnotatedEObject>>();
-        myMap.put(null, c);
-        map = myMap;
+        if (!c.iterator().hasNext()) {
+            map = Collections.emptyMap();
+        } else {
+            map = Collections.singletonMap(null, c);
+        }
     }
     
     OperationCallExpKeyedSetImpl(AnnotatedEObject aeo) {
-        Map<OperationCallExp, Iterable<AnnotatedEObject>> myMap = new HashMap<OperationCallExp, Iterable<AnnotatedEObject>>();
-        myMap.put(null, Collections.singleton(aeo));
-        map = myMap;
+        Iterable<AnnotatedEObject> aeoAsIterable = Collections.singleton(aeo);
+        map = Collections.singletonMap(null, aeoAsIterable);
     }
     
     OperationCallExpKeyedSetImpl(Collection<OperationCallExpKeyedSet> sets) {
-        Map<OperationCallExp, Iterable<AnnotatedEObject>> myMap = new HashMap<OperationCallExp, Iterable<AnnotatedEObject>>();
-        for (OperationCallExpKeyedSet set : sets) {
-            for (Entry<OperationCallExp, ? extends Iterable<AnnotatedEObject>> entry : set.entrySet()) {
-                Iterable<AnnotatedEObject> entryValue = entry.getValue();
-                if (entryValue.iterator().hasNext()) {
-                    Set<AnnotatedEObject> mapSet = (Set<AnnotatedEObject>) myMap.get(entry.getKey());
-                    if (mapSet == null) {
-                        mapSet = new HashSet<AnnotatedEObject>();
-                        myMap.put(entry.getKey(), mapSet);
-                    }
-                    for (AnnotatedEObject e : entryValue) {
-                        mapSet.add(e);
+        if (sets.isEmpty()) {
+            map = Collections.emptyMap();
+        } else {
+            Map<OperationCallExp, Iterable<AnnotatedEObject>> myMap = new HashMap<OperationCallExp, Iterable<AnnotatedEObject>>();
+            for (OperationCallExpKeyedSet set : sets) {
+                for (Entry<OperationCallExp, ? extends Iterable<AnnotatedEObject>> entry : set.entrySet()) {
+                    Iterable<AnnotatedEObject> entryValue = entry.getValue();
+                    // enter only non-empty result iterators
+                    if (entryValue.iterator().hasNext()) {
+                        Set<AnnotatedEObject> mapSet = (Set<AnnotatedEObject>) myMap.get(entry.getKey());
+                        if (mapSet == null) {
+                            mapSet = new HashSet<AnnotatedEObject>();
+                            myMap.put(entry.getKey(), mapSet);
+                        }
+                        for (AnnotatedEObject e : entryValue) {
+                            mapSet.add(e);
+                        }
                     }
                 }
             }
+            map = myMap;
         }
-        map = myMap;
     }
 
     static OperationCallExpKeyedSetImpl emptySet() {

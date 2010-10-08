@@ -36,14 +36,16 @@ public class BranchingTracebackStep<E extends OCLExpression> extends AbstractTra
         int i = 0;
         for (TracebackStepAndScopeChange step : steps) {
             OperationCallExpKeyedSet next = step.traceback(annotateEObject(source), pendingUnusedEvalRequests, tracebackCache, changeEvent);
-            results.add(next);
             if (nonEmptyCount <= 1 && !next.isEmpty()) {
                 if (nonEmptyCount == 0) {
                     singleNonEmptyIndex = i;
                 }
                 nonEmptyCount++;
             }
-            i++;
+            if (!next.isEmpty()) {
+                results.add(next);
+                i++;
+            }
         }
         if (nonEmptyCount == 0) {
             result = tracebackCache.getOperationCallExpKeyedSetFactory().emptySet();
