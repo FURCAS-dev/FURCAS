@@ -1,8 +1,0 @@
-﻿<structure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://sap.com/moin/xm/test/recursive" xsi:schemaLocation="http://sap.com/moin/xm/test/recursive recursive.xsd">
-	<name>struc1</name>
-	<field>
-		<name>field11</name>
-		<type>boolean</type>
-	</field>
-</structure>
