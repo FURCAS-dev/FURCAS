@@ -20,6 +20,8 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.InstanceScopeAnal
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.unusedEvaluation.UnusedEvaluationRequestSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.AnnotatedEObject;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.FlatSet;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.util.IterableAsOperationCallExpKeyedSet;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.util.OperationCallExpKeyedSet;
 import de.hpi.sam.bp2009.solution.oclToAst.EAnnotationOCLParser;
 import de.hpi.sam.bp2009.solution.oclToAst.OclToAstFactory;
@@ -165,19 +167,19 @@ public class OperationCallTracebackStep extends BranchingTracebackStep<Operation
             UnusedEvaluationRequestSet pendingUnusedEvalRequests, de.hpi.sam.bp2009.solution.impactAnalyzer.instanceScope.traceback.TracebackCache tracebackCache, Notification changeEvent) {
         OperationCallExpKeyedSet result;
         if (allInstancesClass != null) {
-            Set<AnnotatedEObject> preResult = new HashSet<AnnotatedEObject>();
+            FlatSet preResult = new FlatSet();
             for (EObject roi : InstanceScopeAnalysis.getAllPossibleContextInstances((Notifier) changeEvent.getNotifier(), allInstancesClass,
                     oppositeEndFinder)) {
                 preResult.add(annotateEObject(source, roi));
             }
-            OperationCallExpKeyedSet postResult = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(preResult);
-            result = postResult;
-            
+            result = preResult;
         } else {
             OperationCallExpKeyedSet preResult = (OperationCallExpKeyedSet) super
                     .performSubsequentTraceback(source, pendingUnusedEvalRequests, tracebackCache, changeEvent);
             if (filterResultsByCall && tracebackCache.getConfiguration().isOperationCallSelectionActive()) {
-                result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(preResult.getCombinedResultsFor(getExpression()));
+                result = new IterableAsOperationCallExpKeyedSet(preResult.getCombinedResultsFor(getExpression()));
+//                result = new FlatSet(preResult.getCombinedResultsFor(getExpression()));
+//                result = tracebackCache.getOperationCallExpKeyedSetFactory().createOperationCallExpKeyedSet(preResult.getCombinedResultsFor(getExpression()));
             } else {
                 result = preResult;
             }

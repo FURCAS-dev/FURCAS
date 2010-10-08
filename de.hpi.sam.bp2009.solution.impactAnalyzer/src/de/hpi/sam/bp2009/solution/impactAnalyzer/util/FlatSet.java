@@ -4,8 +4,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.ocl.ecore.OperationCallExp;
 
@@ -24,7 +24,7 @@ public class FlatSet extends HashSet<AnnotatedEObject> implements OperationCallE
     /**
      * Only used to create the {@link #EMPTY_SET}
      */
-    private FlatSet() {}
+    public FlatSet() {}
 
     public FlatSet(Iterable<AnnotatedEObject> c) {
         for (AnnotatedEObject aeo : c) {
@@ -57,23 +57,11 @@ public class FlatSet extends HashSet<AnnotatedEObject> implements OperationCallE
      * or an empty iterable in case this set is empty.
      */
     public Iterable<Entry<OperationCallExp, Iterable<AnnotatedEObject>>> entrySet() {
-        Map.Entry<OperationCallExp, Iterable<AnnotatedEObject>> entry = new Map.Entry<OperationCallExp, Iterable<AnnotatedEObject>>() {
-            public OperationCallExp getKey() {
-                return null;
-            }
-
-            public Iterable<AnnotatedEObject> getValue() {
-                return FlatSet.this;
-            }
-
-            public Iterable<AnnotatedEObject> setValue(Iterable<AnnotatedEObject> value) {
-                throw new UnsupportedOperationException("setValue() not supported here");
-            }
-        };
         Set<Entry<OperationCallExp, Iterable<AnnotatedEObject>>> result;
-        if (isEmpty()) {
+        if (!isEmpty()) {
             result = Collections.emptySet();
         } else {
+            Map.Entry<OperationCallExp, Iterable<AnnotatedEObject>> entry = new EntryIterableWithIterableForNullKey(FlatSet.this);
             result = Collections.singleton(entry);
         }
         return result;

@@ -45,7 +45,13 @@ public class OperationCallExpKeyedSetFactory {
     
     public OperationCallExpKeyedSet createOperationCallExpKeyedSet(Collection<OperationCallExpKeyedSet> sets) {
         if (isOperationCallSelectionActive) {
-            return new OperationCallExpKeyedSetImpl(sets);
+            if (sets.isEmpty()) {
+                return OperationCallExpKeyedSetImpl.emptySet();
+            } else if (sets.size() == 1) {
+                return sets.iterator().next();
+            } else {
+                return new OperationCallExpKeyedSetImpl(sets);
+            }
         } else {
             return new FlatSet(sets);
         }
